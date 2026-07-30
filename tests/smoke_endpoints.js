@@ -18,10 +18,15 @@ async function run() {
     const readyJson = await readyRes.json().catch(() => null);
     assert.strictEqual(
       readyRes.status,
-      200,
-      `Ready failed: ${readyJson ? JSON.stringify(readyJson) : "non-json response"}`
+      500,
+      `Hermetic readiness should fail closed: ${readyJson ? JSON.stringify(readyJson) : "non-json response"}`
     );
-    assert.strictEqual(readyJson.ok, true);
+    assert.strictEqual(readyJson.ok, false);
+    assert.strictEqual(readyJson.goNoGo, false);
+    assert.ok(
+      Array.isArray(readyJson.blockers) && readyJson.blockers.length > 0,
+      "Hermetic readiness must name at least one blocker"
+    );
   } finally {
     await next.stop();
   }

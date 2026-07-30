@@ -24,6 +24,7 @@ import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -32,7 +33,11 @@ function getPersistedSavedJobId(jobContext: LoadedJobContext | null) {
     return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null;
 }
 
-export default function WorkspaceClient() {
+type WorkspaceClientProps = {
+    initialReport?: ReportData | null;
+};
+
+export default function WorkspaceClient({ initialReport = null }: WorkspaceClientProps) {
     const { push, replace } = useRouter();
     const searchParams = useSearchParams();
     const getSearchParam = searchParams.get.bind(searchParams);
@@ -42,7 +47,7 @@ export default function WorkspaceClient() {
     const [jobDescription, setJobDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isStreaming, setIsStreaming] = useState(false);
-    const [report, setReport] = useState<any>(null);
+    const [report, setReport] = useState<any>(initialReport);
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
@@ -368,12 +373,14 @@ export default function WorkspaceClient() {
 
     const handleResumeSample = useCallback(async () => {
         try {
-            const res = await fetch("/sample-report.json");
-            const data = await res.json();
+            const data = await fetchSampleReport();
             setReport(data);
             setReviewMode('resume');
         } catch (err) {
             console.error("Failed to load sample report:", err);
+            toast.error("Sample report unavailable", {
+                description: "Please try again in a moment or start your free report.",
+            });
         }
     }, []);
 

@@ -2,6 +2,7 @@ const assert = require("assert");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const { withLaunchTestDefaults } = require("../scripts/next_server");
 
 const source = fs.readFileSync(
   path.join(__dirname, "..", "scripts", "next_server.js"),
@@ -23,6 +24,27 @@ assert.doesNotMatch(
   /new Date\(\)\.toISOString\(\)/,
   "a timestamp-only marker cannot prove which compiled public flags were tested"
 );
+
+const hermeticEnv = withLaunchTestDefaults({
+  SUPABASE_SECRET_KEY: "live-parent-secret",
+  SUPABASE_SERVICE_ROLE_KEY: "legacy-live-parent-secret",
+  STRIPE_WEBHOOK_SECRET: "live-webhook-secret",
+  UPSTASH_REDIS_REST_URL: "https://live.example",
+  UPSTASH_REDIS_REST_TOKEN: "live-token",
+});
+for (const key of [
+  "SUPABASE_SECRET_KEY",
+  "SUPABASE_SERVICE_ROLE_KEY",
+  "STRIPE_WEBHOOK_SECRET",
+  "UPSTASH_REDIS_REST_URL",
+  "UPSTASH_REDIS_REST_TOKEN",
+]) {
+  assert.equal(
+    hermeticEnv[key],
+    "",
+    `contract server must not inherit hosted credential ${key}`
+  );
+}
 
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "riyp-build-marker-"));
 try {

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
 
 const sampleReportPath = path.join(process.cwd(), "public", "sample-report.json");
@@ -14,6 +15,19 @@ assert.equal(normalizedSample?.score, sampleReport.score);
 assert.equal(normalizedSample?.summary, sampleReport.summary);
 assert.deepEqual(normalizedSample?.next_steps, sampleReport.next_steps);
 assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
+
+const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
+assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
+assert.match(sampleReport.rewrites[0].better, /\[program length\].*\[number of hires\].*\[teams\].*\[verified outcome\]/i);
+assert.match(sampleReport.rewrites[1].better, /\[team count\].*\[verified before-and-after result\]/i);
+for (const rewrite of sampleReport.rewrites) {
+  assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
+}
+assert.doesNotThrow(() => assertSampleReportResponseOk({ ok: true, status: 200 }));
+assert.throws(
+  () => assertSampleReportResponseOk({ ok: false, status: 503 }),
+  /Sample report request failed with status 503/,
+);
 
 const legacyReport = {
   score: 72,
@@ -68,7 +82,9 @@ assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsre
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /First-read score/);
+assert.match(renderedHtml, /Clarity summary/);
+assert.match(renderedHtml, /78<span>\/100<\/span>/);
+assert.match(renderedHtml, /Not a prediction of interviews or offers\./);
 assert.match(renderedHtml, new RegExp(getScoreLabel(sampleReport.score)));
 assert.match(renderedHtml, /What lands/);
 assert.match(renderedHtml, /What stays unclear/);

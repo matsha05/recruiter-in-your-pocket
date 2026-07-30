@@ -1,6 +1,6 @@
 "use client";
 
-import { Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
+import { ArrowRight, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DownloadIcon } from "@/components/ui/download";
@@ -15,6 +15,7 @@ import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
 import { redactReport } from "@/lib/redaction";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { Button } from "@/components/ui/button";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -226,6 +227,18 @@ export default function ReportPanel({
                                     {shareEnabled && shareMode && <span className="text-[11px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
                                 </div>
                                 <div className="flex shrink-0 items-center gap-1">
+                                    {isSample && onNewReport && (
+                                        <Button
+                                            data-testid="sample-start-report"
+                                            type="button"
+                                            variant="brand"
+                                            size="sm"
+                                            onClick={onNewReport}
+                                            className="min-h-11 shrink-0 px-3 sm:px-4"
+                                        >
+                                            Get my free report <ArrowRight className="ml-1 size-4" weight="bold" />
+                                        </Button>
+                                    )}
                                     {canExport && !isSample && (
                                         <button type="button"
                                             onClick={handleExport}
@@ -266,7 +279,6 @@ export default function ReportPanel({
                             <ReportStream
                                 report={displayReport}
                                 isSample={isSample}
-                                onNewReport={isStreaming ? undefined : onNewReport}
                                 freeUsesRemaining={freeUsesRemaining}
                                 onUpgrade={onUpgrade}
                                 hasJobDescription={hasJobDescription}

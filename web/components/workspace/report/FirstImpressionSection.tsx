@@ -108,10 +108,10 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 <div className="grid md:grid-cols-[minmax(0,1fr)_12rem]">
                     <div className="order-1 flex items-end justify-between gap-5 border-b bg-black/[0.018] px-5 py-5 md:order-2 md:flex-col md:items-start md:justify-between md:gap-8 md:border-b-0 md:border-l md:p-7">
                         <div>
-                            <p className="riyp-type-10px font-bold uppercase riyp-track-015 text-muted-foreground">First-read score</p>
+                            <p className="riyp-type-10px font-bold uppercase riyp-track-015 text-muted-foreground">Clarity summary</p>
                             <div className="mt-2 flex items-baseline gap-1.5 md:block">
                                 <p className="font-display text-5xl riyp-weight-560 leading-none riyp-track-n05 tabular-nums text-foreground">{animatedScore}</p>
-                                <p className="text-xs text-muted-foreground md:mt-1">out of 100</p>
+                                <p className="text-xs text-muted-foreground md:mt-1">/100</p>
                             </div>
                         </div>
 
@@ -131,7 +131,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                 "mt-2 text-xs leading-5 text-muted-foreground transition-[opacity,transform] duration-150 motion-reduce:transition-none",
                                 showFirstPassNote ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                             )}>
-                                A document review, not hiring odds.
+                                Not a prediction of interviews or offers.
                             </p>
                         </div>
                     </div>

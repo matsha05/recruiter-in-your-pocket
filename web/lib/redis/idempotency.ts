@@ -1,5 +1,5 @@
 import "server-only";
-import { getRedisClient } from "@/lib/redis/client";
+import { getRedisClient } from "./client";
 
 /**
  * Idempotency key storage using Upstash Redis.
@@ -11,6 +11,13 @@ import { getRedisClient } from "@/lib/redis/client";
  */
 
 const DEFAULT_TTL_SECONDS = 60 * 60 * 24; // 24 hours
+
+export function decodeCachedValue<T>(cached: unknown): T {
+    // @upstash/redis can automatically deserialize JSON values. Older callers
+    // assumed it always returned the stored string and called JSON.parse on an
+    // object, which broke checkout deduplication in production.
+    return (typeof cached === "string" ? JSON.parse(cached) : cached) as T;
+}
 
 /**
  * Check if an idempotency key has been processed.
@@ -69,9 +76,9 @@ export async function getOrSetCache<T>(
         const redisKey = `cache:${key}`;
 
         // Try to get cached value
-        const cached = await redis.get<string>(redisKey);
-        if (cached) {
-            return { value: JSON.parse(cached) as T, cacheHit: true };
+        const cached = await redis.get<unknown>(redisKey);
+        if (cached !== null && cached !== undefined) {
+            return { value: decodeCachedValue<T>(cached), cacheHit: true };
         }
 
         // Compute and cache

@@ -79,12 +79,22 @@ test.describe("research system", () => {
     });
   }
 
-  test("legacy research URLs preserve their canonical destination", async ({ page }) => {
+  test("legacy research URLs return permanent redirects to their canonical destination", async ({ page, request }) => {
     for (const [from, to] of redirects) {
+      const redirect = await request.get(from, { maxRedirects: 0 });
+      expect(redirect.status(), from).toBe(308);
+      expect(new URL(redirect.headers()["location"], "http://riyp.test").pathname, from).toBe(to);
+
       await page.goto(from, { waitUntil: "domcontentloaded" });
       await expect(page).toHaveURL(new RegExp(`${to.replaceAll("/", "\\/")}/?$`));
       await expect(page.locator("[data-visual-anchor='research-article']")).toBeVisible();
     }
+  });
+
+  test("the retired extension result permanently resolves to the active product", async ({ request }) => {
+    const response = await request.get("/extension", { maxRedirects: 0 });
+    expect(response.status()).toBe(308);
+    expect(new URL(response.headers()["location"], "http://riyp.test").pathname).toBe("/workspace");
   });
 
   test("hub and every canonical article have no serious accessibility violations", async ({ page }) => {

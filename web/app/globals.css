@@ -388,9 +388,43 @@
 }
 
 .lift-privacy svg {
+  flex: 0 0 auto;
   width: 1rem;
   height: 1rem;
   color: hsl(var(--citron));
+}
+
+.lift-hero-trust {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.65rem;
+}
+
+.lift-hero-trust .lift-privacy {
+  margin-top: 0;
+}
+
+.lift-ai-disclosure {
+  max-width: 36rem;
+  color: var(--lift-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.lift-differentiation {
+  max-width: 39rem;
+  color: var(--lift-ink);
+  font-size: 0.84rem;
+  font-weight: 680;
+  line-height: 1.5;
+}
+
+.lift-ai-disclosure a {
+  color: var(--lift-ink);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: hsl(var(--sky-strong));
+  text-underline-offset: 0.22rem;
 }
 
 .lift-demo {
@@ -1019,6 +1053,40 @@
   margin-top: 1.75rem;
 }
 
+.lift-founder-profile {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.lift-founder-profile img {
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 1px solid hsl(var(--surface-raised) / 0.28);
+  border-radius: 0.35rem;
+  object-fit: cover;
+  object-position: 50% 24%;
+}
+
+.lift-founder-profile h2 {
+  margin-top: 0;
+}
+
+.lift-founder-profile p {
+  max-width: 42rem;
+  margin-top: 0.8rem;
+  color: hsl(var(--surface-raised) / 0.86);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.lift-founder-profile p strong {
+  color: hsl(var(--surface-raised));
+  font-weight: 720;
+}
+
 .lift-support-career {
   display: flex;
   flex-wrap: wrap;
@@ -1173,12 +1241,106 @@
   height: 1rem;
 }
 
+.lift-founder-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.4rem;
+}
+
+.lift-founder-ai-note {
+  max-width: 42rem;
+  margin-top: 1.1rem;
+  color: hsl(var(--surface-raised) / 0.8);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .lift-credibility-disclosure {
   max-width: 42rem;
   margin-top: 0.75rem;
   color: hsl(var(--surface-raised) / 0.58);
   font-size: 0.72rem;
   line-height: 1.55;
+}
+
+.lift-offer-comparison {
+  padding: clamp(3rem, 5vw, 5rem) 0;
+  border-bottom: 1px solid var(--lift-line);
+  background: hsl(var(--surface-sky));
+}
+
+.lift-offer-comparison-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.lift-offer-comparison-grid h2 {
+  max-width: 16ch;
+  margin-top: 0.85rem;
+  color: var(--lift-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 4vw, 4rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.lift-offer-comparison-grid h2 + p {
+  max-width: 34rem;
+  margin-top: 1rem;
+  color: var(--lift-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.lift-offer-comparison-grid .lift-button-secondary {
+  margin-top: 1.5rem;
+  background: hsl(var(--surface-raised));
+}
+
+.lift-offer-comparison-proof {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--lift-line);
+  background: hsl(var(--surface-raised));
+}
+
+.lift-offer-comparison-proof > svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--lift-iris);
+}
+
+.lift-offer-comparison-proof dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lift-offer-comparison-proof dl > div {
+  min-width: 0;
+  padding: 0.25rem 0.85rem 0.85rem;
+  border-bottom: 1px solid var(--lift-line);
+}
+
+.lift-offer-comparison-proof dt {
+  color: var(--lift-muted);
+  font-size: 0.6875rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lift-offer-comparison-proof dd {
+  margin-top: 0.35rem;
+  color: var(--lift-ink);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 580;
+  line-height: 1.2;
 }
 
 .lift-proof-section {
@@ -1472,6 +1634,20 @@
     grid-template-columns: minmax(0, 1.05fr) minmax(25rem, 0.95fr);
     align-items: center;
   }
+
+  .lift-founder-profile {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .lift-founder-profile img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .lift-offer-comparison-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(30rem, 1.1fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -1513,6 +1689,46 @@
   .lift-privacy {
     align-items: flex-start;
     font-size: 0.86rem;
+  }
+
+  .lift-ai-disclosure {
+    font-size: 0.75rem;
+  }
+
+  .lift-founder-profile {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .lift-founder-profile img {
+    width: 4.75rem;
+    height: 4.75rem;
+  }
+
+  .lift-founder-profile h2 {
+    font-size: clamp(1.85rem, 9vw, 2.3rem);
+  }
+
+  .lift-founder-profile p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .lift-founder-links {
+    display: grid;
+    gap: 0;
+  }
+
+  .lift-offer-comparison-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .lift-offer-comparison-proof dl {
+    gap: 0.5rem;
+  }
+
+  .lift-offer-comparison-proof dl > div {
+    padding-inline: 0;
   }
 
   .lift-first-read-verdict,

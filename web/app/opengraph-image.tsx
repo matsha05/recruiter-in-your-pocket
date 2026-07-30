@@ -65,9 +65,9 @@ export default async function OpenGraphImage() {
               </div>
             </div>
             <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", padding: "20px 22px", background: "#F3FAD9" }}>
-              <div style={{ display: "flex", color: "#071722", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Stronger and specific</div>
+              <div style={{ display: "flex", color: "#071722", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Grounded rewrite</div>
               <div style={{ display: "flex", marginTop: 10, fontFamily: "Space Grotesk", fontSize: 27, lineHeight: 1.15 }}>
-                Cut ramp time from 6 to 4 weeks for 25 new hires a week across Sales and Support.
+                Rebuilt [program] for [teams or hires], improving [verified outcome].
               </div>
             </div>
           </div>

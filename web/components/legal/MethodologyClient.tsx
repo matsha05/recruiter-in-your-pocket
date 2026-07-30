@@ -34,7 +34,7 @@ export default function MethodologyClient() {
             pageKey="methodology"
             eyebrow="Methodology"
             title="How the resume review works"
-            description="The review looks at four parts of your resume. The first-read score keeps the result easy to scan, while the written findings show what drove it."
+            description="The review looks at four parts of your resume. The clarity summary keeps the result easy to scan, while the written findings show what drove it."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
             <section className="border-y border-line bg-surface-sky/35 px-6 py-7 md:px-8 md:py-9">

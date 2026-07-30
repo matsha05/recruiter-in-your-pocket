@@ -1,9 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
     ArrowRight,
     BookOpenText,
     BracketsAngle,
+    Calculator,
     CornersOut,
+    LinkedinLogo,
     LockKey,
     PaperPlaneTilt,
 } from "@phosphor-icons/react/dist/ssr";
@@ -43,7 +46,7 @@ function ReportFirstSection() {
                         <p className="lift-kicker">The first-read report</p>
                         <h2 id="lift-report-first-title">See what the first read actually gives you.</h2>
                     </div>
-                    <p>Not a score to decode. A clear read of what lands, what stays blurry, and the first truthful change worth making.</p>
+                    <p>A recruiter&apos;s read first. A simple summary score second. See what lands, what stays blurry, and the first truthful change worth making.</p>
                 </div>
 
                 <article className="lift-report-excerpt" aria-label="Sample first-read report excerpt">
@@ -83,20 +86,20 @@ function ReportFirstSection() {
                         </div>
                         <div className="lift-report-handoff-actions">
                             <Link href="/workspace" className="lift-button-primary">Upload my resume <ArrowRight aria-hidden="true" weight="bold" /></Link>
-                            <Link href="/workspace?sample=1" className="lift-text-link">Read the complete sample <ArrowRight aria-hidden="true" /></Link>
+                            <Link href="/sample-report" className="lift-text-link">Read the complete sample <ArrowRight aria-hidden="true" /></Link>
                         </div>
                     </div>
                 </article>
 
                 <div className="lift-transformation" aria-label="Illustrative transformation example">
                     <div>
-                        <p className="lift-kicker">Transformation example</p>
-                        <p>Same work. More visible evidence.</p>
+                        <p className="lift-kicker">Grounded transformation</p>
+                        <p>Same work. Your facts stay yours.</p>
                     </div>
                     <dl>
-                        <div><dt>Led initiatives</dt><dd>Rebuilt 30-day program</dd></div>
-                        <div><dt>Teams</dt><dd>Sales, Support &amp; Ops</dd></div>
-                        <div><dt>Productivity</dt><dd>Cut ramp time 28%</dd></div>
+                        <div><dt>Program</dt><dd>Rebuilt [program]</dd></div>
+                        <div><dt>Scope</dt><dd>[Teams or hires]</dd></div>
+                        <div><dt>Result</dt><dd>[Verified outcome]</dd></div>
                     </dl>
                 </div>
             </div>
@@ -111,14 +114,31 @@ function SupportBand() {
         <section className="lift-credibility" aria-labelledby="lift-credibility-title">
             <div className="lift-shell lift-support-grid">
                 <div className="lift-credibility-copy">
-                    <p className="lift-kicker">Recruiting judgment, made repeatable</p>
-                    <h2 id="lift-credibility-title">Built from 14 years inside recruiting and hiring teams.</h2>
-                    <p>RIYP turns the questions recruiters ask privately into a product you can use before you apply: what lands, where the reader has to guess, and what to make clearer next.</p>
+                    <p className="lift-kicker">The recruiter behind the report</p>
+                    <div className="lift-founder-profile">
+                        <Image
+                            src="/assets/founder-avatar.jpg"
+                            alt="Matt Shaw, founder of Recruiter in Your Pocket"
+                            width={180}
+                            height={180}
+                            sizes="(max-width: 720px) 88px, 112px"
+                        />
+                        <div>
+                            <h2 id="lift-credibility-title">Built by Matt Shaw.</h2>
+                            <p><strong>14 years in recruiting and hiring.</strong> I built this to give candidates the honest résumé feedback they usually never receive.</p>
+                        </div>
+                    </div>
                     <p className="lift-credibility-label lift-support-label">Experience across</p>
                     <ol className="lift-support-career" aria-label="Selected recruiting and people leadership experience">
                         {career.map((company) => <li key={company}>{company}</li>)}
                     </ol>
-                    <Link className="lift-credibility-link" href="/methodology">See how the report works <ArrowRight aria-hidden="true" /></Link>
+                    <div className="lift-founder-links">
+                        <a className="lift-credibility-link" href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer">
+                            <LinkedinLogo aria-hidden="true" weight="fill" /> View my LinkedIn
+                        </a>
+                        <Link className="lift-credibility-link" href="/methodology">See how the report works <ArrowRight aria-hidden="true" /></Link>
+                    </div>
+                    <p className="lift-founder-ai-note">AI-powered feedback, shaped by a real recruiter&apos;s experience. Matt does not personally review every submission.</p>
                     <p className="lift-credibility-disclosure">Recruiter in Your Pocket is independent. Company names identify the founder&apos;s work history; no current or former employer sponsors or endorses it.</p>
                 </div>
 
@@ -135,6 +155,32 @@ function SupportBand() {
     );
 }
 
+function OfferComparisonBand() {
+    return (
+        <section className="lift-offer-comparison" aria-labelledby="lift-offer-comparison-title">
+            <div className="lift-shell lift-offer-comparison-grid">
+                <div>
+                    <p className="lift-kicker">Free offer tool</p>
+                    <h2 id="lift-offer-comparison-title">Comparing job offers?</h2>
+                    <p>See salary, bonus, equity, and vesting on the same four-year timeline.</p>
+                    <Link className="lift-button-secondary" href="/resources/tools/comp-calculator">
+                        Compare offers for free <ArrowRight aria-hidden="true" weight="bold" />
+                    </Link>
+                </div>
+                <div className="lift-offer-comparison-proof" aria-label="Offer comparison calculator includes salary, bonus, equity, and vesting">
+                    <Calculator aria-hidden="true" weight="duotone" />
+                    <dl>
+                        <div><dt>Salary</dt><dd>Year 1–4</dd></div>
+                        <div><dt>Bonus</dt><dd>Target + timing</dd></div>
+                        <div><dt>Equity</dt><dd>Modeled value</dd></div>
+                        <div><dt>Vesting</dt><dd>Same timeline</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 export function LandingLiftedLine() {
     return (
         <div data-visual-anchor="landing-home" className="lift-page">
@@ -142,14 +188,18 @@ export function LandingLiftedLine() {
                 <div className="lift-shell">
                     <div className="lift-hero-grid">
                         <div className="lift-hero-copy">
-                            <p className="lift-kicker">Recruiter feedback, before you apply</p>
+                            <p className="lift-kicker">Recruiter feedback, before you apply.</p>
                             <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
-                            <p className="lift-hero-deck">Your private recruiter-style report shows what they understand, where they hesitate, and the changes that will make the biggest difference.</p>
+                            <p className="lift-hero-deck">Get a recruiter&apos;s first impression, see the exact résumé lines that raise questions, and learn the three most important changes to make before you apply.</p>
                             <div className="lift-actions">
-                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">See my first read <ArrowRight aria-hidden="true" weight="bold" /></Link>
-                                <Link href="/workspace?sample=1" className="lift-button-secondary">View a sample</Link>
+                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free résumé review <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                                <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>
                             </div>
-                            <p className="lift-privacy"><LockKey aria-hidden="true" weight="regular" /> First report free. No account required. Anonymous resume text is not saved by RIYP.</p>
+                            <div className="lift-hero-trust">
+                                <p className="lift-privacy"><LockKey aria-hidden="true" weight="regular" /> First report free. No account required. No subscription.</p>
+                                <p className="lift-differentiation">Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.</p>
+                                <p className="lift-ai-disclosure">AI-powered feedback, informed by <a href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer">Matt Shaw&apos;s</a> 14 years of real recruiting experience.</p>
+                            </div>
                         </div>
                         <FirstReadHero />
                     </div>
@@ -158,6 +208,7 @@ export function LandingLiftedLine() {
 
             <ReportFirstSection />
             <SupportBand />
+            <OfferComparisonBand />
 
             <section className="lift-close" aria-labelledby="lift-close-title">
                 <div className="lift-shell lift-close-grid">
@@ -167,7 +218,7 @@ export function LandingLiftedLine() {
                     </div>
                     <div>
                         <p>Good experience gets missed all the time. Usually for fixable reasons.</p>
-                        <Link href="/workspace" className="lift-button-primary">Get your report <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                        <Link href="/workspace" className="lift-button-primary">Get my free résumé review <ArrowRight aria-hidden="true" weight="bold" /></Link>
                     </div>
                 </div>
             </section>

@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function HowPeopleScanRedirect() {
-    redirect("/research/how-recruiters-read");
+    permanentRedirect("/research/how-recruiters-read");
 }

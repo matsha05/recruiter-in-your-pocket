@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function SignalVsClarityRedirect() {
-    redirect("/research/writing-quality-hire-probability");
+    permanentRedirect("/research/writing-quality-hire-probability");
 }

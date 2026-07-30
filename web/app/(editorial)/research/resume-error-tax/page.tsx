@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function ResumeErrorTaxRedirect() {
-    redirect("/research/spelling-errors-impact");
+    permanentRedirect("/research/spelling-errors-impact");
 }

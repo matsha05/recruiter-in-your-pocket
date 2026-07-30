@@ -75,7 +75,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "Evidence, not promises",
-            body: "The first-read score summarizes this document review. The report shows the evidence behind it and never promises a hiring outcome.",
+            body: "The clarity summary scores this document review out of 100. The report shows the evidence behind it and never predicts interviews or offers.",
           },
           {
             icon: LockKey,

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { getRedisRestConfig, isRedisRestConfigured } from "../lib/redis/config";
+import { decodeCachedValue } from "../lib/redis/idempotency";
 
 assert.deepEqual(
   getRedisRestConfig({
@@ -35,5 +36,16 @@ assert.equal(
   "partial credentials must never enable Redis"
 );
 assert.equal(isRedisRestConfigured({}), false);
+
+assert.deepEqual(
+  decodeCachedValue<{ url: string }>('{"url":"https://checkout.example"}'),
+  { url: "https://checkout.example" },
+  "string Redis responses should still decode"
+);
+assert.deepEqual(
+  decodeCachedValue<{ url: string }>({ url: "https://checkout.example" }),
+  { url: "https://checkout.example" },
+  "auto-deserialized Redis responses should not be parsed twice"
+);
 
 console.log("redis-config tests passed");

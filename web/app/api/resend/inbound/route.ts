@@ -7,6 +7,7 @@ import {
 import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { captureOperationalError } from "@/lib/observability/operations";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { getConfiguredAppUrl } from "@/lib/runtime/appUrl";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -73,6 +74,7 @@ export async function POST(request: Request) {
       webhookSecret: process.env.RESEND_WEBHOOK_SECRET || "",
       forwardTo: process.env.RIYP_SUPPORT_FORWARD_TO || "",
       forwardFrom: process.env.RIYP_SUPPORT_FORWARD_FROM || "",
+      replyBaseUrl: getConfiguredAppUrl() || "",
     },
     {
       verifyWebhook: (input) => resend.webhooks.verify(input),

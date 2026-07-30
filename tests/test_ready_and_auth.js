@@ -33,21 +33,24 @@ function waitForServer(url, maxWait = MAX_WAIT_MS) {
 }
 
 async function testReadyEndpoint(serverUrl) {
-  console.log("\n📋 Testing /api/ready endpoint...");
+  console.log("\n📋 Testing fail-closed /api/ready endpoint...");
   
   try {
     const response = await fetch(`${serverUrl}/api/ready`);
     const data = await response.json();
     
     console.log("Response:", JSON.stringify(data, null, 2));
-    
-    if (data.ok) {
-      console.log("✅ /api/ready endpoint passed");
-      return true;
-    } else {
-      console.log(`⚠️  /api/ready endpoint returned ok: false - ${data.message}`);
-      return false;
-    }
+
+    assert.strictEqual(response.status, 500, "Hermetic readiness should fail closed");
+    assert.strictEqual(data.ok, false);
+    assert.strictEqual(data.goNoGo, false);
+    assert.ok(
+      Array.isArray(data.blockers) && data.blockers.length > 0,
+      "Hermetic readiness must name at least one blocker"
+    );
+
+    console.log("✅ /api/ready failed closed with named blockers");
+    return true;
   } catch (err) {
     console.error("❌ Error testing /ready endpoint:", err.message);
     return false;
@@ -70,7 +73,7 @@ async function runTests() {
   
   console.log("\n" + "=".repeat(60));
   console.log("📊 Test Results:");
-  console.log(`   /ready endpoint: ${results.ready ? "✅ PASS" : "⚠️  WARN"}`);
+  console.log(`   /ready endpoint: ${results.ready ? "✅ PASS" : "❌ FAIL"}`);
   
   const allPassed = results.ready;
   
@@ -79,9 +82,9 @@ async function runTests() {
     await next.stop();
     process.exit(0);
   } else {
-    console.log("\n⚠️  Some tests had warnings (see above)");
+    console.log("\n❌ Readiness checks failed");
     await next.stop();
-    process.exit(0);
+    process.exit(1);
   }
 }
 
@@ -96,4 +99,3 @@ runTests().catch((err) => {
   console.error("❌ Test failed:", err);
   process.exit(1);
 });
-

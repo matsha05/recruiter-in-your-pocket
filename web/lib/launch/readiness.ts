@@ -9,6 +9,7 @@ import { isRedisRestConfigured } from "../redis/config";
 import { liveEvalMatchesCandidate, readLiveEvalEvidence } from "./evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "./liveEvalBaseline";
 import { configuredDailyGenerationLimit } from "../operations/generationBudget";
+import { hasConfiguredSupportOperators } from "../support/access";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -222,6 +223,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     "RESEND_WEBHOOK_SECRET",
     "RIYP_SUPPORT_FORWARD_TO",
     "RIYP_SUPPORT_FORWARD_FROM",
+    "RIYP_SUPPORT_OPERATOR_EMAILS",
   ];
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);
   if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -275,7 +277,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     process.env.RESEND_WEBHOOK_SECRET,
     process.env.RIYP_SUPPORT_FORWARD_TO,
     process.env.RIYP_SUPPORT_FORWARD_FROM,
-  ].every((value) => Boolean(value?.trim()));
+  ].every((value) => Boolean(value?.trim())) && hasConfiguredSupportOperators();
   const supportForwardingEnabled = isTruthyEnv(process.env.RIYP_SUPPORT_FORWARDING_ENABLED);
   const supportEvidenceRecorded = isTruthyEnv(process.env.RIYP_SUPPORT_INBOX_VERIFIED);
   const supportDeliveryVerified =
@@ -289,9 +291,9 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       : supportEvidenceRecorded && !supportForwardingEnabled
         ? "Support evidence is recorded, but inbound forwarding is disabled."
       : supportEvidenceRecorded && !supportDeliveryConfigured
-        ? "Support evidence is recorded, but the signed inbound webhook or forwarding configuration is missing."
+        ? "Support evidence is recorded, but the signed inbound webhook, forwarding configuration, or operator allowlist is missing."
       : hostedRuntime
-        ? "RIYP_SUPPORT_INBOX_VERIFIED must only be enabled after a real receive-and-reply rehearsal."
+        ? "RIYP_SUPPORT_INBOX_VERIFIED must only be enabled after a real receive-and-reply rehearsal by an allowlisted operator."
         : "Primary support delivery has not been verified in this local environment."
   );
 

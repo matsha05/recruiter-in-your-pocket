@@ -20,10 +20,10 @@ import {
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { ReportData } from "./ReportTypes";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
-import { getScoreLabel } from "@/lib/score-utils";
 import { ReadComparison } from "./ReadComparison";
 import styles from "./ReportStream.module.css";
 
@@ -31,7 +31,6 @@ interface ReportStreamProps {
     report: ReportData;
     className?: string;
     isSample?: boolean;
-    onNewReport?: () => void;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     hasJobDescription?: boolean;
@@ -84,13 +83,31 @@ function workingDraftFor(original?: string) {
     return `${clean}; [verified detail].`;
 }
 
-function applyVerifiedFactToDraft(draft: string, fact: string) {
-    if (/\[[^\]]+\]/.test(draft)) {
-        return draft.replace(/\[[^\]]+\]/, fact);
-    }
-    const cleanDraft = draft.trim().replace(/[.;]\s*$/, "");
-    const cleanFact = fact.trim().replace(/^[.;]\s*/, "").replace(/[.;]\s*$/, "");
-    return `${cleanDraft}; ${cleanFact}.`;
+function placeholderKeysFor(value: string) {
+    return Array.from(new Set(Array.from(value.matchAll(/\[([^\]]+)\]/g), (match) => match[1].trim())));
+}
+
+function placeholderLabel(value: string) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function confirmedFactAppearsIn(value: string, fact: string) {
+    const normalizedFact = fact.trim().replace(/\s+/g, " ");
+    if (!normalizedFact) return false;
+    const escapedFact = normalizedFact.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapedFact}(?:$|[^\\p{L}\\p{N}])`, "iu")
+        .test(value.replace(/\s+/g, " "));
+}
+
+const ONBOARDING_NO_NUMBER_DRAFT =
+    "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.";
+
+function qualitativeFallbackFor(value: string) {
+    const keys = placeholderKeysFor(value);
+    const isOnboardingTemplate = /\bonboarding\b/i.test(value)
+        && ["program length", "number of hires", "teams", "verified outcome"]
+            .every((key) => keys.includes(key));
+    return isOnboardingTemplate ? ONBOARDING_NO_NUMBER_DRAFT : null;
 }
 
 function MarkedTakeaway({ text }: { text: string }) {
@@ -123,27 +140,102 @@ function FixCanvas({
     const [editing, setEditing] = useState(false);
     const [copied, setCopied] = useState(false);
     const [answer, setAnswer] = useState("");
+    const [factValues, setFactValues] = useState<Record<string, string>>({});
     const [answerApplied, setAnswerApplied] = useState(false);
+    const [usingQualitativeFallback, setUsingQualitativeFallback] = useState(false);
     const [dismissed, setDismissed] = useState(false);
     const action = fix.fix || fix.text || "Make this part of the resume more specific";
-    const traceProgress = answerApplied
+    const placeholderKeys = useMemo(() => placeholderKeysFor(suggestedLine), [suggestedLine]);
+    const qualitativeFallback = useMemo(() => qualitativeFallbackFor(suggestedLine), [suggestedLine]);
+    const requiresCandidateFacts = placeholderKeys.length > 0;
+    const allRequiredFactsProvided = requiresCandidateFacts
+        && placeholderKeys.every((key) => factValues[key]?.trim());
+    const hasAnyCandidateFact = answer.trim().length > 0
+        || placeholderKeys.some((key) => factValues[key]?.trim());
+    const hasUnresolvedFactPlaceholders = /\[[^\]]+\]/.test(draft);
+    const allAppliedFactsPresent = usingQualitativeFallback || (requiresCandidateFacts
+        ? answerApplied
+            && placeholderKeys.every((key) => confirmedFactAppearsIn(draft, factValues[key] || ""))
+        : !answerApplied || confirmedFactAppearsIn(draft, answer));
+    const allowedNumberTokens = new Set(
+        `${original || ""} ${answerApplied ? answer : ""} ${answerApplied ? placeholderKeys.map((key) => factValues[key] || "").join(" ") : ""}`
+            .match(/\d[\d,.]*(?:%|[kmb])?/gi) || [],
+    );
+    const draftNumberTokens = draft.match(/\d[\d,.]*(?:%|[kmb])?/gi) || [];
+    const hasUnsupportedNumber = draftNumberTokens.some((token) => !allowedNumberTokens.has(token));
+    const copyBlocked = hasUnresolvedFactPlaceholders
+        || (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback)
+        || !allAppliedFactsPresent
+        || hasUnsupportedNumber;
+    const traceProgress = answerApplied || usingQualitativeFallback
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
-        : answer.trim() ? 68 : 50;
+        : hasAnyCandidateFact ? 68 : 50;
+    let copyGuidance = "A working draft based on the facts already in your resume.";
+    if (hasUnsupportedNumber) {
+        copyGuidance = "A number in this draft is not in the facts you confirmed. Remove it or update the matching fact before copying.";
+    } else if (hasUnresolvedFactPlaceholders && !answerApplied) {
+        copyGuidance = "We don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.";
+    } else if (hasUnresolvedFactPlaceholders) {
+        copyGuidance = "Your supporting facts are saved. Replace every bracket with the matching fact before copying.";
+    } else if (!allAppliedFactsPresent) {
+        copyGuidance = "Keep every confirmed fact in the draft before copying.";
+    } else if (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback) {
+        copyGuidance = "Confirm the supporting facts below before copying this quantified rewrite.";
+    } else if (usingQualitativeFallback) {
+        copyGuidance = "A factual no-number alternative, ready to adapt without inventing scale or results.";
+    } else if (answerApplied) {
+        copyGuidance = "Your verified fact is preserved. Edit the sentence until it sounds like you.";
+    }
 
-    useEffect(() => setDraft(suggestedLine), [suggestedLine]);
+    useEffect(() => {
+        setDraft(suggestedLine);
+        setFactValues({});
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(false);
+    }, [suggestedLine]);
 
     const handleCopy = async () => {
+        if (copyBlocked) return;
         await navigator.clipboard.writeText(draft);
         setCopied(true);
         window.setTimeout(() => setCopied(false), 1600);
     };
 
     const handleUseAnswer = () => {
+        if (requiresCandidateFacts) {
+            if (!allRequiredFactsProvided) return;
+            const groundedDraft = suggestedLine.replace(/\[([^\]]+)\]/g, (match, rawKey: string) => {
+                const value = factValues[rawKey.trim()]?.trim();
+                return value || match;
+            });
+            setDraft(groundedDraft);
+            setAnswerApplied(true);
+            setUsingQualitativeFallback(false);
+            setEditing(true);
+            return;
+        }
+
         const cleanAnswer = answer.trim().replace(/\s+/g, " ");
         if (!cleanAnswer) return;
-        setDraft((current) => applyVerifiedFactToDraft(current, cleanAnswer));
         setAnswerApplied(true);
+        setUsingQualitativeFallback(false);
         setEditing(true);
+    };
+
+    const handleUseQualitativeFallback = () => {
+        if (!qualitativeFallback) return;
+        setFactValues({});
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(true);
+        setDraft(qualitativeFallback);
+        setEditing(true);
+    };
+
+    const handleFactChange = (key: string, value: string) => {
+        setFactValues((current) => ({ ...current, [key]: value }));
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(false);
+        setDraft(suggestedLine);
     };
 
     if (locked) {
@@ -234,16 +326,47 @@ function FixCanvas({
                             <p className="mt-3 text-[0.95rem] font-medium leading-6 text-foreground">
                                 {question?.question || "What specific detail would make this claim easier to believe?"}
                             </p>
-                            <textarea
-                                value={answer}
-                                onChange={(event) => setAnswer(event.target.value)}
-                                className="mt-4 min-h-28 w-full resize-y border border-foreground/15 bg-paper/80 px-3 py-3 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
-                                placeholder="Write the facts as you know them. Rough is fine."
-                                aria-label={`Answer the factual question for fix ${index + 1}`}
-                            />
-                            <Button type="button" variant="outline" size="sm" className="mt-3 min-h-11 border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!answer.trim()}>
-                                Keep this fact
-                            </Button>
+                            {requiresCandidateFacts ? (
+                                <div className="mt-4 grid gap-3">
+                                    {placeholderKeys.map((key) => (
+                                        <label key={key} className="grid gap-1.5 text-xs font-semibold text-foreground/75">
+                                            <span>{placeholderLabel(key)}</span>
+                                            <Input
+                                                type="text"
+                                                value={factValues[key] || ""}
+                                                onChange={(event) => handleFactChange(key, event.target.value)}
+                                                className="min-h-11 w-full border border-foreground/15 bg-paper/80 px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
+                                                placeholder={`Add the ${key} from your actual work`}
+                                                aria-label={`Fact for ${key} in fix ${index + 1}`}
+                                            />
+                                        </label>
+                                    ))}
+                                    <Button type="button" variant="outline" size="sm" className="mt-1 min-h-11 justify-self-start border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!allRequiredFactsProvided}>
+                                        Keep these facts
+                                    </Button>
+                                    {qualitativeFallback ? (
+                                        <Button type="button" variant="ghost" size="sm" className="min-h-11 justify-self-start px-0 text-left text-brand hover:bg-transparent hover:text-brand/80" onClick={handleUseQualitativeFallback}>
+                                            Use a factual no-number draft
+                                        </Button>
+                                    ) : null}
+                                </div>
+                            ) : (
+                                <>
+                                    <textarea
+                                        value={answer}
+                                        onChange={(event) => {
+                                            setAnswer(event.target.value);
+                                            setAnswerApplied(false);
+                                        }}
+                                        className="mt-4 min-h-28 w-full resize-y border border-foreground/15 bg-paper/80 px-3 py-3 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
+                                        placeholder="Write the facts as you know them. Rough is fine."
+                                        aria-label={`Answer the factual question for fix ${index + 1}`}
+                                    />
+                                    <Button type="button" variant="outline" size="sm" className="mt-3 min-h-11 border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!answer.trim()}>
+                                        Keep this fact
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
 
@@ -251,9 +374,7 @@ function FixCanvas({
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
-                                <p className="mt-1 text-xs text-muted-foreground">
-                                    {answerApplied ? "Your verified fact is now in the draft. Edit the sentence until it sounds like you." : "A working draft. Replace every bracket with a fact you can verify."}
-                                </p>
+                                <p className="mt-1 text-xs text-muted-foreground">{copyGuidance}</p>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
@@ -266,17 +387,34 @@ function FixCanvas({
                                 <button
                                     type="button"
                                     onClick={handleCopy}
-                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75"
+                                    disabled={copyBlocked}
+                                    aria-label={copyBlocked ? "Add verified facts before copying" : copied ? "Copied" : "Copy suggested line"}
+                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
                                 >
-                                    {copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                                    {copied ? "Copied" : "Copy"}
+                                    {copyBlocked
+                                        ? <BracketsAngle className="size-4" />
+                                        : copied
+                                            ? <Check className="size-4" weight="bold" />
+                                            : <Copy className="size-4" />}
+                                    {copyBlocked ? "Add facts to copy" : copied ? "Copied" : "Copy"}
                                 </button>
                             </div>
                         </div>
                         {answerApplied ? (
                             <div className="mt-5 border-l-2 border-brand/45 bg-paper/70 px-4 py-3">
-                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fact to preserve</p>
-                                <p className="mt-2 text-sm font-medium leading-6 text-foreground">{answer.trim()}</p>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">{requiresCandidateFacts ? "Facts to preserve" : "Fact to preserve"}</p>
+                                {requiresCandidateFacts ? (
+                                    <dl className="mt-2 grid gap-2">
+                                        {placeholderKeys.map((key) => (
+                                            <div key={key} className="grid gap-0.5 sm:grid-cols-[9rem_1fr] sm:gap-3">
+                                                <dt className="text-xs font-semibold text-muted-foreground">{placeholderLabel(key)}</dt>
+                                                <dd className="text-sm font-medium leading-6 text-foreground">{factValues[key]?.trim()}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                ) : (
+                                    <p className="mt-2 text-sm font-medium leading-6 text-foreground">{answer.trim()}</p>
+                                )}
                             </div>
                         ) : null}
                         {editing ? (
@@ -302,7 +440,6 @@ export function ReportStream({
     report,
     className,
     isSample = false,
-    onNewReport,
     freeUsesRemaining = 1,
     onUpgrade,
     hasJobDescription = false,
@@ -335,9 +472,20 @@ export function ReportStream({
         <div className={cn("mx-auto max-w-[58rem] pb-16", className)}>
             {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
             <section id="section-first-impression" className="scroll-mt-36 pb-10 pt-2 sm:pb-14 sm:pt-8">
-                <div className="flex items-center justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
+                <div className="flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
                     <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">The read</p>
-                    <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+                    {typeof report.score === "number" ? (
+                        <div className="max-w-[14rem] text-right">
+                            <p className="riyp-tabular-label text-[11px] font-semibold uppercase riyp-track-015 text-foreground">
+                                Clarity summary: {report.score}/100
+                            </p>
+                            <p className="mt-1 text-[11px] leading-4 text-muted-foreground">
+                                Not a prediction of interviews or offers.
+                            </p>
+                        </div>
+                    ) : (
+                        <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+                    )}
                 </div>
 
                 <div className="pt-6 sm:pt-6">
@@ -372,14 +520,6 @@ export function ReportStream({
                         <p className="text-sm leading-6 text-muted-foreground">
                             <span className="font-semibold text-foreground">What we saw on the page:</span> “{primaryEvidence}”
                         </p>
-                    </div>
-                )}
-
-                {isSample && onNewReport && (
-                    <div className="mt-8 flex justify-start sm:ml-[3.75rem]">
-                        <Button data-testid="sample-start-report" variant="brand" size="lg" onClick={onNewReport}>
-                            See what yours says <ArrowRight className="ml-2 size-4" weight="bold" />
-                        </Button>
                     </div>
                 )}
 
@@ -474,16 +614,16 @@ export function ReportStream({
 
             <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
-                    <div className="flex items-baseline gap-3">
-                        <span className="text-sm font-semibold text-foreground">How we summarized this review</span>
-                        {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100 · {getScoreLabel(report.score)}</span>}
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+                        <span className="text-sm font-semibold text-foreground">How the clarity summary breaks down</span>
+                        {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100</span>}
                     </div>
                     <CaretDown className="size-4 shrink-0 text-brand transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
                     <div>
                         <p className="font-display text-5xl riyp-weight-520 leading-none text-foreground">{report.score ?? "—"}</p>
-                        <p className="mt-2 text-xs text-muted-foreground">A document review, not hiring odds.</p>
+                        <p className="mt-2 text-xs text-muted-foreground">Not a prediction of interviews or offers.</p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
                         {Object.entries(report.subscores || {}).map(([label, score]) => (

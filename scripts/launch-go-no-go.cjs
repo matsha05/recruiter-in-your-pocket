@@ -94,6 +94,13 @@ function hasSharedRedis() {
   );
 }
 
+function hasSupportOperator() {
+  return String(process.env.RIYP_SUPPORT_OPERATOR_EMAILS || "")
+    .split(",")
+    .map((email) => email.trim().toLowerCase())
+    .some((email) => /^[^\s@]+@[^\s@]+$/.test(email));
+}
+
 const analyticsEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, false);
 const billingEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, false);
 const extensionEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, false);
@@ -167,9 +174,10 @@ checkCondition(
     Boolean(process.env.RESEND_API_KEY) &&
     Boolean(process.env.RESEND_WEBHOOK_SECRET) &&
     Boolean(process.env.RIYP_SUPPORT_FORWARD_TO) &&
-    Boolean(process.env.RIYP_SUPPORT_FORWARD_FROM),
+    Boolean(process.env.RIYP_SUPPORT_FORWARD_FROM) &&
+    hasSupportOperator(),
   "The support inbox passed a real receive-and-reply rehearsal.",
-  "Support requires RIYP_SUPPORT_FORWARDING_ENABLED=true, RESEND_API_KEY, RESEND_WEBHOOK_SECRET, RIYP_SUPPORT_FORWARD_TO, RIYP_SUPPORT_FORWARD_FROM, and RIYP_SUPPORT_INBOX_VERIFIED=true only after a real receive-and-reply rehearsal."
+  "Support requires RIYP_SUPPORT_FORWARDING_ENABLED=true, RESEND_API_KEY, RESEND_WEBHOOK_SECRET, RIYP_SUPPORT_FORWARD_TO, RIYP_SUPPORT_FORWARD_FROM, RIYP_SUPPORT_OPERATOR_EMAILS, and RIYP_SUPPORT_INBOX_VERIFIED=true only after a real receive-and-reply rehearsal."
 );
 
 checkCondition(

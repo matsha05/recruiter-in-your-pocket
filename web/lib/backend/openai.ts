@@ -1,8 +1,9 @@
 import { getOpenAIResponseFormat } from "@/lib/llm/response-format";
 import {
-  getChatCompletionTuning,
+  getProductionChatCompletionTuning,
   increaseReasoningEffort,
   resolveOpenAIModel,
+  resolveProductionOpenAIRetryLimit,
   resolveReasoningEffortForMode,
   type ReasoningEffort,
 } from "@/lib/llm/model-config";
@@ -208,7 +209,7 @@ export async function callOpenAIChat(
   const OPENAI_MODEL = resolveOpenAIModel(mode, model);
   const baseReasoningEffort = resolveReasoningEffortForMode(mode, OPENAI_MODEL);
   const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000); // 90s - large prompt needs time
-  const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 1);   // 1 retry only
+  const OPENAI_MAX_RETRIES = resolveProductionOpenAIRetryLimit(process.env.OPENAI_MAX_RETRIES ?? 1);
   const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
 
   logInfo({
@@ -246,7 +247,7 @@ export async function callOpenAIChat(
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            ...getChatCompletionTuning(OPENAI_MODEL, {
+            ...getProductionChatCompletionTuning(OPENAI_MODEL, {
               temperature: mode === "resume_ideas" ? 0.12 : 0,
               reasoningEffort: attempt > 0
                 ? increaseReasoningEffort(baseReasoningEffort)
@@ -379,7 +380,7 @@ export function callOpenAIChatStreamingWithUsage(
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            ...getChatCompletionTuning(OPENAI_MODEL, {
+            ...getProductionChatCompletionTuning(OPENAI_MODEL, {
               temperature: mode === "resume_ideas" ? 0.12 : 0,
               reasoningEffort: resolveReasoningEffortForMode(mode, OPENAI_MODEL, reasoningEffort),
             }),

@@ -54,6 +54,9 @@ const HEX_ALLOWLIST = new Set([
   // Email clients require inline literal colors. The auth-email contract pins
   // these literals to the canonical chalk/ink/citron/cyan palette.
   "lib/auth/otpEmail.ts",
+  // The forwarded support notice must remain legible and visually distinct in
+  // email clients that cannot consume the runtime CSS token sheet.
+  "lib/support/inboundEmail.ts",
 ]);
 
 const INLINE_STYLE_EXCLUSIONS = new Set([
@@ -99,7 +102,9 @@ const BANNED_COPY_PATTERNS = [
   { label: "get the recruiter read", regex: /\bget the recruiter read\b/i },
   { label: "tighten the read", regex: /\btighten the read\b/i },
   { label: "dragging the read down", regex: /\bdragging the read down\b/i },
-  { label: "ai-powered", regex: /\bai-powered\b/i },
+  // Plain "AI-powered" disclosure is allowed when it explains how the
+  // product works. Promotional hype such as "AI-powered excellence" remains
+  // explicitly banned above.
   { label: "smart insights", regex: /\bsmart insights\b/i },
   { label: "stand out from the crowd", regex: /\bstand out from the crowd\b/i },
   { label: "land your dream job", regex: /\bland your dream job\b/i },

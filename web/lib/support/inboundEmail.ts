@@ -40,7 +40,7 @@ type ReceivedAttachment = {
 type SendInput = {
   to: string;
   from: string;
-  replyTo: string;
+  replyTo?: string;
   subject: string;
   html?: string;
   text: string;
@@ -85,6 +85,7 @@ export type SupportInboundConfig = {
   webhookSecret: string;
   forwardTo: string;
   forwardFrom: string;
+  replyBaseUrl: string;
 };
 
 export type SupportInboundResult = {
@@ -152,6 +153,31 @@ function safeReplyTo(message: ReceivedMessage, blockedMailboxes: Set<string>): s
   return null;
 }
 
+function secureReplyUrl(baseUrl: string, emailId: string): string | null {
+  if (!/^[A-Za-z0-9_-]{1,200}$/.test(emailId)) return null;
+  try {
+    const base = new URL(baseUrl);
+    const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(base.hostname);
+    if (base.username || base.password || (base.protocol !== "https:" && !isLocal)) {
+      return null;
+    }
+    return new URL(
+      `/settings/support-reply/${encodeURIComponent(emailId)}`,
+      base.origin
+    ).toString();
+  } catch {
+    return null;
+  }
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 function webhookHeaders(request: Request): WebhookHeaders | null {
   const id = request.headers.get("svix-id")?.trim() || "";
   const timestamp = request.headers.get("svix-timestamp")?.trim() || "";
@@ -177,7 +203,8 @@ export async function handleSupportInboundWebhook(
     !forwardFrom ||
     forwardTo === SUPPORT_EMAIL_ADDRESS ||
     forwardFrom === SUPPORT_EMAIL_ADDRESS ||
-    forwardTo === forwardFrom
+    forwardTo === forwardFrom ||
+    !config.replyBaseUrl.trim()
   ) {
     return { status: 503, outcome: "configuration_error" };
   }
@@ -229,6 +256,10 @@ export async function handleSupportInboundWebhook(
       return { status: 200, outcome: "ignored_recipient" };
     }
 
+    const replyUrl = secureReplyUrl(config.replyBaseUrl, emailId);
+    if (!replyUrl) {
+      return { status: 503, outcome: "configuration_error" };
+    }
     const attachmentResult = await dependencies.listAttachments(emailId);
     if (attachmentResult.error || !attachmentResult.data) {
       return { status: 502, outcome: "forward_failed" };
@@ -269,23 +300,33 @@ export async function handleSupportInboundWebhook(
     const omissionNotice = attachmentsOmitted
       ? "Attachments were omitted because the message exceeded the support forwarding size limit."
       : "";
-    const text = [omissionNotice, message.text || (message.html ? "This support message includes an HTML body." : "This message did not include a text or HTML body.")]
+    const replyNotice = [
+      "SUPPORT NOTIFICATION — DO NOT REPLY FROM GMAIL",
+      "Reply privately as support@recruiterinyourpocket.com:",
+      replyUrl,
+      `Original sender: ${message.from}`,
+      "---",
+    ].join("\n");
+    const text = [replyNotice, omissionNotice, message.text || (message.html ? "This support message includes an HTML body." : "This message did not include a text or HTML body.")]
       .filter(Boolean)
       .join("\n\n");
-    const html = message.html
-      ? `${attachmentsOmitted ? `<p><strong>${omissionNotice}</strong></p>` : ""}${message.html}`
-      : undefined;
+    const htmlNotice = `<div style="border:2px solid #1d4ed8;padding:16px;margin:0 0 20px;font-family:Arial,sans-serif"><p style="margin:0 0 8px;font-weight:700">Support notification — do not reply from Gmail</p><p style="margin:0 0 12px">Reply privately as <strong>support@recruiterinyourpocket.com</strong>.</p><p style="margin:0 0 12px"><a href="${escapeHtml(replyUrl)}" style="display:inline-block;background:#111827;color:#ffffff;padding:10px 14px;text-decoration:none;font-weight:700">Open secure reply</a></p><p style="margin:0;color:#4b5563;font-size:13px">Original sender: ${escapeHtml(message.from)}</p></div>`;
+    // Keep customer-controlled markup inert. Mixing raw HTML with the trusted
+    // reply control would let a sender hide or visually spoof that control in
+    // capable email clients. Text is preferred; HTML-only source is escaped.
+    const inertOriginal = message.text || message.html || "This message did not include a text or HTML body.";
+    const html = `${htmlNotice}${attachmentsOmitted ? `<p><strong>${escapeHtml(omissionNotice)}</strong></p>` : ""}<div style="border-top:1px solid #d1d5db;padding-top:16px"><p style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;color:#6b7280">Original message (inert)</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere;font-family:Arial,sans-serif">${escapeHtml(inertOriginal)}</pre></div>`;
 
     const result = await dependencies.sendEmail(
       {
         to: forwardTo,
         from: config.forwardFrom,
-        replyTo,
-        subject: message.subject || "(no subject)",
+        subject: `[Reply in RIYP] ${message.subject || "(no subject)"}`,
         html,
         text,
         headers: {
           "X-RIYP-Support-Forward": "1",
+          "Auto-Submitted": "auto-generated",
           ...(attachmentsOmitted ? { "X-RIYP-Support-Attachments": "omitted" } : {}),
         },
         attachments: !attachmentsOmitted && attachments.length ? attachments : undefined,

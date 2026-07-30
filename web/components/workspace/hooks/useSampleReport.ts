@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
+import { toast } from "sonner";
+import { fetchSampleReport } from "@/lib/reports/sample-report";
 
 export function isSampleParamEnabled(value: string | null) {
   return value === "true" || value === "1";
@@ -23,10 +25,14 @@ export function useSampleReport({
     const sampleParam = searchParams.get("sample");
 
     if (isSampleParamEnabled(sampleParam) && !report && !skipSample) {
-      fetch("/sample-report.json")
-        .then((res) => res.json())
+      fetchSampleReport()
         .then((data) => setReport(data))
-        .catch((err) => console.error("Failed to load sample report:", err));
+        .catch((err) => {
+          console.error("Failed to load sample report:", err);
+          toast.error("Sample report unavailable", {
+            description: "Please try again in a moment or start your free report.",
+          });
+        });
     }
   }, [searchParams, report, skipSample, setReport]);
 }
