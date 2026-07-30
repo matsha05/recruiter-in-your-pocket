@@ -1,7 +1,7 @@
 # Operational Ownership: Support, Tax, Analytics, and Alerts
 
-**Last updated:** July 21, 2026
-**Launch status:** Incomplete until both delivery evidence flags below are true
+**Last updated:** July 30, 2026
+**Launch status:** Primary support verified; distinct secondary alert still pending
 
 This document names the operating work that code cannot honestly complete by itself. Evidence flags are assertions about a finished rehearsal, never switches that make an unverified destination real.
 
@@ -9,10 +9,10 @@ This document names the operating work that code cannot honestly complete by its
 
 | Responsibility | Primary | Backup | Launch evidence |
 |:--|:--|:--|:--|
-| Product, auth, privacy, and billing support | Matt | Not yet assigned | Send an external message to the public support address, receive it, reply, and receive the reply. Then set `RIYP_SUPPORT_INBOX_VERIFIED=true`. |
+| Product, auth, privacy, and billing support | Matt | Forwarded operator inbox at `mattrshaw2011@gmail.com` | Passed July 30, 2026: an external sender reached the public support address, the signed inbound route forwarded it, an allowlisted operator replied, and the external sender received that reply. `RIYP_SUPPORT_INBOX_VERIFIED=true`. |
 | SEV-1/SEV-2 operational alert | Matt's primary alert path | A distinct person or destination, not the same inbox | Trigger a scrubbed test alert, confirm both destinations receive it, and record the timestamp. Then set `RIYP_SECONDARY_ALERT_VERIFIED=true`. |
 
-Until both rehearsals are complete, the hosted readiness endpoint and strict launch gate must remain `NO-GO`. This is deliberate; the public support address must not be treated as operational merely because it appears in copy.
+Until the secondary-alert rehearsal is complete, the hosted readiness endpoint and strict launch gate must remain `NO-GO`. This is deliberate: an evidence flag records a real delivery test; it does not create a backup destination.
 
 ## Stripe Tax Ownership
 
