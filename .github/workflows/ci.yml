@@ -10,8 +10,8 @@ jobs:
   web:
     runs-on: ubuntu-latest
     env:
-      # Browser suites rebuild the app, so every web step needs the same
-      # static-generation environment instead of only the first build.
+      # Browser suites deliberately rebuild the app, so keep the same static-generation
+      # environment available to every web step rather than only the first build.
       SENTRY_AUTH_TOKEN: ""
       SESSION_SECRET: "ci-web-session-secret"
       STRIPE_SECRET_KEY: "sk_test_ci_dummy"

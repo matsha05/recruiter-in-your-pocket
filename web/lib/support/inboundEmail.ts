@@ -178,7 +178,6 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
-
 function webhookHeaders(request: Request): WebhookHeaders | null {
   const id = request.headers.get("svix-id")?.trim() || "";
   const timestamp = request.headers.get("svix-timestamp")?.trim() || "";
@@ -261,7 +260,6 @@ export async function handleSupportInboundWebhook(
     if (!replyUrl) {
       return { status: 503, outcome: "configuration_error" };
     }
-
     const attachmentResult = await dependencies.listAttachments(emailId);
     if (attachmentResult.error || !attachmentResult.data) {
       return { status: 502, outcome: "forward_failed" };
