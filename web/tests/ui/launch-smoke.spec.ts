@@ -81,8 +81,9 @@ test.describe("launch smoke", () => {
     await page.goto("/pricing", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { name: /lifetime/i })).toHaveCount(0);
 
-    const extension = await request.get("/extension");
-    expect(extension.status()).toBe(404);
+    const extension = await request.get("/extension", { maxRedirects: 0 });
+    expect(extension.status()).toBe(308);
+    expect(extension.headers().location).toBe("/workspace");
 
     const jobs = await request.get("/jobs");
     expect(jobs.status()).toBe(404);
