@@ -14,6 +14,7 @@ import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
   REQUIRED_PUBLIC_TRUST_FILES,
+  resolvePublicTrustSurfaceStatus,
 } from "./program";
 
 export type ReadinessCheckStatus = "ok" | "missing" | "disabled";
@@ -130,24 +131,27 @@ function getNextRouteSet(repoRoot: string) {
   if (!nextDir) return null;
 
   const manifestPaths = [
-    path.join(nextDir, "server", "app-paths-manifest.json"),
     path.join(nextDir, "server", "app-path-routes-manifest.json"),
-    path.join(nextDir, "app-paths-manifest.json"),
+    path.join(nextDir, "server", "app-paths-manifest.json"),
     path.join(nextDir, "app-path-routes-manifest.json"),
+    path.join(nextDir, "app-paths-manifest.json"),
     path.join(nextDir, "routes-manifest.json"),
   ];
 
+  const routes = new Set<string>();
+  let parsedManifest = false;
   for (const manifestPath of manifestPaths) {
     if (!existsSync(manifestPath)) continue;
     try {
       const raw = JSON.parse(readFileSync(manifestPath, "utf8"));
-      return collectRoutesFromManifest(raw);
+      parsedManifest = true;
+      for (const route of collectRoutesFromManifest(raw)) routes.add(route);
     } catch {
       continue;
     }
   }
 
-  return null;
+  return parsedManifest ? routes : null;
 }
 
 function repoHasDir(repoRoot: string, name: string) {
@@ -476,35 +480,41 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
         : "One or more required launch runbooks are missing."
   );
 
-  const hasTrustFiles =
-    REQUIRED_PUBLIC_TRUST_FILES.every((relativePath) => existsSync(path.join(repoRoot, relativePath))) ||
-    (() => {
-      if (hasWebAppDir) return false;
-      const routes = getNextRouteSet(repoRoot);
-      if (!routes) return false;
-      const requiredRoutes = [
-        "/privacy",
-        "/security",
-        "/methodology",
-        "/status",
-        "/.well-known/security.txt",
-        "/robots.txt",
-        "/sitemap.xml",
-      ];
-      return requiredRoutes.every((route) => {
-        if (routes.has(route)) return true;
-        if (route === "/robots.txt" && routes.has("/robots")) return true;
-        if (route === "/sitemap.xml" && routes.has("/sitemap")) return true;
-        return false;
-      });
-    })();
+  const hasTrustFiles = REQUIRED_PUBLIC_TRUST_FILES.every((relativePath) =>
+    existsSync(path.join(repoRoot, relativePath))
+  );
+  const trustRouteSet = hasWebAppDir ? null : getNextRouteSet(repoRoot);
+  const requiredTrustRoutes = [
+    "/privacy",
+    "/security",
+    "/methodology",
+    "/status",
+    "/support",
+    "/.well-known/security.txt",
+    "/robots.txt",
+    "/sitemap.xml",
+  ];
+  const hasTrustRoutes = Boolean(trustRouteSet) && requiredTrustRoutes.every((route) => {
+    if (trustRouteSet?.has(route)) return true;
+    if (route === "/robots.txt" && trustRouteSet?.has("/robots")) return true;
+    if (route === "/sitemap.xml" && trustRouteSet?.has("/sitemap")) return true;
+    return false;
+  });
+  const trustSurfacesVerified = hasTrustFiles || hasTrustRoutes;
+  const trustSurfaceStatus = resolvePublicTrustSurfaceStatus({
+    verified: trustSurfacesVerified,
+    inspectionAvailable: hasWebAppDir || Boolean(trustRouteSet),
+    hostedRuntime,
+  });
   addCheck(
     checks,
     "public_trust_surfaces",
-    hasTrustFiles ? "ok" : "missing",
-    hasTrustFiles
-      ? "Privacy, security, methodology, status, security.txt, robots, and sitemap surfaces are present."
-      : "One or more public trust files are missing."
+    trustSurfaceStatus,
+    trustSurfacesVerified
+      ? "Privacy, security, methodology, status, support, security.txt, robots, and sitemap surfaces are present."
+      : trustSurfaceStatus === "disabled"
+        ? "Public trust surfaces are release-bound and verified in CI; this serverless function does not include the source tree or a global route manifest for runtime introspection."
+        : "One or more public trust files or routes are missing."
   );
 
   if (isTruthyEnv(process.env.SKIP_DB_READY_CHECK)) {
