@@ -1,6 +1,6 @@
 # RIYP Incident Runbook
 
-**Last Updated:** July 21, 2026
+**Last Updated:** July 30, 2026
 **Status:** Active
 
 ## Severity Model
@@ -15,12 +15,20 @@
 
 | Surface | Primary | Backup |
 |:--------|:--------|:-------|
-| Launch command | Matt | Pending verified secondary destination |
-| Auth and identity | Matt | Pending verified secondary destination |
-| Billing and unlocks | Matt | Stripe Dashboard plus pending secondary destination |
+| Launch command | Matt | GitHub Issues backup alert |
+| Auth and identity | Matt | GitHub Issues backup alert |
+| Billing and unlocks | Matt | Stripe Dashboard plus GitHub Issues backup alert |
 | Extension sync | Matt | status page + support |
 | AI quality | Matt | PromptOps shipping gate |
 | Trust and security | Matt | security@recruiterinyourpocket.com |
+
+## Alert Routing
+
+- Primary: Sentry emails production error and fatal alerts to `mattrshaw2011@gmail.com`.
+- Backup: `.github/workflows/sentry-github-backup.yml` runs every 30 minutes and can be dispatched manually. It files a scrubbed GitHub issue for each unresolved production error or fatal Sentry issue and deduplicates by Sentry short ID.
+- If the primary email does not arrive, run the backup workflow manually with a 120-minute lookback and inspect its latest GitHub Actions run before treating the incident as contained.
+- If the backup workflow fails, use the Sentry issue stream as the source of truth, check the scoped `RIYP_SENTRY_READ_TOKEN` GitHub secret, and restore the workflow without copying event payloads or private user data into GitHub.
+- Delivery rehearsal: Sentry event `3883c3a8-3c03-4760-9267-672aac0f665d` produced the primary email and [GitHub issue #5](https://github.com/matsha05/recruiter-in-your-pocket/issues/5) on July 30, 2026.
 
 ## Immediate Actions
 

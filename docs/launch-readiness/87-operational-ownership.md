@@ -1,7 +1,7 @@
 # Operational Ownership: Support, Tax, Analytics, and Alerts
 
 **Last updated:** July 30, 2026
-**Launch status:** Primary support verified; distinct secondary alert still pending
+**Launch status:** Support and dual-path operational alert delivery verified
 
 This document names the operating work that code cannot honestly complete by itself. Evidence flags are assertions about a finished rehearsal, never switches that make an unverified destination real.
 
@@ -10,9 +10,9 @@ This document names the operating work that code cannot honestly complete by its
 | Responsibility | Primary | Backup | Launch evidence |
 |:--|:--|:--|:--|
 | Product, auth, privacy, and billing support | Matt | Forwarded operator inbox at `mattrshaw2011@gmail.com` | Passed July 30, 2026: an external sender reached the public support address, the signed inbound route forwarded it, an allowlisted operator replied, and the external sender received that reply. `RIYP_SUPPORT_INBOX_VERIFIED=true`. |
-| SEV-1/SEV-2 operational alert | Matt's primary alert path | A distinct person or destination, not the same inbox | Trigger a scrubbed test alert, confirm both destinations receive it, and record the timestamp. Then set `RIYP_SECONDARY_ALERT_VERIFIED=true`. |
+| SEV-1/SEV-2 operational alert | Sentry email to `mattrshaw2011@gmail.com` | GitHub Issues through `.github/workflows/sentry-github-backup.yml` | Passed July 30, 2026. Production rehearsal event `3883c3a8-3c03-4760-9267-672aac0f665d` (`JAVASCRIPT-NEXTJS-11`) reached Gmail at 15:55:46 UTC and created [GitHub issue #5](https://github.com/matsha05/recruiter-in-your-pocket/issues/5) at 15:59:58 UTC through successful workflow run `30559387132`. A direct Sentry test also reached Gmail as `JAVASCRIPT-NEXTJS-12` at 15:59:22 UTC. `RIYP_SECONDARY_ALERT_VERIFIED=true`. |
 
-Until the secondary-alert rehearsal is complete, the hosted readiness endpoint and strict launch gate must remain `NO-GO`. This is deliberate: an evidence flag records a real delivery test; it does not create a backup destination.
+Sentry email is the immediate path. The public-repository GitHub Actions workflow polls unresolved production `error` and `fatal` issues every 30 minutes, creates a scrubbed issue without request, user, payload, or stack data, and deduplicates by Sentry short ID. A manual rerun against `JAVASCRIPT-NEXTJS-10` created no duplicate, proving idempotency. The evidence flag records this completed delivery test; it does not replace either alert path.
 
 ## Stripe Tax Ownership
 
