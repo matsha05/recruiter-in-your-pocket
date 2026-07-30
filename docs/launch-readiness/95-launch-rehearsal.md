@@ -176,8 +176,13 @@ Current verdict: `NO-GO` for broad promotion until the remaining blockers above 
 - Deletion and cleanup: the authenticated product deletion route removed the disposable auth identity, pass, and cached receipt, returned `Clear-Site-Data`, and left only the identity-free account-deletion tombstone. The Stripe test customer was deleted and the temporary test price and product were deactivated.
 - Environment audit: `launch-env-report.cjs` now records both the narrow purchase kill switch and the secondary-alert evidence flag instead of omitting them.
 
-### Remaining blocker
+### Operational alert completion
 
-- Assign a genuinely distinct secondary operational-alert destination, trigger one scrubbed test alert to both paths, record both receipts, and only then set `RIYP_SECONDARY_ALERT_VERIFIED=true` in production.
+- Primary alert: Sentry workflow `Email new production errors and fatals` delivered the production rehearsal alert for event `3883c3a8-3c03-4760-9267-672aac0f665d` (`JAVASCRIPT-NEXTJS-11`) to `mattrshaw2011@gmail.com` at 15:55:46 UTC on July 30, 2026.
+- Primary test: Sentry's direct test action reported `Notification fired!`; Gmail received `JAVASCRIPT-NEXTJS-12 - Test Issue` at 15:59:22 UTC.
+- Independent backup: successful GitHub Actions run `30559387132` created [GitHub issue #5](https://github.com/matsha05/recruiter-in-your-pocket/issues/5) at 15:59:58 UTC from the same unresolved production issue.
+- Backup idempotency: rerunning the backup against `JAVASCRIPT-NEXTJS-10` found the existing issue and created no duplicate.
+- Scope and privacy: the backup uses a read-only Sentry token and writes only scrubbed production issue metadata to this public repository. Request data, user data, payloads, and stack traces are excluded.
+- Production evidence: `RIYP_SECONDARY_ALERT_VERIFIED=true` was configured in Vercel Production after both receipts were confirmed.
 
-Current verdict: billing, support, Search Console submission, and destructive-account lifecycle evidence are complete. Broad-promotion readiness remains `NO-GO` only because no distinct secondary alert destination has yet been authorized and rehearsed.
+Current verdict: `GO` for broad promotion once the release containing the GitHub backup workflow and this evidence record is deployed and `/api/status` reports `ok: true`, `summary.status: configured`, no incidents, and Operational safeguards configured. Google search-result replacement remains asynchronous after the accepted sitemap and priority recrawl requests; it is not a runtime launch blocker.
