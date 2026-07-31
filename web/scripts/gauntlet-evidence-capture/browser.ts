@@ -1,4 +1,4 @@
-import { chromium, type Browser, type Page } from "@playwright/test";
+import { chromium, type Browser, type Locator, type Page } from "@playwright/test";
 import { mkdir, readdir, rename, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -40,6 +40,7 @@ export type CaptureLayoutReceipt = {
 };
 
 const REPORT_VIEWPORT = { width: 1440, height: 1200 };
+const MAX_INSPECTABLE_CAPTURE_HEIGHT = 10_000;
 const VIEWPORTS = {
   desktop: { width: 1440, height: 900 },
   mobile: { width: 390, height: 844 },
@@ -66,6 +67,43 @@ export function buildInteractionEvidence(input: {
 export function freeStatusUsesForRequest(journeyMode: boolean, requestNumber: number) {
   if (!Number.isInteger(requestNumber) || requestNumber < 1) throw new Error("free-status request number is invalid");
   return journeyMode && requestNumber === 1 ? 1 : 0;
+}
+
+export function inspectableViewportForElement(
+  baseViewport: { width: number; height: number },
+  elementHeight: number,
+) {
+  if (!Number.isInteger(baseViewport.width) || baseViewport.width < 1
+    || !Number.isInteger(baseViewport.height) || baseViewport.height < 1
+    || !Number.isFinite(elementHeight) || elementHeight < 1) {
+    throw new Error("inspectable capture dimensions are invalid");
+  }
+  const requiredHeight = Math.ceil(elementHeight) + 16;
+  if (requiredHeight > MAX_INSPECTABLE_CAPTURE_HEIGHT) {
+    throw new Error(`inspectable capture exceeds ${MAX_INSPECTABLE_CAPTURE_HEIGHT}px`);
+  }
+  return {
+    width: baseViewport.width,
+    height: Math.max(baseViewport.height, requiredHeight),
+  };
+}
+
+async function captureInspectableElement(input: {
+  page: Page;
+  element: Locator;
+  baseViewport: { width: number; height: number };
+}) {
+  const elementHeight = await input.element.evaluate((element) => element.getBoundingClientRect().height);
+  const captureViewport = inspectableViewportForElement(input.baseViewport, elementHeight);
+  if (captureViewport.height !== input.baseViewport.height) {
+    await input.page.setViewportSize(captureViewport);
+  }
+  await input.element.scrollIntoViewIfNeeded();
+  await input.page.evaluate(() => new Promise<void>((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  }));
+  const screenshot = await input.element.screenshot({ type: "jpeg", quality: 90, animations: "disabled" });
+  return { screenshot, viewport: captureViewport };
 }
 
 function isAllowedUrl(url: URL, origin: string) {
@@ -197,13 +235,13 @@ async function captureReport(input: {
     const reportRoot = page.locator(".report-layout-shell");
     const visibleText = (await reportRoot.innerText()).trim();
     if (visibleText.length < 200) throw new Error(`${input.testCase.id}: rendered report text is incomplete`);
-    const screenshot = await reportRoot.screenshot({ type: "jpeg", quality: 90, animations: "disabled" });
+    const capture = await captureInspectableElement({ page, element: reportRoot, baseViewport: REPORT_VIEWPORT });
     assertHealthyCapture(state, consoleRecords, input.testCase.id, 0);
     return {
       visibleText,
-      screenshot,
+      screenshot: capture.screenshot,
       route: "/workspace",
-      viewport: REPORT_VIEWPORT,
+      viewport: capture.viewport,
       capturedAt: new Date().toISOString(),
     };
   } finally {
@@ -289,7 +327,7 @@ async function captureJourney(input: {
       viewportHeight: window.innerHeight,
     }));
     assertNoHorizontalOverflow(layout, input.journey.id);
-    const screenshot = await evidenceRoot.screenshot({ type: "jpeg", quality: 90, animations: "disabled" });
+    const capture = await captureInspectableElement({ page, element: evidenceRoot, baseViewport: viewport });
     const dom = (await evidenceRoot.innerText()).trim();
     assertHealthyCapture(state, consoleRecords, input.journey.id, 1);
     return {
@@ -298,7 +336,7 @@ async function captureJourney(input: {
       entryPath: "/",
       finalPath: new URL(page.url()).pathname,
       steps: journeySteps(input.journey),
-      screenshot,
+      screenshot: capture.screenshot,
       dom,
       consoleLog: serialize({ errors: [], messages: consoleRecords }),
       interactionLog: buildInteractionEvidence({

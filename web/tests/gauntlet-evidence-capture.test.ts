@@ -8,6 +8,7 @@ import {
   assertNoHorizontalOverflow,
   buildInteractionEvidence,
   freeStatusUsesForRequest,
+  inspectableViewportForElement,
   publishDirectoryNoReplace,
 } from "../scripts/gauntlet-evidence-capture/browser";
 import {
@@ -272,6 +273,18 @@ async function run() {
     assert.equal(freeStatusUsesForRequest(true, 2), 0);
     assert.equal(freeStatusUsesForRequest(false, 1), 0);
     assert.throws(() => freeStatusUsesForRequest(true, 0), /invalid/);
+    assert.deepEqual(
+      inspectableViewportForElement({ width: 390, height: 844 }, 6_200.2),
+      { width: 390, height: 6_217 },
+    );
+    assert.deepEqual(
+      inspectableViewportForElement({ width: 1440, height: 1200 }, 800),
+      { width: 1440, height: 1200 },
+    );
+    assert.throws(
+      () => inspectableViewportForElement({ width: 1440, height: 1200 }, 10_000),
+      /exceeds 10000px/,
+    );
 
     assert.deepEqual(parseCaptureCli([
       "extract",
