@@ -24,6 +24,13 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
+import { JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "@/lib/billing/pricing";
+import {
+    assessFallbackDraftSafety,
+    buildIndependentQuestionPresentation,
+    buildReportRewritePresentation,
+    fixPlanHeadingForCount,
+} from "@/lib/reports/report-presentation";
 import { ReadComparison } from "./ReadComparison";
 import styles from "./ReportStream.module.css";
 
@@ -44,11 +51,10 @@ interface ReportStreamProps {
 
 type Fix = NonNullable<ReportData["top_fixes"]>[number];
 type Rewrite = NonNullable<ReportData["rewrites"]>[number];
-type Question = NonNullable<NonNullable<ReportData["ideas"]>["questions"]>[number];
 
 const fixTrace = [
     { label: "On the page" },
-    { label: "Open question" },
+    { label: "Missing proof" },
     { label: "Your fact" },
     { label: "Clearer wording" },
 ];
@@ -66,6 +72,8 @@ const BETA_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=${e
         "Optional: Did the score feel like a document review, or did it mean something else to you?",
     ].join("\n"),
 )}`;
+
+const JOB_SEARCH_PASS = PRICING_PLANS["30d"];
 
 function evidenceFor(fix?: Fix) {
     if (!fix?.evidence) return undefined;
@@ -122,19 +130,18 @@ function MarkedTakeaway({ text }: { text: string }) {
 function FixCanvas({
     fix,
     rewrite,
-    question,
     index,
     locked,
     onUnlock,
 }: {
     fix: Fix;
     rewrite?: Rewrite;
-    question?: Question;
     index: number;
     locked?: boolean;
     onUnlock?: () => void;
 }) {
     const original = evidenceFor(fix) || rewrite?.original;
+    const draftSource = rewrite?.original || original || "";
     const suggestedLine = rewrite?.better || workingDraftFor(original);
     const [draft, setDraft] = useState(suggestedLine);
     const [editing, setEditing] = useState(false);
@@ -145,6 +152,7 @@ function FixCanvas({
     const [usingQualitativeFallback, setUsingQualitativeFallback] = useState(false);
     const [dismissed, setDismissed] = useState(false);
     const action = fix.fix || fix.text || "Make this part of the resume more specific";
+    const factPrompt = `What verified detail from this exact line would support this change: “${action.replace(/[.?!]\s*$/, "")}”?`;
     const placeholderKeys = useMemo(() => placeholderKeysFor(suggestedLine), [suggestedLine]);
     const qualitativeFallback = useMemo(() => qualitativeFallbackFor(suggestedLine), [suggestedLine]);
     const requiresCandidateFacts = placeholderKeys.length > 0;
@@ -153,12 +161,18 @@ function FixCanvas({
     const hasAnyCandidateFact = answer.trim().length > 0
         || placeholderKeys.some((key) => factValues[key]?.trim());
     const hasUnresolvedFactPlaceholders = /\[[^\]]+\]/.test(draft);
+    const fallbackSafety = useMemo(
+        () => rewrite && !usingQualitativeFallback
+            ? { copyable: true, issues: [] }
+            : assessFallbackDraftSafety(draftSource, draft),
+        [draft, draftSource, rewrite, usingQualitativeFallback],
+    );
     const allAppliedFactsPresent = usingQualitativeFallback || (requiresCandidateFacts
         ? answerApplied
             && placeholderKeys.every((key) => confirmedFactAppearsIn(draft, factValues[key] || ""))
         : !answerApplied || confirmedFactAppearsIn(draft, answer));
     const allowedNumberTokens = new Set(
-        `${original || ""} ${answerApplied ? answer : ""} ${answerApplied ? placeholderKeys.map((key) => factValues[key] || "").join(" ") : ""}`
+        `${draftSource} ${answerApplied ? answer : ""} ${answerApplied ? placeholderKeys.map((key) => factValues[key] || "").join(" ") : ""}`
             .match(/\d[\d,.]*(?:%|[kmb])?/gi) || [],
     );
     const draftNumberTokens = draft.match(/\d[\d,.]*(?:%|[kmb])?/gi) || [];
@@ -166,7 +180,8 @@ function FixCanvas({
     const copyBlocked = hasUnresolvedFactPlaceholders
         || (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback)
         || !allAppliedFactsPresent
-        || hasUnsupportedNumber;
+        || hasUnsupportedNumber
+        || !fallbackSafety.copyable;
     const traceProgress = answerApplied || usingQualitativeFallback
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
         : hasAnyCandidateFact ? 68 : 50;
@@ -181,6 +196,8 @@ function FixCanvas({
         copyGuidance = "Keep every confirmed fact in the draft before copying.";
     } else if (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback) {
         copyGuidance = "Confirm the supporting facts below before copying this quantified rewrite.";
+    } else if (!fallbackSafety.copyable) {
+        copyGuidance = "Guidance only—this draft is not faithful enough to the source line for one-click copy. Keep the same work, ownership, and supported outcome as you edit.";
     } else if (usingQualitativeFallback) {
         copyGuidance = "A factual no-number alternative, ready to adapt without inventing scale or results.";
     } else if (answerApplied) {
@@ -322,9 +339,9 @@ function FixCanvas({
                             </p>
                         </div>
                         <div className="bg-accent-butter/20 p-5 sm:p-6">
-                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">Answer before you edit</p>
+                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">Add verified context</p>
                             <p className="mt-3 text-[0.95rem] font-medium leading-6 text-foreground">
-                                {question?.question || "What specific detail would make this claim easier to believe?"}
+                                {factPrompt}
                             </p>
                             {requiresCandidateFacts ? (
                                 <div className="mt-4 grid gap-3">
@@ -360,7 +377,7 @@ function FixCanvas({
                                         }}
                                         className="mt-4 min-h-28 w-full resize-y border border-foreground/15 bg-paper/80 px-3 py-3 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
                                         placeholder="Write the facts as you know them. Rough is fine."
-                                        aria-label={`Answer the factual question for fix ${index + 1}`}
+                                        aria-label={`Verified context for fix ${index + 1}`}
                                     />
                                     <Button type="button" variant="outline" size="sm" className="mt-3 min-h-11 border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!answer.trim()}>
                                         Keep this fact
@@ -373,7 +390,9 @@ function FixCanvas({
                     <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
-                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">
+                                    {!fallbackSafety.copyable ? "Guidance only" : "Try this"}
+                                </p>
                                 <p className="mt-1 text-xs text-muted-foreground">{copyGuidance}</p>
                             </div>
                             <div className="flex items-center gap-1">
@@ -384,20 +403,22 @@ function FixCanvas({
                                 >
                                     <PencilSimple className="size-4" /> {editing ? "Done" : "Edit"}
                                 </button>
-                                <button
-                                    type="button"
-                                    onClick={handleCopy}
-                                    disabled={copyBlocked}
-                                    aria-label={copyBlocked ? "Add verified facts before copying" : copied ? "Copied" : "Copy suggested line"}
-                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
-                                >
-                                    {copyBlocked
-                                        ? <BracketsAngle className="size-4" />
-                                        : copied
-                                            ? <Check className="size-4" weight="bold" />
-                                            : <Copy className="size-4" />}
-                                    {copyBlocked ? "Add facts to copy" : copied ? "Copied" : "Copy"}
-                                </button>
+                                {fallbackSafety.copyable ? (
+                                    <button
+                                        type="button"
+                                        onClick={handleCopy}
+                                        disabled={copyBlocked}
+                                        aria-label={copyBlocked ? "Add verified facts before copying" : copied ? "Copied" : "Copy suggested line"}
+                                        className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
+                                    >
+                                        {copyBlocked
+                                            ? <BracketsAngle className="size-4" />
+                                            : copied
+                                                ? <Check className="size-4" weight="bold" />
+                                                : <Copy className="size-4" />}
+                                        {copyBlocked ? "Add facts to copy" : copied ? "Copied" : "Copy"}
+                                    </button>
+                                ) : null}
                             </div>
                         </div>
                         {answerApplied ? (
@@ -449,8 +470,18 @@ export function ReportStream({
     onStartRevision,
 }: ReportStreamProps) {
     const fixes = useMemo(() => (report.top_fixes || []).slice(0, 3), [report.top_fixes]);
-    const rewrites = report.rewrites || [];
-    const questions = report.ideas?.questions || [];
+    const rewrites = useMemo(() => report.rewrites || [], [report.rewrites]);
+    const rewritePresentation = useMemo(
+        () => buildReportRewritePresentation(fixes, rewrites),
+        [fixes, rewrites],
+    );
+    const groundedFixes = rewritePresentation.fixes;
+    const independentRewrites = rewritePresentation.independentRewrites;
+    const reportQuestions = report.ideas?.questions;
+    const independentQuestions = useMemo(
+        () => buildIndependentQuestionPresentation(reportQuestions || []),
+        [reportQuestions],
+    );
     const strengths = (report.strengths || []).slice(0, 3);
     const primaryFix = fixes[0];
     const primaryEvidence = evidenceFor(primaryFix);
@@ -542,7 +573,7 @@ export function ReportStream({
                     <div>
                         <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Fix these first</p>
                         <h2 className="mt-3 font-display text-[clamp(2.3rem,6vw,4.5rem)] riyp-weight-520 leading-none tracking-[-0.04em] text-foreground">
-                            Three moves. In order.
+                            {fixPlanHeadingForCount(fixes.length)}
                         </h2>
                     </div>
                     <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">
@@ -551,19 +582,121 @@ export function ReportStream({
                 </div>
 
                 <div>
-                    {fixes.map((fix, index) => (
+                    {groundedFixes.map(({ fix, rewrite }, index) => (
                         <FixCanvas
                             key={`${fix.fix || fix.text}-${index}`}
                             fix={fix}
-                            rewrite={rewrites[index]}
-                            question={questions[index]}
+                            rewrite={rewrite}
                             index={index}
                             locked={isGated && index > 0}
                             onUnlock={handleUnlock}
                         />
                     ))}
                 </div>
+
+                {independentRewrites.length > 0 ? (
+                    <div
+                        id="section-independent-rewrites"
+                        className="border-t border-foreground/80 py-11 sm:py-14"
+                        data-testid="independent-rewrites"
+                        aria-labelledby="independent-rewrites-title"
+                    >
+                        <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+                            <div>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Other line rewrites</p>
+                                <h2 id="independent-rewrites-title" className="mt-3 font-display text-3xl riyp-weight-520 leading-tight text-foreground">
+                                    Useful edits, kept with their own source.
+                                </h2>
+                                <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                                    These do not map uniquely to the ranked fixes above, so each stays beside the exact line it rewrites.
+                                </p>
+                            </div>
+
+                            {isGated ? (
+                                <div className="relative min-h-48 overflow-hidden border-y border-[hsl(var(--paper-line))]">
+                                    <div className="pointer-events-none select-none space-y-4 px-5 py-6 opacity-20 blur-[3px]">
+                                        <div className="h-5 w-2/3 bg-foreground/35" />
+                                        <div className="h-16 bg-brand/15" />
+                                        <div className="h-16 bg-paper-muted" />
+                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <Button variant="premium" onClick={handleUnlock}>
+                                            <LockKey className="mr-2 size-4" /> See the remaining line edits
+                                        </Button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
+                                    {independentRewrites.map(({ rewrite, originalIndex }, index) => (
+                                        <li
+                                            key={`${originalIndex}-${rewrite.original}`}
+                                            className="py-7"
+                                            data-testid="independent-rewrite-artifact"
+                                        >
+                                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
+                                                Line edit {String(index + 1).padStart(2, "0")} · Source line
+                                            </p>
+                                            <p className="mt-3 border-l-2 border-brand/30 pl-4 font-display text-lg leading-7 text-foreground/80">
+                                                “{rewrite.original}”
+                                            </p>
+                                            <p className="mt-5 text-[11px] font-semibold uppercase riyp-track-015 text-brand">Rewrite</p>
+                                            <p className="mt-2 font-display text-xl riyp-weight-520 leading-8 text-foreground">
+                                                {rewrite.better}
+                                            </p>
+                                            {rewrite.enhancement_note ? (
+                                                <p className="mt-3 text-xs leading-5 text-muted-foreground">{rewrite.enhancement_note}</p>
+                                            ) : null}
+                                        </li>
+                                    ))}
+                                </ol>
+                            )}
+                        </div>
+                    </div>
+                ) : null}
             </section>
+
+            {independentQuestions.length > 0 ? (
+                <section
+                    id="section-questions"
+                    className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14"
+                    data-testid="independent-questions"
+                    aria-labelledby="independent-questions-title"
+                >
+                    <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+                        <div>
+                            <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Questions worth answering</p>
+                            <h2 id="independent-questions-title" className="mt-3 font-display text-3xl riyp-weight-520 leading-tight text-foreground">
+                                Prompts for your next revision.
+                            </h2>
+                            <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                                These questions are not tied to a specific ranked fix. Use whichever ones surface a true, useful detail.
+                            </p>
+                        </div>
+                        <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
+                            {independentQuestions.map(({ question, originalIndex }, index) => (
+                                <li
+                                    key={`${originalIndex}-${question.question}`}
+                                    className="py-6"
+                                    data-testid="independent-question"
+                                >
+                                    <p className="riyp-tabular-label text-[11px] font-semibold uppercase riyp-track-015 text-brand">
+                                        Question {String(index + 1).padStart(2, "0")}
+                                    </p>
+                                    <h3 className="mt-3 font-display text-xl riyp-weight-520 leading-8 text-foreground">
+                                        {question.question}
+                                    </h3>
+                                    {question.why ? (
+                                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                                            <span className="font-semibold text-foreground/75">Why it may help: </span>
+                                            {question.why}
+                                        </p>
+                                    ) : null}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </section>
+            ) : null}
 
             {strengths.length > 0 && (
                 <section id="section-keep" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
@@ -637,7 +770,11 @@ export function ReportStream({
             </details>
 
             {!isSample && onStartRevision && (
-                <section className={styles.revisionSection} aria-labelledby="revision-loop-title">
+                <section
+                    className={styles.revisionSection}
+                    aria-labelledby="revision-loop-title"
+                    data-testid={isExhausted ? "post-report-purchase-decision" : undefined}
+                >
                     <div className={styles.revisionPanel}>
                         <div>
                             <div className="flex items-center gap-2 text-brand">
@@ -648,16 +785,20 @@ export function ReportStream({
                                 Run the new version. Compare the read.
                             </h2>
                             <p className={styles.revisionCopy}>
-                                Upload the revised resume and we&apos;ll place the two opening reads side by side—what changed, what still needs context, and what to fix next.
+                                {isExhausted
+                                    ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
+                                    : <>Upload the revised resume and we&apos;ll place the two opening reads side by side—what changed, what still needs context, and what to fix next.</>}
                             </p>
                         </div>
                         <div className={styles.revisionAction}>
                             <Button variant={isExhausted ? "premium" : "brand"} size="lg" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
-                                {isExhausted ? "Unlock the second read" : "Review the revised resume"}
+                                {isExhausted
+                                    ? `Get ${JOB_SEARCH_PASS.reportCount} more reports · ${JOB_SEARCH_PASS.price}`
+                                    : "Review the revised resume"}
                                 <ArrowRight className="ml-2 size-4" weight="bold" />
                             </Button>
                             <p className={styles.revisionNote}>
-                                {isExhausted ? "Another report requires paid access." : "The comparison stays in this browser visit."}
+                                {isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison stays in this browser visit."}
                             </p>
                         </div>
                     </div>

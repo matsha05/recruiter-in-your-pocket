@@ -7,7 +7,7 @@ import {
   getTierLabel,
   normalizeRequestedTier,
 } from "../lib/billing/entitlements";
-import { PRICING_PLANS } from "../lib/billing/pricing";
+import { JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "../lib/billing/pricing";
 
 const now = new Date("2026-07-12T12:00:00.000Z");
 const jobSearchPass = getTierDefaults("30d", { now });
@@ -23,8 +23,13 @@ assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
 assert.equal(PRICING_PLANS["30d"].price, "$29");
-assert.match(PRICING_PLANS["30d"].description, /Five careful recruiter-style reports/);
-assert.match(PRICING_PLANS["30d"].description, /applications that matter most/);
+assert.equal(PRICING_PLANS["30d"].reportCount, 5);
+assert.match(PRICING_PLANS["30d"].description, /compare revised resumes/);
+assert.match(PRICING_PLANS["30d"].description, /specific roles/);
+assert.match(PRICING_PLANS.free.description, /one complete report/);
+assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /do not need to pay to see the rest/);
+assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /only when/);
+assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/);
 assert.equal(
   legacyExtendedPass.expiresAt,
   "2026-10-10T12:00:00.000Z",

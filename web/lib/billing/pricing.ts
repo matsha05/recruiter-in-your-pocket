@@ -6,6 +6,7 @@ export type PricingPlan = {
   id: PricingTierId;
   label: string;
   price: string;
+  reportCount: number;
   period: string;
   description: string;
   buttonText: string;
@@ -13,13 +14,20 @@ export type PricingPlan = {
   features: PricingFeature[];
 };
 
+export const JOB_SEARCH_PASS_DECISION = {
+  freeBoundary: "This free report is complete—you do not need to pay to see the rest.",
+  whenToBuy: "Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.",
+  terms: "One payment · 30 days · no automatic renewal.",
+} as const;
+
 export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
   free: {
     id: "free",
     label: "Free",
     price: "$0",
+    reportCount: 1,
     period: "1 report",
-    description: "Review one resume in the browser before you decide whether you need more.",
+    description: "Run one complete report in the browser before deciding whether a revision or another important role needs a new read.",
     buttonText: "Included",
     features: [
       { text: "1 full in-browser resume report", bold: true },
@@ -34,8 +42,9 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     id: "30d",
     label: "Job Search Pass",
     price: "$29",
+    reportCount: 5,
     period: "one-time · 30 days",
-    description: "Five careful recruiter-style reports for the revisions and applications that matter most.",
+    description: "Five additional reports to compare revised resumes or review important applications against specific roles.",
     buttonText: "Get the Job Search Pass",
     badge: "Best for an active search",
     features: [

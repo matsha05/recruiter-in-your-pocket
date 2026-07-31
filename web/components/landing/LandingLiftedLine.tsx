@@ -190,7 +190,7 @@ export function LandingLiftedLine() {
                         <div className="lift-hero-copy">
                             <p className="lift-kicker">Recruiter feedback, before you apply.</p>
                             <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
-                            <p className="lift-hero-deck">Get a recruiter&apos;s first impression, see the exact résumé lines that raise questions, and learn the three most important changes to make before you apply.</p>
+                            <p className="lift-hero-deck">Upload or paste your résumé. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.</p>
                             <div className="lift-actions">
                                 <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free résumé review <ArrowRight aria-hidden="true" weight="bold" /></Link>
                                 <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>

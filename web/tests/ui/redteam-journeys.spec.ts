@@ -1,4 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
+
+const SAMPLE_REPORT = JSON.parse(
+  readFileSync(`${process.cwd()}/public/sample-report.json`, "utf8"),
+);
+
+const FIX_PLAN_HEADING_CASES = [
+  { count: 1, heading: "One move. Start here." },
+  { count: 2, heading: "Two moves. In order." },
+  { count: 3, heading: "Three moves. In order." },
+] as const;
 
 const RESUME_TEXT = `MATT SHAW
 Senior Program Manager
@@ -111,7 +122,33 @@ test.describe("launch red-team journeys", () => {
     await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
     await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
 
+    const independentRewrites = page.getByTestId("independent-rewrites");
+    await expect(independentRewrites.getByTestId("independent-rewrite-artifact")).toHaveCount(2);
+    await expect(independentRewrites).toContainText("Managed cross-functional initiatives.");
+    await expect(independentRewrites).toContainText("Led cross-functional initiatives across [functions]");
+    await expect(independentRewrites).toContainText("Drove process improvements.");
+    await expect(page.locator('[id^="section-fix-"] [data-testid="independent-rewrite-artifact"]')).toHaveCount(0);
+    await expect(independentRewrites.getByRole("button", { name: /copy/i })).toHaveCount(0);
+
+    const independentQuestions = page.getByTestId("independent-questions");
+    await expect(independentQuestions.getByTestId("independent-question")).toHaveCount(5);
+    await expect(independentQuestions).toContainText(
+      "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
+    );
+    await expect(independentQuestions).toContainText(
+      "This tells recruiters whether you can make calls under pressure, not just execute tasks.",
+    );
+    await expect(independentQuestions).toContainText(
+      "What system, process, or tool did you build that's still running without you?",
+    );
+    await expect(page.locator('[id^="section-fix-"] [data-testid="independent-question"]')).toHaveCount(0);
+
     const firstFix = page.locator("#section-fix-1");
+    await expect(firstFix.getByText("Add verified context", { exact: true })).toBeVisible();
+    await expect(firstFix).not.toContainText(
+      "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
+    );
+    await expect(firstFix.getByText("Answer before you edit", { exact: true })).toHaveCount(0);
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
     await expect(firstFix).toContainText("We don’t invent accomplishments.");
     await firstFix.getByRole("button", { name: "Edit" }).click();
@@ -125,11 +162,12 @@ test.describe("launch red-team journeys", () => {
     await expect(firstDraft).toHaveValue(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.",
     );
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(firstFix.getByText("Guidance only", { exact: true })).toBeVisible();
+    await expect(firstFix.getByRole("button", { name: /copy/i })).toHaveCount(0);
     await firstDraft.fill(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires, improving results 45%.",
     );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(firstFix.getByRole("button", { name: /copy/i })).toHaveCount(0);
 
     const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
     await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
@@ -170,17 +208,58 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
 
+  for (const { count, heading } of FIX_PLAN_HEADING_CASES) {
+    test(`3a. count-aware fix heading renders ${count} ranked move${count === 1 ? "" : "s"}`, async ({ page }) => {
+      const report = {
+        ...SAMPLE_REPORT,
+        top_fixes: SAMPLE_REPORT.top_fixes.slice(0, count),
+      };
+
+      await page.route("**/api/free-status", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: true, free_uses_left: 1, free_uses_remaining: 1, source: "test" }),
+        });
+      });
+      await page.route("**/api/resume-feedback-stream", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/x-ndjson",
+          body: `${JSON.stringify({ type: "complete", data: report })}\n`,
+        });
+      });
+
+      await runAnonymousReview(page, `198.51.100.${30 + count}`);
+      await expect(
+        page.locator("#section-fixes").getByRole("heading", { name: heading, exact: true }),
+      ).toBeVisible();
+      await expect(page.locator('[id^="section-fix-"]')).toHaveCount(count);
+    });
+  }
+
   test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.4");
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
 
+    const purchaseDecision = page.getByTestId("post-report-purchase-decision");
+    await expect(purchaseDecision).toContainText("This free report is complete—you do not need to pay to see the rest.");
+    await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
+    await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
+    await expect(purchaseDecision).toContainText("One payment · 30 days · no automatic renewal.");
+
     const firstGeneratedFix = page.locator("#section-fix-1");
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
     const generatedFactCount = await generatedFactInputs.count();
     if (generatedFactCount > 0) {
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      const initialCopyGate = firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" });
+      if (await initialCopyGate.count()) {
+        await expect(initialCopyGate).toBeDisabled();
+      } else {
+        await expect(firstGeneratedFix.getByText("Guidance only", { exact: true })).toBeVisible();
+      }
       for (let index = 0; index < generatedFactCount; index += 1) {
         await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
       }
@@ -195,7 +274,7 @@ test.describe("launch red-team journeys", () => {
       await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
     } else {
       const verifiedFact = "Six product, operations, and support partners used the launch cadence";
-      await firstGeneratedFix.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
+      await firstGeneratedFix.getByLabel("Verified context for fix 1").fill(verifiedFact);
       await firstGeneratedFix.getByRole("button", { name: "Keep this fact" }).click();
       const factToPreserve = firstGeneratedFix.getByText("Fact to preserve").locator("..");
       await expect(factToPreserve).toContainText(verifiedFact);

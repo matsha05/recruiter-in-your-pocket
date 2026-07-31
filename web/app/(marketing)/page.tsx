@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 
+const homepageDescription = "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
+
 export const metadata: Metadata = {
   title: "AI Résumé Feedback Shaped by a Recruiter",
-  description: "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and the three most important changes to make before you apply.",
+  description: homepageDescription,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "You Did the Work. Let's Make Sure They See It.",
-    description: "Free AI-powered résumé feedback informed by Matt Shaw's 14 years of recruiting experience.",
+    description: homepageDescription,
     url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
     images: ["/opengraph-image?v=20260729"],
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "You Did the Work. Let's Make Sure They See It.",
-    description: "Free AI-powered résumé feedback informed by 14 years of recruiting experience.",
+    description: homepageDescription,
     images: ["/opengraph-image?v=20260729"],
   },
 };
@@ -33,7 +35,7 @@ const structuredData = {
       url: "https://www.recruiterinyourpocket.com/",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
-      description: "AI-powered recruiter-style résumé feedback shaped by 14 years of recruiting experience.",
+      description: homepageDescription,
       creator: {
         "@id": "https://www.recruiterinyourpocket.com/#matt-shaw",
       },

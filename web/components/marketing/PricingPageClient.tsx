@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 
 const billingPoints = [
     {
@@ -224,7 +225,7 @@ export default function PricingPageClient() {
                         </div>
 
                         <p className="mt-5 text-base leading-6 text-muted-foreground">
-                            One payment. Five careful reports. Access ends 30 days after purchase. No automatic renewal. Taxes may apply at checkout.
+                            {JOB_SEARCH_PASS_DECISION.whenToBuy} {JOB_SEARCH_PASS_DECISION.terms} Taxes may apply at checkout.
                         </p>
                     </div>
                 </section>
