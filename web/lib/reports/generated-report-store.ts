@@ -1,8 +1,6 @@
 import crypto from "crypto";
-import { isDeepStrictEqual } from "node:util";
 import { logError, logWarn } from "../observability/logger";
-import { ResumeFeedbackResponseSchema } from "../validation/schemas";
-import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "./report-trust";
+import { buildGroundedReportTrustMetadata } from "./report-trust";
 
 type StoreContext = { request_id: string; route: string; user_id?: string };
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -15,7 +13,7 @@ export async function resolveUserSavedJobId(supabase: any, userId: string, value
 }
 
 function persistenceError() {
-  const error = new Error("We could not safely save this report. Your report credit was restored; please try again.") as Error & {
+  const error = new Error("We could not safely save this report.") as Error & {
     code: string;
     httpStatus: number;
   };
@@ -104,43 +102,38 @@ export async function rollbackGeneratedReport(input: {
 }
 
 export async function persistReceiptValidatedReport(input: {
-  supabase: any;
+  admin: any;
   userId: string;
   payload: any;
   receiptHash: string;
 }) {
   const reportId = crypto.randomUUID();
   const serialized = JSON.stringify(input.payload);
+  const trust = buildGroundedReportTrustMetadata(input.payload, input.userId);
   const preview = String(
     input.payload.summary || input.payload.score_comment_short || input.payload.score_comment_long || "Resume report",
   ).trim().slice(0, 200);
-  const { error } = await input.supabase.from("reports").insert({
-    id: reportId,
-    user_id: input.userId,
-    resume_hash: crypto.createHash("sha256").update(serialized).digest("hex"),
-    score: input.payload.score,
-    score_label: input.payload.score_label || null,
-    report_json: input.payload,
-    ...buildGroundedReportTrustMetadata(input.payload, input.userId),
-    anonymous_receipt_hash: input.receiptHash,
-    resume_preview: preview || "Resume report",
-    target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-    created_at: new Date().toISOString(),
+  if (!input.admin) throw persistenceError();
+  const { data, error } = await input.admin.rpc("claim_anonymous_report_receipt", {
+    p_receipt_hash: input.receiptHash,
+    p_user_id: input.userId,
+    p_report_id: reportId,
+    p_resume_hash: crypto.createHash("sha256").update(serialized).digest("hex"),
+    p_score: input.payload.score,
+    p_score_label: input.payload.score_label || null,
+    p_report_json: input.payload,
+    p_evidence_json: trust.evidence_json,
+    p_evidence_version: trust.evidence_version,
+    p_resume_preview: preview || "Resume report",
+    p_target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
+    p_created_at: new Date().toISOString(),
   });
-  if (error?.code === "23505") {
-    const { data: existing } = await input.supabase.from("reports")
-      .select("id, report_json, evidence_version, evidence_json")
-      .eq("anonymous_receipt_hash", input.receiptHash)
-      .eq("user_id", input.userId)
-      .maybeSingle();
-    const existingReport = existing && parseTrustedStoredReport(
-      existing.report_json,
-      existing.evidence_version,
-      existing.evidence_json,
-      input.userId,
-    );
-    const submittedReport = ResumeFeedbackResponseSchema.parse(input.payload);
-    if (existingReport && isDeepStrictEqual(existingReport, submittedReport)) return existing.id as string;
+  if (error) throw persistenceError();
+  const result = Array.isArray(data) ? data[0] : data;
+  if ((result?.status === "created" || result?.status === "idempotent") && typeof result.report_id === "string") {
+    return result.report_id;
+  }
+  if (result?.status === "consumed") {
     const consumed = new Error("This anonymous report has already been saved to an account.") as Error & {
       code: string;
       httpStatus: number;
@@ -149,6 +142,5 @@ export async function persistReceiptValidatedReport(input: {
     consumed.httpStatus = 409;
     throw consumed;
   }
-  if (error) throw persistenceError();
-  return reportId;
+  throw persistenceError();
 }

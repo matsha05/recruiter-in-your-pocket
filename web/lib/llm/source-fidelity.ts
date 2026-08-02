@@ -8,7 +8,8 @@ import {
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
-import { assertsNegativePresence } from "./report-polarity-policy";
+import { assertsNegativePresence, negativePresenceSubject } from "./report-polarity-policy";
+import { canonicalizeUserSourceText } from "../security/inputSanitization";
 
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -55,8 +56,7 @@ export function isExactAbsenceSentinel(value: string) {
 }
 
 export function canonicalSourceIdentity(value: string) {
-  return value
-    .normalize("NFKC")
+  return canonicalizeUserSourceText(value)
     .trim()
     .replace(leadingBulletPattern, "")
     .replace(/\s+/gu, " ")
@@ -84,8 +84,15 @@ function countUnicodeBoundedExcerpts(source: string, excerpt: string) {
     const afterIndex = start + excerpt.length;
     const after = afterIndex === source.length ? "" : Array.from(source.slice(afterIndex)).at(0) || "";
     const afterText = source.slice(afterIndex);
+    const beforeText = source.slice(0, start);
+    const splitsLeadingNumericLiteral = /^\p{N}/u.test(excerpt) && /\p{N}[.,]$/u.test(beforeText);
     const splitsNumericLiteral = /\p{N}$/u.test(excerpt) && /^[.,]\p{N}/u.test(afterText);
-    if (isSourceBoundary(before, "before") && isSourceBoundary(after, "after") && !splitsNumericLiteral) count += 1;
+    if (
+      isSourceBoundary(before, "before")
+      && isSourceBoundary(after, "after")
+      && !splitsLeadingNumericLiteral
+      && !splitsNumericLiteral
+    ) count += 1;
     start = source.indexOf(excerpt, start + 1);
   }
   return count;
@@ -96,7 +103,7 @@ function containsUnicodeBoundedExcerpt(source: string, excerpt: string) {
 }
 
 export function containsBoundedSourceExcerpt(sourceText: string, excerpt: string) {
-  const normalize = (value: string) => value.normalize("NFKC").replace(/\s+/gu, " ").trim();
+  const normalize = (value: string) => canonicalizeUserSourceText(value).replace(/\s+/gu, " ").trim();
   const source = normalize(sourceText);
   const candidate = normalize(excerpt);
   return Boolean(source && candidate && containsUnicodeBoundedExcerpt(source, candidate));
@@ -179,7 +186,7 @@ const qualifierPatterns: Array<[string, RegExp]> = [
 ];
 
 function normalizedFactDisplay(value: string) {
-  return value.normalize("NFKC").replace(/\s+/gu, " ").trim();
+  return canonicalizeUserSourceText(value).replace(/\s+/gu, " ").trim();
 }
 
 function addMatches(target: Map<string, ProtectedFact>, kind: string, value: string) {
@@ -189,7 +196,7 @@ function addMatches(target: Map<string, ProtectedFact>, kind: string, value: str
 }
 
 function protectedFacts(value: string) {
-  const withoutPlaceholders = value.normalize("NFKC").replace(/\[[^\]]+\]/gu, "");
+  const withoutPlaceholders = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
   const facts = new Map<string, ProtectedFact>();
 
   for (const match of withoutPlaceholders.matchAll(metricPattern)) addMatches(facts, "metric", match[0].toLowerCase());
@@ -222,7 +229,7 @@ const semanticTokenAliases = new Map([
 ]);
 
 function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
-  let untracked = value.normalize("NFKC").replace(/\[[^\]]+\]/gu, "");
+  let untracked = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
   for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
     untracked = untracked.replace(pattern, " ");
     pattern.lastIndex = 0;
@@ -356,7 +363,12 @@ export function auditNarrativeClaim(
     if (
       options.rejectPositiveSourceAbsence
       && assertsNegativePresence(claim)
-      && sourceAnchored.some(({ negated }) => !negated)
+      && (() => {
+        const subjectTokens = materialTokens(negativePresenceSubject(claim));
+        return subjectTokens.size > 0 && candidates.some(({ negated, tokens }) => (
+          !negated && Array.from(subjectTokens).every((token) => tokens.has(token))
+        ));
+      })()
     ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
     const hasCompleteUntrackedMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts
@@ -448,11 +460,17 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     }
     const resumeIssues = auditNarrativeClaim(value, resumeText, {
       interpretationContext: interpretationContextForPath(path),
-      rejectPositiveSourceAbsence: /^rewrites\[\d+\]\.enhancement_note$/u.test(path),
+      rejectPositiveSourceAbsence: true,
     });
     if (resumeIssues.length === 0) return [];
     return resumeIssues.map((issue) => ({ path, ...issue }));
   });
+}
+
+export function positiveSourceContradictions(report: any, resumeText: string, jobDescription?: string) {
+  return auditReportNarrative(report, resumeText, jobDescription).filter((issue) => (
+    issue.unsupportedFacts.includes("contradicts positive source evidence")
+  ));
 }
 
 export function removeUnsafeRewrites<T extends { rewrites?: unknown }>(report: T, resumeText: string) {

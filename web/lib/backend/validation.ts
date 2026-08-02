@@ -3,7 +3,7 @@ import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validati
 import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
-import { removeUnsafeRewrites } from "../llm/source-fidelity";
+import { positiveSourceContradictions, removeUnsafeRewrites } from "../llm/source-fidelity";
 import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 
 const MAX_TEXT_LENGTH = 30000;
@@ -142,6 +142,14 @@ export function validateResumeModelPayload(
   const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
   if (resumeText && shouldGround) {
+    const contradictions = positiveSourceContradictions(obj, resumeText, options.jobDescription);
+    if (contradictions.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response contradicted positive source evidence at ${contradictions[0].path}.`,
+        502,
+      );
+    }
     const ambiguousLocators = ambiguousReportSourceLocators(obj, resumeText);
     if (ambiguousLocators.length > 0) {
       throw createAppError(

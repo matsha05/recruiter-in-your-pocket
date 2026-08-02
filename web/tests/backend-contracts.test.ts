@@ -241,20 +241,23 @@ assert.ok(
 );
 assert.match(reportsRoute, /ResumeFeedbackResponseSchema\.safeParse\(reportWithoutReceipt\)/);
 assert.match(reportsRoute, /validatedReportReceiptHash\(parsed\.data, receipt\)/);
-assert.match(generatedReportStore, /anonymous_receipt_hash:\s*input\.receiptHash/);
-assert.match(generatedReportStore, /error\?\.code === "23505"/);
+assert.match(reportsRoute, /admin:\s*createSupabaseAdminClient\(\)/);
+assert.match(generatedReportStore, /input\.admin\.rpc\("claim_anonymous_report_receipt"/);
+assert.match(generatedReportStore, /p_receipt_hash:\s*input\.receiptHash/);
+assert.match(generatedReportStore, /result\?\.status === "consumed"/);
+assert.doesNotMatch(generatedReportStore, /anonymous_receipt_hash/);
 assert.match(reportDetailRoute, /parseTrustedStoredReport\([\s\S]+data\.evidence_json,[\s\S]+user\.id/);
 assert.match(reportDetailRoute, /report:\s*\{ \.\.\.trustedReport, report_id: reportId \}/);
 assert.match(resumeProviderMessages, /effectiveJobDescription\.promptBlock/);
 assert.match(resumeProviderMessages, /systemPrompt \+= INJECTION_RESISTANCE_SUFFIX/);
 assert.match(resumeReviewHook, /Analytics\.reportStarted\(hasJobDescription\)/);
 assert.match(resumeReviewHook, /has_jd:\s*hasJobDescription/);
-assert.match(resumeReviewHook, /attachStoredReportId\(current, result\.reportId\)/);
+assert.match(resumeReviewHook, /saveReceiptValidatedReport\(reportToSave\)/);
 assert.match(resumeModeSection, /hasJobDescription=\{hasEffectiveJobDescriptionValue\(jobDescription\)\}/);
 
 assert.match(
   resumeFeedbackRoute,
-  /reservationCommitted = true;[\s\S]+if \(accessReservation && !reservationCommitted\)/,
+  /settleGenerationFailure\(\{[\s\S]+attemptConsumed:\s*reservationCommitted/,
   "the non-stream endpoint must not refund a committed report after a delivery error",
 );
 assert.doesNotMatch(inngestFunctions, /pdf\/generate\.requested|generatePdfBuffer|event\.data\.report/);

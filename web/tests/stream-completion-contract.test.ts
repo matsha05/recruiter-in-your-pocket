@@ -61,6 +61,33 @@ async function run() {
     assert.equal(failed.ok, false);
     assert.equal(failed.attemptConsumed, true, "post-provider failures must disclose that the attempt was consumed");
     assert.deepEqual(failedPartials, [], "resume failure paths must invoke no raw callbacks");
+
+    globalThis.fetch = async () => responseFor([
+      { type: "meta", attempt_consumed: true },
+      { type: "chunk", content: '{"score":99}' },
+    ]);
+    const ended = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(ended.ok, false);
+    assert.equal(ended.attemptConsumed, true, "EOF after consumed metadata must retain attempt state");
+    assert.match(ended.message || "", /without completion/i);
+
+    let reads = 0;
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      pull(controller) {
+        reads += 1;
+        if (reads === 1) {
+          controller.enqueue(new TextEncoder().encode('{"type":"meta","attempt_consumed":true}\n'));
+          return;
+        }
+        controller.error(new DOMException("Canceled", "AbortError"));
+      },
+    }), {
+      status: 200,
+      headers: { "x-riyp-attempt-consumed": "1" },
+    });
+    const aborted = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(aborted.aborted, true);
+    assert.equal(aborted.attemptConsumed, true, "abort after response headers must retain consumed attempt state");
   } finally {
     globalThis.fetch = originalFetch;
   }

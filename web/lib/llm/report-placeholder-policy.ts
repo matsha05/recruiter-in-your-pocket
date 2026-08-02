@@ -18,7 +18,31 @@ function normalizePlaceholder(value: string) {
     .trim();
 }
 
+export function normalizeCompatibilityBrackets(value: string) {
+  return value.normalize("NFKC");
+}
+
+export function bracketPlaceholderKeys(value: string) {
+  return Array.from(new Set(Array.from(
+    normalizeCompatibilityBrackets(value).matchAll(/\[([^\]]+)\]/gu),
+    (match) => match[1].trim(),
+  )));
+}
+
+export function hasBracketPlaceholders(value: string) {
+  return bracketPlaceholderKeys(value).length > 0;
+}
+
+export function replaceBracketPlaceholders(
+  value: string,
+  replacement: (key: string, match: string) => string,
+) {
+  return normalizeCompatibilityBrackets(value).replace(/\[([^\]]+)\]/gu, (match, rawKey: string) => (
+    replacement(rawKey.trim(), match)
+  ));
+}
+
 export function unsupportedBracketPayloads(value: string) {
-  return Array.from(value.matchAll(/\[([^\]]+)\]/gu), (match) => match[1].trim())
+  return bracketPlaceholderKeys(value)
     .filter((payload) => !safeNeutralPlaceholders.has(normalizePlaceholder(payload)));
 }

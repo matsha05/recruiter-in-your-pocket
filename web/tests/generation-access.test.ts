@@ -403,12 +403,13 @@ const feedbackRoute = readFileSync(path.join(process.cwd(), "app", "api", "resum
 const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback-stream", "route.ts"), "utf8");
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
 const linkedInRoute = readFileSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts"), "utf8");
+const resumeReviewHook = readFileSync(path.join(process.cwd(), "components", "workspace", "hooks", "useResumeReview.ts"), "utf8");
 const launchProgram = readFileSync(path.join(process.cwd(), "lib", "launch", "program.ts"), "utf8");
 
 for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.match(source, /reserveGenerationAccess/);
   assert.match(source, /commitGenerationAccess/);
-  assert.match(source, /releaseGenerationAccess/);
+  assert.match(source, /settleGenerationFailure|releaseGenerationAccess/);
   const providerCallIndex = source.includes("for await (const ev of streamJson")
     ? source.indexOf("for await (const ev of streamJson")
     : source.indexOf("await runJson<any>");
@@ -439,7 +440,7 @@ assert.ok(
   "the authoritative complete event must not be delivered before validation and entitlement commit"
 );
 assert.doesNotMatch(streamRoute, /validatedChunks|type:\s*"chunk"/);
-assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
+assert.match(streamRoute, /settleGenerationFailure\(\{[\s\S]+attemptConsumed:\s*reservationCommitted/);
 for (const source of [feedbackRoute, streamRoute]) {
   const providerStarted = source.indexOf("await markGenerationProviderCallStarted");
   const anonymousCommitted = source.indexOf('entitlementKind === "anonymous_free"', providerStarted);
@@ -447,13 +448,15 @@ for (const source of [feedbackRoute, streamRoute]) {
     providerStarted >= 0 && anonymousCommitted > providerStarted,
     "anonymous post-provider failures must be marked consumed before validation or delivery",
   );
-  assert.match(source, /attempt_consumed:\s*reservationCommitted/);
+  assert.match(source, /attempt_consumed:\s*disposition\.attemptConsumed/);
 }
 assert.doesNotMatch(
   streamRoute,
   /new Error\("The report did not pass its evidence check\. Your report credit was restored/,
   "post-provider validation errors must not claim an anonymous attempt was restored",
 );
+assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*await input\.refreshFreeStatus/);
+assert.match(resumeReviewHook, /catch \(error\) \{[\s\S]+await input\.refreshFreeStatus/);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");

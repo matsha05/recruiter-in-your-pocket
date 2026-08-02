@@ -2,7 +2,18 @@ import assert from "node:assert/strict";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { checkEvidence, checkRewriteGrounding } from "../lib/evals/evidence-checks";
 import { containsExactEvidence, isAcceptedAbsenceMarker } from "../lib/llm/grounding";
-import { auditReportNarrative, compareSourceBoundRewrite } from "../lib/llm/source-fidelity";
+import {
+  auditReportNarrative,
+  canonicalSourceIdentity,
+  compareSourceBoundRewrite,
+  resolveUniqueSourceLine,
+} from "../lib/llm/source-fidelity";
+import {
+  bracketPlaceholderKeys,
+  replaceBracketPlaceholders,
+  unsupportedBracketPayloads,
+} from "../lib/llm/report-placeholder-policy";
+import { resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
 import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 import {
   hubspotJobDescription,
@@ -27,6 +38,9 @@ for (const sentinel of [
 assert.equal(isAcceptedAbsenceMarker("No education section present", hubspotSource, "Education"), true);
 assert.equal(isAcceptedAbsenceMarker("No education section present", hubspotSource, "Summary"), false);
 assert.equal(containsExactEvidence("1.0", "1"), false, "numeric evidence must not split a decimal literal");
+for (const [source, excerpt] of [["1,0", "0"], ["10,000", "000"], ["10,000", "10"]] as const) {
+  assert.equal(containsExactEvidence(source, excerpt), false, `${excerpt} must not split ${source}`);
+}
 
 for (const [source, excerpt] of [
   ["Built C＋＋ services", "C"],
@@ -70,6 +84,17 @@ assert.throws(
   () => validateResumeModelPayload(flattenedDuplicateReport, flattenedDuplicate, { forceGrounding: true }),
   /ambiguous source evidence/,
   "two bounded occurrences on one flattened line must remain ambiguous",
+);
+
+assert.equal(
+  canonicalSourceIdentity("Built customer work\u2063flows in HubSpot."),
+  canonicalSourceIdentity(hubspotSource),
+  "validator source identity must remove the same format controls as provider input",
+);
+assert.equal(
+  resolveUniqueSourceLine(hubspotSource, `Built customer work\u2063flows in HubSpot.\n${hubspotSource}`).status,
+  "ambiguous",
+  "provider-visible duplicate locators must remain validator-ambiguous",
 );
 
 for (const source of [
@@ -141,6 +166,75 @@ for (const factualPlaceholder of [
       `${field} must reject [${factualPlaceholder}]`,
     );
   }
+}
+
+for (const bracketed of [
+  "［onboarding revenue increase］",
+  "﹇customer onboarding completed﹈",
+]) {
+  assert.ok(unsupportedBracketPayloads(`Add ${bracketed}.`).length > 0, `${bracketed} must normalize before policy checks`);
+  const report: any = structuredClone(schemaValidReport);
+  report.rewrites = [{
+    label: "Clarity",
+    original: hubspotSource,
+    better: `Created customer journeys using HubSpot ${bracketed}.`,
+    enhancement_note: "Add ［verified result］.",
+  }];
+  assert.throws(
+    () => validateResumeModelPayload(report, hubspotSource, {
+      forceGrounding: true,
+      jobDescription: hubspotJobDescription,
+    }),
+    /evidence grounding contract/,
+    `${bracketed} must not reach report rendering or export`,
+  );
+}
+
+const compatibilitySafePlaceholder = "Created customer journeys using HubSpot ［verified result］.";
+assert.deepEqual(bracketPlaceholderKeys(compatibilitySafePlaceholder), ["verified result"]);
+assert.equal(
+  replaceBracketPlaceholders(compatibilitySafePlaceholder, (key) => key === "verified result" ? "28% faster" : key),
+  "Created customer journeys using HubSpot 28% faster.",
+  "compatibility placeholders must use the same normalized key for fact replacement",
+);
+assert.equal(
+  resolveRewriteCopyPolicy({
+    sourceText: hubspotSource,
+    original: hubspotSource,
+    draft: compatibilitySafePlaceholder,
+  }).reason,
+  "unresolved_placeholders",
+  "safe compatibility placeholders must remain visible and non-copyable until filled",
+);
+
+const positiveCountSource = `${hubspotSource}\nCustomer count: 45.`;
+const polarityCases: Array<[string, (report: any) => void]> = [
+  ["gaps[0]", (report) => { report.gaps[0] = "The customer count is missing."; }],
+  ["section_review.Summary.missing", (report) => {
+    report.section_review.Summary.missing = "The customer count is unclear.";
+  }],
+  ["job_alignment.missing[0]", (report) => { report.job_alignment.missing[0] = "HubSpot is missing."; }],
+];
+for (const [expectedPath, mutate] of polarityCases) {
+  const report: any = structuredClone(schemaValidReport);
+  report.gaps[0] = "The workflow scope needs detail.";
+  for (const item of Object.values(report.section_review) as any[]) {
+    item.missing = "The workflow scope needs detail.";
+  }
+  mutate(report);
+  assert.ok(
+    auditReportNarrative(report, positiveCountSource, hubspotJobDescription)
+      .some((issue) => issue.path === expectedPath && issue.unsupportedFacts.includes("contradicts positive source evidence")),
+    `${expectedPath} must reject missing/unclear claims contradicted by positive source evidence`,
+  );
+  assert.throws(
+    () => validateResumeModelPayload(report, positiveCountSource, {
+      forceGrounding: true,
+      jobDescription: hubspotJobDescription,
+    }),
+    /contradicted positive source evidence/,
+    `${expectedPath} must fail the full model validation boundary before rendering/export`,
+  );
 }
 
 for (const unsupportedWidthFact of ["＄９Ｍ", "Ｃ＋＋", "４５％"]) {

@@ -1,3 +1,5 @@
+import { canonicalizeUserSourceText } from "../security/inputSanitization";
+
 const contrastMarker = "(?:but|however|yet|although|though|while|whereas)";
 const leadingSubordinateContrast = new RegExp(
   `^\\s*(?:although|though|while|whereas)\\b\\s*([^,]+),\\s*(.+)$`,
@@ -19,7 +21,7 @@ function contrastClauses(segment: string): string[] {
 }
 
 export function narrativeEvidenceClauses(sourceText: string) {
-  return protectIdentityDots(sourceText.normalize("NFC"))
+  return protectIdentityDots(canonicalizeUserSourceText(sourceText))
     .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
     .map((segment) => segment.replaceAll(protectedIdentityDot, "."))
     .flatMap(contrastClauses)
@@ -37,7 +39,7 @@ function protectIdentityDots(sourceText: string) {
 }
 
 export function roleEvidenceSegments(sourceText: string) {
-  return protectIdentityDots(sourceText.normalize("NFC"))
+  return protectIdentityDots(canonicalizeUserSourceText(sourceText))
     .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
     .map((segment) => segment.replaceAll(protectedIdentityDot, ".").trim())
     .filter(Boolean);
@@ -46,7 +48,7 @@ export function roleEvidenceSegments(sourceText: string) {
 const identityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*)(?:[.&/](?:[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*))*/gu;
 
 function identityTokens(value: string) {
-  const normalized = value.normalize("NFKC").replace(/[’‘]/gu, "'").replace(/♯/gu, "#");
+  const normalized = canonicalizeUserSourceText(value).replace(/[’‘]/gu, "'").replace(/♯/gu, "#");
   return (normalized.match(identityPattern) || []).map((token) => token.toLocaleLowerCase());
 }
 

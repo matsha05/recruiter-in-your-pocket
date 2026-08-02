@@ -7,6 +7,7 @@ import {
   type SourceFidelityIssue,
   type VerifiedFact,
 } from "../llm/source-fidelity";
+import { hasBracketPlaceholders } from "../llm/report-placeholder-policy";
 
 type ReportFix = NonNullable<ReportData["top_fixes"]>[number];
 type ReportRewrite = NonNullable<ReportData["rewrites"]>[number];
@@ -121,7 +122,7 @@ export function resolveRewriteCopyPolicy(input: {
       issues: [{ code: "source_unavailable", detail: "source resume unavailable" }],
     };
   }
-  if (/\[[^\]]+\]/u.test(input.draft)) {
+  if (hasBracketPlaceholders(input.draft)) {
     return { copyable: false, reason: "unresolved_placeholders", issues: [] };
   }
   const comparison = compareSourceBoundRewrite({

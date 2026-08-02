@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
-import { attachStoredReportId } from "@/lib/reports/pdf-export";
+import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
@@ -65,15 +65,9 @@ export function useResumeReview(input: {
 
   const saveReportForCurrentUser = useCallback(async (reportToSave: any) => {
     if (!reportToSave) return;
-    const response = await fetch("/api/reports", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ report: reportToSave }),
-    });
-    const result = await response.json();
-    if (!result.ok) throw new Error(result.message || "Failed to save report");
+    const saved = await saveReceiptValidatedReport(reportToSave);
     input.setReport((current: any) => (
-      current === reportToSave ? attachStoredReportId(current, result.reportId) : current
+      current === reportToSave ? saved : current
     ));
     toast.success("Report saved to your history");
     input.setPendingReportForSave(null);
@@ -117,6 +111,18 @@ export function useResumeReview(input: {
         { signal: controller.signal, savedJobId: input.persistedSavedJobId },
       );
       if (result.aborted) {
+        await input.refreshFreeStatus({
+          fallbackDecrement: result.attemptConsumed === true,
+          includeUserRefresh: true,
+          requireOk: true,
+        });
+        if (result.attemptConsumed) {
+          toast.warning("Analysis stopped after generation started", {
+            description: "This report attempt was used. Your remaining reports are now refreshed.",
+          });
+        } else {
+          toast.info("Analysis canceled", { description: "Your remaining reports are now refreshed." });
+        }
         input.setIsLoading(false);
         input.setIsStreaming(false);
         input.endAnalysis();
@@ -139,16 +145,26 @@ export function useResumeReview(input: {
         return;
       }
       console.error("Failed to generate report:", result.message);
+      await input.refreshFreeStatus({
+        fallbackDecrement: result.attemptConsumed === true,
+        includeUserRefresh: true,
+        requireOk: true,
+      });
       const attemptCopy = result.attemptConsumed
         ? "This report attempt was used because generation had already started."
-        : "Your report was not used.";
+        : result.creditRestored
+          ? "Your report credit was restored; please try again."
+          : "Check your remaining reports before retrying.";
+      const hasDisposition = /report attempt was used|report credit was restored|could not confirm that your report credit was restored/iu
+        .test(result.message || "");
       toast.error("Failed to generate report", {
-        description: result.message?.includes(attemptCopy)
+        description: hasDisposition
           ? result.message
           : `${result.message || "Unknown error"} · ${attemptCopy}`,
       });
     } catch (error) {
       console.error("Report generation error:", error);
+      await input.refreshFreeStatus({ includeUserRefresh: true, requireOk: true });
       toast.error("Report generation error", {
         description: "Please try again, then check your remaining reports before retrying.",
       });

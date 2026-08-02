@@ -13,6 +13,11 @@ import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { resolveUniqueSourceLine, type VerifiedFact } from "@/lib/llm/source-fidelity";
+import {
+  bracketPlaceholderKeys,
+  normalizeCompatibilityBrackets,
+  replaceBracketPlaceholders,
+} from "@/lib/llm/report-placeholder-policy";
 import { resolveRewriteCopyPolicy } from "@/lib/reports/report-presentation";
 import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
 import type { ReportData } from "./ReportTypes";
@@ -35,10 +40,6 @@ export function evidenceFor(fix?: Fix) {
 function sectionFor(fix?: Fix) {
   if (!fix?.evidence) return fix?.section_ref;
   return typeof fix.evidence === "string" ? fix.section_ref : fix.evidence.section || fix.section_ref;
-}
-
-function placeholderKeysFor(value: string) {
-  return Array.from(new Set(Array.from(value.matchAll(/\[([^\]]+)\]/gu), (match) => match[1].trim())));
 }
 
 function placeholderLabel(value: string) {
@@ -80,7 +81,7 @@ export function FixCanvas({
     [resumeText, sourceLocator],
   );
   const draftSource = resolvedSource.status === "resolved" ? resolvedSource.line : sourceLocator;
-  const suggestedLine = rewrite?.better?.trim() || "";
+  const suggestedLine = normalizeCompatibilityBrackets(rewrite?.better?.trim() || "");
   const hasSuggestedLine = suggestedLine.length > 0;
   const [draft, setDraft] = useState(suggestedLine);
   const [editing, setEditing] = useState(false);
@@ -89,7 +90,7 @@ export function FixCanvas({
   const [factsApplied, setFactsApplied] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const action = fix.fix || fix.text || "Make this part of the resume more specific";
-  const placeholderKeys = useMemo(() => placeholderKeysFor(suggestedLine), [suggestedLine]);
+  const placeholderKeys = useMemo(() => bracketPlaceholderKeys(suggestedLine), [suggestedLine]);
   const allRequiredFactsProvided = placeholderKeys.length > 0
     && placeholderKeys.every((key) => factValues[key]?.trim());
   const verifiedFacts = useMemo<VerifiedFact[]>(
@@ -121,9 +122,9 @@ export function FixCanvas({
 
   const handleUseFacts = () => {
     if (!allRequiredFactsProvided) return;
-    setDraft(suggestedLine.replace(/\[([^\]]+)\]/gu, (match, rawKey: string) => {
-      return factValues[rawKey.trim()]?.trim() || match;
-    }));
+    setDraft(replaceBracketPlaceholders(suggestedLine, (key, match) => (
+      factValues[key]?.trim() || match
+    )));
     setFactsApplied(true);
     setEditing(true);
   };

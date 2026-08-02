@@ -16,11 +16,12 @@ import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/ho
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
+import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
-import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { needsReceiptValidatedSave, saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
@@ -117,15 +118,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setReport
     });
 
-    useEffect(() => {
-        const restored = takeCheckoutWorkspaceState();
-        if (!restored) return;
-        setResumeText(restored.resumeText || "");
-        setJobDescription(restored.jobDescription || "");
-        setReport(restored.report);
-        setSkipSample(true);
-        toast.success("Your report is back", { description: "Checkout did not discard the read you were working from." });
-    }, []);
+    useCheckoutReportRestoration({ user, setResumeText, setJobDescription, setReport, setSkipSample });
 
     const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
 
@@ -245,16 +238,21 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isExporting, setIsExporting] = useState(false);
 
     const handleExportPdf = useCallback(async (overrideReport?: any) => {
-        const payload = overrideReport || report;
+        let payload = overrideReport || report;
         if (!payload) return;
-        const requestBody = buildPdfExportRequest(payload);
-        if (!requestBody) {
-            toast.error("This report is missing some data. Please rerun it and try exporting again.");
-            return;
-        }
 
         setIsExporting(true);
         try {
+            if (user && needsReceiptValidatedSave(payload)) {
+                const original = payload;
+                payload = await saveReceiptValidatedReport(payload);
+                setReport((current: any) => current === original ? payload : current);
+            }
+            const requestBody = buildPdfExportRequest(payload);
+            if (!requestBody) {
+                toast.error("This report is missing some data. Please rerun it and try exporting again.");
+                return;
+            }
             const response = await fetch("/api/export-pdf", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -283,7 +281,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         } finally {
             setIsExporting(false);
         }
-    }, [report]);
+    }, [report, user]);
 
     // Handle Command Palette actions
     useCommandAction((action: CommandAction) => {
@@ -415,7 +413,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             highlightSection={highlightSection}
                             hasPaidAccess={hasPaidAccess}
                             analysisStartedAt={analysisStartedAt}
-                            onCancelAnalysis={() => handleCancelAnalysis()}
+                            onCancelAnalysis={() => handleCancelAnalysis(true)}
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={comparisonBaseline}
                             onStartRevision={handleStartRevision}

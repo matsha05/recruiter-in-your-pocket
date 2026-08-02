@@ -174,6 +174,12 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
     await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
+    await purchaseDecision.getByRole("button").click();
+    const reportPaywall = page.getByRole("dialog", { name: /reached the preview limit/i });
+    await expect(reportPaywall).toContainText("Your existing report stays available");
+    await expect(reportPaywall.getByRole("button", { name: "Back to my report" })).toBeVisible();
+    await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
+    await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
     const feedback = page.getByTestId("beta-feedback");
     await expect(feedback).toContainText("Your first complete report is free. No card required.");
@@ -300,5 +306,9 @@ test.describe("launch red-team journeys", () => {
     const paywall = page.getByRole("dialog", { name: /reached the preview limit/i });
     await expect(paywall).toBeVisible();
     await expect(paywall.getByText(/Paid access is not open yet/i)).toBeVisible();
+    await expect(paywall).not.toContainText("Your existing report stays available");
+    await expect(paywall).toContainText("Stay in the workspace");
+    await expect(paywall.getByRole("button", { name: "Back to workspace" })).toBeVisible();
+    await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
   });
 });

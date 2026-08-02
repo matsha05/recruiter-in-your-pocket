@@ -1,24 +1,11 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
-import {
-    FREE_COOKIE,
-    freeCookieOptions,
-    getCurrentMonthKey,
-    makeFreeCookie,
-    parseFreeCookie
-} from "@/lib/backend/freeCookie";
+import { FREE_COOKIE, freeCookieOptions, getCurrentMonthKey, makeFreeCookie, parseFreeCookie } from "@/lib/backend/freeCookie";
 import { runJson, streamJson } from "@/lib/llm/orchestrator";
-import {
-    buildResumeRepairMessages,
-    isRepairableResumeResponseError,
-} from "@/lib/llm/reportRepair";
+import { buildResumeRepairMessages, isRepairableResumeResponseError } from "@/lib/llm/reportRepair";
 import { buildResumeProviderMessages } from "@/lib/llm/resume-provider-messages";
-import {
-    increaseReasoningEffort,
-    resolveOpenAIModel,
-    resolveReasoningEffortForMode,
-} from "@/lib/llm/model-config";
+import { increaseReasoningEffort, resolveOpenAIModel, resolveReasoningEffortForMode } from "@/lib/llm/model-config";
 import { extractJsonFromText } from "@/lib/backend/openai";
 import { loadPromptForMode } from "@/lib/backend/prompts";
 import {
@@ -43,12 +30,11 @@ import {
     assertGenerationAuthLookup,
     commitGenerationAccess,
     markGenerationProviderCallStarted,
-    releaseGenerationAccess,
-    releaseReasonForError,
     reserveGenerationAccess,
     type GenerationAccessReservation,
     type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { appendFailureDisposition, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
 import { persistGeneratedReport, resolveUserSavedJobId, rollbackGeneratedReport } from "@/lib/reports/generated-report-store";
 import { logDetectedPromptInjection } from "@/lib/observability/resume-stream-security";
 import { singleStreamEventResponse, streamHeaders } from "@/lib/backend/stream-response";
@@ -132,13 +118,14 @@ export async function POST(request: Request) {
     let savedJobId: string | null = null;
     let accessReservation: GenerationAccessReservation | null = null;
     let reservationAdmin: GenerationAccessRpcClient | null = null;
+    let reportAdmin: any = null;
     let bypass = false;
     let user_id: string | undefined;
-
     try {
         supabase = await maybeCreateSupabaseServerClient();
         const admin = createSupabaseAdminClient();
         reservationAdmin = admin;
+        reportAdmin = admin;
         assertGenerationAccessDependencies({
             authClientAvailable: Boolean(supabase),
             adminClientAvailable: Boolean(admin),
@@ -227,22 +214,51 @@ export async function POST(request: Request) {
     const encoder = new TextEncoder();
     let accumulatedJson = "";
     let reservationCommitted = false;
+    let messages: ReturnType<typeof buildResumeProviderMessages>["messages"];
+    let canonicalResumeText = "";
+
+    try {
+        const prepared = buildResumeProviderMessages({
+            mode,
+            systemPrompt: await loadPromptForMode(mode),
+            text,
+            effectiveJobDescription,
+        });
+        messages = prepared.messages;
+        canonicalResumeText = prepared.sanitization.sanitizedText;
+        logDetectedPromptInjection({
+            request_id,
+            route,
+            resume: prepared.sanitization,
+            jobDescription: effectiveJobDescription.sanitization,
+        });
+        await markGenerationProviderCallStarted(grantedReservation);
+        if (grantedReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
+    } catch (err: any) {
+        const disposition = await settleGenerationFailure({
+            reservation: grantedReservation,
+            admin: reservationAdmin,
+            error: err,
+            attemptConsumed: reservationCommitted,
+        });
+        logGenerationReleaseFailure(disposition, { request_id, route, user_id });
+        const code = err?.code || "INTERNAL_SERVER_ERROR";
+        const response = singleStreamEventResponse(request_id, {
+            type: "error",
+            errorCode: code,
+            message: appendFailureDisposition(err?.message || "Report generation could not start", disposition),
+            attempt_consumed: disposition.attemptConsumed,
+            credit_restored: disposition.creditRestored,
+        });
+        if (disposition.anonymousCookieMeta) {
+            response.cookies.set(FREE_COOKIE, makeFreeCookie(disposition.anonymousCookieMeta), freeCookieOptions());
+        }
+        return response;
+    }
 
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                const { messages, sanitization: sanitizedResume } = buildResumeProviderMessages({
-                    mode,
-                    systemPrompt: await loadPromptForMode(mode),
-                    text,
-                    effectiveJobDescription,
-                });
-                const sanitizedJobDesc = effectiveJobDescription.sanitization;
-
-                logDetectedPromptInjection({
-                    request_id, route, resume: sanitizedResume, jobDescription: sanitizedJobDesc,
-                });
-
                 // Send initial metadata
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
@@ -251,12 +267,11 @@ export async function POST(request: Request) {
                     access_tier: accessTier,
                     user: user ? { email: user.email } : null,
                     has_job_description: effectiveJobDescription.hasValue,
-                    bypass
+                    bypass,
+                    attempt_consumed: reservationCommitted,
                 }) + "\n"));
 
                 const model = resolveOpenAIModel(mode);
-                await markGenerationProviderCallStarted(grantedReservation);
-                if (grantedReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
                     try {
@@ -305,7 +320,7 @@ export async function POST(request: Request) {
                     } else if (mode === "case_negotiation") {
                         payload = validateCaseNegotiationPayload(parsedJson);
                     } else {
-                        payload = validateResumeModelPayload(parsedJson, text, effectiveJobDescription.validationOptions);
+                        payload = validateResumeModelPayload(parsedJson, canonicalResumeText, effectiveJobDescription.validationOptions);
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
@@ -329,7 +344,7 @@ export async function POST(request: Request) {
                                 schema_version: "report_v1",
                                 messages: buildResumeRepairMessages(messages, accumulatedJson, err),
                             });
-                            payload = validateResumeModelPayload(repaired.parsed, text, effectiveJobDescription.validationOptions);
+                            payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
                             payload = ensureLayoutAndContentFields(payload);
                             accumulatedJson = repaired.raw;
                             logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
@@ -364,12 +379,12 @@ export async function POST(request: Request) {
                     }
                 }
                 let reportId: string | null = null;
-                if (user && supabase && mode === "resume") {
+                if (user && reportAdmin && mode === "resume") {
                     reportId = await persistGeneratedReport({
-                        supabase,
+                        supabase: reportAdmin,
                         userId: user.id,
                         payload,
-                        resumeText: text,
+                        resumeText: canonicalResumeText,
                         savedJobId,
                         jobDescriptionText: effectiveJobDescription.persistenceText,
                         context: { request_id, route, user_id },
@@ -379,9 +394,9 @@ export async function POST(request: Request) {
                     await commitGenerationAccess(grantedReservation, reservationAdmin);
                     reservationCommitted = true;
                 } catch (commitError) {
-                    if (reportId && user && supabase) {
+                    if (reportId && user && reportAdmin) {
                         await rollbackGeneratedReport({
-                            supabase, userId: user.id, reportId, context: { request_id, route, user_id },
+                            supabase: reportAdmin, userId: user.id, reportId, context: { request_id, route, user_id },
                         });
                         reportId = null;
                     }
@@ -392,7 +407,6 @@ export async function POST(request: Request) {
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
                 const newFreeRemaining = freeUsesRemaining;
 
-                // Send the final complete message
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "complete",
                     ok: true,
@@ -417,28 +431,13 @@ export async function POST(request: Request) {
                 });
 
             } catch (err: any) {
-                if (!reservationCommitted) {
-                    try {
-                        await releaseGenerationAccess(
-                            grantedReservation,
-                            reservationAdmin,
-                            releaseReasonForError(err)
-                        );
-                    } catch (releaseErr: any) {
-                        logError({
-                            msg: "billing.access_release_failed",
-                            request_id,
-                            route,
-                            user_id,
-                            outcome: "internal_error",
-                            err: {
-                                name: releaseErr?.name || "GenerationAccessError",
-                                message: releaseErr?.message || "Access release failed",
-                                code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
-                            },
-                        });
-                    }
-                }
+                const disposition = await settleGenerationFailure({
+                    reservation: grantedReservation,
+                    admin: reservationAdmin,
+                    error: err,
+                    attemptConsumed: reservationCommitted,
+                });
+                logGenerationReleaseFailure(disposition, { request_id, route, user_id });
 
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
@@ -447,20 +446,20 @@ export async function POST(request: Request) {
                         tags: { error_code: String(code) },
                     });
                 }
-                const message = code === "OPENAI_TIMEOUT"
+                const baseMessage = code === "OPENAI_TIMEOUT"
                     ? "This is taking longer than usual. Try again in a moment."
                     : code === "OPENAI_NETWORK_ERROR"
                         ? "Connection hiccup. Try again in a moment."
-                        : `${err?.message || "Something went wrong."} ${reservationCommitted
-                            ? "This report attempt was used because generation had already started."
-                            : "Your report credit was restored; please try again."}`;
+                        : err?.message || "Something went wrong.";
+                const message = appendFailureDisposition(baseMessage, disposition);
 
                 try {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: code,
                         message,
-                        attempt_consumed: reservationCommitted,
+                        attempt_consumed: disposition.attemptConsumed,
+                        credit_restored: disposition.creditRestored,
                     }) + "\n"));
                     controller.close();
                 } catch {
@@ -486,6 +485,7 @@ export async function POST(request: Request) {
     const response = new NextResponse(stream, {
         headers: streamHeaders(request_id),
     });
+    if (reservationCommitted) response.headers.set("x-riyp-attempt-consumed", "1");
 
     if (grantedReservation.anonymousCookieMeta) {
         response.cookies.set(

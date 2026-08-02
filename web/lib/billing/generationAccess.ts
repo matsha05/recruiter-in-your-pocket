@@ -26,7 +26,7 @@ export type GenerationPassSnapshot = {
 
 export type AnonymousFreeCookieMeta = {
   used: number;
-  last_free_ts: string;
+  last_free_ts: string | null;
   reset_month: string;
 };
 

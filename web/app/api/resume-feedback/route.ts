@@ -38,12 +38,11 @@ import {
   assertGenerationAuthLookup,
   commitGenerationAccess,
   markGenerationProviderCallStarted,
-  releaseGenerationAccess,
-  releaseReasonForError,
   reserveGenerationAccess,
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { appendFailureDisposition, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
 import { persistGeneratedReport, rollbackGeneratedReport } from "@/lib/reports/generated-report-store";
 
 export const runtime = "nodejs";
@@ -189,6 +188,7 @@ export async function POST(request: Request) {
       text,
       effectiveJobDescription,
     });
+    const canonicalResumeText = sanitizedInput.sanitizedText;
     const sanitizedJobDescription = effectiveJobDescription.sanitization;
     if (sanitizedInput.injectionDetected || sanitizedJobDescription?.injectionDetected) {
       logWarn({
@@ -230,7 +230,7 @@ export async function POST(request: Request) {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       try {
-        payload = validateResumeModelPayload(parsedJson, text, effectiveJobDescription.validationOptions);
+        payload = validateResumeModelPayload(parsedJson, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
       } catch (err: any) {
         if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
@@ -251,7 +251,7 @@ export async function POST(request: Request) {
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
         });
-        payload = validateResumeModelPayload(repaired.parsed, text, effectiveJobDescription.validationOptions);
+        payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
@@ -259,12 +259,12 @@ export async function POST(request: Request) {
 
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
-    if (user && supabase && mode === "resume") {
+    if (user && admin && mode === "resume") {
       reportId = await persistGeneratedReport({
-        supabase,
+        supabase: admin,
         userId: user.id,
         payload,
-        resumeText: text,
+        resumeText: canonicalResumeText,
         savedJobId,
         jobDescriptionText: effectiveJobDescription.persistenceText,
         context: { request_id, route, user_id },
@@ -277,8 +277,8 @@ export async function POST(request: Request) {
       await commitGenerationAccess(accessReservation, admin);
       reservationCommitted = true;
     } catch (commitError) {
-      if (reportId && user && supabase) {
-        await rollbackGeneratedReport({ supabase, userId: user.id, reportId, context: { request_id, route, user_id } });
+      if (reportId && user && admin) {
+        await rollbackGeneratedReport({ supabase: admin, userId: user.id, reportId, context: { request_id, route, user_id } });
         reportId = null;
       }
       throw commitError;
@@ -327,27 +327,13 @@ export async function POST(request: Request) {
     });
     return res;
   } catch (err: any) {
-    if (accessReservation && !reservationCommitted) {
-      try {
-        await releaseGenerationAccess(
-          accessReservation,
-          reservationAdmin,
-          releaseReasonForError(err)
-        );
-      } catch (releaseErr: any) {
-        logError({
-          msg: "billing.access_release_failed",
-          request_id,
-          route,
-          outcome: "internal_error",
-          err: {
-            name: releaseErr?.name || "GenerationAccessError",
-            message: releaseErr?.message || "Access release failed",
-            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
-          },
-        });
-      }
-    }
+    const disposition = await settleGenerationFailure({
+      reservation: accessReservation,
+      admin: reservationAdmin,
+      error: err,
+      attemptConsumed: reservationCommitted,
+    });
+    logGenerationReleaseFailure(disposition, { request_id, route });
 
     const status = err?.httpStatus || 500;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
@@ -363,10 +349,7 @@ export async function POST(request: Request) {
       });
     }
 
-    const retryDisposition = reservationCommitted
-      ? "This report attempt was used because generation had already started."
-      : "Your report credit was restored; please try again.";
-    const message =
+    const baseMessage =
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
         : code === "OPENAI_NETWORK_ERROR"
@@ -375,8 +358,9 @@ export async function POST(request: Request) {
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? `The report did not pass its evidence check. ${retryDisposition}`
+              ? "The report did not pass its evidence check."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
+    const message = appendFailureDisposition(baseMessage, disposition);
 
     logError({
       msg: "http.request.completed",
@@ -393,9 +377,13 @@ export async function POST(request: Request) {
       ok: false,
       errorCode: code,
       message,
-      attempt_consumed: reservationCommitted,
+      attempt_consumed: disposition.attemptConsumed,
+      credit_restored: disposition.creditRestored,
     }, { status });
     res.headers.set("x-request-id", request_id);
+    if (disposition.anonymousCookieMeta) {
+      res.cookies.set(FREE_COOKIE, makeFreeCookie(disposition.anonymousCookieMeta), freeCookieOptions());
+    }
     return res;
   }
 }

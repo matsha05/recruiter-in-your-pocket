@@ -6,6 +6,7 @@ import { logError } from "@/lib/observability/logger";
 import { ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
 import { validatedReportReceiptHash } from "@/lib/reports/report-receipt";
 import { persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
+import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -94,7 +95,7 @@ export async function POST(request: NextRequest) {
       );
     }
     const reportId = await persistReceiptValidatedReport({
-      supabase,
+      admin: createSupabaseAdminClient(),
       userId: sessionUser.id,
       payload: parsed.data,
       receiptHash,

@@ -102,6 +102,7 @@ export async function streamResumeFeedback(
   aborted?: boolean;
   reportId?: string | null;
   attemptConsumed?: boolean;
+  creditRestored?: boolean;
 }> {
   let res: Response;
   try {
@@ -139,7 +140,8 @@ export async function streamResumeFeedback(
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
-  let attemptConsumed = false;
+  let attemptConsumed = res.headers.get("x-riyp-attempt-consumed") === "1";
+  let creditRestored = false;
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
@@ -147,7 +149,7 @@ export async function streamResumeFeedback(
       readResult = await reader.read();
     } catch (err: any) {
       if (err?.name === "AbortError") {
-        return { ok: false, message: "Canceled", aborted: true };
+        return { ok: false, message: "Canceled", aborted: true, attemptConsumed, creditRestored };
       }
       throw err;
     }
@@ -178,8 +180,9 @@ export async function streamResumeFeedback(
         } else if (event.type === "error") {
           errorMessage = event.message;
           attemptConsumed = event.attempt_consumed === true;
+          creditRestored = event.credit_restored === true;
         } else if (event.type === "meta") {
-          // Reserved for future non-sensitive stream metadata.
+          attemptConsumed = attemptConsumed || event.attempt_consumed === true;
         }
       } catch {
         // Ignore malformed lines
@@ -188,14 +191,14 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, message: errorMessage, attemptConsumed };
+    return { ok: false, message: errorMessage, attemptConsumed, creditRestored };
   }
 
   if (finalReport) {
     return { ok: true, report: finalReport, reportId: finalReportId };
   }
 
-  return { ok: false, message: "Stream ended without completion" };
+  return { ok: false, message: "Stream ended without completion", attemptConsumed, creditRestored };
 }
 
 // ============================================

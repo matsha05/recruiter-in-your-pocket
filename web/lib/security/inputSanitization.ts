@@ -48,7 +48,7 @@ const INJECTION_PATTERNS = [
 const JSON_INJECTION_PATTERN = /\{\s*"[a-zA-Z_]+"\s*:\s*[^}]+\}/g;
 const ZERO_WIDTH_FORMAT_CONTROLS = /\p{Cf}/gu;
 
-function normalizeForInjectionScan(text: string) {
+export function canonicalizeUserSourceText(text: string) {
     return text.normalize("NFKC").replace(ZERO_WIDTH_FORMAT_CONTROLS, "");
 }
 
@@ -63,7 +63,7 @@ export interface SanitizationResult {
  * Detect injection patterns in text without modifying it
  */
 export function detectInjectionPatterns(text: string): { detected: boolean; patterns: string[] } {
-    const scanText = normalizeForInjectionScan(text);
+    const scanText = canonicalizeUserSourceText(text);
     const detectedPatterns: string[] = [];
 
     for (const pattern of INJECTION_PATTERNS) {
@@ -82,7 +82,7 @@ export function detectInjectionPatterns(text: string): { detected: boolean; patt
  * Check for embedded JSON that looks like output schema injection
  */
 export function detectJsonInjection(text: string): boolean {
-    const matches = normalizeForInjectionScan(text).match(JSON_INJECTION_PATTERN);
+    const matches = canonicalizeUserSourceText(text).match(JSON_INJECTION_PATTERN);
     if (!matches) return false;
 
     // Check if any match looks like our output schema fields
@@ -104,7 +104,7 @@ export function detectJsonInjection(text: string): boolean {
  * we escape/neutralize the dangerous patterns while preserving the text for analysis.
  */
 export function neutralizeInjectionPatterns(text: string): string {
-    let neutralized = normalizeForInjectionScan(text).replace(JSON_INJECTION_PATTERN, (match) =>
+    let neutralized = canonicalizeUserSourceText(text).replace(JSON_INJECTION_PATTERN, (match) =>
         detectJsonInjection(match) ? "[UNTRUSTED OUTPUT OBJECT REDACTED]" : match
     );
 
@@ -125,7 +125,7 @@ export function neutralizeInjectionPatterns(text: string): string {
  * Full sanitization pipeline for user input
  */
 export function sanitizeUserInput(text: string): SanitizationResult {
-    const normalizedText = normalizeForInjectionScan(text);
+    const normalizedText = canonicalizeUserSourceText(text);
     const detection = detectInjectionPatterns(normalizedText);
     const hasJsonInjection = detectJsonInjection(normalizedText);
 
