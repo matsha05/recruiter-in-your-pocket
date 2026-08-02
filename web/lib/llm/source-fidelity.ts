@@ -5,6 +5,7 @@ import {
   normalizeNarrativeToken,
   sourceClauseIsNegated,
 } from "./narrative-token-policy";
+import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -269,9 +270,7 @@ function claimSegments(value: string) {
 }
 
 function narrativeSourceClauses(sourceText: string) {
-  return sourceText
-    .normalize("NFC")
-    .split(/(?:\r?\n)+|;\s*|(?<=[.!?])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
+  return narrativeEvidenceClauses(sourceText)
     .map((clause) => canonicalSourceIdentity(clause))
     .filter(Boolean);
 }
@@ -361,10 +360,13 @@ function reportNarrativeStrings(report: any) {
     add(`ideas.questions[${index}].why`, question?.why);
   });
   (report?.rewrites || []).forEach((rewrite: any, index: number) => {
-    add(`rewrites[${index}].label`, rewrite?.label);
+    // original/better use exact evidence and rewrite validation; audit the remaining rendered copy here.
+    for (const key of ["label", "enhancement_note"]) add(`rewrites[${index}].${key}`, rewrite?.[key]);
   });
   const alignment = report?.job_alignment;
   add("job_alignment.jd_match_summary", alignment?.jd_match_summary);
+  addArray("job_alignment.jd_keywords.matched", alignment?.jd_keywords?.matched);
+  addArray("job_alignment.jd_keywords.missing", alignment?.jd_keywords?.missing);
   for (const key of ["strongly_aligned", "underplayed", "missing"]) addArray(`job_alignment.${key}`, alignment?.[key]);
   add("job_alignment.role_fit.seniority_read", alignment?.role_fit?.seniority_read);
   addArray("job_alignment.role_fit.best_fit_roles", alignment?.role_fit?.best_fit_roles);
@@ -377,6 +379,10 @@ function reportNarrativeStrings(report: any) {
 
 function isJobDescriptionGroundableRole(path: string) {
   return /^job_alignment\.role_fit\.(?:best_fit_roles|stretch_roles)\[\d+\]$/u.test(path);
+}
+
+function jobDescriptionKeywordKind(path: string) {
+  return path.match(/^job_alignment\.jd_keywords\.(matched|missing)\[\d+\]$/u)?.[1];
 }
 
 const structuralReportVocabulary = {
@@ -415,54 +421,20 @@ function isAllowedStructuralReportValue(path: string, value: string) {
   return false;
 }
 
-const roleIdentityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*)(?:[.&/](?:[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*))*/gu;
-
-function normalizeRoleIdentity(value: string) {
-  return value
-    .normalize("NFKC")
-    .replace(/[’‘]/gu, "'")
-    .replace(/♯/gu, "#");
-}
-
-function roleLabelTokens(value: string) {
-  return (normalizeRoleIdentity(value).match(roleIdentityPattern) || []).map((rawToken) => {
-    const token = rawToken.toLocaleLowerCase();
-    return semanticTokenAliases.get(token) || token;
-  });
-}
-
-function roleEvidenceSegments(sourceText: string) {
-  return sourceText
-    .normalize("NFC")
-    .replace(/\b(Sr|Jr)\.(?=\s+[\p{L}\p{M}])/giu, "$1")
-    .split(/(?:\r?\n)+|(?<=[.!?;])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
-    .map((segment) => segment.trim())
-    .filter(Boolean);
-}
-
-function containsRolePhrase(candidate: readonly string[], claim: readonly string[]) {
-  if (claim.length === 0 || claim.length > candidate.length) return false;
-  return candidate.some((token, start) =>
-    token === claim[0]
-    && claim.every((claimToken, offset) => candidate[start + offset] === claimToken)
-  );
-}
-
-function isNarrativeClaimPositivelyGrounded(value: string, sourceText: string) {
-  const candidates = roleEvidenceSegments(sourceText).map(roleLabelTokens);
-  // Candidate punctuation is presentation only. The full ordered role token
-  // sequence must still occur contiguously inside one source evidence segment.
-  const tokens = roleLabelTokens(value);
-  return candidates.some((candidate) => containsRolePhrase(candidate, tokens));
-}
-
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
     if (isAllowedStructuralReportValue(path, value)) return [];
+    const keywordKind = jobDescriptionKeywordKind(path);
+    if (keywordKind) {
+      const inResume = evidenceContainsIdentityPhrase(value, resumeText);
+      const inJobDescription = Boolean(jobDescription?.trim() && evidenceContainsIdentityPhrase(value, jobDescription));
+      const grounded = keywordKind === "matched" ? inResume && inJobDescription : !inResume && inJobDescription;
+      return grounded ? [] : [{ path, claim: value, unsupportedFacts: [`${keywordKind} JD keyword provenance`] }];
+    }
     if (isJobDescriptionGroundableRole(path)) {
-      const groundedInResume = isNarrativeClaimPositivelyGrounded(value, resumeText);
+      const groundedInResume = evidenceContainsIdentityPhrase(value, resumeText);
       const groundedInJobDescription = Boolean(
-        jobDescription?.trim() && isNarrativeClaimPositivelyGrounded(value, jobDescription),
+        jobDescription?.trim() && evidenceContainsIdentityPhrase(value, jobDescription),
       );
       if (groundedInResume || groundedInJobDescription) return [];
       const issues = auditNarrativeClaim(value, resumeText);

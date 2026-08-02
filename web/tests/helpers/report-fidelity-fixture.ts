@@ -1,4 +1,5 @@
 export const hubspotSource = "Built customer workflows in HubSpot.";
+export const hubspotJobDescription = "The role requires HubSpot and customer count reporting.";
 
 const reviewItem = {
   grade: "B",
@@ -80,10 +81,16 @@ export const renderedClaimProbe = {
     evidence: { excerpt: hubspotSource, section: unsafePublicClaim },
     section_ref: unsafePublicClaim,
   }],
-  rewrites: [{ original: hubspotSource, better: hubspotSource, label: unsafePublicClaim }],
+  rewrites: [{
+    original: hubspotSource,
+    better: hubspotSource,
+    label: unsafePublicClaim,
+    enhancement_note: unsafePublicClaim,
+  }],
   ideas: { questions: [{ question: unsafePublicClaim, why: unsafePublicClaim }] },
   job_alignment: {
     jd_match_summary: unsafePublicClaim,
+    jd_keywords: { matched: [unsafePublicClaim], missing: [unsafePublicClaim] },
     positioning_suggestion: unsafePublicClaim,
     role_fit: {
       best_fit_roles: [unsafePublicClaim],
@@ -106,9 +113,12 @@ export const auditedPublicNarrativePaths = [
   "top_fixes[0].evidence.section",
   "top_fixes[0].section_ref",
   "rewrites[0].label",
+  "rewrites[0].enhancement_note",
   "ideas.questions[0].question",
   "ideas.questions[0].why",
   "job_alignment.jd_match_summary",
+  "job_alignment.jd_keywords.matched[0]",
+  "job_alignment.jd_keywords.missing[0]",
   "job_alignment.positioning_suggestion",
   "job_alignment.role_fit.best_fit_roles[0]",
   "job_alignment.role_fit.stretch_roles[0]",

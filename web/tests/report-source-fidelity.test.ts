@@ -130,6 +130,23 @@ assert.deepEqual(auditNarrativeClaim("Did not build payroll automation.", mixedP
 assert.deepEqual(auditNarrativeClaim("payroll automation is missing.", mixedPolaritySource), []);
 assert.ok(auditNarrativeClaim("payroll automation is visible.", mixedPolaritySource).length > 0);
 
+const contrastPolaritySources = [
+  "Did not build payroll automation, but built customer workflows in HubSpot.\nHubSpot customer workflows.",
+  "Did not build payroll automation; however, built customer workflows in HubSpot.\nHubSpot customer workflows.",
+  "Did not build payroll automation, yet built customer workflows in HubSpot.\nHubSpot customer workflows.",
+  "Did not build payroll automation.Built customer workflows in HubSpot.\nHubSpot customer workflows.",
+  "Did not build payroll automation!Built customer workflows in HubSpot.\nHubSpot customer workflows.",
+  "Did not build payroll automation?Built customer workflows in HubSpot.\nHubSpot customer workflows.",
+] as const;
+for (const source of contrastPolaritySources) {
+  assert.ok(
+    auditNarrativeClaim("Did not build customer workflows in HubSpot.", source).length > 0,
+    "a negative claim must not inherit positive facts across a contrast boundary",
+  );
+  assert.deepEqual(auditNarrativeClaim("Did not build payroll automation.", source), []);
+  assert.deepEqual(auditNarrativeClaim("Built customer workflows in HubSpot.", source), []);
+}
+
 const usefulParaphrase = {
   label: "Clarity",
   original: hubspotSource,
@@ -244,6 +261,7 @@ for (const relativePath of [
   "lib/backend/validation.ts",
   "lib/llm/grounding.ts",
   "lib/llm/narrative-token-policy.ts",
+  "lib/llm/source-evidence-segmentation.ts",
   "lib/llm/resume-provider-messages.ts",
   "lib/llm/source-fidelity.ts",
   "lib/reports/report-presentation.ts",

@@ -8,6 +8,7 @@ import {
     isAcceptedAbsenceMarker,
 } from "../llm/grounding";
 import { auditReportNarrative, compareSourceBoundRewrite } from "../llm/source-fidelity";
+import { getScoreLabel } from "../score-utils";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -130,6 +131,27 @@ const TopFixSchema = z.object({
     impact_level: ImpactLevelSchema,
     effort: EffortLevelSchema,
     section_ref: z.string().min(1)
+});
+
+function normalizedKeywordKeys(values: string[]) {
+    return values.map(value => value.normalize("NFKC").toLocaleLowerCase().trim().replace(/\s+/g, " "));
+}
+
+const JobKeywordsSchema = z.object({
+    matched: z.array(z.string().trim().min(1)).max(20),
+    missing: z.array(z.string().trim().min(1)).max(20),
+    match_count: z.number().int().min(0),
+    total_count: z.number().int().min(0)
+}).superRefine((keywords, context) => {
+    const matched = normalizedKeywordKeys(keywords.matched);
+    const missing = normalizedKeywordKeys(keywords.missing);
+    const matchedSet = new Set(matched);
+    const missingSet = new Set(missing);
+    if (matchedSet.size !== matched.length) context.addIssue({ code: "custom", path: ["matched"], message: "matched JD keywords must be unique" });
+    if (missingSet.size !== missing.length) context.addIssue({ code: "custom", path: ["missing"], message: "missing JD keywords must be unique" });
+    if (matched.some(keyword => missingSet.has(keyword))) context.addIssue({ code: "custom", path: ["missing"], message: "a JD keyword cannot be both matched and missing" });
+    if (keywords.match_count !== matchedSet.size) context.addIssue({ code: "custom", path: ["match_count"], message: "match_count must equal the normalized matched keyword count" });
+    if (keywords.total_count !== matchedSet.size + missingSet.size) context.addIssue({ code: "custom", path: ["total_count"], message: "total_count must equal the normalized matched and missing keyword count" });
 });
 
 function sentenceCount(value: string) {
@@ -287,12 +309,7 @@ export const ResumeFeedbackResponseSchema = z.object({
     job_alignment: z.object({
         jd_match_score: z.number().int().min(0).max(100),
         jd_match_summary: z.string(),
-        jd_keywords: z.object({
-            matched: z.array(z.string()).max(20),
-            missing: z.array(z.string()).max(20),
-            match_count: z.number().int().min(0),
-            total_count: z.number().int().min(0)
-        }),
+        jd_keywords: JobKeywordsSchema,
         strongly_aligned: z.array(z.string()).min(3).max(5),
         underplayed: z.array(z.string()).min(2).max(4),
         missing: z.array(z.string()).min(1).max(3),
@@ -321,7 +338,7 @@ export const ResumeFeedbackResponseSchema = z.object({
             why: z.string().min(1),
         })).length(5),
     }),
-}).passthrough();
+}).passthrough().transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
 
 /**

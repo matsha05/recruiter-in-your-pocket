@@ -5,6 +5,7 @@ import { hubspotSource, schemaValidReport, unsafePublicClaim } from "./helpers/r
 const roleReport = (field: "best_fit_roles" | "stretch_roles", role: string) => {
   const report = structuredClone(schemaValidReport);
   report.job_alignment.role_fit[field][0] = role;
+  report.job_alignment.jd_keywords = { matched: [], missing: [], match_count: 0, total_count: 0 };
   const result = ResumeFeedbackResponseSchema.safeParse(report);
   assert.equal(result.success, true, `${field} ${role} probe must remain schema-valid`);
   return result.data;
@@ -35,6 +36,35 @@ assert.ok(
   "the split-provenance error must identify the rendered best-fit role",
 );
 
+for (const field of ["best_fit_roles", "stretch_roles"] as const) {
+  const report = roleReport(field, unsafePublicClaim);
+  for (const punctuation of [";", ".", "!", "?"]) {
+    const minifiedCollision = assertReportGrounding(
+      report,
+      hubspotSource,
+      `Our CRM is Salesforce${punctuation}Administrator access is limited to IT.`,
+    );
+    assert.equal(
+      minifiedCollision.ok,
+      false,
+      `${field} must not join role tokens across a no-space ${punctuation} clause boundary`,
+    );
+    assert.ok(
+      minifiedCollision.inventedSpecifics.some((issue) => issue.includes(`job_alignment.role_fit.${field}[0]`)),
+      `${field} minified punctuation error must identify its rendered field`,
+    );
+    assert.equal(
+      assertReportGrounding(
+        report,
+        hubspotSource,
+        `Primary role: Salesforce Administrator${punctuation}owns CRM systems.`,
+      ).ok,
+      true,
+      `${field} must retain a complete role before no-space ${punctuation} punctuation`,
+    );
+  }
+}
+
 const compositeRoleJobDescription = "Salesforce platform experience is preferred. The Workday Administrator owns HR systems.";
 const fragmentedRoleJobDescription = "Salesforce platform expertise.\nWorkday Administrator owns HR systems.";
 for (const field of ["best_fit_roles", "stretch_roles"] as const) {
@@ -62,6 +92,11 @@ for (const field of ["best_fit_roles", "stretch_roles"] as const) {
     assertReportGrounding(abbreviatedReport, hubspotSource, "Primary role: Sr. Salesforce Administrator.").ok,
     true,
     `${field} must retain recognized title abbreviations inside one segment`,
+  );
+  assert.equal(
+    assertReportGrounding(abbreviatedReport, hubspotSource, "Primary role: Sr.Salesforce Administrator.").ok,
+    true,
+    `${field} must retain a recognized abbreviation in minified text`,
   );
   assert.equal(
     assertReportGrounding(
