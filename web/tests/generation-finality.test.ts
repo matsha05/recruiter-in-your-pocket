@@ -158,36 +158,41 @@ async function run() {
   const shadowHash = crypto.createHash("sha256").update("finality-network").digest("hex");
   const monthKey = getCurrentMonthKey();
   const reservationId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
-  const anonymousLedger = { identityHash, shadowHash, monthKey, reservationId };
-  assert.equal(await anonymousGenerationAccessBackend.reserve(anonymousLedger), true);
+  const firstAnonymous = await reserveGenerationAccess({
+    userId: null,
+    admin: null,
+    reportKind: "resume_feedback",
+    bypass: false,
+    freeMeta,
+    anonymousIdentityHash: identityHash,
+    anonymousShadowHash: shadowHash,
+    randomUUID: () => reservationId,
+  });
+  assert.equal(firstAnonymous.access, "full");
+  assert.equal(firstAnonymous.entitlementKind, "anonymous_free");
   assert.equal(resolveAnonymousFreeUsesRemaining("reserved", 0, 1), 0);
-  assert.equal(await anonymousGenerationAccessBackend.commit(anonymousLedger), true);
   assert.deepEqual(
-    await anonymousGenerationAccessBackend.release(anonymousLedger),
-    { status: "committed", action: "none" }
+    await commitGenerationAccess(firstAnonymous, null),
+    { state: "committed", action: "committed", accessConsumed: true }
+  );
+  assert.deepEqual(
+    await releaseGenerationAccess(firstAnonymous, null, "provider_error"),
+    { state: "committed", action: "none", accessConsumed: true }
   );
   assert.equal(await anonymousGenerationAccessBackend.status({ identityHash, shadowHash, monthKey }), "committed");
   const changedShadowHash = crypto.createHash("sha256").update("changed-network").digest("hex");
-  assert.equal(
-    await anonymousGenerationAccessBackend.reserve({
-      identityHash,
-      shadowHash: changedShadowHash,
-      monthKey,
-      reservationId: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
-    }),
-    false,
-    "committed cleanup must not mint another anonymous report"
-  );
-  assert.equal(
-    await anonymousGenerationAccessBackend.reconcileCommitted({
-      identityHash,
-      shadowHash: changedShadowHash,
-      monthKey,
-      receiptId: "changed-network-receipt",
-    }),
-    "committed",
-    "durable identity must seed the privacy-preserving shadow after an IP change"
-  );
+  const movedSameIdentity = await reserveGenerationAccess({
+    userId: null,
+    admin: null,
+    reportKind: "resume_feedback",
+    bypass: false,
+    freeMeta,
+    anonymousIdentityHash: identityHash,
+    anonymousShadowHash: changedShadowHash,
+    randomUUID: () => "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+  });
+  assert.equal(movedSameIdentity.access, "preview");
+  assert.equal(movedSameIdentity.entitlementKind, null);
   assert.equal(
     await anonymousGenerationAccessBackend.reserve({
       identityHash: crypto.createHash("sha256").update("cookies-cleared").digest("hex"),
@@ -198,15 +203,21 @@ async function run() {
     false,
     "clearing both cookies on the same network must not mint another report"
   );
+  const clearedAfterMove = await reserveGenerationAccess({
+    userId: null,
+    admin: null,
+    reportKind: "resume_feedback",
+    bypass: false,
+    freeMeta,
+    anonymousIdentityHash: crypto.createHash("sha256").update("cleared-after-ip-change").digest("hex"),
+    anonymousShadowHash: changedShadowHash,
+    randomUUID: () => "cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd",
+  });
+  assert.equal(clearedAfterMove.access, "preview");
   assert.equal(
-    await anonymousGenerationAccessBackend.reserve({
-      identityHash: crypto.createHash("sha256").update("cleared-after-ip-change").digest("hex"),
-      shadowHash: changedShadowHash,
-      monthKey,
-      reservationId: "cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd",
-    }),
-    false,
-    "the current network shadow must survive a later both-cookie clear"
+    clearedAfterMove.entitlementKind,
+    null,
+    "a direct moved-network denial must bind its shadow before both cookies are cleared"
   );
 
   const staleIdentityHash = crypto.createHash("sha256").update("stale-used-cookie").digest("hex");

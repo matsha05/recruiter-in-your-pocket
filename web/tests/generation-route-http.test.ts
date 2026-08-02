@@ -3,8 +3,15 @@ import Module from "node:module";
 import path from "node:path";
 import {
   ANONYMOUS_ID_COOKIE,
+  getCurrentMonthKey,
+  makeAnonymousIdentityCookie,
   parseAnonymousIdentityCookie,
 } from "../lib/backend/freeCookie";
+import { anonymousGenerationAccessBackend } from "../lib/billing/anonymousGenerationAccess";
+import {
+  anonymousNetworkHashFromRequest,
+  hashAnonymousIdentity,
+} from "../lib/billing/anonymousIdentity";
 
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
@@ -81,6 +88,45 @@ async function run() {
     assert.equal(payload.errorCode, "OPENAI_NETWORK_ERROR");
     assert.ok(identityValue, "the first access-error response must issue the signed identity cookie");
     assert.ok(parseAnonymousIdentityCookie(identityValue));
+
+    const committedIdentity = { id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" };
+    const originalNetworkRequest = new Request("http://localhost", {
+      headers: { "x-forwarded-for": "198.51.100.10" },
+    });
+    const committedLedger = {
+      identityHash: hashAnonymousIdentity(committedIdentity),
+      shadowHash: anonymousNetworkHashFromRequest(originalNetworkRequest) || "",
+      monthKey: getCurrentMonthKey(),
+      reservationId: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    };
+    assert.equal(await anonymousGenerationAccessBackend.reserve(committedLedger), true);
+    assert.equal(await anonymousGenerationAccessBackend.commit(committedLedger), true);
+    requestCookies.set(ANONYMOUS_ID_COOKIE, makeAnonymousIdentityCookie(committedIdentity));
+
+    const movedRequest = () => new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.11",
+      },
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(120) }),
+    });
+    const movedResponse = await POST(movedRequest());
+    const movedPayload = await movedResponse.json();
+    assert.equal(movedResponse.status, 402);
+    assert.equal(movedPayload.errorCode, "PAYWALL_REQUIRED");
+    assert.equal(providerCalls, 1, "a committed durable identity must not reach the provider after an IP move");
+
+    requestCookies.clear();
+    const clearedResponse = await POST(movedRequest());
+    const clearedPayload = await clearedResponse.json();
+    assert.equal(clearedResponse.status, 402);
+    assert.equal(clearedPayload.errorCode, "PAYWALL_REQUIRED");
+    assert.equal(
+      providerCalls,
+      1,
+      "the moved-network shadow must deny a direct POST after both cookies are cleared"
+    );
   } finally {
     runtimeModule._load = originalLoad;
   }

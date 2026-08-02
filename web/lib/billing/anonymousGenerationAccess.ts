@@ -9,6 +9,20 @@ const IDENTITY_PATTERN = /^[0-9a-f]{64}$/i;
 const RESERVE_SCRIPT = `
 local primary = redis.call("GET", KEYS[1])
 local shadow = redis.call("GET", KEYS[2])
+if primary and string.sub(primary, 1, 10) == "committed:" and not shadow then
+  local ttl = redis.call("PTTL", KEYS[1])
+  if ttl < 0 then ttl = ARGV[3] end
+  if ttl == 0 then ttl = 1 end
+  redis.call("SET", KEYS[2], primary, "PX", ttl, "NX")
+  return 0
+end
+if shadow and string.sub(shadow, 1, 10) == "committed:" and not primary then
+  local ttl = redis.call("PTTL", KEYS[2])
+  if ttl < 0 then ttl = ARGV[3] end
+  if ttl == 0 then ttl = 1 end
+  redis.call("SET", KEYS[1], shadow, "PX", ttl, "NX")
+  return 0
+end
 if primary or shadow then
   return 0
 end
@@ -236,7 +250,11 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
         const result = await redis.eval(
           RESERVE_SCRIPT,
           keys,
-          [reservationId, String(HOLD_TTL_SECONDS)]
+          [
+            reservationId,
+            String(HOLD_TTL_SECONDS),
+            String(COMMITTED_TTL_SECONDS * 1000),
+          ]
         );
         return Number(result) === 1;
       } catch (error) {
@@ -252,7 +270,18 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    if (localState(keys).status !== "available") return false;
+    const entries = keys.map((key) => localEntry(key));
+    const primary = entries[0];
+    const shadow = entries[1];
+    if (primary?.value.startsWith("committed:") && !shadow) {
+      localEntries.set(keys[1], { ...primary });
+      return false;
+    }
+    if (shadow?.value.startsWith("committed:") && !primary) {
+      localEntries.set(keys[0], { ...shadow });
+      return false;
+    }
+    if (entries.some(Boolean)) return false;
     for (const key of keys) {
       localEntries.set(key, {
         value: `reserved:${reservationId}`,

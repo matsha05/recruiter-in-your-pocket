@@ -57,7 +57,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Usage, reliability, and abuse-prevention metadata",
     purpose: "Free-report eligibility, rate limiting, reliability diagnostics, billing state, and product health.",
-    retention: "Signed anonymous identifiers and separately salted network eligibility hashes expire within 40 days. Raw network addresses are not stored in the eligibility ledger. Rate-limit and idempotency records are short-lived; other operational records are retained for product and security needs.",
+    retention: "Signed browser cookies used for anonymous identity and free-report status may remain for up to 365 days, and their browser expiration renews when we set them again. Server-side anonymous eligibility records, including separately salted network hashes, expire within 40 days. Raw network addresses are not stored in the eligibility ledger. Rate-limit and idempotency records are short-lived; other operational records are retained for product and security needs.",
     userControl: "Anonymous eligibility records are not attached to an account. Deleting your account removes app-level history.",
     processor: "Supabase, Sentry, Vercel, Upstash"
   },
