@@ -11,6 +11,7 @@ import {
   ShieldAlert,
   X,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { isSafeComponent } from "@/lib/gauntlet/integrity";
 import {
   getGauntletProgress,
@@ -53,7 +54,7 @@ function Panel({ title, description, children }: { title: string; description?: 
   return (
     <section className="border-t border-line pt-5">
       <div className="mb-5 max-w-3xl">
-        <h2 className="font-display text-xl riyp-weight-560 tracking-[-0.025em] text-foreground">{title}</h2>
+        <h2 className="font-display text-xl riyp-weight-560 riyp-track-n025 text-foreground">{title}</h2>
         {description ? <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p> : null}
       </div>
       {children}
@@ -71,7 +72,7 @@ function DimensionCard({ progress, noun }: { progress: DimensionProgress; noun: 
           {progress.status}
         </span>
       </div>
-      <p className="mt-4 font-display text-3xl riyp-weight-600 tracking-[-0.04em] text-foreground">
+      <p className="mt-4 font-display text-3xl riyp-weight-600 riyp-track-n04 text-foreground">
         {progress.rate === null ? "—" : `${Math.round(progress.rate * 100)}%`}
       </p>
       <p className="mt-1 text-sm text-muted-foreground">
@@ -94,7 +95,7 @@ function HashValue({ label, value }: { label: string; value: string | null | und
   return (
     <div>
       <dt className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-muted-foreground">{label}</dt>
-      <dd className="mt-1 break-all font-mono text-[11px] leading-5 text-foreground">{value ?? "Not bound"}</dd>
+      <dd className="mt-1 break-all font-mono riyp-type-11px leading-5 text-foreground">{value ?? "Not bound"}</dd>
     </div>
   );
 }
@@ -247,7 +248,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
           <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Gauntlet loop · operator only</p>
-              <h1 className="mt-3 max-w-4xl font-display text-4xl riyp-weight-620 leading-[0.98] tracking-[-0.055em] text-foreground sm:text-5xl lg:text-6xl">
+              <h1 className="mt-3 max-w-4xl font-display text-4xl riyp-weight-620 riyp-leading-098 riyp-track-n055 text-foreground sm:text-5xl lg:text-6xl">
                 Can the first free review earn the second?
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
@@ -291,7 +292,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
                 ))}
               </select>
             </label>
-            <button type="submit" className="min-h-11 bg-foreground px-4 text-sm font-semibold text-background">View iteration</button>
+            <Button type="submit" variant="brand">View iteration</Button>
           </form>
           {selectedHistory && !selectedHistory.active ? (
             <p className="mt-3 border-l-4 border-brand bg-brand/5 px-4 py-3 text-sm font-semibold text-foreground">Historical · read-only</p>

@@ -2033,7 +2033,7 @@ async function runAutomatedChecks(
 }
 
 async function loadEvidence(
-  definition: Awaited<ReturnType<typeof validateGauntletDefinition>>,
+  validatedDefinition: Awaited<ReturnType<typeof validateGauntletDefinition>>,
   integrityHooks?: GauntletProgressIntegrityHooks,
 ): Promise<LoadedEvidence> {
   const {
@@ -2044,10 +2044,10 @@ async function loadEvidence(
     iteration,
     iterationLedgerSha256,
     calibration,
-  } = definition;
-  const dataIssues = [...definition.issues];
+  } = validatedDefinition;
+  const dataIssues = [...validatedDefinition.issues];
   const artifactRoot = await resolveArtifactRoot(webRoot, iteration.id, dataIssues);
-  const completeLedgers = definition.ledgers.filter((ledger) => ledger.iteration.status === "complete");
+  const completeLedgers = validatedDefinition.ledgers.filter((ledger) => ledger.iteration.status === "complete");
   const anchorResults = await Promise.all(completeLedgers.map(async (ledger) => {
     try {
       const ledgerArtifactRoot = ledger.iteration.id === iteration.id
