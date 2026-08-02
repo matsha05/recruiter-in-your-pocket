@@ -11,7 +11,7 @@ import {
   ShieldAlert,
   X,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { GauntletIterationSubmit } from "./GauntletIterationSubmit";
 import { isSafeComponent } from "@/lib/gauntlet/integrity";
 import {
   getGauntletProgress,
@@ -292,7 +292,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
                 ))}
               </select>
             </label>
-            <Button type="submit" variant="brand">View iteration</Button>
+            <GauntletIterationSubmit />
           </form>
           {selectedHistory && !selectedHistory.active ? (
             <p className="mt-3 border-l-4 border-brand bg-brand/5 px-4 py-3 text-sm font-semibold text-foreground">Historical · read-only</p>
