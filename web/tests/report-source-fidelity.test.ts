@@ -331,7 +331,7 @@ const schemaValidReport = {
     underplayed: ["The customer count needs context.", "The workflow scope needs context."],
     missing: ["The result needs context."],
     role_fit: {
-      best_fit_roles: ["HubSpot", "Customer", "Workflow"],
+      best_fit_roles: ["HubSpot", "Customer", "Workflows"],
       stretch_roles: ["HubSpot"],
       seniority_read: "Senior",
       industry_signals: ["HubSpot"],
@@ -383,6 +383,31 @@ assert.ok(
   "the split-provenance role error must identify the rendered best-fit role",
 );
 
+const compositeRoleJobDescription = "Salesforce platform experience is preferred. The Workday Administrator owns HR systems.";
+const compositeBestFitGrounding = assertReportGrounding(
+  adversarialSchemaResult.data,
+  hubspotSource,
+  compositeRoleJobDescription,
+);
+assert.equal(
+  compositeBestFitGrounding.ok,
+  false,
+  "an unordered single-line token bag must not manufacture a best-fit role",
+);
+assert.ok(
+  compositeBestFitGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
+  "the composite best-fit role error must identify the rendered field",
+);
+assert.equal(
+  assertReportGrounding(
+    adversarialSchemaResult.data,
+    hubspotSource,
+    compositeRoleJobDescription.replace(". The", ".\nThe"),
+  ).ok,
+  false,
+  "newline formatting must not change the composite best-fit role verdict",
+);
+
 const fabricatedRoleReport = structuredClone(schemaValidReport);
 fabricatedRoleReport.job_alignment.role_fit.best_fit_roles[0] = "Workday Administrator";
 const fabricatedRoleSchemaResult = ResumeFeedbackResponseSchema.safeParse(fabricatedRoleReport);
@@ -407,6 +432,55 @@ assert.equal(
   true,
   "a rendered stretch role may be grounded independently in the supplied job description",
 );
+const compositeStretchGrounding = assertReportGrounding(
+  jdGroundedStretchSchemaResult.data,
+  hubspotSource,
+  compositeRoleJobDescription,
+);
+assert.equal(
+  compositeStretchGrounding.ok,
+  false,
+  "an unordered single-line token bag must not manufacture a stretch role",
+);
+assert.ok(
+  compositeStretchGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.stretch_roles[0]")),
+  "the composite stretch-role error must identify the rendered field",
+);
+assert.equal(
+  assertReportGrounding(
+    jdGroundedStretchSchemaResult.data,
+    hubspotSource,
+    compositeRoleJobDescription.replace(". The", ".\nThe"),
+  ).ok,
+  false,
+  "newline formatting must not change the composite stretch-role verdict",
+);
+
+const punctuatedRoleJobDescriptions = [
+  "Primary role: Salesforce / Administrator; owns CRM systems.",
+  "Primary role: Salesforce-Administrator; owns CRM systems.",
+  "Primary role: Salesforce—Administrator; owns CRM systems.",
+];
+for (const report of [adversarialSchemaResult.data, jdGroundedStretchSchemaResult.data]) {
+  for (const jobDescription of punctuatedRoleJobDescriptions) {
+    assert.equal(
+      assertReportGrounding(report, hubspotSource, jobDescription).ok,
+      true,
+      "punctuation inside an otherwise contiguous role label must remain grounded",
+    );
+  }
+}
+const multilineRoleJobDescription = "Role overview\nSalesforce Administrator\nOwn CRM systems.";
+const flattenedRoleJobDescription = multilineRoleJobDescription.replace(/\n/gu, " • ");
+for (const report of [adversarialSchemaResult.data, jdGroundedStretchSchemaResult.data]) {
+  for (const jobDescription of [multilineRoleJobDescription, flattenedRoleJobDescription]) {
+    assert.equal(
+      assertReportGrounding(report, hubspotSource, jobDescription).ok,
+      true,
+      "legitimate role evidence must survive multiline or flattened bullet formatting",
+    );
+  }
+}
 
 const fabricatedStretchReport = structuredClone(schemaValidReport);
 fabricatedStretchReport.job_alignment.role_fit.stretch_roles[0] = "Workday Administrator";

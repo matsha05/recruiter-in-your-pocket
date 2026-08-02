@@ -357,19 +357,33 @@ function isJobDescriptionGroundableRole(path: string) {
 }
 
 function roleLabelTokens(value: string) {
-  return new Set((value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || []).flatMap((rawToken) => {
-    const token = semanticTokenAliases.get(stemToken(rawToken)) || stemToken(rawToken);
-    const isShortAcronym = rawToken.length <= 2 && rawToken === rawToken.toLocaleUpperCase();
-    return !isShortAcronym && stopWords.has(token) ? [] : [token];
-  }));
+  return (value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’]*/gu) || []).map((rawToken) => {
+    const token = rawToken.normalize("NFC").toLocaleLowerCase();
+    return semanticTokenAliases.get(token) || token;
+  });
+}
+
+function roleEvidenceSegments(sourceText: string) {
+  return sourceText
+    .normalize("NFC")
+    .split(/(?:\r?\n)+|(?<=[.!?;,])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+}
+
+function containsRolePhrase(candidate: readonly string[], claim: readonly string[]) {
+  if (claim.length === 0 || claim.length > candidate.length) return false;
+  return candidate.some((token, start) =>
+    token === claim[0]
+    && claim.every((claimToken, offset) => candidate[start + offset] === claimToken)
+  );
 }
 
 function isNarrativeClaimPositivelyGrounded(value: string, sourceText: string) {
-  const candidates = sourceLines(sourceText).map(roleLabelTokens);
+  const candidates = roleEvidenceSegments(sourceText).map(roleLabelTokens);
   return claimSegments(value).every((claim) => {
     const tokens = roleLabelTokens(claim);
-    if (tokens.size === 0) return false;
-    return candidates.some((candidate) => Array.from(tokens).every((token) => candidate.has(token)));
+    return candidates.some((candidate) => containsRolePhrase(candidate, tokens));
   });
 }
 
