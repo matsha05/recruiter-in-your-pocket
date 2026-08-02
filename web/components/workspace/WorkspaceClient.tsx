@@ -440,7 +440,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 </div>
             </section>
 
-
             {/* History Sidebar */}
             <HistorySidebar
                 isOpen={isHistoryOpen}
