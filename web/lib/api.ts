@@ -25,6 +25,7 @@ export type ResumeFeedbackResponse = {
   free_uses_remaining?: number;
   access_tier?: string;
   access?: string;
+  has_job_description?: boolean;
 };
 
 export type ResumeFeedbackError = {

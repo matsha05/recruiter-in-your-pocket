@@ -32,7 +32,7 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { sanitizeUserInput } from "@/lib/security/inputSanitization";
+import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import {
   assertGenerationAccessDependencies,
@@ -174,8 +174,7 @@ export async function POST(request: Request) {
     }
 
     const { text, mode, jobDescription } = validation.value;
-    const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
-    const safeJobDescriptionText = jobDescription ? sanitizeUserInput(jobDescription).sanitizedText : "";
+    const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -236,7 +235,7 @@ export async function POST(request: Request) {
       systemPrompt = `${baseTone}\n\n${systemPrompt}`;
     }
 
-    if (hasJobDescription) {
+    if (effectiveJobDescription.hasValue) {
       systemPrompt += `
 
 JOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)
@@ -255,13 +254,13 @@ The user wants to know: "Am I a fit for THIS role, and what should I emphasize o
 
     if (mode === "case_interview") {
       userPrompt = `CONTEXT (Role & Question):
-${jobDescription || "No specific context provided."}
+${effectiveJobDescription.promptBlock || "No specific context provided."}
 
 TRANSCRIPT (Candidate Answer):
 ${text}`;
     } else if (mode === "case_negotiation") {
       userPrompt = `CONTEXT (Role & Goals):
-${jobDescription || "No specific context."}
+${effectiveJobDescription.promptBlock || "No specific context."}
 
 OFFER DETAILS:
 ${text}`;
@@ -276,11 +275,11 @@ ${text}`;
 SOURCE CATALOG (reference only; copy source text after each tag and never output the tags):
 ${buildResumeEvidenceCatalog(text)}`;
       }
-      if (hasJobDescription && jobDescription) {
+      if (effectiveJobDescription.hasValue) {
         userPrompt += `
 
 JOB DESCRIPTION (for alignment analysis):
-${jobDescription}`;
+${effectiveJobDescription.promptBlock}`;
       }
     }
 
@@ -313,9 +312,7 @@ ${jobDescription}`;
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       try {
-        payload = validateResumeModelPayload(parsedJson, text, {
-          jobDescription: hasJobDescription ? safeJobDescriptionText : undefined,
-        });
+        payload = validateResumeModelPayload(parsedJson, text, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
       } catch (err: any) {
         if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
@@ -336,9 +333,7 @@ ${jobDescription}`;
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
         });
-        payload = validateResumeModelPayload(repaired.parsed, text, {
-          jobDescription: hasJobDescription ? safeJobDescriptionText : undefined,
-        });
+        payload = validateResumeModelPayload(repaired.parsed, text, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
@@ -365,7 +360,7 @@ ${jobDescription}`;
         ...buildReportTrustMetadata(payload),
         ...(savedJobId ? { saved_job_id: savedJobId } : {}),
         resume_preview: preview,
-        job_description_text: jobDescription || null,
+        job_description_text: effectiveJobDescription.persistenceText,
         target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
         created_at: nowIso()
       });
@@ -442,6 +437,7 @@ ${jobDescription}`;
       free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       free_uses_left: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       report_id: reportId,
+      has_job_description: effectiveJobDescription.hasValue,
       data: payload
     };
 

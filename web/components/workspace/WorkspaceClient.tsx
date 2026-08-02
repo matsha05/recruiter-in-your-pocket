@@ -25,6 +25,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
+import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -260,9 +261,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsStreaming(true);
         setReport(null);
         const controller = beginAnalysis("resume");
-        Analytics.reportStarted(!!jobDescription.trim());
+        const hasJobDescription = hasEffectiveJobDescriptionValue(jobDescription);
+        Analytics.reportStarted(hasJobDescription);
         Analytics.track("report_stream_started", {
-            has_jd: !!jobDescription.trim(),
+            has_jd: hasJobDescription,
             mode: "resume"
         });
 
