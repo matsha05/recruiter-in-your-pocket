@@ -12,11 +12,10 @@ import {
   X,
 } from "lucide-react";
 import { GauntletIterationSubmit } from "./GauntletIterationSubmit";
-import { isSafeComponent } from "@/lib/gauntlet/integrity";
 import {
-  getGauntletProgress,
-  UnknownGauntletIterationError,
-} from "@/lib/gauntlet/progress";
+  getPublishedGauntletProgress,
+  UnknownPublishedGauntletIterationError,
+} from "@/lib/gauntlet/published-progress";
 import type {
   CandidateBinding,
   CaseProgress,
@@ -37,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 type SearchParams = Record<string, string | string[] | undefined>;
+const SAFE_SELECTOR = /^[a-z0-9][a-z0-9_-]*$/;
 
 function statusClass(status: GateStatus) {
   if (status === "pass") return "border-success/35 bg-success/10 text-success";
@@ -217,14 +217,14 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
   const iterationParam = params.iteration;
   const caseParam = params.case;
   if (Array.isArray(iterationParam) || Array.isArray(caseParam)) notFound();
-  if (iterationParam !== undefined && !isSafeComponent(iterationParam)) notFound();
-  if (caseParam !== undefined && !isSafeComponent(caseParam)) notFound();
+  if (iterationParam !== undefined && !SAFE_SELECTOR.test(iterationParam)) notFound();
+  if (caseParam !== undefined && !SAFE_SELECTOR.test(caseParam)) notFound();
 
-  let snapshot: Awaited<ReturnType<typeof getGauntletProgress>>;
+  let snapshot: Awaited<ReturnType<typeof getPublishedGauntletProgress>>;
   try {
-    snapshot = await getGauntletProgress(undefined, iterationParam);
+    snapshot = await getPublishedGauntletProgress(iterationParam);
   } catch (error) {
-    if (error instanceof UnknownGauntletIterationError) notFound();
+    if (error instanceof UnknownPublishedGauntletIterationError) notFound();
     throw error;
   }
   const selectedCase = caseParam ? snapshot.cases.find((testCase) => testCase.id === caseParam) : undefined;

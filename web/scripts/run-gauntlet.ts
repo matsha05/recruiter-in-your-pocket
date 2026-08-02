@@ -3,6 +3,7 @@ import {
   validateGauntletDefinition,
   writeGauntletAnchor,
 } from "../lib/gauntlet/progress";
+import { publishGauntletProgressSnapshot } from "../lib/gauntlet/publish-progress";
 import { prepareBlindPackets } from "../lib/gauntlet/packets";
 
 async function main() {
@@ -46,6 +47,15 @@ async function main() {
     return;
   }
 
+  if (command === "publish") {
+    const snapshot = await getGauntletProgress(webRoot, iterationId);
+    const result = await publishGauntletProgressSnapshot(snapshot, webRoot);
+    console.log(`Published ${result.entry.iterationId} progress snapshot.`);
+    console.log(`SHA-256: ${result.entry.sha256}`);
+    console.log(`Directory: ${result.publishedRoot}`);
+    return;
+  }
+
   if (command === "status" || command === "strict") {
     const snapshot = await getGauntletProgress(webRoot, iterationId);
     console.log(JSON.stringify({
@@ -69,7 +79,7 @@ async function main() {
     return;
   }
 
-  throw new Error(`Unknown command "${command}". Use validate, prepare, anchor, status, or strict.`);
+  throw new Error(`Unknown command "${command}". Use validate, prepare, anchor, publish, status, or strict.`);
 }
 
 main().catch((error) => {

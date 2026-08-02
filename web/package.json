@@ -49,7 +49,7 @@
     "test:source-fidelity": "node scripts/run-ts-test.cjs tests/report-source-fidelity.test.ts",
     "test:gauntlet-capture": "node scripts/run-ts-test.cjs tests/gauntlet-evidence-capture.test.ts",
     "test:gauntlet-capture-e2e": "node scripts/run-ts-test.cjs tests/gauntlet-capture-e2e.test.ts",
-    "test:gauntlet": "node scripts/run-ts-test.cjs tests/gauntlet.test.ts",
+    "test:gauntlet": "node scripts/run-ts-test.cjs tests/gauntlet.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-published-progress.test.ts",
     "test:release-integrity": "npm run test:llm-contract && npm run test:pdf-export && npm run test:eval-report && npm run test:report-presentation && npm run test:source-fidelity && npm run test:gauntlet-capture && npm run test:gauntlet-capture-e2e && npm run test:gauntlet",
     "test:accessibility": "playwright test tests/ui/accessibility.spec.ts --project=chromium",
     "test:security": "npm run test:injection && npm run test:pii && npm run test:extension-cors && npm run test:auth-redirect && npm run test:auth-email && npm run test:support-inbound && npm run test:support-reply && npm run test:billing-access && npm run test:billing-pricing && npm run test:stripe-security && npm run test:stripe-fulfillment && npm run test:request-body && npm run test:generation-access && npm run test:generation-budget && npm run test:redis-config && npm run test:supabase-config && npm run test:backend-contracts && npm run test:privacy-lifecycle && npm run test:vendor-privacy && npm run test:analytics-privacy",
@@ -65,6 +65,7 @@
     "gauntlet:validate": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts validate",
     "gauntlet:prepare": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts prepare",
     "gauntlet:anchor": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts anchor",
+    "gauntlet:publish": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts publish",
     "gauntlet:status": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts status",
     "gauntlet:strict": "node scripts/run-ts-script.cjs scripts/run-gauntlet.ts strict"
   },

@@ -887,7 +887,8 @@ async function run() {
     await rm(legacyAttackRoot, { recursive: true, force: true });
   }
   const nextConfigSource = await readFile(path.join(process.cwd(), "next.config.mjs"), "utf8");
-  assert.match(nextConfigSource, /["']\/launch\/gauntlet["']:\s*\[["']\.\/gauntlet\/\*\*\/\*["']\]/);
+  assert.match(nextConfigSource, /["']\/launch\/gauntlet["']:\s*\[["']\.\/gauntlet\/published\/progress\.json["']\]/);
+  assert.doesNotMatch(nextConfigSource, /\.\/gauntlet\/\*\*\/\*/);
 
   const hostedRoot = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-hosted-"));
   try {
@@ -1158,7 +1159,8 @@ async function run() {
     assert.match(pageSource, /Builder and critic/);
     assert.match(pageSource, /Variant identity appears only after/);
     assert.doesNotMatch(pageSource, /Inspect generated report output|reportPreview/);
-    assert.match(pageSource, /UnknownGauntletIterationError/);
+    assert.match(pageSource, /getPublishedGauntletProgress/);
+    assert.match(pageSource, /UnknownPublishedGauntletIterationError/);
     assert.doesNotMatch(pageSource, /resumePath/);
 
     await assert.rejects(() => getGauntletProgress(testRoot, "../../outside"), /iteration selector/);
