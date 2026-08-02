@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "staff-ml-elite",
+  "packetSha256": "2881218b4ee7a8af9a374d470639bbe7de0dc57d8092f060ad847b0a422ad6f3",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "379ebdeed628ed05fd5b796ff8be6dd9777c2946d019167ff63bb7dcd27e354c",
+      "reportSha256": "22f14df3cc8f129692d704aa989dd56629128ba9ea81264299d6d341648e2699",
+      "fixtureSha256": "210b1c14666b1df87a6eade18ac712507fcc8c89b3debb7c6fee76f71d33d6d1",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "d90a38928caa454d4a0dfc5810338afb3f18ea7792b7c3dc60230f2e27b1dfe0",
+      "screenshotSha256": "6b3160167da74b6fa81bc29f31a03f0bfd7f3ec2af434fa7d01eb4b5b71053fd"
+    },
+    "production": {
+      "artifactSha256": "96ae9d4ed2ec5d2b22fd28d7f15f1a06191db8de93dcc9d5448ee127b7fb8909",
+      "reportSha256": "22f14df3cc8f129692d704aa989dd56629128ba9ea81264299d6d341648e2699",
+      "fixtureSha256": "210b1c14666b1df87a6eade18ac712507fcc8c89b3debb7c6fee76f71d33d6d1",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "f9533fc379198a362792c75dc45c8de623190f0ebc2d3b1a7047483b31a5ae8b",
+      "screenshotSha256": "d2259b30bc98aa7f00c587ed1516938be360cd1f33792a597a1c7e56d99a711b"
+    }
+  },
+  "reviewer": "blind-reviewer-1",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A separates line rewrites and exploratory questions; B inserts a watch-time tradeoff question inside an incident-response fix and promises three moves while rendering one.",
+    "specificity": "A ties the fairness and mentoring edits to their exact resume lines; B provides only the shared operations edit.",
+    "actionability": "A gives one honest priority, a safe placeholder draft, two source-bound line edits, and targeted questions; B's count and content are incomplete."
+  }
+}

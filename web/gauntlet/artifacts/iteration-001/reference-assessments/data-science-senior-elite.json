@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "data-science-senior-elite",
+  "candidateArtifactSha256": "f3504e162032144e55c20df97ab0b104c570fd5f36b154bfa793be0dfda953c1",
+  "assessor": "source-reviewer-1",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "A mentoring count is converted into team size and a complete outcome is hidden.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "trails",
+      "evidence": "The exact-line presentation omits half the source and misclassifies leadership evidence.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "trails",
+      "evidence": "Both primary drafts collapse to generic verified-detail placeholders; one contradicts its instruction.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

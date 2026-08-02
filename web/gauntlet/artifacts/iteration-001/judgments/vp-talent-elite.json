@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "vp-talent-elite",
+  "packetSha256": "77b1678b416f21169456761e87577a56ba172a34bac58d01a78229b203295124",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "44991385116cca97ab7e543b7c19114635d581dde5b852b685003e7166a4a27d",
+      "reportSha256": "3f3c4803e8490a9f48344cf06cd34dbdc95b6c6f3bea982852d4d0198992f84c",
+      "fixtureSha256": "7214ea9aa2becb29a6f49ae999438c457df2b9549b12c0ce0ca7dd5af7bce814",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "097f5c9565a1a60d90e80b59b7bb9fb8b10a83535f321f6f1056aebb53d789b8",
+      "screenshotSha256": "8a25b6e0d12cf64b7f63b3b45ec1a1b27a77f7e0a88088f6fcc59bde0971da81"
+    },
+    "production": {
+      "artifactSha256": "cafe677a529a2928a35c6169f0851a50068968e38ea23fba7e0254ac8f6e19d4",
+      "reportSha256": "3f3c4803e8490a9f48344cf06cd34dbdc95b6c6f3bea982852d4d0198992f84c",
+      "fixtureSha256": "7214ea9aa2becb29a6f49ae999438c457df2b9549b12c0ce0ca7dd5af7bce814",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "0a887c831c215e9a56890ee6e16beed84a138c0fffbbcb1e30ef75fbd13b58a9",
+      "screenshotSha256": "fc4d84d555bf9fb5cf5aa5b5a59b572e856a07e664132aa90a76c4598216418f"
+    }
+  },
+  "reviewer": "blind-reviewer-1",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A preserves the cited executive-hiring source; B cites that line but rewrites a different recruiting-function bullet.",
+    "specificity": "A maps proof prompts to Northline hiring volume, Northline forecasting, and BrightSide executive searches; B attaches unrelated Helios questions.",
+    "actionability": "A asks for the missing fact needed by each exact line; B's third card would direct the user to edit the wrong accomplishment."
+  }
+}

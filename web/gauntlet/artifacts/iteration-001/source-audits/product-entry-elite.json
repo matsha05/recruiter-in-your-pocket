@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "product-entry-elite",
+  "candidateArtifactSha256": "441290a2dbc802c26be10dca8d97850dd92b3cdffa85f44acd01e2bb4faa1fc7",
+  "auditor": "source-reviewer-3",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "The NovaSense onboarding work connects a four-person team, 150 beta users, and a 25% activation increase in one coherent launch story.",
+      "reason": "The resume says over 150 beta users, not exactly 150."
+    },
+    {
+      "claim": "- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction",
+      "reason": "The displayed source omits to measure feature effectiveness post-launch."
+    },
+    {
+      "claim": "Add [specific scope] to the experience bullet without losing the result already on the page.",
+      "reason": "The cited KPI line names measures and intent, not an achieved result."
+    },
+    {
+      "claim": "The result is worth keeping, but we cannot see how large or complex the work was.",
+      "reason": "No result exists in the cited KPI line."
+    },
+    {
+      "claim": "What changed when you moved from technical work into product management at BrightLeaf?",
+      "reason": "No source establishes that the transition occurred at BrightLeaf."
+    },
+    {
+      "claim": "How did onboarding personalization expand beyond the initial NovaSense module?",
+      "reason": "The resume establishes a decision to expand, not completed expansion."
+    },
+    {
+      "claim": "How did the six-person Scrum team handle release risks for the 10,000-customer module?",
+      "reason": "The source says six engineers and a feature used by 10,000+ customers, not a six-person total team or 10,000-customer module."
+    },
+    {
+      "claim": "BrightLeaf shows both product discovery and delivery through user interviews, backlog prioritization, sprint planning, and a module used by 10,000+ customers.",
+      "reason": "The source attributes 10,000+ usage to a feature, not the whole module."
+    }
+  ],
+  "notes": "Most other metrics are supported, but the top fix confuses scope and result and several questions/summary claims strengthen precision, ownership, implementation, or scope."
+}

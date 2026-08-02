@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "operations-entry-weak",
+  "packetSha256": "457bceb14bace60973b8067ab3a0af645427904a8dd5df33ac4f269843bc3bfa",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "f288856d4c14664461a8f033383d6a208c34bf7da8f98d7355dddefcb318fee4",
+      "reportSha256": "67848a3bebe85feb5e290f77cf6dc9f80f31de2a05e2213664cb5b2cc9563a08",
+      "fixtureSha256": "eb1dd8ebee72b084bd5f7f90bcc431b9f882c02408ab79ad33c3b62d8ee03a86",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "33ee5103b9130ee77facc253bee7e5cb21ef838521fb4e6e8bd2db1ac91fbec6",
+      "screenshotSha256": "a4fd821cee14143e57acce352d5a5130f7595727c30e57e0923b2510fc21ed87"
+    },
+    "production": {
+      "artifactSha256": "f9437a3f0938e67d4955be09ade45a21b7e4818088e9e20f2d4520a17ee4a68a",
+      "reportSha256": "67848a3bebe85feb5e290f77cf6dc9f80f31de2a05e2213664cb5b2cc9563a08",
+      "fixtureSha256": "eb1dd8ebee72b084bd5f7f90bcc431b9f882c02408ab79ad33c3b62d8ee03a86",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "070470bb6fe978db2ec5f06eb67f6fe2fea78619264f9704998c595a8cbfedae",
+      "screenshotSha256": "33731539e11474975b72ce546055fa08a3c4aef425e6febd87460d4813185ed6"
+    }
+  },
+  "reviewer": "blind-reviewer-3",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A's two cards preserve their exact Greenfield source lines; B swaps records/reporting and MetroRetail inventory content and misstates the move count.",
+    "specificity": "A asks for the exact missing operating evidence: processes, volume/results, departments, coordinated work, and cycle time.",
+    "actionability": "A's two-move count matches its two rendered moves and adds useful discovery prompts; B cross-wires employer and bullet boundaries."
+  }
+}

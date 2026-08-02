@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "finance-senior-weak",
+  "candidateArtifactSha256": "0b9950e1beedc55f352169eae7382f5d7d4f3b147faf770f61017103cda8fda4",
+  "auditor": "source-reviewer-3",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "Financial reporting, budgeting, forecasting, closing, and process work recur across multiple roles, giving the resume a coherent finance foundation.",
+      "reason": "Closing appears only in one role, so the complete list does not recur across roles."
+    },
+    {
+      "claim": "Which finance process did you own at Linton, and where did your responsibility stop?",
+      "reason": "The resume says project deliverables related to finance processes, not ownership of a finance process."
+    }
+  ],
+  "notes": "All ranked and secondary sources are exact and rewrites bracket new details. Title progression and missing scale are supported; role suggestions are labeled recruiter direction."
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "ux-director-strong",
+  "candidateArtifactSha256": "33a3d03a815bda9f752f75295d1e77c6e3cf359e1ad285bb457c4f06b84580f1",
+  "auditor": "source-reviewer-2",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web",
+      "reason": "The source continues and mobile products; the quote is clipped."
+    },
+    {
+      "claim": "Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web; [verified detail].",
+      "reason": "The base rewrite drops and mobile products and becomes grammatically incomplete."
+    }
+  ],
+  "notes": "Other numbers and source-bound rewrites are faithful. Two discovery questions contain unsupported premises, and the clarity score has no visible breakdown."
+}

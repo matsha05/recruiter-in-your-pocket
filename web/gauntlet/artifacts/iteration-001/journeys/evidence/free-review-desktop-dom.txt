@@ -1,0 +1,194 @@
+The read
+Fix these first
+Keep these
+Role direction
+YOUR RESUME REVIEW
+
+THE READ
+
+CLARITY SUMMARY: 92/100
+
+Not a prediction of interviews or offers.
+
+Show the stray skills entry
+
+Quantified ML results and system scale are unusually strong; leadership and operational details remain uneven.
+
+WHAT LANDS
+
+The two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.
+
+WHERE DOUBT CREEPS IN
+
+The resume shows what you improved, but gives little detail on experiment design, rollout decisions, or how you separated model effects from other changes.
+
+FIX FIRST
+
+Add [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.
+
+What we saw on the page: “Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.”
+
+THE EVIDENCE
+
+The specifics that support this read.
+
+See all evidence
+
+FIX THESE FIRST
+
+One move. Start here.
+
+Each one starts with evidence from the resume, then shows the context or proof that would make the story stronger.
+
+FIX 01
+
+Start here
+
+Add [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.
+Not relevant
+01
+ON THE PAGE
+02
+MISSING PROOF
+03
+YOUR FACT
+04
+CLEARER WORDING
+
+ON THE PAGE · WORK EXPERIENCE
+
+“Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.”
+
+WHAT IS MISSING
+
+The bullet lists important operational duties but gives no way to judge the size or consequence of that responsibility.
+
+ADD VERIFIED CONTEXT
+
+What verified detail from this exact line would support this change: “Add [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet”?
+
+Incident resolution time or service-level result
+Keep these facts
+
+TRY THIS
+
+We don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.
+
+Edit
+Add facts to copy
+
+Maintained production model performance and data pipelines through monitoring, retraining, and incident response; [incident resolution time or service-level result].
+
+OTHER LINE REWRITES
+
+Useful edits, kept with their own source.
+
+These do not map uniquely to the ranked fixes above, so each stays beside the exact line it rewrites.
+
+LINE EDIT 01 · SOURCE LINE
+
+“Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy.”
+
+REWRITE
+
+Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy; scope: [specific scope]; outcome: [measurable result].
+
+Add the number of models, review findings, or launch decisions affected to show what the audit process changed.
+
+LINE EDIT 02 · SOURCE LINE
+
+“Mentored a team of 6 ML engineers and 3 data scientists, driving a culture of clear experiment design, readable dashboards, and defensible decision memos.”
+
+REWRITE
+
+Mentored a team of 6 ML engineers and 3 data scientists by setting expectations for experiment design, readable dashboards, and defensible decision memos; [team or delivery improvement].
+
+Add one verified change in team practice, delivery cadence, or decision quality to make the mentoring work concrete.
+
+QUESTIONS WORTH ANSWERING
+
+Prompts for your next revision.
+
+These questions are not tied to a specific ranked fix. Use whichever ones surface a true, useful detail.
+
+QUESTION 01
+
+When did watch time and subscription conversion move differently, and how did you choose the ranking tradeoff?
+
+Why it may help: Your ranking work reports both measures, but the decision tension between them is not visible.
+
+QUESTION 02
+
+What changed in the architecture or operating model to serve a 200M monthly active user platform?
+
+Why it may help: The user scale is clear; the engineering choices that made it workable would sharpen the Staff-level story.
+
+QUESTION 03
+
+Describe a personalization incident where guardrails, latency, or model quality forced a difficult production decision.
+
+Why it may help: The resume names monitoring and fairness reviews, but not a concrete high-pressure judgment.
+
+QUESTION 04
+
+Which part of the offline evaluation harness removed the most iteration time from weeks to days?
+
+Why it may help: The time reduction is strong, and explaining the mechanism would make the improvement more transferable.
+
+QUESTION 05
+
+How did Legal and Policy change the quarterly personalization audit process or its launch decisions?
+
+Why it may help: The partnership is named, but the practical consequence of that collaboration is not stated.
+
+KEEP THESE
+
+The parts already earning trust.
+01
+
+The two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.
+
+02
+
+The ads quality role links calibrated probabilities and down-funnel metrics to an estimated 22 million dollars per year in net new revenue, which makes the business value easy to understand.
+
+03
+
+The career progression from demand forecasting to ads quality to personalization shows a consistent production ML path across retail, advertising, and streaming.
+
+ROLE DIRECTION
+
+Where this story reads strongest.
+
+Position yourself around large-scale ranking and recommendation systems with unusually clear business and infrastructure results. For Staff or Principal ML roles, bring the leadership decisions and cross-functional operating model closer to the foreground.
+
+BEST FIT NOW
+
+Staff Machine Learning Engineer, Recommendations
+Staff Machine Learning Engineer, Ranking
+Staff Machine Learning Engineer, Ads Quality
+
+Seniority read: Staff-level roles are well supported by the current title, technical lead responsibility, 200M monthly active user platform, and mentoring of 9 technical practitioners.
+
+How the clarity summary breaks down
+92/100
+
+AFTER YOU EDIT
+
+Run the new version. Compare the read.
+
+This free report is complete—you do not need to pay to see the rest. Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.
+
+Get 5 more reports · $29
+
+One payment · 30 days · no automatic renewal.
+
+A NOTE FOR THE BETA
+
+What did this report get right—or miss?
+
+This is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
+
+Send a two-minute note
+
+Three prompts open in your email. Your resume is never attached.

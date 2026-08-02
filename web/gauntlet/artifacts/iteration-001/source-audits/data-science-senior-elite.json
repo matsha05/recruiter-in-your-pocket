@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "data-science-senior-elite",
+  "candidateArtifactSha256": "f3504e162032144e55c20df97ab0b104c570fd5f36b154bfa793be0dfda953c1",
+  "auditor": "source-reviewer-1",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "The resume shows leadership at team sizes of 8, 5, and 4",
+      "reason": "Eight and four are team sizes; five is a count of people mentored."
+    },
+    {
+      "claim": "- I collaborated closely with product and engineering teams to ship analytics dashboards used by 500+ compliance officers",
+      "reason": "The displayed source silently omits the verified 50% fraud-response improvement."
+    },
+    {
+      "claim": "I collaborated closely with product and engineering teams to ship analytics dashboards used by 500+ compliance officers; [verified detail].",
+      "reason": "The rewrite discards the already verified 50% response-time result."
+    }
+  ],
+  "notes": "Audited all visible metrics and claims. Other figures reconcile, but the first fix hides the strongest source outcome and the second headline draft does not execute its own recommendation."
+}

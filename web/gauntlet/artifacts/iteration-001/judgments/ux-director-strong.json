@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "ux-director-strong",
+  "packetSha256": "668550b869e7f6e7bdbe8c4bf7d80d0d1ace511759789bc6fae6e473a26d0bdc",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "33a3d03a815bda9f752f75295d1e77c6e3cf359e1ad285bb457c4f06b84580f1",
+      "reportSha256": "2204841cd0f7725d3d105000497864ffc9ad08e2ca43142109d94542fe014127",
+      "fixtureSha256": "f1b6bcd85dc9f75c88c8a1b07f21ce5870eed813511ef46218832813ede3dada",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "a483ae271cec06fa0761126c257faf6846eeb89b82292d6697f902223707ab2f",
+      "screenshotSha256": "8fc44856d4eb288e826ec4ec44c075216c3f4e9a4663e970d8cf5adbc0f85334"
+    },
+    "production": {
+      "artifactSha256": "2c5088d8db82d6a87a6d4fff0667fdfc4fe81aa993d7910744816fafa346a6ba",
+      "reportSha256": "2204841cd0f7725d3d105000497864ffc9ad08e2ca43142109d94542fe014127",
+      "fixtureSha256": "f1b6bcd85dc9f75c88c8a1b07f21ce5870eed813511ef46218832813ede3dada",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "3dc6e25a68358708c9fd5c8c67bbc3e874ced1e75978c220d0b448c65546176c",
+      "screenshotSha256": "07fe8cf9160b29f068e37c3a4b982962981f61de631ea40b9bd513f0ef54b694"
+    }
+  },
+  "reviewer": "blind-reviewer-2",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A preserves source, missing proof, fact request, and rewrite; B swaps team-management, budget/vendor, and product-strategy material.",
+    "specificity": "A requests evidence relevant to each cited claim: portfolio/stakeholder scope, budget/vendor/result, and Nimbus project/result.",
+    "actionability": "A's ranked cards are usable and keeps unrelated line edits and broader questions separate, though one shared quote is truncated."
+  }
+}

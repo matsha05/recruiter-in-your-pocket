@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "sales-mid-foundation",
+  "packetSha256": "ca99f0eb67a9b3833690a7922450fa6fe72e32eeb1055962bdf9bd8876764d5f",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "7e17acd50dd96d5455ed721a2c526ff639dcacc78e826bb9c68836060f323057",
+      "reportSha256": "5964fd8a2edb7212d9f1e8987f2dd172aa282c2252d8cf4358bf6c12baf2eaca",
+      "fixtureSha256": "516f07a0fad8255e071e9b24a3c96f4133560f97d75b2bdf235537bb10710231",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "fc3f8a8197b1670abead0c2940fd9ddc8b88c12a804698817a66cfb440387832",
+      "screenshotSha256": "46095141dd4eb6d390e913286fb91c2d5dde271904a3635a2fc05d4dd3ba6e85"
+    },
+    "production": {
+      "artifactSha256": "2a63cc9b6e876deed42e93e695c142e8b71540fcf16897e098dbe434b9ce0442",
+      "reportSha256": "5964fd8a2edb7212d9f1e8987f2dd172aa282c2252d8cf4358bf6c12baf2eaca",
+      "fixtureSha256": "516f07a0fad8255e071e9b24a3c96f4133560f97d75b2bdf235537bb10710231",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "9ca8f04b69b17a4f21d7ee17f05a59b8802458b7c5e77d178a82b79204af23ce",
+      "screenshotSha256": "08de69a254e0edc21540f912a119e924c6b873eadae1ba9c8acd3e843397c90f"
+    }
+  },
+  "reviewer": "blind-reviewer-2",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "B",
+    "specificity": "B",
+    "actionability": "B"
+  },
+  "rationale": {
+    "trust": "B maintains provenance; A mixes account/proposal, role-progression, CRM, inquiry, and prospect-call evidence across cards.",
+    "specificity": "B's requests echo the actual target evidence: account/proposal outcome, lead/opportunity progression, and verified CRM context.",
+    "actionability": "Every ranked B rewrite is supported by adjacent fields, with the prospect-call rewrite and broader questions correctly separated."
+  }
+}

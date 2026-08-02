@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "hr-director-foundation",
+  "packetSha256": "ebbd9d3f7e4eda6d55f7d6a81c4b64a3148ef3d8f7af393e9212a80afd8254a0",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "bbe452e461442556a82674972633358f3d69347ff75c74837f61b3a607f2f421",
+      "reportSha256": "eec6ec4eb8e7e4672296cccdd5de7cb4d590c9dd595fb70e5f029f68156da939",
+      "fixtureSha256": "430c7fe23a2b6ecf0000329b0786253c31d8ca23a71fdc74ab1f301f2b320b5c",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "0eed51c50e0229e235aa6bf5ae55e2b8a12fca08ae6a702b2a4a77616b15e1c6",
+      "screenshotSha256": "589ad971dd3995c1f1dc569fd2f525e168abb1bb9564c65f0110359dc124dc69"
+    },
+    "production": {
+      "artifactSha256": "6956415323edbb007dd9b0a3c3c29e9eefe2fa3226bf02b815d01a13942ceeb2",
+      "reportSha256": "eec6ec4eb8e7e4672296cccdd5de7cb4d590c9dd595fb70e5f029f68156da939",
+      "fixtureSha256": "430c7fe23a2b6ecf0000329b0786253c31d8ca23a71fdc74ab1f301f2b320b5c",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "561f1447224452a3025c48d2e8a6714d0fbadfcaaa3aa4b0d08661abafcb2d4d",
+      "screenshotSha256": "96a564f942895f9dc80a2815bd1abc9dca6fd3db321f692e3f32ad1ef54f2a11"
+    }
+  },
+  "reviewer": "blind-reviewer-3",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A keeps quoted line, missing proof, verified-input request, and draft aligned; B mixes recruitment, career progression, HR strategy, staffing, and employment-law evidence.",
+    "specificity": "A directly requests hiring volume/workforce/onboarding results, budget scope/decision/result, and project-team/employee scope.",
+    "actionability": "A provides three coherent ordered edits, then clearly separates an unrelated line rewrite and discovery questions; B's first draft is unsafe."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "operations-entry-weak",
+  "candidateArtifactSha256": "f288856d4c14664461a8f033383d6a208c34bf7da8f98d7355dddefcb318fee4",
+  "auditor": "source-reviewer-3",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "How many records, reports, meetings, or schedules did you manage at Greenfield Logistics?",
+      "reason": "The resume says maintained records, updated reports, and helped coordinate meetings and schedules, not managed all four."
+    }
+  ],
+  "notes": "All sources and rewrites otherwise preserve Greenfield and MetroRetail facts. Entry-level chronology and missing scale are supported; role direction is labeled interpretation."
+}

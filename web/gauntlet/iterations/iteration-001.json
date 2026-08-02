@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "2",
+  "id": "iteration-001",
+  "label": "First-customer report journey",
+  "createdAt": "2026-07-31T15:44:00.000Z",
+  "status": "collecting",
+  "production": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    },
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    }
+  },
+  "candidate": {
+    "commit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+    "model": "gpt-5.6-luna",
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    },
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393"
+    }
+  },
+  "builder": {
+    "change": "Completed the first-customer journey: concrete cold-entry copy, visible founder and AI disclosure, source-safe report rendering, independent rewrites and questions, count-accurate guidance, honest free-report completion, and a consistent five-more-for-$29 decision.",
+    "claim": "A cold visitor receives a more trustworthy, specific, and actionable complete free report than production, with no invented facts and a clear optional paid next step on desktop and mobile."
+  },
+  "critic": {
+    "verdict": "fail",
+    "rationale": "Blind reviewers preferred the candidate in all twelve cases, but fresh source critics found thirty source-fidelity defects across eleven cases. Public-reference trust cleared only one of twelve cases, while specificity and actionability each cleared eight of twelve, so the zero-invention and nine-case bars were not met.",
+    "remainingGap": "Recover complete source lines, fail unsafe rewrites closed, remove causal, ownership, scope, number, and absence overclaims, and rewrite loaded questions as non-presuppositional prompts before recapturing a new iteration."
+  },
+  "previous": {
+    "iterationId": "iteration-000-baseline",
+    "ledgerSha256": "275b5bc2abf1c5929da88729c5f8499f7379978a78600271d221037ffd5467aa"
+  },
+  "seal": null,
+  "baselineStatement": "Production and candidate use the same twelve synthetic resumes and the same historical generated report payloads; this iteration isolates the candidate renderer, entry journey, and paid-decision changes against the deployed production renderer, then judges the real captured outputs without competitor accounts or customer data."
+}

@@ -1,0 +1,228 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "finance-senior-weak",
+  "fixture": {
+    "sha256": "093f72199c92dcb24bd9c63d6dee7f6cd306ee494dfc0d791e195d13be9f6817"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "synth_finance_analyst_senior_weak_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "a83dc6c28b91fd0d50775db32e87a15989dc67a29fcd72b04b0232f68b96481d",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:18.782Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/finance-senior-weak.jpg",
+      "sha256": "4de3871693f24808ead9e32977554a6f5edf6209292e9cf4968f4bf2e90aabd9"
+    },
+    "viewport": {
+      "height": 3829,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 58/100\n\nNot a prediction of interviews or offers.\n\nAdd scale and results\n\nClear finance progression, but most bullets remain responsibility statements without scope or results.\n\nWHAT LANDS\n\nYour titles show a steady progression from Finance Intern in 2011 to Senior Finance Analyst in 2018, which makes the career direction immediately recognizable.\n\nWHERE DOUBT CREEPS IN\n\nSenior-level ownership is not defined: managing project deliverables and mentoring are present, but team size, project scope, and decision authority are absent.\n\nFIX FIRST\n\nAdd [project scope], [stakeholder group], and [delivery result] to the Linton finance-process project bullet.\n\nWhat we saw on the page: “- Managed project deliverables related to finance processes”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [project scope], [stakeholder group], and [delivery result] to the Linton finance-process project bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Managed project deliverables related to finance processes”\n\nWHAT IS MISSING\n\nThe verb managed is stronger than most nearby bullets, but without project size or delivery result it does not show what you actually controlled.\n\nANSWER BEFORE YOU EDIT\n\nWhich finance process did you own at Linton, and where did your responsibility stop?\n\nStakeholder group\nReporting scope\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nPrepared financial reports and statements for [stakeholder group], covering [reporting scope]; [measurable result]\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nYour titles show a steady progression from Finance Intern in 2011 to Senior Finance Analyst in 2018, which makes the career direction immediately recognizable.\n\n02\n\nFinancial reporting, budgeting, forecasting, closing, and process work recur across multiple roles, giving the resume a coherent finance foundation.\n\n03\n\nThe Linton role includes mentorship and project deliverables, useful details for showing responsibilities beyond individual analysis.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself around financial reporting, budgeting and forecasting, and finance-process coordination. Replace general collaboration language with the reports, budgets, stakeholders, and results you can verify.\n\nBEST FIT NOW\n\nSenior Financial Analyst\nFinancial Planning and Analysis Analyst\nCorporate Finance Analyst\n\nSeniority read: The Senior Finance Analyst title and seven-plus years in finance support senior individual-contributor roles, but the bullets do not yet establish people-management or broad ownership.\n\nHow the clarity summary breaks down\n58/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "a73c35de61059986e8dea38f01b6c447f60072ae945b92c63238aa305548613a"
+  },
+  "report": {
+    "biggest_gap_example": "\"- Was responsible for preparing financial reports and statements\" names a recurring task but not the reports' scale, audience, or business result, so your senior-level contribution is difficult to place.",
+    "content_score": 58,
+    "contract_version": "v2",
+    "first_impression": "The progression from Finance Intern to Senior Finance Analyst is easy to follow, and the finance focus stays consistent. The bullets mostly describe duties, so the page gives little sense of the decisions, scale, or results behind seven-plus years of work.",
+    "first_impression_takeaway": "Add scale and results",
+    "gaps": [
+      "Senior-level ownership is not defined: managing project deliverables and mentoring are present, but team size, project scope, and decision authority are absent.",
+      "Financial work lacks business context: the page does not identify the reports, forecasts, budgets, or stakeholders you supported.",
+      "The summary uses broad phrases such as \"results-driven\" and \"dedicated team player\" without naming a finance specialty or concrete accomplishment."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "Which finance process did you own at Linton, and where did your responsibility stop?",
+          "why": "Your senior title sits beside several bullets using responsible, assisted, and participated, leaving ownership boundaries unclear."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "How many departments, budgets, entities, or reports did you handle at Linton Financial Services?",
+          "why": "The resume mentions financial reporting and cross-department coordination but gives no size indicator."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "What changed when you supported month-end and year-end closing at Hartley & Co.?",
+          "why": "Closing work is named, but the page does not show deadlines, accuracy demands, or the result of your contribution."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "What process improvement did you participate in at Hartley & Co., and what changed afterward?",
+          "why": "The improvement bullet needs the specific process and measurable or observable change."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "Which departments did you coordinate with, and what finance issue did the collaboration resolve?",
+          "why": "The resume mentions different departments without identifying the stakeholders or the problem addressed."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself around financial reporting, budgeting and forecasting, and finance-process coordination. Replace general collaboration language with the reports, budgets, stakeholders, and results you can verify.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Financial Analyst",
+          "Financial Planning and Analysis Analyst",
+          "Corporate Finance Analyst",
+          "Budget Analyst"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Financial services"
+        ],
+        "seniority_read": "The Senior Finance Analyst title and seven-plus years in finance support senior individual-contributor roles, but the bullets do not yet establish people-management or broad ownership.",
+        "stretch_roles": [
+          "Finance Manager",
+          "FP&A Manager"
+        ]
+      },
+      "strongly_aligned": [
+        "Financial reporting and analysis",
+        "Budgeting and forecasting",
+        "Finance-process coordination",
+        "Mentorship and team support"
+      ],
+      "underplayed": [
+        "Project deliverable management",
+        "Month-end and year-end close support",
+        "Process improvement",
+        "MS Excel and financial software usage"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Replace the generic summary with a target finance specialty and two verified examples from your recent role.",
+      "Rewrite the Linton and Hartley bullets around the specific work performed, affected stakeholders, and measurable results; use brackets for facts you still need to confirm.",
+      "Trim older administrative bullets and give the saved space to senior-role scope, reporting audiences, budgets, systems, and decisions."
+    ],
+    "rewrites": [
+      {
+        "better": "Prepared financial reports and statements for [stakeholder group], covering [reporting scope]; [measurable result]",
+        "enhancement_note": "Add the reporting audience, scale, and result so the work reads beyond routine preparation.",
+        "label": "Linton reporting",
+        "original": "- Was responsible for preparing financial reports and statements"
+      },
+      {
+        "better": "Analyzed budget data and forecast trends across [budget scope], providing [analysis or recommendation] to [stakeholder group]; [measurable result]",
+        "enhancement_note": "Add the budget size or coverage, the analysis delivered, and what changed after it was used.",
+        "label": "Linton forecasting",
+        "original": "- Duties included analyzing budget data and forecasting trends"
+      },
+      {
+        "better": "Participated in process-improvement work for [finance process], contributing [specific action]; [measurable result]",
+        "enhancement_note": "Add the process, your contribution, and the resulting change to distinguish participation from a general claim.",
+        "label": "Hartley process improvement",
+        "original": "- Participated in team efforts for process improvements"
+      }
+    ],
+    "score": 58,
+    "score_comment_long": "The career progression and finance focus are clear. Most bullets describe responsibilities without numbers, stakeholders, systems, or results. Reworking the two recent roles around verified scope and outcomes is the fastest way to raise the read.",
+    "score_comment_short": "Clear finance progression, but most bullets remain responsibility statements without scope or results.",
+    "score_label": "Needs more context",
+    "score_plain": "This resume can get you considered for finance analyst roles, but it may undersell your seniority. Recruiters will need stronger proof of what you changed, influenced, or handled at scale.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "Good",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The finance degree and graduation date are clear and relevant to the target function."
+      },
+      "Skills": {
+        "fix": "Replace broad entries with the specific financial systems, Excel capabilities, reporting methods, and forecasting tools you have used.",
+        "grade": "Fair",
+        "missing": "The section names broad capabilities but does not specify financial software or Excel proficiency.",
+        "priority": "Medium",
+        "working": "The skills list covers reporting, forecasting, collaboration, mentorship, and basic project coordination."
+      },
+      "Summary": {
+        "fix": "Name a target finance lane and replace generic descriptors with one or two verified accomplishments from Linton Financial Services.",
+        "grade": "Fair",
+        "missing": "It lacks a specialty, target level, business context, and concrete result.",
+        "priority": "High",
+        "working": "The summary establishes more than seven years of finance analysis and mentions mentoring."
+      },
+      "Work Experience": {
+        "fix": "Rewrite the recent-role bullets with [reporting scope], [stakeholder group], [team size], [system], and [measurable result] where applicable.",
+        "grade": "Needs revision",
+        "missing": "The section does not show quantified results, portfolio or budget size, systems, decision-making, or clear ownership.",
+        "priority": "High",
+        "working": "Four finance roles show a consistent progression from intern to senior analyst and cover reporting, forecasting, close, projects, and mentoring."
+      }
+    },
+    "strengths": [
+      "Your titles show a steady progression from Finance Intern in 2011 to Senior Finance Analyst in 2018, which makes the career direction immediately recognizable.",
+      "Financial reporting, budgeting, forecasting, closing, and process work recur across multiple roles, giving the resume a coherent finance foundation.",
+      "The Linton role includes mentorship and project deliverables, useful details for showing responsibilities beyond individual analysis."
+    ],
+    "subscores": {
+      "clarity": 65,
+      "impact": 43,
+      "readability": 72,
+      "story": 59
+    },
+    "summary": "Seven-plus years of finance progression culminate in a Senior Finance Analyst role at Linton Financial Services, with reporting, forecasting, project deliverables, and mentorship as the main through-line. The page fits senior analyst or analyst-level finance searches more readily than manager roles because it does not show direct reports, budget size, or final decision authority. Your work spans core finance operations, but nearly every bullet stops at the task. Until the resume names the reports, stakeholders, systems, and results involved, recruiters may read the senior title as broader than the documented work.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Managed project deliverables related to finance processes",
+          "section": "Work Experience"
+        },
+        "fix": "Add [project scope], [stakeholder group], and [delivery result] to the Linton finance-process project bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "The verb managed is stronger than most nearby bullets, but without project size or delivery result it does not show what you actually controlled."
+      }
+    ]
+  },
+  "reportSha256": "a83dc6c28b91fd0d50775db32e87a15989dc67a29fcd72b04b0232f68b96481d",
+  "schemaVersion": "2",
+  "variant": "production"
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "project-management-vp-strong",
+  "candidateArtifactSha256": "64400f7baf2ccf5d63aec46c140611ab3c21282a08c616fb6b6e8a9c1f9149c3",
+  "assessor": "source-reviewer-2",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "Singular-to-plural team inflation plus a clipped quote and malformed rewrite break fidelity.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "trails",
+      "evidence": "The top fix is generic and mislabeled while the third loses the exact source ending.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "trails",
+      "evidence": "One fix is useful, but the first is underspecified and the third draft is not usable.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

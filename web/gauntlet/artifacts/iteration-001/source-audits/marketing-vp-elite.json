@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "marketing-vp-elite",
+  "candidateArtifactSha256": "d8fbba280895d6b877b4785c183383e11f5a1b5141ec8b9decad5e67d6758601",
+  "auditor": "source-reviewer-1",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "The CMO role shows major commercial results, but it does not identify the company size, reporting relationship, or executive operating context.",
+      "reason": "Company scale is present: 2M+ users, 40 countries, and ARR rising from $120M to $168M."
+    },
+    {
+      "claim": "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy",
+      "reason": "The source is clipped before the verified 2M-user and 40-country scale."
+    },
+    {
+      "claim": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy; [verified detail].",
+      "reason": "The rewrite drops the verified 2M-user and 40-country scale."
+    },
+    {
+      "claim": "- I developed and executed integrated marketing programs for enterprise software solutions, contributing to a 25% uplift",
+      "reason": "The source is clipped before in annual revenue over 3 years."
+    },
+    {
+      "claim": "I developed and executed integrated marketing programs for enterprise software solutions, contributing to a 25% uplift; [verified detail].",
+      "reason": "The rewrite weakens a complete annual-revenue result and timeframe into an unlabeled uplift."
+    }
+  ],
+  "notes": "Audited every visible figure and source. Most executive metrics are grounded, but two excerpts and drafts remove material evidence, and the top fix asks for scale already on the resume."
+}

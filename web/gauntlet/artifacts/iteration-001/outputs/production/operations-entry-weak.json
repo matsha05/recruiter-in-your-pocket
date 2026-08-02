@@ -1,0 +1,231 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "operations-entry-weak",
+  "fixture": {
+    "sha256": "eb1dd8ebee72b084bd5f7f90bcc431b9f882c02408ab79ad33c3b62d8ee03a86"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "synth_operations_manager_entry_weak_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "67848a3bebe85feb5e290f77cf6dc9f80f31de2a05e2213664cb5b2cc9563a08",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:19.239Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/operations-entry-weak.jpg",
+      "sha256": "33731539e11474975b72ce546055fa08a3c4aef425e6febd87460d4813185ed6"
+    },
+    "viewport": {
+      "height": 4860,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 57/100\n\nNot a prediction of interviews or offers.\n\nShow measurable operating results\n\nRelevant operations exposure is present, but the bullets rarely show scope, ownership, or results.\n\nWHAT LANDS\n\nThe progression from Team Coordinator to Operations Assistant gives the resume a sensible entry-level operations direction.\n\nWHERE DOUBT CREEPS IN\n\nYour operations roles do not show workload, scale, or measurable results, leaving the level of responsibility unclear.\n\nFIX FIRST\n\nReplace the Greenfield daily-operations bullet with the specific processes handled and add [daily volume] or [completion result].\n\nWhat we saw on the page: “- Was responsible for assisting with daily operational tasks.”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nReplace the Greenfield daily-operations bullet with the specific processes handled and add [daily volume] or [completion result].\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Was responsible for assisting with daily operational tasks.”\n\nWHAT IS MISSING\n\nThis is the first bullet under your most recent role, but it gives no way to estimate the work or your contribution.\n\nANSWER BEFORE YOU EDIT\n\nHow many records, reports, meetings, or schedules did you manage at Greenfield Logistics?\n\nSpecific scope\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\n- Duties included maintaining records and updating reports; scope: [specific scope]; outcome: [measurable result].\n\nFIX 02\n\nThen this\n\nName the departments and the work being coordinated, then add [request volume], [cycle time], or [completion result].\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Supported coordination between departments.”\n\nWHAT IS MISSING\n\nCross-department work can distinguish you from a task-only applicant, but the current wording leaves the interaction and consequence unknown.\n\nANSWER BEFORE YOU EDIT\n\nAt QuickMart or Greenfield Logistics, what error, deadline, or service issue did you help resolve?\n\nAccuracy, availability, or reporting result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nAssisted with inventory tracking alongside team members at MetroRetail Inc.; [accuracy, availability, or reporting result].\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe progression from Team Coordinator to Operations Assistant gives the resume a sensible entry-level operations direction.\n\n02\n\nGreenfield Logistics, MetroRetail Inc., and the Campus Events Office cover records, reporting, inventory, schedules, and event logistics.\n\n03\n\nThe Campus Events Office role includes managing volunteer schedules and recording expenses, which are concrete responsibilities worth retaining.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself for entry-level operations coordinator, logistics coordinator, or operations analyst roles. Replace general motivation language with specific work involving records, inventory, schedules, reporting, and cross-department follow-up.\n\nBEST FIT NOW\n\nOperations Coordinator\nLogistics Coordinator\nOperations Analyst\n\nSeniority read: Early career\n\nHow the clarity summary breaks down\n57/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "070470bb6fe978db2ec5f06eb67f6fe2fea78619264f9704998c595a8cbfedae"
+  },
+  "report": {
+    "biggest_gap_example": "\"Was responsible for assisting with daily operational tasks.\" gives no process, volume, or result, so the reader cannot judge your operating contribution.",
+    "content_score": 57,
+    "contract_version": "v2",
+    "first_impression": "The resume shows recent operations exposure across logistics, retail, campus events, and supply chain work. Most bullets describe assigned duties rather than what you changed, managed, or completed, so the target level is difficult to place.",
+    "first_impression_takeaway": "Show measurable operating results",
+    "gaps": [
+      "Your operations roles do not show workload, scale, or measurable results, leaving the level of responsibility unclear.",
+      "The objective uses broad claims such as being a team player instead of naming the operations work you can perform now.",
+      "The resume does not explain which systems, processes, or reporting methods you used beyond Microsoft Office."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "SCALING",
+          "question": "How many records, reports, meetings, or schedules did you manage at Greenfield Logistics?",
+          "why": "The role lists recurring coordination work but gives no volume or cadence."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "At QuickMart or Greenfield Logistics, what error, deadline, or service issue did you help resolve?",
+          "why": "The resume does not show how you performed when accuracy or timing mattered."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "What process improvement training did you participate in, and what changed afterward?",
+          "why": "This may be useful operations evidence, but the current bullet stops at participation."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "Which departments did you coordinate with at Greenfield Logistics, and what did you help move forward?",
+          "why": "The resume names departmental coordination without identifying the parties or work involved."
+        },
+        {
+          "archetype": "END-TO-END OWNERSHIP",
+          "question": "What event logistics did you organize from planning through completion at the Campus Events Office?",
+          "why": "The coordinator title suggests useful ownership, but the bullets do not show the full workflow."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself for entry-level operations coordinator, logistics coordinator, or operations analyst roles. Replace general motivation language with specific work involving records, inventory, schedules, reporting, and cross-department follow-up.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Coordinator",
+          "Logistics Coordinator",
+          "Operations Analyst"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Logistics"
+        ],
+        "seniority_read": "Early career",
+        "stretch_roles": [
+          "Operations Supervisor",
+          "Supply Chain Analyst"
+        ]
+      },
+      "strongly_aligned": [
+        "Recent operations assistant experience",
+        "Logistics and supply chain exposure",
+        "Scheduling, inventory, reporting, and event coordination"
+      ],
+      "underplayed": [
+        "Cross-department follow-up",
+        "Volunteer schedule management",
+        "Budget recording and event logistics"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Rewrite the Greenfield Logistics bullets around the records, reports, meetings, schedules, and department coordination you handled, adding verified volume or results.",
+      "Replace the objective with a two-line operations summary naming your logistics, inventory, reporting, and scheduling experience.",
+      "Add a concise skills line using only systems and methods you actually used, including Microsoft Office and any verified inventory, reporting, or records tools."
+    ],
+    "rewrites": [
+      {
+        "better": "- Duties included maintaining records and updating reports; scope: [specific scope]; outcome: [measurable result].",
+        "enhancement_note": "Add the record or report volume and the measurable result to show the weight of this recurring work.",
+        "label": "Greenfield records and reports",
+        "original": "- Duties included maintaining records and updating reports."
+      },
+      {
+        "better": "Assisted with inventory tracking alongside team members at MetroRetail Inc.; [accuracy, availability, or reporting result].",
+        "enhancement_note": "Add the inventory type, approximate volume, and result so the assistance has a clear business context.",
+        "label": "MetroRetail inventory support",
+        "original": "- Assisted in tracking inventory with team members."
+      }
+    ],
+    "score": 57,
+    "score_comment_long": "The resume has relevant entry-level operations exposure and a clear business degree. Nearly every experience bullet remains a general duty, with no quantified workload, process result, or named system beyond Microsoft Office. Rewrite the recent roles first, using verified scope and results.",
+    "score_comment_short": "Relevant operations exposure is present, but the bullets rarely show scope, ownership, or results.",
+    "score_label": "Needs more context",
+    "score_plain": "This may qualify you for entry-level operations roles, but many applicants will appear more job-ready because their bullets show what they handled and what changed.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "Good",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The Bachelor of Business Administration, university, and May 2023 graduation date are easy to find and relevant to the target direction."
+      },
+      "Skills": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Summary": {
+        "fix": "Replace the objective with two lines naming your operations experience, core work areas, and target entry-level role.",
+        "grade": "Weak",
+        "missing": "The objective does not distinguish your logistics, inventory, scheduling, or reporting background from broad entry-level motivation.",
+        "priority": "High",
+        "working": "It identifies operations management as the intended direction and establishes that you are a recent business graduate."
+      },
+      "Work Experience": {
+        "fix": "Rewrite the recent operations bullets with verified workload, process details, and results; remove repeated duty phrasing.",
+        "grade": "Needs Rewrite",
+        "missing": "The section lacks measurable scale, outcomes, named systems, and clear boundaries around what you personally handled.",
+        "priority": "High",
+        "working": "The sequence shows increasing relevance from Sales Associate to Team Coordinator, Operations Intern, and Operations Assistant."
+      }
+    },
+    "strengths": [
+      "The progression from Team Coordinator to Operations Assistant gives the resume a sensible entry-level operations direction.",
+      "Greenfield Logistics, MetroRetail Inc., and the Campus Events Office cover records, reporting, inventory, schedules, and event logistics.",
+      "The Campus Events Office role includes managing volunteer schedules and recording expenses, which are concrete responsibilities worth retaining."
+    ],
+    "subscores": {
+      "clarity": 61,
+      "impact": 44,
+      "readability": 68,
+      "story": 56
+    },
+    "summary": "Your recent path points toward entry-level operations work, moving from campus event coordination into retail operations and then Greenfield Logistics. The useful thread is recurring coordination of records, reports, schedules, inventory, and departments. The page does not yet show the scale or result of that work, so it supports coordinator or assistant roles more readily than operations management roles. The practical question is what you personally handled and improved, because that determines whether employers see hands-on readiness or general exposure.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Was responsible for assisting with daily operational tasks.",
+          "section": "Work Experience"
+        },
+        "fix": "Replace the Greenfield daily-operations bullet with the specific processes handled and add [daily volume] or [completion result].",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "This is the first bullet under your most recent role, but it gives no way to estimate the work or your contribution."
+      },
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Supported coordination between departments.",
+          "section": "Work Experience"
+        },
+        "fix": "Name the departments and the work being coordinated, then add [request volume], [cycle time], or [completion result].",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "Cross-department work can distinguish you from a task-only applicant, but the current wording leaves the interaction and consequence unknown."
+      }
+    ]
+  },
+  "reportSha256": "67848a3bebe85feb5e290f77cf6dc9f80f31de2a05e2213664cb5b2cc9563a08",
+  "schemaVersion": "2",
+  "variant": "production"
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "ux-director-strong",
+  "candidateArtifactSha256": "33a3d03a815bda9f752f75295d1e77c6e3cf359e1ad285bb457c4f06b84580f1",
+  "assessor": "source-reviewer-2",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "The highest-priority source and draft are clipped, violating source fidelity.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "Portfolio, stakeholder, budget, vendor, project, and result requests are highly specific.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "Three ordered actions remain executable, but the first draft must restore its source ending.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

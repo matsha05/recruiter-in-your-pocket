@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "finance-senior-weak",
+  "candidateArtifactSha256": "0b9950e1beedc55f352169eae7382f5d7d4f3b147faf770f61017103cda8fda4",
+  "assessor": "source-reviewer-3",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "A recurring-closing claim and process-ownership presupposition overstate the resume.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "Exact lines receive project scope, stakeholder, delivery, reporting, budget, and contribution requests.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "One ranked move, three secondary source-bound edits, and a rerun loop are immediately usable.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

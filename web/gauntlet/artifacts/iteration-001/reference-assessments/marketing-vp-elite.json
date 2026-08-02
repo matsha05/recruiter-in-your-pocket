@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "marketing-vp-elite",
+  "candidateArtifactSha256": "d8fbba280895d6b877b4785c183383e11f5a1b5141ec8b9decad5e67d6758601",
+  "assessor": "source-reviewer-1",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "The report asserts scale is absent while omitting existing scale and revenue evidence.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "trails",
+      "evidence": "Two exact-source excerpts and drafts strip material qualifiers and the top fix requests evidence already present.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "trails",
+      "evidence": "The top fix is redundant, the second weakens a complete metric, and the third supplies no usable summary.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

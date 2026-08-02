@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "software-engineering-mid-strong",
+  "candidateArtifactSha256": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+  "auditor": "source-reviewer-2",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [],
+  "notes": "All displayed excerpts and derived numbers are supported. Rewrites preserve source facts and bracket all new detail. Some discovery questions are leading, and the clarity score lacks a visible component breakdown."
+}
