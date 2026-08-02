@@ -110,6 +110,10 @@ test.describe("launch red-team journeys", () => {
     const firstRead = page.locator("#section-first-impression");
     await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
     await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
+    await expect(page.getByTestId("clarity-summary-basis")).toContainText(
+      "the four signals are not presented as a simple average",
+    );
+    await expect(page.getByRole("heading", { name: "Three moves. In order.", exact: true })).toBeVisible();
 
     const firstFix = page.locator("#section-fix-1");
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
@@ -175,6 +179,21 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
+
+    const purchaseDecision = page.getByTestId("post-report-purchase-decision");
+    await expect(purchaseDecision).toContainText("This free report is complete. You do not need to pay to see the rest.");
+    await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
+    await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
+    await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
+
+    const feedback = page.getByTestId("beta-feedback");
+    await expect(feedback).toContainText("Your first complete report is free. No card required.");
+    await expect(feedback).toContainText("repeat use across browsers or shared networks");
+    await expect(feedback).toContainText("daily beta capacity");
+    await expect(feedback).not.toContainText("paid beta");
+    await expect(feedback).toContainText("Your resume is never attached.");
+    const feedbackLink = feedback.getByRole("link", { name: "Send a two-minute note", exact: true });
+    await expect(feedbackLink).toHaveAttribute("href", /subject=Beta%20report%20feedback/);
 
     const firstGeneratedFix = page.locator("#section-fix-1");
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
