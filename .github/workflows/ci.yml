@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -71,6 +73,9 @@ jobs:
 
       - name: Feedback acceptance UI
         run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts --workers=1
+
+      - name: Gauntlet operator UI
+        run: npx playwright test tests/ui/gauntlet.spec.ts --project=chromium --workers=1
 
       - name: Paid decision UI
         run: npx playwright test tests/ui/paid-decision.spec.ts --workers=1

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "REPLACE_WITH_ACTIVE_ITERATION",
+  "caseId": "REPLACE_WITH_CASE_ID",
+  "packetSha256": "REPLACE_WITH_PACKET_SHA256",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "REPLACE_WITH_SHA256",
+      "reportSha256": "REPLACE_WITH_SHA256",
+      "fixtureSha256": "REPLACE_WITH_SHA256",
+      "generationSourceSha256": "REPLACE_WITH_SHA256",
+      "canonicalPromptSha256": "REPLACE_WITH_SHA256",
+      "promptSha256": "REPLACE_WITH_SHA256",
+      "rendererSha256": "REPLACE_WITH_SHA256",
+      "visibleTextSha256": "REPLACE_WITH_SHA256",
+      "screenshotSha256": "REPLACE_WITH_SHA256"
+    },
+    "production": {
+      "artifactSha256": "REPLACE_WITH_SHA256",
+      "reportSha256": "REPLACE_WITH_SHA256",
+      "fixtureSha256": "REPLACE_WITH_SHA256",
+      "generationSourceSha256": "REPLACE_WITH_SHA256",
+      "canonicalPromptSha256": "REPLACE_WITH_SHA256",
+      "promptSha256": "REPLACE_WITH_SHA256",
+      "rendererSha256": "REPLACE_WITH_SHA256",
+      "visibleTextSha256": "REPLACE_WITH_SHA256",
+      "screenshotSha256": "REPLACE_WITH_SHA256"
+    }
+  },
+  "reviewer": "REPLACE_WITH_REVIEWER",
+  "reviewedAt": "REPLACE_WITH_ISO_TIMESTAMP",
+  "preferences": {
+    "trust": "REPLACE_WITH_A_B_OR_TIE",
+    "specificity": "REPLACE_WITH_A_B_OR_TIE",
+    "actionability": "REPLACE_WITH_A_B_OR_TIE"
+  },
+  "rationale": {
+    "trust": "REPLACE_WITH_EVIDENCE",
+    "specificity": "REPLACE_WITH_EVIDENCE",
+    "actionability": "REPLACE_WITH_EVIDENCE"
+  }
+}
