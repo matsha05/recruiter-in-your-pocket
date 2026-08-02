@@ -156,10 +156,10 @@ for (const [name, source] of [
 ] as const) {
   const persistAt = source.indexOf("await persistGeneratedResumeReport");
   const commitAt = source.indexOf("await commitGenerationAccess", persistAt);
-  const rollbackAt = source.indexOf("await rollbackGeneratedResumeReport", commitAt);
+  const rollbackAt = source.indexOf("await rollbackSavedReport()", commitAt);
   assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
   assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
-  assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
+  assert.ok(rollbackAt > commitAt, `${name} must roll back persistence only when access is authoritatively unused`);
 }
 assert.match(
   resumePersistence,

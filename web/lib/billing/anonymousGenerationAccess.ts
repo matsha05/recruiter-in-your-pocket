@@ -32,15 +32,32 @@ return 1
 const RELEASE_SCRIPT = `
 local current = redis.call("GET", KEYS[1])
 local reserved = "reserved:" .. ARGV[1]
-local committed = "committed:" .. ARGV[1]
 if not current then
-  return 1
-end
-if current ~= reserved and current ~= committed then
   return 0
+end
+if string.sub(current, 1, 10) == "committed:" then
+  return 2
+end
+if current ~= reserved then
+  return 3
 end
 redis.call("DEL", KEYS[1])
 return 1
+`;
+
+const RECONCILE_COMMITTED_SCRIPT = `
+local current = redis.call("GET", KEYS[1])
+if not current then
+  redis.call("SET", KEYS[1], "committed:" .. ARGV[1], "EX", ARGV[2], "NX")
+  return 1
+end
+if string.sub(current, 1, 10) == "committed:" then
+  return 1
+end
+if string.sub(current, 1, 9) == "reserved:" then
+  return 2
+end
+return 3
 `;
 
 type LocalEntry = {
@@ -92,11 +109,26 @@ export type AnonymousGenerationAccessBackend = {
     identityHash: string;
     monthKey: string;
     reservationId: string;
-  }): Promise<boolean>;
+  }): Promise<{
+    status: "released" | "committed" | "available" | "conflict";
+    action: "released" | "none";
+  }>;
   status(input: {
     identityHash: string;
     monthKey: string;
   }): Promise<"available" | "reserved" | "committed">;
+  inspect(input: {
+    identityHash: string;
+    monthKey: string;
+  }): Promise<{
+    status: "available" | "reserved" | "committed";
+    reservationId: string | null;
+  }>;
+  reconcileCommitted(input: {
+    identityHash: string;
+    monthKey: string;
+    receiptId: string;
+  }): Promise<"reserved" | "committed">;
 };
 
 export function resolveAnonymousFreeUsesRemaining(
@@ -104,15 +136,21 @@ export function resolveAnonymousFreeUsesRemaining(
   cookieUsed: number,
   limit: number
 ) {
-  if (status === "committed") return 0;
+  if (status !== "available") return 0;
   return Math.max(0, limit - Math.max(0, cookieUsed));
 }
 
-function statusFromValue(value: unknown): "available" | "reserved" | "committed" {
-  if (typeof value !== "string") return "available";
-  if (value.startsWith("reserved:")) return "reserved";
-  if (value.startsWith("committed:")) return "committed";
-  return "available";
+function stateFromValue(value: unknown) {
+  if (typeof value !== "string") {
+    return { status: "available" as const, reservationId: null };
+  }
+  if (value.startsWith("reserved:")) {
+    return { status: "reserved" as const, reservationId: value.slice(9) || null };
+  }
+  if (value.startsWith("committed:")) {
+    return { status: "committed" as const, reservationId: value.slice(10) || null };
+  }
+  return { status: "available" as const, reservationId: null };
 }
 
 function ledgerKey(identityHash: string, monthKey: string) {
@@ -141,8 +179,8 @@ function unavailable(cause?: unknown): never {
 
 /**
  * The signed cookie remains a user-facing hint. This ledger is the
- * authoritative anonymous entitlement, keyed by a salted IP hash and month,
- * so removing or replaying the cookie cannot mint another provider call.
+ * authoritative anonymous entitlement, keyed by a durable signed identity and
+ * month, so an IP change cannot mint another provider call.
  * Hosted environments fail closed if shared state is unavailable.
  */
 export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend = {
@@ -223,7 +261,10 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     if (redis) {
       try {
         const result = await redis.eval(RELEASE_SCRIPT, [key], [reservationId]);
-        return Number(result) === 1;
+        if (Number(result) === 1) return { status: "released", action: "released" };
+        if (Number(result) === 2) return { status: "committed", action: "none" };
+        if (Number(result) === 0) return { status: "available", action: "none" };
+        return { status: "conflict", action: "none" };
       } catch (error) {
         if (
           process.env.NODE_ENV === "production"
@@ -238,15 +279,15 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     }
 
     const entry = localEntry(key);
-    if (!entry) return true;
-    if (
-      entry?.value !== `reserved:${reservationId}`
-      && entry?.value !== `committed:${reservationId}`
-    ) {
-      return false;
+    if (!entry) return { status: "available", action: "none" };
+    if (entry.value.startsWith("committed:")) {
+      return { status: "committed", action: "none" };
+    }
+    if (entry.value !== `reserved:${reservationId}`) {
+      return { status: "conflict", action: "none" };
     }
     localEntries.delete(key);
-    return true;
+    return { status: "released", action: "released" };
   },
 
   async status({ identityHash, monthKey }) {
@@ -256,7 +297,7 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     if (redis) {
       try {
         const value = await redis.get<string>(key);
-        return statusFromValue(value);
+        return stateFromValue(value).status;
       } catch (error) {
         if (
           process.env.NODE_ENV === "production"
@@ -270,6 +311,63 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    return statusFromValue(localEntry(key)?.value);
+    return stateFromValue(localEntry(key)?.value).status;
+  },
+
+  async inspect({ identityHash, monthKey }) {
+    const key = ledgerKey(identityHash, monthKey);
+    const redis = getRedisClient();
+    if (redis) {
+      try {
+        return stateFromValue(await redis.get<string>(key));
+      } catch (error) {
+        if (
+          process.env.NODE_ENV === "production"
+          && !allowsExplicitLocalAnonymousAccessFallback()
+        ) unavailable(error);
+      }
+    } else if (
+      process.env.NODE_ENV === "production"
+      && !allowsExplicitLocalAnonymousAccessFallback()
+    ) {
+      unavailable();
+    }
+    return stateFromValue(localEntry(key)?.value);
+  },
+
+  async reconcileCommitted({ identityHash, monthKey, receiptId }) {
+    const key = ledgerKey(identityHash, monthKey);
+    const redis = getRedisClient();
+    if (redis) {
+      try {
+        const result = await redis.eval(
+          RECONCILE_COMMITTED_SCRIPT,
+          [key],
+          [receiptId, String(COMMITTED_TTL_SECONDS)]
+        );
+        if (Number(result) === 1) return "committed";
+        if (Number(result) === 2) return "reserved";
+        unavailable();
+      } catch (error) {
+        if (
+          process.env.NODE_ENV === "production"
+          && !allowsExplicitLocalAnonymousAccessFallback()
+        ) unavailable(error);
+      }
+    } else if (
+      process.env.NODE_ENV === "production"
+      && !allowsExplicitLocalAnonymousAccessFallback()
+    ) {
+      unavailable();
+    }
+
+    const state = stateFromValue(localEntry(key)?.value);
+    if (state.status === "committed") return "committed";
+    if (state.status === "reserved") return "reserved";
+    localEntries.set(key, {
+      value: `committed:${receiptId}`,
+      expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
+    });
+    return "committed";
   },
 };

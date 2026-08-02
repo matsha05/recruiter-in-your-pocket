@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import {
+  ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
   FREE_RUN_LIMIT,
+  ensureAnonymousIdentity,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
-  parseFreeCookie
+  parseFreeCookie,
 } from "@/lib/backend/freeCookie";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
@@ -14,12 +16,17 @@ import {
   anonymousGenerationAccessBackend,
   resolveAnonymousFreeUsesRemaining,
 } from "@/lib/billing/anonymousGenerationAccess";
+import {
+  anonymousReceiptId,
+  hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
+import { assertGenerationAuthLookup } from "@/lib/billing/generationAccess";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Dev bypass for testing
     if (isDevelopmentPaywallBypassEnabled()) {
@@ -34,6 +41,7 @@ export async function GET(request: Request) {
     // Check if user is logged in
     const supabase = await maybeCreateSupabaseServerClient();
     const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+    assertGenerationAuthLookup("error" in userData ? userData.error : null);
     const user = userData.data.user || null;
 
     let freeUsesRemaining = 0;
@@ -46,16 +54,16 @@ export async function GET(request: Request) {
         .eq('user_id', user.id)
         .maybeSingle();
 
-      // If no record or no free_report_used_at, they have 1 free remaining
-      freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
-
       if (error) {
         logWarn({
           msg: "free_status.query_failed",
           user_id: hashForLogs(user.id),
           supabase: { table: "user_usage", op: "select", error_code: error.code },
         });
+        throw new Error("Free status database lookup failed");
       }
+      // If no record or no free_report_used_at, they have 1 free remaining
+      freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
 
       return NextResponse.json({
         ok: true,
@@ -70,12 +78,26 @@ export async function GET(request: Request) {
       const raw = cookieStore.get(FREE_COOKIE)?.value;
       const parsed = parseFreeCookie(raw);
       const meta = parsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
-      const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-      const ledgerStatus = await anonymousGenerationAccessBackend.status({
-        identityHash: hashForLogs(ip),
-        monthKey: getCurrentMonthKey(),
+      const identityResult = ensureAnonymousIdentity(
+        cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
+      );
+      const identityHash = hashAnonymousIdentity(identityResult.identity);
+      const monthKey = getCurrentMonthKey();
+      let ledgerStatus = await anonymousGenerationAccessBackend.status({
+        identityHash,
+        monthKey,
       });
-      const ledgerCommitted = ledgerStatus === "committed";
+
+      // A signed used receipt is fail-closed evidence. If shared state was
+      // evicted or the durable identity had to be reissued, seed a committed
+      // ledger entry instead of minting another report.
+      if (ledgerStatus === "available" && (meta.used || 0) >= FREE_RUN_LIMIT) {
+        ledgerStatus = await anonymousGenerationAccessBackend.reconcileCommitted({
+          identityHash,
+          monthKey,
+          receiptId: anonymousReceiptId(identityResult.identity, monthKey),
+        });
+      }
       freeUsesRemaining = resolveAnonymousFreeUsesRemaining(
         ledgerStatus,
         meta.used || 0,
@@ -94,6 +116,13 @@ export async function GET(request: Request) {
       // response headers are fixed. Synchronize the signed cookie here so a
       // later network change cannot make that completed report look unused.
       const shouldPersistCommittedUse = ledgerStatus === "committed" && (meta.used || 0) < FREE_RUN_LIMIT;
+      if (identityResult.cookieValue) {
+        res.cookies.set(
+          ANONYMOUS_ID_COOKIE,
+          identityResult.cookieValue,
+          freeCookieOptions()
+        );
+      }
       if (!parsed || meta.needs_reset || shouldPersistCommittedUse) {
         const newMeta = {
           used: shouldPersistCommittedUse ? FREE_RUN_LIMIT : meta.used || 0,

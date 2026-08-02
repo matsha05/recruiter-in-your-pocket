@@ -2,10 +2,12 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
+    ANONYMOUS_ID_COOKIE,
     FREE_COOKIE,
     getCurrentMonthKey,
     parseFreeCookie
 } from "@/lib/backend/freeCookie";
+import { anonymousIdentityHashFromCookie } from "@/lib/billing/anonymousIdentity";
 import { streamJson } from "@/lib/llm/orchestrator";
 import {
     increaseReasoningEffort,
@@ -41,7 +43,6 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
 function streamHeaders(requestId: string) {
     return {
         "Content-Type": "text/event-stream",
@@ -50,21 +51,18 @@ function streamHeaders(requestId: string) {
         "x-request-id": requestId,
     };
 }
-
 function singleStreamEventResponse(requestId: string, event: Record<string, unknown>) {
     return new NextResponse(`${JSON.stringify(event)}\n`, {
         headers: streamHeaders(requestId),
     });
 }
-
 export async function POST(request: Request) {
     const request_id = getRequestId(request);
     const { method, path } = routeLabel(request);
     const route = `${method} ${path}`;
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path });
-
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || `request:${request_id}`;
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
         const res = NextResponse.json(
@@ -85,7 +83,6 @@ export async function POST(request: Request) {
         });
         return res;
     }
-
     let body: any = null;
     try {
         body = await readJsonWithLimit<any>(request, 128 * 1024);
@@ -174,7 +171,9 @@ export async function POST(request: Request) {
             reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
             bypass,
             freeMeta,
-            anonymousIdentityHash: hashForLogs(ip),
+            anonymousIdentityHash: user
+                ? null
+                : anonymousIdentityHashFromCookie(cookieStore.get(ANONYMOUS_ID_COOKIE)?.value),
         });
 
         if (accessReservation.access === "preview") {
@@ -246,6 +245,8 @@ export async function POST(request: Request) {
     let accumulatedJson = "";
     let reservationCommitted = false;
     let clientDisconnected = false;
+    let reportId: string | null = null;
+    let rollbackSavedReport: (() => Promise<void>) | null = null;
     const throwIfClientDisconnected = () => {
         if (!clientDisconnected) return;
         const error = new Error("Report generation was canceled.");
@@ -333,7 +334,6 @@ export async function POST(request: Request) {
                 }
                 throwIfClientDisconnected();
 
-                let reportId: string | null = null;
                 if (user && supabase && mode === "resume") {
                     reportId = await persistGeneratedResumeReport({
                         supabase,
@@ -348,30 +348,23 @@ export async function POST(request: Request) {
                             userIdForLogs: user_id,
                         },
                     });
+                    rollbackSavedReport = () => rollbackGeneratedResumeReport({
+                        supabase: supabase!,
+                        userId: user.id,
+                        reportId: reportId!,
+                        context: {
+                            requestId: request_id,
+                            route,
+                            userIdForLogs: user_id,
+                        },
+                    });
                 }
 
-                try {
-                    // A canceled response remains refundable until validation
-                    // and any signed-in persistence have both completed.
-                    throwIfClientDisconnected();
-                    await commitGenerationAccess(grantedReservation, reservationAdmin);
-                    reservationCommitted = true;
-                } catch (commitError) {
-                    if (reportId && user && supabase) {
-                        await rollbackGeneratedResumeReport({
-                            supabase,
-                            userId: user.id,
-                            reportId,
-                            context: {
-                                requestId: request_id,
-                                route,
-                                userIdForLogs: user_id,
-                            },
-                        });
-                        reportId = null;
-                    }
-                    throw commitError;
-                }
+                // A canceled response remains releasable until validation and
+                // signed-in persistence complete. Commit then becomes final.
+                throwIfClientDisconnected();
+                await commitGenerationAccess(grantedReservation, reservationAdmin);
+                reservationCommitted = true;
 
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
@@ -412,12 +405,12 @@ export async function POST(request: Request) {
                 let accessConsumed: boolean | null = reservationCommitted;
                 if (!reservationCommitted) {
                     try {
-                        await releaseGenerationAccess(
+                        const release = await releaseGenerationAccess(
                             grantedReservation,
                             reservationAdmin,
                             releaseReasonForError(err)
                         );
-                        accessConsumed = false;
+                        accessConsumed = release.accessConsumed;
                     } catch (releaseErr: any) {
                         accessConsumed = null;
                         logError({
@@ -430,6 +423,26 @@ export async function POST(request: Request) {
                                 name: releaseErr?.name || "GenerationAccessError",
                                 message: releaseErr?.message || "Access release failed",
                                 code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
+                            },
+                        });
+                    }
+                }
+                if (accessConsumed === false && rollbackSavedReport) {
+                    try {
+                        await rollbackSavedReport();
+                        reportId = null;
+                    } catch (rollbackError: any) {
+                        accessConsumed = null;
+                        logError({
+                            msg: "report.rollback_failed",
+                            request_id,
+                            route,
+                            user_id,
+                            outcome: "internal_error",
+                            err: {
+                                name: rollbackError?.name || "ReportRollbackError",
+                                message: rollbackError?.message || "Report rollback failed",
+                                code: String(rollbackError?.code || "REPORT_ROLLBACK_FAILED"),
                             },
                         });
                     }

@@ -12,12 +12,14 @@ import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
+  ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
   parseFreeCookie,
 } from "@/lib/backend/freeCookie";
+import { anonymousIdentityHashFromCookie } from "@/lib/billing/anonymousIdentity";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import {
   assertGenerationAccessDependencies,
@@ -65,7 +67,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || `request:${request_id}`;
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
@@ -142,7 +144,9 @@ export async function POST(request: Request) {
       reportKind: "resume_ideas",
       bypass,
       freeMeta,
-      anonymousIdentityHash: hashForLogs(ip),
+      anonymousIdentityHash: user
+        ? null
+        : anonymousIdentityHashFromCookie(cookieStore.get(ANONYMOUS_ID_COOKIE)?.value),
     });
 
     if (accessReservation.access === "preview") {

@@ -2,12 +2,14 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
+  ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
+import { anonymousIdentityHashFromCookie } from "@/lib/billing/anonymousIdentity";
 import { runJson } from "@/lib/llm/orchestrator";
 import {
   buildResumeRepairMessages,
@@ -61,10 +63,11 @@ export async function POST(request: Request) {
   let accessReservation: GenerationAccessReservation | null = null;
   let reservationCommitted = false;
   let reservationAdmin: GenerationAccessRpcClient | null = null;
+  let rollbackSavedReport: (() => Promise<void>) | null = null;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
 
   try {
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || `request:${request_id}`;
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
@@ -144,7 +147,9 @@ export async function POST(request: Request) {
       reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
       bypass,
       freeMeta,
-      anonymousIdentityHash: hashForLogs(ip),
+      anonymousIdentityHash: user
+        ? null
+        : anonymousIdentityHashFromCookie(cookieStore.get(ANONYMOUS_ID_COOKIE)?.value),
     });
 
     const activePass = accessReservation.activePass;
@@ -288,25 +293,18 @@ ${jobDescription}`;
         payload,
         context: { requestId: request_id, route, userIdForLogs: user_id },
       });
+      rollbackSavedReport = () => rollbackGeneratedResumeReport({
+        supabase,
+        userId: user.id,
+        reportId: reportId!,
+        context: { requestId: request_id, route, userIdForLogs: user_id },
+      });
     }
 
-    // Commit only after a signed-in report is durably saved. If the commit
-    // fails, remove that uncharged report before returning an error.
-    try {
-      await commitGenerationAccess(accessReservation, admin);
-      reservationCommitted = true;
-    } catch (commitError) {
-      if (reportId && user && supabase) {
-        await rollbackGeneratedResumeReport({
-          supabase,
-          userId: user.id,
-          reportId,
-          context: { requestId: request_id, route, userIdForLogs: user_id },
-        });
-        reportId = null;
-      }
-      throw commitError;
-    }
+    // Commit is idempotent and resolves ambiguous transport failures against
+    // authoritative state before any response is delivered.
+    await commitGenerationAccess(accessReservation, admin);
+    reservationCommitted = true;
 
     const newFreeUsed = accessReservation.anonymousCookieMeta?.used
       ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : freeMeta.used || 0);
@@ -353,12 +351,12 @@ ${jobDescription}`;
     let accessConsumed: boolean | null = reservationCommitted;
     if (accessReservation && !reservationCommitted) {
       try {
-        await releaseGenerationAccess(
+        const release = await releaseGenerationAccess(
           accessReservation,
           reservationAdmin,
           releaseReasonForError(err)
         );
-        accessConsumed = false;
+        accessConsumed = release.accessConsumed;
       } catch (releaseErr: any) {
         accessConsumed = null;
         logError({
@@ -370,6 +368,24 @@ ${jobDescription}`;
             name: releaseErr?.name || "GenerationAccessError",
             message: releaseErr?.message || "Access release failed",
             code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
+          },
+        });
+      }
+    }
+    if (accessConsumed === false && rollbackSavedReport) {
+      try {
+        await rollbackSavedReport();
+      } catch (rollbackError: any) {
+        accessConsumed = null;
+        logError({
+          msg: "report.rollback_failed",
+          request_id,
+          route,
+          outcome: "internal_error",
+          err: {
+            name: rollbackError?.name || "ReportRollbackError",
+            message: rollbackError?.message || "Report rollback failed",
+            code: String(rollbackError?.code || "REPORT_ROLLBACK_FAILED"),
           },
         });
       }

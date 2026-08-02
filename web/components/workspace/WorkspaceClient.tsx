@@ -30,9 +30,7 @@ import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-function getPersistedSavedJobId(jobContext: LoadedJobContext | null) {
-    return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null;
-}
+function getPersistedSavedJobId(jobContext: LoadedJobContext | null) { return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null; }
 
 type WorkspaceClientProps = {
     initialReport?: ReportData | null;
@@ -128,7 +126,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         toast.success("Your report is back", { description: "Checkout did not discard the read you were working from." });
     }, []);
 
-    const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
+    const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
+    const { refreshFreeStatus } = useFreeStatus({
+        refreshUser,
+        setFreeUsesRemaining,
+        hasPaidAccess,
+    });
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
     const {
         analysisMode,
@@ -308,7 +311,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
     });
 
-    const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const effectiveUsesRemaining = hasPaidAccess ? Math.max(freeUsesRemaining, 1) : freeUsesRemaining;
 
     useEffect(() => {

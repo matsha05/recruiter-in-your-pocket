@@ -1,5 +1,9 @@
 import { useCallback, useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
+import {
+  preservePaidReportAccess,
+  readAuthoritativeFreeUses,
+} from "@/lib/billing/freeStatusClient";
 
 type RefreshOptions = {
   fallbackDecrement?: boolean;
@@ -10,19 +14,21 @@ type RefreshOptions = {
 type FreeStatusOptions = {
   refreshUser?: () => Promise<void>;
   setFreeUsesRemaining: Dispatch<SetStateAction<number>>;
+  hasPaidAccess: boolean;
 };
 
-export function useFreeStatus({ refreshUser, setFreeUsesRemaining }: FreeStatusOptions) {
+export function useFreeStatus({
+  refreshUser,
+  setFreeUsesRemaining,
+  hasPaidAccess,
+}: FreeStatusOptions) {
   const refreshFreeStatus = useCallback(
-    async ({ fallbackDecrement = false, includeUserRefresh = false, requireOk = false }: RefreshOptions = {}) => {
+    async ({ fallbackDecrement = false, includeUserRefresh = false }: RefreshOptions = {}) => {
       try {
         const statusRes = await fetch("/api/free-status");
         const statusData = await statusRes.json();
-
-        const shouldUpdate = requireOk ? statusData.ok : statusData.free_uses_left !== undefined;
-        if (shouldUpdate && statusData.free_uses_left !== undefined) {
-          setFreeUsesRemaining(statusData.free_uses_left);
-        }
+        const reportedUses = readAuthoritativeFreeUses(statusRes.ok, statusData);
+        setFreeUsesRemaining(preservePaidReportAccess(reportedUses, hasPaidAccess));
 
         if (includeUserRefresh) {
           await refreshUser?.();
@@ -31,12 +37,15 @@ export function useFreeStatus({ refreshUser, setFreeUsesRemaining }: FreeStatusO
       } catch (err) {
         console.error("Failed to refresh free status:", err);
         if (fallbackDecrement) {
-          setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
+          setFreeUsesRemaining((prev) => preservePaidReportAccess(
+            Math.max(0, prev - 1),
+            hasPaidAccess
+          ));
         }
         return false;
       }
     },
-    [refreshUser, setFreeUsesRemaining]
+    [hasPaidAccess, refreshUser, setFreeUsesRemaining]
   );
 
   useEffect(() => {

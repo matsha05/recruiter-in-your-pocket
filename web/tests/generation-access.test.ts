@@ -121,6 +121,15 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
         };
       }
 
+      if (functionName === "get_generation_access_status") {
+        return {
+          data: existing
+            ? { ok: true, status: existing.status, action: "none" }
+            : { ok: false, status: "missing", action: "none" },
+          error: null,
+        };
+      }
+
       if (!existing || existing.userId !== userId) {
         return { data: { ok: false, status: "missing" }, error: null };
       }
@@ -141,19 +150,13 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
       }
 
       if (functionName === "release_generation_access") {
-        if (existing.status === "released" || existing.status === "refunded") {
-          return { data: { ok: true, status: existing.status }, error: null };
+        if (existing.status === "released" || existing.status === "refunded" || existing.status === "committed") {
+          return { data: { ok: true, status: existing.status, action: "none" }, error: null };
         }
         if (existing.status === "reserved") {
           existing.status = "released";
-          return { data: { ok: true, status: "released" }, error: null };
+          return { data: { ok: true, status: "released", action: "released" }, error: null };
         }
-
-        if (existing.kind === "pass_credit") this.passCredits += 1;
-        else this.freeUsed = false;
-        existing.status = "refunded";
-        this.refundMutations += 1;
-        return { data: { ok: true, status: "refunded" }, error: null };
       }
 
       return { data: null, error: { code: "UNKNOWN_RPC" } };
@@ -211,7 +214,7 @@ await commitGenerationAccess(passReservation, passRpc);
 assert.equal(passRpc.commitMutations, 1);
 await releaseGenerationAccess(passReservation, passRpc, "delivery_error");
 await releaseGenerationAccess(passReservation, passRpc, "delivery_error");
-assert.equal(passRpc.refundMutations, 1);
+assert.equal(passRpc.refundMutations, 0, "cleanup must never refund committed access");
 
 // Reservation keys are internal UUIDs, not request headers or user content.
 const reserveCall = passRpc.calls.find((call) => call.functionName === "reserve_generation_access")!;
@@ -414,10 +417,8 @@ assert.match(migration, /SECURITY INVOKER/g);
 assert.match(migration, /SET search_path = ''/g);
 assert.match(migration, /REVOKE ALL ON FUNCTION public\.reserve_generation_access[\s\S]+FROM PUBLIC, anon, authenticated/i);
 assert.match(migration, /GRANT EXECUTE ON FUNCTION public\.reserve_generation_access[\s\S]+TO service_role/i);
-assert.match(migration, /status = 'committed'[\s\S]+uses_remaining = uses_remaining \+ 1/i);
 const ledgerDefinition = migration.match(/CREATE TABLE IF NOT EXISTS private\.generation_access_reservations \(([\s\S]+?)\n\);/)?.[1] || "";
 assert.doesNotMatch(ledgerDefinition, /email|request_id|ip_address|resume_text|job_description/i);
-
 const feedbackRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback", "route.ts"), "utf8");
 const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback-stream", "route.ts"), "utf8");
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
@@ -441,9 +442,10 @@ for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.doesNotMatch(source, /\.from\(["']user_usage["']\)/);
   assert.match(
     source,
-    /anonymousIdentityHash:\s*hashForLogs\(ip\)/,
-    "direct anonymous API calls must bind the free entitlement to server-side shared state"
+    /anonymousIdentityHashFromCookie\(cookieStore\.get\(ANONYMOUS_ID_COOKIE\)/,
+    "direct anonymous API calls must use the durable signed anonymous identity"
   );
+  assert.doesNotMatch(source, /anonymousIdentityHash:\s*hashForLogs\(ip\)/);
   assert.ok(
     source.indexOf("markGenerationProviderCallStarted(") < providerCallIndex,
     "the atomic spend ceiling must run before provider work begins"

@@ -133,20 +133,23 @@ class PaidLifecycleRpc implements GenerationAccessRpcClient {
       return { data: { ok: true, status: "committed" }, error: null };
     }
 
+    if (functionName === "get_generation_access_status") {
+      return {
+        data: state
+          ? { ok: true, status: state, action: "none" }
+          : { ok: false, status: "missing", action: "none" },
+        error: null,
+      };
+    }
+
     if (functionName === "release_generation_access") {
       this.releaseReasons.push(String(args.p_reason_code || ""));
-      if (state === "released" || state === "refunded") {
-        return { data: { ok: true, status: state }, error: null };
+      if (state === "released" || state === "refunded" || state === "committed") {
+        return { data: { ok: true, status: state, action: "none" }, error: null };
       }
       if (state === "reserved") {
         this.reservations.set(reservationId, "released");
-        return { data: { ok: true, status: "released" }, error: null };
-      }
-      if (state === "committed") {
-        this.credits += 1;
-        this.refundMutations += 1;
-        this.reservations.set(reservationId, "refunded");
-        return { data: { ok: true, status: "refunded" }, error: null };
+        return { data: { ok: true, status: "released", action: "released" }, error: null };
       }
       return { data: { ok: false, status: "missing" }, error: null };
     }
@@ -174,8 +177,8 @@ async function run() {
   assert.match(withGenerationAccessOutcome("Release failed.", null), new RegExp(REPORT_ACCESS_OUTCOME_UNKNOWN));
   assert.equal(
     resolveAnonymousFreeUsesRemaining("reserved", 0, 1),
-    1,
-    "a pending stream does not present the anonymous report as consumed"
+    0,
+    "a pending hold must not present another anonymous report as available"
   );
   assert.equal(
     resolveAnonymousFreeUsesRemaining("committed", 0, 1),
@@ -227,12 +230,11 @@ async function run() {
   assert.equal(committedCookie?.used, 1, "success exposes cookie metadata only after commit");
   assert.equal((await reserveAnonymous("1")).access, "preview", "successful delivery consumes anonymous access");
 
-  await releaseGenerationAccess(successful, null, "delivery_error");
-  assert.equal(await anonymousStatus(successful), "available", "delivery restore reopens anonymous access");
-  assert.equal(successful.anonymousCookieMeta, null, "restore clears consumed cookie metadata");
-  const restoredAnonymous = await reserveAnonymous("1");
-  assert.equal(restoredAnonymous.access, "full");
-  await releaseGenerationAccess(restoredAnonymous, null, "internal_error");
+  const committedRelease = await releaseGenerationAccess(successful, null, "delivery_error");
+  assert.deepEqual(committedRelease, { state: "committed", action: "none", accessConsumed: true });
+  assert.equal(await anonymousStatus(successful), "committed", "cleanup cannot reopen committed anonymous access");
+  assert.equal(committedCookie?.used, 1, "cleanup preserves committed cookie metadata");
+  assert.equal((await reserveAnonymous("1")).access, "preview", "committed cleanup cannot mint another report");
 
   const [anonymousA, anonymousB] = await Promise.all([
     reserveAnonymous("2"),
@@ -261,8 +263,8 @@ async function run() {
   assert.equal(paidRpc.credits, 0, "validated paid report consumes exactly one credit");
   await releaseGenerationAccess(successfulPaid, paidRpc, "delivery_error");
   await releaseGenerationAccess(successfulPaid, paidRpc, "delivery_error");
-  assert.equal(paidRpc.credits, 1, "delivery failure restores the paid credit exactly once");
-  assert.equal(paidRpc.refundMutations, 1);
+  assert.equal(paidRpc.credits, 0, "cleanup cannot restore a committed paid credit");
+  assert.equal(paidRpc.refundMutations, 0);
 
   const route = readFileSync(path.join(process.cwd(), "app/api/resume-feedback/route.ts"), "utf8");
   const streamRoute = readFileSync(path.join(process.cwd(), "app/api/resume-feedback-stream/route.ts"), "utf8");
@@ -285,7 +287,8 @@ async function run() {
     "a canceled stream must abort and release access before the validated report commits"
   );
   assert.match(freeStatus, /anonymousGenerationAccessBackend\.status/);
-  assert.match(freeStatus, /const ledgerCommitted = ledgerStatus === "committed"/);
+  assert.match(freeStatus, /resolveAnonymousFreeUsesRemaining/);
+  assert.match(freeStatus, /reconcileCommitted/);
   assert.equal(
     resumeAnalysis.match(/await reconcileAfterUnsuccessfulRun\(\)/g)?.length,
     3,

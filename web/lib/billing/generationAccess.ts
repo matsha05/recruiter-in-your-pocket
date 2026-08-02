@@ -6,69 +6,49 @@ import {
 } from "../backend/freeCookie";
 import { anonymousGenerationAccessBackend } from "./anonymousGenerationAccess";
 import { assertGenerationCapacity } from "../operations/generationBudget";
-
-export type GenerationReportKind = "resume_feedback" | "resume_ideas";
-export type GenerationAccessTier = "free_full" | "pass_full" | "preview";
-export type GenerationEntitlementKind =
-  | "free"
-  | "pass_credit"
-  | "pass_unlimited"
-  | "anonymous_free"
-  | "bypass";
-
-export type GenerationPassSnapshot = {
-  id: string;
-  tier: string;
-  expires_at: string | null;
-  uses_remaining: number;
-  created_at?: string | null;
-};
-
-export type AnonymousFreeCookieMeta = {
-  used: number;
-  last_free_ts: string;
-  reset_month: string;
-};
-
-export type GenerationAccessReservation = {
-  access: "full" | "preview";
-  accessTier: GenerationAccessTier;
-  entitlementKind: GenerationEntitlementKind | null;
-  reservationId: string | null;
-  userId: string | null;
-  activePass: GenerationPassSnapshot | null;
-  freeUsesRemaining: number;
-  anonymousCookieMeta: AnonymousFreeCookieMeta | null;
-  anonymousIdentityHash: string | null;
-  anonymousMonthKey: string | null;
-};
-
-export type GenerationReleaseReason =
-  | "provider_error"
-  | "provider_timeout"
-  | "validation_error"
-  | "client_disconnect"
-  | "delivery_error"
-  | "internal_error";
+import {
+  accessResolution,
+  firstRpcRecord,
+  resolutionFromRpcData,
+  type GenerationAccessResolution,
+} from "./generationAccessFinality";
+import type {
+  AnonymousFreeCookieMeta,
+  GenerationAccessReservation,
+  GenerationAccessRpcClient,
+  GenerationPassSnapshot,
+  GenerationReleaseReason,
+  GenerationReportKind,
+} from "./generationAccessTypes";
+export type {
+  AnonymousFreeCookieMeta,
+  GenerationAccessReservation,
+  GenerationAccessRpcClient,
+  GenerationAccessTier,
+  GenerationEntitlementKind,
+  GenerationPassSnapshot,
+  GenerationReleaseReason,
+  GenerationReportKind,
+} from "./generationAccessTypes";
 
 type RpcError = { code?: string; message?: string } | null;
-
-export type GenerationAccessRpcClient = {
-  rpc(
-    functionName: string,
-    args: Record<string, unknown>
-  ): PromiseLike<{ data: unknown; error: RpcError }>;
-};
 
 export class GenerationAccessError extends Error {
   code: string;
   httpStatus: number;
+  accessConsumed: boolean | null;
 
-  constructor(code: string, message: string, httpStatus = 503) {
+  constructor(
+    code: string,
+    message: string,
+    httpStatus = 503,
+    accessConsumed: boolean | null = null
+  ) {
     super(message);
     this.name = "GenerationAccessError";
     this.code = code;
     this.httpStatus = httpStatus;
+    this.accessConsumed = accessConsumed;
   }
 }
 
@@ -118,12 +98,6 @@ export function assertGenerationAuthLookup(error: unknown) {
   );
 }
 
-function firstRecord(value: unknown): Record<string, unknown> | null {
-  const candidate = Array.isArray(value) ? value[0] : value;
-  if (!candidate || typeof candidate !== "object") return null;
-  return candidate as Record<string, unknown>;
-}
-
 function numberOrZero(value: unknown): number {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return 0;
@@ -144,7 +118,11 @@ function parsePass(value: unknown): GenerationPassSnapshot | null {
   };
 }
 
-function unavailableFromRpc(operation: "reserve" | "commit" | "release", _error?: RpcError) {
+function unavailableFromRpc(
+  operation: "reserve" | "commit" | "release",
+  _error?: RpcError,
+  accessConsumed: boolean | null = null
+) {
   const code = operation === "reserve"
     ? "ACCESS_RESERVATION_FAILED"
     : operation === "commit"
@@ -153,7 +131,9 @@ function unavailableFromRpc(operation: "reserve" | "commit" | "release", _error?
 
   return new GenerationAccessError(
     code,
-    `Report access could not be ${operation === "reserve" ? "reserved" : operation === "commit" ? "confirmed" : "released"}. Please try again.`
+    `Report access could not be ${operation === "reserve" ? "reserved" : operation === "commit" ? "confirmed" : "released"}. Please try again.`,
+    503,
+    accessConsumed
   );
 }
 
@@ -282,7 +262,7 @@ export async function reserveGenerationAccess(input: {
 
   if (error) throw unavailableFromRpc("reserve", error);
 
-  const result = firstRecord(data);
+  const result = firstRpcRecord(data);
   if (!result || typeof result.allowed !== "boolean") {
     throw unavailableFromRpc("reserve");
   }
@@ -330,49 +310,106 @@ export async function reserveGenerationAccess(input: {
   };
 }
 
+async function queryAuthenticatedAccessState(
+  admin: GenerationAccessRpcClient,
+  userId: string,
+  reservationId: string
+): Promise<GenerationAccessResolution> {
+  try {
+    const { data, error } = await admin.rpc("get_generation_access_status", {
+      p_user_id: userId,
+      p_reservation_id: reservationId,
+    });
+    if (error) return accessResolution("unknown");
+    return resolutionFromRpcData(data);
+  } catch {
+    return accessResolution("unknown");
+  }
+}
+
+function applyAnonymousCommitCookie(reservation: GenerationAccessReservation) {
+  const cookieMeta = anonymousCookieMetaAfterCommit.get(reservation);
+  if (!cookieMeta) throw unavailableFromRpc("commit", null, true);
+  reservation.anonymousCookieMeta = cookieMeta;
+}
+
 export async function commitGenerationAccess(
   reservation: GenerationAccessReservation,
   admin: GenerationAccessRpcClient | null
-) {
+): Promise<GenerationAccessResolution> {
   if (reservation.entitlementKind === "anonymous_free") {
-    if (
-      !reservation.reservationId
-      || !reservation.anonymousIdentityHash
-      || !reservation.anonymousMonthKey
-    ) {
+    const reservationId = reservation.reservationId;
+    const identityHash = reservation.anonymousIdentityHash;
+    const monthKey = reservation.anonymousMonthKey;
+    if (!reservationId || !identityHash || !monthKey) {
       throw unavailableFromRpc("commit");
     }
 
-    let committed = false;
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        if (await anonymousGenerationAccessBackend.commit({
+          identityHash,
+          monthKey,
+          reservationId,
+        })) {
+          applyAnonymousCommitCookie(reservation);
+          return accessResolution("committed", "committed");
+        }
+      } catch {
+        // Retry the idempotent transition, then inspect authoritative state.
+      }
+    }
+
     try {
-      committed = await anonymousGenerationAccessBackend.commit({
-        identityHash: reservation.anonymousIdentityHash,
-        monthKey: reservation.anonymousMonthKey,
-        reservationId: reservation.reservationId,
-      });
-    } catch {
+      const state = await anonymousGenerationAccessBackend.inspect({ identityHash, monthKey });
+      if (state.status === "committed" && state.reservationId === reservationId) {
+        applyAnonymousCommitCookie(reservation);
+        return accessResolution("committed", "committed");
+      }
+      const consumed = state.status === "committed" ? true : state.status === "reserved" ? false : null;
+      throw unavailableFromRpc("commit", null, consumed);
+    } catch (error) {
+      if (error instanceof GenerationAccessError) throw error;
       throw unavailableFromRpc("commit");
     }
-    if (!committed) throw unavailableFromRpc("commit");
-    const cookieMeta = anonymousCookieMetaAfterCommit.get(reservation);
-    if (!cookieMeta) throw unavailableFromRpc("commit");
-    reservation.anonymousCookieMeta = cookieMeta;
-    return;
   }
 
-  if (!reservation.userId || !reservation.reservationId) return;
+  if (!reservation.userId || !reservation.reservationId) {
+    return accessResolution("committed", "committed");
+  }
   if (!admin) throw unavailableFromRpc("commit");
 
-  const { data, error } = await admin.rpc("commit_generation_access", {
-    p_user_id: reservation.userId,
-    p_reservation_id: reservation.reservationId,
-  });
-
-  if (error) throw unavailableFromRpc("commit", error);
-  const result = firstRecord(data);
-  if (!result || result.ok !== true || result.status !== "committed") {
-    throw unavailableFromRpc("commit");
+  let lastResolution = accessResolution("unknown");
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const { data, error } = await admin.rpc("commit_generation_access", {
+        p_user_id: reservation.userId,
+        p_reservation_id: reservation.reservationId,
+      });
+      if (error) continue;
+      const resolution = resolutionFromRpcData(data, "committed");
+      if (resolution.state === "committed") return resolution;
+      lastResolution = resolution;
+    } catch {
+      // Retry the idempotent transition, then query authoritative state.
+    }
   }
+
+  const resolution = await queryAuthenticatedAccessState(
+    admin,
+    reservation.userId,
+    reservation.reservationId
+  );
+  if (resolution.state === "committed") {
+    return { ...resolution, action: "committed" };
+  }
+  throw unavailableFromRpc(
+    "commit",
+    null,
+    resolution.state === "unknown"
+      ? lastResolution.accessConsumed
+      : resolution.accessConsumed
+  );
 }
 
 /**
@@ -391,44 +428,62 @@ export async function releaseGenerationAccess(
   reservation: GenerationAccessReservation | null,
   admin: GenerationAccessRpcClient | null,
   reason: GenerationReleaseReason
-) {
+): Promise<GenerationAccessResolution> {
   if (reservation?.entitlementKind === "anonymous_free") {
     if (
       !reservation.reservationId
       || !reservation.anonymousIdentityHash
       || !reservation.anonymousMonthKey
     ) {
-      throw unavailableFromRpc("release");
+      return accessResolution("unknown");
     }
 
-    let released = false;
     try {
-      released = await anonymousGenerationAccessBackend.release({
+      const result = await anonymousGenerationAccessBackend.release({
         identityHash: reservation.anonymousIdentityHash,
         monthKey: reservation.anonymousMonthKey,
         reservationId: reservation.reservationId,
       });
+      if (result.status === "committed") return accessResolution("committed");
+      if (result.status !== "released") return accessResolution("unknown");
+      reservation.anonymousCookieMeta = null;
+      anonymousCookieMetaAfterCommit.delete(reservation);
+      return accessResolution("released", "released");
     } catch {
-      throw unavailableFromRpc("release");
+      try {
+        const state = await anonymousGenerationAccessBackend.inspect({
+          identityHash: reservation.anonymousIdentityHash,
+          monthKey: reservation.anonymousMonthKey,
+        });
+        if (state.status === "committed") return accessResolution("committed");
+      } catch {
+        // The caller must present this as unknown rather than promise a refund.
+      }
+      return accessResolution("unknown");
     }
-    if (!released) throw unavailableFromRpc("release");
-    reservation.anonymousCookieMeta = null;
-    anonymousCookieMetaAfterCommit.delete(reservation);
-    return;
   }
 
-  if (!reservation?.userId || !reservation.reservationId) return;
-  if (!admin) throw unavailableFromRpc("release");
+  if (!reservation?.userId || !reservation.reservationId) {
+    return accessResolution("released");
+  }
+  if (!admin) return accessResolution("unknown");
 
-  const { data, error } = await admin.rpc("release_generation_access", {
-    p_user_id: reservation.userId,
-    p_reservation_id: reservation.reservationId,
-    p_reason_code: reason,
-  });
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const { data, error } = await admin.rpc("release_generation_access", {
+        p_user_id: reservation.userId,
+        p_reservation_id: reservation.reservationId,
+        p_reason_code: reason,
+      });
+      if (error) continue;
+      const resolution = resolutionFromRpcData(data);
+      if (resolution.state !== "unknown") return resolution;
+    } catch {
+      // Retry the reserved-only transition, then query authoritative state.
+    }
+  }
 
-  if (error) throw unavailableFromRpc("release", error);
-  const result = firstRecord(data);
-  if (!result || result.ok !== true) throw unavailableFromRpc("release");
+  return queryAuthenticatedAccessState(admin, reservation.userId, reservation.reservationId);
 }
 
 export function releaseReasonForError(error: unknown): GenerationReleaseReason {
