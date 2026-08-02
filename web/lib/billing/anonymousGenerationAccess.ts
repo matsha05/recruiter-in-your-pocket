@@ -93,7 +93,27 @@ export type AnonymousGenerationAccessBackend = {
     monthKey: string;
     reservationId: string;
   }): Promise<boolean>;
+  status(input: {
+    identityHash: string;
+    monthKey: string;
+  }): Promise<"available" | "reserved" | "committed">;
 };
+
+export function resolveAnonymousFreeUsesRemaining(
+  status: "available" | "reserved" | "committed",
+  cookieUsed: number,
+  limit: number
+) {
+  if (status === "committed") return 0;
+  return Math.max(0, limit - Math.max(0, cookieUsed));
+}
+
+function statusFromValue(value: unknown): "available" | "reserved" | "committed" {
+  if (typeof value !== "string") return "available";
+  if (value.startsWith("reserved:")) return "reserved";
+  if (value.startsWith("committed:")) return "committed";
+  return "available";
+}
 
 function ledgerKey(identityHash: string, monthKey: string) {
   if (!IDENTITY_PATTERN.test(identityHash)) {
@@ -227,5 +247,29 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     }
     localEntries.delete(key);
     return true;
+  },
+
+  async status({ identityHash, monthKey }) {
+    const key = ledgerKey(identityHash, monthKey);
+    const redis = getRedisClient();
+
+    if (redis) {
+      try {
+        const value = await redis.get<string>(key);
+        return statusFromValue(value);
+      } catch (error) {
+        if (
+          process.env.NODE_ENV === "production"
+          && !allowsExplicitLocalAnonymousAccessFallback()
+        ) unavailable(error);
+      }
+    } else if (
+      process.env.NODE_ENV === "production"
+      && !allowsExplicitLocalAnonymousAccessFallback()
+    ) {
+      unavailable();
+    }
+
+    return statusFromValue(localEntry(key)?.value);
   },
 };

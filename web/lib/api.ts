@@ -1,3 +1,8 @@
+import {
+  REPORT_ACCESS_OUTCOME_UNKNOWN,
+  withGenerationAccessOutcome,
+} from "./billing/generationFailureCopy";
+
 export type ResumeFeedbackRequest = {
   text: string;
   jobDescription?: string;
@@ -95,7 +100,14 @@ export async function streamResumeFeedback(
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   options?: { signal?: AbortSignal; savedJobId?: string | null }
-): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean; reportId?: string | null }> {
+): Promise<{
+  ok: boolean;
+  report?: any;
+  message?: string;
+  aborted?: boolean;
+  reportId?: string | null;
+  accessConsumed?: boolean;
+}> {
   let res: Response;
   try {
     res = await fetch("/api/resume-feedback-stream", {
@@ -118,11 +130,22 @@ export async function streamResumeFeedback(
   }
 
   if (!res.ok) {
-    return { ok: false, message: `HTTP error: ${res.status}` };
+    let message = `The report request failed with status ${res.status}. Please try again.`;
+    try {
+      const errorBody = await res.json();
+      if (typeof errorBody?.message === "string") message = errorBody.message;
+    } catch {
+      // The status still proves no generation reservation was started.
+    }
+    return {
+      ok: false,
+      message: withGenerationAccessOutcome(message, false),
+      accessConsumed: false,
+    };
   }
 
   if (!res.body) {
-    return { ok: false, message: "No response body" };
+    return { ok: false, message: REPORT_ACCESS_OUTCOME_UNKNOWN };
   }
 
   const reader = res.body.getReader();
@@ -132,6 +155,7 @@ export async function streamResumeFeedback(
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
+  let errorAccessConsumed: boolean | undefined;
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
@@ -171,6 +195,9 @@ export async function streamResumeFeedback(
           finalReportId = event.report_id || null;
         } else if (event.type === "error") {
           errorMessage = event.message;
+          errorAccessConsumed = typeof event.access_consumed === "boolean"
+            ? event.access_consumed
+            : undefined;
         } else if (event.type === "meta") {
           // Reserved for future non-sensitive stream metadata.
         }
@@ -181,14 +208,18 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, message: errorMessage };
+    return {
+      ok: false,
+      message: errorMessage,
+      accessConsumed: errorAccessConsumed,
+    };
   }
 
   if (finalReport) {
     return { ok: true, report: finalReport, reportId: finalReportId };
   }
 
-  return { ok: false, message: "Stream ended without completion" };
+  return { ok: false, message: REPORT_ACCESS_OUTCOME_UNKNOWN };
 }
 
 /**

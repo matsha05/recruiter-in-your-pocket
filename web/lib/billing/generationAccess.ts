@@ -73,7 +73,10 @@ export class GenerationAccessError extends Error {
 }
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
-const anonymousProviderStarted = new WeakSet<GenerationAccessReservation>();
+const anonymousCookieMetaAfterCommit = new WeakMap<
+  GenerationAccessReservation,
+  AnonymousFreeCookieMeta
+>();
 
 export function isMockGenerationProviderEnabled() {
   return TRUE_VALUES.has(String(process.env.USE_MOCK_OPENAI || "").trim().toLowerCase());
@@ -240,7 +243,7 @@ export async function reserveGenerationAccess(input: {
       };
     }
 
-    return {
+    const reservation: GenerationAccessReservation = {
       access: "full",
       accessTier: "free_full",
       entitlementKind: "anonymous_free",
@@ -248,14 +251,19 @@ export async function reserveGenerationAccess(input: {
       userId: null,
       activePass: null,
       freeUsesRemaining: Math.max(0, anonymousFreeRemaining - 1),
-      anonymousCookieMeta: {
-        used: Math.min(FREE_RUN_LIMIT, freeUsed + 1),
-        last_free_ts: reservedAt,
-        reset_month: getCurrentMonthKey(),
-      },
+      // A reservation is not a use. This becomes non-null only after commit,
+      // so streaming responses cannot write a consumed cookie while provider
+      // output is still pending validation.
+      anonymousCookieMeta: null,
       anonymousIdentityHash,
       anonymousMonthKey,
     };
+    anonymousCookieMetaAfterCommit.set(reservation, {
+      used: Math.min(FREE_RUN_LIMIT, freeUsed + 1),
+      last_free_ts: reservedAt,
+      reset_month: anonymousMonthKey,
+    });
+    return reservation;
   }
 
   if (!input.admin) {
@@ -346,6 +354,9 @@ export async function commitGenerationAccess(
       throw unavailableFromRpc("commit");
     }
     if (!committed) throw unavailableFromRpc("commit");
+    const cookieMeta = anonymousCookieMetaAfterCommit.get(reservation);
+    if (!cookieMeta) throw unavailableFromRpc("commit");
+    reservation.anonymousCookieMeta = cookieMeta;
     return;
   }
 
@@ -365,20 +376,15 @@ export async function commitGenerationAccess(
 }
 
 /**
- * Anonymous access becomes attempt-based once provider work begins. Committing
- * the shared hold before the costly call prevents deliberate disconnects or
- * response failures from refunding a replayable anonymous request.
- * Authenticated reservations keep their post-validation lifecycle.
+ * Reserve from the shared paid-AI ceiling immediately before provider work.
+ * The entitlement itself remains pending until validated output is ready.
  */
 export async function markGenerationProviderCallStarted(
-  reservation: GenerationAccessReservation
+  _reservation: GenerationAccessReservation
 ) {
   if (!isMockGenerationProviderEnabled()) {
     await assertGenerationCapacity();
   }
-  if (reservation.entitlementKind !== "anonymous_free") return;
-  await commitGenerationAccess(reservation, null);
-  anonymousProviderStarted.add(reservation);
 }
 
 export async function releaseGenerationAccess(
@@ -387,7 +393,6 @@ export async function releaseGenerationAccess(
   reason: GenerationReleaseReason
 ) {
   if (reservation?.entitlementKind === "anonymous_free") {
-    if (anonymousProviderStarted.has(reservation)) return;
     if (
       !reservation.reservationId
       || !reservation.anonymousIdentityHash
@@ -407,6 +412,8 @@ export async function releaseGenerationAccess(
       throw unavailableFromRpc("release");
     }
     if (!released) throw unavailableFromRpc("release");
+    reservation.anonymousCookieMeta = null;
+    anonymousCookieMetaAfterCommit.delete(reservation);
     return;
   }
 

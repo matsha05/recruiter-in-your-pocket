@@ -1,8 +1,15 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { makeFreeCookie, parseFreeCookie, type ParsedFreeMeta } from "../lib/backend/freeCookie";
-import { allowsExplicitLocalAnonymousAccessFallback } from "../lib/billing/anonymousGenerationAccess";
+import {
+  makeFreeCookie,
+  parseFreeCookie,
+  type ParsedFreeMeta,
+} from "../lib/backend/freeCookie";
+import {
+  allowsExplicitLocalAnonymousAccessFallback,
+  anonymousGenerationAccessBackend,
+} from "../lib/billing/anonymousGenerationAccess";
 import {
   GenerationAccessError,
   assertGenerationAccessDependencies,
@@ -230,7 +237,8 @@ await assert.rejects(
   (error: unknown) => error instanceof GenerationAccessError && error.code === "ACCESS_DEPENDENCY_UNAVAILABLE"
 );
 
-// Anonymous reservation data is signed and parseable before a stream begins.
+// A reservation does not expose consumed cookie metadata. The cookie becomes
+// writable only after the shared ledger commits validated output.
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "generation-access-test-secret";
 const anonymous = await reserveGenerationAccess({
   userId: null,
@@ -243,14 +251,16 @@ const anonymous = await reserveGenerationAccess({
   randomUUID: () => "55555555-5555-4555-8555-555555555555",
 });
 assert.equal(anonymous.accessTier, "free_full");
-assert.equal(anonymous.anonymousCookieMeta?.used, 1);
-const signedCookie = makeFreeCookie(anonymous.anonymousCookieMeta!);
-assert.equal(parseFreeCookie(signedCookie)?.used, 1);
+assert.equal(anonymous.anonymousCookieMeta, null);
 
 // The shared ledger, rather than the client cookie, is authoritative. A
 // successful direct API request consumes the anonymous allowance even when a
 // caller clears the response cookie or replays an earlier unused cookie.
 await commitGenerationAccess(anonymous, null);
+const committedAnonymousCookie = anonymous.anonymousCookieMeta as { used: number } | null;
+assert.equal(committedAnonymousCookie?.used, 1);
+const signedCookie = makeFreeCookie(anonymous.anonymousCookieMeta!);
+assert.equal(parseFreeCookie(signedCookie)?.used, 1);
 const clearedCookieReplay = await reserveGenerationAccess({
   userId: null,
   admin: null,
@@ -310,6 +320,14 @@ const legitimateRetry = await reserveGenerationAccess({
 });
 assert.equal(legitimateRetry.access, "full");
 await markGenerationProviderCallStarted(legitimateRetry);
+assert.equal(
+  await anonymousGenerationAccessBackend.status({
+    identityHash: retryIdentity,
+    monthKey: legitimateRetry.anonymousMonthKey!,
+  }),
+  "reserved",
+  "starting provider work must leave anonymous access pending"
+);
 await releaseGenerationAccess(legitimateRetry, null, "client_disconnect");
 const disconnectedReplay = await reserveGenerationAccess({
   userId: null,
@@ -322,9 +340,10 @@ const disconnectedReplay = await reserveGenerationAccess({
 });
 assert.equal(
   disconnectedReplay.access,
-  "preview",
-  "disconnecting after provider work starts must not refund anonymous access"
+  "full",
+  "a failed provider attempt must release anonymous access until validated output commits"
 );
+await releaseGenerationAccess(disconnectedReplay, null, "client_disconnect");
 
 // Hosted anonymous generation fails closed when the shared ledger is absent.
 const originalNodeEnv = process.env.NODE_ENV;
@@ -404,6 +423,11 @@ const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
 const linkedInRoute = readFileSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts"), "utf8");
 const launchProgram = readFileSync(path.join(process.cwd(), "lib", "launch", "program.ts"), "utf8");
+const accessLifecycle = readFileSync(path.join(process.cwd(), "lib", "billing", "generationAccess.ts"), "utf8");
+const streamValidation = readFileSync(
+  path.join(process.cwd(), "lib", "llm", "validateResumeStreamOutput.ts"),
+  "utf8"
+);
 
 for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.match(source, /reserveGenerationAccess/);
@@ -422,24 +446,34 @@ for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   );
   assert.ok(
     source.indexOf("markGenerationProviderCallStarted(") < providerCallIndex,
-    "anonymous access must be consumed before provider work begins"
+    "the atomic spend ceiling must run before provider work begins"
   );
 }
 
 assert.ok(streamRoute.indexOf("reserveGenerationAccess({") < streamRoute.indexOf("new ReadableStream"));
-assert.match(streamRoute, /response\.cookies\.set\(/);
+assert.doesNotMatch(streamRoute, /response\.cookies\.set\(/);
 assert.doesNotMatch(streamRoute, /cookieStore\.set\(/);
 const streamLoopIndex = streamRoute.indexOf("for await (const ev of streamJson");
-const streamValidationIndex = streamRoute.indexOf("payload = validateResumeModelPayload");
+const streamValidationIndex = streamRoute.indexOf("await validateResumeStreamOutput");
 const streamCommitIndex = streamRoute.indexOf("await commitGenerationAccess");
 const streamDeliveryIndex = streamRoute.indexOf("for (const content of validatedChunks)");
 assert.ok(streamLoopIndex > -1 && streamValidationIndex > streamLoopIndex);
+assert.match(streamValidation, /validateResumeModelPayload/);
 assert.ok(streamCommitIndex > streamValidationIndex);
 assert.ok(
   streamDeliveryIndex > streamCommitIndex,
   "streamed model content must not be delivered before validation and entitlement commit"
 );
 assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
+const providerMarker = accessLifecycle.match(
+  /export async function markGenerationProviderCallStarted\([\s\S]+?\n\}/
+)?.[0] || "";
+assert.match(providerMarker, /assertGenerationCapacity/);
+assert.doesNotMatch(
+  providerMarker,
+  /commitGenerationAccess/,
+  "starting a provider call must reserve spend capacity without consuming report access"
+);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
-import crypto from "crypto";
 import {
   FREE_COOKIE,
   freeCookieOptions,
@@ -33,6 +32,12 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { withGenerationAccessOutcome } from "@/lib/billing/generationFailureCopy";
+import {
+  persistGeneratedResumeReport,
+  resolveUserSavedJobId,
+  rollbackGeneratedResumeReport,
+} from "@/lib/reports/resumeGenerationPersistence";
 import {
   assertGenerationAccessDependencies,
   assertGenerationAuthLookup,
@@ -47,73 +52,6 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function hashResumeText(text: string) {
-  return crypto.createHash("sha256").update(text).digest("hex");
-}
-
-function reportPersistenceError() {
-  const error = new Error("We could not safely save this report. Your report credit was restored; please try again.") as Error & { code: string; httpStatus: number };
-  error.code = "REPORT_PERSISTENCE_FAILED";
-  error.httpStatus = 503;
-  return error;
-}
-
-function buildReportTrustMetadata(payload: any) {
-  const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
-  const evidence = topFixes
-    .map((fix: any) => ({
-      fix: fix?.fix || "",
-      confidence: fix?.confidence || "medium",
-      impact_level: fix?.impact_level || "medium",
-      effort: fix?.effort || "moderate",
-      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
-      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
-    }))
-    .filter((item: any) => item.fix || item.excerpt);
-
-  const confidenceValues = evidence.map((item: any) => item.confidence);
-  const confidence_band = confidenceValues.includes("low")
-    ? "low"
-    : confidenceValues.includes("medium")
-      ? "medium"
-      : evidence.length > 0
-        ? "high"
-        : null;
-
-  return {
-    evidence_json: evidence.length > 0 ? evidence : null,
-    evidence_version: payload?.contract_version || "v2",
-    evidence_summary: evidence.length > 0
-      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
-      : null,
-    confidence_band
-  };
-}
-
-const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
-async function resolveUserSavedJobId(
-  supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>,
-  userId: string,
-  value: string | null
-) {
-  if (!value || !UUID_PATTERN.test(value)) return null;
-
-  const { data, error } = await supabase
-    .from("saved_jobs")
-    .select("id")
-    .eq("id", value)
-    .eq("user_id", userId)
-    .maybeSingle();
-
-  if (error || !data?.id) return null;
-  return data.id as string;
-}
 
 export async function POST(request: Request) {
   const request_id = getRequestId(request);
@@ -341,57 +279,15 @@ ${jobDescription}`;
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
     if (user && supabase && mode === "resume") {
-      const resumeHash = hashResumeText(text);
-      let preview = text.slice(0, 200).trim();
-      const lastSpace = preview.lastIndexOf(" ");
-      if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
-      else if (text.length > 200) preview += "...";
-
-      reportId = crypto.randomUUID();
-
-      const { error: reportInsertError } = await supabase.from("reports").insert({
-        id: reportId,
-        user_id: user.id,
-        resume_hash: resumeHash,
-        score: payload.score,
-        score_label: payload.score_label || null,
-        report_json: payload,
-        ...buildReportTrustMetadata(payload),
-        ...(savedJobId ? { saved_job_id: savedJobId } : {}),
-        resume_preview: preview,
-        job_description_text: jobDescription || null,
-        target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-        created_at: nowIso()
+      reportId = await persistGeneratedResumeReport({
+        supabase,
+        userId: user.id,
+        resumeText: text,
+        jobDescription,
+        savedJobId,
+        payload,
+        context: { requestId: request_id, route, userIdForLogs: user_id },
       });
-      if (reportInsertError) {
-        reportId = null;
-        logError({
-          msg: "report.persistence_failed",
-          request_id,
-          route,
-          user_id,
-          outcome: "provider_error",
-          err: { name: "ReportPersistenceError", message: "Report insert failed", code: String(reportInsertError.code || "REPORT_INSERT_FAILED") }
-        });
-        throw reportPersistenceError();
-      }
-      if (savedJobId) {
-        const { error: jobUpdateError } = await supabase
-          .from("saved_jobs")
-          .update({ latest_report_id: reportId, updated_at: nowIso() })
-          .eq("id", savedJobId)
-          .eq("user_id", user.id);
-        if (jobUpdateError) {
-          logWarn({
-            msg: "saved_job.report_link_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "provider_error",
-            err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(jobUpdateError.code || "SAVED_JOB_UPDATE_FAILED") }
-          });
-        }
-      }
     }
 
     // Commit only after a signed-in report is durably saved. If the commit
@@ -401,21 +297,12 @@ ${jobDescription}`;
       reservationCommitted = true;
     } catch (commitError) {
       if (reportId && user && supabase) {
-        const { error: rollbackError } = await supabase
-          .from("reports")
-          .delete()
-          .eq("id", reportId)
-          .eq("user_id", user.id);
-        if (rollbackError) {
-          logError({
-            msg: "report.rollback_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "internal_error",
-            err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(rollbackError.code || "REPORT_ROLLBACK_FAILED") }
-          });
-        }
+        await rollbackGeneratedResumeReport({
+          supabase,
+          userId: user.id,
+          reportId,
+          context: { requestId: request_id, route, userIdForLogs: user_id },
+        });
         reportId = null;
       }
       throw commitError;
@@ -463,6 +350,7 @@ ${jobDescription}`;
     });
     return res;
   } catch (err: any) {
+    let accessConsumed: boolean | null = reservationCommitted;
     if (accessReservation && !reservationCommitted) {
       try {
         await releaseGenerationAccess(
@@ -470,7 +358,9 @@ ${jobDescription}`;
           reservationAdmin,
           releaseReasonForError(err)
         );
+        accessConsumed = false;
       } catch (releaseErr: any) {
+        accessConsumed = null;
         logError({
           msg: "billing.access_release_failed",
           request_id,
@@ -508,8 +398,9 @@ ${jobDescription}`;
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? "The report did not pass its evidence check. Your report credit was restored; please try again."
+              ? "The report did not pass its evidence check. Please try again."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
+    const honestMessage = withGenerationAccessOutcome(message, accessConsumed);
 
     logError({
       msg: "http.request.completed",
@@ -522,7 +413,10 @@ ${jobDescription}`;
       outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
       err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
     });
-    const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    const res = NextResponse.json(
+      { ok: false, errorCode: code, message: honestMessage, access_consumed: accessConsumed },
+      { status }
+    );
     res.headers.set("x-request-id", request_id);
     return res;
   }

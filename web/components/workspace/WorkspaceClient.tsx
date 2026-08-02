@@ -7,7 +7,6 @@ import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
 import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
 import AuthModal from "@/components/shared/AuthModal";
-import { streamResumeFeedback, parseResume } from "@/lib/api";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { useCommandAction, CommandAction } from "@/components/CommandPalette";
@@ -19,6 +18,8 @@ import { useJobContextFromExtension, type LoadedJobContext } from "@/components/
 import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
+import { useReportSave } from "@/components/workspace/hooks/useReportSave";
+import { useResumeAnalysis } from "@/components/workspace/hooks/useResumeAnalysis";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
@@ -51,8 +52,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
-    const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
-    const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
     const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
     const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
 
@@ -79,7 +78,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     // Ref to track pending auto-run from landing page
     const pendingAutoRunRef = useRef(false);
-    const abortControllerRef = useRef<AbortController | null>(null);
 
     useWorkspaceInit({
         searchParams,
@@ -131,35 +129,31 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     }, []);
 
     const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
-
-    const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
-        if (abortControllerRef.current) {
-            abortControllerRef.current.abort();
-        }
-        const controller = new AbortController();
-        abortControllerRef.current = controller;
-        setAnalysisMode(mode);
-        setAnalysisStartedAt(Date.now());
-        return controller;
-    }, []);
-
-    const endAnalysis = useCallback(() => {
-        setAnalysisStartedAt(null);
-        abortControllerRef.current = null;
-    }, []);
-
-    const handleCancelAnalysis = useCallback((silent?: boolean) => {
-        if (abortControllerRef.current) {
-            abortControllerRef.current.abort();
-            abortControllerRef.current = null;
-        }
-        setIsLoading(false);
-        setIsStreaming(false);
-        setAnalysisStartedAt(null);
-        if (!silent) {
-            toast.info("Analysis canceled");
-        }
-    }, []);
+    const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
+    const {
+        analysisMode,
+        analysisStartedAt,
+        beginAnalysis,
+        endAnalysis,
+        handleCancelAnalysis,
+        handleFileSelect,
+        handleRun,
+    } = useResumeAnalysis({
+        user,
+        resumeText,
+        jobDescription,
+        savedJobId: persistedSavedJobId,
+        freeUsesRemaining,
+        refreshFreeStatus,
+        isLoading,
+        setResumeText,
+        setIsPaywallOpen,
+        setIsLoading,
+        setIsStreaming,
+        setReport,
+        setPendingReportForSave,
+        setIsSavePromptOpen,
+    });
 
     const { handleLinkedInPdfSubmit, handleLinkedInUrlSubmit, handleLinkedInSample } = useLinkedInReview({
         user,
@@ -177,169 +171,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setLastLinkedInPdf
     });
 
-    const saveReportForCurrentUser = useCallback(async (reportToSave: any) => {
-        if (!reportToSave) return;
-
-        const res = await fetch("/api/reports", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ report: reportToSave })
-        });
-
-        const result = await res.json();
-        if (!result.ok) {
-            throw new Error(result.message || "Failed to save report");
-        }
-
-        toast.success("Report saved to your history");
-        setPendingReportForSave(null);
-        setIsSavePromptOpen(false);
-    }, []);
-
-    const handleRequestSaveAuth = useCallback(() => {
-        setIsSavePromptOpen(false);
-        setAuthContext("report");
-        setIsAuthOpen(true);
-    }, []);
-
-    const handleFileSelect = useCallback(async (file: File) => {
-        try {
-            Analytics.track("workspace_upload_started", {
-                source: "workspace",
-                file_type: file.type || "unknown",
-                file_size_bytes: file.size
-            });
-            setIsLoading(true);
-            const formData = new FormData();
-            formData.append("file", file);
-
-            const result = await parseResume(formData);
-            if (result.ok && result.text) {
-                setResumeText(result.text);
-                Analytics.track("workspace_upload_succeeded", {
-                    source: "workspace",
-                    file_type: file.type || "unknown",
-                    file_size_bytes: file.size,
-                    extracted_chars: result.text.length
-                });
-                Analytics.resumeUploaded("workspace");
-                return true;
-            } else {
-                console.error("Failed to parse resume:", result.message);
-                toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
-                setResumeText("");
-                return false;
-            }
-        } catch (err) {
-            console.error("File parsing error:", err);
-            toast.error("File parsing error", { description: "Please try another file." });
-            setResumeText("");
-            return false;
-        } finally {
-            setIsLoading(false);
-        }
-    }, []);
-
-    const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
-
-    const handleRun = useCallback(async () => {
-        if (!resumeText.trim()) {
-            toast.error("Add your resume first", { description: "Upload a file or paste the resume text before creating the report." });
-            return;
-        }
-        const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
-
-        // Check if free uses exhausted (and user doesn't have active pass)
-        if (freeUsesRemaining <= 0 && !hasPaidAccess) {
-            setIsPaywallOpen(true);
-            Analytics.paywallViewed("free_uses_exhausted");
-            return;
-        }
-
-        setIsLoading(true);
-        setIsStreaming(true);
-        setReport(null);
-        const controller = beginAnalysis("resume");
-        Analytics.reportStarted(!!jobDescription.trim());
-        Analytics.track("report_stream_started", {
-            has_jd: !!jobDescription.trim(),
-            mode: "resume"
-        });
-
-        try {
-            const streamStartedAt = Date.now();
-            let firstMeaningfulTracked = false;
-
-            const result = await streamResumeFeedback(
-                resumeText,
-                jobDescription || undefined,
-                (partialJson, partialReport) => {
-                    if (partialReport) {
-                        setReport(partialReport);
-                        const hasMeaningfulOutput = Boolean(
-                            partialReport.score || partialReport.summary || partialReport.first_impression
-                        );
-                        if (!firstMeaningfulTracked && hasMeaningfulOutput) {
-                            firstMeaningfulTracked = true;
-                            Analytics.track("report_first_meaningful_chunk_rendered", {
-                                mode: "resume",
-                                latency_ms: Date.now() - streamStartedAt,
-                                has_score: typeof partialReport.score === "number"
-                            });
-                        }
-                        // Reveal meaningful partial output as soon as we have it.
-                        if (isLoading && (partialReport.score || partialReport.summary || partialReport.first_impression)) {
-                            setIsLoading(false);
-                        }
-                    }
-                },
-                "resume",
-                { signal: controller.signal, savedJobId: persistedSavedJobId }
-            );
-            if (result.aborted) {
-                setIsLoading(false);
-                setIsStreaming(false);
-                endAnalysis();
-                return;
-            }
-
-            if (result.ok && result.report) {
-                setReport(result.report);
-                setIsStreaming(false);
-                setIsLoading(false);
-                endAnalysis();
-                Analytics.reportCompleted(result.report?.score || 0);
-
-                await refreshFreeStatus({
-                    fallbackDecrement: true,
-                    includeUserRefresh: true,
-                    requireOk: true
-                });
-
-                // Show save prompt for guest users after report is generated
-                if (!user && result.report && !isLaunchFlagEnabled("guestReportSave")) {
-                    setPendingReportForSave(result.report);
-                    setTimeout(() => {
-                        Analytics.track('save_prompt_viewed', { score: result.report?.score || 0 });
-                        setIsSavePromptOpen(true);
-                    }, 5000);
-                }
-            } else {
-                // Error case - show immediately
-                console.error("Failed to generate report:", result.message);
-                toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · Your free report was not used` });
-                setIsLoading(false);
-                setIsStreaming(false);
-                endAnalysis();
-            }
-        } catch (err) {
-            console.error("Report generation error:", err);
-            toast.error("Report generation error", { description: "Please try again. Your free report was not used." });
-            setIsLoading(false);
-            setIsStreaming(false);
-            endAnalysis();
-        }
-    }, [resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
+    const { handleRequestSaveAuth, saveReportForCurrentUser } = useReportSave({
+        setPendingReportForSave,
+        setIsSavePromptOpen,
+        setAuthContext,
+        setIsAuthOpen,
+    });
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;

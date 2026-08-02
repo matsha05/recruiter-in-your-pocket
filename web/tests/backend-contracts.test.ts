@@ -121,6 +121,10 @@ const resumeIdeasRoute = fs.readFileSync(
   path.resolve(process.cwd(), "app/api/resume-ideas/route.ts"),
   "utf8",
 );
+const resumePersistence = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/reports/resumeGenerationPersistence.ts"),
+  "utf8",
+);
 assert.match(defaultResumeRoute, /readJsonWithLimit<any>\(request, 128 \* 1024\)/);
 assert.match(defaultResumeRoute, /MAX_RESUME_CHARACTERS = 30_000/);
 assert.match(defaultResumeRoute, /MAX_FILENAME_CHARACTERS = 255/);
@@ -150,23 +154,23 @@ for (const [name, source] of [
   ["resume feedback", resumeFeedbackRoute],
   ["streaming resume feedback", resumeFeedbackStreamRoute],
 ] as const) {
-  const insertAt = source.indexOf('from("reports").insert');
-  const commitAt = source.indexOf("await commitGenerationAccess", insertAt);
-  const rollbackAt = source.indexOf('from("reports")', commitAt);
-  assert.ok(insertAt >= 0, `${name} must persist a signed-in report`);
-  assert.ok(commitAt > insertAt, `${name} must persist before committing the report credit`);
+  const persistAt = source.indexOf("await persistGeneratedResumeReport");
+  const commitAt = source.indexOf("await commitGenerationAccess", persistAt);
+  const rollbackAt = source.indexOf("await rollbackGeneratedResumeReport", commitAt);
+  assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
+  assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
   assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
-  assert.match(
-    source,
-    /const \{ error: reportInsertError \} = await [\s\S]+if \(reportInsertError\) \{[\s\S]+throw reportPersistenceError\(\)/,
-    `${name} must check the report insert result and fail closed`,
-  );
-  assert.match(
-    source,
-    /\.delete\(\)[\s\S]+\.eq\("id", reportId\)[\s\S]+\.eq\("user_id", user\.id\)/,
-    `${name} rollback must be scoped to the generated report and authenticated owner`,
-  );
 }
+assert.match(
+  resumePersistence,
+  /const \{ error: reportInsertError \} = await [\s\S]+if \(reportInsertError\) \{[\s\S]+throw reportPersistenceError\(\)/,
+  "report persistence must check the insert result and fail closed",
+);
+assert.match(
+  resumePersistence,
+  /\.delete\(\)[\s\S]+\.eq\("id", input\.reportId\)[\s\S]+\.eq\("user_id", input\.userId\)/,
+  "report rollback must be scoped to the generated report and authenticated owner",
+);
 
 assert.match(
   resumeFeedbackRoute,
