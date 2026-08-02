@@ -180,8 +180,16 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
   return normalized;
 }
 
-export function buildPdfExportRequest(report: unknown): { report: ReportForPdf } | null {
-  const normalized = normalizeReportForPdf(report);
-  if (!normalized) return null;
-  return { report: normalized };
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
+
+export function parsePdfExportRequest(value: unknown): { report_id: string } | null {
+  if (!value || typeof value !== "object") return null;
+  const reportId = asTrimmedString((value as { report_id?: unknown }).report_id);
+  return reportId && UUID_PATTERN.test(reportId) ? { report_id: reportId } : null;
+}
+
+export function buildPdfExportRequest(report: unknown): { report_id: string } | null {
+  if (!report || typeof report !== "object") return null;
+  const candidate = report as { report_id?: unknown; id?: unknown };
+  return parsePdfExportRequest({ report_id: candidate.report_id || candidate.id });
 }

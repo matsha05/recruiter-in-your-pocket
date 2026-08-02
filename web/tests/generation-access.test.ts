@@ -432,13 +432,13 @@ assert.doesNotMatch(streamRoute, /cookieStore\.set\(/);
 const streamLoopIndex = streamRoute.indexOf("for await (const ev of streamJson");
 const streamValidationIndex = streamRoute.indexOf("payload = validateResumeModelPayload");
 const streamCommitIndex = streamRoute.indexOf("await commitGenerationAccess");
-const streamDeliveryIndex = streamRoute.indexOf("for (const content of validatedChunks)");
 assert.ok(streamLoopIndex > -1 && streamValidationIndex > streamLoopIndex);
 assert.ok(streamCommitIndex > streamValidationIndex);
 assert.ok(
-  streamDeliveryIndex > streamCommitIndex,
-  "streamed model content must not be delivered before validation and entitlement commit"
+  streamRoute.indexOf('type: "complete"') > streamCommitIndex,
+  "the authoritative complete event must not be delivered before validation and entitlement commit"
 );
+assert.doesNotMatch(streamRoute, /validatedChunks|type:\s*"chunk"/);
 assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');

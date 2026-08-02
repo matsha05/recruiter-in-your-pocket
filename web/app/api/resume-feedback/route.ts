@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
-import crypto from "crypto";
 import {
   FREE_COOKIE,
   freeCookieOptions,
@@ -45,56 +44,10 @@ import {
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { persistGeneratedReport, rollbackGeneratedReport } from "@/lib/reports/generated-report-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function hashResumeText(text: string) {
-  return crypto.createHash("sha256").update(text).digest("hex");
-}
-
-function reportPersistenceError() {
-  const error = new Error("We could not safely save this report. Your report credit was restored; please try again.") as Error & { code: string; httpStatus: number };
-  error.code = "REPORT_PERSISTENCE_FAILED";
-  error.httpStatus = 503;
-  return error;
-}
-
-function buildReportTrustMetadata(payload: any) {
-  const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
-  const evidence = topFixes
-    .map((fix: any) => ({
-      fix: fix?.fix || "",
-      confidence: fix?.confidence || "medium",
-      impact_level: fix?.impact_level || "medium",
-      effort: fix?.effort || "moderate",
-      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
-      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
-    }))
-    .filter((item: any) => item.fix || item.excerpt);
-
-  const confidenceValues = evidence.map((item: any) => item.confidence);
-  const confidence_band = confidenceValues.includes("low")
-    ? "low"
-    : confidenceValues.includes("medium")
-      ? "medium"
-      : evidence.length > 0
-        ? "high"
-        : null;
-
-  return {
-    evidence_json: evidence.length > 0 ? evidence : null,
-    evidence_version: payload?.contract_version || "v2",
-    evidence_summary: evidence.length > 0
-      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
-      : null,
-    confidence_band
-  };
-}
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -306,57 +259,15 @@ export async function POST(request: Request) {
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
     if (user && supabase && mode === "resume") {
-      const resumeHash = hashResumeText(text);
-      let preview = text.slice(0, 200).trim();
-      const lastSpace = preview.lastIndexOf(" ");
-      if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
-      else if (text.length > 200) preview += "...";
-
-      reportId = crypto.randomUUID();
-
-      const { error: reportInsertError } = await supabase.from("reports").insert({
-        id: reportId,
-        user_id: user.id,
-        resume_hash: resumeHash,
-        score: payload.score,
-        score_label: payload.score_label || null,
-        report_json: payload,
-        ...buildReportTrustMetadata(payload),
-        ...(savedJobId ? { saved_job_id: savedJobId } : {}),
-        resume_preview: preview,
-        job_description_text: effectiveJobDescription.persistenceText,
-        target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-        created_at: nowIso()
+      reportId = await persistGeneratedReport({
+        supabase,
+        userId: user.id,
+        payload,
+        resumeText: text,
+        savedJobId,
+        jobDescriptionText: effectiveJobDescription.persistenceText,
+        context: { request_id, route, user_id },
       });
-      if (reportInsertError) {
-        reportId = null;
-        logError({
-          msg: "report.persistence_failed",
-          request_id,
-          route,
-          user_id,
-          outcome: "provider_error",
-          err: { name: "ReportPersistenceError", message: "Report insert failed", code: String(reportInsertError.code || "REPORT_INSERT_FAILED") }
-        });
-        throw reportPersistenceError();
-      }
-      if (savedJobId) {
-        const { error: jobUpdateError } = await supabase
-          .from("saved_jobs")
-          .update({ latest_report_id: reportId, updated_at: nowIso() })
-          .eq("id", savedJobId)
-          .eq("user_id", user.id);
-        if (jobUpdateError) {
-          logWarn({
-            msg: "saved_job.report_link_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "provider_error",
-            err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(jobUpdateError.code || "SAVED_JOB_UPDATE_FAILED") }
-          });
-        }
-      }
     }
 
     // Commit only after a signed-in report is durably saved. If the commit
@@ -366,21 +277,7 @@ export async function POST(request: Request) {
       reservationCommitted = true;
     } catch (commitError) {
       if (reportId && user && supabase) {
-        const { error: rollbackError } = await supabase
-          .from("reports")
-          .delete()
-          .eq("id", reportId)
-          .eq("user_id", user.id);
-        if (rollbackError) {
-          logError({
-            msg: "report.rollback_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "internal_error",
-            err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(rollbackError.code || "REPORT_ROLLBACK_FAILED") }
-          });
-        }
+        await rollbackGeneratedReport({ supabase, userId: user.id, reportId, context: { request_id, route, user_id } });
         reportId = null;
       }
       throw commitError;

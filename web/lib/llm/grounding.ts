@@ -51,9 +51,12 @@ function hasSectionHeading(sourceText: string, names: string[]) {
   });
 }
 
-export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
+export function isAcceptedAbsenceMarker(value: string, sourceText?: string, section?: string) {
   if (!isExactAbsenceSentinel(value)) return false;
   const marker = normalizeMarker(value);
+  const expectedSection = marker.match(/^no (summary|skills|education) section present$/)?.[1];
+  if (!expectedSection) return false;
+  if (section && normalizeMarker(section) !== expectedSection) return false;
   if (!sourceText) return true;
 
   if (marker === "no summary section present") {
@@ -66,7 +69,7 @@ export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
     return !hasSectionHeading(sourceText, ["education", "academic background", "academic experience"]);
   }
 
-  return true;
+  return false;
 }
 
 export function sourceContextFor(original: string, sourceText?: string) {
@@ -172,12 +175,13 @@ export function findFixEvidenceMismatch(
   fix: string,
   evidenceExcerpt: string,
   resumeText: string,
+  section?: string,
 ): string[] {
   const findings: string[] = [];
   const normalizedMarker = normalizeMarker(evidenceExcerpt);
 
   if (ABSENCE_MARKERS.has(normalizedMarker)) {
-    if (!isAcceptedAbsenceMarker(evidenceExcerpt, resumeText)) {
+    if (!isAcceptedAbsenceMarker(evidenceExcerpt, resumeText, section)) {
       findings.push("absence marker is contradicted by the resume");
     }
     const expectedSection = normalizedMarker.match(/^no (summary|skills|education) section present$/)?.[1];

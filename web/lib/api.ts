@@ -86,8 +86,7 @@ async function createResumeFeedback(resumeText: string, jobDescription?: string)
 
 /**
  * Streaming version of createResumeFeedback.
- * Calls onChunk with raw progress only. A report object is exposed only after
- * the server sends the authoritative complete event.
+ * A report is exposed only after the server sends the authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamResumeFeedback(
@@ -129,7 +128,7 @@ export async function streamResumeFeedback(
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
-  let accumulatedJson = "";
+  void onChunk;
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
@@ -159,13 +158,13 @@ export async function streamResumeFeedback(
       try {
         const event = JSON.parse(line);
 
-        if (event.type === "chunk") {
-          accumulatedJson += event.content;
-          onChunk(accumulatedJson, null);
-        } else if (event.type === "complete") {
+        if (event.type === "complete") {
           finalReport = event.data;
           if (finalReport && event.report_id) {
             finalReport.report_id = event.report_id;
+          }
+          if (finalReport && event.report_receipt) {
+            finalReport.report_receipt = event.report_receipt;
           }
           finalReportId = event.report_id || null;
         } else if (event.type === "error") {

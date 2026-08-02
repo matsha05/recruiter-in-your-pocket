@@ -6,6 +6,8 @@ import {
   sourceClauseIsNegated,
 } from "./narrative-token-policy";
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
+import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
+import { unsupportedBracketPayloads } from "./report-placeholder-policy";
 
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -53,7 +55,7 @@ export function isExactAbsenceSentinel(value: string) {
 
 export function canonicalSourceIdentity(value: string) {
   return value
-    .normalize("NFC")
+    .normalize("NFKC")
     .trim()
     .replace(leadingBulletPattern, "")
     .replace(/\s+/gu, " ")
@@ -86,7 +88,7 @@ function containsUnicodeBoundedExcerpt(source: string, excerpt: string) {
 }
 
 export function containsBoundedSourceExcerpt(sourceText: string, excerpt: string) {
-  const normalize = (value: string) => value.normalize("NFC").replace(/\s+/gu, " ").trim();
+  const normalize = (value: string) => value.normalize("NFKC").replace(/\s+/gu, " ").trim();
   const source = normalize(sourceText);
   const candidate = normalize(excerpt);
   return Boolean(source && candidate && containsUnicodeBoundedExcerpt(source, candidate));
@@ -246,6 +248,11 @@ export function compareSourceBoundRewrite(input: {
   const originalFacts = protectedFacts(resolution.line);
   const issues: SourceFidelityIssue[] = [];
 
+  const unsupportedPlaceholders = unsupportedBracketPayloads(input.candidate);
+  if (unsupportedPlaceholders.length > 0) {
+    issues.push({ code: "unsupported_fact", detail: `unsupported bracket facts: ${unsupportedPlaceholders.join(", ")}` });
+  }
+
   const unsupported = candidateFacts.filter((fact) => !allowedFactKeys.has(fact.key));
   if (unsupported.length > 0) {
     issues.push({ code: "unsupported_fact", detail: `unsupported facts: ${unsupported.map((fact) => fact.display).join(", ")}` });
@@ -264,6 +271,11 @@ export function compareSourceBoundRewrite(input: {
   const unsupportedTokens = Array.from(materialTokens(input.candidate)).filter((token) => !allowedTokens.has(token));
   if (unsupportedTokens.length > 0) {
     issues.push({ code: "unsupported_content", detail: `unsupported content: ${unsupportedTokens.join(", ")}` });
+  }
+  const candidateTokens = materialTokens(input.candidate);
+  const droppedTokens = Array.from(materialTokens(resolution.line)).filter((token) => !candidateTokens.has(token));
+  if (droppedTokens.length > 0) {
+    issues.push({ code: "dropped_fact", detail: `dropped source content: ${droppedTokens.join(", ")}` });
   }
 
   return { safe: issues.length === 0, sourceLine: resolution.line, issues };
@@ -285,7 +297,10 @@ function narrativeSourceClauses(sourceText: string) {
 export function auditNarrativeClaim(
   value: string,
   sourceText: string,
-  options: { interpretationContext?: "observation" | "missing" | "advice" | "question" } = {},
+  options: {
+    interpretationContext?: "observation" | "missing" | "advice" | "question";
+    rejectPositiveSourceAbsence?: boolean;
+  } = {},
 ) {
   const candidates = narrativeSourceClauses(sourceText).map((line) => ({
     facts: protectedFacts(line),
@@ -293,6 +308,8 @@ export function auditNarrativeClaim(
     negated: sourceClauseIsNegated(line),
   }));
   return claimSegments(value).flatMap((claim) => {
+    const unsupportedPlaceholders = unsupportedBracketPayloads(claim);
+    if (unsupportedPlaceholders.length > 0) return [{ claim, unsupportedFacts: unsupportedPlaceholders }];
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
@@ -325,6 +342,11 @@ export function auditNarrativeClaim(
         : facts.map((fact) => fact.display);
       return [{ claim, unsupportedFacts }];
     }
+    if (
+      options.rejectPositiveSourceAbsence
+      && /\b(?:missing from|not (?:visible|present)(?:\s+in)?)\b/iu.test(claim)
+      && sourceAnchored.some(({ negated }) => !negated)
+    ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
     const hasCompleteUntrackedMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts
         .filter((fact) => !/^(?:agency|outcome|qualifier|causal):/u.test(fact.key))
@@ -393,62 +415,9 @@ function jobDescriptionKeywordKind(path: string) {
   return path.match(/^job_alignment\.jd_keywords\.(matched|missing)\[\d+\]$/u)?.[1];
 }
 
-function isExactNoJobDescriptionState(report: any, path: string, value: string, jobDescription?: string) {
-  if (jobDescription?.trim()) return false;
-  const alignment = report?.job_alignment;
-  const keywords = alignment?.jd_keywords;
-  const isMandatedState = alignment?.jd_match_score === 0
-    && alignment?.jd_match_summary === "No job description provided."
-    && Array.isArray(keywords?.matched) && keywords.matched.length === 0
-    && Array.isArray(keywords?.missing) && keywords.missing.length === 0
-    && keywords?.match_count === 0 && keywords?.total_count === 0;
-  if (!isMandatedState) return false;
-  if (path === "job_alignment.jd_match_summary") return value === "No job description provided.";
-  return path === "job_alignment.missing[0]"
-    && value === "No target-role requirements were provided for comparison"
-    && alignment.missing?.length === 1;
-}
-
-const structuralReportVocabulary = {
-  section: new Set([
-    "Certifications", "Education", "Experience", "Professional Experience", "Projects",
-    "Resume", "Skills", "Summary", "Work Experience",
-  ]),
-  rewriteLabel: new Set([
-    "Clarity", "Impact", "Ownership", "Positioning", "Readability", "Results", "Scope",
-    "Specificity", "Structure",
-  ]),
-  seniority: new Set([
-    "Director", "Entry", "Entry level", "Executive", "Junior", "Lead", "Manager",
-    "Mid level", "Mid-level", "Not clear", "Senior", "Unclear",
-  ]),
-  companyStage: new Set([
-    "Any stage", "Company", "Early stage", "Enterprise", "Growth stage", "Scale-up",
-    "Startup", "Unclear",
-  ]),
-};
-
-function isAllowedStructuralReportValue(path: string, value: string) {
-  const normalized = value.normalize("NFC").trim().replace(/\s+/gu, " ");
-  if (/^(?:top_fixes\[\d+\]\.(?:evidence\.section|section_ref))$/u.test(path)) {
-    return structuralReportVocabulary.section.has(normalized);
-  }
-  if (/^rewrites\[\d+\]\.label$/u.test(path)) {
-    return structuralReportVocabulary.rewriteLabel.has(normalized);
-  }
-  if (path === "job_alignment.role_fit.seniority_read") {
-    return structuralReportVocabulary.seniority.has(normalized);
-  }
-  if (path === "job_alignment.role_fit.company_stage_fit") {
-    return structuralReportVocabulary.companyStage.has(normalized);
-  }
-  return false;
-}
-
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
-    if (isExactNoJobDescriptionState(report, path, value, jobDescription)) return [];
-    if (isAllowedStructuralReportValue(path, value)) return [];
+    if (isAllowedReportNarrativeException(report, path, value, jobDescription)) return [];
     const keywordKind = jobDescriptionKeywordKind(path);
     if (keywordKind) {
       const inResume = evidenceContainsIdentityPhrase(value, resumeText);
@@ -468,6 +437,7 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     }
     const resumeIssues = auditNarrativeClaim(value, resumeText, {
       interpretationContext: interpretationContextForPath(path),
+      rejectPositiveSourceAbsence: /^rewrites\[\d+\]\.enhancement_note$/u.test(path),
     });
     if (resumeIssues.length === 0) return [];
     return resumeIssues.map((issue) => ({ path, ...issue }));

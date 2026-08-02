@@ -5,6 +5,9 @@ import { renderReportHtml } from "../lib/backend/pdf";
 import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
+import { makeValidatedReportReceipt, verifyValidatedReportReceipt } from "../lib/reports/report-receipt";
+import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "../lib/reports/report-trust";
+import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 const sampleReportPath = path.join(process.cwd(), "public", "sample-report.json");
 const sampleReport = JSON.parse(readFileSync(sampleReportPath, "utf8"));
@@ -56,11 +59,22 @@ assert.equal(normalizedLegacy?.summary, legacyReport.score_comment_long);
 assert.deepEqual(normalizedLegacy?.next_steps, ["Add one scope number to your strongest bullet"]);
 assert.equal(normalizedLegacy?.rewrites.length, 1);
 
-const request = buildPdfExportRequest(legacyReport);
-assert.ok(request, "request payload should build");
-assert.deepEqual(Object.keys(request ?? {}).sort(), ["report"]);
-assert.equal("skim" in ((request as { report: Record<string, unknown> }).report), false);
-assert.equal("ideas" in ((request as { report: Record<string, unknown> }).report), false);
+assert.equal(buildPdfExportRequest(legacyReport), null, "inline client reports must never become export payloads");
+const reportId = "123e4567-e89b-42d3-a456-426614174000";
+assert.deepEqual(buildPdfExportRequest({ ...legacyReport, report_id: reportId }), { report_id: reportId });
+assert.deepEqual(buildPdfExportRequest({ ...legacyReport, id: reportId }), { report_id: reportId });
+assert.equal(buildPdfExportRequest({ score: 42 }), null, "incomplete client payloads must fail closed");
+
+const originalSessionSecret = process.env.SESSION_SECRET;
+process.env.SESSION_SECRET = "pdf-export-contract-test-secret";
+const receipt = makeValidatedReportReceipt(schemaValidReport);
+assert.equal(verifyValidatedReportReceipt(schemaValidReport, receipt), true);
+assert.equal(verifyValidatedReportReceipt({ ...schemaValidReport, score: 99 }, receipt), false);
+const trustMetadata = buildGroundedReportTrustMetadata(schemaValidReport);
+assert.ok(parseTrustedStoredReport(schemaValidReport, trustMetadata.evidence_version));
+assert.equal(parseTrustedStoredReport(schemaValidReport, "v2"), null, "legacy/unreceipted rows must fail closed");
+if (originalSessionSecret === undefined) delete process.env.SESSION_SECRET;
+else process.env.SESSION_SECRET = originalSessionSecret;
 
 assert.equal(normalizeReportForPdf({ summary: "Missing score" }), null);
 

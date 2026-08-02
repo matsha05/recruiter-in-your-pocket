@@ -1,61 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { logError } from "@/lib/observability/logger";
+import { ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
+import { verifyValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import { persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function buildResumePreview(report: any): string {
-  const source = String(
-    report?.summary || report?.score_comment_short || report?.score_comment_long || "Resume report"
-  ).trim();
-
-  if (!source) return "Resume report";
-
-  if (source.length <= 200) return source;
-  const preview = source.slice(0, 200);
-  const lastSpace = preview.lastIndexOf(" ");
-  return `${preview.slice(0, lastSpace > 120 ? lastSpace : 200)}...`;
-}
-
-function buildReportTrustMetadata(report: any) {
-  const topFixes = Array.isArray(report?.top_fixes) ? report.top_fixes : [];
-  const evidence = topFixes
-    .map((fix: any) => ({
-      fix: fix?.fix || "",
-      confidence: fix?.confidence || "medium",
-      impact_level: fix?.impact_level || "medium",
-      effort: fix?.effort || "moderate",
-      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
-      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
-    }))
-    .filter((item: any) => item.fix || item.excerpt);
-
-  const confidenceValues = evidence.map((item: any) => item.confidence);
-  const confidence_band = confidenceValues.includes("low")
-    ? "low"
-    : confidenceValues.includes("medium")
-      ? "medium"
-      : evidence.length > 0
-        ? "high"
-        : null;
-
-  return {
-    evidence_json: evidence.length > 0 ? evidence : null,
-    evidence_version: report?.contract_version || "v2",
-    evidence_summary: evidence.length > 0
-      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
-      : null,
-    confidence_band
-  };
-}
 
 export async function GET(request: NextRequest) {
   try {
@@ -111,16 +64,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await readJsonWithLimit<any>(request, 256 * 1024);
-    const report = body?.report;
-
-    if (!report || typeof report !== "object") {
-      return NextResponse.json(
-        { ok: false, errorCode: "INVALID_REPORT", message: "Report payload is required." },
-        { status: 400 }
-      );
-    }
-
     const supabase = await createSupabaseServerClient();
     const { data: userData } = await supabase.auth.getUser();
     const sessionUser = userData.user;
@@ -136,37 +79,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const reportId = crypto.randomUUID();
-    const serialized = JSON.stringify(report);
-    const reportHash = crypto.createHash("sha256").update(serialized).digest("hex");
-
-    const payload = {
-      id: reportId,
-      user_id: sessionUser.id,
-      resume_hash: reportHash,
-      score: Number(report?.score || 0),
-      score_label: typeof report?.score_label === "string" ? report.score_label : null,
-      report_json: report,
-      ...buildReportTrustMetadata(report),
-      resume_preview: buildResumePreview(report),
-      target_role: report?.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-      created_at: nowIso()
-    };
-
-    const { error } = await supabase.from("reports").insert(payload);
-    if (error) {
-      logError({
-        msg: "reports.save_failed",
-        outcome: "provider_error",
-        supabase: { table: "reports", op: "insert", error_code: String(error.code || "SAVE_FAILED") },
-        err: { name: "SupabaseError", message: "Report insert failed", code: String(error.code || "SAVE_FAILED") },
-      });
+    const body = await readJsonWithLimit<any>(request, 256 * 1024);
+    const submitted = body?.report;
+    if (!submitted || typeof submitted !== "object") {
+      return NextResponse.json({ ok: false, errorCode: "INVALID_REPORT", message: "Report payload is required." }, { status: 400 });
+    }
+    const { report_receipt: receipt, ...reportWithoutReceipt } = submitted;
+    const parsed = ResumeFeedbackResponseSchema.safeParse(reportWithoutReceipt);
+    if (!parsed.success || !verifyValidatedReportReceipt(parsed.data, receipt)) {
       return NextResponse.json(
-        { ok: false, errorCode: "SAVE_FAILED", message: "Could not save this report right now." },
-        { status: 500 }
+        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report cannot be verified. Rerun it while signed in." },
+        { status: 409 },
       );
     }
-
+    const reportId = await persistReceiptValidatedReport({ supabase, userId: sessionUser.id, payload: parsed.data });
     return NextResponse.json({ ok: true, reportId });
   } catch (error: any) {
     logError({

@@ -4,10 +4,11 @@ import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { normalizeReportForPdf } from "@/lib/reports/pdf-export";
+import { normalizeReportForPdf, parsePdfExportRequest } from "@/lib/reports/pdf-export";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { isPassActive } from "@/lib/billing/entitlements";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,20 +40,19 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const supabase = await createSupabaseServerClient();
+    const { data: authData, error: authError } = await supabase.auth.getUser();
+    const user = authData.user;
+    if (authError || !user) {
+      const res = NextResponse.json(
+        { ok: false, errorCode: "UNAUTHORIZED", message: "Sign in with a paid account to export a PDF." },
+        { status: 401 },
+      );
+      res.headers.set("x-request-id", request_id);
+      return res;
+    }
+
     if (!isDevelopmentPaywallBypassEnabled()) {
-      const supabase = await createSupabaseServerClient();
-      const { data: authData, error: authError } = await supabase.auth.getUser();
-      const user = authData.user;
-
-      if (authError || !user) {
-        const res = NextResponse.json(
-          { ok: false, errorCode: "UNAUTHORIZED", message: "Sign in with a paid account to export a PDF." },
-          { status: 401 }
-        );
-        res.headers.set("x-request-id", request_id);
-        return res;
-      }
-
       const { data: passes, error: passesError } = await supabase
         .from("passes")
         .select("tier, uses_remaining, expires_at")
@@ -71,12 +71,30 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await readJsonWithLimit<any>(request, 256 * 1024);
-    const payload = normalizeReportForPdf(body?.report || body || {});
+    const exportRequest = parsePdfExportRequest(body);
+    if (!exportRequest) {
+      const res = NextResponse.json(
+        { ok: false, errorCode: "REPORT_ID_REQUIRED", message: "Choose a saved report and try exporting again." },
+        { status: 400 },
+      );
+      res.headers.set("x-request-id", request_id);
+      return res;
+    }
+    const { data: stored, error: reportError } = await supabase.from("reports")
+      .select("report_json, evidence_version")
+      .eq("id", exportRequest.report_id)
+      .eq("user_id", user.id)
+      .maybeSingle();
+    if (reportError) throw reportError;
+    const trustedReport = stored
+      ? parseTrustedStoredReport(stored.report_json, stored.evidence_version)
+      : null;
+    const payload = trustedReport ? normalizeReportForPdf(trustedReport) : null;
 
     if (!payload) {
       const res = NextResponse.json(
-        { ok: false, errorCode: "INVALID_PAYLOAD", message: "Report data is incomplete. Try exporting again." },
-        { status: 400 }
+        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report needs to be rerun before it can be exported safely." },
+        { status: 409 }
       );
       res.headers.set("x-request-id", request_id);
       logInfo({
@@ -85,7 +103,7 @@ export async function POST(request: NextRequest) {
         route,
         method,
         path,
-        status: 400,
+        status: 409,
         latency_ms: Date.now() - startedAt,
         outcome: "validation_error"
       });

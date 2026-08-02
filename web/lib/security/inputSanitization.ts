@@ -13,10 +13,9 @@
 // Known injection patterns to detect
 const INJECTION_PATTERNS = [
     // Direct instruction overrides
-    /ignore\s+(all\s+)?previous\s+instructions?/i,
-    /ignore\s+(all\s+)?above\s+instructions?/i,
-    /forget\s+(all\s+)?previous\s+instructions?/i,
-    /disregard\s+(all\s+)?previous\s+instructions?/i,
+    /ignore\s+(all\s+)?(?:previous|prior|earlier|above)\s+instructions?/i,
+    /forget\s+(all\s+)?(?:previous|prior|earlier)\s+instructions?/i,
+    /disregard\s+(all\s+)?(?:previous|prior|earlier)\s+instructions?/i,
 
     // Role/persona hijacking
     /you\s+are\s+now\s+a?\s*(different|new)/i,
@@ -47,6 +46,11 @@ const INJECTION_PATTERNS = [
 
 // Patterns that look like embedded JSON objects (potential schema injection)
 const JSON_INJECTION_PATTERN = /\{\s*"[a-zA-Z_]+"\s*:\s*[^}]+\}/g;
+const ZERO_WIDTH_FORMAT_CONTROLS = /[\u200B-\u200D\u2060\uFEFF]/gu;
+
+function normalizeForInjectionScan(text: string) {
+    return text.normalize("NFKC").replace(ZERO_WIDTH_FORMAT_CONTROLS, "");
+}
 
 export interface SanitizationResult {
     sanitizedText: string;
@@ -59,10 +63,11 @@ export interface SanitizationResult {
  * Detect injection patterns in text without modifying it
  */
 export function detectInjectionPatterns(text: string): { detected: boolean; patterns: string[] } {
+    const scanText = normalizeForInjectionScan(text);
     const detectedPatterns: string[] = [];
 
     for (const pattern of INJECTION_PATTERNS) {
-        if (pattern.test(text)) {
+        if (pattern.test(scanText)) {
             detectedPatterns.push(pattern.source);
         }
     }
@@ -77,7 +82,7 @@ export function detectInjectionPatterns(text: string): { detected: boolean; patt
  * Check for embedded JSON that looks like output schema injection
  */
 export function detectJsonInjection(text: string): boolean {
-    const matches = text.match(JSON_INJECTION_PATTERN);
+    const matches = normalizeForInjectionScan(text).match(JSON_INJECTION_PATTERN);
     if (!matches) return false;
 
     // Check if any match looks like our output schema fields
@@ -99,7 +104,7 @@ export function detectJsonInjection(text: string): boolean {
  * we escape/neutralize the dangerous patterns while preserving the text for analysis.
  */
 export function neutralizeInjectionPatterns(text: string): string {
-    let neutralized = text.replace(JSON_INJECTION_PATTERN, (match) =>
+    let neutralized = normalizeForInjectionScan(text).replace(JSON_INJECTION_PATTERN, (match) =>
         detectJsonInjection(match) ? "[UNTRUSTED OUTPUT OBJECT REDACTED]" : match
     );
 
@@ -120,13 +125,14 @@ export function neutralizeInjectionPatterns(text: string): string {
  * Full sanitization pipeline for user input
  */
 export function sanitizeUserInput(text: string): SanitizationResult {
-    const detection = detectInjectionPatterns(text);
-    const hasJsonInjection = detectJsonInjection(text);
+    const normalizedText = normalizeForInjectionScan(text);
+    const detection = detectInjectionPatterns(normalizedText);
+    const hasJsonInjection = detectJsonInjection(normalizedText);
 
     // Only neutralize if patterns were detected
     const sanitizedText = detection.detected || hasJsonInjection
-        ? neutralizeInjectionPatterns(text)
-        : text;
+        ? neutralizeInjectionPatterns(normalizedText)
+        : normalizedText;
 
     return {
         sanitizedText,

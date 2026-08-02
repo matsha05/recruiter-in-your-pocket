@@ -11,6 +11,7 @@ import {
 } from "../llm/grounding";
 import type { CheckResult, ErrorCode } from "./types";
 import { EVIDENCE_MAX_LENGTH as MAX_LEN } from "./types";
+import { compareSourceBoundRewrite, resolveUniqueSourceLine } from "../llm/source-fidelity";
 
 const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
 
@@ -98,7 +99,7 @@ export function checkEvidence(
         }
 
         // Normalized substring check
-        if (!containsExactEvidence(resumeText, evidence.excerpt) && !isAcceptedAbsenceMarker(evidence.excerpt, resumeText)) {
+        if (!containsExactEvidence(resumeText, evidence.excerpt) && !isAcceptedAbsenceMarker(evidence.excerpt, resumeText, evidence.section)) {
             results.push({
                 passed: false,
                 code: "E_EVIDENCE_NOT_VERBATIM",
@@ -117,7 +118,7 @@ export function checkEvidence(
             });
         }
 
-        const mismatch = findFixEvidenceMismatch(fix.fix, evidence.excerpt, resumeText);
+        const mismatch = findFixEvidenceMismatch(fix.fix, evidence.excerpt, resumeText, evidence.section);
         if (mismatch.length > 0) {
             results.push({
                 passed: false,
@@ -164,7 +165,8 @@ export function checkRewriteGrounding(
     for (let i = 0; i < rewrites.length; i++) {
         const rewrite = rewrites[i];
         const original = rewrite.original || "";
-        if (!containsExactEvidence(resumeText, original)) {
+        const sourceResolution = resolveUniqueSourceLine(original, resumeText);
+        if (!containsExactEvidence(resumeText, original) || sourceResolution.status === "ambiguous") {
             results.push({
                 passed: false,
                 code: "E_REWRITE_ORIGINAL_NOT_VERBATIM",
@@ -174,6 +176,15 @@ export function checkRewriteGrounding(
         }
 
         const better = rewrite.better || "";
+        const strictComparison = compareSourceBoundRewrite({ sourceText: resumeText, sourceLocator: original, candidate: better });
+        if (!strictComparison.safe) {
+            results.push({
+                passed: false,
+                code: "E_REWRITE_SOURCE_DRIFT",
+                message: `Rewrite ${i + 1} failed strict source fidelity: ${strictComparison.issues.map(issue => issue.detail).join(", ")}`,
+                details: { rewrite_index: i, original_preview: original.slice(0, 80) }
+            });
+        }
         const ungroundedSpecifics = findUngroundedSpecifics(better, resumeText);
         if (ungroundedSpecifics.length > 0) {
             results.push({

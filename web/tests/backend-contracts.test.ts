@@ -164,6 +164,13 @@ const resumeIdeasRoute = fs.readFileSync(
   path.resolve(process.cwd(), "app/api/resume-ideas/route.ts"),
   "utf8",
 );
+const generatedReportStore = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/reports/generated-report-store.ts"),
+  "utf8",
+);
+const exportPdfRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/export-pdf/route.ts"), "utf8");
+const reportsRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/reports/route.ts"), "utf8");
+const reportDetailRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/reports/[id]/route.ts"), "utf8");
 assert.match(defaultResumeRoute, /readJsonWithLimit<any>\(request, 128 \* 1024\)/);
 assert.match(defaultResumeRoute, /MAX_RESUME_CHARACTERS = 30_000/);
 assert.match(defaultResumeRoute, /MAX_FILENAME_CHARACTERS = 255/);
@@ -193,29 +200,19 @@ for (const [name, source] of [
   ["resume feedback", resumeFeedbackRoute],
   ["streaming resume feedback", resumeFeedbackStreamRoute],
 ] as const) {
-  const insertAt = source.indexOf('from("reports").insert');
-  const commitAt = source.indexOf("await commitGenerationAccess", insertAt);
-  const rollbackAt = source.indexOf('from("reports")', commitAt);
-  assert.ok(insertAt >= 0, `${name} must persist a signed-in report`);
-  assert.ok(commitAt > insertAt, `${name} must persist before committing the report credit`);
+  const persistAt = source.indexOf("await persistGeneratedReport");
+  const commitAt = source.indexOf("await commitGenerationAccess", persistAt);
+  const rollbackAt = source.indexOf("await rollbackGeneratedReport", commitAt);
+  assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
+  assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
   assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
-  assert.match(
-    source,
-    /const \{ error: reportInsertError \} = await [\s\S]+if \(reportInsertError\) \{[\s\S]+throw reportPersistenceError\(\)/,
-    `${name} must check the report insert result and fail closed`,
-  );
-  assert.match(
-    source,
-    /\.delete\(\)[\s\S]+\.eq\("id", reportId\)[\s\S]+\.eq\("user_id", user\.id\)/,
-    `${name} rollback must be scoped to the generated report and authenticated owner`,
-  );
   assert.doesNotMatch(source, /jobDescription\.length\s*>\s*50/, `${name} must not threshold JD presence`);
   assert.equal(
     source.match(/effectiveJobDescription\.validationOptions/g)?.length,
     2,
     `${name} normal and repair validation must share effective JD options`,
   );
-  assert.match(source, /job_description_text:\s*effectiveJobDescription\.persistenceText/);
+  assert.match(source, /jobDescriptionText:\s*effectiveJobDescription\.persistenceText/);
   assert.match(source, /buildResumeProviderMessages\(/);
   assert.match(source, /has_job_description:\s*effectiveJobDescription\.hasValue/);
   assert.doesNotMatch(
@@ -224,6 +221,23 @@ for (const [name, source] of [
     `${name} prompt must never interpolate the raw normalized JD`,
   );
 }
+assert.match(generatedReportStore, /from\("reports"\)\.insert/);
+assert.match(generatedReportStore, /if \(reportInsertError\)[\s\S]+throw persistenceError\(\)/);
+assert.match(generatedReportStore, /from\("reports"\)\.delete\(\)[\s\S]+\.eq\("id", input\.reportId\)\.eq\("user_id", input\.userId\)/);
+
+assert.match(exportPdfRoute, /parsePdfExportRequest\(body\)/);
+assert.doesNotMatch(exportPdfRoute, /body\?\.report|normalizeReportForPdf\(body/);
+assert.match(exportPdfRoute, /select\("report_json, evidence_version"\)/);
+assert.match(exportPdfRoute, /\.eq\("id", exportRequest\.report_id\)[\s\S]+\.eq\("user_id", user\.id\)/);
+assert.match(exportPdfRoute, /parseTrustedStoredReport\(stored\.report_json, stored\.evidence_version\)/);
+assert.ok(
+  exportPdfRoute.indexOf("await supabase.auth.getUser()") < exportPdfRoute.indexOf("isDevelopmentPaywallBypassEnabled()"),
+  "development paywall bypass must never bypass report ownership authentication",
+);
+assert.match(reportsRoute, /ResumeFeedbackResponseSchema\.safeParse\(reportWithoutReceipt\)/);
+assert.match(reportsRoute, /verifyValidatedReportReceipt\(parsed\.data, receipt\)/);
+assert.match(reportDetailRoute, /parseTrustedStoredReport\(data\.report_json, data\.evidence_version\)/);
+assert.match(reportDetailRoute, /report:\s*\{ \.\.\.trustedReport, report_id: reportId \}/);
 assert.match(resumeProviderMessages, /effectiveJobDescription\.promptBlock/);
 assert.match(resumeProviderMessages, /systemPrompt \+= INJECTION_RESISTANCE_SUFFIX/);
 assert.match(workspaceClient, /Analytics\.reportStarted\(hasJobDescription\)/);

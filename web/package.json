@@ -40,7 +40,7 @@
     "test:supabase-config": "node scripts/run-ts-test.cjs tests/supabase-config.test.ts",
     "test:backend-contracts": "node scripts/run-ts-test.cjs tests/backend-contracts.test.ts && node scripts/run-ts-test.cjs tests/prompt-assets.test.ts",
     "test:llm-contract": "node scripts/run-ts-test.cjs tests/llm-response-contract.test.ts",
-    "test:source-fidelity": "node scripts/run-ts-test.cjs tests/report-source-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-narrative-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-role-fidelity.test.ts",
+    "test:source-fidelity": "node scripts/run-ts-test.cjs tests/report-source-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-narrative-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-role-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-fidelity-regressions.test.ts",
     "test:stream-contract": "node scripts/run-ts-test.cjs tests/stream-completion-contract.test.ts",
     "test:privacy-lifecycle": "node scripts/run-ts-test.cjs tests/account-privacy-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/account-export-job.test.ts",
     "test:vendor-privacy": "node scripts/run-ts-test.cjs tests/vendor-privacy.test.ts",

@@ -113,7 +113,6 @@ export function checkSchema(output: unknown, expectedContractVersion: string): C
 
     return results;
 }
-
 // ============================================
 // SCORE CHECKS
 // ============================================
@@ -201,4 +200,3 @@ export function checkSubscoreDrift(
 
     return results;
 }
-

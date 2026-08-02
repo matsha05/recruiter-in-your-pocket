@@ -112,4 +112,3 @@ assert.deepEqual(
   [],
   "a labelled bracket placeholder does not assert an outcome",
 );
-

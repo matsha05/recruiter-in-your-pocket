@@ -4,6 +4,7 @@ import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
 import { removeUnsafeRewrites } from "../llm/source-fidelity";
+import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -141,6 +142,14 @@ export function validateResumeModelPayload(
   const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
   if (resumeText && shouldGround) {
+    const ambiguousLocators = ambiguousReportSourceLocators(obj, resumeText);
+    if (ambiguousLocators.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response used ambiguous source evidence: ${ambiguousLocators.join(", ")}.`,
+        502,
+      );
+    }
     obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
     obj = removeUnsafeRewrites(obj, resumeText).report;
   }

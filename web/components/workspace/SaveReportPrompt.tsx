@@ -94,7 +94,8 @@ export default function SaveReportPrompt({
                         {loading ? "Opening secure sign-in…" : "Sign in and keep this report"}
                     </Button>
 
-                    <button type="button"
+                    <Button type="button"
+                        variant="ghost"
                         onClick={() => {
                             Analytics.track('save_prompt_dismissed', { score });
                             onClose();
@@ -102,7 +103,7 @@ export default function SaveReportPrompt({
                         className="min-h-11 w-full text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                         Maybe later
-                    </button>
+                    </Button>
                 </div>
 
                 <p className="mt-4 text-center text-xs text-muted-foreground">

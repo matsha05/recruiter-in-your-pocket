@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { logError } from "@/lib/observability/logger";
+import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json, job_description_text, target_role, resume_variant")
+      .select("report_json, evidence_version, job_description_text, target_role, resume_variant")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -48,9 +49,17 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       );
     }
 
+    const trustedReport = parseTrustedStoredReport(data.report_json, data.evidence_version);
+    if (!trustedReport) {
+      return NextResponse.json(
+        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report must be rerun before it can be displayed.", report: null },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json({
       ok: true,
-      report: data.report_json,
+      report: { ...trustedReport, report_id: reportId },
       jdPreview: data.job_description_text?.slice(0, 200) || null,
       targetRole: data.target_role || null,
       resumeVariant: data.resume_variant || null

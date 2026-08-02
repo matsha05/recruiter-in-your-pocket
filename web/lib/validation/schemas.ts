@@ -180,14 +180,14 @@ export function assertReportGrounding(
     const inventedSpecifics: string[] = [];
 
     for (const [index, fix] of report.top_fixes.entries()) {
-        if (!containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText)) {
+        if (!containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText, fix.evidence.section)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
         }
         const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, fix.evidence.excerpt, resumeText);
         if (alreadySatisfied.length > 0) {
             inventedSpecifics.push(`top_fixes[${index}].fix contradicted by resume: ${alreadySatisfied.join(", ")}`);
         }
-        const evidenceMismatch = findFixEvidenceMismatch(fix.fix, fix.evidence.excerpt, resumeText);
+        const evidenceMismatch = findFixEvidenceMismatch(fix.fix, fix.evidence.excerpt, resumeText, fix.evidence.section);
         if (evidenceMismatch.length > 0) {
             inventedSpecifics.push(`top_fixes[${index}].evidence mismatch: ${evidenceMismatch.join(", ")}`);
         }
