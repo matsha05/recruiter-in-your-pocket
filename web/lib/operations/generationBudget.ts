@@ -27,6 +27,9 @@ export type GenerationBudgetStatus = {
   reason: "ok" | "disabled" | "unconfigured" | "paused" | "limit_reached" | "storage_unavailable";
 };
 
+export const DAILY_CAPACITY_EXHAUSTED_MESSAGE =
+  "Today's beta report capacity has been reached. Please try again tomorrow.";
+
 export class GenerationBudgetError extends Error {
   code: "GENERATION_PAUSED" | "GENERATION_BUDGET_EXHAUSTED" | "GENERATION_BUDGET_UNAVAILABLE";
   httpStatus = 503;
@@ -109,7 +112,7 @@ export async function assertGenerationCapacity(): Promise<void> {
   if (status.reason === "limit_reached") {
     throw new GenerationBudgetError(
       "GENERATION_BUDGET_EXHAUSTED",
-      "Report generation has reached today's safety limit. Please try again tomorrow or contact support."
+      DAILY_CAPACITY_EXHAUSTED_MESSAGE
     );
   }
   throw new GenerationBudgetError(

@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { IconProps } from "@phosphor-icons/react";
 import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react";
+import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 
 export type LegalIcon = ComponentType<IconProps>;
@@ -247,7 +248,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "Your first report is free. When paid access is open, one $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try " },
+            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} When paid access is open, one $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
             { type: "text", value: " before contacting Support." },
           ],
@@ -363,7 +364,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "Is the first report really free?",
-                a: "Yes. One complete report, free, no credit card.",
+                a: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary}`,
               },
               {
                 q: "What is the Job Search Pass?",

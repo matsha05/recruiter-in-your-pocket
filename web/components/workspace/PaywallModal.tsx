@@ -19,6 +19,7 @@ import { getUnlockContext, type UnlockContext, type UnlockSection } from "@/lib/
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { saveCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import Link from "next/link";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -32,12 +33,15 @@ interface PaywallModalProps {
     } | null;
 }
 
+const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB_SEARCH_PASS_DECISION.whenToBuy}`;
+const ADDITIONAL_REPORTS_BULLET = "5 additional reports";
+
 const DEFAULT_UNLOCK_COPY = {
     label: "Job Search Pass",
     title: "Run another report",
-    subtitle: "Your free report stays available. The Job Search Pass adds five careful recruiter-style reports for the revisions and applications that matter most.",
+    subtitle: COMPLETE_REPORT_SUBTITLE,
     bullets: [
-        "5 additional full reports",
+        ADDITIONAL_REPORTS_BULLET,
         "Reviews tailored to a job posting",
         "Side-by-side revision comparisons",
         "Saved history and PDF exports"
@@ -47,57 +51,57 @@ const DEFAULT_UNLOCK_COPY = {
 const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     evidence_ledger: {
         label: "Evidence Ledger",
-        title: "See the rest of the evidence",
-        subtitle: "Your free report stays available. The Job Search Pass adds five more reports for other roles or revisions.",
+        title: "Apply the evidence to your next report",
+        subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
-            "The resume line behind each recommendation",
-            "Confidence and effort labels",
-            "Suggested rewrites tied to the resume",
-            "Saved report history"
+            ADDITIONAL_REPORTS_BULLET,
+            "Evidence-backed recommendations for another role or revision",
+            "Suggested rewrites tied to that resume",
+            "Saved report history and PDF exports"
         ]
     },
     bullet_upgrades: {
         label: "Suggested rewrites",
-        title: "See all suggested rewrites",
-        subtitle: "Your free report stays available. The Job Search Pass adds more reports for the revisions you want to compare.",
+        title: "Compare rewrites after you revise",
+        subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
-            "More rewrites across resume versions",
+            ADDITIONAL_REPORTS_BULLET,
+            "New rewrites for each revised resume",
             "The original beside every suggestion",
-            "Why each change may help",
-            "Reports for different roles"
+            "Why each change may help"
         ]
     },
     missing_wins: {
         label: "Details to add",
-        title: "See all questions to answer",
-        subtitle: "The Job Search Pass gives you five more reports to answer the open questions, revise, and compare the new read.",
+        title: "Check the details you add",
+        subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
-            "All questions raised by the resume",
-            "Why each detail matters",
-            "A clear place to start",
-            "Saved report versions"
+            ADDITIONAL_REPORTS_BULLET,
+            "New questions raised by a revised resume",
+            "Why each new detail matters",
+            "A clear comparison with the earlier read"
         ]
     },
     job_alignment: {
         label: "Fit for the role",
-        title: "See the full role comparison",
-        subtitle: "Compare the resume with specific job postings and keep each report with the application it supports.",
+        title: "Review another role",
+        subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
+            ADDITIONAL_REPORTS_BULLET,
+            "Compare a resume with specific job postings",
             "Relevant experience and open gaps",
-            "Job match score and missing details",
-            "A role-specific positioning suggestion",
-            "Saved report history"
+            "A role-specific positioning suggestion"
         ]
     },
     export_pdf: {
         label: "Export",
-        title: "Export your report",
-        subtitle: "Download and keep reports after the free in-browser read.",
+        title: "Add PDF exports to your search",
+        subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
+            ADDITIONAL_REPORTS_BULLET,
             "PDF export for saved reports",
             "Export without re-running",
-            "Restore access if anything looks locked",
-            "More reports when you need them"
+            "Saved report history"
         ]
     }
 };
@@ -225,25 +229,19 @@ export default function PaywallModal({
                     <DialogDescription className="text-sm">
                         {unlockCopy.subtitle}
                     </DialogDescription>
-                    <p className="text-xs text-muted-foreground">
-                        You&apos;ve used your free report.
-                    </p>
                 </DialogHeader>
 
                 <div className="mb-5 gap-y-3 border-y border-line bg-surface-sky/45 px-4 py-4">
                     <div className="flex items-center justify-between text-xs uppercase tracking-wide text-muted-foreground">
-                        <span>Included with the pass</span>
-                        <span className="text-foreground/80">{unlockCopy.label}</span>
+                        <span>What the pass adds</span>
+                        <span data-testid="paywall-context-label" className="text-foreground/80">{unlockCopy.label}</span>
                     </div>
                     <UnlockValueList items={unlockCopy.bullets} dense />
                     {unlockContext?.section && (
                         <p className="text-xs text-muted-foreground">
-                            We saved your place in <span className="text-foreground font-medium">{unlockCopy.label}</span>.
+                            Your earlier context: <span className="text-foreground font-medium">{unlockCopy.label}</span>.
                         </p>
                     )}
-                    <p className="text-xs text-muted-foreground">
-                        Your free report stays available. Buy the pass only when you want to revise, compare, or review more roles.
-                    </p>
                 </div>
 
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
@@ -252,7 +250,7 @@ export default function PaywallModal({
                         <p className="mt-1 text-xs font-semibold uppercase riyp-track-010 text-brand">One payment</p>
                     </div>
                     <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
-                        Five careful reports over 30 days. No automatic renewal.
+                        Five additional reports. {JOB_SEARCH_PASS_DECISION.terms}
                     </div>
                 </div>
 

@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
+import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { ReadComparison } from "./ReadComparison";
 import styles from "./ReportStream.module.css";
 
@@ -54,7 +55,7 @@ const fixTrace = [
 ];
 
 const BETA_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=${encodeURIComponent(
-    "Paid beta report feedback",
+    "Beta report feedback",
 )}&body=${encodeURIComponent(
     [
         "What felt immediately useful?",
@@ -66,6 +67,12 @@ const BETA_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=${e
         "Optional: Did the score feel like a document review, or did it mean something else to you?",
     ].join("\n"),
 )}`;
+
+function fixPlanHeadingForCount(count: number) {
+    if (count === 1) return "One move. Start here.";
+    if (count === 2) return "Two moves. In order.";
+    return "Three moves. In order.";
+}
 
 function evidenceFor(fix?: Fix) {
     if (!fix?.evidence) return undefined;
@@ -542,7 +549,7 @@ export function ReportStream({
                     <div>
                         <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Fix these first</p>
                         <h2 className="mt-3 font-display text-[clamp(2.3rem,6vw,4.5rem)] riyp-weight-520 leading-none tracking-[-0.04em] text-foreground">
-                            Three moves. In order.
+                            {fixPlanHeadingForCount(fixes.length)}
                         </h2>
                     </div>
                     <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">
@@ -612,7 +619,7 @@ export function ReportStream({
                 </section>
             )}
 
-            <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]">
+            <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
                         <span className="text-sm font-semibold text-foreground">How the clarity summary breaks down</span>
@@ -623,7 +630,9 @@ export function ReportStream({
                 <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
                     <div>
                         <p className="font-display text-5xl riyp-weight-520 leading-none text-foreground">{report.score ?? "—"}</p>
-                        <p className="mt-2 text-xs text-muted-foreground">Not a prediction of interviews or offers.</p>
+                        <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                            A document-clarity read across the four signals shown here. It is not a prediction of interviews or offers, and the four signals are not presented as a simple average.
+                        </p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
                         {Object.entries(report.subscores || {}).map(([label, score]) => (
@@ -637,7 +646,11 @@ export function ReportStream({
             </details>
 
             {!isSample && onStartRevision && (
-                <section className={styles.revisionSection} aria-labelledby="revision-loop-title">
+                <section
+                    className={styles.revisionSection}
+                    aria-labelledby="revision-loop-title"
+                    data-testid={isExhausted ? "post-report-purchase-decision" : undefined}
+                >
                     <div className={styles.revisionPanel}>
                         <div>
                             <div className="flex items-center gap-2 text-brand">
@@ -648,16 +661,18 @@ export function ReportStream({
                                 Run the new version. Compare the read.
                             </h2>
                             <p className={styles.revisionCopy}>
-                                Upload the revised resume and we&apos;ll place the two opening reads side by side—what changed, what still needs context, and what to fix next.
+                                {isExhausted
+                                    ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
+                                    : <>Upload the revised resume and we&apos;ll place the two opening reads side by side: what changed, what still needs context, and what to fix next.</>}
                             </p>
                         </div>
                         <div className={styles.revisionAction}>
                             <Button variant={isExhausted ? "premium" : "brand"} size="lg" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
-                                {isExhausted ? "Unlock the second read" : "Review the revised resume"}
+                                {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : "Review the revised resume"}
                                 <ArrowRight className="ml-2 size-4" weight="bold" />
                             </Button>
                             <p className={styles.revisionNote}>
-                                {isExhausted ? "Another report requires paid access." : "The comparison stays in this browser visit."}
+                                {isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison stays in this browser visit."}
                             </p>
                         </div>
                     </div>
@@ -665,7 +680,7 @@ export function ReportStream({
             )}
 
             {!isSample && (
-                <section className={styles.feedbackSection} aria-labelledby="beta-feedback-title">
+                <section className={styles.feedbackSection} aria-labelledby="beta-feedback-title" data-testid="beta-feedback">
                     <div className={styles.feedbackRule} aria-hidden="true" />
                     <div className={styles.feedbackContent}>
                         <div>
@@ -674,7 +689,7 @@ export function ReportStream({
                                 What did this report get right—or miss?
                             </h2>
                             <p className={styles.feedbackCopy}>
-                                This is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
+                                This beta is small, and I read every note, especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
                             </p>
                         </div>
                         <div className={styles.feedbackAction}>
@@ -684,6 +699,7 @@ export function ReportStream({
                                     <EnvelopeSimple className="ml-1 size-4 text-brand" weight="bold" />
                                 </a>
                             </Button>
+                            <p className={styles.feedbackNote}>{FREE_REPORT_ENTITLEMENT.promise} {FREE_REPORT_ENTITLEMENT.boundary}</p>
                             <p className={styles.feedbackNote}>Three prompts open in your email. Your resume is never attached.</p>
                         </div>
                     </div>
