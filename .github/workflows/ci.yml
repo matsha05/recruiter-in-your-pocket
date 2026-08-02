@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -74,6 +76,15 @@ jobs:
 
       - name: Accessibility baseline
         run: npm run test:accessibility
+
+      - name: Paid decision lifecycle UI
+        run: npx playwright test tests/ui/paid-decision.spec.ts --project=chromium --workers=1
+        env:
+          FORCE_NEXT_BUILD: "1"
+          USE_MOCK_OPENAI: "1"
+          NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true"
+          NEXT_PUBLIC_SUPABASE_URL: "https://riyp-test.supabase.co"
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: "riyp-test-anon-key"
 
       - name: Critical matching coverage
         run: npm run test:critical-coverage

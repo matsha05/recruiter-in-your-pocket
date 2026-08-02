@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "software-engineering-mid-strong",
+  "candidateArtifactSha256": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+  "assessor": "source-reviewer-2",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "meets_or_beats",
+      "evidence": "The evidence-to-claim chain is visible, exact, and placeholder-safe.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "Exact BrightWave and career-break lines receive precise missing-fact requests.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "Two counted fixes include editable drafts and an explicit rerun loop.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

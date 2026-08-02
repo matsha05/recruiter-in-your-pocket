@@ -1,0 +1,2285 @@
+{
+  "kind": "historical-live-eval-synthetic-subset",
+  "results": [
+    {
+      "caseId": "staff-ml-elite",
+      "fixtureId": "anchor_elite_ml_staff_1",
+      "report": {
+        "biggest_gap_example": "\"Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.\" lacks scale or a concrete incident result, so the operational burden is hard to judge.",
+        "content_score": 92,
+        "contract_version": "v2",
+        "first_impression": "This is an unusually quantitative Staff ML resume, with recommendation, ads, and forecasting work tied to user, revenue, and infrastructure results. The stray \"javascript\" entry and a few less-specific leadership bullets interrupt an otherwise clear senior-level read.",
+        "first_impression_takeaway": "Show the stray skills entry",
+        "gaps": [
+          "The resume shows what you improved, but gives little detail on experiment design, rollout decisions, or how you separated model effects from other changes.",
+          "The leadership bullets describe mentoring and reviews without showing the decisions you made, the audiences involved, or the resulting change in team or model practice.",
+          "The recent work is concentrated at Nimbus, so the resume gives limited context on organizational scale, product constraints, or ownership beyond the listed systems."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "When did watch time and subscription conversion move differently, and how did you choose the ranking tradeoff?",
+              "why": "Your ranking work reports both measures, but the decision tension between them is not visible."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "What changed in the architecture or operating model to serve a 200M monthly active user platform?",
+              "why": "The user scale is clear; the engineering choices that made it workable would sharpen the Staff-level story."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "Describe a personalization incident where guardrails, latency, or model quality forced a difficult production decision.",
+              "why": "The resume names monitoring and fairness reviews, but not a concrete high-pressure judgment."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "Which part of the offline evaluation harness removed the most iteration time from weeks to days?",
+              "why": "The time reduction is strong, and explaining the mechanism would make the improvement more transferable."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did Legal and Policy change the quarterly personalization audit process or its launch decisions?",
+              "why": "The partnership is named, but the practical consequence of that collaboration is not stated."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around large-scale ranking and recommendation systems with unusually clear business and infrastructure results. For Staff or Principal ML roles, bring the leadership decisions and cross-functional operating model closer to the foreground.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Staff Machine Learning Engineer, Recommendations",
+              "Staff Machine Learning Engineer, Ranking",
+              "Staff Machine Learning Engineer, Ads Quality",
+              "Staff Machine Learning Engineer, ML Platform"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Financial services",
+              "Retail",
+              "Logistics"
+            ],
+            "seniority_read": "Staff-level roles are well supported by the current title, technical lead responsibility, 200M monthly active user platform, and mentoring of 9 technical practitioners.",
+            "stretch_roles": [
+              "Principal Machine Learning Engineer",
+              "ML Engineering Manager"
+            ]
+          },
+          "strongly_aligned": [
+            "Large-scale recommendation and ranking systems",
+            "Revenue and engagement optimization",
+            "Production ML infrastructure and serving",
+            "Experimentation and offline evaluation",
+            "Cross-functional work with product, infra, Legal, Policy, sales, finance, supply chain, and operations"
+          ],
+          "underplayed": [
+            "Technical decisions behind the two-stage ranking architecture",
+            "Leadership through model audits, experiment standards, and decision memos",
+            "Production reliability ownership across monitoring, retraining, and incident response"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Use the next pass on the earlier experience bullet with the weakest verified outcome.",
+          "Rewrite the least-specific leadership and production bullets around the decision made, the affected audience or system, and the verified result; use brackets where the fact is unavailable.",
+          "Add a short context clause to the strongest recent bullets where useful, especially the ranking, embedding-service, and model-audit work, so ownership is easier to distinguish from partnership."
+        ],
+        "rewrites": [
+          {
+            "better": "Maintained production model performance and data pipelines through monitoring, retraining, and incident response; [incident resolution time or service-level result].",
+            "enhancement_note": "Add the production scale or a representative incident result so this bullet carries the same weight as your quantified modeling work.",
+            "label": "Production operations",
+            "original": "Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response."
+          },
+          {
+            "better": "Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy; scope: [specific scope]; outcome: [measurable result].",
+            "enhancement_note": "Add the number of models, review findings, or launch decisions affected to show what the audit process changed.",
+            "label": "Model governance",
+            "original": "Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy."
+          },
+          {
+            "better": "Mentored a team of 6 ML engineers and 3 data scientists by setting expectations for experiment design, readable dashboards, and defensible decision memos; [team or delivery improvement].",
+            "enhancement_note": "Add one verified change in team practice, delivery cadence, or decision quality to make the mentoring work concrete.",
+            "label": "Technical leadership",
+            "original": "Mentored a team of 6 ML engineers and 3 data scientists, driving a culture of clear experiment design, readable dashboards, and defensible decision memos."
+          }
+        ],
+        "score": 92,
+        "score_comment_long": "The recent work is dense with scale and results: 200M monthly active users, 1B plus daily ad requests, revenue growth, and latency reductions. A few bullets still describe leadership or operations without showing what changed afterward. Tightening those lines and removing the stray skills entry would make the resume easier to trust at a higher Staff or Principal bar.",
+        "score_comment_short": "Quantified ML results and system scale are unusually strong; leadership and operational details remain uneven.",
+        "score_label": "Clear and specific",
+        "score_plain": "This resume should compete well for Staff ML roles in ranking, recommendations, ads, and ML infrastructure. The remaining edits mainly determine whether a reviewer sees broad technical leadership or mainly excellent individual projects.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "A-",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "Both degrees are relevant, and the machine learning focus is stated directly."
+          },
+          "Skills": {
+            "fix": "Remove the standalone \"javascript\" entry and keep the taxonomy consistent, including \"A B testing\" as \"A/B testing\" if accurate.",
+            "grade": "B+",
+            "missing": "The section does not show proficiency or recency, and the stray entry looks like an editing artifact.",
+            "priority": "Medium",
+            "working": "The tools are grouped sensibly across languages, ML, systems, domains, and practices."
+          },
+          "Summary": {
+            "fix": "Replace broad claims such as \"Strong at partnering\" with one compact example tied to ranking, revenue, or infrastructure.",
+            "grade": "A-",
+            "missing": "The summary does not distinguish your technical leadership decisions from your collaboration responsibilities.",
+            "priority": "Medium",
+            "working": "It identifies Staff-level ML, recommendation and ranking focus, user scale, and business outcomes."
+          },
+          "Work Experience": {
+            "fix": "Add one verified result or operating detail to the mentoring, audit, and production-maintenance bullets.",
+            "grade": "A",
+            "missing": "A few bullets lack a concrete consequence, despite the surrounding roles being highly quantified.",
+            "priority": "Medium",
+            "working": "The experience section gives clear progression and several excellent mechanism-to-result examples."
+          }
+        },
+        "strengths": [
+          "The two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.",
+          "The ads quality role links calibrated probabilities and down-funnel metrics to an estimated 22 million dollars per year in net new revenue, which makes the business value easy to understand.",
+          "The career progression from demand forecasting to ads quality to personalization shows a consistent production ML path across retail, advertising, and streaming."
+        ],
+        "subscores": {
+          "clarity": 94,
+          "impact": 95,
+          "readability": 91,
+          "story": 92
+        },
+        "summary": "The clearest value here is production ML at meaningful scale: recommendation systems for 200M monthly active users, ads models handling 1B plus daily requests, and forecasting across three product categories. Your progression supports Staff-level individual contributor roles, with technical leadership shown through architecture changes, infrastructure partnerships, and mentoring 6 ML engineers plus 3 data scientists. The main question is how your governance, mentoring, and incident work changed decisions or team performance, which affects the case for Principal-level breadth. That part works: the business results are specific enough to keep the resume grounded.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The bullet lists important operational duties but gives no way to judge the size or consequence of that responsibility."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "vp-talent-elite",
+      "fixtureId": "anchor_elite_vp_talent_1",
+      "report": {
+        "biggest_gap_example": "\"Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.\" shows company growth but not your hiring volume or contribution, so the recruiter cannot place your role in that scale.",
+        "content_score": 91,
+        "contract_version": "v2",
+        "first_impression": "This is a senior recruiting executive resume with unusually strong operating metrics at Helios. The older roles establish progression, but several bullets describe programs without showing their business result.",
+        "first_impression_takeaway": "Quantify the earlier wins",
+        "gaps": [
+          "Northline's forecasting and requisition approval work has no stated change in budget variance, approval speed, or backfill volume.",
+          "BrightSide shows team-building and executive hiring, but not hiring volume, time period, or result for those searches.",
+          "The summary mentions quality of hire and cost per hire, while the experience section does not show those measures directly."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "What changed in quality of hire after the Helios recruiting funnel rebuild?",
+              "why": "The summary names quality of hire, but the Helios bullets quantify funnel and acceptance changes instead."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How many hires did the 65 plus person Helios organization deliver during growth from 800 to 2,300 employees?",
+              "why": "The organization and company growth are clear, but hiring volume would show the operating scale."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What hiring tradeoff did you manage while improving onsite to offer and offer acceptance?",
+              "why": "The funnel metrics are strong, and the decision-making behind maintaining the bar would add useful senior-level context."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "Which recruiter behavior changed after the Northline playbooks raised productivity from 3.1 to 4.5 hires per month?",
+              "why": "The productivity result is useful, but the mechanism is currently compressed into a program label."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did CEO and board priorities shape the VP Sales, VP Product, and VP Engineering searches at BrightSide?",
+              "why": "The senior stakeholders and roles are named, but the complexity of those searches is not yet visible."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself for VP Talent Acquisition and recruiting executive roles at scaling technology companies. Lead with global team size, workforce planning, funnel economics, hiring quality, and leadership development, then use earlier roles to show you built functions from the ground up.",
+          "role_fit": {
+            "best_fit_roles": [
+              "VP, Talent Acquisition",
+              "Chief Talent Officer",
+              "Head of Talent Acquisition",
+              "Recruiting Executive"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Financial services",
+              "Technology"
+            ],
+            "seniority_read": "VP-level recruiting executive with responsibility for a 65 plus person global organization and partnership with CEO, CHRO, and functional VPs.",
+            "stretch_roles": [
+              "Chief People Officer",
+              "Chief Human Resources Officer"
+            ]
+          },
+          "strongly_aligned": [
+            "Global recruiting organization leadership",
+            "Executive partnership and workforce planning",
+            "Technical, product, go-to-market, and enterprise sales hiring",
+            "Structured interviewing and hiring quality",
+            "Recruiting systems and process improvement"
+          ],
+          "underplayed": [
+            "Budget ownership and financial tradeoffs",
+            "Board-level influence beyond executive search partnership",
+            "Quality-of-hire measurement",
+            "Scope of total hiring volume across roles and regions"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Keep the Helios metrics, then add the total hiring volume and annual requisition load behind the 65 plus person organization.",
+          "Rewrite the Northline and BrightSide bullets around the mechanism, hiring scale, and measurable result; use brackets for facts you need to verify.",
+          "Align the summary with the metrics actually shown, or add direct quality-of-hire and cost-per-hire results if those measures are available."
+        ],
+        "rewrites": [
+          {
+            "better": "Scaled Northline Technologies from 300 to 1,000 employees through R D and enterprise sales hiring; hiring volume: [total hires].",
+            "enhancement_note": "Add the number of hires and the period covered so company growth is tied to your recruiting contribution.",
+            "label": "Northline company scaling",
+            "original": "Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring."
+          },
+          {
+            "better": "Partnered with Finance to establish headcount forecasting and requisition approval for R D and enterprise sales hiring; budget variance: [X%] and last-minute backfills: [change].",
+            "enhancement_note": "Add the budget and backfill result to show what the process changed for the business.",
+            "label": "Northline forecasting process",
+            "original": "Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last minute backfills."
+          },
+          {
+            "better": "Built BrightSide Digital's recruiting function from 3 to 15 people and established the company's first structured hiring process; hiring result: [number of hires or change in time to fill].",
+            "enhancement_note": "Add a hiring or speed result to show what the new function delivered beyond its size.",
+            "label": "BrightSide recruiting function",
+            "original": "Built the recruiting function from 3 to 15 people and established the company’s first structured hiring process."
+          }
+        ],
+        "score": 91,
+        "score_comment_long": "Helios is unusually well quantified, with team scale, workforce planning, funnel conversion, hiring quality, systems, and leadership development all visible. The earlier roles show progression but leave hiring volume and business results less defined. Add those missing measures and reconcile the summary's quality-of-hire and cost-per-hire claims with the experience bullets.",
+        "score_comment_short": "Helios has strong metrics; earlier roles still need hiring volume and business results.",
+        "score_label": "Clear and specific",
+        "score_plain": "This resume should compete well for VP Talent Acquisition searches. Recruiters may still probe the older roles because their results are less measurable than Helios.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "A",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The degree and field are clear and appropriately concise."
+          },
+          "Skills": {
+            "fix": "Group the systems and practices around the target role, and remove or add tools only based on actual depth.",
+            "grade": "A-",
+            "missing": "The list names relevant systems and recruiting practices but does not show depth or ownership for each.",
+            "priority": "Low",
+            "working": "Skills cover hiring, leadership, systems, and structured recruiting practices that match the experience."
+          },
+          "Summary": {
+            "fix": "Replace the broad quality-of-hire and cost-per-hire claims with the specific Helios measures shown below, or add the direct measures if verified.",
+            "grade": "A-",
+            "missing": "The summary names quality of hire and cost per hire without directly quantified support in the experience section.",
+            "priority": "Medium",
+            "working": "It quickly establishes fifteen plus years, high-growth technology, executive partnership, and recruiting-funnel ownership."
+          },
+          "Work Experience": {
+            "fix": "Add hiring volume and measurable business results to the Northline and BrightSide bullets while preserving the strong Helios metrics.",
+            "grade": "A",
+            "missing": "The earlier roles do not consistently show requisition volume, time period, or business result.",
+            "priority": "High",
+            "working": "Helios presents clear executive scope and quantified changes across planning, funnel performance, hiring quality, systems, and leadership."
+          }
+        },
+        "strengths": [
+          "Helios combines a 65 plus person global team with coverage across engineering, product, go-to-market, and G A, making the operating remit easy to place.",
+          "The funnel metrics move from 21 percent to 33 percent onsite-to-offer and from 76 percent to 89 percent offer acceptance, which gives the recruiting work a concrete business shape.",
+          "The leadership bench includes 4 Directors of TA, with 2 promoted internally, showing that team development was part of the role rather than an aside."
+        ],
+        "subscores": {
+          "clarity": 92,
+          "impact": 92,
+          "readability": 90,
+          "story": 91
+        },
+        "summary": "The Helios role clearly supports VP-level Talent Acquisition leadership: you run a 65 plus person global organization while the company grows from 800 to 2,300 employees. Your strongest work connects planning, funnel design, structured interviews, systems, and leadership development to measurable changes such as 91 percent hiring-plan accuracy and a 35 percent reduction in first-six-month mis-hires. Earlier roles show a consistent build-and-scale progression, from 3 to 15 recruiters at BrightSide to 120 plus early-career hires at Northline. The remaining question is whether the summary's quality-of-hire and cost-per-hire claims can be tied to numbers, because that affects how confidently a recruiter can assess your business impact.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [total hires], [annual requisition volume], and [share of company growth] to the Northline scaling bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Company headcount growth alone does not show how much of the recruiting work you personally directed."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last",
+              "section": "Work Experience"
+            },
+            "fix": "Add [budget variance change] and [reduction in backfills or approval time] to the Northline forecasting bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The process is clear, but the business consequence remains too general for a VP-level resume."
+          },
+          {
+            "confidence": "medium",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "Led hiring for critical roles including VP Sales, VP Product, and VP Engineering, partnering closely with the CEO and board.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [number of executive hires], [time to fill], and [retention or business result] to the BrightSide executive hiring bullet.",
+            "impact_level": "medium",
+            "section_ref": "Work Experience",
+            "why": "The titles and stakeholders establish importance, but a result would show what those searches delivered."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "data-science-senior-elite",
+      "fixtureId": "synth_data_scientist_senior_elite_1",
+      "report": {
+        "biggest_gap_example": "\"I collaborated closely with product and engineering teams to ship analytics dashboards used by 500+ compliance officers, improving fraud response times by 50%.\" shows the result but not your specific product or engineering decisions.",
+        "content_score": 92,
+        "contract_version": "v2",
+        "first_impression": "This is a results-heavy senior data science resume with unusually clear business measures: readmissions, fraud losses, revenue, uptime, and model performance. The story is easy to place technically, though the repeated first-person phrasing makes it read more like a project log than a polished leadership resume.",
+        "first_impression_takeaway": "Lead with measurable business outcomes",
+        "gaps": [
+          "The resume shows leadership at team sizes of 8, 5, and 4, but does not explain hiring, performance management, roadmap ownership, or budget responsibility.",
+          "Several collaboration bullets name partner functions without showing the decision you made, the tradeoff you handled, or the part you personally owned.",
+          "The headline combines Data Scientist, Technical Lead, and AI expertise without naming the target lane, so recruiters may not know whether to consider you for people leadership, staff-level IC work, or both."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "Why did you choose GPU-accelerated deep learning over the existing fraud approach, and what tradeoff did you accept?",
+              "why": "The fraud bullet shows a technical decision and results, but not the constraint behind it."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How did the readmission platform handle decision support for 150K patients monthly?",
+              "why": "The volume is substantial; the resume does not explain architecture, team process, or operational scale."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "How did you maintain a 98% detection rate while cutting fraud false positives by 18%?",
+              "why": "This result invites a concrete explanation of validation, monitoring, and risk controls."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What changed in your model validation practices before model errors fell 22%?",
+              "why": "The mentoring bullet names the improvement but not the specific practice that produced it."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did marketing and sales leadership use the A/B testing framework to change product strategy?",
+              "why": "The partnership is clear, but the decision path from testing to strategy is not."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around senior data science leadership with hands-on machine learning ownership. Keep both tracks visible, but state whether you are targeting people management, staff-level technical leadership, or a hybrid role.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Senior Data Scientist",
+              "Staff Data Scientist",
+              "Data Science Manager",
+              "Machine Learning Lead"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Healthcare",
+              "Retail",
+              "Technology"
+            ],
+            "seniority_read": "Senior individual contributor or first-line data science leader, supported by the Senior Data Scientist & Team Lead title and teams of up to 8.",
+            "stretch_roles": [
+              "Head of Data Science",
+              "Director of Machine Learning"
+            ]
+          },
+          "strongly_aligned": [
+            "Predictive modeling with measurable operational results",
+            "Machine learning deployment using Python, TensorFlow, PyTorch, Spark, AWS, SQL, and R",
+            "Team leadership and mentoring",
+            "Fraud, healthcare, retail, and industrial IoT applications"
+          ],
+          "underplayed": [
+            "Roadmap and prioritization ownership",
+            "Production monitoring and model governance",
+            "Hiring and people-management responsibilities",
+            "Executive or client-facing decision influence"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Choose one target lane for the headline, then make the summary and bullet ordering reinforce that choice.",
+          "Replace first-person openings with direct action verbs and keep the business result close to the technical work.",
+          "Add verified details about hiring, roadmap ownership, model governance, and stakeholder decisions where they are true."
+        ],
+        "rewrites": [
+          {
+            "better": "Integrated GPU-accelerated deep learning models using PyTorch into the fraud pipeline; false positives fell 18% while detection remained at 98%.",
+            "enhancement_note": "Add the decision criterion or production constraint that led you to introduce GPU acceleration.",
+            "label": "FinEdge fraud pipeline",
+            "original": "- I decided to integrate GPU-accelerated deep learning models into the fraud pipeline using PyTorch, cutting false positives by 18% while maintaining a 98% detection rate."
+          }
+        ],
+        "score": 92,
+        "score_comment_long": "The resume repeatedly shows scope, ownership, and measurable outcomes across roles. Leadership and business impact are easy to verify. Remaining opportunities are about scan order and optional context, not missing evidence.",
+        "score_comment_short": "Dense outcome evidence makes the impact easy to verify; remaining work is mostly positioning.",
+        "score_label": "Clear and specific",
+        "score_plain": "This is a strong, evidence-rich resume. Focus the next pass on positioning and scan speed.",
+        "section_review": {
+          "Education": {
+            "fix": "Add only if it supports the target role or removes a stated requirement question.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Skills": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Summary": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Work Experience": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "A",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "Nearly every bullet includes a named method, scale detail, or quantified result, including 150K monthly patients, $120M protected revenue, and 10M+ records."
+          }
+        },
+        "strengths": [
+          "The OptiMed role connects an 8-person team, hospital readmission platform, 15% fewer readmissions, and $3.2M in annual savings.",
+          "The FinEdge experience shows technical judgment through PyTorch adoption alongside an 18% false-positive reduction and 98% detection rate.",
+          "The career progression from Data Scientist II to Senior Data Scientist & Team Lead makes seniority easy to understand across four industries."
+        ],
+        "subscores": {
+          "clarity": 88,
+          "impact": 93,
+          "readability": 86,
+          "story": 87
+        },
+        "summary": "The resume shows a clear progression from Data Scientist II to Senior Data Scientist & Team Lead, with machine learning applied to healthcare, fraud, retail, and industrial IoT. Your strongest recurring pattern is connecting models to business measures, from $3. 2M in hospital savings to $120M in protected client revenue. The resume points to senior IC or first-line team leadership, but it does not yet show whether you hire, set roadmaps, manage performance, or own budgets. That distinction matters for manager and director searches.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- I collaborated closely with product and engineering teams to ship analytics dashboards used by 500+ compliance officers",
+              "section": "Work Experience"
+            },
+            "fix": "Add [your product or engineering decision] and [the dashboard requirement you resolved] to the FinEdge dashboard bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The 500+ user result is useful, but your individual contribution is hard to separate from the broader delivery effort."
+          },
+          {
+            "confidence": "medium",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "Data Scientist | Technical Lead | AI & Predictive Analytics Expert",
+              "section": "Summary"
+            },
+            "fix": "Replace the headline with [target role] plus [leadership or technical specialty] for the search you want.",
+            "impact_level": "medium",
+            "section_ref": "Summary",
+            "why": "The current line covers several identities without telling a recruiter which role should be evaluated first."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "marketing-vp-elite",
+      "fixtureId": "synth_marketing_manager_vp_elite_1",
+      "report": {
+        "biggest_gap_example": "\"I developed and executed integrated marketing programs for enterprise software solutions, contributing to a 25% uplift in annual revenue over 3 years.\" names a result but not your specific programs or decisions, so the earlier role is less differentiated.",
+        "content_score": 88,
+        "contract_version": "v2",
+        "first_impression": "The resume establishes a clear progression from Senior Marketing Manager to CMO, with unusually consistent budget, team, and growth figures. Most recent bullets are strong, though the repeated first-person construction makes the page feel less executive and some earlier work reads broadly.",
+        "first_impression_takeaway": "Show Tighten executive positioning",
+        "gaps": [
+          "The CMO role shows major commercial results, but it does not identify the company size, reporting relationship, or executive operating context.",
+          "The resume demonstrates broad marketing leadership, yet it does not state whether you are targeting CMO, VP Marketing, or a narrower growth or product-marketing lane.",
+          "Several earlier bullets name activities and results without explaining the decision or method that connected them, weakening the progression story."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "At Novara, which marketing decision most changed the path from 70% lead-flow growth to higher recurring revenue?",
+              "why": "The resume connects major figures but does not show your specific judgment within that relationship."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How did you adapt marketing across 2M+ users and 40 countries without losing consistency?",
+              "why": "This would make the global operating model behind the scale more visible."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What tradeoff did you manage while shortening launch time-to-market by 30%?",
+              "why": "The launch result is strong, but the quality or risk constraint is not described."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "Which marketing automation change produced the 30% campaign ROI improvement?",
+              "why": "Naming the process or system change would make the improvement more concrete."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did sales and product leadership reach agreement on go-to-market strategy in fintech and healthcare?",
+              "why": "The market-share result is clear, while the coordination challenge remains unseen."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself first as an enterprise SaaS marketing executive with ownership of demand, brand, launches, and commercial growth. Choose whether the target is CMO or VP Marketing, then make the summary and skills order reinforce that lane.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Chief Marketing Officer",
+              "VP of Global Marketing",
+              "VP of Demand Generation",
+              "VP of Go-To-Market Marketing"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "SaaS",
+              "Healthcare",
+              "Technology"
+            ],
+            "seniority_read": "Executive-level marketing leader, based on the current CMO title, 45-person organization, and $25M budget.",
+            "stretch_roles": [
+              "Chief Revenue Officer",
+              "Chief Growth Officer",
+              "Chief Customer Officer"
+            ]
+          },
+          "strongly_aligned": [
+            "Global marketing leadership",
+            "Demand generation and pipeline growth",
+            "Brand repositioning and enterprise engagement",
+            "Product launches and go-to-market strategy",
+            "Budget and team management"
+          ],
+          "underplayed": [
+            "Executive reporting and governance",
+            "Marketing technology ownership",
+            "Customer retention and advocacy",
+            "Market-entry leadership across regions"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Replace the broadest earlier-role bullets with shorter versions that name the decision, audience, and business result.",
+          "Add a concise executive summary that states your target lane, SaaS and B2B background, and scale of leadership.",
+          "Use the next pass on the earlier experience bullet with the weakest verified outcome."
+        ],
+        "rewrites": [],
+        "score": 88,
+        "score_comment_long": "The resume repeatedly shows scope, ownership, and measurable outcomes across roles. Leadership and business impact are easy to verify. Remaining opportunities are about scan order and optional context, not missing evidence.",
+        "score_comment_short": "Dense outcome evidence makes the impact easy to verify; remaining work is mostly positioning.",
+        "score_label": "Clear and specific",
+        "score_plain": "This is a strong, evidence-rich resume. Focus the next pass on positioning and scan speed.",
+        "section_review": {
+          "Education": {
+            "fix": "Add only if it supports the target role or removes a stated requirement question.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Skills": {
+            "fix": "Name only tools you have used and connect them to a work example.",
+            "grade": "B",
+            "missing": "Tool usage is not connected to work examples.",
+            "priority": "Medium",
+            "working": "It includes relevant executive marketing capabilities and names Marketo, HubSpot, and Salesforce."
+          },
+          "Summary": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Work Experience": {
+            "fix": "Condense repeated first-person openings and sharpen the earlier bullets around decisions, methods, and business context.",
+            "grade": "A-",
+            "missing": "Earlier roles contain fewer mechanisms and less detail about how the work was carried out.",
+            "priority": "High",
+            "working": "The CMO and VP roles include team size, budgets, markets, and several measurable business results."
+          }
+        },
+        "strengths": [
+          "The Novara role combines a 45-person organization, $25M budget, 2M+ users, and 40 countries, making the operating scale immediately visible.",
+          "Your results span lead flow, recurring revenue, launch speed, acquisition cost, brand awareness, retention, pipeline, and win rates rather than one marketing metric.",
+          "The progression from Senior Marketing Manager through VP to CMO is supported by increasing team and budget responsibility."
+        ],
+        "subscores": {
+          "clarity": 82,
+          "impact": 88,
+          "readability": 82,
+          "story": 82
+        },
+        "summary": "A 45-person organization, $25M budget, and growth from $120M to $168M in recurring revenue make the CMO role the center of gravity. Your career shows increasing responsibility across SaaS, cloud analytics, digital advertising technology, and enterprise software, with demand, brand, launches, and customer programs all in your remit. The resume points to senior CMO or VP Marketing searches more readily than specialist roles. What remains unclear is the executive context around those results, including who you reported to and how the company was structured, which can affect fit for top-level searches.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy",
+              "section": "Work Experience"
+            },
+            "fix": "Add [reporting relationship] and [company revenue or employee scale] to the Novara leadership bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Recruiters can see the size of your function, but not the level of executive context in which you operated."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- I developed and executed integrated marketing programs for enterprise software solutions, contributing to a 25% uplift",
+              "section": "Work Experience"
+            },
+            "fix": "Add [primary program or channel] and [target audience] to the Senior Marketing Manager revenue bullet.",
+            "impact_level": "medium",
+            "section_ref": "Work Experience",
+            "why": "The result is useful, but the work behind it is too broad to distinguish your contribution from a general marketing remit."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "No summary section present",
+              "section": "Summary"
+            },
+            "fix": "Add a summary section with [target role], [leadership scope], and [measurable result].",
+            "impact_level": "high",
+            "section_ref": "Summary",
+            "why": "Without a summary, the recruiter must infer your intended lane from the chronology instead of seeing it immediately."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "software-engineering-mid-strong",
+      "fixtureId": "synth_software_engineer_mid_strong_1",
+      "report": {
+        "biggest_gap_example": "\"Supported deployment pipelines, occasionally managing staging environments.\" does not show what you changed or the result, so the depth of your release ownership is unclear.",
+        "content_score": 78,
+        "contract_version": "v2",
+        "first_impression": "The NovaTech role has useful numbers around retention, uptime, response time, and manual data entry. Earlier work is more duty-focused, and the caregiving break needs a cleaner return-to-work frame.",
+        "first_impression_takeaway": "Lead with backend reliability results",
+        "gaps": [
+          "Your current target is not defined beyond a broad software engineering label, so recruiters must infer whether backend, platform, or full-stack work is the priority.",
+          "Several BrightWave and ClearPath bullets describe participation or support without naming the system size, decision, or result.",
+          "The return after caregiving is acknowledged, but the summary does not name the recent coursework or personal projects that demonstrate current readiness."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "Why did you choose microservice ownership at NovaTech while contributing to a broader monolith-to-cloud migration?",
+              "why": "This would explain how your day-to-day backend work connected to the architecture change."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How many services, requests, users, or teams depended on the backend microservices you owned?",
+              "why": "The 99.9% uptime result becomes more useful when its operating scale is clear."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What production issue did you troubleshoot with customer support, and how did you prevent recurrence?",
+              "why": "A specific incident would show judgment beyond routine support participation."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What changed in your testing or review process alongside the 15% increase in test coverage?",
+              "why": "The coverage number is useful, but the engineering action behind it is not yet visible."
+            },
+            {
+              "archetype": "END-TO-END OWNERSHIP",
+              "question": "What did you personally take from requirements through deployment for the customer analytics dashboard?",
+              "why": "The dashboard result is strong; the full delivery path would establish the boundaries of your ownership."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself first as a backend software engineer focused on Java, Spring Boot, APIs, microservices, and AWS. Keep the dashboard and cross-functional delivery results, but make backend ownership the organizing thread.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Backend Software Engineer",
+              "Java Software Engineer",
+              "Software Engineer, Cloud Services"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Technology"
+            ],
+            "seniority_read": "Mid-level software engineer, based on the Software Engineer title, microservice ownership, mentoring, and roughly six years of listed experience.",
+            "stretch_roles": [
+              "Senior Backend Software Engineer",
+              "Platform Engineer"
+            ]
+          },
+          "strongly_aligned": [
+            "Backend microservices and RESTful APIs",
+            "Java and Spring Boot",
+            "AWS and cloud-native migration",
+            "Reliability and performance improvement",
+            "Cross-functional feature delivery"
+          ],
+          "underplayed": [
+            "Current technical work after the caregiving break",
+            "Specific database and deployment responsibilities",
+            "Testing and production incident work"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Rewrite the summary around backend engineering, naming Java, Spring Boot, APIs, AWS, and the reliability results already shown.",
+          "Replace the weakest support and participation bullets with the system scale, decisions, and measurable results you can verify.",
+          "Rewrite the weakest outcome-free bullet with verified scope and a measurable result."
+        ],
+        "rewrites": [
+          {
+            "better": "- Supported deployment pipelines, occasionally managing staging environments; scope: [specific scope]; outcome: [measurable result].",
+            "enhancement_note": "Add the application, release responsibility, and resulting deployment measure so this work can be evaluated beyond participation.",
+            "label": "BrightWave deployment",
+            "original": "- Supported deployment pipelines, occasionally managing staging environments."
+          },
+          {
+            "better": "Helped troubleshoot and fix production issues for enterprise clients, collaborating with customer support to diagnose [issue type] and coordinate resolution; [resolution time or recurrence measure].",
+            "enhancement_note": "Add one representative incident and its measurable resolution detail to show the difficulty and value of this work.",
+            "label": "BrightWave production support",
+            "original": "- Helped troubleshoot and fix production issues, regularly collaborating with customer support to resolve client problems efficiently."
+          }
+        ],
+        "score": 78,
+        "score_comment_long": "The resume contains multiple specific outcomes and credible ownership signals. Evidence is not equally strong in every role. Tightening the weakest bullets will make the story easier to place.",
+        "score_comment_short": "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.",
+        "score_label": "Mostly clear",
+        "score_plain": "This has a credible evidence base. Strengthen the few thin bullets instead of rewriting what already works.",
+        "section_review": {
+          "Education": {
+            "fix": "Add only if it supports the target role or removes a stated requirement question.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Skills": {
+            "fix": "Group skills around the target backend role and remove the generic final line unless you connect it to specific work.",
+            "grade": "B",
+            "missing": "The list does not show proficiency, recent use, or which technologies were used in each role.",
+            "priority": "Medium",
+            "working": "Java, Spring Boot, AWS, Docker, Jenkins, databases, and RESTful API design are easy to scan."
+          },
+          "Summary": {
+            "fix": "Replace generic claims with a backend-focused value statement and name the coursework or projects completed during the break.",
+            "grade": "C+",
+            "missing": "The summary does not identify a target backend lane or provide concrete recent technical activity.",
+            "priority": "High",
+            "working": "It explains the caregiving break directly and states the broad engineering background."
+          },
+          "Work Experience": {
+            "fix": "Add scale and outcomes to BrightWave and ClearPath bullets, while preserving support and assisted ownership where those are accurate.",
+            "grade": "B-",
+            "missing": "Several bullets omit application scale, incident detail, deployment responsibility, and results.",
+            "priority": "High",
+            "working": "NovaTech shows measurable reliability, performance, retention, and workflow results, plus mentoring and migration work."
+          }
+        },
+        "strengths": [
+          "The NovaTech microservices bullet combines direct ownership with 99.9% uptime and approximately 20% faster API response times, making the backend contribution easy to place.",
+          "The dashboard work links development and deployment to a 10% increase in client retention, which gives one project a clear business reason to keep.",
+          "Java, Spring Boot, AWS, Docker, Jenkins, SQL, and RESTful APIs form a coherent technical base for backend applications."
+        ],
+        "subscores": {
+          "clarity": 78,
+          "impact": 79,
+          "readability": 82,
+          "story": 74
+        },
+        "summary": "NovaTech gives you a credible mid-level backend foundation: microservices, APIs, AWS migration, and measurable reliability and workflow gains. The 99.9% uptime and 20% faster response times are worth keeping because they show production responsibility, not just feature work. Your earlier roles add Java, Spring Boot, testing, and client support, but many bullets stop at participation. The practical question is what you built or maintained during the 2022-2024 break, since that will shape how recruiters judge your current technical readiness.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Supported deployment pipelines, occasionally managing staging environments.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [application or service], [specific release responsibility], and [deployment result] to the BrightWave deployment bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Without the system and release detail, this reads as incidental exposure rather than a meaningful part of your engineering work."
+          },
+          {
+            "confidence": "medium",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.",
+              "section": "Work Experience"
+            },
+            "fix": "Name one real recent course or personal project and the [completed artifact] it produced.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "A named recent artifact provides current evidence without inventing post-break employment."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "ux-director-strong",
+      "fixtureId": "synth_ux_designer_director_strong_1",
+      "report": {
+        "biggest_gap_example": "\"Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" lacks budget size or savings, so the financial responsibility is difficult to assess.",
+        "content_score": 78,
+        "contract_version": "v2",
+        "first_impression": "The resume quickly establishes senior UX leadership through a team of 8, budget ownership, and a 15% retention improvement. Several bullets still describe responsibilities without showing the decisions, scale, or results behind them.",
+        "first_impression_takeaway": "Quantify your leadership scope",
+        "gaps": [
+          "Budget ownership has no dollar range, savings figure, or vendor scale, leaving the management claim hard to calibrate.",
+          "The experience spans SaaS, healthcare, finance, and retail, but the resume does not choose a clear target lane for the next role.",
+          "Earlier-career bullets rely heavily on activities such as wireframing, interviews, and documentation without showing what changed afterward."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "How did you balance company growth plans with usability needs at BrightWave?",
+              "why": "The resume names both priorities but not the tradeoff or decision you made."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How did design standards scale across teams, products, or locations?",
+              "why": "The company-wide standards workshops suggest broad reach, but the scale is not stated."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What quality risk did you manage while coordinating multiple timelines and external agencies?",
+              "why": "This would show how you protected user experience when delivery pressure increased."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "Which prototyping tools replaced the prior process, and what enabled the 30% faster iteration?",
+              "why": "The result is useful, but the mechanism behind it is unclear."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did product, engineering, and research leaders resolve disagreements during the SaaS redesign?",
+              "why": "The redesign shows ownership, while the cross-functional decision process remains hidden."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around UX leadership for SaaS and complex digital products, using the 8-person team and 15% retention result near the top. Add budget, product scale, and design-system adoption details to distinguish design management from senior individual-contributor work.",
+          "role_fit": {
+            "best_fit_roles": [
+              "UX Design Manager",
+              "Senior UX Design Manager",
+              "Director of UX"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "SaaS",
+              "Healthcare",
+              "Technology"
+            ],
+            "seniority_read": "Lead UX Designer / Design Manager supports people-management roles at the senior manager level; director scope is not yet fully demonstrated.",
+            "stretch_roles": [
+              "Director of Product Design",
+              "Head of UX"
+            ]
+          },
+          "strongly_aligned": [
+            "Managing a team of 8 UX designers and researchers",
+            "UX strategy across web and mobile products",
+            "User research, testing, accessibility, and design standards",
+            "Quantified retention, support-call, and iteration-cycle improvements"
+          ],
+          "underplayed": [
+            "UX budget and vendor-contract ownership",
+            "Executive-facing UX performance reporting",
+            "Healthcare product scale of over 200,000 monthly users"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Rewrite the BrightWave responsibility bullets around decisions, budget scale, product count, and business results you can verify.",
+          "Tighten the existing opening profile around the target role and strongest verified result.",
+          "Review the Nimbus bullets and add the resulting product, client, or delivery change for the strongest projects you can document."
+        ],
+        "rewrites": [
+          {
+            "better": "Own the UX budget and vendor contracts, directing spend toward research initiatives and tool acquisitions; budget: [$X]; savings or procurement result: [measurable result]",
+            "enhancement_note": "Add the budget range and a verified procurement or savings result to make the financial responsibility concrete.",
+            "label": "BrightWave budget ownership",
+            "original": "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions"
+          },
+          {
+            "better": "Collaborate with product and engineering leadership to define UX strategy for company growth plans and improve product usability; result: [measurable usability or business result]",
+            "enhancement_note": "Add the decision, product area, or measurable result tied to this strategy work.",
+            "label": "BrightWave UX strategy",
+            "original": "- Collaborate with product and engineering leadership to define UX strategy that aligns with company growth plans and enhances product usability"
+          }
+        ],
+        "score": 78,
+        "score_comment_long": "The resume contains multiple specific outcomes and credible ownership signals. Evidence is not equally strong in every role. Tightening the weakest bullets will make the story easier to place.",
+        "score_comment_short": "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.",
+        "score_label": "Mostly clear",
+        "score_plain": "This has a credible evidence base. Strengthen the few thin bullets instead of rewriting what already works.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "B",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The degree, institution, and dates are complete and easy to scan."
+          },
+          "Skills": {
+            "fix": "Group skills under Leadership, Research, Product Design, and Tools, and keep only terms relevant to the target role.",
+            "grade": "B-",
+            "missing": "The list names useful capabilities but does not show proficiency, application, or the relationship between tools and outcomes.",
+            "priority": "Medium",
+            "working": "Skills cover leadership, research, accessibility, prototyping, and collaboration."
+          },
+          "Summary": {
+            "fix": "Replace broad claims with the team of 8, 15% retention improvement, and SaaS and healthcare product context.",
+            "grade": "C+",
+            "missing": "The summary lacks named products, measurable results, and a precise target role.",
+            "priority": "High",
+            "working": "It establishes 12 years of experience and senior UX leadership."
+          },
+          "Work Experience": {
+            "fix": "Add [budget size], [number of products], [stakeholder or team scope], and missing results to the responsibility-led bullets.",
+            "grade": "B",
+            "missing": "Several bullets do not explain the decision made or what changed, especially at BrightWave and Nimbus.",
+            "priority": "High",
+            "working": "Recent roles include team management, product scale, executive reporting, and three quantified improvements."
+          }
+        },
+        "strengths": [
+          "Managing 8 UX designers and researchers gives the current role a clear people-leadership anchor.",
+          "The flagship SaaS redesign connects iterative user testing to a 15% retention improvement within six months.",
+          "Veridian’s portals served over 200,000 monthly users, giving the healthcare work meaningful product scale."
+        ],
+        "subscores": {
+          "clarity": 79,
+          "impact": 75,
+          "readability": 82,
+          "story": 74
+        },
+        "summary": "A 15% retention improvement after the BrightWave SaaS redesign gives this resume its most useful proof point. Combined with managing 8 designers and researchers, it supports senior UX manager roles more clearly than senior individual-contributor roles. Your work consistently connects research, product strategy, accessibility, and cross-functional delivery across SaaS and healthcare products. The remaining question is how large the budget, product portfolio, and decision authority were, which affects whether director-level roles are realistic.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web",
+              "section": "Work Experience"
+            },
+            "fix": "Add [number of products or annual projects] and [stakeholder group] to the BrightWave team-management bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The team size is clear, but the portfolio and stakeholder load determine whether this reads as team leadership or broader design operations."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+              "section": "Work Experience"
+            },
+            "fix": "Add [budget size], [number of vendors], and [savings or procurement result] to the BrightWave budget bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Without financial scale or a concrete result, the budget claim carries less weight than the people-management claim."
+          },
+          {
+            "confidence": "medium",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Designed interactive experiences for web and mobile applications targeting diverse client industries, including finance and retail",
+              "section": "Work Experience"
+            },
+            "fix": "Add [project or client example] and [measurable result] to the Nimbus interactive-experience bullet.",
+            "impact_level": "medium",
+            "section_ref": "Work Experience",
+            "why": "We can see the work, but not the difference it made."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "project-management-vp-strong",
+      "fixtureId": "synth_project_manager_vp_strong_1",
+      "report": {
+        "biggest_gap_example": "\"- Mentored junior project managers and team members to build leadership capacity within the organization.\" is missing a measurable outcome, so we cannot place the impact.",
+        "content_score": 78,
+        "contract_version": "v2",
+        "first_impression": "The resume quickly establishes a senior project and program management profile with $12M budgets, teams of 25+ and 50, and measurable delivery improvements. Several bullets still describe familiar project-management duties without naming the decision, deliverable, or business result.",
+        "first_impression_takeaway": "Name the business result",
+        "gaps": [
+          "The recent role shows delivery speed and delay reductions, but it does not explain the products, systems, or customer groups affected.",
+          "The resume demonstrates coordination across teams and agencies, but it rarely distinguishes what you personally decided from what the team delivered.",
+          "The military-to-civilian transition is stated in the summary, yet the experience section does not consistently translate defense work into recognizable commercial project outcomes."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "How did translating military requirements at Aegis change a project decision or civilian business process?",
+              "why": "This would make the military-to-commercial transition concrete rather than descriptive."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "What changed when your GlobalTech team expanded across product, marketing, and engineering for three software releases?",
+              "why": "The resume gives team size and release count but not the coordination challenge you solved."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "Which critical delay did your risk plan prevent, and what tradeoff did you make?",
+              "why": "The 15% reduction is useful, but the operational judgment behind it is not visible."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What workflow changed at GlobalTech, and which Agile practice produced the 20% faster delivery?",
+              "why": "This would turn a broad process claim into a repeatable method."
+            },
+            {
+              "archetype": "HIGH STAKES",
+              "question": "During Army operations for 100+ personnel, what decision most affected mission execution under limited resources?",
+              "why": "A specific decision would show judgment in the highest-pressure part of your background."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself as a senior project or program manager who combines $12M budget ownership, software-release delivery, defense modernization, and military operations planning. Lead with commercial delivery results, then use the military background to reinforce judgment under pressure rather than as the main identity.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Senior Project Manager",
+              "Program Manager",
+              "Technical Program Manager",
+              "IT Project Manager"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Software and IT infrastructure",
+              "Defense technology",
+              "Federal and government operations"
+            ],
+            "seniority_read": "Senior individual contributor or people-leading project manager, supported by the Senior Project Manager title, 15+ years, $12M budgets, and teams up to 50.",
+            "stretch_roles": [
+              "Portfolio Manager",
+              "Director of Program Management"
+            ]
+          },
+          "strongly_aligned": [
+            "Project and program lifecycle management",
+            "Cross-functional team leadership",
+            "Budget, vendor, and contract management",
+            "Agile delivery and process improvement"
+          ],
+          "underplayed": [
+            "Specific software or infrastructure domain",
+            "Executive-level decisions and tradeoffs",
+            "Commercial translation of defense and military operations work"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Rewrite the three most generic experience bullets around the decision you made, the deliverable involved, and the measurable result.",
+          "Add the names of the products, systems, stakeholders, or customer groups connected to the three GlobalTech releases and defense modernization work.",
+          "Replace the broad summary language with a target role, the $12M budget scale, and the clearest delivery metrics."
+        ],
+        "rewrites": [
+          {
+            "better": "- Implemented program controls and reporting mechanisms across [stakeholder groups], improving stakeholder communication and transparency; [measurable result]",
+            "enhancement_note": "Add the reporting cadence or measurable change in decision speed, issue resolution, or stakeholder satisfaction.",
+            "label": "Aegis reporting bullet",
+            "original": "- Implemented program controls and reporting mechanisms that improved stakeholder communication and transparency."
+          },
+          {
+            "better": "- Coordinated logistics, personnel, and resource allocation across [units or functions] to meet strategic objectives with limited resources; [measurable result]",
+            "enhancement_note": "Add the operational constraint and result that show what your allocation decisions changed.",
+            "label": "Army resource-allocation bullet",
+            "original": "- Coordinated logistics, personnel, and resource allocation to meet strategic objectives with limited resources."
+          },
+          {
+            "better": "- Collaborated with executive leadership to align [project or portfolio] with company-wide strategic goals, informing [specific decision or deliverable]; [measurable result]",
+            "enhancement_note": "Add the named project decision and organizational result behind the alignment work.",
+            "label": "GlobalTech executive-alignment bullet",
+            "original": "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+          }
+        ],
+        "score": 78,
+        "score_comment_long": "The resume has useful scale: $12M budgets, teams up to 50, three releases, and quantified delivery, delay, and cost improvements. It loses points where bullets rely on broad terms such as organizational efficiency, mission-critical solutions, and transparency. Naming the systems, decisions, and business results would move it higher quickly.",
+        "score_comment_short": "Useful scale and several metrics are present, but too many bullets still describe responsibilities without concrete.",
+        "score_label": "Mostly clear",
+        "score_plain": "This resume should clear many senior project-management screens, especially where budget and team scale matter. It may lose interviews when employers need product, technical, or business outcomes beyond delivery coordination.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "Good",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The MBA with a Project Management Focus and business degree reinforce the target direction."
+          },
+          "Skills": {
+            "fix": "Group skills under delivery, leadership, and commercial management themes, then add named platforms or systems only if you have used them.",
+            "grade": "Fair",
+            "missing": "The list contains useful capabilities but no project tools, reporting systems, or technical domains.",
+            "priority": "Medium",
+            "working": "The skills match the experience themes, including Agile, risk, budgets, contracts, and cross-functional leadership."
+          },
+          "Summary": {
+            "fix": "Replace generic claims with a target role, $12M budget scale, software-release experience, and one or two quantified results.",
+            "grade": "Fair",
+            "missing": "It does not name a specific project-management lane or the business domains in which you delivered.",
+            "priority": "High",
+            "working": "The summary makes the 15-year experience level and military-to-civilian transition easy to understand."
+          },
+          "Work Experience": {
+            "fix": "Rewrite broad bullets around named projects, decisions, stakeholders, and outcomes, starting with executive alignment and program controls.",
+            "grade": "Good",
+            "missing": "Several bullets lack the project subject, personal decision, or measurable result needed to distinguish your contribution.",
+            "priority": "High",
+            "working": "The section includes clear titles, dates, budget scale, team sizes, release count, and several percentages."
+          }
+        },
+        "strengths": [
+          "GlobalTech gives the reader concrete scale through budgets exceeding $12M, teams of 25+, and three software releases in two years.",
+          "The 20% delivery-speed improvement, 15% reduction in critical delays, and 10% vendor cost savings create a useful record of measurable change.",
+          "The progression from Army Operations Officer to defense Program Manager to Senior Project Manager makes the career direction easy to follow."
+        ],
+        "subscores": {
+          "clarity": 79,
+          "impact": 78,
+          "readability": 84,
+          "story": 77
+        },
+        "summary": "The clearest value here is senior delivery leadership at GlobalTech, where you managed budgets exceeding $12M and launched three major software releases with a 25+ person team. Across GlobalTech, Aegis, and the Army, you repeatedly work through planning, risk, resources, vendors, and cross-functional coordination. The resume points to senior project or program management, but not yet a clearly technical or product-specific lane. Without named systems, project subjects, and business results, a hiring manager may understand your scale while still missing what you delivered.",
+        "top_fixes": [
+          {
+            "confidence": "medium",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Mentored junior project managers and team members to build leadership capacity within the organization.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [specific scope] and [measurable result] to the project bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "This line tells us the task, but leaves both the size of the work and the result unanswered."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Implemented program controls and reporting mechanisms that improved stakeholder communication and transparency.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [stakeholder groups], reporting cadence, and [measurable communication or decision-time result] to the Aegis controls bullet.",
+            "impact_level": "medium",
+            "section_ref": "Work Experience",
+            "why": "Specific users and a measured change would separate this work from a standard program-management responsibility."
+          },
+          {
+            "confidence": "medium",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Managed end-to-end lifecycle of defense-related projects including technology deployment and systems modernization, with a focus on",
+              "section": "Work Experience"
+            },
+            "fix": "Add the systems or technologies involved, [project scale], and [deployment or modernization result] to the Aegis lifecycle bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The bullet claims end-to-end responsibility but leaves the work too abstract for a technical or defense hiring manager."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "sales-mid-foundation",
+      "fixtureId": "synth_sales_executive_mid_foundation_1",
+      "report": {
+        "biggest_gap_example": "\"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" is missing a measurable outcome, so we cannot place the impact.",
+        "content_score": 58,
+        "contract_version": "v2",
+        "first_impression": "Your progression from Junior Sales Associate to Sales Executive is easy to follow, but nearly every bullet describes support rather than sales performance. The page names client work, lead generation, proposals, and CRM activity without showing pipeline, quota, revenue, or account results.",
+        "first_impression_takeaway": "Quantify sales ownership",
+        "gaps": [
+          "The resume does not show quota, revenue, pipeline, win rate, deal size, or account volume, leaving your commercial level difficult to place.",
+          "Your ownership remains unclear because many bullets use \"helped,\" \"supported,\" \"assisted,\" or \"contributed\" without naming the decisions you made.",
+          "The three roles cover similar duties, but the resume does not explain how your responsibilities or customer-facing scope grew over time."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "What changed in your responsibilities when you moved from Junior Sales Associate to Sales Representative?",
+              "why": "The titles show progression, while the bullets use similar support language across roles."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How many client accounts, leads, proposals, or opportunities did you handle at BrightWave Solutions?",
+              "why": "The resume mentions account management and lead generation but gives no workload scale."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "Describe a difficult customer inquiry you handled and what happened afterward.",
+              "why": "Customer communication appears in the role, but the level of difficulty and result are absent."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What changed after you contributed to customer engagement or sales strategy projects?",
+              "why": "The project language suggests improvement work without identifying the before-and-after."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did you coordinate marketing and sales outreach, and what did each team need from you?",
+              "why": "The resume names coordination but not the competing requirements or your role in resolving them."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around the sales work you can verify, such as client accounts, lead generation, proposals, and cross-team outreach. Add commercial measures before targeting roles that expect independent quota ownership.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Sales Representative",
+              "Account Coordinator",
+              "Business Development Representative",
+              "Sales Operations Coordinator"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Technology"
+            ],
+            "seniority_read": "The titles and four-plus years shown in the summary suggest early-career sales experience, but the page does not establish independent quota ownership.",
+            "stretch_roles": [
+              "Account Executive",
+              "Business Development Manager",
+              "Sales Operations Analyst"
+            ]
+          },
+          "strongly_aligned": [
+            "Client account support",
+            "Lead generation and prospect communication",
+            "Sales and marketing coordination",
+            "Proposal and presentation support"
+          ],
+          "underplayed": [
+            "CRM and sales tracking experience",
+            "Market and competitor research",
+            "Trade show and promotional event coordination"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Replace the generic summary with a target sales lane and verified measures such as quota, pipeline, revenue, or account count.",
+          "Rewrite the strongest BrightWave and Glenmark bullets around the action you personally took, adding [scope] and [measurable result] where absent.",
+          "Connect the most relevant existing tools to the two strongest experience outcomes."
+        ],
+        "rewrites": [
+          {
+            "better": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations; scope: [specific scope]; outcome: [measurable result].",
+            "enhancement_note": "Add the number of accounts and proposals to show the workload behind this responsibility.",
+            "label": "BrightWave client accounts",
+            "original": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+          },
+          {
+            "better": "Supported lead generation and participated in client meetings to understand customer needs; leads or opportunities: [number]; result: [measurable result]",
+            "enhancement_note": "Add lead volume and a verified downstream result to show whether this work advanced sales activity.",
+            "label": "BrightWave lead generation",
+            "original": "- Supported lead generation activities and participated in client meetings to understand customer needs"
+          },
+          {
+            "better": "Helped prepare sales materials and participated in prospective-client calls to present product features; calls: [number]; result: [measurable result]",
+            "enhancement_note": "Add call volume and the verified result of those conversations to distinguish preparation from selling activity.",
+            "label": "Glenmark prospect calls",
+            "original": "- Helped prepare sales materials and participated in calls with prospective clients to present product features"
+          }
+        ],
+        "score": 58,
+        "score_comment_long": "The career progression and sales responsibilities are easy to scan. The bullets rarely include numbers, deal context, or measurable results, so the page reads more like a duty list than a performance record. Quantifying the BrightWave and Glenmark work is the fastest way to raise it.",
+        "score_comment_short": "Clear sales progression, but most bullets lack measurable commercial results.",
+        "score_label": "Needs more context",
+        "score_plain": "This resume can get you considered for support-oriented sales roles, but it will struggle against applicants showing quota, pipeline, and revenue results. Add verified sales measures to compete for independent selling roles.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "Good",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The degree, school, and dates are complete and easy to read."
+          },
+          "Skills": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Summary": {
+            "fix": "Replace generic claims with a target role, sales lane, and verified measures such as quota, pipeline, revenue, or account volume.",
+            "grade": "Needs revision",
+            "missing": "The summary does not identify a market, customer type, sales model, or measurable result.",
+            "priority": "High",
+            "working": "It communicates sales focus, client relationship work, and cross-team collaboration."
+          },
+          "Work Experience": {
+            "fix": "Rewrite the top two roles around personal actions, workload, and verified results; use [scope] or [measurable result] where the source does not provide the fact.",
+            "grade": "Needs revision",
+            "missing": "Quota, revenue, pipeline, account volume, deal size, and ownership boundaries are absent.",
+            "priority": "High",
+            "working": "The chronology is consistent and includes client accounts, lead generation, proposals, meetings, research, and outreach coordination."
+          }
+        },
+        "strengths": [
+          "The sequence from Junior Sales Associate through Sales Executive gives recruiters a visible three-role progression from administrative support toward client and campaign work.",
+          "BrightWave includes both account activity and coordination between marketing and sales, which makes the experience broader than pure administrative support.",
+          "The resume shows repeated customer contact through meetings, calls, inquiries, appointments, and follow-up communications across all three employers."
+        ],
+        "subscores": {
+          "clarity": 62,
+          "impact": 50,
+          "readability": 67,
+          "story": 55
+        },
+        "summary": "Three sales roles from 2016 to 2023 show a steady move from event logistics and data entry into client accounts, lead generation, proposals, and marketing-sales coordination. Your page fits early-career sales or sales-support roles more clearly than an independent account executive role. The recurring pattern is customer contact plus team support, but no quota, pipeline, revenue, or account volume is attached to it. That leaves recruiters unsure how much of the sales cycle you personally owned.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations",
+              "section": "Work Experience"
+            },
+            "fix": "Add [account count], [proposal volume], and [measurable result] to the BrightWave client-account bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience: BrightWave Solutions, Sales Executive",
+            "why": "This line tells us what you handled, but not what changed."
+          },
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Supported lead generation activities and participated in client meetings to understand customer needs",
+              "section": "Work Experience"
+            },
+            "fix": "Add [lead or opportunity volume] and [meeting-to-next-step result] to the BrightWave lead-generation bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience: BrightWave Solutions, Sales Executive",
+            "why": "Lead generation is a hiring priority for many sales roles; volume and progression would show whether your work produced qualified opportunities."
+          },
+          {
+            "confidence": "medium",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Developed a basic understanding of CRM tools and sales tracking software to aid daily activities",
+              "section": "Work Experience"
+            },
+            "fix": "Add [specific scope] and [measurable result] to the sales bullet.",
+            "impact_level": "medium",
+            "section_ref": "Work Experience: Glenmark Technologies, Sales Representative",
+            "why": "As written, this reads like a duty because neither the scale nor the result is visible."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "hr-director-foundation",
+      "fixtureId": "synth_hr_manager_director_foundation_1",
+      "report": {
+        "biggest_gap_example": "\"Supported the development and implementation of HR strategies across multiple departments within the organization.\" lacks the strategy, your decision, and the result, so recruiters cannot gauge the level of work behind the title.",
+        "content_score": 61,
+        "contract_version": "v2",
+        "first_impression": "Your progression from HR Coordinator to Senior Human Resources Manager is easy to see across 19 years. The bullets mostly describe support and coordination, so the scale and results behind that progression remain unclear.",
+        "first_impression_takeaway": "Show the HR results",
+        "gaps": [
+          "The resume does not show team size, employee population, hiring volume, or budget size, leaving the scale of your HR work difficult to place.",
+          "Most bullets use supported, helped, assisted, or contributed, but do not explain which decisions you personally made or owned.",
+          "No target HR lane is stated, so it is unclear whether you are pursuing HRBP, people operations, talent, employee relations, or generalist roles."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "What changed in your HR work between Coordinator and Senior Manager that justified each promotion?",
+              "why": "The titles show progression, but the bullets do not show how responsibility expanded."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How many employees, departments, or business units did you support at BrightWave Technologies?",
+              "why": "The resume mentions multiple departments and various teams without their size."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What employment-law issue, audit, or employee-relations case required your judgment?",
+              "why": "Compliance and conflict resolution appear repeatedly, but no difficult case is described."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What changed after you coordinated training or employee engagement programs?",
+              "why": "The activities are named, but participation, completion, retention, or feedback results are absent."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "What did you resolve with finance and operations while managing HR budget resources?",
+              "why": "That collaboration could show business judgment if the decision and result are specified."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around the HR lane where you can verify the most concrete scale and results. The current page can support senior generalist or HR business partner positioning, but it needs employee population, program scope, and measurable outcomes.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Senior Human Resources Manager",
+              "Senior HR Business Partner",
+              "HR Manager"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Financial services",
+              "Manufacturing",
+              "Technology"
+            ],
+            "seniority_read": "Senior Manager level by title, with 19 years of progressive HR experience; the bullets do not yet show whether the role included direct reports or final decision authority.",
+            "stretch_roles": [
+              "Director of Human Resources",
+              "People Operations Director"
+            ]
+          },
+          "strongly_aligned": [
+            "Human resources management",
+            "Recruitment and onboarding",
+            "Employee relations",
+            "Performance management",
+            "Employment-law compliance"
+          ],
+          "underplayed": [
+            "HR budget work with finance and operations",
+            "Training and employee engagement programs",
+            "HRIS platforms and payroll coordination"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Choose one target lane, such as senior HR generalist or HR business partner, and rewrite the opening content around it.",
+          "Add verifiable scale to the BrightWave and Pioneer roles, including [employee population], [team size], [hiring volume], and [budget size].",
+          "Replace the weakest responsibility bullets with results, decisions, or program changes you can substantiate without changing your actual ownership."
+        ],
+        "rewrites": [
+          {
+            "better": "Supported the development and implementation of HR strategies across multiple departments within the organization; strategy areas: [specific programs]; [measurable result].",
+            "enhancement_note": "Add the strategy areas and a measurable result so the work can be distinguished from routine HR administration.",
+            "label": "BrightWave HR strategy",
+            "original": "- Supported the development and implementation of HR strategies across multiple departments within the organization."
+          }
+        ],
+        "score": 61,
+        "score_comment_long": "The career progression and HR coverage are clear, spanning recruitment, employee relations, compliance, training, budgeting, and HRIS work. Most bullets remain responsibility statements, with no quantified employee population, program result, or direct-report detail. Rewriting the recent roles around decisions, scale, and verifiable results is the fastest way up.",
+        "score_comment_short": "Progression is clear, but most bullets lack scale, decisions, and measurable results.",
+        "score_label": "Needs more context",
+        "score_plain": "This resume may pass for broad HR roles, but it will struggle against applicants who show workforce size, program results, and ownership. The experience is there; the page does not yet make its value easy to compare.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "B",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The degree, institution, and graduation year are complete and easy to scan."
+          },
+          "Skills": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Summary": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Work Experience": {
+            "fix": "Rewrite the BrightWave and Pioneer bullets with [employee population], [team size], [hiring volume], [budget size], and [measurable result] where verifiable.",
+            "grade": "C",
+            "missing": "The roles lack quantified scale, outcomes, direct-report information, and clear ownership of major HR decisions.",
+            "priority": "High",
+            "working": "The chronology is complete and shows progression through four HR roles with broad functional coverage."
+          }
+        },
+        "strengths": [
+          "The move from Human Resources Coordinator in 2004 to Senior Human Resources Manager in 2015 gives recruiters a clear progression to follow.",
+          "BrightWave covers recruitment, budgeting, employee relations, training, and compliance, making the recent role broadly relevant to generalist HR searches.",
+          "Your background crosses technology, consulting, financial services, and manufacturing, which supports HR work in varied operating environments."
+        ],
+        "subscores": {
+          "clarity": 64,
+          "impact": 52,
+          "readability": 72,
+          "story": 62
+        },
+        "summary": "Nineteen years of progression from HR Coordinator to Senior Human Resources Manager make senior generalist or HR business partner roles the natural read. Your recurring work spans recruitment, employee relations, training, budgeting, compliance, and HRIS administration across four industries. The page does not show whether you managed people, how large the workforces were, or what changed after your programs, which limits how far recruiters can place you above manager level.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [annual hiring volume], [team or workforce size], and [onboarding result] to the BrightWave recruitment bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Recruitment is central to the recent role, but its scale and result are currently invisible."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [budget size], the resource decision you supported, and [budget or staffing result] to the BrightWave budget bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "A budget bullet can show business judgment, but the current wording gives no financial scale or consequence."
+          },
+          {
+            "confidence": "medium",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Managed HR functions for several project teams, supporting staffing, scheduling, and employee development.",
+              "section": "Work Experience"
+            },
+            "fix": "Add [number of project teams], [employee population], and the employee-development result to the Pioneer management bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "This is the clearest manager-level bullet, yet several project teams is too vague for a recruiter to compare with other managers."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "finance-senior-weak",
+      "fixtureId": "synth_finance_analyst_senior_weak_1",
+      "report": {
+        "biggest_gap_example": "\"- Was responsible for preparing financial reports and statements\" names a recurring task but not the reports' scale, audience, or business result, so your senior-level contribution is difficult to place.",
+        "content_score": 58,
+        "contract_version": "v2",
+        "first_impression": "The progression from Finance Intern to Senior Finance Analyst is easy to follow, and the finance focus stays consistent. The bullets mostly describe duties, so the page gives little sense of the decisions, scale, or results behind seven-plus years of work.",
+        "first_impression_takeaway": "Add scale and results",
+        "gaps": [
+          "Senior-level ownership is not defined: managing project deliverables and mentoring are present, but team size, project scope, and decision authority are absent.",
+          "Financial work lacks business context: the page does not identify the reports, forecasts, budgets, or stakeholders you supported.",
+          "The summary uses broad phrases such as \"results-driven\" and \"dedicated team player\" without naming a finance specialty or concrete accomplishment."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "Which finance process did you own at Linton, and where did your responsibility stop?",
+              "why": "Your senior title sits beside several bullets using responsible, assisted, and participated, leaving ownership boundaries unclear."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How many departments, budgets, entities, or reports did you handle at Linton Financial Services?",
+              "why": "The resume mentions financial reporting and cross-department coordination but gives no size indicator."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "What changed when you supported month-end and year-end closing at Hartley & Co.?",
+              "why": "Closing work is named, but the page does not show deadlines, accuracy demands, or the result of your contribution."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What process improvement did you participate in at Hartley & Co., and what changed afterward?",
+              "why": "The improvement bullet needs the specific process and measurable or observable change."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "Which departments did you coordinate with, and what finance issue did the collaboration resolve?",
+              "why": "The resume mentions different departments without identifying the stakeholders or the problem addressed."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around financial reporting, budgeting and forecasting, and finance-process coordination. Replace general collaboration language with the reports, budgets, stakeholders, and results you can verify.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Senior Financial Analyst",
+              "Financial Planning and Analysis Analyst",
+              "Corporate Finance Analyst",
+              "Budget Analyst"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Financial services"
+            ],
+            "seniority_read": "The Senior Finance Analyst title and seven-plus years in finance support senior individual-contributor roles, but the bullets do not yet establish people-management or broad ownership.",
+            "stretch_roles": [
+              "Finance Manager",
+              "FP&A Manager"
+            ]
+          },
+          "strongly_aligned": [
+            "Financial reporting and analysis",
+            "Budgeting and forecasting",
+            "Finance-process coordination",
+            "Mentorship and team support"
+          ],
+          "underplayed": [
+            "Project deliverable management",
+            "Month-end and year-end close support",
+            "Process improvement",
+            "MS Excel and financial software usage"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Replace the generic summary with a target finance specialty and two verified examples from your recent role.",
+          "Rewrite the Linton and Hartley bullets around the specific work performed, affected stakeholders, and measurable results; use brackets for facts you still need to confirm.",
+          "Trim older administrative bullets and give the saved space to senior-role scope, reporting audiences, budgets, systems, and decisions."
+        ],
+        "rewrites": [
+          {
+            "better": "Prepared financial reports and statements for [stakeholder group], covering [reporting scope]; [measurable result]",
+            "enhancement_note": "Add the reporting audience, scale, and result so the work reads beyond routine preparation.",
+            "label": "Linton reporting",
+            "original": "- Was responsible for preparing financial reports and statements"
+          },
+          {
+            "better": "Analyzed budget data and forecast trends across [budget scope], providing [analysis or recommendation] to [stakeholder group]; [measurable result]",
+            "enhancement_note": "Add the budget size or coverage, the analysis delivered, and what changed after it was used.",
+            "label": "Linton forecasting",
+            "original": "- Duties included analyzing budget data and forecasting trends"
+          },
+          {
+            "better": "Participated in process-improvement work for [finance process], contributing [specific action]; [measurable result]",
+            "enhancement_note": "Add the process, your contribution, and the resulting change to distinguish participation from a general claim.",
+            "label": "Hartley process improvement",
+            "original": "- Participated in team efforts for process improvements"
+          }
+        ],
+        "score": 58,
+        "score_comment_long": "The career progression and finance focus are clear. Most bullets describe responsibilities without numbers, stakeholders, systems, or results. Reworking the two recent roles around verified scope and outcomes is the fastest way to raise the read.",
+        "score_comment_short": "Clear finance progression, but most bullets remain responsibility statements without scope or results.",
+        "score_label": "Needs more context",
+        "score_plain": "This resume can get you considered for finance analyst roles, but it may undersell your seniority. Recruiters will need stronger proof of what you changed, influenced, or handled at scale.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "Good",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The finance degree and graduation date are clear and relevant to the target function."
+          },
+          "Skills": {
+            "fix": "Replace broad entries with the specific financial systems, Excel capabilities, reporting methods, and forecasting tools you have used.",
+            "grade": "Fair",
+            "missing": "The section names broad capabilities but does not specify financial software or Excel proficiency.",
+            "priority": "Medium",
+            "working": "The skills list covers reporting, forecasting, collaboration, mentorship, and basic project coordination."
+          },
+          "Summary": {
+            "fix": "Name a target finance lane and replace generic descriptors with one or two verified accomplishments from Linton Financial Services.",
+            "grade": "Fair",
+            "missing": "It lacks a specialty, target level, business context, and concrete result.",
+            "priority": "High",
+            "working": "The summary establishes more than seven years of finance analysis and mentions mentoring."
+          },
+          "Work Experience": {
+            "fix": "Rewrite the recent-role bullets with [reporting scope], [stakeholder group], [team size], [system], and [measurable result] where applicable.",
+            "grade": "Needs revision",
+            "missing": "The section does not show quantified results, portfolio or budget size, systems, decision-making, or clear ownership.",
+            "priority": "High",
+            "working": "Four finance roles show a consistent progression from intern to senior analyst and cover reporting, forecasting, close, projects, and mentoring."
+          }
+        },
+        "strengths": [
+          "Your titles show a steady progression from Finance Intern in 2011 to Senior Finance Analyst in 2018, which makes the career direction immediately recognizable.",
+          "Financial reporting, budgeting, forecasting, closing, and process work recur across multiple roles, giving the resume a coherent finance foundation.",
+          "The Linton role includes mentorship and project deliverables, useful details for showing responsibilities beyond individual analysis."
+        ],
+        "subscores": {
+          "clarity": 65,
+          "impact": 43,
+          "readability": 72,
+          "story": 59
+        },
+        "summary": "Seven-plus years of finance progression culminate in a Senior Finance Analyst role at Linton Financial Services, with reporting, forecasting, project deliverables, and mentorship as the main through-line. The page fits senior analyst or analyst-level finance searches more readily than manager roles because it does not show direct reports, budget size, or final decision authority. Your work spans core finance operations, but nearly every bullet stops at the task. Until the resume names the reports, stakeholders, systems, and results involved, recruiters may read the senior title as broader than the documented work.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Managed project deliverables related to finance processes",
+              "section": "Work Experience"
+            },
+            "fix": "Add [project scope], [stakeholder group], and [delivery result] to the Linton finance-process project bullet.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The verb managed is stronger than most nearby bullets, but without project size or delivery result it does not show what you actually controlled."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "operations-entry-weak",
+      "fixtureId": "synth_operations_manager_entry_weak_1",
+      "report": {
+        "biggest_gap_example": "\"Was responsible for assisting with daily operational tasks.\" gives no process, volume, or result, so the reader cannot judge your operating contribution.",
+        "content_score": 57,
+        "contract_version": "v2",
+        "first_impression": "The resume shows recent operations exposure across logistics, retail, campus events, and supply chain work. Most bullets describe assigned duties rather than what you changed, managed, or completed, so the target level is difficult to place.",
+        "first_impression_takeaway": "Show measurable operating results",
+        "gaps": [
+          "Your operations roles do not show workload, scale, or measurable results, leaving the level of responsibility unclear.",
+          "The objective uses broad claims such as being a team player instead of naming the operations work you can perform now.",
+          "The resume does not explain which systems, processes, or reporting methods you used beyond Microsoft Office."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "SCALING",
+              "question": "How many records, reports, meetings, or schedules did you manage at Greenfield Logistics?",
+              "why": "The role lists recurring coordination work but gives no volume or cadence."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "At QuickMart or Greenfield Logistics, what error, deadline, or service issue did you help resolve?",
+              "why": "The resume does not show how you performed when accuracy or timing mattered."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "What process improvement training did you participate in, and what changed afterward?",
+              "why": "This may be useful operations evidence, but the current bullet stops at participation."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "Which departments did you coordinate with at Greenfield Logistics, and what did you help move forward?",
+              "why": "The resume names departmental coordination without identifying the parties or work involved."
+            },
+            {
+              "archetype": "END-TO-END OWNERSHIP",
+              "question": "What event logistics did you organize from planning through completion at the Campus Events Office?",
+              "why": "The coordinator title suggests useful ownership, but the bullets do not show the full workflow."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself for entry-level operations coordinator, logistics coordinator, or operations analyst roles. Replace general motivation language with specific work involving records, inventory, schedules, reporting, and cross-department follow-up.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Operations Coordinator",
+              "Logistics Coordinator",
+              "Operations Analyst"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "Logistics"
+            ],
+            "seniority_read": "Early career",
+            "stretch_roles": [
+              "Operations Supervisor",
+              "Supply Chain Analyst"
+            ]
+          },
+          "strongly_aligned": [
+            "Recent operations assistant experience",
+            "Logistics and supply chain exposure",
+            "Scheduling, inventory, reporting, and event coordination"
+          ],
+          "underplayed": [
+            "Cross-department follow-up",
+            "Volunteer schedule management",
+            "Budget recording and event logistics"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Rewrite the Greenfield Logistics bullets around the records, reports, meetings, schedules, and department coordination you handled, adding verified volume or results.",
+          "Replace the objective with a two-line operations summary naming your logistics, inventory, reporting, and scheduling experience.",
+          "Add a concise skills line using only systems and methods you actually used, including Microsoft Office and any verified inventory, reporting, or records tools."
+        ],
+        "rewrites": [
+          {
+            "better": "- Duties included maintaining records and updating reports; scope: [specific scope]; outcome: [measurable result].",
+            "enhancement_note": "Add the record or report volume and the measurable result to show the weight of this recurring work.",
+            "label": "Greenfield records and reports",
+            "original": "- Duties included maintaining records and updating reports."
+          },
+          {
+            "better": "Assisted with inventory tracking alongside team members at MetroRetail Inc.; [accuracy, availability, or reporting result].",
+            "enhancement_note": "Add the inventory type, approximate volume, and result so the assistance has a clear business context.",
+            "label": "MetroRetail inventory support",
+            "original": "- Assisted in tracking inventory with team members."
+          }
+        ],
+        "score": 57,
+        "score_comment_long": "The resume has relevant entry-level operations exposure and a clear business degree. Nearly every experience bullet remains a general duty, with no quantified workload, process result, or named system beyond Microsoft Office. Rewrite the recent roles first, using verified scope and results.",
+        "score_comment_short": "Relevant operations exposure is present, but the bullets rarely show scope, ownership, or results.",
+        "score_label": "Needs more context",
+        "score_plain": "This may qualify you for entry-level operations roles, but many applicants will appear more job-ready because their bullets show what they handled and what changed.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "Good",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The Bachelor of Business Administration, university, and May 2023 graduation date are easy to find and relevant to the target direction."
+          },
+          "Skills": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Summary": {
+            "fix": "Replace the objective with two lines naming your operations experience, core work areas, and target entry-level role.",
+            "grade": "Weak",
+            "missing": "The objective does not distinguish your logistics, inventory, scheduling, or reporting background from broad entry-level motivation.",
+            "priority": "High",
+            "working": "It identifies operations management as the intended direction and establishes that you are a recent business graduate."
+          },
+          "Work Experience": {
+            "fix": "Rewrite the recent operations bullets with verified workload, process details, and results; remove repeated duty phrasing.",
+            "grade": "Needs Rewrite",
+            "missing": "The section lacks measurable scale, outcomes, named systems, and clear boundaries around what you personally handled.",
+            "priority": "High",
+            "working": "The sequence shows increasing relevance from Sales Associate to Team Coordinator, Operations Intern, and Operations Assistant."
+          }
+        },
+        "strengths": [
+          "The progression from Team Coordinator to Operations Assistant gives the resume a sensible entry-level operations direction.",
+          "Greenfield Logistics, MetroRetail Inc., and the Campus Events Office cover records, reporting, inventory, schedules, and event logistics.",
+          "The Campus Events Office role includes managing volunteer schedules and recording expenses, which are concrete responsibilities worth retaining."
+        ],
+        "subscores": {
+          "clarity": 61,
+          "impact": 44,
+          "readability": 68,
+          "story": 56
+        },
+        "summary": "Your recent path points toward entry-level operations work, moving from campus event coordination into retail operations and then Greenfield Logistics. The useful thread is recurring coordination of records, reports, schedules, inventory, and departments. The page does not yet show the scale or result of that work, so it supports coordinator or assistant roles more readily than operations management roles. The practical question is what you personally handled and improved, because that determines whether employers see hands-on readiness or general exposure.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Was responsible for assisting with daily operational tasks.",
+              "section": "Work Experience"
+            },
+            "fix": "Replace the Greenfield daily-operations bullet with the specific processes handled and add [daily volume] or [completion result].",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "This is the first bullet under your most recent role, but it gives no way to estimate the work or your contribution."
+          },
+          {
+            "confidence": "high",
+            "effort": "moderate",
+            "evidence": {
+              "excerpt": "- Supported coordination between departments.",
+              "section": "Work Experience"
+            },
+            "fix": "Name the departments and the work being coordinated, then add [request volume], [cycle time], or [completion result].",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "Cross-department work can distinguish you from a task-only applicant, but the current wording leaves the interaction and consequence unknown."
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "caseId": "product-entry-elite",
+      "fixtureId": "synth_product_manager_entry_elite_1",
+      "report": {
+        "biggest_gap_example": "\"Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction to measure feature effectiveness post-launch.\" names the measures but not the result, so the recruiter cannot judge what changed.",
+        "content_score": 84,
+        "contract_version": "v2",
+        "first_impression": "The resume shows unusually strong product metrics for an early-career profile, including 25% higher activation and 40% higher feature adoption. The story is credible for Associate Product Manager roles, but the summary still sounds broader than the detailed work.",
+        "first_impression_takeaway": "Lead with measurable SaaS product results",
+        "gaps": [
+          "The summary does not name the specific product areas or customer problems you handled, so it adds little beyond the experience section.",
+          "Ownership is clear in the BrightLeaf and NovaSense roles, but the Pivotal Edge bullets leave your personal contribution less distinct.",
+          "The resume shows several launch results but rarely gives baseline, product usage context, or the decision that followed, which limits comparison across achievements."
+        ],
+        "ideas": {
+          "questions": [
+            {
+              "archetype": "TENSION POINT",
+              "question": "What changed when you moved from technical work into product management at BrightLeaf?",
+              "why": "The summary mentions a technical background, but the resume does not explain how it shaped your product decisions."
+            },
+            {
+              "archetype": "SCALING",
+              "question": "How did onboarding personalization expand beyond the initial NovaSense module?",
+              "why": "Senior leadership considered additional modules, but the scale or follow-through is not shown."
+            },
+            {
+              "archetype": "QUALITY UNDER PRESSURE",
+              "question": "How did the six-person Scrum team handle release risks for the 10,000-customer module?",
+              "why": "You describe sprint management and dependencies, but not a difficult delivery tradeoff."
+            },
+            {
+              "archetype": "IMPROVEMENT",
+              "question": "Which user insight led you to simplify task delegation at BrightLeaf?",
+              "why": "The adoption result is strong, while the product reasoning behind the change remains thin."
+            },
+            {
+              "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+              "question": "How did engineering, design, and QA resolve competing priorities during the three-month checkout update?",
+              "why": "The collaboration is named, but the coordination challenge and your decision are not."
+            }
+          ]
+        },
+        "job_alignment": {
+          "jd_keywords": {
+            "match_count": 0,
+            "matched": [],
+            "missing": [],
+            "total_count": 0
+          },
+          "jd_match_score": 0,
+          "jd_match_summary": "No job description provided.",
+          "missing": [
+            "No target-role requirements were provided for comparison"
+          ],
+          "positioning_suggestion": "Position yourself around measurable SaaS activation, adoption, and workflow improvements rather than broad interest in product management. Lead applications with Associate Product Manager and Product Manager roles where roadmap ownership, experimentation, and cross-functional delivery are central.",
+          "role_fit": {
+            "best_fit_roles": [
+              "Associate Product Manager",
+              "Product Manager, SaaS",
+              "Growth Product Manager",
+              "Product Operations Manager"
+            ],
+            "company_stage_fit": "Not clear from the resume alone",
+            "industry_signals": [
+              "SaaS",
+              "Technology"
+            ],
+            "seniority_read": "Early-career product manager, with Associate Product Manager experience and substantial internship ownership.",
+            "stretch_roles": [
+              "Product Manager, Growth",
+              "Product Manager, Platform"
+            ]
+          },
+          "strongly_aligned": [
+            "SaaS product development",
+            "Activation and adoption improvement",
+            "Roadmap and backlog prioritization",
+            "A/B testing and product analytics"
+          ],
+          "underplayed": [
+            "Technical background",
+            "Customer research",
+            "Senior leadership communication"
+          ]
+        },
+        "layout_band": "unknown",
+        "layout_notes": "",
+        "layout_score": null,
+        "next_steps": [
+          "Replace the generic summary with a two-sentence positioning statement naming SaaS, activation, adoption, and roadmap ownership.",
+          "Add the missing post-launch result to the KPI bullet, or remove that bullet if no verified result is available.",
+          "Rework the Pivotal Edge bullets to distinguish what you decided, coordinated, or delivered from what the broader team did."
+        ],
+        "rewrites": [
+          {
+            "better": "Defined and tracked activation rate, time-to-value, and churn reduction KPIs to evaluate onboarding feature performance post-launch; [measurable result].",
+            "enhancement_note": "Add the post-launch KPI result so this bullet shows what the measurement revealed.",
+            "label": "NovaSense KPI tracking",
+            "original": "- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction to measure feature effectiveness post-launch."
+          }
+        ],
+        "score": 84,
+        "score_comment_long": "The resume contains multiple specific outcomes and credible ownership signals. Evidence is not equally strong in every role. Tightening the weakest bullets will make the story easier to place.",
+        "score_comment_short": "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.",
+        "score_label": "Mostly clear",
+        "score_plain": "This has a credible evidence base. Strengthen the few thin bullets instead of rewriting what already works.",
+        "section_review": {
+          "Education": {
+            "fix": "No change needed unless it improves role alignment.",
+            "grade": "B",
+            "missing": "No material section-specific gap identified.",
+            "priority": "Low",
+            "working": "The technology management concentration and honors GPA establish relevant academic preparation without crowding the experience section."
+          },
+          "Skills": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Summary": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          },
+          "Work Experience": {
+            "fix": "Add only if it helps the role story.",
+            "grade": "N/A",
+            "missing": "Section not present.",
+            "priority": "Low",
+            "working": ""
+          }
+        },
+        "strengths": [
+          "The NovaSense onboarding work connects a four-person team, 150 beta users, and a 25% activation increase in one coherent launch story.",
+          "BrightLeaf shows both product discovery and delivery through user interviews, backlog prioritization, sprint planning, and a module used by 10,000+ customers.",
+          "The resume repeatedly ties product changes to measurable movement, including 40% adoption, 15% task completion, 30% onboarding time, and 20% checkout speed."
+        ],
+        "subscores": {
+          "clarity": 81,
+          "impact": 86,
+          "readability": 84,
+          "story": 79
+        },
+        "summary": "NovaSense and BrightLeaf establish a clear early-career SaaS product path, with ownership of onboarding, resource management, experimentation, and release delivery. Across the resume, the work centers on turning user research and analytics into measurable changes, from 25% higher activation to 40% higher feature adoption. The resume points to Associate Product Manager and selected Product Manager applications more clearly than senior roles. What remains unclear is what the KPI tracking at NovaSense actually found, which weakens the post-launch decision story.",
+        "top_fixes": [
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction",
+              "section": "Work Experience"
+            },
+            "fix": "Add [specific scope] to the experience bullet without losing the result already on the page.",
+            "impact_level": "high",
+            "section_ref": "Work Experience",
+            "why": "The result is worth keeping, but we cannot see how large or complex the work was."
+          },
+          {
+            "confidence": "high",
+            "effort": "quick",
+            "evidence": {
+              "excerpt": "Product Manager with a strong foundation in data-driven decision-making and agile product development.",
+              "section": "Summary"
+            },
+            "fix": "Replace the opening with [target product role] plus the SaaS domains and measurable results already shown in Work Experience.",
+            "impact_level": "high",
+            "section_ref": "Summary",
+            "why": "The current opening uses general product language instead of giving the recruiter a quick reason to place you in a specific role."
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "schemaVersion": "1",
+  "selection": {
+    "caseCount": 12,
+    "excludedResultCount": 11,
+    "provenance": "synthetic-only"
+  },
+  "sourceRun": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "contractVersion": "v2",
+    "executionMode": "live",
+    "fullRunSha256": "a5843304acc6752382d4566da2dabdb0e4a9254aeccb434c7d327f58e0a3cefe",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "promptVersion": "resume_v2_luna_low_human_voice_1",
+    "reasoningEffort": "low",
+    "runId": "eval_1785271781375"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "vp-talent-elite",
+  "fixture": {
+    "sha256": "7214ea9aa2becb29a6f49ae999438c457df2b9549b12c0ce0ca7dd5af7bce814"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "anchor_elite_vp_talent_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "3f3c4803e8490a9f48344cf06cd34dbdc95b6c6f3bea982852d4d0198992f84c",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:14.975Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/vp-talent-elite.jpg",
+      "sha256": "fc4d84d555bf9fb5cf5aa5b5a59b572e856a07e664132aa90a76c4598216418f"
+    },
+    "viewport": {
+      "height": 5964,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 91/100\n\nNot a prediction of interviews or offers.\n\nQuantify the earlier wins\n\nHelios has strong metrics; earlier roles still need hiring volume and business results.\n\nWHAT LANDS\n\nHelios combines a 65 plus person global team with coverage across engineering, product, go-to-market, and G A, making the operating remit easy to place.\n\nWHERE DOUBT CREEPS IN\n\nNorthline's forecasting and requisition approval work has no stated change in budget variance, approval speed, or backfill volume.\n\nFIX FIRST\n\nAdd [total hires], [annual requisition volume], and [share of company growth] to the Northline scaling bullet.\n\nWhat we saw on the page: “Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [total hires], [annual requisition volume], and [share of company growth] to the Northline scaling bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.”\n\nWHAT IS MISSING\n\nCompany headcount growth alone does not show how much of the recruiting work you personally directed.\n\nANSWER BEFORE YOU EDIT\n\nWhat changed in quality of hire after the Helios recruiting funnel rebuild?\n\nTotal hires\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nScaled Northline Technologies from 300 to 1,000 employees through R D and enterprise sales hiring; hiring volume: [total hires].\n\nFIX 02\n\nThen this\n\nAdd [budget variance change] and [reduction in backfills or approval time] to the Northline forecasting bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last”\n\nWHAT IS MISSING\n\nThe process is clear, but the business consequence remains too general for a VP-level resume.\n\nANSWER BEFORE YOU EDIT\n\nHow many hires did the 65 plus person Helios organization deliver during growth from 800 to 2,300 employees?\n\nX%\nChange\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nPartnered with Finance to establish headcount forecasting and requisition approval for R D and enterprise sales hiring; budget variance: [X%] and last-minute backfills: [change].\n\nFIX 03\n\nOne more pass\n\nAdd [number of executive hires], [time to fill], and [retention or business result] to the BrightSide executive hiring bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“Led hiring for critical roles including VP Sales, VP Product, and VP Engineering, partnering closely with the CEO and board.”\n\nWHAT IS MISSING\n\nThe titles and stakeholders establish importance, but a result would show what those searches delivered.\n\nANSWER BEFORE YOU EDIT\n\nWhat hiring tradeoff did you manage while improving onsite to offer and offer acceptance?\n\nNumber of hires or change in time to fill\nKeep these facts\n\nTRY THIS\n\nA number in this draft is not in the facts you confirmed. Remove it or update the matching fact before copying.\n\nEdit\nAdd facts to copy\n\nBuilt BrightSide Digital's recruiting function from 3 to 15 people and established the company's first structured hiring process; hiring result: [number of hires or change in time to fill].\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nHelios combines a 65 plus person global team with coverage across engineering, product, go-to-market, and G A, making the operating remit easy to place.\n\n02\n\nThe funnel metrics move from 21 percent to 33 percent onsite-to-offer and from 76 percent to 89 percent offer acceptance, which gives the recruiting work a concrete business shape.\n\n03\n\nThe leadership bench includes 4 Directors of TA, with 2 promoted internally, showing that team development was part of the role rather than an aside.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself for VP Talent Acquisition and recruiting executive roles at scaling technology companies. Lead with global team size, workforce planning, funnel economics, hiring quality, and leadership development, then use earlier roles to show you built functions from the ground up.\n\nBEST FIT NOW\n\nVP, Talent Acquisition\nChief Talent Officer\nHead of Talent Acquisition\n\nSeniority read: VP-level recruiting executive with responsibility for a 65 plus person global organization and partnership with CEO, CHRO, and functional VPs.\n\nHow the clarity summary breaks down\n91/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "0a887c831c215e9a56890ee6e16beed84a138c0fffbbcb1e30ef75fbd13b58a9"
+  },
+  "report": {
+    "biggest_gap_example": "\"Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.\" shows company growth but not your hiring volume or contribution, so the recruiter cannot place your role in that scale.",
+    "content_score": 91,
+    "contract_version": "v2",
+    "first_impression": "This is a senior recruiting executive resume with unusually strong operating metrics at Helios. The older roles establish progression, but several bullets describe programs without showing their business result.",
+    "first_impression_takeaway": "Quantify the earlier wins",
+    "gaps": [
+      "Northline's forecasting and requisition approval work has no stated change in budget variance, approval speed, or backfill volume.",
+      "BrightSide shows team-building and executive hiring, but not hiring volume, time period, or result for those searches.",
+      "The summary mentions quality of hire and cost per hire, while the experience section does not show those measures directly."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "What changed in quality of hire after the Helios recruiting funnel rebuild?",
+          "why": "The summary names quality of hire, but the Helios bullets quantify funnel and acceptance changes instead."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "How many hires did the 65 plus person Helios organization deliver during growth from 800 to 2,300 employees?",
+          "why": "The organization and company growth are clear, but hiring volume would show the operating scale."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "What hiring tradeoff did you manage while improving onsite to offer and offer acceptance?",
+          "why": "The funnel metrics are strong, and the decision-making behind maintaining the bar would add useful senior-level context."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "Which recruiter behavior changed after the Northline playbooks raised productivity from 3.1 to 4.5 hires per month?",
+          "why": "The productivity result is useful, but the mechanism is currently compressed into a program label."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "How did CEO and board priorities shape the VP Sales, VP Product, and VP Engineering searches at BrightSide?",
+          "why": "The senior stakeholders and roles are named, but the complexity of those searches is not yet visible."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself for VP Talent Acquisition and recruiting executive roles at scaling technology companies. Lead with global team size, workforce planning, funnel economics, hiring quality, and leadership development, then use earlier roles to show you built functions from the ground up.",
+      "role_fit": {
+        "best_fit_roles": [
+          "VP, Talent Acquisition",
+          "Chief Talent Officer",
+          "Head of Talent Acquisition",
+          "Recruiting Executive"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Financial services",
+          "Technology"
+        ],
+        "seniority_read": "VP-level recruiting executive with responsibility for a 65 plus person global organization and partnership with CEO, CHRO, and functional VPs.",
+        "stretch_roles": [
+          "Chief People Officer",
+          "Chief Human Resources Officer"
+        ]
+      },
+      "strongly_aligned": [
+        "Global recruiting organization leadership",
+        "Executive partnership and workforce planning",
+        "Technical, product, go-to-market, and enterprise sales hiring",
+        "Structured interviewing and hiring quality",
+        "Recruiting systems and process improvement"
+      ],
+      "underplayed": [
+        "Budget ownership and financial tradeoffs",
+        "Board-level influence beyond executive search partnership",
+        "Quality-of-hire measurement",
+        "Scope of total hiring volume across roles and regions"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Keep the Helios metrics, then add the total hiring volume and annual requisition load behind the 65 plus person organization.",
+      "Rewrite the Northline and BrightSide bullets around the mechanism, hiring scale, and measurable result; use brackets for facts you need to verify.",
+      "Align the summary with the metrics actually shown, or add direct quality-of-hire and cost-per-hire results if those measures are available."
+    ],
+    "rewrites": [
+      {
+        "better": "Scaled Northline Technologies from 300 to 1,000 employees through R D and enterprise sales hiring; hiring volume: [total hires].",
+        "enhancement_note": "Add the number of hires and the period covered so company growth is tied to your recruiting contribution.",
+        "label": "Northline company scaling",
+        "original": "Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring."
+      },
+      {
+        "better": "Partnered with Finance to establish headcount forecasting and requisition approval for R D and enterprise sales hiring; budget variance: [X%] and last-minute backfills: [change].",
+        "enhancement_note": "Add the budget and backfill result to show what the process changed for the business.",
+        "label": "Northline forecasting process",
+        "original": "Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last minute backfills."
+      },
+      {
+        "better": "Built BrightSide Digital's recruiting function from 3 to 15 people and established the company's first structured hiring process; hiring result: [number of hires or change in time to fill].",
+        "enhancement_note": "Add a hiring or speed result to show what the new function delivered beyond its size.",
+        "label": "BrightSide recruiting function",
+        "original": "Built the recruiting function from 3 to 15 people and established the company’s first structured hiring process."
+      }
+    ],
+    "score": 91,
+    "score_comment_long": "Helios is unusually well quantified, with team scale, workforce planning, funnel conversion, hiring quality, systems, and leadership development all visible. The earlier roles show progression but leave hiring volume and business results less defined. Add those missing measures and reconcile the summary's quality-of-hire and cost-per-hire claims with the experience bullets.",
+    "score_comment_short": "Helios has strong metrics; earlier roles still need hiring volume and business results.",
+    "score_label": "Clear and specific",
+    "score_plain": "This resume should compete well for VP Talent Acquisition searches. Recruiters may still probe the older roles because their results are less measurable than Helios.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "A",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The degree and field are clear and appropriately concise."
+      },
+      "Skills": {
+        "fix": "Group the systems and practices around the target role, and remove or add tools only based on actual depth.",
+        "grade": "A-",
+        "missing": "The list names relevant systems and recruiting practices but does not show depth or ownership for each.",
+        "priority": "Low",
+        "working": "Skills cover hiring, leadership, systems, and structured recruiting practices that match the experience."
+      },
+      "Summary": {
+        "fix": "Replace the broad quality-of-hire and cost-per-hire claims with the specific Helios measures shown below, or add the direct measures if verified.",
+        "grade": "A-",
+        "missing": "The summary names quality of hire and cost per hire without directly quantified support in the experience section.",
+        "priority": "Medium",
+        "working": "It quickly establishes fifteen plus years, high-growth technology, executive partnership, and recruiting-funnel ownership."
+      },
+      "Work Experience": {
+        "fix": "Add hiring volume and measurable business results to the Northline and BrightSide bullets while preserving the strong Helios metrics.",
+        "grade": "A",
+        "missing": "The earlier roles do not consistently show requisition volume, time period, or business result.",
+        "priority": "High",
+        "working": "Helios presents clear executive scope and quantified changes across planning, funnel performance, hiring quality, systems, and leadership."
+      }
+    },
+    "strengths": [
+      "Helios combines a 65 plus person global team with coverage across engineering, product, go-to-market, and G A, making the operating remit easy to place.",
+      "The funnel metrics move from 21 percent to 33 percent onsite-to-offer and from 76 percent to 89 percent offer acceptance, which gives the recruiting work a concrete business shape.",
+      "The leadership bench includes 4 Directors of TA, with 2 promoted internally, showing that team development was part of the role rather than an aside."
+    ],
+    "subscores": {
+      "clarity": 92,
+      "impact": 92,
+      "readability": 90,
+      "story": 91
+    },
+    "summary": "The Helios role clearly supports VP-level Talent Acquisition leadership: you run a 65 plus person global organization while the company grows from 800 to 2,300 employees. Your strongest work connects planning, funnel design, structured interviews, systems, and leadership development to measurable changes such as 91 percent hiring-plan accuracy and a 35 percent reduction in first-six-month mis-hires. Earlier roles show a consistent build-and-scale progression, from 3 to 15 recruiters at BrightSide to 120 plus early-career hires at Northline. The remaining question is whether the summary's quality-of-hire and cost-per-hire claims can be tied to numbers, because that affects how confidently a recruiter can assess your business impact.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "Scaled the company from 300 to 1,000 employees, with a focus on R D and enterprise sales hiring.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [total hires], [annual requisition volume], and [share of company growth] to the Northline scaling bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "Company headcount growth alone does not show how much of the recruiting work you personally directed."
+      },
+      {
+        "confidence": "high",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last",
+          "section": "Work Experience"
+        },
+        "fix": "Add [budget variance change] and [reduction in backfills or approval time] to the Northline forecasting bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "The process is clear, but the business consequence remains too general for a VP-level resume."
+      },
+      {
+        "confidence": "medium",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "Led hiring for critical roles including VP Sales, VP Product, and VP Engineering, partnering closely with the CEO and board.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [number of executive hires], [time to fill], and [retention or business result] to the BrightSide executive hiring bullet.",
+        "impact_level": "medium",
+        "section_ref": "Work Experience",
+        "why": "The titles and stakeholders establish importance, but a result would show what those searches delivered."
+      }
+    ]
+  },
+  "reportSha256": "3f3c4803e8490a9f48344cf06cd34dbdc95b6c6f3bea982852d4d0198992f84c",
+  "schemaVersion": "2",
+  "variant": "production"
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "data-science-senior-elite",
+  "packetSha256": "f71a51c76c2c15fb2baa50c319f2cabe80ebd5d6a935560f6704355bbb83d64f",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "f3504e162032144e55c20df97ab0b104c570fd5f36b154bfa793be0dfda953c1",
+      "reportSha256": "8a98513eef010f7ef519c923c2e97c9253cd55698d389cf7af54bda90159cf7e",
+      "fixtureSha256": "49f38178878184f4dfe5aed0d35d4ee0520d9bc2bee4bdcf72f035908bacf648",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "5fe792d726836bdb599d68574861739cec5d5316bc8b2094333a565b0a120cf4",
+      "screenshotSha256": "42f224d9e722cdf687e05bcd525a546748e76ef0b7ea1653d8ca0ca40a29341e"
+    },
+    "production": {
+      "artifactSha256": "2ac02de28f5f4450e88d1f5a500f9f25b1d8a308d09a427aa23149456e457d69",
+      "reportSha256": "8a98513eef010f7ef519c923c2e97c9253cd55698d389cf7af54bda90159cf7e",
+      "fixtureSha256": "49f38178878184f4dfe5aed0d35d4ee0520d9bc2bee4bdcf72f035908bacf648",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "843e140d959de35f9f4530c5768083250b05b04b1f590e3e7299955fbaefb3fc",
+      "screenshotSha256": "a7f731f10db7145d57cbeffc6bdc0997edbe7b3064207168923c6b2a9f00bce6"
+    }
+  },
+  "reviewer": "blind-reviewer-1",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "B",
+    "specificity": "B",
+    "actionability": "B"
+  },
+  "rationale": {
+    "trust": "B preserves each source and labels unrelated material separately; A treats resume-supported 18% and 98% figures as unconfirmed and announces three moves while rendering two.",
+    "specificity": "B's dashboard fix rewrites the dashboard bullet; A substitutes the GPU fraud-model bullet and asks a GPU question under dashboard evidence.",
+    "actionability": "B offers two correctly framed priorities, a separate GPU edit, and useful questions; A's headline card does not produce a targeted headline."
+  }
+}

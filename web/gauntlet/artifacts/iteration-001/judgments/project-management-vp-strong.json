@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "project-management-vp-strong",
+  "packetSha256": "0b7a5304fb4e30520efa181310bed5b0590f7a9ce35ff9c1293eb8a71ad9d290",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "64400f7baf2ccf5d63aec46c140611ab3c21282a08c616fb6b6e8a9c1f9149c3",
+      "reportSha256": "6edaa94f329725d47c015314760e53bfd6855b2f7136b50f086a6bde0b1a7826",
+      "fixtureSha256": "8c194ebd43e24d69df1294477731ad9556c0c460cdad4b60b9cd46e33266430a",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "77583ef804e7537a9c1bd8b359684893023c95f542c1e7608411d6a1f84cc632",
+      "screenshotSha256": "e9a4746e27dadcb8aaefa3a2e164bd23987ce098e1c3dfbbf5476659bb1a03bf"
+    },
+    "production": {
+      "artifactSha256": "cf34e817947bc301360175e38a75d02c5f48da3bacb7d0064791ecf3936aef11",
+      "reportSha256": "6edaa94f329725d47c015314760e53bfd6855b2f7136b50f086a6bde0b1a7826",
+      "fixtureSha256": "8c194ebd43e24d69df1294477731ad9556c0c460cdad4b60b9cd46e33266430a",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "6e29e5fa7b71860c796b523d45d80f5c294dbe45dc15a784643d7f403219a4e8",
+      "screenshotSha256": "5eafc41195113763f7bb5f6352ca9a71931b7aba5f1d8f1671fc0a101ae800fc"
+    }
+  },
+  "reviewer": "blind-reviewer-2",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A keeps ranked evidence coherent; B cross-wires mentorship, Aegis controls, Army logistics, and GlobalTech executive-alignment drafts.",
+    "specificity": "A separates extra source-based rewrites and five targeted questions from ranked fixes; B's questions and drafts do not describe their cited accomplishments.",
+    "actionability": "A's fact prompts support adjacent drafts; following B would edit the wrong bullets, despite one truncated A source quote."
+  }
+}

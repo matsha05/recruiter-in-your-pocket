@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1",
+  "activeIterationId": "iteration-001",
+  "target": {
+    "caseCount": 12,
+    "minimumPreferenceRate": 0.7,
+    "minimumPreferredCases": 9,
+    "maxInventedFacts": 0,
+    "maxCriticalJourneyFailures": 0,
+    "dimensions": [
+      "trust",
+      "specificity",
+      "actionability"
+    ]
+  },
+  "competitorReferences": [
+    {
+      "id": "teal-public-ats-resume-checker",
+      "name": "Teal ATS Resume Checker",
+      "role": "cold_entry",
+      "url": "https://www.tealhq.com/tool/resume-checker",
+      "inspectedOn": "2026-07-31",
+      "inspectionStatus": "public_artifact_inspected",
+      "accountCreated": false,
+      "sameResumeOutputsAvailable": false,
+      "observedCapabilities": [
+        "Public cold-entry promise of a personalized resume score",
+        "Checks spanning ATS compatibility, formatting, structure, content strength, and keywords",
+        "Issue-led recommendations that point a user toward the section to improve"
+      ],
+      "limitation": "The public artifact is inspectable, but no account was created and no same-resume Teal outputs exist for the twelve cases."
+    },
+    {
+      "id": "jobscan-public-match-report-tutorial",
+      "name": "Jobscan Match Report tutorial",
+      "role": "report_actionability",
+      "url": "https://www.jobscan.co/jobscan-tutorial",
+      "inspectedOn": "2026-07-31",
+      "inspectionStatus": "public_artifact_inspected",
+      "accountCreated": false,
+      "sameResumeOutputsAvailable": false,
+      "observedCapabilities": [
+        "Job-description-specific match score and report",
+        "Report sections for searchability, skills and keywords, recruiter tips, and formatting",
+        "An explicit improve-and-rescan action loop"
+      ],
+      "limitation": "The public tutorial is inspectable, but no account was created and no same-resume Jobscan outputs exist for the twelve cases."
+    }
+  ],
+  "requiredJourneys": [
+    {
+      "id": "free-review-desktop",
+      "label": "Cold visitor reaches useful free review on desktop",
+      "viewport": "desktop"
+    },
+    {
+      "id": "free-review-mobile",
+      "label": "Cold visitor reaches useful free review on mobile",
+      "viewport": "mobile"
+    },
+    {
+      "id": "five-more-value-desktop",
+      "label": "Five-more-for-$29 value is clear on desktop",
+      "viewport": "desktop"
+    },
+    {
+      "id": "five-more-value-mobile",
+      "label": "Five-more-for-$29 value is clear on mobile",
+      "viewport": "mobile"
+    }
+  ],
+  "cases": [
+    {
+      "id": "staff-ml-elite",
+      "fixtureId": "anchor_elite_ml_staff_1",
+      "resumePath": "golden/anchor_elite_ml_staff_1.txt",
+      "provenance": "synthetic",
+      "role": "Machine learning engineering",
+      "seniority": "Staff",
+      "quality": "Elite",
+      "tags": ["technical", "leadership", "metrics", "anchor"]
+    },
+    {
+      "id": "vp-talent-elite",
+      "fixtureId": "anchor_elite_vp_talent_1",
+      "resumePath": "golden/anchor_elite_vp_talent_1.txt",
+      "provenance": "synthetic",
+      "role": "Talent acquisition",
+      "seniority": "VP",
+      "quality": "Elite",
+      "tags": ["people", "executive", "metrics", "anchor"]
+    },
+    {
+      "id": "data-science-senior-elite",
+      "fixtureId": "synth_data_scientist_senior_elite_1",
+      "resumePath": "golden/synth_data_scientist_senior_elite_1766960238522.txt",
+      "provenance": "synthetic",
+      "role": "Data science",
+      "seniority": "Senior",
+      "quality": "Elite",
+      "tags": ["technical", "individual-contributor", "synthetic"]
+    },
+    {
+      "id": "marketing-vp-elite",
+      "fixtureId": "synth_marketing_manager_vp_elite_1",
+      "resumePath": "golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+      "provenance": "synthetic",
+      "role": "Marketing",
+      "seniority": "VP",
+      "quality": "Elite",
+      "tags": ["go-to-market", "executive", "synthetic"]
+    },
+    {
+      "id": "software-engineering-mid-strong",
+      "fixtureId": "synth_software_engineer_mid_strong_1",
+      "resumePath": "golden/synth_software_engineer_mid_strong_1766960342929.txt",
+      "provenance": "synthetic",
+      "role": "Software engineering",
+      "seniority": "Mid-level",
+      "quality": "Strong",
+      "tags": ["technical", "individual-contributor", "synthetic"]
+    },
+    {
+      "id": "ux-director-strong",
+      "fixtureId": "synth_ux_designer_director_strong_1",
+      "resumePath": "golden/synth_ux_designer_director_strong_1766960238902.txt",
+      "provenance": "synthetic",
+      "role": "UX design",
+      "seniority": "Director",
+      "quality": "Strong",
+      "tags": ["creative", "leadership", "synthetic"]
+    },
+    {
+      "id": "project-management-vp-strong",
+      "fixtureId": "synth_project_manager_vp_strong_1",
+      "resumePath": "golden/synth_project_manager_vp_strong_1766957014608.txt",
+      "provenance": "synthetic",
+      "role": "Project management",
+      "seniority": "VP",
+      "quality": "Strong",
+      "tags": ["operations", "executive", "synthetic"]
+    },
+    {
+      "id": "sales-mid-foundation",
+      "fixtureId": "synth_sales_executive_mid_foundation_1",
+      "resumePath": "golden/synth_sales_executive_mid_foundation_1766960226693.txt",
+      "provenance": "synthetic",
+      "role": "Sales",
+      "seniority": "Mid-level",
+      "quality": "Foundation",
+      "tags": ["go-to-market", "individual-contributor", "synthetic"]
+    },
+    {
+      "id": "hr-director-foundation",
+      "fixtureId": "synth_hr_manager_director_foundation_1",
+      "resumePath": "golden/synth_hr_manager_director_foundation_1766960245321.txt",
+      "provenance": "synthetic",
+      "role": "Human resources",
+      "seniority": "Director",
+      "quality": "Foundation",
+      "tags": ["people", "leadership", "synthetic"]
+    },
+    {
+      "id": "finance-senior-weak",
+      "fixtureId": "synth_finance_analyst_senior_weak_1",
+      "resumePath": "golden/synth_finance_analyst_senior_weak_1766960287359.txt",
+      "provenance": "synthetic",
+      "role": "Finance",
+      "seniority": "Senior",
+      "quality": "Weak",
+      "tags": ["analytical", "individual-contributor", "synthetic"]
+    },
+    {
+      "id": "operations-entry-weak",
+      "fixtureId": "synth_operations_manager_entry_weak_1",
+      "resumePath": "golden/synth_operations_manager_entry_weak_1766960246467.txt",
+      "provenance": "synthetic",
+      "role": "Operations",
+      "seniority": "Entry",
+      "quality": "Weak",
+      "tags": ["operations", "early-career", "synthetic"]
+    },
+    {
+      "id": "product-entry-elite",
+      "fixtureId": "synth_product_manager_entry_elite_1",
+      "resumePath": "golden/synth_product_manager_entry_elite_1766960255028.txt",
+      "provenance": "synthetic",
+      "role": "Product management",
+      "seniority": "Entry",
+      "quality": "Elite",
+      "tags": ["product", "early-career", "synthetic"]
+    }
+  ]
+}

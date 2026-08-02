@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "marketing-vp-elite",
+  "packetSha256": "bb7defe5714ab811df41ce3840353e6bbe2b3bbcc4eacaccdeea37cd610d5973",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "d8fbba280895d6b877b4785c183383e11f5a1b5141ec8b9decad5e67d6758601",
+      "reportSha256": "fd0059281356f24a3a4c8e192ffd7a1d275e6c041b7e4e28d8b31eac3b564f93",
+      "fixtureSha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "dfdcb30fb2be21a86a2377548db8e7e589efb8cbb94f706e4a873f9a6d2fb283",
+      "screenshotSha256": "c66b8429ded1ff3311d67a86385666ab8d504e37ad101503b5007c4ebae8d035"
+    },
+    "production": {
+      "artifactSha256": "fd7dd2390702cca5365db99dad3afb5bd53d5228adbab8ce7ab9221a99e4ca77",
+      "reportSha256": "fd0059281356f24a3a4c8e192ffd7a1d275e6c041b7e4e28d8b31eac3b564f93",
+      "fixtureSha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "e1458369d0fc49775dc54b1a6ec2ae7d3646a2d941a0503df60f444e0bd2bc94",
+      "screenshotSha256": "c141c913dbe9960dfd895f841b7f2ddf379c949af83cd5819ebe469edb8dc123"
+    }
+  },
+  "reviewer": "blind-reviewer-1",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "A",
+    "specificity": "A",
+    "actionability": "A"
+  },
+  "rationale": {
+    "trust": "A separates missing proof from broader questions; B embeds unrelated lead-flow, global-scale, and launch-tradeoff questions inside ranked fixes.",
+    "specificity": "A directly requests reporting relationship and company scale, program/channel/audience, and summary positioning for the adjacent source.",
+    "actionability": "A's exact-source prompts and separately framed questions create a safer revision path, despite the shared weak summary placeholder."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "sales-mid-foundation",
+  "candidateArtifactSha256": "7e17acd50dd96d5455ed721a2c526ff639dcacc78e826bb9c68836060f323057",
+  "auditor": "source-reviewer-2",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "The resume does not show quota, revenue, pipeline, win rate, deal size, or account volume, leaving your commercial level difficult to place.",
+      "reason": "The summary mentions contributing to revenue growth; the defensible gap is missing quantified or attributable revenue."
+    }
+  ],
+  "notes": "All excerpts are exact and rewrites preserve facts. The report does not reconcile dated experience with the shorter summary claim, and some questions/generalizations are leading or uncited."
+}

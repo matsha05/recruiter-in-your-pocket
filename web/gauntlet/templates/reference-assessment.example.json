@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "REPLACE_WITH_ACTIVE_ITERATION",
+  "caseId": "REPLACE_WITH_CASE_ID",
+  "candidateArtifactSha256": "REPLACE_WITH_CANDIDATE_ARTIFACT_SHA256",
+  "assessor": "REPLACE_WITH_ASSESSOR",
+  "assessedAt": "REPLACE_WITH_ISO_TIMESTAMP",
+  "dimensions": {
+    "trust": {
+      "verdict": "REPLACE_WITH_MEETS_OR_BEATS_TRAILS_OR_INCONCLUSIVE",
+      "evidence": "REPLACE_WITH_CANDIDATE_AND_PUBLIC_ARTIFACT_EVIDENCE",
+      "referenceIds": ["teal-public-ats-resume-checker"]
+    },
+    "specificity": {
+      "verdict": "REPLACE_WITH_MEETS_OR_BEATS_TRAILS_OR_INCONCLUSIVE",
+      "evidence": "REPLACE_WITH_CANDIDATE_AND_PUBLIC_ARTIFACT_EVIDENCE",
+      "referenceIds": ["teal-public-ats-resume-checker"]
+    },
+    "actionability": {
+      "verdict": "REPLACE_WITH_MEETS_OR_BEATS_TRAILS_OR_INCONCLUSIVE",
+      "evidence": "REPLACE_WITH_CANDIDATE_AND_PUBLIC_ARTIFACT_EVIDENCE",
+      "referenceIds": ["jobscan-public-match-report-tutorial"]
+    }
+  }
+}

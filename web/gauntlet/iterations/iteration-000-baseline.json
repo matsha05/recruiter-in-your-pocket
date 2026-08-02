@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "id": "iteration-000-baseline",
+  "label": "Unrun baseline",
+  "createdAt": "2026-07-31T00:00:00.000Z",
+  "status": "baseline_pending",
+  "production": {
+    "commit": null,
+    "model": null,
+    "resumePrompt": null,
+    "renderer": null
+  },
+  "candidate": {
+    "commit": null,
+    "model": null,
+    "resumePrompt": null,
+    "renderer": null
+  },
+  "builder": {
+    "change": "Configured the twelve-case synthetic corpus and the evidence collection contract.",
+    "claim": "No product-quality claim is made because no candidate or production evidence has been imported."
+  },
+  "critic": {
+    "verdict": "pending",
+    "rationale": "There are no rendered output pairs, blind judgments, source audits, reference assessments, or journey receipts to judge.",
+    "remainingGap": "Run and seal the first real commit-bound comparison before asking for a quality verdict."
+  },
+  "previous": null,
+  "seal": null,
+  "baselineStatement": "The twelve-case corpus is configured, but no commit-bound production/candidate report and rendered-presentation pairs, blind judgments, manual source audits, structured public-reference assessments, or cold-visitor journey receipts have been imported for this iteration."
+}

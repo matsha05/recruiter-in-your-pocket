@@ -1,0 +1,230 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "staff-ml-elite",
+  "fixture": {
+    "sha256": "210b1c14666b1df87a6eade18ac712507fcc8c89b3debb7c6fee76f71d33d6d1"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "anchor_elite_ml_staff_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "22f14df3cc8f129692d704aa989dd56629128ba9ea81264299d6d341648e2699",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:14.471Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/staff-ml-elite.jpg",
+      "sha256": "d2259b30bc98aa7f00c587ed1516938be360cd1f33792a597a1c7e56d99a711b"
+    },
+    "viewport": {
+      "height": 3921,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 92/100\n\nNot a prediction of interviews or offers.\n\nShow the stray skills entry\n\nQuantified ML results and system scale are unusually strong; leadership and operational details remain uneven.\n\nWHAT LANDS\n\nThe two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.\n\nWHERE DOUBT CREEPS IN\n\nThe resume shows what you improved, but gives little detail on experiment design, rollout decisions, or how you separated model effects from other changes.\n\nFIX FIRST\n\nAdd [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.\n\nWhat we saw on the page: “Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.”\n\nWHAT IS MISSING\n\nThe bullet lists important operational duties but gives no way to judge the size or consequence of that responsibility.\n\nANSWER BEFORE YOU EDIT\n\nWhen did watch time and subscription conversion move differently, and how did you choose the ranking tradeoff?\n\nIncident resolution time or service-level result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nMaintained production model performance and data pipelines through monitoring, retraining, and incident response; [incident resolution time or service-level result].\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.\n\n02\n\nThe ads quality role links calibrated probabilities and down-funnel metrics to an estimated 22 million dollars per year in net new revenue, which makes the business value easy to understand.\n\n03\n\nThe career progression from demand forecasting to ads quality to personalization shows a consistent production ML path across retail, advertising, and streaming.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself around large-scale ranking and recommendation systems with unusually clear business and infrastructure results. For Staff or Principal ML roles, bring the leadership decisions and cross-functional operating model closer to the foreground.\n\nBEST FIT NOW\n\nStaff Machine Learning Engineer, Recommendations\nStaff Machine Learning Engineer, Ranking\nStaff Machine Learning Engineer, Ads Quality\n\nSeniority read: Staff-level roles are well supported by the current title, technical lead responsibility, 200M monthly active user platform, and mentoring of 9 technical practitioners.\n\nHow the clarity summary breaks down\n92/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "f9533fc379198a362792c75dc45c8de623190f0ebc2d3b1a7047483b31a5ae8b"
+  },
+  "report": {
+    "biggest_gap_example": "\"Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.\" lacks scale or a concrete incident result, so the operational burden is hard to judge.",
+    "content_score": 92,
+    "contract_version": "v2",
+    "first_impression": "This is an unusually quantitative Staff ML resume, with recommendation, ads, and forecasting work tied to user, revenue, and infrastructure results. The stray \"javascript\" entry and a few less-specific leadership bullets interrupt an otherwise clear senior-level read.",
+    "first_impression_takeaway": "Show the stray skills entry",
+    "gaps": [
+      "The resume shows what you improved, but gives little detail on experiment design, rollout decisions, or how you separated model effects from other changes.",
+      "The leadership bullets describe mentoring and reviews without showing the decisions you made, the audiences involved, or the resulting change in team or model practice.",
+      "The recent work is concentrated at Nimbus, so the resume gives limited context on organizational scale, product constraints, or ownership beyond the listed systems."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "When did watch time and subscription conversion move differently, and how did you choose the ranking tradeoff?",
+          "why": "Your ranking work reports both measures, but the decision tension between them is not visible."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "What changed in the architecture or operating model to serve a 200M monthly active user platform?",
+          "why": "The user scale is clear; the engineering choices that made it workable would sharpen the Staff-level story."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "Describe a personalization incident where guardrails, latency, or model quality forced a difficult production decision.",
+          "why": "The resume names monitoring and fairness reviews, but not a concrete high-pressure judgment."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "Which part of the offline evaluation harness removed the most iteration time from weeks to days?",
+          "why": "The time reduction is strong, and explaining the mechanism would make the improvement more transferable."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "How did Legal and Policy change the quarterly personalization audit process or its launch decisions?",
+          "why": "The partnership is named, but the practical consequence of that collaboration is not stated."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself around large-scale ranking and recommendation systems with unusually clear business and infrastructure results. For Staff or Principal ML roles, bring the leadership decisions and cross-functional operating model closer to the foreground.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Machine Learning Engineer, Recommendations",
+          "Staff Machine Learning Engineer, Ranking",
+          "Staff Machine Learning Engineer, Ads Quality",
+          "Staff Machine Learning Engineer, ML Platform"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Financial services",
+          "Retail",
+          "Logistics"
+        ],
+        "seniority_read": "Staff-level roles are well supported by the current title, technical lead responsibility, 200M monthly active user platform, and mentoring of 9 technical practitioners.",
+        "stretch_roles": [
+          "Principal Machine Learning Engineer",
+          "ML Engineering Manager"
+        ]
+      },
+      "strongly_aligned": [
+        "Large-scale recommendation and ranking systems",
+        "Revenue and engagement optimization",
+        "Production ML infrastructure and serving",
+        "Experimentation and offline evaluation",
+        "Cross-functional work with product, infra, Legal, Policy, sales, finance, supply chain, and operations"
+      ],
+      "underplayed": [
+        "Technical decisions behind the two-stage ranking architecture",
+        "Leadership through model audits, experiment standards, and decision memos",
+        "Production reliability ownership across monitoring, retraining, and incident response"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Use the next pass on the earlier experience bullet with the weakest verified outcome.",
+      "Rewrite the least-specific leadership and production bullets around the decision made, the affected audience or system, and the verified result; use brackets where the fact is unavailable.",
+      "Add a short context clause to the strongest recent bullets where useful, especially the ranking, embedding-service, and model-audit work, so ownership is easier to distinguish from partnership."
+    ],
+    "rewrites": [
+      {
+        "better": "Maintained production model performance and data pipelines through monitoring, retraining, and incident response; [incident resolution time or service-level result].",
+        "enhancement_note": "Add the production scale or a representative incident result so this bullet carries the same weight as your quantified modeling work.",
+        "label": "Production operations",
+        "original": "Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response."
+      },
+      {
+        "better": "Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy; scope: [specific scope]; outcome: [measurable result].",
+        "enhancement_note": "Add the number of models, review findings, or launch decisions affected to show what the audit process changed.",
+        "label": "Model governance",
+        "original": "Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy."
+      },
+      {
+        "better": "Mentored a team of 6 ML engineers and 3 data scientists by setting expectations for experiment design, readable dashboards, and defensible decision memos; [team or delivery improvement].",
+        "enhancement_note": "Add one verified change in team practice, delivery cadence, or decision quality to make the mentoring work concrete.",
+        "label": "Technical leadership",
+        "original": "Mentored a team of 6 ML engineers and 3 data scientists, driving a culture of clear experiment design, readable dashboards, and defensible decision memos."
+      }
+    ],
+    "score": 92,
+    "score_comment_long": "The recent work is dense with scale and results: 200M monthly active users, 1B plus daily ad requests, revenue growth, and latency reductions. A few bullets still describe leadership or operations without showing what changed afterward. Tightening those lines and removing the stray skills entry would make the resume easier to trust at a higher Staff or Principal bar.",
+    "score_comment_short": "Quantified ML results and system scale are unusually strong; leadership and operational details remain uneven.",
+    "score_label": "Clear and specific",
+    "score_plain": "This resume should compete well for Staff ML roles in ranking, recommendations, ads, and ML infrastructure. The remaining edits mainly determine whether a reviewer sees broad technical leadership or mainly excellent individual projects.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "A-",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "Both degrees are relevant, and the machine learning focus is stated directly."
+      },
+      "Skills": {
+        "fix": "Remove the standalone \"javascript\" entry and keep the taxonomy consistent, including \"A B testing\" as \"A/B testing\" if accurate.",
+        "grade": "B+",
+        "missing": "The section does not show proficiency or recency, and the stray entry looks like an editing artifact.",
+        "priority": "Medium",
+        "working": "The tools are grouped sensibly across languages, ML, systems, domains, and practices."
+      },
+      "Summary": {
+        "fix": "Replace broad claims such as \"Strong at partnering\" with one compact example tied to ranking, revenue, or infrastructure.",
+        "grade": "A-",
+        "missing": "The summary does not distinguish your technical leadership decisions from your collaboration responsibilities.",
+        "priority": "Medium",
+        "working": "It identifies Staff-level ML, recommendation and ranking focus, user scale, and business outcomes."
+      },
+      "Work Experience": {
+        "fix": "Add one verified result or operating detail to the mentoring, audit, and production-maintenance bullets.",
+        "grade": "A",
+        "missing": "A few bullets lack a concrete consequence, despite the surrounding roles being highly quantified.",
+        "priority": "Medium",
+        "working": "The experience section gives clear progression and several excellent mechanism-to-result examples."
+      }
+    },
+    "strengths": [
+      "The two-stage ranking architecture connects candidate generation and learned re-ranking to 11 percent more weekly watch time, 6 percent higher subscription conversion, and flat infrastructure cost.",
+      "The ads quality role links calibrated probabilities and down-funnel metrics to an estimated 22 million dollars per year in net new revenue, which makes the business value easy to understand.",
+      "The career progression from demand forecasting to ads quality to personalization shows a consistent production ML path across retail, advertising, and streaming."
+    ],
+    "subscores": {
+      "clarity": 94,
+      "impact": 95,
+      "readability": 91,
+      "story": 92
+    },
+    "summary": "The clearest value here is production ML at meaningful scale: recommendation systems for 200M monthly active users, ads models handling 1B plus daily requests, and forecasting across three product categories. Your progression supports Staff-level individual contributor roles, with technical leadership shown through architecture changes, infrastructure partnerships, and mentoring 6 ML engineers plus 3 data scientists. The main question is how your governance, mentoring, and incident work changed decisions or team performance, which affects the case for Principal-level breadth. That part works: the business results are specific enough to keep the resume grounded.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [production scale] and [incident resolution time or service-level result] to the demand-forecasting operations bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "The bullet lists important operational duties but gives no way to judge the size or consequence of that responsibility."
+      }
+    ]
+  },
+  "reportSha256": "22f14df3cc8f129692d704aa989dd56629128ba9ea81264299d6d341648e2699",
+  "schemaVersion": "2",
+  "variant": "production"
+}

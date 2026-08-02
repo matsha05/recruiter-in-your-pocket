@@ -1,4 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
+
+const SAMPLE_REPORT = JSON.parse(
+  readFileSync(`${process.cwd()}/public/sample-report.json`, "utf8"),
+);
+
+const FIX_PLAN_HEADING_CASES = [
+  { count: 1, heading: "One move. Start here." },
+  { count: 2, heading: "Two moves. In order." },
+  { count: 3, heading: "Three moves. In order." },
+] as const;
 
 const RESUME_TEXT = `MATT SHAW
 Senior Program Manager
@@ -12,6 +23,28 @@ Partnered with stakeholders to surface risks, unblock decisions, and drive execu
 const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B2B SaaS launches.
 You will coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
+
+const GENERATED_SOURCE_LINE = "Reduced rework by creating clearer launch checklists and decision logs.";
+const GROUNDED_GENERATED_REPORT = {
+  ...SAMPLE_REPORT,
+  top_fixes: SAMPLE_REPORT.top_fixes.map((fix: Record<string, unknown>, index: number) => index === 0
+    ? {
+        ...fix,
+        fix: "Add the verified outcome to the rework line.",
+        evidence: { excerpt: GENERATED_SOURCE_LINE, section: "Work Experience" },
+        section_ref: "Work Experience",
+      }
+    : fix),
+  rewrites: [
+    {
+      label: "Outcome",
+      original: GENERATED_SOURCE_LINE,
+      better: "Reduced rework by creating clearer launch checklists and decision logs; verified outcome: [verified outcome].",
+      enhancement_note: "Add only the outcome you can verify from this work.",
+    },
+    ...SAMPLE_REPORT.rewrites,
+  ],
+};
 
 async function openPasteMode(page: Page) {
   await page.goto("/workspace");
@@ -111,7 +144,33 @@ test.describe("launch red-team journeys", () => {
     await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
     await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
 
+    const independentRewrites = page.getByTestId("independent-rewrites");
+    await expect(independentRewrites.getByTestId("independent-rewrite-artifact")).toHaveCount(2);
+    await expect(independentRewrites).toContainText("Managed cross-functional initiatives.");
+    await expect(independentRewrites).toContainText("Led cross-functional initiatives across [functions]");
+    await expect(independentRewrites).toContainText("Drove process improvements.");
+    await expect(page.locator('[id^="section-fix-"] [data-testid="independent-rewrite-artifact"]')).toHaveCount(0);
+    await expect(independentRewrites.getByRole("button", { name: /copy/i })).toHaveCount(0);
+
+    const independentQuestions = page.getByTestId("independent-questions");
+    await expect(independentQuestions.getByTestId("independent-question")).toHaveCount(5);
+    await expect(independentQuestions).toContainText(
+      "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
+    );
+    await expect(independentQuestions).toContainText(
+      "This tells recruiters whether you can make calls under pressure, not just execute tasks.",
+    );
+    await expect(independentQuestions).toContainText(
+      "What system, process, or tool did you build that's still running without you?",
+    );
+    await expect(page.locator('[id^="section-fix-"] [data-testid="independent-question"]')).toHaveCount(0);
+
     const firstFix = page.locator("#section-fix-1");
+    await expect(firstFix.getByText("Add verified context", { exact: true })).toBeVisible();
+    await expect(firstFix).not.toContainText(
+      "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
+    );
+    await expect(firstFix.getByText("Answer before you edit", { exact: true })).toHaveCount(0);
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
     await expect(firstFix).toContainText("We don’t invent accomplishments.");
     await firstFix.getByRole("button", { name: "Edit" }).click();
@@ -121,15 +180,20 @@ test.describe("launch red-team journeys", () => {
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
 
     const firstDraft = firstFix.getByLabel("Edit suggested line 1");
-    await firstFix.getByRole("button", { name: "Use a factual no-number draft" }).click();
+    await firstFix.getByRole("button", { name: "Use a qualitative starting point" }).click();
     await expect(firstDraft).toHaveValue(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.",
     );
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(firstFix.getByText("Guidance only", { exact: true })).toBeVisible();
+    const unsafeCopy = firstFix.getByRole("button", { name: "Copy unavailable until this draft matches the source line" });
+    await expect(unsafeCopy).toBeVisible();
+    await expect(unsafeCopy).toBeDisabled();
+    await expect(unsafeCopy).toHaveAttribute("aria-describedby", "fix-1-copy-guidance");
+    await expect(firstFix.locator("#fix-1-copy-guidance")).toContainText("not faithful enough to the source line");
     await firstDraft.fill(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires, improving results 45%.",
     );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(unsafeCopy).toBeDisabled();
 
     const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
     await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
@@ -139,10 +203,11 @@ test.describe("launch red-team journeys", () => {
     await firstFix.getByLabel("Fact for verified outcome in fix 1").fill("28% shorter ramp time");
     await expect(keepFacts).toBeEnabled();
     await keepFacts.click();
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(firstFix.getByText("Facts to preserve", { exact: true })).toBeVisible();
     await expect(firstDraft).toHaveValue(
       "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
     );
+    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
     await firstDraft.fill(
       "Redesigned 30-day program onboarding for 18 weekly hires across Salesforce, Support, and Operations, improving 28% shorter ramp time.",
     );
@@ -159,28 +224,114 @@ test.describe("launch red-team journeys", () => {
     const unquantifiedFix = page.locator("#section-fix-3");
     const unquantifiedDraft = unquantifiedFix.getByLabel("Edit suggested line 3");
     await unquantifiedFix.getByRole("button", { name: "Edit" }).click();
-    await expect(unquantifiedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    const unverifiedSummaryCopy = unquantifiedFix.getByRole("button", {
+      name: "Copy unavailable until this draft matches the source line",
+    });
+    await expect(unverifiedSummaryCopy).toBeVisible();
+    await expect(unverifiedSummaryCopy).toBeDisabled();
+    await expect(unverifiedSummaryCopy).toHaveAttribute("aria-describedby", "fix-3-copy-guidance");
+    await expect(unquantifiedFix.locator("#fix-3-copy-guidance")).toContainText(
+      "not faithful enough to the source line",
+    );
     await unquantifiedDraft.fill(
       "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and 45% calmer execution.",
     );
-    await expect(unquantifiedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(unverifiedSummaryCopy).toBeDisabled();
 
     await sampleCta.click();
     await expect(page).toHaveURL(/\/workspace$/);
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
 
+  for (const { count, heading } of FIX_PLAN_HEADING_CASES) {
+    test(`3a. count-aware fix heading renders ${count} ranked move${count === 1 ? "" : "s"}`, async ({ page }) => {
+      const report = {
+        ...SAMPLE_REPORT,
+        top_fixes: SAMPLE_REPORT.top_fixes.slice(0, count),
+      };
+
+      await page.route("**/api/free-status", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: true, free_uses_left: 1, free_uses_remaining: 1, source: "test" }),
+        });
+      });
+      await page.route("**/api/resume-feedback-stream", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/x-ndjson",
+          body: `${JSON.stringify({ type: "complete", data: report })}\n`,
+        });
+      });
+
+      await runAnonymousReview(page, `198.51.100.${30 + count}`);
+      await expect(
+        page.locator("#section-fixes").getByRole("heading", { name: heading, exact: true }),
+      ).toBeVisible();
+      await expect(page.locator('[id^="section-fix-"]')).toHaveCount(count);
+    });
+  }
+
   test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
+    let reportCompleted = false;
+
+    await page.route("**/api/free-status", async (route) => {
+      const freeUsesRemaining = reportCompleted ? 0 : 1;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          free_uses_left: freeUsesRemaining,
+          free_uses_remaining: freeUsesRemaining,
+          source: "test",
+        }),
+      });
+    });
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      reportCompleted = true;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/x-ndjson",
+        body: `${JSON.stringify({ type: "complete", data: GROUNDED_GENERATED_REPORT })}\n`,
+      });
+    });
+
     await runAnonymousReview(page, "198.51.100.4");
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
 
+    const purchaseDecision = page.getByTestId("post-report-purchase-decision");
+    await expect(purchaseDecision).toContainText("This free report is complete—you do not need to pay to see the rest.");
+    await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
+    await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
+    await expect(purchaseDecision).toContainText("One payment · 30 days · no automatic renewal.");
+
+    const feedback = page.getByTestId("beta-feedback");
+    await expect(feedback).toContainText("Your first complete report is free—no card.");
+    await expect(feedback).toContainText("repeat use across browsers or shared networks");
+    await expect(feedback).toContainText("daily beta capacity");
+    await expect(feedback).not.toContainText("monthly eligibility window");
+    await expect(feedback).not.toContainText("per calendar month");
+    await expect(feedback).not.toContainText("paid beta");
+    await expect(feedback).toContainText("Your resume is never attached.");
+    const feedbackLink = feedback.getByRole("link", { name: "Send a two-minute note", exact: true });
+    await expect(feedbackLink).toHaveAttribute("href", /subject=Beta%20report%20feedback/);
+    await expect(feedbackLink).not.toHaveAttribute("href", /Paid/);
+
     const firstGeneratedFix = page.locator("#section-fix-1");
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
     const generatedFactCount = await generatedFactInputs.count();
     if (generatedFactCount > 0) {
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      const initialCopyGate = firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" });
+      if (await initialCopyGate.count()) {
+        await expect(initialCopyGate).toBeDisabled();
+      } else {
+        await expect(firstGeneratedFix.getByText("Guidance only", { exact: true })).toBeVisible();
+        await expect(firstGeneratedFix.getByRole("button", { name: "Copy unavailable until this draft matches the source line" })).toBeDisabled();
+      }
       for (let index = 0; index < generatedFactCount; index += 1) {
         await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
       }
@@ -195,7 +346,7 @@ test.describe("launch red-team journeys", () => {
       await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
     } else {
       const verifiedFact = "Six product, operations, and support partners used the launch cadence";
-      await firstGeneratedFix.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
+      await firstGeneratedFix.getByLabel("Verified context for fix 1").fill(verifiedFact);
       await firstGeneratedFix.getByRole("button", { name: "Keep this fact" }).click();
       const factToPreserve = firstGeneratedFix.getByText("Fact to preserve").locator("..");
       await expect(factToPreserve).toContainText(verifiedFact);

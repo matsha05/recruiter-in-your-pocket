@@ -1,28 +1,11 @@
-const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|participated)\b/i;
-const elevatedOwnershipPattern = /\b(led|owned|drove|managed|spearheaded|directed|headed)\b/gi;
-const outcomePattern = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|accelerate|accelerated|accelerating|raise|raised|lower|lowered|result|resulted|resulting)\b/gi;
+import {
+  compareSourceBoundRewrite,
+  hasVerifiedOutcomeSignal,
+  resolveUniqueSourceLine,
+} from "./source-line-comparator";
 
 function hasOutcomeSignal(value: string) {
-  const hasOutcomeVerb = outcomePattern.test(value);
-  outcomePattern.lastIndex = 0;
-  const hasRateOrDelta = /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i.test(value);
-  const hasFinancialOutcome = /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i.test(value);
-  return hasOutcomeVerb || hasRateOrDelta || hasFinancialOutcome;
-}
-
-function removeBracketPlaceholders(value: string) {
-  return value.replace(/\[[^\]]+\]/g, "");
-}
-
-function removeOutcomePlaceholderClauses(value: string) {
-  return value.replace(
-    /\b(?:deployment\s+)?(?:result|outcome|impact|change)\s*:\s*\[[^\]]+\]/gi,
-    "",
-  );
-}
-
-function normalizeForLookup(value: string) {
-  return value.toLowerCase().replace(/\s+/g, " ").trim();
+  return hasVerifiedOutcomeSignal(value);
 }
 
 function normalizeMarker(value: string) {
@@ -69,20 +52,11 @@ export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
 
 export function sourceContextFor(original: string, sourceText?: string) {
   if (!sourceText) return original;
-  const needle = normalizeForLookup(original);
-  if (!needle) return original;
-
-  const containingLine = sourceText
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .find(line => normalizeForLookup(line).includes(needle));
-
-  return containingLine || original;
+  return resolveUniqueSourceLine(original, sourceText) || original;
 }
 
 export function containsExactEvidence(sourceText: string, excerpt: string) {
-  const normalizeWhitespace = (value: string) => value.replace(/\s+/g, " ").trim();
-  return normalizeWhitespace(sourceText).includes(normalizeWhitespace(excerpt));
+  return resolveUniqueSourceLine(excerpt, sourceText) !== null;
 }
 
 export function findAlreadySatisfiedFix(
@@ -199,11 +173,12 @@ export function findFixEvidenceMismatch(
 function contentTokens(value: string) {
   const stop = new Set(["a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of", "on", "or", "the", "to", "with"]);
   return Array.from(new Set(
-    removeBracketPlaceholders(value)
+    value
+      .replace(/\[[^\]]+\]/g, " ")
       .toLowerCase()
       .replace(/[^a-z0-9%$]+/g, " ")
       .split(/\s+/)
-      .filter(token => token.length > 2 && !stop.has(token)),
+      .filter((token) => token.length > 2 && !stop.has(token)),
   ));
 }
 
@@ -211,47 +186,35 @@ function groundedNumbers(value: string) {
   const numeric = value.match(/(?:\$\s*)?\d+(?:\.\d+)?\s*(?:%|x|k|m|b)?/gi) || [];
   const writtenDurations = value.match(/\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:days?|weeks?|months?|years?)\b/gi) || [];
   return Array.from(new Set([...numeric, ...writtenDurations]))
-    .map(value => value.toLowerCase().replace(/\s+/g, ""));
+    .map((item) => item.toLowerCase().replace(/\s+/g, ""));
 }
 
 export function findRewriteFidelityIssues(original: string, rewrite: string, sourceText?: string): string[] {
-  const source = sourceContextFor(original, sourceText);
-  const sourceTokens = contentTokens(source);
-  const rewriteTokens = new Set(contentTokens(rewrite));
-  const overlap = sourceTokens.filter(token => rewriteTokens.has(token)).length;
-  const coverage = sourceTokens.length > 0 ? overlap / sourceTokens.length : 1;
+  const source = sourceText || original;
+  const sourceLine = sourceContextFor(original, sourceText);
+  const comparison = compareSourceBoundRewrite({ sourceText: source, sourceLocator: original, candidate: rewrite });
+  const fidelityIssues = comparison.issues.filter((issue) => !["agency_upgraded", "unsupported_outcome"].includes(issue.code));
   const findings: string[] = [];
 
-  if (sourceTokens.length >= 4 && coverage < 0.34) {
+  const sourceTokens = contentTokens(sourceLine);
+  const rewriteTokens = new Set(contentTokens(rewrite));
+  const overlap = sourceTokens.filter((token) => rewriteTokens.has(token)).length;
+  const coverage = sourceTokens.length > 0 ? overlap / sourceTokens.length : 1;
+  if (fidelityIssues.length > 0 && sourceTokens.length >= 4 && coverage < 0.34) {
     findings.push("rewrite no longer describes the cited source bullet");
   }
-
-  const normalizedOriginal = normalizeForLookup(removeBracketPlaceholders(original));
-  const normalizedRewrite = normalizeForLookup(removeBracketPlaceholders(rewrite));
-  const originalTokens = contentTokens(source);
-  const rewriteTokenList = contentTokens(rewrite);
-  const originalTokenSet = [...originalTokens].sort().join("|");
-  const rewriteTokenSet = [...rewriteTokenList].sort().join("|");
-  const originalTokenLookup = new Set(originalTokens);
-  const similarTokenCount = rewriteTokenList.filter(token => originalTokenLookup.has(token)).length;
-  const symmetricSimilarity = Math.max(originalTokens.length, rewriteTokenList.length) > 0
-    ? similarTokenCount / Math.max(originalTokens.length, rewriteTokenList.length)
-    : 1;
-  if (
-    normalizedOriginal === normalizedRewrite
-    || (originalTokenSet.length > 0 && originalTokenSet === rewriteTokenSet)
-    || (originalTokens.length >= 4 && symmetricSimilarity >= 0.92)
-  ) {
+  if (fidelityIssues.some((issue) => issue.code === "no_material_change")) {
     findings.push("rewrite makes no material change");
   }
-
-  const rewriteNumbers = new Set(groundedNumbers(rewrite));
-  const droppedNumbers = groundedNumbers(source).filter(number => !rewriteNumbers.has(number));
-  if (droppedNumbers.length > 0) {
-    findings.push(`rewrite drops grounded specifics: ${droppedNumbers.join(", ")}`);
+  if (fidelityIssues.some((issue) => issue.code === "metric_dropped")) {
+    const rewriteNumbers = new Set(groundedNumbers(rewrite));
+    const droppedNumbers = groundedNumbers(sourceLine).filter((number) => !rewriteNumbers.has(number));
+    if (droppedNumbers.length > 0) {
+      findings.push(`rewrite drops grounded specifics: ${droppedNumbers.join(", ")}`);
+    }
   }
-
-  return findings;
+  if (findings.length > 0) return findings;
+  return fidelityIssues.map((issue) => issue.detail);
 }
 
 export function findBiggestGapContradictions(value: string, resumeText: string): string[] {
@@ -285,18 +248,11 @@ export function findBiggestGapContradictions(value: string, resumeText: string):
  * unless the source line itself contains evidence of that stronger ownership.
  */
 export function findUnsupportedAgencyUpgrade(original: string, rewrite: string, sourceText?: string): string[] {
-  const sourceContext = sourceContextFor(original, sourceText);
-  if (!limitedOwnershipPattern.test(sourceContext)) return [];
-
-  const originalElevated = new Set(
-    Array.from(sourceContext.matchAll(elevatedOwnershipPattern), match => match[0].toLowerCase()),
-  );
-  const rewriteElevated = Array.from(
-    rewrite.matchAll(elevatedOwnershipPattern),
-    match => match[0].toLowerCase(),
-  );
-
-  return Array.from(new Set(rewriteElevated.filter(verb => !originalElevated.has(verb))));
+  const source = sourceText || original;
+  return compareSourceBoundRewrite({ sourceText: source, sourceLocator: original, candidate: rewrite })
+    .issues
+    .filter((issue) => issue.code === "agency_upgraded")
+    .map((issue) => issue.detail);
 }
 
 /**
@@ -304,17 +260,9 @@ export function findUnsupportedAgencyUpgrade(original: string, rewrite: string, 
  * bracketed outcome is explicitly a question for the candidate and is allowed.
  */
 export function findUnsupportedOutcomeClaims(original: string, rewrite: string, sourceText?: string): string[] {
-  const sourceContext = sourceContextFor(original, sourceText);
-  if (outcomePattern.test(removeBracketPlaceholders(sourceContext))) {
-    outcomePattern.lastIndex = 0;
-    return [];
-  }
-  outcomePattern.lastIndex = 0;
-
-  const matches = Array.from(
-    removeBracketPlaceholders(removeOutcomePlaceholderClauses(rewrite)).matchAll(outcomePattern),
-    match => match[0].toLowerCase(),
-  );
-  outcomePattern.lastIndex = 0;
-  return Array.from(new Set(matches));
+  const source = sourceText || original;
+  return compareSourceBoundRewrite({ sourceText: source, sourceLocator: original, candidate: rewrite })
+    .issues
+    .filter((issue) => issue.code === "unsupported_outcome")
+    .map((issue) => issue.detail);
 }

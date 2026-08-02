@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "finance-senior-weak",
+  "packetSha256": "9140526f8572aa594a5875ad6c379406b23b71cb9004829dec59d20ddd7c6b33",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "0b9950e1beedc55f352169eae7382f5d7d4f3b147faf770f61017103cda8fda4",
+      "reportSha256": "a83dc6c28b91fd0d50775db32e87a15989dc67a29fcd72b04b0232f68b96481d",
+      "fixtureSha256": "093f72199c92dcb24bd9c63d6dee7f6cd306ee494dfc0d791e195d13be9f6817",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "9262dff23e5ff96e3582210b70778cb840dfc88e41e209db06df4a7da725edf9",
+      "screenshotSha256": "fea5895cc353920cfc8616e93330b7b28c05d5b8c48559bb0dfa8072ef4ea2b0"
+    },
+    "production": {
+      "artifactSha256": "b22ee5304f450283e11a1176a540ac15fd2fbd1ec66b0f189f2c4ac384c9bc72",
+      "reportSha256": "a83dc6c28b91fd0d50775db32e87a15989dc67a29fcd72b04b0232f68b96481d",
+      "fixtureSha256": "093f72199c92dcb24bd9c63d6dee7f6cd306ee494dfc0d791e195d13be9f6817",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "a73c35de61059986e8dea38f01b6c447f60072ae945b92c63238aa305548613a",
+      "screenshotSha256": "4de3871693f24808ead9e32977554a6f5edf6209292e9cf4968f4bf2e90aabd9"
+    }
+  },
+  "reviewer": "blind-reviewer-3",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "B",
+    "specificity": "B",
+    "actionability": "B"
+  },
+  "rationale": {
+    "trust": "B accurately says one move and preserves the project-deliverables source; A promises three, renders one, and substitutes a different reporting rewrite.",
+    "specificity": "B separately anchors edits to reporting, forecasting, and process-improvement lines with targeted ownership, volume, closing, and stakeholder questions.",
+    "actionability": "B supplies one safe priority plus separated secondary edits and questions; A's lone card cannot be applied confidently."
+  }
+}

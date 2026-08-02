@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "vp-talent-elite",
+  "candidateArtifactSha256": "44991385116cca97ab7e543b7c19114635d581dde5b852b685003e7166a4a27d",
+  "auditor": "source-reviewer-1",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "Scaled Northline Technologies from 300 to 1,000 employees through R D and enterprise sales hiring; hiring volume: [total hires].",
+      "reason": "Through strengthens the source's with-a-focus-on wording into unsupported causality."
+    },
+    {
+      "claim": "Partnered with Finance to establish a headcount forecasting and requisition approval process that improved budget adherence and reduced last",
+      "reason": "The displayed source is silently clipped before minute backfills."
+    },
+    {
+      "claim": "Partnered with Finance to establish headcount forecasting and requisition approval for R D and enterprise sales hiring; budget variance: [X%] and last-minute backfills: [change].",
+      "reason": "The resume does not explicitly scope that Finance process to R&D and enterprise sales."
+    }
+  ],
+  "notes": "Checked all visible figures, sources, rewrites, and role-direction claims. The metrics are otherwise supported, but a clipped quote and causal/scope strengthening make the first two edits unsafe."
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "hr-director-foundation",
+  "candidateArtifactSha256": "bbe452e461442556a82674972633358f3d69347ff75c74837f61b3a607f2f421",
+  "assessor": "source-reviewer-3",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "Exact provenance is strong, but each-promotion presupposes a fact not in the resume.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "The report identifies exact lines and precise hiring, workforce, onboarding, budget, and project scope gaps.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "Three ordered edits include source, missing proof, fact request, and safe draft.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

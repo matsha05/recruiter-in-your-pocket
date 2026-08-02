@@ -1,0 +1,24 @@
+{
+  "checkoutRequests": 0,
+  "generationRequests": 1,
+  "interactions": [
+    {
+      "action": "open cold entry",
+      "path": "/"
+    },
+    {
+      "action": "open anonymous workspace",
+      "path": "/workspace"
+    },
+    {
+      "action": "render intercepted historical report",
+      "path": "/workspace"
+    }
+  ],
+  "layout": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "viewportHeight": 900,
+    "viewportWidth": 1440
+  }
+}

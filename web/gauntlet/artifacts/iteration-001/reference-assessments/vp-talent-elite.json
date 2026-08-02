@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "vp-talent-elite",
+  "candidateArtifactSha256": "44991385116cca97ab7e543b7c19114635d581dde5b852b685003e7166a4a27d",
+  "assessor": "source-reviewer-1",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "A truncated source quote plus causal and scope strengthening fall below Teal's public exact-section bar.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "Three ordered fixes name precise bullets, stakeholders, missing measures, and fact fields.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "The ordered fill-in drafts are easy to start, although the second should not be copied until corrected.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

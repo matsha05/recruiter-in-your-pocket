@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "software-engineering-mid-strong",
+  "candidateArtifactSha256": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+  "candidateEvidence": {
+    "artifactSha256": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+    "reportSha256": "df483cfdbec452864dae363d27f347e99d93e0112f2506a4957792474cef38aa",
+    "fixtureSha256": "f982ebe1395b510461a41d714f2db929a3678b7c94a04354344e5398e575ca0d",
+    "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+    "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+    "visibleTextSha256": "295027b6759a3480e7668cacf1b990ee53f8c1decff17d2d705bc3f7468e1246",
+    "screenshotSha256": "a0c5390fde89637fa05b07d97af9f0037d80c49154a8e422f2282a9c7892efc4"
+  },
+  "resume": {
+    "sha256": "f982ebe1395b510461a41d714f2db929a3678b7c94a04354344e5398e575ca0d",
+    "text": "Evelyn R. Harper  \nevelyn.harper@email.com | 555-321-8765 | LinkedIn: linkedin.com/in/evelynrharper | Seattle, WA\n\nProfessional Summary  \nResults-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.\n\nExperience  \n\nSoftware Engineer  \nNovaTech Solutions, Seattle, WA  \nJune 2019 - August 2022  \n- Led the development and deployment of a customer analytics dashboard that improved user engagement insights, contributing to a 10% increase in client retention.  \n- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.  \n- Collaborated with frontend developers and product managers to define and implement new features, streamlining workflows and reducing manual data entry by 30%.  \n- Conducted code reviews and mentored junior developers, elevating team coding standards and reducing bugs in production releases.  \n- Participated in sprint planning and retrospectives, helping the team to improve delivery predictability.  \n- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.\n\nSoftware Developer  \nBrightWave Technologies, Bellevue, WA  \nJanuary 2018 - May 2019  \n- Worked on a team developing web-based tools for enterprise clients, focusing on backend development with Java and Spring Boot.  \n- Implemented RESTful API endpoints and database queries that supported user management and reporting features.  \n- Assisted in writing automated test cases, boosting test coverage by roughly 15%.  \n- Helped troubleshoot and fix production issues, regularly collaborating with customer support to resolve client problems efficiently.  \n- Participated in daily standups and sprint planning, contributing to better estimation and prioritization of tasks.  \n- Supported deployment pipelines, occasionally managing staging environments.\n\nCareer Break for Family Caregiving  \nSeptember 2022 - April 2024  \n- Took a planned career pause to provide full-time care and support for family members.  \n- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.\n\nJunior Software Developer  \nClearPath Innovations, Redmond, WA  \nJuly 2016 - December 2017  \n- Assisted in developing internal tools for data processing and reporting using Python and JavaScript.  \n- Collaborated with senior engineers to build features that optimized business workflows.  \n- Supported QA efforts by creating and executing manual test cases.  \n- Engaged in code reviews and team knowledge-sharing sessions.  \n- Helped maintain documentation for application APIs and user guides.  \n\nSkills  \n- Programming Languages: Java, Python, JavaScript, SQL  \n- Frameworks & Tools: Spring Boot, React, AWS (EC2, Lambda), Docker, Jenkins  \n- Databases: MySQL, PostgreSQL  \n- Practices: RESTful API design, Agile/Scrum, TDD, Continuous Integration/Delivery  \n- Version Control: Git, GitHub  \n- Strong problem-solving, communication, and project ownership abilities"
+  },
+  "candidatePresentation": {
+    "capturedAt": "2026-07-31T15:45:23.819Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393"
+    },
+    "rendererCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/candidate/software-engineering-mid-strong.jpg",
+      "sha256": "a0c5390fde89637fa05b07d97af9f0037d80c49154a8e422f2282a9c7892efc4"
+    },
+    "viewport": {
+      "height": 6216,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 78/100\n\nNot a prediction of interviews or offers.\n\nLead with backend reliability results\n\nSeveral concrete outcomes are visible, with a few uneven areas still limiting the first read.\n\nWHAT LANDS\n\nThe NovaTech microservices bullet combines direct ownership with 99.9% uptime and approximately 20% faster API response times, making the backend contribution easy to place.\n\nWHERE DOUBT CREEPS IN\n\nYour current target is not defined beyond a broad software engineering label, so recruiters must infer whether backend, platform, or full-stack work is the priority.\n\nFIX FIRST\n\nAdd [application or service], [specific release responsibility], and [deployment result] to the BrightWave deployment bullet.\n\nWhat we saw on the page: “- Supported deployment pipelines, occasionally managing staging environments.”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nTwo moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [application or service], [specific release responsibility], and [deployment result] to the BrightWave deployment bullet.\nNot relevant\n01\nON THE PAGE\n02\nMISSING PROOF\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Supported deployment pipelines, occasionally managing staging environments.”\n\nWHAT IS MISSING\n\nWithout the system and release detail, this reads as incidental exposure rather than a meaningful part of your engineering work.\n\nADD VERIFIED CONTEXT\n\nWhat verified detail from this exact line would support this change: “Add [application or service], [specific release responsibility], and [deployment result] to the BrightWave deployment bullet”?\n\nSpecific scope\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\n- Supported deployment pipelines, occasionally managing staging environments; scope: [specific scope]; outcome: [measurable result].\n\nFIX 02\n\nThen this\n\nName one real recent course or personal project and the [completed artifact] it produced.\nNot relevant\n01\nON THE PAGE\n02\nMISSING PROOF\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.”\n\nWHAT IS MISSING\n\nA named recent artifact provides current evidence without inventing post-break employment.\n\nADD VERIFIED CONTEXT\n\nWhat verified detail from this exact line would support this change: “Name one real recent course or personal project and the [completed artifact] it produced”?\n\nVerified detail\nKeep these facts\n\nGUIDANCE ONLY\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\n\nMaintained technical skills through online coursework and personal projects, preparing for a return to software engineering; [verified detail].\n\nOTHER LINE REWRITES\n\nUseful edits, kept with their own source.\n\nThese do not map uniquely to the ranked fixes above, so each stays beside the exact line it rewrites.\n\nLINE EDIT 01 · SOURCE LINE\n\n“- Helped troubleshoot and fix production issues, regularly collaborating with customer support to resolve client problems efficiently.”\n\nREWRITE\n\nHelped troubleshoot and fix production issues for enterprise clients, collaborating with customer support to diagnose [issue type] and coordinate resolution; [resolution time or recurrence measure].\n\nAdd one representative incident and its measurable resolution detail to show the difficulty and value of this work.\n\nQUESTIONS WORTH ANSWERING\n\nPrompts for your next revision.\n\nThese questions are not tied to a specific ranked fix. Use whichever ones surface a true, useful detail.\n\nQUESTION 01\n\nWhy did you choose microservice ownership at NovaTech while contributing to a broader monolith-to-cloud migration?\n\nWhy it may help: This would explain how your day-to-day backend work connected to the architecture change.\n\nQUESTION 02\n\nHow many services, requests, users, or teams depended on the backend microservices you owned?\n\nWhy it may help: The 99.9% uptime result becomes more useful when its operating scale is clear.\n\nQUESTION 03\n\nWhat production issue did you troubleshoot with customer support, and how did you prevent recurrence?\n\nWhy it may help: A specific incident would show judgment beyond routine support participation.\n\nQUESTION 04\n\nWhat changed in your testing or review process alongside the 15% increase in test coverage?\n\nWhy it may help: The coverage number is useful, but the engineering action behind it is not yet visible.\n\nQUESTION 05\n\nWhat did you personally take from requirements through deployment for the customer analytics dashboard?\n\nWhy it may help: The dashboard result is strong; the full delivery path would establish the boundaries of your ownership.\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe NovaTech microservices bullet combines direct ownership with 99.9% uptime and approximately 20% faster API response times, making the backend contribution easy to place.\n\n02\n\nThe dashboard work links development and deployment to a 10% increase in client retention, which gives one project a clear business reason to keep.\n\n03\n\nJava, Spring Boot, AWS, Docker, Jenkins, SQL, and RESTful APIs form a coherent technical base for backend applications.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself first as a backend software engineer focused on Java, Spring Boot, APIs, microservices, and AWS. Keep the dashboard and cross-functional delivery results, but make backend ownership the organizing thread.\n\nBEST FIT NOW\n\nBackend Software Engineer\nJava Software Engineer\nSoftware Engineer, Cloud Services\n\nSeniority read: Mid-level software engineer, based on the Software Engineer title, microservice ownership, mentoring, and roughly six years of listed experience.\n\nHow the clarity summary breaks down\n78/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nThis free report is complete—you do not need to pay to see the rest. Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.\n\nGet 5 more reports · $29\n\nOne payment · 30 days · no automatic renewal.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "295027b6759a3480e7668cacf1b990ee53f8c1decff17d2d705bc3f7468e1246"
+  },
+  "references": [
+    {
+      "id": "teal-public-ats-resume-checker",
+      "name": "Teal ATS Resume Checker",
+      "role": "cold_entry",
+      "url": "https://www.tealhq.com/tool/resume-checker",
+      "inspectedOn": "2026-07-31",
+      "inspectionStatus": "public_artifact_inspected",
+      "accountCreated": false,
+      "sameResumeOutputsAvailable": false,
+      "observedCapabilities": [
+        "Public cold-entry promise of a personalized resume score",
+        "Checks spanning ATS compatibility, formatting, structure, content strength, and keywords",
+        "Issue-led recommendations that point a user toward the section to improve"
+      ],
+      "limitation": "The public artifact is inspectable, but no account was created and no same-resume Teal outputs exist for the twelve cases."
+    },
+    {
+      "id": "jobscan-public-match-report-tutorial",
+      "name": "Jobscan Match Report tutorial",
+      "role": "report_actionability",
+      "url": "https://www.jobscan.co/jobscan-tutorial",
+      "inspectedOn": "2026-07-31",
+      "inspectionStatus": "public_artifact_inspected",
+      "accountCreated": false,
+      "sameResumeOutputsAvailable": false,
+      "observedCapabilities": [
+        "Job-description-specific match score and report",
+        "Report sections for searchability, skills and keywords, recruiter tips, and formatting",
+        "An explicit improve-and-rescan action loop"
+      ],
+      "limitation": "The public tutorial is inspectable, but no account was created and no same-resume Jobscan outputs exist for the twelve cases."
+    }
+  ],
+  "rubric": {
+    "trust": "Does the candidate make a more credible, source-grounded case than the public reference bar, without overstating what the resume proves?",
+    "specificity": "Does the candidate identify exact resume evidence, recruiter interpretation, and missing context more precisely than the public reference bar?",
+    "actionability": "Does the candidate prioritize a concrete next move that is easier to execute than the public reference bar?"
+  }
+}

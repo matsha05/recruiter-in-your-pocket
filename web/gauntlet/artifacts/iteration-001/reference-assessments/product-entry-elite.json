@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "product-entry-elite",
+  "candidateArtifactSha256": "441290a2dbc802c26be10dca8d97850dd92b3cdffa85f44acd01e2bb4faa1fc7",
+  "assessor": "source-reviewer-3",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "The primary finding mislabels KPI tracking as a result, clips its source, and contains multiple scope/number drifts.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "trails",
+      "evidence": "The top issue uses an incomplete excerpt and asks for scope while collecting a result.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "trails",
+      "evidence": "The user cannot tell whether the first edit needs scope or result, and the report falsely says a result already exists.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

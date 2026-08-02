@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "sales-mid-foundation",
+  "candidateArtifactSha256": "7e17acd50dd96d5455ed721a2c526ff639dcacc78e826bb9c68836060f323057",
+  "assessor": "source-reviewer-2",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "trails",
+      "evidence": "An unqualified no-revenue statement conflicts with the summary, and the seniority read undercounts dated experience.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "The first two fixes request account/proposal volume and lead progression against exact sources.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "Two concrete safe drafts and a rerun loop are easier to execute than public workflow-level advice.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

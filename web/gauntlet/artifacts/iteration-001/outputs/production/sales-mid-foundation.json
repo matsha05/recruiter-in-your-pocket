@@ -1,0 +1,252 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "sales-mid-foundation",
+  "fixture": {
+    "sha256": "516f07a0fad8255e071e9b24a3c96f4133560f97d75b2bdf235537bb10710231"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "synth_sales_executive_mid_foundation_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "5964fd8a2edb7212d9f1e8987f2dd172aa282c2252d8cf4358bf6c12baf2eaca",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:17.865Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/sales-mid-foundation.jpg",
+      "sha256": "08de69a254e0edc21540f912a119e924c6b873eadae1ba9c8acd3e843397c90f"
+    },
+    "viewport": {
+      "height": 6059,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 58/100\n\nNot a prediction of interviews or offers.\n\nQuantify sales ownership\n\nClear sales progression, but most bullets lack measurable commercial results.\n\nWHAT LANDS\n\nThe sequence from Junior Sales Associate through Sales Executive gives recruiters a visible three-role progression from administrative support toward client and campaign work.\n\nWHERE DOUBT CREEPS IN\n\nThe resume does not show quota, revenue, pipeline, win rate, deal size, or account volume, leaving your commercial level difficult to place.\n\nFIX FIRST\n\nAdd [account count], [proposal volume], and [measurable result] to the BrightWave client-account bullet.\n\nWhat we saw on the page: “- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [account count], [proposal volume], and [measurable result] to the BrightWave client-account bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations”\n\nWHAT IS MISSING\n\nThis line tells us what you handled, but not what changed.\n\nANSWER BEFORE YOU EDIT\n\nWhat changed in your responsibilities when you moved from Junior Sales Associate to Sales Representative?\n\nSpecific scope\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\n- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations; scope: [specific scope]; outcome: [measurable result].\n\nFIX 02\n\nThen this\n\nAdd [lead or opportunity volume] and [meeting-to-next-step result] to the BrightWave lead-generation bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Supported lead generation activities and participated in client meetings to understand customer needs”\n\nWHAT IS MISSING\n\nLead generation is a hiring priority for many sales roles; volume and progression would show whether your work produced qualified opportunities.\n\nANSWER BEFORE YOU EDIT\n\nHow many client accounts, leads, proposals, or opportunities did you handle at BrightWave Solutions?\n\nNumber\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nSupported lead generation and participated in client meetings to understand customer needs; leads or opportunities: [number]; result: [measurable result]\n\nFIX 03\n\nOne more pass\n\nAdd [specific scope] and [measurable result] to the sales bullet.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Developed a basic understanding of CRM tools and sales tracking software to aid daily activities”\n\nWHAT IS MISSING\n\nAs written, this reads like a duty because neither the scale nor the result is visible.\n\nANSWER BEFORE YOU EDIT\n\nDescribe a difficult customer inquiry you handled and what happened afterward.\n\nNumber\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nHelped prepare sales materials and participated in prospective-client calls to present product features; calls: [number]; result: [measurable result]\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe sequence from Junior Sales Associate through Sales Executive gives recruiters a visible three-role progression from administrative support toward client and campaign work.\n\n02\n\nBrightWave includes both account activity and coordination between marketing and sales, which makes the experience broader than pure administrative support.\n\n03\n\nThe resume shows repeated customer contact through meetings, calls, inquiries, appointments, and follow-up communications across all three employers.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself around the sales work you can verify, such as client accounts, lead generation, proposals, and cross-team outreach. Add commercial measures before targeting roles that expect independent quota ownership.\n\nBEST FIT NOW\n\nSales Representative\nAccount Coordinator\nBusiness Development Representative\n\nSeniority read: The titles and four-plus years shown in the summary suggest early-career sales experience, but the page does not establish independent quota ownership.\n\nHow the clarity summary breaks down\n58/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "9ca8f04b69b17a4f21d7ee17f05a59b8802458b7c5e77d178a82b79204af23ce"
+  },
+  "report": {
+    "biggest_gap_example": "\"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" is missing a measurable outcome, so we cannot place the impact.",
+    "content_score": 58,
+    "contract_version": "v2",
+    "first_impression": "Your progression from Junior Sales Associate to Sales Executive is easy to follow, but nearly every bullet describes support rather than sales performance. The page names client work, lead generation, proposals, and CRM activity without showing pipeline, quota, revenue, or account results.",
+    "first_impression_takeaway": "Quantify sales ownership",
+    "gaps": [
+      "The resume does not show quota, revenue, pipeline, win rate, deal size, or account volume, leaving your commercial level difficult to place.",
+      "Your ownership remains unclear because many bullets use \"helped,\" \"supported,\" \"assisted,\" or \"contributed\" without naming the decisions you made.",
+      "The three roles cover similar duties, but the resume does not explain how your responsibilities or customer-facing scope grew over time."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "What changed in your responsibilities when you moved from Junior Sales Associate to Sales Representative?",
+          "why": "The titles show progression, while the bullets use similar support language across roles."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "How many client accounts, leads, proposals, or opportunities did you handle at BrightWave Solutions?",
+          "why": "The resume mentions account management and lead generation but gives no workload scale."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "Describe a difficult customer inquiry you handled and what happened afterward.",
+          "why": "Customer communication appears in the role, but the level of difficulty and result are absent."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "What changed after you contributed to customer engagement or sales strategy projects?",
+          "why": "The project language suggests improvement work without identifying the before-and-after."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "How did you coordinate marketing and sales outreach, and what did each team need from you?",
+          "why": "The resume names coordination but not the competing requirements or your role in resolving them."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself around the sales work you can verify, such as client accounts, lead generation, proposals, and cross-team outreach. Add commercial measures before targeting roles that expect independent quota ownership.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Sales Representative",
+          "Account Coordinator",
+          "Business Development Representative",
+          "Sales Operations Coordinator"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Technology"
+        ],
+        "seniority_read": "The titles and four-plus years shown in the summary suggest early-career sales experience, but the page does not establish independent quota ownership.",
+        "stretch_roles": [
+          "Account Executive",
+          "Business Development Manager",
+          "Sales Operations Analyst"
+        ]
+      },
+      "strongly_aligned": [
+        "Client account support",
+        "Lead generation and prospect communication",
+        "Sales and marketing coordination",
+        "Proposal and presentation support"
+      ],
+      "underplayed": [
+        "CRM and sales tracking experience",
+        "Market and competitor research",
+        "Trade show and promotional event coordination"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Replace the generic summary with a target sales lane and verified measures such as quota, pipeline, revenue, or account count.",
+      "Rewrite the strongest BrightWave and Glenmark bullets around the action you personally took, adding [scope] and [measurable result] where absent.",
+      "Connect the most relevant existing tools to the two strongest experience outcomes."
+    ],
+    "rewrites": [
+      {
+        "better": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations; scope: [specific scope]; outcome: [measurable result].",
+        "enhancement_note": "Add the number of accounts and proposals to show the workload behind this responsibility.",
+        "label": "BrightWave client accounts",
+        "original": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+      },
+      {
+        "better": "Supported lead generation and participated in client meetings to understand customer needs; leads or opportunities: [number]; result: [measurable result]",
+        "enhancement_note": "Add lead volume and a verified downstream result to show whether this work advanced sales activity.",
+        "label": "BrightWave lead generation",
+        "original": "- Supported lead generation activities and participated in client meetings to understand customer needs"
+      },
+      {
+        "better": "Helped prepare sales materials and participated in prospective-client calls to present product features; calls: [number]; result: [measurable result]",
+        "enhancement_note": "Add call volume and the verified result of those conversations to distinguish preparation from selling activity.",
+        "label": "Glenmark prospect calls",
+        "original": "- Helped prepare sales materials and participated in calls with prospective clients to present product features"
+      }
+    ],
+    "score": 58,
+    "score_comment_long": "The career progression and sales responsibilities are easy to scan. The bullets rarely include numbers, deal context, or measurable results, so the page reads more like a duty list than a performance record. Quantifying the BrightWave and Glenmark work is the fastest way to raise it.",
+    "score_comment_short": "Clear sales progression, but most bullets lack measurable commercial results.",
+    "score_label": "Needs more context",
+    "score_plain": "This resume can get you considered for support-oriented sales roles, but it will struggle against applicants showing quota, pipeline, and revenue results. Add verified sales measures to compete for independent selling roles.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "Good",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The degree, school, and dates are complete and easy to read."
+      },
+      "Skills": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Summary": {
+        "fix": "Replace generic claims with a target role, sales lane, and verified measures such as quota, pipeline, revenue, or account volume.",
+        "grade": "Needs revision",
+        "missing": "The summary does not identify a market, customer type, sales model, or measurable result.",
+        "priority": "High",
+        "working": "It communicates sales focus, client relationship work, and cross-team collaboration."
+      },
+      "Work Experience": {
+        "fix": "Rewrite the top two roles around personal actions, workload, and verified results; use [scope] or [measurable result] where the source does not provide the fact.",
+        "grade": "Needs revision",
+        "missing": "Quota, revenue, pipeline, account volume, deal size, and ownership boundaries are absent.",
+        "priority": "High",
+        "working": "The chronology is consistent and includes client accounts, lead generation, proposals, meetings, research, and outreach coordination."
+      }
+    },
+    "strengths": [
+      "The sequence from Junior Sales Associate through Sales Executive gives recruiters a visible three-role progression from administrative support toward client and campaign work.",
+      "BrightWave includes both account activity and coordination between marketing and sales, which makes the experience broader than pure administrative support.",
+      "The resume shows repeated customer contact through meetings, calls, inquiries, appointments, and follow-up communications across all three employers."
+    ],
+    "subscores": {
+      "clarity": 62,
+      "impact": 50,
+      "readability": 67,
+      "story": 55
+    },
+    "summary": "Three sales roles from 2016 to 2023 show a steady move from event logistics and data entry into client accounts, lead generation, proposals, and marketing-sales coordination. Your page fits early-career sales or sales-support roles more clearly than an independent account executive role. The recurring pattern is customer contact plus team support, but no quota, pipeline, revenue, or account volume is attached to it. That leaves recruiters unsure how much of the sales cycle you personally owned.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations",
+          "section": "Work Experience"
+        },
+        "fix": "Add [account count], [proposal volume], and [measurable result] to the BrightWave client-account bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience: BrightWave Solutions, Sales Executive",
+        "why": "This line tells us what you handled, but not what changed."
+      },
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Supported lead generation activities and participated in client meetings to understand customer needs",
+          "section": "Work Experience"
+        },
+        "fix": "Add [lead or opportunity volume] and [meeting-to-next-step result] to the BrightWave lead-generation bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience: BrightWave Solutions, Sales Executive",
+        "why": "Lead generation is a hiring priority for many sales roles; volume and progression would show whether your work produced qualified opportunities."
+      },
+      {
+        "confidence": "medium",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "- Developed a basic understanding of CRM tools and sales tracking software to aid daily activities",
+          "section": "Work Experience"
+        },
+        "fix": "Add [specific scope] and [measurable result] to the sales bullet.",
+        "impact_level": "medium",
+        "section_ref": "Work Experience: Glenmark Technologies, Sales Representative",
+        "why": "As written, this reads like a duty because neither the scale nor the result is visible."
+      }
+    ]
+  },
+  "reportSha256": "5964fd8a2edb7212d9f1e8987f2dd172aa282c2252d8cf4358bf6c12baf2eaca",
+  "schemaVersion": "2",
+  "variant": "production"
+}

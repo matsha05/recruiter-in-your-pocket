@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "software-engineering-mid-strong",
+  "packetSha256": "e3abe57ce2e7313349df13adfc14b4fe91d1a384c21e5efaa52b6731e72ca9dd",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+      "reportSha256": "df483cfdbec452864dae363d27f347e99d93e0112f2506a4957792474cef38aa",
+      "fixtureSha256": "f982ebe1395b510461a41d714f2db929a3678b7c94a04354344e5398e575ca0d",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "295027b6759a3480e7668cacf1b990ee53f8c1decff17d2d705bc3f7468e1246",
+      "screenshotSha256": "a0c5390fde89637fa05b07d97af9f0037d80c49154a8e422f2282a9c7892efc4"
+    },
+    "production": {
+      "artifactSha256": "315b24b9eb78585fe16e4e2549f8fe5b85e63bffccb89bb327c4bfc2b051cd5e",
+      "reportSha256": "df483cfdbec452864dae363d27f347e99d93e0112f2506a4957792474cef38aa",
+      "fixtureSha256": "f982ebe1395b510461a41d714f2db929a3678b7c94a04354344e5398e575ca0d",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "2afe9e7abfa815f1c63683ce9b5e5d6389db88243cb8d2f6d16189387be3a315",
+      "screenshotSha256": "8c84790dc9e4041365db6037486416b7f165825c29a7d715f80f060a57ae267d"
+    }
+  },
+  "reviewer": "blind-reviewer-2",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "B",
+    "specificity": "B",
+    "actionability": "B"
+  },
+  "rationale": {
+    "trust": "B keeps each source, proof request, and draft aligned; A announces three moves but renders two and cross-wires coursework, microservice, incident, and support evidence.",
+    "specificity": "B ties deployment facts to the deployment bullet and recent-project evidence to the career-break bullet, with other questions separate.",
+    "actionability": "Both ranked B workflows can be completed safely from adjacent fields; A's second card cannot."
+  }
+}

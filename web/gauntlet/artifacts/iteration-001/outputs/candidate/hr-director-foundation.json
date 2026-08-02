@@ -1,0 +1,241 @@
+{
+  "binding": {
+    "commit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "hr-director-foundation",
+  "fixture": {
+    "sha256": "430c7fe23a2b6ecf0000329b0786253c31d8ca23a71fdc74ab1f301f2b320b5c"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "synth_hr_manager_director_foundation_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "eec6ec4eb8e7e4672296cccdd5de7cb4d590c9dd595fb70e5f029f68156da939",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:45:25.969Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393"
+    },
+    "rendererCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/candidate/hr-director-foundation.jpg",
+      "sha256": "589ad971dd3995c1f1dc569fd2f525e168abb1bb9564c65f0110359dc124dc69"
+    },
+    "viewport": {
+      "height": 7170,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 61/100\n\nNot a prediction of interviews or offers.\n\nShow the HR results\n\nProgression is clear, but most bullets lack scale, decisions, and measurable results.\n\nWHAT LANDS\n\nThe move from Human Resources Coordinator in 2004 to Senior Human Resources Manager in 2015 gives recruiters a clear progression to follow.\n\nWHERE DOUBT CREEPS IN\n\nThe resume does not show team size, employee population, hiring volume, or budget size, leaving the scale of your HR work difficult to place.\n\nFIX FIRST\n\nAdd [annual hiring volume], [team or workforce size], and [onboarding result] to the BrightWave recruitment bullet.\n\nWhat we saw on the page: “- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [annual hiring volume], [team or workforce size], and [onboarding result] to the BrightWave recruitment bullet.\nNot relevant\n01\nON THE PAGE\n02\nMISSING PROOF\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.”\n\nWHAT IS MISSING\n\nRecruitment is central to the recent role, but its scale and result are currently invisible.\n\nADD VERIFIED CONTEXT\n\nWhat verified detail from this exact line would support this change: “Add [annual hiring volume], [team or workforce size], and [onboarding result] to the BrightWave recruitment bullet”?\n\nVerified detail\nKeep these facts\n\nGUIDANCE ONLY\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\n\nHelped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes; [verified detail].\n\nFIX 02\n\nThen this\n\nAdd [budget size], the resource decision you supported, and [budget or staffing result] to the BrightWave budget bullet.\nNot relevant\n01\nON THE PAGE\n02\nMISSING PROOF\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation.”\n\nWHAT IS MISSING\n\nA budget bullet can show business judgment, but the current wording gives no financial scale or consequence.\n\nADD VERIFIED CONTEXT\n\nWhat verified detail from this exact line would support this change: “Add [budget size], the resource decision you supported, and [budget or staffing result] to the BrightWave budget bullet”?\n\nVerified detail\nKeep these facts\n\nGUIDANCE ONLY\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\n\nAssisted in managing the HR budget, collaborating with finance and operations to align resource allocation; [verified detail].\n\nFIX 03\n\nOne more pass\n\nAdd [number of project teams], [employee population], and the employee-development result to the Pioneer management bullet.\nNot relevant\n01\nON THE PAGE\n02\nMISSING PROOF\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Managed HR functions for several project teams, supporting staffing, scheduling, and employee development.”\n\nWHAT IS MISSING\n\nThis is the clearest manager-level bullet, yet several project teams is too vague for a recruiter to compare with other managers.\n\nADD VERIFIED CONTEXT\n\nWhat verified detail from this exact line would support this change: “Add [number of project teams], [employee population], and the employee-development result to the Pioneer management bullet”?\n\nVerified detail\nKeep these facts\n\nGUIDANCE ONLY\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\n\nManaged HR functions for several project teams, supporting staffing, scheduling, and employee development; [verified detail].\n\nOTHER LINE REWRITES\n\nUseful edits, kept with their own source.\n\nThese do not map uniquely to the ranked fixes above, so each stays beside the exact line it rewrites.\n\nLINE EDIT 01 · SOURCE LINE\n\n“- Supported the development and implementation of HR strategies across multiple departments within the organization.”\n\nREWRITE\n\nSupported the development and implementation of HR strategies across multiple departments within the organization; strategy areas: [specific programs]; [measurable result].\n\nAdd the strategy areas and a measurable result so the work can be distinguished from routine HR administration.\n\nQUESTIONS WORTH ANSWERING\n\nPrompts for your next revision.\n\nThese questions are not tied to a specific ranked fix. Use whichever ones surface a true, useful detail.\n\nQUESTION 01\n\nWhat changed in your HR work between Coordinator and Senior Manager that justified each promotion?\n\nWhy it may help: The titles show progression, but the bullets do not show how responsibility expanded.\n\nQUESTION 02\n\nHow many employees, departments, or business units did you support at BrightWave Technologies?\n\nWhy it may help: The resume mentions multiple departments and various teams without their size.\n\nQUESTION 03\n\nWhat employment-law issue, audit, or employee-relations case required your judgment?\n\nWhy it may help: Compliance and conflict resolution appear repeatedly, but no difficult case is described.\n\nQUESTION 04\n\nWhat changed after you coordinated training or employee engagement programs?\n\nWhy it may help: The activities are named, but participation, completion, retention, or feedback results are absent.\n\nQUESTION 05\n\nWhat did you resolve with finance and operations while managing HR budget resources?\n\nWhy it may help: That collaboration could show business judgment if the decision and result are specified.\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe move from Human Resources Coordinator in 2004 to Senior Human Resources Manager in 2015 gives recruiters a clear progression to follow.\n\n02\n\nBrightWave covers recruitment, budgeting, employee relations, training, and compliance, making the recent role broadly relevant to generalist HR searches.\n\n03\n\nYour background crosses technology, consulting, financial services, and manufacturing, which supports HR work in varied operating environments.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself around the HR lane where you can verify the most concrete scale and results. The current page can support senior generalist or HR business partner positioning, but it needs employee population, program scope, and measurable outcomes.\n\nBEST FIT NOW\n\nSenior Human Resources Manager\nSenior HR Business Partner\nHR Manager\n\nSeniority read: Senior Manager level by title, with 19 years of progressive HR experience; the bullets do not yet show whether the role included direct reports or final decision authority.\n\nHow the clarity summary breaks down\n61/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nThis free report is complete—you do not need to pay to see the rest. Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.\n\nGet 5 more reports · $29\n\nOne payment · 30 days · no automatic renewal.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "0eed51c50e0229e235aa6bf5ae55e2b8a12fca08ae6a702b2a4a77616b15e1c6"
+  },
+  "report": {
+    "biggest_gap_example": "\"Supported the development and implementation of HR strategies across multiple departments within the organization.\" lacks the strategy, your decision, and the result, so recruiters cannot gauge the level of work behind the title.",
+    "content_score": 61,
+    "contract_version": "v2",
+    "first_impression": "Your progression from HR Coordinator to Senior Human Resources Manager is easy to see across 19 years. The bullets mostly describe support and coordination, so the scale and results behind that progression remain unclear.",
+    "first_impression_takeaway": "Show the HR results",
+    "gaps": [
+      "The resume does not show team size, employee population, hiring volume, or budget size, leaving the scale of your HR work difficult to place.",
+      "Most bullets use supported, helped, assisted, or contributed, but do not explain which decisions you personally made or owned.",
+      "No target HR lane is stated, so it is unclear whether you are pursuing HRBP, people operations, talent, employee relations, or generalist roles."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "What changed in your HR work between Coordinator and Senior Manager that justified each promotion?",
+          "why": "The titles show progression, but the bullets do not show how responsibility expanded."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "How many employees, departments, or business units did you support at BrightWave Technologies?",
+          "why": "The resume mentions multiple departments and various teams without their size."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "What employment-law issue, audit, or employee-relations case required your judgment?",
+          "why": "Compliance and conflict resolution appear repeatedly, but no difficult case is described."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "What changed after you coordinated training or employee engagement programs?",
+          "why": "The activities are named, but participation, completion, retention, or feedback results are absent."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "What did you resolve with finance and operations while managing HR budget resources?",
+          "why": "That collaboration could show business judgment if the decision and result are specified."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself around the HR lane where you can verify the most concrete scale and results. The current page can support senior generalist or HR business partner positioning, but it needs employee population, program scope, and measurable outcomes.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Human Resources Manager",
+          "Senior HR Business Partner",
+          "HR Manager"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "Financial services",
+          "Manufacturing",
+          "Technology"
+        ],
+        "seniority_read": "Senior Manager level by title, with 19 years of progressive HR experience; the bullets do not yet show whether the role included direct reports or final decision authority.",
+        "stretch_roles": [
+          "Director of Human Resources",
+          "People Operations Director"
+        ]
+      },
+      "strongly_aligned": [
+        "Human resources management",
+        "Recruitment and onboarding",
+        "Employee relations",
+        "Performance management",
+        "Employment-law compliance"
+      ],
+      "underplayed": [
+        "HR budget work with finance and operations",
+        "Training and employee engagement programs",
+        "HRIS platforms and payroll coordination"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Choose one target lane, such as senior HR generalist or HR business partner, and rewrite the opening content around it.",
+      "Add verifiable scale to the BrightWave and Pioneer roles, including [employee population], [team size], [hiring volume], and [budget size].",
+      "Replace the weakest responsibility bullets with results, decisions, or program changes you can substantiate without changing your actual ownership."
+    ],
+    "rewrites": [
+      {
+        "better": "Supported the development and implementation of HR strategies across multiple departments within the organization; strategy areas: [specific programs]; [measurable result].",
+        "enhancement_note": "Add the strategy areas and a measurable result so the work can be distinguished from routine HR administration.",
+        "label": "BrightWave HR strategy",
+        "original": "- Supported the development and implementation of HR strategies across multiple departments within the organization."
+      }
+    ],
+    "score": 61,
+    "score_comment_long": "The career progression and HR coverage are clear, spanning recruitment, employee relations, compliance, training, budgeting, and HRIS work. Most bullets remain responsibility statements, with no quantified employee population, program result, or direct-report detail. Rewriting the recent roles around decisions, scale, and verifiable results is the fastest way up.",
+    "score_comment_short": "Progression is clear, but most bullets lack scale, decisions, and measurable results.",
+    "score_label": "Needs more context",
+    "score_plain": "This resume may pass for broad HR roles, but it will struggle against applicants who show workforce size, program results, and ownership. The experience is there; the page does not yet make its value easy to compare.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "B",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation year are complete and easy to scan."
+      },
+      "Skills": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Summary": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Work Experience": {
+        "fix": "Rewrite the BrightWave and Pioneer bullets with [employee population], [team size], [hiring volume], [budget size], and [measurable result] where verifiable.",
+        "grade": "C",
+        "missing": "The roles lack quantified scale, outcomes, direct-report information, and clear ownership of major HR decisions.",
+        "priority": "High",
+        "working": "The chronology is complete and shows progression through four HR roles with broad functional coverage."
+      }
+    },
+    "strengths": [
+      "The move from Human Resources Coordinator in 2004 to Senior Human Resources Manager in 2015 gives recruiters a clear progression to follow.",
+      "BrightWave covers recruitment, budgeting, employee relations, training, and compliance, making the recent role broadly relevant to generalist HR searches.",
+      "Your background crosses technology, consulting, financial services, and manufacturing, which supports HR work in varied operating environments."
+    ],
+    "subscores": {
+      "clarity": 64,
+      "impact": 52,
+      "readability": 72,
+      "story": 62
+    },
+    "summary": "Nineteen years of progression from HR Coordinator to Senior Human Resources Manager make senior generalist or HR business partner roles the natural read. Your recurring work spans recruitment, employee relations, training, budgeting, compliance, and HRIS administration across four industries. The page does not show whether you managed people, how large the workforces were, or what changed after your programs, which limits how far recruiters can place you above manager level.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [annual hiring volume], [team or workforce size], and [onboarding result] to the BrightWave recruitment bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "Recruitment is central to the recent role, but its scale and result are currently invisible."
+      },
+      {
+        "confidence": "high",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [budget size], the resource decision you supported, and [budget or staffing result] to the BrightWave budget bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "A budget bullet can show business judgment, but the current wording gives no financial scale or consequence."
+      },
+      {
+        "confidence": "medium",
+        "effort": "moderate",
+        "evidence": {
+          "excerpt": "- Managed HR functions for several project teams, supporting staffing, scheduling, and employee development.",
+          "section": "Work Experience"
+        },
+        "fix": "Add [number of project teams], [employee population], and the employee-development result to the Pioneer management bullet.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "This is the clearest manager-level bullet, yet several project teams is too vague for a recruiter to compare with other managers."
+      }
+    ]
+  },
+  "reportSha256": "eec6ec4eb8e7e4672296cccdd5de7cb4d590c9dd595fb70e5f029f68156da939",
+  "schemaVersion": "2",
+  "variant": "candidate"
+}

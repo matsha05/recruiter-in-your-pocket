@@ -12,6 +12,8 @@ This document names the operating work that code cannot honestly complete by its
 | Product, auth, privacy, and billing support | Matt | Forwarded operator inbox at `mattrshaw2011@gmail.com` | Passed July 30, 2026: an external sender reached the public support address, the signed inbound route forwarded it, an allowlisted operator replied, and the external sender received that reply. `RIYP_SUPPORT_INBOX_VERIFIED=true`. |
 | SEV-1/SEV-2 operational alert | Sentry email to `mattrshaw2011@gmail.com` | GitHub Issues through `.github/workflows/sentry-github-backup.yml` | Passed July 30, 2026. Production rehearsal event `3883c3a8-3c03-4760-9267-672aac0f665d` (`JAVASCRIPT-NEXTJS-11`) reached Gmail at 15:55:46 UTC and created [GitHub issue #5](https://github.com/matsha05/recruiter-in-your-pocket/issues/5) at 15:59:58 UTC through successful workflow run `30559387132`. A direct Sentry test also reached Gmail as `JAVASCRIPT-NEXTJS-12` at 15:59:22 UTC. `RIYP_SECONDARY_ALERT_VERIFIED=true`. |
 
+Support forwarding to `mattrshaw2011@gmail.com` uses Resend's free plan and works only within the provider's current quota; it is not unlimited. Monitor quota in Resend, and keep API keys and webhook secrets in environment configuration rather than this document or source control.
+
 Sentry email is the immediate path. The public-repository GitHub Actions workflow polls unresolved production `error` and `fatal` issues every 30 minutes, creates a scrubbed issue without request, user, payload, or stack data, and deduplicates by Sentry short ID. A manual rerun against `JAVASCRIPT-NEXTJS-10` created no duplicate, proving idempotency. The evidence flag records this completed delivery test; it does not replace either alert path.
 
 ## Stripe Tax Ownership

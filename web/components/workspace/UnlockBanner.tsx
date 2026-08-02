@@ -50,7 +50,12 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                 isVisible ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
             )}
         >
-            <div className="relative overflow-hidden rounded border border-premium/20 bg-premium/5 p-4 md:p-6" role="status" aria-live="polite">
+            <div
+                data-testid="pass-ready-banner"
+                className="relative overflow-hidden rounded border border-premium/20 bg-premium/5 p-4 md:p-6"
+                role="status"
+                aria-live="polite"
+            >
                 {/* Background Sparkle Decoration */}
                 <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                     <InsightSparkleIcon className="size-16 text-premium" />
@@ -61,10 +66,10 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         <div className="gap-y-1">
                             <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
                                 <InsightSparkleIcon className="size-4 text-premium" />
-                                Full report unlocked.
+                                Your Job Search Pass is ready.
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Start with the highest-impact changes, then export when you&apos;re ready.
+                                This report is unchanged. Use your 5 additional reports for a revised resume or another important role.
                             </p>
                         </div>
 

@@ -1,0 +1,53 @@
+{
+  "candidateCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+  "completed": true,
+  "criticalFailures": [],
+  "entryPath": "/",
+  "evidence": [
+    {
+      "kind": "screenshot",
+      "path": "journeys/evidence/five-more-value-mobile-screenshot.jpg",
+      "sha256": "05a7d1967ca2f579f0fca00d9541634d6f16cb2f463fb3eb966a44b41eb0b93c"
+    },
+    {
+      "kind": "dom",
+      "path": "journeys/evidence/five-more-value-mobile-dom.txt",
+      "sha256": "1b554e9bd7d8da917e377f29beb0797ced7ca683965240ff81ff73eca39996d2"
+    },
+    {
+      "kind": "console",
+      "path": "journeys/evidence/five-more-value-mobile-console.log",
+      "sha256": "79414f932f2bb5033859839ce7fbddc4c8e7589b2f63cde74bcecb743d58dc6f"
+    },
+    {
+      "kind": "interaction",
+      "path": "journeys/evidence/five-more-value-mobile-interaction.json",
+      "sha256": "67a28f3e5e0bd7ddddede78eb27716a93469fcf42c7e0d0e4ffd0267596eac03"
+    }
+  ],
+  "finalPath": "/workspace",
+  "iterationId": "iteration-001",
+  "journeyDefinitionSha256": "9589fbb181ae7cc568a954622ad9463521889b06f99b9b5f3e160fbc197e80e1",
+  "journeyId": "five-more-value-mobile",
+  "notes": "Hermetic localhost capture. The report stream was fulfilled from the committed synthetic source; all non-loopback traffic and checkout were blocked.",
+  "schemaVersion": "2",
+  "steps": [
+    {
+      "evidence": "The historical report rendered as a complete free report.",
+      "label": "Complete the free report",
+      "status": "pass"
+    },
+    {
+      "evidence": "The decision named five additional reports, $29, 30 days, and no automatic renewal.",
+      "label": "Inspect the five-more decision",
+      "status": "pass"
+    },
+    {
+      "evidence": "The modal preserved the complete-free-report boundary and did not start checkout.",
+      "label": "Open the purchase explanation",
+      "status": "pass"
+    }
+  ],
+  "testedAt": "2026-07-31T15:45:30.052Z",
+  "viewport": "mobile"
+}

@@ -1,8 +1,10 @@
+import { isDeepStrictEqual } from "node:util";
 import { createAppError } from "./errors";
 import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validation/schemas";
 import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
+import { repairResumeReportSourceFidelity } from "../llm/source-fidelity";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -136,6 +138,7 @@ export function validateResumeModelPayload(
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
   }
+  const inputPayload = obj;
 
   const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
@@ -195,23 +198,43 @@ export function validateResumeModelPayload(
     );
   }
 
+  const calibrated = resumeText && shouldGround
+    ? calibrateResumeScore(parsed.data, resumeText).report
+    : parsed.data;
+  let sourceFaithful = resumeText && shouldGround
+    ? repairResumeReportSourceFidelity(calibrated, resumeText).report
+    : calibrated;
   if (resumeText && shouldGround) {
-    const grounding = assertReportGrounding(parsed.data, resumeText);
+    // Source repair can replace a false premise with a conservative template.
+    // Give that replacement the same canonical presentation pass as model
+    // output, then re-assert source fidelity on the exact object we return.
+    sourceFaithful = canonicalizeResumeReportEvidence(sourceFaithful, resumeText).report;
+    sourceFaithful = repairResumeReportSourceFidelity(sourceFaithful, resumeText).report;
+  }
+  const finalParsed = ResumeFeedbackResponseSchema.safeParse(sourceFaithful);
+  if (!finalParsed.success) {
+    const firstIssue = finalParsed.error.issues[0];
+    const path = firstIssue?.path?.join(".") || "response";
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      `The source-faithful report failed the recruiter briefing contract at ${path}.`,
+      502,
+    );
+  }
+  if (resumeText && shouldGround) {
+    const grounding = assertReportGrounding(finalParsed.data, resumeText);
     if (!grounding.ok) {
       const issue = grounding.missingEvidence[0] || grounding.inventedSpecifics[0] || "response";
       throw createAppError(
         "OPENAI_RESPONSE_SHAPE_INVALID",
-        `The model response failed the evidence grounding contract at ${issue}.`,
+        `The source-faithful report failed the evidence grounding contract at ${issue}.`,
         502,
-        { grounding }
+        { grounding },
       );
     }
   }
-
-  const calibrated = resumeText && shouldGround
-    ? calibrateResumeScore(parsed.data, resumeText).report
-    : parsed.data;
-  return ensureLayoutAndContentFields(calibrated);
+  const effectivePayload = ensureLayoutAndContentFields(finalParsed.data);
+  return isDeepStrictEqual(effectivePayload, inputPayload) ? inputPayload : effectivePayload;
 }
 
 export function validateResumeIdeasPayload(obj: any) {

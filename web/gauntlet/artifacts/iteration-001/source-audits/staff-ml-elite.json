@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "staff-ml-elite",
+  "candidateArtifactSha256": "379ebdeed628ed05fd5b796ff8be6dd9777c2946d019167ff63bb7dcd27e354c",
+  "auditor": "source-reviewer-1",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "Mentored a team of 6 ML engineers and 3 data scientists by setting expectations for experiment design, readable dashboards, and defensible decision memos; [team or delivery improvement].",
+      "reason": "The resume says the mentoring drove a culture of those practices; it does not establish expectation-setting as the method."
+    }
+  ],
+  "notes": "Checked every visible number, source quote, rewrite, narrative claim, and role characterization against the embedded synthetic resume. Other metrics and role inferences were grounded; several exploratory questions were leading but visibly labeled as prompts."
+}

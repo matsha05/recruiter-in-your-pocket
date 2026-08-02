@@ -1,0 +1,53 @@
+{
+  "candidateCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+  "completed": true,
+  "criticalFailures": [],
+  "entryPath": "/",
+  "evidence": [
+    {
+      "kind": "screenshot",
+      "path": "journeys/evidence/free-review-mobile-screenshot.jpg",
+      "sha256": "b828094e6b8a9689820e43a0e3b8dca944bdca16c7ad581c07edc2e9c6703a19"
+    },
+    {
+      "kind": "dom",
+      "path": "journeys/evidence/free-review-mobile-dom.txt",
+      "sha256": "d90a38928caa454d4a0dfc5810338afb3f18ea7792b7c3dc60230f2e27b1dfe0"
+    },
+    {
+      "kind": "console",
+      "path": "journeys/evidence/free-review-mobile-console.log",
+      "sha256": "79414f932f2bb5033859839ce7fbddc4c8e7589b2f63cde74bcecb743d58dc6f"
+    },
+    {
+      "kind": "interaction",
+      "path": "journeys/evidence/free-review-mobile-interaction.json",
+      "sha256": "e6cad8b92f26dd226d963ea4bc64ff0519aa640b152339e5ea7f8605e4ca91dd"
+    }
+  ],
+  "finalPath": "/workspace",
+  "iterationId": "iteration-001",
+  "journeyDefinitionSha256": "ef03a2848a5cedc049c1d9aa5815a91fe8932a2cb352913f3b3eabcf26832943",
+  "journeyId": "free-review-mobile",
+  "notes": "Hermetic localhost capture. The report stream was fulfilled from the committed synthetic source; all non-loopback traffic and checkout were blocked.",
+  "schemaVersion": "2",
+  "steps": [
+    {
+      "evidence": "The landing page rendered the primary free-report action.",
+      "label": "Open the cold-entry page",
+      "status": "pass"
+    },
+    {
+      "evidence": "The primary action opened the paste-resume workspace.",
+      "label": "Reach the anonymous workspace",
+      "status": "pass"
+    },
+    {
+      "evidence": "The report showed the recruiter read and ranked fixes without a model call.",
+      "label": "Render the approved historical report",
+      "status": "pass"
+    }
+  ],
+  "testedAt": "2026-07-31T15:45:28.749Z",
+  "viewport": "mobile"
+}

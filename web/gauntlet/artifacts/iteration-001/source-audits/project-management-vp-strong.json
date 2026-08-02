@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "project-management-vp-strong",
+  "candidateArtifactSha256": "64400f7baf2ccf5d63aec46c140611ab3c21282a08c616fb6b6e8a9c1f9149c3",
+  "auditor": "source-reviewer-2",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "GlobalTech gives the reader concrete scale through budgets exceeding $12M, teams of 25+, and three software releases in two years.",
+      "reason": "The resume supports one cross-departmental team of 25+, not multiple teams."
+    },
+    {
+      "claim": "- Managed end-to-end lifecycle of defense-related projects including technology deployment and systems modernization, with a focus on",
+      "reason": "The source is clipped before delivering mission-critical solutions."
+    },
+    {
+      "claim": "Managed end-to-end lifecycle of defense-related projects including technology deployment and systems modernization, with a focus on; [verified detail].",
+      "reason": "The rewrite drops the source ending and is malformed."
+    }
+  ],
+  "notes": "Other project metrics are supported. The top fix is generic and mislabeled, one discovery question presupposes expansion, and the clarity score has no visible calculation."
+}

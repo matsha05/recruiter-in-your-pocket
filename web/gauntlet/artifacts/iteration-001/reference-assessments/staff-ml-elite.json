@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "staff-ml-elite",
+  "candidateArtifactSha256": "379ebdeed628ed05fd5b796ff8be6dd9777c2946d019167ff63bb7dcd27e354c",
+  "assessor": "source-reviewer-1",
+  "assessedAt": "2026-07-31T15:55:00.000Z",
+  "dimensions": {
+    "trust": {
+      "verdict": "inconclusive",
+      "evidence": "Internal grounding is strong but not flawless, and no same-resume Teal output exists.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "specificity": {
+      "verdict": "meets_or_beats",
+      "evidence": "Exact bullets, metrics, missing-context fields, and source-coupled rewrites exceed Teal's public section-level navigation bar.",
+      "referenceIds": [
+        "teal-public-ats-resume-checker"
+      ]
+    },
+    "actionability": {
+      "verdict": "meets_or_beats",
+      "evidence": "One ordered move, exact source, safe draft, a named fact to supply, and a rerun loop are executable.",
+      "referenceIds": [
+        "jobscan-public-match-report-tutorial"
+      ]
+    }
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "binding": {
+    "commit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "model": "gpt-5.6-luna",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    }
+  },
+  "caseId": "product-entry-elite",
+  "fixture": {
+    "sha256": "850a02b32bf5425eafbe3d7c7d1eb003d7eb039debee54c470ba0e406c1205a1"
+  },
+  "generation": {
+    "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+    "fixtureId": "synth_product_manager_entry_elite_1",
+    "generatedAt": "2026-07-28T20:51:41.424Z",
+    "model": "gpt-5.6-luna",
+    "reportSha256": "0d148f8f74e07338fcdbe323a2d6fbbc50e30fbc7eec92d5be236c454d1199f9",
+    "runId": "eval_1785271781375",
+    "sanitizedOutput": {
+      "path": "web/gauntlet/sources/eval-1785271781375-synthetic-12.json",
+      "sha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966"
+    },
+    "sourceCommit": "3a85bb583458bbab9c74648a6106f5b87ada3dc6"
+  },
+  "iterationId": "iteration-001",
+  "presentation": {
+    "capturedAt": "2026-07-31T15:44:19.707Z",
+    "kind": "rendered_report",
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6"
+    },
+    "rendererCommit": "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+    "route": "/workspace",
+    "screenshot": {
+      "path": "presentations/production/product-entry-elite.jpg",
+      "sha256": "4943e79e18d50d6e612a2fdc0604cbaf3583e6b74dd2d94177567215b13ece9a"
+    },
+    "viewport": {
+      "height": 4861,
+      "width": 1440
+    },
+    "visibleText": "The read\nFix these first\nKeep these\nRole direction\nYOUR RESUME REVIEW\n\nTHE READ\n\nCLARITY SUMMARY: 84/100\n\nNot a prediction of interviews or offers.\n\nLead with measurable SaaS product results\n\nSeveral concrete outcomes are visible, with a few uneven areas still limiting the first read.\n\nWHAT LANDS\n\nThe NovaSense onboarding work connects a four-person team, 150 beta users, and a 25% activation increase in one coherent launch story.\n\nWHERE DOUBT CREEPS IN\n\nThe summary does not name the specific product areas or customer problems you handled, so it adds little beyond the experience section.\n\nFIX FIRST\n\nAdd [specific scope] to the experience bullet without losing the result already on the page.\n\nWhat we saw on the page: “- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction”\n\nTHE EVIDENCE\n\nThe specifics that support this read.\n\nSee all evidence\n\nFIX THESE FIRST\n\nThree moves. In order.\n\nEach one starts with evidence from the resume, then shows the context or proof that would make the story stronger.\n\nFIX 01\n\nStart here\n\nAdd [specific scope] to the experience bullet without losing the result already on the page.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · WORK EXPERIENCE\n\n“- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction”\n\nWHAT IS MISSING\n\nThe result is worth keeping, but we cannot see how large or complex the work was.\n\nANSWER BEFORE YOU EDIT\n\nWhat changed when you moved from technical work into product management at BrightLeaf?\n\nMeasurable result\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nDefined and tracked activation rate, time-to-value, and churn reduction KPIs to evaluate onboarding feature performance post-launch; [measurable result].\n\nFIX 02\n\nThen this\n\nReplace the opening with [target product role] plus the SaaS domains and measurable results already shown in Work Experience.\nNot relevant\n01\nON THE PAGE\n02\nOPEN QUESTION\n03\nYOUR FACT\n04\nCLEARER WORDING\n\nON THE PAGE · SUMMARY\n\n“Product Manager with a strong foundation in data-driven decision-making and agile product development.”\n\nWHAT IS MISSING\n\nThe current opening uses general product language instead of giving the recruiter a quick reason to place you in a specific role.\n\nANSWER BEFORE YOU EDIT\n\nHow did onboarding personalization expand beyond the initial NovaSense module?\n\nVerified detail\nKeep these facts\n\nTRY THIS\n\nWe don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.\n\nEdit\nAdd facts to copy\n\nProduct Manager with a strong foundation in data-driven decision-making and agile product development; [verified detail].\n\nKEEP THESE\n\nThe parts already earning trust.\n01\n\nThe NovaSense onboarding work connects a four-person team, 150 beta users, and a 25% activation increase in one coherent launch story.\n\n02\n\nBrightLeaf shows both product discovery and delivery through user interviews, backlog prioritization, sprint planning, and a module used by 10,000+ customers.\n\n03\n\nThe resume repeatedly ties product changes to measurable movement, including 40% adoption, 15% task completion, 30% onboarding time, and 20% checkout speed.\n\nROLE DIRECTION\n\nWhere this story reads strongest.\n\nPosition yourself around measurable SaaS activation, adoption, and workflow improvements rather than broad interest in product management. Lead applications with Associate Product Manager and Product Manager roles where roadmap ownership, experimentation, and cross-functional delivery are central.\n\nBEST FIT NOW\n\nAssociate Product Manager\nProduct Manager, SaaS\nGrowth Product Manager\n\nSeniority read: Early-career product manager, with Associate Product Manager experience and substantial internship ownership.\n\nHow the clarity summary breaks down\n84/100\n\nAFTER YOU EDIT\n\nRun the new version. Compare the read.\n\nUpload the revised resume and we'll place the two opening reads side by side—what changed, what still needs context, and what to fix next.\n\nUnlock the second read\n\nAnother report requires paid access.\n\nA NOTE FOR THE BETA\n\nWhat did this report get right—or miss?\n\nThis is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.\n\nSend a two-minute note\n\nThree prompts open in your email. Your resume is never attached.",
+    "visibleTextSha256": "0071d13f71a8f69c063c8e2e8f4f45f6d6d1df959838e92ac7c6f2d07caf62d9"
+  },
+  "report": {
+    "biggest_gap_example": "\"Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction to measure feature effectiveness post-launch.\" names the measures but not the result, so the recruiter cannot judge what changed.",
+    "content_score": 84,
+    "contract_version": "v2",
+    "first_impression": "The resume shows unusually strong product metrics for an early-career profile, including 25% higher activation and 40% higher feature adoption. The story is credible for Associate Product Manager roles, but the summary still sounds broader than the detailed work.",
+    "first_impression_takeaway": "Lead with measurable SaaS product results",
+    "gaps": [
+      "The summary does not name the specific product areas or customer problems you handled, so it adds little beyond the experience section.",
+      "Ownership is clear in the BrightLeaf and NovaSense roles, but the Pivotal Edge bullets leave your personal contribution less distinct.",
+      "The resume shows several launch results but rarely gives baseline, product usage context, or the decision that followed, which limits comparison across achievements."
+    ],
+    "ideas": {
+      "questions": [
+        {
+          "archetype": "TENSION POINT",
+          "question": "What changed when you moved from technical work into product management at BrightLeaf?",
+          "why": "The summary mentions a technical background, but the resume does not explain how it shaped your product decisions."
+        },
+        {
+          "archetype": "SCALING",
+          "question": "How did onboarding personalization expand beyond the initial NovaSense module?",
+          "why": "Senior leadership considered additional modules, but the scale or follow-through is not shown."
+        },
+        {
+          "archetype": "QUALITY UNDER PRESSURE",
+          "question": "How did the six-person Scrum team handle release risks for the 10,000-customer module?",
+          "why": "You describe sprint management and dependencies, but not a difficult delivery tradeoff."
+        },
+        {
+          "archetype": "IMPROVEMENT",
+          "question": "Which user insight led you to simplify task delegation at BrightLeaf?",
+          "why": "The adoption result is strong, while the product reasoning behind the change remains thin."
+        },
+        {
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "question": "How did engineering, design, and QA resolve competing priorities during the three-month checkout update?",
+          "why": "The collaboration is named, but the coordination challenge and your decision are not."
+        }
+      ]
+    },
+    "job_alignment": {
+      "jd_keywords": {
+        "match_count": 0,
+        "matched": [],
+        "missing": [],
+        "total_count": 0
+      },
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "positioning_suggestion": "Position yourself around measurable SaaS activation, adoption, and workflow improvements rather than broad interest in product management. Lead applications with Associate Product Manager and Product Manager roles where roadmap ownership, experimentation, and cross-functional delivery are central.",
+      "role_fit": {
+        "best_fit_roles": [
+          "Associate Product Manager",
+          "Product Manager, SaaS",
+          "Growth Product Manager",
+          "Product Operations Manager"
+        ],
+        "company_stage_fit": "Not clear from the resume alone",
+        "industry_signals": [
+          "SaaS",
+          "Technology"
+        ],
+        "seniority_read": "Early-career product manager, with Associate Product Manager experience and substantial internship ownership.",
+        "stretch_roles": [
+          "Product Manager, Growth",
+          "Product Manager, Platform"
+        ]
+      },
+      "strongly_aligned": [
+        "SaaS product development",
+        "Activation and adoption improvement",
+        "Roadmap and backlog prioritization",
+        "A/B testing and product analytics"
+      ],
+      "underplayed": [
+        "Technical background",
+        "Customer research",
+        "Senior leadership communication"
+      ]
+    },
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "layout_score": null,
+    "next_steps": [
+      "Replace the generic summary with a two-sentence positioning statement naming SaaS, activation, adoption, and roadmap ownership.",
+      "Add the missing post-launch result to the KPI bullet, or remove that bullet if no verified result is available.",
+      "Rework the Pivotal Edge bullets to distinguish what you decided, coordinated, or delivered from what the broader team did."
+    ],
+    "rewrites": [
+      {
+        "better": "Defined and tracked activation rate, time-to-value, and churn reduction KPIs to evaluate onboarding feature performance post-launch; [measurable result].",
+        "enhancement_note": "Add the post-launch KPI result so this bullet shows what the measurement revealed.",
+        "label": "NovaSense KPI tracking",
+        "original": "- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction to measure feature effectiveness post-launch."
+      }
+    ],
+    "score": 84,
+    "score_comment_long": "The resume contains multiple specific outcomes and credible ownership signals. Evidence is not equally strong in every role. Tightening the weakest bullets will make the story easier to place.",
+    "score_comment_short": "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.",
+    "score_label": "Mostly clear",
+    "score_plain": "This has a credible evidence base. Strengthen the few thin bullets instead of rewriting what already works.",
+    "section_review": {
+      "Education": {
+        "fix": "No change needed unless it improves role alignment.",
+        "grade": "B",
+        "missing": "No material section-specific gap identified.",
+        "priority": "Low",
+        "working": "The technology management concentration and honors GPA establish relevant academic preparation without crowding the experience section."
+      },
+      "Skills": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Summary": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      },
+      "Work Experience": {
+        "fix": "Add only if it helps the role story.",
+        "grade": "N/A",
+        "missing": "Section not present.",
+        "priority": "Low",
+        "working": ""
+      }
+    },
+    "strengths": [
+      "The NovaSense onboarding work connects a four-person team, 150 beta users, and a 25% activation increase in one coherent launch story.",
+      "BrightLeaf shows both product discovery and delivery through user interviews, backlog prioritization, sprint planning, and a module used by 10,000+ customers.",
+      "The resume repeatedly ties product changes to measurable movement, including 40% adoption, 15% task completion, 30% onboarding time, and 20% checkout speed."
+    ],
+    "subscores": {
+      "clarity": 81,
+      "impact": 86,
+      "readability": 84,
+      "story": 79
+    },
+    "summary": "NovaSense and BrightLeaf establish a clear early-career SaaS product path, with ownership of onboarding, resource management, experimentation, and release delivery. Across the resume, the work centers on turning user research and analytics into measurable changes, from 25% higher activation to 40% higher feature adoption. The resume points to Associate Product Manager and selected Product Manager applications more clearly than senior roles. What remains unclear is what the KPI tracking at NovaSense actually found, which weakens the post-launch decision story.",
+    "top_fixes": [
+      {
+        "confidence": "high",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction",
+          "section": "Work Experience"
+        },
+        "fix": "Add [specific scope] to the experience bullet without losing the result already on the page.",
+        "impact_level": "high",
+        "section_ref": "Work Experience",
+        "why": "The result is worth keeping, but we cannot see how large or complex the work was."
+      },
+      {
+        "confidence": "high",
+        "effort": "quick",
+        "evidence": {
+          "excerpt": "Product Manager with a strong foundation in data-driven decision-making and agile product development.",
+          "section": "Summary"
+        },
+        "fix": "Replace the opening with [target product role] plus the SaaS domains and measurable results already shown in Work Experience.",
+        "impact_level": "high",
+        "section_ref": "Summary",
+        "why": "The current opening uses general product language instead of giving the recruiter a quick reason to place you in a specific role."
+      }
+    ]
+  },
+  "reportSha256": "0d148f8f74e07338fcdbe323a2d6fbbc50e30fbc7eec92d5be236c454d1199f9",
+  "schemaVersion": "2",
+  "variant": "production"
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "hr-director-foundation",
+  "candidateArtifactSha256": "bbe452e461442556a82674972633358f3d69347ff75c74837f61b3a607f2f421",
+  "auditor": "source-reviewer-3",
+  "auditedAt": "2026-07-31T15:55:00.000Z",
+  "inventedFacts": [
+    {
+      "claim": "What changed in your HR work between Coordinator and Senior Manager that justified each promotion?",
+      "reason": "The titles belong to four different employers; the resume states no promotions."
+    }
+  ],
+  "notes": "All source lines and rewrite cores are exact. Chronology, missing scope, breadth, and 19 years of experience are supported; recruiter positioning is labeled interpretation."
+}

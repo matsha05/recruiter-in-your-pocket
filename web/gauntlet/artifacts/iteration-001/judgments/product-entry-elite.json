@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "iteration-001",
+  "caseId": "product-entry-elite",
+  "packetSha256": "b0d3b1db24fcb7682121acc88bef900a78060fef8a18635fa9ab78f1a5c668a3",
+  "artifacts": {
+    "candidate": {
+      "artifactSha256": "441290a2dbc802c26be10dca8d97850dd92b3cdffa85f44acd01e2bb4faa1fc7",
+      "reportSha256": "0d148f8f74e07338fcdbe323a2d6fbbc50e30fbc7eec92d5be236c454d1199f9",
+      "fixtureSha256": "850a02b32bf5425eafbe3d7c7d1eb003d7eb039debee54c470ba0e406c1205a1",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "92c404434b4c485b422538b16adbd2930a2e5d706516583b713264845f939393",
+      "visibleTextSha256": "c0317d60137f28079ad26e56b3ac7f9e5f28614b843cac78e765415f340f9fe1",
+      "screenshotSha256": "4c3cb66573102ae478c623d634513a5093a818f6abaf9c818c4edaf92c56fee1"
+    },
+    "production": {
+      "artifactSha256": "749747bae8daf78afd2bb285464832fbe32994c2f478ab73f41e3ba828ce9367",
+      "reportSha256": "0d148f8f74e07338fcdbe323a2d6fbbc50e30fbc7eec92d5be236c454d1199f9",
+      "fixtureSha256": "850a02b32bf5425eafbe3d7c7d1eb003d7eb039debee54c470ba0e406c1205a1",
+      "generationSourceSha256": "7d90253bac3b78fa5a5ed267aabd397b744ae4d143122703fbd2a6ff5c955966",
+      "canonicalPromptSha256": "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+      "promptSha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3",
+      "rendererSha256": "f8e8b7d217f16b89f9558c5b6bbcf129eb1359f9ac282f8e282908db6e46e3b6",
+      "visibleTextSha256": "0071d13f71a8f69c063c8e2e8f4f45f6d6d1df959838e92ac7c6f2d07caf62d9",
+      "screenshotSha256": "4943e79e18d50d6e612a2fdc0604cbaf3583e6b74dd2d94177567215b13ece9a"
+    }
+  },
+  "reviewer": "blind-reviewer-3",
+  "reviewedAt": "2026-07-31T15:51:30.000Z",
+  "preferences": {
+    "trust": "B",
+    "specificity": "B",
+    "actionability": "B"
+  },
+  "rationale": {
+    "trust": "B correctly presents two moves and separates broader questions; A announces three, renders two, and mixes NovaSense and BrightLeaf evidence.",
+    "specificity": "B's separate questions reference exact evidence: six-person Scrum team, 10,000-customer module, three-month checkout update, user insight, and tradeoffs.",
+    "actionability": "B is safer because both ranked edits stay internally grouped and unrelated discovery questions sit outside them, despite a shared weak KPI/summary treatment."
+  }
+}

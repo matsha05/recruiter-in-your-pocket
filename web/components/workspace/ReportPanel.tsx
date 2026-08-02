@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
     report: ReportData | null;
+    resumeText?: string;
     isLoading: boolean;
     isStreaming?: boolean;
     hasJobDescription: boolean;
@@ -42,6 +43,7 @@ interface ReportPanelProps {
 
 export default function ReportPanel({
     report,
+    resumeText,
     isLoading,
     isStreaming = false,
     hasJobDescription,
@@ -278,6 +280,7 @@ export default function ReportPanel({
 
                             <ReportStream
                                 report={displayReport}
+                                resumeText={resumeText}
                                 isSample={isSample}
                                 freeUsesRemaining={freeUsesRemaining}
                                 onUpgrade={onUpgrade}
