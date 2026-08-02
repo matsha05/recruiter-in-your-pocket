@@ -188,12 +188,20 @@ function protectedFacts(value: string) {
   return Array.from(facts.values());
 }
 
+// These stemmed words express recruiter interpretation, absence, or editing
+// advice; they are not factual resume nouns. Everything else must bind to source.
+const interpretationVocabulary = new Set([
+  "add", "answer", "appear", "blurry", "bullet", "can", "clarify", "clear", "clearly",
+  "context", "count", "edit", "explicit", "focu", "keep", "miss", "need", "next", "not",
+  "page", "read", "readable", "scope", "strong", "verify", "visible", "what", "work", "you",
+]);
+
 const stopWords = new Set([
   "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "of",
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "while", "using", "via",
   "add", "verified", "detail", "fact", "scope", "result", "outcome", "metric",
-  "answer", "can", "clarify", "context", "edit", "need", "next",
+  ...interpretationVocabulary,
 ]);
 
 function stemToken(token: string) {
@@ -203,6 +211,12 @@ function stemToken(token: string) {
   if (lower.endsWith("ed") && lower.length > 4) return lower.slice(0, -2);
   if (lower.endsWith("s") && !lower.endsWith("ss") && lower.length > 3) return lower.slice(0, -1);
   return lower;
+}
+
+function containsInterpretationVocabulary(value: string) {
+  return (value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
+    .map(stemToken)
+    .some((token) => interpretationVocabulary.has(token));
 }
 
 const semanticTokenAliases = new Map([
@@ -286,6 +300,7 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const claimTokens = materialTokens(claim);
+    const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
     const supporting = candidates.filter(({ facts: sourceFacts }) => {
       const sourceFactKeys = new Set(sourceFacts.map((fact) => fact.key));
       return facts.every((fact) => sourceFactKeys.has(fact.key));
@@ -296,22 +311,25 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
 
     const sourceAnchored = supporting.filter(({ tokens }) => {
       const overlap = Array.from(claimTokens).filter((token) => tokens.has(token)).length;
-      const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
       return claimTokens.size >= 1
-        && overlap / claimTokens.size >= 0.8
-        && (claimTokens.size >= 2 || hasTrackedClaim);
+        && overlap === claimTokens.size;
     });
     if (sourceAnchored.length === 0) {
-      const hasAnySourceAnchor = supporting.some(({ tokens }) =>
-        Array.from(claimTokens).some((token) => tokens.has(token))
-      );
-      if (hasAnySourceAnchor) return [];
       if (facts.length === 0 && claimTokens.size === 0) return [];
-      const unsupportedFacts = facts.length > 0
-        ? facts.map((fact) => fact.display)
-        : Array.from(claimTokens);
+      const unsupportedTokens = Array.from(claimTokens).filter((token) =>
+        !supporting.some(({ tokens }) => tokens.has(token))
+      );
+      const unsupportedFacts = unsupportedTokens.length > 0
+        ? unsupportedTokens
+        : facts.map((fact) => fact.display);
       return [{ claim, unsupportedFacts }];
     }
+    const hasCompleteUntrackedMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
+      sourceFacts
+        .filter((fact) => !/^(?:agency|outcome|qualifier|causal):/u.test(fact.key))
+        .every((fact) => claimFactKeys.has(fact.key))
+    );
+    if (!hasTrackedClaim && (hasCompleteUntrackedMatch || containsInterpretationVocabulary(claim))) return [];
     const hasCompleteMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts.every((fact) => claimFactKeys.has(fact.key))
     );
@@ -413,6 +431,7 @@ function roleLabelTokens(value: string) {
 function roleEvidenceSegments(sourceText: string) {
   return sourceText
     .normalize("NFC")
+    .replace(/\b(Sr|Jr)\.(?=\s+[\p{L}\p{M}])/giu, "$1")
     .split(/(?:\r?\n)+|(?<=[.!?;])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
     .map((segment) => segment.trim())
     .filter(Boolean);

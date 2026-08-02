@@ -125,6 +125,17 @@ assert.ok(
   auditNarrativeClaim("Built payroll automation.", "Built customer workflows in HubSpot.").length > 0,
   "a wholly unanchored narrative claim must fail closed",
 );
+const partialAnchorClaims = [
+  "Built payroll automation in HubSpot.",
+  "Built payroll workflows in HubSpot.",
+  "Built customer payroll workflows in HubSpot.",
+] as const;
+for (const claim of partialAnchorClaims) {
+  assert.ok(
+    auditNarrativeClaim(claim, "Built customer workflows in HubSpot.").length > 0,
+    `a partial source anchor must not admit invented factual nouns: ${claim}`,
+  );
+}
 assert.equal(compareSourceBoundRewrite({
   sourceText: usefulParaphrase.original,
   sourceLocator: usefulParaphrase.original,
@@ -299,6 +310,21 @@ const unanchoredAuditPaths = new Set(
 for (const renderedPath of auditedPublicNarrativePaths) {
   assert.ok(unanchoredAuditPaths.has(renderedPath), `${renderedPath} must reject wholly unanchored prose`);
 }
+for (const partialAnchorClaim of partialAnchorClaims) {
+  const renderedPartialAnchorProbe = JSON.parse(
+    JSON.stringify(renderedClaimProbe).replaceAll(unsafePublicClaim, partialAnchorClaim),
+  );
+  const partialAnchorAuditPaths = new Set(
+    auditReportNarrative(renderedPartialAnchorProbe, "Built customer workflows in HubSpot.")
+      .map(({ path: issuePath }) => issuePath),
+  );
+  for (const renderedPath of auditedPublicNarrativePaths) {
+    assert.ok(
+      partialAnchorAuditPaths.has(renderedPath),
+      `${renderedPath} must reject partially anchored factual prose: ${partialAnchorClaim}`,
+    );
+  }
+}
 
 const hubspotSource = "Built customer workflows in HubSpot.";
 const reviewItem = {
@@ -382,6 +408,22 @@ assert.ok(
   unanchoredScoreGrounding.inventedSpecifics.some((issue) => issue.includes("score_comment_short")),
   "the grounding error must identify the invented score comment",
 );
+for (const partialAnchorClaim of partialAnchorClaims) {
+  const partialAnchorScoreReport = structuredClone(schemaValidReport);
+  partialAnchorScoreReport.score_comment_short = partialAnchorClaim;
+  const partialAnchorScoreSchema = ResumeFeedbackResponseSchema.safeParse(partialAnchorScoreReport);
+  assert.equal(partialAnchorScoreSchema.success, true, "the partial-anchor score probe must remain schema-valid");
+  const partialAnchorScoreGrounding = assertReportGrounding(partialAnchorScoreSchema.data, hubspotSource);
+  assert.equal(
+    partialAnchorScoreGrounding.ok,
+    false,
+    `a partially anchored score comment must fail grounding: ${partialAnchorClaim}`,
+  );
+  assert.ok(
+    partialAnchorScoreGrounding.inventedSpecifics.some((issue) => issue.includes("score_comment_short")),
+    "the grounding error must identify the partially anchored score comment",
+  );
+}
 
 const adversarialRoleReport = structuredClone(schemaValidReport);
 adversarialRoleReport.job_alignment.role_fit.best_fit_roles[0] = unsafePublicClaim;
@@ -450,6 +492,31 @@ for (const field of ["best_fit_roles", "stretch_roles"] as const) {
       `${field} candidate punctuation is presentation and may ground in one ordered source phrase`,
     );
   }
+}
+
+for (const field of ["best_fit_roles", "stretch_roles"] as const) {
+  const abbreviatedRoleProbe = structuredClone(schemaValidReport);
+  abbreviatedRoleProbe.job_alignment.role_fit[field][0] = "Sr. Salesforce Administrator";
+  const abbreviatedRoleSchema = ResumeFeedbackResponseSchema.safeParse(abbreviatedRoleProbe);
+  assert.equal(abbreviatedRoleSchema.success, true, `${field} abbreviated role probe must remain schema-valid`);
+  assert.equal(
+    assertReportGrounding(
+      abbreviatedRoleSchema.data,
+      hubspotSource,
+      "Primary role: Sr. Salesforce Administrator.",
+    ).ok,
+    true,
+    `${field} must keep a recognized title abbreviation inside its evidence segment`,
+  );
+  assert.equal(
+    assertReportGrounding(
+      abbreviatedRoleSchema.data,
+      hubspotSource,
+      "Primary role: Sr. Salesforce platform lead. Workday Administrator owns HR systems.",
+    ).ok,
+    false,
+    `${field} must not join a title abbreviation to role tokens from another clause`,
+  );
 }
 
 for (const field of ["best_fit_roles", "stretch_roles"] as const) {
