@@ -86,7 +86,8 @@ async function createResumeFeedback(resumeText: string, jobDescription?: string)
 
 /**
  * Streaming version of createResumeFeedback.
- * Calls onChunk with accumulated JSON as it arrives.
+ * Calls onChunk with raw progress only. A report object is exposed only after
+ * the server sends the authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamResumeFeedback(
@@ -160,9 +161,7 @@ export async function streamResumeFeedback(
 
         if (event.type === "chunk") {
           accumulatedJson += event.content;
-          // Try to parse partial JSON for early display
-          const partialReport = tryParsePartialJson(accumulatedJson);
-          onChunk(accumulatedJson, partialReport);
+          onChunk(accumulatedJson, null);
         } else if (event.type === "complete") {
           finalReport = event.data;
           if (finalReport && event.report_id) {
@@ -191,55 +190,6 @@ export async function streamResumeFeedback(
   return { ok: false, message: "Stream ended without completion" };
 }
 
-/**
- * Attempts to parse partial JSON and extract any complete fields.
- * Returns null if parsing fails.
- */
-function tryParsePartialJson(json: string): any | null {
-  // Try direct parse first
-  try {
-    return JSON.parse(json);
-  } catch {
-    // Try to close incomplete object
-    let attempt = json;
-    // Count open braces/brackets and close them
-    let braceCount = 0;
-    let bracketCount = 0;
-    let inString = false;
-    let escaped = false;
-
-    for (const char of attempt) {
-      if (escaped) {
-        escaped = false;
-        continue;
-      }
-      if (char === "\\") {
-        escaped = true;
-        continue;
-      }
-      if (char === '"') {
-        inString = !inString;
-        continue;
-      }
-      if (inString) continue;
-      if (char === "{") braceCount++;
-      if (char === "}") braceCount--;
-      if (char === "[") bracketCount++;
-      if (char === "]") bracketCount--;
-    }
-
-    // Add missing closers
-    for (let i = 0; i < bracketCount; i++) attempt += "]";
-    for (let i = 0; i < braceCount; i++) attempt += "}";
-
-    try {
-      return JSON.parse(attempt);
-    } catch {
-      return null;
-    }
-  }
-}
-
 // ============================================
 // LinkedIn API Functions
 // ============================================
@@ -261,7 +211,8 @@ export type LinkedInStreamResult = {
 
 /**
  * Streaming LinkedIn profile feedback.
- * Calls onChunk with accumulated JSON as it arrives.
+ * Calls onChunk with raw progress only. A report object is exposed only after
+ * the server sends the authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamLinkedInFeedback(
@@ -335,8 +286,7 @@ export async function streamLinkedInFeedback(
 
         if (event.type === "chunk") {
           accumulatedJson += event.content;
-          const partialReport = tryParsePartialJson(accumulatedJson);
-          onChunk(accumulatedJson, partialReport);
+          onChunk(accumulatedJson, null);
         } else if (event.type === "complete") {
           finalReport = event.data;
           finalProfile = event.profile;

@@ -59,7 +59,7 @@
       "why": "The experience points toward complex launch and operations work, but the page never names that lane. A short summary can make the pattern easier to see.",
       "confidence": "medium",
       "evidence": {
-        "excerpt": "(No summary section present)",
+        "excerpt": "No summary section present",
         "section": "Summary"
       },
       "impact_level": "high",

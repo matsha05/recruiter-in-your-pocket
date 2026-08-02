@@ -3,6 +3,7 @@ import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validati
 import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
+import { removeUnsafeRewrites } from "../llm/source-fidelity";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -141,6 +142,7 @@ export function validateResumeModelPayload(
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
   if (resumeText && shouldGround) {
     obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
+    obj = removeUnsafeRewrites(obj, resumeText).report;
   }
 
   obj.score = normalizeScore(obj.score, "score");

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "invented-currency-metric",
+    "source": "Generated $3.2M in annual recurring revenue at Northline.",
+    "safe": "At Northline, generated $3.2M in annual recurring revenue.",
+    "unsafe": "Generated $5M in annual recurring revenue at Northline."
+  },
+  {
+    "id": "invented-entity",
+    "source": "Built customer workflows in HubSpot.",
+    "safe": "In HubSpot, built customer workflows.",
+    "unsafe": "Built customer workflows in Salesforce."
+  },
+  {
+    "id": "ownership-upgrade",
+    "source": "Supported recruiting operations across three teams.",
+    "safe": "Across three teams, supported recruiting operations.",
+    "unsafe": "Led recruiting operations across three teams."
+  },
+  {
+    "id": "invented-outcome",
+    "source": "Coordinated onboarding paperwork for new hires.",
+    "safe": "For new hires, coordinated onboarding paperwork.",
+    "unsafe": "Coordinated onboarding paperwork for new hires, reducing ramp time by 20%."
+  },
+  {
+    "id": "greater-than-qualifier",
+    "source": "Maintained API availability at >99% in production.",
+    "safe": "In production, maintained API availability at >99%.",
+    "unsafe": "Maintained API availability at 99% in production."
+  },
+  {
+    "id": "negative-sign-qualifier",
+    "source": "Recorded a -5% year-over-year change in infrastructure spend.",
+    "safe": "Recorded infrastructure spend change: -5% year-over-year.",
+    "unsafe": "Recorded a 5% year-over-year change in infrastructure spend."
+  }
+]

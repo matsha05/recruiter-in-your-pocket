@@ -5,11 +5,9 @@ import {
     findBiggestGapContradictions,
     findFixEvidenceMismatch,
     findNonActionableFix,
-    findRewriteFidelityIssues,
-    findUnsupportedAgencyUpgrade,
-    findUnsupportedOutcomeClaims,
     isAcceptedAbsenceMarker,
 } from "../llm/grounding";
+import { auditReportNarrative, compareSourceBoundRewrite } from "../llm/source-fidelity";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -159,45 +157,11 @@ function normalizeForEvidence(value: string) {
         .trim();
 }
 
-const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
-
-function removeBracketPlaceholders(value: string) {
-    return value.replace(/\[[^\]]+\]/g, "");
-}
-
-function escapeRegExp(value: string) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function containsLiteral(text: string, value: string) {
-    return new RegExp(escapeRegExp(value)).test(text);
-}
-
-function findUngroundedSpecifics(text: string, sourceText: string) {
-    const normalizedSource = normalizeForEvidence(sourceText);
-    const unbracketedText = removeBracketPlaceholders(text);
-    const matches = unbracketedText.match(concreteMetricPattern) || [];
-    const ungrounded = new Set<string>();
-
-    for (const match of matches) {
-        const normalizedMetric = normalizeForEvidence(match);
-        const numericValue = match.match(/\d+(?:\.\d+)?/)?.[0];
-        if (!numericValue) continue;
-
-        const numberPattern = new RegExp(`\\b${escapeRegExp(numericValue)}\\b`);
-        const isGrounded =
-            (normalizedMetric.length > 0 && containsLiteral(normalizedSource, normalizedMetric)) ||
-            numberPattern.test(normalizedSource);
-
-        if (!isGrounded) {
-            ungrounded.add(match.trim());
-        }
-    }
-
-    return Array.from(ungrounded);
-}
-
-export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText: string) {
+export function assertReportGrounding(
+    report: ResumeFeedbackResponse,
+    resumeText: string,
+    narrativeSourceText = resumeText,
+) {
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
 
@@ -225,22 +189,22 @@ export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText
         if (original.length > 10 && !containsExactEvidence(resumeText, rewrite.original)) {
             missingEvidence.push(`rewrites[${index}].original`);
         }
-        const ungroundedSpecifics = findUngroundedSpecifics(rewrite.better, resumeText);
-        if (ungroundedSpecifics.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better: ${ungroundedSpecifics.join(", ")}`);
+        const comparison = compareSourceBoundRewrite({
+            sourceText: resumeText,
+            sourceLocator: rewrite.original,
+            candidate: rewrite.better,
+        });
+        if (!comparison.safe) {
+            inventedSpecifics.push(
+                `rewrites[${index}].better source fidelity: ${comparison.issues.map(issue => issue.detail).join(", ")}`,
+            );
         }
-        const unsupportedAgency = findUnsupportedAgencyUpgrade(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedAgency.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported ownership: ${unsupportedAgency.join(", ")}`);
-        }
-        const unsupportedOutcomes = findUnsupportedOutcomeClaims(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedOutcomes.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported outcomes: ${unsupportedOutcomes.join(", ")}`);
-        }
-        const fidelityIssues = findRewriteFidelityIssues(rewrite.original, rewrite.better, resumeText);
-        if (fidelityIssues.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better fidelity: ${fidelityIssues.join(", ")}`);
-        }
+    }
+
+    for (const issue of auditReportNarrative(report, narrativeSourceText)) {
+        inventedSpecifics.push(
+            `${issue.path} unsupported narrative facts: ${issue.unsupportedFacts.join(", ")}`,
+        );
     }
 
     const quotedGap = report.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];

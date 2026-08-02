@@ -1,3 +1,5 @@
+import { isExactAbsenceSentinel } from "./source-fidelity";
+
 const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|participated)\b/i;
 const elevatedOwnershipPattern = /\b(led|owned|drove|managed|spearheaded|directed|headed)\b/gi;
 const outcomePattern = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|accelerate|accelerated|accelerating|raise|raised|lower|lowered|result|resulted|resulting)\b/gi;
@@ -50,8 +52,8 @@ function hasSectionHeading(sourceText: string, names: string[]) {
 }
 
 export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
+  if (!isExactAbsenceSentinel(value)) return false;
   const marker = normalizeMarker(value);
-  if (!ABSENCE_MARKERS.has(marker)) return false;
   if (!sourceText) return true;
 
   if (marker === "no summary section present") {

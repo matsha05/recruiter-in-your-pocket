@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
     report: ReportData | null;
+    resumeText?: string;
     isLoading: boolean;
     isStreaming?: boolean;
     hasJobDescription: boolean;
@@ -42,6 +43,7 @@ interface ReportPanelProps {
 
 export default function ReportPanel({
     report,
+    resumeText,
     isLoading,
     isStreaming = false,
     hasJobDescription,
@@ -189,6 +191,14 @@ export default function ReportPanel({
                                     <p><span className="font-medium text-foreground">Still building your report.</span> You can start reading now; the remaining sections will fill in as they arrive.</p>
                                 </div>
                             )}
+                            {!resumeText?.trim() && !isSample && (
+                                <div
+                                    role="note"
+                                    className="border-y border-amber-500/25 bg-amber-50/70 px-4 py-3 text-sm leading-6 text-foreground/75"
+                                >
+                                    This saved report does not include the source resume. Rewrites remain readable, but Copy stays off until the source can be verified in a new report.
+                                </div>
+                            )}
                             {shareEnabled && shareMode && (
                                 <div className="flex flex-col gap-3 border-y border-premium/20 bg-premium/5 p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -288,6 +298,7 @@ export default function ReportPanel({
                                 hasPaidAccess={hasPaidAccess}
                                 comparisonBaseline={comparisonBaseline}
                                 onStartRevision={onStartRevision}
+                                resumeText={resumeText}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>
