@@ -31,6 +31,7 @@ export type GenerationAccessReservation = {
   freeUsesRemaining: number;
   anonymousCookieMeta: AnonymousFreeCookieMeta | null;
   anonymousIdentityHash: string | null;
+  anonymousShadowHash?: string | null;
   anonymousMonthKey: string | null;
 };
 

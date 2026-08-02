@@ -57,3 +57,20 @@ export function resolutionFromRpcData(
       : "none";
   return accessResolution(state, action);
 }
+
+export async function queryAuthenticatedAccessState(
+  admin: import("./generationAccessTypes").GenerationAccessRpcClient,
+  userId: string,
+  reservationId: string
+): Promise<GenerationAccessResolution> {
+  try {
+    const { data, error } = await admin.rpc("get_generation_access_status", {
+      p_user_id: userId,
+      p_reservation_id: reservationId,
+    });
+    if (error) return accessResolution("unknown");
+    return resolutionFromRpcData(data);
+  } catch {
+    return accessResolution("unknown");
+  }
+}

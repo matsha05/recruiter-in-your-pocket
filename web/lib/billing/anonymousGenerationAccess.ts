@@ -7,57 +7,82 @@ const COMMITTED_TTL_SECONDS = 40 * 24 * 60 * 60;
 const IDENTITY_PATTERN = /^[0-9a-f]{64}$/i;
 
 const RESERVE_SCRIPT = `
-local current = redis.call("GET", KEYS[1])
-if current then
+local primary = redis.call("GET", KEYS[1])
+local shadow = redis.call("GET", KEYS[2])
+if primary or shadow then
   return 0
 end
 redis.call("SET", KEYS[1], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
+redis.call("SET", KEYS[2], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
 return 1
 `;
 
 const COMMIT_SCRIPT = `
-local current = redis.call("GET", KEYS[1])
+local primary = redis.call("GET", KEYS[1])
+local shadow = redis.call("GET", KEYS[2])
 local reserved = "reserved:" .. ARGV[1]
 local committed = "committed:" .. ARGV[1]
-if current == committed then
+if (primary == committed or not primary) and (shadow == committed or not shadow)
+  and (primary == committed or shadow == committed) then
+  redis.call("SET", KEYS[1], committed, "EX", ARGV[2])
+  redis.call("SET", KEYS[2], committed, "EX", ARGV[2])
   return 1
 end
-if current ~= reserved then
+if (primary ~= reserved and primary) or (shadow ~= reserved and shadow)
+  or (not primary and not shadow) then
   return 0
 end
 redis.call("SET", KEYS[1], committed, "EX", ARGV[2])
+redis.call("SET", KEYS[2], committed, "EX", ARGV[2])
 return 1
 `;
 
 const RELEASE_SCRIPT = `
-local current = redis.call("GET", KEYS[1])
+local primary = redis.call("GET", KEYS[1])
+local shadow = redis.call("GET", KEYS[2])
 local reserved = "reserved:" .. ARGV[1]
-if not current then
+if not primary and not shadow then
   return 0
 end
-if string.sub(current, 1, 10) == "committed:" then
+if (primary and string.sub(primary, 1, 10) == "committed:")
+  or (shadow and string.sub(shadow, 1, 10) == "committed:") then
   return 2
 end
-if current ~= reserved then
+if (primary and primary ~= reserved) or (shadow and shadow ~= reserved) then
   return 3
 end
 redis.call("DEL", KEYS[1])
+redis.call("DEL", KEYS[2])
 return 1
 `;
 
 const RECONCILE_COMMITTED_SCRIPT = `
-local current = redis.call("GET", KEYS[1])
-if not current then
-  redis.call("SET", KEYS[1], "committed:" .. ARGV[1], "EX", ARGV[2], "NX")
+local primary = redis.call("GET", KEYS[1])
+local shadow = redis.call("GET", KEYS[2])
+local committed = "committed:" .. ARGV[1]
+if (primary and string.sub(primary, 1, 10) == "committed:")
+  or (shadow and string.sub(shadow, 1, 10) == "committed:") then
+  if not primary then redis.call("SET", KEYS[1], committed, "EX", ARGV[2], "NX") end
+  if not shadow then redis.call("SET", KEYS[2], committed, "EX", ARGV[2], "NX") end
   return 1
 end
-if string.sub(current, 1, 10) == "committed:" then
-  return 1
-end
-if string.sub(current, 1, 9) == "reserved:" then
+if (primary and string.sub(primary, 1, 9) == "reserved:")
+  or (shadow and string.sub(shadow, 1, 9) == "reserved:") then
   return 2
 end
-return 3
+redis.call("SET", KEYS[1], committed, "EX", ARGV[2])
+redis.call("SET", KEYS[2], committed, "EX", ARGV[2])
+return 1
+`;
+
+const INSPECT_SCRIPT = `
+local primary = redis.call("GET", KEYS[1])
+local shadow = redis.call("GET", KEYS[2])
+if primary and string.sub(primary, 1, 10) == "committed:" then return primary end
+if shadow and string.sub(shadow, 1, 10) == "committed:" then return shadow end
+if primary and string.sub(primary, 1, 9) == "reserved:" then return primary end
+if shadow and string.sub(shadow, 1, 9) == "reserved:" then return shadow end
+return ""
 `;
 
 type LocalEntry = {
@@ -97,16 +122,19 @@ export class AnonymousGenerationAccessError extends Error {
 export type AnonymousGenerationAccessBackend = {
   reserve(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
     reservationId: string;
   }): Promise<boolean>;
   commit(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
     reservationId: string;
   }): Promise<boolean>;
   release(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
     reservationId: string;
   }): Promise<{
@@ -115,10 +143,12 @@ export type AnonymousGenerationAccessBackend = {
   }>;
   status(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
   }): Promise<"available" | "reserved" | "committed">;
   inspect(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
   }): Promise<{
     status: "available" | "reserved" | "committed";
@@ -126,6 +156,7 @@ export type AnonymousGenerationAccessBackend = {
   }>;
   reconcileCommitted(input: {
     identityHash: string;
+    shadowHash: string;
     monthKey: string;
     receiptId: string;
   }): Promise<"reserved" | "committed">;
@@ -153,11 +184,14 @@ function stateFromValue(value: unknown) {
   return { status: "available" as const, reservationId: null };
 }
 
-function ledgerKey(identityHash: string, monthKey: string) {
-  if (!IDENTITY_PATTERN.test(identityHash)) {
+function ledgerKeys(identityHash: string, shadowHash: string, monthKey: string) {
+  if (!IDENTITY_PATTERN.test(identityHash) || !IDENTITY_PATTERN.test(shadowHash)) {
     throw new AnonymousGenerationAccessError();
   }
-  return `generation:anonymous:${monthKey}:${identityHash.toLowerCase()}`;
+  return [
+    `generation:anonymous:${monthKey}:${identityHash.toLowerCase()}`,
+    `generation:anonymous:${monthKey}:network:${shadowHash.toLowerCase()}`,
+  ];
 }
 
 function localEntry(key: string) {
@@ -167,6 +201,14 @@ function localEntry(key: string) {
     return null;
   }
   return entry || null;
+}
+
+function localState(keys: string[]) {
+  const primary = localEntry(keys[0])?.value;
+  const shadow = localEntry(keys[1])?.value;
+  const value = [primary, shadow].find((item) => item?.startsWith("committed:"))
+    || [primary, shadow].find((item) => item?.startsWith("reserved:"));
+  return stateFromValue(value);
 }
 
 function unavailable(cause?: unknown): never {
@@ -179,20 +221,21 @@ function unavailable(cause?: unknown): never {
 
 /**
  * The signed cookie remains a user-facing hint. This ledger is the
- * authoritative anonymous entitlement, keyed by a durable signed identity and
- * month, so an IP change cannot mint another provider call.
+ * authoritative anonymous entitlement. A durable signed identity is primary;
+ * a separately salted network hash closes simple both-cookie resets. Raw
+ * network addresses are never stored, and shared networks can affect access.
  * Hosted environments fail closed if shared state is unavailable.
  */
 export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend = {
-  async reserve({ identityHash, monthKey, reservationId }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async reserve({ identityHash, shadowHash, monthKey, reservationId }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
 
     if (redis) {
       try {
         const result = await redis.eval(
           RESERVE_SCRIPT,
-          [key],
+          keys,
           [reservationId, String(HOLD_TTL_SECONDS)]
         );
         return Number(result) === 1;
@@ -209,23 +252,25 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    if (localEntry(key)) return false;
-    localEntries.set(key, {
-      value: `reserved:${reservationId}`,
-      expiresAtMs: Date.now() + HOLD_TTL_SECONDS * 1000,
-    });
+    if (localState(keys).status !== "available") return false;
+    for (const key of keys) {
+      localEntries.set(key, {
+        value: `reserved:${reservationId}`,
+        expiresAtMs: Date.now() + HOLD_TTL_SECONDS * 1000,
+      });
+    }
     return true;
   },
 
-  async commit({ identityHash, monthKey, reservationId }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async commit({ identityHash, shadowHash, monthKey, reservationId }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
 
     if (redis) {
       try {
         const result = await redis.eval(
           COMMIT_SCRIPT,
-          [key],
+          keys,
           [reservationId, String(COMMITTED_TTL_SECONDS)]
         );
         return Number(result) === 1;
@@ -242,25 +287,32 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entry = localEntry(key);
+    const entries = keys.map((key) => localEntry(key));
     const reserved = `reserved:${reservationId}`;
     const committed = `committed:${reservationId}`;
-    if (entry?.value === committed) return true;
-    if (entry?.value !== reserved) return false;
-    localEntries.set(key, {
-      value: committed,
-      expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
-    });
+    const values = entries.map((entry) => entry?.value);
+    if (values.some((value) => value === committed)) {
+      if (values.some((value) => value && value !== committed)) return false;
+    } else if (
+      values.every((value) => !value)
+      || values.some((value) => value && value !== reserved)
+    ) return false;
+    for (const key of keys) {
+      localEntries.set(key, {
+        value: committed,
+        expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
+      });
+    }
     return true;
   },
 
-  async release({ identityHash, monthKey, reservationId }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async release({ identityHash, shadowHash, monthKey, reservationId }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
 
     if (redis) {
       try {
-        const result = await redis.eval(RELEASE_SCRIPT, [key], [reservationId]);
+        const result = await redis.eval(RELEASE_SCRIPT, keys, [reservationId]);
         if (Number(result) === 1) return { status: "released", action: "released" };
         if (Number(result) === 2) return { status: "committed", action: "none" };
         if (Number(result) === 0) return { status: "available", action: "none" };
@@ -278,25 +330,25 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entry = localEntry(key);
-    if (!entry) return { status: "available", action: "none" };
-    if (entry.value.startsWith("committed:")) {
+    const entries = keys.map((key) => localEntry(key));
+    if (entries.every((entry) => !entry)) return { status: "available", action: "none" };
+    if (entries.some((entry) => entry?.value.startsWith("committed:"))) {
       return { status: "committed", action: "none" };
     }
-    if (entry.value !== `reserved:${reservationId}`) {
+    if (entries.some((entry) => entry && entry.value !== `reserved:${reservationId}`)) {
       return { status: "conflict", action: "none" };
     }
-    localEntries.delete(key);
+    for (const key of keys) localEntries.delete(key);
     return { status: "released", action: "released" };
   },
 
-  async status({ identityHash, monthKey }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async status({ identityHash, shadowHash, monthKey }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
 
     if (redis) {
       try {
-        const value = await redis.get<string>(key);
+        const value = await redis.eval(INSPECT_SCRIPT, keys, []);
         return stateFromValue(value).status;
       } catch (error) {
         if (
@@ -311,15 +363,15 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    return stateFromValue(localEntry(key)?.value).status;
+    return localState(keys).status;
   },
 
-  async inspect({ identityHash, monthKey }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async inspect({ identityHash, shadowHash, monthKey }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
     if (redis) {
       try {
-        return stateFromValue(await redis.get<string>(key));
+        return stateFromValue(await redis.eval(INSPECT_SCRIPT, keys, []));
       } catch (error) {
         if (
           process.env.NODE_ENV === "production"
@@ -332,17 +384,17 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     ) {
       unavailable();
     }
-    return stateFromValue(localEntry(key)?.value);
+    return localState(keys);
   },
 
-  async reconcileCommitted({ identityHash, monthKey, receiptId }) {
-    const key = ledgerKey(identityHash, monthKey);
+  async reconcileCommitted({ identityHash, shadowHash, monthKey, receiptId }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
     const redis = getRedisClient();
     if (redis) {
       try {
         const result = await redis.eval(
           RECONCILE_COMMITTED_SCRIPT,
-          [key],
+          keys,
           [receiptId, String(COMMITTED_TTL_SECONDS)]
         );
         if (Number(result) === 1) return "committed";
@@ -361,13 +413,26 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const state = stateFromValue(localEntry(key)?.value);
-    if (state.status === "committed") return "committed";
+    const entries = keys.map((key) => localEntry(key));
+    if (entries.some((entry) => entry?.value.startsWith("committed:"))) {
+      for (const [index, key] of keys.entries()) {
+        if (!entries[index]) {
+          localEntries.set(key, {
+            value: `committed:${receiptId}`,
+            expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
+          });
+        }
+      }
+      return "committed";
+    }
+    const state = localState(keys);
     if (state.status === "reserved") return "reserved";
-    localEntries.set(key, {
-      value: `committed:${receiptId}`,
-      expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
-    });
+    for (const key of keys) {
+      localEntries.set(key, {
+        value: `committed:${receiptId}`,
+        expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
+      });
+    }
     return "committed";
   },
 };

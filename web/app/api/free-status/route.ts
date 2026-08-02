@@ -17,6 +17,7 @@ import {
   resolveAnonymousFreeUsesRemaining,
 } from "@/lib/billing/anonymousGenerationAccess";
 import {
+  anonymousNetworkHashFromRequest,
   anonymousReceiptId,
   hashAnonymousIdentity,
 } from "@/lib/billing/anonymousIdentity";
@@ -26,7 +27,7 @@ import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     // Dev bypass for testing
     if (isDevelopmentPaywallBypassEnabled()) {
@@ -82,18 +83,25 @@ export async function GET() {
         cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
       );
       const identityHash = hashAnonymousIdentity(identityResult.identity);
+      const shadowHash = anonymousNetworkHashFromRequest(request);
+      if (!shadowHash) throw new Error("Anonymous network identity is unavailable");
       const monthKey = getCurrentMonthKey();
       let ledgerStatus = await anonymousGenerationAccessBackend.status({
         identityHash,
+        shadowHash,
         monthKey,
       });
 
       // A signed used receipt is fail-closed evidence. If shared state was
       // evicted or the durable identity had to be reissued, seed a committed
       // ledger entry instead of minting another report.
-      if (ledgerStatus === "available" && (meta.used || 0) >= FREE_RUN_LIMIT) {
+      if (
+        ledgerStatus === "committed"
+        || (ledgerStatus === "available" && (meta.used || 0) >= FREE_RUN_LIMIT)
+      ) {
         ledgerStatus = await anonymousGenerationAccessBackend.reconcileCommitted({
           identityHash,
+          shadowHash,
           monthKey,
           receiptId: anonymousReceiptId(identityResult.identity, monthKey),
         });

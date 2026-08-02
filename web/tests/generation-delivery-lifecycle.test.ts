@@ -43,6 +43,7 @@ async function reserveAnonymous(identityChar: string) {
     bypass: false,
     freeMeta,
     anonymousIdentityHash: identityChar.repeat(64),
+    anonymousShadowHash: identityChar.repeat(64),
     randomUUID: nextUuid,
   });
 }
@@ -50,6 +51,7 @@ async function reserveAnonymous(identityChar: string) {
 async function anonymousStatus(reservation: GenerationAccessReservation) {
   return anonymousGenerationAccessBackend.status({
     identityHash: reservation.anonymousIdentityHash!,
+    shadowHash: reservation.anonymousShadowHash!,
     monthKey: reservation.anonymousMonthKey!,
   });
 }
@@ -192,6 +194,7 @@ async function run() {
     await assert.rejects(
       () => anonymousGenerationAccessBackend.status({
         identityHash: "c".repeat(64),
+        shadowHash: "c".repeat(64),
         monthKey: getCurrentMonthKey(),
       }),
       /Anonymous report access is temporarily unavailable/,

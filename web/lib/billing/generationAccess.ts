@@ -9,6 +9,7 @@ import { assertGenerationCapacity } from "../operations/generationBudget";
 import {
   accessResolution,
   firstRpcRecord,
+  queryAuthenticatedAccessState,
   resolutionFromRpcData,
   type GenerationAccessResolution,
 } from "./generationAccessFinality";
@@ -144,6 +145,7 @@ export async function reserveGenerationAccess(input: {
   bypass: boolean;
   freeMeta: ParsedFreeMeta;
   anonymousIdentityHash?: string | null;
+  anonymousShadowHash?: string | null;
   now?: () => Date;
   randomUUID?: () => string;
 }): Promise<GenerationAccessReservation> {
@@ -185,8 +187,9 @@ export async function reserveGenerationAccess(input: {
 
     const reservedAt = now().toISOString();
     const anonymousIdentityHash = input.anonymousIdentityHash || null;
+    const anonymousShadowHash = input.anonymousShadowHash || null;
     const anonymousMonthKey = getCurrentMonthKey();
-    if (!anonymousIdentityHash) {
+    if (!anonymousIdentityHash || !anonymousShadowHash) {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
         "Report access is temporarily unavailable. Please try again in a moment."
@@ -198,6 +201,7 @@ export async function reserveGenerationAccess(input: {
     try {
       reserved = await anonymousGenerationAccessBackend.reserve({
         identityHash: anonymousIdentityHash,
+        shadowHash: anonymousShadowHash,
         monthKey: anonymousMonthKey,
         reservationId,
       });
@@ -236,6 +240,7 @@ export async function reserveGenerationAccess(input: {
       // output is still pending validation.
       anonymousCookieMeta: null,
       anonymousIdentityHash,
+      anonymousShadowHash,
       anonymousMonthKey,
     };
     anonymousCookieMetaAfterCommit.set(reservation, {
@@ -310,23 +315,6 @@ export async function reserveGenerationAccess(input: {
   };
 }
 
-async function queryAuthenticatedAccessState(
-  admin: GenerationAccessRpcClient,
-  userId: string,
-  reservationId: string
-): Promise<GenerationAccessResolution> {
-  try {
-    const { data, error } = await admin.rpc("get_generation_access_status", {
-      p_user_id: userId,
-      p_reservation_id: reservationId,
-    });
-    if (error) return accessResolution("unknown");
-    return resolutionFromRpcData(data);
-  } catch {
-    return accessResolution("unknown");
-  }
-}
-
 function applyAnonymousCommitCookie(reservation: GenerationAccessReservation) {
   const cookieMeta = anonymousCookieMetaAfterCommit.get(reservation);
   if (!cookieMeta) throw unavailableFromRpc("commit", null, true);
@@ -340,8 +328,9 @@ export async function commitGenerationAccess(
   if (reservation.entitlementKind === "anonymous_free") {
     const reservationId = reservation.reservationId;
     const identityHash = reservation.anonymousIdentityHash;
+    const shadowHash = reservation.anonymousShadowHash;
     const monthKey = reservation.anonymousMonthKey;
-    if (!reservationId || !identityHash || !monthKey) {
+    if (!reservationId || !identityHash || !shadowHash || !monthKey) {
       throw unavailableFromRpc("commit");
     }
 
@@ -349,6 +338,7 @@ export async function commitGenerationAccess(
       try {
         if (await anonymousGenerationAccessBackend.commit({
           identityHash,
+          shadowHash,
           monthKey,
           reservationId,
         })) {
@@ -361,7 +351,7 @@ export async function commitGenerationAccess(
     }
 
     try {
-      const state = await anonymousGenerationAccessBackend.inspect({ identityHash, monthKey });
+      const state = await anonymousGenerationAccessBackend.inspect({ identityHash, shadowHash, monthKey });
       if (state.status === "committed" && state.reservationId === reservationId) {
         applyAnonymousCommitCookie(reservation);
         return accessResolution("committed", "committed");
@@ -433,6 +423,7 @@ export async function releaseGenerationAccess(
     if (
       !reservation.reservationId
       || !reservation.anonymousIdentityHash
+      || !reservation.anonymousShadowHash
       || !reservation.anonymousMonthKey
     ) {
       return accessResolution("unknown");
@@ -441,6 +432,7 @@ export async function releaseGenerationAccess(
     try {
       const result = await anonymousGenerationAccessBackend.release({
         identityHash: reservation.anonymousIdentityHash,
+        shadowHash: reservation.anonymousShadowHash,
         monthKey: reservation.anonymousMonthKey,
         reservationId: reservation.reservationId,
       });
@@ -453,6 +445,7 @@ export async function releaseGenerationAccess(
       try {
         const state = await anonymousGenerationAccessBackend.inspect({
           identityHash: reservation.anonymousIdentityHash,
+          shadowHash: reservation.anonymousShadowHash,
           monthKey: reservation.anonymousMonthKey,
         });
         if (state.status === "committed") return accessResolution("committed");

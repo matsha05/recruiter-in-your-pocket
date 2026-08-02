@@ -20,14 +20,12 @@ import {
   reserveGenerationAccess,
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
-
 type HeldReservation = {
   id: string;
   userId: string;
   kind: "free" | "pass_credit";
   status: "reserved" | "committed" | "released" | "refunded";
 };
-
 class AtomicFakeRpc implements GenerationAccessRpcClient {
   private queue = Promise.resolve();
   private freeUsed = false;
@@ -40,7 +38,6 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
   constructor(passCredits = 0) {
     this.passCredits = passCredits;
   }
-
   rpc(functionName: string, args: Record<string, unknown>) {
     const operation = this.queue.then(async () => {
       await new Promise((resolve) => setTimeout(resolve, 1));
@@ -49,7 +46,6 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
       const reservationId = String(args.p_reservation_id || "");
       const userId = String(args.p_user_id || "");
       const existing = this.reservations.get(reservationId);
-
       if (functionName === "reserve_generation_access") {
         if (existing) {
           return {
@@ -71,7 +67,6 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
         const activePassHolds = Array.from(this.reservations.values()).filter(
           (reservation) => reservation.kind === "pass_credit" && reservation.status === "reserved"
         ).length;
-
         if (this.passCredits > activePassHolds) {
           this.reservations.set(reservationId, { id: reservationId, userId, kind: "pass_credit", status: "reserved" });
           return {
@@ -120,7 +115,6 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
           error: null,
         };
       }
-
       if (functionName === "get_generation_access_status") {
         return {
           data: existing
@@ -129,7 +123,6 @@ class AtomicFakeRpc implements GenerationAccessRpcClient {
           error: null,
         };
       }
-
       if (!existing || existing.userId !== userId) {
         return { data: { ok: false, status: "missing" }, error: null };
       }
@@ -173,7 +166,6 @@ const freeMeta: ParsedFreeMeta = {
   reset_month: "2099-01",
   needs_reset: false,
 };
-
 async function run() {
 const uuidValues = [
   "11111111-1111-4111-8111-111111111111",
@@ -183,7 +175,6 @@ const uuidValues = [
 ];
 let uuidIndex = 0;
 const nextUuid = () => uuidValues[uuidIndex++];
-
 // Two simultaneous authenticated first-free requests produce one hold.
 const freeRpc = new AtomicFakeRpc();
 const [freeA, freeB] = await Promise.all([
@@ -196,7 +187,6 @@ await releaseGenerationAccess(heldFree, freeRpc, "provider_error");
 await releaseGenerationAccess(heldFree, freeRpc, "provider_error");
 assert.equal(freeRpc.commitMutations, 0);
 assert.equal(freeRpc.refundMutations, 0);
-
 // A one-credit pass also produces one pass hold under concurrency; the second
 // request may still use the separate free entitlement, never the same credit.
 const passRpc = new AtomicFakeRpc(1);
@@ -250,6 +240,7 @@ const anonymous = await reserveGenerationAccess({
   bypass: false,
   freeMeta,
   anonymousIdentityHash: "a".repeat(64),
+  anonymousShadowHash: "1".repeat(64),
   now: () => new Date("2099-01-02T03:04:05.000Z"),
   randomUUID: () => "55555555-5555-4555-8555-555555555555",
 });
@@ -271,6 +262,7 @@ const clearedCookieReplay = await reserveGenerationAccess({
   bypass: false,
   freeMeta,
   anonymousIdentityHash: "a".repeat(64),
+  anonymousShadowHash: "1".repeat(64),
   randomUUID: () => "66666666-6666-4666-8666-666666666666",
 });
 assert.equal(clearedCookieReplay.access, "preview");
@@ -282,6 +274,7 @@ const staleUnusedCookieReplay = await reserveGenerationAccess({
   bypass: false,
   freeMeta: parseFreeCookie(makeFreeCookie(freeMeta))!,
   anonymousIdentityHash: "a".repeat(64),
+  anonymousShadowHash: "1".repeat(64),
   randomUUID: () => "77777777-7777-4777-8777-777777777777",
 });
 assert.equal(staleUnusedCookieReplay.access, "preview");
@@ -297,6 +290,7 @@ const [anonymousA, anonymousB] = await Promise.all([
     bypass: false,
     freeMeta,
     anonymousIdentityHash: retryIdentity,
+    anonymousShadowHash: "2".repeat(64),
     randomUUID: () => "88888888-8888-4888-8888-888888888888",
   }),
   reserveGenerationAccess({
@@ -306,6 +300,7 @@ const [anonymousA, anonymousB] = await Promise.all([
     bypass: false,
     freeMeta,
     anonymousIdentityHash: retryIdentity,
+    anonymousShadowHash: "2".repeat(64),
     randomUUID: () => "99999999-9999-4999-8999-999999999999",
   }),
 ]);
@@ -319,6 +314,7 @@ const legitimateRetry = await reserveGenerationAccess({
   bypass: false,
   freeMeta,
   anonymousIdentityHash: retryIdentity,
+  anonymousShadowHash: "2".repeat(64),
   randomUUID: () => "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
 });
 assert.equal(legitimateRetry.access, "full");
@@ -326,6 +322,7 @@ await markGenerationProviderCallStarted(legitimateRetry);
 assert.equal(
   await anonymousGenerationAccessBackend.status({
     identityHash: retryIdentity,
+    shadowHash: legitimateRetry.anonymousShadowHash!,
     monthKey: legitimateRetry.anonymousMonthKey!,
   }),
   "reserved",
@@ -339,6 +336,7 @@ const disconnectedReplay = await reserveGenerationAccess({
   bypass: false,
   freeMeta,
   anonymousIdentityHash: retryIdentity,
+  anonymousShadowHash: "2".repeat(64),
   randomUUID: () => "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
 });
 assert.equal(
@@ -360,6 +358,7 @@ try {
       bypass: false,
       freeMeta,
       anonymousIdentityHash: "c".repeat(64),
+      anonymousShadowHash: "3".repeat(64),
     }),
     (error: unknown) =>
       error instanceof GenerationAccessError
@@ -440,11 +439,12 @@ for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.ok(source.indexOf("reserveGenerationAccess({") < providerCallIndex);
   assert.doesNotMatch(source, /\.from\(["']passes["']\)/);
   assert.doesNotMatch(source, /\.from\(["']user_usage["']\)/);
-  assert.match(
-    source,
-    /anonymousIdentityHashFromCookie\(cookieStore\.get\(ANONYMOUS_ID_COOKIE\)/,
-    "direct anonymous API calls must use the durable signed anonymous identity"
-  );
+  assert.match(source, /ensureAnonymousIdentity/);
+  assert.match(source, /hashAnonymousIdentity\(anonymousIdentity\.identity\)/);
+  assert.match(source, /anonymousShadowHash:/);
+  assert.match(source, /attachAnonymousIdentityCookie/);
+  assert.doesNotMatch(source, /return\s+res;/);
+  assert.doesNotMatch(source, /return\s+NextResponse\./);
   assert.doesNotMatch(source, /anonymousIdentityHash:\s*hashForLogs\(ip\)/);
   assert.ok(
     source.indexOf("markGenerationProviderCallStarted(") < providerCallIndex,

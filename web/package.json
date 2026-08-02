@@ -32,7 +32,7 @@
     "test:stripe-security": "node scripts/run-ts-test.cjs tests/stripe-security.test.ts",
     "test:stripe-fulfillment": "node scripts/run-ts-test.cjs tests/stripe-fulfillment.test.ts",
     "test:request-body": "node scripts/run-ts-test.cjs tests/request-body.test.ts",
-    "test:generation-access": "node scripts/run-ts-test.cjs tests/generation-access.test.ts && node scripts/run-ts-test.cjs tests/generation-delivery-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/generation-finality.test.ts",
+    "test:generation-access": "node scripts/run-ts-test.cjs tests/generation-access.test.ts && node scripts/run-ts-test.cjs tests/generation-delivery-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/generation-finality.test.ts && node scripts/run-ts-test.cjs tests/generation-route-http.test.ts",
     "test:generation-budget": "node scripts/run-ts-test.cjs tests/generation-budget.test.ts",
     "test:matching-engine": "node scripts/run-ts-test.cjs tests/matching-engine.test.ts",
     "test:critical-coverage": "c8 --all --include='lib/matching/skill-engine.ts' --reporter=text --reporter=json-summary --check-coverage --lines=70 --functions=65 --branches=60 node scripts/run-ts-test.cjs tests/matching-engine.test.ts",

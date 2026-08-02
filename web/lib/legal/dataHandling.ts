@@ -1,7 +1,7 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
 export const LEGAL_LAST_UPDATED = "August 2, 2026";
-export const PRIVACY_LAST_UPDATED = "July 29, 2026";
+export const PRIVACY_LAST_UPDATED = "August 2, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -56,9 +56,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Usage, reliability, and abuse-prevention metadata",
-    purpose: "Rate limiting, reliability diagnostics, billing state, and product health.",
-    retention: "Rate-limit and idempotency records are short-lived. Other operational records are retained for product and security needs.",
-    userControl: "Deleting your account removes app-level history.",
+    purpose: "Free-report eligibility, rate limiting, reliability diagnostics, billing state, and product health.",
+    retention: "Signed anonymous identifiers and separately salted network eligibility hashes expire within 40 days. Raw network addresses are not stored in the eligibility ledger. Rate-limit and idempotency records are short-lived; other operational records are retained for product and security needs.",
+    userControl: "Anonymous eligibility records are not attached to an account. Deleting your account removes app-level history.",
     processor: "Supabase, Sentry, Vercel, Upstash"
   },
   {

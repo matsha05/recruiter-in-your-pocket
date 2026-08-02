@@ -30,6 +30,16 @@ function reportPersistenceError() {
   return error;
 }
 
+function reportRollbackError() {
+  const error = new Error("Report cleanup could not be confirmed.") as Error & {
+    code: string;
+    httpStatus: number;
+  };
+  error.code = "REPORT_ROLLBACK_FAILED";
+  error.httpStatus = 503;
+  return error;
+}
+
 function buildReportTrustMetadata(payload: any) {
   const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
   const evidence = topFixes
@@ -180,4 +190,5 @@ export async function rollbackGeneratedResumeReport(input: {
       code: String(rollbackError.code || "REPORT_ROLLBACK_FAILED"),
     },
   });
+  throw reportRollbackError();
 }

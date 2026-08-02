@@ -4,10 +4,15 @@ import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
     ANONYMOUS_ID_COOKIE,
     FREE_COOKIE,
+    ensureAnonymousIdentity,
     getCurrentMonthKey,
     parseFreeCookie
 } from "@/lib/backend/freeCookie";
-import { anonymousIdentityHashFromCookie } from "@/lib/billing/anonymousIdentity";
+import {
+    anonymousNetworkHashFromRequest,
+    attachAnonymousIdentityCookie,
+    hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
 import { streamJson } from "@/lib/llm/orchestrator";
 import {
     increaseReasoningEffort,
@@ -25,6 +30,10 @@ import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import { withGenerationAccessOutcome } from "@/lib/billing/generationFailureCopy";
 import {
+    generationStreamHeaders,
+    singleGenerationStreamEvent,
+} from "@/lib/billing/generationRouteResponse";
+import {
     assertGenerationAccessDependencies,
     assertGenerationAuthLookup,
     commitGenerationAccess,
@@ -40,28 +49,21 @@ import {
     resolveUserSavedJobId,
     rollbackGeneratedResumeReport,
 } from "@/lib/reports/resumeGenerationPersistence";
-
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-function streamHeaders(requestId: string) {
-    return {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
-        "x-request-id": requestId,
-    };
-}
-function singleStreamEventResponse(requestId: string, event: Record<string, unknown>) {
-    return new NextResponse(`${JSON.stringify(event)}\n`, {
-        headers: streamHeaders(requestId),
-    });
-}
 export async function POST(request: Request) {
     const request_id = getRequestId(request);
     const { method, path } = routeLabel(request);
     const route = `${method} ${path}`;
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path });
+    const cookieStore = await cookies();
+    const anonymousIdentity = ensureAnonymousIdentity(
+        cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
+    );
+    const respond = <T extends NextResponse>(response: T) =>
+        attachAnonymousIdentityCookie(response, anonymousIdentity.cookieValue);
+    const anonymousShadowHash = anonymousNetworkHashFromRequest(request);
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || `request:${request_id}`;
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
@@ -81,7 +83,7 @@ export async function POST(request: Request) {
             latency_ms: Date.now() - startedAt,
             outcome: "rate_limited"
         });
-        return res;
+        return respond(res);
     }
     let body: any = null;
     try {
@@ -100,9 +102,8 @@ export async function POST(request: Request) {
             latency_ms: Date.now() - startedAt,
             outcome: status === 413 ? "validation_error" : "validation_error"
         });
-        return res;
+        return respond(res);
     }
-
     const validation = validateResumeFeedbackRequest(body);
     if (!validation.ok || !validation.value) {
         logInfo({
@@ -115,7 +116,7 @@ export async function POST(request: Request) {
             latency_ms: Date.now() - startedAt,
             outcome: "validation_error"
         });
-        return singleStreamEventResponse(request_id, {
+        return respond(singleGenerationStreamEvent(request_id, {
             type: "error",
             errorCode: "VALIDATION_ERROR",
             message: withGenerationAccessOutcome(
@@ -123,7 +124,7 @@ export async function POST(request: Request) {
                 false,
             ),
             access_consumed: false,
-        });
+        }));
     }
 
     const { text, mode, jobDescription } = validation.value;
@@ -155,7 +156,6 @@ export async function POST(request: Request) {
             ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
             : null;
 
-        const cookieStore = await cookies();
         const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
         const freeMeta = freeParsed || {
             used: 0,
@@ -173,7 +173,8 @@ export async function POST(request: Request) {
             freeMeta,
             anonymousIdentityHash: user
                 ? null
-                : anonymousIdentityHashFromCookie(cookieStore.get(ANONYMOUS_ID_COOKIE)?.value),
+                : hashAnonymousIdentity(anonymousIdentity.identity),
+            anonymousShadowHash: user ? null : anonymousShadowHash,
         });
 
         if (accessReservation.access === "preview") {
@@ -188,12 +189,12 @@ export async function POST(request: Request) {
                 outcome: "provider_error",
                 user_id,
             });
-            return singleStreamEventResponse(request_id, {
+            return respond(singleGenerationStreamEvent(request_id, {
                 type: "error",
                 errorCode: "PAYWALL_REQUIRED",
                 message: "You've used your free report. Paid access adds more reports, saved history, and export.",
                 access_consumed: false,
-            });
+            }));
         }
     } catch (err: any) {
         const code = err?.code || "ACCESS_DEPENDENCY_UNAVAILABLE";
@@ -212,16 +213,15 @@ export async function POST(request: Request) {
             outcome: "internal_error",
             err: { name: err?.name || "GenerationAccessError", message, code: String(code) },
         });
-        return singleStreamEventResponse(request_id, {
+        return respond(singleGenerationStreamEvent(request_id, {
             type: "error",
             errorCode: code,
             message,
             access_consumed: false,
-        });
+        }));
     }
-
     if (!accessReservation) {
-        return singleStreamEventResponse(request_id, {
+        return respond(singleGenerationStreamEvent(request_id, {
             type: "error",
             errorCode: "ACCESS_RESERVATION_FAILED",
             message: withGenerationAccessOutcome(
@@ -229,7 +229,7 @@ export async function POST(request: Request) {
                 false,
             ),
             access_consumed: false,
-        });
+        }));
     }
 
     const grantedReservation = accessReservation;
@@ -493,7 +493,7 @@ export async function POST(request: Request) {
         },
     });
 
-    return new NextResponse(stream, {
-        headers: streamHeaders(request_id),
-    });
+    return respond(new NextResponse(stream, {
+        headers: generationStreamHeaders(request_id),
+    }));
 }

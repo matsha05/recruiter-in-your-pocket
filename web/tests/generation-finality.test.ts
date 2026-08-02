@@ -15,18 +15,21 @@ import {
 } from "../lib/billing/anonymousGenerationAccess";
 import {
   anonymousIdentityHashFromCookie,
+  anonymousNetworkHashFromRequest,
   hashAnonymousIdentity,
 } from "../lib/billing/anonymousIdentity";
 import {
   preservePaidReportAccess,
   readAuthoritativeFreeUses,
 } from "../lib/billing/freeStatusClient";
+import { readAuthoritativePassAccess } from "../lib/billing/accountPassStatus";
 import {
   commitGenerationAccess,
   releaseGenerationAccess,
   reserveGenerationAccess,
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
+import { rollbackGeneratedResumeReport } from "../lib/reports/resumeGenerationPersistence";
 
 const freeMeta: ParsedFreeMeta = {
   used: 0,
@@ -100,10 +103,19 @@ async function run() {
   assert.equal(anonymousIdentityHashFromCookie(undefined), null);
   assert.equal(anonymousIdentityHashFromCookie("invalid"), null);
   assert.equal(anonymousIdentityHashFromCookie(signedIdentity), hashAnonymousIdentity(identity));
+  const networkHash = anonymousNetworkHashFromRequest(new Request("http://localhost", {
+    headers: { "x-forwarded-for": "203.0.113.9" },
+  }));
+  assert.match(networkHash || "", /^[0-9a-f]{64}$/);
+  assert.doesNotMatch(networkHash || "", /203\.0\.113\.9/);
 
   const existingIdentity = ensureAnonymousIdentity(signedIdentity);
   assert.deepEqual(existingIdentity.identity, identity);
-  assert.equal(existingIdentity.cookieValue, null, "identity must remain stable across requests and IP changes");
+  assert.deepEqual(
+    parseAnonymousIdentityCookie(existingIdentity.cookieValue),
+    identity,
+    "every response can renew the same signed identity"
+  );
   const mintedIdentity = ensureAnonymousIdentity(
     null,
     () => "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
@@ -117,6 +129,20 @@ async function run() {
   assert.throws(() => readAuthoritativeFreeUses(true, { ok: true }));
   assert.equal(preservePaidReportAccess(0, true), 1, "status failure cannot downgrade paid access");
   assert.equal(preservePaidReportAccess(0, false), 0);
+  const paidAccess = readAuthoritativePassAccess(true, {
+    ok: true,
+    passes: [{
+      tier: "30d",
+      expires_at: "2099-01-01T00:00:00.000Z",
+      uses_remaining: 4,
+    }],
+  });
+  assert.throws(() => readAuthoritativeFreeUses(false, { ok: false }));
+  assert.deepEqual(
+    paidAccess,
+    { membership: "credit", paidUsesLeft: 4 },
+    "a free-status parse failure cannot erase authoritative paid pass state"
+  );
 
   const finalityMigration = readFileSync(
     path.join(process.cwd(), "database", "migrations", "017_generation_access_commit_finality.sql"),
@@ -129,37 +155,73 @@ async function run() {
   assert.doesNotMatch(finalRelease, /DELETE\s+FROM\s+private\.generation_access_reservations/i);
 
   const identityHash = crypto.createHash("sha256").update("finality-probe").digest("hex");
+  const shadowHash = crypto.createHash("sha256").update("finality-network").digest("hex");
   const monthKey = getCurrentMonthKey();
   const reservationId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
-  assert.equal(await anonymousGenerationAccessBackend.reserve({ identityHash, monthKey, reservationId }), true);
+  const anonymousLedger = { identityHash, shadowHash, monthKey, reservationId };
+  assert.equal(await anonymousGenerationAccessBackend.reserve(anonymousLedger), true);
   assert.equal(resolveAnonymousFreeUsesRemaining("reserved", 0, 1), 0);
-  assert.equal(await anonymousGenerationAccessBackend.commit({ identityHash, monthKey, reservationId }), true);
+  assert.equal(await anonymousGenerationAccessBackend.commit(anonymousLedger), true);
   assert.deepEqual(
-    await anonymousGenerationAccessBackend.release({ identityHash, monthKey, reservationId }),
+    await anonymousGenerationAccessBackend.release(anonymousLedger),
     { status: "committed", action: "none" }
   );
-  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash, monthKey }), "committed");
+  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash, shadowHash, monthKey }), "committed");
+  const changedShadowHash = crypto.createHash("sha256").update("changed-network").digest("hex");
   assert.equal(
     await anonymousGenerationAccessBackend.reserve({
       identityHash,
+      shadowHash: changedShadowHash,
       monthKey,
       reservationId: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
     }),
     false,
     "committed cleanup must not mint another anonymous report"
   );
+  assert.equal(
+    await anonymousGenerationAccessBackend.reconcileCommitted({
+      identityHash,
+      shadowHash: changedShadowHash,
+      monthKey,
+      receiptId: "changed-network-receipt",
+    }),
+    "committed",
+    "durable identity must seed the privacy-preserving shadow after an IP change"
+  );
+  assert.equal(
+    await anonymousGenerationAccessBackend.reserve({
+      identityHash: crypto.createHash("sha256").update("cookies-cleared").digest("hex"),
+      shadowHash,
+      monthKey,
+      reservationId: "abababab-abab-4bab-8bab-abababababab",
+    }),
+    false,
+    "clearing both cookies on the same network must not mint another report"
+  );
+  assert.equal(
+    await anonymousGenerationAccessBackend.reserve({
+      identityHash: crypto.createHash("sha256").update("cleared-after-ip-change").digest("hex"),
+      shadowHash: changedShadowHash,
+      monthKey,
+      reservationId: "cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd",
+    }),
+    false,
+    "the current network shadow must survive a later both-cookie clear"
+  );
 
   const staleIdentityHash = crypto.createHash("sha256").update("stale-used-cookie").digest("hex");
-  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, monthKey }), "available");
+  const staleShadowHash = crypto.createHash("sha256").update("stale-used-network").digest("hex");
+  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, shadowHash: staleShadowHash, monthKey }), "available");
   assert.equal(
     await anonymousGenerationAccessBackend.reconcileCommitted({
       identityHash: staleIdentityHash,
+      shadowHash: staleShadowHash,
       monthKey,
       receiptId: "stale-cookie-receipt",
     }),
     "committed"
   );
-  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, monthKey }), "committed");
+  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, shadowHash: staleShadowHash, monthKey }), "committed");
 
   const rpc = new AmbiguousCommitRpc();
   const paid = await reserveGenerationAccess({
@@ -182,6 +244,38 @@ async function run() {
     { state: "committed", action: "none", accessConsumed: true }
   );
   assert.equal(rpc.credits, 0, "post-commit provider cleanup cannot refund a credit");
+
+  const failingRollbackClient = {
+    from: () => ({
+      delete: () => ({
+        eq: () => ({
+          eq: async () => ({ error: { code: "DELETE_FAILED" } }),
+        }),
+      }),
+    }),
+  };
+  await assert.rejects(
+    () => rollbackGeneratedResumeReport({
+      supabase: failingRollbackClient as never,
+      userId: "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+      reportId: "ffffffff-ffff-4fff-8fff-ffffffffffff",
+      context: { requestId: "rollback-test", route: "POST /api/resume-feedback" },
+    }),
+    (error: unknown) => (error as { code?: string }).code === "REPORT_ROLLBACK_FAILED",
+    "a logged delete failure must throw so the route reports access state as unknown"
+  );
+
+  const authProvider = readFileSync(
+    path.join(process.cwd(), "components", "providers", "AuthProvider.tsx"),
+    "utf8"
+  );
+  const freeStatusHook = readFileSync(
+    path.join(process.cwd(), "components", "workspace", "hooks", "useFreeStatus.ts"),
+    "utf8"
+  );
+  assert.match(authProvider, /Promise\.allSettled/);
+  assert.match(authProvider, /readAuthoritativePassAccess/);
+  assert.match(freeStatusHook, /finally\s*\{[\s\S]+await refreshUser\?\.\(\)/);
 
   console.log("generation finality tests passed");
 }

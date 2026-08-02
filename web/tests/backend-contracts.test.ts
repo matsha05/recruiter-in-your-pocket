@@ -160,6 +160,11 @@ for (const [name, source] of [
   assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
   assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
   assert.ok(rollbackAt > commitAt, `${name} must roll back persistence only when access is authoritatively unused`);
+  assert.match(
+    source,
+    /catch \(rollbackError:[\s\S]+accessConsumed = null;/,
+    `${name} must report unknown access state when rollback cannot be confirmed`,
+  );
 }
 assert.match(
   resumePersistence,
@@ -171,6 +176,7 @@ assert.match(
   /\.delete\(\)[\s\S]+\.eq\("id", input\.reportId\)[\s\S]+\.eq\("user_id", input\.userId\)/,
   "report rollback must be scoped to the generated report and authenticated owner",
 );
+assert.match(resumePersistence, /throw reportRollbackError\(\)/);
 
 assert.match(
   resumeFeedbackRoute,

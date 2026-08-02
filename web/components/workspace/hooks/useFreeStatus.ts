@@ -24,16 +24,13 @@ export function useFreeStatus({
 }: FreeStatusOptions) {
   const refreshFreeStatus = useCallback(
     async ({ fallbackDecrement = false, includeUserRefresh = false }: RefreshOptions = {}) => {
+      let statusRefreshed = false;
       try {
         const statusRes = await fetch("/api/free-status");
         const statusData = await statusRes.json();
         const reportedUses = readAuthoritativeFreeUses(statusRes.ok, statusData);
         setFreeUsesRemaining(preservePaidReportAccess(reportedUses, hasPaidAccess));
-
-        if (includeUserRefresh) {
-          await refreshUser?.();
-        }
-        return true;
+        statusRefreshed = true;
       } catch (err) {
         console.error("Failed to refresh free status:", err);
         if (fallbackDecrement) {
@@ -42,8 +39,16 @@ export function useFreeStatus({
             hasPaidAccess
           ));
         }
-        return false;
+      } finally {
+        if (includeUserRefresh) {
+          try {
+            await refreshUser?.();
+          } catch (error) {
+            console.error("Failed to refresh account access:", error);
+          }
+        }
       }
+      return statusRefreshed;
     },
     [hasPaidAccess, refreshUser, setFreeUsesRemaining]
   );

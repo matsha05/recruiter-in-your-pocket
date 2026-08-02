@@ -14,12 +14,17 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
   ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
+  ensureAnonymousIdentity,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
   parseFreeCookie,
 } from "@/lib/backend/freeCookie";
-import { anonymousIdentityHashFromCookie } from "@/lib/billing/anonymousIdentity";
+import {
+  anonymousNetworkHashFromRequest,
+  attachAnonymousIdentityCookie,
+  hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import {
   assertGenerationAccessDependencies,
@@ -46,6 +51,13 @@ export async function POST(request: Request) {
   let reservationAdmin: GenerationAccessRpcClient | null = null;
   let user_id: string | undefined;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
+  const cookieStore = await cookies();
+  const anonymousIdentity = ensureAnonymousIdentity(
+    cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
+  );
+  const respond = <T extends NextResponse>(response: T) =>
+    attachAnonymousIdentityCookie(response, anonymousIdentity.cookieValue);
+  const anonymousShadowHash = anonymousNetworkHashFromRequest(request);
 
   if (!isResumeIdeasApiEnabled()) {
     const res = NextResponse.json(
@@ -63,7 +75,7 @@ export async function POST(request: Request) {
       latency_ms: Date.now() - startedAt,
       outcome: "not_found",
     });
-    return res;
+    return respond(res);
   }
 
   try {
@@ -83,7 +95,7 @@ export async function POST(request: Request) {
         latency_ms: Date.now() - startedAt,
         outcome: "rate_limited"
       });
-      return res;
+      return respond(res);
     }
 
     const body = await readJsonWithLimit<any>(request, 128 * 1024);
@@ -109,7 +121,7 @@ export async function POST(request: Request) {
         latency_ms: Date.now() - startedAt,
         outcome: "validation_error"
       });
-      return res;
+      return respond(res);
     }
 
     const { text } = validation.value;
@@ -128,7 +140,6 @@ export async function POST(request: Request) {
     const user = userData.data.user || null;
     user_id = user?.id ? hashForLogs(user.id) : undefined;
 
-    const cookieStore = await cookies();
     const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
     const freeMeta = freeParsed || {
       used: 0,
@@ -146,7 +157,8 @@ export async function POST(request: Request) {
       freeMeta,
       anonymousIdentityHash: user
         ? null
-        : anonymousIdentityHashFromCookie(cookieStore.get(ANONYMOUS_ID_COOKIE)?.value),
+        : hashAnonymousIdentity(anonymousIdentity.identity),
+      anonymousShadowHash: user ? null : anonymousShadowHash,
     });
 
     if (accessReservation.access === "preview") {
@@ -159,7 +171,7 @@ export async function POST(request: Request) {
         { status: 402 }
       );
       res.headers.set("x-request-id", request_id);
-      return res;
+      return respond(res);
     }
 
     const systemPrompt = `${baseTone}\n\n${await loadPromptForMode("resume_ideas")}`;
@@ -205,7 +217,7 @@ ${text}`;
       latency_ms: Date.now() - startedAt,
       outcome: "success"
     });
-    return res;
+    return respond(res);
   } catch (err: any) {
     if (accessReservation) {
       try {
@@ -265,6 +277,6 @@ ${text}`;
     });
     const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
     res.headers.set("x-request-id", request_id);
-    return res;
+    return respond(res);
   }
 }

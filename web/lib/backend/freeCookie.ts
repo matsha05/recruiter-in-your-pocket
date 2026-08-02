@@ -123,7 +123,7 @@ export function ensureAnonymousIdentity(
   randomUUID: () => string = () => crypto.randomUUID()
 ) {
   const existing = parseAnonymousIdentityCookie(raw);
-  if (existing) return { identity: existing, cookieValue: null as string | null };
+  if (existing) return { identity: existing, cookieValue: makeAnonymousIdentityCookie(existing) };
   const identity = { id: randomUUID().toLowerCase() };
   return { identity, cookieValue: makeAnonymousIdentityCookie(identity) };
 }
