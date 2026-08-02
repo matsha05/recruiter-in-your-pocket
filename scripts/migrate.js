@@ -160,10 +160,26 @@ async function verifyCleanReplay(manifest) {
       -- stub preserves parse and execution coverage for migration 015 while
       -- the hosted-environment gate separately verifies the real extension.
       CREATE SCHEMA cron;
+      CREATE TABLE cron.job (
+        jobid BIGSERIAL PRIMARY KEY,
+        jobname TEXT UNIQUE NOT NULL,
+        schedule_text TEXT NOT NULL,
+        command TEXT NOT NULL
+      );
       CREATE FUNCTION cron.schedule(job_name TEXT, schedule TEXT, command TEXT)
       RETURNS BIGINT
-      LANGUAGE SQL
-      AS 'SELECT 1::BIGINT';
+      LANGUAGE plpgsql
+      AS $$
+      DECLARE scheduled_id BIGINT;
+      BEGIN
+        INSERT INTO cron.job (jobname, schedule_text, command)
+        VALUES (job_name, schedule, command)
+        ON CONFLICT (jobname) DO UPDATE
+          SET schedule_text = EXCLUDED.schedule_text, command = EXCLUDED.command
+        RETURNING jobid INTO scheduled_id;
+        RETURN scheduled_id;
+      END;
+      $$;
     `);
 
     const upgradeBaseline = manifest.slice(0, -1);

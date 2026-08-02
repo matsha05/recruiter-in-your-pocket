@@ -43,6 +43,17 @@ function isAllowedStructuralValue(path: string, value: string) {
   return false;
 }
 
+function isCanonicalAbsentSectionInstruction(report: any, path: string, value: string) {
+  const section = path.match(/^section_review\.(Summary|Skills|Education)\.fix$/u)?.[1];
+  if (!section) return false;
+  const item = report?.section_review?.[section];
+  const expectedMissing = `No ${section.toLocaleLowerCase()} section present`;
+  const expectedFix = section === "Education"
+    ? "Add only if it supports the target role or removes a stated requirement question."
+    : "Add only if it helps the role story.";
+  return item?.missing === expectedMissing && value === expectedFix;
+}
+
 export function isAllowedReportNarrativeException(
   report: any,
   path: string,
@@ -50,5 +61,6 @@ export function isAllowedReportNarrativeException(
   jobDescription?: string,
 ) {
   return isExactNoJobDescriptionState(report, path, value, jobDescription)
+    || isCanonicalAbsentSectionInstruction(report, path, value)
     || isAllowedStructuralValue(path, value);
 }

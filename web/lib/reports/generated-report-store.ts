@@ -106,6 +106,7 @@ export async function persistReceiptValidatedReport(input: {
   userId: string;
   payload: any;
   receiptHash: string;
+  receiptExpiresAt: string;
 }) {
   const reportId = crypto.randomUUID();
   const serialized = JSON.stringify(input.payload);
@@ -116,6 +117,7 @@ export async function persistReceiptValidatedReport(input: {
   if (!input.admin) throw persistenceError();
   const { data, error } = await input.admin.rpc("claim_anonymous_report_receipt", {
     p_receipt_hash: input.receiptHash,
+    p_expires_at: input.receiptExpiresAt,
     p_user_id: input.userId,
     p_report_id: reportId,
     p_resume_hash: crypto.createHash("sha256").update(serialized).digest("hex"),

@@ -9,6 +9,7 @@ import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./sour
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
 import { assertsNegativePresence, negativePresenceSubject } from "./report-polarity-policy";
+import { semanticMissingDisposition } from "./semantic-missing-policy";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 
 export const EXACT_ABSENCE_SENTINELS = [
@@ -441,6 +442,11 @@ function jobDescriptionKeywordKind(path: string) {
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
     if (isAllowedReportNarrativeException(report, path, value, jobDescription)) return [];
+    const semanticMissing = semanticMissingDisposition({ path, value, resumeText, jobDescription });
+    if (semanticMissing === "contradicts_positive_source") {
+      return [{ path, claim: value, unsupportedFacts: ["contradicts positive source evidence"] }];
+    }
+    if (semanticMissing === "supported_absence") return [];
     const keywordKind = jobDescriptionKeywordKind(path);
     if (keywordKind) {
       const inResume = evidenceContainsIdentityPhrase(value, resumeText);

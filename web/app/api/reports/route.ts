@@ -4,7 +4,7 @@ import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { logError } from "@/lib/observability/logger";
 import { ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
-import { validatedReportReceiptHash } from "@/lib/reports/report-receipt";
+import { validatedReportReceiptClaim } from "@/lib/reports/report-receipt";
 import { persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 
@@ -87,8 +87,8 @@ export async function POST(request: NextRequest) {
     }
     const { report_receipt: receipt, ...reportWithoutReceipt } = submitted;
     const parsed = ResumeFeedbackResponseSchema.safeParse(reportWithoutReceipt);
-    const receiptHash = parsed.success ? validatedReportReceiptHash(parsed.data, receipt) : null;
-    if (!parsed.success || !receiptHash) {
+    const receiptClaim = parsed.success ? validatedReportReceiptClaim(parsed.data, receipt) : null;
+    if (!parsed.success || !receiptClaim) {
       return NextResponse.json(
         { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report cannot be verified. Rerun it while signed in." },
         { status: 409 },
@@ -98,7 +98,8 @@ export async function POST(request: NextRequest) {
       admin: createSupabaseAdminClient(),
       userId: sessionUser.id,
       payload: parsed.data,
-      receiptHash,
+      receiptHash: receiptClaim.receiptHash,
+      receiptExpiresAt: receiptClaim.expiresAt,
     });
     return NextResponse.json({ ok: true, reportId });
   } catch (error: any) {

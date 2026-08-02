@@ -5,7 +5,12 @@ import { renderReportHtml } from "../lib/backend/pdf";
 import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
-import { makeValidatedReportReceipt, verifyValidatedReportReceipt } from "../lib/reports/report-receipt";
+import {
+  makeValidatedReportReceipt,
+  RECEIPT_TTL_MS,
+  validatedReportReceiptClaim,
+  verifyValidatedReportReceipt,
+} from "../lib/reports/report-receipt";
 import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "../lib/reports/report-trust";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
@@ -81,6 +86,19 @@ assert.equal(
   false,
   "anonymous receipts must contain exactly two segments",
 );
+const mintedAt = Date.now();
+const boundedReceipt = makeValidatedReportReceipt(schemaValidReport, mintedAt);
+assert.equal(
+  validatedReportReceiptClaim(schemaValidReport, boundedReceipt, mintedAt)?.expiresAt,
+  new Date(mintedAt + RECEIPT_TTL_MS).toISOString(),
+  "the storage expiry must come from the verified signed receipt payload",
+);
+assert.equal(
+  validatedReportReceiptClaim(schemaValidReport, makeValidatedReportReceipt(schemaValidReport, mintedAt + 1), mintedAt),
+  null,
+  "a valid signature must not bypass the maximum receipt TTL",
+);
+assert.equal(validatedReportReceiptClaim(schemaValidReport, boundedReceipt, mintedAt + RECEIPT_TTL_MS), null);
 const ownerId = "11111111-1111-4111-8111-111111111111";
 const otherOwnerId = "22222222-2222-4222-8222-222222222222";
 const trustMetadata = buildGroundedReportTrustMetadata(schemaValidReport, ownerId);

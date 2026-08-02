@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const RECEIPT_TTL_MS = 24 * 60 * 60 * 1000;
+export const RECEIPT_TTL_MS = 24 * 60 * 60 * 1000;
 
 function signingSecret() {
   const secret = process.env.SESSION_SECRET;
@@ -25,29 +25,43 @@ function signature(report: unknown, receiptPayload: string) {
     .digest("hex");
 }
 
-export function makeValidatedReportReceipt(report: unknown) {
-  const expiresAt = String(Date.now() + RECEIPT_TTL_MS);
+export function makeValidatedReportReceipt(report: unknown, now = Date.now()) {
+  const expiresAt = String(now + RECEIPT_TTL_MS);
   const nonce = crypto.randomBytes(16).toString("base64url");
   const receiptPayload = `${expiresAt}-${nonce}`;
   return `${receiptPayload}.${signature(report, receiptPayload)}`;
 }
 
-export function verifyValidatedReportReceipt(report: unknown, receipt: unknown) {
-  if (typeof receipt !== "string") return false;
+export function validatedReportReceiptClaim(report: unknown, receipt: unknown, now = Date.now()) {
+  if (typeof receipt !== "string") return null;
   const segments = receipt.split(".");
-  if (segments.length !== 2) return false;
+  if (segments.length !== 2) return null;
   const [receiptPayload, supplied] = segments;
   const payloadMatch = receiptPayload.match(/^(\d{13})-([A-Za-z0-9_-]{22})$/u);
-  if (!payloadMatch || Number(payloadMatch[1]) < Date.now() || !/^[a-f0-9]{64}$/u.test(supplied)) return false;
+  const expiresAtMs = Number(payloadMatch?.[1]);
+  if (
+    !payloadMatch
+    || !Number.isSafeInteger(expiresAtMs)
+    || expiresAtMs <= now
+    || expiresAtMs > now + RECEIPT_TTL_MS
+    || !/^[a-f0-9]{64}$/u.test(supplied)
+  ) return null;
   const expected = signature(report, receiptPayload);
   try {
-    return crypto.timingSafeEqual(Buffer.from(supplied, "hex"), Buffer.from(expected, "hex"));
+    if (!crypto.timingSafeEqual(Buffer.from(supplied, "hex"), Buffer.from(expected, "hex"))) return null;
   } catch {
-    return false;
+    return null;
   }
+  return {
+    receiptHash: crypto.createHash("sha256").update(receipt).digest("hex"),
+    expiresAt: new Date(expiresAtMs).toISOString(),
+  };
+}
+
+export function verifyValidatedReportReceipt(report: unknown, receipt: unknown) {
+  return Boolean(validatedReportReceiptClaim(report, receipt));
 }
 
 export function validatedReportReceiptHash(report: unknown, receipt: unknown) {
-  if (!verifyValidatedReportReceipt(report, receipt)) return null;
-  return crypto.createHash("sha256").update(receipt as string).digest("hex");
+  return validatedReportReceiptClaim(report, receipt)?.receiptHash || null;
 }

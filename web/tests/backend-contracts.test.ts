@@ -240,10 +240,11 @@ assert.ok(
   "development paywall bypass must never bypass report ownership authentication",
 );
 assert.match(reportsRoute, /ResumeFeedbackResponseSchema\.safeParse\(reportWithoutReceipt\)/);
-assert.match(reportsRoute, /validatedReportReceiptHash\(parsed\.data, receipt\)/);
+assert.match(reportsRoute, /validatedReportReceiptClaim\(parsed\.data, receipt\)/);
 assert.match(reportsRoute, /admin:\s*createSupabaseAdminClient\(\)/);
 assert.match(generatedReportStore, /input\.admin\.rpc\("claim_anonymous_report_receipt"/);
 assert.match(generatedReportStore, /p_receipt_hash:\s*input\.receiptHash/);
+assert.match(generatedReportStore, /p_expires_at:\s*input\.receiptExpiresAt/);
 assert.match(generatedReportStore, /result\?\.status === "consumed"/);
 assert.doesNotMatch(generatedReportStore, /anonymous_receipt_hash/);
 assert.match(reportDetailRoute, /parseTrustedStoredReport\([\s\S]+data\.evidence_json,[\s\S]+user\.id/);

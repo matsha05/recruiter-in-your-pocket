@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
+import { renderReportHtml } from "../lib/backend/pdf";
 import { checkEvidence, checkRewriteGrounding } from "../lib/evals/evidence-checks";
 import { containsExactEvidence, isAcceptedAbsenceMarker } from "../lib/llm/grounding";
 import {
@@ -14,6 +17,7 @@ import {
   unsupportedBracketPayloads,
 } from "../lib/llm/report-placeholder-policy";
 import { resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
+import { normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 import {
   hubspotJobDescription,
@@ -208,34 +212,131 @@ assert.equal(
 );
 
 const positiveCountSource = `${hubspotSource}\nCustomer count: 45.`;
-const polarityCases: Array<[string, (report: any) => void]> = [
-  ["gaps[0]", (report) => { report.gaps[0] = "The customer count is missing."; }],
-  ["section_review.Summary.missing", (report) => {
+const semanticControlSource = [
+  "SUMMARY", "Customer operations profile.", "WORK EXPERIENCE", hubspotSource,
+  "SKILLS", "HubSpot", "EDUCATION", "State University", "Growth-stage company.", "Show HubSpot.",
+].join("\n");
+const semanticNoEducationSource = semanticControlSource.replace("\nEDUCATION\nState University", "");
+
+function semanticMissingBrowserHtml(report: any) {
+  const values = [
+    ...(report.gaps || []),
+    ...Object.values(report.section_review || {}).map((item: any) => item?.missing),
+    ...(report.job_alignment?.missing || []),
+  ].filter((value) => typeof value === "string");
+  return renderToStaticMarkup(createElement(
+    "article",
+    null,
+    values.map((value, index) => createElement("p", { key: `${index}-${value}` }, value)),
+  ));
+}
+
+function semanticMissingValue(report: any, path: string) {
+  if (path === "gaps[0]") return report.gaps[0];
+  if (path === "section_review.Summary.missing") return report.section_review.Summary.missing;
+  return report.job_alignment.missing[0];
+}
+const polarityCases: Array<[string, string, (report: any) => void]> = [
+  ["gaps[0]", "explicit absence", (report) => { report.gaps[0] = "The customer count is missing."; }],
+  ["gaps[0]", "euphemistic absence", (report) => { report.gaps[0] = "The customer count is blurry."; }],
+  ["gaps[0]", "bare missing subject", (report) => { report.gaps[0] = "Customer count"; }],
+  ["section_review.Summary.missing", "explicit absence", (report) => {
     report.section_review.Summary.missing = "The customer count is unclear.";
   }],
-  ["job_alignment.missing[0]", (report) => { report.job_alignment.missing[0] = "HubSpot is missing."; }],
+  ["section_review.Summary.missing", "euphemistic absence", (report) => {
+    report.section_review.Summary.missing = "The customer count is blurry.";
+  }],
+  ["section_review.Summary.missing", "bare missing subject", (report) => {
+    report.section_review.Summary.missing = "Customer count";
+  }],
+  ["job_alignment.missing[0]", "explicit absence", (report) => { report.job_alignment.missing[0] = "HubSpot is missing."; }],
+  ["job_alignment.missing[0]", "euphemistic absence", (report) => { report.job_alignment.missing[0] = "HubSpot is blurry."; }],
+  ["job_alignment.missing[0]", "bare missing subject", (report) => { report.job_alignment.missing[0] = "HubSpot"; }],
 ];
-for (const [expectedPath, mutate] of polarityCases) {
+for (const [expectedPath, label, mutate] of polarityCases) {
   const report: any = structuredClone(schemaValidReport);
   report.gaps[0] = "The workflow scope needs detail.";
   for (const item of Object.values(report.section_review) as any[]) {
     item.missing = "The workflow scope needs detail.";
   }
   mutate(report);
+  const unsafeValue = semanticMissingValue(report, expectedPath);
+  assert.ok(
+    semanticMissingBrowserHtml(report).includes(unsafeValue),
+    `${expectedPath} ${label} must exercise a browser-visible report field`,
+  );
+  if (expectedPath === "gaps[0]") {
+    assert.ok(
+      renderReportHtml(normalizeReportForPdf(report)!).includes(unsafeValue),
+      `${expectedPath} ${label} must exercise the PDF HTML sink`,
+    );
+  }
   assert.ok(
     auditReportNarrative(report, positiveCountSource, hubspotJobDescription)
       .some((issue) => issue.path === expectedPath && issue.unsupportedFacts.includes("contradicts positive source evidence")),
-    `${expectedPath} must reject missing/unclear claims contradicted by positive source evidence`,
+    `${expectedPath} must reject ${label} contradicted by positive source evidence`,
   );
-  assert.throws(
-    () => validateResumeModelPayload(report, positiveCountSource, {
-      forceGrounding: true,
-      jobDescription: hubspotJobDescription,
-    }),
-    /contradicted positive source evidence/,
-    `${expectedPath} must fail the full model validation boundary before rendering/export`,
-  );
+  for (const [surface, render] of [
+    ["browser", semanticMissingBrowserHtml],
+    ["PDF", (validated: any) => renderReportHtml(normalizeReportForPdf(validated)!)],
+  ] as const) {
+    let renderBoundaryReached = false;
+    assert.throws(
+      () => {
+        const validated = validateResumeModelPayload(report, positiveCountSource, {
+          forceGrounding: true,
+          jobDescription: hubspotJobDescription,
+        });
+        renderBoundaryReached = true;
+        render(validated);
+      },
+      /contradicted positive source evidence/,
+      `${expectedPath} ${label} must fail before the ${surface} sink`,
+    );
+    assert.equal(renderBoundaryReached, false, `${surface} rendering must not receive the contradicted report`);
+  }
 }
+
+const genuineGapReport: any = structuredClone(schemaValidReport);
+genuineGapReport.gaps[0] = "Customer count";
+assert.doesNotThrow(
+  () => validateResumeModelPayload(genuineGapReport, semanticControlSource, {
+    forceGrounding: true,
+    jobDescription: hubspotJobDescription,
+  }),
+  "a bare missing subject must remain useful when the resume really omits it",
+);
+
+const absentEducationReport: any = structuredClone(schemaValidReport);
+absentEducationReport.section_review = Object.fromEntries(
+  Object.entries(absentEducationReport.section_review).map(([section, item]) => [section, structuredClone(item)]),
+);
+absentEducationReport.section_review.Education.missing = "No education section present";
+assert.doesNotThrow(
+  () => validateResumeModelPayload(absentEducationReport, semanticNoEducationSource, {
+    forceGrounding: true,
+    jobDescription: hubspotJobDescription,
+  }),
+  "the exact section sentinel must remain valid when that section is genuinely absent",
+);
+assert.throws(
+  () => validateResumeModelPayload(absentEducationReport, `${semanticControlSource}\nEDUCATION\nState University`, {
+    forceGrounding: true,
+    jobDescription: hubspotJobDescription,
+  }),
+  /contradicted positive source evidence/,
+  "the exact section sentinel must fail when its heading exists",
+);
+
+const genuineJdGapReport: any = structuredClone(schemaValidReport);
+genuineJdGapReport.job_alignment.missing[0] = "Salesforce";
+assert.doesNotThrow(
+  () => validateResumeModelPayload(genuineJdGapReport, semanticControlSource, {
+    forceGrounding: true,
+    jobDescription: `${hubspotJobDescription} Salesforce administration is required.`,
+  }),
+  "a JD requirement absent from the resume must remain a valid job-alignment gap",
+);
 
 for (const unsupportedWidthFact of ["＄９Ｍ", "Ｃ＋＋", "４５％"]) {
   const candidate = `Created customer journeys using HubSpot and ${unsupportedWidthFact}.`;

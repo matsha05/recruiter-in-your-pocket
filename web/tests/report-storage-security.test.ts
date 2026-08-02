@@ -2,23 +2,23 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { persistReceiptValidatedReport } from "../lib/reports/generated-report-store";
-import { makeValidatedReportReceipt, validatedReportReceiptHash } from "../lib/reports/report-receipt";
+import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "../lib/reports/report-receipt";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 class DurableReceiptAdmin {
-  private claims = new Map<string, { userId: string; reportId: string }>();
-  private reports = new Set<string>();
+  private claims = new Map<string, { reportId: string; expiresAt: string }>();
+  private reports = new Map<string, string>();
 
   async rpc(functionName: string, args: Record<string, any>) {
     assert.equal(functionName, "claim_anonymous_report_receipt");
     const hash = String(args.p_receipt_hash);
     const existing = this.claims.get(hash);
     if (!existing) {
-      this.claims.set(hash, { userId: args.p_user_id, reportId: args.p_report_id });
-      this.reports.add(args.p_report_id);
+      this.claims.set(hash, { reportId: args.p_report_id, expiresAt: args.p_expires_at });
+      this.reports.set(args.p_report_id, args.p_user_id);
       return { data: { status: "created", report_id: args.p_report_id }, error: null };
     }
-    if (existing.userId === args.p_user_id && this.reports.has(existing.reportId)) {
+    if (this.reports.get(existing.reportId) === args.p_user_id) {
       return { data: { status: "idempotent", report_id: existing.reportId }, error: null };
     }
     return { data: { status: "consumed" }, error: null };
@@ -46,13 +46,15 @@ async function run() {
   process.env.SESSION_SECRET = "report-storage-security-test-secret";
   try {
     const receipt = makeValidatedReportReceipt(schemaValidReport);
-    const receiptHash = validatedReportReceiptHash(schemaValidReport, receipt);
-    assert.ok(receiptHash);
+    const receiptClaim = validatedReportReceiptClaim(schemaValidReport, receipt);
+    assert.ok(receiptClaim);
     const admin = new DurableReceiptAdmin();
     const ownerId = "11111111-1111-4111-8111-111111111111";
     const attackerId = "22222222-2222-4222-8222-222222222222";
     const save = (userId: string) => persistReceiptValidatedReport({
-      admin, userId, payload: schemaValidReport, receiptHash,
+      admin, userId, payload: schemaValidReport,
+      receiptHash: receiptClaim.receiptHash,
+      receiptExpiresAt: receiptClaim.expiresAt,
     });
 
     const firstId = await save(ownerId);
@@ -69,6 +71,11 @@ async function run() {
       process.cwd(), "database/migrations/017_single_use_report_receipts.sql",
     ), "utf8");
     assert.match(migration, /private\.anonymous_report_receipt_claims/i);
+    const ledgerDefinition = migration.match(/CREATE TABLE IF NOT EXISTS private\.anonymous_report_receipt_claims \(([\s\S]+?)\n\);/)?.[1] || "";
+    assert.doesNotMatch(ledgerDefinition, /user_id/i, "the replay ledger must not retain a user identifier");
+    assert.match(ledgerDefinition, /expires_at TIMESTAMPTZ NOT NULL/i);
+    assert.match(migration, /purge_expired_anonymous_report_receipt_claims/i);
+    assert.match(migration, /riyp-purge-expired-anonymous-report-receipts/i);
     assert.match(migration, /SECURITY INVOKER/i);
     assert.match(migration, /SET search_path = ''/i);
     assert.match(migration, /REVOKE ALL ON FUNCTION[\s\S]+PUBLIC, anon, authenticated/i);
