@@ -5,9 +5,9 @@ export const publishedProgressBundle = {
   "snapshots": [
     {
       "iterationId": "iteration-001",
-      "sha256": "ff1a4ff28454f5733f8292c7b63c6dd76eacc12ab9c9c42a56a53e0edd49c50d",
+      "sha256": "53195eed7bb67e3bc538c3ae6dc01b57bf62db7a6d5a5cd8e98b50262bfcc037",
       "snapshot": {
-        "generatedAt": "2026-08-02T14:58:28.818Z",
+        "generatedAt": "2026-08-02T15:54:15.779Z",
         "manifest": {
           "schemaVersion": "1",
           "activeIterationId": "iteration-001",
@@ -331,8 +331,8 @@ export const publishedProgressBundle = {
         "reportContractFailures": 11,
         "automatedSourceIntegrityViolations": 28,
         "manuallyInventedFacts": 30,
-        "criticalJourneyFailures": 0,
-        "completedJourneys": 4,
+        "criticalJourneyFailures": null,
+        "completedJourneys": 0,
         "dimensions": [
           {
             "dimension": "trust",
@@ -1753,8 +1753,8 @@ export const publishedProgressBundle = {
           {
             "id": "journeys",
             "label": "Fresh critical desktop/mobile journeys",
-            "status": "pass",
-            "detail": "4/4 complete; 0 critical failures"
+            "status": "pending",
+            "detail": "0/4 fresh journey receipts imported; failure count unavailable"
           },
           {
             "id": "critic-verdict",
@@ -1783,16 +1783,26 @@ export const publishedProgressBundle = {
           {
             "id": "evidence-integrity",
             "label": "Evidence integrity",
-            "status": "pending",
-            "detail": "No sealed evidence tree exists to verify yet"
+            "status": "fail",
+            "detail": "4 invalid, stale, unsafe, or mismatched evidence records"
           }
         ],
         "baselineGaps": [
+          "Import 4 remaining fresh cold-visitor journey receipts.",
           "Critic remaining gap: Recover complete source lines, fail unsafe rewrites closed, remove causal, ownership, scope, number, and absence overclaims, and rewrite loaded questions as non-presuppositional prompts before recapturing a new iteration.",
           "Complete and seal the immutable evidence tree before treating this iteration as a result.",
-          "Same-resume Teal and Jobscan outputs are unavailable because no competitor account was created; external evidence is limited to their inspected public artifacts."
+          "Same-resume Teal and Jobscan outputs are unavailable because no competitor account was created; external evidence is limited to their inspected public artifacts.",
+          "five-more-value-desktop.json: journey receipt is stale, incomplete, or invalid",
+          "five-more-value-mobile.json: journey receipt is stale, incomplete, or invalid",
+          "free-review-desktop.json: journey receipt is stale, incomplete, or invalid",
+          "free-review-mobile.json: journey receipt is stale, incomplete, or invalid"
         ],
-        "dataIssues": []
+        "dataIssues": [
+          "five-more-value-desktop.json: journey receipt is stale, incomplete, or invalid",
+          "five-more-value-mobile.json: journey receipt is stale, incomplete, or invalid",
+          "free-review-desktop.json: journey receipt is stale, incomplete, or invalid",
+          "free-review-mobile.json: journey receipt is stale, incomplete, or invalid"
+        ]
       }
     }
   ]
