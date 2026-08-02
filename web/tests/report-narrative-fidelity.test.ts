@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
+import { containsExactEvidence } from "../lib/llm/grounding";
 import { auditReportNarrative } from "../lib/llm/source-fidelity";
 import { normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { RewriteEnhancementNote } from "../lib/reports/rewrite-enhancement-note";
 import { getScoreLabel } from "../lib/score-utils";
 import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 import {
@@ -27,6 +31,10 @@ const processFormCases = [
 ] as const;
 const mixedPolaritySource = "Did not build payroll automation; built customer workflows in HubSpot.";
 const mixedPolarityMutation = "Built customer payroll automation workflows in HubSpot.";
+const fullControlResume = [
+  "SUMMARY", "Customer operations profile.", "WORK EXPERIENCE", hubspotSource,
+  "SKILLS", "HubSpot", "EDUCATION", "State University", "Growth-stage company.", "Show HubSpot.",
+].join("\n");
 
 const narrativePathsFor = (claim: string, source: string) => {
   const probe = JSON.parse(JSON.stringify(renderedClaimProbe).replaceAll(unsafePublicClaim, claim));
@@ -70,6 +78,36 @@ assert.equal(
   true,
   `the control report must be grounded: ${JSON.stringify(controlGrounding.inventedSpecifics)}`,
 );
+
+for (const [source, excerpt] of [
+  ["Salesforce", "Salesforce"], ["$9M", "$9M"], ["C++", "C++"], [".NET", ".NET"],
+] as const) assert.equal(containsExactEvidence(source, excerpt), true, `${excerpt} must remain valid short evidence`);
+for (const [source, excerpt] of [
+  ["Salesforce", "Sales"], ["$19M", "9M"], ["C++", "C"], [".NET", "NET"],
+] as const) assert.equal(containsExactEvidence(source, excerpt), false, `${excerpt} must respect source boundaries`);
+
+for (const excerpt of ["10,000", "Salesforce", "$9M"]) {
+  const shortInventedEvidence = structuredClone(schemaValidReport);
+  shortInventedEvidence.top_fixes[0].evidence.excerpt = excerpt;
+  const parsed = ResumeFeedbackResponseSchema.parse(shortInventedEvidence);
+  assert.ok(
+    Array.from(assertReportGrounding(parsed, hubspotSource, hubspotJobDescription).missingEvidence)
+      .includes("top_fixes[0].evidence.excerpt"),
+    `${excerpt} must fail the grounding boundary even though it is short`,
+  );
+  assert.throws(
+    () => validateResumeModelPayload(shortInventedEvidence, hubspotSource, { forceGrounding: true, jobDescription: hubspotJobDescription }),
+    /evidence grounding contract/,
+    `${excerpt} must never reach a rendered evidence surface`,
+  );
+}
+const legitimateShortEvidence = structuredClone(schemaValidReport);
+legitimateShortEvidence.top_fixes[0].evidence.excerpt = "HubSpot";
+assert.doesNotThrow(() => validateResumeModelPayload(
+  legitimateShortEvidence,
+  fullControlResume,
+  { forceGrounding: true, jobDescription: hubspotJobDescription },
+));
 
 const unmodeledPdfClaim = "$10M Salesforce revenue growth for 10,000 customers.";
 const reportWithUnknownModelFields = {
@@ -116,18 +154,7 @@ noJobDescriptionPayload.job_alignment.jd_match_score = 0;
 noJobDescriptionPayload.job_alignment.jd_match_summary = "No job description provided.";
 noJobDescriptionPayload.job_alignment.jd_keywords = { matched: [], missing: [], match_count: 0, total_count: 0 };
 noJobDescriptionPayload.job_alignment.missing = ["No target-role requirements were provided for comparison"];
-const noJobDescriptionResume = [
-  "SUMMARY",
-  "Customer operations profile.",
-  "WORK EXPERIENCE",
-  hubspotSource,
-  "SKILLS",
-  "HubSpot",
-  "EDUCATION",
-  "State University",
-  "Growth-stage company.",
-  "Show HubSpot.",
-].join("\n");
+const noJobDescriptionResume = fullControlResume;
 const initialNoJdValidation = validateResumeModelPayload(
   structuredClone(noJobDescriptionPayload),
   noJobDescriptionResume,
@@ -167,6 +194,35 @@ assert.throws(
   /evidence grounding contract/,
   "the no-JD sentinel must not be exempt when a sanitized JD exists",
 );
+
+const limitedOwnershipSource = "Supported customer workflows in HubSpot.";
+const limitedOwnershipReport = JSON.parse(
+  JSON.stringify(schemaValidReport).replaceAll(hubspotSource, limitedOwnershipSource),
+);
+const limitedOwnershipResume = [
+  noJobDescriptionResume.replace(hubspotSource, limitedOwnershipSource),
+  ...[20, 21, 22].map((value) => `- Supported customer workflows in HubSpot, increasing adoption by ${value}%.`),
+].join("\n");
+const groundedNarrative = {
+  score_comment_short: limitedOwnershipReport.score_comment_short,
+  score_comment_long: limitedOwnershipReport.score_comment_long,
+  score_plain: limitedOwnershipReport.score_plain,
+};
+const calibratedInitial = validateResumeModelPayload(
+  limitedOwnershipReport,
+  limitedOwnershipResume,
+  { forceGrounding: true, jobDescription: hubspotJobDescription },
+);
+assert.equal(calibratedInitial.score, 78, "outcome evidence may still calibrate the numeric score");
+for (const [key, value] of Object.entries(groundedNarrative)) assert.equal(calibratedInitial[key], value);
+assert.equal(assertReportGrounding(calibratedInitial, limitedOwnershipResume, hubspotJobDescription).ok, true);
+const calibratedRepair = validateResumeModelPayload(
+  structuredClone(calibratedInitial),
+  limitedOwnershipResume,
+  { forceGrounding: true, jobDescription: hubspotJobDescription },
+);
+for (const [key, value] of Object.entries(groundedNarrative)) assert.equal(calibratedRepair[key], value);
+assert.equal(assertReportGrounding(calibratedRepair, limitedOwnershipResume, hubspotJobDescription).ok, true);
 
 const assertKeywordRejected = (
   report: typeof schemaValidReport,
@@ -267,8 +323,23 @@ assert.ok(
   "the regression must cover the note's rendered PDF/HTML surface",
 );
 
+const negatedEnhancementReport = structuredClone(unsafeEnhancementReport);
+negatedEnhancementReport.rewrites[0].enhancement_note = "Add customer workflows that are not in HubSpot.";
+const negatedEnhancementSchema = ResumeFeedbackResponseSchema.parse(negatedEnhancementReport);
+const negatedEnhancementGrounding = assertReportGrounding(
+  negatedEnhancementSchema,
+  hubspotSource,
+  hubspotJobDescription,
+);
+assert.equal(negatedEnhancementGrounding.ok, false, "advice must not invert positive source evidence");
+assert.ok(negatedEnhancementGrounding.inventedSpecifics.some((issue) => issue.includes("rewrites[0].enhancement_note")));
+assert.throws(
+  () => validateResumeModelPayload(negatedEnhancementReport, hubspotSource, { forceGrounding: true, jobDescription: hubspotJobDescription }),
+  /evidence grounding contract/,
+);
+
 const safeEnhancementReport = structuredClone(unsafeEnhancementReport);
-safeEnhancementReport.rewrites[0].enhancement_note = "Add customer count.";
+safeEnhancementReport.rewrites[0].enhancement_note = "Add [missing scope] or [verified result].";
 const safeEnhancementSchema = ResumeFeedbackResponseSchema.safeParse(safeEnhancementReport);
 assert.equal(safeEnhancementSchema.success, true, "the safe enhancement-note control must remain schema-valid");
 assert.equal(
@@ -276,6 +347,13 @@ assert.equal(
   true,
   "a source-bound advice note must remain useful",
 );
+const safeEnhancementNote = safeEnhancementSchema.data.rewrites[0].enhancement_note;
+const browserEnhancementHtml = renderToStaticMarkup(createElement(RewriteEnhancementNote, { note: safeEnhancementNote }));
+const safeEnhancementPdf = renderReportHtml(normalizeReportForPdf(safeEnhancementSchema.data)!);
+for (const html of [browserEnhancementHtml, safeEnhancementPdf]) {
+  assert.ok(html.includes("Why this is stronger"));
+  assert.ok(html.includes(safeEnhancementNote), "browser and PDF must render the same grounded enhancement note");
+}
 
 const assertRejectedScoreComment = (report: typeof schemaValidReport, source: string, label: string) => {
   const schemaResult = ResumeFeedbackResponseSchema.safeParse(report);

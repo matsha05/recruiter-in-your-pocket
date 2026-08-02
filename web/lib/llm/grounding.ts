@@ -1,4 +1,4 @@
-import { isExactAbsenceSentinel } from "./source-fidelity";
+import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "./source-fidelity";
 
 const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|participated)\b/i;
 const elevatedOwnershipPattern = /\b(led|owned|drove|managed|spearheaded|directed|headed)\b/gi;
@@ -83,8 +83,7 @@ export function sourceContextFor(original: string, sourceText?: string) {
 }
 
 export function containsExactEvidence(sourceText: string, excerpt: string) {
-  const normalizeWhitespace = (value: string) => value.replace(/\s+/g, " ").trim();
-  return normalizeWhitespace(sourceText).includes(normalizeWhitespace(excerpt));
+  return containsBoundedSourceExcerpt(sourceText, excerpt);
 }
 
 export function findAlreadySatisfiedFix(

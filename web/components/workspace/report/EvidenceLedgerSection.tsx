@@ -17,6 +17,7 @@ type LedgerItem = {
   evidenceSection?: string;
   action: string;
   rationale?: string;
+  rationaleLabel?: string;
   confidence?: "high" | "medium" | "low";
   impact?: "high" | "medium" | "low";
   effort?: "quick" | "moderate" | "high";
@@ -88,6 +89,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         evidenceSection: typeof fix.evidence === "string" ? fix.section_ref : fix.evidence?.section || fix.section_ref,
         action: fix.fix || "Make a clear, specific edit here.",
         rationale: fix.why || undefined,
+        rationaleLabel: "Why it matters:",
         confidence: normalizeConfidence(fix.confidence),
         impact: normalizeImpact(fix.impact_level),
         effort: normalizeEffort(fix.effort)
@@ -102,6 +104,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         evidenceSection: "Resume",
         action: rewrite.better || "Strengthen this line with specific outcomes.",
         rationale: rewrite.enhancement_note || undefined,
+        rationaleLabel: "Why this is stronger:",
       confidence: "low" as const,
         impact: "medium" as const,
         effort: "moderate" as const
@@ -162,7 +165,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                 </div>
                 {item.rationale && (
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    <span className="font-medium text-foreground/70">Why it matters:</span> {item.rationale}
+                    <span className="font-medium text-foreground/70">{item.rationaleLabel || "Why it matters:"}</span> {item.rationale}
                   </p>
                 )}
                 {item.confidence === "low" && (

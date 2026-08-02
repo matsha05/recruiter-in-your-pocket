@@ -119,7 +119,7 @@ const ImpactLevelSchema = z.enum(["high", "medium", "low"]);
 const EffortLevelSchema = z.enum(["quick", "moderate", "high"]);
 
 const EvidenceSchema = z.object({
-    excerpt: z.string().min(1).max(140),
+    excerpt: z.string().trim().min(1).max(140),
     section: z.string().min(1)
 });
 
@@ -171,14 +171,6 @@ const BoundedStringSchema = (minSentences: number, maxSentences: number, field: 
         `${field} must contain ${minSentences}-${maxSentences} sentences`,
     );
 
-function normalizeForEvidence(value: string) {
-    return value
-        .toLowerCase()
-        .replace(/[^\w\d%\s]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-}
-
 export function assertReportGrounding(
     report: ResumeFeedbackResponse,
     resumeText: string,
@@ -188,8 +180,7 @@ export function assertReportGrounding(
     const inventedSpecifics: string[] = [];
 
     for (const [index, fix] of report.top_fixes.entries()) {
-        const excerpt = normalizeForEvidence(fix.evidence.excerpt);
-        if (excerpt.length > 10 && !containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText)) {
+        if (!containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
         }
         const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, fix.evidence.excerpt, resumeText);
@@ -207,8 +198,7 @@ export function assertReportGrounding(
     }
 
     for (const [index, rewrite] of report.rewrites.entries()) {
-        const original = normalizeForEvidence(rewrite.original);
-        if (original.length > 10 && !containsExactEvidence(resumeText, rewrite.original)) {
+        if (!containsExactEvidence(resumeText, rewrite.original)) {
             missingEvidence.push(`rewrites[${index}].original`);
         }
         const comparison = compareSourceBoundRewrite({

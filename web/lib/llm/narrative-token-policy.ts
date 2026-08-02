@@ -85,7 +85,7 @@ export function narrativeTokenPolicy(
   }
 
   let sourcePolarity: NarrativeSourcePolarity = "positive";
-  if (hasTrackedClaim && sourceNegationPattern.test(normalized)) sourcePolarity = "negative";
+  if (hasTrackedClaim && sourceNegationPattern.test(normalized) && !lexicalAbsence) sourcePolarity = "negative";
   else if (!hasTrackedClaim && !assertsPresence && (isQuestion || isAdvice || isAbsence)) sourcePolarity = "any";
 
   return {

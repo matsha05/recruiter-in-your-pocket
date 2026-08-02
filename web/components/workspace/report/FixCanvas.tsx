@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { resolveUniqueSourceLine, type VerifiedFact } from "@/lib/llm/source-fidelity";
 import { resolveRewriteCopyPolicy } from "@/lib/reports/report-presentation";
+import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
 import type { ReportData } from "./ReportTypes";
 
 type Fix = NonNullable<ReportData["top_fixes"]>[number];
@@ -255,6 +256,7 @@ export function FixCanvas({
               ) : (
                 <p className="mt-5 max-w-[42rem] font-display text-[1.45rem] riyp-weight-520 leading-[1.35] text-foreground sm:text-[1.7rem]">{draft}</p>
               )}
+              <RewriteEnhancementNote note={rewrite?.enhancement_note} className="mt-5" />
             </div>
           ) : (
             <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">

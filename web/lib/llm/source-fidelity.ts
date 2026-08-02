@@ -85,6 +85,13 @@ function containsUnicodeBoundedExcerpt(source: string, excerpt: string) {
   return false;
 }
 
+export function containsBoundedSourceExcerpt(sourceText: string, excerpt: string) {
+  const normalize = (value: string) => value.normalize("NFC").replace(/\s+/gu, " ").trim();
+  const source = normalize(sourceText);
+  const candidate = normalize(excerpt);
+  return Boolean(source && candidate && containsUnicodeBoundedExcerpt(source, candidate));
+}
+
 function isMeaningfulExcerpt(value: string) {
   const words = value.match(/[\p{L}\p{M}\p{N}]+/gu) || [];
   return words.length >= 3 && Array.from(value).length >= 12;
@@ -289,7 +296,8 @@ export function auditNarrativeClaim(
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
-    const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasTrackedClaim);
+    const hasPolarityBearingClaim = hasTrackedClaim || sourceClauseIsNegated(claim);
+    const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasPolarityBearingClaim);
     const claimTokens = materialTokens(claim, policy.ignoredTokens);
     const eligibleCandidates = candidates.filter(({ negated }) =>
       policy.sourcePolarity === "any" || negated === (policy.sourcePolarity === "negative")

@@ -7,6 +7,7 @@ import {
   type IndependentQuestion,
   type IndependentRewrite,
 } from "@/lib/reports/report-presentation";
+import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
 
 function IndependentRewriteCard({
   item,
@@ -61,6 +62,7 @@ function IndependentRewriteCard({
             </button>
           </div>
           <p className="mt-3 font-display text-xl leading-7 text-foreground">{item.rewrite.better}</p>
+          <RewriteEnhancementNote note={item.rewrite.enhancement_note} className="mt-4" />
           <p className="mt-3 text-xs leading-5 text-muted-foreground">{guidance}</p>
         </div>
       </div>
