@@ -117,6 +117,7 @@ const symbolicEntityPattern = /\.NET\b|\bR&D\b|\bA\/B\b/gu;
 const acronymPattern = /\b[A-Z][A-Z0-9]*(?:[.+#/-][A-Z0-9]+)*\b/gu;
 const titlePhrasePattern = /\b[A-Z][\p{L}\p{M}\d'’.-]*(?:\s+[A-Z][\p{L}\p{M}\d'’.-]*){1,3}\b/gu;
 const singleNamePattern = /\b[A-Z][\p{L}\p{M}\d.+#'’-]{2,}\b/gu;
+const shortNamePattern = /\b[A-Z](?:[\p{Ll}\p{M}])?\b/gu;
 
 const ownershipPatterns: Array<[string, RegExp]> = [
   ["agency:lead", /\b(?:lead|leads|leading|led)\b/giu],
@@ -177,6 +178,9 @@ function protectedFacts(value: string) {
   for (const match of withoutPlaceholders.matchAll(singleNamePattern)) {
     if (!commonCapitalizedWords.has(match[0])) addMatches(facts, "entity", match[0]);
   }
+  for (const match of withoutPlaceholders.matchAll(shortNamePattern)) {
+    if (match[0] !== "I" && !commonCapitalizedWords.has(match[0])) addMatches(facts, "entity", match[0]);
+  }
   for (const [key, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
     if (pattern.test(withoutPlaceholders)) facts.set(key, { key, display: key.split(":").at(-1) || key });
     pattern.lastIndex = 0;
@@ -201,7 +205,12 @@ function stemToken(token: string) {
 }
 
 function materialTokens(value: string) {
-  return new Set((value.replace(/\[[^\]]+\]/gu, "").match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
+  let untracked = value.replace(/\[[^\]]+\]/gu, "");
+  for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
+    untracked = untracked.replace(pattern, " ");
+    pattern.lastIndex = 0;
+  }
+  return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
     .map(stemToken)
     .filter((token) => token.length > 2 && !stopWords.has(token)));
 }
@@ -279,17 +288,16 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
       return [{ claim, unsupportedFacts: facts.map((fact) => fact.display) }];
     }
 
-    const nearVerbatim = supporting.filter(({ tokens }) => {
+    const sourceAnchored = supporting.filter(({ tokens }) => {
       const overlap = Array.from(claimTokens).filter((token) => tokens.has(token)).length;
-      return Math.max(claimTokens.size, tokens.size) > 0
-        && overlap / Math.max(claimTokens.size, tokens.size) >= 0.8;
+      return claimTokens.size >= 2 && overlap / claimTokens.size >= 0.8;
     });
-    if (nearVerbatim.length === 0) return [];
-    const hasCompleteMatch = nearVerbatim.some(({ facts: sourceFacts }) =>
+    if (sourceAnchored.length === 0) return [];
+    const hasCompleteMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts.every((fact) => claimFactKeys.has(fact.key))
     );
     if (hasCompleteMatch) return [];
-    const dropped = nearVerbatim[0].facts.filter((fact) => !claimFactKeys.has(fact.key));
+    const dropped = sourceAnchored[0].facts.filter((fact) => !claimFactKeys.has(fact.key));
     return [{ claim, unsupportedFacts: dropped.map((fact) => `dropped ${fact.display}`) }];
   });
 }
@@ -311,6 +319,8 @@ function reportNarrativeStrings(report: any) {
   (report?.top_fixes || []).forEach((fix: any, index: number) => {
     add(`top_fixes[${index}].fix`, fix?.fix || fix?.text);
     add(`top_fixes[${index}].why`, fix?.why);
+    add(`top_fixes[${index}].evidence.section`, fix?.evidence?.section);
+    add(`top_fixes[${index}].section_ref`, fix?.section_ref);
   });
   Object.entries(report?.section_review || {}).forEach(([section, item]: [string, any]) => {
     for (const key of ["working", "missing", "fix"]) add(`section_review.${section}.${key}`, item?.[key]);
@@ -319,10 +329,14 @@ function reportNarrativeStrings(report: any) {
     add(`ideas.questions[${index}].question`, question?.question);
     add(`ideas.questions[${index}].why`, question?.why);
   });
+  (report?.rewrites || []).forEach((rewrite: any, index: number) => {
+    add(`rewrites[${index}].label`, rewrite?.label);
+  });
   const alignment = report?.job_alignment;
   add("job_alignment.jd_match_summary", alignment?.jd_match_summary);
   for (const key of ["strongly_aligned", "underplayed", "missing"]) addArray(`job_alignment.${key}`, alignment?.[key]);
   add("job_alignment.role_fit.seniority_read", alignment?.role_fit?.seniority_read);
+  addArray("job_alignment.role_fit.best_fit_roles", alignment?.role_fit?.best_fit_roles);
   addArray("job_alignment.role_fit.industry_signals", alignment?.role_fit?.industry_signals);
   add("job_alignment.role_fit.company_stage_fit", alignment?.role_fit?.company_stage_fit);
   add("job_alignment.positioning_suggestion", alignment?.positioning_suggestion);

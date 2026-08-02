@@ -11,6 +11,7 @@ import {
   resolveUniqueSourceLine,
 } from "../lib/llm/source-fidelity";
 import { isAcceptedAbsenceMarker } from "../lib/llm/grounding";
+import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 import {
   buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
@@ -72,6 +73,35 @@ for (const testCase of cases) {
 }
 assert.equal(rejectedUnsafeRewrites, 12);
 assert.equal(rejectedUnsafeNarratives, 12);
+
+for (const [source, candidate] of [
+  ["Partnered with X on hiring workflows.", "Partnered with Y on hiring workflows."],
+  ["Partnered with Li on hiring workflows.", "Partnered with Wu on hiring workflows."],
+]) {
+  assert.equal(compareSourceBoundRewrite({ sourceText: source, sourceLocator: source, candidate }).safe, false);
+  assert.ok(auditNarrativeClaim(candidate, source).length > 0, `${source} must preserve the short source entity`);
+}
+
+const detailedScope = "Managed a team of 25+ engineers across platform delivery.";
+assert.ok(
+  auditNarrativeClaim("Managed platform delivery.", detailedScope).length > 0,
+  "narrative claims must not delete a material team scope",
+);
+
+const usefulParaphrase = {
+  label: "Clarity",
+  original: "Built customer workflows in HubSpot.",
+  better: "Created HubSpot customer workflows.",
+  enhancement_note: "Add verified context.",
+};
+assert.equal(compareSourceBoundRewrite({
+  sourceText: usefulParaphrase.original,
+  sourceLocator: usefulParaphrase.original,
+  candidate: usefulParaphrase.better,
+}).safe, true, "same-agency paraphrases must remain useful");
+const retainedParaphrase = removeUnsafeRewrites({ rewrites: [usefulParaphrase] }, usefulParaphrase.original);
+assert.equal(retainedParaphrase.removed.length, 0, "a useful source-faithful paraphrase must not disappear");
+assert.deepEqual(retainedParaphrase.report.rewrites, [usefulParaphrase]);
 
 const mixedReport = {
   summary: cases[0].unsafe,
@@ -162,6 +192,133 @@ const independentQuestions = buildIndependentQuestionPresentation([
   { question: "What did you personally own?", why: "It separates team scope from personal agency." },
 ]);
 assert.deepEqual(independentQuestions.map(({ originalIndex }) => originalIndex), [0, 2]);
+
+const unsafePublicClaim = "Salesforce Administrator";
+const renderedClaimProbe = {
+  score_comment_short: unsafePublicClaim,
+  first_impression: unsafePublicClaim,
+  summary: unsafePublicClaim,
+  first_impression_takeaway: unsafePublicClaim,
+  biggest_gap_example: unsafePublicClaim,
+  strengths: [unsafePublicClaim],
+  gaps: [unsafePublicClaim],
+  top_fixes: [{
+    fix: unsafePublicClaim,
+    why: unsafePublicClaim,
+    evidence: { excerpt: "Built customer workflows in HubSpot.", section: unsafePublicClaim },
+    section_ref: unsafePublicClaim,
+  }],
+  rewrites: [{ original: "Built customer workflows in HubSpot.", better: "Built customer workflows in HubSpot.", label: unsafePublicClaim }],
+  ideas: { questions: [{ question: unsafePublicClaim, why: unsafePublicClaim }] },
+  job_alignment: {
+    jd_match_summary: unsafePublicClaim,
+    positioning_suggestion: unsafePublicClaim,
+    role_fit: { best_fit_roles: [unsafePublicClaim], seniority_read: unsafePublicClaim },
+  },
+};
+const renderedAuditPaths = new Set(
+  auditReportNarrative(renderedClaimProbe, "Built customer workflows in HubSpot.").map(({ path: issuePath }) => issuePath),
+);
+for (const renderedPath of [
+  "score_comment_short",
+  "first_impression",
+  "summary",
+  "first_impression_takeaway",
+  "biggest_gap_example",
+  "strengths[0]",
+  "gaps[0]",
+  "top_fixes[0].fix",
+  "top_fixes[0].why",
+  "top_fixes[0].evidence.section",
+  "top_fixes[0].section_ref",
+  "rewrites[0].label",
+  "ideas.questions[0].question",
+  "ideas.questions[0].why",
+  "job_alignment.jd_match_summary",
+  "job_alignment.positioning_suggestion",
+  "job_alignment.role_fit.best_fit_roles[0]",
+  "job_alignment.role_fit.seniority_read",
+]) {
+  assert.ok(renderedAuditPaths.has(renderedPath), `${renderedPath} must be covered by the public narrative audit`);
+}
+
+const hubspotSource = "Built customer workflows in HubSpot.";
+const reviewItem = {
+  grade: "B",
+  priority: "medium",
+  working: "The workflow is readable.",
+  missing: "The customer count is missing.",
+  fix: "Add customer count.",
+};
+const schemaValidReport = {
+  contract_version: "v2",
+  score: 72,
+  score_label: "Clear story",
+  score_comment_short: "HubSpot workflow context is visible.",
+  score_comment_long: "HubSpot workflow context is visible. The customer context needs detail.",
+  score_plain: "HubSpot work is visible.",
+  first_impression: "HubSpot workflow context is visible.",
+  biggest_gap_example: "“Built customer workflows in HubSpot.” needs customer count.",
+  first_impression_takeaway: "HubSpot context reads clearly",
+  summary: "HubSpot workflow context is visible. The customer context needs detail. The next edit can clarify scope.",
+  strengths: ["HubSpot appears on the page.", "The workflow context is readable.", "The customer focus is visible."],
+  gaps: ["The customer count is missing.", "The workflow scope needs detail.", "The result needs context."],
+  rewrites: [],
+  top_fixes: [{
+    fix: "Add customer count to the customer bullet.",
+    why: "The customer scope is not explicit.",
+    confidence: "high",
+    evidence: { excerpt: hubspotSource, section: "Experience" },
+    impact_level: "high",
+    effort: "quick",
+    section_ref: "Work Experience",
+  }],
+  next_steps: ["Add customer count.", "Add workflow scope.", "Add customer context."],
+  subscores: { impact: 72, clarity: 72, story: 72, readability: 72 },
+  section_review: {
+    Summary: reviewItem,
+    "Work Experience": reviewItem,
+    Skills: reviewItem,
+    Education: reviewItem,
+  },
+  job_alignment: {
+    jd_match_score: 72,
+    jd_match_summary: "HubSpot workflow work is visible.",
+    jd_keywords: { matched: ["HubSpot"], missing: ["customer count"], match_count: 1, total_count: 2 },
+    strongly_aligned: ["HubSpot workflow context is visible.", "The customer focus is visible.", "The workflow work is readable."],
+    underplayed: ["The customer count needs context.", "The workflow scope needs context."],
+    missing: ["The result needs context."],
+    role_fit: {
+      best_fit_roles: ["Operations", "Sales", "Marketing"],
+      stretch_roles: ["Product"],
+      seniority_read: "Senior",
+      industry_signals: ["HubSpot"],
+      company_stage_fit: "Company",
+    },
+    positioning_suggestion: "Keep HubSpot workflow context visible.",
+  },
+  ideas: {
+    questions: Array.from({ length: 5 }, () => ({
+      question: "What customer count can you verify?",
+      archetype: "SCALING",
+      why: "The answer adds context.",
+    })),
+  },
+};
+const validSchemaResult = ResumeFeedbackResponseSchema.safeParse(schemaValidReport);
+assert.equal(validSchemaResult.success, true, "the adversarial control must remain schema-valid");
+assert.equal(assertReportGrounding(validSchemaResult.data, hubspotSource).ok, true, "the control report must be grounded");
+
+const adversarialRoleReport = structuredClone(schemaValidReport);
+adversarialRoleReport.job_alignment.role_fit.best_fit_roles[0] = unsafePublicClaim;
+const adversarialSchemaResult = ResumeFeedbackResponseSchema.safeParse(adversarialRoleReport);
+assert.equal(adversarialSchemaResult.success, true, "the critic role mutation must remain schema-valid");
+const adversarialGrounding = assertReportGrounding(adversarialSchemaResult.data, hubspotSource);
+assert.equal(adversarialGrounding.ok, false, "an unbound rendered role must fail grounding");
+assert.ok(
+  adversarialGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
+  "the grounding error must identify the rendered best-fit role",
+);
 
 for (const relativePath of [
   "components/workspace/ReportPanel.tsx",
