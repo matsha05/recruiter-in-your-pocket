@@ -121,6 +121,10 @@ const usefulParaphrase = {
   better: "Created customer journeys using HubSpot.",
   enhancement_note: "Add verified context.",
 };
+assert.ok(
+  auditNarrativeClaim("Built payroll automation.", "Built customer workflows in HubSpot.").length > 0,
+  "a wholly unanchored narrative claim must fail closed",
+);
 assert.equal(compareSourceBoundRewrite({
   sourceText: usefulParaphrase.original,
   sourceLocator: usefulParaphrase.original,
@@ -260,7 +264,7 @@ const renderedClaimProbe = {
 const renderedAuditPaths = new Set(
   auditReportNarrative(renderedClaimProbe, "Built customer workflows in HubSpot.").map(({ path: issuePath }) => issuePath),
 );
-for (const renderedPath of [
+const auditedPublicNarrativePaths = [
   "score_comment_short",
   "first_impression",
   "summary",
@@ -280,8 +284,20 @@ for (const renderedPath of [
   "job_alignment.role_fit.best_fit_roles[0]",
   "job_alignment.role_fit.stretch_roles[0]",
   "job_alignment.role_fit.seniority_read",
-]) {
+] as const;
+for (const renderedPath of auditedPublicNarrativePaths) {
   assert.ok(renderedAuditPaths.has(renderedPath), `${renderedPath} must be covered by the public narrative audit`);
+}
+const unanchoredPublicClaim = "Built payroll automation.";
+const renderedUnanchoredProbe = JSON.parse(
+  JSON.stringify(renderedClaimProbe).replaceAll(unsafePublicClaim, unanchoredPublicClaim),
+);
+const unanchoredAuditPaths = new Set(
+  auditReportNarrative(renderedUnanchoredProbe, "Built customer workflows in HubSpot.")
+    .map(({ path: issuePath }) => issuePath),
+);
+for (const renderedPath of auditedPublicNarrativePaths) {
+  assert.ok(unanchoredAuditPaths.has(renderedPath), `${renderedPath} must reject wholly unanchored prose`);
 }
 
 const hubspotSource = "Built customer workflows in HubSpot.";
@@ -349,7 +365,23 @@ const schemaValidReport = {
 };
 const validSchemaResult = ResumeFeedbackResponseSchema.safeParse(schemaValidReport);
 assert.equal(validSchemaResult.success, true, "the adversarial control must remain schema-valid");
-assert.equal(assertReportGrounding(validSchemaResult.data, hubspotSource).ok, true, "the control report must be grounded");
+const controlGrounding = assertReportGrounding(validSchemaResult.data, hubspotSource);
+assert.equal(
+  controlGrounding.ok,
+  true,
+  `the control report must be grounded: ${JSON.stringify(controlGrounding.inventedSpecifics)}`,
+);
+
+const unanchoredScoreReport = structuredClone(schemaValidReport);
+unanchoredScoreReport.score_comment_short = "Built payroll automation.";
+const unanchoredScoreSchemaResult = ResumeFeedbackResponseSchema.safeParse(unanchoredScoreReport);
+assert.equal(unanchoredScoreSchemaResult.success, true, "the unanchored score probe must remain schema-valid");
+const unanchoredScoreGrounding = assertReportGrounding(unanchoredScoreSchemaResult.data, hubspotSource);
+assert.equal(unanchoredScoreGrounding.ok, false, "an invented score comment must fail grounding");
+assert.ok(
+  unanchoredScoreGrounding.inventedSpecifics.some((issue) => issue.includes("score_comment_short")),
+  "the grounding error must identify the invented score comment",
+);
 
 const adversarialRoleReport = structuredClone(schemaValidReport);
 adversarialRoleReport.job_alignment.role_fit.best_fit_roles[0] = unsafePublicClaim;
@@ -394,6 +426,56 @@ assert.equal(
   false,
   "an unordered single-line token bag must not manufacture a best-fit role",
 );
+
+const fragmentedRoleJobDescription = "Salesforce platform expertise.\nWorkday Administrator owns HR systems.";
+for (const field of ["best_fit_roles", "stretch_roles"] as const) {
+  for (const role of [
+    "Salesforce. Administrator",
+    "Salesforce; Administrator",
+    "Salesforce / Administrator",
+    "Salesforce—Administrator",
+  ]) {
+    const punctuationProbe = structuredClone(schemaValidReport);
+    punctuationProbe.job_alignment.role_fit[field][0] = role;
+    const punctuationSchema = ResumeFeedbackResponseSchema.safeParse(punctuationProbe);
+    assert.equal(punctuationSchema.success, true, `${field} punctuation probe must remain schema-valid`);
+    assert.equal(
+      assertReportGrounding(punctuationSchema.data, hubspotSource, fragmentedRoleJobDescription).ok,
+      false,
+      `${field} must require the full punctuated role token sequence in one evidence segment`,
+    );
+    assert.equal(
+      assertReportGrounding(punctuationSchema.data, hubspotSource, "Primary role: Salesforce Administrator. Own CRM systems.").ok,
+      true,
+      `${field} candidate punctuation is presentation and may ground in one ordered source phrase`,
+    );
+  }
+}
+
+for (const field of ["best_fit_roles", "stretch_roles"] as const) {
+  const invertedRoleProbe = structuredClone(schemaValidReport);
+  invertedRoleProbe.job_alignment.role_fit[field][0] = "Administrator, Salesforce";
+  const invertedRoleSchema = ResumeFeedbackResponseSchema.safeParse(invertedRoleProbe);
+  assert.equal(invertedRoleSchema.success, true, `${field} inverted role probe must remain schema-valid`);
+  assert.equal(
+    assertReportGrounding(
+      invertedRoleSchema.data,
+      hubspotSource,
+      "Primary role: Administrator, Salesforce. Own CRM systems.",
+    ).ok,
+    true,
+    `${field} must allow an explicitly inverted role in the same source segment`,
+  );
+  assert.equal(
+    assertReportGrounding(
+      invertedRoleSchema.data,
+      hubspotSource,
+      "Primary role: Salesforce Administrator. Own CRM systems.",
+    ).ok,
+    false,
+    `${field} role grounding must preserve token order`,
+  );
+}
 assert.ok(
   compositeBestFitGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
   "the composite best-fit role error must identify the rendered field",
@@ -506,6 +588,7 @@ for (const relativePath of [
   "lib/api.ts",
   "lib/backend/validation.ts",
   "lib/llm/grounding.ts",
+  "lib/llm/resume-provider-messages.ts",
   "lib/llm/source-fidelity.ts",
   "lib/reports/report-presentation.ts",
   "lib/validation/schemas.ts",

@@ -193,6 +193,7 @@ const stopWords = new Set([
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "while", "using", "via",
   "add", "verified", "detail", "fact", "scope", "result", "outcome", "metric",
+  "answer", "can", "clarify", "context", "edit", "need", "next",
 ]);
 
 function stemToken(token: string) {
@@ -300,7 +301,17 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
         && overlap / claimTokens.size >= 0.8
         && (claimTokens.size >= 2 || hasTrackedClaim);
     });
-    if (sourceAnchored.length === 0) return [];
+    if (sourceAnchored.length === 0) {
+      const hasAnySourceAnchor = supporting.some(({ tokens }) =>
+        Array.from(claimTokens).some((token) => tokens.has(token))
+      );
+      if (hasAnySourceAnchor) return [];
+      if (facts.length === 0 && claimTokens.size === 0) return [];
+      const unsupportedFacts = facts.length > 0
+        ? facts.map((fact) => fact.display)
+        : Array.from(claimTokens);
+      return [{ claim, unsupportedFacts }];
+    }
     const hasCompleteMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts.every((fact) => claimFactKeys.has(fact.key))
     );
@@ -356,6 +367,42 @@ function isJobDescriptionGroundableRole(path: string) {
   return /^job_alignment\.role_fit\.(?:best_fit_roles|stretch_roles)\[\d+\]$/u.test(path);
 }
 
+const structuralReportVocabulary = {
+  section: new Set([
+    "Certifications", "Education", "Experience", "Professional Experience", "Projects",
+    "Resume", "Skills", "Summary", "Work Experience",
+  ]),
+  rewriteLabel: new Set([
+    "Clarity", "Impact", "Ownership", "Positioning", "Readability", "Results", "Scope",
+    "Specificity", "Structure",
+  ]),
+  seniority: new Set([
+    "Director", "Entry", "Entry level", "Executive", "Junior", "Lead", "Manager",
+    "Mid level", "Mid-level", "Not clear", "Senior", "Unclear",
+  ]),
+  companyStage: new Set([
+    "Any stage", "Company", "Early stage", "Enterprise", "Growth stage", "Scale-up",
+    "Startup", "Unclear",
+  ]),
+};
+
+function isAllowedStructuralReportValue(path: string, value: string) {
+  const normalized = value.normalize("NFC").trim().replace(/\s+/gu, " ");
+  if (/^(?:top_fixes\[\d+\]\.(?:evidence\.section|section_ref))$/u.test(path)) {
+    return structuralReportVocabulary.section.has(normalized);
+  }
+  if (/^rewrites\[\d+\]\.label$/u.test(path)) {
+    return structuralReportVocabulary.rewriteLabel.has(normalized);
+  }
+  if (path === "job_alignment.role_fit.seniority_read") {
+    return structuralReportVocabulary.seniority.has(normalized);
+  }
+  if (path === "job_alignment.role_fit.company_stage_fit") {
+    return structuralReportVocabulary.companyStage.has(normalized);
+  }
+  return false;
+}
+
 function roleLabelTokens(value: string) {
   return (value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’]*/gu) || []).map((rawToken) => {
     const token = rawToken.normalize("NFC").toLocaleLowerCase();
@@ -366,7 +413,7 @@ function roleLabelTokens(value: string) {
 function roleEvidenceSegments(sourceText: string) {
   return sourceText
     .normalize("NFC")
-    .split(/(?:\r?\n)+|(?<=[.!?;,])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
+    .split(/(?:\r?\n)+|(?<=[.!?;])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
     .map((segment) => segment.trim())
     .filter(Boolean);
 }
@@ -381,14 +428,15 @@ function containsRolePhrase(candidate: readonly string[], claim: readonly string
 
 function isNarrativeClaimPositivelyGrounded(value: string, sourceText: string) {
   const candidates = roleEvidenceSegments(sourceText).map(roleLabelTokens);
-  return claimSegments(value).every((claim) => {
-    const tokens = roleLabelTokens(claim);
-    return candidates.some((candidate) => containsRolePhrase(candidate, tokens));
-  });
+  // Candidate punctuation is presentation only. The full ordered role token
+  // sequence must still occur contiguously inside one source evidence segment.
+  const tokens = roleLabelTokens(value);
+  return candidates.some((candidate) => containsRolePhrase(candidate, tokens));
 }
 
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
+    if (isAllowedStructuralReportValue(path, value)) return [];
     if (isJobDescriptionGroundableRole(path)) {
       const groundedInResume = isNarrativeClaimPositivelyGrounded(value, resumeText);
       const groundedInJobDescription = Boolean(

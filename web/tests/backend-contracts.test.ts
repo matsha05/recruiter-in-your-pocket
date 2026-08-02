@@ -148,6 +148,10 @@ const resumeFeedbackStreamRoute = fs.readFileSync(
   path.resolve(process.cwd(), "app/api/resume-feedback-stream/route.ts"),
   "utf8",
 );
+const resumeProviderMessages = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/llm/resume-provider-messages.ts"),
+  "utf8",
+);
 const workspaceClient = fs.readFileSync(
   path.resolve(process.cwd(), "components/workspace/WorkspaceClient.tsx"),
   "utf8",
@@ -212,7 +216,7 @@ for (const [name, source] of [
     `${name} normal and repair validation must share effective JD options`,
   );
   assert.match(source, /job_description_text:\s*effectiveJobDescription\.persistenceText/);
-  assert.match(source, /effectiveJobDescription\.promptBlock/);
+  assert.match(source, /buildResumeProviderMessages\(/);
   assert.match(source, /has_job_description:\s*effectiveJobDescription\.hasValue/);
   assert.doesNotMatch(
     source,
@@ -220,6 +224,8 @@ for (const [name, source] of [
     `${name} prompt must never interpolate the raw normalized JD`,
   );
 }
+assert.match(resumeProviderMessages, /effectiveJobDescription\.promptBlock/);
+assert.match(resumeProviderMessages, /systemPrompt \+= INJECTION_RESISTANCE_SUFFIX/);
 assert.match(workspaceClient, /Analytics\.reportStarted\(hasJobDescription\)/);
 assert.match(workspaceClient, /has_jd:\s*hasJobDescription/);
 assert.match(resumeModeSection, /hasJobDescription=\{hasEffectiveJobDescriptionValue\(jobDescription\)\}/);

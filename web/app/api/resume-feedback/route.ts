@@ -14,9 +14,9 @@ import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
 } from "@/lib/llm/reportRepair";
-import { buildResumeEvidenceCatalog } from "@/lib/llm/evidence-canonicalizer";
+import { buildResumeProviderMessages } from "@/lib/llm/resume-provider-messages";
 import { resolveOpenAIModel } from "@/lib/llm/model-config";
-import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
+import { loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
   validateResumeFeedbackRequest,
@@ -229,66 +229,30 @@ export async function POST(request: Request) {
       );
     }
 
-    // Build system prompt
-    let systemPrompt = await loadPromptForMode(mode);
-    if (mode === "resume_ideas") {
-      systemPrompt = `${baseTone}\n\n${systemPrompt}`;
-    }
-
-    if (effectiveJobDescription.hasValue) {
-      systemPrompt += `
-
-JOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)
-
-The user has provided a specific job description. In your job_alignment response, pay special attention to:
-- How well the resume aligns with THIS specific job's requirements
-- Themes in the job description that the resume demonstrates (strongly_aligned)
-- Themes in the job description that are present but underemphasized (underplayed)
-- Critical requirements from the job description that are missing (missing)
-
-The user wants to know: "Am I a fit for THIS role, and what should I emphasize or add?"
-`;
-    }
-
-    let userPrompt = "";
-
-    if (mode === "case_interview") {
-      userPrompt = `CONTEXT (Role & Question):
-${effectiveJobDescription.promptBlock || "No specific context provided."}
-
-TRANSCRIPT (Candidate Answer):
-${text}`;
-    } else if (mode === "case_negotiation") {
-      userPrompt = `CONTEXT (Role & Goals):
-${effectiveJobDescription.promptBlock || "No specific context."}
-
-OFFER DETAILS:
-${text}`;
-    } else {
-      userPrompt = `Here is the user's input. Use the system instructions to respond.
-
-USER RESUME:
-${text}`;
-      if (mode === "resume") {
-        userPrompt += `
-
-SOURCE CATALOG (reference only; copy source text after each tag and never output the tags):
-${buildResumeEvidenceCatalog(text)}`;
-      }
-      if (effectiveJobDescription.hasValue) {
-        userPrompt += `
-
-JOB DESCRIPTION (for alignment analysis):
-${effectiveJobDescription.promptBlock}`;
-      }
-    }
-
     const model = resolveOpenAIModel(mode);
-    const messages = [
-      { role: "system" as const, content: JSON_INSTRUCTION },
-      { role: "system" as const, content: systemPrompt },
-      { role: "user" as const, content: userPrompt }
-    ];
+    const { messages, sanitization: sanitizedInput } = buildResumeProviderMessages({
+      mode,
+      systemPrompt: await loadPromptForMode(mode),
+      text,
+      effectiveJobDescription,
+    });
+    const sanitizedJobDescription = effectiveJobDescription.sanitization;
+    if (sanitizedInput.injectionDetected || sanitizedJobDescription?.injectionDetected) {
+      logWarn({
+        msg: "security.prompt_injection_detected",
+        request_id,
+        route,
+        user_id,
+        security: {
+          injection_detected: true,
+          patterns_matched: [
+            ...sanitizedInput.detectedPatterns,
+            ...(sanitizedJobDescription?.detectedPatterns || []),
+          ],
+          json_injection: sanitizedInput.hadJsonInjection || Boolean(sanitizedJobDescription?.hadJsonInjection),
+        },
+      });
+    }
     await markGenerationProviderCallStarted(accessReservation);
     const initialRun = await runJson<any>({
       ctx: { request_id, user_id, route },

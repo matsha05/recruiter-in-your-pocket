@@ -99,24 +99,19 @@ export function detectJsonInjection(text: string): boolean {
  * we escape/neutralize the dangerous patterns while preserving the text for analysis.
  */
 export function neutralizeInjectionPatterns(text: string): string {
-    let neutralized = text;
-
-    // Replace "Ignore previous instructions" variations
-    neutralized = neutralized.replace(
-        /ignore\s+(all\s+)?(previous|above)\s+instructions?/gi,
-        '[USER TEXT: $&]'
+    let neutralized = text.replace(JSON_INJECTION_PATTERN, (match) =>
+        detectJsonInjection(match) ? "[UNTRUSTED OUTPUT OBJECT REDACTED]" : match
     );
 
-    // Replace role hijacking attempts
-    neutralized = neutralized.replace(
-        /you\s+are\s+now\s+a?\s*(different|new)/gi,
-        '[USER TEXT: $&]'
-    );
-
-    neutralized = neutralized.replace(
-        /(pretend|act|respond)\s+(you\s+are|to\s+be|as)/gi,
-        '[USER TEXT: $&]'
-    );
+    // Detection and neutralization intentionally share the same pattern registry.
+    // A detected instruction must never reach a provider unchanged.
+    for (const pattern of INJECTION_PATTERNS) {
+        const globalFlags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+        neutralized = neutralized.replace(
+            new RegExp(pattern.source, globalFlags),
+            "[UNTRUSTED INSTRUCTION REDACTED]",
+        );
+    }
 
     return neutralized;
 }
@@ -129,7 +124,7 @@ export function sanitizeUserInput(text: string): SanitizationResult {
     const hasJsonInjection = detectJsonInjection(text);
 
     // Only neutralize if patterns were detected
-    const sanitizedText = detection.detected
+    const sanitizedText = detection.detected || hasJsonInjection
         ? neutralizeInjectionPatterns(text)
         : text;
 
