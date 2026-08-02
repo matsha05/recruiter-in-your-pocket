@@ -167,7 +167,7 @@ function protectedFacts(value: string) {
   for (const match of withoutPlaceholders.matchAll(writtenMetricPattern)) addMatches(facts, "metric-word", match[0].toLowerCase());
   for (const match of withoutPlaceholders.matchAll(symbolicEntityPattern)) addMatches(facts, "symbol", match[0]);
   for (const match of withoutPlaceholders.matchAll(acronymPattern)) {
-    if (match[0].length > 1 && !["HR", "IT"].includes(match[0])) addMatches(facts, "entity", match[0]);
+    if (match[0].length > 1) addMatches(facts, "entity", match[0]);
   }
   for (const match of withoutPlaceholders.matchAll(titlePhrasePattern)) {
     const words = match[0].split(/\s+/u);
@@ -204,6 +204,10 @@ function stemToken(token: string) {
   return lower;
 }
 
+const semanticTokenAliases = new Map([
+  ["journey", "workflow"],
+]);
+
 function materialTokens(value: string) {
   let untracked = value.replace(/\[[^\]]+\]/gu, "");
   for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
@@ -212,6 +216,7 @@ function materialTokens(value: string) {
   }
   return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
     .map(stemToken)
+    .map((token) => semanticTokenAliases.get(token) || token)
     .filter((token) => token.length > 2 && !stopWords.has(token)));
 }
 
@@ -290,7 +295,10 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
 
     const sourceAnchored = supporting.filter(({ tokens }) => {
       const overlap = Array.from(claimTokens).filter((token) => tokens.has(token)).length;
-      return claimTokens.size >= 2 && overlap / claimTokens.size >= 0.8;
+      const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
+      return claimTokens.size >= 1
+        && overlap / claimTokens.size >= 0.8
+        && (claimTokens.size >= 2 || hasTrackedClaim);
     });
     if (sourceAnchored.length === 0) return [];
     const hasCompleteMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
@@ -337,16 +345,50 @@ function reportNarrativeStrings(report: any) {
   for (const key of ["strongly_aligned", "underplayed", "missing"]) addArray(`job_alignment.${key}`, alignment?.[key]);
   add("job_alignment.role_fit.seniority_read", alignment?.role_fit?.seniority_read);
   addArray("job_alignment.role_fit.best_fit_roles", alignment?.role_fit?.best_fit_roles);
+  addArray("job_alignment.role_fit.stretch_roles", alignment?.role_fit?.stretch_roles);
   addArray("job_alignment.role_fit.industry_signals", alignment?.role_fit?.industry_signals);
   add("job_alignment.role_fit.company_stage_fit", alignment?.role_fit?.company_stage_fit);
   add("job_alignment.positioning_suggestion", alignment?.positioning_suggestion);
   return values;
 }
 
-export function auditReportNarrative(report: any, sourceText: string): NarrativeFidelityIssue[] {
-  return reportNarrativeStrings(report).flatMap(({ path, value }) =>
-    auditNarrativeClaim(value, sourceText).map((issue) => ({ path, ...issue }))
-  );
+function isJobDescriptionGroundableRole(path: string) {
+  return /^job_alignment\.role_fit\.(?:best_fit_roles|stretch_roles)\[\d+\]$/u.test(path);
+}
+
+function roleLabelTokens(value: string) {
+  return new Set((value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || []).flatMap((rawToken) => {
+    const token = semanticTokenAliases.get(stemToken(rawToken)) || stemToken(rawToken);
+    const isShortAcronym = rawToken.length <= 2 && rawToken === rawToken.toLocaleUpperCase();
+    return !isShortAcronym && stopWords.has(token) ? [] : [token];
+  }));
+}
+
+function isNarrativeClaimPositivelyGrounded(value: string, sourceText: string) {
+  const candidates = sourceLines(sourceText).map(roleLabelTokens);
+  return claimSegments(value).every((claim) => {
+    const tokens = roleLabelTokens(claim);
+    if (tokens.size === 0) return false;
+    return candidates.some((candidate) => Array.from(tokens).every((token) => candidate.has(token)));
+  });
+}
+
+export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
+  return reportNarrativeStrings(report).flatMap(({ path, value }) => {
+    if (isJobDescriptionGroundableRole(path)) {
+      const groundedInResume = isNarrativeClaimPositivelyGrounded(value, resumeText);
+      const groundedInJobDescription = Boolean(
+        jobDescription?.trim() && isNarrativeClaimPositivelyGrounded(value, jobDescription),
+      );
+      if (groundedInResume || groundedInJobDescription) return [];
+      const issues = auditNarrativeClaim(value, resumeText);
+      return (issues.length > 0 ? issues : [{ claim: value, unsupportedFacts: [value] }])
+        .map((issue) => ({ path, ...issue }));
+    }
+    const resumeIssues = auditNarrativeClaim(value, resumeText);
+    if (resumeIssues.length === 0) return [];
+    return resumeIssues.map((issue) => ({ path, ...issue }));
+  });
 }
 
 export function removeUnsafeRewrites<T extends { rewrites?: unknown }>(report: T, resumeText: string) {

@@ -82,6 +82,33 @@ for (const [source, candidate] of [
   assert.ok(auditNarrativeClaim(candidate, source).length > 0, `${source} must preserve the short source entity`);
 }
 
+const domainAcronymSource = "Supported HR operations.";
+const domainAcronymMutation = "Supported IT operations.";
+const domainAcronymDeletion = "Supported operations.";
+assert.equal(compareSourceBoundRewrite({
+  sourceText: domainAcronymSource,
+  sourceLocator: domainAcronymSource,
+  candidate: domainAcronymMutation,
+}).safe, false, "domain acronym mutations must fail rewrite validation");
+assert.ok(
+  auditNarrativeClaim(domainAcronymMutation, domainAcronymSource).length > 0,
+  "domain acronym mutations must fail narrative validation",
+);
+assert.ok(
+  auditNarrativeClaim(domainAcronymDeletion, domainAcronymSource).length > 0,
+  "domain acronym deletions must fail narrative validation",
+);
+assert.equal(resolveRewriteCopyPolicy({
+  sourceText: domainAcronymSource,
+  original: domainAcronymSource,
+  draft: domainAcronymMutation,
+}).copyable, false, "a mutated domain acronym must never be copyable");
+assert.equal(resolveRewriteCopyPolicy({
+  sourceText: domainAcronymSource,
+  original: domainAcronymSource,
+  draft: domainAcronymDeletion,
+}).copyable, false, "a deleted domain acronym must never be copyable");
+
 const detailedScope = "Managed a team of 25+ engineers across platform delivery.";
 assert.ok(
   auditNarrativeClaim("Managed platform delivery.", detailedScope).length > 0,
@@ -91,7 +118,7 @@ assert.ok(
 const usefulParaphrase = {
   label: "Clarity",
   original: "Built customer workflows in HubSpot.",
-  better: "Created HubSpot customer workflows.",
+  better: "Created customer journeys using HubSpot.",
   enhancement_note: "Add verified context.",
 };
 assert.equal(compareSourceBoundRewrite({
@@ -99,6 +126,16 @@ assert.equal(compareSourceBoundRewrite({
   sourceLocator: usefulParaphrase.original,
   candidate: usefulParaphrase.better,
 }).safe, true, "same-agency paraphrases must remain useful");
+assert.equal(resolveRewriteCopyPolicy({
+  sourceText: usefulParaphrase.original,
+  original: usefulParaphrase.original,
+  draft: usefulParaphrase.better,
+}).copyable, true, "a source-faithful semantic paraphrase must remain copyable");
+assert.equal(compareSourceBoundRewrite({
+  sourceText: usefulParaphrase.original,
+  sourceLocator: usefulParaphrase.original,
+  candidate: "Created customer pipelines using HubSpot.",
+}).safe, false, "the semantic alias must not admit arbitrary substitute nouns");
 const retainedParaphrase = removeUnsafeRewrites({ rewrites: [usefulParaphrase] }, usefulParaphrase.original);
 assert.equal(retainedParaphrase.removed.length, 0, "a useful source-faithful paraphrase must not disappear");
 assert.deepEqual(retainedParaphrase.report.rewrites, [usefulParaphrase]);
@@ -213,7 +250,11 @@ const renderedClaimProbe = {
   job_alignment: {
     jd_match_summary: unsafePublicClaim,
     positioning_suggestion: unsafePublicClaim,
-    role_fit: { best_fit_roles: [unsafePublicClaim], seniority_read: unsafePublicClaim },
+    role_fit: {
+      best_fit_roles: [unsafePublicClaim],
+      stretch_roles: [unsafePublicClaim],
+      seniority_read: unsafePublicClaim,
+    },
   },
 };
 const renderedAuditPaths = new Set(
@@ -237,6 +278,7 @@ for (const renderedPath of [
   "job_alignment.jd_match_summary",
   "job_alignment.positioning_suggestion",
   "job_alignment.role_fit.best_fit_roles[0]",
+  "job_alignment.role_fit.stretch_roles[0]",
   "job_alignment.role_fit.seniority_read",
 ]) {
   assert.ok(renderedAuditPaths.has(renderedPath), `${renderedPath} must be covered by the public narrative audit`);
@@ -289,8 +331,8 @@ const schemaValidReport = {
     underplayed: ["The customer count needs context.", "The workflow scope needs context."],
     missing: ["The result needs context."],
     role_fit: {
-      best_fit_roles: ["Operations", "Sales", "Marketing"],
-      stretch_roles: ["Product"],
+      best_fit_roles: ["HubSpot", "Customer", "Workflow"],
+      stretch_roles: ["HubSpot"],
       seniority_read: "Senior",
       industry_signals: ["HubSpot"],
       company_stage_fit: "Company",
@@ -318,6 +360,67 @@ assert.equal(adversarialGrounding.ok, false, "an unbound rendered role must fail
 assert.ok(
   adversarialGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
   "the grounding error must identify the rendered best-fit role",
+);
+
+const roleJobDescription = "We are hiring a Salesforce Administrator.";
+assert.equal(
+  assertReportGrounding(adversarialSchemaResult.data, hubspotSource, roleJobDescription).ok,
+  true,
+  "a rendered best-fit role may be grounded independently in the supplied job description",
+);
+const splitRoleGrounding = assertReportGrounding(
+  adversarialSchemaResult.data,
+  `${hubspotSource}\nSalesforce platform work.`,
+  "We need an Administrator for the business systems team.",
+);
+assert.equal(
+  splitRoleGrounding.ok,
+  false,
+  "role tokens split between resume and job description must not be concatenated into false support",
+);
+assert.ok(
+  splitRoleGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
+  "the split-provenance role error must identify the rendered best-fit role",
+);
+
+const fabricatedRoleReport = structuredClone(schemaValidReport);
+fabricatedRoleReport.job_alignment.role_fit.best_fit_roles[0] = "Workday Administrator";
+const fabricatedRoleSchemaResult = ResumeFeedbackResponseSchema.safeParse(fabricatedRoleReport);
+assert.equal(fabricatedRoleSchemaResult.success, true, "the fabricated role probe must remain schema-valid");
+const fabricatedRoleGrounding = assertReportGrounding(
+  fabricatedRoleSchemaResult.data,
+  hubspotSource,
+  roleJobDescription,
+);
+assert.equal(fabricatedRoleGrounding.ok, false, "a role absent from both sources must fail grounding");
+assert.ok(
+  fabricatedRoleGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.best_fit_roles[0]")),
+  "the fabricated role error must identify the rendered best-fit role",
+);
+
+const jdGroundedStretchReport = structuredClone(schemaValidReport);
+jdGroundedStretchReport.job_alignment.role_fit.stretch_roles[0] = unsafePublicClaim;
+const jdGroundedStretchSchemaResult = ResumeFeedbackResponseSchema.safeParse(jdGroundedStretchReport);
+assert.equal(jdGroundedStretchSchemaResult.success, true, "the stretch-role probe must remain schema-valid");
+assert.equal(
+  assertReportGrounding(jdGroundedStretchSchemaResult.data, hubspotSource, roleJobDescription).ok,
+  true,
+  "a rendered stretch role may be grounded independently in the supplied job description",
+);
+
+const fabricatedStretchReport = structuredClone(schemaValidReport);
+fabricatedStretchReport.job_alignment.role_fit.stretch_roles[0] = "Workday Administrator";
+const fabricatedStretchSchemaResult = ResumeFeedbackResponseSchema.safeParse(fabricatedStretchReport);
+assert.equal(fabricatedStretchSchemaResult.success, true, "the fabricated stretch-role probe must remain schema-valid");
+const fabricatedStretchGrounding = assertReportGrounding(
+  fabricatedStretchSchemaResult.data,
+  hubspotSource,
+  roleJobDescription,
+);
+assert.equal(fabricatedStretchGrounding.ok, false, "a stretch role absent from both sources must fail grounding");
+assert.ok(
+  fabricatedStretchGrounding.inventedSpecifics.some((issue) => issue.includes("job_alignment.role_fit.stretch_roles[0]")),
+  "the fabricated role error must identify the rendered stretch role",
 );
 
 for (const relativePath of [

@@ -32,6 +32,7 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { sanitizeUserInput } from "@/lib/security/inputSanitization";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import {
   assertGenerationAccessDependencies,
@@ -174,6 +175,7 @@ export async function POST(request: Request) {
 
     const { text, mode, jobDescription } = validation.value;
     const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
+    const safeJobDescriptionText = jobDescription ? sanitizeUserInput(jobDescription).sanitizedText : "";
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -311,7 +313,9 @@ ${jobDescription}`;
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       try {
-        payload = validateResumeModelPayload(parsedJson, text);
+        payload = validateResumeModelPayload(parsedJson, text, {
+          jobDescription: hasJobDescription ? safeJobDescriptionText : undefined,
+        });
         payload = ensureLayoutAndContentFields(payload);
       } catch (err: any) {
         if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
@@ -332,7 +336,9 @@ ${jobDescription}`;
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
         });
-        payload = validateResumeModelPayload(repaired.parsed, text);
+        payload = validateResumeModelPayload(repaired.parsed, text, {
+          jobDescription: hasJobDescription ? safeJobDescriptionText : undefined,
+        });
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }

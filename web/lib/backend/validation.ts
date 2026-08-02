@@ -132,7 +132,7 @@ export function ensureLayoutAndContentFields(obj: any) {
 export function validateResumeModelPayload(
   obj: any,
   resumeText?: string,
-  options: { forceGrounding?: boolean } = {},
+  options: { forceGrounding?: boolean; jobDescription?: string } = {},
 ) {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
@@ -198,7 +198,7 @@ export function validateResumeModelPayload(
   }
 
   if (resumeText && shouldGround) {
-    const grounding = assertReportGrounding(parsed.data, resumeText);
+    const grounding = assertReportGrounding(parsed.data, resumeText, options.jobDescription);
     if (!grounding.ok) {
       const issue = grounding.missingEvidence[0] || grounding.inventedSpecifics[0] || "response";
       throw createAppError(

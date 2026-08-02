@@ -160,7 +160,7 @@ function normalizeForEvidence(value: string) {
 export function assertReportGrounding(
     report: ResumeFeedbackResponse,
     resumeText: string,
-    narrativeSourceText = resumeText,
+    jobDescription?: string,
 ) {
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
@@ -201,7 +201,7 @@ export function assertReportGrounding(
         }
     }
 
-    for (const issue of auditReportNarrative(report, narrativeSourceText)) {
+    for (const issue of auditReportNarrative(report, resumeText, jobDescription)) {
         inventedSpecifics.push(
             `${issue.path} unsupported narrative facts: ${issue.unsupportedFacts.join(", ")}`,
         );

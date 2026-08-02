@@ -441,7 +441,9 @@ export async function POST(request: Request) {
                         payload = validateCaseNegotiationPayload(parsedJson);
                     } else {
                         // Original legacy modes
-                        payload = validateResumeModelPayload(parsedJson, text);
+                        payload = validateResumeModelPayload(parsedJson, text, {
+                            jobDescription: hasJobDescription ? safeJobDescText : undefined,
+                        });
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
@@ -465,7 +467,9 @@ export async function POST(request: Request) {
                                 schema_version: "report_v1",
                                 messages: buildResumeRepairMessages(messages, accumulatedJson, err),
                             });
-                            payload = validateResumeModelPayload(repaired.parsed, text);
+                            payload = validateResumeModelPayload(repaired.parsed, text, {
+                                jobDescription: hasJobDescription ? safeJobDescText : undefined,
+                            });
                             payload = ensureLayoutAndContentFields(payload);
                             accumulatedJson = repaired.raw;
                             validatedChunks.length = 0;
