@@ -887,8 +887,8 @@ async function run() {
     await rm(legacyAttackRoot, { recursive: true, force: true });
   }
   const nextConfigSource = await readFile(path.join(process.cwd(), "next.config.mjs"), "utf8");
-  assert.match(nextConfigSource, /["']\/launch\/gauntlet["']:\s*\[["']\.\/gauntlet\/published\/progress\.json["']\]/);
-  assert.doesNotMatch(nextConfigSource, /\.\/gauntlet\/\*\*\/\*/);
+  assert.doesNotMatch(nextConfigSource, /["']\/launch\/gauntlet["']\s*:/);
+  assert.doesNotMatch(nextConfigSource, /\.\/gauntlet\//);
 
   const hostedRoot = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-hosted-"));
   try {

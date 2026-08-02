@@ -20,8 +20,8 @@ async function main() {
   assert.equal(published.overallStatus, "fail");
 
   const nextConfig = await readFile(path.join(process.cwd(), "next.config.mjs"), "utf8");
-  assert.match(nextConfig, /gauntlet\/published\/progress\.json/);
-  assert.doesNotMatch(nextConfig, /gauntlet\/\*\*\/\*/);
+  assert.doesNotMatch(nextConfig, /["']\/launch\/gauntlet["']\s*:/);
+  assert.doesNotMatch(nextConfig, /\.\/gauntlet\//);
   const vercelIgnore = await readFile(path.resolve(process.cwd(), "..", ".vercelignore"), "utf8");
   assert.match(vercelIgnore, /^web\/gauntlet\/artifacts\/$/m);
 

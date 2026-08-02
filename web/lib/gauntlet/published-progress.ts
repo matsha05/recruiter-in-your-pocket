@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import publishedBundle from "../../gauntlet/published/progress.json";
+import { publishedProgressBundle } from "../../gauntlet/published/progress-data";
 import type { GauntletProgressSnapshot } from "./types";
 
 const SAFE_COMPONENT = /^[a-z0-9][a-z0-9_-]*$/;
@@ -83,7 +83,7 @@ export function validatePublishedProgressBundle(value: unknown): PublishedProgre
 
 export async function getPublishedGauntletProgress(requestedIterationId?: string) {
   if (requestedIterationId !== undefined) assertSafeComponent(requestedIterationId, "iteration selector");
-  const bundle = validatePublishedProgressBundle(publishedBundle as unknown);
+  const bundle = validatePublishedProgressBundle(publishedProgressBundle as unknown);
   const iterationId = requestedIterationId ?? bundle.activeIterationId;
   const entry = bundle.snapshots.find((candidate) => candidate.iterationId === iterationId);
   if (!entry) {

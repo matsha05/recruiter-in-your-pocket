@@ -77,7 +77,6 @@ const nextConfig = {
       "./public/assets/fonts/space-grotesk-bold.ttf",
       "./public/assets/fonts/instrument-sans-latin-variable.ttf",
     ],
-    "/launch/gauntlet": ["./gauntlet/published/progress.json"],
   },
   turbopack: {
     // Keep Next's root inside web/ even with a monorepo lockfile.
