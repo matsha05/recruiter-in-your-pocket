@@ -46,7 +46,12 @@ async function run() {
     const failedPartials: unknown[] = [];
     globalThis.fetch = async () => responseFor([
       { type: "chunk", content: '{"score":99,"summary":"must stay private"}' },
-      { type: "error", errorCode: "VALIDATION_FAILED", message: "Evidence validation failed" },
+      {
+        type: "error",
+        errorCode: "VALIDATION_FAILED",
+        message: "Evidence validation failed",
+        attempt_consumed: true,
+      },
     ]);
     const failed = await streamResumeFeedback(
       "Resume source",
@@ -54,6 +59,7 @@ async function run() {
       (_text, partial) => failedPartials.push(partial),
     );
     assert.equal(failed.ok, false);
+    assert.equal(failed.attemptConsumed, true, "post-provider failures must disclose that the attempt was consumed");
     assert.deepEqual(failedPartials, [], "resume failure paths must invoke no raw callbacks");
   } finally {
     globalThis.fetch = originalFetch;

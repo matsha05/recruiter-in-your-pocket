@@ -1,6 +1,8 @@
 import crypto from "crypto";
+import { isDeepStrictEqual } from "node:util";
 import { logError, logWarn } from "../observability/logger";
-import { buildGroundedReportTrustMetadata } from "./report-trust";
+import { ResumeFeedbackResponseSchema } from "../validation/schemas";
+import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "./report-trust";
 
 type StoreContext = { request_id: string; route: string; user_id?: string };
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -47,7 +49,7 @@ export async function persistGeneratedReport(input: {
     score: input.payload.score,
     score_label: input.payload.score_label || null,
     report_json: input.payload,
-    ...buildGroundedReportTrustMetadata(input.payload),
+    ...buildGroundedReportTrustMetadata(input.payload, input.userId),
     ...(input.savedJobId ? { saved_job_id: input.savedJobId } : {}),
     resume_preview: resumePreview(input.resumeText),
     job_description_text: input.jobDescriptionText || null,
@@ -105,6 +107,7 @@ export async function persistReceiptValidatedReport(input: {
   supabase: any;
   userId: string;
   payload: any;
+  receiptHash: string;
 }) {
   const reportId = crypto.randomUUID();
   const serialized = JSON.stringify(input.payload);
@@ -118,11 +121,34 @@ export async function persistReceiptValidatedReport(input: {
     score: input.payload.score,
     score_label: input.payload.score_label || null,
     report_json: input.payload,
-    ...buildGroundedReportTrustMetadata(input.payload),
+    ...buildGroundedReportTrustMetadata(input.payload, input.userId),
+    anonymous_receipt_hash: input.receiptHash,
     resume_preview: preview || "Resume report",
     target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
     created_at: new Date().toISOString(),
   });
+  if (error?.code === "23505") {
+    const { data: existing } = await input.supabase.from("reports")
+      .select("id, report_json, evidence_version, evidence_json")
+      .eq("anonymous_receipt_hash", input.receiptHash)
+      .eq("user_id", input.userId)
+      .maybeSingle();
+    const existingReport = existing && parseTrustedStoredReport(
+      existing.report_json,
+      existing.evidence_version,
+      existing.evidence_json,
+      input.userId,
+    );
+    const submittedReport = ResumeFeedbackResponseSchema.parse(input.payload);
+    if (existingReport && isDeepStrictEqual(existingReport, submittedReport)) return existing.id as string;
+    const consumed = new Error("This anonymous report has already been saved to an account.") as Error & {
+      code: string;
+      httpStatus: number;
+    };
+    consumed.code = "REPORT_RECEIPT_CONSUMED";
+    consumed.httpStatus = 409;
+    throw consumed;
+  }
   if (error) throw persistenceError();
   return reportId;
 }

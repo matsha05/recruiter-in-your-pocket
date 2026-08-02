@@ -19,25 +19,35 @@ function stableJson(value: unknown): string {
   return JSON.stringify(value);
 }
 
-function signature(report: unknown, expiresAt: string) {
+function signature(report: unknown, receiptPayload: string) {
   return crypto.createHmac("sha256", signingSecret())
-    .update(`${expiresAt}.${stableJson(report)}`)
+    .update(`anonymous-report-v1\n${receiptPayload}\n${stableJson(report)}`)
     .digest("hex");
 }
 
 export function makeValidatedReportReceipt(report: unknown) {
   const expiresAt = String(Date.now() + RECEIPT_TTL_MS);
-  return `${expiresAt}.${signature(report, expiresAt)}`;
+  const nonce = crypto.randomBytes(16).toString("base64url");
+  const receiptPayload = `${expiresAt}-${nonce}`;
+  return `${receiptPayload}.${signature(report, receiptPayload)}`;
 }
 
 export function verifyValidatedReportReceipt(report: unknown, receipt: unknown) {
   if (typeof receipt !== "string") return false;
-  const [expiresAt, supplied] = receipt.split(".");
-  if (!expiresAt || !supplied || Number(expiresAt) < Date.now()) return false;
-  const expected = signature(report, expiresAt);
+  const segments = receipt.split(".");
+  if (segments.length !== 2) return false;
+  const [receiptPayload, supplied] = segments;
+  const payloadMatch = receiptPayload.match(/^(\d{13})-([A-Za-z0-9_-]{22})$/u);
+  if (!payloadMatch || Number(payloadMatch[1]) < Date.now() || !/^[a-f0-9]{64}$/u.test(supplied)) return false;
+  const expected = signature(report, receiptPayload);
   try {
-    return crypto.timingSafeEqual(Buffer.from(supplied), Buffer.from(expected));
+    return crypto.timingSafeEqual(Buffer.from(supplied, "hex"), Buffer.from(expected, "hex"));
   } catch {
     return false;
   }
+}
+
+export function validatedReportReceiptHash(report: unknown, receipt: unknown) {
+  if (!verifyValidatedReportReceipt(report, receipt)) return null;
+  return crypto.createHash("sha256").update(receipt as string).digest("hex");
 }

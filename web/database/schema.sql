@@ -52,6 +52,7 @@ create table if not exists reports (
   evidence_version text,
   evidence_summary text,
   confidence_band text,
+  anonymous_receipt_hash varchar(64),
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -60,6 +61,9 @@ create index if not exists reports_user_created_idx on reports(user_id, created_
 create index if not exists reports_user_variant_idx on reports(user_id, resume_variant);
 create index if not exists reports_user_target_role_idx on reports(user_id, target_role);
 create index if not exists reports_saved_job_idx on reports(saved_job_id);
+create unique index if not exists reports_anonymous_receipt_hash_idx
+  on reports(anonymous_receipt_hash)
+  where anonymous_receipt_hash is not null;
 
 -- 4. Passes Table (Entitlements)
 create table if not exists passes (

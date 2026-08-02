@@ -4,7 +4,7 @@ import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { logError } from "@/lib/observability/logger";
 import { ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
-import { verifyValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import { validatedReportReceiptHash } from "@/lib/reports/report-receipt";
 import { persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
 
 export const runtime = "nodejs";
@@ -86,13 +86,19 @@ export async function POST(request: NextRequest) {
     }
     const { report_receipt: receipt, ...reportWithoutReceipt } = submitted;
     const parsed = ResumeFeedbackResponseSchema.safeParse(reportWithoutReceipt);
-    if (!parsed.success || !verifyValidatedReportReceipt(parsed.data, receipt)) {
+    const receiptHash = parsed.success ? validatedReportReceiptHash(parsed.data, receipt) : null;
+    if (!parsed.success || !receiptHash) {
       return NextResponse.json(
         { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report cannot be verified. Rerun it while signed in." },
         { status: 409 },
       );
     }
-    const reportId = await persistReceiptValidatedReport({ supabase, userId: sessionUser.id, payload: parsed.data });
+    const reportId = await persistReceiptValidatedReport({
+      supabase,
+      userId: sessionUser.id,
+      payload: parsed.data,
+      receiptHash,
+    });
     return NextResponse.json({ ok: true, reportId });
   } catch (error: any) {
     logError({
@@ -100,9 +106,11 @@ export async function POST(request: NextRequest) {
       outcome: "internal_error",
       err: { name: error?.name || "Error", message: error?.message || "Failed to save report", code: error?.code },
     });
-    return NextResponse.json(
-      { ok: false, message: error?.message || "Failed to save report" },
-      { status: 500 }
-    );
+    const status = Number(error?.httpStatus || 0) || 500;
+    return NextResponse.json({
+      ok: false,
+      errorCode: error?.code || "SAVE_REPORT_FAILED",
+      message: error?.message || "Failed to save report",
+    }, { status });
   }
 }

@@ -207,6 +207,7 @@ export async function POST(request: Request) {
       });
     }
     await markGenerationProviderCallStarted(accessReservation);
+    if (accessReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
     const initialRun = await runJson<any>({
       ctx: { request_id, user_id, route },
       task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
@@ -362,6 +363,9 @@ export async function POST(request: Request) {
       });
     }
 
+    const retryDisposition = reservationCommitted
+      ? "This report attempt was used because generation had already started."
+      : "Your report credit was restored; please try again.";
     const message =
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
@@ -371,7 +375,7 @@ export async function POST(request: Request) {
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? "The report did not pass its evidence check. Your report credit was restored; please try again."
+              ? `The report did not pass its evidence check. ${retryDisposition}`
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
 
     logError({
@@ -385,7 +389,12 @@ export async function POST(request: Request) {
       outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
       err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
     });
-    const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    const res = NextResponse.json({
+      ok: false,
+      errorCode: code,
+      message,
+      attempt_consumed: reservationCommitted,
+    }, { status });
     res.headers.set("x-request-id", request_id);
     return res;
   }

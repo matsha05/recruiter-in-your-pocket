@@ -256,6 +256,7 @@ export async function POST(request: Request) {
 
                 const model = resolveOpenAIModel(mode);
                 await markGenerationProviderCallStarted(grantedReservation);
+                if (grantedReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
                     try {
@@ -291,7 +292,6 @@ export async function POST(request: Request) {
                     }
                 }
 
-                // Parse and validate the complete JSON
                 let payload: any;
                 try {
                     const parsedJson = extractJsonFromText(accumulatedJson);
@@ -305,7 +305,6 @@ export async function POST(request: Request) {
                     } else if (mode === "case_negotiation") {
                         payload = validateCaseNegotiationPayload(parsedJson);
                     } else {
-                        // Original legacy modes
                         payload = validateResumeModelPayload(parsedJson, text, effectiveJobDescription.validationOptions);
                         payload = ensureLayoutAndContentFields(payload);
                     }
@@ -346,7 +345,7 @@ export async function POST(request: Request) {
                                     code: repairErr?.code,
                                 }
                             });
-                            const validationError = new Error("The report did not pass its evidence check. Your report credit was restored; please try again.") as Error & { code: string };
+                            const validationError = new Error("The report did not pass its evidence check.") as Error & { code: string };
                             validationError.code = "OPENAI_RESPONSE_SHAPE_INVALID";
                             throw validationError;
                         }
@@ -364,7 +363,6 @@ export async function POST(request: Request) {
                         throw validationError;
                     }
                 }
-
                 let reportId: string | null = null;
                 if (user && supabase && mode === "resume") {
                     reportId = await persistGeneratedReport({
@@ -377,7 +375,6 @@ export async function POST(request: Request) {
                         context: { request_id, route, user_id },
                     });
                 }
-
                 try {
                     await commitGenerationAccess(grantedReservation, reservationAdmin);
                     reservationCommitted = true;
@@ -454,13 +451,16 @@ export async function POST(request: Request) {
                     ? "This is taking longer than usual. Try again in a moment."
                     : code === "OPENAI_NETWORK_ERROR"
                         ? "Connection hiccup. Try again in a moment."
-                        : err?.message || "Something went wrong. Please try again.";
+                        : `${err?.message || "Something went wrong."} ${reservationCommitted
+                            ? "This report attempt was used because generation had already started."
+                            : "Your report credit was restored; please try again."}`;
 
                 try {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: code,
-                        message
+                        message,
+                        attempt_consumed: reservationCommitted,
                     }) + "\n"));
                     controller.close();
                 } catch {

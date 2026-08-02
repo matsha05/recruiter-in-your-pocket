@@ -95,7 +95,14 @@ export async function streamResumeFeedback(
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   options?: { signal?: AbortSignal; savedJobId?: string | null }
-): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean; reportId?: string | null }> {
+): Promise<{
+  ok: boolean;
+  report?: any;
+  message?: string;
+  aborted?: boolean;
+  reportId?: string | null;
+  attemptConsumed?: boolean;
+}> {
   let res: Response;
   try {
     res = await fetch("/api/resume-feedback-stream", {
@@ -132,6 +139,7 @@ export async function streamResumeFeedback(
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
+  let attemptConsumed = false;
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
@@ -169,6 +177,7 @@ export async function streamResumeFeedback(
           finalReportId = event.report_id || null;
         } else if (event.type === "error") {
           errorMessage = event.message;
+          attemptConsumed = event.attempt_consumed === true;
         } else if (event.type === "meta") {
           // Reserved for future non-sensitive stream metadata.
         }
@@ -179,7 +188,7 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, message: errorMessage };
+    return { ok: false, message: errorMessage, attemptConsumed };
   }
 
   if (finalReport) {

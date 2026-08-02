@@ -81,13 +81,13 @@ export async function POST(request: NextRequest) {
       return res;
     }
     const { data: stored, error: reportError } = await supabase.from("reports")
-      .select("report_json, evidence_version")
+      .select("report_json, evidence_version, evidence_json")
       .eq("id", exportRequest.report_id)
       .eq("user_id", user.id)
       .maybeSingle();
     if (reportError) throw reportError;
     const trustedReport = stored
-      ? parseTrustedStoredReport(stored.report_json, stored.evidence_version)
+      ? parseTrustedStoredReport(stored.report_json, stored.evidence_version, stored.evidence_json, user.id)
       : null;
     const payload = trustedReport ? normalizeReportForPdf(trustedReport) : null;
 

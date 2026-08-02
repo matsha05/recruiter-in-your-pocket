@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { renderReportHtml } from "../lib/backend/pdf";
-import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
 import { makeValidatedReportReceipt, verifyValidatedReportReceipt } from "../lib/reports/report-receipt";
@@ -64,15 +64,56 @@ const reportId = "123e4567-e89b-42d3-a456-426614174000";
 assert.deepEqual(buildPdfExportRequest({ ...legacyReport, report_id: reportId }), { report_id: reportId });
 assert.deepEqual(buildPdfExportRequest({ ...legacyReport, id: reportId }), { report_id: reportId });
 assert.equal(buildPdfExportRequest({ score: 42 }), null, "incomplete client payloads must fail closed");
+const newlySavedReport = attachStoredReportId(schemaValidReport, reportId);
+assert.deepEqual(
+  buildPdfExportRequest(newlySavedReport),
+  { report_id: reportId },
+  "an anonymous report must export by the stored ID returned after sign-in save",
+);
 
 const originalSessionSecret = process.env.SESSION_SECRET;
 process.env.SESSION_SECRET = "pdf-export-contract-test-secret";
 const receipt = makeValidatedReportReceipt(schemaValidReport);
 assert.equal(verifyValidatedReportReceipt(schemaValidReport, receipt), true);
 assert.equal(verifyValidatedReportReceipt({ ...schemaValidReport, score: 99 }, receipt), false);
-const trustMetadata = buildGroundedReportTrustMetadata(schemaValidReport);
-assert.ok(parseTrustedStoredReport(schemaValidReport, trustMetadata.evidence_version));
-assert.equal(parseTrustedStoredReport(schemaValidReport, "v2"), null, "legacy/unreceipted rows must fail closed");
+assert.equal(
+  verifyValidatedReportReceipt(schemaValidReport, `${receipt}.ignored`),
+  false,
+  "anonymous receipts must contain exactly two segments",
+);
+const ownerId = "11111111-1111-4111-8111-111111111111";
+const otherOwnerId = "22222222-2222-4222-8222-222222222222";
+const trustMetadata = buildGroundedReportTrustMetadata(schemaValidReport, ownerId);
+assert.ok(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  ownerId,
+), "an exact server-signed stored report must be accepted");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  { items: trustMetadata.evidence_json.items },
+  ownerId,
+), null, "a marker-only stored report forgery must be rejected");
+assert.equal(parseTrustedStoredReport(
+  { ...schemaValidReport, score: 73 },
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  ownerId,
+), null, "post-sign report mutation must be rejected");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  otherOwnerId,
+), null, "a signed report must not replay across users");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  "v2:source-grounded",
+  trustMetadata.evidence_json,
+  ownerId,
+), null, "legacy marker-only rows must fail closed");
 if (originalSessionSecret === undefined) delete process.env.SESSION_SECRET;
 else process.env.SESSION_SECRET = originalSessionSecret;
 

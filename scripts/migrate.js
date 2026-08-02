@@ -34,6 +34,7 @@ const MIGRATIONS = [
   ["014_atomic_stripe_event_leases", "web/database/migrations/014_atomic_stripe_event_leases.sql"],
   ["015_account_export_database_cron", "web/database/migrations/015_account_export_database_cron.sql"],
   ["016_billing_reversals_and_deletion_safety", "web/database/migrations/016_billing_reversals_and_deletion_safety.sql"],
+  ["017_single_use_report_receipts", "web/database/migrations/017_single_use_report_receipts.sql"],
 ];
 
 function loadLocalEnvironment() {

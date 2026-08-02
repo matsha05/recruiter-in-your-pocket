@@ -8,6 +8,7 @@ import {
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
+import { assertsNegativePresence } from "./report-polarity-policy";
 
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -75,16 +76,23 @@ function isSourceBoundary(value: string, side: "before" | "after") {
       && !(side === "before" ? meaningBearingEdgePattern : trailingMeaningBearingEdgePattern).test(value));
 }
 
-function containsUnicodeBoundedExcerpt(source: string, excerpt: string) {
+function countUnicodeBoundedExcerpts(source: string, excerpt: string) {
+  let count = 0;
   let start = source.indexOf(excerpt);
   while (start !== -1) {
     const before = start === 0 ? "" : Array.from(source.slice(0, start)).at(-1) || "";
     const afterIndex = start + excerpt.length;
     const after = afterIndex === source.length ? "" : Array.from(source.slice(afterIndex)).at(0) || "";
-    if (isSourceBoundary(before, "before") && isSourceBoundary(after, "after")) return true;
+    const afterText = source.slice(afterIndex);
+    const splitsNumericLiteral = /\p{N}$/u.test(excerpt) && /^[.,]\p{N}/u.test(afterText);
+    if (isSourceBoundary(before, "before") && isSourceBoundary(after, "after") && !splitsNumericLiteral) count += 1;
     start = source.indexOf(excerpt, start + 1);
   }
-  return false;
+  return count;
+}
+
+function containsUnicodeBoundedExcerpt(source: string, excerpt: string) {
+  return countUnicodeBoundedExcerpts(source, excerpt) > 0;
 }
 
 export function containsBoundedSourceExcerpt(sourceText: string, excerpt: string) {
@@ -112,7 +120,10 @@ export function resolveUniqueSourceLine(locator: string, sourceText?: string) {
   if (exact.length > 1) return { status: "ambiguous" as const };
   if (!isMeaningfulExcerpt(identity)) return { status: "missing" as const };
 
-  const bounded = lines.filter((line) => containsUnicodeBoundedExcerpt(line, identity));
+  const bounded = lines.flatMap((line) => Array.from(
+    { length: countUnicodeBoundedExcerpts(line, identity) },
+    () => line,
+  ));
   if (bounded.length === 1) return { status: "resolved" as const, line: bounded[0] };
   if (bounded.length > 1) return { status: "ambiguous" as const };
   return { status: "missing" as const };
@@ -131,7 +142,7 @@ const commonCapitalizedWords = new Set([
 
 const metricPattern = /(?:(?:teams?|groups?|organizations?|departments?)\s+of\s+)?[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|[kmb]|x|×))?\+?(?:\s*(?:[-–]\s*)?(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
 const writtenMetricPattern = /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)(?:[- ]person|\s+(?:people|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?))\b/giu;
-const symbolicEntityPattern = /\.NET\b|\bR&D\b|\bA\/B\b/gu;
+const symbolicEntityPattern = /\.NET\b|\bR&D\b|\bA\/B\b|\bC\+\+(?=\W|$)/gu;
 const acronymPattern = /\b[A-Z][A-Z0-9]*(?:[.+#/-][A-Z0-9]+)*\b/gu;
 const titlePhrasePattern = /\b[A-Z][\p{L}\p{M}\d'’.-]*(?:\s+[A-Z][\p{L}\p{M}\d'’.-]*){1,3}\b/gu;
 const singleNamePattern = /\b[A-Z][\p{L}\p{M}\d.+#'’-]{2,}\b/gu;
@@ -168,7 +179,7 @@ const qualifierPatterns: Array<[string, RegExp]> = [
 ];
 
 function normalizedFactDisplay(value: string) {
-  return value.normalize("NFC").replace(/\s+/gu, " ").trim();
+  return value.normalize("NFKC").replace(/\s+/gu, " ").trim();
 }
 
 function addMatches(target: Map<string, ProtectedFact>, kind: string, value: string) {
@@ -178,7 +189,7 @@ function addMatches(target: Map<string, ProtectedFact>, kind: string, value: str
 }
 
 function protectedFacts(value: string) {
-  const withoutPlaceholders = value.replace(/\[[^\]]+\]/gu, "");
+  const withoutPlaceholders = value.normalize("NFKC").replace(/\[[^\]]+\]/gu, "");
   const facts = new Map<string, ProtectedFact>();
 
   for (const match of withoutPlaceholders.matchAll(metricPattern)) addMatches(facts, "metric", match[0].toLowerCase());
@@ -211,7 +222,7 @@ const semanticTokenAliases = new Map([
 ]);
 
 function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
-  let untracked = value.replace(/\[[^\]]+\]/gu, "");
+  let untracked = value.normalize("NFKC").replace(/\[[^\]]+\]/gu, "");
   for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
     untracked = untracked.replace(pattern, " ");
     pattern.lastIndex = 0;
@@ -344,7 +355,7 @@ export function auditNarrativeClaim(
     }
     if (
       options.rejectPositiveSourceAbsence
-      && /\b(?:missing from|not (?:visible|present)(?:\s+in)?)\b/iu.test(claim)
+      && assertsNegativePresence(claim)
       && sourceAnchored.some(({ negated }) => !negated)
     ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
     const hasCompleteUntrackedMatch = sourceAnchored.some(({ facts: sourceFacts }) =>

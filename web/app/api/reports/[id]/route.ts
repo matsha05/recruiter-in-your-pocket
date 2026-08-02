@@ -30,7 +30,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json, evidence_version, job_description_text, target_role, resume_variant")
+      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -49,7 +49,12 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       );
     }
 
-    const trustedReport = parseTrustedStoredReport(data.report_json, data.evidence_version);
+    const trustedReport = parseTrustedStoredReport(
+      data.report_json,
+      data.evidence_version,
+      data.evidence_json,
+      user.id,
+    );
     if (!trustedReport) {
       return NextResponse.json(
         { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report must be rerun before it can be displayed.", report: null },

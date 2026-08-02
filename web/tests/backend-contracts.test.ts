@@ -156,6 +156,10 @@ const workspaceClient = fs.readFileSync(
   path.resolve(process.cwd(), "components/workspace/WorkspaceClient.tsx"),
   "utf8",
 );
+const resumeReviewHook = fs.readFileSync(
+  path.resolve(process.cwd(), "components/workspace/hooks/useResumeReview.ts"),
+  "utf8",
+);
 const resumeModeSection = fs.readFileSync(
   path.resolve(process.cwd(), "components/workspace/ResumeModeSection.tsx"),
   "utf8",
@@ -171,6 +175,7 @@ const generatedReportStore = fs.readFileSync(
 const exportPdfRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/export-pdf/route.ts"), "utf8");
 const reportsRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/reports/route.ts"), "utf8");
 const reportDetailRoute = fs.readFileSync(path.resolve(process.cwd(), "app/api/reports/[id]/route.ts"), "utf8");
+const inngestFunctions = fs.readFileSync(path.resolve(process.cwd(), "lib/inngest/functions.ts"), "utf8");
 assert.match(defaultResumeRoute, /readJsonWithLimit<any>\(request, 128 \* 1024\)/);
 assert.match(defaultResumeRoute, /MAX_RESUME_CHARACTERS = 30_000/);
 assert.match(defaultResumeRoute, /MAX_FILENAME_CHARACTERS = 255/);
@@ -227,21 +232,24 @@ assert.match(generatedReportStore, /from\("reports"\)\.delete\(\)[\s\S]+\.eq\("i
 
 assert.match(exportPdfRoute, /parsePdfExportRequest\(body\)/);
 assert.doesNotMatch(exportPdfRoute, /body\?\.report|normalizeReportForPdf\(body/);
-assert.match(exportPdfRoute, /select\("report_json, evidence_version"\)/);
+assert.match(exportPdfRoute, /select\("report_json, evidence_version, evidence_json"\)/);
 assert.match(exportPdfRoute, /\.eq\("id", exportRequest\.report_id\)[\s\S]+\.eq\("user_id", user\.id\)/);
-assert.match(exportPdfRoute, /parseTrustedStoredReport\(stored\.report_json, stored\.evidence_version\)/);
+assert.match(exportPdfRoute, /parseTrustedStoredReport\(stored\.report_json, stored\.evidence_version, stored\.evidence_json, user\.id\)/);
 assert.ok(
   exportPdfRoute.indexOf("await supabase.auth.getUser()") < exportPdfRoute.indexOf("isDevelopmentPaywallBypassEnabled()"),
   "development paywall bypass must never bypass report ownership authentication",
 );
 assert.match(reportsRoute, /ResumeFeedbackResponseSchema\.safeParse\(reportWithoutReceipt\)/);
-assert.match(reportsRoute, /verifyValidatedReportReceipt\(parsed\.data, receipt\)/);
-assert.match(reportDetailRoute, /parseTrustedStoredReport\(data\.report_json, data\.evidence_version\)/);
+assert.match(reportsRoute, /validatedReportReceiptHash\(parsed\.data, receipt\)/);
+assert.match(generatedReportStore, /anonymous_receipt_hash:\s*input\.receiptHash/);
+assert.match(generatedReportStore, /error\?\.code === "23505"/);
+assert.match(reportDetailRoute, /parseTrustedStoredReport\([\s\S]+data\.evidence_json,[\s\S]+user\.id/);
 assert.match(reportDetailRoute, /report:\s*\{ \.\.\.trustedReport, report_id: reportId \}/);
 assert.match(resumeProviderMessages, /effectiveJobDescription\.promptBlock/);
 assert.match(resumeProviderMessages, /systemPrompt \+= INJECTION_RESISTANCE_SUFFIX/);
-assert.match(workspaceClient, /Analytics\.reportStarted\(hasJobDescription\)/);
-assert.match(workspaceClient, /has_jd:\s*hasJobDescription/);
+assert.match(resumeReviewHook, /Analytics\.reportStarted\(hasJobDescription\)/);
+assert.match(resumeReviewHook, /has_jd:\s*hasJobDescription/);
+assert.match(resumeReviewHook, /attachStoredReportId\(current, result\.reportId\)/);
 assert.match(resumeModeSection, /hasJobDescription=\{hasEffectiveJobDescriptionValue\(jobDescription\)\}/);
 
 assert.match(
@@ -249,5 +257,6 @@ assert.match(
   /reservationCommitted = true;[\s\S]+if \(accessReservation && !reservationCommitted\)/,
   "the non-stream endpoint must not refund a committed report after a delivery error",
 );
+assert.doesNotMatch(inngestFunctions, /pdf\/generate\.requested|generatePdfBuffer|event\.data\.report/);
 
 console.log("backend-contracts tests passed");

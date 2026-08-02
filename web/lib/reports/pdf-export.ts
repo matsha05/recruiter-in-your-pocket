@@ -193,3 +193,9 @@ export function buildPdfExportRequest(report: unknown): { report_id: string } | 
   const candidate = report as { report_id?: unknown; id?: unknown };
   return parsePdfExportRequest({ report_id: candidate.report_id || candidate.id });
 }
+
+export function attachStoredReportId<T>(report: T, reportId: unknown): T {
+  const parsed = parsePdfExportRequest({ report_id: reportId });
+  if (!parsed || !report || typeof report !== "object") return report;
+  return { ...report, report_id: parsed.report_id };
+}

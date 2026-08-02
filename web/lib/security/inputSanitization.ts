@@ -13,9 +13,9 @@
 // Known injection patterns to detect
 const INJECTION_PATTERNS = [
     // Direct instruction overrides
-    /ignore\s+(all\s+)?(?:previous|prior|earlier|above)\s+instructions?/i,
-    /forget\s+(all\s+)?(?:previous|prior|earlier)\s+instructions?/i,
-    /disregard\s+(all\s+)?(?:previous|prior|earlier)\s+instructions?/i,
+    /ignore\s+(all\s+)?(?:previous|prior|earlier|above)\s+(?:system\s+)?instructions?/i,
+    /forget\s+(all\s+)?(?:previous|prior|earlier)\s+(?:system\s+)?instructions?/i,
+    /disregard\s+(all\s+)?(?:previous|prior|earlier)\s+(?:system\s+)?instructions?/i,
 
     // Role/persona hijacking
     /you\s+are\s+now\s+a?\s*(different|new)/i,
@@ -46,7 +46,7 @@ const INJECTION_PATTERNS = [
 
 // Patterns that look like embedded JSON objects (potential schema injection)
 const JSON_INJECTION_PATTERN = /\{\s*"[a-zA-Z_]+"\s*:\s*[^}]+\}/g;
-const ZERO_WIDTH_FORMAT_CONTROLS = /[\u200B-\u200D\u2060\uFEFF]/gu;
+const ZERO_WIDTH_FORMAT_CONTROLS = /\p{Cf}/gu;
 
 function normalizeForInjectionScan(text: string) {
     return text.normalize("NFKC").replace(ZERO_WIDTH_FORMAT_CONTROLS, "");

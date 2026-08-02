@@ -440,6 +440,20 @@ assert.ok(
 );
 assert.doesNotMatch(streamRoute, /validatedChunks|type:\s*"chunk"/);
 assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
+for (const source of [feedbackRoute, streamRoute]) {
+  const providerStarted = source.indexOf("await markGenerationProviderCallStarted");
+  const anonymousCommitted = source.indexOf('entitlementKind === "anonymous_free"', providerStarted);
+  assert.ok(
+    providerStarted >= 0 && anonymousCommitted > providerStarted,
+    "anonymous post-provider failures must be marked consumed before validation or delivery",
+  );
+  assert.match(source, /attempt_consumed:\s*reservationCommitted/);
+}
+assert.doesNotMatch(
+  streamRoute,
+  /new Error\("The report did not pass its evidence check\. Your report credit was restored/,
+  "post-provider validation errors must not claim an anonymous attempt was restored",
+);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");

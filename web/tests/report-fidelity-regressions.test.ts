@@ -26,6 +26,7 @@ for (const sentinel of [
 }
 assert.equal(isAcceptedAbsenceMarker("No education section present", hubspotSource, "Education"), true);
 assert.equal(isAcceptedAbsenceMarker("No education section present", hubspotSource, "Summary"), false);
+assert.equal(containsExactEvidence("1.0", "1"), false, "numeric evidence must not split a decimal literal");
 
 for (const [source, excerpt] of [
   ["Built C＋＋ services", "C"],
@@ -57,6 +58,19 @@ for (const attempt of ["initial", "repair"]) {
   );
 }
 assert.ok(checkRewriteGrounding(ambiguousReport.rewrites, ambiguousSource).some(({ passed }) => !passed));
+const flattenedDuplicate = `${hubspotSource} ${hubspotSource}`;
+const flattenedDuplicateReport: any = structuredClone(schemaValidReport);
+flattenedDuplicateReport.rewrites = [{
+  label: "Clarity",
+  original: hubspotSource,
+  better: "Created customer journeys using HubSpot.",
+  enhancement_note: "Add [measurable result].",
+}];
+assert.throws(
+  () => validateResumeModelPayload(flattenedDuplicateReport, flattenedDuplicate, { forceGrounding: true }),
+  /ambiguous source evidence/,
+  "two bounded occurrences on one flattened line must remain ambiguous",
+);
 
 for (const source of [
   "Built customer billing workflows in HubSpot.",
@@ -73,8 +87,13 @@ for (const source of [
 
 for (const enhancementNote of [
   "Add that customer workflows are missing from HubSpot.",
+  "Add that customer workflows are missing in HubSpot.",
   "Add that customer workflows are not visible in HubSpot.",
   "Add that customer workflows are not present in HubSpot.",
+  "Add that customer workflows are unclear in HubSpot.",
+  "Add that customer workflows are not clear in HubSpot.",
+  "Add that customer workflows are ｍｉｓｓｉｎｇ ｉｎ HubSpot.",
+  "Add that customer work\u2063flows are unclear in HubSpot.",
 ]) {
   const report: any = structuredClone(schemaValidReport);
   report.rewrites = [{
@@ -82,6 +101,55 @@ for (const enhancementNote of [
   }];
   assert.ok(auditReportNarrative(report, hubspotSource, hubspotJobDescription)
     .some(({ path }) => path === "rewrites[0].enhancement_note"), enhancementNote);
+}
+
+const safePlaceholderReport: any = structuredClone(schemaValidReport);
+safePlaceholderReport.rewrites = [{
+  label: "Clarity",
+  original: hubspotSource,
+  better: "Created customer journeys using HubSpot.",
+  enhancement_note: "Add [missing scope] or [verified result].",
+}];
+assert.equal(
+  auditReportNarrative(safePlaceholderReport, hubspotSource, hubspotJobDescription)
+    .some(({ path }) => path === "rewrites[0].enhancement_note"),
+  false,
+  "explicit neutral placeholders must remain valid advice",
+);
+
+for (const factualPlaceholder of [
+  "onboarding revenue increase",
+  "customer onboarding completed",
+]) {
+  for (const field of ["enhancement_note", "better"] as const) {
+    const report: any = structuredClone(schemaValidReport);
+    report.rewrites = [{
+      label: "Clarity",
+      original: hubspotSource,
+      better: "Created customer journeys using HubSpot.",
+      enhancement_note: "Add [measurable result].",
+    }];
+    report.rewrites[0][field] = field === "better"
+      ? `Created customer journeys using HubSpot [${factualPlaceholder}].`
+      : `Add [${factualPlaceholder}].`;
+    assert.throws(
+      () => validateResumeModelPayload(report, hubspotSource, {
+        forceGrounding: true,
+        jobDescription: hubspotJobDescription,
+      }),
+      /evidence grounding contract/,
+      `${field} must reject [${factualPlaceholder}]`,
+    );
+  }
+}
+
+for (const unsupportedWidthFact of ["＄９Ｍ", "Ｃ＋＋", "４５％"]) {
+  const candidate = `Created customer journeys using HubSpot and ${unsupportedWidthFact}.`;
+  assert.equal(
+    compareSourceBoundRewrite({ sourceText: hubspotSource, sourceLocator: hubspotSource, candidate }).safe,
+    false,
+    `NFKC fact ${unsupportedWidthFact} must not bypass rewrite fidelity`,
+  );
 }
 
 for (const field of ["enhancement_note", "better"] as const) {

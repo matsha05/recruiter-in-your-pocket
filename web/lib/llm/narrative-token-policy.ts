@@ -2,7 +2,7 @@ export type NarrativeInterpretationContext = "observation" | "missing" | "advice
 export type NarrativeSourcePolarity = "positive" | "negative" | "any";
 
 export function normalizeNarrativeToken(token: string) {
-  const lower = token.normalize("NFC").toLocaleLowerCase();
+  const lower = token.normalize("NFKC").toLocaleLowerCase();
   if (lower.endsWith("ies") && lower.length > 4) return `${lower.slice(0, -3)}y`;
   if (
     lower.endsWith("s")
