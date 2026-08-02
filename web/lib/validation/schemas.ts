@@ -321,7 +321,7 @@ export const ResumeFeedbackResponseSchema = z.object({
             company_stage_fit: z.string()
         }),
         positioning_suggestion: z.string()
-    }).passthrough(),
+    }),
     ideas: z.object({
         questions: z.array(z.object({
             question: z.string().min(1),
@@ -338,7 +338,7 @@ export const ResumeFeedbackResponseSchema = z.object({
             why: z.string().min(1),
         })).length(5),
     }),
-}).passthrough().transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
+}).transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
 
 /**

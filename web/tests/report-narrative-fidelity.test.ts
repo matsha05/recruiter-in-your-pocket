@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { auditReportNarrative } from "../lib/llm/source-fidelity";
 import { normalizeReportForPdf } from "../lib/reports/pdf-export";
@@ -68,6 +69,103 @@ assert.equal(
   controlGrounding.ok,
   true,
   `the control report must be grounded: ${JSON.stringify(controlGrounding.inventedSpecifics)}`,
+);
+
+const unmodeledPdfClaim = "$10M Salesforce revenue growth for 10,000 customers.";
+const reportWithUnknownModelFields = {
+  ...structuredClone(schemaValidReport),
+  missing_wins: [unmodeledPdfClaim],
+  generated_on: "January 1, 1900",
+  unknown_top_level: unmodeledPdfClaim,
+  top_fixes: [{
+    ...structuredClone(schemaValidReport.top_fixes[0]),
+    text: unmodeledPdfClaim,
+  }],
+  job_alignment: {
+    ...structuredClone(schemaValidReport.job_alignment),
+    legacy_banner: unmodeledPdfClaim,
+  },
+};
+const strippedUnknownSchema = ResumeFeedbackResponseSchema.safeParse(reportWithUnknownModelFields);
+assert.equal(strippedUnknownSchema.success, true, "known report fields must survive unknown-field stripping");
+for (const unknownField of ["missing_wins", "generated_on", "unknown_top_level"]) {
+  assert.equal(unknownField in strippedUnknownSchema.data, false, `${unknownField} must not survive model validation`);
+}
+assert.equal("text" in strippedUnknownSchema.data.top_fixes[0], false, "legacy top-fix text must be stripped");
+assert.equal("legacy_banner" in strippedUnknownSchema.data.job_alignment, false, "unknown nested model copy must be stripped");
+assert.equal(strippedUnknownSchema.data.ideas.questions.length, 5, "the supported questions surface must remain compatible");
+assert.equal(
+  assertReportGrounding(strippedUnknownSchema.data, hubspotSource, hubspotJobDescription).ok,
+  true,
+  "stripping unknown copy must preserve a grounded report",
+);
+
+for (const candidate of [reportWithUnknownModelFields, strippedUnknownSchema.data]) {
+  const normalized = normalizeReportForPdf(candidate);
+  assert.ok(normalized, "the supported PDF report must still normalize");
+  assert.equal("missing_wins" in normalized!, false);
+  assert.equal("generated_on" in normalized!, false);
+  const html = renderReportHtml(normalized!);
+  assert.equal(html.includes(unmodeledPdfClaim), false, "unmodeled copy must never reach PDF HTML");
+  assert.equal(html.includes("January 1, 1900"), false, "the PDF date must be derived server-side");
+  assert.ok(html.includes(schemaValidReport.next_steps[0]), "supported next steps must remain printable");
+}
+
+const noJobDescriptionPayload = structuredClone(schemaValidReport);
+noJobDescriptionPayload.job_alignment.jd_match_score = 0;
+noJobDescriptionPayload.job_alignment.jd_match_summary = "No job description provided.";
+noJobDescriptionPayload.job_alignment.jd_keywords = { matched: [], missing: [], match_count: 0, total_count: 0 };
+noJobDescriptionPayload.job_alignment.missing = ["No target-role requirements were provided for comparison"];
+const noJobDescriptionResume = [
+  "SUMMARY",
+  "Customer operations profile.",
+  "WORK EXPERIENCE",
+  hubspotSource,
+  "SKILLS",
+  "HubSpot",
+  "EDUCATION",
+  "State University",
+  "Growth-stage company.",
+  "Show HubSpot.",
+].join("\n");
+const initialNoJdValidation = validateResumeModelPayload(
+  structuredClone(noJobDescriptionPayload),
+  noJobDescriptionResume,
+  { forceGrounding: true },
+);
+assert.equal(initialNoJdValidation.job_alignment.jd_match_summary, "No job description provided.");
+assert.deepEqual(
+  initialNoJdValidation.job_alignment.missing,
+  ["No target-role requirements were provided for comparison"],
+);
+const repairShapedNoJdValidation = validateResumeModelPayload(
+  structuredClone(initialNoJdValidation),
+  noJobDescriptionResume,
+  { forceGrounding: true },
+);
+assert.equal(repairShapedNoJdValidation.job_alignment.jd_match_summary, "No job description provided.");
+assert.deepEqual(repairShapedNoJdValidation.job_alignment.jd_keywords, {
+  matched: [],
+  missing: [],
+  match_count: 0,
+  total_count: 0,
+});
+
+const noJdAliasPayload = structuredClone(noJobDescriptionPayload);
+noJdAliasPayload.job_alignment.jd_match_summary = "No JD provided.";
+assert.throws(
+  () => validateResumeModelPayload(noJdAliasPayload, noJobDescriptionResume, { forceGrounding: true }),
+  /evidence grounding contract/,
+  "a no-JD alias must not receive the structural absence exemption",
+);
+assert.throws(
+  () => validateResumeModelPayload(
+    structuredClone(noJobDescriptionPayload),
+    noJobDescriptionResume,
+    { forceGrounding: true, jobDescription: hubspotJobDescription },
+  ),
+  /evidence grounding contract/,
+  "the no-JD sentinel must not be exempt when a sanitized JD exists",
 );
 
 const assertKeywordRejected = (

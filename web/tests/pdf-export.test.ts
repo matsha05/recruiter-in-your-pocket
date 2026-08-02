@@ -74,7 +74,9 @@ assert.equal(canonicalCeiling?.score, 99, "first-read score should never display
 assert.equal(canonicalCeiling?.score_label, "Clear and specific", "model labels must not override canonical bands");
 assert.deepEqual(canonicalCeiling?.subscores, { story: 99, impact: 99, clarity: 99, readability: 99 });
 
-const pdfRendererSource = readFileSync(path.join(process.cwd(), "lib", "backend", "pdf.ts"), "utf8");
+const pdfRendererSource = ["pdf.ts", "pdf-styles.ts"]
+  .map((fileName) => readFileSync(path.join(process.cwd(), "lib", "backend", fileName), "utf8"))
+  .join("\n");
 assert.match(pdfRendererSource, /Instrument Sans/);
 assert.match(pdfRendererSource, /Space Grotesk Variable/);
 assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsreader/);

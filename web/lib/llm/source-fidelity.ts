@@ -385,6 +385,22 @@ function jobDescriptionKeywordKind(path: string) {
   return path.match(/^job_alignment\.jd_keywords\.(matched|missing)\[\d+\]$/u)?.[1];
 }
 
+function isExactNoJobDescriptionState(report: any, path: string, value: string, jobDescription?: string) {
+  if (jobDescription?.trim()) return false;
+  const alignment = report?.job_alignment;
+  const keywords = alignment?.jd_keywords;
+  const isMandatedState = alignment?.jd_match_score === 0
+    && alignment?.jd_match_summary === "No job description provided."
+    && Array.isArray(keywords?.matched) && keywords.matched.length === 0
+    && Array.isArray(keywords?.missing) && keywords.missing.length === 0
+    && keywords?.match_count === 0 && keywords?.total_count === 0;
+  if (!isMandatedState) return false;
+  if (path === "job_alignment.jd_match_summary") return value === "No job description provided.";
+  return path === "job_alignment.missing[0]"
+    && value === "No target-role requirements were provided for comparison"
+    && alignment.missing?.length === 1;
+}
+
 const structuralReportVocabulary = {
   section: new Set([
     "Certifications", "Education", "Experience", "Professional Experience", "Projects",
@@ -423,6 +439,7 @@ function isAllowedStructuralReportValue(path: string, value: string) {
 
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
+    if (isExactNoJobDescriptionState(report, path, value, jobDescription)) return [];
     if (isAllowedStructuralReportValue(path, value)) return [];
     const keywordKind = jobDescriptionKeywordKind(path);
     if (keywordKind) {

@@ -9,10 +9,8 @@ export type ReportForPdf = {
   next_steps: string[];
   score_label?: string;
   score_comment_short?: string;
-  generated_on?: string;
-  missing_wins?: string[];
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
-  top_fixes?: Array<{ fix?: string; text?: string; why?: string }>;
+  top_fixes?: Array<{ fix?: string; why?: string }>;
   job_alignment?: {
     positioning_suggestion?: string;
     role_fit?: {
@@ -68,11 +66,10 @@ function asTopFixes(value: unknown): NonNullable<ReportForPdf["top_fixes"]> {
     if (!item || typeof item !== "object") return [];
 
     const fix = asTrimmedString((item as { fix?: unknown }).fix) || undefined;
-    const text = asTrimmedString((item as { text?: unknown }).text) || undefined;
     const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
 
-    if (!fix && !text && !why) return [];
-    return [{ fix, text, why }];
+    if (!fix && !why) return [];
+    return [{ fix, why }];
   });
 }
 
@@ -151,7 +148,7 @@ function deriveNextSteps(report: Record<string, unknown>, topFixes: NonNullable<
   if (explicitNextSteps.length > 0) return explicitNextSteps;
 
   const fromTopFixes = topFixes
-    .map((fix) => fix.fix || fix.text)
+    .map((fix) => fix.fix)
     .filter((item): item is string => Boolean(item));
   if (fromTopFixes.length > 0) return fromTopFixes;
 
@@ -175,8 +172,6 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     next_steps: deriveNextSteps(candidate, top_fixes),
     score_label: getScoreLabel(score),
     score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
-    generated_on: asTrimmedString(candidate.generated_on) || undefined,
-    missing_wins: asStringArray(candidate.missing_wins),
     subscores: asSubscores(candidate.subscores),
     top_fixes,
     job_alignment: asJobAlignment(candidate.job_alignment),

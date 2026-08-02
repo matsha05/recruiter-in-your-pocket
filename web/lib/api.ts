@@ -19,7 +19,6 @@ export type ResumeFeedbackResponse = {
       underplayed?: string[];
       missing?: string[];
     };
-    missing_wins?: string[];
     next_steps?: string[];
   };
   free_uses_remaining?: number;
