@@ -24,6 +24,28 @@ const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B
 You will coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
 
+const GENERATED_SOURCE_LINE = "Reduced rework by creating clearer launch checklists and decision logs.";
+const GROUNDED_GENERATED_REPORT = {
+  ...SAMPLE_REPORT,
+  top_fixes: SAMPLE_REPORT.top_fixes.map((fix: Record<string, unknown>, index: number) => index === 0
+    ? {
+        ...fix,
+        fix: "Add the verified outcome to the rework line.",
+        evidence: { excerpt: GENERATED_SOURCE_LINE, section: "Work Experience" },
+        section_ref: "Work Experience",
+      }
+    : fix),
+  rewrites: [
+    {
+      label: "Outcome",
+      original: GENERATED_SOURCE_LINE,
+      better: "Reduced rework by creating clearer launch checklists and decision logs; verified outcome: [verified outcome].",
+      enhancement_note: "Add only the outcome you can verify from this work.",
+    },
+    ...SAMPLE_REPORT.rewrites,
+  ],
+};
+
 async function openPasteMode(page: Page) {
   await page.goto("/workspace");
   await page.getByTestId("workspace-paste-mode").click();
@@ -158,16 +180,20 @@ test.describe("launch red-team journeys", () => {
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
 
     const firstDraft = firstFix.getByLabel("Edit suggested line 1");
-    await firstFix.getByRole("button", { name: "Use a factual no-number draft" }).click();
+    await firstFix.getByRole("button", { name: "Use a qualitative starting point" }).click();
     await expect(firstDraft).toHaveValue(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.",
     );
     await expect(firstFix.getByText("Guidance only", { exact: true })).toBeVisible();
-    await expect(firstFix.getByRole("button", { name: /copy/i })).toHaveCount(0);
+    const unsafeCopy = firstFix.getByRole("button", { name: "Copy unavailable until this draft matches the source line" });
+    await expect(unsafeCopy).toBeVisible();
+    await expect(unsafeCopy).toBeDisabled();
+    await expect(unsafeCopy).toHaveAttribute("aria-describedby", "fix-1-copy-guidance");
+    await expect(firstFix.locator("#fix-1-copy-guidance")).toContainText("not faithful enough to the source line");
     await firstDraft.fill(
       "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires, improving results 45%.",
     );
-    await expect(firstFix.getByRole("button", { name: /copy/i })).toHaveCount(0);
+    await expect(unsafeCopy).toBeDisabled();
 
     const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
     await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
@@ -177,10 +203,11 @@ test.describe("launch red-team journeys", () => {
     await firstFix.getByLabel("Fact for verified outcome in fix 1").fill("28% shorter ramp time");
     await expect(keepFacts).toBeEnabled();
     await keepFacts.click();
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(firstFix.getByText("Facts to preserve", { exact: true })).toBeVisible();
     await expect(firstDraft).toHaveValue(
       "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
     );
+    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
     await firstDraft.fill(
       "Redesigned 30-day program onboarding for 18 weekly hires across Salesforce, Support, and Operations, improving 28% shorter ramp time.",
     );
@@ -197,11 +224,19 @@ test.describe("launch red-team journeys", () => {
     const unquantifiedFix = page.locator("#section-fix-3");
     const unquantifiedDraft = unquantifiedFix.getByLabel("Edit suggested line 3");
     await unquantifiedFix.getByRole("button", { name: "Edit" }).click();
-    await expect(unquantifiedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    const unverifiedSummaryCopy = unquantifiedFix.getByRole("button", {
+      name: "Copy unavailable until this draft matches the source line",
+    });
+    await expect(unverifiedSummaryCopy).toBeVisible();
+    await expect(unverifiedSummaryCopy).toBeDisabled();
+    await expect(unverifiedSummaryCopy).toHaveAttribute("aria-describedby", "fix-3-copy-guidance");
+    await expect(unquantifiedFix.locator("#fix-3-copy-guidance")).toContainText(
+      "not faithful enough to the source line",
+    );
     await unquantifiedDraft.fill(
       "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and 45% calmer execution.",
     );
-    await expect(unquantifiedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(unverifiedSummaryCopy).toBeDisabled();
 
     await sampleCta.click();
     await expect(page).toHaveURL(/\/workspace$/);
@@ -239,6 +274,30 @@ test.describe("launch red-team journeys", () => {
   }
 
   test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
+    let reportCompleted = false;
+
+    await page.route("**/api/free-status", async (route) => {
+      const freeUsesRemaining = reportCompleted ? 0 : 1;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          free_uses_left: freeUsesRemaining,
+          free_uses_remaining: freeUsesRemaining,
+          source: "test",
+        }),
+      });
+    });
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      reportCompleted = true;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/x-ndjson",
+        body: `${JSON.stringify({ type: "complete", data: GROUNDED_GENERATED_REPORT })}\n`,
+      });
+    });
+
     await runAnonymousReview(page, "198.51.100.4");
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
@@ -250,6 +309,18 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
     await expect(purchaseDecision).toContainText("One payment · 30 days · no automatic renewal.");
 
+    const feedback = page.getByTestId("beta-feedback");
+    await expect(feedback).toContainText("Your first complete report is free—no card.");
+    await expect(feedback).toContainText("repeat use across browsers or shared networks");
+    await expect(feedback).toContainText("daily beta capacity");
+    await expect(feedback).not.toContainText("monthly eligibility window");
+    await expect(feedback).not.toContainText("per calendar month");
+    await expect(feedback).not.toContainText("paid beta");
+    await expect(feedback).toContainText("Your resume is never attached.");
+    const feedbackLink = feedback.getByRole("link", { name: "Send a two-minute note", exact: true });
+    await expect(feedbackLink).toHaveAttribute("href", /subject=Beta%20report%20feedback/);
+    await expect(feedbackLink).not.toHaveAttribute("href", /Paid/);
+
     const firstGeneratedFix = page.locator("#section-fix-1");
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
     const generatedFactCount = await generatedFactInputs.count();
@@ -259,6 +330,7 @@ test.describe("launch red-team journeys", () => {
         await expect(initialCopyGate).toBeDisabled();
       } else {
         await expect(firstGeneratedFix.getByText("Guidance only", { exact: true })).toBeVisible();
+        await expect(firstGeneratedFix.getByRole("button", { name: "Copy unavailable until this draft matches the source line" })).toBeDisabled();
       }
       for (let index = 0; index < generatedFactCount; index += 1) {
         await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);

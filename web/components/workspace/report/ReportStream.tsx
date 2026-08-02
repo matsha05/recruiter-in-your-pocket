@@ -24,7 +24,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
-import { JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "@/lib/billing/pricing";
+import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "@/lib/billing/pricing";
 import {
     assessFallbackDraftSafety,
     buildIndependentQuestionPresentation,
@@ -36,6 +36,7 @@ import styles from "./ReportStream.module.css";
 
 interface ReportStreamProps {
     report: ReportData;
+    resumeText?: string;
     className?: string;
     isSample?: boolean;
     freeUsesRemaining?: number;
@@ -60,7 +61,7 @@ const fixTrace = [
 ];
 
 const BETA_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=${encodeURIComponent(
-    "Paid beta report feedback",
+    "Beta report feedback",
 )}&body=${encodeURIComponent(
     [
         "What felt immediately useful?",
@@ -131,12 +132,14 @@ function FixCanvas({
     fix,
     rewrite,
     index,
+    resumeText,
     locked,
     onUnlock,
 }: {
     fix: Fix;
     rewrite?: Rewrite;
     index: number;
+    resumeText?: string;
     locked?: boolean;
     onUnlock?: () => void;
 }) {
@@ -161,35 +164,39 @@ function FixCanvas({
     const hasAnyCandidateFact = answer.trim().length > 0
         || placeholderKeys.some((key) => factValues[key]?.trim());
     const hasUnresolvedFactPlaceholders = /\[[^\]]+\]/.test(draft);
+    const verifiedFacts = useMemo(() => {
+        if (!answerApplied) return [];
+        const facts = placeholderKeys.map((key) => ({ key, value: factValues[key]?.trim() || "" }))
+            .filter((fact) => fact.value.length > 0);
+        if (answer.trim()) facts.push({ key: "candidate detail", value: answer.trim() });
+        return facts;
+    }, [answer, answerApplied, factValues, placeholderKeys]);
     const fallbackSafety = useMemo(
-        () => rewrite && !usingQualitativeFallback
-            ? { copyable: true, issues: [] }
-            : assessFallbackDraftSafety(draftSource, draft),
-        [draft, draftSource, rewrite, usingQualitativeFallback],
+        () => assessFallbackDraftSafety(draftSource, draft, resumeText || draftSource, verifiedFacts),
+        [draft, draftSource, resumeText, verifiedFacts],
     );
     const allAppliedFactsPresent = usingQualitativeFallback || (requiresCandidateFacts
         ? answerApplied
             && placeholderKeys.every((key) => confirmedFactAppearsIn(draft, factValues[key] || ""))
         : !answerApplied || confirmedFactAppearsIn(draft, answer));
-    const allowedNumberTokens = new Set(
-        `${draftSource} ${answerApplied ? answer : ""} ${answerApplied ? placeholderKeys.map((key) => factValues[key] || "").join(" ") : ""}`
-            .match(/\d[\d,.]*(?:%|[kmb])?/gi) || [],
-    );
-    const draftNumberTokens = draft.match(/\d[\d,.]*(?:%|[kmb])?/gi) || [];
-    const hasUnsupportedNumber = draftNumberTokens.some((token) => !allowedNumberTokens.has(token));
-    const copyBlocked = hasUnresolvedFactPlaceholders
+    const copyNeedsFacts = hasUnresolvedFactPlaceholders
         || (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback)
-        || !allAppliedFactsPresent
-        || hasUnsupportedNumber
-        || !fallbackSafety.copyable;
+        || !allAppliedFactsPresent;
+    const copyBlocked = copyNeedsFacts || !fallbackSafety.copyable;
+    const copyGuidanceId = `fix-${index + 1}-copy-guidance`;
+    const copyButtonLabel = copyBlocked
+        ? copyNeedsFacts
+            ? "Add verified facts before copying"
+            : "Copy unavailable until this draft matches the source line"
+        : copied
+            ? "Copied"
+            : "Copy suggested line";
     const traceProgress = answerApplied || usingQualitativeFallback
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
         : hasAnyCandidateFact ? 68 : 50;
     let copyGuidance = "A working draft based on the facts already in your resume.";
-    if (hasUnsupportedNumber) {
-        copyGuidance = "A number in this draft is not in the facts you confirmed. Remove it or update the matching fact before copying.";
-    } else if (hasUnresolvedFactPlaceholders && !answerApplied) {
-        copyGuidance = "We don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.";
+    if (hasUnresolvedFactPlaceholders && !answerApplied) {
+        copyGuidance = "We don’t invent accomplishments. Add every supporting fact below or use the qualitative starting point.";
     } else if (hasUnresolvedFactPlaceholders) {
         copyGuidance = "Your supporting facts are saved. Replace every bracket with the matching fact before copying.";
     } else if (!allAppliedFactsPresent) {
@@ -199,7 +206,7 @@ function FixCanvas({
     } else if (!fallbackSafety.copyable) {
         copyGuidance = "Guidance only—this draft is not faithful enough to the source line for one-click copy. Keep the same work, ownership, and supported outcome as you edit.";
     } else if (usingQualitativeFallback) {
-        copyGuidance = "A factual no-number alternative, ready to adapt without inventing scale or results.";
+        copyGuidance = "A no-number starting point for you to verify and adapt without inventing scale or results.";
     } else if (answerApplied) {
         copyGuidance = "Your verified fact is preserved. Edit the sentence until it sounds like you.";
     }
@@ -363,7 +370,7 @@ function FixCanvas({
                                     </Button>
                                     {qualitativeFallback ? (
                                         <Button type="button" variant="ghost" size="sm" className="min-h-11 justify-self-start px-0 text-left text-brand hover:bg-transparent hover:text-brand/80" onClick={handleUseQualitativeFallback}>
-                                            Use a factual no-number draft
+                                            Use a qualitative starting point
                                         </Button>
                                     ) : null}
                                 </div>
@@ -393,7 +400,7 @@ function FixCanvas({
                                 <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">
                                     {!fallbackSafety.copyable ? "Guidance only" : "Try this"}
                                 </p>
-                                <p className="mt-1 text-xs text-muted-foreground">{copyGuidance}</p>
+                                <p id={copyGuidanceId} className="mt-1 text-xs text-muted-foreground">{copyGuidance}</p>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
@@ -403,22 +410,30 @@ function FixCanvas({
                                 >
                                     <PencilSimple className="size-4" /> {editing ? "Done" : "Edit"}
                                 </button>
-                                {fallbackSafety.copyable ? (
-                                    <button
-                                        type="button"
-                                        onClick={handleCopy}
-                                        disabled={copyBlocked}
-                                        aria-label={copyBlocked ? "Add verified facts before copying" : copied ? "Copied" : "Copy suggested line"}
-                                        className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
-                                    >
-                                        {copyBlocked
+                                <button
+                                    type="button"
+                                    onClick={handleCopy}
+                                    disabled={copyBlocked}
+                                    aria-label={copyButtonLabel}
+                                    aria-describedby={copyBlocked ? copyGuidanceId : undefined}
+                                    title={copyBlocked ? copyGuidance : undefined}
+                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60 disabled:opacity-100"
+                                >
+                                    {copyBlocked
+                                        ? copyNeedsFacts
                                             ? <BracketsAngle className="size-4" />
-                                            : copied
-                                                ? <Check className="size-4" weight="bold" />
-                                                : <Copy className="size-4" />}
-                                        {copyBlocked ? "Add facts to copy" : copied ? "Copied" : "Copy"}
-                                    </button>
-                                ) : null}
+                                            : <LockKey className="size-4" />
+                                        : copied
+                                            ? <Check className="size-4" weight="bold" />
+                                            : <Copy className="size-4" />}
+                                    {copyBlocked
+                                        ? copyNeedsFacts
+                                            ? "Add facts to copy"
+                                            : "Copy unavailable"
+                                        : copied
+                                            ? "Copied"
+                                            : "Copy"}
+                                </button>
                             </div>
                         </div>
                         {answerApplied ? (
@@ -459,6 +474,7 @@ function FixCanvas({
 
 export function ReportStream({
     report,
+    resumeText,
     className,
     isSample = false,
     freeUsesRemaining = 1,
@@ -588,6 +604,7 @@ export function ReportStream({
                             fix={fix}
                             rewrite={rewrite}
                             index={index}
+                            resumeText={resumeText}
                             locked={isGated && index > 0}
                             onUnlock={handleUnlock}
                         />
@@ -745,7 +762,7 @@ export function ReportStream({
                 </section>
             )}
 
-            <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]">
+            <details id="section-score" open className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
                         <span className="text-sm font-semibold text-foreground">How the clarity summary breaks down</span>
@@ -756,7 +773,9 @@ export function ReportStream({
                 <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
                     <div>
                         <p className="font-display text-5xl riyp-weight-520 leading-none text-foreground">{report.score ?? "—"}</p>
-                        <p className="mt-2 text-xs text-muted-foreground">Not a prediction of interviews or offers.</p>
+                        <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                            A document-clarity read across the four signals shown here—not a prediction of interviews or offers, and not a claim that they form a simple average.
+                        </p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
                         {Object.entries(report.subscores || {}).map(([label, score]) => (
@@ -806,7 +825,7 @@ export function ReportStream({
             )}
 
             {!isSample && (
-                <section className={styles.feedbackSection} aria-labelledby="beta-feedback-title">
+                <section className={styles.feedbackSection} aria-labelledby="beta-feedback-title" data-testid="beta-feedback">
                     <div className={styles.feedbackRule} aria-hidden="true" />
                     <div className={styles.feedbackContent}>
                         <div>
@@ -815,7 +834,7 @@ export function ReportStream({
                                 What did this report get right—or miss?
                             </h2>
                             <p className={styles.feedbackCopy}>
-                                This is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
+                                This beta is small, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
                             </p>
                         </div>
                         <div className={styles.feedbackAction}>
@@ -825,6 +844,7 @@ export function ReportStream({
                                     <EnvelopeSimple className="ml-1 size-4 text-brand" weight="bold" />
                                 </a>
                             </Button>
+                            <p className={styles.feedbackNote}>{FREE_REPORT_ENTITLEMENT.promise} {FREE_REPORT_ENTITLEMENT.boundary}</p>
                             <p className={styles.feedbackNote}>Three prompts open in your email. Your resume is never attached.</p>
                         </div>
                     </div>

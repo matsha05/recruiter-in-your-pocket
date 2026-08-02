@@ -123,7 +123,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     useEffect(() => {
         const restored = takeCheckoutWorkspaceState();
         if (!restored) return;
-        setResumeText(restored.resumeText || "");
+        const restoredResumeText = restored.resumeText || "";
+        setResumeText(restoredResumeText);
         setJobDescription(restored.jobDescription || "");
         setReport(restored.report);
         setSkipSample(true);
@@ -275,21 +276,16 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 jobDescription || undefined,
                 (partialJson, partialReport) => {
                     if (partialReport) {
-                        setReport(partialReport);
                         const hasMeaningfulOutput = Boolean(
                             partialReport.score || partialReport.summary || partialReport.first_impression
                         );
                         if (!firstMeaningfulTracked && hasMeaningfulOutput) {
                             firstMeaningfulTracked = true;
-                            Analytics.track("report_first_meaningful_chunk_rendered", {
+                            Analytics.track("report_first_meaningful_chunk_received", {
                                 mode: "resume",
                                 latency_ms: Date.now() - streamStartedAt,
                                 has_score: typeof partialReport.score === "number"
                             });
-                        }
-                        // Reveal meaningful partial output as soon as we have it.
-                        if (isLoading && (partialReport.score || partialReport.summary || partialReport.first_impression)) {
-                            setIsLoading(false);
                         }
                     }
                 },
@@ -304,11 +300,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             }
 
             if (result.ok && result.report) {
-                setReport(result.report);
+                const effectiveReport = result.report;
+                setReport(effectiveReport);
                 setIsStreaming(false);
                 setIsLoading(false);
                 endAnalysis();
-                Analytics.reportCompleted(result.report?.score || 0);
+                Analytics.reportCompleted(effectiveReport?.score || 0);
 
                 await refreshFreeStatus({
                     fallbackDecrement: true,
@@ -317,10 +314,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 });
 
                 // Show save prompt for guest users after report is generated
-                if (!user && result.report && !isLaunchFlagEnabled("guestReportSave")) {
-                    setPendingReportForSave(result.report);
+                if (!user && effectiveReport && !isLaunchFlagEnabled("guestReportSave")) {
+                    setPendingReportForSave(effectiveReport);
                     setTimeout(() => {
-                        Analytics.track('save_prompt_viewed', { score: result.report?.score || 0 });
+                        Analytics.track('save_prompt_viewed', { score: effectiveReport?.score || 0 });
                         setIsSavePromptOpen(true);
                     }, 5000);
                 }
@@ -339,7 +336,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             setIsStreaming(false);
             endAnalysis();
         }
-    }, [resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
+    }, [resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, refreshFreeStatus, beginAnalysis, endAnalysis]);
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;

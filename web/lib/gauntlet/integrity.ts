@@ -132,6 +132,13 @@ export async function resolveRealCommit(repositoryRoot: string, commit: string) 
 export async function readGitBlob(repositoryRoot: string, commit: string, repositoryPath: string) {
   await resolveRealCommit(repositoryRoot, commit);
   if (!isSafeRepositoryPath(repositoryPath)) throw new Error(`unsafe repository path: ${repositoryPath}`);
+  const entries = await listGitTree(repositoryRoot, commit, repositoryPath);
+  if (entries.length !== 1
+    || entries[0].path !== repositoryPath
+    || entries[0].type !== "blob"
+    || !["100644", "100755"].includes(entries[0].mode)) {
+    throw new Error(`Git path must be one regular 100644/100755 blob: ${repositoryPath}`);
+  }
   return execGitBuffer(repositoryRoot, ["show", `${commit}:${repositoryPath}`]);
 }
 

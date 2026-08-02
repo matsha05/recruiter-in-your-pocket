@@ -3,6 +3,7 @@ import { lstat, mkdir, readFile, readdir, realpath, writeFile } from "node:fs/pr
 import path from "node:path";
 import { runAllChecks } from "../evals/checks";
 import type { CalibrationData, ErrorCode } from "../evals/types";
+import { observedInstalledTreeReceipt } from "./dependency-closure";
 import {
   assertSafeComponent,
   artifactFileReceipts,
@@ -27,6 +28,11 @@ import {
   sha256,
 } from "./integrity";
 import {
+  GAUNTLET_CAPTURE_CONTRACT,
+  GAUNTLET_FINALIZED_CAPTURE_STATEMENT,
+  GAUNTLET_FINALIZER_PATH,
+  GAUNTLET_RUNTIME_CLOSURE_PATHS,
+  GAUNTLET_VALIDATOR_PATH,
   GAUNTLET_DIMENSIONS,
   type BlindArtifactBinding,
   type BlindJudgment,
@@ -36,6 +42,7 @@ import {
   type CaseProgress,
   type CaseVariantInspection,
   type ContentReceipt,
+  type DependencyClosureReceipt,
   type DimensionProgress,
   type GauntletCase,
   type GauntletAnchor,
@@ -48,7 +55,9 @@ import {
   type IterationLedgerSummary,
   type JourneyRun,
   type ReferenceAssessment,
+  type ReportFinalizationReceipt,
   type RequiredJourney,
+  type RuntimeClosureReceipt,
   type SourceAudit,
   type Variant,
 } from "./types";
@@ -73,6 +82,56 @@ const CANONICAL_RENDERER_PREFIXES = [
   "web/lib/reports/",
 ];
 const JOURNEY_FRESHNESS_MS = 48 * 60 * 60 * 1000;
+const LEGACY_CAPTURE_ITERATION = Object.freeze({
+  id: "iteration-001",
+  createdAt: "2026-07-31T15:44:00.000Z",
+  productionCommit: "53ae48cc41df97c6d8dcaebb5bfc458b080bf581",
+  candidateCommit: "3a85bb583458bbab9c74648a6106f5b87ada3dc6",
+  ledgerSha256: "da27e27513ccf53df10fbe2d247dd5a3606ea48b1693cffa919f0d51525ca9d2",
+  outputSetSha256: "5db7f164600985d61e7a7246d5fadd953fd48f0bce1fcb1ca63c33cbb7f14c1d",
+});
+const LEGACY_CAPTURE_OUTPUT_SHA256: Readonly<Record<string, string>> = Object.freeze({
+  "candidate/data-science-senior-elite": "f3504e162032144e55c20df97ab0b104c570fd5f36b154bfa793be0dfda953c1",
+  "candidate/finance-senior-weak": "0b9950e1beedc55f352169eae7382f5d7d4f3b147faf770f61017103cda8fda4",
+  "candidate/hr-director-foundation": "bbe452e461442556a82674972633358f3d69347ff75c74837f61b3a607f2f421",
+  "candidate/marketing-vp-elite": "d8fbba280895d6b877b4785c183383e11f5a1b5141ec8b9decad5e67d6758601",
+  "candidate/operations-entry-weak": "f288856d4c14664461a8f033383d6a208c34bf7da8f98d7355dddefcb318fee4",
+  "candidate/product-entry-elite": "441290a2dbc802c26be10dca8d97850dd92b3cdffa85f44acd01e2bb4faa1fc7",
+  "candidate/project-management-vp-strong": "64400f7baf2ccf5d63aec46c140611ab3c21282a08c616fb6b6e8a9c1f9149c3",
+  "candidate/sales-mid-foundation": "7e17acd50dd96d5455ed721a2c526ff639dcacc78e826bb9c68836060f323057",
+  "candidate/software-engineering-mid-strong": "a846346ac99564ed755a2edcbe9a8ab22c8e5b6d5d654dc32d34e2552581640d",
+  "candidate/staff-ml-elite": "379ebdeed628ed05fd5b796ff8be6dd9777c2946d019167ff63bb7dcd27e354c",
+  "candidate/ux-director-strong": "33a3d03a815bda9f752f75295d1e77c6e3cf359e1ad285bb457c4f06b84580f1",
+  "candidate/vp-talent-elite": "44991385116cca97ab7e543b7c19114635d581dde5b852b685003e7166a4a27d",
+  "production/data-science-senior-elite": "2ac02de28f5f4450e88d1f5a500f9f25b1d8a308d09a427aa23149456e457d69",
+  "production/finance-senior-weak": "b22ee5304f450283e11a1176a540ac15fd2fbd1ec66b0f189f2c4ac384c9bc72",
+  "production/hr-director-foundation": "6956415323edbb007dd9b0a3c3c29e9eefe2fa3226bf02b815d01a13942ceeb2",
+  "production/marketing-vp-elite": "fd7dd2390702cca5365db99dad3afb5bd53d5228adbab8ce7ab9221a99e4ca77",
+  "production/operations-entry-weak": "f9437a3f0938e67d4955be09ade45a21b7e4818088e9e20f2d4520a17ee4a68a",
+  "production/product-entry-elite": "749747bae8daf78afd2bb285464832fbe32994c2f478ab73f41e3ba828ce9367",
+  "production/project-management-vp-strong": "cf34e817947bc301360175e38a75d02c5f48da3bacb7d0064791ecf3936aef11",
+  "production/sales-mid-foundation": "2a63cc9b6e876deed42e93e695c142e8b71540fcf16897e098dbe434b9ce0442",
+  "production/software-engineering-mid-strong": "315b24b9eb78585fe16e4e2549f8fe5b85e63bffccb89bb327c4bfc2b051cd5e",
+  "production/staff-ml-elite": "96ae9d4ed2ec5d2b22fd28d7f15f1a06191db8de93dcc9d5448ee127b7fb8909",
+  "production/ux-director-strong": "2c5088d8db82d6a87a6d4fff0667fdfc4fe81aa993d7910744816fafa346a6ba",
+  "production/vp-talent-elite": "cafe677a529a2928a35c6169f0851a50068968e38ea23fba7e0254ac8f6e19d4",
+});
+
+type FrozenLegacyOutputRecord = Readonly<{
+  filePath: string;
+  raw: Buffer;
+  sha256: string;
+}>;
+
+type LegacyCaptureSnapshot = Readonly<Record<Variant, readonly FrozenLegacyOutputRecord[]>>;
+
+type LegacyCaptureAuthorization =
+  | Readonly<{ authorized: false; claimed: boolean; snapshot: null }>
+  | Readonly<{ authorized: true; claimed: true; snapshot: LegacyCaptureSnapshot }>;
+
+export type GauntletProgressIntegrityHooks = Readonly<{
+  afterLegacySnapshot?: () => void | Promise<void>;
+}>;
 
 export type LoadedArtifact = {
   artifact: GauntletOutputArtifact;
@@ -142,6 +201,53 @@ function hasExactKeys(value: Record<string, unknown>, keys: string[]) {
   return Object.keys(value).sort().join("\0") === [...keys].sort().join("\0");
 }
 
+function captureRuntimeReceiptIssues(input: {
+  value: unknown;
+  variant: Variant;
+  caseId: unknown;
+  bindingCommit: unknown;
+  reportSha256: unknown;
+}) {
+  const issues: string[] = [];
+  if (!isRecord(input.value)
+    || !hasExactKeys(input.value, ["archiveIdentity", "renderedReport"])) {
+    return ["presentation.captureReceipt is missing or malformed"];
+  }
+  const archive = input.value.archiveIdentity;
+  const rendered = input.value.renderedReport;
+  if (!isRecord(archive)
+    || !hasExactKeys(archive, ["schemaVersion", "nonce", "variant", "commit"])
+    || archive.schemaVersion !== "1"
+    || typeof archive.nonce !== "string"
+    || !/^[a-f0-9]{48}$/.test(archive.nonce)
+    || archive.variant !== input.variant
+    || !isFullGitSha(archive.commit)
+    || archive.commit !== input.bindingCommit) {
+    issues.push("presentation capture archive identity is invalid or does not match the bound variant commit");
+  }
+  if (!isRecord(rendered)
+    || !hasExactKeys(rendered, [
+      "schemaVersion",
+      "nonce",
+      "variant",
+      "commit",
+      "caseId",
+      "component",
+      "reportSha256",
+    ])
+    || rendered.schemaVersion !== "1"
+    || rendered.nonce !== (isRecord(archive) ? archive.nonce : null)
+    || rendered.variant !== input.variant
+    || rendered.commit !== input.bindingCommit
+    || rendered.caseId !== input.caseId
+    || rendered.component !== "ReportStream"
+    || !isSha256(rendered.reportSha256)
+    || rendered.reportSha256 !== input.reportSha256) {
+    issues.push("presentation rendered-report receipt does not match the exact ReportStream artifact");
+  }
+  return issues;
+}
+
 function timestampInsideIteration(timestamp: string, iteration: GauntletIteration) {
   const instant = Date.parse(timestamp);
   const lower = Date.parse(iteration.createdAt);
@@ -153,11 +259,83 @@ function receiptComplete(value: unknown): value is ContentReceipt {
   return isRecord(value) && isSafeRepositoryPath(value.path) && isSha256(value.sha256);
 }
 
+function runtimeClosureComplete(value: unknown): value is RuntimeClosureReceipt {
+  if (!isRecord(value)
+    || !hasExactKeys(value, ["files", "sha256"])
+    || !Array.isArray(value.files)
+    || !isSha256(value.sha256)
+    || value.files.length !== GAUNTLET_RUNTIME_CLOSURE_PATHS.length
+    || !value.files.every(receiptComplete)) return false;
+  const expectedPaths = [...GAUNTLET_RUNTIME_CLOSURE_PATHS];
+  const actualPaths = value.files.map((entry) => entry.path);
+  return actualPaths.every((entry, index) => entry === expectedPaths[index])
+    && new Set(actualPaths).size === actualPaths.length
+    && canonicalJsonSha256(value.files) === value.sha256;
+}
+
+function dependencyClosureComplete(value: unknown): value is DependencyClosureReceipt {
+  if (!isRecord(value)
+    || !hasExactKeys(value, ["packageLock", "hiddenLock", "installedTree"])
+    || !isRecord(value.packageLock)
+    || !hasExactKeys(value.packageLock, [
+      "path",
+      "sha256",
+      "productionCommit",
+      "productionSha256",
+      "candidateCommit",
+      "candidateSha256",
+      "worktreeSha256",
+    ])
+    || value.packageLock.path !== "web/package-lock.json"
+    || !isFullGitSha(value.packageLock.productionCommit)
+    || !isFullGitSha(value.packageLock.candidateCommit)
+    || ![
+      value.packageLock.sha256,
+      value.packageLock.productionSha256,
+      value.packageLock.candidateSha256,
+      value.packageLock.worktreeSha256,
+    ].every(isSha256)
+    || new Set([
+      value.packageLock.sha256,
+      value.packageLock.productionSha256,
+      value.packageLock.candidateSha256,
+      value.packageLock.worktreeSha256,
+    ]).size !== 1
+    || !isRecord(value.hiddenLock)
+    || !hasExactKeys(value.hiddenLock, ["path", "sha256"])
+    || value.hiddenLock.path !== "web/node_modules/.package-lock.json"
+    || !isSha256(value.hiddenLock.sha256)
+    || !isRecord(value.installedTree)
+    || !hasExactKeys(value.installedTree, ["platform", "arch", "packageCount", "sha256"])
+    || typeof value.installedTree.platform !== "string"
+    || !/^[a-z0-9_-]+$/.test(value.installedTree.platform)
+    || typeof value.installedTree.arch !== "string"
+    || !/^[A-Za-z0-9_-]+$/.test(value.installedTree.arch)
+    || !Number.isInteger(value.installedTree.packageCount)
+    || Number(value.installedTree.packageCount) < 1
+    || !isSha256(value.installedTree.sha256)) return false;
+  return true;
+}
+
+export function dependencyTreeMatchesCurrentHost(
+  installedTree: Pick<DependencyClosureReceipt["installedTree"], "platform" | "arch">,
+) {
+  return installedTree.platform === process.platform && installedTree.arch === process.arch;
+}
+
 export function hasCompleteBinding(binding: CandidateBinding) {
-  return isFullGitSha(binding.commit)
+  const baseComplete = isFullGitSha(binding.commit)
     && isNonEmptyString(binding.model)
     && receiptComplete(binding.resumePrompt)
     && receiptComplete(binding.renderer);
+  if (!baseComplete) return false;
+  const runtimeComplete = binding.runtimeClosure === undefined
+    || binding.runtimeClosure === null
+    || runtimeClosureComplete(binding.runtimeClosure);
+  const dependenciesComplete = binding.dependencyClosure === undefined
+    || binding.dependencyClosure === null
+    || dependencyClosureComplete(binding.dependencyClosure);
+  return runtimeComplete && dependenciesComplete;
 }
 
 function receiptMatches(left: ContentReceipt | null, right: ContentReceipt | null) {
@@ -168,7 +346,11 @@ function bindingsMatch(expected: CandidateBinding, actual: CandidateBinding) {
   return expected.commit === actual.commit
     && expected.model === actual.model
     && receiptMatches(expected.resumePrompt, actual.resumePrompt)
-    && receiptMatches(expected.renderer, actual.renderer);
+    && receiptMatches(expected.renderer, actual.renderer)
+    && canonicalJsonSha256(expected.runtimeClosure ?? null)
+      === canonicalJsonSha256(actual.runtimeClosure ?? null)
+    && canonicalJsonSha256(expected.dependencyClosure ?? null)
+      === canonicalJsonSha256(actual.dependencyClosure ?? null);
 }
 
 function resolveWebRoot(explicitRoot?: string) {
@@ -308,7 +490,16 @@ export function currentCandidateCleanlinessIssue(
   dirtyPaths: string,
 ) {
   if (variant !== "candidate" || commit !== head || dirtyPaths.trim().length === 0) return null;
-  return "candidate canonical prompt or renderer is dirty relative to the bound HEAD commit";
+  return "candidate runtime, capture harness, or dependency inputs are dirty relative to the bound HEAD commit";
+}
+
+export function bindingPathsForCleanliness(binding: CandidateBinding) {
+  return Array.from(new Set([
+    binding.resumePrompt?.path,
+    binding.renderer?.path,
+    ...(binding.runtimeClosure?.files.map((entry) => entry.path) ?? []),
+    binding.dependencyClosure?.packageLock.path,
+  ].filter((entry): entry is string => Boolean(entry))));
 }
 
 async function validateBindingAgainstRepository(
@@ -318,7 +509,12 @@ async function validateBindingAgainstRepository(
   repositoryAvailable = true,
 ) {
   const issues: string[] = [];
-  const hasAnyValue = Boolean(binding.commit || binding.model || binding.resumePrompt || binding.renderer);
+  const hasAnyValue = Boolean(binding.commit
+    || binding.model
+    || binding.resumePrompt
+    || binding.renderer
+    || binding.runtimeClosure
+    || binding.dependencyClosure);
   if (!hasAnyValue) return issues;
   if (!hasCompleteBinding(binding)) return [`${variant} binding is partial or malformed`];
   if (!repositoryAvailable) {
@@ -345,12 +541,77 @@ async function validateBindingAgainstRepository(
     if (sha256(rendererBlob) !== renderer.sha256) {
       issues.push(`${variant} renderer receipt does not match the bound commit`);
     }
+    if (binding.runtimeClosure) {
+      const closureBlobs = await Promise.all(binding.runtimeClosure.files.map(async (receipt) => ({
+        receipt,
+        bytes: await readGitBlob(repositoryRoot, commit, receipt.path),
+      })));
+      for (const { receipt, bytes } of closureBlobs) {
+        if (sha256(bytes) !== receipt.sha256) {
+          issues.push(`${variant} runtime-closure receipt is stale for ${receipt.path}`);
+        }
+      }
+      if (!binding.runtimeClosure.files.some((receipt) => receipt.path === GAUNTLET_VALIDATOR_PATH)) {
+        issues.push(`${variant} runtime closure does not bind the report validator`);
+      }
+    }
+    if (binding.dependencyClosure) {
+      const dependency = binding.dependencyClosure;
+      const [committedLock, productionLock, candidateLock, worktreeLock] = await Promise.all([
+        readGitBlob(repositoryRoot, commit, dependency.packageLock.path),
+        readGitBlob(
+          repositoryRoot,
+          dependency.packageLock.productionCommit,
+          dependency.packageLock.path,
+        ),
+        readGitBlob(
+          repositoryRoot,
+          dependency.packageLock.candidateCommit,
+          dependency.packageLock.path,
+        ),
+        readFile(await resolveContainedExistingPath(repositoryRoot, dependency.packageLock.path)),
+      ]);
+      if (sha256(committedLock) !== dependency.packageLock.sha256) {
+        issues.push(`${variant} dependency lock receipt does not match the bound commit`);
+      }
+      if (sha256(productionLock) !== dependency.packageLock.productionSha256
+        || sha256(candidateLock) !== dependency.packageLock.candidateSha256) {
+        issues.push(`${variant} production or candidate dependency-lock receipt is stale`);
+      }
+      if (sha256(worktreeLock) !== dependency.packageLock.worktreeSha256) {
+        issues.push(`${variant} dependency lock receipt does not match the capture worktree`);
+      }
+      const sameInstalledPlatform = dependencyTreeMatchesCurrentHost(dependency.installedTree);
+      if (sameInstalledPlatform) {
+        const hiddenLockPath = path.join(repositoryRoot, dependency.hiddenLock.path);
+        const [repositoryReal, hiddenLockReal, hiddenLockStats] = await Promise.all([
+          realpath(repositoryRoot),
+          realpath(hiddenLockPath),
+          lstat(hiddenLockPath),
+        ]);
+        if (!isPathInside(repositoryReal, hiddenLockReal)
+          || hiddenLockStats.isSymbolicLink()
+          || !hiddenLockStats.isFile()) {
+          throw new Error("hidden dependency lock must be a regular file inside the repository");
+        }
+        const hiddenLock = await readFile(hiddenLockReal);
+        if (sha256(hiddenLock) !== dependency.hiddenLock.sha256) {
+          issues.push(`${variant} hidden dependency-lock receipt does not match the installed tree`);
+        }
+        const installedTree = await observedInstalledTreeReceipt({
+          nodeModulesPath: path.join(repositoryRoot, "web/node_modules"),
+          hiddenLockBytes: hiddenLock,
+          candidateLockBytes: candidateLock,
+        });
+        if (installedTree.packageCount !== dependency.installedTree.packageCount
+          || installedTree.sha256 !== dependency.installedTree.sha256) {
+          issues.push(`${variant} installed dependency-tree receipt is stale or incomplete`);
+        }
+      }
+    }
     const head = await gitHead(repositoryRoot);
     if (commit === head) {
-      const dirty = await dirtyRepositoryPaths(repositoryRoot, [
-        resumePrompt.path,
-        renderer.path,
-      ]);
+      const dirty = await dirtyRepositoryPaths(repositoryRoot, bindingPathsForCleanliness(binding));
       const dirtyIssue = currentCandidateCleanlinessIssue(variant, commit, head, dirty);
       if (dirtyIssue) issues.push(dirtyIssue);
     }
@@ -814,7 +1075,168 @@ async function validateGitAnchor(input: {
   };
 }
 
-function validateOutputEnvelope(value: unknown, variant: Variant, iteration: GauntletIteration, knownCaseIds: Set<string>) {
+function finalizationReceiptValid(value: unknown): value is ReportFinalizationReceipt {
+  if (!isRecord(value)
+    || !hasExactKeys(value, [
+      "status",
+      "forceGrounding",
+      "rawReportSha256",
+      "effectiveReportSha256",
+      "validator",
+    ])
+    || !isSha256(value.rawReportSha256)
+    || !isSha256(value.effectiveReportSha256)) return false;
+  if (value.status === "unfinalized_raw") {
+    return value.forceGrounding === false
+      && value.validator === null
+      && value.rawReportSha256 === value.effectiveReportSha256;
+  }
+  if (value.status !== "finalized"
+    || value.forceGrounding !== true
+    || !isRecord(value.validator)
+    || !hasExactKeys(value.validator, ["commit", "path", "sha256", "gitBlobOid"])) return false;
+  return isFullGitSha(value.validator.commit)
+    && value.validator.path === GAUNTLET_VALIDATOR_PATH
+    && isSha256(value.validator.sha256)
+    && typeof value.validator.gitBlobOid === "string"
+    && /^[a-f0-9]{40,64}$/.test(value.validator.gitBlobOid);
+}
+
+function hasLegacyCaptureIdentity(iteration: GauntletIteration) {
+  return iteration.id === LEGACY_CAPTURE_ITERATION.id
+    && iteration.createdAt === LEGACY_CAPTURE_ITERATION.createdAt
+    && iteration.production.commit === LEGACY_CAPTURE_ITERATION.productionCommit
+    && iteration.candidate.commit === LEGACY_CAPTURE_ITERATION.candidateCommit;
+}
+
+async function authorizeLegacyCapture(input: {
+  iteration: GauntletIteration,
+  ledgerSha256: string,
+  artifactRoot: string,
+}): Promise<LegacyCaptureAuthorization> {
+  const claimed = hasLegacyCaptureIdentity(input.iteration);
+  if (!claimed || input.ledgerSha256 !== LEGACY_CAPTURE_ITERATION.ledgerSha256) {
+    return { authorized: false, claimed, snapshot: null };
+  }
+  try {
+    const outputsDirectory = await resolveContainedRegularDirectory(
+      input.artifactRoot,
+      "outputs",
+      "outputs",
+    );
+    const outputEntries = await readdir(outputsDirectory, { withFileTypes: true });
+    const expectedOutputNames = ["candidate", "production"];
+    const actualOutputNames = outputEntries.map((entry) => entry.name).sort();
+    if (actualOutputNames.length !== expectedOutputNames.length
+      || actualOutputNames.some((name, index) => name !== expectedOutputNames[index])
+      || outputEntries.some((entry) => entry.isSymbolicLink() || !entry.isDirectory())) {
+      return { authorized: false, claimed: true, snapshot: null };
+    }
+    const receipts: Array<{ path: string; sha256: string }> = [];
+    const snapshot: Record<Variant, FrozenLegacyOutputRecord[]> = {
+      candidate: [],
+      production: [],
+    };
+    for (const variant of ["candidate", "production"] as const) {
+      const relativeDirectory = `outputs/${variant}`;
+      const directory = await resolveContainedRegularDirectory(
+        input.artifactRoot,
+        relativeDirectory,
+        relativeDirectory,
+      );
+      const entries = await readdir(directory, { withFileTypes: true });
+      const expectedNames = Object.keys(LEGACY_CAPTURE_OUTPUT_SHA256)
+        .filter((key) => key.startsWith(`${variant}/`))
+        .map((key) => `${key.slice(variant.length + 1)}.json`)
+        .sort();
+      const actualNames = entries.map((entry) => entry.name).sort();
+      if (actualNames.length !== expectedNames.length
+        || actualNames.some((name, index) => name !== expectedNames[index])) {
+        return { authorized: false, claimed: true, snapshot: null };
+      }
+      for (const entry of entries) {
+        if (!entry.isFile() || entry.isSymbolicLink()) {
+          return { authorized: false, claimed: true, snapshot: null };
+        }
+        const filePath = path.join(directory, entry.name);
+        const fileReal = await realpath(filePath);
+        if (!isPathInside(directory, fileReal)) {
+          return { authorized: false, claimed: true, snapshot: null };
+        }
+        const caseId = entry.name.slice(0, -5);
+        const raw = await readFile(fileReal);
+        const digest = sha256(raw);
+        if (LEGACY_CAPTURE_OUTPUT_SHA256[`${variant}/${caseId}`] !== digest) {
+          return { authorized: false, claimed: true, snapshot: null };
+        }
+        receipts.push({ path: `${relativeDirectory}/${entry.name}`, sha256: digest });
+        snapshot[variant].push({
+          filePath: fileReal,
+          raw: Buffer.from(raw),
+          sha256: digest,
+        });
+      }
+    }
+    receipts.sort((left, right) => left.path.localeCompare(right.path));
+    if (receipts.length !== Object.keys(LEGACY_CAPTURE_OUTPUT_SHA256).length
+      || canonicalJsonSha256(receipts) !== LEGACY_CAPTURE_ITERATION.outputSetSha256) {
+      return { authorized: false, claimed: true, snapshot: null };
+    }
+    return {
+      authorized: true,
+      claimed: true,
+      snapshot: {
+        candidate: Object.freeze([...snapshot.candidate]),
+        production: Object.freeze([...snapshot.production]),
+      },
+    };
+  } catch {
+    return { authorized: false, claimed: true, snapshot: null };
+  }
+}
+
+function parseFrozenLegacyOutputRecords(
+  records: readonly FrozenLegacyOutputRecord[],
+  issues: string[],
+) {
+  const parsed: Array<{
+    filePath: string;
+    raw: Buffer;
+    value: GauntletOutputArtifact;
+  }> = [];
+  for (const record of records) {
+    try {
+      parsed.push({
+        filePath: record.filePath,
+        raw: record.raw,
+        value: JSON.parse(record.raw.toString("utf8")) as GauntletOutputArtifact,
+      });
+    } catch (error) {
+      issues.push(
+        `${path.relative(process.cwd(), record.filePath)} is not valid JSON: ${(error as Error).message}`,
+      );
+    }
+  }
+  return parsed;
+}
+
+function isExactLegacyCaptureArtifact(value: Record<string, unknown>, legacyCaptureAuthorized: boolean) {
+  if (!legacyCaptureAuthorized
+    || value.captureContract !== undefined
+    || value.reportMode !== undefined
+    || value.finalization !== undefined
+    || !isRecord(value.binding)) return false;
+  return (value.binding.runtimeClosure === undefined || value.binding.runtimeClosure === null)
+    && (value.binding.dependencyClosure === undefined || value.binding.dependencyClosure === null);
+}
+
+function validateOutputEnvelope(
+  value: unknown,
+  variant: Variant,
+  iteration: GauntletIteration,
+  legacyCaptureAuthorized: boolean,
+  knownCaseIds: Set<string>,
+) {
   const issues: string[] = [];
   if (!isRecord(value)) return ["artifact must be an object"];
   if (value.schemaVersion !== "2") issues.push("schemaVersion must be 2");
@@ -824,6 +1246,16 @@ function validateOutputEnvelope(value: unknown, variant: Variant, iteration: Gau
   if (!isRecord(value.binding) || !hasCompleteBinding(value.binding as unknown as CandidateBinding)) {
     issues.push("binding is missing or incomplete");
   }
+  const hasRuntimeClosure = isRecord(value.binding)
+    && value.binding.runtimeClosure !== undefined
+    && value.binding.runtimeClosure !== null;
+  const hasDependencyClosure = isRecord(value.binding)
+    && value.binding.dependencyClosure !== undefined
+    && value.binding.dependencyClosure !== null;
+  const legacyCapture = isExactLegacyCaptureArtifact(
+    value,
+    legacyCaptureAuthorized,
+  );
   if (!isRecord(value.generation)) {
     issues.push("generation receipt is missing");
   } else {
@@ -835,6 +1267,33 @@ function validateOutputEnvelope(value: unknown, variant: Variant, iteration: Gau
     if (!isNonEmptyString(value.generation.model)) issues.push("generation.model is required");
     if (!isSha256(value.generation.canonicalPromptSha256)) issues.push("generation.canonicalPromptSha256 is required");
     if (!isSha256(value.generation.reportSha256)) issues.push("generation.reportSha256 is required");
+  }
+  if (!legacyCapture) {
+    const expectedMode = variant === "candidate"
+      ? "candidate_commit_finalized"
+      : "historical_raw_unfinalized";
+    if (value.captureContract !== GAUNTLET_CAPTURE_CONTRACT) {
+      issues.push(`captureContract must be ${GAUNTLET_CAPTURE_CONTRACT}`);
+    }
+    if (value.reportMode !== expectedMode) {
+      issues.push(`${variant} reportMode must be ${expectedMode}`);
+    }
+    if (!finalizationReceiptValid(value.finalization)) {
+      issues.push("finalization receipt is missing or invalid");
+    } else if (variant === "candidate" && value.finalization.status !== "finalized") {
+      issues.push("candidate report must be finalized before capture");
+    } else if (variant === "production" && value.finalization.status !== "unfinalized_raw") {
+      issues.push("production historical baseline must remain raw");
+    }
+    if (variant === "candidate" && !hasRuntimeClosure) {
+      issues.push("finalized candidate capture requires a complete runtime closure");
+    }
+    if (variant === "production" && hasRuntimeClosure) {
+      issues.push("historical raw production capture may not claim the candidate runtime closure");
+    }
+    if (!hasDependencyClosure) {
+      issues.push(`${variant} finalized-v1 capture requires a dependency closure`);
+    }
   }
   if (!isRecord(value.fixture) || !hasExactKeys(value.fixture, ["sha256"]) || !isSha256(value.fixture.sha256)) {
     issues.push("fixture receipt is missing or invalid");
@@ -865,6 +1324,15 @@ function validateOutputEnvelope(value: unknown, variant: Variant, iteration: Gau
       || !isSafeRepositoryPath(value.presentation.screenshot.path)
       || !isSha256(value.presentation.screenshot.sha256)) {
       issues.push("presentation screenshot path and SHA-256 are required");
+    }
+    if (!legacyCapture || value.presentation.captureReceipt !== undefined) {
+      issues.push(...captureRuntimeReceiptIssues({
+        value: value.presentation.captureReceipt,
+        variant,
+        caseId: value.caseId,
+        bindingCommit: isRecord(value.binding) ? value.binding.commit : null,
+        reportSha256: value.reportSha256,
+      }));
     }
   }
   return issues;
@@ -962,10 +1430,21 @@ async function validateSanitizedGenerationSource(
     if (generation.model !== artifact.binding.model) {
       issues.push("generation model does not match the iteration binding");
     }
-    if (generation.reportSha256 !== artifact.reportSha256
-      || selectedReport === undefined
-      || canonicalJsonSha256(selectedReport) !== artifact.reportSha256
-      || canonicalJsonSha256(artifact.report) !== artifact.reportSha256) {
+    const selectedRawReportSha256 = selectedReport === undefined
+      ? null
+      : canonicalJsonSha256(selectedReport);
+    const effectiveReportSha256 = canonicalJsonSha256(artifact.report);
+    if (artifact.finalization) {
+      if (selectedRawReportSha256 === null
+        || generation.reportSha256 !== selectedRawReportSha256
+        || artifact.finalization.rawReportSha256 !== selectedRawReportSha256
+        || artifact.finalization.effectiveReportSha256 !== artifact.reportSha256
+        || effectiveReportSha256 !== artifact.reportSha256) {
+        issues.push("raw or effective report receipt does not match the finalized output artifact");
+      }
+    } else if (generation.reportSha256 !== artifact.reportSha256
+      || selectedRawReportSha256 !== artifact.reportSha256
+      || effectiveReportSha256 !== artifact.reportSha256) {
       issues.push("selected sanitized report does not match the output artifact");
     }
     const prompt = await readGitBlob(
@@ -1009,6 +1488,49 @@ async function validateOutputReceipts(
   if (!timestampInsideIteration(artifact.presentation.capturedAt, iteration)) {
     issues.push("presentation capture falls outside the iteration window");
   }
+  if (artifact.finalization) {
+    if (artifact.finalization.rawReportSha256 !== artifact.generation.reportSha256) {
+      issues.push("finalization raw-report receipt does not match immutable generation evidence");
+    }
+    if (artifact.finalization.effectiveReportSha256 !== artifact.reportSha256) {
+      issues.push("finalization effective-report receipt does not match the captured artifact");
+    }
+    if (artifact.finalization.status === "unfinalized_raw") {
+      if (variant !== "production" || artifact.reportSha256 !== artifact.generation.reportSha256) {
+        issues.push("only the production baseline may retain an unfinalized raw report");
+      }
+    } else {
+      const validator = artifact.finalization.validator;
+      if (variant !== "candidate"
+        || validator.commit !== artifact.binding.commit
+        || validator.path !== GAUNTLET_VALIDATOR_PATH) {
+        issues.push("candidate finalizer is not bound to the candidate validator commit");
+      }
+      const closureValidator = artifact.binding.runtimeClosure?.files
+        .find((receipt) => receipt.path === GAUNTLET_VALIDATOR_PATH);
+      if (!artifact.binding.runtimeClosure || !closureValidator
+        || closureValidator.sha256 !== validator.sha256) {
+        issues.push("candidate finalizer validator is absent from the runtime closure");
+      }
+      try {
+        const [validatorBlob, validatorEntries] = await Promise.all([
+          readGitBlob(repositoryRoot, validator.commit, validator.path),
+          listGitTree(repositoryRoot, validator.commit, validator.path),
+        ]);
+        if (sha256(validatorBlob) !== validator.sha256) {
+          issues.push("candidate finalizer validator hash does not match its commit");
+        }
+        if (validatorEntries.length !== 1
+          || validatorEntries[0].path !== validator.path
+          || validatorEntries[0].type !== "blob"
+          || validatorEntries[0].objectId !== validator.gitBlobOid) {
+          issues.push("candidate finalizer validator Git blob receipt is stale");
+        }
+      } catch (error) {
+        issues.push(`candidate finalizer validator is not inspectable: ${(error as Error).message}`);
+      }
+    }
+  }
   try {
     const fixture = await readGitBlob(repositoryRoot, artifact.generation.sourceCommit, expectedFixturePath);
     if (sha256(fixture) !== artifact.fixture.sha256) issues.push("fixture receipt does not match the bound commit");
@@ -1037,14 +1559,25 @@ async function loadOutputArtifacts(
   artifactRoot: string,
   variant: Variant,
   iteration: GauntletIteration,
+  legacyCaptureAuthorized: boolean,
+  frozenLegacyRecords: readonly FrozenLegacyOutputRecord[] | null,
   manifest: GauntletManifest,
   issues: string[],
 ) {
   const output = new Map<string, LoadedArtifact>();
   const caseById = new Map(manifest.cases.map((testCase) => [testCase.id, testCase]));
-  const records = await readJsonDirectory<GauntletOutputArtifact>(artifactRoot, `outputs/${variant}`, issues);
+  const records = legacyCaptureAuthorized && frozenLegacyRecords
+    ? parseFrozenLegacyOutputRecords(frozenLegacyRecords, issues)
+    : await readJsonDirectory<GauntletOutputArtifact>(artifactRoot, `outputs/${variant}`, issues);
   for (const record of records) {
-    const artifactIssues = validateOutputEnvelope(record.value, variant, iteration, new Set(caseById.keys()));
+    const artifactSha256 = sha256(record.raw);
+    const artifactIssues = validateOutputEnvelope(
+      record.value,
+      variant,
+      iteration,
+      legacyCaptureAuthorized,
+      new Set(caseById.keys()),
+    );
     if (artifactIssues.length > 0) {
       issues.push(...artifactIssues.map((issue) => `${path.basename(record.filePath)}: ${issue}`));
       continue;
@@ -1076,7 +1609,7 @@ async function loadOutputArtifacts(
       issues.push(...receiptIssues.map((issue) => `${path.basename(record.filePath)}: ${issue}`));
       continue;
     }
-    output.set(artifact.caseId, { artifact, sha256: sha256(record.raw) });
+    output.set(artifact.caseId, { artifact, sha256: artifactSha256 });
   }
   return output;
 }
@@ -1093,6 +1626,9 @@ export function blindArtifactBinding(loaded: LoadedArtifact): BlindArtifactBindi
     rendererSha256: artifact.binding.renderer!.sha256,
     visibleTextSha256: artifact.presentation.visibleTextSha256,
     screenshotSha256: artifact.presentation.screenshot.sha256,
+    ...(artifact.finalization
+      ? { finalizationSha256: canonicalJsonSha256(artifact.finalization) }
+      : {}),
   };
 }
 
@@ -1107,7 +1643,8 @@ function validBlindArtifactBinding(value: unknown): value is BlindArtifactBindin
     value.rendererSha256,
     value.visibleTextSha256,
     value.screenshotSha256,
-  ].every(isSha256);
+  ].every(isSha256)
+    && (value.finalizationSha256 === undefined || isSha256(value.finalizationSha256));
 }
 
 function artifactBindingsMatch(left: BlindArtifactBinding, right: BlindArtifactBinding) {
@@ -1497,6 +2034,7 @@ async function runAutomatedChecks(
 
 async function loadEvidence(
   definition: Awaited<ReturnType<typeof validateGauntletDefinition>>,
+  integrityHooks?: GauntletProgressIntegrityHooks,
 ): Promise<LoadedEvidence> {
   const {
     webRoot,
@@ -1504,6 +2042,7 @@ async function loadEvidence(
     repositoryAvailable,
     manifest,
     iteration,
+    iterationLedgerSha256,
     calibration,
   } = definition;
   const dataIssues = [...definition.issues];
@@ -1538,10 +2077,76 @@ async function loadEvidence(
   }));
   for (const result of anchorResults) dataIssues.push(...result.validation.issues);
   const selectedAnchor = anchorResults.find((result) => result.iterationId === iteration.id)?.validation;
+  const legacyAuthorization = await authorizeLegacyCapture({
+    iteration,
+    ledgerSha256: iterationLedgerSha256,
+    artifactRoot,
+  });
+  if (legacyAuthorization.authorized) {
+    await integrityHooks?.afterLegacySnapshot?.();
+  }
+  if (legacyAuthorization.claimed && !legacyAuthorization.authorized) {
+    dataIssues.push(
+      `${iteration.id}: legacy capture fingerprint does not match the immutable ledger and 24-artifact allowlist`,
+    );
+  }
   const [candidateOutputs, productionOutputs] = await Promise.all([
-    loadOutputArtifacts(repositoryRoot, artifactRoot, "candidate", iteration, manifest, dataIssues),
-    loadOutputArtifacts(repositoryRoot, artifactRoot, "production", iteration, manifest, dataIssues),
+    loadOutputArtifacts(
+      repositoryRoot,
+      artifactRoot,
+      "candidate",
+      iteration,
+      legacyAuthorization.authorized,
+      legacyAuthorization.snapshot?.candidate ?? null,
+      manifest,
+      dataIssues,
+    ),
+    loadOutputArtifacts(
+      repositoryRoot,
+      artifactRoot,
+      "production",
+      iteration,
+      legacyAuthorization.authorized,
+      legacyAuthorization.snapshot?.production ?? null,
+      manifest,
+      dataIssues,
+    ),
   ]);
+  const legacyCaptureIteration = legacyAuthorization.authorized;
+  if (!legacyCaptureIteration
+    && (candidateOutputs.size > 0 || productionOutputs.size > 0)
+    && iteration.baselineStatement !== GAUNTLET_FINALIZED_CAPTURE_STATEMENT) {
+    dataIssues.push(
+      `${iteration.id}: baselineStatement must equal the exact finalized-v1 raw-source and commit-bound finalization disclosure`,
+    );
+  }
+  if (!legacyCaptureIteration && (candidateOutputs.size > 0 || productionOutputs.size > 0)) {
+    const archiveIdentities = (outputs: Map<string, LoadedArtifact>) => new Map(
+      [...outputs.values()].map((loaded) => {
+        const identity = loaded.artifact.presentation.captureReceipt!.archiveIdentity;
+        return [canonicalJsonSha256(identity), identity] as const;
+      }),
+    );
+    const candidateIdentities = archiveIdentities(candidateOutputs);
+    const productionIdentities = archiveIdentities(productionOutputs);
+    if (candidateOutputs.size !== manifest.target.caseCount || candidateIdentities.size !== 1) {
+      dataIssues.push(
+        `${iteration.id}: candidate capture set must share exactly one archive identity across all ${manifest.target.caseCount} cases`,
+      );
+    }
+    if (productionOutputs.size !== manifest.target.caseCount || productionIdentities.size !== 1) {
+      dataIssues.push(
+        `${iteration.id}: production capture set must share exactly one archive identity across all ${manifest.target.caseCount} cases`,
+      );
+    }
+    if (candidateIdentities.size === 1 && productionIdentities.size === 1) {
+      const candidateNonce = [...candidateIdentities.values()][0].nonce;
+      const productionNonce = [...productionIdentities.values()][0].nonce;
+      if (candidateNonce === productionNonce) {
+        dataIssues.push(`${iteration.id}: candidate and production archive nonces must differ`);
+      }
+    }
+  }
   for (const testCase of manifest.cases) {
     const candidate = candidateOutputs.get(testCase.id);
     const production = productionOutputs.get(testCase.id);
@@ -1549,6 +2154,36 @@ async function loadEvidence(
       && canonicalJsonSha256(candidate.artifact.generation)
         !== canonicalJsonSha256(production.artifact.generation)) {
       dataIssues.push(`${testCase.id}: candidate and production do not share the same immutable generation receipt`);
+    }
+    if (candidate && production && !legacyCaptureIteration) {
+      const candidateArtifact = candidate.artifact;
+      const productionArtifact = production.artifact;
+      const candidateDependencies = candidateArtifact.binding.dependencyClosure;
+      const productionDependencies = productionArtifact.binding.dependencyClosure;
+      if (candidateArtifact.captureContract !== GAUNTLET_CAPTURE_CONTRACT
+        || productionArtifact.captureContract !== GAUNTLET_CAPTURE_CONTRACT
+        || candidateArtifact.reportMode !== "candidate_commit_finalized"
+        || productionArtifact.reportMode !== "historical_raw_unfinalized") {
+        dataIssues.push(`${testCase.id}: finalized-v1 report modes are missing or inconsistent`);
+      }
+      if (!candidateDependencies
+        || !productionDependencies
+        || canonicalJsonSha256(candidateDependencies) !== canonicalJsonSha256(productionDependencies)
+        || candidateDependencies.packageLock.productionCommit !== productionArtifact.binding.commit
+        || candidateDependencies.packageLock.candidateCommit !== candidateArtifact.binding.commit) {
+        dataIssues.push(`${testCase.id}: production and candidate do not share one commit-bound dependency closure`);
+      }
+      if (candidateArtifact.binding.commit === productionArtifact.binding.commit
+        || candidateArtifact.binding.renderer?.sha256 === productionArtifact.binding.renderer?.sha256) {
+        dataIssues.push(`${testCase.id}: finalized-v1 must compare a different candidate commit and renderer`);
+      }
+      if (!candidateArtifact.binding.runtimeClosure?.files.some(
+        (receipt) => receipt.path === GAUNTLET_VALIDATOR_PATH,
+      ) || !candidateArtifact.binding.runtimeClosure?.files.some(
+        (receipt) => receipt.path === GAUNTLET_FINALIZER_PATH,
+      )) {
+        dataIssues.push(`${testCase.id}: candidate runtime closure omits its validator or finalizer`);
+      }
     }
   }
   const mapping = await loadMapping(
@@ -1945,17 +2580,29 @@ export function summarizeGauntletProgress(
   };
 }
 
-export async function getGauntletProgress(explicitWebRoot?: string, requestedIterationId?: string) {
-  const { definition, evidence } = await loadValidatedGauntletEvidence(explicitWebRoot, requestedIterationId);
+export async function getGauntletProgress(
+  explicitWebRoot?: string,
+  requestedIterationId?: string,
+  integrityHooks?: GauntletProgressIntegrityHooks,
+) {
+  const { definition, evidence } = await loadValidatedGauntletEvidence(
+    explicitWebRoot,
+    requestedIterationId,
+    integrityHooks,
+  );
   return summarizeGauntletProgress(definition.manifest, definition.iteration, evidence, {
     iterationLedgerSha256: definition.iterationLedgerSha256,
     ledgers: definition.ledgers,
   });
 }
 
-export async function loadValidatedGauntletEvidence(explicitWebRoot?: string, requestedIterationId?: string) {
+export async function loadValidatedGauntletEvidence(
+  explicitWebRoot?: string,
+  requestedIterationId?: string,
+  integrityHooks?: GauntletProgressIntegrityHooks,
+) {
   const definition = await validateGauntletDefinition(explicitWebRoot, requestedIterationId);
-  const evidence = await loadEvidence(definition);
+  const evidence = await loadEvidence(definition, integrityHooks);
   return { definition, evidence };
 }
 

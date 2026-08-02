@@ -10,6 +10,69 @@ export interface ContentReceipt {
   sha256: string;
 }
 
+export const GAUNTLET_CAPTURE_CONTRACT = "finalized-v1" as const;
+export const GAUNTLET_FINALIZED_CAPTURE_STATEMENT =
+  "Candidate and production share the same immutable raw generation source; production captures that report unfinalized, while the candidate uses a different commit-bound validator/finalizer and renderer before capture.";
+export type GauntletReportMode =
+  | "historical_raw_unfinalized"
+  | "candidate_commit_finalized";
+
+export const GAUNTLET_VALIDATOR_PATH = "web/lib/backend/validation.ts";
+export const GAUNTLET_FINALIZER_PATH = "web/scripts/gauntlet-report-finalizer.ts";
+export const GAUNTLET_RUNTIME_CLOSURE_PATHS = Object.freeze([
+  "web/package.json",
+  "web/package-lock.json",
+  "web/scripts/run-ts-script.cjs",
+  "web/scripts/gauntlet-evidence-capture.ts",
+  "web/scripts/gauntlet-evidence-capture/browser.ts",
+  "web/scripts/gauntlet-evidence-capture/contracts.ts",
+  "web/scripts/gauntlet-evidence-capture/network-guard.cjs",
+  "web/scripts/gauntlet-evidence-capture/repository.ts",
+  "web/lib/gauntlet/dependency-closure.ts",
+  "web/lib/gauntlet/types.ts",
+  "web/next.config.mjs",
+  "web/prompts/resume_v2.txt",
+  "web/lib/llm/source-line-comparator.ts",
+  "web/lib/llm/source-fidelity.ts",
+  "web/lib/llm/grounding.ts",
+  "web/lib/llm/evidence-canonicalizer.ts",
+  "web/lib/llm/resume-score-calibration.ts",
+  "web/lib/backend/errors.ts",
+  GAUNTLET_VALIDATOR_PATH,
+  "web/lib/validation/schemas.ts",
+  "web/lib/score-utils.ts",
+  "web/components/workspace/WorkspaceClient.tsx",
+  "web/components/workspace/ResumeModeSection.tsx",
+  "web/components/workspace/ReportPanel.tsx",
+  "web/lib/reports/report-presentation.ts",
+  "web/components/workspace/report/ReportStream.tsx",
+  GAUNTLET_FINALIZER_PATH,
+] as const);
+
+export interface RuntimeClosureReceipt {
+  files: ContentReceipt[];
+  sha256: string;
+}
+
+export interface DependencyClosureReceipt {
+  packageLock: {
+    path: string;
+    sha256: string;
+    productionCommit: string;
+    productionSha256: string;
+    candidateCommit: string;
+    candidateSha256: string;
+    worktreeSha256: string;
+  };
+  hiddenLock: ContentReceipt;
+  installedTree: {
+    platform: NodeJS.Platform;
+    arch: string;
+    packageCount: number;
+    sha256: string;
+  };
+}
+
 export interface GauntletCase {
   id: string;
   fixtureId: string;
@@ -61,6 +124,10 @@ export interface CandidateBinding {
   model: string | null;
   resumePrompt: ContentReceipt | null;
   renderer: ContentReceipt | null;
+  /** Absent only on legacy evidence and the explicitly raw production baseline. */
+  runtimeClosure?: RuntimeClosureReceipt | null;
+  /** Absent only on legacy evidence; finalized captures bind the installed dependency tree. */
+  dependencyClosure?: DependencyClosureReceipt | null;
 }
 
 export interface GauntletIteration {
@@ -117,7 +184,45 @@ export interface OutputGenerationReceipt {
   generatedAt: string;
   model: string;
   canonicalPromptSha256: string;
+  /** Hash of the immutable report selected from the historical generation source. */
   reportSha256: string;
+}
+
+export interface FinalizationValidatorReceipt extends ContentReceipt {
+  commit: string;
+  gitBlobOid: string;
+}
+
+export type ReportFinalizationReceipt = {
+  status: "unfinalized_raw";
+  forceGrounding: false;
+  rawReportSha256: string;
+  effectiveReportSha256: string;
+  validator: null;
+} | {
+  status: "finalized";
+  forceGrounding: true;
+  rawReportSha256: string;
+  effectiveReportSha256: string;
+  validator: FinalizationValidatorReceipt;
+};
+
+export interface ArchiveServerIdentityReceipt {
+  schemaVersion: "1";
+  nonce: string;
+  variant: Variant;
+  commit: string;
+}
+
+export interface RenderedReportReceipt extends ArchiveServerIdentityReceipt {
+  caseId: string;
+  component: "ReportStream";
+  reportSha256: string;
+}
+
+export interface CaptureRuntimeReceipt {
+  archiveIdentity: ArchiveServerIdentityReceipt;
+  renderedReport: RenderedReportReceipt;
 }
 
 export interface PresentationReceipt {
@@ -136,6 +241,8 @@ export interface PresentationReceipt {
     path: string;
     sha256: string;
   };
+  /** Optional only for the immutable iteration-001 legacy evidence set. */
+  captureReceipt?: CaptureRuntimeReceipt;
 }
 
 export interface GauntletOutputArtifact {
@@ -143,8 +250,14 @@ export interface GauntletOutputArtifact {
   iterationId: string;
   caseId: string;
   variant: Variant;
+  /** Optional only for the immutable iteration-001 legacy evidence set. */
+  captureContract?: typeof GAUNTLET_CAPTURE_CONTRACT;
+  /** Optional only for the immutable iteration-001 legacy evidence set. */
+  reportMode?: GauntletReportMode;
   binding: OutputArtifactBinding;
   generation: OutputGenerationReceipt;
+  /** Optional only so already-sealed schema-v2 evidence remains inspectable. */
+  finalization?: ReportFinalizationReceipt;
   fixture: { sha256: string };
   reportSha256: string;
   report: unknown;
@@ -187,6 +300,7 @@ export interface BlindArtifactBinding {
   rendererSha256: string;
   visibleTextSha256: string;
   screenshotSha256: string;
+  finalizationSha256?: string;
 }
 
 export interface BlindMappingEntry {

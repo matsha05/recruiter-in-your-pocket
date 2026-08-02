@@ -1,19 +1,35 @@
 import { createHash, randomUUID } from "node:crypto";
 import { link, lstat, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type {
-  CandidateBinding,
-  GauntletManifest,
-  GauntletOutputArtifact,
-  JourneyRun,
-  OutputGenerationReceipt,
-  RequiredJourney,
-  Variant,
+import {
+  GAUNTLET_CAPTURE_CONTRACT,
+  type CandidateBinding,
+  type CaptureRuntimeReceipt,
+  type GauntletManifest,
+  type GauntletOutputArtifact,
+  type JourneyRun,
+  type OutputGenerationReceipt,
+  type ReportFinalizationReceipt,
+  type RequiredJourney,
+  type Variant,
 } from "../../lib/gauntlet/types";
 
 export const PRODUCTION_COMMIT = "53ae48cc41df97c6d8dcaebb5bfc458b080bf581";
 export const PROMPT_PATH = "web/prompts/resume_v2.txt";
 export const RENDERER_PATH = "web/components/workspace/report/ReportStream.tsx";
+export const PACKAGE_LOCK_PATH = "web/package-lock.json";
+export const HIDDEN_PACKAGE_LOCK_PATH = "web/node_modules/.package-lock.json";
+export const NETWORK_GUARD_PATH = "web/scripts/gauntlet-evidence-capture/network-guard.cjs";
+export const CAPTURE_HARNESS_PATHS = Object.freeze([
+  "web/package.json",
+  "web/lib/gauntlet/types.ts",
+  "web/scripts/run-ts-script.cjs",
+  "web/scripts/gauntlet-evidence-capture.ts",
+  "web/scripts/gauntlet-evidence-capture/browser.ts",
+  "web/scripts/gauntlet-evidence-capture/contracts.ts",
+  "web/scripts/gauntlet-evidence-capture/repository.ts",
+  "web/lib/gauntlet/dependency-closure.ts",
+] as const);
 export const APPROVED_CASE_FIXTURES = Object.freeze([
   { caseId: "staff-ml-elite", fixtureId: "anchor_elite_ml_staff_1", resumePath: "golden/anchor_elite_ml_staff_1.txt", fixtureSha256: "210b1c14666b1df87a6eade18ac712507fcc8c89b3debb7c6fee76f71d33d6d1" },
   { caseId: "vp-talent-elite", fixtureId: "anchor_elite_vp_talent_1", resumePath: "golden/anchor_elite_vp_talent_1.txt", fixtureSha256: "7214ea9aa2becb29a6f49ae999438c457df2b9549b12c0ce0ca7dd5af7bce814" },
@@ -153,6 +169,7 @@ export type CapturePresentation = {
   route: string;
   viewport: { width: number; height: number };
   capturedAt: string;
+  captureReceipt: CaptureRuntimeReceipt;
 };
 
 export type JourneyCapture = {
@@ -376,25 +393,45 @@ export function buildOutputArtifact(input: {
   variant: Variant;
   binding: CandidateBinding;
   generation: OutputGenerationReceipt;
+  finalization: ReportFinalizationReceipt;
   fixtureSha256: string;
-  report: Record<string, unknown>;
+  rawReport: Record<string, unknown>;
+  effectiveReport: Record<string, unknown>;
   presentation: CapturePresentation;
   screenshotPath: string;
 }): GauntletOutputArtifact {
-  const reportSha256 = canonicalJsonSha256(input.report);
-  if (reportSha256 !== input.generation.reportSha256) {
-    throw new Error(`report receipt mismatch for ${input.caseId}`);
+  const rawReportSha256 = canonicalJsonSha256(input.rawReport);
+  const effectiveReportSha256 = canonicalJsonSha256(input.effectiveReport);
+  if (rawReportSha256 !== input.generation.reportSha256
+    || rawReportSha256 !== input.finalization.rawReportSha256) {
+    throw new Error(`raw report receipt mismatch for ${input.caseId}`);
+  }
+  if (effectiveReportSha256 !== input.finalization.effectiveReportSha256) {
+    throw new Error(`effective report receipt mismatch for ${input.caseId}`);
+  }
+  if (input.finalization.status === "unfinalized_raw"
+    && rawReportSha256 !== effectiveReportSha256) {
+    throw new Error(`raw baseline was altered for ${input.caseId}`);
+  }
+  if ((input.variant === "candidate" && input.finalization.status !== "finalized")
+    || (input.variant === "production" && input.finalization.status !== "unfinalized_raw")) {
+    throw new Error(`finalization mode does not match ${input.variant} for ${input.caseId}`);
   }
   return {
     schemaVersion: "2",
     iterationId: input.iterationId,
     caseId: input.caseId,
     variant: input.variant,
+    captureContract: GAUNTLET_CAPTURE_CONTRACT,
+    reportMode: input.variant === "candidate"
+      ? "candidate_commit_finalized"
+      : "historical_raw_unfinalized",
     binding: input.binding,
     generation: input.generation,
+    finalization: input.finalization,
     fixture: { sha256: input.fixtureSha256 },
-    reportSha256,
-    report: input.report,
+    reportSha256: effectiveReportSha256,
+    report: input.effectiveReport,
     presentation: {
       kind: "rendered_report",
       rendererCommit: input.binding.commit!,
@@ -405,6 +442,7 @@ export function buildOutputArtifact(input: {
       visibleText: input.presentation.visibleText,
       visibleTextSha256: sha256(input.presentation.visibleText),
       screenshot: { path: input.screenshotPath, sha256: sha256(input.presentation.screenshot) },
+      captureReceipt: input.presentation.captureReceipt,
     },
   };
 }

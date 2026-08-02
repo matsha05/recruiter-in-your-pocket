@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import {
-  cp,
   copyFile,
   mkdir,
   mkdtemp,
   readFile,
+  readdir,
   rename,
   rm,
   symlink,
@@ -14,34 +14,68 @@ import {
 import os from "node:os";
 import path from "node:path";
 import manifestJson from "../gauntlet/manifest.json";
+import { observedInstalledTreeReceipt } from "../lib/gauntlet/dependency-closure";
 import { hashArtifactTree, isSafeComponent, readGitBlob, resolveContainedExistingPath, sha256, canonicalJsonSha256 } from "../lib/gauntlet/integrity";
 import { prepareBlindPackets } from "../lib/gauntlet/packets";
 import {
   buildGauntletAnchorRecord,
   caseSetSha256,
   currentCandidateCleanlinessIssue,
+  dependencyTreeMatchesCurrentHost,
   getGauntletProgress,
   journeyDefinitionSha256,
   validateGauntletDefinition,
   writeGauntletAnchor,
 } from "../lib/gauntlet/progress";
-import type {
-  BlindMapping,
-  CandidateBinding,
-  GauntletIteration,
-  GauntletAnchor,
-  GauntletManifest,
-  GauntletOutputArtifact,
-  JourneyRun,
-  ReferenceAssessment,
-  SourceAudit,
-  Variant,
+import {
+  GAUNTLET_CAPTURE_CONTRACT,
+  GAUNTLET_FINALIZED_CAPTURE_STATEMENT,
+  GAUNTLET_RUNTIME_CLOSURE_PATHS,
+  GAUNTLET_VALIDATOR_PATH,
+  type BlindMapping,
+  type CandidateBinding,
+  type DependencyClosureReceipt,
+  type GauntletIteration,
+  type GauntletAnchor,
+  type GauntletManifest,
+  type GauntletOutputArtifact,
+  type JourneyRun,
+  type ReferenceAssessment,
+  type SourceAudit,
+  type Variant,
 } from "../lib/gauntlet/types";
+import { readGitBlob as readCaptureGitBlob } from "../scripts/gauntlet-evidence-capture/repository";
 
 const repositoryRoot = path.resolve(process.cwd(), "..");
 const promptPath = "web/prompts/resume_v2.txt";
 const rendererPath = "web/components/workspace/report/ReportStream.tsx";
 const manifest = manifestJson as GauntletManifest;
+const TEST_PACKAGE_RECORD = {
+  version: "1.0.0",
+  resolved: "https://registry.invalid/fixture-dependency-1.0.0.tgz",
+  integrity: "sha512-test-only-fixture-dependency",
+};
+const TEST_PACKAGE_LOCK = {
+  name: "gauntlet-test",
+  version: "1.0.0",
+  lockfileVersion: 3,
+  requires: true,
+  packages: {
+    "": {
+      name: "gauntlet-test",
+      version: "1.0.0",
+      dependencies: { "fixture-dependency": "1.0.0" },
+    },
+    "node_modules/fixture-dependency": TEST_PACKAGE_RECORD,
+  },
+};
+const TEST_HIDDEN_PACKAGE_LOCK = {
+  name: "gauntlet-test",
+  version: "1.0.0",
+  lockfileVersion: 3,
+  requires: true,
+  packages: { "node_modules/fixture-dependency": TEST_PACKAGE_RECORD },
+};
 
 function serialize(value: unknown) {
   return `${JSON.stringify(value, null, 2)}\n`;
@@ -104,6 +138,55 @@ async function bindingFor(commit: string, model: string, root = repositoryRoot):
   };
 }
 
+async function runtimeClosureForTest(root: string, commit: string) {
+  const files = await Promise.all(GAUNTLET_RUNTIME_CLOSURE_PATHS.map(async (repositoryPath) => ({
+    path: repositoryPath,
+    sha256: sha256(await readGitBlob(root, commit, repositoryPath)),
+  })));
+  return { files, sha256: canonicalJsonSha256(files) };
+}
+
+async function dependencyClosureForTest(
+  root: string,
+  productionCommit: string,
+  candidateCommit: string,
+): Promise<DependencyClosureReceipt> {
+  const packageLockPath = "web/package-lock.json";
+  const hiddenLockPath = "web/node_modules/.package-lock.json";
+  const [productionLock, candidateLock, worktreeLock, hiddenLock] = await Promise.all([
+    readGitBlob(root, productionCommit, packageLockPath),
+    readGitBlob(root, candidateCommit, packageLockPath),
+    readFile(path.join(root, packageLockPath)),
+    readFile(path.join(root, hiddenLockPath)),
+  ]);
+  const commonSha256 = sha256(productionLock);
+  assert.equal(sha256(candidateLock), commonSha256);
+  assert.equal(sha256(worktreeLock), commonSha256);
+  const installed = await observedInstalledTreeReceipt({
+    nodeModulesPath: path.join(root, "web/node_modules"),
+    candidateLockBytes: candidateLock,
+    hiddenLockBytes: hiddenLock,
+  });
+  return {
+    packageLock: {
+      path: packageLockPath,
+      sha256: commonSha256,
+      productionCommit,
+      productionSha256: commonSha256,
+      candidateCommit,
+      candidateSha256: commonSha256,
+      worktreeSha256: commonSha256,
+    },
+    hiddenLock: { path: hiddenLockPath, sha256: sha256(hiddenLock) },
+    installedTree: {
+      platform: process.platform,
+      arch: process.arch,
+      packageCount: installed.packageCount,
+      sha256: installed.sha256,
+    },
+  };
+}
+
 async function createTestRepository() {
   const root = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-repo-"));
   const webRoot = path.join(root, "web");
@@ -117,13 +200,16 @@ async function createTestRepository() {
     mkdir(path.join(root, "tests/fixtures"), { recursive: true }),
   ]);
   await Promise.all([
-    copyFile(path.join(repositoryRoot, promptPath), path.join(root, promptPath)),
-    copyFile(path.join(repositoryRoot, rendererPath), path.join(root, rendererPath)),
+    ...GAUNTLET_RUNTIME_CLOSURE_PATHS.map(async (repositoryPath) => {
+      await mkdir(path.dirname(path.join(root, repositoryPath)), { recursive: true });
+      await copyFile(path.join(repositoryRoot, repositoryPath), path.join(root, repositoryPath));
+    }),
     copyFile(
       path.join(repositoryRoot, "tests/fixtures/calibration.json"),
       path.join(root, "tests/fixtures/calibration.json"),
     ),
   ]);
+  await writeFile(path.join(root, "web/package-lock.json"), serialize(TEST_PACKAGE_LOCK));
   for (const testCase of manifest.cases) {
     const relative = `tests/resumes/${testCase.resumePath}`;
     await mkdir(path.dirname(path.join(root, relative)), { recursive: true });
@@ -183,6 +269,21 @@ async function createTestRepository() {
   await execGit(["add", rendererPath], root);
   await execGit(["commit", "-m", "test: candidate renderer"], root);
   const candidateCommit = await execGit(["rev-parse", "HEAD"], root);
+  const testDependencyRoot = path.join(root, "web/node_modules/fixture-dependency");
+  const testNextBin = path.join(testDependencyRoot, "dist/bin/next");
+  await mkdir(testDependencyRoot, { recursive: true });
+  await mkdir(path.dirname(testNextBin), { recursive: true });
+  await Promise.all([
+    writeFile(
+      path.join(root, "web/node_modules/.package-lock.json"),
+      serialize(TEST_HIDDEN_PACKAGE_LOCK),
+    ),
+    writeFile(
+      path.join(testDependencyRoot, "package.json"),
+      serialize({ name: "fixture-dependency", version: "1.0.0" }),
+    ),
+    writeFile(testNextBin, "#!/usr/bin/env node\nconsole.log('fixture next');\n", { mode: 0o755 }),
+  ]);
   return { root, webRoot, sourcePath, sourceCommit, productionCommit, candidateCommit };
 }
 
@@ -257,6 +358,16 @@ async function writeOutputPair(
     results: Array<{ caseId: string; fixtureId: string; report: unknown }>;
   };
   const reportByCase = new Map(source.results.map((result) => [result.caseId, result]));
+  const candidateValidator = iteration.candidate.runtimeClosure?.files.find(
+    (receipt) => receipt.path === GAUNTLET_VALIDATOR_PATH,
+  );
+  if (!candidateValidator || !iteration.candidate.commit) {
+    throw new Error("test candidate binding is missing its validator runtime receipt");
+  }
+  const validatorGitBlobOid = await execGit(
+    ["rev-parse", `${iteration.candidate.commit}:${GAUNTLET_VALIDATOR_PATH}`],
+    root,
+  );
   for (const testCase of manifest.cases) {
     for (const variant of ["candidate", "production"] as const) {
       const binding = iteration[variant];
@@ -275,11 +386,24 @@ async function writeOutputPair(
       const screenshotRelative = `presentations/${variant}/${testCase.id}.png`;
       const screenshot = Buffer.from(`test-only-png-${iteration.id}-${variant}-${testCase.id}`);
       await writeFile(path.join(artifactRoot, screenshotRelative), screenshot);
+      const reportSha256 = canonicalJsonSha256(report);
+      const archiveIdentity = {
+        schemaVersion: "1" as const,
+        nonce: (variant === "candidate"
+          ? iterationNumber === 1 ? "a" : "c"
+          : iterationNumber === 1 ? "b" : "d").repeat(48),
+        variant,
+        commit: binding.commit!,
+      };
       const artifact: GauntletOutputArtifact = {
         schemaVersion: "2",
         iterationId: iteration.id,
         caseId: testCase.id,
         variant,
+        captureContract: GAUNTLET_CAPTURE_CONTRACT,
+        reportMode: variant === "candidate"
+          ? "candidate_commit_finalized"
+          : "historical_raw_unfinalized",
         binding,
         generation: {
           sourceCommit,
@@ -289,10 +413,30 @@ async function writeOutputPair(
           generatedAt: source.sourceRun.generatedAt,
           model: source.sourceRun.model,
           canonicalPromptSha256: source.sourceRun.canonicalPromptSha256,
-          reportSha256: canonicalJsonSha256(report),
+          reportSha256,
         },
+        finalization: variant === "candidate"
+          ? {
+            status: "finalized",
+            forceGrounding: true,
+            rawReportSha256: reportSha256,
+            effectiveReportSha256: reportSha256,
+            validator: {
+              commit: iteration.candidate.commit,
+              path: GAUNTLET_VALIDATOR_PATH,
+              sha256: candidateValidator.sha256,
+              gitBlobOid: validatorGitBlobOid,
+            },
+          }
+          : {
+            status: "unfinalized_raw",
+            forceGrounding: false,
+            rawReportSha256: reportSha256,
+            effectiveReportSha256: reportSha256,
+            validator: null,
+          },
         fixture: { sha256: sha256(fixture) },
-        reportSha256: canonicalJsonSha256(report),
+        reportSha256,
         report,
         presentation: {
           kind: "rendered_report",
@@ -304,6 +448,15 @@ async function writeOutputPair(
           visibleText,
           visibleTextSha256: sha256(visibleText),
           screenshot: { path: screenshotRelative, sha256: sha256(screenshot) },
+          captureReceipt: {
+            archiveIdentity,
+            renderedReport: {
+              ...archiveIdentity,
+              caseId: testCase.id,
+              component: "ReportStream",
+              reportSha256,
+            },
+          },
         },
       };
       await writeFile(
@@ -435,7 +588,7 @@ async function createCompleteIteration(input: {
     },
     previous: input.previous,
     seal: null,
-    baselineStatement: "This is an explicitly test-only integration ledger; it is never installed as production gauntlet evidence.",
+    baselineStatement: GAUNTLET_FINALIZED_CAPTURE_STATEMENT,
   };
   await writeManifest(input.webRoot, input.id);
   await writeIteration(input.webRoot, iteration);
@@ -491,13 +644,33 @@ async function commitEvidenceAndAnchors(
 }
 
 async function run() {
-  const productionBaseline = await getGauntletProgress(process.cwd());
-  assert.equal(productionBaseline.iteration.id, "iteration-000-baseline");
-  assert.equal(productionBaseline.overallStatus, "pending");
-  assert.equal(productionBaseline.pairedOutputCases, 0);
-  assert.equal(productionBaseline.blindReviewedCases, 0);
-  assert.equal(productionBaseline.iterations.length, 1);
-  assert.equal(productionBaseline.iteration.critic.verdict, "pending");
+  const gitModeAttackRoot = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-git-mode-"));
+  try {
+    const attackedPath = path.join(gitModeAttackRoot, rendererPath);
+    const symlinkBytes = "same-bytes-regular-worktree-file";
+    await mkdir(path.dirname(attackedPath), { recursive: true });
+    await symlink(symlinkBytes, attackedPath);
+    await execGit(["init"], gitModeAttackRoot);
+    await execGit(["config", "user.name", "Gauntlet Mode Test"], gitModeAttackRoot);
+    await execGit(["config", "user.email", "gauntlet-mode@example.invalid"], gitModeAttackRoot);
+    await execGit(["config", "commit.gpgsign", "false"], gitModeAttackRoot);
+    await execGit(["add", rendererPath], gitModeAttackRoot);
+    await execGit(["commit", "-m", "test: symlink-mode attack"], gitModeAttackRoot);
+    const attackedCommit = await execGit(["rev-parse", "HEAD"], gitModeAttackRoot);
+    await rm(attackedPath);
+    await writeFile(attackedPath, symlinkBytes);
+    assert.equal(await execGit(["show", `${attackedCommit}:${rendererPath}`], gitModeAttackRoot), symlinkBytes);
+    await assert.rejects(
+      () => readGitBlob(gitModeAttackRoot, attackedCommit, rendererPath),
+      /regular 100644\/100755 blob/,
+    );
+    await assert.rejects(
+      () => readCaptureGitBlob(gitModeAttackRoot, attackedCommit, rendererPath),
+      /regular 100644\/100755 blob/,
+    );
+  } finally {
+    await rm(gitModeAttackRoot, { recursive: true, force: true });
+  }
 
   assert.equal(isSafeComponent("iteration-001"), true);
   for (const unsafe of ["../../outside", "a/b", "..\\outside", "__proto__", "constructor"]) {
@@ -505,8 +678,13 @@ async function run() {
   }
   assert.equal(
     currentCandidateCleanlinessIssue("candidate", "a".repeat(40), "a".repeat(40), " M web/prompts/resume_v2.txt"),
-    "candidate canonical prompt or renderer is dirty relative to the bound HEAD commit",
+    "candidate runtime, capture harness, or dependency inputs are dirty relative to the bound HEAD commit",
   );
+  assert.equal(dependencyTreeMatchesCurrentHost({ platform: process.platform, arch: process.arch }), true);
+  assert.equal(dependencyTreeMatchesCurrentHost({
+    platform: process.platform === "linux" ? "darwin" : "linux",
+    arch: process.arch,
+  }), false);
   for (const deployableEvidencePath of [
     "web/gauntlet/artifacts/iteration-001/outputs/candidate/staff-ml-elite.json",
     "web/gauntlet/artifacts/iteration-001/presentations/candidate/staff-ml-elite.jpg",
@@ -519,18 +697,221 @@ async function run() {
     await isGitIgnored("web/gauntlet/artifacts/iteration-001/private-live-run.json"),
     true,
   );
+  const legacySnapshot = await getGauntletProgress(process.cwd(), "iteration-001");
+  assert.equal(
+    legacySnapshot.dataIssues.some((issue) => /captureContract|reportMode|finalization receipt|dependency closure|runtime closure/.test(issue)),
+    false,
+    "the exact immutable iteration-001 evidence set is the sole finalized-v1 grandfather",
+  );
+  const legacyAttackRoot = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-legacy-attack-"));
+  try {
+    const legacyAttackWebRoot = path.join(legacyAttackRoot, "web");
+    const legacyIterationDirectory = path.join(legacyAttackWebRoot, "gauntlet/iterations");
+    const legacyArtifactRoot = path.join(
+      legacyAttackWebRoot,
+      "gauntlet/artifacts/iteration-001",
+    );
+    const legacyOutputDirectory = path.join(legacyArtifactRoot, "outputs/candidate");
+    const legacyProductionOutputDirectory = path.join(legacyArtifactRoot, "outputs/production");
+    await Promise.all([
+      mkdir(legacyIterationDirectory, { recursive: true }),
+      mkdir(legacyOutputDirectory, { recursive: true }),
+      mkdir(legacyProductionOutputDirectory, { recursive: true }),
+    ]);
+    await Promise.all([
+      copyFile(
+        path.join(process.cwd(), "gauntlet/manifest.json"),
+        path.join(legacyAttackWebRoot, "gauntlet/manifest.json"),
+      ),
+      copyFile(
+        path.join(process.cwd(), "gauntlet/iterations/iteration-001.json"),
+        path.join(legacyIterationDirectory, "iteration-001.json"),
+      ),
+    ]);
+    for (const variant of ["candidate", "production"] as const) {
+      const sourceDirectory = path.join(
+        process.cwd(),
+        `gauntlet/artifacts/iteration-001/outputs/${variant}`,
+      );
+      const targetDirectory = path.join(legacyArtifactRoot, `outputs/${variant}`);
+      const names = await readdir(sourceDirectory);
+      assert.equal(names.length, 12, `${variant} legacy fixture must contain exactly 12 artifacts`);
+      assert.equal(names.every((name) => name.endsWith(".json")), true);
+      await Promise.all(names.map((name) => copyFile(
+        path.join(sourceDirectory, name),
+        path.join(targetDirectory, name),
+      )));
+    }
+
+    const assertLegacyDenied = async (label: string, expectedArtifactErrors: number) => {
+      const snapshot = await getGauntletProgress(legacyAttackWebRoot, "iteration-001");
+      const fingerprintIssues = snapshot.dataIssues.filter(
+        (issue) => /legacy capture fingerprint does not match/.test(issue),
+      );
+      assert.equal(
+        fingerprintIssues.length,
+        1,
+        `${label} must emit exactly one global legacy-authorization error`,
+      );
+      const finalizedContractIssues = snapshot.dataIssues.filter(
+        (issue) => /: captureContract must be finalized-v1$/.test(issue),
+      );
+      assert.equal(
+        finalizedContractIssues.length,
+        expectedArtifactErrors,
+        `${label} must deny the legacy carve-out once per surviving JSON artifact`,
+      );
+      const survivingJsonFilenames: string[] = [];
+      for (const variant of ["candidate", "production"] as const) {
+        const entries = await readdir(
+          path.join(legacyArtifactRoot, `outputs/${variant}`),
+          { withFileTypes: true },
+        );
+        survivingJsonFilenames.push(...entries
+          .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+          .map((entry) => entry.name));
+      }
+      assert.equal(survivingJsonFilenames.length, expectedArtifactErrors);
+      const deniedFilenames = finalizedContractIssues.map((issue) => (
+        issue.slice(0, issue.indexOf(": captureContract must be finalized-v1"))
+      ));
+      // Both variants intentionally share filenames; multiset equality proves one error per path.
+      assert.deepEqual(
+        deniedFilenames.sort(),
+        survivingJsonFilenames.sort(),
+        `${label} must identify every surviving JSON artifact exactly once`,
+      );
+    };
+
+    const exactCopySnapshot = await getGauntletProgress(legacyAttackWebRoot, "iteration-001");
+    assert.equal(
+      exactCopySnapshot.dataIssues.some((issue) => /legacy capture fingerprint does not match/.test(issue)),
+      false,
+      "the exact 24-file copy must retain the immutable legacy authorization",
+    );
+    assert.equal(
+      exactCopySnapshot.dataIssues.some((issue) => /captureContract must be finalized-v1/.test(issue)),
+      false,
+      "the exact 24-file copy must remain the sole legacy capture-contract exception",
+    );
+
+    const attackedArtifactPath = path.join(legacyOutputDirectory, "staff-ml-elite.json");
+    const attackedArtifactRaw = await readFile(attackedArtifactPath, "utf8");
+    const legacyOutputsRoot = path.join(legacyArtifactRoot, "outputs");
+    const rootExtraFile = path.join(legacyOutputsRoot, "README.txt");
+    await writeFile(rootExtraFile, "not part of the exact output tree\n");
+    await assertLegacyDenied("adding a file directly under outputs", 24);
+    await rm(rootExtraFile);
+
+    const rootExtraDirectory = path.join(legacyOutputsRoot, "attacker-variant");
+    await mkdir(rootExtraDirectory);
+    await assertLegacyDenied("adding a sibling variant directory under outputs", 24);
+    await rm(rootExtraDirectory, { recursive: true });
+
+    let afterLegacySnapshotHookRan = false;
+    const afterAuthorizationMutation = JSON.parse(attackedArtifactRaw) as GauntletOutputArtifact;
+    afterAuthorizationMutation.schemaVersion = "after-authorization-drift" as "2";
+    afterAuthorizationMutation.captureContract = "tampered-v0" as typeof GAUNTLET_CAPTURE_CONTRACT;
+    const afterAuthorizationRaw = serialize(afterAuthorizationMutation);
+    const frozenSnapshot = await getGauntletProgress(
+      legacyAttackWebRoot,
+      "iteration-001",
+      {
+        afterLegacySnapshot: async () => {
+          afterLegacySnapshotHookRan = true;
+          await writeFile(attackedArtifactPath, afterAuthorizationRaw);
+        },
+      },
+    );
+    assert.equal(afterLegacySnapshotHookRan, true, "the deterministic post-authorization hook must run");
+    assert.equal(await readFile(attackedArtifactPath, "utf8"), afterAuthorizationRaw);
+    assert.equal(
+      frozenSnapshot.dataIssues.some((issue) => /schemaVersion must be 2|captureContract must be finalized-v1/.test(issue)),
+      false,
+      "bytes replaced after authorization must not be reread or admitted through the legacy exception",
+    );
+    // The current scan uses its pinned, path-specific snapshot; the next scan rejects the changed bytes globally.
+    await assertLegacyDenied("persisting a post-snapshot replacement into the next scan", 24);
+    await writeFile(attackedArtifactPath, attackedArtifactRaw);
+
+    const attackedLedgerPath = path.join(legacyIterationDirectory, "iteration-001.json");
+    const attackedLedgerRaw = await readFile(attackedLedgerPath, "utf8");
+    const contradictoryLedger = JSON.parse(attackedLedgerRaw) as GauntletIteration;
+    contradictoryLedger.baselineStatement += " Candidate and production are actually equivalent.";
+    await writeFile(attackedLedgerPath, serialize(contradictoryLedger));
+    await assertLegacyDenied("changing baselineStatement under the legacy ID", 24);
+    await writeFile(attackedLedgerPath, attackedLedgerRaw);
+
+    const capturedAtAttack = JSON.parse(attackedArtifactRaw) as GauntletOutputArtifact;
+    capturedAtAttack.presentation.capturedAt = "2026-07-31T16:01:00.000Z";
+    capturedAtAttack.presentation.visibleText += "\nRecomputed attacker text.";
+    capturedAtAttack.presentation.visibleTextSha256 = sha256(capturedAtAttack.presentation.visibleText);
+    await writeFile(attackedArtifactPath, serialize(capturedAtAttack));
+    await assertLegacyDenied("changing capturedAt and recomputing a downstream receipt", 24);
+    await writeFile(attackedArtifactPath, attackedArtifactRaw);
+
+    const reportAttack = JSON.parse(attackedArtifactRaw) as GauntletOutputArtifact;
+    (reportAttack.report as Record<string, unknown>).summary = "Rewritten under the same legacy identity.";
+    reportAttack.reportSha256 = canonicalJsonSha256(reportAttack.report);
+    reportAttack.generation.reportSha256 = reportAttack.reportSha256;
+    await writeFile(attackedArtifactPath, serialize(reportAttack));
+    await assertLegacyDenied("recomputing report receipts", 24);
+    await writeFile(attackedArtifactPath, attackedArtifactRaw);
+
+    await rm(attackedArtifactPath);
+    await assertLegacyDenied("deleting one artifact from the 24-file set", 23);
+    await writeFile(attackedArtifactPath, attackedArtifactRaw);
+
+    const extraOutputPath = path.join(legacyOutputDirectory, "README.txt");
+    await writeFile(extraOutputPath, "not part of the immutable evidence set\n");
+    await assertLegacyDenied("adding a non-JSON output entry", 24);
+    await rm(extraOutputPath);
+
+    const renamedArtifactPath = path.join(legacyOutputDirectory, "staff-ml-elite-renamed.json");
+    await rename(attackedArtifactPath, renamedArtifactPath);
+    await assertLegacyDenied("renaming one artifact in the 24-file set", 24);
+    await rename(renamedArtifactPath, attackedArtifactPath);
+
+    const swapArtifactPath = path.join(legacyOutputDirectory, "vp-talent-elite.json");
+    const swapArtifactRaw = await readFile(swapArtifactPath, "utf8");
+    await Promise.all([
+      writeFile(attackedArtifactPath, swapArtifactRaw),
+      writeFile(swapArtifactPath, attackedArtifactRaw),
+    ]);
+    await assertLegacyDenied("swapping two artifacts while preserving the filename set", 24);
+    await Promise.all([
+      writeFile(attackedArtifactPath, attackedArtifactRaw),
+      writeFile(swapArtifactPath, swapArtifactRaw),
+    ]);
+  } finally {
+    await rm(legacyAttackRoot, { recursive: true, force: true });
+  }
   const nextConfigSource = await readFile(path.join(process.cwd(), "next.config.mjs"), "utf8");
   assert.match(nextConfigSource, /["']\/launch\/gauntlet["']:\s*\[["']\.\/gauntlet\/\*\*\/\*["']\]/);
 
   const hostedRoot = await mkdtemp(path.join(os.tmpdir(), "riyp-gauntlet-hosted-"));
   try {
     const hostedWebRoot = path.join(hostedRoot, "web");
-    await mkdir(hostedWebRoot);
-    await cp(path.join(process.cwd(), "gauntlet"), path.join(hostedWebRoot, "gauntlet"), {
-      recursive: true,
-    });
+    const hostedGauntletRoot = path.join(hostedWebRoot, "gauntlet");
+    await Promise.all([
+      mkdir(path.join(hostedGauntletRoot, "iterations"), { recursive: true }),
+      mkdir(path.join(hostedGauntletRoot, "artifacts"), { recursive: true }),
+    ]);
+    await writeFile(
+      path.join(hostedGauntletRoot, "manifest.json"),
+      serialize({ ...manifest, activeIterationId: "iteration-000-baseline" }),
+    );
+    await copyFile(
+      path.join(process.cwd(), "gauntlet/iterations/iteration-000-baseline.json"),
+      path.join(hostedGauntletRoot, "iterations/iteration-000-baseline.json"),
+    );
     const hostedSnapshot = await getGauntletProgress(hostedWebRoot);
+    assert.equal(hostedSnapshot.iteration.id, "iteration-000-baseline");
     assert.equal(hostedSnapshot.overallStatus, "pending");
+    assert.equal(hostedSnapshot.pairedOutputCases, 0);
+    assert.equal(hostedSnapshot.blindReviewedCases, 0);
+    assert.equal(hostedSnapshot.iterations.length, 1);
+    assert.equal(hostedSnapshot.iteration.critic.verdict, "pending");
     assert.deepEqual(hostedSnapshot.dataIssues, []);
     assert.match(
       hostedSnapshot.gates.find((gate) => gate.id === "candidate-binding")?.detail ?? "",
@@ -548,10 +929,97 @@ async function run() {
   const testRepository = await createTestRepository();
   const { productionCommit, sourceCommit, candidateCommit } = testRepository;
   assert.notEqual(sourceCommit, productionCommit);
-  const [productionBinding, candidateBinding] = await Promise.all([
+  const [productionBindingBase, candidateBindingBase, candidateRuntimeClosure, dependencyClosure] = await Promise.all([
     bindingFor(productionCommit, "test-only-generation-model", testRepository.root),
     bindingFor(candidateCommit, "test-only-generation-model", testRepository.root),
+    runtimeClosureForTest(testRepository.root, candidateCommit),
+    dependencyClosureForTest(testRepository.root, productionCommit, candidateCommit),
   ]);
+  const productionBinding: CandidateBinding = {
+    ...productionBindingBase,
+    runtimeClosure: null,
+    dependencyClosure,
+  };
+  const candidateBinding: CandidateBinding = {
+    ...candidateBindingBase,
+    runtimeClosure: candidateRuntimeClosure,
+    dependencyClosure,
+  };
+  const installedFixtureDependency = path.join(
+    testRepository.root,
+    "web/node_modules/fixture-dependency",
+  );
+  const installedFixturePackageJson = path.join(installedFixtureDependency, "package.json");
+  const installedFixturePackageJsonRaw = await readFile(installedFixturePackageJson);
+  const installedFixtureNextBin = path.join(installedFixtureDependency, "dist/bin/next");
+  const installedFixtureNextBinRaw = await readFile(installedFixtureNextBin);
+  await rm(installedFixtureDependency, { recursive: true });
+  await assert.rejects(
+    () => dependencyClosureForTest(
+      testRepository.root,
+      productionCommit,
+      candidateCommit,
+    ),
+    /hidden dependency lock package is absent from node_modules/,
+  );
+  await mkdir(installedFixtureDependency);
+  await mkdir(path.dirname(installedFixtureNextBin), { recursive: true });
+  await writeFile(installedFixturePackageJson, installedFixturePackageJsonRaw);
+  await writeFile(installedFixtureNextBin, installedFixtureNextBinRaw, { mode: 0o755 });
+  await writeFile(
+    installedFixturePackageJson,
+    serialize({ name: "fixture-dependency", version: "tampered" }),
+  );
+  const tamperedInstalledTree = await dependencyClosureForTest(
+    testRepository.root,
+    productionCommit,
+    candidateCommit,
+  );
+  assert.notEqual(tamperedInstalledTree.installedTree.sha256, dependencyClosure.installedTree.sha256);
+  await writeFile(installedFixturePackageJson, installedFixturePackageJsonRaw);
+  await writeFile(installedFixtureNextBin, "#!/usr/bin/env node\nconsole.log('tampered next');\n");
+  const tamperedNextBinTree = await dependencyClosureForTest(
+    testRepository.root,
+    productionCommit,
+    candidateCommit,
+  );
+  assert.notEqual(tamperedNextBinTree.installedTree.sha256, dependencyClosure.installedTree.sha256);
+  await writeFile(installedFixtureNextBin, installedFixtureNextBinRaw);
+  const extraInstalledFile = path.join(installedFixtureDependency, "unexpected-runtime.js");
+  await writeFile(extraInstalledFile, "throw new Error('unexpected');\n");
+  const extraFileTree = await dependencyClosureForTest(
+    testRepository.root,
+    productionCommit,
+    candidateCommit,
+  );
+  assert.notEqual(extraFileTree.installedTree.sha256, dependencyClosure.installedTree.sha256);
+  await rm(extraInstalledFile);
+  const outsideSymlink = path.join(installedFixtureDependency, "outside-link");
+  await symlink(testRepository.root, outsideSymlink, "dir");
+  await assert.rejects(
+    () => dependencyClosureForTest(
+      testRepository.root,
+      productionCommit,
+      candidateCommit,
+    ),
+    /symlink escapes node_modules/,
+  );
+  await rm(outsideSymlink);
+  const extraDependency = path.join(testRepository.root, "web/node_modules/unrecorded-package");
+  await mkdir(extraDependency);
+  await writeFile(
+    path.join(extraDependency, "package.json"),
+    serialize({ name: "unrecorded-package", version: "1.0.0" }),
+  );
+  await assert.rejects(
+    () => dependencyClosureForTest(
+      testRepository.root,
+      productionCommit,
+      candidateCommit,
+    ),
+    /unrecorded package/,
+  );
+  await rm(extraDependency, { recursive: true });
 
   const testRoot = testRepository.webRoot;
   try {
@@ -622,6 +1090,18 @@ async function run() {
     assert.equal(firstSnapshot.iterations.find((entry) => entry.id === first.id)?.selected, true);
     assert.equal(secondSnapshot.iterations.find((entry) => entry.id === second.id)?.selected, true);
 
+    const finalizedLedgerPath = path.join(testRoot, `gauntlet/iterations/${second.id}.json`);
+    const finalizedLedgerRaw = await readFile(finalizedLedgerPath, "utf8");
+    const contradictoryDisclosure = JSON.parse(finalizedLedgerRaw) as GauntletIteration;
+    contradictoryDisclosure.baselineStatement += " This suffix contradicts that disclosure.";
+    await writeFile(finalizedLedgerPath, serialize(contradictoryDisclosure));
+    const contradictoryDisclosureSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(
+      contradictoryDisclosureSnapshot.dataIssues.some((issue) => /baselineStatement must equal the exact finalized-v1/.test(issue)),
+      true,
+    );
+    await writeFile(finalizedLedgerPath, finalizedLedgerRaw);
+
     await execGit([
       "switch",
       "-c",
@@ -663,6 +1143,15 @@ async function run() {
     const generationBoundSnapshot = await getGauntletProgress(testRoot, second.id);
     assert.equal(generationBoundSnapshot.overallStatus, "pass", generationBoundSnapshot.dataIssues.join("\n"));
     await writeFile(workspaceFixturePath, workspaceFixtureRaw);
+
+    await writeFile(installedFixtureNextBin, "#!/usr/bin/env node\nconsole.log('runtime tamper');\n");
+    const installedTreeTamperSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(installedTreeTamperSnapshot.overallStatus, "fail");
+    assert.equal(
+      installedTreeTamperSnapshot.dataIssues.some((issue) => /installed dependency-tree receipt is stale or incomplete/.test(issue)),
+      true,
+    );
+    await writeFile(installedFixtureNextBin, installedFixtureNextBinRaw);
 
     const pageSource = await readFile(path.join(process.cwd(), "app/(app)/launch/gauntlet/page.tsx"), "utf8");
     assert.match(pageSource, /name="iteration"/);
@@ -737,6 +1226,75 @@ async function run() {
     const outputRaw = await readFile(outputPath, "utf8");
     assert.doesNotMatch(outputRaw, /tests\/resumes\//);
     assert.equal((JSON.parse(outputRaw) as GauntletOutputArtifact).generation.sourceCommit, sourceCommit);
+
+    const downgradedCapture = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    delete downgradedCapture.captureContract;
+    delete downgradedCapture.reportMode;
+    delete downgradedCapture.finalization;
+    delete downgradedCapture.binding.runtimeClosure;
+    delete downgradedCapture.binding.dependencyClosure;
+    await writeFile(outputPath, serialize(downgradedCapture));
+    const downgradedCaptureSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(downgradedCaptureSnapshot.overallStatus, "fail");
+    assert.equal(
+      downgradedCaptureSnapshot.dataIssues.some((issue) => /captureContract must be finalized-v1/.test(issue)),
+      true,
+      "a fresh artifact may not downgrade itself into the iteration-001 legacy carve-out",
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const tamperedMarker = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    tamperedMarker.captureContract = "tampered-v0" as typeof GAUNTLET_CAPTURE_CONTRACT;
+    await writeFile(outputPath, serialize(tamperedMarker));
+    const tamperedMarkerSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(tamperedMarkerSnapshot.overallStatus, "fail");
+    assert.equal(tamperedMarkerSnapshot.dataIssues.some((issue) => /captureContract must be finalized-v1/.test(issue)), true);
+    await writeFile(outputPath, outputRaw);
+
+    const swappedCandidateMode = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    swappedCandidateMode.reportMode = "historical_raw_unfinalized";
+    await writeFile(outputPath, serialize(swappedCandidateMode));
+    const swappedCandidateModeSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(swappedCandidateModeSnapshot.overallStatus, "fail");
+    assert.equal(
+      swappedCandidateModeSnapshot.dataIssues.some((issue) => /candidate reportMode must be candidate_commit_finalized/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const missingCandidateFinalization = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    delete missingCandidateFinalization.finalization;
+    await writeFile(outputPath, serialize(missingCandidateFinalization));
+    const missingCandidateFinalizationSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(missingCandidateFinalizationSnapshot.overallStatus, "fail");
+    assert.equal(
+      missingCandidateFinalizationSnapshot.dataIssues.some((issue) => /finalization receipt is missing or invalid/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const missingCandidateRuntime = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    missingCandidateRuntime.binding.runtimeClosure = null;
+    await writeFile(outputPath, serialize(missingCandidateRuntime));
+    const missingCandidateRuntimeSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(missingCandidateRuntimeSnapshot.overallStatus, "fail");
+    assert.equal(
+      missingCandidateRuntimeSnapshot.dataIssues.some((issue) => /requires a complete runtime closure/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const tamperedDependencies = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    tamperedDependencies.binding.dependencyClosure!.installedTree.sha256 = "f".repeat(64);
+    await writeFile(outputPath, serialize(tamperedDependencies));
+    const tamperedDependenciesSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(tamperedDependenciesSnapshot.overallStatus, "fail");
+    assert.equal(
+      tamperedDependenciesSnapshot.dataIssues.some((issue) => /installed dependency-tree receipt|iteration binding/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
     const staleGenerationReceipt = JSON.parse(outputRaw) as GauntletOutputArtifact;
     staleGenerationReceipt.generation.generatedAt = "2026-07-30T20:52:41.424Z";
     await writeFile(outputPath, serialize(staleGenerationReceipt));
@@ -764,8 +1322,74 @@ async function run() {
     assert.equal(staleRendererSnapshot.dataIssues.some((issue) => /renderer receipt/.test(issue)), true);
     await writeFile(outputPath, outputRaw);
 
+    const tamperedArchiveNonce = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    tamperedArchiveNonce.presentation.captureReceipt!.archiveIdentity.nonce = "f".repeat(48);
+    await writeFile(outputPath, serialize(tamperedArchiveNonce));
+    const tamperedArchiveNonceSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(tamperedArchiveNonceSnapshot.overallStatus, "fail");
+    assert.equal(
+      tamperedArchiveNonceSnapshot.dataIssues.some((issue) => /rendered-report receipt/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const divergentCaseArchiveIdentity = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    divergentCaseArchiveIdentity.presentation.captureReceipt!.archiveIdentity.nonce = "e".repeat(48);
+    divergentCaseArchiveIdentity.presentation.captureReceipt!.renderedReport.nonce = "e".repeat(48);
+    await writeFile(outputPath, serialize(divergentCaseArchiveIdentity));
+    const divergentCaseArchiveSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(divergentCaseArchiveSnapshot.overallStatus, "fail");
+    assert.equal(
+      divergentCaseArchiveSnapshot.dataIssues.some((issue) => /candidate capture set must share exactly one archive identity/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
+    const tamperedRenderedReport = JSON.parse(outputRaw) as GauntletOutputArtifact;
+    tamperedRenderedReport.presentation.captureReceipt!.renderedReport.reportSha256 = "f".repeat(64);
+    await writeFile(outputPath, serialize(tamperedRenderedReport));
+    const tamperedRenderedReportSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(tamperedRenderedReportSnapshot.overallStatus, "fail");
+    assert.equal(
+      tamperedRenderedReportSnapshot.dataIssues.some((issue) => /exact ReportStream artifact/.test(issue)),
+      true,
+    );
+    await writeFile(outputPath, outputRaw);
+
     const productionOutputPath = path.join(testRoot, `gauntlet/artifacts/${second.id}/outputs/production/${firstCaseId}.json`);
     const productionOutputRaw = await readFile(productionOutputPath, "utf8");
+    const missingRawProductionReceipt = JSON.parse(productionOutputRaw) as GauntletOutputArtifact;
+    delete missingRawProductionReceipt.finalization;
+    await writeFile(productionOutputPath, serialize(missingRawProductionReceipt));
+    const missingRawProductionSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(missingRawProductionSnapshot.overallStatus, "fail");
+    assert.equal(
+      missingRawProductionSnapshot.dataIssues.some((issue) => /finalization receipt is missing or invalid/.test(issue)),
+      true,
+    );
+    await writeFile(productionOutputPath, productionOutputRaw);
+
+    const productionIdentityOriginals = new Map<string, string>();
+    for (const testCase of manifest.cases) {
+      const caseOutputPath = path.join(
+        testRoot,
+        `gauntlet/artifacts/${second.id}/outputs/production/${testCase.id}.json`,
+      );
+      const raw = await readFile(caseOutputPath, "utf8");
+      productionIdentityOriginals.set(caseOutputPath, raw);
+      const artifact = JSON.parse(raw) as GauntletOutputArtifact;
+      artifact.presentation.captureReceipt!.archiveIdentity.nonce = "c".repeat(48);
+      artifact.presentation.captureReceipt!.renderedReport.nonce = "c".repeat(48);
+      await writeFile(caseOutputPath, serialize(artifact));
+    }
+    const reusedCrossVariantNonceSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(reusedCrossVariantNonceSnapshot.overallStatus, "fail");
+    assert.equal(
+      reusedCrossVariantNonceSnapshot.dataIssues.some((issue) => /candidate and production archive nonces must differ/.test(issue)),
+      true,
+    );
+    await Promise.all([...productionIdentityOriginals].map(([filePath, raw]) => writeFile(filePath, raw)));
+
     const divergentSourceCommit = JSON.parse(productionOutputRaw) as GauntletOutputArtifact;
     divergentSourceCommit.generation.sourceCommit = candidateCommit;
     await writeFile(productionOutputPath, serialize(divergentSourceCommit));
@@ -815,6 +1439,17 @@ async function run() {
     assert.equal(weakenedTargetSnapshot.overallStatus, "fail");
     assert.equal(weakenedTargetSnapshot.dataIssues.some((issue) => /non-negotiable quality bar/.test(issue)), true);
     await writeFile(manifestPath, manifestRaw);
+
+    const dishonestLedger = JSON.parse(secondLedgerRaw) as GauntletIteration;
+    dishonestLedger.baselineStatement = "Candidate and production are directly comparable.";
+    await writeFile(secondLedgerPath, serialize(dishonestLedger));
+    const dishonestLedgerSnapshot = await getGauntletProgress(testRoot, second.id);
+    assert.equal(dishonestLedgerSnapshot.overallStatus, "fail");
+    assert.equal(
+      dishonestLedgerSnapshot.dataIssues.some((issue) => /baselineStatement must equal the exact finalized-v1/.test(issue)),
+      true,
+    );
+    await writeFile(secondLedgerPath, secondLedgerRaw);
 
     const restored = await getGauntletProgress(testRoot, second.id);
     assert.equal(restored.overallStatus, "pass", restored.dataIssues.join("\n"));

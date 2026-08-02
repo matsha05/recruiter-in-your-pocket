@@ -1,13 +1,26 @@
 import { execFile, spawn, type ChildProcess } from "node:child_process";
 import { createServer } from "node:net";
 import { existsSync } from "node:fs";
-import { lstat, mkdir, mkdtemp, readFile, realpath, rm, symlink } from "node:fs/promises";
+import { cp, lstat, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import type { CandidateBinding, GauntletManifest } from "../../lib/gauntlet/types";
+import {
+  GAUNTLET_RUNTIME_CLOSURE_PATHS,
+  GAUNTLET_VALIDATOR_PATH,
+  type CandidateBinding,
+  type DependencyClosureReceipt,
+  type FinalizationValidatorReceipt,
+  type GauntletManifest,
+  type RuntimeClosureReceipt,
+} from "../../lib/gauntlet/types";
+import { observedInstalledTreeReceipt } from "../../lib/gauntlet/dependency-closure";
 import {
   AGREED_RUN_RECEIPT,
   APPROVED_CASE_FIXTURES,
+  CAPTURE_HARNESS_PATHS,
+  HIDDEN_PACKAGE_LOCK_PATH,
+  NETWORK_GUARD_PATH,
+  PACKAGE_LOCK_PATH,
   assertApprovedCaptureManifest,
   PROMPT_PATH,
   PRODUCTION_COMMIT,
@@ -34,6 +47,8 @@ export type CapturePlan = {
   sourceBytes: Buffer;
   production: CandidateBinding;
   candidate: CandidateBinding;
+  candidateValidator: FinalizationValidatorReceipt;
+  dependencyClosure: DependencyClosureReceipt;
   fixtureBytes: Map<string, Buffer>;
 };
 
@@ -85,7 +100,138 @@ export async function readGitBlob(repositoryRoot: string, commit: string, reposi
     throw new Error(`unsafe repository path: ${repositoryPath}`);
   }
   await resolveCommit(repositoryRoot, commit);
+  const tree = await execFileBuffer(
+    "git",
+    ["-C", repositoryRoot, "ls-tree", "-z", commit, "--", repositoryPath],
+    repositoryRoot,
+  );
+  const records = tree.toString("utf8").split("\0").filter(Boolean);
+  const match = records.length === 1
+    ? /^(100644|100755) blob [a-f0-9]{40,64}\t(.+)$/.exec(records[0])
+    : null;
+  if (!match || match[2] !== repositoryPath) {
+    throw new Error(`Git path must be one regular 100644/100755 blob: ${repositoryPath}`);
+  }
   return execFileBuffer("git", ["-C", repositoryRoot, "show", `${commit}:${repositoryPath}`], repositoryRoot);
+}
+
+/**
+ * Inspectable verifier for the exact lock bytes and the filesystem npm will
+ * actually execute. The installed-tree receipt cannot be forged from the
+ * hidden lock alone.
+ */
+export async function verifyOfflineDependencyClosure(input: {
+  productionCommit: string;
+  candidateCommit: string;
+  productionLockBytes: Buffer;
+  candidateLockBytes: Buffer;
+  worktreeLockBytes: Buffer;
+  hiddenLockBytes: Buffer;
+  nodeModulesPath: string;
+}): Promise<DependencyClosureReceipt> {
+  if (!FULL_GIT_SHA.test(input.productionCommit) || !FULL_GIT_SHA.test(input.candidateCommit)) {
+    throw new Error("dependency closure commits must be full lowercase Git SHAs");
+  }
+  if (!input.productionLockBytes.equals(input.candidateLockBytes)
+    || !input.candidateLockBytes.equals(input.worktreeLockBytes)) {
+    throw new Error("production, candidate, and worktree package-lock.json bytes must be identical");
+  }
+  const packageLockSha256 = sha256(input.candidateLockBytes);
+  const installedTree = await observedInstalledTreeReceipt({
+    nodeModulesPath: input.nodeModulesPath,
+    candidateLockBytes: input.candidateLockBytes,
+    hiddenLockBytes: input.hiddenLockBytes,
+  });
+  return {
+    packageLock: {
+      path: PACKAGE_LOCK_PATH,
+      sha256: packageLockSha256,
+      productionCommit: input.productionCommit,
+      productionSha256: sha256(input.productionLockBytes),
+      candidateCommit: input.candidateCommit,
+      candidateSha256: packageLockSha256,
+      worktreeSha256: sha256(input.worktreeLockBytes),
+    },
+    hiddenLock: {
+      path: HIDDEN_PACKAGE_LOCK_PATH,
+      sha256: sha256(input.hiddenLockBytes),
+    },
+    installedTree: {
+      platform: process.platform,
+      arch: process.arch,
+      packageCount: installedTree.packageCount,
+      sha256: installedTree.sha256,
+    },
+  };
+}
+
+export async function dependencyClosureFor(input: {
+  repositoryRoot: string;
+  productionCommit: string;
+  candidateCommit: string;
+  nodeModulesPath: string;
+}): Promise<DependencyClosureReceipt> {
+  const suppliedNodeModulesStats = await lstat(input.nodeModulesPath);
+  if (!suppliedNodeModulesStats.isDirectory() || suppliedNodeModulesStats.isSymbolicLink()) {
+    throw new Error("existing node_modules must be a regular directory");
+  }
+  const nodeModules = await realpath(input.nodeModulesPath);
+  const nodeModulesStats = await lstat(nodeModules);
+  if (!nodeModulesStats.isDirectory() || nodeModulesStats.isSymbolicLink()) {
+    throw new Error("existing node_modules must be a regular directory");
+  }
+  const worktreeLockPath = path.join(input.repositoryRoot, PACKAGE_LOCK_PATH);
+  const worktreeLockStats = await lstat(worktreeLockPath);
+  if (!worktreeLockStats.isFile() || worktreeLockStats.isSymbolicLink()) {
+    throw new Error("worktree package-lock.json must be a regular file");
+  }
+  const hiddenLockPath = path.join(nodeModules, ".package-lock.json");
+  const hiddenStats = await lstat(hiddenLockPath);
+  if (!hiddenStats.isFile() || hiddenStats.isSymbolicLink()) {
+    throw new Error("node_modules/.package-lock.json must be a regular file");
+  }
+  const [productionLockBytes, candidateLockBytes, worktreeLockBytes, hiddenLockBytes] = await Promise.all([
+    readGitBlob(input.repositoryRoot, input.productionCommit, PACKAGE_LOCK_PATH),
+    readGitBlob(input.repositoryRoot, input.candidateCommit, PACKAGE_LOCK_PATH),
+    readFile(worktreeLockPath),
+    readFile(hiddenLockPath),
+  ]);
+  return verifyOfflineDependencyClosure({
+    productionCommit: input.productionCommit,
+    candidateCommit: input.candidateCommit,
+    productionLockBytes,
+    candidateLockBytes,
+    worktreeLockBytes,
+    hiddenLockBytes,
+    nodeModulesPath: nodeModules,
+  });
+}
+
+export async function assertDependencyClosure(input: {
+  repositoryRoot: string;
+  nodeModulesPath: string;
+  expected: DependencyClosureReceipt;
+}) {
+  const actual = await dependencyClosureFor({
+    repositoryRoot: input.repositoryRoot,
+    productionCommit: input.expected.packageLock.productionCommit,
+    candidateCommit: input.expected.packageLock.candidateCommit,
+    nodeModulesPath: input.nodeModulesPath,
+  });
+  if (canonicalJsonSha256(actual) !== canonicalJsonSha256(input.expected)) {
+    throw new Error("offline dependency closure changed after capture planning");
+  }
+  return actual;
+}
+
+/** Test/CI overlay copy that keeps npm's relative .bin links inside the copy. */
+export async function copyNodeModulesTree(source: string, target: string) {
+  await cp(source, target, {
+    recursive: true,
+    dereference: false,
+    preserveTimestamps: true,
+    verbatimSymlinks: true,
+  });
 }
 
 async function assertAncestor(repositoryRoot: string, ancestor: string, descendant: string, label: string) {
@@ -140,7 +286,58 @@ function validateSanitizedSource(source: SanitizedHistoricalSource, manifest: Ga
   }
 }
 
-async function bindingFor(repositoryRoot: string, commit: string): Promise<CandidateBinding> {
+export async function runtimeClosureFor(repositoryRoot: string, commit: string): Promise<RuntimeClosureReceipt> {
+  const files = await Promise.all(GAUNTLET_RUNTIME_CLOSURE_PATHS.map(async (repositoryPath) => ({
+    path: repositoryPath,
+    sha256: sha256(await readGitBlob(repositoryRoot, commit, repositoryPath)),
+  })));
+  return { files, sha256: canonicalJsonSha256(files) };
+}
+
+export async function assertCandidateHarnessMatchesWorktree(input: {
+  repositoryRoot: string;
+  candidateCommit: string;
+}) {
+  const closurePaths = new Set<string>(GAUNTLET_RUNTIME_CLOSURE_PATHS);
+  const receipts = [];
+  for (const repositoryPath of CAPTURE_HARNESS_PATHS) {
+    if (!closurePaths.has(repositoryPath)) {
+      throw new Error(`capture harness is not part of the candidate runtime closure: ${repositoryPath}`);
+    }
+    const currentPath = path.join(input.repositoryRoot, repositoryPath);
+    const stats = await lstat(currentPath);
+    if (!stats.isFile() || stats.isSymbolicLink()) {
+      throw new Error(`capture harness path must be a regular file: ${repositoryPath}`);
+    }
+    const [candidateBytes, worktreeBytes] = await Promise.all([
+      readGitBlob(input.repositoryRoot, input.candidateCommit, repositoryPath),
+      readFile(currentPath),
+    ]);
+    if (!candidateBytes.equals(worktreeBytes)) {
+      throw new Error(`current capture harness differs from candidate commit: ${repositoryPath}`);
+    }
+    receipts.push({ path: repositoryPath, sha256: sha256(candidateBytes) });
+  }
+  return { files: receipts, sha256: canonicalJsonSha256(receipts) };
+}
+
+async function validatorReceiptFor(repositoryRoot: string, commit: string): Promise<FinalizationValidatorReceipt> {
+  const bytes = await readGitBlob(repositoryRoot, commit, GAUNTLET_VALIDATOR_PATH);
+  const gitBlobOid = await gitText(repositoryRoot, ["rev-parse", `${commit}:${GAUNTLET_VALIDATOR_PATH}`]);
+  if (!/^[a-f0-9]{40,64}$/.test(gitBlobOid)) throw new Error("candidate validator Git blob id is invalid");
+  return {
+    commit,
+    path: GAUNTLET_VALIDATOR_PATH,
+    sha256: sha256(bytes),
+    gitBlobOid,
+  };
+}
+
+async function bindingFor(
+  repositoryRoot: string,
+  commit: string,
+  includeRuntimeClosure: boolean,
+): Promise<CandidateBinding> {
   const [prompt, renderer] = await Promise.all([
     readGitBlob(repositoryRoot, commit, PROMPT_PATH),
     readGitBlob(repositoryRoot, commit, RENDERER_PATH),
@@ -153,6 +350,7 @@ async function bindingFor(repositoryRoot: string, commit: string): Promise<Candi
     model: AGREED_RUN_RECEIPT.model,
     resumePrompt: { path: PROMPT_PATH, sha256: sha256(prompt) },
     renderer: { path: RENDERER_PATH, sha256: sha256(renderer) },
+    runtimeClosure: includeRuntimeClosure ? await runtimeClosureFor(repositoryRoot, commit) : null,
   };
 }
 
@@ -188,10 +386,23 @@ export async function createCapturePlan(input: {
   const source = JSON.parse(sourceBytes.toString("utf8")) as SanitizedHistoricalSource;
   validateSanitizedSource(source, manifest);
 
-  const [production, candidate] = await Promise.all([
-    bindingFor(repositoryRoot, PRODUCTION_COMMIT),
-    bindingFor(repositoryRoot, input.candidateCommit),
+  const [productionBinding, candidateBinding, candidateValidator, dependencyClosure] = await Promise.all([
+    bindingFor(repositoryRoot, PRODUCTION_COMMIT, false),
+    bindingFor(repositoryRoot, input.candidateCommit, true),
+    validatorReceiptFor(repositoryRoot, input.candidateCommit),
+    dependencyClosureFor({
+      repositoryRoot,
+      productionCommit: PRODUCTION_COMMIT,
+      candidateCommit: input.candidateCommit,
+      nodeModulesPath: path.join(repositoryRoot, "web/node_modules"),
+    }),
+    assertCandidateHarnessMatchesWorktree({
+      repositoryRoot,
+      candidateCommit: input.candidateCommit,
+    }),
   ]);
+  const production: CandidateBinding = { ...productionBinding, dependencyClosure };
+  const candidate: CandidateBinding = { ...candidateBinding, dependencyClosure };
   const fixtureBytes = await loadApprovedFixtureBytes(
     manifest,
     (repositoryPath) => readGitBlob(repositoryRoot, input.sourceCommit, repositoryPath),
@@ -208,6 +419,8 @@ export async function createCapturePlan(input: {
     sourceBytes,
     production,
     candidate,
+    candidateValidator,
+    dependencyClosure,
     fixtureBytes,
   };
 }
@@ -248,13 +461,66 @@ export async function allocateLoopbackPort() {
   });
 }
 
+export type VerifiedNetworkGuard = {
+  path: string;
+  receipt: { path: string; sha256: string };
+};
+
+/** Materialize the candidate-commit guard once; both archived variants use this exact copy. */
+export async function materializeCandidateNetworkGuard(input: {
+  plan: CapturePlan;
+  directory: string;
+}): Promise<VerifiedNetworkGuard> {
+  const runtimeReceipt = input.plan.candidate.runtimeClosure?.files.find(
+    (entry) => entry.path === NETWORK_GUARD_PATH,
+  );
+  if (!runtimeReceipt) throw new Error("candidate runtime closure omits the network guard");
+  const directoryStats = await lstat(input.directory);
+  if (!directoryStats.isDirectory() || directoryStats.isSymbolicLink()) {
+    throw new Error("network guard destination must be a regular directory");
+  }
+  const directoryReal = await realpath(input.directory);
+  const bytes = await readGitBlob(
+    input.plan.repositoryRoot,
+    input.plan.candidateCommit,
+    NETWORK_GUARD_PATH,
+  );
+  if (sha256(bytes) !== runtimeReceipt.sha256) {
+    throw new Error("candidate network guard does not match the runtime closure receipt");
+  }
+  const outputPath = path.join(directoryReal, `network-guard-${runtimeReceipt.sha256}.cjs`);
+  let created = false;
+  try {
+    await writeFile(outputPath, bytes, { flag: "wx", mode: 0o400 });
+    created = true;
+    const outputStats = await lstat(outputPath);
+    if (!outputStats.isFile() || outputStats.isSymbolicLink()) {
+      throw new Error("verified network guard copy is not a regular file");
+    }
+    const copiedBytes = await readFile(outputPath);
+    if (!copiedBytes.equals(bytes) || sha256(copiedBytes) !== runtimeReceipt.sha256) {
+      throw new Error("verified network guard copy changed while materializing");
+    }
+    return { path: outputPath, receipt: runtimeReceipt };
+  } catch (error) {
+    if (created) await rm(outputPath, { force: true });
+    throw error;
+  }
+}
+
 export async function archiveCommit(input: {
   repositoryRoot: string;
   commit: string;
   nodeModulesPath: string;
   parentDirectory: string;
   label: string;
+  dependencyClosure: DependencyClosureReceipt;
 }) {
+  await assertDependencyClosure({
+    repositoryRoot: input.repositoryRoot,
+    nodeModulesPath: input.nodeModulesPath,
+    expected: input.dependencyClosure,
+  });
   const treeRoot = await mkdtemp(path.join(input.parentDirectory, `${input.label}-`));
   const archivePath = path.join(input.parentDirectory, `${input.label}-${input.commit}.tar`);
   await execFileBuffer("git", ["-C", input.repositoryRoot, "archive", "--format=tar", `--output=${archivePath}`, input.commit], input.repositoryRoot);
@@ -263,9 +529,11 @@ export async function archiveCommit(input: {
   } finally {
     await rm(archivePath, { force: true });
   }
+  const suppliedStats = await lstat(input.nodeModulesPath);
+  if (!suppliedStats.isDirectory() || suppliedStats.isSymbolicLink()) {
+    throw new Error("existing node_modules is not a regular directory");
+  }
   const nodeModules = await realpath(input.nodeModulesPath);
-  const stats = await lstat(nodeModules);
-  if (!stats.isDirectory()) throw new Error("existing node_modules is not a directory");
   await symlink(nodeModules, path.join(treeRoot, "web/node_modules"), "dir");
   return treeRoot;
 }
@@ -381,6 +649,11 @@ export function safeCapturePlanSummary(plan: CapturePlan) {
     sourceCommit: plan.sourceCommit,
     sourcePath: plan.sourcePath,
     sourceSha256: sha256(plan.sourceBytes),
+    productionFinalization: "unfinalized_raw",
+    candidateFinalization: "validateResumeModelPayload(forceGrounding=true)",
+    candidateRuntimeClosure: plan.candidate.runtimeClosure,
+    dependencyClosure: plan.dependencyClosure,
+    candidateValidator: plan.candidateValidator,
     cases: plan.manifest.cases.map((entry) => entry.id),
     journeys: plan.manifest.requiredJourneys.map((entry) => entry.id),
     reportSetSha256: canonicalJsonSha256(plan.source.results.map((result) => ({

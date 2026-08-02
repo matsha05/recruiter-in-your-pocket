@@ -8,16 +8,17 @@ import {
   findUnsupportedOutcomeClaims,
   sourceContextFor,
 } from "./grounding";
+import {
+  boundedMeaningCompleteExcerpt,
+  hasVerifiedOutcomeSignal,
+  resolveUniqueSourceLine,
+} from "./source-line-comparator";
 
 type CanonicalizationResult<T> = {
   report: T;
   changes: string[];
   unresolved: string[];
 };
-
-const STOP_WORDS = new Set([
-  "a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of", "on", "or", "the", "to", "with",
-]);
 
 function sourceLines(sourceText: string) {
   return sourceText
@@ -78,68 +79,14 @@ function normalize(value: string) {
     .trim();
 }
 
-function tokens(value: string) {
-  return Array.from(new Set(
-    normalize(value)
-      .split(" ")
-      .filter((token) => token.length > 1 && !STOP_WORDS.has(token)),
-  ));
-}
-
-function similarity(draft: string, candidate: string) {
-  const normalizedDraft = normalize(draft);
-  const normalizedCandidate = normalize(candidate);
-  if (!normalizedDraft || !normalizedCandidate) return 0;
-  if (normalizedDraft === normalizedCandidate) return 1;
-  if (normalizedCandidate.includes(normalizedDraft) || normalizedDraft.includes(normalizedCandidate)) return 0.98;
-
-  const draftTokens = tokens(draft);
-  const candidateTokens = new Set(tokens(candidate));
-  if (draftTokens.length === 0 || candidateTokens.size === 0) return 0;
-  const overlap = draftTokens.filter((token) => candidateTokens.has(token)).length;
-  const draftCoverage = overlap / draftTokens.length;
-  const union = new Set([...draftTokens, ...candidateTokens]).size;
-  const jaccard = union > 0 ? overlap / union : 0;
-  return (draftCoverage * 0.72) + (jaccard * 0.28);
-}
-
-function bestSourceLine(value: string, sourceText: string) {
-  const ranked = sourceLines(sourceText)
-    .map((line) => ({ line, score: similarity(value, line) }))
-    .sort((a, b) => b.score - a.score);
-  const best = ranked[0];
-  const runnerUp = ranked[1];
-  if (!best || best.score < 0.72) return null;
-  if (runnerUp && runnerUp.score > 0.72 && best.score - runnerUp.score < 0.05) return null;
-  return best.line;
-}
-
 function bestExactWindow(line: string, draft: string, maxLength: number) {
-  if (line.length <= maxLength) return line;
-  const starts = new Set<number>([0, Math.max(0, line.length - maxLength)]);
-  for (let index = 0; index < line.length; index++) {
-    if (index === 0 || /\s/.test(line[index - 1])) starts.add(index);
-  }
-
-  let initialEnd = maxLength;
-  const initialBoundary = line.lastIndexOf(" ", initialEnd);
-  if (initialBoundary > Math.floor(maxLength * 0.6)) initialEnd = initialBoundary;
-  let best = line.slice(0, initialEnd).trimEnd();
-  let bestScore = similarity(draft, best);
-  for (const start of starts) {
-    let end = Math.min(line.length, start + maxLength);
-    if (end < line.length) {
-      const boundary = line.lastIndexOf(" ", end);
-      if (boundary > start + Math.floor(maxLength * 0.6)) end = boundary;
-    }
-    const candidate = line.slice(start, end).trim();
-    const score = similarity(draft, candidate);
-    if (score > bestScore) {
-      best = candidate;
-      bestScore = score;
-    }
-  }
-  return best;
+  const exactDraft = stripOuterFormatting(draft).trim();
+  if (exactDraft.length <= maxLength && line.includes(exactDraft)) return exactDraft;
+  const complete = boundedMeaningCompleteExcerpt(line, maxLength);
+  if (complete) return complete;
+  const candidate = line.trim().slice(0, maxLength);
+  const boundary = candidate.lastIndexOf(" ");
+  return (boundary >= 24 ? candidate.slice(0, boundary) : candidate).trim();
 }
 
 function exactSourceValue(value: string, sourceText: string, maxLength?: number) {
@@ -148,14 +95,14 @@ function exactSourceValue(value: string, sourceText: string, maxLength?: number)
   if (/^I\s+/i.test(stripped)) variants.push(stripped.replace(/^I\s+/i, ""));
 
   for (const variant of variants) {
-    if (variant && sourceText.includes(variant) && (!maxLength || variant.length <= maxLength)) {
-      return variant;
-    }
+    if (!variant) continue;
+    const line = resolveUniqueSourceLine(variant, sourceText);
+    if (!line) continue;
+    if (!maxLength) return line;
+    if (variant.length <= maxLength && line.includes(variant)) return variant;
+    return bestExactWindow(line, variant, maxLength) || null;
   }
-
-  const line = bestSourceLine(stripped, sourceText);
-  if (!line) return null;
-  return maxLength ? bestExactWindow(line, stripped, maxLength) : line;
+  return null;
 }
 
 function exactSourceLine(value: string, sourceText: string) {
@@ -165,11 +112,26 @@ function exactSourceLine(value: string, sourceText: string) {
 
   for (const variant of variants) {
     if (!variant) continue;
-    const containingLine = sourceLines(sourceText).find((line) => line.includes(variant));
-    if (containingLine) return containingLine;
+    const line = resolveUniqueSourceLine(variant, sourceText);
+    if (line) return line;
   }
+  return null;
+}
 
-  return bestSourceLine(stripped, sourceText);
+function exactSourceRewriteLocator(value: string, sourceText: string) {
+  const stripped = stripOuterFormatting(value);
+  const variants = [value.trim(), stripped];
+  if (/^I\s+/i.test(stripped)) variants.push(stripped.replace(/^I\s+/i, ""));
+
+  for (const variant of variants) {
+    if (!variant) continue;
+    const line = resolveUniqueSourceLine(variant, sourceText);
+    if (!line) continue;
+    if (line.length <= 140) return line;
+    if (variant.length <= 140 && line.includes(variant)) return variant;
+    return boundedMeaningCompleteExcerpt(line, 140);
+  }
+  return null;
 }
 
 function replaceQuotedEvidence(value: string, sourceText: string) {
@@ -184,10 +146,7 @@ function replaceQuotedEvidence(value: string, sourceText: string) {
 }
 
 function hasGroundedOutcome(value: string) {
-  const rateOrDelta = /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i.test(value);
-  const outcomeVerb = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|decrease|decreased|decreasing|accelerate|accelerated|accelerating|generate|generated|generating|deliver|delivered|delivering|enable|enabled|enabling|result|resulted|resulting)\b/i.test(value);
-  const financialOutcome = /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i.test(value);
-  return rateOrDelta || outcomeVerb || financialOutcome;
+  return hasVerifiedOutcomeSignal(value);
 }
 
 function hasGroundedScope(value: string) {
@@ -207,11 +166,11 @@ function safeWeakBulletTemplate(original: string, enhancementNote: string) {
   const outcomeValue = outcomes[0] || "[measurable result]";
   const base = original.replace(/[.;]\s*$/, "");
   const scopeClause = scoped[0]
-    ? `; scope: ${scoped[0]}`
+    ? `; ${scoped[0]}`
     : hasGroundedScope(original)
       ? ""
-      : "; scope: [specific scope]";
-  return `${base}${scopeClause}; outcome: ${outcomeValue}.`;
+      : "; [specific scope]";
+  return `${base}${scopeClause}; ${outcomeValue}.`;
 }
 
 function ensureAddNote(value: string) {
@@ -320,7 +279,7 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
     return "Add [measurable result] to this bullet and connect it to the work already named.";
   }
   if (asksForOutcome && hasGroundedOutcome(source) && asksForScope && !hasGroundedScope(source)) {
-    return "Add [specific scope] to this bullet without losing the result already on the page.";
+    return "Add [specific scope] to this bullet. Keep the result already on the page.";
   }
   const satisfied = findAlreadySatisfiedFix(fix, evidenceExcerpt, resumeText);
   if (satisfied.length === 0) return fix;
@@ -331,7 +290,7 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
     return "Add [measurable result] to this bullet and connect it to the work already named.";
   }
   if (hasGroundedOutcome(source) && !hasGroundedScope(source)) {
-    return "Add [specific scope] to this bullet without losing the result already on the page.";
+    return "Add [specific scope] to this bullet. Keep the result already on the page.";
   }
   const metrics = groundedMetricTokens(source);
   if (metrics.length > 0) {
@@ -347,6 +306,7 @@ function capSummarySentences(value: string) {
 }
 
 function normalizeTakeaway(value: string) {
+  value = value.trim().replace(/^Show\s+(?=(?:Tighten|Clarify|Quantify|Lead|Surface|Connect|Name|Focus)\b)/i, "");
   const words = value.trim().split(/\s+/).filter(Boolean);
   const exactRepairs: Record<string, string> = {
     "leadership with measurable results": "Lead with measurable results",
@@ -369,12 +329,12 @@ function normalizeTakeaway(value: string) {
   if (
     words.length >= 2
     && words.length <= 6
-    && /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight)\b/i.test(value.trim())
+    && /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|tighten|connect|focus|prove|highlight)\b/i.test(value.trim())
   ) return value.trim();
   const imperative = value
     .split(/[;:.]+/)
     .map((clause) => clause.trim().replace(/[.!?]+$/, ""))
-    .find((clause) => /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight)\b/i.test(clause)
+    .find((clause) => /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|tighten|connect|focus|prove|highlight)\b/i.test(clause)
       && clause.split(/\s+/).length >= 2
       && clause.split(/\s+/).length <= 6);
   if (imperative) return `${imperative[0].toUpperCase()}${imperative.slice(1)}`;
@@ -1408,9 +1368,9 @@ function inferredIndustrySignals(resumeText: string) {
   const candidates: Array<[RegExp, string, string]> = [
     [/\bSaaS\b/i, "SaaS", resumeText],
     [/\bhealth(?:care)?|hospital|patient\b/i, "Healthcare", resumeText],
-    [/\bfintech|financial services|finance\b/i, "Financial services", headingText],
+    [/\bfintech|financial services|banking\b/i, "Financial services", headingText],
     [/\bretail\b/i, "Retail", headingText],
-    [/\blogistics|supply chain\b/i, "Logistics", headingText],
+    [/\blogistics\b/i, "Logistics", headingText],
     [/\bmanufactur(?:ing|er)\b/i, "Manufacturing", headingText],
     [/\bcloud|software|technolog(?:y|ies)\b/i, "Technology", headingText],
   ];
@@ -1697,7 +1657,9 @@ function normalizeGeneratedLanguage(value: any, changes: string[], path: string[
         ? `${replacement[0].toUpperCase()}${replacement.slice(1)}`
         : replacement);
     }
-    next = next.replace(/\b(\d+)\.\s+(\d+)%/g, "$1.$2%");
+    next = next
+      .replace(/\b(\d+)\.\s+(\d+)%/g, "$1.$2%")
+      .replace(/\b(\d+)\.\s+(\d+)(?=[kmb]\b)/gi, "$1.$2");
     next = next.trim();
     if (next !== value) changes.push(`${joined}.normalized_language`);
     return next;
@@ -1718,7 +1680,7 @@ function ensureBiggestGapQuote(value: string, sourceText: string) {
   const markerIndex = value.search(/\s+(?:is missing|lacks?|needs?|does not|doesn't|has no|provides no)\b/i);
   if (markerIndex <= 0) return value;
   const draft = value.slice(0, markerIndex).trim();
-  const canonical = exactSourceValue(draft, sourceText) || exactSourceLine(draft, sourceText);
+  const canonical = exactSourceValue(draft, sourceText, 140);
   if (!canonical) return value;
   return `"${canonical}" ${value.slice(markerIndex).trim()}`;
 }
@@ -1726,9 +1688,7 @@ function ensureBiggestGapQuote(value: string, sourceText: string) {
 function naturalizeRewrite(value: string) {
   let natural = value
     .trim()
-    .replace(/^Mechanism:\s*/i, "")
-    .replace(/;\s*Scope:\s*/gi, "; ")
-    .replace(/;\s*Outcome:\s*/gi, "; ");
+    .replace(/^Mechanism:\s*/i, "");
   if (natural && /^[a-z]/.test(natural)) {
     natural = `${natural[0].toUpperCase()}${natural.slice(1)}`;
   }
@@ -1850,7 +1810,7 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
     copy.rewrites.forEach((rewrite: any, index: number) => {
       const value = rewrite?.original;
       if (typeof value !== "string" || !value.trim()) return;
-      const canonical = exactSourceLine(value, resumeText);
+      const canonical = exactSourceRewriteLocator(value, resumeText);
       if (!canonical) {
         unresolved.push(`rewrites[${index}].original`);
         return;
@@ -1885,6 +1845,13 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
     });
 
     copy.rewrites = copy.rewrites.filter((rewrite: any, index: number) => {
+      if (
+        typeof rewrite?.original === "string"
+        && (rewrite.original.length > 140 || (typeof rewrite?.better === "string" && rewrite.better.length > 600))
+      ) {
+        changes.push(`rewrites[${index}].dropped_oversized_public_copy`);
+        return false;
+      }
       if (
         typeof rewrite?.original !== "string"
         || typeof rewrite?.better !== "string"
@@ -1933,7 +1900,7 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
       changes.push("biggest_gap_example.added_quote");
     }
     const quote = copy.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];
-    if (quote && !resumeText.includes(quote)) {
+    if (quote && (!resumeText.includes(quote) || quote.length > 140)) {
       const canonical = replaceQuotedEvidence(copy.biggest_gap_example, resumeText);
       if (canonical) {
         copy.biggest_gap_example = canonical;
@@ -1960,6 +1927,14 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
     if (naturalGap !== copy.biggest_gap_example) {
       copy.biggest_gap_example = naturalGap;
       changes.push("biggest_gap_example.naturalized_consequence");
+    }
+    const finalQuote = copy.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];
+    if (finalQuote && finalQuote.length > 140) {
+      const bounded = replaceQuotedEvidence(copy.biggest_gap_example, resumeText);
+      if (bounded) {
+        copy.biggest_gap_example = bounded;
+        changes.push("biggest_gap_example.bounded_source_window");
+      }
     }
   }
 

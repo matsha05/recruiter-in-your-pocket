@@ -238,6 +238,45 @@ assert.equal(
   "a source-preserving fill-in draft may become copyable",
 );
 
+const verifiedOnboardingSource = "Led onboarding work across the company, improving productivity.";
+const verifiedOnboardingFacts = [
+  { key: "program length", value: "30-day program" },
+  { key: "number of hires", value: "18 weekly hires" },
+  { key: "teams", value: "Sales, Support, and Operations" },
+  { key: "verified outcome", value: "28% shorter ramp time" },
+] as const;
+const verifiedOnboardingDraft = "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.";
+assert.equal(
+  assessFallbackDraftSafety(
+    verifiedOnboardingSource,
+    verifiedOnboardingDraft,
+    verifiedOnboardingSource,
+    verifiedOnboardingFacts,
+  ).copyable,
+  true,
+  "exact candidate-supplied facts should authorize a source-bound draft",
+);
+assert.equal(
+  assessFallbackDraftSafety(
+    verifiedOnboardingSource,
+    verifiedOnboardingDraft.replace("Sales", "Salesforce"),
+    verifiedOnboardingSource,
+    verifiedOnboardingFacts,
+  ).copyable,
+  false,
+  "altering a verified entity must close the copy gate",
+);
+assert.equal(
+  assessFallbackDraftSafety(
+    verifiedOnboardingSource,
+    verifiedOnboardingDraft.replace("28%", "45%"),
+    verifiedOnboardingSource,
+    verifiedOnboardingFacts,
+  ).copyable,
+  false,
+  "altering a verified metric must close the copy gate",
+);
+
 const sampleReport = JSON.parse(
   readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"),
 ) as ReportData;

@@ -1,4 +1,6 @@
-export const LEGAL_LAST_UPDATED = "July 19, 2026";
+import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
+
+export const LEGAL_LAST_UPDATED = "July 31, 2026";
 export const PRIVACY_LAST_UPDATED = "July 29, 2026";
 
 export type DataHandlingRow = {
@@ -89,7 +91,7 @@ export const TRUST_PROMISES = [
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
   "The clarity summary scores this resume review out of 100. It does not predict interviews, offers, or other hiring outcomes.",
-  "Your first full report is free. No credit card needed.",
+  `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`,
   "A Job Search Pass is one payment for five additional reports over 30 days. It does not renew, and you can restore it from Billing.",
   "Security reports can be sent using the disclosure instructions on our Security page."
 ];

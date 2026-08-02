@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   configuredDailyGenerationLimit,
+  DAILY_CAPACITY_EXHAUSTED_MESSAGE,
   reserveDailyGenerationCapacity,
 } from "../lib/operations/generationBudget";
 
@@ -21,6 +22,10 @@ async function run() {
   assert.equal(configuredDailyGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "250" }), 250);
   assert.equal(configuredDailyGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "0" }), null);
   assert.equal(configuredDailyGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "not-a-number" }), null);
+  assert.equal(
+    DAILY_CAPACITY_EXHAUSTED_MESSAGE,
+    "Today's beta report capacity has been reached. Please try again tomorrow.",
+  );
 
   const local = await reserveDailyGenerationCapacity({ env: { NODE_ENV: "development" }, redis: null });
   assert.equal(local.allowed, true, "unconfigured local development stays usable");

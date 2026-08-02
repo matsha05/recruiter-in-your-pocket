@@ -264,18 +264,24 @@ const canonicalized = canonicalizeResumeReportEvidence({
 }, sourceResume);
 assert.equal(
   (canonicalized.report as any).top_fixes[0].evidence.excerpt,
-  "- Led a cross-functional team of 8 engineers to ship the platform.",
+  '"Led a cross functional team of 8 engineers"',
+  "punctuation-changing evidence must remain unresolved rather than fuzzy-mapped",
 );
+assert.ok(canonicalized.unresolved.includes("top_fixes[0].evidence.excerpt"));
 assert.equal(
   (canonicalized.report as any).rewrites[0].original,
   "- Improved retention by 15% within six months.",
 );
 assert.match(
   (canonicalized.report as any).rewrites[1].better,
-  /outcome: \[measurable result\]/,
+  /\[measurable result\]/,
   "a weak no-op rewrite should become a safe fill-in template",
 );
-assert.match((canonicalized.report as any).biggest_gap_example, /Led a cross-functional team of 8 engineers/);
+assert.match(
+  (canonicalized.report as any).biggest_gap_example,
+  /- Led a cross-functional team of 8 engineers to ship the platform\./,
+  "an unbound gap quote may be replaced only with an exact source line",
+);
 
 const normalizedRepairOutput = canonicalizeResumeReportEvidence({
   summary: "You read as a capable backend engineer. Outcomes are visible. The career break is explained. Some bullets lack scope. The level reads as mid-senior. More ownership detail would help.",

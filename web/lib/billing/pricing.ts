@@ -14,6 +14,12 @@ export type PricingPlan = {
   features: PricingFeature[];
 };
 
+export const FREE_REPORT_ENTITLEMENT = {
+  promise: "Your first complete report is free—no card.",
+  boundary: "Eligibility can be affected by repeat use across browsers or shared networks, and daily beta capacity applies.",
+  anonymousBoundary: "For anonymous use, there is one free report per calendar month. Repeat use across browsers or shared networks can affect eligibility, and daily beta capacity applies.",
+} as const;
+
 export const JOB_SEARCH_PASS_DECISION = {
   freeBoundary: "This free report is complete—you do not need to pay to see the rest.",
   whenToBuy: "Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.",
@@ -27,7 +33,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     price: "$0",
     reportCount: 1,
     period: "1 report",
-    description: "Run one complete report in the browser before deciding whether a revision or another important role needs a new read.",
+    description: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`,
     buttonText: "Included",
     features: [
       { text: "1 full in-browser resume report", bold: true },

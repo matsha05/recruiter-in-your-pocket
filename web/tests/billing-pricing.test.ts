@@ -7,7 +7,8 @@ import {
   getTierLabel,
   normalizeRequestedTier,
 } from "../lib/billing/entitlements";
-import { JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "../lib/billing/pricing";
+import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "../lib/billing/pricing";
+import { LEGAL_LAST_UPDATED, TRUST_PROMISES } from "../lib/legal/dataHandling";
 
 const now = new Date("2026-07-12T12:00:00.000Z");
 const jobSearchPass = getTierDefaults("30d", { now });
@@ -26,7 +27,22 @@ assert.equal(PRICING_PLANS["30d"].price, "$29");
 assert.equal(PRICING_PLANS["30d"].reportCount, 5);
 assert.match(PRICING_PLANS["30d"].description, /compare revised resumes/);
 assert.match(PRICING_PLANS["30d"].description, /specific roles/);
-assert.match(PRICING_PLANS.free.description, /one complete report/);
+assert.match(PRICING_PLANS.free.description, /first complete report/);
+assert.match(FREE_REPORT_ENTITLEMENT.promise, /first complete report is free/i);
+assert.match(FREE_REPORT_ENTITLEMENT.promise, /no card/i);
+assert.match(FREE_REPORT_ENTITLEMENT.boundary, /repeat use across browsers or shared networks/i);
+assert.match(FREE_REPORT_ENTITLEMENT.boundary, /daily beta capacity/i);
+assert.doesNotMatch(FREE_REPORT_ENTITLEMENT.boundary, /device|monthly/i);
+assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /For anonymous use/i);
+assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /one free report per calendar month/i);
+assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /repeat use across browsers or shared networks/i);
+assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /daily beta capacity/i);
+assert.doesNotMatch(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /device/i);
+assert.ok(
+  TRUST_PROMISES.includes(`${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`),
+  "the public trust checklist must state the bounded free entitlement",
+);
+assert.equal(LEGAL_LAST_UPDATED, "July 31, 2026");
 assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /do not need to pay to see the rest/);
 assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /only when/);
 assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/);

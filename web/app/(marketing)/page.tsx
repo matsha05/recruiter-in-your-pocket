@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
+import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
 const homepageDescription = "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
 
@@ -44,7 +45,7 @@ const structuredData = {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-          description: "First résumé report free with no account required.",
+          description: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary} No account required.`,
         },
         {
           "@type": "Offer",

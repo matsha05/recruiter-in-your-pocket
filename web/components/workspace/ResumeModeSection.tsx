@@ -101,6 +101,7 @@ export default function ResumeModeSection({
   return (
     <ReportPanel
       report={report}
+      resumeText={resumeText}
       isLoading={isLoading}
       isStreaming={isStreaming}
       hasJobDescription={!!jobDescription.trim()}

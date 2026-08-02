@@ -11,6 +11,7 @@ import {
     PaperPlaneTilt,
 } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
 function FirstReadHero() {
     return (
@@ -82,7 +83,7 @@ function ReportFirstSection() {
                         <div>
                             <p className="lift-kicker">Your turn</p>
                             <h3>Now see what yours says.</h3>
-                            <p>Your first report is free, private by default, and requires no account to start.</p>
+                            <p>{FREE_REPORT_ENTITLEMENT.promise} {FREE_REPORT_ENTITLEMENT.boundary}</p>
                         </div>
                         <div className="lift-report-handoff-actions">
                             <Link href="/workspace" className="lift-button-primary">Upload my resume <ArrowRight aria-hidden="true" weight="bold" /></Link>
@@ -196,7 +197,7 @@ export function LandingLiftedLine() {
                                 <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>
                             </div>
                             <div className="lift-hero-trust">
-                                <p className="lift-privacy"><LockKey aria-hidden="true" weight="regular" /> First report free. No account required. No subscription.</p>
+                                <p className="lift-privacy"><LockKey aria-hidden="true" weight="regular" /> {FREE_REPORT_ENTITLEMENT.promise} No account required. {FREE_REPORT_ENTITLEMENT.boundary}</p>
                                 <p className="lift-differentiation">Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.</p>
                                 <p className="lift-ai-disclosure">AI-powered feedback, informed by <a href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer">Matt Shaw&apos;s</a> 14 years of real recruiting experience.</p>
                             </div>

@@ -24,7 +24,11 @@ test.describe("homepage feedback and SEO contract", () => {
       "href",
       "/sample-report",
     );
-    await expect(homepage).toContainText("First report free. No account required. No subscription.");
+    await expect(homepage).toContainText("Your first complete report is free—no card.");
+    await expect(homepage).toContainText("repeat use across browsers or shared networks");
+    await expect(homepage).toContainText("daily beta capacity");
+    await expect(homepage).not.toContainText("monthly eligibility window");
+    await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).toContainText(
       "AI-powered feedback, informed by Matt Shaw's 14 years of real recruiting experience.",
     );
@@ -89,6 +93,23 @@ test.describe("homepage feedback and SEO contract", () => {
       "href",
       "https://www.nber.org/papers/w30886",
     );
+  });
+
+  test("terms and FAQ state the anonymous calendar-month eligibility boundary", async ({ page }) => {
+    const assertAnonymousBoundary = async () => {
+      const main = page.getByRole("main");
+      await expect(main).toContainText("Your first complete report is free—no card.");
+      await expect(main).toContainText("For anonymous use, there is one free report per calendar month.");
+      await expect(main).toContainText("Repeat use across browsers or shared networks can affect eligibility");
+      await expect(main).toContainText("daily beta capacity applies");
+    };
+
+    await page.goto("/terms");
+    await assertAnonymousBoundary();
+
+    await page.goto("/faq");
+    await page.getByRole("button", { name: "Is the first report really free?", exact: true }).click();
+    await assertAnonymousBoundary();
   });
 
   test("keeps the free résumé review action and first-read proof in the opening mobile viewport", async ({ page }) => {

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
-import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 
 const billingPoints = [
     {
@@ -146,7 +146,7 @@ export default function PricingPageClient() {
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
-                                        The recruiter takeaway, evidence, questions to answer, and rewrites are all included. No card required.
+                                        The recruiter takeaway, evidence, questions to answer, and rewrites are all included. {FREE_REPORT_ENTITLEMENT.promise} {FREE_REPORT_ENTITLEMENT.boundary}
                                     </p>
                                     <Link href="/workspace" className="pricing-primary-cta mt-10 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
                                         Run your free report

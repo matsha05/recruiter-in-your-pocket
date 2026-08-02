@@ -1,10 +1,10 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { isAcceptedAbsenceMarker } from "../llm/grounding";
 import {
-  findRewriteFidelityIssues,
-  findUnsupportedAgencyUpgrade,
-  findUnsupportedOutcomeClaims,
-  isAcceptedAbsenceMarker,
-} from "../llm/grounding";
+  canonicalSourceIdentity as comparatorCanonicalSourceIdentity,
+  compareSourceBoundRewrite,
+  type VerifiedFact,
+} from "../llm/source-line-comparator";
 
 type ReportFix = NonNullable<ReportData["top_fixes"]>[number];
 type ReportRewrite = NonNullable<ReportData["rewrites"]>[number];
@@ -40,10 +40,6 @@ const ACCEPTED_ABSENCE_SENTINELS = new Set([
   "No LinkedIn profile provided",
 ]);
 
-// These glyphs are layout-only when they lead a line. Hyphens, asterisks,
-// operators, and all other punctuation stay intact because they can change the
-// source claim (for example -5%, >99%, .NET, R&D, and A/B).
-const LEADING_LAYOUT_BULLET_PATTERN = /^[•●◦▪▫‣⁃]\s*/u;
 const MEANINGFUL_WORD_PATTERN = /[\p{L}\p{M}\p{N}]+/gu;
 const SOURCE_CONTINUATION_PATTERN = /[\p{L}\p{M}\p{N}\p{Pc}]/u;
 const MEANING_BEARING_EDGE_PATTERN = /[+\-−<>=≤≥$€£¥₹%&/.*#]/u;
@@ -75,12 +71,7 @@ function acceptedAbsenceKey(value: string) {
 }
 
 export function canonicalSourceIdentity(value: string) {
-  return value
-    .normalize("NFC")
-    .trim()
-    .replace(LEADING_LAYOUT_BULLET_PATTERN, "")
-    .replace(/\s+/gu, " ")
-    .trim();
+  return comparatorCanonicalSourceIdentity(value);
 }
 
 function isMeaningfulShortenedExcerpt(value: string) {
@@ -199,21 +190,34 @@ export type FallbackDraftSafetyIssue = {
   detail: string;
 };
 
-export function assessFallbackDraftSafety(original: string, rewrite: string) {
+export function assessFallbackDraftSafety(
+  original: string,
+  rewrite: string,
+  sourceText = original,
+  verifiedFacts: readonly VerifiedFact[] = [],
+) {
   const issues: FallbackDraftSafetyIssue[] = [];
   if (!original.trim() || !rewrite.trim()) {
     issues.push({ kind: "missing_source", detail: "missing source or rewrite text" });
     return { copyable: false, issues };
   }
 
-  issues.push(
-    ...findRewriteFidelityIssues(original, rewrite)
-      .map((detail): FallbackDraftSafetyIssue => ({ kind: "fidelity", detail })),
-    ...findUnsupportedAgencyUpgrade(original, rewrite)
-      .map((detail): FallbackDraftSafetyIssue => ({ kind: "unsupported_agency", detail })),
-    ...findUnsupportedOutcomeClaims(original, rewrite)
-      .map((detail): FallbackDraftSafetyIssue => ({ kind: "unsupported_outcome", detail })),
-  );
+  const comparison = compareSourceBoundRewrite({
+    sourceText,
+    sourceLocator: original,
+    candidate: rewrite,
+    verifiedFacts,
+  });
+  issues.push(...comparison.issues.map((issue): FallbackDraftSafetyIssue => ({
+    kind: issue.code === "agency_upgraded"
+      ? "unsupported_agency"
+      : issue.code === "unsupported_outcome"
+        ? "unsupported_outcome"
+        : issue.code === "source_missing" || issue.code === "source_ambiguous"
+          ? "missing_source"
+          : "fidelity",
+    detail: issue.detail,
+  })));
 
   return { copyable: issues.length === 0, issues };
 }

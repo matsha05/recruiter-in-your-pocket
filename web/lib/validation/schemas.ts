@@ -5,11 +5,9 @@ import {
     findBiggestGapContradictions,
     findFixEvidenceMismatch,
     findNonActionableFix,
-    findRewriteFidelityIssues,
-    findUnsupportedAgencyUpgrade,
-    findUnsupportedOutcomeClaims,
     isAcceptedAbsenceMarker,
 } from "../llm/grounding";
+import { compareSourceBoundRewrite } from "../llm/source-line-comparator";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -110,8 +108,8 @@ export type CheckoutRequest = z.infer<typeof CheckoutRequestSchema>;
  */
 const RewriteSchema = z.object({
     label: z.string().min(1),
-    original: z.string().min(1),
-    better: z.string().min(1),
+    original: z.string().min(1).max(140),
+    better: z.string().min(1).max(600),
     enhancement_note: z.string().regex(/^Add\b/, "enhancement_note must begin with Add")
 });
 
@@ -120,6 +118,8 @@ const ImpactLevelSchema = z.enum(["high", "medium", "low"]);
 const EffortLevelSchema = z.enum(["quick", "moderate", "high"]);
 
 const EvidenceSchema = z.object({
+    // Public reports persist only a short exact source locator. Validation may
+    // inspect the complete bound line in memory, but never stores it here.
     excerpt: z.string().min(1).max(140),
     section: z.string().min(1)
 });
@@ -159,44 +159,6 @@ function normalizeForEvidence(value: string) {
         .trim();
 }
 
-const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
-
-function removeBracketPlaceholders(value: string) {
-    return value.replace(/\[[^\]]+\]/g, "");
-}
-
-function escapeRegExp(value: string) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function containsLiteral(text: string, value: string) {
-    return new RegExp(escapeRegExp(value)).test(text);
-}
-
-function findUngroundedSpecifics(text: string, sourceText: string) {
-    const normalizedSource = normalizeForEvidence(sourceText);
-    const unbracketedText = removeBracketPlaceholders(text);
-    const matches = unbracketedText.match(concreteMetricPattern) || [];
-    const ungrounded = new Set<string>();
-
-    for (const match of matches) {
-        const normalizedMetric = normalizeForEvidence(match);
-        const numericValue = match.match(/\d+(?:\.\d+)?/)?.[0];
-        if (!numericValue) continue;
-
-        const numberPattern = new RegExp(`\\b${escapeRegExp(numericValue)}\\b`);
-        const isGrounded =
-            (normalizedMetric.length > 0 && containsLiteral(normalizedSource, normalizedMetric)) ||
-            numberPattern.test(normalizedSource);
-
-        if (!isGrounded) {
-            ungrounded.add(match.trim());
-        }
-    }
-
-    return Array.from(ungrounded);
-}
-
 export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText: string) {
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
@@ -225,21 +187,13 @@ export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText
         if (original.length > 10 && !containsExactEvidence(resumeText, rewrite.original)) {
             missingEvidence.push(`rewrites[${index}].original`);
         }
-        const ungroundedSpecifics = findUngroundedSpecifics(rewrite.better, resumeText);
-        if (ungroundedSpecifics.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better: ${ungroundedSpecifics.join(", ")}`);
-        }
-        const unsupportedAgency = findUnsupportedAgencyUpgrade(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedAgency.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported ownership: ${unsupportedAgency.join(", ")}`);
-        }
-        const unsupportedOutcomes = findUnsupportedOutcomeClaims(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedOutcomes.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported outcomes: ${unsupportedOutcomes.join(", ")}`);
-        }
-        const fidelityIssues = findRewriteFidelityIssues(rewrite.original, rewrite.better, resumeText);
-        if (fidelityIssues.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better fidelity: ${fidelityIssues.join(", ")}`);
+        const comparison = compareSourceBoundRewrite({
+            sourceText: resumeText,
+            sourceLocator: rewrite.original,
+            candidate: rewrite.better,
+        });
+        if (!comparison.safe) {
+            inventedSpecifics.push(`rewrites[${index}].better source fidelity: ${comparison.issues.map((issue) => issue.detail).join(", ")}`);
         }
     }
 
@@ -291,7 +245,10 @@ export const ResumeFeedbackResponseSchema = z.object({
     score_comment_long: BoundedStringSchema(2, 4, "score_comment_long"),
     score_plain: BoundedStringSchema(1, 2, "score_plain"),
     first_impression: BoundedStringSchema(1, 3, "first_impression"),
-    biggest_gap_example: z.string().min(1),
+    biggest_gap_example: z.string().min(1).max(600).refine(
+        value => (value.match(/["“]([^"”]+)["”]/)?.[1]?.length || 0) <= 140,
+        "biggest_gap_example quote must be at most 140 characters",
+    ),
     first_impression_takeaway: z.string().min(1).refine(value => {
         const count = wordCount(value);
         return count >= 2 && count <= 6;
