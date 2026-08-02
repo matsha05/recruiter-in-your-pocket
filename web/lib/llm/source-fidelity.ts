@@ -1,3 +1,11 @@
+import {
+  baseNarrativeStopWords,
+  interpretationContextForPath,
+  narrativeTokenPolicy,
+  normalizeNarrativeToken,
+  sourceClauseIsNegated,
+} from "./narrative-token-policy";
+
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
   "No skills section present",
@@ -188,51 +196,20 @@ function protectedFacts(value: string) {
   return Array.from(facts.values());
 }
 
-// These stemmed words express recruiter interpretation, absence, or editing
-// advice; they are not factual resume nouns. Everything else must bind to source.
-const interpretationVocabulary = new Set([
-  "add", "answer", "appear", "blurry", "bullet", "can", "clarify", "clear", "clearly",
-  "context", "count", "edit", "explicit", "focu", "keep", "miss", "need", "next", "not",
-  "page", "read", "readable", "scope", "strong", "verify", "visible", "what", "work", "you",
-]);
-
-const stopWords = new Set([
-  "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "of",
-  "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
-  "its", "it", "was", "were", "are", "has", "have", "had", "while", "using", "via",
-  "add", "verified", "detail", "fact", "scope", "result", "outcome", "metric",
-  ...interpretationVocabulary,
-]);
-
-function stemToken(token: string) {
-  const lower = token.toLocaleLowerCase();
-  if (lower.endsWith("ies") && lower.length > 4) return `${lower.slice(0, -3)}y`;
-  if (lower.endsWith("ing") && lower.length > 5) return lower.slice(0, -3);
-  if (lower.endsWith("ed") && lower.length > 4) return lower.slice(0, -2);
-  if (lower.endsWith("s") && !lower.endsWith("ss") && lower.length > 3) return lower.slice(0, -1);
-  return lower;
-}
-
-function containsInterpretationVocabulary(value: string) {
-  return (value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
-    .map(stemToken)
-    .some((token) => interpretationVocabulary.has(token));
-}
-
 const semanticTokenAliases = new Map([
   ["journey", "workflow"],
 ]);
 
-function materialTokens(value: string) {
+function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
   let untracked = value.replace(/\[[^\]]+\]/gu, "");
   for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
     untracked = untracked.replace(pattern, " ");
     pattern.lastIndex = 0;
   }
   return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
-    .map(stemToken)
+    .map(normalizeNarrativeToken)
     .map((token) => semanticTokenAliases.get(token) || token)
-    .filter((token) => token.length > 2 && !stopWords.has(token)));
+    .filter((token) => token.length > 2 && !ignoredTokens.has(token)));
 }
 
 export function compareSourceBoundRewrite(input: {
@@ -291,17 +268,34 @@ function claimSegments(value: string) {
     .filter(Boolean);
 }
 
-export function auditNarrativeClaim(value: string, sourceText: string) {
-  const candidates = sourceLines(sourceText).map((line) => ({
+function narrativeSourceClauses(sourceText: string) {
+  return sourceText
+    .normalize("NFC")
+    .split(/(?:\r?\n)+|;\s*|(?<=[.!?])\s+|\s*[•●◦▪▫‣⁃|]\s*/u)
+    .map((clause) => canonicalSourceIdentity(clause))
+    .filter(Boolean);
+}
+
+export function auditNarrativeClaim(
+  value: string,
+  sourceText: string,
+  options: { interpretationContext?: "observation" | "missing" | "advice" | "question" } = {},
+) {
+  const candidates = narrativeSourceClauses(sourceText).map((line) => ({
     facts: protectedFacts(line),
     tokens: materialTokens(line),
+    negated: sourceClauseIsNegated(line),
   }));
   return claimSegments(value).flatMap((claim) => {
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
-    const claimTokens = materialTokens(claim);
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
-    const supporting = candidates.filter(({ facts: sourceFacts }) => {
+    const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasTrackedClaim);
+    const claimTokens = materialTokens(claim, policy.ignoredTokens);
+    const eligibleCandidates = candidates.filter(({ negated }) =>
+      policy.sourcePolarity === "any" || negated === (policy.sourcePolarity === "negative")
+    );
+    const supporting = eligibleCandidates.filter(({ facts: sourceFacts }) => {
       const sourceFactKeys = new Set(sourceFacts.map((fact) => fact.key));
       return facts.every((fact) => sourceFactKeys.has(fact.key));
     });
@@ -329,7 +323,7 @@ export function auditNarrativeClaim(value: string, sourceText: string) {
         .filter((fact) => !/^(?:agency|outcome|qualifier|causal):/u.test(fact.key))
         .every((fact) => claimFactKeys.has(fact.key))
     );
-    if (!hasTrackedClaim && (hasCompleteUntrackedMatch || containsInterpretationVocabulary(claim))) return [];
+    if (!hasTrackedClaim && (hasCompleteUntrackedMatch || policy.interpretive)) return [];
     const hasCompleteMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts.every((fact) => claimFactKeys.has(fact.key))
     );
@@ -421,9 +415,18 @@ function isAllowedStructuralReportValue(path: string, value: string) {
   return false;
 }
 
+const roleIdentityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*)(?:[.&/](?:[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*))*/gu;
+
+function normalizeRoleIdentity(value: string) {
+  return value
+    .normalize("NFKC")
+    .replace(/[’‘]/gu, "'")
+    .replace(/♯/gu, "#");
+}
+
 function roleLabelTokens(value: string) {
-  return (value.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’]*/gu) || []).map((rawToken) => {
-    const token = rawToken.normalize("NFC").toLocaleLowerCase();
+  return (normalizeRoleIdentity(value).match(roleIdentityPattern) || []).map((rawToken) => {
+    const token = rawToken.toLocaleLowerCase();
     return semanticTokenAliases.get(token) || token;
   });
 }
@@ -466,7 +469,9 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
       return (issues.length > 0 ? issues : [{ claim: value, unsupportedFacts: [value] }])
         .map((issue) => ({ path, ...issue }));
     }
-    const resumeIssues = auditNarrativeClaim(value, resumeText);
+    const resumeIssues = auditNarrativeClaim(value, resumeText, {
+      interpretationContext: interpretationContextForPath(path),
+    });
     if (resumeIssues.length === 0) return [];
     return resumeIssues.map((issue) => ({ path, ...issue }));
   });
