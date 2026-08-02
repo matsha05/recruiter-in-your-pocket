@@ -74,13 +74,24 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
     return originalSocketConnect.apply(this, args);
   };
 
-  const blockedDns = function blockedDns() {
-    throw new Error("Gauntlet network guard blocked DNS resolution");
+  const originalDnsLookup = dns.lookup;
+  dns.lookup = function guardedDnsLookup(hostname, ...args) {
+    if (!isLoopback(hostname)) {
+      throw new Error(`Gauntlet network guard blocked DNS resolution via lookup for ${String(hostname)}`);
+    }
+    return originalDnsLookup.call(this, hostname, ...args);
   };
+  if (dns.promises && typeof dns.promises.lookup === "function") {
+    const originalPromiseDnsLookup = dns.promises.lookup;
+    dns.promises.lookup = function guardedPromiseDnsLookup(hostname, ...args) {
+      if (!isLoopback(hostname)) {
+        throw new Error(`Gauntlet network guard blocked DNS resolution via lookup for ${String(hostname)}`);
+      }
+      return originalPromiseDnsLookup.call(this, hostname, ...args);
+    };
+  }
+
   for (const method of [
-    "getDefaultResultOrder",
-    "getServers",
-    "lookup",
     "lookupService",
     "resolve",
     "resolve4",
@@ -96,9 +107,12 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
     "resolveSrv",
     "resolveTxt",
     "reverse",
-    "setDefaultResultOrder",
     "setServers",
   ]) {
+    const blockedDns = function blockedDns(...args) {
+      const target = typeof args[0] === "string" ? ` for ${args[0]}` : "";
+      throw new Error(`Gauntlet network guard blocked DNS resolution via ${method}${target}`);
+    };
     if (typeof dns[method] === "function") dns[method] = blockedDns;
     if (dns.promises && typeof dns.promises[method] === "function") dns.promises[method] = blockedDns;
   }
@@ -106,7 +120,10 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
     if (!Resolver || !Resolver.prototype) continue;
     for (const method of Object.getOwnPropertyNames(Resolver.prototype)) {
       if (method !== "constructor" && typeof Resolver.prototype[method] === "function") {
-        Resolver.prototype[method] = blockedDns;
+        Resolver.prototype[method] = function blockedResolverDns(...args) {
+          const target = typeof args[0] === "string" ? ` for ${args[0]}` : "";
+          throw new Error(`Gauntlet network guard blocked resolver DNS via ${method}${target}`);
+        };
       }
     }
   }
@@ -177,16 +194,25 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
     ];
   }
 
-  function assertNodeChild(command) {
-    if (command !== process.execPath) {
-      throw new Error(`Gauntlet network guard blocked non-Node child command: ${String(command)}`);
+  function normalizedChildCommand(command, args, allowReadOnlyProbe = false) {
+    if (command === process.execPath) return command;
+    // @vercel/nft probes libc while tracing a Linux production build. Pin the
+    // one required, read-only probe to the system binary so PATH cannot turn
+    // this exception into an arbitrary child-process escape.
+    if (allowReadOnlyProbe
+      && command === "getconf"
+      && Array.isArray(args)
+      && args.length === 1
+      && args[0] === "GNU_LIBC_VERSION") {
+      return "/usr/bin/getconf";
     }
+    throw new Error(`Gauntlet network guard blocked non-Node child command: ${String(command)}`);
   }
 
   const originalChildProcessSpawn = childProcess.ChildProcess.prototype.spawn;
   childProcess.ChildProcess.prototype.spawn = function guardedChildProcessPrototypeSpawn(options) {
     const normalized = options && typeof options === "object" ? options : {};
-    assertNodeChild(normalized.file);
+    normalizedChildCommand(normalized.file, normalized.args);
     return originalChildProcessSpawn.call(this, {
       ...normalized,
       envPairs: forcedChildEnvPairs(normalized.envPairs),
@@ -195,16 +221,16 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
 
   const originalSpawn = childProcess.spawn;
   childProcess.spawn = function guardedSpawn(command, args, options) {
-    assertNodeChild(command);
-    if (Array.isArray(args)) return originalSpawn.call(this, command, args, forcedChildOptions(options));
-    return originalSpawn.call(this, command, forcedChildOptions(args));
+    const normalizedCommand = normalizedChildCommand(command, args);
+    if (Array.isArray(args)) return originalSpawn.call(this, normalizedCommand, args, forcedChildOptions(options));
+    return originalSpawn.call(this, normalizedCommand, forcedChildOptions(args));
   };
 
   const originalSpawnSync = childProcess.spawnSync;
   childProcess.spawnSync = function guardedSpawnSync(command, args, options) {
-    assertNodeChild(command);
-    if (Array.isArray(args)) return originalSpawnSync.call(this, command, args, forcedChildOptions(options));
-    return originalSpawnSync.call(this, command, forcedChildOptions(args));
+    const normalizedCommand = normalizedChildCommand(command, args, true);
+    if (Array.isArray(args)) return originalSpawnSync.call(this, normalizedCommand, args, forcedChildOptions(options));
+    return originalSpawnSync.call(this, normalizedCommand, forcedChildOptions(args));
   };
 
   childProcess.exec = function guardedExec(command) {
@@ -217,22 +243,22 @@ if (process.env.RIYP_GAUNTLET_NETWORK_GUARD === "1") {
 
   const originalExecFile = childProcess.execFile;
   childProcess.execFile = function guardedExecFile(file, args, options, callback) {
-    assertNodeChild(file);
+    const normalizedFile = normalizedChildCommand(file, args);
     if (Array.isArray(args)) {
       if (typeof options === "function") {
-        return originalExecFile.call(this, file, args, forcedChildOptions(), options);
+        return originalExecFile.call(this, normalizedFile, args, forcedChildOptions(), options);
       }
-      return originalExecFile.call(this, file, args, forcedChildOptions(options), callback);
+      return originalExecFile.call(this, normalizedFile, args, forcedChildOptions(options), callback);
     }
-    if (typeof args === "function") return originalExecFile.call(this, file, forcedChildOptions(), args);
-    return originalExecFile.call(this, file, forcedChildOptions(args), options);
+    if (typeof args === "function") return originalExecFile.call(this, normalizedFile, forcedChildOptions(), args);
+    return originalExecFile.call(this, normalizedFile, forcedChildOptions(args), options);
   };
 
   const originalExecFileSync = childProcess.execFileSync;
   childProcess.execFileSync = function guardedExecFileSync(file, args, options) {
-    assertNodeChild(file);
-    if (Array.isArray(args)) return originalExecFileSync.call(this, file, args, forcedChildOptions(options));
-    return originalExecFileSync.call(this, file, forcedChildOptions(args));
+    const normalizedFile = normalizedChildCommand(file, args);
+    if (Array.isArray(args)) return originalExecFileSync.call(this, normalizedFile, args, forcedChildOptions(options));
+    return originalExecFileSync.call(this, normalizedFile, forcedChildOptions(args));
   };
 
   const originalFork = childProcess.fork;

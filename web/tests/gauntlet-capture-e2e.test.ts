@@ -104,11 +104,14 @@ async function writeCollectingLedger(input: {
   repositoryRoot: string;
   plan: Awaited<ReturnType<typeof createCapturePlan>>;
 }) {
-  const baselinePath = path.join(
-    input.repositoryRoot,
-    "web/gauntlet/iterations/iteration-000-baseline.json",
-  );
-  const baselineBytes = await readFile(baselinePath);
+  const iterationsRoot = path.join(input.repositoryRoot, "web/gauntlet/iterations");
+  const previousLedgerName = (await readdir(iterationsRoot))
+    .filter((name) => name.endsWith(".json") && name !== `${ITERATION_ID}.json`)
+    .sort()
+    .at(-1);
+  assert.ok(previousLedgerName, "capture E2E requires a previous iteration ledger");
+  const previousLedgerBytes = await readFile(path.join(iterationsRoot, previousLedgerName));
+  const previousLedger = JSON.parse(previousLedgerBytes.toString("utf8")) as GauntletIteration;
   const ledger: GauntletIteration = {
     schemaVersion: "2",
     id: ITERATION_ID,
@@ -127,8 +130,8 @@ async function writeCollectingLedger(input: {
       remainingGap: "Complete blind review and independent source and public-reference assessments.",
     },
     previous: {
-      iterationId: "iteration-000-baseline",
-      ledgerSha256: sha256(baselineBytes),
+      iterationId: previousLedger.id,
+      ledgerSha256: sha256(previousLedgerBytes),
     },
     seal: null,
     baselineStatement: GAUNTLET_FINALIZED_CAPTURE_STATEMENT,
@@ -257,7 +260,7 @@ async function run() {
     tampered.presentation.captureReceipt!.renderedReport.reportSha256 = "0".repeat(64);
     await writeFile(tamperPath, serialize(tampered));
     const rejected = await getGauntletProgress(path.join(plan.repositoryRoot, "web"), ITERATION_ID);
-    assert.equal(rejected.dataIssues.some((issue) => /rendered ReportStream receipt/.test(issue)), true);
+    assert.equal(rejected.dataIssues.some((issue) => /rendered-report receipt/.test(issue)), true);
     await writeFile(tamperPath, untamperedBytes);
     const restored = await getGauntletProgress(path.join(plan.repositoryRoot, "web"), ITERATION_ID);
     assert.deepEqual(restored.dataIssues, []);

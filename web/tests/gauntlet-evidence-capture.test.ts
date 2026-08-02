@@ -711,6 +711,29 @@ async function run() {
     assert.equal(nonNodeChild.code, 0, nonNodeChild.output);
     assert.match(nonNodeChild.output, /blocked non-Node child command/);
 
+    const readOnlyLibcProbe = await execNode([
+      "--require",
+      guardPath,
+      "-e",
+      [
+        "const {spawnSync}=require('node:child_process');",
+        "const child=spawnSync('getconf',['GNU_LIBC_VERSION'],{encoding:'utf8'});",
+        "console.log('GETCONF_RESULT='+(child.error?child.error.code:child.status));",
+      ].join(""),
+    ], { ...process.env, RIYP_GAUNTLET_NETWORK_GUARD: "1" });
+    assert.equal(readOnlyLibcProbe.code, 0, readOnlyLibcProbe.output);
+    assert.match(readOnlyLibcProbe.output, /GETCONF_RESULT=/);
+    assert.doesNotMatch(readOnlyLibcProbe.output, /blocked non-Node child command/);
+
+    const broadenedGetconfProbe = await execNode([
+      "--require",
+      guardPath,
+      "-e",
+      "try{require('node:child_process').spawnSync('getconf',['_NPROCESSORS_ONLN']);process.exit(30)}catch(error){console.error(error.message)}",
+    ], { ...process.env, RIYP_GAUNTLET_NETWORK_GUARD: "1" });
+    assert.equal(broadenedGetconfProbe.code, 0, broadenedGetconfProbe.output);
+    assert.match(broadenedGetconfProbe.output, /blocked non-Node child command: getconf/);
+
     const prototypeBypass = await execNode([
       "--require",
       guardPath,
@@ -772,6 +795,31 @@ async function run() {
     assert.equal(alternateOutbound.code, 0, alternateOutbound.output);
     assert.match(alternateOutbound.output, /blocked DNS resolution/);
     assert.match(alternateOutbound.output, /blocked UDP\/dgram access/);
+
+    const dnsPreferences = await execNode([
+      "--require",
+      guardPath,
+      "-e",
+      [
+        "const dns=require('node:dns');",
+        "const order=dns.getDefaultResultOrder();",
+        "dns.setDefaultResultOrder(order);",
+        "console.log('DNS_ORDER='+order);",
+      ].join(""),
+    ], { ...process.env, RIYP_GAUNTLET_NETWORK_GUARD: "1" });
+    assert.equal(dnsPreferences.code, 0, dnsPreferences.output);
+    assert.match(dnsPreferences.output, /DNS_ORDER=/);
+    assert.doesNotMatch(dnsPreferences.output, /blocked DNS resolution/);
+
+    const loopbackDnsLookup = await execNode([
+      "--require",
+      guardPath,
+      "-e",
+      "require('node:dns').lookup('127.0.0.1',(error,address)=>{if(error)throw error;console.log('DNS_LOOPBACK='+address)})",
+    ], { ...process.env, RIYP_GAUNTLET_NETWORK_GUARD: "1" });
+    assert.equal(loopbackDnsLookup.code, 0, loopbackDnsLookup.output);
+    assert.match(loopbackDnsLookup.output, /DNS_LOOPBACK=127\.0\.0\.1/);
+    assert.doesNotMatch(loopbackDnsLookup.output, /blocked DNS resolution/);
 
     const guardedWorker = await execNode([
       "--require",
