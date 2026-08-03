@@ -34,6 +34,33 @@ async function run() {
       (_text, partial) => partials.push(partial),
     ));
 
+    const completedThenStopped = new AbortController();
+    let terminalStreamCanceled = false;
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode(`${JSON.stringify({
+          type: "complete",
+          data: { score: 77, summary: "authoritative before Stop" },
+          report_id: "report-terminal",
+        })}\n`));
+        completedThenStopped.abort();
+      },
+      cancel() {
+        terminalStreamCanceled = true;
+      },
+    }), { status: 200 });
+    const terminal = await Promise.race([
+      streamResumeFeedback(
+        "Resume source", undefined, () => undefined, "resume", { signal: completedThenStopped.signal },
+      ),
+      new Promise<never>((_resolve, reject) => setTimeout(() => reject(new Error("complete event did not terminate")), 100)),
+    ]);
+    assert.equal(terminal.ok, true, "an authoritative complete event must beat a later caller abort");
+    assert.equal(terminal.aborted, undefined);
+    assert.equal(terminal.reportId, "report-terminal");
+    await Promise.resolve();
+    assert.equal(terminalStreamCanceled, true, "the reader should be released without waiting for EOF");
+
     globalThis.fetch = async () => responseFor([
       { type: "chunk", content: '{"score":92,"summary":"partial and unvalidated"}' },
       { type: "complete", data: { score: 77, summary: "authoritative" } },

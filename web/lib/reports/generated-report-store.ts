@@ -12,13 +12,27 @@ export async function resolveUserSavedJobId(supabase: any, userId: string, value
   return error || !data?.id ? null : data.id as string;
 }
 
-function persistenceError() {
+function persistenceError(reportId?: string) {
   const error = new Error("We could not safely save this report.") as Error & {
     code: string;
     httpStatus: number;
+    reportId?: string;
   };
   error.code = "REPORT_PERSISTENCE_FAILED";
   error.httpStatus = 503;
+  error.reportId = reportId;
+  return error;
+}
+
+function reportRollbackError(cause?: unknown) {
+  const error = new Error("We could not confirm report cleanup.") as Error & {
+    code: string;
+    httpStatus: number;
+    cause?: unknown;
+  };
+  error.code = "REPORT_ROLLBACK_UNCONFIRMED";
+  error.httpStatus = 503;
+  error.cause = cause;
   return error;
 }
 
@@ -40,7 +54,7 @@ export async function persistGeneratedReport(input: {
   context: StoreContext;
 }) {
   const reportId = crypto.randomUUID();
-  const { error: reportInsertError } = await input.supabase.from("reports").insert({
+  const reportRow = {
     id: reportId,
     user_id: input.userId,
     resume_hash: crypto.createHash("sha256").update(input.resumeText).digest("hex"),
@@ -53,8 +67,11 @@ export async function persistGeneratedReport(input: {
     job_description_text: input.jobDescriptionText || null,
     target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
     created_at: new Date().toISOString(),
-  });
-  if (reportInsertError) {
+  };
+  try {
+    const { error: reportInsertError } = await input.supabase.from("reports").insert(reportRow);
+    if (reportInsertError) throw reportInsertError;
+  } catch (cause: any) {
     logError({
       msg: "report.persistence_failed",
       ...input.context,
@@ -62,21 +79,23 @@ export async function persistGeneratedReport(input: {
       err: {
         name: "ReportPersistenceError",
         message: "Report insert failed",
-        code: String(reportInsertError.code || "REPORT_INSERT_FAILED"),
+        code: String(cause?.code || "REPORT_INSERT_FAILED"),
       },
     });
-    throw persistenceError();
+    throw persistenceError(reportId);
   }
   if (input.savedJobId) {
-    const { error } = await input.supabase.from("saved_jobs")
-      .update({ latest_report_id: reportId, updated_at: new Date().toISOString() })
-      .eq("id", input.savedJobId).eq("user_id", input.userId);
-    if (error) {
+    try {
+      const { error } = await input.supabase.from("saved_jobs")
+        .update({ latest_report_id: reportId, updated_at: new Date().toISOString() })
+        .eq("id", input.savedJobId).eq("user_id", input.userId);
+      if (error) throw error;
+    } catch (cause: any) {
       logWarn({
         msg: "saved_job.report_link_failed",
         ...input.context,
         outcome: "provider_error",
-        err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(error.code || "SAVED_JOB_UPDATE_FAILED") },
+        err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(cause?.code || "SAVED_JOB_UPDATE_FAILED") },
       });
     }
   }
@@ -89,15 +108,19 @@ export async function rollbackGeneratedReport(input: {
   reportId: string;
   context: StoreContext;
 }) {
-  const { error } = await input.supabase.from("reports").delete()
-    .eq("id", input.reportId).eq("user_id", input.userId);
-  if (error) {
+  try {
+    const { error, count } = await input.supabase.from("reports").delete({ count: "exact" })
+      .eq("id", input.reportId).eq("user_id", input.userId);
+    if (error || typeof count !== "number") throw error || new Error("Rollback count unavailable");
+    return { confirmed: true as const, deletedCount: count };
+  } catch (cause: any) {
     logError({
       msg: "report.rollback_failed",
       ...input.context,
       outcome: "internal_error",
-      err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(error.code || "REPORT_ROLLBACK_FAILED") },
+      err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(cause?.code || "REPORT_ROLLBACK_FAILED") },
     });
+    throw reportRollbackError(cause);
   }
 }
 

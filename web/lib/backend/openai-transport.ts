@@ -43,3 +43,11 @@ export function normalizeOpenAITransportError(
     error?.message,
   );
 }
+
+export function isStableOpenAITransportError(error: unknown) {
+  const code = (error as { code?: unknown } | null)?.code;
+  return code === "CLIENT_CANCELED"
+    || code === "OPENAI_TIMEOUT"
+    || code === "OPENAI_NETWORK_ERROR"
+    || code === "OPENAI_HTTP_ERROR";
+}

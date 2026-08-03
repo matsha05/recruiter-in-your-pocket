@@ -16,9 +16,10 @@ export function useResumeReview(input: {
   persistedSavedJobId: string | null;
   freeUsesRemaining: number;
   user: any;
-  refreshFreeStatus: (options: any) => Promise<unknown>;
+  refreshFreeStatus: (options: any) => Promise<boolean>;
   beginAnalysis: (mode: "resume") => AbortController;
-  endAnalysis: () => void;
+  isAnalysisCurrent: (controller: AbortController) => boolean;
+  endAnalysis: (controller: AbortController) => boolean;
   setResumeText: Setter<string>;
   setReport: Setter<any>;
   setIsLoading: Setter<boolean>;
@@ -110,38 +111,40 @@ export function useResumeReview(input: {
         "resume",
         { signal: controller.signal, savedJobId: input.persistedSavedJobId },
       );
+      if (!input.isAnalysisCurrent(controller)) return;
       if (result.aborted) {
-        await input.refreshFreeStatus({
+        const refreshed = await input.refreshFreeStatus({
           fallbackDecrement: result.attemptConsumed === true,
           includeUserRefresh: true,
           requireOk: true,
         });
+        if (!input.isAnalysisCurrent(controller)) return;
         if (result.attemptConsumed) {
           toast.warning("Analysis stopped after generation started", {
-            description: "This report attempt was used. Your remaining reports are now refreshed.",
+            description: refreshed
+              ? "This report attempt was used. Your remaining reports are current."
+              : "This report attempt was used. Check History and your remaining reports before retrying.",
           });
         } else if (result.creditRestored) {
           toast.info("Analysis stopped", {
             description: "Your report credit was restored. You can run the report again.",
           });
         } else {
-          toast.info("Analysis stopped", { description: "Your remaining reports are now refreshed." });
+          toast.info("Analysis stopped", {
+            description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
+          });
         }
-        input.setIsLoading(false);
-        input.setIsStreaming(false);
-        input.endAnalysis();
         return;
       }
       if (result.ok && result.report) {
         input.setReport(result.report);
-        input.setIsStreaming(false);
-        input.setIsLoading(false);
-        input.endAnalysis();
         Analytics.reportCompleted(result.report?.score || 0);
         await input.refreshFreeStatus({ fallbackDecrement: true, includeUserRefresh: true, requireOk: true });
+        if (!input.isAnalysisCurrent(controller)) return;
         if (!input.user && !isLaunchFlagEnabled("guestReportSave")) {
           input.setPendingReportForSave(result.report);
           setTimeout(() => {
+            if (!input.isAnalysisCurrent(controller)) return;
             Analytics.track("save_prompt_viewed", { score: result.report?.score || 0 });
             input.setIsSavePromptOpen(true);
           }, 5000);
@@ -149,35 +152,39 @@ export function useResumeReview(input: {
         return;
       }
       console.error("Failed to generate report:", result.message);
-      await input.refreshFreeStatus({
+      const refreshed = await input.refreshFreeStatus({
         fallbackDecrement: result.attemptConsumed === true,
         includeUserRefresh: true,
         requireOk: true,
       });
+      if (!input.isAnalysisCurrent(controller)) return;
       const attemptCopy = result.attemptConsumed
-        ? "This report attempt was used because generation had already started."
+        ? refreshed
+          ? "This report attempt was used. Your remaining reports are current."
+          : "This report attempt was used. Check History and your remaining reports before retrying."
         : result.creditRestored
           ? "Your report credit was restored. You can try again."
-          : "Your remaining reports are refreshed.";
-      const hasDisposition = /report attempt was used|report credit was restored|could not confirm that your report credit was restored/iu
+          : "We could not confirm this attempt's status. Check History and your remaining reports before retrying.";
+      const hasDisposition = /report attempt was used|report credit was restored|could not confirm (?:that your report credit was restored|this attempt's status)/iu
         .test(result.message || "");
       toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "Connection ended" : "Failed to generate report", {
-        description: result.errorCode === "STREAM_TRANSPORT_ERROR" && result.attemptConsumed === undefined
-          ? `The report did not finish. ${attemptCopy}`
-          : hasDisposition
+        description: hasDisposition
             ? result.message
             : `${result.message || "The report did not finish."} · ${attemptCopy}`,
       });
     } catch (error) {
+      if (!input.isAnalysisCurrent(controller)) return;
       console.error("Report generation error:", error);
       await input.refreshFreeStatus({ includeUserRefresh: true, requireOk: true });
+      if (!input.isAnalysisCurrent(controller)) return;
       toast.error("Report generation error", {
-        description: "The report did not finish. Your remaining reports are refreshed.",
+        description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
       });
     } finally {
-      input.setIsLoading(false);
-      input.setIsStreaming(false);
-      input.endAnalysis();
+      if (input.endAnalysis(controller)) {
+        input.setIsLoading(false);
+        input.setIsStreaming(false);
+      }
     }
   }, [input]);
 

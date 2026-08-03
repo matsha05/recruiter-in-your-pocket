@@ -16,6 +16,7 @@ import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/ho
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
+import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
 import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
@@ -78,6 +79,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     // Ref to track pending auto-run from landing page
     const pendingAutoRunRef = useRef(false);
     const abortControllerRef = useRef<AbortController | null>(null);
+    const latestAnalysisControllerRef = useRef<AbortController | null>(null);
 
     useWorkspaceInit({
         searchParams,
@@ -128,21 +130,24 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
         const controller = new AbortController();
         abortControllerRef.current = controller;
+        latestAnalysisControllerRef.current = controller;
         setAnalysisMode(mode);
         setAnalysisStartedAt(Date.now());
         return controller;
     }, []);
 
-    const endAnalysis = useCallback(() => {
+    const isAnalysisCurrent = useCallback((controller: AbortController) => (
+        ownsAnalysisRun(latestAnalysisControllerRef, controller)
+    ), []);
+
+    const endAnalysis = useCallback((controller: AbortController) => {
+        if (!finishOwnedAnalysisRun(abortControllerRef, controller)) return false;
         setAnalysisStartedAt(null);
-        abortControllerRef.current = null;
+        return true;
     }, []);
 
-    const handleCancelAnalysis = useCallback((silent?: boolean) => {
-        if (abortControllerRef.current) {
-            abortControllerRef.current.abort();
-            abortControllerRef.current = null;
-        }
+    const handleCancelAnalysis = useCallback((silent?: boolean, invalidate = false) => {
+        cancelOwnedAnalysisRun(abortControllerRef, latestAnalysisControllerRef, invalidate);
         setIsLoading(false);
         setIsStreaming(false);
         setAnalysisStartedAt(null);
@@ -163,6 +168,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setLinkedInProfileHeadline,
         setReviewMode,
         beginAnalysis,
+        isAnalysisCurrent,
         endAnalysis,
         setLastLinkedInPdf
     });
@@ -170,7 +176,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
-        refreshFreeStatus, beginAnalysis, endAnalysis, setResumeText, setReport, setIsLoading,
+        refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,
     });
@@ -179,7 +185,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     handleRunRef.current = handleRun;
 
     const handleNewReport = useCallback(() => {
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
@@ -195,7 +201,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setComparisonBaseline(report as ReportData);
         setSkipSample(true);
         setResumeText("");

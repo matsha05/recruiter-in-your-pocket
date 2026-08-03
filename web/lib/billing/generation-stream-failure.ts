@@ -1,7 +1,7 @@
 import { captureOperationalError } from "../observability/operations";
 import { logError, logInfo } from "../observability/logger";
 import type { GenerationAccessReservation, GenerationAccessRpcClient } from "./generationAccess";
-import { appendFailureDisposition, logGenerationReleaseFailure, settleGenerationFailure } from "./generationFailure";
+import { appendFailureDisposition, generationFailureCompletion, logGenerationReleaseFailure, settleGenerationFailure } from "./generationFailure";
 
 type StreamFailureContext = {
   request_id: string;
@@ -52,6 +52,7 @@ export async function handleGenerationStreamFailure(input: {
       errorCode: code,
       message,
       attempt_consumed: disposition.attemptConsumed,
+      attempt_disposition: disposition.attemptDisposition,
       credit_restored: disposition.creditRestored,
     })}\n`));
     input.controller.close();
@@ -59,15 +60,16 @@ export async function handleGenerationStreamFailure(input: {
     // The entitlement settlement above remains authoritative after disconnect.
   }
 
+  const completion = generationFailureCompletion(error);
   const completionLog = {
     msg: "http.request.completed",
     request_id: context.request_id,
     route: context.route,
     method: context.method,
     path: context.path,
-    status: code === "CLIENT_CANCELED" ? 499 : 500,
+    status: completion.status,
     latency_ms: Date.now() - context.startedAt,
-    outcome: code === "CLIENT_CANCELED" ? "client_disconnect" as const : "internal_error" as const,
+    outcome: completion.outcome,
     err: {
       name: error?.name || "Error",
       message: error?.message || message,

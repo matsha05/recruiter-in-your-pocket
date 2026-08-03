@@ -4,7 +4,9 @@ import path from "node:path";
 import {
   finalizeGenerationCompletion,
   generationCancellationWasCommitted,
+  shouldSynthesizeGenerationCancellation,
 } from "../lib/billing/generation-cancellation";
+import { isStableOpenAITransportError } from "../lib/backend/openai-transport";
 
 const originalResolveFilename = (Module as any)._resolveFilename;
 (Module as any)._resolveFilename = function resolveFilename(request: string, ...args: any[]) {
@@ -33,6 +35,13 @@ async function consumeProvider(signal: AbortSignal) {
 }
 
 async function run() {
+  assert.equal(isStableOpenAITransportError({ code: "OPENAI_NETWORK_ERROR" }), true);
+  assert.equal(isStableOpenAITransportError({ code: "OPENAI_TIMEOUT" }), true);
+  assert.equal(isStableOpenAITransportError({ code: "CLIENT_CANCELED" }), true);
+  assert.equal(isStableOpenAITransportError({ code: "OPENAI_RESPONSE_SHAPE_INVALID" }), false);
+  assert.equal(shouldSynthesizeGenerationCancellation(new DOMException("Aborted", "AbortError")), true);
+  assert.equal(shouldSynthesizeGenerationCancellation({ code: "OPENAI_TIMEOUT" }), false);
+  assert.equal(shouldSynthesizeGenerationCancellation({ code: "REPORT_CLEANUP_UNCONFIRMED" }), false);
   const originalFetch = globalThis.fetch;
   const originalEnv = {
     apiKey: process.env.OPENAI_API_KEY,
@@ -118,6 +127,27 @@ async function run() {
       "timer-owned abort must become the stable timeout error",
     );
 
+    let timeoutFirstStarted!: () => void;
+    const timeoutStarted = new Promise<void>((resolve) => { timeoutFirstStarted = resolve; });
+    globalThis.fetch = ((_url: string | URL | Request, init?: RequestInit) => {
+      timeoutFirstStarted();
+      return new Promise<Response>((_resolve, reject) => {
+        init?.signal?.addEventListener("abort", () => {
+          setTimeout(() => reject(new DOMException("Delayed timeout rejection", "AbortError")), 20);
+        }, { once: true });
+      });
+    }) as typeof fetch;
+    process.env.OPENAI_TIMEOUT_MS = "5";
+    const clientAfterTimeout = new AbortController();
+    const timeoutFirstRun = consumeProvider(clientAfterTimeout.signal);
+    await timeoutStarted;
+    setTimeout(() => clientAfterTimeout.abort(), 10);
+    await assert.rejects(
+      () => timeoutFirstRun,
+      (error: any) => error?.code === "OPENAI_TIMEOUT",
+      "a later client abort must not overwrite a timer-owned timeout",
+    );
+
     globalThis.fetch = (async () => {
       const socketError = new Error("socket closed") as Error & { code: string };
       socketError.code = "ECONNRESET";
@@ -153,7 +183,7 @@ async function run() {
       signal: beforePersistence.signal,
       persist: async () => { beforeEvents.push("persist"); return "report-1"; },
       commit: async () => { beforeEvents.push("commit"); },
-      rollback: async () => { beforeEvents.push("rollback"); },
+      rollback: async () => { beforeEvents.push("rollback"); return { confirmed: true }; },
     }), (error: any) => error?.code === "CLIENT_CANCELED");
     assert.deepEqual(beforeEvents, [], "observed cancel must prevent persistence and commit");
 
@@ -167,7 +197,7 @@ async function run() {
         return "report-2";
       },
       commit: async () => { beforeCommitEvents.push("commit"); },
-      rollback: async () => { beforeCommitEvents.push("rollback"); },
+      rollback: async () => { beforeCommitEvents.push("rollback"); return { confirmed: true }; },
     }), (error: any) => error?.code === "CLIENT_CANCELED" && !generationCancellationWasCommitted(error));
     assert.deepEqual(beforeCommitEvents, ["persist", "rollback"], "cancel before commit must roll back the saved report");
 
@@ -183,7 +213,7 @@ async function run() {
           finishCommit = () => { resolve(); };
         });
       },
-      rollback: async () => { commitEvents.push("rollback"); },
+      rollback: async () => { commitEvents.push("rollback"); return { confirmed: true }; },
     });
     while (!commitEvents.includes("commit")) await Promise.resolve();
     duringCommit.abort();
@@ -200,7 +230,7 @@ async function run() {
       signal: new AbortController().signal,
       persist: async () => { successEvents.push("persist"); return "report-4"; },
       commit: async () => { successEvents.push("commit"); },
-      rollback: async () => { successEvents.push("rollback"); },
+      rollback: async () => { successEvents.push("rollback"); return { confirmed: true }; },
     });
     assert.deepEqual(completed, { reportId: "report-4", attemptConsumed: true });
     assert.deepEqual(successEvents, ["persist", "commit"], "normal completion must preserve persistence and commit");

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   appendFailureDisposition,
+  generationFailureCompletion,
   settleGenerationFailure,
 } from "../lib/billing/generationFailure";
 import type { GenerationAccessReservation } from "../lib/billing/generationAccess";
@@ -45,10 +46,11 @@ async function run() {
     release: async () => { throw new Error("ledger unavailable"); },
   });
   assert.equal(releaseFailed.creditRestored, false);
-  assert.equal(releaseFailed.attemptConsumed, true);
+  assert.equal(releaseFailed.attemptConsumed, undefined);
+  assert.equal(releaseFailed.attemptDisposition, "unknown");
   assert.equal(releaseFailed.anonymousCookieMeta?.used, 1);
   assert.doesNotMatch(releaseFailed.retryMessage, /^Your report credit was restored/iu);
-  assert.match(releaseFailed.retryMessage, /could not confirm/i);
+  assert.match(releaseFailed.retryMessage, /Check History and your remaining reports/i);
 
   const consumed = await settleGenerationFailure({
     reservation: anonymousReservation,
@@ -63,6 +65,15 @@ async function run() {
   const copy = appendFailureDisposition("Provider response failed. Your report credit was restored; please try again.", consumed);
   assert.equal((copy.match(/report attempt was used/giu) || []).length, 1);
   assert.equal((copy.match(/credit was restored/giu) || []).length, 0, "stale restoration copy must be replaced, not duplicated");
+
+  assert.deepEqual(
+    generationFailureCompletion({ code: "OPENAI_TIMEOUT", httpStatus: 504 }),
+    { status: 504, outcome: "timeout" },
+  );
+  assert.deepEqual(
+    generationFailureCompletion({ code: "OPENAI_NETWORK_ERROR", httpStatus: 502 }),
+    { status: 502, outcome: "network_error" },
+  );
 }
 
 run().then(() => console.log("generation failure tests passed")).catch((error) => {

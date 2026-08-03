@@ -457,7 +457,8 @@ assert.match(streamFailure, /attempt_consumed:\s*disposition\.attemptConsumed/);
 assert.match(streamFailure, /The report could not be completed\./);
 assert.doesNotMatch(streamFailure, /Something went wrong/);
 assert.match(streamRoute, /signal:\s*generationController\.signal/g);
-assert.match(streamRoute, /generationController\.signal\.aborted && err\?\.code !== "CLIENT_CANCELED"/);
+assert.match(streamRoute, /if \(isStableOpenAITransportError\(repairErr\)\) throw repairErr/);
+assert.match(streamRoute, /generationController\.signal\.aborted && shouldSynthesizeGenerationCancellation\(err\)/);
 assert.match(streamRoute, /rollback:\s*user && reportAdmin/);
 assert.equal(releaseReasonForError({ code: "CLIENT_CANCELED" }), "client_disconnect");
 assert.equal(releaseReasonForError({ code: "OPENAI_TIMEOUT" }), "provider_timeout");
@@ -466,7 +467,7 @@ assert.doesNotMatch(
   /new Error\("The report did not pass its evidence check\. Your report credit was restored/,
   "post-provider validation errors must not claim an anonymous attempt was restored",
 );
-assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*await input\.refreshFreeStatus/);
+assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*const refreshed = await input\.refreshFreeStatus/);
 assert.match(resumeReviewHook, /catch \(error\) \{[\s\S]+await input\.refreshFreeStatus/);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');

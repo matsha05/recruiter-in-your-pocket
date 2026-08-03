@@ -24,7 +24,8 @@ type LinkedInReviewOptions = {
   setLinkedInProfileHeadline: Dispatch<SetStateAction<string>>;
   setReviewMode: Dispatch<SetStateAction<ReviewMode>>;
   beginAnalysis: (mode: "resume" | "linkedin") => AbortController;
-  endAnalysis: () => void;
+  isAnalysisCurrent: (controller: AbortController) => boolean;
+  endAnalysis: (controller: AbortController) => boolean;
   setLastLinkedInPdf: Dispatch<SetStateAction<string | null>>;
 };
 
@@ -40,6 +41,7 @@ export function useLinkedInReview({
   setLinkedInProfileHeadline,
   setReviewMode,
   beginAnalysis,
+  isAnalysisCurrent,
   endAnalysis,
   setLastLinkedInPdf
 }: LinkedInReviewOptions) {
@@ -63,6 +65,7 @@ export function useLinkedInReview({
         const result = await streamLinkedInFeedback(
           { pdfText, source: "pdf" },
           (partialJson, partialReport) => {
+            if (!isAnalysisCurrent(controller)) return;
             if (partialReport) {
               setLinkedInReport(partialReport);
               if (partialReport.score || partialReport.summary || partialReport.first_impression) {
@@ -71,17 +74,16 @@ export function useLinkedInReview({
             }
           },
           (meta) => {
+            if (!isAnalysisCurrent(controller)) return;
             if (meta.name) setLinkedInProfileName(meta.name);
             if (meta.headline) setLinkedInProfileHeadline(meta.headline);
           },
           { signal: controller.signal }
         );
+        if (!isAnalysisCurrent(controller)) return;
 
         if (result.aborted) {
-            setIsLoading(false);
-            setIsStreaming(false);
-            endAnalysis();
-            return;
+          return;
         }
 
         if (result.ok && result.report) {
@@ -90,9 +92,6 @@ export function useLinkedInReview({
             setLinkedInProfileName(result.profile.name || "");
             setLinkedInProfileHeadline(result.profile.headline || "");
           }
-          setIsStreaming(false);
-          setIsLoading(false);
-          endAnalysis();
           Analytics.linkedInReviewCompleted(result.report?.score || 0);
 
           await refreshFreeStatus({
@@ -100,23 +99,24 @@ export function useLinkedInReview({
             includeUserRefresh: true,
             requireOk: true
           });
+          if (!isAnalysisCurrent(controller)) return;
         } else {
           console.error("Failed to generate LinkedIn report:", result.message);
           toast.error("Failed to analyze LinkedIn profile", {
             description: `${result.message || "Unknown error"} · Your free report was not used`
           });
-          setIsLoading(false);
-          setIsStreaming(false);
-          endAnalysis();
         }
       } catch (err) {
+        if (!isAnalysisCurrent(controller)) return;
         console.error("LinkedIn analysis error:", err);
         toast.error("LinkedIn analysis error", {
           description: "Please try again. Your free report was not used."
         });
-        setIsLoading(false);
-        setIsStreaming(false);
-        endAnalysis();
+      } finally {
+        if (endAnalysis(controller)) {
+          setIsLoading(false);
+          setIsStreaming(false);
+        }
       }
     },
     [
@@ -130,6 +130,7 @@ export function useLinkedInReview({
       setLinkedInProfileName,
       setLinkedInProfileHeadline,
       beginAnalysis,
+      isAnalysisCurrent,
       endAnalysis,
       setLastLinkedInPdf
     ]

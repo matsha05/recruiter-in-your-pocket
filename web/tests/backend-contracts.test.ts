@@ -210,9 +210,9 @@ for (const [name, source] of [
   ["streaming resume feedback", resumeFeedbackStreamRoute],
 ] as const) {
   const isStreaming = name === "streaming resume feedback";
-  const persistAt = source.indexOf(isStreaming ? "persist: user && reportAdmin" : "await persistGeneratedReport");
-  const commitAt = source.indexOf(isStreaming ? "commit: () => commitGenerationAccess" : "await commitGenerationAccess", persistAt);
-  const rollbackAt = source.indexOf(isStreaming ? "rollback: user && reportAdmin" : "await rollbackGeneratedReport", commitAt);
+  const persistAt = source.indexOf(isStreaming ? "persist: user && reportAdmin" : "persist: user && admin");
+  const commitAt = source.indexOf("commit: () => commitGenerationAccess", persistAt);
+  const rollbackAt = source.indexOf(isStreaming ? "rollback: user && reportAdmin" : "rollback: user && admin", commitAt);
   assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
   assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
   assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
@@ -233,12 +233,12 @@ for (const [name, source] of [
 }
 const completionPersistAt = generationCompletion.indexOf("await input.persist()");
 const completionCommitAt = generationCompletion.indexOf("await input.commit()", completionPersistAt);
-const completionRollbackAt = generationCompletion.indexOf("await input.rollback(reportId)", completionCommitAt);
+const completionRollbackAt = generationCompletion.indexOf("await input.rollback(reportIdToClean)", completionCommitAt);
 assert.ok(completionPersistAt >= 0 && completionCommitAt > completionPersistAt);
 assert.ok(completionRollbackAt > completionCommitAt, "the completion boundary must roll back persistence before a failed commit is released");
 assert.match(generatedReportStore, /from\("reports"\)\.insert/);
-assert.match(generatedReportStore, /if \(reportInsertError\)[\s\S]+throw persistenceError\(\)/);
-assert.match(generatedReportStore, /from\("reports"\)\.delete\(\)[\s\S]+\.eq\("id", input\.reportId\)\.eq\("user_id", input\.userId\)/);
+assert.match(generatedReportStore, /if \(reportInsertError\) throw reportInsertError;[\s\S]+throw persistenceError\(reportId\)/);
+assert.match(generatedReportStore, /from\("reports"\)\.delete\(\{ count: "exact" \}\)[\s\S]+\.eq\("id", input\.reportId\)\.eq\("user_id", input\.userId\)/);
 
 assert.match(exportPdfRoute, /parsePdfExportRequest\(body\)/);
 assert.doesNotMatch(exportPdfRoute, /body\?\.report|normalizeReportForPdf\(body/);

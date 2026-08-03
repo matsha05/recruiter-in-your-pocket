@@ -42,8 +42,9 @@ import {
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
-import { appendFailureDisposition, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
+import { appendFailureDisposition, generationFailureCompletion, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
 import { persistGeneratedReport, rollbackGeneratedReport } from "@/lib/reports/generated-report-store";
+import { finalizeGenerationCompletion } from "@/lib/billing/generation-cancellation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -257,32 +258,23 @@ export async function POST(request: Request) {
       }
     }
 
-    // Save report if user is logged in and mode is resume
-    let reportId: string | null = null;
-    if (user && admin && mode === "resume") {
-      reportId = await persistGeneratedReport({
-        supabase: admin,
-        userId: user.id,
-        payload,
-        resumeText: canonicalResumeText,
-        savedJobId,
-        jobDescriptionText: effectiveJobDescription.persistenceText,
-        context: { request_id, route, user_id },
-      });
-    }
-
-    // Commit only after a signed-in report is durably saved. If the commit
-    // fails, remove that uncharged report before returning an error.
-    try {
-      await commitGenerationAccess(accessReservation, admin);
-      reservationCommitted = true;
-    } catch (commitError) {
-      if (reportId && user && admin) {
-        await rollbackGeneratedReport({ supabase: admin, userId: user.id, reportId, context: { request_id, route, user_id } });
-        reportId = null;
-      }
-      throw commitError;
-    }
+    const completion = await finalizeGenerationCompletion({
+      persist: user && admin && mode === "resume"
+        ? () => persistGeneratedReport({
+          supabase: admin, userId: user.id, payload, resumeText: canonicalResumeText,
+          savedJobId, jobDescriptionText: effectiveJobDescription.persistenceText,
+          context: { request_id, route, user_id },
+        })
+        : undefined,
+      commit: () => commitGenerationAccess(accessReservation!, admin),
+      rollback: user && admin
+        ? (reportId) => rollbackGeneratedReport({
+          supabase: admin, userId: user.id, reportId, context: { request_id, route, user_id },
+        })
+        : undefined,
+    });
+    const reportId = completion.reportId;
+    reservationCommitted = completion.attemptConsumed;
 
     const newFreeUsed = accessReservation.anonymousCookieMeta?.used
       ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : freeMeta.used || 0);
@@ -335,7 +327,8 @@ export async function POST(request: Request) {
     });
     logGenerationReleaseFailure(disposition, { request_id, route });
 
-    const status = err?.httpStatus || 500;
+    const completion = generationFailureCompletion(err);
+    const status = completion.status;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
 
     if (
@@ -370,7 +363,7 @@ export async function POST(request: Request) {
       path,
       status,
       latency_ms: Date.now() - startedAt,
-      outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
+      outcome: completion.outcome,
       err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
     });
     const res = NextResponse.json({
@@ -378,6 +371,7 @@ export async function POST(request: Request) {
       errorCode: code,
       message,
       attempt_consumed: disposition.attemptConsumed,
+      attempt_disposition: disposition.attemptDisposition,
       credit_restored: disposition.creditRestored,
     }, { status });
     res.headers.set("x-request-id", request_id);

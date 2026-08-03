@@ -103,6 +103,7 @@ export async function streamResumeFeedback(
   aborted?: boolean;
   reportId?: string | null;
   attemptConsumed?: boolean;
+  attemptDisposition?: "consumed" | "restored" | "unknown";
   creditRestored?: boolean;
 }> {
   let res: Response;
@@ -146,12 +147,13 @@ export async function streamResumeFeedback(
   const decoder = new TextDecoder();
   let buffer = "";
   void onChunk;
-  let finalReport: any = null;
-  let finalReportId: string | null = null;
   let errorMessage: string | null = null;
   let errorCode: string | undefined;
   let attemptConsumed: boolean | undefined = res.headers.get("x-riyp-attempt-consumed") === "1"
     ? true
+    : undefined;
+  let attemptDisposition: "consumed" | "restored" | "unknown" | undefined = attemptConsumed
+    ? "consumed"
     : undefined;
   let creditRestored = false;
 
@@ -161,13 +163,14 @@ export async function streamResumeFeedback(
       readResult = await reader.read();
     } catch (err: any) {
       if (options?.signal?.aborted) {
-        return { ok: false, message: "Canceled", aborted: true, attemptConsumed, creditRestored };
+        return { ok: false, message: "Canceled", aborted: true, attemptConsumed, attemptDisposition, creditRestored };
       }
       return {
         ok: false,
         errorCode: "STREAM_TRANSPORT_ERROR",
         message: "The connection ended before the report finished.",
         attemptConsumed,
+        attemptDisposition,
         creditRestored,
       };
     }
@@ -186,26 +189,43 @@ export async function streamResumeFeedback(
       try {
         const event = JSON.parse(line);
 
-        if (event.type === "complete") {
-          finalReport = event.data;
-          if (finalReport && event.report_id) {
-            finalReport.report_id = event.report_id;
+        if (event.type === "complete" && event.data && typeof event.data === "object") {
+          const completeReport = event.data;
+          if (event.report_id) {
+            completeReport.report_id = event.report_id;
           }
-          if (finalReport && event.report_receipt) {
-            finalReport.report_receipt = event.report_receipt;
+          if (event.report_receipt) {
+            completeReport.report_receipt = event.report_receipt;
           }
-          finalReportId = event.report_id || null;
+          void reader.cancel().catch(() => undefined);
+          return {
+            ok: true,
+            report: completeReport,
+            reportId: event.report_id || null,
+            attemptConsumed: true,
+            attemptDisposition: "consumed",
+          };
         } else if (event.type === "error") {
           errorMessage = event.message;
           errorCode = typeof event.errorCode === "string" ? event.errorCode : undefined;
-          attemptConsumed = event.attempt_consumed === true
+          attemptDisposition = event.attempt_disposition === "consumed"
+            || event.attempt_disposition === "restored"
+            || event.attempt_disposition === "unknown"
+            ? event.attempt_disposition
+            : undefined;
+          attemptConsumed = attemptDisposition === "unknown"
+            ? undefined
+            : event.attempt_consumed === true
             ? true
             : event.credit_restored === true
               ? false
               : undefined;
           creditRestored = event.credit_restored === true;
         } else if (event.type === "meta") {
-          if (event.attempt_consumed === true) attemptConsumed = true;
+          if (event.attempt_consumed === true) {
+            attemptConsumed = true;
+            attemptDisposition = "consumed";
+          }
         }
       } catch {
         // Ignore malformed lines
@@ -214,11 +234,7 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, errorCode, message: errorMessage, attemptConsumed, creditRestored };
-  }
-
-  if (finalReport) {
-    return { ok: true, report: finalReport, reportId: finalReportId, attemptConsumed: true };
+    return { ok: false, errorCode, message: errorMessage, attemptConsumed, attemptDisposition, creditRestored };
   }
 
   return {
@@ -226,6 +242,7 @@ export async function streamResumeFeedback(
     errorCode: "STREAM_TRANSPORT_ERROR",
     message: "The connection ended before the report finished.",
     attemptConsumed,
+    attemptDisposition,
     creditRestored,
   };
 }

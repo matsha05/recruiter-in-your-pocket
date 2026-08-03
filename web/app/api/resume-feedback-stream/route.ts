@@ -42,10 +42,11 @@ import {
     finalizeGenerationCompletion,
     generationCancellationError,
     generationCancellationWasCommitted,
+    shouldSynthesizeGenerationCancellation,
     throwIfGenerationCanceled,
 } from "@/lib/billing/generation-cancellation";
 import { handleGenerationStreamFailure } from "@/lib/billing/generation-stream-failure";
-
+import { isStableOpenAITransportError } from "@/lib/backend/openai-transport";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -248,7 +249,7 @@ export async function POST(request: Request) {
         if (grantedReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
         throwIfGenerationCanceled(generationController.signal, reservationCommitted);
     } catch (err: any) {
-        if (generationController.signal.aborted && err?.code !== "CLIENT_CANCELED") {
+        if (generationController.signal.aborted && shouldSynthesizeGenerationCancellation(err)) {
             err = generationCancellationError(reservationCommitted);
         }
         if (generationCancellationWasCommitted(err)) reservationCommitted = true;
@@ -265,6 +266,7 @@ export async function POST(request: Request) {
             errorCode: code,
             message: appendFailureDisposition(err?.message || "Report generation could not start", disposition),
             attempt_consumed: disposition.attemptConsumed,
+            attempt_disposition: disposition.attemptDisposition,
             credit_restored: disposition.creditRestored,
         });
         if (disposition.anonymousCookieMeta) {
@@ -370,9 +372,7 @@ export async function POST(request: Request) {
                             accumulatedJson = repaired.raw;
                             logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
                         } catch (repairErr: any) {
-                            if (repairErr?.code === "CLIENT_CANCELED" || repairErr?.code === "OPENAI_TIMEOUT") {
-                                throw repairErr;
-                            }
+                            if (isStableOpenAITransportError(repairErr)) throw repairErr;
                             logError({
                                 msg: "llm.response.repair_failed",
                                 request_id,
@@ -460,7 +460,7 @@ export async function POST(request: Request) {
                 });
 
             } catch (err: any) {
-                if (generationController.signal.aborted && err?.code !== "CLIENT_CANCELED") {
+                if (generationController.signal.aborted && shouldSynthesizeGenerationCancellation(err)) {
                     err = generationCancellationError(reservationCommitted);
                 }
                 if (generationCancellationWasCommitted(err)) reservationCommitted = true;
