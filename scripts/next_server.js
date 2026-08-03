@@ -34,6 +34,8 @@ function withLaunchTestDefaults(env) {
     UPSTASH_REDIS_REST_TOKEN: "",
     KV_REST_API_URL: "",
     KV_REST_API_TOKEN: "",
+    ANONYMOUS_REPORT_RECOVERY_SECRET: "",
+    SUPABASE_URL: "",
     SUPABASE_SECRET_KEY: "",
     SUPABASE_SERVICE_ROLE_KEY: "",
     STRIPE_WEBHOOK_SECRET: "",

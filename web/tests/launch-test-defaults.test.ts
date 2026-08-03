@@ -6,6 +6,8 @@ const { withLaunchTestDefaults } = require("../../scripts/next_server") as {
 
 const defaults = withLaunchTestDefaults({
   NODE_ENV: "test",
+  ANONYMOUS_REPORT_RECOVERY_SECRET: "hosted-recovery-signing-secret",
+  SUPABASE_URL: "https://hosted-project.supabase.co",
   RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS: "false",
 });
 
@@ -23,6 +25,16 @@ assert.equal(
   defaults.SESSION_SECRET,
   "riyp-launch-test-session-secret-at-least-32-bytes",
   "hermetic launch servers must provide local-only cookie signing",
+);
+assert.equal(
+  defaults.ANONYMOUS_REPORT_RECOVERY_SECRET,
+  "",
+  "hermetic launch servers must not inherit hosted recovery-signing secrets",
+);
+assert.equal(
+  defaults.SUPABASE_URL,
+  "",
+  "hermetic launch servers must not inherit a hosted server-side Supabase URL",
 );
 
 console.log("launch test defaults passed");
