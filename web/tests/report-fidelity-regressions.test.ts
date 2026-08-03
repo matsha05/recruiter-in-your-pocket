@@ -3,6 +3,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
+import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "../lib/reports/report-receipt";
 import { checkEvidence, checkRewriteGrounding } from "../lib/evals/evidence-checks";
 import { containsExactEvidence, isAcceptedAbsenceMarker } from "../lib/llm/grounding";
 import {
@@ -217,6 +218,61 @@ const semanticControlSource = [
   "SKILLS", "HubSpot", "EDUCATION", "State University", "Growth-stage company.", "Show HubSpot.",
 ].join("\n");
 const semanticNoEducationSource = semanticControlSource.replace("\nEDUCATION\nState University", "");
+
+process.env.SESSION_SECRET ||= "report-fidelity-regression-secret";
+const relationshipSwapCases = [
+  {
+    source: "Reduced cycle time from 10 days to 5 days.",
+    candidate: "Reduced cycle time from 5 days to 10 days.",
+  },
+  {
+    source: "Grew revenue by 20% and reduced cost by 10%.",
+    candidate: "Grew revenue by 10% and reduced cost by 20%.",
+  },
+  {
+    source: "Led payroll migration and supported benefits rollout.",
+    candidate: "Led benefits rollout and supported payroll migration.",
+  },
+] as const;
+for (const { source, candidate } of relationshipSwapCases) {
+  const report: any = structuredClone(schemaValidReport);
+  report.summary = `HubSpot workflow context is visible. ${candidate} The customer context needs detail.`;
+  assert.throws(
+    () => {
+      const validated = validateResumeModelPayload(report, `${semanticControlSource}\n${source}`, {
+        forceGrounding: true,
+        jobDescription: hubspotJobDescription,
+      });
+      const receipt = makeValidatedReportReceipt(validated);
+      return validatedReportReceiptClaim(validated, receipt);
+    },
+    /evidence grounding contract/,
+    `relationship swap must fail before a validated receipt can be minted: ${candidate}`,
+  );
+}
+
+const validRelationshipReport: any = structuredClone(schemaValidReport);
+validRelationshipReport.summary = `HubSpot workflow context is visible. ${relationshipSwapCases[1].source} The customer context needs detail.`;
+const validRelationshipPayload = validateResumeModelPayload(
+  validRelationshipReport,
+  `${semanticControlSource}\n${relationshipSwapCases[1].source}`,
+  { forceGrounding: true, jobDescription: hubspotJobDescription },
+);
+const validRelationshipReceipt = makeValidatedReportReceipt(validRelationshipPayload);
+assert.ok(
+  validatedReportReceiptClaim(validRelationshipPayload, validRelationshipReceipt),
+  "a source-backed relationship must survive the validated receipt round trip",
+);
+
+const jdOnlyRelationshipControl: any = structuredClone(schemaValidReport);
+jdOnlyRelationshipControl.job_alignment.jd_keywords.missing[0] = "Salesforce administration";
+assert.doesNotThrow(
+  () => validateResumeModelPayload(jdOnlyRelationshipControl, semanticControlSource, {
+    forceGrounding: true,
+    jobDescription: `${hubspotJobDescription} Salesforce administration is required.`,
+  }),
+  "a JD-only requirement absent from the resume must keep its path-specific allowance",
+);
 
 function semanticMissingBrowserHtml(report: any) {
   const values = [

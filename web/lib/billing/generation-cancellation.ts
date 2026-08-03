@@ -57,26 +57,29 @@ function reportIdFromError(error: unknown) {
 export async function finalizeGenerationCompletion(input: {
   signal?: AbortSignal;
   persist?: () => Promise<string | null>;
-  commit: () => Promise<void>;
+  commit: () => Promise<unknown>;
   rollback?: (reportId: string) => Promise<GenerationRollbackOutcome>;
+  attemptConsumedOnFailure?: boolean;
 }) {
-  throwIfGenerationCanceled(input.signal);
+  throwIfGenerationCanceled(input.signal, input.attemptConsumedOnFailure);
   let reportId: string | null = null;
   let committed = false;
+  let persisted = false;
 
   try {
-    reportId = input.persist ? await input.persist() : null;
-    throwIfGenerationCanceled(input.signal);
     await input.commit();
     committed = true;
+    throwIfGenerationCanceled(input.signal, input.attemptConsumedOnFailure);
+    reportId = input.persist ? await input.persist() : null;
+    persisted = Boolean(input.persist);
     throwIfGenerationCanceled(input.signal, true);
     return { reportId, attemptConsumed: true as const };
   } catch (error) {
-    if (committed && (error as AppError)?.code === "CLIENT_CANCELED") {
+    if (persisted && committed && (error as AppError)?.code === "CLIENT_CANCELED") {
       (error as GenerationCancellationError).attemptConsumed = true;
     }
     const reportIdToClean = reportId || reportIdFromError(error);
-    if (reportIdToClean && !committed) {
+    if (reportIdToClean && !persisted) {
       if (!input.rollback) throw cleanupUnconfirmedError(error);
       try {
         const rollback = await input.rollback(reportIdToClean);

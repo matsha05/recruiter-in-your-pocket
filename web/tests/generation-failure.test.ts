@@ -74,6 +74,33 @@ async function run() {
     generationFailureCompletion({ code: "OPENAI_NETWORK_ERROR", httpStatus: 502 }),
     { status: 502, outcome: "network_error" },
   );
+
+  const refundedFinality = await settleGenerationFailure({
+    reservation: anonymousReservation,
+    admin: null,
+    error: new Error("Persistence failed after commit"),
+    attemptConsumed: false,
+    release: async () => ({ state: "refunded", accessConsumed: false }),
+  });
+  assert.equal(refundedFinality.attemptDisposition, "restored");
+
+  const consumedFinality = await settleGenerationFailure({
+    reservation: anonymousReservation,
+    admin: null,
+    error: new Error("Commit finality was ambiguous"),
+    attemptConsumed: false,
+    release: async () => ({ state: "committed", accessConsumed: true }),
+  });
+  assert.equal(consumedFinality.attemptDisposition, "consumed");
+
+  const unknownFinality = await settleGenerationFailure({
+    reservation: anonymousReservation,
+    admin: null,
+    error: new Error("Release finality unavailable"),
+    attemptConsumed: false,
+    release: async () => ({ state: "unknown", accessConsumed: null }),
+  });
+  assert.equal(unknownFinality.attemptDisposition, "unknown");
 }
 
 run().then(() => console.log("generation failure tests passed")).catch((error) => {

@@ -6,6 +6,7 @@ type RefreshOptions = {
   fallbackDecrement?: boolean;
   includeUserRefresh?: boolean;
   requireOk?: boolean;
+  shouldApply?: () => boolean;
 };
 
 type FreeStatusOptions = {
@@ -15,13 +16,14 @@ type FreeStatusOptions = {
 
 export function useFreeStatus({ refreshUser, setFreeUsesRemaining }: FreeStatusOptions) {
   const refreshFreeStatus = useCallback(
-    async ({ fallbackDecrement = false, includeUserRefresh = false }: RefreshOptions = {}) => {
+    async ({ fallbackDecrement = false, includeUserRefresh = false, shouldApply }: RefreshOptions = {}) => {
       const refreshed = await refreshFreeStatusBalance({
         fallbackDecrement,
         setRemaining: setFreeUsesRemaining,
+        shouldApply,
       });
       if (!refreshed) console.error("Failed to refresh free status.");
-      if (includeUserRefresh) {
+      if (includeUserRefresh && (!shouldApply || shouldApply())) {
         try {
           await refreshUser?.();
         } catch (userError) {

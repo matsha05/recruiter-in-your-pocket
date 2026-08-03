@@ -7,6 +7,7 @@ import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
+import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 
@@ -117,6 +118,7 @@ export function useResumeReview(input: {
           fallbackDecrement: result.attemptConsumed === true,
           includeUserRefresh: true,
           requireOk: true,
+          shouldApply: () => input.isAnalysisCurrent(controller),
         });
         if (!input.isAnalysisCurrent(controller)) return;
         if (result.attemptConsumed) {
@@ -137,10 +139,23 @@ export function useResumeReview(input: {
         return;
       }
       if (result.ok && result.report) {
-        input.setReport(result.report);
-        Analytics.reportCompleted(result.report?.score || 0);
-        await input.refreshFreeStatus({ fallbackDecrement: true, includeUserRefresh: true, requireOk: true });
-        if (!input.isAnalysisCurrent(controller)) return;
+        publishAuthoritativeAnalysis({
+          showReport: () => {
+            input.setReport(result.report);
+            Analytics.reportCompleted(result.report?.score || 0);
+          },
+          finishOwner: () => input.endAnalysis(controller),
+          clearLoading: () => {
+            input.setIsLoading(false);
+            input.setIsStreaming(false);
+          },
+          refresh: () => input.refreshFreeStatus({
+            fallbackDecrement: true,
+            includeUserRefresh: true,
+            requireOk: true,
+            shouldApply: () => input.isAnalysisCurrent(controller),
+          }),
+        });
         if (!input.user && !isLaunchFlagEnabled("guestReportSave")) {
           input.setPendingReportForSave(result.report);
           setTimeout(() => {
@@ -156,6 +171,7 @@ export function useResumeReview(input: {
         fallbackDecrement: result.attemptConsumed === true,
         includeUserRefresh: true,
         requireOk: true,
+        shouldApply: () => input.isAnalysisCurrent(controller),
       });
       if (!input.isAnalysisCurrent(controller)) return;
       const attemptCopy = result.attemptConsumed
@@ -175,7 +191,11 @@ export function useResumeReview(input: {
     } catch (error) {
       if (!input.isAnalysisCurrent(controller)) return;
       console.error("Report generation error:", error);
-      await input.refreshFreeStatus({ includeUserRefresh: true, requireOk: true });
+      await input.refreshFreeStatus({
+        includeUserRefresh: true,
+        requireOk: true,
+        shouldApply: () => input.isAnalysisCurrent(controller),
+      });
       if (!input.isAnalysisCurrent(controller)) return;
       toast.error("Report generation error", {
         description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",

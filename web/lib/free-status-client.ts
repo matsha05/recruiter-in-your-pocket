@@ -24,12 +24,15 @@ export async function refreshFreeStatusBalance(input: {
   fallbackDecrement: boolean;
   setRemaining: (value: number | ((previous: number) => number)) => void;
   fetcher?: typeof fetch;
+  shouldApply?: () => boolean;
 }) {
   try {
     const snapshot = await fetchFreeStatusSnapshot(input.fetcher);
+    if (input.shouldApply && !input.shouldApply()) return false;
     input.setRemaining(snapshot.free_uses_left);
     return true;
   } catch {
+    if (input.shouldApply && !input.shouldApply()) return false;
     if (input.fallbackDecrement) {
       input.setRemaining((previous) => Math.max(0, previous - 1));
     }

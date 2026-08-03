@@ -106,7 +106,7 @@ async function run() {
     rollback: (reportId) => rollback(ambiguousStore, reportId),
   }));
   assert.equal(ambiguousError.code, "REPORT_PERSISTENCE_FAILED");
-  assert.equal(ambiguousCommitCalls, 0, "an ambiguous insert must never advance to credit commit");
+  assert.equal(ambiguousCommitCalls, 1, "access must commit before any report can become visible");
   assert.equal(ambiguousStore.reports.size, 0, "the tagged report ID must compensate a committed insert after ECONNRESET");
   let restoredReleases = 0;
   const restored = await settle(ambiguousError, async () => { restoredReleases += 1; });
@@ -121,13 +121,14 @@ async function run() {
     rollback: (reportId) => rollback(rollbackSuccessStore, reportId),
   }));
   assert.equal(rollbackSuccessError, commitFailure);
-  assert.equal(rollbackSuccessStore.reports.size, 0, "confirmed rollback must remove the uncharged report");
+  assert.equal(rollbackSuccessStore.reports.size, 0, "a failed commit must not start report persistence");
 
   const rollbackFailureStore = new FaultingReportStore();
+  rollbackFailureStore.insertDisconnects = true;
   rollbackFailureStore.rollbackFails = true;
   const cleanupError: any = await rejection(finalizeGenerationCompletion({
     persist: () => persist(rollbackFailureStore),
-    commit: async () => { throw commitFailure; },
+    commit: async () => undefined,
     rollback: (reportId) => rollback(rollbackFailureStore, reportId),
   }));
   assert.equal(cleanupError.code, "REPORT_CLEANUP_UNCONFIRMED");

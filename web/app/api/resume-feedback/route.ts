@@ -267,6 +267,7 @@ export async function POST(request: Request) {
         })
         : undefined,
       commit: () => commitGenerationAccess(accessReservation!, admin),
+      attemptConsumedOnFailure: reservationCommitted,
       rollback: user && admin
         ? (reportId) => rollbackGeneratedReport({
           supabase: admin, userId: user.id, reportId, context: { request_id, route, user_id },

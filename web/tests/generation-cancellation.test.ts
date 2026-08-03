@@ -176,30 +176,32 @@ async function run() {
       "repair-style non-streaming body timeouts must use the stable timeout code",
     );
 
-    const beforePersistence = new AbortController();
-    beforePersistence.abort();
+    const beforeCommit = new AbortController();
+    beforeCommit.abort();
     const beforeEvents: string[] = [];
     await assert.rejects(() => finalizeGenerationCompletion({
-      signal: beforePersistence.signal,
+      signal: beforeCommit.signal,
       persist: async () => { beforeEvents.push("persist"); return "report-1"; },
       commit: async () => { beforeEvents.push("commit"); },
       rollback: async () => { beforeEvents.push("rollback"); return { confirmed: true }; },
     }), (error: any) => error?.code === "CLIENT_CANCELED");
     assert.deepEqual(beforeEvents, [], "observed cancel must prevent persistence and commit");
 
-    const beforeCommit = new AbortController();
-    const beforeCommitEvents: string[] = [];
+    const afterCommit = new AbortController();
+    const afterCommitEvents: string[] = [];
     await assert.rejects(() => finalizeGenerationCompletion({
-      signal: beforeCommit.signal,
+      signal: afterCommit.signal,
       persist: async () => {
-        beforeCommitEvents.push("persist");
-        beforeCommit.abort();
+        afterCommitEvents.push("persist");
         return "report-2";
       },
-      commit: async () => { beforeCommitEvents.push("commit"); },
-      rollback: async () => { beforeCommitEvents.push("rollback"); return { confirmed: true }; },
+      commit: async () => {
+        afterCommitEvents.push("commit");
+        afterCommit.abort();
+      },
+      rollback: async () => { afterCommitEvents.push("rollback"); return { confirmed: true }; },
     }), (error: any) => error?.code === "CLIENT_CANCELED" && !generationCancellationWasCommitted(error));
-    assert.deepEqual(beforeCommitEvents, ["persist", "rollback"], "cancel before commit must roll back the saved report");
+    assert.deepEqual(afterCommitEvents, ["commit"], "cancel after commit must not create a visible report before refund settlement");
 
     const duringCommit = new AbortController();
     let finishCommit!: () => void;
@@ -220,10 +222,24 @@ async function run() {
     finishCommit();
     await assert.rejects(
       () => raced,
-      (error: any) => error?.code === "CLIENT_CANCELED" && generationCancellationWasCommitted(error),
-      "cancel-vs-commit must report consumed when the commit wins",
+      (error: any) => error?.code === "CLIENT_CANCELED" && !generationCancellationWasCommitted(error),
+      "signed-in cancel-vs-commit must remain refundable before persistence",
     );
-    assert.deepEqual(commitEvents, ["persist", "commit"], "a committed report must not be rolled back as if its credit were restored");
+    assert.deepEqual(commitEvents, ["commit"], "commit must finish before report persistence can begin");
+
+    const afterPersistence = new AbortController();
+    const persistedEvents: string[] = [];
+    await assert.rejects(() => finalizeGenerationCompletion({
+      signal: afterPersistence.signal,
+      commit: async () => { persistedEvents.push("commit"); },
+      persist: async () => {
+        persistedEvents.push("persist");
+        afterPersistence.abort();
+        return "report-3";
+      },
+      rollback: async () => { persistedEvents.push("rollback"); return { confirmed: true }; },
+    }), (error: any) => error?.code === "CLIENT_CANCELED" && generationCancellationWasCommitted(error));
+    assert.deepEqual(persistedEvents, ["commit", "persist"], "a charged, persisted report remains authoritative after Stop");
 
     const successEvents: string[] = [];
     const completed = await finalizeGenerationCompletion({
@@ -233,7 +249,7 @@ async function run() {
       rollback: async () => { successEvents.push("rollback"); return { confirmed: true }; },
     });
     assert.deepEqual(completed, { reportId: "report-4", attemptConsumed: true });
-    assert.deepEqual(successEvents, ["persist", "commit"], "normal completion must preserve persistence and commit");
+    assert.deepEqual(successEvents, ["commit", "persist"], "normal completion must commit before exposing persistence");
   } finally {
     globalThis.fetch = originalFetch;
     if (originalEnv.apiKey === undefined) delete process.env.OPENAI_API_KEY;

@@ -214,8 +214,8 @@ for (const [name, source] of [
   const commitAt = source.indexOf("commit: () => commitGenerationAccess", persistAt);
   const rollbackAt = source.indexOf(isStreaming ? "rollback: user && reportAdmin" : "rollback: user && admin", commitAt);
   assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
-  assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
-  assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
+  assert.ok(commitAt >= 0, `${name} must commit report access`);
+  assert.ok(rollbackAt > commitAt, `${name} must compensate persistence failures after commit`);
   assert.doesNotMatch(source, /jobDescription\.length\s*>\s*50/, `${name} must not threshold JD presence`);
   assert.equal(
     source.match(/effectiveJobDescription\.validationOptions/g)?.length,
@@ -231,11 +231,11 @@ for (const [name, source] of [
     `${name} prompt must never interpolate the raw normalized JD`,
   );
 }
-const completionPersistAt = generationCompletion.indexOf("await input.persist()");
-const completionCommitAt = generationCompletion.indexOf("await input.commit()", completionPersistAt);
-const completionRollbackAt = generationCompletion.indexOf("await input.rollback(reportIdToClean)", completionCommitAt);
-assert.ok(completionPersistAt >= 0 && completionCommitAt > completionPersistAt);
-assert.ok(completionRollbackAt > completionCommitAt, "the completion boundary must roll back persistence before a failed commit is released");
+const completionCommitAt = generationCompletion.indexOf("await input.commit()");
+const completionPersistAt = generationCompletion.indexOf("await input.persist()", completionCommitAt);
+const completionRollbackAt = generationCompletion.indexOf("await input.rollback(reportIdToClean)", completionPersistAt);
+assert.ok(completionCommitAt >= 0 && completionPersistAt > completionCommitAt);
+assert.ok(completionRollbackAt > completionPersistAt, "the completion boundary must compensate ambiguous persistence before refund settlement");
 assert.match(generatedReportStore, /from\("reports"\)\.insert/);
 assert.match(generatedReportStore, /if \(reportInsertError\) throw reportInsertError;[\s\S]+throw persistenceError\(reportId\)/);
 assert.match(generatedReportStore, /from\("reports"\)\.delete\(\{ count: "exact" \}\)[\s\S]+\.eq\("id", input\.reportId\)\.eq\("user_id", input\.userId\)/);

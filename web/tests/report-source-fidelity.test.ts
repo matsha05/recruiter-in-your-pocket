@@ -262,6 +262,7 @@ for (const relativePath of [
   "lib/llm/grounding.ts",
   "lib/llm/narrative-token-policy.ts",
   "lib/llm/source-evidence-segmentation.ts",
+  "lib/llm/source-relationship-fidelity.ts",
   "lib/llm/resume-provider-messages.ts",
   "lib/llm/source-fidelity.ts",
   "lib/reports/report-presentation.ts",

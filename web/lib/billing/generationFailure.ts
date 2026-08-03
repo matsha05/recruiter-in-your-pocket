@@ -26,12 +26,23 @@ function restoredAnonymousCookie(reservation: GenerationAccessReservation) {
   } satisfies AnonymousFreeCookieMeta;
 }
 
+function releaseFinality(result: unknown) {
+  if (result === undefined) return "restored" as const;
+  const resolution = result as { state?: unknown; accessConsumed?: unknown } | null;
+  if (resolution?.accessConsumed === true || resolution?.state === "committed") return "consumed" as const;
+  if (resolution?.accessConsumed === false
+    || resolution?.state === "released"
+    || resolution?.state === "refunded"
+    || resolution?.state === "expired") return "restored" as const;
+  return "unknown" as const;
+}
+
 export async function settleGenerationFailure(input: {
   reservation: GenerationAccessReservation | null;
   admin: GenerationAccessRpcClient | null;
   error: unknown;
   attemptConsumed: boolean;
-  release?: typeof releaseGenerationAccess;
+  release?: (...args: Parameters<typeof releaseGenerationAccess>) => Promise<unknown>;
 }): Promise<GenerationFailureDisposition> {
   const { reservation } = input;
   if (generationDispositionIsUnknown(input.error)) {
@@ -66,11 +77,23 @@ export async function settleGenerationFailure(input: {
   }
 
   try {
-    await (input.release || releaseGenerationAccess)(
+    const releaseResult = await (input.release || releaseGenerationAccess)(
       reservation,
       input.admin,
       releaseReasonForError(input.error),
     );
+    const finality = releaseFinality(releaseResult);
+    if (finality === "consumed") {
+      return {
+        attemptConsumed: true,
+        attemptDisposition: "consumed",
+        creditRestored: false,
+        anonymousCookieMeta: reservation.anonymousCookieMeta,
+        releaseError: null,
+        retryMessage: "This report attempt was used because generation had already started.",
+      };
+    }
+    if (finality === "unknown") throw new Error("Access release finality is unknown");
     return {
       attemptConsumed: false,
       attemptDisposition: "restored",

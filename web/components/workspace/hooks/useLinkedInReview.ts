@@ -10,6 +10,7 @@ type RefreshFreeStatus = (options?: {
   fallbackDecrement?: boolean;
   includeUserRefresh?: boolean;
   requireOk?: boolean;
+  shouldApply?: () => boolean;
 }) => Promise<boolean>;
 
 type LinkedInReviewOptions = {
@@ -94,12 +95,12 @@ export function useLinkedInReview({
           }
           Analytics.linkedInReviewCompleted(result.report?.score || 0);
 
-          await refreshFreeStatus({
+          void refreshFreeStatus({
             fallbackDecrement: true,
             includeUserRefresh: true,
-            requireOk: true
+            requireOk: true,
+            shouldApply: () => isAnalysisCurrent(controller),
           });
-          if (!isAnalysisCurrent(controller)) return;
         } else {
           console.error("Failed to generate LinkedIn report:", result.message);
           toast.error("Failed to analyze LinkedIn profile", {

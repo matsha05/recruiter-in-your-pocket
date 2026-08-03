@@ -1,17 +1,12 @@
-import {
-  baseNarrativeStopWords,
-  interpretationContextForPath,
-  narrativeTokenPolicy,
-  normalizeNarrativeToken,
-  sourceClauseIsNegated,
-} from "./narrative-token-policy";
+import { baseNarrativeStopWords, interpretationContextForPath, narrativeTokenPolicy,
+  normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
 import { assertsNegativePresence, negativePresenceSubject } from "./report-polarity-policy";
 import { semanticMissingDisposition } from "./semantic-missing-policy";
+import { relationshipBindingIssues } from "./source-relationship-fidelity";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
-
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
   "No skills section present",
@@ -291,6 +286,10 @@ export function compareSourceBoundRewrite(input: {
   if (unsupportedTokens.length > 0) {
     issues.push({ code: "unsupported_content", detail: `unsupported content: ${unsupportedTokens.join(", ")}` });
   }
+  const relationshipIssues = relationshipBindingIssues(input.candidate, `${resolution.line}\n${verifiedText}`);
+  if (relationshipIssues.length > 0) {
+    issues.push({ code: "unsupported_content", detail: relationshipIssues.join(", ") });
+  }
   const candidateTokens = materialTokens(input.candidate);
   const droppedTokens = Array.from(materialTokens(resolution.line)).filter((token) => !candidateTokens.has(token));
   if (droppedTokens.length > 0) {
@@ -329,6 +328,8 @@ export function auditNarrativeClaim(
   return claimSegments(value).flatMap((claim) => {
     const unsupportedPlaceholders = unsupportedBracketPayloads(claim);
     if (unsupportedPlaceholders.length > 0) return [{ claim, unsupportedFacts: unsupportedPlaceholders }];
+    const relationshipIssues = relationshipBindingIssues(claim, sourceText);
+    if (relationshipIssues.length > 0) return [{ claim, unsupportedFacts: relationshipIssues }];
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));

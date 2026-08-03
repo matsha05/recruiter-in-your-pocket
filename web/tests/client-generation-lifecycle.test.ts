@@ -6,6 +6,7 @@ import {
   type AnalysisControllerRef,
 } from "../lib/analysis-run-ownership";
 import { fetchFreeStatusSnapshot, refreshFreeStatusBalance } from "../lib/free-status-client";
+import { publishAuthoritativeAnalysis } from "../lib/analysis-completion";
 
 function response(body: unknown, status = 200) {
   return Promise.resolve(new Response(JSON.stringify(body), {
@@ -36,6 +37,53 @@ async function run() {
   });
   assert.equal(refreshed, false);
   assert.equal(remaining, 1, "a consumed attempt must conservatively decrement when refresh is not authoritative");
+
+  let resolveDelayed!: (response: Response) => void;
+  const delayedResponse = new Promise<Response>((resolve) => { resolveDelayed = resolve; });
+  const stoppedRunA = new AbortController();
+  const stoppedActive: AnalysisControllerRef = { current: stoppedRunA };
+  const latestAfterStop: AnalysisControllerRef = { current: stoppedRunA };
+  cancelOwnedAnalysisRun(stoppedActive, latestAfterStop, false);
+  assert.equal(ownsAnalysisRun(latestAfterStop, stoppedRunA), true);
+  remaining = 3;
+  const staleRefresh = refreshFreeStatusBalance({
+    fallbackDecrement: true,
+    setRemaining: (value) => {
+      remaining = typeof value === "function" ? value(remaining) : value;
+    },
+    fetcher: (() => delayedResponse) as any,
+    shouldApply: () => ownsAnalysisRun(latestAfterStop, stoppedRunA),
+  });
+  const replacementRunB = new AbortController();
+  stoppedActive.current = replacementRunB;
+  latestAfterStop.current = replacementRunB;
+  resolveDelayed(new Response(JSON.stringify({ ok: true, free_uses_left: 0 }), { status: 200 }));
+  assert.equal(await staleRefresh, false);
+  assert.equal(remaining, 3, "Run A must not overwrite Run B's balance when its refresh resolves late");
+
+  let rejectDelayed!: (error: Error) => void;
+  const delayedFailure = new Promise<Response>((_resolve, reject) => { rejectDelayed = reject; });
+  const staleFallback = refreshFreeStatusBalance({
+    fallbackDecrement: true,
+    setRemaining: (value) => {
+      remaining = typeof value === "function" ? value(remaining) : value;
+    },
+    fetcher: (() => delayedFailure) as any,
+    shouldApply: () => ownsAnalysisRun(latestAfterStop, stoppedRunA),
+  });
+  rejectDelayed(new Error("late Run A refresh failed"));
+  assert.equal(await staleFallback, false);
+  assert.equal(remaining, 3, "Run A must not apply its fallback decrement after Run B owns the UI");
+
+  const completionEvents: string[] = [];
+  const published = publishAuthoritativeAnalysis({
+    showReport: () => { completionEvents.push("report"); },
+    finishOwner: () => true,
+    clearLoading: () => { completionEvents.push("clear"); },
+    refresh: () => new Promise(() => undefined),
+  });
+  assert.equal(published, true);
+  assert.deepEqual(completionEvents, ["report", "clear"], "a never-resolving refresh must not hide a complete report");
 
   const runA = new AbortController();
   const active: AnalysisControllerRef = { current: runA };

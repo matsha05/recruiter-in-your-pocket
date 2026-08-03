@@ -416,6 +416,7 @@ export async function POST(request: Request) {
                         })
                         : undefined,
                     commit: () => commitGenerationAccess(grantedReservation, reservationAdmin),
+                    attemptConsumedOnFailure: reservationCommitted,
                     rollback: user && reportAdmin
                         ? (reportId) => rollbackGeneratedReport({
                             supabase: reportAdmin, userId: user.id, reportId, context: { request_id, route, user_id },
@@ -458,7 +459,6 @@ export async function POST(request: Request) {
                     outcome: "success",
                     user_id
                 });
-
             } catch (err: any) {
                 if (generationController.signal.aborted && shouldSynthesizeGenerationCancellation(err)) {
                     err = generationCancellationError(reservationCommitted);
