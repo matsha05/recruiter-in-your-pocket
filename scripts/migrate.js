@@ -40,6 +40,7 @@ const MIGRATIONS = [
   ["017_generation_access_commit_finality", "web/database/migrations/017_generation_access_commit_finality.sql"],
   ["018_single_use_report_receipts", "web/database/migrations/018_single_use_report_receipts.sql"],
   ["019_atomic_generation_report_finalization", "web/database/migrations/019_atomic_generation_report_finalization.sql"],
+  ["020_authenticated_generation_operations", "web/database/migrations/020_authenticated_generation_operations.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -196,6 +197,7 @@ async function verifyCleanReplay(manifest) {
         "017_generation_access_commit_finality",
         "018_single_use_report_receipts",
         "019_atomic_generation_report_finalization",
+        "020_authenticated_generation_operations",
       ],
     );
     for (const migration of upgradeBaseline) {
