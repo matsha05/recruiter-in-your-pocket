@@ -52,6 +52,10 @@ const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B
 Coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
 
+const MOCK_COMPLETE_REPORT = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"),
+);
+
 const PAID_PASS_EXPIRES_AT = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
 const MOCK_USER = {
@@ -195,6 +199,21 @@ test.describe("paid decision boundary", () => {
   test("every retained unlock context renders its unique complete-report decision", async ({ page }) => {
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].title)).size).toBe(UNLOCK_SECTIONS.length);
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].label)).size).toBe(UNLOCK_SECTIONS.length);
+
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/x-ndjson",
+        body: `${JSON.stringify({
+          type: "complete",
+          ok: true,
+          data: MOCK_COMPLETE_REPORT,
+          report_id: null,
+          report_receipt: null,
+          recovery_id: null,
+        })}\n`,
+      });
+    });
 
     const checkoutRequests: string[] = [];
     page.on("request", (request) => {
