@@ -4,7 +4,7 @@ import { hashAnonymousIdentity } from "@/lib/billing/anonymousIdentity";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
+import { ownedStoredReportExists, persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
 import { validatedReportReceiptClaim } from "@/lib/reports/report-receipt";
 import {
   loadAnonymousReportClaimTombstone,
@@ -62,17 +62,25 @@ function recoveryNotFound() {
   }, 404);
 }
 
-function claimedResponse(
+async function claimedResponse(
   claim: AnonymousReportClaimLookup,
-  recoveryId: string
+  recoveryId: string,
+  admin: any,
+  userId: string,
 ) {
-  return claim.status === "owned"
-    ? privateJson({ ok: true, reportId: claim.reportId, recovery_id: recoveryId })
-    : privateJson({
+  if (claim.status !== "owned") return privateJson({
       ok: false,
       errorCode: "REPORT_RECEIPT_CONSUMED",
       message: "This recovered report has already been saved to an account.",
     }, 409);
+  if (await ownedStoredReportExists(admin, userId, claim.reportId)) {
+    return privateJson({ ok: true, reportId: claim.reportId, recovery_id: recoveryId });
+  }
+  return privateJson({
+    ok: false,
+    errorCode: "RECOVERED_REPORT_GONE",
+    message: "This recovered report is no longer in your account.",
+  }, 410);
 }
 
 export async function GET(request: NextRequest) {
@@ -127,6 +135,7 @@ export async function POST(request: NextRequest) {
         message: "Please sign in before saving this recovered report.",
       }, 401);
     }
+    const admin = createSupabaseAdminClient();
 
     const body = await readJsonWithLimit<unknown>(request, 4 * 1024);
     if (
@@ -145,11 +154,11 @@ export async function POST(request: NextRequest) {
     if (!binding) return recoveryNotFound();
     const claimBinding = { recoveryId, ...binding, userId: user.id };
     const existingClaim = await loadAnonymousReportClaimTombstone(claimBinding);
-    if (existingClaim) return claimedResponse(existingClaim, recoveryId);
+    if (existingClaim) return await claimedResponse(existingClaim, recoveryId, admin, user.id);
     const recovery = await loadAnonymousReportRecovery({ recoveryId, ...binding });
     if (!recovery) {
       const racedClaim = await loadAnonymousReportClaimTombstone(claimBinding);
-      return racedClaim ? claimedResponse(racedClaim, recoveryId) : recoveryNotFound();
+      return racedClaim ? await claimedResponse(racedClaim, recoveryId, admin, user.id) : recoveryNotFound();
     }
     const receiptClaim = validatedReportReceiptClaim(
       recovery.report,
@@ -158,7 +167,7 @@ export async function POST(request: NextRequest) {
     if (!receiptClaim) return recoveryNotFound();
 
     const reportId = await persistReceiptValidatedReport({
-      admin: createSupabaseAdminClient(),
+      admin,
       userId: user.id,
       payload: recovery.report,
       receiptHash: receiptClaim.receiptHash,
@@ -173,7 +182,7 @@ export async function POST(request: NextRequest) {
     });
     if (replacement === "conflict") {
       const racedClaim = await loadAnonymousReportClaimTombstone(claimBinding);
-      if (racedClaim) return claimedResponse(racedClaim, recoveryId);
+      if (racedClaim) return await claimedResponse(racedClaim, recoveryId, admin, user.id);
       throw new AnonymousReportRecoveryError();
     }
     return privateJson({ ok: true, reportId, recovery_id: recoveryId });

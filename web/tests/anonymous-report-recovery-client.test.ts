@@ -362,6 +362,59 @@ async function run() {
     "a stale response must keep its recovery marker",
   );
 
+  const competingStorage = new MemoryStorage();
+  attachAnonymousReportRecoveryMarker({}, {
+    storage: competingStorage,
+    eventTarget: null,
+    now: () => NOW,
+    randomUUID: () => RECOVERY_ID,
+  });
+  const runA = { name: "A" };
+  const runB = { name: "B" };
+  let currentOwner: object = runA;
+  let reportVisible = false;
+  let releasePending!: () => void;
+  const pendingReleased = new Promise<void>((resolve) => { releasePending = resolve; });
+  let firstWatcherAttempts = 0;
+  let competingRestores = 0;
+  const stopRunAWatcher = watchAnonymousReportRecovery({
+    storage: competingStorage,
+    eventTarget: null,
+    now: () => NOW,
+    fetchImpl: async () => {
+      firstWatcherAttempts += 1;
+      return firstWatcherAttempts === 1
+        ? new Response(null, { status: 404 })
+        : Response.json({ ok: true, recovery_id: RECOVERY_ID, report: exactReport });
+    },
+    pollDelaysMs: [1],
+    sleep: async () => { await pendingReleased; },
+    captureRestoreOwner: () => runA,
+    isRestoreCurrent: (_id, owner) => currentOwner === owner && !reportVisible,
+    onRestore: () => { competingRestores += 1; reportVisible = true; },
+  });
+  await nextTurn();
+  currentOwner = runB;
+  releasePending();
+  await nextTurn();
+  stopRunAWatcher();
+  assert.equal(firstWatcherAttempts, 2, "Run A recovery must exercise 404 then 200 while Run B owns the UI");
+  assert.equal(competingRestores, 0, "Run A may not overwrite active Run B");
+  assert.equal(readAnonymousReportRecoveryMarker({ storage: competingStorage, now: () => NOW })?.recoveryId, RECOVERY_ID);
+
+  const stopAfterRunBFailure = watchAnonymousReportRecovery({
+    storage: competingStorage,
+    eventTarget: null,
+    now: () => NOW,
+    fetchImpl: async () => Response.json({ ok: true, recovery_id: RECOVERY_ID, report: exactReport }),
+    captureRestoreOwner: () => runB,
+    isRestoreCurrent: (_id, owner) => currentOwner === owner && !reportVisible,
+    onRestore: () => { competingRestores += 1; reportVisible = true; },
+  });
+  await nextTurn();
+  stopAfterRunBFailure();
+  assert.equal(competingRestores, 1, "ending failed Run B must automatically restore completed Run A without reload");
+
   const expiryStorage = new MemoryStorage();
   attachAnonymousReportRecoveryMarker({}, {
     storage: expiryStorage,

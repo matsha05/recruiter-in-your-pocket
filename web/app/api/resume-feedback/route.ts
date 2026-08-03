@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
@@ -56,7 +55,7 @@ import { persistGeneratedReport } from "@/lib/reports/generated-report-store";
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
-import { isAnonymousRecoveryId } from "@/lib/reports/anonymous-report-recovery";
+import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -126,9 +125,6 @@ export async function POST(request: Request) {
     }
 
     const { text, mode, jobDescription } = validation.value;
-    const requestedRecoveryId = isAnonymousRecoveryId(body?.recovery_id)
-      ? body.recovery_id.toLowerCase()
-      : crypto.randomUUID();
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
 
     const supabase = await maybeCreateSupabaseServerClient();
@@ -155,6 +151,9 @@ export async function POST(request: Request) {
       freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
 
     const bypass = isDevelopmentPaywallBypassEnabled();
+    const requestedRecoveryId = requireAnonymousReportRecoveryId({
+      mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
+    });
     accessReservation = await reserveGenerationAccess({
       userId: user?.id || null,
       admin,
@@ -279,6 +278,7 @@ export async function POST(request: Request) {
       reportId = finalized.reportId;
       reservationCommitted = true;
     } else if (mode === "resume" && accessReservation.entitlementKind === "anonymous_free") {
+      if (!requestedRecoveryId) throw new Error("Anonymous report recovery was not established.");
       anonymousRecovery = await finalizeAnonymousGeneratedReport({
         reservation: accessReservation,
         payload,

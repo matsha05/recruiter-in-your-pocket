@@ -160,12 +160,12 @@ export function createAnonymousReportRecovery(input: {
   monthKey: string;
   report: unknown;
   resumeHash: string;
-  recoveryId?: string;
+  recoveryId: string;
   ttlSeconds?: number;
   now?: number;
 }): AnonymousReportRecoveryCommit & { envelope: AnonymousReportRecoveryEnvelope } {
   const report = ResumeFeedbackResponseSchema.parse(input.report);
-  const recoveryId = input.recoveryId || crypto.randomUUID();
+  const recoveryId = input.recoveryId;
   const ttlSeconds = Math.floor(input.ttlSeconds || ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS);
   if (
     !isAnonymousRecoveryId(recoveryId)

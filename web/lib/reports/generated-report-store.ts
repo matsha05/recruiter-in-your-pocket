@@ -13,6 +13,15 @@ export async function resolveUserSavedJobId(supabase: any, userId: string, value
   return error || !data?.id ? null : data.id as string;
 }
 
+export async function ownedStoredReportExists(admin: any, userId: string, reportId: string) {
+  if (!admin) throw persistenceError(reportId);
+  if (!userId || !UUID_PATTERN.test(reportId)) return false;
+  const { data, error } = await admin.from("reports").select("id")
+    .eq("id", reportId).eq("user_id", userId).maybeSingle();
+  if (error) throw persistenceError(reportId);
+  return data?.id === reportId;
+}
+
 function persistenceError(reportId?: string) {
   const error = new Error("We could not safely save this report.") as Error & {
     code: string;

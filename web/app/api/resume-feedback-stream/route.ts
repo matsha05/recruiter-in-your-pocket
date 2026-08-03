@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
@@ -50,7 +49,7 @@ import { persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/gen
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
-import { isAnonymousRecoveryId } from "@/lib/reports/anonymous-report-recovery";
+import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -129,9 +128,6 @@ export async function POST(request: Request) {
         }));
     }
     const { text, mode, jobDescription } = validation.value;
-    const requestedRecoveryId = isAnonymousRecoveryId(body?.recovery_id)
-        ? body.recovery_id.toLowerCase()
-        : crypto.randomUUID();
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     let supabase: Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>> = null;
@@ -140,6 +136,7 @@ export async function POST(request: Request) {
     let accessReservation: GenerationAccessReservation | null = null;
     let reservationAdmin: GenerationAccessRpcClient | null = null;
     let bypass = false;
+    let requestedRecoveryId: string | null = null;
     let user_id: string | undefined;
     try {
         supabase = await maybeCreateSupabaseServerClient();
@@ -169,6 +166,9 @@ export async function POST(request: Request) {
         };
 
         bypass = isDevelopmentPaywallBypassEnabled();
+        requestedRecoveryId = requireAnonymousReportRecoveryId({
+            mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
+        });
         accessReservation = await reserveGenerationAccess({
             userId: user?.id || null,
             admin,

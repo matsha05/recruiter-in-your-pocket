@@ -52,10 +52,34 @@ const exactRelationshipCases = [
     accepted: "Migrated data from Oracle to Postgres.",
   },
   {
+    label: "ASCII arrow direction",
+    source: "Migrated data Oracle -> Postgres.",
+    rejected: "Migrated data Postgres -> Oracle.",
+    accepted: "Migrated data Oracle -> Postgres.",
+  },
+  {
+    label: "Unicode arrow direction",
+    source: "Migrated records Oracle → Postgres.",
+    rejected: "Migrated records Postgres → Oracle.",
+    accepted: "Migrated records Oracle → Postgres.",
+  },
+  {
+    label: "boosted metric assignment",
+    source: "Alice boosted checkout by 12% and Bob boosted billing by 8%.",
+    rejected: "Alice boosted checkout by 8% and Bob boosted billing by 12%.",
+    accepted: "Bob boosted billing by 8% and Alice boosted checkout by 12%.",
+  },
+  {
     label: "passive actor assignment",
     source: "The migration was led by Alice and supported by Bob.",
     rejected: "The migration was led by Bob and supported by Alice.",
     accepted: "The migration was supported by Bob and led by Alice.",
+  },
+  {
+    label: "comma passive actor assignment",
+    source: "Checkout, led by Alice, and billing, supported by Bob.",
+    rejected: "Checkout, led by Bob, and billing, supported by Alice.",
+    accepted: "Checkout, led by Alice, and billing, supported by Bob.",
   },
 ] as const;
 
@@ -118,32 +142,67 @@ assert.doesNotThrow(
   }),
   "the exact JD relationship must retain the valid missing-claim allowance",
 );
+const jdArrowSource = "Migrate customer data Oracle -> Postgres.";
+assert.throws(
+  () => validateResumeModelPayload(jdRelationshipReport("Migrate customer data Postgres -> Oracle."), resumeControl, {
+    forceGrounding: true,
+    jobDescription: `${hubspotJobDescription} ${jdArrowSource}`,
+  }),
+  /evidence grounding contract/,
+  "a JD-only arrow direction must be audited before the missing-path allowance",
+);
+assert.doesNotThrow(
+  () => validateResumeModelPayload(jdRelationshipReport(jdArrowSource), resumeControl, {
+    forceGrounding: true,
+    jobDescription: `${hubspotJobDescription} ${jdArrowSource}`,
+  }),
+  "the exact JD arrow direction must retain the valid missing-path allowance",
+);
+
+for (const ambiguous of [
+  "Migrated data Oracle ->.",
+  "Alice designed checkout, Bob implemented billing.",
+]) {
+  assert.ok(
+    relationshipBindingIssues(ambiguous, ambiguous).some((issue) => issue.startsWith("unresolved relationship binding:")),
+    `complex unresolved clauses must fail closed: ${ambiguous}`,
+  );
+}
 
 async function assertReceiptWireSavePdfChain() {
-  const testCase = exactRelationshipCases[0];
-  const validated = validateSummary(testCase.accepted, testCase.source);
-  const receipt = makeValidatedReportReceipt(validated);
-  assert.ok(validatedReportReceiptClaim(validated, receipt), "validated relationship must mint a bound receipt");
+  for (const [index, testCase] of exactRelationshipCases.entries()) {
+    let browserBoundaryReached = false;
+    assert.throws(() => {
+      const invalid = validateSummary(testCase.rejected, testCase.source);
+      browserBoundaryReached = true;
+      return invalid.summary;
+    }, /evidence grounding contract/, `${testCase.label} must fail before the primary browser claim`);
+    assert.equal(browserBoundaryReached, false);
 
-  const wireReport = JSON.parse(JSON.stringify({ ...validated, report_receipt: receipt }));
-  const { report_receipt: wireReceipt, ...wirePayload } = wireReport;
-  assert.ok(validatedReportReceiptClaim(wirePayload, wireReceipt), "wire serialization must preserve the receipt binding");
+    const validated = validateSummary(testCase.accepted, testCase.source);
+    assert.ok(validated.summary.includes(testCase.accepted), `${testCase.label} primary browser claim`);
+    const receipt = makeValidatedReportReceipt(validated);
+    assert.ok(validatedReportReceiptClaim(validated, receipt), `${testCase.label} validated receipt`);
+    const wireReport = JSON.parse(JSON.stringify({ ...validated, report_receipt: receipt }));
+    const { report_receipt: wireReceipt, ...wirePayload } = wireReport;
+    assert.ok(validatedReportReceiptClaim(wirePayload, wireReceipt), `${testCase.label} receipt wire`);
 
-  const reportId = "123e4567-e89b-42d3-a456-426614174000";
-  let saves = 0;
-  const fakeFetch: typeof fetch = async (_input, init) => {
-    saves += 1;
-    const submitted = JSON.parse(String(init?.body || "{}"))?.report;
-    const { report_receipt: submittedReceipt, ...submittedPayload } = submitted;
-    assert.ok(validatedReportReceiptClaim(submittedPayload, submittedReceipt), "save wire must carry the validated receipt");
-    return Response.json({ ok: true, reportId });
-  };
-  const saved = await saveReceiptValidatedReport(wireReport, fakeFetch);
-  assert.equal(saves, 1);
-  assert.deepEqual(buildPdfExportRequest(saved), { report_id: reportId });
-  const pdfReport = normalizeReportForPdf(saved);
-  assert.ok(pdfReport);
-  assert.match(renderReportHtml(pdfReport), /Bob implemented billing and Alice designed checkout\./u);
+    const reportId = `123e4567-e89b-42d3-a456-${String(426614174000 + index).padStart(12, "0")}`;
+    const saved = await saveReceiptValidatedReport(wireReport, async (_input, init) => {
+      const submitted = JSON.parse(String(init?.body || "{}"))?.report;
+      const { report_receipt: submittedReceipt, ...submittedPayload } = submitted;
+      assert.ok(validatedReportReceiptClaim(submittedPayload, submittedReceipt), `${testCase.label} save wire`);
+      return Response.json({ ok: true, reportId });
+    });
+    assert.deepEqual(buildPdfExportRequest(saved), { report_id: reportId });
+    const pdfReport = normalizeReportForPdf(saved);
+    assert.ok(pdfReport);
+    const pdfHtml = renderReportHtml(pdfReport);
+    assert.ok(
+      (testCase.accepted.match(/[\p{L}\p{N}%]+/gu) || []).every((token) => pdfHtml.includes(token)),
+      `${testCase.label} PDF sink`,
+    );
+  }
 }
 
 assertReceiptWireSavePdfChain()

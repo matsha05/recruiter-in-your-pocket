@@ -21,7 +21,13 @@ async function postReceiptValidatedReport(report: object, fetchImpl: FetchLike) 
     body: JSON.stringify(recoveryId ? { recovery_id: recoveryId } : { report }),
   });
   const result = await response.json();
-  if (!response.ok || !result.ok) throw new Error(result.message || "Failed to save report");
+  if (!response.ok || !result.ok) {
+    if (
+      recoveryId
+      && (result.errorCode === "REPORT_RECEIPT_CONSUMED" || result.errorCode === "RECOVERED_REPORT_GONE")
+    ) clearAnonymousReportRecoveryMarker(recoveryId);
+    throw new Error(result.message || "Failed to save report");
+  }
   const saved = attachStoredReportId(report, result.reportId);
   if (!buildPdfExportRequest(saved)) throw new Error("The saved report did not return a valid report ID.");
   if (recoveryId) clearAnonymousReportRecoveryMarker(recoveryId);

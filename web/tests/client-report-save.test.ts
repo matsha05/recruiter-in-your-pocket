@@ -58,6 +58,25 @@ async function run() {
     assert.deepEqual(JSON.parse(String(claimInit?.body)), { recovery_id: recoveryId });
     assert.deepEqual(buildPdfExportRequest(claimed), { report_id: reportId });
     assert.equal(readAnonymousReportRecoveryMarker({ storage: localStorage }), null);
+
+    for (const [status, errorCode, message] of [
+      [409, "REPORT_RECEIPT_CONSUMED", "This report belongs to another account."],
+      [410, "RECOVERED_REPORT_GONE", "This recovered report is no longer in your account."],
+    ] as const) {
+      attachAnonymousReportRecoveryMarker({}, { storage: localStorage, randomUUID: () => recoveryId });
+      await assert.rejects(
+        () => saveReceiptValidatedReport(
+          { ...structuredClone(schemaValidReport), recovery_id: recoveryId },
+          async () => Response.json({ ok: false, errorCode, message }, { status }),
+        ),
+        new RegExp(message.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "u"),
+      );
+      assert.equal(
+        readAnonymousReportRecoveryMarker({ storage: localStorage }),
+        null,
+        `${errorCode} is terminal and must clear the unusable marker`,
+      );
+    }
   } finally {
     if (previousWindow === undefined) delete (globalThis as any).window;
     else (globalThis as any).window = previousWindow;
@@ -71,6 +90,11 @@ async function run() {
   assert.match(restorationHook, /saveReceiptValidatedReport\(original\)/);
   assert.match(workspace, /needsReceiptValidatedSave\(payload\)/);
   assert.match(workspace, /payload = await saveReceiptValidatedReport\(payload\)/);
+  assert.match(
+    workspace,
+    /enabled:\s*!isLoading && !isStreaming && report === null && linkedInReport === null/,
+    "the recovery watcher must restart after a competing run ends without a report",
+  );
 }
 
 run().then(() => console.log("client report save tests passed")).catch((error) => {

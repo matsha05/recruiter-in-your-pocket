@@ -21,6 +21,7 @@ import {
   reserveGenerationAccess,
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
+import { requireAnonymousReportRecoveryId } from "../lib/reports/anonymous-report-recovery-requirement";
 type HeldReservation = {
   id: string;
   userId: string;
@@ -443,6 +444,10 @@ const anonymousRecovery = readFileSync(
   path.join(process.cwd(), "lib", "reports", "anonymous-report-recovery.ts"),
   "utf8",
 );
+const anonymousRecoveryRequirement = readFileSync(
+  path.join(process.cwd(), "lib", "reports", "anonymous-report-recovery-requirement.ts"),
+  "utf8",
+);
 
 for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.match(source, /reserveGenerationAccess/);
@@ -523,6 +528,31 @@ assert.ok(
   "anonymous cookie consumption must follow durable recovery finality",
 );
 assert.doesNotMatch(anonymousRecovery, /resume_preview|job_description_preview|resumeText|jobDescription/);
+assert.doesNotMatch(anonymousRecovery, /crypto\.randomUUID\(\)/,
+  "server recovery envelopes must use the browser-persisted ID");
+assert.match(anonymousRecoveryRequirement, /mode !== "resume" \|\| input\.userId \|\| input\.bypass/);
+for (const source of [feedbackRoute, streamRoute]) {
+  assert.ok(
+    source.indexOf("requireAnonymousReportRecoveryId({") < source.indexOf("reserveGenerationAccess({"),
+    "anonymous resume recovery must be required before access reservation",
+  );
+}
+assert.doesNotMatch(ideasRoute, /requireAnonymousReportRecoveryId|recovery_id/,
+  "resume ideas must retain its separate fail-closed access path without report recovery scope");
+assert.ok(ideasRoute.indexOf("reserveGenerationAccess({") < ideasRoute.indexOf("await runJson<any>"),
+  "resume ideas must still fail closed at access reservation before provider work");
+assert.equal(requireAnonymousReportRecoveryId({
+  mode: "resume", userId: "signed-in-user", bypass: false, recoveryId: null,
+}), null, "signed-in reports must not depend on browser recovery storage");
+assert.equal(requireAnonymousReportRecoveryId({
+  mode: "resume", userId: null, bypass: true, recoveryId: null,
+}), null, "the local development bypass must remain usable without browser recovery storage");
+assert.equal(requireAnonymousReportRecoveryId({
+  mode: "resume_ideas", userId: null, bypass: false, recoveryId: null,
+}), null, "resume ideas must stay outside report-recovery scope");
+assert.throws(() => requireAnonymousReportRecoveryId({
+  mode: "resume", userId: null, bypass: false, recoveryId: null,
+}), (error: any) => error?.code === "RECOVERY_STORAGE_REQUIRED" && error?.httpStatus === 409);
 assert.match(feedbackRoute, /attempt_consumed:\s*disposition\.attemptConsumed/);
 assert.match(streamFailure, /attempt_consumed:\s*disposition\.attemptConsumed/);
 assert.match(streamFailure, /The report could not be completed\./);

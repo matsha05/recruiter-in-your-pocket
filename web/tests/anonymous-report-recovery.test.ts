@@ -74,6 +74,7 @@ async function run() {
 
   const prepared = createAnonymousReportRecovery({
     ...access,
+    recoveryId: crypto.randomUUID(),
     report: schemaValidReport,
     resumeHash: crypto.createHash("sha256").update("private resume").digest("hex"),
     ...( {
@@ -89,6 +90,7 @@ async function run() {
   assert.doesNotMatch(prepared.serializedEnvelope, /RAW_(RESUME|JOB_DESCRIPTION)_MUST_NOT_BE_STORED/u);
   assert.throws(() => createAnonymousReportRecovery({
     ...access,
+    recoveryId: crypto.randomUUID(),
     report: schemaValidReport,
     resumeHash: "a".repeat(64),
     ttlSeconds: ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS + 1,
@@ -107,6 +109,7 @@ async function run() {
   }), "idempotent");
   const conflicting = createAnonymousReportRecovery({
     ...access,
+    recoveryId: prepared.recoveryId,
     report: schemaValidReport,
     resumeHash: "b".repeat(64),
   });
@@ -127,6 +130,8 @@ async function run() {
   let authenticatedUser: { id: string } | null = null;
   const persisted: Array<Record<string, any>> = [];
   const persistedReportIds = new Map<string, string>();
+  const persistedReportOwners = new Map<string, string>();
+  const deletedReportIds = new Set<string>();
   let concurrentBarrier: Promise<void> | null = null;
   let releaseConcurrentBarrier: (() => void) | null = null;
   let concurrentPersistCount = 0;
@@ -153,6 +158,7 @@ async function run() {
                 : "ffffffff-ffff-4fff-8fff-ffffffffffff",
             );
           }
+          persistedReportOwners.set(persistedReportIds.get(input.receiptHash)!, input.userId);
           if (concurrentBarrier) {
             concurrentPersistCount += 1;
             if (concurrentPersistCount === 2) releaseConcurrentBarrier?.();
@@ -160,6 +166,9 @@ async function run() {
           }
           return persistedReportIds.get(input.receiptHash)!;
         },
+        ownedStoredReportExists: async (_admin: unknown, userId: string, reportId: string) => (
+          persistedReportOwners.get(reportId) === userId && !deletedReportIds.has(reportId)
+        ),
       };
     }
     if (moduleName.startsWith("@/")) {
@@ -254,6 +263,10 @@ async function run() {
       "another account must not inherit the owner-bound claim"
     );
     authenticatedUser = { id: "11111111-1111-4111-8111-111111111111" };
+    deletedReportIds.add("eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee");
+    const deletedRetry = await recoveryRoute.POST(claimRequest({ recovery_id: prepared.recoveryId }));
+    assert.equal(deletedRetry.status, 410, "a lost-response retry must not resurrect a deleted report");
+    assert.equal((await deletedRetry.json()).errorCode, "RECOVERED_REPORT_GONE");
 
     const tombstoneEntry = readLocalAnonymousEntry(
       anonymousRecoveryStorageKey(prepared.recoveryId)
@@ -290,6 +303,7 @@ async function run() {
     };
     const concurrentRecovery = createAnonymousReportRecovery({
       ...concurrentAccess,
+      recoveryId: crypto.randomUUID(),
       report: schemaValidReport,
       resumeHash: crypto.createHash("sha256").update("second private resume").digest("hex"),
     });

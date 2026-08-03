@@ -32,6 +32,7 @@ async function run() {
   const originalLoad = runtimeModule._load;
   const requestCookies = new Map<string, string>();
   let providerCalls = 0;
+  let reservationCalls = 0;
   let providerSucceeds = false;
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
@@ -68,6 +69,20 @@ async function run() {
             code: "OPENAI_NETWORK_ERROR",
           });
         },
+        streamJson: async function* () {
+          providerCalls += 1;
+          throw new Error("marker-less stream reached provider work");
+        },
+      };
+    }
+    if (request === "@/lib/billing/generationAccess") {
+      const actual = originalLoad(path.join(process.cwd(), "lib/billing/generationAccess"), parent, isMain) as any;
+      return {
+        ...actual,
+        reserveGenerationAccess: async (...args: any[]) => {
+          reservationCalls += 1;
+          return actual.reserveGenerationAccess(...args);
+        },
       };
     }
     if (request.startsWith("@/")) {
@@ -92,15 +107,40 @@ async function run() {
     const setCookie = response.headers.get("set-cookie") || "";
     const identityValue = setCookie.match(new RegExp(`${ANONYMOUS_ID_COOKIE}=([^;]+)`))?.[1];
 
-    assert.equal(providerCalls, 1, "cookie-less first POST must reserve before provider work");
-    assert.notEqual(payload.errorCode, "ACCESS_DEPENDENCY_UNAVAILABLE");
-    assert.equal(payload.errorCode, "OPENAI_NETWORK_ERROR");
-    assert.ok(identityValue, "the first access-error response must issue the signed identity cookie");
+    assert.equal(response.status, 409);
+    assert.equal(payload.errorCode, "RECOVERY_STORAGE_REQUIRED");
+    assert.match(payload.message, /browser could not store the recovery reference/iu);
+    assert.equal(providerCalls, 0, "a marker-less anonymous report must stop before reservation/provider work");
+    assert.equal(reservationCalls, 0, "a marker-less anonymous report must not reserve access");
+    assert.ok(identityValue, "the pre-reservation rejection must still issue the signed identity cookie");
     assert.ok(parseAnonymousIdentityCookie(identityValue));
 
+    const { POST: streamPost } = require("../app/api/resume-feedback-stream/route") as {
+      POST: (request: Request) => Promise<Response>;
+    };
+    const blockedStream = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+    }));
+    const blockedStreamEvent = JSON.parse((await blockedStream.text()).trim());
+    assert.equal(blockedStreamEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
+    assert.equal(blockedStreamEvent.access_consumed, false);
+    assert.equal(providerCalls, 0, "the streaming route must also stop before reservation/provider work");
+    assert.equal(reservationCalls, 0, "the streaming route must not reserve access without a persisted marker");
+
     requestCookies.set(ANONYMOUS_ID_COOKIE, identityValue!);
-    providerSucceeds = true;
     const recoveryId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+    const providerFailure = await POST(new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+    }));
+    assert.equal((await providerFailure.json()).errorCode, "OPENAI_NETWORK_ERROR");
+    assert.equal(providerCalls, 1, "a persisted recovery ID may proceed to the provider");
+    assert.equal(reservationCalls, 1);
+
+    providerSucceeds = true;
     const completedResponse = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: {
@@ -143,7 +183,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "198.51.100.11",
       },
-      body: JSON.stringify({ mode: "resume", text: "B".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
     });
     const movedResponse = await POST(movedRequest());
     const movedPayload = await movedResponse.json();

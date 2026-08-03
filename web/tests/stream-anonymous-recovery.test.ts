@@ -5,6 +5,7 @@ import {
   clearAnonymousReportRecoveryMarker,
   readAnonymousReportRecoveryMarker,
 } from "../lib/reports/anonymous-report-recovery-client";
+import { ANONYMOUS_REPORT_RECOVERY_STORAGE_REQUIRED_MESSAGE } from "../lib/reports/anonymous-report-recovery-requirement";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 class MemoryStorage {
@@ -117,6 +118,27 @@ async function run() {
     const freshSignedIn = await streamResumeFeedback("signed in resume", undefined, () => undefined);
     assert.equal(freshSignedIn.ok, true);
     assert.equal(readAnonymousReportRecoveryMarker(), null, "signed-in finalization must clear the unused marker");
+
+    (globalThis as any).window = { localStorage: {
+      getItem() { throw new Error("storage blocked"); },
+      setItem() { throw new Error("storage blocked"); },
+      removeItem() { throw new Error("storage blocked"); },
+    } };
+    let blockedRecoveryId: unknown = "not observed";
+    globalThis.fetch = async (_url, init) => {
+      blockedRecoveryId = JSON.parse(String(init?.body)).recovery_id;
+      return completeResponse({
+        type: "error",
+        errorCode: "RECOVERY_STORAGE_REQUIRED",
+        message: ANONYMOUS_REPORT_RECOVERY_STORAGE_REQUIRED_MESSAGE,
+        access_consumed: false,
+      });
+    };
+    const blocked = await streamResumeFeedback("blocked storage resume", undefined, () => undefined);
+    assert.equal(blocked.ok, false);
+    assert.equal(blocked.errorCode, "RECOVERY_STORAGE_REQUIRED");
+    assert.equal(blocked.message, ANONYMOUS_REPORT_RECOVERY_STORAGE_REQUIRED_MESSAGE);
+    assert.equal(blockedRecoveryId, undefined, "blocked storage must not invent a server-only recovery ID");
   } finally {
     globalThis.fetch = originalFetch;
     if (previousWindow === undefined) delete (globalThis as any).window;

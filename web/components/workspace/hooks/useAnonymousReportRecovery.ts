@@ -17,6 +17,7 @@ type FetchLike = (
 export type AnonymousReportRecoveryState = AnonymousReportRecoveryWatchState;
 
 export function useAnonymousReportRecovery(input: {
+  enabled?: boolean;
   setReport: Setter<any>;
   setSkipSample: Setter<boolean>;
   setReviewMode: Setter<ReviewMode>;
@@ -31,6 +32,7 @@ export function useAnonymousReportRecovery(input: {
     fetchImpl,
     captureRestoreOwner,
     isRestoreCurrent,
+    enabled = true,
   } = input;
   const [state, setState] = useState<AnonymousReportRecoveryState>({
     status: "idle",
@@ -38,6 +40,10 @@ export function useAnonymousReportRecovery(input: {
   });
 
   useEffect(() => {
+    if (!enabled) {
+      setState({ status: "idle", message: null });
+      return;
+    }
     return watchAnonymousReportRecovery({
       fetchImpl,
       captureRestoreOwner,
@@ -54,7 +60,7 @@ export function useAnonymousReportRecovery(input: {
       },
       onStateChange: setState,
     });
-  }, [captureRestoreOwner, fetchImpl, isRestoreCurrent, setReport, setReviewMode, setSkipSample]);
+  }, [captureRestoreOwner, enabled, fetchImpl, isRestoreCurrent, setReport, setReviewMode, setSkipSample]);
 
   return state;
 }

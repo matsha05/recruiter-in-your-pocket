@@ -12,14 +12,16 @@ type RelationshipTuple = {
 
 type ClauseContext = Pick<RelationshipTuple, "actor" | "action" | "object">;
 
-const actionPattern = /\b(?:lead|leads|leading|led|support|supports|supported|supporting|grow|grows|growing|grew|grown|reduce|reduces|reduced|reducing|increase|increases|increased|increasing|improve|improves|improved|improving|build|builds|building|built|design|designs|designed|designing|implement|implements|implemented|implementing|create|creates|created|creating|manage|manages|managed|managing|own|owns|owned|owning|drive|drives|driving|drove|driven|deliver|delivers|delivered|delivering|launch|launches|launched|launching|coordinate|coordinates|coordinated|coordinating|migrate|migrates|migrated|migrating|develop|develops|developed|developing|generate|generates|generated|generating|save|saves|saved|saving|scale|scales|scaled|scaling|move|moves|moved|moving|transition|transitions|transitioned|transitioning|promote|promotes|promoted|promoting)\b/giu;
+const actionPattern = /\b(?:lead|leads|leading|led|support|supports|supported|supporting|boost|boosts|boosted|boosting|grow|grows|growing|grew|grown|reduce|reduces|reduced|reducing|increase|increases|increased|increasing|improve|improves|improved|improving|build|builds|building|built|design|designs|designed|designing|implement|implements|implemented|implementing|create|creates|created|creating|manage|manages|managed|managing|own|owns|owned|owning|drive|drives|driving|drove|driven|deliver|delivers|delivered|delivering|launch|launches|launched|launching|coordinate|coordinates|coordinated|coordinating|migrate|migrates|migrated|migrating|develop|develops|developed|developing|generate|generates|generated|generating|save|saves|saved|saving|scale|scales|scaled|scaling|move|moves|moved|moving|transition|transitions|transitioned|transitioning|promote|promotes|promoted|promoting)\b/giu;
 const metricPattern = /[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|[kmb]|x|×))?\+?(?:\s+(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
 const directionPattern = /\bfrom\s+(.+?)\s+to\s+(.+?)(?=\s+(?:and|but|while|whereas|by|within|over|during)\b|[;!?](?:\s|$)|\.(?:\s|$)|$)/giu;
+const arrowDirectionPattern = /(?:^|\s)([\p{L}\p{M}\p{N}.+#/'’\-]+)\s*(?:->|→)\s*([\p{L}\p{M}\p{N}.+#/'’\-]+)/giu;
 const passiveAuxiliaryPattern = /\b(?:(?:has|have|had)\s+been|am|are|is|was|were|be|been|being)\s*$/iu;
 
 const actionAliases: Record<string, string> = {
   led: "lead", leads: "lead", leading: "lead",
   supports: "support", supported: "support", supporting: "support",
+  boosts: "boost", boosted: "boost", boosting: "boost",
   grew: "grow", grown: "grow", grows: "grow", growing: "grow",
   reduces: "reduce", reduced: "reduce", reducing: "reduce",
   increases: "increase", increased: "increase", increasing: "increase",
@@ -94,10 +96,15 @@ function normalizedEndpoint(value: string) {
 }
 
 function directionRelations(value: string) {
-  return Array.from(value.matchAll(directionPattern), (match): DirectionRelation => ({
+  const wordDirections = Array.from(value.matchAll(directionPattern), (match): DirectionRelation => ({
     from: normalizedEndpoint(match[1]),
     to: normalizedEndpoint(match[2]),
-  })).filter((relation) => relation.from && relation.to);
+  }));
+  const arrowDirections = Array.from(value.matchAll(arrowDirectionPattern), (match): DirectionRelation => ({
+    from: normalizedEndpoint(match[1]),
+    to: normalizedEndpoint(match[2]),
+  }));
+  return [...wordDirections, ...arrowDirections].filter((relation) => relation.from && relation.to);
 }
 
 function relationalCoordinationPart(value: string) {
@@ -115,11 +122,15 @@ function coordinatedParts(value: string) {
 }
 
 function predicateObject(value: string) {
-  return normalizedObject(value.split(/\b(?:by|from|to)\b/iu, 1)[0]);
+  const arrow = Array.from(value.matchAll(arrowDirectionPattern))[0];
+  const withoutDirection = arrow
+    ? value.slice(0, arrow.index).trim()
+    : value.split(/\b(?:by|from|to)\b/iu, 1)[0];
+  return normalizedObject(withoutDirection);
 }
 
 function passiveAgent(value: string) {
-  const match = value.match(/^\s*by\s+(.+?)(?=\s+(?:from|to|with|using|via|for|at|in|on)\b|[.;!?]|$)/iu);
+  const match = value.match(/^\s*by\s+(.+?)(?=\s+(?:from|to|with|using|via|for|at|in|on)\b|[,.;!?]|$)/iu);
   if (!match || metricRelations(match[1]).length > 0) return "";
   return normalizedActor(match[1]);
 }
@@ -181,6 +192,20 @@ function relationshipTuples(value: string) {
     .flatMap(parseRelationalSentence);
 }
 
+function unsafeRelationalClauses(value: string) {
+  return canonicalizeUserSourceText(value)
+    .split(/(?:\r?\n)+|;\s*|(?<=[.!?])\s+/u)
+    .map((sentence) => normalizedText(sentence))
+    .filter((sentence) => {
+      const actions = actionMatches(sentence);
+      const directionMarker = /(?:->|→)|\bfrom\b.*\bto\b/iu.test(sentence);
+      const unparsedDirection = directionMarker && directionRelations(sentence).length === 0;
+      const unsplitActions = actions.length > 1
+        && coordinatedParts(sentence).some((part) => actionMatches(part).length > 1);
+      return unparsedDirection || unsplitActions;
+    });
+}
+
 function actorMatches(source: RelationshipTuple, candidate: RelationshipTuple) {
   return !candidate.actor || source.actor === candidate.actor;
 }
@@ -202,7 +227,8 @@ function directionDisplay(direction: DirectionRelation) {
 export function relationshipBindingIssues(candidate: string, sourceText: string) {
   const candidateRelations = relationshipTuples(candidate);
   const sourceRelations = relationshipTuples(sourceText);
-  const issues: string[] = [];
+  const issues = unsafeRelationalClauses(candidate)
+    .map((clause) => `unresolved relationship binding: ${clause}`);
 
   for (const relation of candidateRelations) {
     const exactBase = sourceRelations.filter((source) => sameBaseTuple(source, relation));

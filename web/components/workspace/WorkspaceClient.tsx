@@ -97,6 +97,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     );
 
     useAnonymousReportRecovery({
+        enabled: !isLoading && !isStreaming && report === null && linkedInReport === null,
         setReport, setSkipSample, setReviewMode,
         captureRestoreOwner: captureRecoveryOwner,
         isRestoreCurrent: isRecoveryOwnerCurrent,
