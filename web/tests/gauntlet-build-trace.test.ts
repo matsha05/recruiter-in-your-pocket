@@ -34,21 +34,31 @@ async function main() {
   const traces = await findRouteTraces(serverRoot);
   assert.ok(traces.length > 0, "the production build must emit a /launch/gauntlet route trace");
   const tracedPaths = new Set<string>();
+  let routeSource = "";
   for (const tracePath of traces) {
     const trace = JSON.parse(await readFile(tracePath, "utf8")) as { files?: unknown };
     assert.ok(Array.isArray(trace.files), `${tracePath} must contain a files array`);
     for (const entry of trace.files) {
       if (typeof entry === "string") tracedPaths.add(path.resolve(path.dirname(tracePath), entry));
     }
+    routeSource += await readFile(tracePath.replace(/\.nft\.json$/, ""), "utf8");
   }
 
-  for (const required of [
+  assert.match(routeSource, /activeIterationId/, "the server bundle must include the Gauntlet manifest");
+  assert.match(routeSource, /iteration-000-baseline/, "the server bundle must include the baseline definition");
+  assert.match(routeSource, /iteration-002/, "the server bundle must include the active definition");
+
+  for (const bundledDefinition of [
     "gauntlet/manifest.json",
     "gauntlet/iterations/iteration-000-baseline.json",
     "gauntlet/iterations/iteration-002.json",
   ]) {
-    const expected = path.join(process.cwd(), required);
-    assert.ok(tracedPaths.has(expected), `route trace must include ${required}`);
+    const looseFile = path.join(process.cwd(), bundledDefinition);
+    assert.equal(
+      tracedPaths.has(looseFile),
+      false,
+      `route trace must not depend on loose ${bundledDefinition}; the server bundle carries it`,
+    );
   }
   assert.equal(
     [...tracedPaths].some((filePath) => filePath.includes(`${path.sep}gauntlet${path.sep}artifacts${path.sep}iteration-`)),

@@ -1,6 +1,8 @@
+import { existsSync } from "node:fs";
 import { lstat, readFile, readdir, realpath } from "node:fs/promises";
 import path from "node:path";
 import type { CalibrationData } from "../../evals/types";
+import { bundledGauntletIterations, bundledGauntletManifest } from "../bundled-definition";
 import { observedInstalledTreeReceipt } from "../dependency-closure";
 import {
   assertSafeComponent,
@@ -60,7 +62,6 @@ function validateBindingShape(binding: unknown, variant: Variant, ledgerName: st
   }
   return issues;
 }
-
 function validateIterationShape(iteration: GauntletIteration, ledgerName: string) {
   const issues: string[] = [];
   if (!isRecord(iteration) || iteration.schemaVersion !== "2") {
@@ -119,7 +120,33 @@ function validateIterationShape(iteration: GauntletIteration, ledgerName: string
   }
   return issues;
 }
-
+function validateLedgerChain(ledgers: IterationLedger[], issues: string[]) {
+  for (let index = 0; index < ledgers.length; index += 1) {
+    const current = ledgers[index];
+    const previous = ledgers[index - 1];
+    if (!previous && current.iteration.previous !== null) {
+      issues.push(`${path.basename(current.filePath)}: first ledger must not name a previous iteration`);
+    }
+    if (previous && (current.iteration.previous?.iterationId !== previous.iteration.id
+      || current.iteration.previous.ledgerSha256 !== previous.sha256)) {
+      issues.push(`${path.basename(current.filePath)}: previous ledger receipt is stale or broken`);
+    }
+  }
+}
+function bundledIterationLedgers(webRoot: string) {
+  const issues: string[] = [];
+  const ledgers = bundledGauntletIterations().map(({ raw, iteration }) => {
+    issues.push(...validateIterationShape(iteration, `${iteration.id}.json`));
+    return {
+      iteration,
+      raw,
+      sha256: sha256(raw),
+      filePath: path.join(webRoot, "gauntlet/iterations", `${iteration.id}.json`),
+    };
+  });
+  validateLedgerChain(ledgers, issues);
+  return { ledgers, issues };
+}
 async function enumerateIterationLedgers(webRoot: string) {
   const issues: string[] = [];
   const directoryReal = await resolveContainedRegularDirectory(
@@ -165,17 +192,7 @@ async function enumerateIterationLedgers(webRoot: string) {
     ledgers.push({ iteration, raw, sha256: sha256(raw), filePath: fileReal });
   }
 
-  for (let index = 0; index < ledgers.length; index += 1) {
-    const current = ledgers[index];
-    const previous = ledgers[index - 1];
-    if (!previous && current.iteration.previous !== null) {
-      issues.push(`${path.basename(current.filePath)}: first ledger must not name a previous iteration`);
-    }
-    if (previous && (current.iteration.previous?.iterationId !== previous.iteration.id
-      || current.iteration.previous.ledgerSha256 !== previous.sha256)) {
-      issues.push(`${path.basename(current.filePath)}: previous ledger receipt is stale or broken`);
-    }
-  }
+  validateLedgerChain(ledgers, issues);
   return { ledgers, issues };
 }
 
@@ -336,11 +353,18 @@ export async function loadGauntletDefinition(explicitWebRoot?: string, requested
     repositoryRoot = path.resolve(webRoot, "..");
     repositoryAvailable = false;
   }
-  const manifestPath = await resolveContainedExistingPath(webRoot, "gauntlet/manifest.json");
-  const manifest = await readJson<GauntletManifest>(manifestPath);
+  const manifestCandidate = path.join(webRoot, "gauntlet/manifest.json");
+  const useBundledDefinition = explicitWebRoot === undefined && !existsSync(manifestCandidate);
+  const manifest = useBundledDefinition
+    ? bundledGauntletManifest()
+    : await readJson<GauntletManifest>(
+      await resolveContainedExistingPath(webRoot, "gauntlet/manifest.json"),
+    );
   assertSafeComponent(manifest.activeIterationId, "activeIterationId");
   if (requestedIterationId !== undefined) assertSafeComponent(requestedIterationId, "iteration selector");
-  const enumeration = await enumerateIterationLedgers(webRoot);
+  const enumeration = useBundledDefinition
+    ? bundledIterationLedgers(webRoot)
+    : await enumerateIterationLedgers(webRoot);
   const selectedId = requestedIterationId ?? manifest.activeIterationId;
   const selected = enumeration.ledgers.find((ledger) => ledger.iteration.id === selectedId);
   if (!selected) throw new UnknownGauntletIterationError(`Unknown gauntlet iteration: ${selectedId}`);

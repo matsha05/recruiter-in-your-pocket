@@ -1,10 +1,16 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "url";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 const extensionSyncEnabled = /^(1|true|yes|on)$/i.test(
   String(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC || "")
 );
+const gauntletDefinitionSources = {
+  manifest: readFileSync(new URL("./gauntlet/manifest.json", import.meta.url), "utf8"),
+  baseline: readFileSync(new URL("./gauntlet/iterations/iteration-000-baseline.json", import.meta.url), "utf8"),
+  iteration002: readFileSync(new URL("./gauntlet/iterations/iteration-002.json", import.meta.url), "utf8"),
+};
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
@@ -37,11 +43,16 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  webpack(config) {
+  webpack(config, { webpack }) {
     config.module.rules.push({
       test: /\.txt$/,
       type: "asset/source",
     });
+    config.plugins.push(new webpack.DefinePlugin({
+      __RIYP_GAUNTLET_MANIFEST_JSON__: JSON.stringify(gauntletDefinitionSources.manifest),
+      __RIYP_GAUNTLET_BASELINE_JSON__: JSON.stringify(gauntletDefinitionSources.baseline),
+      __RIYP_GAUNTLET_ITERATION_002_JSON__: JSON.stringify(gauntletDefinitionSources.iteration002),
+    }));
     return config;
   },
   async headers() {
@@ -76,11 +87,6 @@ const nextConfig = {
       "./public/assets/fonts/space-grotesk-latin-variable.ttf",
       "./public/assets/fonts/space-grotesk-bold.ttf",
       "./public/assets/fonts/instrument-sans-latin-variable.ttf",
-    ],
-    "/launch/gauntlet": [
-      "./gauntlet/manifest.json",
-      "./gauntlet/iterations/iteration-000-baseline.json",
-      "./gauntlet/iterations/iteration-002.json",
     ],
   },
   turbopack: {

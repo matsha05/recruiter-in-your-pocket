@@ -132,9 +132,11 @@ async function main() {
   assert.doesNotMatch(page, /published-progress/);
 
   const nextConfig = await readFile(path.join(webRoot, "next.config.mjs"), "utf8");
-  assert.match(nextConfig, /"\/launch\/gauntlet"/);
-  assert.match(nextConfig, /\.\/gauntlet\/iterations\/iteration-000-baseline\.json/);
-  assert.match(nextConfig, /\.\/gauntlet\/iterations\/iteration-002\.json/);
+  assert.doesNotMatch(nextConfig, /"\/launch\/gauntlet"/);
+  assert.match(nextConfig, /DefinePlugin/);
+  assert.match(nextConfig, /__RIYP_GAUNTLET_MANIFEST_JSON__/);
+  assert.match(nextConfig, /__RIYP_GAUNTLET_BASELINE_JSON__/);
+  assert.match(nextConfig, /__RIYP_GAUNTLET_ITERATION_002_JSON__/);
   assert.doesNotMatch(nextConfig, /gauntlet\/iterations\/\*/);
   assert.doesNotMatch(nextConfig, /gauntlet\/artifacts\/iteration/);
 

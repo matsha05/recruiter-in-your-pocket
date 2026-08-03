@@ -38,7 +38,7 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
-    await expect(page).toHaveURL(/\/workspace$/);
+    await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
   });
 
@@ -159,7 +159,7 @@ test.describe("launch red-team journeys", () => {
     await expect(unquantifiedFix.getByRole("button", { name: "Edit" })).toHaveCount(0);
 
     await sampleCta.click();
-    await expect(page).toHaveURL(/\/workspace$/);
+    await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
 

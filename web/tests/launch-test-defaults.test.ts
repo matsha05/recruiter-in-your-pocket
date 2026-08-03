@@ -14,5 +14,15 @@ assert.equal(
   "true",
   "hermetic launch servers must expose local-only readiness surfaces without ambient shell state",
 );
+assert.equal(
+  defaults.NEXT_PUBLIC_SUPABASE_URL,
+  "http://127.0.0.1:54321",
+  "hermetic launch servers must not depend on a hosted Supabase project",
+);
+assert.equal(
+  defaults.SESSION_SECRET,
+  "riyp-launch-test-session-secret-at-least-32-bytes",
+  "hermetic launch servers must provide local-only cookie signing",
+);
 
 console.log("launch test defaults passed");
