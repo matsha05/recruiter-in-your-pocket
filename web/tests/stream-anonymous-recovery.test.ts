@@ -91,6 +91,9 @@ async function run() {
       () => undefined,
     );
     assert.equal(repeatedIdentityHandshake.errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
+    assert.equal(repeatedIdentityHandshake.accessConsumed, false);
+    assert.equal(repeatedIdentityHandshake.attemptConsumed, false);
+    assert.match(repeatedIdentityHandshake.message || "", /did not use your free report or a paid report credit/i);
     assert.equal(repeatedHandshakeRequests, 2, "a rejected identity retry must not loop");
     clearAnonymousReportRecoveryMarker();
 

@@ -8,6 +8,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
+import { REPORT_ACCESS_NOT_USED } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 
@@ -166,6 +167,18 @@ export function useResumeReview(input: {
         }
         return;
       }
+      if (result.errorCode === "PAYWALL_REQUIRED") {
+        await input.refreshFreeStatus({
+          fallbackDecrement: false,
+          includeUserRefresh: true,
+          requireOk: false,
+          shouldApply: () => input.isAnalysisCurrent(controller),
+        });
+        if (!input.isAnalysisCurrent(controller)) return;
+        input.setIsPaywallOpen(true);
+        Analytics.paywallViewed("free_uses_exhausted");
+        return;
+      }
       console.error("Failed to generate report:", result.message);
       const refreshed = await input.refreshFreeStatus({
         fallbackDecrement: result.attemptConsumed === true,
@@ -178,10 +191,12 @@ export function useResumeReview(input: {
         ? refreshed
           ? "This report attempt was used. Your remaining reports are current."
           : "This report attempt was used. Check History and your remaining reports before retrying."
+        : result.attemptConsumed === false || result.accessConsumed === false
+          ? `${REPORT_ACCESS_NOT_USED} You can try again.`
         : result.creditRestored
           ? "Your report credit was restored. You can try again."
           : "We could not confirm this attempt's status. Check History and your remaining reports before retrying.";
-      const hasDisposition = /report attempt was used|report credit was restored|could not confirm (?:that your report credit was restored|this attempt's status)/iu
+      const hasDisposition = /report attempt was used|report credit was restored|did not use your free report or a paid report credit|could not confirm (?:whether report access changed|that your report credit was restored|this attempt's status)/iu
         .test(result.message || "");
       toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "Connection ended" : "Failed to generate report", {
         description: hasDisposition

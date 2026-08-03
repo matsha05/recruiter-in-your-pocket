@@ -102,8 +102,15 @@ function createMockPaidSession() {
   };
 }
 
-async function runAnonymousReview(page: Page) {
-  await page.setExtraHTTPHeaders({ "x-forwarded-for": "198.51.100.144" });
+async function fillAnonymousReview(page: Page, forwardedFor = "198.51.100.144") {
+  await page.setExtraHTTPHeaders({ "x-forwarded-for": forwardedFor });
+  await page.route("**/auth/v1/user", async (route) => {
+    await route.fulfill({
+      status: 401,
+      contentType: "application/json",
+      body: JSON.stringify({ message: "Auth session missing" }),
+    });
+  });
   await page.goto("/workspace");
   await expect(page.getByRole("link", { name: "Log in", exact: true })).toBeVisible({ timeout: 30_000 });
   await page.getByTestId("workspace-paste-mode").click();
@@ -111,6 +118,10 @@ async function runAnonymousReview(page: Page) {
   await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
   await page.getByTestId("workspace-role-toggle").click();
   await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
+}
+
+async function runAnonymousReview(page: Page) {
+  await fillAnonymousReview(page);
   await page.getByTestId("workspace-run-report").click();
   await expect(page.locator("#section-first-impression h1")).toBeVisible({ timeout: 35_000 });
 
@@ -245,6 +256,71 @@ test.describe("paid decision boundary", () => {
     }
 
     expect(checkoutRequests).toHaveLength(0);
+  });
+
+  test("a repeated identity handshake gives one definite no-use message", async ({ page }) => {
+    let handshakeRequests = 0;
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      handshakeRequests += 1;
+      await route.fulfill({
+        status: 409,
+        contentType: "application/json",
+        body: JSON.stringify({
+          type: "error",
+          errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+          message: "Your browser identity could not be confirmed.",
+          access_consumed: false,
+        }),
+      });
+    });
+
+    await fillAnonymousReview(page, "198.51.100.145");
+    await page.getByTestId("workspace-run-report").click();
+
+    const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" });
+    await expect(failureToast).toHaveCount(1);
+    await expect(failureToast).toContainText("No report was delivered, so this attempt did not use your free report or a paid report credit.");
+    await expect(failureToast).not.toContainText("could not confirm this attempt's status", { ignoreCase: true });
+    expect(handshakeRequests).toBe(2);
+  });
+
+  test("an identity handshake followed by a limit response opens the pass decision", async ({ page }) => {
+    let requests = 0;
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      requests += 1;
+      const requestBody = route.request().postDataJSON() as { operation_id?: string };
+      if (requests === 1) {
+        await route.fulfill({
+          status: 409,
+          contentType: "application/json",
+          body: JSON.stringify({
+            type: "error",
+            errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+            message: "Your browser identity is ready.",
+            access_consumed: false,
+          }),
+        });
+        return;
+      }
+      await route.fulfill({
+        status: 402,
+        contentType: "application/json",
+        body: JSON.stringify({
+          type: "error",
+          errorCode: "PAYWALL_REQUIRED",
+          message: "You've used your free report.",
+          access_consumed: false,
+          operation_id: requestBody.operation_id,
+        }),
+      });
+    });
+
+    await fillAnonymousReview(page, "198.51.100.146");
+    await page.getByTestId("workspace-run-report").click();
+
+    await expect(page.getByRole("dialog", { name: "Run another report" })).toBeVisible();
+    await expect(page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" })).toHaveCount(0);
+    expect(requests).toBe(2);
   });
 
   test("mocked paid confirmation restores the unchanged report and shows truthful pass-ready copy", async ({ page }) => {

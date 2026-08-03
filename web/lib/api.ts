@@ -132,7 +132,7 @@ export async function streamResumeFeedback(
   reportId?: string | null;
   accessConsumed?: boolean;
   attemptConsumed?: boolean;
-  attemptDisposition?: "consumed" | "restored" | "unknown";
+  attemptDisposition?: "consumed" | "restored" | "unknown" | "not_started";
   creditRestored?: boolean;
 }> {
   const attached = mode === "resume"
@@ -190,8 +190,11 @@ export async function streamResumeFeedback(
     return {
       ok: false,
       errorCode: failure.errorCode,
-      message: withGenerationAccessOutcome(failure.message, false),
-      accessConsumed: false,
+      message: withGenerationAccessOutcome(failure.message, failure.accessConsumed),
+      accessConsumed: failure.accessConsumed ?? undefined,
+      attemptConsumed: failure.attemptConsumed,
+      attemptDisposition: failure.attemptDisposition,
+      creditRestored: failure.creditRestored,
     };
   }
 
@@ -215,7 +218,7 @@ export async function streamResumeFeedback(
   let attemptConsumed: boolean | undefined = res.headers.get("x-riyp-attempt-consumed") === "1"
     ? true
     : undefined;
-  let attemptDisposition: "consumed" | "restored" | "unknown" | undefined = attemptConsumed
+  let attemptDisposition: "consumed" | "restored" | "unknown" | "not_started" | undefined = attemptConsumed
     ? "consumed"
     : undefined;
   let creditRestored = false;
@@ -297,6 +300,7 @@ export async function streamResumeFeedback(
           attemptDisposition = event.attempt_disposition === "consumed"
             || event.attempt_disposition === "restored"
             || event.attempt_disposition === "unknown"
+            || event.attempt_disposition === "not_started"
             ? event.attempt_disposition
             : undefined;
           attemptConsumed = attemptDisposition === "unknown"
