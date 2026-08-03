@@ -3,7 +3,10 @@ import path from "path";
 
 import { expect, test, type Page } from "@playwright/test";
 
+import { ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY } from "../../lib/reports/anonymous-report-recovery-client";
 import type { UnlockSection } from "../../lib/unlock/unlockContext";
+import { ResumeFeedbackResponseSchema } from "../../lib/validation/schemas";
+import { schemaValidReport } from "../helpers/report-fidelity-fixture";
 
 type UnlockExpectation = Readonly<{
   title: string;
@@ -52,9 +55,7 @@ const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B
 Coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
 
-const MOCK_COMPLETE_REPORT = JSON.parse(
-  fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"),
-);
+const MOCK_COMPLETE_REPORT = ResumeFeedbackResponseSchema.parse(schemaValidReport);
 
 const PAID_PASS_EXPIRES_AT = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -200,18 +201,64 @@ test.describe("paid decision boundary", () => {
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].title)).size).toBe(UNLOCK_SECTIONS.length);
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].label)).size).toBe(UNLOCK_SECTIONS.length);
 
-    await page.route("**/api/resume-feedback-stream", async (route) => {
+    let reportCompleted = false;
+    let streamRequests = 0;
+    let submittedRecoveryId: string | null = null;
+    let submittedOperationId: string | null = null;
+    const freeStatusResponses: number[] = [];
+
+    await page.route("**/api/free-status", async (route) => {
+      const remaining = reportCompleted ? 0 : 1;
+      freeStatusResponses.push(remaining);
       await route.fulfill({
         status: 200,
-        contentType: "application/x-ndjson",
-        body: `${JSON.stringify({
-          type: "complete",
-          ok: true,
-          data: MOCK_COMPLETE_REPORT,
-          report_id: null,
-          report_receipt: null,
-          recovery_id: null,
-        })}\n`,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, free_uses_left: remaining, free_uses_remaining: remaining }),
+      });
+    });
+
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      streamRequests += 1;
+      const requestBody = route.request().postDataJSON() as { recovery_id?: unknown; operation_id?: unknown };
+      submittedRecoveryId = typeof requestBody.recovery_id === "string" ? requestBody.recovery_id : null;
+      submittedOperationId = typeof requestBody.operation_id === "string" ? requestBody.operation_id : null;
+      const recoveryId = submittedRecoveryId;
+      reportCompleted = true;
+
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "content-type": "text/event-stream",
+          "cache-control": "no-cache",
+          "x-request-id": "paid-decision-ui-test",
+          "x-riyp-recovery-id": recoveryId || "",
+        },
+        body: [
+          JSON.stringify({
+            type: "meta",
+            request_id: "paid-decision-ui-test",
+            access: "free_full",
+            access_tier: "free_full",
+            user: null,
+            has_job_description: true,
+            bypass: false,
+            attempt_consumed: false,
+            attempt_disposition: "pending",
+            recovery_id: recoveryId,
+          }),
+          JSON.stringify({
+            type: "complete",
+            ok: true,
+            data: MOCK_COMPLETE_REPORT,
+            report_id: null,
+            report_receipt: null,
+            recovery_id: recoveryId,
+            operation_id: null,
+            free_run_index: 1,
+            free_uses_remaining: 0,
+          }),
+          "",
+        ].join("\n"),
       });
     });
 
@@ -223,6 +270,16 @@ test.describe("paid decision boundary", () => {
     });
 
     await runAnonymousReview(page);
+    expect(streamRequests).toBe(1);
+    expect(submittedRecoveryId).toMatch(/^[0-9a-f]{8}-[0-9a-f-]{27}$/i);
+    expect(submittedOperationId).toBe(submittedRecoveryId);
+    expect(freeStatusResponses).toContain(1);
+    await expect.poll(() => freeStatusResponses.includes(0)).toBe(true);
+    expect(await page.evaluate((key) => {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw).recoveryId : null;
+    }, ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBe(submittedRecoveryId);
+
     const purchaseButton = page
       .getByTestId("post-report-purchase-decision")
       .getByRole("button", { name: /Get 5 more reports · \$29/ });
