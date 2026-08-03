@@ -155,27 +155,33 @@ export async function streamResumeFeedback(
   const recoveryMarker = attached.marker;
   const recoveryMarkerWasCreated = attached.created;
   let res: Response;
-  try {
-    res = await fetch("/api/resume-feedback-stream", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(attached.payload),
-      signal: options?.signal
-    });
-  } catch (err: any) {
-    if (options?.signal?.aborted) {
-      return { ok: false, message: "Canceled", aborted: true };
+  let identityRetryAttempted = false;
+  while (true) {
+    try {
+      res = await fetch("/api/resume-feedback-stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(attached.payload),
+        signal: options?.signal
+      });
+    } catch (err: any) {
+      if (options?.signal?.aborted) {
+        return { ok: false, message: "Canceled", aborted: true };
+      }
+      return {
+        ok: false,
+        errorCode: "STREAM_TRANSPORT_ERROR",
+        message: "The connection ended before the report finished.",
+      };
     }
-    return {
-      ok: false,
-      errorCode: "STREAM_TRANSPORT_ERROR",
-      message: "The connection ended before the report finished.",
-    };
-  }
 
-  if (!res.ok) {
+    if (res.ok) break;
     const failure = await parseGenerationFailureResponse(res);
+    if (failure.errorCode === "ANONYMOUS_IDENTITY_REQUIRED" && !identityRetryAttempted) {
+      identityRetryAttempted = true;
+      continue;
+    }
     retireTerminalGenerationMarker({
       markerId: recoveryMarker?.recoveryId,
       errorCode: failure.errorCode,

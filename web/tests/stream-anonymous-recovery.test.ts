@@ -35,6 +35,65 @@ async function run() {
   const storage = new MemoryStorage();
   (globalThis as any).window = { localStorage: storage };
   try {
+    const handshakeRecoveryIds: string[] = [];
+    globalThis.fetch = async (_url, init) => {
+      const recoveryId = JSON.parse(String(init?.body)).recovery_id;
+      handshakeRecoveryIds.push(recoveryId);
+      if (handshakeRecoveryIds.length === 1) {
+        return errorResponse({
+          type: "error",
+          errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+          message: "Your browser identity is ready. Please retry to generate the report safely.",
+          access_consumed: false,
+          attempt_consumed: false,
+          attempt_disposition: "restored",
+        }, 409);
+      }
+      return new Response(`${JSON.stringify({
+        type: "complete",
+        data: schemaValidReport,
+        recovery_id: recoveryId,
+      })}\n`, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/x-ndjson",
+          "x-riyp-recovery-id": recoveryId,
+        },
+      });
+    };
+    const afterIdentityHandshake = await streamResumeFeedback(
+      "identity handshake resume",
+      undefined,
+      () => undefined,
+    );
+    assert.equal(afterIdentityHandshake.ok, true);
+    assert.equal(handshakeRecoveryIds.length, 2, "the browser identity handshake retries exactly once");
+    assert.equal(
+      handshakeRecoveryIds[0],
+      handshakeRecoveryIds[1],
+      "the transparent retry must preserve the original recovery operation",
+    );
+    clearAnonymousReportRecoveryMarker(handshakeRecoveryIds[0]);
+
+    let repeatedHandshakeRequests = 0;
+    globalThis.fetch = async () => {
+      repeatedHandshakeRequests += 1;
+      return errorResponse({
+        type: "error",
+        errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+        message: "Your browser identity is ready. Please retry to generate the report safely.",
+        access_consumed: false,
+      }, 409);
+    };
+    const repeatedIdentityHandshake = await streamResumeFeedback(
+      "repeated identity handshake resume",
+      undefined,
+      () => undefined,
+    );
+    assert.equal(repeatedIdentityHandshake.errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
+    assert.equal(repeatedHandshakeRequests, 2, "a rejected identity retry must not loop");
+    clearAnonymousReportRecoveryMarker();
+
     let recoveryId = "";
     let recoveryLookups = 0;
     globalThis.fetch = async (url, init) => {
