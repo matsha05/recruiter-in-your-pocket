@@ -6,6 +6,7 @@ import {
     FREE_COOKIE,
     ensureAnonymousIdentity,
     getCurrentMonthKey,
+    parseAnonymousIdentityCookie,
     parseFreeCookie
 } from "@/lib/backend/freeCookie";
 import {
@@ -60,9 +61,9 @@ export async function POST(request: Request) {
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path });
     const cookieStore = await cookies();
-    const anonymousIdentity = ensureAnonymousIdentity(
-        cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
-    );
+    const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
+    const hadAnonymousIdentity = Boolean(parseAnonymousIdentityCookie(anonymousIdentityCookie));
+    const anonymousIdentity = ensureAnonymousIdentity(anonymousIdentityCookie);
     const respond = <T extends NextResponse>(response: T) =>
         attachAnonymousIdentityCookie(response, anonymousIdentity.cookieValue);
     const anonymousShadowHash = anonymousNetworkHashFromRequest(request);
@@ -172,6 +173,16 @@ export async function POST(request: Request) {
         requestedRecoveryId = requireAnonymousReportRecoveryId({
             mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
         });
+        if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
+            return respond(singleGenerationStreamEvent(request_id, {
+                type: "error",
+                errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+                message: "Your browser identity is ready. Please retry to generate the report safely.",
+                access_consumed: false,
+                attempt_consumed: false,
+                attempt_disposition: "restored",
+            }, 409));
+        }
         authenticatedOperationId = requireAuthenticatedGenerationOperationId({
             mode, userId: user?.id, bypass, operationId: requestedOperationId,
         });

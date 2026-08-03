@@ -9,10 +9,12 @@ async function asService(db, sql, params = []) {
   }
 }
 
-async function reserve(db, userId, reservationId) {
+async function reserve(db, userId, operationId) {
   const result = await asService(db, `
-    SELECT public.reserve_generation_access($1::uuid, $2::uuid, 'resume_feedback') AS result
-  `, [userId, reservationId]);
+    SELECT public.begin_generation_operation(
+      $1::uuid, $2::uuid, 'resume_feedback', $3::text
+    ) AS result
+  `, [userId, operationId, "f".repeat(64)]);
   assert.equal(result.rows[0].result.allowed, true);
   return result.rows[0].result;
 }
@@ -64,8 +66,8 @@ async function verifyAtomicReportFinalization(db) {
     await db.query("INSERT INTO auth.users (id, email) VALUES ($1, $2)", [userId, `atomic-${index}@test.invalid`]);
   }
 
-  const freeReservation = "91000000-0000-4000-8000-000000000001";
-  await reserve(db, freeUser, freeReservation);
+  const freeOperation = "91000000-0000-4000-8000-000000000001";
+  const freeReservation = (await reserve(db, freeUser, freeOperation)).reservation_id;
   const freeValues = finalizationValues(freeUser, freeReservation);
   const created = await finalize(db, freeValues);
   assert.equal(created.ok, true);
@@ -74,6 +76,14 @@ async function verifyAtomicReportFinalization(db) {
   assert.equal(created.report_final, true);
   assert.equal(created.idempotent, false);
   assert.match(created.report_id, /^[0-9a-f-]{36}$/i);
+  const committedOperation = await asService(db, `
+    SELECT public.get_generation_operation_status($1::uuid, $2::uuid) AS result
+  `, [freeUser, freeOperation]);
+  assert.deepEqual(committedOperation.rows[0].result, {
+    found: true,
+    operation_state: "committed",
+    report_id: created.report_id,
+  });
 
   const retry = await finalize(db, freeValues);
   assert.equal(retry.report_id, created.report_id);
@@ -98,8 +108,8 @@ async function verifyAtomicReportFinalization(db) {
   `, [freeUser, freeReservation]);
   assert.deepEqual(releaseFinal.rows[0].result, { ok: true, status: "committed", action: "none" });
 
-  const directReservation = "91000000-0000-4000-8000-000000000002";
-  await reserve(db, directCommitUser, directReservation);
+  const directOperation = "91000000-0000-4000-8000-000000000002";
+  const directReservation = (await reserve(db, directCommitUser, directOperation)).reservation_id;
   await assert.rejects(
     () => asService(db, `
       SELECT public.commit_generation_access($1::uuid, $2::uuid)
@@ -115,8 +125,8 @@ async function verifyAtomicReportFinalization(db) {
   assert.equal(directState.rows[0].status, "reserved");
   assert.equal(directState.rows[0].free_report_used_at, null);
 
-  const rollbackReservation = "91000000-0000-4000-8000-000000000003";
-  await reserve(db, rollbackUser, rollbackReservation);
+  const rollbackOperation = "91000000-0000-4000-8000-000000000003";
+  const rollbackReservation = (await reserve(db, rollbackUser, rollbackOperation)).reservation_id;
   await assert.rejects(
     () => finalize(db, finalizationValues(rollbackUser, rollbackReservation, { targetRole: "x".repeat(101) })),
     /value too long/i,
@@ -137,16 +147,17 @@ async function verifyAtomicReportFinalization(db) {
     INSERT INTO public.passes (id, user_id, tier, uses_remaining, purchased_at, expires_at)
     VALUES ($1, $2, 'single_use', 1, clock_timestamp(), clock_timestamp() + interval '1 day')
   `, [passId, passUser]);
-  const passReservation = "91000000-0000-4000-8000-000000000004";
-  const passAccess = await reserve(db, passUser, passReservation);
+  const passOperation = "91000000-0000-4000-8000-000000000004";
+  const passAccess = await reserve(db, passUser, passOperation);
+  const passReservation = passAccess.reservation_id;
   assert.equal(passAccess.entitlement_kind, "pass_credit");
   const passResult = await finalize(db, finalizationValues(passUser, passReservation, { digest: "d".repeat(64) }));
   assert.equal(passResult.status, "committed");
   const pass = await db.query("SELECT uses_remaining FROM public.passes WHERE id = $1", [passId]);
   assert.equal(pass.rows[0].uses_remaining, 0);
 
-  const wrongJobReservation = "91000000-0000-4000-8000-000000000005";
-  await reserve(db, savedJobUser, wrongJobReservation);
+  const wrongJobOperation = "91000000-0000-4000-8000-000000000005";
+  const wrongJobReservation = (await reserve(db, savedJobUser, wrongJobOperation)).reservation_id;
   await assert.rejects(
     () => finalize(db, finalizationValues(savedJobUser, wrongJobReservation, {
       digest: "e".repeat(64),

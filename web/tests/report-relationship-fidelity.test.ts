@@ -128,7 +128,7 @@ const exactRelationshipCases = [
     label: "semicolon-gapped boosted metrics",
     source: "Boosted conversion by 12%; retention by 8%.",
     rejected: "Boosted conversion by 8%; retention by 12%.",
-    accepted: "Boosted conversion by 12%; retention by 8%.",
+    accepted: "Boosted retention by 8%; conversion by 12%.",
   },
   {
     label: "passive actor assignment",
@@ -146,7 +146,7 @@ const exactRelationshipCases = [
     label: "complete passive comma clauses",
     source: "Checkout was led by Alice, billing was supported by Bob.",
     rejected: "Checkout was led by Bob, billing was supported by Alice.",
-    accepted: "Checkout was led by Alice, billing was supported by Bob.",
+    accepted: "Billing was supported by Bob, checkout was led by Alice.",
   },
 ] as const;
 

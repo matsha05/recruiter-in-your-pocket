@@ -35,6 +35,7 @@ async function run() {
   let reservationCalls = 0;
   let providerSucceeds = false;
   let authenticatedUser: { id: string; email: string } | null = null;
+  let forcedReservationError: Error | null = null;
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
     if (request === "next/headers") {
@@ -82,6 +83,7 @@ async function run() {
         ...actual,
         reserveGenerationAccess: async (...args: any[]) => {
           reservationCalls += 1;
+          if (forcedReservationError) throw forcedReservationError;
           return actual.reserveGenerationAccess(...args);
         },
       };
@@ -106,6 +108,37 @@ async function run() {
     assert.equal((await signedWithoutOperation.json()).errorCode, "RECOVERY_STORAGE_REQUIRED");
     assert.equal(providerCalls, 0, "a signed report without a durable operation key must stop before provider work");
     assert.equal(reservationCalls, 0, "a signed report without a durable operation key must stop before reservation");
+
+    const { GenerationAccessError } = require("../lib/billing/generationAccess") as {
+      GenerationAccessError: new (
+        code: string, message: string, status: number, consumed: boolean,
+      ) => Error;
+    };
+    forcedReservationError = new GenerationAccessError(
+      "GENERATION_OPERATION_CONFLICT",
+      "This operation reference cannot be used for this request. Start a new report and try again.",
+      409,
+      false,
+    );
+    const signedConflict = await POST(new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        mode: "resume",
+        text: "A".repeat(120),
+        operation_id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+      }),
+    }));
+    const signedConflictPayload = await signedConflict.json();
+    assert.equal(signedConflict.status, 409);
+    assert.equal(signedConflictPayload.errorCode, "GENERATION_OPERATION_CONFLICT");
+    assert.equal(signedConflictPayload.attempt_consumed, false);
+    assert.equal(signedConflictPayload.operation_id, null, "the conflict response must not expose operation state");
+    assert.doesNotMatch(signedConflictPayload.message, /owner|reservation|status|digest/iu);
+    assert.equal(providerCalls, 0, "an opaque operation conflict must stop before provider work");
+    assert.equal(reservationCalls, 1, "the route must surface the atomic access-boundary conflict");
+    forcedReservationError = null;
+    reservationCalls = 0;
     authenticatedUser = null;
 
     const response = await POST(new Request("http://localhost/api/resume-feedback", {
@@ -156,6 +189,21 @@ async function run() {
     assert.equal(reservationCalls, 0, "the streaming route must not reserve access without a persisted marker");
 
     const recoveryId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+    const streamIdentityHandshake = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+    }));
+    const streamHandshakePayload = JSON.parse((await streamIdentityHandshake.text()).trim());
+    const streamHandshakeCookie = (streamIdentityHandshake.headers.get("set-cookie") || "")
+      .match(new RegExp(`${ANONYMOUS_ID_COOKIE}=([^;]+)`))?.[1];
+    assert.equal(streamIdentityHandshake.status, 409);
+    assert.equal(streamHandshakePayload.errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
+    assert.equal(streamHandshakePayload.attempt_consumed, false);
+    assert.equal(providerCalls, 0, "the stream identity handshake must precede provider work");
+    assert.equal(reservationCalls, 0, "the stream identity handshake must precede reservation work");
+    assert.ok(streamHandshakeCookie && parseAnonymousIdentityCookie(streamHandshakeCookie));
+
     const identityHandshake = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },

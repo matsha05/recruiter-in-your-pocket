@@ -11,9 +11,11 @@ export function generationStreamHeaders(requestId: string) {
 
 export function singleGenerationStreamEvent(
   requestId: string,
-  event: Record<string, unknown>
+  event: Record<string, unknown>,
+  status = 200,
 ) {
   return new NextResponse(`${JSON.stringify(event)}\n`, {
+    status,
     headers: generationStreamHeaders(requestId),
   });
 }

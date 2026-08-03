@@ -286,7 +286,7 @@ export async function fetchAnonymousReportRecovery(
     };
   }
 
-  if (response.status === 404) {
+  if (response.status === 202 || response.status === 404) {
     return {
       status: "pending",
       message: ANONYMOUS_REPORT_RECOVERY_PENDING_MESSAGE,

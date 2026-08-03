@@ -97,13 +97,41 @@ async function run() {
   assert.equal(creditsConsumed, 1, "response-loss recovery must not spend a second pass credit");
   assert.equal(rpcCalls.length, 3);
 
+  const conflict = async () => reserveGenerationAccess({
+    userId, reportKind: "resume_feedback", bypass: false, freeMeta,
+    operationId, requestDigest: digest,
+    admin: { rpc: async () => ({
+      data: { allowed: false, operation_state: "conflict" }, error: null,
+    }) },
+  });
+  await assert.rejects(
+    conflict,
+    (error: unknown) => error instanceof GenerationAccessError
+      && error.code === "GENERATION_OPERATION_CONFLICT"
+      && error.httpStatus === 409
+      && error.accessConsumed === false,
+    "owner or digest conflicts must be non-consuming and reveal no prior operation state",
+  );
+
   const migration = readFileSync(path.join(
     process.cwd(), "database/migrations/020_authenticated_generation_operations.sql",
   ), "utf8");
-  assert.match(migration, /pg_advisory_xact_lock/);
+  assert.match(migration, /operation_id UUID PRIMARY KEY/);
+  assert.doesNotMatch(migration, /PRIMARY KEY \(user_id, operation_id\)/);
+  assert.match(migration, /pg_advisory_xact_lock\([\s\S]+hashtextextended\(p_operation_id::TEXT, 0\)/);
+  assert.doesNotMatch(migration, /hashtextextended\(p_user_id::TEXT \|\| ':' \|\| p_operation_id::TEXT/);
+  assert.match(migration, /WHERE operation_id = p_operation_id\s+FOR UPDATE/);
+  assert.match(migration, /v_operation\.user_id <> p_user_id[\s\S]+operation_state', 'conflict'/);
   assert.match(migration, /v_reservation_id := gen_random_uuid\(\)/);
-  assert.match(migration, /generation operation payload mismatch/);
   assert.match(migration, /'operation_state', 'pending'/);
+  assert.match(migration, /CASE WHEN \(v_access->>'allowed'\)::BOOLEAN THEN 'executing' ELSE 'denied' END/);
+  assert.match(migration, /v_operation\.status = 'denied'[\s\S]+operation_state', 'denied'/);
+  assert.match(migration, /ALTER FUNCTION public\.reserve_generation_access\(UUID, UUID, TEXT\) SET SCHEMA private/);
+  assert.match(migration, /direct resume feedback reservation is forbidden/);
+  assert.match(migration, /private\.reserve_generation_access_internal/);
+  assert.match(migration, /REVOKE ALL ON FUNCTION private\.reserve_generation_access_internal[\s\S]+service_role/);
+  assert.match(migration, /CREATE OR REPLACE FUNCTION public\.get_generation_operation_status/);
+  assert.match(migration, /IF NOT FOUND OR v_operation\.user_id <> p_user_id THEN[\s\S]+found', FALSE/);
   assert.match(migration, /SET status = 'committed', report_id = NEW\.report_id/);
   assert.match(migration, /NEW\.status IN \('released', 'refunded', 'expired'\)/);
   assert.doesNotMatch(migration, /resume_text|job_description|provider_output/iu);

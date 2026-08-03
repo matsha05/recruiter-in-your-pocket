@@ -8,6 +8,9 @@ const dotenv = require("dotenv");
 const { Client } = require("pg");
 const { verifyReportReceiptSecurity } = require("./migration-replay/verify-report-receipts.cjs");
 const { verifyAtomicReportFinalization } = require("./migration-replay/verify-atomic-report-finalization.cjs");
+const {
+  verifyAuthenticatedGenerationOperations,
+} = require("./migration-replay/verify-authenticated-generation-operations.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const migrationsDir = path.join(repoRoot, "web", "database", "migrations");
@@ -228,6 +231,7 @@ async function verifyCleanReplay(manifest) {
     await applyMigrations(db, manifest);
     await verifyReportReceiptSecurity(db);
     await verifyAtomicReportFinalization(db);
+    await verifyAuthenticatedGenerationOperations(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";
@@ -300,6 +304,7 @@ async function verifyCleanReplay(manifest) {
     console.log("Atomic Stripe lease ownership, terminal completion, grants, and RLS passed.");
     console.log("Durable report receipt replay, grants, owner rename/delete, and deletion safety passed.");
     console.log("Atomic report finalization, rollback, idempotency, finality, and grants passed.");
+    console.log("Authenticated operation ownership, denial binding, recovery status, and grants passed.");
   } finally {
     await db.close();
   }

@@ -279,6 +279,20 @@ function directionDisplay(direction: DirectionRelation) {
   return `from ${direction.from} to ${direction.to}`;
 }
 
+export function hasExactRelationshipBindings(candidate: string, sourceText: string) {
+  if (unsafeRelationalClauses(candidate).length > 0) return false;
+  const candidateRelations = relationshipTuples(candidate);
+  const sourceRelations = relationshipTuples(sourceText);
+  return candidateRelations.length > 0 && candidateRelations.every((relation) => {
+    const exactBase = sourceRelations.filter((source) => sameBaseTuple(source, relation));
+    return exactBase.length > 0
+      && relation.metrics.every((metric) => exactBase.some((source) => source.metrics.includes(metric)))
+      && relation.directions.every((direction) => exactBase.some((source) => (
+        source.directions.some((item) => sameDirection(item, direction))
+      )));
+  });
+}
+
 export function relationshipBindingIssues(candidate: string, sourceText: string) {
   const candidateRelations = relationshipTuples(candidate);
   const sourceRelations = relationshipTuples(sourceText);

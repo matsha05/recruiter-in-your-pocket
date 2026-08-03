@@ -23,16 +23,26 @@ export async function ownedStoredReportExists(admin: any, userId: string, report
 }
 
 export async function loadOwnedTrustedReport(admin: any, userId: string, reportId: string) {
-  if (!admin || !userId || !UUID_PATTERN.test(reportId)) throw persistenceError(reportId);
+  const lookup = await lookupOwnedTrustedReport(admin, userId, reportId);
+  if (lookup.status !== "found") throw persistenceError(reportId);
+  return lookup.report;
+}
+
+export async function lookupOwnedTrustedReport(admin: any, userId: string, reportId: string): Promise<
+  | { status: "found"; report: any }
+  | { status: "missing" }
+  | { status: "unavailable" }
+> {
+  if (!admin || !userId || !UUID_PATTERN.test(reportId)) return { status: "unavailable" };
   const { data, error } = await admin.from("reports")
     .select("report_json, evidence_version, evidence_json")
     .eq("id", reportId).eq("user_id", userId).maybeSingle();
-  if (error || !data) throw persistenceError(reportId);
+  if (error) return { status: "unavailable" };
+  if (!data) return { status: "missing" };
   const report = parseTrustedStoredReport(
     data.report_json, data.evidence_version, data.evidence_json, userId,
   );
-  if (!report) throw persistenceError(reportId);
-  return report;
+  return report ? { status: "found", report } : { status: "unavailable" };
 }
 
 function persistenceError(reportId?: string) {

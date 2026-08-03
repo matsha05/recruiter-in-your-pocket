@@ -138,14 +138,19 @@ async function run() {
   let deletePersistedImmediately = false;
   runtimeModule._load = function loadWithRouteMocks(moduleName, parent, isMain) {
     if (moduleName === "@/lib/supabase/serverClient") {
+      const client = () => ({
+        auth: { getUser: async () => ({ data: { user: authenticatedUser }, error: null }) },
+      });
       return {
-        createSupabaseServerClient: async () => ({
-          auth: { getUser: async () => ({ data: { user: authenticatedUser }, error: null }) },
-        }),
+        createSupabaseServerClient: async () => client(),
+        maybeCreateSupabaseServerClient: async () => client(),
       };
     }
     if (moduleName === "@/lib/supabase/adminClient") {
-      return { createSupabaseAdminClient: () => ({ serviceRole: true }) };
+      return { createSupabaseAdminClient: () => ({
+        serviceRole: true,
+        rpc: async () => ({ data: { found: false }, error: null }),
+      }) };
     }
     if (moduleName === "@/lib/reports/generated-report-store") {
       return {

@@ -21,6 +21,7 @@ function withLaunchTestDefaults(env) {
     NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false",
     RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
     RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
+    RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS: "true",
     SKIP_DB_READY_CHECK: env.SKIP_DB_READY_CHECK || "1",
     // Contract tests must remain hermetic even when the parent launch shell
     // carries real or placeholder hosted credentials. Explicit empty values

@@ -298,6 +298,14 @@ export async function reserveGenerationAccess(input: {
   const entitlementKind = result.entitlement_kind;
 
   if (!result.allowed) {
+    if (result.operation_state === "conflict") {
+      throw new GenerationAccessError(
+        "GENERATION_OPERATION_CONFLICT",
+        "This report operation cannot be reused. Start a new report attempt.",
+        409,
+        false,
+      );
+    }
     if (
       operationId
       && result.operation_state === "committed"

@@ -5,7 +5,8 @@ import { isAllowedReportNarrativeException } from "./report-narrative-exceptions
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
 import { assertsNegativePresence, negativePresenceSubject } from "./report-polarity-policy";
 import { semanticMissingDisposition } from "./semantic-missing-policy";
-import { relationshipBindingIssues } from "./source-relationship-fidelity";
+import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-semantic-patterns";
+import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -132,15 +133,6 @@ export function resolveUniqueSourceLine(locator: string, sourceText?: string) {
 
 type ProtectedFact = { key: string; display: string };
 
-const commonCapitalizedWords = new Set([
-  "A", "Across", "Add", "After", "All", "An", "And", "Annual", "At", "Before", "Built", "Candidate",
-  "Company", "Coordinated", "Created", "Details", "Did", "Do", "Education", "Experience", "For",
-  "From", "Generated", "How", "If", "In", "Keep", "Led", "Maintained", "Managed", "Marketing", "No", "Of",
-  "On", "Operations", "Product", "Ran", "Recorded", "Recruiter", "Resume", "Role", "Sales", "Scaled", "Senior",
-  "Skills", "Strong", "Summary", "Supported", "The", "This", "To", "Use", "What",
-  "When", "Where", "Which", "Who", "Why", "With", "Work", "Your",
-]);
-
 const metricPattern = /(?:(?:teams?|groups?|organizations?|departments?)\s+of\s+)?[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|[kmb]|x|×))?\+?(?:\s*(?:[-–]\s*)?(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
 const writtenMetricPattern = /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)(?:[- ]person|\s+(?:people|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?))\b/giu;
 const symbolicEntityPattern = /\.NET\b|\bR&D\b|\bA\/B\b|\bC\+\+(?=\W|$)/gu;
@@ -148,36 +140,6 @@ const acronymPattern = /\b[A-Z][A-Z0-9]*(?:[.+#/-][A-Z0-9]+)*\b/gu;
 const titlePhrasePattern = /\b[A-Z][\p{L}\p{M}\d'’.-]*(?:\s+[A-Z][\p{L}\p{M}\d'’.-]*){1,3}\b/gu;
 const singleNamePattern = /\b[A-Z][\p{L}\p{M}\d.+#'’-]{2,}\b/gu;
 const shortNamePattern = /\b[A-Z](?:[\p{Ll}\p{M}])?\b/gu;
-
-const ownershipPatterns: Array<[string, RegExp]> = [
-  ["agency:lead", /\b(?:lead|leads|leading|led)\b/giu],
-  ["agency:own", /\b(?:own|owns|owned|owning)\b/giu],
-  ["agency:drive", /\b(?:drive|drives|driving|drove|driven)\b/giu],
-  ["agency:manage", /\b(?:manage|manages|managed|managing)\b/giu],
-  ["agency:direct", /\b(?:direct|directs|directed|directing|spearhead|spearheaded|head|headed)\b/giu],
-  ["agency:build", /\b(?:build|builds|built|building|architect|architected|design|designed|implement|implemented|create|created)\b/giu],
-  ["agency:support", /\b(?:support|supports|supported|supporting|assist|assisted|help|helped|contribute|contributed|participate|participated|collaborate|collaborated|coordinate|coordinated|partner|partnered)\b/giu],
-];
-
-const outcomePatterns: Array<[string, RegExp]> = [
-  ["outcome:improve", /\b(?:improved|increased|enhanced|boosted|raised)\b/giu],
-  ["outcome:reduce", /\b(?:reduced|lowered|cut|decreased)\b/giu],
-  ["outcome:growth", /\b(?:grew|grown|scaled|doubled|tripled)\b/giu],
-  ["outcome:financial", /\b(?:generated|saved|earned)\b/giu],
-  ["outcome:delivery", /\b(?:delivered|achieved|shipped|launched|accelerated)\b/giu],
-  ["outcome:promotion", /\b(?:promoted|promotion|promotions)\b/giu],
-  ["outcome:expansion", /\b(?:expanded|expansion|implemented|implementation)\b/giu],
-];
-
-const qualifierPatterns: Array<[string, RegExp]> = [
-  ["qualifier:global", /\b(?:global|globally|company-wide|organization-wide|enterprise-wide)\b/giu],
-  ["qualifier:end-to-end", /\bend[- ]to[- ]end\b/giu],
-  ["qualifier:cross-functional", /\bcross[- ]functional\b/giu],
-  ["qualifier:multiple", /\b(?:multiple|several|numerous)\b/giu],
-  ["qualifier:major", /\b(?:major|significant|material|mission-critical|high-stakes)\b/giu],
-  ["causal:through", /\bthrough\b/giu],
-  ["causal:resulting", /\b(?:resulting in|leading to|led to|because of|thereby)\b/giu],
-];
 
 function normalizedFactDisplay(value: string) {
   return canonicalizeUserSourceText(value).replace(/\s+/gu, " ").trim();
@@ -201,17 +163,19 @@ function protectedFacts(value: string) {
   }
   for (const match of withoutPlaceholders.matchAll(titlePhrasePattern)) {
     const words = match[0].split(/\s+/u);
-    while (words.length > 0 && commonCapitalizedWords.has(words[0])) words.shift();
-    while (words.length > 0 && commonCapitalizedWords.has(words.at(-1) || "")) words.pop();
+    while (words.length > 0 && isCommonCapitalizedWord(words[0])) words.shift();
+    while (words.length > 0 && isCommonCapitalizedWord(words.at(-1) || "")) words.pop();
     if (words.length > 1) addMatches(facts, "entity", words.join(" "));
   }
   for (const match of withoutPlaceholders.matchAll(singleNamePattern)) {
-    if (!commonCapitalizedWords.has(match[0])) addMatches(facts, "entity", match[0]);
+    if (!isCommonCapitalizedWord(match[0])) addMatches(facts, "entity", match[0]);
   }
   for (const match of withoutPlaceholders.matchAll(shortNamePattern)) {
-    if (match[0] !== "I" && !commonCapitalizedWords.has(match[0])) addMatches(facts, "entity", match[0]);
+    if (match[0] !== "I" && !isCommonCapitalizedWord(match[0])) {
+      addMatches(facts, "entity", match[0]);
+    }
   }
-  for (const [key, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
+  for (const [key, pattern] of trackedSemanticPatterns) {
     if (pattern.test(withoutPlaceholders)) facts.set(key, { key, display: key.split(":").at(-1) || key });
     pattern.lastIndex = 0;
   }
@@ -224,7 +188,7 @@ const semanticTokenAliases = new Map([
 
 function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
   let untracked = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
-  for (const [, pattern] of [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns]) {
+  for (const [, pattern] of trackedSemanticPatterns) {
     untracked = untracked.replace(pattern, " ");
     pattern.lastIndex = 0;
   }
@@ -259,27 +223,41 @@ export function compareSourceBoundRewrite(input: {
   const candidateFacts = protectedFacts(input.candidate);
   const originalFacts = protectedFacts(resolution.line);
   const issues: SourceFidelityIssue[] = [];
+  const allowedTokens = new Set([
+    ...materialTokens(resolution.line),
+    ...materialTokens(verifiedText),
+  ]);
+  const candidateTokens = materialTokens(input.candidate);
+  const exactRelationships = hasExactRelationshipBindings(
+    input.candidate, `${resolution.line}\n${verifiedText}`,
+  );
+  const capitalizationOnlyEntity = (fact: ProtectedFact, tokens: Set<string>) => (
+    exactRelationships
+    && fact.key === `entity:${fact.display}`
+    && !fact.display.includes(" ")
+    && tokens.has(normalizeNarrativeToken(fact.display))
+  );
 
   const unsupportedPlaceholders = unsupportedBracketPayloads(input.candidate);
   if (unsupportedPlaceholders.length > 0) {
     issues.push({ code: "unsupported_fact", detail: `unsupported bracket facts: ${unsupportedPlaceholders.join(", ")}` });
   }
 
-  const unsupported = candidateFacts.filter((fact) => !allowedFactKeys.has(fact.key));
+  const unsupported = candidateFacts.filter((fact) => (
+    !allowedFactKeys.has(fact.key) && !capitalizationOnlyEntity(fact, allowedTokens)
+  ));
   if (unsupported.length > 0) {
     issues.push({ code: "unsupported_fact", detail: `unsupported facts: ${unsupported.map((fact) => fact.display).join(", ")}` });
   }
 
   const candidateFactKeys = new Set(candidateFacts.map((fact) => fact.key));
-  const dropped = originalFacts.filter((fact) => !candidateFactKeys.has(fact.key));
+  const dropped = originalFacts.filter((fact) => (
+    !candidateFactKeys.has(fact.key) && !capitalizationOnlyEntity(fact, candidateTokens)
+  ));
   if (dropped.length > 0) {
     issues.push({ code: "dropped_fact", detail: `dropped source facts: ${dropped.map((fact) => fact.display).join(", ")}` });
   }
 
-  const allowedTokens = new Set([
-    ...materialTokens(resolution.line),
-    ...materialTokens(verifiedText),
-  ]);
   const unsupportedTokens = Array.from(materialTokens(input.candidate)).filter((token) => !allowedTokens.has(token));
   if (unsupportedTokens.length > 0) {
     issues.push({ code: "unsupported_content", detail: `unsupported content: ${unsupportedTokens.join(", ")}` });
@@ -288,7 +266,6 @@ export function compareSourceBoundRewrite(input: {
   if (relationshipIssues.length > 0) {
     issues.push({ code: "unsupported_content", detail: relationshipIssues.join(", ") });
   }
-  const candidateTokens = materialTokens(input.candidate);
   const droppedTokens = Array.from(materialTokens(resolution.line)).filter((token) => !candidateTokens.has(token));
   if (droppedTokens.length > 0) {
     issues.push({ code: "dropped_fact", detail: `dropped source content: ${droppedTokens.join(", ")}` });
@@ -342,6 +319,19 @@ export function auditNarrativeClaim(
       return facts.every((fact) => sourceFactKeys.has(fact.key));
     });
     if (supporting.length === 0) {
+      const eligibleFactKeys = new Set(eligibleCandidates.flatMap(({ facts: sourceFacts }) => (
+        sourceFacts.map((fact) => fact.key)
+      )));
+      const eligibleTokens = new Set(eligibleCandidates.flatMap(({ tokens }) => Array.from(tokens)));
+      const initialCapitalized = canonicalSourceIdentity(claim).match(/^([\p{Lu}\p{Lt}][\p{L}\p{M}\d.+#'’-]*)\b/u)?.[1];
+      const bindingFacts = initialCapitalized && eligibleTokens.has(normalizeNarrativeToken(initialCapitalized))
+        ? facts.filter((fact) => fact.key !== `entity:${initialCapitalized}`)
+        : facts;
+      if (
+        hasExactRelationshipBindings(claim, sourceText)
+        && bindingFacts.every((fact) => eligibleFactKeys.has(fact.key))
+        && Array.from(claimTokens).every((token) => eligibleTokens.has(token))
+      ) return [];
       return [{ claim, unsupportedFacts: facts.map((fact) => fact.display) }];
     }
 

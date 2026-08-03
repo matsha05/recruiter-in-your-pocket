@@ -208,6 +208,18 @@ async function run() {
     "a 404 lookup must leave a still-valid pending marker intact",
   );
 
+  const operationPending = await fetchAnonymousReportRecovery(marker, {
+    fetchImpl: async () => new Response(JSON.stringify({
+      ok: false,
+      operation_id: RECOVERY_ID,
+      operation_state: "pending",
+    }), {
+      status: 202,
+      headers: { "Content-Type": "application/json" },
+    }),
+  });
+  assert.equal(operationPending.status, "pending", "authenticated operations must remain pollable after refresh");
+
   const invalid = await fetchAnonymousReportRecovery(marker, {
     fetchImpl: async () => new Response(null, { status: 400 }),
   });

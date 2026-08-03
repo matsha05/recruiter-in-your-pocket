@@ -2,9 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { ANONYMOUS_ID_COOKIE, parseAnonymousIdentityCookie } from "@/lib/backend/freeCookie";
 import { hashAnonymousIdentity } from "@/lib/billing/anonymousIdentity";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { createSupabaseServerClient, maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { ownedStoredReportExists, persistReceiptValidatedReport } from "@/lib/reports/generated-report-store";
+import {
+  lookupOwnedTrustedReport,
+  ownedStoredReportExists,
+  persistReceiptValidatedReport,
+} from "@/lib/reports/generated-report-store";
 import { validatedReportReceiptClaim } from "@/lib/reports/report-receipt";
 import {
   loadAnonymousReportClaimTombstone,
@@ -62,6 +66,84 @@ function recoveryNotFound() {
   }, 404);
 }
 
+function firstRpcRecord(data: unknown): Record<string, unknown> | null {
+  const value = Array.isArray(data) ? data[0] : data;
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : null;
+}
+
+async function authenticatedOperationStatus(recoveryId: string) {
+  const supabase = await maybeCreateSupabaseServerClient();
+  if (!supabase) return null;
+  const { data, error: authError } = await supabase.auth.getUser();
+  if (authError) {
+    const authFailure = authError as { name?: unknown; code?: unknown };
+    const sessionMissing = authFailure.name === "AuthSessionMissingError"
+      || String(authFailure.code || "").toLowerCase() === "auth_session_missing";
+    if (sessionMissing) return null;
+    return privateJson({
+      ok: false,
+      errorCode: "OPERATION_STATUS_UNAVAILABLE",
+      message: "Report recovery is temporarily unavailable.",
+    }, 503);
+  }
+  const user = data.user;
+  if (!user) return null;
+  const admin = createSupabaseAdminClient();
+  if (!admin) return privateJson({
+    ok: false,
+    errorCode: "OPERATION_STATUS_UNAVAILABLE",
+    message: "Report recovery is temporarily unavailable.",
+  }, 503);
+  const statusRpc = await admin.rpc("get_generation_operation_status", {
+    p_user_id: user.id,
+    p_operation_id: recoveryId,
+  });
+  if (statusRpc.error) return privateJson({
+    ok: false,
+    errorCode: "OPERATION_STATUS_UNAVAILABLE",
+    message: "Report recovery is temporarily unavailable.",
+  }, 503);
+  const status = firstRpcRecord(statusRpc.data);
+  if (!status || typeof status.found !== "boolean") return privateJson({
+    ok: false,
+    errorCode: "OPERATION_STATUS_UNAVAILABLE",
+    message: "Report recovery is temporarily unavailable.",
+  }, 503);
+  if (!status.found) return null;
+  if (status.operation_state === "pending") return privateJson({
+    ok: false,
+    operation_id: recoveryId,
+    status: "pending",
+  }, 202);
+  if (status.operation_state === "committed" && typeof status.report_id === "string") {
+    const report = await lookupOwnedTrustedReport(admin, user.id, status.report_id);
+    if (report.status === "missing") return privateJson({
+      ok: false,
+      errorCode: "RECOVERED_REPORT_GONE",
+      message: "This completed report is no longer in your account.",
+    }, 410);
+    if (report.status === "unavailable") return privateJson({
+      ok: false,
+      errorCode: "OPERATION_STATUS_UNAVAILABLE",
+      message: "Report recovery is temporarily unavailable.",
+    }, 503);
+    return privateJson({
+      ok: true,
+      operation_id: recoveryId,
+      recovery_id: recoveryId,
+      reportId: status.report_id,
+      report: report.report,
+    });
+  }
+  return privateJson({
+    ok: false,
+    errorCode: status.operation_state === "gone" ? "RECOVERED_REPORT_GONE" : "GENERATION_OPERATION_TERMINAL",
+    message: "This report operation no longer has a recoverable result.",
+  }, 410);
+}
+
 async function claimedResponse(
   claim: AnonymousReportClaimLookup,
   recoveryId: string,
@@ -92,6 +174,17 @@ export async function GET(request: NextRequest) {
       message: "A valid recovery ID is required.",
     }, 400);
   }
+  let operationStatus: NextResponse | null;
+  try {
+    operationStatus = await authenticatedOperationStatus(recoveryId);
+  } catch {
+    operationStatus = privateJson({
+      ok: false,
+      errorCode: "OPERATION_STATUS_UNAVAILABLE",
+      message: "Report recovery is temporarily unavailable.",
+    }, 503);
+  }
+  if (operationStatus) return operationStatus;
   const binding = requestBinding(request);
   if (!binding) return recoveryNotFound();
   try {
