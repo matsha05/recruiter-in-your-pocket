@@ -152,6 +152,20 @@ async function run() {
     null,
   );
 
+  const silentDropStorage = {
+    getItem() { return null; },
+    setItem() { /* storage facade silently discarded the recovery marker */ },
+    removeItem() { /* no-op */ },
+  };
+  const silentDrop = attachAnonymousReportRecoveryMarker(
+    { mode: "resume" },
+    { storage: silentDropStorage, now: () => NOW, randomUUID: () => RECOVERY_ID },
+  );
+  assert.equal(silentDrop.marker, null);
+  assert.equal(silentDrop.created, false);
+  assert.equal(silentDrop.payload.recovery_id, undefined, "an unverified marker must never reach generation");
+  assert.equal(silentDrop.payload.operation_id, undefined, "an unverified operation key must never reach generation");
+
   const marker = { recoveryId: RECOVERY_ID, createdAt: NOW };
   let requestedUrl = "";
   let requestedInit: RequestInit | undefined;

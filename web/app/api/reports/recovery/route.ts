@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
       if (racedClaim) return await claimedResponse(racedClaim, recoveryId, admin, user.id);
       throw new AnonymousReportRecoveryError();
     }
-    return privateJson({ ok: true, reportId, recovery_id: recoveryId });
+    return await claimedResponse({ status: "owned", reportId }, recoveryId, admin, user.id);
   } catch (error: any) {
     const consumed = error?.code === "REPORT_RECEIPT_CONSUMED";
     const unavailable = error instanceof AnonymousReportRecoveryError;

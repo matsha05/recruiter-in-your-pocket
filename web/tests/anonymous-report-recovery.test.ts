@@ -135,6 +135,7 @@ async function run() {
   let concurrentBarrier: Promise<void> | null = null;
   let releaseConcurrentBarrier: (() => void) | null = null;
   let concurrentPersistCount = 0;
+  let deletePersistedImmediately = false;
   runtimeModule._load = function loadWithRouteMocks(moduleName, parent, isMain) {
     if (moduleName === "@/lib/supabase/serverClient") {
       return {
@@ -151,14 +152,18 @@ async function run() {
         persistReceiptValidatedReport: async (input: Record<string, any>) => {
           persisted.push(input);
           if (!persistedReportIds.has(input.receiptHash)) {
+            const reportIds = [
+              "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+              "ffffffff-ffff-4fff-8fff-ffffffffffff",
+              "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+            ];
             persistedReportIds.set(
               input.receiptHash,
-              persistedReportIds.size === 0
-                ? "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee"
-                : "ffffffff-ffff-4fff-8fff-ffffffffffff",
+              reportIds[persistedReportIds.size],
             );
           }
           persistedReportOwners.set(persistedReportIds.get(input.receiptHash)!, input.userId);
+          if (deletePersistedImmediately) deletedReportIds.add(persistedReportIds.get(input.receiptHash)!);
           if (concurrentBarrier) {
             concurrentPersistCount += 1;
             if (concurrentPersistCount === 2) releaseConcurrentBarrier?.();
@@ -290,6 +295,38 @@ async function run() {
       /private resume|RAW_RESUME_MUST_NOT_BE_STORED|RAW_JOB_DESCRIPTION_MUST_NOT_BE_STORED/u,
     );
 
+    const deletedDuringIdentity = { id: crypto.randomUUID() };
+    const deletedDuringCookie = makeAnonymousIdentityCookie(deletedDuringIdentity);
+    const deletedDuringAddress = "203.0.113.85";
+    const deletedDuringClaimAccess = {
+      identityHash: hashAnonymousIdentity(deletedDuringIdentity),
+      shadowHash: anonymousNetworkHashFromRequest(request(
+        "http://localhost:3000/", deletedDuringCookie, deletedDuringAddress,
+      ))!,
+      monthKey,
+      reservationId: crypto.randomUUID(),
+    };
+    const deletedDuringClaim = createAnonymousReportRecovery({
+      ...deletedDuringClaimAccess,
+      recoveryId: crypto.randomUUID(),
+      report: schemaValidReport,
+      resumeHash: crypto.createHash("sha256").update("deleted during claim").digest("hex"),
+    });
+    assert.equal(await anonymousGenerationAccessBackend.reserve(deletedDuringClaimAccess), true);
+    assert.equal(await anonymousGenerationAccessBackend.completeWithRecovery({
+      ...deletedDuringClaimAccess,
+      recovery: deletedDuringClaim,
+    }), "created");
+    deletePersistedImmediately = true;
+    const deletedInitial = await recoveryRoute.POST(claimRequest(
+      { recovery_id: deletedDuringClaim.recoveryId },
+      deletedDuringAddress,
+      deletedDuringCookie,
+    ));
+    deletePersistedImmediately = false;
+    assert.equal(deletedInitial.status, 410, "an initial claim must verify ownership after tombstone replacement");
+    assert.equal((await deletedInitial.json()).errorCode, "RECOVERED_REPORT_GONE");
+
     const concurrentIdentity = { id: crypto.randomUUID() };
     const concurrentCookie = makeAnonymousIdentityCookie(concurrentIdentity);
     const concurrentAddress = "203.0.113.84";
@@ -332,8 +369,8 @@ async function run() {
     assert.deepEqual(
       await Promise.all(concurrentClaims.map(async (response) => (await response.json()).reportId)),
       [
-        "ffffffff-ffff-4fff-8fff-ffffffffffff",
-        "ffffffff-ffff-4fff-8fff-ffffffffffff",
+        "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+        "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
       ],
       "concurrent same-owner claims must converge on one report ID"
     );

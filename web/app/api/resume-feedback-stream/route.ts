@@ -29,6 +29,7 @@ import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { generationOperationDigest, requireAuthenticatedGenerationOperationId } from "@/lib/billing/generationOperation";
 import { withGenerationAccessOutcome } from "@/lib/billing/generationFailureCopy";
 import {
     generationStreamHeaders,
@@ -45,7 +46,7 @@ import {
     type GenerationAccessReservation,
     type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
-import { persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
+import { loadOwnedTrustedReport, persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
@@ -130,6 +131,8 @@ export async function POST(request: Request) {
     const { text, mode, jobDescription } = validation.value;
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
+    const requestedOperationId = typeof body?.operation_id === "string" ? body.operation_id : null;
+    let authenticatedOperationId: string | null = null;
     let supabase: Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>> = null;
     let user: any = null;
     let savedJobId: string | null = null;
@@ -169,6 +172,9 @@ export async function POST(request: Request) {
         requestedRecoveryId = requireAnonymousReportRecoveryId({
             mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
         });
+        authenticatedOperationId = requireAuthenticatedGenerationOperationId({
+            mode, userId: user?.id, bypass, operationId: requestedOperationId,
+        });
         accessReservation = await reserveGenerationAccess({
             userId: user?.id || null,
             admin,
@@ -179,6 +185,10 @@ export async function POST(request: Request) {
                 ? null
                 : hashAnonymousIdentity(anonymousIdentity.identity),
             anonymousShadowHash: user ? null : anonymousShadowHash,
+            operationId: authenticatedOperationId,
+            requestDigest: user && mode === "resume" ? generationOperationDigest({
+                mode, text, jobDescription, savedJobId: requestedSavedJobId,
+            }) : null,
         });
 
         if (accessReservation.access === "preview") {
@@ -222,6 +232,7 @@ export async function POST(request: Request) {
             errorCode: code,
             message,
             access_consumed: false,
+            operation_id: code === "GENERATION_OPERATION_TERMINAL" ? requestedOperationId : null,
         }));
     }
     if (!accessReservation) {
@@ -245,6 +256,36 @@ export async function POST(request: Request) {
         && grantedReservation.entitlementKind === "anonymous_free"
         ? requestedRecoveryId
         : null;
+    authenticatedOperationId = grantedReservation.operationId === authenticatedOperationId
+        ? authenticatedOperationId
+        : null;
+    if (user && grantedReservation.recoveredReportId) {
+        try {
+            const recoveredReport = await loadOwnedTrustedReport(
+                reservationAdmin, user.id, grantedReservation.recoveredReportId,
+            );
+            return respond(singleGenerationStreamEvent(request_id, {
+                type: "complete",
+                ok: true,
+                data: recoveredReport,
+                report_id: grantedReservation.recoveredReportId,
+                report_receipt: null,
+                recovery_id: null,
+                operation_id: authenticatedOperationId,
+            }));
+        } catch {
+            return respond(singleGenerationStreamEvent(request_id, {
+                type: "error",
+                errorCode: "REPORT_PERSISTENCE_FAILED",
+                message: withGenerationAccessOutcome(
+                    "The completed report could not be recovered safely.", true,
+                ),
+                access_consumed: true,
+                attempt_consumed: true,
+                attempt_disposition: "consumed",
+            }));
+        }
+    }
 
     // Access is fully resolved before ReadableStream.start. The shared ledger
     // holds concurrent anonymous attempts; /api/free-status syncs the signed
@@ -394,6 +435,7 @@ export async function POST(request: Request) {
                         ? null
                         : (reportId ? null : makeValidatedReportReceipt(payload)),
                     recovery_id: anonymousRecovery?.recovery_id ?? null,
+                    operation_id: authenticatedOperationId,
                     free_run_index: newFreeUsed,
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
@@ -463,8 +505,9 @@ export async function POST(request: Request) {
                         access_consumed: accessConsumed,
                         attempt_consumed: accessConsumed === null ? undefined : accessConsumed,
                         attempt_disposition: attemptDisposition,
-                        credit_restored: accessConsumed === false,
-                    }) + "\n"));
+                    credit_restored: accessConsumed === false,
+                    operation_id: grantedReservation.operationId ?? null,
+                }) + "\n"));
                     controller.close();
                 } catch {
                     // The client already closed the stream. The entitlement

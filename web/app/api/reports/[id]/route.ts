@@ -146,21 +146,21 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     }
 
     // Verify it's actually gone
-    const { data: stillExists } = await supabase
+    const { data: stillExists, error: verificationError } = await supabase
       .from("reports")
       .select("id")
       .eq("id", reportId)
       .maybeSingle();
 
-    if (stillExists) {
+    if (verificationError || stillExists) {
       logError({
         msg: "reports.delete_verification_failed",
         outcome: "internal_error",
-        supabase: { table: "reports", op: "delete", error_code: "DELETE_VERIFICATION_FAILED" },
-        err: { name: "ReportDeleteError", message: "Report still existed after deletion", code: "DELETE_VERIFICATION_FAILED" },
+        supabase: { table: "reports", op: "delete", error_code: String(verificationError?.code || "DELETE_VERIFICATION_FAILED") },
+        err: { name: "ReportDeleteError", message: verificationError ? "Report deletion could not be verified" : "Report still existed after deletion", code: "DELETE_VERIFICATION_FAILED" },
       });
       return NextResponse.json(
-        { ok: false, errorCode: "DELETE_FAILED", message: "Delete appeared to succeed but report still exists. Check RLS policies." },
+        { ok: false, errorCode: "DELETE_VERIFICATION_FAILED", message: "Could not verify that this report was deleted." },
         { status: 500 }
       );
     }

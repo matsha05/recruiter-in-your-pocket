@@ -34,6 +34,7 @@ async function run() {
   let providerCalls = 0;
   let reservationCalls = 0;
   let providerSucceeds = false;
+  let authenticatedUser: { id: string; email: string } | null = null;
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
     if (request === "next/headers") {
@@ -50,13 +51,13 @@ async function run() {
       return {
         maybeCreateSupabaseServerClient: async () => ({
           auth: {
-            getUser: async () => ({ data: { user: null }, error: null }),
+            getUser: async () => ({ data: { user: authenticatedUser }, error: null }),
           },
         }),
       };
     }
     if (request === "@/lib/supabase/adminClient") {
-      return { createSupabaseAdminClient: () => null };
+      return { createSupabaseAdminClient: () => authenticatedUser ? {} : null };
     }
     if (request === "@/lib/llm/orchestrator") {
       return {
@@ -95,6 +96,18 @@ async function run() {
     const { POST } = require("../app/api/resume-feedback/route") as {
       POST: (request: Request) => Promise<Response>;
     };
+    authenticatedUser = { id: "signed-user", email: "signed@example.com" };
+    const signedWithoutOperation = await POST(new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+    }));
+    assert.equal(signedWithoutOperation.status, 409);
+    assert.equal((await signedWithoutOperation.json()).errorCode, "RECOVERY_STORAGE_REQUIRED");
+    assert.equal(providerCalls, 0, "a signed report without a durable operation key must stop before provider work");
+    assert.equal(reservationCalls, 0, "a signed report without a durable operation key must stop before reservation");
+    authenticatedUser = null;
+
     const response = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: {
@@ -118,6 +131,19 @@ async function run() {
     const { POST: streamPost } = require("../app/api/resume-feedback-stream/route") as {
       POST: (request: Request) => Promise<Response>;
     };
+    authenticatedUser = { id: "signed-user", email: "signed@example.com" };
+    const signedStreamWithoutOperation = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+    }));
+    const signedStreamBlockedEvent = JSON.parse((await signedStreamWithoutOperation.text()).trim());
+    assert.equal(signedStreamBlockedEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
+    assert.equal(signedStreamBlockedEvent.access_consumed, false);
+    assert.equal(providerCalls, 0, "signed streaming without a durable operation key must stop before provider work");
+    assert.equal(reservationCalls, 0, "signed streaming without a durable operation key must stop before reservation");
+    authenticatedUser = null;
+
     const blockedStream = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
@@ -129,8 +155,23 @@ async function run() {
     assert.equal(providerCalls, 0, "the streaming route must also stop before reservation/provider work");
     assert.equal(reservationCalls, 0, "the streaming route must not reserve access without a persisted marker");
 
-    requestCookies.set(ANONYMOUS_ID_COOKIE, identityValue!);
     const recoveryId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+    const identityHandshake = await POST(new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+    }));
+    const handshakePayload = await identityHandshake.json();
+    const handshakeCookie = (identityHandshake.headers.get("set-cookie") || "")
+      .match(new RegExp(`${ANONYMOUS_ID_COOKIE}=([^;]+)`))?.[1];
+    assert.equal(identityHandshake.status, 409);
+    assert.equal(handshakePayload.errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
+    assert.equal(handshakePayload.attempt_consumed, false);
+    assert.equal(providerCalls, 0, "the identity handshake must precede provider work");
+    assert.equal(reservationCalls, 0, "the identity handshake must precede reservation work");
+    assert.ok(handshakeCookie && parseAnonymousIdentityCookie(handshakeCookie));
+
+    requestCookies.set(ANONYMOUS_ID_COOKIE, handshakeCookie!);
     const providerFailure = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
@@ -194,8 +235,8 @@ async function run() {
     requestCookies.clear();
     const clearedResponse = await POST(movedRequest());
     const clearedPayload = await clearedResponse.json();
-    assert.equal(clearedResponse.status, 402);
-    assert.equal(clearedPayload.errorCode, "PAYWALL_REQUIRED");
+    assert.equal(clearedResponse.status, 409);
+    assert.equal(clearedPayload.errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
     assert.equal(
       providerCalls,
       2,

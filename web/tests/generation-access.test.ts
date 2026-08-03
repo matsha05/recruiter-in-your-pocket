@@ -488,7 +488,7 @@ assert.match(streamValidation, /validateResumeModelPayload/);
 assert.ok(streamFinalizeIndex > streamValidationIndex);
 assert.doesNotMatch(streamRoute, /finalizeGenerationCompletion|commit:\s*\(\) => commitGenerationAccess/);
 assert.ok(
-  streamRoute.indexOf('type: "complete"') > streamFinalizeIndex,
+  streamRoute.indexOf('type: "complete"', streamFinalizeIndex) > streamFinalizeIndex,
   "the authoritative complete event must not be delivered before validation and atomic finalization"
 );
 assert.doesNotMatch(streamRoute, /validatedChunks|type:\s*"chunk"/);
@@ -496,6 +496,13 @@ assert.match(
   streamRoute,
   /let accessConsumed:\s*boolean \| null = reservationCommitted;[\s\S]+if \(!reservationCommitted\) \{[\s\S]+await releaseGenerationAccess\(/,
   "stream delivery failures must not release an already committed attempt",
+);
+const syncRecoveryIndex = feedbackRoute.indexOf("if (user && accessReservation.recoveredReportId)");
+assert.ok(syncRecoveryIndex > 0, "sync generation must recover committed operations without provider execution");
+assert.ok(
+  feedbackRoute.indexOf("reservationCommitted = true", syncRecoveryIndex)
+    < feedbackRoute.indexOf("loadOwnedTrustedReport", syncRecoveryIndex),
+  "a committed-operation readback error must never release or refund its consumed reservation",
 );
 for (const [name, source, validationMarker] of [
   ["resume feedback", feedbackRoute, "payload = validateResumeModelPayload"],

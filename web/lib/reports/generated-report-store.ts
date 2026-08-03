@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { logError, logWarn } from "../observability/logger";
-import { buildGroundedReportTrustMetadata } from "./report-trust";
+import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "./report-trust";
 
 type StoreContext = { request_id: string; route: string; user_id?: string };
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -20,6 +20,19 @@ export async function ownedStoredReportExists(admin: any, userId: string, report
     .eq("id", reportId).eq("user_id", userId).maybeSingle();
   if (error) throw persistenceError(reportId);
   return data?.id === reportId;
+}
+
+export async function loadOwnedTrustedReport(admin: any, userId: string, reportId: string) {
+  if (!admin || !userId || !UUID_PATTERN.test(reportId)) throw persistenceError(reportId);
+  const { data, error } = await admin.from("reports")
+    .select("report_json, evidence_version, evidence_json")
+    .eq("id", reportId).eq("user_id", userId).maybeSingle();
+  if (error || !data) throw persistenceError(reportId);
+  const report = parseTrustedStoredReport(
+    data.report_json, data.evidence_version, data.evidence_json, userId,
+  );
+  if (!report) throw persistenceError(reportId);
+  return report;
 }
 
 function persistenceError(reportId?: string) {

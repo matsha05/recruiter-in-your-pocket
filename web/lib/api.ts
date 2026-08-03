@@ -11,7 +11,7 @@ export type ResumeFeedbackRequest = {
   jobDescription?: string;
   savedJobId?: string | null;
   mode?: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
-  recovery_id?: string;
+  recovery_id?: string; operation_id?: string;
 };
 
 export type ResumeFeedbackResponse = {
@@ -36,7 +36,7 @@ export type ResumeFeedbackResponse = {
   has_job_description?: boolean;
   report_id?: string | null;
   report_receipt?: string | null;
-  recovery_id?: string | null;
+  recovery_id?: string | null; operation_id?: string | null;
 };
 
 export type ResumeFeedbackError = {
@@ -46,9 +46,7 @@ export type ResumeFeedbackError = {
   free_uses_remaining?: number;
 };
 
-async function postResumeFeedback(
-  payload: ResumeFeedbackRequest
-): Promise<ResumeFeedbackResponse | ResumeFeedbackError> {
+async function postResumeFeedback(payload: ResumeFeedbackRequest): Promise<ResumeFeedbackResponse | ResumeFeedbackError> {
   const requestPayload = {
     text: payload.text,
     jobDescription: payload.jobDescription,
@@ -66,7 +64,11 @@ async function postResumeFeedback(
   });
 
   const data = await res.json();
-  if (data?.ok === true && data?.recovery_id && recovery.marker) {
+  const recoveryMarker = recovery.marker;
+  if (recoveryMarker && data?.operation_id === recoveryMarker.recoveryId && (
+    data?.ok === true || data?.attempt_disposition === "restored" || data?.errorCode === "GENERATION_OPERATION_TERMINAL"
+  )) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+  else if (data?.ok === true && data?.recovery_id && recovery.marker) {
     data.data = { ...data.data, recovery_id: data.recovery_id };
   } else if (
     recovery.marker && recovery.created
@@ -267,20 +269,15 @@ export async function streamResumeFeedback(
 
         if (event.type === "complete" && event.data && typeof event.data === "object") {
           const completeReport = event.data;
-          if (event.report_id) {
-            completeReport.report_id = event.report_id;
-          }
-          if (event.report_receipt) {
-            completeReport.report_receipt = event.report_receipt;
-          }
-          const completedRecoveryId = recoveryMarker && event.recovery_id === recoveryMarker.recoveryId
+          if (event.report_id) completeReport.report_id = event.report_id;
+          if (event.report_receipt) completeReport.report_receipt = event.report_receipt;
+          const completedOperationId = recoveryMarker && event.operation_id === recoveryMarker.recoveryId ? recoveryMarker.recoveryId : null;
+          if (completedOperationId) clearAnonymousReportRecoveryMarker(completedOperationId);
+          const completedRecoveryId = !completedOperationId && recoveryMarker && event.recovery_id === recoveryMarker.recoveryId
             ? recoveryMarker.recoveryId
             : acknowledgedRecoveryId;
-          if (completedRecoveryId) {
-            completeReport.recovery_id = completedRecoveryId;
-          } else if (recoveryMarker && recoveryMarkerWasCreated) {
-            clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
-          }
+          if (completedRecoveryId) completeReport.recovery_id = completedRecoveryId;
+          else if (recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
           void reader.cancel().catch(() => undefined);
           return {
             ok: true,
@@ -308,9 +305,9 @@ export async function streamResumeFeedback(
                   ? false
                   : undefined;
           creditRestored = event.credit_restored === true;
-          if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) {
-            clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
-          }
+          if (recoveryMarker && event.operation_id === recoveryMarker.recoveryId
+            && (attemptDisposition === "restored" || errorCode === "GENERATION_OPERATION_TERMINAL")) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+          if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
         } else if (event.type === "meta") {
           if (recoveryMarker && event.recovery_id === recoveryMarker.recoveryId) {
             acknowledgedRecoveryId = recoveryMarker.recoveryId;

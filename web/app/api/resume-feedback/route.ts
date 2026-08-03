@@ -8,6 +8,7 @@ import {
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
+  parseAnonymousIdentityCookie,
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
 import {
@@ -40,7 +41,8 @@ import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
-import { resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
+import { generationOperationDigest, requireAuthenticatedGenerationOperationId } from "@/lib/billing/generationOperation";
+import { loadOwnedTrustedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
 import {
   assertGenerationAccessDependencies,
   assertGenerationAuthLookup,
@@ -68,11 +70,13 @@ export async function POST(request: Request) {
   let accessReservation: GenerationAccessReservation | null = null;
   let reservationCommitted = false;
   let reservationAdmin: GenerationAccessRpcClient | null = null;
+  let requestedOperationId: string | null = null;
+  let authenticatedOperationId: string | null = null;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
   const cookieStore = await cookies();
-  const anonymousIdentity = ensureAnonymousIdentity(
-    cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
-  );
+  const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
+  const hadAnonymousIdentity = Boolean(parseAnonymousIdentityCookie(anonymousIdentityCookie));
+  const anonymousIdentity = ensureAnonymousIdentity(anonymousIdentityCookie);
   const respond = <T extends NextResponse>(response: T) =>
     attachAnonymousIdentityCookie(response, anonymousIdentity.cookieValue);
   const anonymousShadowHash = anonymousNetworkHashFromRequest(request);
@@ -98,6 +102,7 @@ export async function POST(request: Request) {
     }
 
     const body = await readJsonWithLimit<any>(request, 128 * 1024);
+    requestedOperationId = typeof body?.operation_id === "string" ? body.operation_id : null;
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     const validation = validateResumeFeedbackRequest(body);
     if (!validation.ok || !validation.value) {
@@ -154,6 +159,18 @@ export async function POST(request: Request) {
     const requestedRecoveryId = requireAnonymousReportRecoveryId({
       mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
     });
+    if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
+      return respond(NextResponse.json({
+        ok: false,
+        errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+        message: "Your browser identity is ready. Please retry to generate the report safely.",
+        attempt_consumed: false,
+        attempt_disposition: "restored",
+      }, { status: 409 }));
+    }
+    authenticatedOperationId = requireAuthenticatedGenerationOperationId({
+      mode, userId: user?.id, bypass, operationId: requestedOperationId,
+    });
     accessReservation = await reserveGenerationAccess({
       userId: user?.id || null,
       admin,
@@ -164,6 +181,10 @@ export async function POST(request: Request) {
         ? null
         : hashAnonymousIdentity(anonymousIdentity.identity),
       anonymousShadowHash: user ? null : anonymousShadowHash,
+      operationId: authenticatedOperationId,
+      requestDigest: user && mode === "resume" ? generationOperationDigest({
+        mode, text, jobDescription, savedJobId: requestedSavedJobId,
+      }) : null,
     });
 
     const activePass = accessReservation.activePass;
@@ -183,6 +204,32 @@ export async function POST(request: Request) {
         },
         { status: 402 }
       ));
+    }
+
+    authenticatedOperationId = accessReservation.operationId === authenticatedOperationId
+      ? authenticatedOperationId
+      : null;
+    if (user && accessReservation.recoveredReportId) {
+      // This operation is already durably committed. A recovery/readback error
+      // must never enter the release/refund path for its consumed entitlement.
+      reservationCommitted = true;
+      const recoveredReport = await loadOwnedTrustedReport(
+        admin, user.id, accessReservation.recoveredReportId,
+      );
+      return respond(NextResponse.json({
+        ok: true,
+        access,
+        access_tier: accessTier,
+        active_pass: activePass,
+        user: { email: user.email },
+        free_uses_remaining: freeUsesRemaining,
+        report_id: accessReservation.recoveredReportId,
+        report_receipt: null,
+        recovery_id: null,
+        operation_id: authenticatedOperationId,
+        has_job_description: effectiveJobDescription.hasValue,
+        data: recoveredReport,
+      }));
     }
 
     const model = resolveOpenAIModel(mode);
@@ -322,6 +369,7 @@ export async function POST(request: Request) {
         ? null
         : (reportId ? null : makeValidatedReportReceipt(payload)),
       recovery_id: anonymousRecovery?.recovery_id ?? null,
+      operation_id: authenticatedOperationId,
       has_job_description: effectiveJobDescription.hasValue,
       data: anonymousRecovery?.report ?? payload
     };
@@ -404,6 +452,9 @@ export async function POST(request: Request) {
       attempt_consumed: disposition.attemptConsumed,
       attempt_disposition: disposition.attemptDisposition,
       credit_restored: disposition.creditRestored,
+      operation_id: code === "GENERATION_OPERATION_TERMINAL"
+        ? requestedOperationId
+        : accessReservation?.operationId ?? null,
     }, { status });
     res.headers.set("x-request-id", request_id);
     if (disposition.anonymousCookieMeta) {

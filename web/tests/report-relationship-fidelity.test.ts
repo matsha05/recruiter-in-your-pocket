@@ -1,4 +1,8 @@
 import assert from "node:assert/strict";
+import Module from "node:module";
+import path from "node:path";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { compareSourceBoundRewrite } from "../lib/llm/source-fidelity";
@@ -25,6 +29,27 @@ const resumeControl = [
   "Show HubSpot.",
 ].join("\n");
 process.env.SESSION_SECRET ||= "relationship-fidelity-receipt-secret";
+
+type RuntimeModule = typeof Module & {
+  _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
+};
+const runtimeModule = Module as RuntimeModule;
+const originalLoad = runtimeModule._load;
+(require as any).extensions[".tsx"] = (require as any).extensions[".ts"];
+runtimeModule._load = function loadReportStream(request, parent, isMain) {
+  if (request.endsWith(".module.css")) return {};
+  if (request === "@phosphor-icons/react") {
+    return new Proxy({}, { get: () => () => null });
+  }
+  if (request.startsWith("@/")) {
+    return originalLoad(path.join(process.cwd(), request.slice(2)), parent, isMain);
+  }
+  return originalLoad(request, parent, isMain);
+};
+const { ReportStream } = require("../components/workspace/report/ReportStream.tsx") as {
+  ReportStream: (props: any) => any;
+};
+runtimeModule._load = originalLoad;
 
 const exactRelationshipCases = [
   {
@@ -64,10 +89,46 @@ const exactRelationshipCases = [
     accepted: "Migrated records Oracle → Postgres.",
   },
   {
+    label: "standalone fat arrow direction",
+    source: "Oracle => Postgres.",
+    rejected: "Postgres => Oracle.",
+    accepted: "Oracle => Postgres.",
+  },
+  {
+    label: "long arrow with multiword endpoints",
+    source: "Migrated customer data Oracle Database ⟶ Postgres Warehouse.",
+    rejected: "Migrated customer data Postgres Warehouse ⟶ Oracle Database.",
+    accepted: "Migrated customer data Oracle Database ⟶ Postgres Warehouse.",
+  },
+  {
+    label: "ASCII arrow with multiword endpoints",
+    source: "Moved records Legacy Oracle -> Managed Postgres.",
+    rejected: "Moved records Managed Postgres -> Legacy Oracle.",
+    accepted: "Moved records Legacy Oracle -> Managed Postgres.",
+  },
+  {
     label: "boosted metric assignment",
     source: "Alice boosted checkout by 12% and Bob boosted billing by 8%.",
     rejected: "Alice boosted checkout by 8% and Bob boosted billing by 12%.",
     accepted: "Bob boosted billing by 8% and Alice boosted checkout by 12%.",
+  },
+  {
+    label: "comma-gapped boosted metrics",
+    source: "Boosted conversion by 12%, retention by 8%.",
+    rejected: "Boosted conversion by 8%, retention by 12%.",
+    accepted: "Boosted retention by 8%, conversion by 12%.",
+  },
+  {
+    label: "raised metric assignment",
+    source: "Raised conversion by 12%, retention by 8%.",
+    rejected: "Raised conversion by 8%, retention by 12%.",
+    accepted: "Raised retention by 8%, conversion by 12%.",
+  },
+  {
+    label: "semicolon-gapped boosted metrics",
+    source: "Boosted conversion by 12%; retention by 8%.",
+    rejected: "Boosted conversion by 8%; retention by 12%.",
+    accepted: "Boosted conversion by 12%; retention by 8%.",
   },
   {
     label: "passive actor assignment",
@@ -81,11 +142,18 @@ const exactRelationshipCases = [
     rejected: "Checkout, led by Bob, and billing, supported by Alice.",
     accepted: "Checkout, led by Alice, and billing, supported by Bob.",
   },
+  {
+    label: "complete passive comma clauses",
+    source: "Checkout was led by Alice, billing was supported by Bob.",
+    rejected: "Checkout was led by Bob, billing was supported by Alice.",
+    accepted: "Checkout was led by Alice, billing was supported by Bob.",
+  },
 ] as const;
 
 function reportWithSummary(claim: string) {
   const report: any = structuredClone(schemaValidReport);
   report.summary = `HubSpot workflow context is visible. ${claim} The customer context needs detail.`;
+  report.score_comment_short = claim;
   return report;
 }
 
@@ -174,13 +242,16 @@ async function assertReceiptWireSavePdfChain() {
     let browserBoundaryReached = false;
     assert.throws(() => {
       const invalid = validateSummary(testCase.rejected, testCase.source);
+      renderToStaticMarkup(createElement(ReportStream, { report: invalid }));
       browserBoundaryReached = true;
       return invalid.summary;
     }, /evidence grounding contract/, `${testCase.label} must fail before the primary browser claim`);
     assert.equal(browserBoundaryReached, false);
 
     const validated = validateSummary(testCase.accepted, testCase.source);
-    assert.ok(validated.summary.includes(testCase.accepted), `${testCase.label} primary browser claim`);
+    const reportStreamHtml = renderToStaticMarkup(createElement(ReportStream, { report: validated }));
+    const reportStreamText = reportStreamHtml.replaceAll("&gt;", ">").replaceAll("&amp;", "&");
+    assert.ok(reportStreamText.includes(testCase.accepted), `${testCase.label} actual ReportStream SSR claim`);
     const receipt = makeValidatedReportReceipt(validated);
     assert.ok(validatedReportReceiptClaim(validated, receipt), `${testCase.label} validated receipt`);
     const wireReport = JSON.parse(JSON.stringify({ ...validated, report_receipt: receipt }));

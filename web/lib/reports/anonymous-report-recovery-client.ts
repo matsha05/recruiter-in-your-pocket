@@ -42,7 +42,7 @@ export type AnonymousReportRecoveryClientOptions = {
 export type AnonymousReportRecoveryAttachment<T extends Record<string, unknown>> = {
   marker: AnonymousReportRecoveryMarker | null;
   created: boolean;
-  payload: T & { recovery_id?: string };
+  payload: T & { recovery_id?: string; operation_id?: string };
 };
 
 export type AnonymousReportRecoveryLookup =
@@ -155,8 +155,9 @@ function removeStoredMarker(storage: RecoveryStorage) {
 }
 
 function payloadWithoutRecoveryId<T extends Record<string, unknown>>(payload: T) {
-  const cleanPayload = { ...payload } as T & { recovery_id?: string };
+  const cleanPayload = { ...payload } as T & { recovery_id?: string; operation_id?: string };
   delete cleanPayload.recovery_id;
+  delete cleanPayload.operation_id;
   return cleanPayload;
 }
 
@@ -215,7 +216,7 @@ export function attachAnonymousReportRecoveryMarker<
     return { marker: null, created: false, payload: payloadWithoutRecoveryId(payload) };
   }
   const existing = readAnonymousReportRecoveryMarker(options);
-  if (existing) return { marker: existing, created: false, payload: { ...payloadWithoutRecoveryId(payload), recovery_id: existing.recoveryId } };
+  if (existing) return { marker: existing, created: false, payload: { ...payloadWithoutRecoveryId(payload), recovery_id: existing.recoveryId, operation_id: existing.recoveryId } };
 
   let recoveryId: string | null = null;
   try {
@@ -237,7 +238,14 @@ export function attachAnonymousReportRecoveryMarker<
       ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY,
       JSON.stringify(stored),
     );
+    const persisted = storage.getItem(ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY);
+    const verified = persisted ? parseStoredMarker(persisted, createdAt) : null;
+    if (!verified || verified.recoveryId !== marker.recoveryId || verified.createdAt !== marker.createdAt) {
+      removeStoredMarker(storage);
+      return { marker: null, created: false, payload: payloadWithoutRecoveryId(payload) };
+    }
   } catch {
+    removeStoredMarker(storage);
     return { marker: null, created: false, payload: payloadWithoutRecoveryId(payload) };
   }
   dispatchRecoveryMarkerEvent(resolveEventTarget(options.eventTarget));
@@ -245,7 +253,7 @@ export function attachAnonymousReportRecoveryMarker<
   return {
     marker,
     created: true,
-    payload: { ...payloadWithoutRecoveryId(payload), recovery_id: recoveryId },
+    payload: { ...payloadWithoutRecoveryId(payload), recovery_id: recoveryId, operation_id: recoveryId },
   };
 }
 

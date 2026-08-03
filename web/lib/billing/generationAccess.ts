@@ -54,6 +54,7 @@ export class GenerationAccessError extends Error {
 }
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
 const anonymousCookieMetaAfterCommit = new WeakMap<
   GenerationAccessReservation,
   AnonymousFreeCookieMeta
@@ -148,6 +149,8 @@ export async function reserveGenerationAccess(input: {
   anonymousShadowHash?: string | null;
   now?: () => Date;
   randomUUID?: () => string;
+  operationId?: string | null;
+  requestDigest?: string | null;
 }): Promise<GenerationAccessReservation> {
   const now = input.now || (() => new Date());
   const randomUUID = input.randomUUID || (() => crypto.randomUUID());
@@ -258,12 +261,28 @@ export async function reserveGenerationAccess(input: {
     );
   }
 
-  const reservationId = randomUUID();
-  const { data, error } = await input.admin.rpc("reserve_generation_access", {
-    p_user_id: input.userId,
-    p_reservation_id: reservationId,
-    p_report_kind: input.reportKind,
-  });
+  const operationId = input.operationId && UUID_PATTERN.test(input.operationId)
+    ? input.operationId.toLowerCase()
+    : null;
+  const requestDigest = input.requestDigest && /^[0-9a-f]{64}$/iu.test(input.requestDigest)
+    ? input.requestDigest.toLowerCase()
+    : null;
+  if (operationId && (!requestDigest || input.reportKind !== "resume_feedback")) {
+    throw unavailableFromRpc("reserve");
+  }
+  const requestedReservationId = operationId ? null : randomUUID();
+  const { data, error } = operationId
+    ? await input.admin.rpc("begin_generation_operation", {
+      p_user_id: input.userId,
+      p_operation_id: operationId,
+      p_report_kind: input.reportKind,
+      p_request_digest: requestDigest,
+    })
+    : await input.admin.rpc("reserve_generation_access", {
+      p_user_id: input.userId,
+      p_reservation_id: requestedReservationId,
+      p_report_kind: input.reportKind,
+    });
 
   if (error) throw unavailableFromRpc("reserve", error);
 
@@ -272,7 +291,51 @@ export async function reserveGenerationAccess(input: {
     throw unavailableFromRpc("reserve");
   }
 
+  const returnedReservationId = typeof result.reservation_id === "string"
+    ? result.reservation_id
+    : null;
+  const accessTier = result.access_tier;
+  const entitlementKind = result.entitlement_kind;
+
   if (!result.allowed) {
+    if (
+      operationId
+      && result.operation_state === "committed"
+      && returnedReservationId
+      && UUID_PATTERN.test(returnedReservationId)
+      && (accessTier === "free_full" || accessTier === "pass_full")
+      && (entitlementKind === "free" || entitlementKind === "pass_credit" || entitlementKind === "pass_unlimited")
+    ) {
+      if (
+        result.report_final !== true
+        || typeof result.report_id !== "string"
+        || !UUID_PATTERN.test(result.report_id)
+      ) throw unavailableFromRpc("reserve");
+      return {
+        access: "full", accessTier, entitlementKind, reservationId: returnedReservationId,
+        userId: input.userId, activePass: parsePass(result.pass),
+        freeUsesRemaining: numberOrZero(result.free_uses_remaining),
+        anonymousCookieMeta: null, anonymousIdentityHash: null, anonymousMonthKey: null,
+        recoveredReportId: result.report_id,
+        operationId,
+      };
+    }
+    if (result.operation_state === "pending") {
+      throw new GenerationAccessError(
+        "GENERATION_OPERATION_PENDING",
+        "This report is still processing. Retry shortly to recover the same result.",
+        409,
+        null,
+      );
+    }
+    if (result.operation_state === "terminal") {
+      throw new GenerationAccessError(
+        "GENERATION_OPERATION_TERMINAL",
+        "The prior report attempt ended without a completed report. Start a new attempt.",
+        409,
+        false,
+      );
+    }
     return {
       access: "preview",
       accessTier: "preview",
@@ -287,14 +350,11 @@ export async function reserveGenerationAccess(input: {
     };
   }
 
-  const returnedReservationId = typeof result.reservation_id === "string"
-    ? result.reservation_id
-    : null;
-  const accessTier = result.access_tier;
-  const entitlementKind = result.entitlement_kind;
-
   if (
-    returnedReservationId !== reservationId
+    !returnedReservationId
+    || !UUID_PATTERN.test(returnedReservationId)
+    || (requestedReservationId !== null && returnedReservationId !== requestedReservationId)
+    || (operationId !== null && result.operation_state !== "execute")
     || (accessTier !== "free_full" && accessTier !== "pass_full")
     || (entitlementKind !== "free" && entitlementKind !== "pass_credit" && entitlementKind !== "pass_unlimited")
   ) {
@@ -305,13 +365,14 @@ export async function reserveGenerationAccess(input: {
     access: "full",
     accessTier,
     entitlementKind,
-    reservationId,
+    reservationId: returnedReservationId,
     userId: input.userId,
     activePass: parsePass(result.pass),
     freeUsesRemaining: numberOrZero(result.free_uses_remaining),
     anonymousCookieMeta: null,
     anonymousIdentityHash: null,
     anonymousMonthKey: null,
+    operationId,
   };
 }
 

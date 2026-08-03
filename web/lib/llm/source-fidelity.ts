@@ -299,7 +299,7 @@ export function compareSourceBoundRewrite(input: {
 
 function claimSegments(value: string) {
   return value
-    .split(/(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
+    .split(/;\s*|(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
     .map((segment) => segment.trim())
     .filter(Boolean);
 }

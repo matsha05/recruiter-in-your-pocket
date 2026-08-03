@@ -33,6 +33,8 @@ export type GenerationAccessReservation = {
   anonymousIdentityHash: string | null;
   anonymousShadowHash?: string | null;
   anonymousMonthKey: string | null;
+  recoveredReportId?: string | null;
+  operationId?: string | null;
 };
 
 export type GenerationReleaseReason =
