@@ -120,8 +120,12 @@ export function useResumeReview(input: {
           toast.warning("Analysis stopped after generation started", {
             description: "This report attempt was used. Your remaining reports are now refreshed.",
           });
+        } else if (result.creditRestored) {
+          toast.info("Analysis stopped", {
+            description: "Your report credit was restored. You can run the report again.",
+          });
         } else {
-          toast.info("Analysis canceled", { description: "Your remaining reports are now refreshed." });
+          toast.info("Analysis stopped", { description: "Your remaining reports are now refreshed." });
         }
         input.setIsLoading(false);
         input.setIsStreaming(false);
@@ -153,20 +157,22 @@ export function useResumeReview(input: {
       const attemptCopy = result.attemptConsumed
         ? "This report attempt was used because generation had already started."
         : result.creditRestored
-          ? "Your report credit was restored; please try again."
-          : "Check your remaining reports before retrying.";
+          ? "Your report credit was restored. You can try again."
+          : "Your remaining reports are refreshed.";
       const hasDisposition = /report attempt was used|report credit was restored|could not confirm that your report credit was restored/iu
         .test(result.message || "");
-      toast.error("Failed to generate report", {
-        description: hasDisposition
-          ? result.message
-          : `${result.message || "Unknown error"} · ${attemptCopy}`,
+      toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "Connection ended" : "Failed to generate report", {
+        description: result.errorCode === "STREAM_TRANSPORT_ERROR" && result.attemptConsumed === undefined
+          ? `The report did not finish. ${attemptCopy}`
+          : hasDisposition
+            ? result.message
+            : `${result.message || "The report did not finish."} · ${attemptCopy}`,
       });
     } catch (error) {
       console.error("Report generation error:", error);
       await input.refreshFreeStatus({ includeUserRefresh: true, requireOk: true });
       toast.error("Report generation error", {
-        description: "Please try again, then check your remaining reports before retrying.",
+        description: "The report did not finish. Your remaining reports are refreshed.",
       });
     } finally {
       input.setIsLoading(false);

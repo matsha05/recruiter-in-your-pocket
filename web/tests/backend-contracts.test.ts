@@ -144,6 +144,10 @@ const resumeFeedbackRoute = fs.readFileSync(
   path.resolve(process.cwd(), "app/api/resume-feedback/route.ts"),
   "utf8",
 );
+const generationCompletion = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/billing/generation-cancellation.ts"),
+  "utf8",
+);
 const resumeFeedbackStreamRoute = fs.readFileSync(
   path.resolve(process.cwd(), "app/api/resume-feedback-stream/route.ts"),
   "utf8",
@@ -205,9 +209,10 @@ for (const [name, source] of [
   ["resume feedback", resumeFeedbackRoute],
   ["streaming resume feedback", resumeFeedbackStreamRoute],
 ] as const) {
-  const persistAt = source.indexOf("await persistGeneratedReport");
-  const commitAt = source.indexOf("await commitGenerationAccess", persistAt);
-  const rollbackAt = source.indexOf("await rollbackGeneratedReport", commitAt);
+  const isStreaming = name === "streaming resume feedback";
+  const persistAt = source.indexOf(isStreaming ? "persist: user && reportAdmin" : "await persistGeneratedReport");
+  const commitAt = source.indexOf(isStreaming ? "commit: () => commitGenerationAccess" : "await commitGenerationAccess", persistAt);
+  const rollbackAt = source.indexOf(isStreaming ? "rollback: user && reportAdmin" : "await rollbackGeneratedReport", commitAt);
   assert.ok(persistAt >= 0, `${name} must persist a signed-in report`);
   assert.ok(commitAt > persistAt, `${name} must persist before committing the report credit`);
   assert.ok(rollbackAt > commitAt, `${name} must roll back persistence if credit commit fails`);
@@ -226,6 +231,11 @@ for (const [name, source] of [
     `${name} prompt must never interpolate the raw normalized JD`,
   );
 }
+const completionPersistAt = generationCompletion.indexOf("await input.persist()");
+const completionCommitAt = generationCompletion.indexOf("await input.commit()", completionPersistAt);
+const completionRollbackAt = generationCompletion.indexOf("await input.rollback(reportId)", completionCommitAt);
+assert.ok(completionPersistAt >= 0 && completionCommitAt > completionPersistAt);
+assert.ok(completionRollbackAt > completionCommitAt, "the completion boundary must roll back persistence before a failed commit is released");
 assert.match(generatedReportStore, /from\("reports"\)\.insert/);
 assert.match(generatedReportStore, /if \(reportInsertError\)[\s\S]+throw persistenceError\(\)/);
 assert.match(generatedReportStore, /from\("reports"\)\.delete\(\)[\s\S]+\.eq\("id", input\.reportId\)\.eq\("user_id", input\.userId\)/);

@@ -19,7 +19,6 @@ import {
 } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -39,6 +38,13 @@ import { persistGeneratedReport, resolveUserSavedJobId, rollbackGeneratedReport 
 import { logDetectedPromptInjection } from "@/lib/observability/resume-stream-security";
 import { singleStreamEventResponse, streamHeaders } from "@/lib/backend/stream-response";
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import {
+    finalizeGenerationCompletion,
+    generationCancellationError,
+    generationCancellationWasCommitted,
+    throwIfGenerationCanceled,
+} from "@/lib/billing/generation-cancellation";
+import { handleGenerationStreamFailure } from "@/lib/billing/generation-stream-failure";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -216,8 +222,13 @@ export async function POST(request: Request) {
     let reservationCommitted = false;
     let messages: ReturnType<typeof buildResumeProviderMessages>["messages"];
     let canonicalResumeText = "";
+    const generationController = new AbortController();
+    const abortFromRequest = () => generationController.abort(request.signal.reason);
+    if (request.signal.aborted) abortFromRequest();
+    else request.signal.addEventListener("abort", abortFromRequest, { once: true });
 
     try {
+        throwIfGenerationCanceled(generationController.signal);
         const prepared = buildResumeProviderMessages({
             mode,
             systemPrompt: await loadPromptForMode(mode),
@@ -232,9 +243,15 @@ export async function POST(request: Request) {
             resume: prepared.sanitization,
             jobDescription: effectiveJobDescription.sanitization,
         });
+        throwIfGenerationCanceled(generationController.signal);
         await markGenerationProviderCallStarted(grantedReservation);
         if (grantedReservation.entitlementKind === "anonymous_free") reservationCommitted = true;
+        throwIfGenerationCanceled(generationController.signal, reservationCommitted);
     } catch (err: any) {
+        if (generationController.signal.aborted && err?.code !== "CLIENT_CANCELED") {
+            err = generationCancellationError(reservationCommitted);
+        }
+        if (generationCancellationWasCommitted(err)) reservationCommitted = true;
         const disposition = await settleGenerationFailure({
             reservation: grantedReservation,
             admin: reservationAdmin,
@@ -253,6 +270,7 @@ export async function POST(request: Request) {
         if (disposition.anonymousCookieMeta) {
             response.cookies.set(FREE_COOKIE, makeFreeCookie(disposition.anonymousCookieMeta), freeCookieOptions());
         }
+        request.signal.removeEventListener("abort", abortFromRequest);
         return response;
     }
 
@@ -269,6 +287,7 @@ export async function POST(request: Request) {
                     has_job_description: effectiveJobDescription.hasValue,
                     bypass,
                     attempt_consumed: reservationCommitted,
+                    attempt_disposition: reservationCommitted ? "consumed" : "pending",
                 }) + "\n"));
 
                 const model = resolveOpenAIModel(mode);
@@ -283,6 +302,7 @@ export async function POST(request: Request) {
                             prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
                             schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
                             messages,
+                            signal: generationController.signal,
                             reasoning_effort: streamAttempt > 0
                                 ? increaseReasoningEffort(resolveReasoningEffortForMode(mode, model))
                                 : undefined,
@@ -343,12 +363,16 @@ export async function POST(request: Request) {
                                 prompt_version: "resume_v2_repair",
                                 schema_version: "report_v1",
                                 messages: buildResumeRepairMessages(messages, accumulatedJson, err),
+                                signal: generationController.signal,
                             });
                             payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
                             payload = ensureLayoutAndContentFields(payload);
                             accumulatedJson = repaired.raw;
                             logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
                         } catch (repairErr: any) {
+                            if (repairErr?.code === "CLIENT_CANCELED" || repairErr?.code === "OPENAI_TIMEOUT") {
+                                throw repairErr;
+                            }
                             logError({
                                 msg: "llm.response.repair_failed",
                                 request_id,
@@ -378,30 +402,35 @@ export async function POST(request: Request) {
                         throw validationError;
                     }
                 }
-                let reportId: string | null = null;
-                if (user && reportAdmin && mode === "resume") {
-                    reportId = await persistGeneratedReport({
-                        supabase: reportAdmin,
-                        userId: user.id,
-                        payload,
-                        resumeText: canonicalResumeText,
-                        savedJobId,
-                        jobDescriptionText: effectiveJobDescription.persistenceText,
-                        context: { request_id, route, user_id },
-                    });
-                }
-                try {
-                    await commitGenerationAccess(grantedReservation, reservationAdmin);
-                    reservationCommitted = true;
-                } catch (commitError) {
-                    if (reportId && user && reportAdmin) {
-                        await rollbackGeneratedReport({
+                const completion = await finalizeGenerationCompletion({
+                    signal: generationController.signal,
+                    persist: user && reportAdmin && mode === "resume"
+                        ? () => persistGeneratedReport({
+                            supabase: reportAdmin,
+                            userId: user.id,
+                            payload,
+                            resumeText: canonicalResumeText,
+                            savedJobId,
+                            jobDescriptionText: effectiveJobDescription.persistenceText,
+                            context: { request_id, route, user_id },
+                        })
+                        : undefined,
+                    commit: () => commitGenerationAccess(grantedReservation, reservationAdmin),
+                    rollback: user && reportAdmin
+                        ? (reportId) => rollbackGeneratedReport({
                             supabase: reportAdmin, userId: user.id, reportId, context: { request_id, route, user_id },
-                        });
-                        reportId = null;
-                    }
-                    throw commitError;
-                }
+                        })
+                        : undefined,
+                });
+                const reportId = completion.reportId;
+                reservationCommitted = completion.attemptConsumed;
+                throwIfGenerationCanceled(generationController.signal, true);
+
+                controller.enqueue(encoder.encode(JSON.stringify({
+                    type: "meta",
+                    attempt_consumed: true,
+                    attempt_disposition: "consumed",
+                }) + "\n"));
 
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
@@ -431,55 +460,26 @@ export async function POST(request: Request) {
                 });
 
             } catch (err: any) {
-                const disposition = await settleGenerationFailure({
-                    reservation: grantedReservation,
-                    admin: reservationAdmin,
+                if (generationController.signal.aborted && err?.code !== "CLIENT_CANCELED") {
+                    err = generationCancellationError(reservationCommitted);
+                }
+                if (generationCancellationWasCommitted(err)) reservationCommitted = true;
+                await handleGenerationStreamFailure({
                     error: err,
                     attemptConsumed: reservationCommitted,
+                    reservation: grantedReservation,
+                    admin: reservationAdmin,
+                    controller,
+                    encoder,
+                    context: { request_id, route, method, path, user_id, startedAt },
                 });
-                logGenerationReleaseFailure(disposition, { request_id, route, user_id });
-
-                const code = err?.code || "INTERNAL_SERVER_ERROR";
-                if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
-                    captureOperationalError(err, {
-                        operation: "generation.resume_feedback_stream",
-                        tags: { error_code: String(code) },
-                    });
-                }
-                const baseMessage = code === "OPENAI_TIMEOUT"
-                    ? "This is taking longer than usual. Try again in a moment."
-                    : code === "OPENAI_NETWORK_ERROR"
-                        ? "Connection hiccup. Try again in a moment."
-                        : err?.message || "Something went wrong.";
-                const message = appendFailureDisposition(baseMessage, disposition);
-
-                try {
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "error",
-                        errorCode: code,
-                        message,
-                        attempt_consumed: disposition.attemptConsumed,
-                        credit_restored: disposition.creditRestored,
-                    }) + "\n"));
-                    controller.close();
-                } catch {
-                    // The client already closed the stream. The entitlement
-                    // release above remains the authoritative cleanup.
-                }
-
-                logError({
-                    msg: "http.request.completed",
-                    request_id,
-                    route,
-                    method,
-                    path,
-                    status: 500,
-                    latency_ms: Date.now() - startedAt,
-                    outcome: "internal_error",
-                    err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
-                });
+            } finally {
+                request.signal.removeEventListener("abort", abortFromRequest);
             }
-        }
+        },
+        cancel() {
+            generationController.abort(generationCancellationError());
+        },
     });
 
     const response = new NextResponse(stream, {

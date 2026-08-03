@@ -8,4 +8,5 @@ export type OutcomeCategory =
   | "network_error"
   | "provider_error"
   | "schema_invalid"
+  | "client_disconnect"
   | "internal_error";

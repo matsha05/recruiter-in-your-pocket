@@ -10,6 +10,7 @@ import {
   commitGenerationAccess,
   markGenerationProviderCallStarted,
   releaseGenerationAccess,
+  releaseReasonForError,
   reserveGenerationAccess,
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
@@ -401,6 +402,7 @@ assert.doesNotMatch(ledgerDefinition, /email|request_id|ip_address|resume_text|j
 
 const feedbackRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback", "route.ts"), "utf8");
 const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback-stream", "route.ts"), "utf8");
+const streamFailure = readFileSync(path.join(process.cwd(), "lib", "billing", "generation-stream-failure.ts"), "utf8");
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
 const linkedInRoute = readFileSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts"), "utf8");
 const resumeReviewHook = readFileSync(path.join(process.cwd(), "components", "workspace", "hooks", "useResumeReview.ts"), "utf8");
@@ -432,9 +434,10 @@ assert.match(streamRoute, /response\.cookies\.set\(/);
 assert.doesNotMatch(streamRoute, /cookieStore\.set\(/);
 const streamLoopIndex = streamRoute.indexOf("for await (const ev of streamJson");
 const streamValidationIndex = streamRoute.indexOf("payload = validateResumeModelPayload");
-const streamCommitIndex = streamRoute.indexOf("await commitGenerationAccess");
+const streamCommitIndex = streamRoute.indexOf("const completion = await finalizeGenerationCompletion");
 assert.ok(streamLoopIndex > -1 && streamValidationIndex > streamLoopIndex);
 assert.ok(streamCommitIndex > streamValidationIndex);
+assert.match(streamRoute, /commit:\s*\(\) => commitGenerationAccess/);
 assert.ok(
   streamRoute.indexOf('type: "complete"') > streamCommitIndex,
   "the authoritative complete event must not be delivered before validation and entitlement commit"
@@ -448,8 +451,16 @@ for (const source of [feedbackRoute, streamRoute]) {
     providerStarted >= 0 && anonymousCommitted > providerStarted,
     "anonymous post-provider failures must be marked consumed before validation or delivery",
   );
-  assert.match(source, /attempt_consumed:\s*disposition\.attemptConsumed/);
 }
+assert.match(feedbackRoute, /attempt_consumed:\s*disposition\.attemptConsumed/);
+assert.match(streamFailure, /attempt_consumed:\s*disposition\.attemptConsumed/);
+assert.match(streamFailure, /The report could not be completed\./);
+assert.doesNotMatch(streamFailure, /Something went wrong/);
+assert.match(streamRoute, /signal:\s*generationController\.signal/g);
+assert.match(streamRoute, /generationController\.signal\.aborted && err\?\.code !== "CLIENT_CANCELED"/);
+assert.match(streamRoute, /rollback:\s*user && reportAdmin/);
+assert.equal(releaseReasonForError({ code: "CLIENT_CANCELED" }), "client_disconnect");
+assert.equal(releaseReasonForError({ code: "OPENAI_TIMEOUT" }), "provider_timeout");
 assert.doesNotMatch(
   streamRoute,
   /new Error\("The report did not pass its evidence check\. Your report credit was restored/,

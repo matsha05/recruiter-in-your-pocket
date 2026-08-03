@@ -99,6 +99,7 @@ export async function streamResumeFeedback(
   ok: boolean;
   report?: any;
   message?: string;
+  errorCode?: string;
   aborted?: boolean;
   reportId?: string | null;
   attemptConsumed?: boolean;
@@ -119,10 +120,14 @@ export async function streamResumeFeedback(
       signal: options?.signal
     });
   } catch (err: any) {
-    if (err?.name === "AbortError") {
+    if (options?.signal?.aborted) {
       return { ok: false, message: "Canceled", aborted: true };
     }
-    throw err;
+    return {
+      ok: false,
+      errorCode: "STREAM_TRANSPORT_ERROR",
+      message: "The connection ended before the report finished.",
+    };
   }
 
   if (!res.ok) {
@@ -130,7 +135,11 @@ export async function streamResumeFeedback(
   }
 
   if (!res.body) {
-    return { ok: false, message: "No response body" };
+    return {
+      ok: false,
+      errorCode: "STREAM_TRANSPORT_ERROR",
+      message: "The connection ended before the report finished.",
+    };
   }
 
   const reader = res.body.getReader();
@@ -140,7 +149,10 @@ export async function streamResumeFeedback(
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
-  let attemptConsumed = res.headers.get("x-riyp-attempt-consumed") === "1";
+  let errorCode: string | undefined;
+  let attemptConsumed: boolean | undefined = res.headers.get("x-riyp-attempt-consumed") === "1"
+    ? true
+    : undefined;
   let creditRestored = false;
 
   while (true) {
@@ -148,10 +160,16 @@ export async function streamResumeFeedback(
     try {
       readResult = await reader.read();
     } catch (err: any) {
-      if (err?.name === "AbortError") {
+      if (options?.signal?.aborted) {
         return { ok: false, message: "Canceled", aborted: true, attemptConsumed, creditRestored };
       }
-      throw err;
+      return {
+        ok: false,
+        errorCode: "STREAM_TRANSPORT_ERROR",
+        message: "The connection ended before the report finished.",
+        attemptConsumed,
+        creditRestored,
+      };
     }
     const { done, value } = readResult;
     if (done) {
@@ -179,10 +197,15 @@ export async function streamResumeFeedback(
           finalReportId = event.report_id || null;
         } else if (event.type === "error") {
           errorMessage = event.message;
-          attemptConsumed = event.attempt_consumed === true;
+          errorCode = typeof event.errorCode === "string" ? event.errorCode : undefined;
+          attemptConsumed = event.attempt_consumed === true
+            ? true
+            : event.credit_restored === true
+              ? false
+              : undefined;
           creditRestored = event.credit_restored === true;
         } else if (event.type === "meta") {
-          attemptConsumed = attemptConsumed || event.attempt_consumed === true;
+          if (event.attempt_consumed === true) attemptConsumed = true;
         }
       } catch {
         // Ignore malformed lines
@@ -191,14 +214,20 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, message: errorMessage, attemptConsumed, creditRestored };
+    return { ok: false, errorCode, message: errorMessage, attemptConsumed, creditRestored };
   }
 
   if (finalReport) {
-    return { ok: true, report: finalReport, reportId: finalReportId };
+    return { ok: true, report: finalReport, reportId: finalReportId, attemptConsumed: true };
   }
 
-  return { ok: false, message: "Stream ended without completion", attemptConsumed, creditRestored };
+  return {
+    ok: false,
+    errorCode: "STREAM_TRANSPORT_ERROR",
+    message: "The connection ended before the report finished.",
+    attemptConsumed,
+    creditRestored,
+  };
 }
 
 // ============================================

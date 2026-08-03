@@ -68,8 +68,16 @@ async function run() {
     ]);
     const ended = await streamResumeFeedback("Resume source", undefined, () => undefined);
     assert.equal(ended.ok, false);
+    assert.equal(ended.errorCode, "STREAM_TRANSPORT_ERROR");
     assert.equal(ended.attemptConsumed, true, "EOF after consumed metadata must retain attempt state");
-    assert.match(ended.message || "", /without completion/i);
+    assert.match(ended.message || "", /connection ended/i);
+
+    const pendingEnded = await (async () => {
+      globalThis.fetch = async () => responseFor([{ type: "meta", attempt_consumed: false }]);
+      return streamResumeFeedback("Resume source", undefined, () => undefined);
+    })();
+    assert.equal(pendingEnded.errorCode, "STREAM_TRANSPORT_ERROR");
+    assert.equal(pendingEnded.attemptConsumed, undefined, "initial pending metadata must not be mistaken for a restored attempt");
 
     let reads = 0;
     globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
@@ -85,9 +93,66 @@ async function run() {
       status: 200,
       headers: { "x-riyp-attempt-consumed": "1" },
     });
-    const aborted = await streamResumeFeedback("Resume source", undefined, () => undefined);
-    assert.equal(aborted.aborted, true);
-    assert.equal(aborted.attemptConsumed, true, "abort after response headers must retain consumed attempt state");
+    const transportAbort = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(transportAbort.aborted, undefined, "a transport AbortError is not a user cancellation without an aborted client signal");
+    assert.equal(transportAbort.errorCode, "STREAM_TRANSPORT_ERROR");
+    assert.equal(transportAbort.attemptConsumed, true, "transport failure after consumed metadata must retain attempt state");
+
+    reads = 0;
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      pull(controller) {
+        reads += 1;
+        if (reads === 1) {
+          controller.enqueue(new TextEncoder().encode('{"type":"meta","attempt_consumed":true}\n'));
+          return;
+        }
+        controller.error(new Error("socket reset"));
+      },
+    }), { status: 200 });
+    const socketReset = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(socketReset.aborted, undefined);
+    assert.equal(socketReset.errorCode, "STREAM_TRANSPORT_ERROR");
+    assert.equal(socketReset.attemptConsumed, true, "socket reset must preserve the latest consumed disposition");
+
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      pull(controller) {
+        controller.error(new Error("socket reset before metadata"));
+      },
+    }), { status: 200 });
+    const unknownSocketReset = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(unknownSocketReset.errorCode, "STREAM_TRANSPORT_ERROR");
+    assert.equal(unknownSocketReset.attemptConsumed, undefined, "socket reset without authoritative metadata must remain unknown");
+
+    const clientController = new AbortController();
+    reads = 0;
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      pull(controller) {
+        reads += 1;
+        if (reads === 1) {
+          controller.enqueue(new TextEncoder().encode('{"type":"meta","attempt_consumed":false}\n'));
+          return;
+        }
+        clientController.abort();
+        controller.error(new DOMException("Canceled", "AbortError"));
+      },
+    }), { status: 200 });
+    const clientCanceled = await streamResumeFeedback(
+      "Resume source", undefined, () => undefined, "resume", { signal: clientController.signal },
+    );
+    assert.equal(clientCanceled.aborted, true, "only the caller-owned aborted signal may mark a result canceled");
+    assert.equal(clientCanceled.attemptConsumed, undefined, "pending pre-commit metadata must remain unknown after cancel");
+
+    globalThis.fetch = async () => responseFor([{
+      type: "error",
+      errorCode: "CLIENT_CANCELED",
+      message: "Analysis stopped. Your report credit was restored.",
+      attempt_consumed: false,
+      credit_restored: true,
+    }]);
+    const restored = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(restored.errorCode, "CLIENT_CANCELED");
+    assert.equal(restored.attemptConsumed, false, "only an authoritative restored error may resolve the disposition to false");
+    assert.equal(restored.creditRestored, true);
   } finally {
     globalThis.fetch = originalFetch;
   }
