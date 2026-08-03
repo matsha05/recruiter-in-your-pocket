@@ -286,7 +286,8 @@ async function run() {
   );
   assert.match(authProvider, /Promise\.allSettled/);
   assert.match(authProvider, /readAuthoritativePassAccess/);
-  assert.match(freeStatusHook, /finally\s*\{[\s\S]+await refreshUser\?\.\(\)/);
+  assert.match(freeStatusHook, /if \(includeUserRefresh && \(!shouldApply \|\| shouldApply\(\)\)\)/);
+  assert.match(freeStatusHook, /await refreshUser\?\.\(\)/);
 
   console.log("generation finality tests passed");
 }

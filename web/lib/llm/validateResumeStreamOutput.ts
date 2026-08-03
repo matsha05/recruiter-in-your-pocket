@@ -13,6 +13,7 @@ import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
 } from "./reportRepair";
+import { isStableOpenAITransportError } from "../backend/openai-transport";
 
 type ResumeMode =
   | "resume"
@@ -36,6 +37,8 @@ export async function validateResumeStreamOutput(input: {
   requestId: string;
   route: string;
   userIdForLogs?: string;
+  validationOptions?: { forceGrounding?: boolean; jobDescription?: string };
+  signal?: AbortSignal;
 }) {
   try {
     const parsedJson = extractJsonFromText(input.raw);
@@ -50,7 +53,7 @@ export async function validateResumeStreamOutput(input: {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       payload = ensureLayoutAndContentFields(
-        validateResumeModelPayload(parsedJson, input.text)
+        validateResumeModelPayload(parsedJson, input.text, input.validationOptions)
       );
     }
     return { payload, replacementRaw: null as string | null };
@@ -99,9 +102,10 @@ export async function validateResumeStreamOutput(input: {
         prompt_version: "resume_v2_repair",
         schema_version: "report_v1",
         messages: buildResumeRepairMessages(input.messages, input.raw, error),
+        signal: input.signal,
       });
       const payload = ensureLayoutAndContentFields(
-        validateResumeModelPayload(repaired.parsed, input.text)
+        validateResumeModelPayload(repaired.parsed, input.text, input.validationOptions)
       );
       logInfo({
         msg: "llm.response.repair_completed",
@@ -111,6 +115,7 @@ export async function validateResumeStreamOutput(input: {
       });
       return { payload, replacementRaw: repaired.raw };
     } catch (repairError: any) {
+      if (isStableOpenAITransportError(repairError)) throw repairError;
       logError({
         msg: "llm.response.repair_failed",
         request_id: input.requestId,

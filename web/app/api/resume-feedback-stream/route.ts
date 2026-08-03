@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
@@ -27,6 +28,7 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import { withGenerationAccessOutcome } from "@/lib/billing/generationFailureCopy";
 import {
@@ -44,11 +46,11 @@ import {
     type GenerationAccessReservation,
     type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
-import {
-    persistGeneratedResumeReport,
-    resolveUserSavedJobId,
-    rollbackGeneratedResumeReport,
-} from "@/lib/reports/resumeGenerationPersistence";
+import { persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
+import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
+import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
+import { isAnonymousRecoveryId } from "@/lib/reports/anonymous-report-recovery";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -126,8 +128,11 @@ export async function POST(request: Request) {
             access_consumed: false,
         }));
     }
-
     const { text, mode, jobDescription } = validation.value;
+    const requestedRecoveryId = isAnonymousRecoveryId(body?.recovery_id)
+        ? body.recovery_id.toLowerCase()
+        : crypto.randomUUID();
+    const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     let supabase: Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>> = null;
     let user: any = null;
@@ -136,7 +141,6 @@ export async function POST(request: Request) {
     let reservationAdmin: GenerationAccessRpcClient | null = null;
     let bypass = false;
     let user_id: string | undefined;
-
     try {
         supabase = await maybeCreateSupabaseServerClient();
         const admin = createSupabaseAdminClient();
@@ -237,6 +241,10 @@ export async function POST(request: Request) {
     const accessTier = grantedReservation.accessTier;
     const activePass = grantedReservation.activePass;
     const freeUsesRemaining = grantedReservation.freeUsesRemaining;
+    const anonymousRecoveryId = mode === "resume"
+        && grantedReservation.entitlementKind === "anonymous_free"
+        ? requestedRecoveryId
+        : null;
 
     // Access is fully resolved before ReadableStream.start. The shared ledger
     // holds concurrent anonymous attempts; /api/free-status syncs the signed
@@ -244,11 +252,13 @@ export async function POST(request: Request) {
     const encoder = new TextEncoder();
     let accumulatedJson = "";
     let reservationCommitted = false;
-    let clientDisconnected = false;
     let reportId: string | null = null;
-    let rollbackSavedReport: (() => Promise<void>) | null = null;
+    const generationController = new AbortController();
+    const abortFromRequest = () => generationController.abort(request.signal.reason);
+    if (request.signal.aborted) abortFromRequest();
+    else request.signal.addEventListener("abort", abortFromRequest, { once: true });
     const throwIfClientDisconnected = () => {
-        if (!clientDisconnected) return;
+        if (!generationController.signal.aborted) return;
         const error = new Error("Report generation was canceled.");
         error.name = "AbortError";
         throw error;
@@ -257,17 +267,20 @@ export async function POST(request: Request) {
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                // Send initial metadata
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
                     request_id,
                     access,
                     access_tier: accessTier,
                     user: user ? { email: user.email } : null,
-                    bypass
+                    has_job_description: effectiveJobDescription.hasValue,
+                    bypass,
+                    attempt_consumed: reservationCommitted,
+                    attempt_disposition: reservationCommitted ? "consumed" : "pending",
+                    recovery_id: anonymousRecoveryId,
                 }) + "\n"));
 
-                const { messages, model } = await prepareResumeStreamPrompt({
+                const { messages, model, canonicalResumeText } = await prepareResumeStreamPrompt({
                     text,
                     mode,
                     jobDescription,
@@ -275,7 +288,6 @@ export async function POST(request: Request) {
                     route,
                     userIdForLogs: user_id,
                 });
-                const validatedChunks: string[] = [];
                 await markGenerationProviderCallStarted(grantedReservation);
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
@@ -288,6 +300,7 @@ export async function POST(request: Request) {
                             prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
                             schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
                             messages,
+                            signal: generationController.signal,
                             reasoning_effort: streamAttempt > 0
                                 ? increaseReasoningEffort(resolveReasoningEffortForMode(mode, model))
                                 : undefined,
@@ -295,7 +308,6 @@ export async function POST(request: Request) {
                             throwIfClientDisconnected();
                             if (ev.type === "chunk") {
                                 accumulatedJson += ev.content;
-                                validatedChunks.push(ev.content);
                             }
                         }
                         break;
@@ -304,7 +316,6 @@ export async function POST(request: Request) {
                             throw streamError;
                         }
                         accumulatedJson = "";
-                        validatedChunks.length = 0;
                         logWarn({
                             msg: "llm.stream.incomplete_retry",
                             request_id,
@@ -318,72 +329,71 @@ export async function POST(request: Request) {
 
                 const validated = await validateResumeStreamOutput({
                     raw: accumulatedJson,
-                    text,
+                    text: canonicalResumeText,
                     mode,
                     model,
                     messages,
                     requestId: request_id,
                     route,
                     userIdForLogs: user_id,
+                    validationOptions: effectiveJobDescription.validationOptions,
+                    signal: generationController.signal,
                 });
                 const payload = validated.payload;
+                let anonymousRecovery: Awaited<ReturnType<typeof finalizeAnonymousGeneratedReport>> | null = null;
                 if (validated.replacementRaw) {
                     accumulatedJson = validated.replacementRaw;
-                    validatedChunks.length = 0;
-                    validatedChunks.push(validated.replacementRaw);
                 }
                 throwIfClientDisconnected();
-
-                if (user && supabase && mode === "resume") {
-                    reportId = await persistGeneratedResumeReport({
-                        supabase,
+                if (user && mode === "resume" && grantedReservation.entitlementKind !== "bypass") {
+                    if (!reservationAdmin) throw new Error("Report finalization is unavailable.");
+                    const finalized = await finalizeAuthenticatedGeneratedReport({
+                        admin: reservationAdmin,
+                        reservation: grantedReservation,
                         userId: user.id,
-                        resumeText: text,
-                        jobDescription,
-                        savedJobId,
                         payload,
-                        context: {
-                            requestId: request_id,
-                            route,
-                            userIdForLogs: user_id,
-                        },
+                        resumeText: canonicalResumeText,
+                        savedJobId,
+                        jobDescriptionText: effectiveJobDescription.persistenceText,
                     });
-                    rollbackSavedReport = () => rollbackGeneratedResumeReport({
-                        supabase: supabase!,
-                        userId: user.id,
-                        reportId: reportId!,
-                        context: {
-                            requestId: request_id,
-                            route,
-                            userIdForLogs: user_id,
-                        },
+                    reportId = finalized.reportId;
+                    reservationCommitted = true;
+                } else if (anonymousRecoveryId) {
+                    anonymousRecovery = await finalizeAnonymousGeneratedReport({
+                        reservation: grantedReservation,
+                        payload,
+                        resumeText: canonicalResumeText,
+                        recoveryId: anonymousRecoveryId,
                     });
+                    reservationCommitted = true;
+                } else {
+                    if (user && mode === "resume" && grantedReservation.entitlementKind === "bypass") {
+                        reportId = await persistGeneratedReport({
+                            supabase: reservationAdmin,
+                            userId: user.id,
+                            payload,
+                            resumeText: canonicalResumeText,
+                            savedJobId,
+                            jobDescriptionText: effectiveJobDescription.persistenceText,
+                            context: { request_id, route, user_id },
+                        });
+                    }
+                    await commitGenerationAccess(grantedReservation, reservationAdmin);
+                    reservationCommitted = true;
                 }
-
-                // A canceled response remains releasable until validation and
-                // signed-in persistence complete. Commit then becomes final.
-                throwIfClientDisconnected();
-                await commitGenerationAccess(grantedReservation, reservationAdmin);
-                reservationCommitted = true;
-
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
                 const newFreeRemaining = freeUsesRemaining;
 
-                // Model content is buffered until it has passed the complete
-                // response contract and the entitlement is committed. This
-                // prevents a caller from receiving useful output and then
-                // forcing a delivery error that refunds the same credit.
-                for (const content of validatedChunks) {
-                    controller.enqueue(encoder.encode(JSON.stringify({ type: "chunk", content }) + "\n"));
-                }
-
-                // Send the final complete message
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "complete",
                     ok: true,
-                    data: payload,
+                    data: anonymousRecovery?.report ?? payload,
                     report_id: reportId,
+                    report_receipt: anonymousRecovery
+                        ? null
+                        : (reportId ? null : makeValidatedReportReceipt(payload)),
+                    recovery_id: anonymousRecovery?.recovery_id ?? null,
                     free_run_index: newFreeUsed,
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
@@ -400,7 +410,6 @@ export async function POST(request: Request) {
                     outcome: "success",
                     user_id
                 });
-
             } catch (err: any) {
                 let accessConsumed: boolean | null = reservationCommitted;
                 if (!reservationCommitted) {
@@ -427,27 +436,6 @@ export async function POST(request: Request) {
                         });
                     }
                 }
-                if (accessConsumed === false && rollbackSavedReport) {
-                    try {
-                        await rollbackSavedReport();
-                        reportId = null;
-                    } catch (rollbackError: any) {
-                        accessConsumed = null;
-                        logError({
-                            msg: "report.rollback_failed",
-                            request_id,
-                            route,
-                            user_id,
-                            outcome: "internal_error",
-                            err: {
-                                name: rollbackError?.name || "ReportRollbackError",
-                                message: rollbackError?.message || "Report rollback failed",
-                                code: String(rollbackError?.code || "REPORT_ROLLBACK_FAILED"),
-                            },
-                        });
-                    }
-                }
-
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
                     captureOperationalError(err, {
@@ -459,8 +447,13 @@ export async function POST(request: Request) {
                     ? "This is taking longer than usual. Try again in a moment."
                     : code === "OPENAI_NETWORK_ERROR"
                         ? "Connection hiccup. Try again in a moment."
-                        : err?.message || "Something went wrong. Please try again.";
+                        : err?.message || "The report could not be completed. Please try again.";
                 const honestMessage = withGenerationAccessOutcome(message, accessConsumed);
+                const attemptDisposition = accessConsumed === true
+                    ? "consumed"
+                    : accessConsumed === false
+                        ? "restored"
+                        : "unknown";
 
                 try {
                     controller.enqueue(encoder.encode(JSON.stringify({
@@ -468,6 +461,9 @@ export async function POST(request: Request) {
                         errorCode: code,
                         message: honestMessage,
                         access_consumed: accessConsumed,
+                        attempt_consumed: accessConsumed === null ? undefined : accessConsumed,
+                        attempt_disposition: attemptDisposition,
+                        credit_restored: accessConsumed === false,
                     }) + "\n"));
                     controller.close();
                 } catch {
@@ -486,14 +482,16 @@ export async function POST(request: Request) {
                     outcome: "internal_error",
                     err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
                 });
+            } finally {
+                request.signal.removeEventListener("abort", abortFromRequest);
             }
         },
         cancel() {
-            clientDisconnected = true;
+            generationController.abort();
         },
     });
 
-    return respond(new NextResponse(stream, {
-        headers: generationStreamHeaders(request_id),
-    }));
+    const headers = new Headers(generationStreamHeaders(request_id));
+    if (anonymousRecoveryId) headers.set("x-riyp-recovery-id", anonymousRecoveryId);
+    return respond(new NextResponse(stream, { headers }));
 }

@@ -2,24 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
-
 const TEXT_EXTENSIONS = new Set([".ts", ".tsx", ".css", ".md", ".mdx"]);
 
 const EXCLUDED_DIRS = new Set([
-  ".next",
-  "node_modules",
-  "dist",
-  "coverage",
+  ".next", "node_modules", "dist", "coverage",
 ]);
 
 const PRODUCTION_SCOPE_DIRS = [
-  "app",
-  "components",
-  "lib",
+  "app", "components", "lib",
 ];
 
 const SYSTEM_NAME = "Lifted Line 2.0";
-
 // Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
 // baselines after the cross-surface launch migration. New work may reduce this
 // debt, but cannot silently increase it.
@@ -32,10 +25,8 @@ const DESIGN_DEBT_BUDGETS = {
 };
 
 const RESEARCH_SYSTEM_FILES = [
-  "components/research/ResearchClient.tsx",
-  "components/research/ResearchArticle.tsx",
-  "components/shared/diagrams/DiagramPrimitives.tsx",
-  "components/shared/diagrams/EvidenceVisuals.tsx",
+  "components/research/ResearchClient.tsx", "components/research/ResearchArticle.tsx",
+  "components/shared/diagrams/DiagramPrimitives.tsx", "components/shared/diagrams/EvidenceVisuals.tsx",
 ];
 
 const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divide|from|via|to)-(?:teal|emerald|cyan|indigo|violet|purple|slate|gray|zinc|neutral|stone|rose|amber|yellow|orange|blue|sky)-(?:50|100|200|300|400|500|600|700|800|900|950)(?:\/[0-9]{1,3})?\b/g;
@@ -51,6 +42,8 @@ const HEX_ALLOWLIST = new Set([
   "app/(editorial)/guides/tools/comp-calculator/page.tsx",
   "components/research/diagrams/LinkedInResumeFlow.tsx",
   "lib/backend/pdf.ts",
+  // Browserless PDF CSS mirrors the canonical palette because app variables are unavailable.
+  "lib/backend/pdf-styles.ts",
   // Email clients require inline literal colors. The auth-email contract pins
   // these literals to the canonical chalk/ink/citron/cyan palette.
   "lib/auth/otpEmail.ts",

@@ -12,6 +12,11 @@ import {
   anonymousNetworkHashFromRequest,
   hashAnonymousIdentity,
 } from "../lib/billing/anonymousIdentity";
+import {
+  hubspotJobDescription,
+  hubspotSource,
+  schemaValidReport,
+} from "./helpers/report-fidelity-fixture";
 
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
@@ -27,6 +32,7 @@ async function run() {
   const originalLoad = runtimeModule._load;
   const requestCookies = new Map<string, string>();
   let providerCalls = 0;
+  let providerSucceeds = false;
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
     if (request === "next/headers") {
@@ -55,6 +61,9 @@ async function run() {
       return {
         runJson: async () => {
           providerCalls += 1;
+          if (providerSucceeds) {
+            return { parsed: structuredClone(schemaValidReport), raw: JSON.stringify(schemaValidReport) };
+          }
           throw Object.assign(new Error("synthetic provider failure"), {
             code: "OPENAI_NETWORK_ERROR",
           });
@@ -89,6 +98,31 @@ async function run() {
     assert.ok(identityValue, "the first access-error response must issue the signed identity cookie");
     assert.ok(parseAnonymousIdentityCookie(identityValue));
 
+    requestCookies.set(ANONYMOUS_ID_COOKIE, identityValue!);
+    providerSucceeds = true;
+    const recoveryId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+    const completedResponse = await POST(new Request("http://localhost/api/resume-feedback", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "203.0.113.42",
+      },
+      body: JSON.stringify({
+        mode: "resume",
+        text: `${hubspotSource} ${hubspotSource} ${hubspotSource}`,
+        jobDescription: hubspotJobDescription,
+        recovery_id: recoveryId,
+      }),
+    }));
+    const completedPayload = await completedResponse.json();
+    assert.equal(completedResponse.status, 200);
+    assert.equal(completedPayload.recovery_id, recoveryId);
+    assert.equal(completedPayload.report_receipt, null, "the server-only recovery receipt must not become a bearer token");
+    assert.equal(completedPayload.data.score, schemaValidReport.score);
+    assert.equal(completedPayload.data.summary, schemaValidReport.summary);
+    assert.equal(completedPayload.data.contract_version, schemaValidReport.contract_version);
+    assert.equal(providerCalls, 2, "validated sync output must finalize through recovery exactly once");
+
     const committedIdentity = { id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" };
     const originalNetworkRequest = new Request("http://localhost", {
       headers: { "x-forwarded-for": "198.51.100.10" },
@@ -115,7 +149,7 @@ async function run() {
     const movedPayload = await movedResponse.json();
     assert.equal(movedResponse.status, 402);
     assert.equal(movedPayload.errorCode, "PAYWALL_REQUIRED");
-    assert.equal(providerCalls, 1, "a committed durable identity must not reach the provider after an IP move");
+    assert.equal(providerCalls, 2, "a committed durable identity must not reach the provider after an IP move");
 
     requestCookies.clear();
     const clearedResponse = await POST(movedRequest());
@@ -124,7 +158,7 @@ async function run() {
     assert.equal(clearedPayload.errorCode, "PAYWALL_REQUIRED");
     assert.equal(
       providerCalls,
-      1,
+      2,
       "the moved-network shadow must deny a direct POST after both cookies are cleared"
     );
   } finally {

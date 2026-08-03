@@ -1,6 +1,18 @@
 import "server-only";
 
 import { getRedisClient } from "../redis/client";
+import {
+  COMPLETE_WITH_RECOVERY_SCRIPT,
+  anonymousRecoveryStorageKey,
+  completeLocalAnonymousAccessWithRecovery,
+  deleteLocalAnonymousEntry,
+  readLocalAnonymousEntry,
+  validateAnonymousRecoveryCommit,
+  writeLocalAnonymousEntry,
+  type AnonymousReportRecoveryCommit,
+} from "../reports/anonymous-report-recovery";
+import { allowsExplicitLocalAnonymousAccessFallback } from "./anonymousAccessFallback";
+export { allowsExplicitLocalAnonymousAccessFallback } from "./anonymousAccessFallback";
 
 const HOLD_TTL_SECONDS = 10 * 60;
 const COMMITTED_TTL_SECONDS = 40 * 24 * 60 * 60;
@@ -99,31 +111,6 @@ if shadow and string.sub(shadow, 1, 9) == "reserved:" then return shadow end
 return ""
 `;
 
-type LocalEntry = {
-  value: string;
-  expiresAtMs: number;
-};
-
-const localEntries = new Map<string, LocalEntry>();
-
-type AnonymousAccessEnvironment = Record<string, string | undefined>;
-
-export function allowsExplicitLocalAnonymousAccessFallback(
-  env: AnonymousAccessEnvironment = process.env
-): boolean {
-  const explicitTestFallback = ["1", "true"].includes(
-    String(env.RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK || "").toLowerCase()
-  );
-  const mockOnly = ["1", "true"].includes(
-    String(env.USE_MOCK_OPENAI || "").toLowerCase()
-  );
-  const localAppUrl = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(
-    String(env.NEXT_PUBLIC_APP_URL || "")
-  );
-
-  return explicitTestFallback && mockOnly && localAppUrl;
-}
-
 export class AnonymousGenerationAccessError extends Error {
   code = "ANONYMOUS_ACCESS_DEPENDENCY_UNAVAILABLE";
 
@@ -146,6 +133,13 @@ export type AnonymousGenerationAccessBackend = {
     monthKey: string;
     reservationId: string;
   }): Promise<boolean>;
+  completeWithRecovery(input: {
+    identityHash: string;
+    shadowHash: string;
+    monthKey: string;
+    reservationId: string;
+    recovery: AnonymousReportRecoveryCommit;
+  }): Promise<"created" | "idempotent" | "conflict">;
   release(input: {
     identityHash: string;
     shadowHash: string;
@@ -208,18 +202,9 @@ function ledgerKeys(identityHash: string, shadowHash: string, monthKey: string) 
   ];
 }
 
-function localEntry(key: string) {
-  const entry = localEntries.get(key);
-  if (entry && entry.expiresAtMs <= Date.now()) {
-    localEntries.delete(key);
-    return null;
-  }
-  return entry || null;
-}
-
 function localState(keys: string[]) {
-  const primary = localEntry(keys[0])?.value;
-  const shadow = localEntry(keys[1])?.value;
+  const primary = readLocalAnonymousEntry(keys[0])?.value;
+  const shadow = readLocalAnonymousEntry(keys[1])?.value;
   const value = [primary, shadow].find((item) => item?.startsWith("committed:"))
     || [primary, shadow].find((item) => item?.startsWith("reserved:"));
   return stateFromValue(value);
@@ -270,23 +255,24 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entries = keys.map((key) => localEntry(key));
+    const entries = keys.map((key) => readLocalAnonymousEntry(key));
     const primary = entries[0];
     const shadow = entries[1];
     if (primary?.value.startsWith("committed:") && !shadow) {
-      localEntries.set(keys[1], { ...primary });
+      writeLocalAnonymousEntry(
+        keys[1], primary.value, Math.max(1, Math.ceil((primary.expiresAtMs - Date.now()) / 1000))
+      );
       return false;
     }
     if (shadow?.value.startsWith("committed:") && !primary) {
-      localEntries.set(keys[0], { ...shadow });
+      writeLocalAnonymousEntry(
+        keys[0], shadow.value, Math.max(1, Math.ceil((shadow.expiresAtMs - Date.now()) / 1000))
+      );
       return false;
     }
     if (entries.some(Boolean)) return false;
     for (const key of keys) {
-      localEntries.set(key, {
-        value: `reserved:${reservationId}`,
-        expiresAtMs: Date.now() + HOLD_TTL_SECONDS * 1000,
-      });
+      writeLocalAnonymousEntry(key, `reserved:${reservationId}`, HOLD_TTL_SECONDS);
     }
     return true;
   },
@@ -316,7 +302,7 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entries = keys.map((key) => localEntry(key));
+    const entries = keys.map((key) => readLocalAnonymousEntry(key));
     const reserved = `reserved:${reservationId}`;
     const committed = `committed:${reservationId}`;
     const values = entries.map((entry) => entry?.value);
@@ -327,12 +313,41 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       || values.some((value) => value && value !== reserved)
     ) return false;
     for (const key of keys) {
-      localEntries.set(key, {
-        value: committed,
-        expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
-      });
+      writeLocalAnonymousEntry(key, committed, COMMITTED_TTL_SECONDS);
     }
     return true;
+  },
+
+  async completeWithRecovery({
+    identityHash, shadowHash, monthKey, reservationId, recovery,
+  }) {
+    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
+    validateAnonymousRecoveryCommit(recovery, {
+      recovery_id: recovery.recoveryId,
+      reservation_id: reservationId,
+      identity_hash: identityHash,
+      shadow_hash: shadowHash,
+      month_key: monthKey,
+    });
+    const redis = getRedisClient();
+    if (redis) {
+      try {
+        const result = Number(await redis.eval(
+          COMPLETE_WITH_RECOVERY_SCRIPT,
+          [...keys, anonymousRecoveryStorageKey(recovery.recoveryId)],
+          [
+            reservationId,
+            String(COMMITTED_TTL_SECONDS),
+            String(recovery.ttlSeconds),
+            recovery.serializedEnvelope,
+          ]
+        ));
+        return result === 1 ? "created" : result === 2 ? "idempotent" : "conflict";
+      } catch (error) {
+        if (!allowsExplicitLocalAnonymousAccessFallback()) unavailable(error);
+      }
+    } else if (!allowsExplicitLocalAnonymousAccessFallback()) unavailable();
+    return completeLocalAnonymousAccessWithRecovery({ accessKeys: keys, reservationId, recovery });
   },
 
   async release({ identityHash, shadowHash, monthKey, reservationId }) {
@@ -359,7 +374,7 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entries = keys.map((key) => localEntry(key));
+    const entries = keys.map((key) => readLocalAnonymousEntry(key));
     if (entries.every((entry) => !entry)) return { status: "available", action: "none" };
     if (entries.some((entry) => entry?.value.startsWith("committed:"))) {
       return { status: "committed", action: "none" };
@@ -367,7 +382,7 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     if (entries.some((entry) => entry && entry.value !== `reserved:${reservationId}`)) {
       return { status: "conflict", action: "none" };
     }
-    for (const key of keys) localEntries.delete(key);
+    for (const key of keys) deleteLocalAnonymousEntry(key);
     return { status: "released", action: "released" };
   },
 
@@ -442,14 +457,11 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
       unavailable();
     }
 
-    const entries = keys.map((key) => localEntry(key));
+    const entries = keys.map((key) => readLocalAnonymousEntry(key));
     if (entries.some((entry) => entry?.value.startsWith("committed:"))) {
       for (const [index, key] of keys.entries()) {
         if (!entries[index]) {
-          localEntries.set(key, {
-            value: `committed:${receiptId}`,
-            expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
-          });
+          writeLocalAnonymousEntry(key, `committed:${receiptId}`, COMMITTED_TTL_SECONDS);
         }
       }
       return "committed";
@@ -457,10 +469,7 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     const state = localState(keys);
     if (state.status === "reserved") return "reserved";
     for (const key of keys) {
-      localEntries.set(key, {
-        value: `committed:${receiptId}`,
-        expiresAtMs: Date.now() + COMMITTED_TTL_SECONDS * 1000,
-      });
+      writeLocalAnonymousEntry(key, `committed:${receiptId}`, COMMITTED_TTL_SECONDS);
     }
     return "committed";
   },

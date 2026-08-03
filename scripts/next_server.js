@@ -110,16 +110,22 @@ function ensureWebBuild() {
   }
 }
 
-async function startNextServer({ ensureBuild = true } = {}) {
-  if (ensureBuild) ensureWebBuild();
+async function startNextServer({ ensureBuild = true, dev = false } = {}) {
+  if (ensureBuild && !dev) ensureWebBuild();
 
   const port = await findFreePort();
   const baseUrl = `http://localhost:${port}`;
 
   const nextBin = path.join(webDir, "node_modules", "next", "dist", "bin", "next");
-  const proc = spawn(process.execPath, [nextBin, "start", "-p", String(port)], {
+  const command = dev
+    ? [nextBin, "dev", "--webpack", "-p", String(port)]
+    : [nextBin, "start", "-p", String(port)];
+  const proc = spawn(process.execPath, command, {
     cwd: webDir,
-    env: withLaunchTestDefaults(process.env),
+    env: {
+      ...withLaunchTestDefaults(process.env),
+      ...(dev ? { NODE_ENV: "development" } : {}),
+    },
     stdio: ["ignore", "inherit", "inherit"]
   });
 

@@ -17,6 +17,7 @@ import {
   commitGenerationAccess,
   markGenerationProviderCallStarted,
   releaseGenerationAccess,
+  releaseReasonForError,
   reserveGenerationAccess,
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
@@ -420,19 +421,33 @@ const ledgerDefinition = migration.match(/CREATE TABLE IF NOT EXISTS private\.ge
 assert.doesNotMatch(ledgerDefinition, /email|request_id|ip_address|resume_text|job_description/i);
 const feedbackRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback", "route.ts"), "utf8");
 const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback-stream", "route.ts"), "utf8");
+const streamFailure = readFileSync(path.join(process.cwd(), "lib", "billing", "generation-stream-failure.ts"), "utf8");
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
 const linkedInRoute = readFileSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts"), "utf8");
+const resumeReviewHook = readFileSync(path.join(process.cwd(), "components", "workspace", "hooks", "useResumeReview.ts"), "utf8");
 const launchProgram = readFileSync(path.join(process.cwd(), "lib", "launch", "program.ts"), "utf8");
 const accessLifecycle = readFileSync(path.join(process.cwd(), "lib", "billing", "generationAccess.ts"), "utf8");
 const streamValidation = readFileSync(
   path.join(process.cwd(), "lib", "llm", "validateResumeStreamOutput.ts"),
   "utf8"
 );
+const atomicReportFinalizer = readFileSync(
+  path.join(process.cwd(), "lib", "reports", "finalize-generated-report.ts"),
+  "utf8",
+);
+const anonymousReportFinalizer = readFileSync(
+  path.join(process.cwd(), "lib", "reports", "finalize-anonymous-generated-report.ts"),
+  "utf8",
+);
+const anonymousRecovery = readFileSync(
+  path.join(process.cwd(), "lib", "reports", "anonymous-report-recovery.ts"),
+  "utf8",
+);
 
 for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
   assert.match(source, /reserveGenerationAccess/);
   assert.match(source, /commitGenerationAccess/);
-  assert.match(source, /releaseGenerationAccess/);
+  assert.match(source, /settleGenerationFailure|releaseGenerationAccess/);
   const providerCallIndex = source.includes("for await (const ev of streamJson")
     ? source.indexOf("for await (const ev of streamJson")
     : source.indexOf("await runJson<any>");
@@ -453,29 +468,84 @@ for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
 }
 
 assert.ok(streamRoute.indexOf("reserveGenerationAccess({") < streamRoute.indexOf("new ReadableStream"));
+assert.ok(
+  streamRoute.indexOf("recovery_id: anonymousRecoveryId") < streamRoute.indexOf("for await (const ev of streamJson"),
+  "the browser must receive its recovery ID before provider completion",
+);
+assert.match(streamRoute, /headers\.set\("x-riyp-recovery-id", anonymousRecoveryId\)/);
 assert.doesNotMatch(streamRoute, /response\.cookies\.set\(/);
 assert.doesNotMatch(streamRoute, /cookieStore\.set\(/);
 const streamLoopIndex = streamRoute.indexOf("for await (const ev of streamJson");
-const streamValidationIndex = streamRoute.indexOf("await validateResumeStreamOutput");
-const streamCommitIndex = streamRoute.indexOf("await commitGenerationAccess");
-const streamDeliveryIndex = streamRoute.indexOf("for (const content of validatedChunks)");
+const streamValidationIndex = streamRoute.indexOf("const validated = await validateResumeStreamOutput");
+const streamFinalizeIndex = streamRoute.indexOf("const finalized = await finalizeAuthenticatedGeneratedReport");
 assert.ok(streamLoopIndex > -1 && streamValidationIndex > streamLoopIndex);
 assert.match(streamValidation, /validateResumeModelPayload/);
-assert.ok(streamCommitIndex > streamValidationIndex);
+assert.ok(streamFinalizeIndex > streamValidationIndex);
+assert.doesNotMatch(streamRoute, /finalizeGenerationCompletion|commit:\s*\(\) => commitGenerationAccess/);
 assert.ok(
-  streamDeliveryIndex > streamCommitIndex,
-  "streamed model content must not be delivered before validation and entitlement commit"
+  streamRoute.indexOf('type: "complete"') > streamFinalizeIndex,
+  "the authoritative complete event must not be delivered before validation and atomic finalization"
 );
-assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
-const providerMarker = accessLifecycle.match(
-  /export async function markGenerationProviderCallStarted\([\s\S]+?\n\}/
-)?.[0] || "";
-assert.match(providerMarker, /assertGenerationCapacity/);
+assert.doesNotMatch(streamRoute, /validatedChunks|type:\s*"chunk"/);
+assert.match(
+  streamRoute,
+  /let accessConsumed:\s*boolean \| null = reservationCommitted;[\s\S]+if \(!reservationCommitted\) \{[\s\S]+await releaseGenerationAccess\(/,
+  "stream delivery failures must not release an already committed attempt",
+);
+for (const [name, source, validationMarker] of [
+  ["resume feedback", feedbackRoute, "payload = validateResumeModelPayload"],
+  ["streaming resume feedback", streamRoute, "const validated = await validateResumeStreamOutput"],
+] as const) {
+  const signedInAt = source.indexOf('if (user && mode === "resume"');
+  const signedInFinalizeAt = source.indexOf("await finalizeAuthenticatedGeneratedReport({", signedInAt);
+  const signedInElseAt = source.indexOf("} else {", signedInFinalizeAt);
+  const signedInBranch = source.slice(signedInAt, signedInElseAt);
+  const anonymousCommitAt = source.indexOf("await commitGenerationAccess", signedInElseAt);
+  const anonymousFinalizeAt = source.indexOf("await finalizeAnonymousGeneratedReport({", signedInFinalizeAt);
+  assert.ok(
+    signedInFinalizeAt > source.indexOf(validationMarker) && signedInElseAt > signedInFinalizeAt,
+    `${name} must atomically finalize signed-in output after validation`,
+  );
+  assert.doesNotMatch(signedInBranch, /persistGeneratedReport|commitGenerationAccess|rollback|compensat/i);
+  assert.ok(anonymousFinalizeAt > signedInFinalizeAt && anonymousFinalizeAt < anonymousCommitAt,
+    `${name} must atomically bind validated anonymous output to its committed entitlement`);
+  assert.ok(anonymousCommitAt > signedInElseAt,
+    `${name} must preserve the anonymous and bypass commit path outside signed-in finalization`);
+}
+assert.match(atomicReportFinalizer, /input\.admin\.rpc\("finalize_generation_report", built\.args\)/);
+assert.match(atomicReportFinalizer, /input\.admin\.rpc\("get_generation_access_status"/);
+assert.doesNotMatch(atomicReportFinalizer, /commit_generation_access|from\("reports"\)\.insert|\.delete\(|rollback|compensat/i);
+assert.match(anonymousReportFinalizer, /anonymousGenerationAccessBackend\.completeWithRecovery/);
+assert.match(anonymousReportFinalizer, /outcome === "created" \|\| outcome === "idempotent"/);
+assert.ok(
+  anonymousReportFinalizer.indexOf("applyAnonymousCommitCookie(input.reservation)")
+    > anonymousReportFinalizer.indexOf('outcome === "created"'),
+  "anonymous cookie consumption must follow durable recovery finality",
+);
+assert.doesNotMatch(anonymousRecovery, /resume_preview|job_description_preview|resumeText|jobDescription/);
+assert.match(feedbackRoute, /attempt_consumed:\s*disposition\.attemptConsumed/);
+assert.match(streamFailure, /attempt_consumed:\s*disposition\.attemptConsumed/);
+assert.match(streamFailure, /The report could not be completed\./);
+assert.doesNotMatch(streamFailure, /Something went wrong/);
+assert.match(streamRoute, /signal:\s*generationController\.signal/g);
+assert.match(
+  streamValidation,
+  /if \(isStableOpenAITransportError\(repairError\)\) throw repairError/,
+);
+assert.match(
+  streamRoute,
+  /if \(!generationController\.signal\.aborted\) return;[\s\S]+error\.name = "AbortError"/,
+);
+assert.equal(releaseReasonForError({ code: "CLIENT_CANCELED" }), "client_disconnect");
+assert.equal(releaseReasonForError({ name: "AbortError" }), "client_disconnect");
+assert.equal(releaseReasonForError({ code: "OPENAI_TIMEOUT" }), "provider_timeout");
 assert.doesNotMatch(
-  providerMarker,
-  /commitGenerationAccess/,
-  "starting a provider call must reserve spend capacity without consuming report access"
+  streamRoute,
+  /new Error\("The report did not pass its evidence check\. Your report credit was restored/,
+  "post-provider validation errors must not claim an anonymous attempt was restored",
 );
+assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*const refreshed = await input\.refreshFreeStatus/);
+assert.match(resumeReviewHook, /catch \(error\) \{[\s\S]+await input\.refreshFreeStatus/);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");

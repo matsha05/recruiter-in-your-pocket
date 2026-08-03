@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import {
@@ -20,9 +21,9 @@ import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
 } from "@/lib/llm/reportRepair";
-import { buildResumeEvidenceCatalog } from "@/lib/llm/evidence-canonicalizer";
+import { buildResumeProviderMessages } from "@/lib/llm/resume-provider-messages";
 import { resolveOpenAIModel } from "@/lib/llm/model-config";
-import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
+import { loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
   validateResumeFeedbackRequest,
@@ -38,24 +39,24 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
-import { withGenerationAccessOutcome } from "@/lib/billing/generationFailureCopy";
-import {
-  persistGeneratedResumeReport,
-  resolveUserSavedJobId,
-  rollbackGeneratedResumeReport,
-} from "@/lib/reports/resumeGenerationPersistence";
+import { resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
 import {
   assertGenerationAccessDependencies,
   assertGenerationAuthLookup,
   commitGenerationAccess,
   markGenerationProviderCallStarted,
-  releaseGenerationAccess,
-  releaseReasonForError,
   reserveGenerationAccess,
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { appendFailureDisposition, generationFailureCompletion, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
+import { persistGeneratedReport } from "@/lib/reports/generated-report-store";
+import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
+import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
+import { isAnonymousRecoveryId } from "@/lib/reports/anonymous-report-recovery";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -68,7 +69,6 @@ export async function POST(request: Request) {
   let accessReservation: GenerationAccessReservation | null = null;
   let reservationCommitted = false;
   let reservationAdmin: GenerationAccessRpcClient | null = null;
-  let rollbackSavedReport: (() => Promise<void>) | null = null;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
   const cookieStore = await cookies();
   const anonymousIdentity = ensureAnonymousIdentity(
@@ -126,7 +126,10 @@ export async function POST(request: Request) {
     }
 
     const { text, mode, jobDescription } = validation.value;
-    const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
+    const requestedRecoveryId = isAnonymousRecoveryId(body?.recovery_id)
+      ? body.recovery_id.toLowerCase()
+      : crypto.randomUUID();
+    const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -183,66 +186,31 @@ export async function POST(request: Request) {
       ));
     }
 
-    // Build system prompt
-    let systemPrompt = await loadPromptForMode(mode);
-    if (mode === "resume_ideas") {
-      systemPrompt = `${baseTone}\n\n${systemPrompt}`;
-    }
-
-    if (hasJobDescription) {
-      systemPrompt += `
-
-JOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)
-
-The user has provided a specific job description. In your job_alignment response, pay special attention to:
-- How well the resume aligns with THIS specific job's requirements
-- Themes in the job description that the resume demonstrates (strongly_aligned)
-- Themes in the job description that are present but underemphasized (underplayed)
-- Critical requirements from the job description that are missing (missing)
-
-The user wants to know: "Am I a fit for THIS role, and what should I emphasize or add?"
-`;
-    }
-
-    let userPrompt = "";
-
-    if (mode === "case_interview") {
-      userPrompt = `CONTEXT (Role & Question):
-${jobDescription || "No specific context provided."}
-
-TRANSCRIPT (Candidate Answer):
-${text}`;
-    } else if (mode === "case_negotiation") {
-      userPrompt = `CONTEXT (Role & Goals):
-${jobDescription || "No specific context."}
-
-OFFER DETAILS:
-${text}`;
-    } else {
-      userPrompt = `Here is the user's input. Use the system instructions to respond.
-
-USER RESUME:
-${text}`;
-      if (mode === "resume") {
-        userPrompt += `
-
-SOURCE CATALOG (reference only; copy source text after each tag and never output the tags):
-${buildResumeEvidenceCatalog(text)}`;
-      }
-      if (hasJobDescription && jobDescription) {
-        userPrompt += `
-
-JOB DESCRIPTION (for alignment analysis):
-${jobDescription}`;
-      }
-    }
-
     const model = resolveOpenAIModel(mode);
-    const messages = [
-      { role: "system" as const, content: JSON_INSTRUCTION },
-      { role: "system" as const, content: systemPrompt },
-      { role: "user" as const, content: userPrompt }
-    ];
+    const { messages, sanitization: sanitizedInput } = buildResumeProviderMessages({
+      mode,
+      systemPrompt: await loadPromptForMode(mode),
+      text,
+      effectiveJobDescription,
+    });
+    const canonicalResumeText = sanitizedInput.sanitizedText;
+    const sanitizedJobDescription = effectiveJobDescription.sanitization;
+    if (sanitizedInput.injectionDetected || sanitizedJobDescription?.injectionDetected) {
+      logWarn({
+        msg: "security.prompt_injection_detected",
+        request_id,
+        route,
+        user_id,
+        security: {
+          injection_detected: true,
+          patterns_matched: [
+            ...sanitizedInput.detectedPatterns,
+            ...(sanitizedJobDescription?.detectedPatterns || []),
+          ],
+          json_injection: sanitizedInput.hadJsonInjection || Boolean(sanitizedJobDescription?.hadJsonInjection),
+        },
+      });
+    }
     await markGenerationProviderCallStarted(accessReservation);
     const initialRun = await runJson<any>({
       ctx: { request_id, user_id, route },
@@ -251,7 +219,8 @@ ${jobDescription}`;
       model,
       prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
       schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
-      messages
+      messages,
+      signal: request.signal,
     });
     const parsedJson = initialRun.parsed;
 
@@ -266,7 +235,7 @@ ${jobDescription}`;
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       try {
-        payload = validateResumeModelPayload(parsedJson, text);
+        payload = validateResumeModelPayload(parsedJson, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
       } catch (err: any) {
         if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
@@ -286,37 +255,53 @@ ${jobDescription}`;
           prompt_version: "resume_v2_repair",
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
+          signal: request.signal,
         });
-        payload = validateResumeModelPayload(repaired.parsed, text);
+        payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
     }
 
-    // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
-    if (user && supabase && mode === "resume") {
-      reportId = await persistGeneratedResumeReport({
-        supabase,
+    let anonymousRecovery: Awaited<ReturnType<typeof finalizeAnonymousGeneratedReport>> | null = null;
+    if (user && mode === "resume" && accessReservation.entitlementKind !== "bypass") {
+      if (!admin) throw new Error("Report finalization is unavailable.");
+      const finalized = await finalizeAuthenticatedGeneratedReport({
+        admin,
+        reservation: accessReservation,
         userId: user.id,
-        resumeText: text,
-        jobDescription,
-        savedJobId,
         payload,
-        context: { requestId: request_id, route, userIdForLogs: user_id },
+        resumeText: canonicalResumeText,
+        savedJobId,
+        jobDescriptionText: effectiveJobDescription.persistenceText,
       });
-      rollbackSavedReport = () => rollbackGeneratedResumeReport({
-        supabase,
-        userId: user.id,
-        reportId: reportId!,
-        context: { requestId: request_id, route, userIdForLogs: user_id },
+      reportId = finalized.reportId;
+      reservationCommitted = true;
+    } else if (mode === "resume" && accessReservation.entitlementKind === "anonymous_free") {
+      anonymousRecovery = await finalizeAnonymousGeneratedReport({
+        reservation: accessReservation,
+        payload,
+        resumeText: canonicalResumeText,
+        recoveryId: requestedRecoveryId,
       });
+      reservationCommitted = true;
+    } else {
+      if (user && mode === "resume" && accessReservation.entitlementKind === "bypass") {
+        if (!admin) throw new Error("Report persistence is unavailable.");
+        reportId = await persistGeneratedReport({
+          supabase: admin,
+          userId: user.id,
+          payload,
+          resumeText: canonicalResumeText,
+          savedJobId,
+          jobDescriptionText: effectiveJobDescription.persistenceText,
+          context: { request_id, route, user_id },
+        });
+      }
+      await commitGenerationAccess(accessReservation, admin);
+      reservationCommitted = true;
     }
-
-    // Commit is idempotent and resolves ambiguous transport failures against
-    // authoritative state before any response is delivered.
-    await commitGenerationAccess(accessReservation, admin);
-    reservationCommitted = true;
 
     const newFreeUsed = accessReservation.anonymousCookieMeta?.used
       ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : freeMeta.used || 0);
@@ -333,7 +318,12 @@ ${jobDescription}`;
       free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       free_uses_left: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       report_id: reportId,
-      data: payload
+      report_receipt: anonymousRecovery
+        ? null
+        : (reportId ? null : makeValidatedReportReceipt(payload)),
+      recovery_id: anonymousRecovery?.recovery_id ?? null,
+      has_job_description: effectiveJobDescription.hasValue,
+      data: anonymousRecovery?.report ?? payload
     };
 
     const res = NextResponse.json(responseBody);
@@ -360,50 +350,16 @@ ${jobDescription}`;
     });
     return respond(res);
   } catch (err: any) {
-    let accessConsumed: boolean | null = reservationCommitted;
-    if (accessReservation && !reservationCommitted) {
-      try {
-        const release = await releaseGenerationAccess(
-          accessReservation,
-          reservationAdmin,
-          releaseReasonForError(err)
-        );
-        accessConsumed = release.accessConsumed;
-      } catch (releaseErr: any) {
-        accessConsumed = null;
-        logError({
-          msg: "billing.access_release_failed",
-          request_id,
-          route,
-          outcome: "internal_error",
-          err: {
-            name: releaseErr?.name || "GenerationAccessError",
-            message: releaseErr?.message || "Access release failed",
-            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
-          },
-        });
-      }
-    }
-    if (accessConsumed === false && rollbackSavedReport) {
-      try {
-        await rollbackSavedReport();
-      } catch (rollbackError: any) {
-        accessConsumed = null;
-        logError({
-          msg: "report.rollback_failed",
-          request_id,
-          route,
-          outcome: "internal_error",
-          err: {
-            name: rollbackError?.name || "ReportRollbackError",
-            message: rollbackError?.message || "Report rollback failed",
-            code: String(rollbackError?.code || "REPORT_ROLLBACK_FAILED"),
-          },
-        });
-      }
-    }
+    const disposition = await settleGenerationFailure({
+      reservation: accessReservation,
+      admin: reservationAdmin,
+      error: err,
+      attemptConsumed: reservationCommitted,
+    });
+    logGenerationReleaseFailure(disposition, { request_id, route });
 
-    const status = err?.httpStatus || 500;
+    const completion = generationFailureCompletion(err);
+    const status = completion.status;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
 
     if (
@@ -417,7 +373,7 @@ ${jobDescription}`;
       });
     }
 
-    const message =
+    const baseMessage =
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
         : code === "OPENAI_NETWORK_ERROR"
@@ -426,9 +382,9 @@ ${jobDescription}`;
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? "The report did not pass its evidence check. Please try again."
+              ? "The report did not pass its evidence check."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
-    const honestMessage = withGenerationAccessOutcome(message, accessConsumed);
+    const message = appendFailureDisposition(baseMessage, disposition);
 
     logError({
       msg: "http.request.completed",
@@ -438,14 +394,21 @@ ${jobDescription}`;
       path,
       status,
       latency_ms: Date.now() - startedAt,
-      outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
+      outcome: completion.outcome,
       err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
     });
-    const res = NextResponse.json(
-      { ok: false, errorCode: code, message: honestMessage, access_consumed: accessConsumed },
-      { status }
-    );
+    const res = NextResponse.json({
+      ok: false,
+      errorCode: code,
+      message,
+      attempt_consumed: disposition.attemptConsumed,
+      attempt_disposition: disposition.attemptDisposition,
+      credit_restored: disposition.creditRestored,
+    }, { status });
     res.headers.set("x-request-id", request_id);
+    if (disposition.anonymousCookieMeta) {
+      res.cookies.set(FREE_COOKIE, makeFreeCookie(disposition.anonymousCookieMeta), freeCookieOptions());
+    }
     return respond(res);
   }
 }

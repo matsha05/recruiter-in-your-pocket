@@ -568,15 +568,22 @@ function normalizeSectionReviewPresence(report: any, resumeText: string, changes
       const nextFix = section === "Education"
         ? "Add only if it supports the target role or removes a stated requirement question."
         : "Add only if it helps the role story.";
+      const absenceMessage = section === "Summary"
+        ? "No summary section present"
+        : section === "Skills"
+          ? "No skills section present"
+          : section === "Education"
+            ? "No education section present"
+            : "Section not present.";
       const changed = item.grade !== "N/A"
         || item.priority !== "Low"
         || item.working !== ""
-        || item.missing !== "Section not present."
+        || item.missing !== absenceMessage
         || item.fix !== nextFix;
       item.grade = "N/A";
       item.priority = "Low";
       item.working = "";
-      item.missing = "Section not present.";
+      item.missing = absenceMessage;
       item.fix = nextFix;
       if (changed) changes.push(`section_review.${section}.absence`);
       continue;

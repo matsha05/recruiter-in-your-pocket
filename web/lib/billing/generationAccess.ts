@@ -315,7 +315,7 @@ export async function reserveGenerationAccess(input: {
   };
 }
 
-function applyAnonymousCommitCookie(reservation: GenerationAccessReservation) {
+export function applyAnonymousCommitCookie(reservation: GenerationAccessReservation) {
   const cookieMeta = anonymousCookieMetaAfterCommit.get(reservation);
   if (!cookieMeta) throw unavailableFromRpc("commit", null, true);
   reservation.anonymousCookieMeta = cookieMeta;
@@ -484,6 +484,7 @@ export function releaseReasonForError(error: unknown): GenerationReleaseReason {
   const code = String(candidate?.code || "");
   const name = String(candidate?.name || "");
 
+  if (code === "CLIENT_CANCELED") return "client_disconnect";
   if (code === "OPENAI_TIMEOUT") return "provider_timeout";
   if (code.startsWith("OPENAI_RESPONSE_")) return "validation_error";
   if (code.startsWith("OPENAI_")) return "provider_error";

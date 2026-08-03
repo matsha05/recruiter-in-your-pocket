@@ -10,6 +10,8 @@ import {
 import { normalizeTokenUsage, type TokenUsage } from "@/lib/llm/cost";
 import { createAppError, type AppError } from "./errors";
 import { logInfo } from "@/lib/observability/logger";
+import { throwIfGenerationCanceled } from "@/lib/billing/generation-cancellation";
+import { createOpenAIAbortScope, normalizeOpenAITransportError } from "./openai-transport";
 
 export { createAppError } from "./errors";
 export type { AppError } from "./errors";
@@ -20,23 +22,21 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function fetchWithTimeout(url: string, options: RequestInit, timeoutMs: number) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
+async function fetchWithTimeout(
+  url: string,
+  options: RequestInit,
+  timeoutMs: number,
+  externalSignal?: AbortSignal,
+) {
+  const scope = createOpenAIAbortScope(externalSignal, timeoutMs);
   try {
-    return await fetch(url, { ...options, signal: controller.signal });
+    const response = await fetch(url, { ...options, signal: scope.signal });
+    const textBody = await response.text();
+    return { response, textBody };
   } catch (err: any) {
-    if (err?.name === "AbortError") {
-      throw createAppError("OPENAI_TIMEOUT", "OpenAI request timed out.", 504);
-    }
-    throw createAppError(
-      "OPENAI_NETWORK_ERROR",
-      "There was a network hiccup while getting your report.",
-      502,
-      err?.message
-    );
+    throw normalizeOpenAITransportError(err, scope, externalSignal);
   } finally {
-    clearTimeout(timer);
+    scope.dispose();
   }
 }
 
@@ -203,6 +203,7 @@ export async function callOpenAIChat(
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
   mode: Mode,
   model?: string,
+  options?: { signal?: AbortSignal },
 ) {
   const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -218,6 +219,7 @@ export async function callOpenAIChat(
   });
 
   if (USE_MOCK_OPENAI) {
+    throwIfGenerationCanceled(options?.signal);
     const mock = getMockOpenAIResponse(mode);
 
     return {
@@ -237,7 +239,7 @@ export async function callOpenAIChat(
 
   for (let attempt = 0; attempt <= OPENAI_MAX_RETRIES; attempt++) {
     try {
-      const res = await fetchWithTimeout(
+      const { response: res, textBody } = await fetchWithTimeout(
         "https://api.openai.com/v1/chat/completions",
         {
           method: "POST",
@@ -257,10 +259,9 @@ export async function callOpenAIChat(
             messages
           })
         },
-        OPENAI_TIMEOUT_MS
+        OPENAI_TIMEOUT_MS,
+        options?.signal,
       );
-
-      const textBody = await res.text();
 
       if (!res.ok) {
         const status = res.status;
@@ -315,7 +316,10 @@ export async function callOpenAIChat(
         || err?.code === "OPENAI_NETWORK_ERROR"
         || err?.code === "OPENAI_RESPONSE_INCOMPLETE";
       if (retryable && attempt < OPENAI_MAX_RETRIES) {
-        if (OPENAI_RETRY_BACKOFF_MS > 0) await sleep(OPENAI_RETRY_BACKOFF_MS * (attempt + 1));
+        if (OPENAI_RETRY_BACKOFF_MS > 0) {
+          await sleep(OPENAI_RETRY_BACKOFF_MS * (attempt + 1));
+          throwIfGenerationCanceled(options?.signal);
+        }
         continue;
       }
       throw err;
@@ -330,6 +334,7 @@ export function callOpenAIChatStreamingWithUsage(
   mode: Mode,
   reasoningEffort?: ReasoningEffort,
   model?: string,
+  options?: { signal?: AbortSignal },
 ): {
   stream: AsyncGenerator<string, void, unknown>;
   usagePromise: Promise<TokenUsage | null>;
@@ -351,6 +356,7 @@ export function callOpenAIChatStreamingWithUsage(
         const mockJson = JSON.stringify(getMockOpenAIResponse(mode));
         const chunkSize = 96;
         for (let i = 0; i < mockJson.length; i += chunkSize) {
+          throwIfGenerationCanceled(options?.signal);
           yield mockJson.slice(i, i + chunkSize);
         }
         usage = {
@@ -368,8 +374,7 @@ export function callOpenAIChatStreamingWithUsage(
         );
       }
 
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
+      const scope = createOpenAIAbortScope(options?.signal, OPENAI_TIMEOUT_MS);
 
       try {
         const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -389,7 +394,7 @@ export function callOpenAIChatStreamingWithUsage(
             stream: true,
             messages
           }),
-          signal: controller.signal
+          signal: scope.signal
         });
 
         if (!res.ok) {
@@ -412,6 +417,7 @@ export function callOpenAIChatStreamingWithUsage(
         let sawStop = false;
 
         while (true) {
+          throwIfGenerationCanceled(options?.signal);
           const { done, value } = await reader.read();
           if (done) break;
 
@@ -462,8 +468,10 @@ export function callOpenAIChatStreamingWithUsage(
             "missing_finish_reason"
           );
         }
+      } catch (err: any) {
+        throw normalizeOpenAITransportError(err, scope, options?.signal);
       } finally {
-        clearTimeout(timer);
+        scope.dispose();
       }
     } finally {
       resolveUsage(usage);

@@ -272,35 +272,33 @@ async function run() {
   const route = readFileSync(path.join(process.cwd(), "app/api/resume-feedback/route.ts"), "utf8");
   const streamRoute = readFileSync(path.join(process.cwd(), "app/api/resume-feedback-stream/route.ts"), "utf8");
   const workspace = readFileSync(path.join(process.cwd(), "components/workspace/WorkspaceClient.tsx"), "utf8");
-  const resumeAnalysis = readFileSync(
-    path.join(process.cwd(), "components/workspace/hooks/useResumeAnalysis.ts"),
+  const resumeReview = readFileSync(
+    path.join(process.cwd(), "components/workspace/hooks/useResumeReview.ts"),
     "utf8"
   );
   const freeStatus = readFileSync(path.join(process.cwd(), "app/api/free-status/route.ts"), "utf8");
 
-  for (const source of [route, streamRoute]) {
-    assert.doesNotMatch(source, /report credit was restored/i);
-    assert.match(source, /withGenerationAccessOutcome/);
-  }
+  for (const source of [route, streamRoute]) assert.doesNotMatch(source, /report credit was restored/i);
+  assert.match(route, /appendFailureDisposition/);
+  assert.match(streamRoute, /withGenerationAccessOutcome/);
   assert.match(streamRoute, /access_consumed: accessConsumed/);
-  assert.match(streamRoute, /cancel\(\) \{\s*clientDisconnected = true;/);
+  assert.match(streamRoute, /cancel\(\) \{\s*generationController\.abort\(\);/);
+  const streamFinalizationAt = streamRoute.indexOf('if (user && mode === "resume"');
   assert.ok(
-    streamRoute.lastIndexOf("throwIfClientDisconnected()", streamRoute.indexOf("await commitGenerationAccess"))
+    streamRoute.lastIndexOf("throwIfClientDisconnected()", streamFinalizationAt)
       > streamRoute.indexOf("await validateResumeStreamOutput"),
-    "a canceled stream must abort and release access before the validated report commits"
+    "a canceled stream must abort and release access before atomic or anonymous finalization"
   );
   assert.match(freeStatus, /anonymousGenerationAccessBackend\.status/);
   assert.match(freeStatus, /resolveAnonymousFreeUsesRemaining/);
   assert.match(freeStatus, /reconcileCommitted/);
-  assert.equal(
-    resumeAnalysis.match(/await reconcileAfterUnsuccessfulRun\(\)/g)?.length,
-    3,
-    "abort, terminal API failure, and thrown stream failure must all reconcile status"
-  );
+  assert.match(resumeReview, /if \(result\.aborted\)[\s\S]+await input\.refreshFreeStatus/);
+  assert.match(resumeReview, /Failed to generate report:[\s\S]+await input\.refreshFreeStatus/);
+  assert.match(resumeReview, /Report generation error:[\s\S]+await input\.refreshFreeStatus/);
   assert.match(
-    resumeAnalysis,
-    /fallbackDecrement: false,[\s\S]+includeUserRefresh: true,[\s\S]+requireOk: true/,
-    "failed and canceled reports must use authoritative status without a blind decrement"
+    resumeReview,
+    /fallbackDecrement: result\.attemptConsumed === true,[\s\S]+includeUserRefresh: true,[\s\S]+requireOk: true/,
+    "failed and canceled reports must reconcile authoritative status using the known disposition"
   );
   assert.doesNotMatch(workspace, /Your free report was not used/);
 

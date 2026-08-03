@@ -22,9 +22,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Report output + resume preview",
     purpose: "So you can open past reports, compare versions, inspect evidence excerpts, and export.",
-    retention: "Saved when you keep a report or run one while signed in. Includes report output, evidence excerpts, a short resume preview, and any job description you add. Deleted when you delete the report or your account.",
-    userControl: "Delete individual reports in History, or delete your account in Settings.",
-    processor: "Supabase"
+    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, and any job description you add until you delete the report or account.",
+    userControl: "Anonymous recovery expires automatically. Delete saved reports in History, or delete your account in Settings.",
+    processor: "Upstash, Supabase"
   },
   {
     dataType: "Saved resume profile (default resume)",
@@ -86,7 +86,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 
 export const TRUST_PROMISES = [
   "Your upload is encrypted in transit.",
-  "Anonymous reports are not saved to an account automatically.",
+  "Completed anonymous report output can be recovered in the same browser for up to 24 hours, but is not saved to an account automatically. RIYP does not store the raw anonymous resume or job description.",
   "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",

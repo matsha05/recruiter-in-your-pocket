@@ -1,14 +1,13 @@
 import { useCallback, useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import {
-  preservePaidReportAccess,
-  readAuthoritativeFreeUses,
-} from "@/lib/billing/freeStatusClient";
+import { preservePaidReportAccess } from "@/lib/billing/freeStatusClient";
+import { refreshFreeStatusBalance } from "@/lib/free-status-client";
 
 type RefreshOptions = {
   fallbackDecrement?: boolean;
   includeUserRefresh?: boolean;
   requireOk?: boolean;
+  shouldApply?: () => boolean;
 };
 
 type FreeStatusOptions = {
@@ -23,32 +22,24 @@ export function useFreeStatus({
   hasPaidAccess,
 }: FreeStatusOptions) {
   const refreshFreeStatus = useCallback(
-    async ({ fallbackDecrement = false, includeUserRefresh = false }: RefreshOptions = {}) => {
-      let statusRefreshed = false;
-      try {
-        const statusRes = await fetch("/api/free-status");
-        const statusData = await statusRes.json();
-        const reportedUses = readAuthoritativeFreeUses(statusRes.ok, statusData);
-        setFreeUsesRemaining(preservePaidReportAccess(reportedUses, hasPaidAccess));
-        statusRefreshed = true;
-      } catch (err) {
-        console.error("Failed to refresh free status:", err);
-        if (fallbackDecrement) {
-          setFreeUsesRemaining((prev) => preservePaidReportAccess(
-            Math.max(0, prev - 1),
-            hasPaidAccess
-          ));
-        }
-      } finally {
-        if (includeUserRefresh) {
-          try {
-            await refreshUser?.();
-          } catch (error) {
-            console.error("Failed to refresh account access:", error);
-          }
+    async ({ fallbackDecrement = false, includeUserRefresh = false, shouldApply }: RefreshOptions = {}) => {
+      const refreshed = await refreshFreeStatusBalance({
+        fallbackDecrement,
+        setRemaining: (value) => setFreeUsesRemaining((previous) => {
+          const reported = typeof value === "function" ? value(previous) : value;
+          return preservePaidReportAccess(reported, hasPaidAccess);
+        }),
+        shouldApply,
+      });
+      if (!refreshed) console.error("Failed to refresh free status.");
+      if (includeUserRefresh && (!shouldApply || shouldApply())) {
+        try {
+          await refreshUser?.();
+        } catch (userError) {
+          console.error("Failed to refresh user after free status:", userError);
         }
       }
-      return statusRefreshed;
+      return refreshed;
     },
     [hasPaidAccess, refreshUser, setFreeUsesRemaining]
   );

@@ -9,10 +9,8 @@ export type ReportForPdf = {
   next_steps: string[];
   score_label?: string;
   score_comment_short?: string;
-  generated_on?: string;
-  missing_wins?: string[];
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
-  top_fixes?: Array<{ fix?: string; text?: string; why?: string }>;
+  top_fixes?: Array<{ fix?: string; why?: string }>;
   job_alignment?: {
     positioning_suggestion?: string;
     role_fit?: {
@@ -68,11 +66,10 @@ function asTopFixes(value: unknown): NonNullable<ReportForPdf["top_fixes"]> {
     if (!item || typeof item !== "object") return [];
 
     const fix = asTrimmedString((item as { fix?: unknown }).fix) || undefined;
-    const text = asTrimmedString((item as { text?: unknown }).text) || undefined;
     const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
 
-    if (!fix && !text && !why) return [];
-    return [{ fix, text, why }];
+    if (!fix && !why) return [];
+    return [{ fix, why }];
   });
 }
 
@@ -151,7 +148,7 @@ function deriveNextSteps(report: Record<string, unknown>, topFixes: NonNullable<
   if (explicitNextSteps.length > 0) return explicitNextSteps;
 
   const fromTopFixes = topFixes
-    .map((fix) => fix.fix || fix.text)
+    .map((fix) => fix.fix)
     .filter((item): item is string => Boolean(item));
   if (fromTopFixes.length > 0) return fromTopFixes;
 
@@ -175,8 +172,6 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     next_steps: deriveNextSteps(candidate, top_fixes),
     score_label: getScoreLabel(score),
     score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
-    generated_on: asTrimmedString(candidate.generated_on) || undefined,
-    missing_wins: asStringArray(candidate.missing_wins),
     subscores: asSubscores(candidate.subscores),
     top_fixes,
     job_alignment: asJobAlignment(candidate.job_alignment),
@@ -185,8 +180,22 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
   return normalized;
 }
 
-export function buildPdfExportRequest(report: unknown): { report: ReportForPdf } | null {
-  const normalized = normalizeReportForPdf(report);
-  if (!normalized) return null;
-  return { report: normalized };
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
+
+export function parsePdfExportRequest(value: unknown): { report_id: string } | null {
+  if (!value || typeof value !== "object") return null;
+  const reportId = asTrimmedString((value as { report_id?: unknown }).report_id);
+  return reportId && UUID_PATTERN.test(reportId) ? { report_id: reportId } : null;
+}
+
+export function buildPdfExportRequest(report: unknown): { report_id: string } | null {
+  if (!report || typeof report !== "object") return null;
+  const candidate = report as { report_id?: unknown; id?: unknown };
+  return parsePdfExportRequest({ report_id: candidate.report_id || candidate.id });
+}
+
+export function attachStoredReportId<T>(report: T, reportId: unknown): T {
+  const parsed = parsePdfExportRequest({ report_id: reportId });
+  if (!parsed || !report || typeof report !== "object") return report;
+  return { ...report, report_id: parsed.report_id };
 }

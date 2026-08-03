@@ -3,10 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
-import HistorySidebar from "@/components/workspace/HistorySidebar";
-import PaywallModal from "@/components/workspace/PaywallModal";
-import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
-import AuthModal from "@/components/shared/AuthModal";
+import WorkspaceOverlays from "@/components/workspace/WorkspaceOverlays";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { useCommandAction, CommandAction } from "@/components/CommandPalette";
@@ -18,13 +15,15 @@ import { useJobContextFromExtension, type LoadedJobContext } from "@/components/
 import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
-import { useReportSave } from "@/components/workspace/hooks/useReportSave";
-import { useResumeAnalysis } from "@/components/workspace/hooks/useResumeAnalysis";
+import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
+import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
+import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
+import { useAnonymousReportRecovery } from "@/components/workspace/hooks/useAnonymousReportRecovery";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
-import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { needsReceiptValidatedSave, saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
@@ -50,6 +49,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
+    const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
+    const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
     const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
     const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
 
@@ -76,6 +77,30 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     // Ref to track pending auto-run from landing page
     const pendingAutoRunRef = useRef(false);
+    const abortControllerRef = useRef<AbortController | null>(null);
+    const latestAnalysisControllerRef = useRef<AbortController | null>(null);
+    const currentReportRef = useRef(report);
+    const currentLinkedInReportRef = useRef(linkedInReport);
+    currentReportRef.current = report;
+    currentLinkedInReportRef.current = linkedInReport;
+    const captureRecoveryOwner = useCallback(
+        () => latestAnalysisControllerRef.current,
+        [],
+    );
+    const isRecoveryOwnerCurrent = useCallback(
+        (_recoveryId: string, owner: unknown) => (
+            latestAnalysisControllerRef.current === owner
+            && currentReportRef.current === null
+            && currentLinkedInReportRef.current === null
+        ),
+        [],
+    );
+
+    useAnonymousReportRecovery({
+        setReport, setSkipSample, setReviewMode,
+        captureRestoreOwner: captureRecoveryOwner,
+        isRestoreCurrent: isRecoveryOwnerCurrent,
+    });
 
     useWorkspaceInit({
         searchParams,
@@ -116,47 +141,42 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setReport
     });
 
-    useEffect(() => {
-        const restored = takeCheckoutWorkspaceState();
-        if (!restored) return;
-        setResumeText(restored.resumeText || "");
-        setJobDescription(restored.jobDescription || "");
-        setReport(restored.report);
-        setSkipSample(true);
-        toast.success("Your report is back", { description: "Checkout did not discard the read you were working from." });
-    }, []);
+    useCheckoutReportRestoration({ user, setResumeText, setJobDescription, setReport, setSkipSample });
 
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
-    const { refreshFreeStatus } = useFreeStatus({
-        refreshUser,
-        setFreeUsesRemaining,
-        hasPaidAccess,
-    });
-    const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
-    const {
-        analysisMode,
-        analysisStartedAt,
-        beginAnalysis,
-        endAnalysis,
-        handleCancelAnalysis,
-        handleFileSelect,
-        handleRun,
-    } = useResumeAnalysis({
-        user,
-        resumeText,
-        jobDescription,
-        savedJobId: persistedSavedJobId,
-        freeUsesRemaining,
-        refreshFreeStatus,
-        isLoading,
-        setResumeText,
-        setIsPaywallOpen,
-        setIsLoading,
-        setIsStreaming,
-        setReport,
-        setPendingReportForSave,
-        setIsSavePromptOpen,
-    });
+    const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining, hasPaidAccess });
+
+    const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+        const controller = new AbortController();
+        abortControllerRef.current = controller;
+        latestAnalysisControllerRef.current = controller;
+        setAnalysisMode(mode);
+        setAnalysisStartedAt(Date.now());
+        return controller;
+    }, []);
+
+    const isAnalysisCurrent = useCallback((controller: AbortController) => (
+        ownsAnalysisRun(latestAnalysisControllerRef, controller)
+    ), []);
+
+    const endAnalysis = useCallback((controller: AbortController) => {
+        if (!finishOwnedAnalysisRun(abortControllerRef, controller)) return false;
+        setAnalysisStartedAt(null);
+        return true;
+    }, []);
+
+    const handleCancelAnalysis = useCallback((silent?: boolean, invalidate = false) => {
+        cancelOwnedAnalysisRun(abortControllerRef, latestAnalysisControllerRef, invalidate);
+        setIsLoading(false);
+        setIsStreaming(false);
+        setAnalysisStartedAt(null);
+        if (!silent) {
+            toast.info("Analysis canceled");
+        }
+    }, []);
 
     const { handleLinkedInPdfSubmit, handleLinkedInUrlSubmit, handleLinkedInSample } = useLinkedInReview({
         user,
@@ -170,22 +190,24 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setLinkedInProfileHeadline,
         setReviewMode,
         beginAnalysis,
+        isAnalysisCurrent,
         endAnalysis,
         setLastLinkedInPdf
     });
 
-    const { handleRequestSaveAuth, saveReportForCurrentUser } = useReportSave({
-        setPendingReportForSave,
-        setIsSavePromptOpen,
-        setAuthContext,
-        setIsAuthOpen,
+    const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
+    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser } = useResumeReview({
+        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
+        refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
+        setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
+        setIsAuthOpen, setAuthContext,
     });
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;
 
     const handleNewReport = useCallback(() => {
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
@@ -201,7 +223,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setComparisonBaseline(report as ReportData);
         setSkipSample(true);
         setResumeText("");
@@ -244,16 +266,21 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isExporting, setIsExporting] = useState(false);
 
     const handleExportPdf = useCallback(async (overrideReport?: any) => {
-        const payload = overrideReport || report;
+        let payload = overrideReport || report;
         if (!payload) return;
-        const requestBody = buildPdfExportRequest(payload);
-        if (!requestBody) {
-            toast.error("This report is missing some data. Please rerun it and try exporting again.");
-            return;
-        }
 
         setIsExporting(true);
         try {
+            if (user && needsReceiptValidatedSave(payload)) {
+                const original = payload;
+                payload = await saveReceiptValidatedReport(payload);
+                setReport((current: any) => current === original ? payload : current);
+            }
+            const requestBody = buildPdfExportRequest(payload);
+            if (!requestBody) {
+                toast.error("This report is missing some data. Please rerun it and try exporting again.");
+                return;
+            }
             const response = await fetch("/api/export-pdf", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -282,7 +309,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         } finally {
             setIsExporting(false);
         }
-    }, [report]);
+    }, [report, user]);
 
     // Handle Command Palette actions
     useCommandAction((action: CommandAction) => {
@@ -413,7 +440,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             highlightSection={highlightSection}
                             hasPaidAccess={hasPaidAccess}
                             analysisStartedAt={analysisStartedAt}
-                            onCancelAnalysis={() => handleCancelAnalysis()}
+                            onCancelAnalysis={() => handleCancelAnalysis(true)}
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={comparisonBaseline}
                             onStartRevision={handleStartRevision}
@@ -440,59 +467,15 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 </div>
             </section>
 
-            {/* History Sidebar */}
-            <HistorySidebar
-                isOpen={isHistoryOpen}
-                onClose={() => setIsHistoryOpen(false)}
-                user={user ? { email: user.email || undefined } : null}
-                onSignIn={() => {
-                    setIsHistoryOpen(false);
-                    setAuthContext("history");
-                    setIsAuthOpen(true);
-                }}
-                onLoadReport={async (reportId) => {
-                    setIsHistoryOpen(false);
-                    push(`/reports/${reportId}`);
-                }}
-            />
-
-            {/* Paywall Modal */}
-            <PaywallModal
-                isOpen={isPaywallOpen}
-                onClose={() => setIsPaywallOpen(false)}
-                creditsRemaining={freeUsesRemaining}
-                hasCurrentReport={Boolean(report)}
-                workspaceState={report ? { report, resumeText, jobDescription } : null}
-            />
-
-            {/* Auth Modal */}
-            <AuthModal
-                isOpen={isAuthOpen}
-                onClose={() => {
-                    setIsAuthOpen(false);
-                    setAuthContext("default");
-                }}
-                context={authContext}
-                onSuccess={async () => {
-                    await refreshUser();
-                    if (pendingReportForSave) {
-                        try {
-                            await saveReportForCurrentUser(pendingReportForSave);
-                        } catch (error: any) {
-                            toast.error(error?.message || "Failed to save report");
-                        }
-                    }
-                    setIsAuthOpen(false);
-                    setAuthContext("default");
-                }}
-            />
-
-            {/* Save Report Prompt for Guests */}
-            <SaveReportPrompt
-                isOpen={isSavePromptOpen}
-                onClose={() => setIsSavePromptOpen(false)}
-                report={pendingReportForSave}
-                onRequestAuth={handleRequestSaveAuth}
+            <WorkspaceOverlays
+                user={user} report={report} resumeText={resumeText} jobDescription={jobDescription}
+                freeUsesRemaining={freeUsesRemaining} isHistoryOpen={isHistoryOpen}
+                setIsHistoryOpen={setIsHistoryOpen} isPaywallOpen={isPaywallOpen}
+                setIsPaywallOpen={setIsPaywallOpen} isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}
+                authContext={authContext} setAuthContext={setAuthContext} isSavePromptOpen={isSavePromptOpen}
+                setIsSavePromptOpen={setIsSavePromptOpen} pendingReportForSave={pendingReportForSave}
+                refreshUser={refreshUser} saveReportForCurrentUser={saveReportForCurrentUser}
+                handleRequestSaveAuth={handleRequestSaveAuth} loadReport={(reportId) => push(`/reports/${reportId}`)}
             />
         </>
     );
