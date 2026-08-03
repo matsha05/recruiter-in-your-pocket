@@ -290,6 +290,26 @@ async function run() {
     assert.equal(await anonymousGenerationAccessBackend.commit(committedLedger), true);
     requestCookies.set(ANONYMOUS_ID_COOKIE, makeAnonymousIdentityCookie(committedIdentity));
 
+    const movedStreamResponse = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.11",
+      },
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
+    }));
+    const movedStreamPayload = JSON.parse((await movedStreamResponse.text()).trim());
+    assert.equal(movedStreamResponse.status, 402);
+    assert.equal(movedStreamPayload.errorCode, "PAYWALL_REQUIRED");
+    assert.equal(movedStreamPayload.attempt_consumed, false);
+    assert.equal(movedStreamPayload.attempt_disposition, "not_started");
+    assert.equal(
+      movedStreamPayload.operation_id,
+      recoveryId,
+      "an anonymous denial must acknowledge the submitted marker so a post-purchase run starts fresh",
+    );
+    assert.equal(providerCalls, 2, "an anonymous stream denial must not reach the provider");
+
     const movedRequest = () => new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: {

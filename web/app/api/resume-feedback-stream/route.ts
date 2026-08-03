@@ -219,7 +219,9 @@ export async function POST(request: Request) {
                 errorCode: "PAYWALL_REQUIRED",
                 message: "You've used your free report. Paid access adds more reports, saved history, and export.",
                 access_consumed: false,
-                operation_id: authenticatedOperationId,
+                attempt_consumed: false,
+                attempt_disposition: "not_started",
+                operation_id: authenticatedOperationId || requestedRecoveryId,
             }, 402));
         }
     } catch (err: any) {
