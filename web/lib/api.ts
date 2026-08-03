@@ -5,6 +5,7 @@ import {
   fetchAnonymousReportRecovery,
   type AnonymousReportRecoveryMarker,
 } from "./reports/anonymous-report-recovery-client";
+import { parseGenerationFailureResponse, retireTerminalGenerationMarker } from "./reports/generation-operation-marker";
 
 export type ResumeFeedbackRequest = {
   text: string;
@@ -174,33 +175,16 @@ export async function streamResumeFeedback(
   }
 
   if (!res.ok) {
-    let message = `The report request failed with status ${res.status}. Please try again.`;
-    let errorCode: string | undefined;
-    let responseOperationId: string | null = null;
-    try {
-      const errorBody = await res.json();
-      if (typeof errorBody?.message === "string") message = errorBody.message;
-      if (typeof errorBody?.errorCode === "string") errorCode = errorBody.errorCode;
-      if (typeof errorBody?.operation_id === "string") responseOperationId = errorBody.operation_id;
-    } catch {
-      // Keep the submitted recovery marker when terminality is not proven.
-    }
-    if (
-      recoveryMarker
-      && (
-        errorCode === "GENERATION_OPERATION_CONFLICT"
-        || (errorCode === "PAYWALL_REQUIRED"
-          && responseOperationId === recoveryMarker.recoveryId)
-        || (errorCode === "GENERATION_OPERATION_TERMINAL"
-          && responseOperationId === recoveryMarker.recoveryId)
-      )
-    ) {
-      clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
-    }
+    const failure = await parseGenerationFailureResponse(res);
+    retireTerminalGenerationMarker({
+      markerId: recoveryMarker?.recoveryId,
+      errorCode: failure.errorCode,
+      acknowledgedOperationId: failure.operationId,
+    });
     return {
       ok: false,
-      errorCode,
-      message: withGenerationAccessOutcome(message, false),
+      errorCode: failure.errorCode,
+      message: withGenerationAccessOutcome(failure.message, false),
       accessConsumed: false,
     };
   }
@@ -319,13 +303,12 @@ export async function streamResumeFeedback(
                   ? false
                   : undefined;
           creditRestored = event.credit_restored === true;
-          if (recoveryMarker && (
-            errorCode === "GENERATION_OPERATION_CONFLICT"
-            || (event.operation_id === recoveryMarker.recoveryId
-              && (attemptDisposition === "restored"
-                || errorCode === "GENERATION_OPERATION_TERMINAL"
-                || errorCode === "PAYWALL_REQUIRED"))
-          )) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+          retireTerminalGenerationMarker({
+            markerId: recoveryMarker?.recoveryId,
+            errorCode,
+            acknowledgedOperationId: event.operation_id,
+            restored: attemptDisposition === "restored",
+          });
           if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
         } else if (event.type === "meta") {
           if (recoveryMarker && event.recovery_id === recoveryMarker.recoveryId) {
