@@ -22,6 +22,13 @@ function completeResponse(event: Record<string, unknown>) {
   });
 }
 
+function errorResponse(event: Record<string, unknown>, status: number) {
+  return new Response(`${JSON.stringify(event)}\n`, {
+    status,
+    headers: { "Content-Type": "application/x-ndjson" },
+  });
+}
+
 async function run() {
   const originalFetch = globalThis.fetch;
   const previousWindow = (globalThis as any).window;
@@ -118,6 +125,96 @@ async function run() {
     const freshSignedIn = await streamResumeFeedback("signed in resume", undefined, () => undefined);
     assert.equal(freshSignedIn.ok, true);
     assert.equal(readAnonymousReportRecoveryMarker(), null, "signed-in finalization must clear the unused marker");
+
+    const conflictedOperationIds: string[] = [];
+    globalThis.fetch = async (_url, init) => {
+      conflictedOperationIds.push(JSON.parse(String(init?.body)).operation_id);
+      return errorResponse({
+        type: "error",
+        errorCode: "GENERATION_OPERATION_CONFLICT",
+        message: "This report operation cannot be reused. Start a new report attempt.",
+        access_consumed: false,
+        operation_id: null,
+      }, 409);
+    };
+    const firstConflict = await streamResumeFeedback("first conflicting resume", undefined, () => undefined);
+    assert.equal(firstConflict.errorCode, "GENERATION_OPERATION_CONFLICT");
+    assert.equal(readAnonymousReportRecoveryMarker(), null, "an opaque conflict must retire the submitted marker");
+    const secondConflict = await streamResumeFeedback("different resume", undefined, () => undefined);
+    assert.equal(secondConflict.errorCode, "GENERATION_OPERATION_CONFLICT");
+    assert.equal(conflictedOperationIds.length, 2);
+    assert.notEqual(
+      conflictedOperationIds[0],
+      conflictedOperationIds[1],
+      "the next user attempt after a conflict must mint a fresh operation UUID",
+    );
+
+    let deniedOperationId = "";
+    globalThis.fetch = async (_url, init) => {
+      deniedOperationId = JSON.parse(String(init?.body)).operation_id;
+      return errorResponse({
+        type: "error",
+        errorCode: "PAYWALL_REQUIRED",
+        message: "You've used your free report.",
+        access_consumed: false,
+        operation_id: deniedOperationId,
+      }, 402);
+    };
+    const deniedBeforePurchase = await streamResumeFeedback("denied before purchase", undefined, () => undefined);
+    assert.equal(deniedBeforePurchase.errorCode, "PAYWALL_REQUIRED");
+    assert.equal(
+      readAnonymousReportRecoveryMarker(),
+      null,
+      "a signed terminal denial acknowledged by operation ID must retire only that marker",
+    );
+    let purchasedOperationId = "";
+    globalThis.fetch = async (_url, init) => {
+      purchasedOperationId = JSON.parse(String(init?.body)).operation_id;
+      return completeResponse({
+        type: "complete",
+        data: schemaValidReport,
+        operation_id: purchasedOperationId,
+      });
+    };
+    const afterPurchase = await streamResumeFeedback("same user after purchase", undefined, () => undefined);
+    assert.equal(afterPurchase.ok, true);
+    assert.notEqual(
+      purchasedOperationId,
+      deniedOperationId,
+      "the first post-purchase attempt must use a fresh operation UUID",
+    );
+
+    let retainedOperationId = "";
+    globalThis.fetch = async (_url, init) => {
+      retainedOperationId = JSON.parse(String(init?.body)).operation_id;
+      return errorResponse({
+        type: "error",
+        errorCode: "GENERATION_OPERATION_PENDING",
+        message: "This report is still processing.",
+        access_consumed: false,
+      }, 409);
+    };
+    const pendingOperation = await streamResumeFeedback("pending resume", undefined, () => undefined);
+    assert.equal(pendingOperation.errorCode, "GENERATION_OPERATION_PENDING");
+    assert.equal(
+      readAnonymousReportRecoveryMarker()?.recoveryId,
+      retainedOperationId,
+      "an in-flight same-owner operation must retain its recovery marker",
+    );
+    globalThis.fetch = async () => errorResponse({
+      type: "error",
+      errorCode: "ACCESS_DEPENDENCY_UNAVAILABLE",
+      message: "Report access is temporarily unavailable.",
+      access_consumed: false,
+    }, 503);
+    const unavailableOperation = await streamResumeFeedback("retry after dependency error", undefined, () => undefined);
+    assert.equal(unavailableOperation.errorCode, "ACCESS_DEPENDENCY_UNAVAILABLE");
+    assert.equal(
+      readAnonymousReportRecoveryMarker()?.recoveryId,
+      retainedOperationId,
+      "an ambiguous 5xx must retain the current operation marker",
+    );
+    clearAnonymousReportRecoveryMarker(retainedOperationId);
 
     (globalThis as any).window = { localStorage: {
       getItem() { throw new Error("storage blocked"); },

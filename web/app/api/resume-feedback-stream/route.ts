@@ -219,7 +219,8 @@ export async function POST(request: Request) {
                 errorCode: "PAYWALL_REQUIRED",
                 message: "You've used your free report. Paid access adds more reports, saved history, and export.",
                 access_consumed: false,
-            }));
+                operation_id: authenticatedOperationId,
+            }, 402));
         }
     } catch (err: any) {
         const code = err?.code || "ACCESS_DEPENDENCY_UNAVAILABLE";
@@ -244,7 +245,7 @@ export async function POST(request: Request) {
             message,
             access_consumed: false,
             operation_id: code === "GENERATION_OPERATION_TERMINAL" ? requestedOperationId : null,
-        }));
+        }, err?.httpStatus || 503));
     }
     if (!accessReservation) {
         return respond(singleGenerationStreamEvent(request_id, {

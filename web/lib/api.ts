@@ -174,18 +174,32 @@ export async function streamResumeFeedback(
   }
 
   if (!res.ok) {
-    if (recoveryMarker && recoveryMarkerWasCreated) {
-      clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
-    }
     let message = `The report request failed with status ${res.status}. Please try again.`;
+    let errorCode: string | undefined;
+    let responseOperationId: string | null = null;
     try {
       const errorBody = await res.json();
       if (typeof errorBody?.message === "string") message = errorBody.message;
+      if (typeof errorBody?.errorCode === "string") errorCode = errorBody.errorCode;
+      if (typeof errorBody?.operation_id === "string") responseOperationId = errorBody.operation_id;
     } catch {
-      // The status still proves no generation reservation was started.
+      // Keep the submitted recovery marker when terminality is not proven.
+    }
+    if (
+      recoveryMarker
+      && (
+        errorCode === "GENERATION_OPERATION_CONFLICT"
+        || (errorCode === "PAYWALL_REQUIRED"
+          && responseOperationId === recoveryMarker.recoveryId)
+        || (errorCode === "GENERATION_OPERATION_TERMINAL"
+          && responseOperationId === recoveryMarker.recoveryId)
+      )
+    ) {
+      clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
     }
     return {
       ok: false,
+      errorCode,
       message: withGenerationAccessOutcome(message, false),
       accessConsumed: false,
     };
@@ -305,8 +319,13 @@ export async function streamResumeFeedback(
                   ? false
                   : undefined;
           creditRestored = event.credit_restored === true;
-          if (recoveryMarker && event.operation_id === recoveryMarker.recoveryId
-            && (attemptDisposition === "restored" || errorCode === "GENERATION_OPERATION_TERMINAL")) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+          if (recoveryMarker && (
+            errorCode === "GENERATION_OPERATION_CONFLICT"
+            || (event.operation_id === recoveryMarker.recoveryId
+              && (attemptDisposition === "restored"
+                || errorCode === "GENERATION_OPERATION_TERMINAL"
+                || errorCode === "PAYWALL_REQUIRED"))
+          )) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
           if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
         } else if (event.type === "meta") {
           if (recoveryMarker && event.recovery_id === recoveryMarker.recoveryId) {

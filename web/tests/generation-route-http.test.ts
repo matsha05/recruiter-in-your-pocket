@@ -175,6 +175,30 @@ async function run() {
     assert.equal(signedStreamBlockedEvent.access_consumed, false);
     assert.equal(providerCalls, 0, "signed streaming without a durable operation key must stop before provider work");
     assert.equal(reservationCalls, 0, "signed streaming without a durable operation key must stop before reservation");
+
+    forcedReservationError = new GenerationAccessError(
+      "GENERATION_OPERATION_CONFLICT",
+      "This operation reference cannot be used for this request. Start a new report and try again.",
+      409,
+      false,
+    );
+    const signedStreamConflict = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        mode: "resume",
+        text: "A".repeat(120),
+        operation_id: "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+      }),
+    }));
+    const signedStreamConflictEvent = JSON.parse((await signedStreamConflict.text()).trim());
+    assert.equal(signedStreamConflict.status, 409);
+    assert.equal(signedStreamConflictEvent.errorCode, "GENERATION_OPERATION_CONFLICT");
+    assert.equal(signedStreamConflictEvent.operation_id, null, "stream conflicts must not expose prior operation state");
+    assert.equal(providerCalls, 0, "a streaming operation conflict must stop before provider work");
+    assert.equal(reservationCalls, 1);
+    forcedReservationError = null;
+    reservationCalls = 0;
     authenticatedUser = null;
 
     const blockedStream = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
