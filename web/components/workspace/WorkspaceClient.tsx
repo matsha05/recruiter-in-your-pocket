@@ -3,11 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
-import HistorySidebar from "@/components/workspace/HistorySidebar";
-import PaywallModal from "@/components/workspace/PaywallModal";
-import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
-import AuthModal from "@/components/shared/AuthModal";
-import { streamResumeFeedback, parseResume } from "@/lib/api";
+import WorkspaceOverlays from "@/components/workspace/WorkspaceOverlays";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { useCommandAction, CommandAction } from "@/components/CommandPalette";
@@ -19,19 +15,21 @@ import { useJobContextFromExtension, type LoadedJobContext } from "@/components/
 import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
+import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
+import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
+import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
+import { useAnonymousReportRecovery } from "@/components/workspace/hooks/useAnonymousReportRecovery";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
-import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { needsReceiptValidatedSave, saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-function getPersistedSavedJobId(jobContext: LoadedJobContext | null) {
-    return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null;
-}
+function getPersistedSavedJobId(jobContext: LoadedJobContext | null) { return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null; }
 
 type WorkspaceClientProps = {
     initialReport?: ReportData | null;
@@ -80,6 +78,30 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     // Ref to track pending auto-run from landing page
     const pendingAutoRunRef = useRef(false);
     const abortControllerRef = useRef<AbortController | null>(null);
+    const latestAnalysisControllerRef = useRef<AbortController | null>(null);
+    const currentReportRef = useRef(report);
+    const currentLinkedInReportRef = useRef(linkedInReport);
+    currentReportRef.current = report;
+    currentLinkedInReportRef.current = linkedInReport;
+    const captureRecoveryOwner = useCallback(
+        () => latestAnalysisControllerRef.current,
+        [],
+    );
+    const isRecoveryOwnerCurrent = useCallback(
+        (_recoveryId: string, owner: unknown) => (
+            latestAnalysisControllerRef.current === owner
+            && currentReportRef.current === null
+            && currentLinkedInReportRef.current === null
+        ),
+        [],
+    );
+
+    useAnonymousReportRecovery({
+        enabled: !isLoading && !isStreaming && report === null && linkedInReport === null,
+        setReport, setSkipSample, setReviewMode,
+        captureRestoreOwner: captureRecoveryOwner,
+        isRestoreCurrent: isRecoveryOwnerCurrent,
+    });
 
     useWorkspaceInit({
         searchParams,
@@ -120,17 +142,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setReport
     });
 
-    useEffect(() => {
-        const restored = takeCheckoutWorkspaceState();
-        if (!restored) return;
-        setResumeText(restored.resumeText || "");
-        setJobDescription(restored.jobDescription || "");
-        setReport(restored.report);
-        setSkipSample(true);
-        toast.success("Your report is back", { description: "Checkout did not discard the read you were working from." });
-    }, []);
+    useCheckoutReportRestoration({ user, setResumeText, setJobDescription, setReport, setSkipSample });
 
-    const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
+    const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
+    const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining, hasPaidAccess });
 
     const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
         if (abortControllerRef.current) {
@@ -138,21 +153,24 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
         const controller = new AbortController();
         abortControllerRef.current = controller;
+        latestAnalysisControllerRef.current = controller;
         setAnalysisMode(mode);
         setAnalysisStartedAt(Date.now());
         return controller;
     }, []);
 
-    const endAnalysis = useCallback(() => {
+    const isAnalysisCurrent = useCallback((controller: AbortController) => (
+        ownsAnalysisRun(latestAnalysisControllerRef, controller)
+    ), []);
+
+    const endAnalysis = useCallback((controller: AbortController) => {
+        if (!finishOwnedAnalysisRun(abortControllerRef, controller)) return false;
         setAnalysisStartedAt(null);
-        abortControllerRef.current = null;
+        return true;
     }, []);
 
-    const handleCancelAnalysis = useCallback((silent?: boolean) => {
-        if (abortControllerRef.current) {
-            abortControllerRef.current.abort();
-            abortControllerRef.current = null;
-        }
+    const handleCancelAnalysis = useCallback((silent?: boolean, invalidate = false) => {
+        cancelOwnedAnalysisRun(abortControllerRef, latestAnalysisControllerRef, invalidate);
         setIsLoading(false);
         setIsStreaming(false);
         setAnalysisStartedAt(null);
@@ -173,179 +191,24 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setLinkedInProfileHeadline,
         setReviewMode,
         beginAnalysis,
+        isAnalysisCurrent,
         endAnalysis,
         setLastLinkedInPdf
     });
 
-    const saveReportForCurrentUser = useCallback(async (reportToSave: any) => {
-        if (!reportToSave) return;
-
-        const res = await fetch("/api/reports", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ report: reportToSave })
-        });
-
-        const result = await res.json();
-        if (!result.ok) {
-            throw new Error(result.message || "Failed to save report");
-        }
-
-        toast.success("Report saved to your history");
-        setPendingReportForSave(null);
-        setIsSavePromptOpen(false);
-    }, []);
-
-    const handleRequestSaveAuth = useCallback(() => {
-        setIsSavePromptOpen(false);
-        setAuthContext("report");
-        setIsAuthOpen(true);
-    }, []);
-
-    const handleFileSelect = useCallback(async (file: File) => {
-        try {
-            Analytics.track("workspace_upload_started", {
-                source: "workspace",
-                file_type: file.type || "unknown",
-                file_size_bytes: file.size
-            });
-            setIsLoading(true);
-            const formData = new FormData();
-            formData.append("file", file);
-
-            const result = await parseResume(formData);
-            if (result.ok && result.text) {
-                setResumeText(result.text);
-                Analytics.track("workspace_upload_succeeded", {
-                    source: "workspace",
-                    file_type: file.type || "unknown",
-                    file_size_bytes: file.size,
-                    extracted_chars: result.text.length
-                });
-                Analytics.resumeUploaded("workspace");
-                return true;
-            } else {
-                console.error("Failed to parse resume:", result.message);
-                toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
-                setResumeText("");
-                return false;
-            }
-        } catch (err) {
-            console.error("File parsing error:", err);
-            toast.error("File parsing error", { description: "Please try another file." });
-            setResumeText("");
-            return false;
-        } finally {
-            setIsLoading(false);
-        }
-    }, []);
-
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
-
-    const handleRun = useCallback(async () => {
-        if (!resumeText.trim()) {
-            toast.error("Add your resume first", { description: "Upload a file or paste the resume text before creating the report." });
-            return;
-        }
-        const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
-
-        // Check if free uses exhausted (and user doesn't have active pass)
-        if (freeUsesRemaining <= 0 && !hasPaidAccess) {
-            setIsPaywallOpen(true);
-            Analytics.paywallViewed("free_uses_exhausted");
-            return;
-        }
-
-        setIsLoading(true);
-        setIsStreaming(true);
-        setReport(null);
-        const controller = beginAnalysis("resume");
-        Analytics.reportStarted(!!jobDescription.trim());
-        Analytics.track("report_stream_started", {
-            has_jd: !!jobDescription.trim(),
-            mode: "resume"
-        });
-
-        try {
-            const streamStartedAt = Date.now();
-            let firstMeaningfulTracked = false;
-
-            const result = await streamResumeFeedback(
-                resumeText,
-                jobDescription || undefined,
-                (partialJson, partialReport) => {
-                    if (partialReport) {
-                        setReport(partialReport);
-                        const hasMeaningfulOutput = Boolean(
-                            partialReport.score || partialReport.summary || partialReport.first_impression
-                        );
-                        if (!firstMeaningfulTracked && hasMeaningfulOutput) {
-                            firstMeaningfulTracked = true;
-                            Analytics.track("report_first_meaningful_chunk_rendered", {
-                                mode: "resume",
-                                latency_ms: Date.now() - streamStartedAt,
-                                has_score: typeof partialReport.score === "number"
-                            });
-                        }
-                        // Reveal meaningful partial output as soon as we have it.
-                        if (isLoading && (partialReport.score || partialReport.summary || partialReport.first_impression)) {
-                            setIsLoading(false);
-                        }
-                    }
-                },
-                "resume",
-                { signal: controller.signal, savedJobId: persistedSavedJobId }
-            );
-            if (result.aborted) {
-                setIsLoading(false);
-                setIsStreaming(false);
-                endAnalysis();
-                return;
-            }
-
-            if (result.ok && result.report) {
-                setReport(result.report);
-                setIsStreaming(false);
-                setIsLoading(false);
-                endAnalysis();
-                Analytics.reportCompleted(result.report?.score || 0);
-
-                await refreshFreeStatus({
-                    fallbackDecrement: true,
-                    includeUserRefresh: true,
-                    requireOk: true
-                });
-
-                // Show save prompt for guest users after report is generated
-                if (!user && result.report && !isLaunchFlagEnabled("guestReportSave")) {
-                    setPendingReportForSave(result.report);
-                    setTimeout(() => {
-                        Analytics.track('save_prompt_viewed', { score: result.report?.score || 0 });
-                        setIsSavePromptOpen(true);
-                    }, 5000);
-                }
-            } else {
-                // Error case - show immediately
-                console.error("Failed to generate report:", result.message);
-                toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · Your free report was not used` });
-                setIsLoading(false);
-                setIsStreaming(false);
-                endAnalysis();
-            }
-        } catch (err) {
-            console.error("Report generation error:", err);
-            toast.error("Report generation error", { description: "Please try again. Your free report was not used." });
-            setIsLoading(false);
-            setIsStreaming(false);
-            endAnalysis();
-        }
-    }, [resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
+    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser } = useResumeReview({
+        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
+        refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
+        setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
+        setIsAuthOpen, setAuthContext,
+    });
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;
 
     const handleNewReport = useCallback(() => {
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
@@ -361,7 +224,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
-        handleCancelAnalysis(true);
+        handleCancelAnalysis(true, true);
         setComparisonBaseline(report as ReportData);
         setSkipSample(true);
         setResumeText("");
@@ -404,16 +267,21 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isExporting, setIsExporting] = useState(false);
 
     const handleExportPdf = useCallback(async (overrideReport?: any) => {
-        const payload = overrideReport || report;
+        let payload = overrideReport || report;
         if (!payload) return;
-        const requestBody = buildPdfExportRequest(payload);
-        if (!requestBody) {
-            toast.error("This report is missing some data. Please rerun it and try exporting again.");
-            return;
-        }
 
         setIsExporting(true);
         try {
+            if (user && needsReceiptValidatedSave(payload)) {
+                const original = payload;
+                payload = await saveReceiptValidatedReport(payload);
+                setReport((current: any) => current === original ? payload : current);
+            }
+            const requestBody = buildPdfExportRequest(payload);
+            if (!requestBody) {
+                toast.error("This report is missing some data. Please rerun it and try exporting again.");
+                return;
+            }
             const response = await fetch("/api/export-pdf", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -442,7 +310,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         } finally {
             setIsExporting(false);
         }
-    }, [report]);
+    }, [report, user]);
 
     // Handle Command Palette actions
     useCommandAction((action: CommandAction) => {
@@ -471,7 +339,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
     });
 
-    const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const effectiveUsesRemaining = hasPaidAccess ? Math.max(freeUsesRemaining, 1) : freeUsesRemaining;
 
     useEffect(() => {
@@ -574,7 +441,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             highlightSection={highlightSection}
                             hasPaidAccess={hasPaidAccess}
                             analysisStartedAt={analysisStartedAt}
-                            onCancelAnalysis={() => handleCancelAnalysis()}
+                            onCancelAnalysis={() => handleCancelAnalysis(true)}
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={comparisonBaseline}
                             onStartRevision={handleStartRevision}
@@ -601,60 +468,15 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 </div>
             </section>
 
-
-            {/* History Sidebar */}
-            <HistorySidebar
-                isOpen={isHistoryOpen}
-                onClose={() => setIsHistoryOpen(false)}
-                user={user ? { email: user.email || undefined } : null}
-                onSignIn={() => {
-                    setIsHistoryOpen(false);
-                    setAuthContext("history");
-                    setIsAuthOpen(true);
-                }}
-                onLoadReport={async (reportId) => {
-                    setIsHistoryOpen(false);
-                    push(`/reports/${reportId}`);
-                }}
-            />
-
-            {/* Paywall Modal */}
-            <PaywallModal
-                isOpen={isPaywallOpen}
-                onClose={() => setIsPaywallOpen(false)}
-                creditsRemaining={freeUsesRemaining}
-                hasCurrentReport={Boolean(report)}
-                workspaceState={report ? { report, resumeText, jobDescription } : null}
-            />
-
-            {/* Auth Modal */}
-            <AuthModal
-                isOpen={isAuthOpen}
-                onClose={() => {
-                    setIsAuthOpen(false);
-                    setAuthContext("default");
-                }}
-                context={authContext}
-                onSuccess={async () => {
-                    await refreshUser();
-                    if (pendingReportForSave) {
-                        try {
-                            await saveReportForCurrentUser(pendingReportForSave);
-                        } catch (error: any) {
-                            toast.error(error?.message || "Failed to save report");
-                        }
-                    }
-                    setIsAuthOpen(false);
-                    setAuthContext("default");
-                }}
-            />
-
-            {/* Save Report Prompt for Guests */}
-            <SaveReportPrompt
-                isOpen={isSavePromptOpen}
-                onClose={() => setIsSavePromptOpen(false)}
-                report={pendingReportForSave}
-                onRequestAuth={handleRequestSaveAuth}
+            <WorkspaceOverlays
+                user={user} report={report} resumeText={resumeText} jobDescription={jobDescription}
+                freeUsesRemaining={freeUsesRemaining} isHistoryOpen={isHistoryOpen}
+                setIsHistoryOpen={setIsHistoryOpen} isPaywallOpen={isPaywallOpen}
+                setIsPaywallOpen={setIsPaywallOpen} isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}
+                authContext={authContext} setAuthContext={setAuthContext} isSavePromptOpen={isSavePromptOpen}
+                setIsSavePromptOpen={setIsSavePromptOpen} pendingReportForSave={pendingReportForSave}
+                refreshUser={refreshUser} saveReportForCurrentUser={saveReportForCurrentUser}
+                handleRequestSaveAuth={handleRequestSaveAuth} loadReport={(reportId) => push(`/reports/${reportId}`)}
             />
         </>
     );

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { logError } from "@/lib/observability/logger";
+import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json, job_description_text, target_role, resume_variant")
+      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -48,9 +49,22 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       );
     }
 
+    const trustedReport = parseTrustedStoredReport(
+      data.report_json,
+      data.evidence_version,
+      data.evidence_json,
+      user.id,
+    );
+    if (!trustedReport) {
+      return NextResponse.json(
+        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report must be rerun before it can be displayed.", report: null },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json({
       ok: true,
-      report: data.report_json,
+      report: { ...trustedReport, report_id: reportId },
       jdPreview: data.job_description_text?.slice(0, 200) || null,
       targetRole: data.target_role || null,
       resumeVariant: data.resume_variant || null
@@ -132,21 +146,21 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     }
 
     // Verify it's actually gone
-    const { data: stillExists } = await supabase
+    const { data: stillExists, error: verificationError } = await supabase
       .from("reports")
       .select("id")
       .eq("id", reportId)
       .maybeSingle();
 
-    if (stillExists) {
+    if (verificationError || stillExists) {
       logError({
         msg: "reports.delete_verification_failed",
         outcome: "internal_error",
-        supabase: { table: "reports", op: "delete", error_code: "DELETE_VERIFICATION_FAILED" },
-        err: { name: "ReportDeleteError", message: "Report still existed after deletion", code: "DELETE_VERIFICATION_FAILED" },
+        supabase: { table: "reports", op: "delete", error_code: String(verificationError?.code || "DELETE_VERIFICATION_FAILED") },
+        err: { name: "ReportDeleteError", message: verificationError ? "Report deletion could not be verified" : "Report still existed after deletion", code: "DELETE_VERIFICATION_FAILED" },
       });
       return NextResponse.json(
-        { ok: false, errorCode: "DELETE_FAILED", message: "Delete appeared to succeed but report still exists. Check RLS policies." },
+        { ok: false, errorCode: "DELETE_VERIFICATION_FAILED", message: "Could not verify that this report was deleted." },
         { status: 500 }
       );
     }

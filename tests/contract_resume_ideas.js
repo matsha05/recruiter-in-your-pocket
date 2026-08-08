@@ -30,18 +30,21 @@ async function request(method, url, body = null) {
 
 async function run() {
   try {
-    // Test valid request
+    // A syntactically valid request must fail closed when the hermetic
+    // production server has no durable anonymous-access ledger. The provider
+    // must not run and no free attempt may be consumed.
     const validResponse = await request("POST", "/api/resume-ideas", {
       text: "Software Engineer\nGoogle\nLed team of 5 engineers"
     });
-    assert.strictEqual(validResponse.status, 200, `Expected 200, got ${validResponse.status}: ${validResponse.body}`);
+    assert.strictEqual(validResponse.status, 503, `Expected fail-closed 503, got ${validResponse.status}: ${validResponse.body}`);
     const validPayload = JSON.parse(validResponse.body);
-    assert.strictEqual(validPayload.ok, true, "Response should have ok: true");
-    assert.ok(validPayload.data, "Response should have data field");
-    assert.ok(Array.isArray(validPayload.data.questions), "Data should have questions array");
-    assert.ok(Array.isArray(validPayload.data.notes), "Data should have notes array");
-    assert.ok(typeof validPayload.data.how_to_use === "string", "Data should have how_to_use string");
-    assert.match(validResponse.headers["set-cookie"] || "", /rip_free_meta=/, "successful anonymous ideas should consume the signed free cookie");
+    assert.strictEqual(validPayload.ok, false, "Response should fail closed without a durable access ledger");
+    assert.strictEqual(validPayload.errorCode, "ACCESS_DEPENDENCY_UNAVAILABLE");
+    assert.doesNotMatch(
+      validResponse.headers["set-cookie"] || "",
+      /rip_free_meta=/,
+      "an unavailable access ledger must not consume the signed free cookie",
+    );
 
     // Test empty text validation
     const emptyResponse = await request("POST", "/api/resume-ideas", {

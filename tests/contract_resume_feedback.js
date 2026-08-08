@@ -1,5 +1,6 @@
 // Contract tests for /api/resume-feedback endpoint
 const assert = require("assert");
+const { randomUUID } = require("crypto");
 
 process.env.USE_MOCK_OPENAI = "1";
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
@@ -24,39 +25,55 @@ async function request(method, url, body = null, extraHeaders = {}) {
   };
 }
 
+function cookieFromSetCookie(headers, name) {
+  return (headers["set-cookie"] || "").match(new RegExp(`${name}=[^;,]+`))?.[0] || "";
+}
+
+async function anonymousIdentityHandshake(url, ip, recoveryId) {
+  const response = await request("POST", url, {
+    text: "Software Engineer\nGoogle\nLed team of 5 engineers",
+    mode: "resume",
+    recovery_id: recoveryId,
+  }, { "x-forwarded-for": ip });
+  assert.strictEqual(response.status, 409, `Expected identity handshake, got ${response.status}: ${response.body}`);
+  assert.strictEqual(JSON.parse(response.body).errorCode, "ANONYMOUS_IDENTITY_REQUIRED");
+  const identityCookie = cookieFromSetCookie(response.headers, "rip_anon_id");
+  assert.ok(identityCookie, "Identity handshake should set the signed anonymous cookie");
+  return identityCookie;
+}
+
 async function run() {
   try {
     // Test valid request
+    const validRecoveryId = randomUUID();
+    const validIdentityCookie = await anonymousIdentityHandshake(
+      "/api/resume-feedback", "192.0.2.10", validRecoveryId,
+    );
     const validResponse = await request("POST", "/api/resume-feedback", {
       text: "Software Engineer\nGoogle\nLed team of 5 engineers",
-      mode: "resume"
-    }, { "x-forwarded-for": "192.0.2.10" });
-    assert.strictEqual(validResponse.status, 200, `Expected 200, got ${validResponse.status}: ${validResponse.body}`);
+      mode: "resume",
+      recovery_id: validRecoveryId,
+    }, { Cookie: validIdentityCookie, "x-forwarded-for": "192.0.2.10" });
+    assert.strictEqual(validResponse.status, 503, `Expected fail-closed 503, got ${validResponse.status}: ${validResponse.body}`);
     const validPayload = JSON.parse(validResponse.body);
-    assert.strictEqual(validPayload.ok, true, "Response should have ok: true");
-    assert.ok(validPayload.data, "Response should have data field");
-    assert.ok(typeof validPayload.data.score === "number", "Data should have score field");
-    assert.ok(Array.isArray(validPayload.data.strengths), "Data should have strengths array");
+    assert.strictEqual(validPayload.ok, false, "Response should fail closed without a durable access ledger");
+    assert.strictEqual(validPayload.errorCode, "ACCESS_DEPENDENCY_UNAVAILABLE");
+    assert.strictEqual(validPayload.attempt_consumed, false);
 
     // Streaming access is resolved before ReadableStream.start, so its signed
     // anonymous usage cookie must be attached to the actual response.
+    const streamRecoveryId = randomUUID();
+    const streamIdentityCookie = await anonymousIdentityHandshake(
+      "/api/resume-feedback-stream", "192.0.2.11", streamRecoveryId,
+    );
     const streamResponse = await request("POST", "/api/resume-feedback-stream", {
       text: "Software Engineer\nGoogle\nLed team of 5 engineers",
-      mode: "resume"
-    }, { "x-forwarded-for": "192.0.2.11" });
-    assert.strictEqual(streamResponse.status, 200);
-    assert.match(streamResponse.body, /"type":"complete"/);
-    assert.match(streamResponse.headers["set-cookie"] || "", /rip_free_meta=/);
-
-    const signedFreeCookie = (streamResponse.headers["set-cookie"] || "").split(";")[0];
-    const exhaustedStreamResponse = await request(
-      "POST",
-      "/api/resume-feedback-stream",
-      { text: "A second resume request", mode: "resume" },
-      { Cookie: signedFreeCookie, "x-forwarded-for": "192.0.2.11" }
-    );
-    assert.strictEqual(exhaustedStreamResponse.status, 200, "stream errors remain event-framed for API compatibility");
-    assert.match(exhaustedStreamResponse.body, /"errorCode":"PAYWALL_REQUIRED"/);
+      mode: "resume",
+      recovery_id: streamRecoveryId,
+    }, { Cookie: streamIdentityCookie, "x-forwarded-for": "192.0.2.11" });
+    assert.strictEqual(streamResponse.status, 503);
+    assert.match(streamResponse.body, /"errorCode":"ACCESS_DEPENDENCY_UNAVAILABLE"/);
+    assert.match(streamResponse.body, /"access_consumed":false/);
 
     // Test empty text validation
     const emptyResponse = await request("POST", "/api/resume-feedback", {

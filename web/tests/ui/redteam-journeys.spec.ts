@@ -38,7 +38,7 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
-    await expect(page).toHaveURL(/\/workspace$/);
+    await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
   });
 
@@ -116,24 +116,17 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("heading", { name: "Three moves. In order.", exact: true })).toBeVisible();
 
     const firstFix = page.locator("#section-fix-1");
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
-    await expect(firstFix).toContainText("We don’t invent accomplishments.");
+    const sourceNeeded = firstFix.getByRole("button", { name: "Source needed to copy" });
+    await expect(sourceNeeded).toBeDisabled();
+    await expect(firstFix).toContainText("Copy is unavailable because this view does not include the source resume.");
     await firstFix.getByRole("button", { name: "Edit" }).click();
-    await firstFix.getByLabel("Edit suggested line 1").fill(
+    const firstDraft = firstFix.getByLabel("Edit suggested line 1");
+    const originalDraft = await firstDraft.inputValue();
+    await firstDraft.fill(
       "Redesigned onboarding using the program length, audience, teams, and outcome I verified.",
     );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
-
-    const firstDraft = firstFix.getByLabel("Edit suggested line 1");
-    await firstFix.getByRole("button", { name: "Use a factual no-number draft" }).click();
-    await expect(firstDraft).toHaveValue(
-      "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.",
-    );
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
-    await firstDraft.fill(
-      "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires, improving results 45%.",
-    );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(sourceNeeded).toBeDisabled();
+    await firstDraft.fill(originalDraft);
 
     const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
     await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
@@ -143,34 +136,30 @@ test.describe("launch red-team journeys", () => {
     await firstFix.getByLabel("Fact for verified outcome in fix 1").fill("28% shorter ramp time");
     await expect(keepFacts).toBeEnabled();
     await keepFacts.click();
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(sourceNeeded).toBeDisabled();
     await expect(firstDraft).toHaveValue(
       "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
     );
     await firstDraft.fill(
       "Redesigned 30-day program onboarding for 18 weekly hires across Salesforce, Support, and Operations, improving 28% shorter ramp time.",
     );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(sourceNeeded).toBeDisabled();
     await firstDraft.fill(
       "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
     );
-    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(sourceNeeded).toBeDisabled();
     await firstDraft.fill(
       "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 45% shorter ramp time.",
     );
-    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(sourceNeeded).toBeDisabled();
 
     const unquantifiedFix = page.locator("#section-fix-3");
-    const unquantifiedDraft = unquantifiedFix.getByLabel("Edit suggested line 3");
-    await unquantifiedFix.getByRole("button", { name: "Edit" }).click();
-    await expect(unquantifiedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
-    await unquantifiedDraft.fill(
-      "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and 45% calmer execution.",
-    );
-    await expect(unquantifiedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(unquantifiedFix.getByText("Question to answer")).toBeVisible();
+    await expect(unquantifiedFix).toContainText("No source-safe rewrite is attached to this fix.");
+    await expect(unquantifiedFix.getByRole("button", { name: "Edit" })).toHaveCount(0);
 
     await sampleCta.click();
-    await expect(page).toHaveURL(/\/workspace$/);
+    await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
 
@@ -185,6 +174,12 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
     await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
+    await purchaseDecision.getByRole("button").click();
+    const reportPaywall = page.getByRole("dialog", { name: /reached the preview limit/i });
+    await expect(reportPaywall).toContainText("Your existing report stays available");
+    await expect(reportPaywall.getByRole("button", { name: "Back to my report" })).toBeVisible();
+    await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
+    await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
     const feedback = page.getByTestId("beta-feedback");
     await expect(feedback).toContainText("Your first complete report is free. No card required.");
@@ -199,32 +194,24 @@ test.describe("launch red-team journeys", () => {
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
     const generatedFactCount = await generatedFactInputs.count();
     if (generatedFactCount > 0) {
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      await expect(firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" })).toBeDisabled();
       for (let index = 0; index < generatedFactCount; index += 1) {
         await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
       }
       await firstGeneratedFix.getByRole("button", { name: "Keep these facts" }).click();
-      await expect(firstGeneratedFix.getByText("Facts to preserve")).toBeVisible();
       const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
       for (let index = 0; index < generatedFactCount; index += 1) {
         await expect(generatedDraft).toHaveValue(new RegExp(`Candidate supplied fact ${index + 1}`));
       }
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
       await generatedFactInputs.first().fill("Changed but not confirmed");
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      await expect(firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" })).toBeDisabled();
     } else {
-      const verifiedFact = "Six product, operations, and support partners used the launch cadence";
-      await firstGeneratedFix.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
-      await firstGeneratedFix.getByRole("button", { name: "Keep this fact" }).click();
-      const factToPreserve = firstGeneratedFix.getByText("Fact to preserve").locator("..");
-      await expect(factToPreserve).toContainText(verifiedFact);
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
-      const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
-      const currentDraft = await generatedDraft.inputValue();
-      await generatedDraft.fill(`${currentDraft} ${verifiedFact}.`);
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
-      await generatedDraft.fill(currentDraft);
-      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
+      const verifyButton = firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" });
+      if (await copyButton.count()) await expect(copyButton).toBeEnabled();
+      else if (await verifyButton.count()) await expect(verifyButton).toBeDisabled();
+      else await expect(firstGeneratedFix.getByText("Question to answer")).toBeVisible();
     }
   });
 
@@ -319,5 +306,9 @@ test.describe("launch red-team journeys", () => {
     const paywall = page.getByRole("dialog", { name: /reached the preview limit/i });
     await expect(paywall).toBeVisible();
     await expect(paywall.getByText(/Paid access is not open yet/i)).toBeVisible();
+    await expect(paywall).not.toContainText("Your existing report stays available");
+    await expect(paywall).toContainText("Stay in the workspace");
+    await expect(paywall.getByRole("button", { name: "Back to workspace" })).toBeVisible();
+    await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
   });
 });

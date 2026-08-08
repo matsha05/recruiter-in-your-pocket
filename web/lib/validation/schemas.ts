@@ -5,11 +5,10 @@ import {
     findBiggestGapContradictions,
     findFixEvidenceMismatch,
     findNonActionableFix,
-    findRewriteFidelityIssues,
-    findUnsupportedAgencyUpgrade,
-    findUnsupportedOutcomeClaims,
     isAcceptedAbsenceMarker,
 } from "../llm/grounding";
+import { auditReportNarrative, compareSourceBoundRewrite } from "../llm/source-fidelity";
+import { getScoreLabel } from "../score-utils";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -120,7 +119,7 @@ const ImpactLevelSchema = z.enum(["high", "medium", "low"]);
 const EffortLevelSchema = z.enum(["quick", "moderate", "high"]);
 
 const EvidenceSchema = z.object({
-    excerpt: z.string().min(1).max(140),
+    excerpt: z.string().trim().min(1).max(140),
     section: z.string().min(1)
 });
 
@@ -132,6 +131,27 @@ const TopFixSchema = z.object({
     impact_level: ImpactLevelSchema,
     effort: EffortLevelSchema,
     section_ref: z.string().min(1)
+});
+
+function normalizedKeywordKeys(values: string[]) {
+    return values.map(value => value.normalize("NFKC").toLocaleLowerCase().trim().replace(/\s+/g, " "));
+}
+
+const JobKeywordsSchema = z.object({
+    matched: z.array(z.string().trim().min(1)).max(20),
+    missing: z.array(z.string().trim().min(1)).max(20),
+    match_count: z.number().int().min(0),
+    total_count: z.number().int().min(0)
+}).superRefine((keywords, context) => {
+    const matched = normalizedKeywordKeys(keywords.matched);
+    const missing = normalizedKeywordKeys(keywords.missing);
+    const matchedSet = new Set(matched);
+    const missingSet = new Set(missing);
+    if (matchedSet.size !== matched.length) context.addIssue({ code: "custom", path: ["matched"], message: "matched JD keywords must be unique" });
+    if (missingSet.size !== missing.length) context.addIssue({ code: "custom", path: ["missing"], message: "missing JD keywords must be unique" });
+    if (matched.some(keyword => missingSet.has(keyword))) context.addIssue({ code: "custom", path: ["missing"], message: "a JD keyword cannot be both matched and missing" });
+    if (keywords.match_count !== matchedSet.size) context.addIssue({ code: "custom", path: ["match_count"], message: "match_count must equal the normalized matched keyword count" });
+    if (keywords.total_count !== matchedSet.size + missingSet.size) context.addIssue({ code: "custom", path: ["total_count"], message: "total_count must equal the normalized matched and missing keyword count" });
 });
 
 function sentenceCount(value: string) {
@@ -151,66 +171,23 @@ const BoundedStringSchema = (minSentences: number, maxSentences: number, field: 
         `${field} must contain ${minSentences}-${maxSentences} sentences`,
     );
 
-function normalizeForEvidence(value: string) {
-    return value
-        .toLowerCase()
-        .replace(/[^\w\d%\s]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-}
-
-const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
-
-function removeBracketPlaceholders(value: string) {
-    return value.replace(/\[[^\]]+\]/g, "");
-}
-
-function escapeRegExp(value: string) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function containsLiteral(text: string, value: string) {
-    return new RegExp(escapeRegExp(value)).test(text);
-}
-
-function findUngroundedSpecifics(text: string, sourceText: string) {
-    const normalizedSource = normalizeForEvidence(sourceText);
-    const unbracketedText = removeBracketPlaceholders(text);
-    const matches = unbracketedText.match(concreteMetricPattern) || [];
-    const ungrounded = new Set<string>();
-
-    for (const match of matches) {
-        const normalizedMetric = normalizeForEvidence(match);
-        const numericValue = match.match(/\d+(?:\.\d+)?/)?.[0];
-        if (!numericValue) continue;
-
-        const numberPattern = new RegExp(`\\b${escapeRegExp(numericValue)}\\b`);
-        const isGrounded =
-            (normalizedMetric.length > 0 && containsLiteral(normalizedSource, normalizedMetric)) ||
-            numberPattern.test(normalizedSource);
-
-        if (!isGrounded) {
-            ungrounded.add(match.trim());
-        }
-    }
-
-    return Array.from(ungrounded);
-}
-
-export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText: string) {
+export function assertReportGrounding(
+    report: ResumeFeedbackResponse,
+    resumeText: string,
+    jobDescription?: string,
+) {
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
 
     for (const [index, fix] of report.top_fixes.entries()) {
-        const excerpt = normalizeForEvidence(fix.evidence.excerpt);
-        if (excerpt.length > 10 && !containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText)) {
+        if (!containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText, fix.evidence.section)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
         }
         const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, fix.evidence.excerpt, resumeText);
         if (alreadySatisfied.length > 0) {
             inventedSpecifics.push(`top_fixes[${index}].fix contradicted by resume: ${alreadySatisfied.join(", ")}`);
         }
-        const evidenceMismatch = findFixEvidenceMismatch(fix.fix, fix.evidence.excerpt, resumeText);
+        const evidenceMismatch = findFixEvidenceMismatch(fix.fix, fix.evidence.excerpt, resumeText, fix.evidence.section);
         if (evidenceMismatch.length > 0) {
             inventedSpecifics.push(`top_fixes[${index}].evidence mismatch: ${evidenceMismatch.join(", ")}`);
         }
@@ -221,26 +198,25 @@ export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText
     }
 
     for (const [index, rewrite] of report.rewrites.entries()) {
-        const original = normalizeForEvidence(rewrite.original);
-        if (original.length > 10 && !containsExactEvidence(resumeText, rewrite.original)) {
+        if (!containsExactEvidence(resumeText, rewrite.original)) {
             missingEvidence.push(`rewrites[${index}].original`);
         }
-        const ungroundedSpecifics = findUngroundedSpecifics(rewrite.better, resumeText);
-        if (ungroundedSpecifics.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better: ${ungroundedSpecifics.join(", ")}`);
+        const comparison = compareSourceBoundRewrite({
+            sourceText: resumeText,
+            sourceLocator: rewrite.original,
+            candidate: rewrite.better,
+        });
+        if (!comparison.safe) {
+            inventedSpecifics.push(
+                `rewrites[${index}].better source fidelity: ${comparison.issues.map(issue => issue.detail).join(", ")}`,
+            );
         }
-        const unsupportedAgency = findUnsupportedAgencyUpgrade(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedAgency.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported ownership: ${unsupportedAgency.join(", ")}`);
-        }
-        const unsupportedOutcomes = findUnsupportedOutcomeClaims(rewrite.original, rewrite.better, resumeText);
-        if (unsupportedOutcomes.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better unsupported outcomes: ${unsupportedOutcomes.join(", ")}`);
-        }
-        const fidelityIssues = findRewriteFidelityIssues(rewrite.original, rewrite.better, resumeText);
-        if (fidelityIssues.length > 0) {
-            inventedSpecifics.push(`rewrites[${index}].better fidelity: ${fidelityIssues.join(", ")}`);
-        }
+    }
+
+    for (const issue of auditReportNarrative(report, resumeText, jobDescription)) {
+        inventedSpecifics.push(
+            `${issue.path} unsupported narrative facts: ${issue.unsupportedFacts.join(", ")}`,
+        );
     }
 
     const quotedGap = report.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];
@@ -323,12 +299,7 @@ export const ResumeFeedbackResponseSchema = z.object({
     job_alignment: z.object({
         jd_match_score: z.number().int().min(0).max(100),
         jd_match_summary: z.string(),
-        jd_keywords: z.object({
-            matched: z.array(z.string()).max(20),
-            missing: z.array(z.string()).max(20),
-            match_count: z.number().int().min(0),
-            total_count: z.number().int().min(0)
-        }),
+        jd_keywords: JobKeywordsSchema,
         strongly_aligned: z.array(z.string()).min(3).max(5),
         underplayed: z.array(z.string()).min(2).max(4),
         missing: z.array(z.string()).min(1).max(3),
@@ -340,7 +311,7 @@ export const ResumeFeedbackResponseSchema = z.object({
             company_stage_fit: z.string()
         }),
         positioning_suggestion: z.string()
-    }).passthrough(),
+    }),
     ideas: z.object({
         questions: z.array(z.object({
             question: z.string().min(1),
@@ -357,7 +328,7 @@ export const ResumeFeedbackResponseSchema = z.object({
             why: z.string().min(1),
         })).length(5),
     }),
-}).passthrough();
+}).transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
 
 /**

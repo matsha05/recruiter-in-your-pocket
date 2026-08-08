@@ -19,8 +19,13 @@ function withLaunchTestDefaults(env) {
     NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false",
     NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false",
     NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false",
+    NEXT_PUBLIC_SUPABASE_URL: "http://127.0.0.1:54321",
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "riyp-launch-test-public-key",
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: "",
+    SESSION_SECRET: "riyp-launch-test-session-secret-at-least-32-bytes",
     RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
     RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
+    RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS: "true",
     SKIP_DB_READY_CHECK: env.SKIP_DB_READY_CHECK || "1",
     // Contract tests must remain hermetic even when the parent launch shell
     // carries real or placeholder hosted credentials. Explicit empty values
@@ -29,6 +34,8 @@ function withLaunchTestDefaults(env) {
     UPSTASH_REDIS_REST_TOKEN: "",
     KV_REST_API_URL: "",
     KV_REST_API_TOKEN: "",
+    ANONYMOUS_REPORT_RECOVERY_SECRET: "",
+    SUPABASE_URL: "",
     SUPABASE_SECRET_KEY: "",
     SUPABASE_SERVICE_ROLE_KEY: "",
     STRIPE_WEBHOOK_SECRET: "",
@@ -110,16 +117,22 @@ function ensureWebBuild() {
   }
 }
 
-async function startNextServer({ ensureBuild = true } = {}) {
-  if (ensureBuild) ensureWebBuild();
+async function startNextServer({ ensureBuild = true, dev = false } = {}) {
+  if (ensureBuild && !dev) ensureWebBuild();
 
   const port = await findFreePort();
   const baseUrl = `http://localhost:${port}`;
 
   const nextBin = path.join(webDir, "node_modules", "next", "dist", "bin", "next");
-  const proc = spawn(process.execPath, [nextBin, "start", "-p", String(port)], {
+  const command = dev
+    ? [nextBin, "dev", "--webpack", "-p", String(port)]
+    : [nextBin, "start", "-p", String(port)];
+  const proc = spawn(process.execPath, command, {
     cwd: webDir,
-    env: withLaunchTestDefaults(process.env),
+    env: {
+      ...withLaunchTestDefaults(process.env),
+      ...(dev ? { NODE_ENV: "development" } : {}),
+    },
     stdio: ["ignore", "inherit", "inherit"]
   });
 

@@ -15,6 +15,7 @@ web/output/
 .playwright-mcp/
 web/test-results/
 web/playwright-report/
+web/gauntlet/artifacts/
 tests/
 landing-*.png
 tmp-*.png

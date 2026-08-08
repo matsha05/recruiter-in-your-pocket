@@ -4,6 +4,7 @@ import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
 import AnalysisScanning from "@/components/workspace/AnalysisScanning";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 
 type ResumeModeSectionProps = {
   report: any | null;
@@ -101,9 +102,10 @@ export default function ResumeModeSection({
   return (
     <ReportPanel
       report={report}
+      resumeText={resumeText}
       isLoading={isLoading}
       isStreaming={isStreaming}
-      hasJobDescription={!!jobDescription.trim()}
+      hasJobDescription={hasEffectiveJobDescriptionValue(jobDescription)}
       onExportPdf={onExportPdf}
       isExporting={isExporting}
       isSample={isSample}

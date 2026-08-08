@@ -1,42 +1,47 @@
 import { useCallback, useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
+import { preservePaidReportAccess } from "@/lib/billing/freeStatusClient";
+import { refreshFreeStatusBalance } from "@/lib/free-status-client";
 
 type RefreshOptions = {
   fallbackDecrement?: boolean;
   includeUserRefresh?: boolean;
   requireOk?: boolean;
+  shouldApply?: () => boolean;
 };
 
 type FreeStatusOptions = {
   refreshUser?: () => Promise<void>;
   setFreeUsesRemaining: Dispatch<SetStateAction<number>>;
+  hasPaidAccess: boolean;
 };
 
-export function useFreeStatus({ refreshUser, setFreeUsesRemaining }: FreeStatusOptions) {
+export function useFreeStatus({
+  refreshUser,
+  setFreeUsesRemaining,
+  hasPaidAccess,
+}: FreeStatusOptions) {
   const refreshFreeStatus = useCallback(
-    async ({ fallbackDecrement = false, includeUserRefresh = false, requireOk = false }: RefreshOptions = {}) => {
-      try {
-        const statusRes = await fetch("/api/free-status");
-        const statusData = await statusRes.json();
-
-        const shouldUpdate = requireOk ? statusData.ok : statusData.free_uses_left !== undefined;
-        if (shouldUpdate && statusData.free_uses_left !== undefined) {
-          setFreeUsesRemaining(statusData.free_uses_left);
-        }
-
-        if (includeUserRefresh) {
+    async ({ fallbackDecrement = false, includeUserRefresh = false, shouldApply }: RefreshOptions = {}) => {
+      const refreshed = await refreshFreeStatusBalance({
+        fallbackDecrement,
+        setRemaining: (value) => setFreeUsesRemaining((previous) => {
+          const reported = typeof value === "function" ? value(previous) : value;
+          return preservePaidReportAccess(reported, hasPaidAccess);
+        }),
+        shouldApply,
+      });
+      if (!refreshed) console.error("Failed to refresh free status.");
+      if (includeUserRefresh && (!shouldApply || shouldApply())) {
+        try {
           await refreshUser?.();
+        } catch (userError) {
+          console.error("Failed to refresh user after free status:", userError);
         }
-        return true;
-      } catch (err) {
-        console.error("Failed to refresh free status:", err);
-        if (fallbackDecrement) {
-          setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
-        }
-        return false;
       }
+      return refreshed;
     },
-    [refreshUser, setFreeUsesRemaining]
+    [hasPaidAccess, refreshUser, setFreeUsesRemaining]
   );
 
   useEffect(() => {

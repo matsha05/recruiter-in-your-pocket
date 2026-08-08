@@ -32,6 +32,7 @@ export default defineConfig({
       NEXT_PUBLIC_ENABLE_ERROR_REPLAY: process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY || "false",
       RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
       RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
+      RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS: "true",
       // Keep browser contracts hermetic even if the launch shell contains
       // credentials for a hosted Redis instance.
       UPSTASH_REDIS_REST_URL: "",

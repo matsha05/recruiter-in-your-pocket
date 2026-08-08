@@ -4,7 +4,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, R
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { User } from "@supabase/supabase-js";
 import { identifyUser, resetAnalytics } from "@/lib/analytics";
-import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
+import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
+import { readAuthoritativeFreeUses } from "@/lib/billing/freeStatusClient";
 
 export interface AuthUser {
     id: string;
@@ -71,56 +72,48 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const baseUser = mapUser(supabaseUser);
 
             if (baseUser) {
-                // Fetch passes and free status parallel
-                try {
-                    const [passesRes, freeRes] = await settleWithin(
-                        Promise.all([
-                            fetch("/api/passes"),
-                            fetch("/api/free-status")
-                        ]),
+                const [passesResult, freeResult] = await Promise.allSettled([
+                    settleWithin(
+                        fetch("/api/passes").then(async (response) => ({
+                            httpOk: response.ok,
+                            payload: await response.json(),
+                        })),
                         ACCOUNT_STATUS_TIMEOUT_MS,
-                        "Account details timed out"
-                    );
+                        "Pass details timed out"
+                    ),
+                    settleWithin(
+                        fetch("/api/free-status").then(async (response) => ({
+                            httpOk: response.ok,
+                            payload: await response.json(),
+                        })),
+                        ACCOUNT_STATUS_TIMEOUT_MS,
+                        "Free report status timed out"
+                    ),
+                ]);
 
-                    const passesData = await passesRes.json();
-                    const freeData = await freeRes.json();
-
-                    // 1. Determine Membership from Passes
-                    if (passesData.ok && Array.isArray(passesData.passes)) {
-                        const now = new Date();
-                        const activePasses = passesData.passes.filter((p: any) => isPassActive(p));
-
-                        const lifetimePass = activePasses.find((p: any) => p.tier === "lifetime");
-                        const monthlyPass = activePasses.find((p: any) => p.tier === "monthly");
-                        const creditPasses = activePasses.filter((p: any) => !isUnlimitedPassTier(p.tier));
-
-                        if (lifetimePass) {
-                            baseUser.membership = "lifetime";
-                            baseUser.daysLeft = undefined;
-                        } else if (monthlyPass) {
-                            baseUser.membership = "monthly";
-                            const diffTime = new Date(monthlyPass.expires_at).getTime() - now.getTime();
-                            baseUser.daysLeft = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
-                        } else if (creditPasses.length > 0) {
-                            baseUser.membership = "credit";
-                            baseUser.paidUsesLeft = creditPasses.reduce((sum: number, pass: any) => {
-                                return sum + Math.max(0, Number(pass.uses_remaining || 0));
-                            }, 0);
-                        } else {
-                            baseUser.membership = "free";
-                        }
-                    } else {
-                        baseUser.membership = "free";
+                // Paid pass truth is independent from the free-status endpoint.
+                if (passesResult.status === "fulfilled") {
+                    const { httpOk, payload: passesData } = passesResult.value;
+                    try {
+                        Object.assign(baseUser, readAuthoritativePassAccess(httpOk, passesData));
+                    } catch (error) {
+                        console.error("Error parsing paid pass status:", error);
                     }
+                } else {
+                    console.error("Error fetching paid pass status:", passesResult.reason);
+                }
 
-                    // 2. Add Free Uses Left (from cookie)
-                    if (freeData.free_uses_left !== undefined) {
-                        baseUser.freeUsesLeft = freeData.free_uses_left;
+                if (freeResult.status === "fulfilled") {
+                    try {
+                        baseUser.freeUsesLeft = readAuthoritativeFreeUses(
+                            freeResult.value.httpOk,
+                            freeResult.value.payload
+                        );
+                    } catch (error) {
+                        console.error("Error parsing free report status:", error);
                     }
-
-                } catch (err) {
-                    console.error("Error fetching status:", err);
-                    baseUser.membership = "free"; // Fallback safe
+                } else {
+                    console.error("Error fetching free report status:", freeResult.reason);
                 }
             }
 

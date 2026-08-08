@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "REPLACE_WITH_ACTIVE_ITERATION",
+  "journeyId": "REPLACE_WITH_REQUIRED_JOURNEY_ID",
+  "candidateCommit": "REPLACE_WITH_CANDIDATE_COMMIT",
+  "journeyDefinitionSha256": "REPLACE_WITH_SHA256",
+  "testedAt": "REPLACE_WITH_ISO_TIMESTAMP",
+  "completed": false,
+  "viewport": "REPLACE_WITH_DESKTOP_OR_MOBILE",
+  "entryPath": "/",
+  "finalPath": "/REPLACE_WITH_FINAL_PATH",
+  "steps": [
+    {
+      "label": "REPLACE_WITH_ACCEPTANCE_STEP",
+      "status": "REPLACE_WITH_PASS_OR_FAIL",
+      "evidence": "REPLACE_WITH_OBSERVATION"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "REPLACE_WITH_SCREENSHOT_DOM_CONSOLE_OR_INTERACTION",
+      "path": "journeys/evidence/REPLACE_WITH_JOURNEY_ID-EVIDENCE_FILE",
+      "sha256": "REPLACE_WITH_SHA256"
+    }
+  ],
+  "criticalFailures": [],
+  "notes": "REPLACE_WITH_VIEWPORT_FLOW_AND_RECEIPT_LOCATION"
+}
