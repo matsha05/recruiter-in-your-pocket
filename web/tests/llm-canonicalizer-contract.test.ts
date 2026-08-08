@@ -453,3 +453,97 @@ const unsupportedFixRepair = canonicalizeResumeReportEvidence({
 }, "- Supported HR strategies across departments.\n- Supported recruiting and onboarding.");
 assert.equal((unsupportedFixRepair.report as any).top_fixes.length, 1);
 assert.match((unsupportedFixRepair.report as any).top_fixes[0].fix, /recruitment cycle time/);
+
+const exactEvidenceDropRepair = canonicalizeResumeReportEvidence({
+  top_fixes: [
+    {
+      fix: "Add [specific scope] to the support bullet.",
+      evidence: { excerpt: "- Supported customer operations.", section: "Work Experience" },
+      section_ref: "Work Experience",
+    },
+    {
+      fix: "Add [verified outcome] to the Salesforce rollout bullet.",
+      evidence: { excerpt: "Invented Salesforce rollout evidence", section: "Work Experience" },
+      section_ref: "Work Experience",
+    },
+  ],
+}, "Work Experience\n- Supported customer operations.");
+assert.equal((exactEvidenceDropRepair.report as any).top_fixes.length, 1);
+assert.equal((exactEvidenceDropRepair.report as any).top_fixes[0].evidence.excerpt, "- Supported customer operations.");
+
+const compoundEducationHeadingRepair = canonicalizeResumeReportEvidence({
+  section_review: {
+    Education: {
+      grade: "B",
+      priority: "Low",
+      working: "The accounting degree is easy to find.",
+      missing: "Graduation timing is not listed.",
+      fix: "Add the graduation year if useful.",
+    },
+  },
+}, "EDUCATION, HONORS & ASSOCIATIONS\nBachelor of Business Administration in Accounting");
+assert.notEqual((compoundEducationHeadingRepair.report as any).section_review.Education.missing, "No education section present");
+
+const decimalSummaryRepair = canonicalizeResumeReportEvidence({
+  summary: "The platform saved over $3.2M annually. The result is clear. The scope is credible.",
+}, "Saved partner hospitals over $3.2M annually.");
+assert.match((decimalSummaryRepair.report as any).summary, /\$3\.2M/);
+assert.doesNotMatch((decimalSummaryRepair.report as any).summary, /\$3\. 2M/);
+
+const projectSelectionRepair = canonicalizeResumeReportEvidence({
+  next_steps: ["Add [specific scope] to one Nimbus project bullet."],
+}, "Work Experience\nNimbus Media Group\n- Created wireframes for client projects.");
+assert.equal((projectSelectionRepair.report as any).next_steps[0], "Add [specific scope] to a Nimbus project bullet.");
+
+const unnamedOpeningRepair = canonicalizeResumeReportEvidence({
+  top_fixes: [{
+    fix: "Replace the opening summary with [target role].",
+    why: "The opening is broad.",
+    evidence: { excerpt: "Product manager with experience delivering SaaS features through customer research, product analytics, and cross-functional development for growing teams.", section: "Summary" },
+    section_ref: "Summary",
+  }],
+}, "Candidate Name\ncandidate@example.com\nProduct manager with experience delivering SaaS features through customer research, product analytics, and cross-functional development for growing teams.\nProduct Manager Intern\n- Shipped an onboarding feature.");
+assert.notEqual((unnamedOpeningRepair.report as any).top_fixes[0].evidence.excerpt, "No summary section present");
+
+const sourceGatedLanguageRepair = canonicalizeResumeReportEvidence({
+  first_impression_takeaway: "Target one finance lane",
+  score_plain: "This resume can support CPA-focused searches.",
+  section_review: { Education: { working: "The degree, school, location, and graduation date are clearly listed." } },
+  job_alignment: { strongly_aligned: ["Scheduling"] },
+}, "CFO or Controller\nCPA\nScheduling interviews\nEDUCATION\nBachelor of Business Administration\nState University, Denver, CO\nGraduated May 2023");
+assert.equal((sourceGatedLanguageRepair.report as any).first_impression_takeaway, "Clarify the finance lane");
+assert.equal((sourceGatedLanguageRepair.report as any).score_plain, "This resume can support CPA searches.");
+assert.equal((sourceGatedLanguageRepair.report as any).section_review.Education.working, "The Education section is clear.");
+assert.equal((sourceGatedLanguageRepair.report as any).job_alignment.strongly_aligned[0], "scheduling");
+
+const ungatedLanguageControl = canonicalizeResumeReportEvidence({
+  section_review: { Education: { working: "The degree, school, location, and graduation date are clearly listed." } },
+}, "EXPERIENCE\nSupported customer operations.");
+assert.notEqual((ungatedLanguageControl.report as any).section_review.Education.working, "The Education section is clear.");
+
+const dotBulletGapRepair = canonicalizeResumeReportEvidence({
+  biggest_gap_example: '“· Coach team to improve overall passthrough and close rates” gives no measured change, so the value of the coaching is difficult to assess.',
+}, "PALANTIR TECHNOLOGIES\n· Coach team to improve overall passthrough and close rates\n· Hired over 60% of entire global Palantir Information Security team");
+assert.match(
+  (dotBulletGapRepair.report as any).biggest_gap_example,
+  /Coach team to improve overall passthrough and close rates.*missing clearer scope or outcome evidence/,
+  "middle-dot bullets must be eligible for a grounded gap replacement",
+);
+
+const vpQuestionRepair = canonicalizeResumeReportEvidence({
+  ideas: { questions: [{ question: "Which structured interview changes cut the first six month mis hire rate by 35 percent?" }] },
+}, "Introduced a structured interviewing program, cutting mis hire rate in the first six months by 35 percent.");
+assert.equal(
+  (vpQuestionRepair.report as any).ideas.questions[0].question,
+  "Which structured interview changes cut the mis hire rate by 35 percent?",
+);
+
+const exactNarrativeRepairs = canonicalizeResumeReportEvidence({
+  score_comment_long: "Several bullets remain broad responsibility statements, so the page does not consistently show what you personally changed inside each deal.",
+  summary: "It does not yet show what changed because of your operational work, which limits the case for a broader operations position.",
+}, "WORKDAY\ncross-functional and cross-product selling\ncustomer relationships\nCustomer Service Associate\nSeasonal Team Lead");
+assert.equal(
+  (exactNarrativeRepairs.report as any).score_comment_long,
+  "Recent Workday bullets describe collaboration and relationship-building.",
+);
+assert.equal((exactNarrativeRepairs.report as any).summary, "The next role is unclear.");

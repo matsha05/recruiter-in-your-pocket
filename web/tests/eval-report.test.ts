@@ -8,6 +8,7 @@ import {
 } from "../lib/launch/evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "../lib/launch/liveEvalBaseline";
 import { loadPromptForMode } from "../lib/backend/prompts";
+import { checkScoreRange } from "../lib/evals/contract-checks";
 
 function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
   return {
@@ -18,7 +19,7 @@ function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
       model: "test-model",
       temperature: 0,
       top_p: null,
-      reasoning_effort: null,
+      reasoning_effort: "low",
       max_completion_tokens: null,
       prompt_version_hash: "test",
       resume_prompt_sha256: "a".repeat(64),
@@ -56,6 +57,7 @@ assert.doesNotMatch(dryRunReport, /fixture_1 \(score:/);
 const liveReport = generateMarkdownReport(buildRun("live"));
 assert.match(liveReport, /^# PromptOps Live Eval Report/m);
 assert.match(liveReport, /Live model evaluation/);
+assert.match(liveReport, /Reasoning effort:\*\* low/);
 assert.match(liveReport, /fixture_1 \(score: 82\)/);
 assert.match(liveReport, /Resume prompt SHA-256:\*\* a{64}/);
 assert.match(liveReport, /Resume ideas prompt SHA-256:\*\* b{64}/);
@@ -75,6 +77,22 @@ const passingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
 assert.equal(passingEvidence?.total, 8);
 assert.equal(liveEvalMeetsLaunchBar(passingEvidence), true);
 
+const replayEvidence = parseLiveEvalEvidence(generateMarkdownReport({
+  ...buildRun("live"),
+  metadata: {
+    ...buildRun("live").metadata,
+    validation_mode: "saved_output_replay",
+    validation_timestamp: "2026-08-08T23:30:00.000Z",
+    source_run_sha256: "c".repeat(64),
+  },
+  summary: { total: 8, passed: 8, warned: 0, failed: 0 },
+  results: [],
+}));
+assert.equal(replayEvidence?.validationMode, "saved_output_replay");
+assert.equal(replayEvidence?.sourceRunSha256, "c".repeat(64));
+assert.equal(liveEvalMeetsLaunchBar(replayEvidence), true);
+assert.equal(liveEvalMeetsLaunchBar({ ...replayEvidence!, sourceRunSha256: undefined }), false);
+
 const failingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
   ...buildRun("live"),
   summary: { total: 8, passed: 7, warned: 0, failed: 1 },
@@ -82,22 +100,41 @@ const failingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
 }));
 assert.equal(liveEvalMeetsLaunchBar(failingEvidence), false);
 assert.equal(parseLiveEvalEvidence(dryRunReport), null);
+assert.equal(
+  checkScoreRange(68, { min: 74, max: 88 }).some((result) => result.code === "E_SCORE_EXTREME"),
+  false,
+  "score severity must use distance to the nearest range boundary, not the midpoint",
+);
+assert.equal(
+  checkScoreRange(61, { min: 74, max: 88 }).some((result) => result.code === "E_SCORE_EXTREME"),
+  true,
+  "a score more than twelve points outside the range must still fail",
+);
 
 async function runCandidateBindingTests() {
   const resumePrompt = await loadPromptForMode("resume");
   const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
     model: "gpt-5.6-luna",
+    reasoningEffort: "low",
     resumePrompt,
     resumeIdeasPrompt,
   }), true);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
     model: "gpt-4o-mini",
+    reasoningEffort: "low",
     resumePrompt,
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
     model: "gpt-5.6-luna",
+    reasoningEffort: "medium",
+    resumePrompt,
+    resumeIdeasPrompt,
+  }), false);
+  assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
+    model: "gpt-5.6-luna",
+    reasoningEffort: "low",
     resumePrompt: `${resumePrompt}\nchanged`,
     resumeIdeasPrompt,
   }), false);

@@ -279,6 +279,18 @@ assert.match(repairMessages.at(-1)?.content || "", /character-for-character/);
 assert.match(repairMessages.at(-1)?.content || "", /top_fixes\[0\]\.evidence\.excerpt/);
 assert.match(repairMessages.at(-1)?.content || "", /unsupported outcomes: improving/);
 
+const resumePromptText = fs.readFileSync(path.resolve(process.cwd(), "prompts/resume_v2.txt"), "utf8");
+assert.match(
+  resumePromptText,
+  /Apply the 80-89 band when at least half of the important recent bullets show specific scope or outcomes/,
+  "the score rubric must not demote evidence-dense resumes because a minority of bullets remain responsibility-based",
+);
+assert.match(
+  resumePromptText,
+  /do not score below 78 solely because coaching or process bullets lack outcomes/,
+  "recruiting leadership scores must preserve strong quantified recruiting evidence",
+);
+
 assert.deepEqual(getChatCompletionTuning("gpt-5-nano"), {
   reasoning_effort: "low",
   verbosity: "low",

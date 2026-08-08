@@ -2,7 +2,7 @@ import path from "path";
 import { existsSync, readFileSync } from "fs";
 import { maybeCreateSupabaseServerClient } from "../supabase/serverClient";
 import { loadPromptForMode } from "../backend/prompts";
-import { resolveOpenAIModel } from "../llm/model-config";
+import { resolveOpenAIModel, resolveReasoningEffortForMode } from "../llm/model-config";
 import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
 import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
 import { isRedisRestConfigured } from "../redis/config";
@@ -452,8 +452,10 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
 
   const liveEvalEvidence = readLiveEvalEvidence(repoRoot) || BUNDLED_LIVE_EVAL_EVIDENCE;
   const launchModel = resolveOpenAIModel("resume");
+  const launchReasoningEffort = resolveReasoningEffortForMode("resume", launchModel);
   const liveEvalReady = liveEvalMatchesCandidate(liveEvalEvidence, {
     model: launchModel,
+    reasoningEffort: launchReasoningEffort,
     resumePrompt,
     resumeIdeasPrompt,
   });
@@ -462,7 +464,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     "live_model_eval",
     liveEvalReady ? "ok" : "missing",
     liveEvalReady && liveEvalEvidence
-      ? `Live eval ${liveEvalEvidence.runId} matches ${launchModel} and the deployed prompts: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.failed} fail.`
+      ? `Live eval ${liveEvalEvidence.runId} matches ${launchModel}/${launchReasoningEffort} and the deployed prompts: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.failed} fail.`
       : liveEvalEvidence
         ? `Live eval ${liveEvalEvidence.runId} is below the launch bar or does not match the deployed model and prompts. Run the live eval again for ${launchModel}.`
         : "A current live model eval is required. Dry-run fixture validation is not launch evidence."

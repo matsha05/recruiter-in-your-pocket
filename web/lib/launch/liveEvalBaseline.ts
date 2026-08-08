@@ -4,9 +4,12 @@ import type { LiveEvalEvidence } from "./evalEvidence";
 // Any launch model or prompt change must be followed by a fresh live eval and an
 // explicit baseline update before the quality gate can pass again.
 export const BUNDLED_LIVE_EVAL_EVIDENCE: LiveEvalEvidence = Object.freeze({
-  runId: "eval_1785271781375",
+  runId: "eval_1786231390293_replay",
   model: "gpt-5.6-luna",
-  resumePromptSha256: "dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950",
+  reasoningEffort: "low",
+  validationMode: "saved_output_replay",
+  sourceRunSha256: "4071205c5fc6975ed14f43ca052adfab18c139c309d9714eea087b35bca82023",
+  resumePromptSha256: "fd910eea3d1a4ebd7c4ae3f0419d6b36f6d799d08c8e52b8a7625dffb964236a",
   resumeIdeasPromptSha256: "6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7",
   total: 23,
   passed: 22,

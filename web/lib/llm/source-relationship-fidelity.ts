@@ -12,15 +12,21 @@ type RelationshipTuple = {
 
 type ClauseContext = Pick<RelationshipTuple, "actor" | "action" | "object">;
 
-const actionPattern = /\b(?:lead|leads|leading|led|support|supports|supported|supporting|boost|boosts|boosted|boosting|grow|grows|growing|grew|grown|reduce|reduces|reduced|reducing|increase|increases|increased|increasing|improve|improves|improved|improving|raise|raises|raised|raising|enhance|enhances|enhanced|enhancing|lower|lowers|lowered|lowering|cut|cuts|cutting|decrease|decreases|decreased|decreasing|double|doubles|doubled|doubling|triple|triples|tripled|tripling|achieve|achieves|achieved|achieving|ship|ships|shipped|shipping|accelerate|accelerates|accelerated|accelerating|earn|earns|earned|earning|build|builds|building|built|design|designs|designed|designing|implement|implements|implemented|implementing|create|creates|created|creating|manage|manages|managed|managing|own|owns|owned|owning|drive|drives|driving|drove|driven|deliver|delivers|delivered|delivering|launch|launches|launched|launching|coordinate|coordinates|coordinated|coordinating|migrate|migrates|migrated|migrating|develop|develops|developed|developing|generate|generates|generated|generating|save|saves|saved|saving|scale|scales|scaled|scaling|move|moves|moved|moving|transition|transitions|transitioned|transitioning|promote|promotes|promoted|promoting)\b/giu;
-const metricPattern = /[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|[kmb]|x|×))?\+?(?:\s+(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
-const directionPattern = /\bfrom\s+(.+?)\s+to\s+(.+?)(?=\s+(?:and|but|while|whereas|by|within|over|during)\b|[;!?](?:\s|$)|\.(?:\s|$)|$)/giu;
+const actionPattern = /\b(?:lead|leads|leading|led|support|supports|supported|supporting|billed|onboarded|onboarding(?=\s+[<>≤≥~≈]?\s*\d)|hired|tracked|tracking(?=\s+(?:inventory|sales|product|project|campaign|customer|key))|boost|boosts|boosted|boosting|grow|grows|growing|grew|grown|reduce|reduces|reduced|reducing|increase|increases|increased|increasing|improve|improves|improved|improving|raise|raises|raised|raising|enhance|enhances|enhanced|enhancing|lower|lowers|lowered|lowering|cut|cuts|cutting|decrease|decreases|decreased|decreasing|double|doubles|doubled|doubling|triple|triples|tripled|tripling|achieve|achieves|achieved|achieving|ship|ships|shipped|shipping|accelerate|accelerates|accelerated|accelerating|earn|earns|earned|earning|build|builds|building|built|design|designs|designed|designing|implement|implements|implemented|implementing|create|creates|created|creating|manage|manages|managed|managing|own|owns|owned|owning|drive|drives|driving|drove|driven|deliver|delivers|delivered|delivering|launch|launches|launched|launching|coordinate|coordinates|coordinated|coordinating|migrate|migrates|migrated|migrating|develop|develops|developed|developing|generate|generates|generated|generating|save|saves|saved|saving|scale|scales|scaled|scaling|move|moves|moved|moving|transition|transitions|transitioned|transitioning|promote|promotes|promoted|promoting)\b/giu;
+const metricPattern = /(?<![\p{L}\p{N}])[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d(?:[\d,]*\d)?(?:\.\d+)?(?:\s*%|[kmbx×])?\+?(?:\s+(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
+const directionPattern = /\bfrom\s+(.+?)\s+to\s+(.+?)(?=,\s+(?=[\p{Ll}\p{M}]+ing\b)|\s+(?:and|but|while|whereas|by|within|over|during|provides?|shows?|gives?|demonstrates?)\b|[;!?](?:\s|$)|\.(?:\s|$)|$)/giu;
 const arrowMarkerPattern = /(?:-{1,2}>|={1,2}>|[→⟶⟹➜➝➞⟾])/u;
 const passiveAuxiliaryPattern = /\b(?:(?:has|have|had)\s+been|am|are|is|was|were|be|been|being)\s*$/iu;
 
 const actionAliases: Record<string, string> = {
   led: "lead", leads: "lead", leading: "lead",
   supports: "support", supported: "support", supporting: "support",
+  billed: "bill",
+  onboarded: "onboard",
+  onboarding: "onboard",
+  hired: "hire",
+  tracked: "track",
+  tracking: "track",
   boosts: "boost", boosted: "boost", boosting: "boost",
   grew: "grow", grown: "grow", grows: "grow", growing: "grow",
   reduces: "reduce", reduced: "reduce", reducing: "reduce",
@@ -55,6 +61,13 @@ const actionAliases: Record<string, string> = {
   moves: "move", moved: "move", moving: "move",
   transitions: "transition", transitioned: "transition", transitioning: "transition",
   promotes: "promote", promoted: "promote", promoting: "promote",
+};
+
+const processNounByAction: Record<string, string> = {
+  bill: "billing",
+  onboard: "onboarding",
+  hire: "hiring",
+  track: "tracking",
 };
 
 function normalizedText(value: string) {
@@ -235,7 +248,7 @@ function parseRelationalSentence(value: string) {
 }
 
 function relationshipTuples(value: string) {
-  return canonicalizeUserSourceText(value)
+  return canonicalizeUserSourceText(value).replace(/(\d)\s*\r?\n\s*(hours?|days?|weeks?|months?|years?)\b/giu, "$1 $2")
     .split(/(?:\r?\n)+|(?<=[.!?])\s+/u)
     .map((sentence) => normalizedText(sentence))
     .filter(Boolean)
@@ -243,7 +256,7 @@ function relationshipTuples(value: string) {
 }
 
 function unsafeRelationalClauses(value: string) {
-  return canonicalizeUserSourceText(value)
+  return canonicalizeUserSourceText(value).replace(/(\d)\s*\r?\n\s*(hours?|days?|weeks?|months?|years?)\b/giu, "$1 $2")
     .split(/(?:\r?\n)+|(?<=[.!?])\s+/u)
     .map((sentence) => normalizedText(sentence))
     .filter((sentence) => {
@@ -316,6 +329,15 @@ export function relationshipBindingIssues(candidate: string, sourceText: string)
     }
 
     if (exactBase.length > 0) continue;
+    const processNoun = processNounByAction[relation.action];
+    if (
+      processNoun
+      && new RegExp(`\\b${processNoun}\\b`, "iu").test(sourceText)
+      && !sourceRelations.some((source) => source.action === relation.action)
+    ) {
+      issues.push(`unsupported process-to-action mutation: ${relation.action} ${relation.object}`);
+      continue;
+    }
     const actorExists = !relation.actor || sourceRelations.some((source) => source.actor === relation.actor);
     const actionExists = sourceRelations.some((source) => source.action === relation.action);
     const objectExists = sourceRelations.some((source) => source.object === relation.object);

@@ -276,6 +276,23 @@ async function assertReceiptWireSavePdfChain() {
   }
 }
 
+assert.deepEqual(
+  relationshipBindingIssues(
+    "Reducing mean time to repair from 15 days to 11 hours gives the Kubernetes work a clear center.",
+    "Executed an automated health check system for Kubernetes clusters that reduced mean time to repair from 15 days to 11\nhours.",
+  ),
+  [],
+  "wrapped time units must retain their direction binding",
+);
+assert.equal(
+  relationshipBindingIssues(
+    "The resume includes 42+ recruiters onboarded.",
+    "Onboarding 42+ non-AI/ML recruiters through a structured mentorship program resulted in 107 hires.",
+  ).some((issue) => issue.includes("process-to-action mutation")),
+  false,
+  "quantified onboarding must be treated as an action while onboarding paperwork remains a noun",
+);
+
 assertReceiptWireSavePdfChain()
   .then(() => console.log("report relationship fidelity tests passed"))
   .catch((error) => {

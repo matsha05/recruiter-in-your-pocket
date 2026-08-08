@@ -7,7 +7,7 @@ function normalizedClaimText(value: string) {
     .trim();
 }
 
-const negativePresencePattern = /\b(?:absent|missing|unclear)\b(?:\s+(?:from|in|on|within))?|\bnot\s+(?:available|clear|explicit|found|included|listed|present|shown|stated|visible)\b/iu;
+const negativePresencePattern = /\b(?:absent|missing|unclear)\b(?:\s+(?:from|in|on|within))?|\bnot\s+(?:available|clear|explicit|found|in|included|listed|present|shown|stated|visible)\b/iu;
 
 export function assertsNegativePresence(value: string) {
   return negativePresencePattern.test(normalizedClaimText(value));

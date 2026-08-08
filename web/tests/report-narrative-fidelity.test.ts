@@ -4,7 +4,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { containsExactEvidence } from "../lib/llm/grounding";
-import { auditReportNarrative } from "../lib/llm/source-fidelity";
+import { auditNarrativeClaim, auditReportNarrative } from "../lib/llm/source-fidelity";
+import { supportsInferredIndustrySignal } from "../lib/llm/source-industry-signals";
+import { auditableNarrativeValue } from "../lib/llm/narrative-fact-support";
 import { normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { RewriteEnhancementNote } from "../lib/reports/rewrite-enhancement-note";
 import { getScoreLabel } from "../lib/score-utils";
@@ -17,7 +19,6 @@ import {
   schemaValidReport,
   unsafePublicClaim,
 } from "./helpers/report-fidelity-fixture";
-
 const partialAnchorClaims = [
   "Built payroll automation in HubSpot.",
   "Built payroll workflows in HubSpot.",
@@ -396,6 +397,40 @@ assert.equal(
   "missing/advice/question templates must remain grounded without asserting an absent count",
 );
 
+const assessmentSource = `${fullControlResume}\nIncreased adoption by 22%.`;
+for (const recruiterAssessment of [
+  "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.",
+  "Relevant experience is clear, but measurable results are limited.",
+  "Useful results are present, but earlier work remains partly responsibility-based.",
+  "Quantified impact is uneven across the page.",
+]) {
+  const assessmentReport = structuredClone(schemaValidReport);
+  assessmentReport.score_comment_short = recruiterAssessment;
+  assert.doesNotThrow(
+    () => validateResumeModelPayload(assessmentReport, assessmentSource, {
+      forceGrounding: true,
+      jobDescription: hubspotJobDescription,
+    }),
+    `recruiter assessment language must not be treated as an invented resume fact: ${recruiterAssessment}`,
+  );
+}
+
+for (const inventedAssessment of [
+  "Salesforce is visible.",
+  "$9M impact is visible.",
+]) {
+  const assessmentReport = structuredClone(schemaValidReport);
+  assessmentReport.score_comment_short = inventedAssessment;
+  assert.throws(
+    () => validateResumeModelPayload(assessmentReport, assessmentSource, {
+      forceGrounding: true,
+      jobDescription: hubspotJobDescription,
+    }),
+    /evidence grounding contract/,
+    `invented named or numeric facts must remain blocked: ${inventedAssessment}`,
+  );
+}
+
 for (const [processNoun, actionVerb] of processFormCases) {
   const source = `Built customer ${processNoun} workflows in HubSpot.`;
   const actionReport = structuredClone(schemaValidReport);
@@ -438,4 +473,26 @@ assert.equal(
   `the locally sourced positive clause must remain usable in a full report: ${JSON.stringify(contrastPositiveGrounding)}`,
 );
 
+for (const [claim, source, label] of [
+  ["Checkov creates a consistent cloud-platform focus.", "Used Checkov to ensure changes did not expose new security risks.", "tool named in a negative-risk clause"],
+  ["KPI reporting is underplayed.", "Built a framework with KPIs around onboarding time and incident rates.", "singular KPI against plural KPIs"],
+  ["REST APIs are easy to scan.", "Implemented RESTful API endpoints.", "REST and RESTful equivalence"],
+  ["CI/CD is easy to scan.", "Practices: Continuous Integration/Delivery.", "CI/CD expansion"],
+  ["The $12M+ budget stands out.", "Managed budgets exceeding $12M.", "greater-than metric equivalence"],
+  ["Bring the 200,000-user portal work forward.", "Designed portals serving over 200,000 monthly users.", "monthly must not parse as a million suffix"],
+  ["Expanded small-group ministry from six to eighteen active groups provides a concrete program-growth result.", "Expanded small-group ministry from six to eighteen active groups.", "direction followed by assessment wording"],
+  ["Scaling the Solutions Engineering Org from <5 to 300+ employees shows substantial expansion.", "Scaled the Solutions Engineering Org from <5 to 300+ employees, managing teams across regions.", "direction followed by comma gerund"],
+] as const) {
+  assert.deepEqual(
+    auditNarrativeClaim(claim, source, { interpretationContext: "assessment", rejectPositiveSourceAbsence: true }),
+    [],
+    label,
+  );
+}
+assert.equal(auditableNarrativeValue("strengths[0]", "U.S. tax responsibility"), "US tax responsibility");
+assert.equal(
+  supportsInferredIndustrySignal("Education", "Elementary teacher responsible for a classroom of 28 students."),
+  true,
+  "canonical industry labels must be supported by deterministic source evidence",
+);
 console.log("report narrative fidelity tests passed");

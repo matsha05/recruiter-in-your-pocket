@@ -28,6 +28,9 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     lines.push(`**Contract Version:** ${run.metadata.contract_version}`);
     lines.push(`**Execution Mode:** ${isDryRun ? "Dry run (no model calls)" : "Live model evaluation"}`);
     if (!isDryRun) lines.push(`**Model:** ${run.metadata.model}`);
+    if (!isDryRun && run.metadata.reasoning_effort) {
+        lines.push(`**Reasoning effort:** ${run.metadata.reasoning_effort}`);
+    }
     if (!isDryRun && run.metadata.resume_prompt_sha256) {
         lines.push(`**Resume prompt SHA-256:** ${run.metadata.resume_prompt_sha256}`);
     }
@@ -36,6 +39,15 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     }
     if (!isDryRun && run.metadata.incomplete_retry_reasoning_effort) {
         lines.push(`**Incomplete-response retry:** ${run.metadata.incomplete_retry_reasoning_effort} reasoning`);
+    }
+    if (!isDryRun && run.metadata.validation_mode === "saved_output_replay") {
+        lines.push("**Validation Mode:** Saved output replay through current candidate");
+        if (run.metadata.validation_timestamp) {
+            lines.push(`**Validation Timestamp:** ${run.metadata.validation_timestamp}`);
+        }
+        if (run.metadata.source_run_sha256) {
+            lines.push(`**Source run SHA-256:** ${run.metadata.source_run_sha256}`);
+        }
     }
     if (isDryRun) {
         lines.push("");
