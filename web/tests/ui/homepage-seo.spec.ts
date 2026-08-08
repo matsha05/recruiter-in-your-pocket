@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const homepageDescription = "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
+const homepageDescription = "Get a free recruiter-style first read of your resume: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
   test("the active homepage explains the review, founder, AI role, and free offer tool", async ({ page }) => {
@@ -13,10 +13,10 @@ test.describe("homepage feedback and SEO contract", () => {
     );
     await expect(homepage).toContainText("Recruiter feedback, before you apply.");
     await expect(homepage).toContainText(
-      "Upload or paste your résumé. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.",
+      "Upload or paste your resume. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.",
     );
 
-    await expect(page.getByRole("link", { name: "Get my free résumé review", exact: true }).first()).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Get my free resume review", exact: true }).first()).toHaveAttribute(
       "href",
       "/workspace",
     );

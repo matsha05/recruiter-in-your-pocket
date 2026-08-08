@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
-const homepageDescription = "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
+const homepageDescription = "Get a free recruiter-style first read of your resume: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
 
 export const metadata: Metadata = {
-  title: "AI Résumé Feedback Shaped by a Recruiter",
+  title: "AI Resume Feedback Shaped by a Recruiter",
   description: homepageDescription,
   alternates: {
     canonical: "/",
@@ -51,7 +51,7 @@ const structuredData = {
           "@type": "Offer",
           price: "29",
           priceCurrency: "USD",
-          description: "Five additional careful recruiter-style résumé reports over 30 days with no recurring subscription.",
+          description: "Five additional careful recruiter-style resume reports over 30 days with no recurring subscription.",
         },
       ],
     },

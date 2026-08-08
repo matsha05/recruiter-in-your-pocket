@@ -63,7 +63,7 @@ export default function SpellingErrorsPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Costly mistakes: Evidence on spelling errors in résumés",
+                    title: "Costly mistakes: Evidence on spelling errors in resumes",
                     publisher: "PLOS ONE",
                     year: "2023",
                     href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: "/pricing",
   },
   openGraph: {
-    title: "One Free Résumé Report, Then Five Careful Reports for $29",
+    title: "One Free Resume Report, Then Five Careful Reports for $29",
     description: "Start with one free report. Add five careful reports for important revisions and applications over 30 days. One payment, no renewal.",
     url: "https://www.recruiterinyourpocket.com/pricing",
     images: ["/opengraph-image?v=20260730"],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "One Free Résumé Report, Then Five Careful Reports for $29",
+    title: "One Free Resume Report, Then Five Careful Reports for $29",
     description: "Five careful reports for important revisions and applications over 30 days. One payment, no renewal.",
     images: ["/opengraph-image?v=20260730"],
   },
