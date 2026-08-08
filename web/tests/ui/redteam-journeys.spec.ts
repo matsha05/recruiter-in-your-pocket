@@ -100,11 +100,15 @@ test.describe("launch red-team journeys", () => {
       const rect = button.getBoundingClientRect();
       return { left: rect.left, right: rect.right, top: Math.round(rect.top) };
     }));
+    const headerBottom = await page.locator("header.site-header").evaluate((header) => (
+      Math.round(header.getBoundingClientRect().bottom)
+    ));
     expect(navigationBoxes).toHaveLength(4);
     expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(2);
     for (const box of navigationBoxes) {
       expect(box.left).toBeGreaterThanOrEqual(0);
       expect(box.right).toBeLessThanOrEqual(390);
+      expect(box.top).toBeGreaterThanOrEqual(headerBottom);
     }
 
     const firstRead = page.locator("#section-first-impression");
