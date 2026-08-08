@@ -2089,6 +2089,24 @@
     height: calc(100dvh - var(--product-header-height));
   }
 
+  .sample-report-page-shell {
+    padding-top: var(--marketing-header-height-mobile);
+  }
+
+  .sample-report-page-shell > .workspace-product-shell {
+    height: calc(100dvh - var(--marketing-header-height-mobile));
+  }
+
+  @media (min-width: 640px) {
+    .sample-report-page-shell {
+      padding-top: var(--marketing-header-height-desktop);
+    }
+
+    .sample-report-page-shell > .workspace-product-shell {
+      height: calc(100dvh - var(--marketing-header-height-desktop));
+    }
+  }
+
   .workspace-first-read-panel {
     max-width: 49rem;
   }

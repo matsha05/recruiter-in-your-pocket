@@ -29,5 +29,9 @@ export const metadata: Metadata = {
 };
 
 export default function SampleReportPage() {
-  return <WorkspaceClient initialReport={sampleReport as ReportData} />;
+  return (
+    <div className="sample-report-page-shell">
+      <WorkspaceClient initialReport={sampleReport as ReportData} />
+    </div>
+  );
 }
