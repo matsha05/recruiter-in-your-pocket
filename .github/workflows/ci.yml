@@ -65,6 +65,12 @@ jobs:
       - name: Release integrity tests
         run: npm run test:release-integrity
 
+      - name: Source fidelity tests
+        run: npm run test:source-fidelity
+
+      - name: Streaming completion tests
+        run: npm run test:stream-contract
+
       - name: Launch UI smoke tests
         run: npm run test:launch-smoke
 

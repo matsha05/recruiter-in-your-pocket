@@ -90,31 +90,9 @@ export async function parseResume(formData: FormData): Promise<{ ok: boolean; te
   return data;
 }
 
-// Wrapper for postResumeFeedback that returns data in format expected by WorkspaceClient
-async function createResumeFeedback(resumeText: string, jobDescription?: string): Promise<{ ok: boolean; report?: any; message?: string }> {
-  const result = await postResumeFeedback({
-    text: resumeText,
-    jobDescription,
-    mode: "resume"
-  });
-
-  if (result.ok) {
-    // The backend returns the report data in `data` property
-    return {
-      ok: true,
-      report: result.data
-    };
-  }
-
-  return {
-    ok: false,
-    message: result.message || "Failed to generate report"
-  };
-}
-
 /**
- * Streaming version of createResumeFeedback.
- * A report is exposed only after the server sends the authoritative complete event.
+ * Streams resume feedback and exposes a report only after the server sends the
+ * authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamResumeFeedback(
