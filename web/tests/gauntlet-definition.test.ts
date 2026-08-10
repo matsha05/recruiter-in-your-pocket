@@ -38,25 +38,18 @@ async function main() {
   const definition = await validateGauntletDefinition(webRoot, "iteration-002");
   assert.deepEqual(definition.issues, [], "the active definition must validate without invented evidence");
   assert.equal(definition.manifest.activeIterationId, "iteration-002");
-  assert.ok(["pending", "collecting", "complete"].includes(definition.iteration.status));
+  assert.equal(definition.iteration.status, "retired");
   assert.equal(definition.iteration.production.commit, baselineCommit);
   assert.equal(definition.iteration.production.ref, "main");
   assert.equal(definition.iteration.production.deploymentStatus, "deployed_baseline");
   assert.equal(definition.iteration.candidate.ref, "codex/gauntlet-iteration-002");
   assert.equal(definition.iteration.candidate.deploymentStatus, "not_deployed");
-  if (definition.iteration.status === "pending") {
-    assert.equal(definition.iteration.critic.verdict, "pending");
-    assert.equal(definition.iteration.candidate.commit, null);
-    assert.equal(definition.iteration.seal, null);
-  } else {
-    assert.match(definition.iteration.candidate.commit ?? "", /^[a-f0-9]{40}$/);
-    assert.notEqual(definition.iteration.candidate.model, null);
-    assert.notEqual(definition.iteration.candidate.resumePrompt, null);
-    assert.notEqual(definition.iteration.candidate.renderer, null);
-    assert.equal(definition.iteration.status === "complete", definition.iteration.seal !== null);
-  }
+  assert.equal(definition.iteration.critic.verdict, "pending");
+  assert.equal(definition.iteration.candidate.commit, null);
+  assert.equal(definition.iteration.seal, null);
   assert.equal(unboundCandidateAllowed("baseline_pending"), true);
   assert.equal(unboundCandidateAllowed("pending"), true);
+  assert.equal(unboundCandidateAllowed("retired"), true);
   assert.equal(unboundCandidateAllowed("collecting"), false);
   assert.equal(unboundCandidateAllowed("complete"), false);
   assert.equal(shouldProtectInternalLaunchSurfaceForHost("localhost", false), true);
@@ -82,14 +75,7 @@ async function main() {
   }
 
   const artifactEntries = (await readdir(path.join(webRoot, "gauntlet/artifacts"))).sort();
-  if (definition.iteration.status === "pending") {
-    assert.deepEqual(artifactEntries, [".gitignore"], "pending iteration must not ship evidence files");
-  } else {
-    assert.ok(artifactEntries.every((entry) => [".gitignore", "iteration-002"].includes(entry)));
-    if (definition.iteration.status === "complete") {
-      assert.ok(artifactEntries.includes("iteration-002"));
-    }
-  }
+  assert.deepEqual(artifactEntries, [".gitignore"], "retired iteration must not ship evidence files");
 
   for (const repositoryPath of GAUNTLET_RUNTIME_CLOSURE_PATHS) {
     assert.equal(await pathExists(path.join(repositoryRoot, repositoryPath)), true, `runtime closure path is missing: ${repositoryPath}`);

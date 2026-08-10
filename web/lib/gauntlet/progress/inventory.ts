@@ -204,7 +204,7 @@ export async function validateExactArtifactInventory(input: {
       input.issues.push(`${input.iteration.id}: referenced evidence artifact is missing: ${expectedPath}`);
     }
   }
-  if (["pending", "baseline_pending"].includes(input.iteration.status) && actual.length > 0) {
-    input.issues.push(`${input.iteration.id}: pending iterations may not contain evidence artifacts`);
+  if (["pending", "baseline_pending", "retired"].includes(input.iteration.status) && actual.length > 0) {
+    input.issues.push(`${input.iteration.id}: pending or retired iterations may not contain evidence artifacts`);
   }
 }

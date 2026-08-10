@@ -11,7 +11,7 @@ import {
   type ReportFinalizationReceipt,
 } from "../lib/gauntlet/types";
 import { parseCaptureCli } from "../scripts/gauntlet-evidence-capture";
-import { parseGauntletEvalCli } from "../scripts/run-gauntlet-eval";
+import { assertGauntletEvalActive, parseGauntletEvalCli } from "../scripts/run-gauntlet-eval";
 import {
   generationEvidenceIssues,
   generationRunIdentity,
@@ -329,6 +329,8 @@ async function main() {
   assert.equal(evalCli.options.tier, "golden");
   assert.equal(evalCli.options.dryRun, false);
   assert.equal(evalCli.options.budgetUsd, 6);
+  assert.throws(() => assertGauntletEvalActive("retired"), /ended by owner/);
+  assert.doesNotThrow(() => assertGauntletEvalActive("pending"));
   assert.throws(
     () => parseGauntletEvalCli(["--attestation=/tmp/a.json", "--dry-run=true"]),
     /unknown argument/,

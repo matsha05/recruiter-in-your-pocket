@@ -1,7 +1,7 @@
 export const GAUNTLET_DIMENSIONS = ["trust", "specificity", "actionability"] as const;
 
 export type GauntletDimension = (typeof GAUNTLET_DIMENSIONS)[number];
-export type GateStatus = "pass" | "fail" | "pending";
+export type GateStatus = "pass" | "fail" | "pending" | "retired";
 export type Variant = "candidate" | "production";
 export type BlindLabel = "A" | "B";
 
@@ -110,7 +110,7 @@ export interface GauntletIteration {
   id: string;
   label: string;
   createdAt: string;
-  status: "baseline_pending" | "pending" | "collecting" | "complete";
+  status: "baseline_pending" | "pending" | "collecting" | "complete" | "retired";
   production: CandidateBinding;
   candidate: CandidateBinding;
   builder: {

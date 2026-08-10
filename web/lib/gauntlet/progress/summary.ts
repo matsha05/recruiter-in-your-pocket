@@ -366,6 +366,17 @@ export function summarizeGauntletProgress(
   }
   baselineGaps.push("Same-resume Teal and Jobscan outputs are unavailable because no competitor account was created; external evidence is limited to their inspected public artifacts.");
   baselineGaps.push(...evidence.dataIssues);
+  if (iteration.status === "retired") {
+    baselineGaps.splice(0, baselineGaps.length,
+      "Matt ended this Gauntlet before evidence capture. It is retired without a quality verdict and has no remaining work queue.");
+  }
+  const reportedGates = iteration.status === "retired"
+    ? gates.map((gate) => gate.status === "pass" ? gate : {
+      ...gate,
+      status: "retired" as const,
+      detail: "Not pursued; Matt ended this Gauntlet before evidence capture.",
+    })
+    : gates;
 
   return {
     generatedAt: new Date().toISOString(),
@@ -373,7 +384,7 @@ export function summarizeGauntletProgress(
     iteration,
     iterationLedgerSha256: context?.iterationLedgerSha256 ?? "unsealed-test-snapshot",
     iterations: iterationSummaries(context?.ledgers ?? [], iteration.id, manifest.activeIterationId),
-    overallStatus: combineGateStatuses(gates),
+    overallStatus: iteration.status === "retired" ? "retired" : combineGateStatuses(gates),
     configuredCases: manifest.cases.length,
     pairedOutputCases: pairedCaseIds.size,
     blindReviewedCases: evidence.blindJudgments.size,
@@ -385,10 +396,14 @@ export function summarizeGauntletProgress(
     manuallyInventedFacts,
     criticalJourneyFailures,
     completedJourneys,
-    dimensions,
-    referenceDimensions,
+    dimensions: iteration.status === "retired"
+      ? dimensions.map((dimension) => ({ ...dimension, status: "retired" as const }))
+      : dimensions,
+    referenceDimensions: iteration.status === "retired"
+      ? referenceDimensions.map((dimension) => ({ ...dimension, status: "retired" as const }))
+      : referenceDimensions,
     cases,
-    gates,
+    gates: reportedGates,
     baselineGaps,
     dataIssues: evidence.dataIssues,
   };
