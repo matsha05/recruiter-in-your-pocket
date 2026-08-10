@@ -12,7 +12,7 @@ import { validateExactArtifactInventory } from "../lib/gauntlet/progress/invento
 async function main() {
   const snapshot = await getGauntletProgress(process.cwd(), "iteration-002");
   assert.equal(snapshot.iteration.id, "iteration-002");
-  assert.ok(["pending", "collecting", "complete"].includes(snapshot.iteration.status));
+  assert.equal(snapshot.iteration.status, "retired");
   assert.equal(snapshot.configuredCases, 12);
   for (const count of [
     snapshot.pairedOutputCases,
@@ -34,33 +34,23 @@ async function main() {
   const critic = snapshot.gates.find((gate) => gate.id === "critic-verdict");
   const integrity = snapshot.gates.find((gate) => gate.id === "evidence-integrity");
   assert.equal(caseSet?.status, "pass");
-  if (snapshot.iteration.status === "pending") {
-    assert.equal(snapshot.overallStatus, "pending");
-    assert.equal(snapshot.pairedOutputCases, 0);
-    assert.equal(snapshot.blindReviewedCases, 0);
-    assert.equal(snapshot.sourceAuditedCases, 0);
-    assert.equal(snapshot.referenceAssessedCases, 0);
-    assert.equal(snapshot.automatedCheckedCases, 0);
-    assert.equal(snapshot.completedJourneys, 0);
-    assert.equal(snapshot.manuallyInventedFacts, null);
-    assert.equal(snapshot.criticalJourneyFailures, null);
-    assert.ok(snapshot.cases.every((testCase) => testCase.candidate === null && testCase.production === null));
-    assert.equal(binding?.status, "pending");
-    assert.match(binding?.detail ?? "", /Candidate commit/);
-    assert.equal(outputs?.status, "pending");
-    assert.equal(outputs?.detail, "0/12 production/candidate report plus rendered-presentation pairs are present");
-    assert.equal(critic?.status, "pending");
-    assert.equal(integrity?.status, "pending");
-    assert.match(integrity?.detail ?? "", /No sealed evidence tree exists/);
-    assert.ok(snapshot.baselineGaps.some((gap) => gap.includes("final candidate commit")));
-    assert.ok(snapshot.baselineGaps.some((gap) => gap.startsWith("Bind the candidate")));
-  } else {
-    assert.equal(binding?.status, "pass");
-    if (snapshot.iteration.status === "complete") {
-      assert.equal(snapshot.overallStatus, "pass");
-      assert.equal(integrity?.status, "pass");
-    }
-  }
+  assert.equal(snapshot.overallStatus, "retired");
+  assert.equal(snapshot.pairedOutputCases, 0);
+  assert.equal(snapshot.blindReviewedCases, 0);
+  assert.equal(snapshot.sourceAuditedCases, 0);
+  assert.equal(snapshot.referenceAssessedCases, 0);
+  assert.equal(snapshot.automatedCheckedCases, 0);
+  assert.equal(snapshot.completedJourneys, 0);
+  assert.equal(snapshot.manuallyInventedFacts, null);
+  assert.equal(snapshot.criticalJourneyFailures, null);
+  assert.ok(snapshot.cases.every((testCase) => testCase.candidate === null && testCase.production === null));
+  assert.equal(binding?.status, "retired");
+  assert.equal(outputs?.status, "retired");
+  assert.equal(critic?.status, "retired");
+  assert.equal(integrity?.status, "retired");
+  assert.deepEqual(snapshot.baselineGaps, [
+    "Matt ended this Gauntlet before evidence capture. It is retired without a quality verdict and has no remaining work queue.",
+  ]);
 
   const baseline = await getGauntletProgress(process.cwd(), "iteration-000-baseline");
   assert.equal(baseline.iteration.status, "baseline_pending");
@@ -106,7 +96,7 @@ async function main() {
     await rm(temporaryRoot, { recursive: true, force: true });
   }
 
-  console.log("Gauntlet pending progress tests passed.");
+  console.log("Gauntlet retired progress tests passed.");
 }
 
 main().catch((error) => {

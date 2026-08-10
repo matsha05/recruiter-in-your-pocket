@@ -1,6 +1,6 @@
 # RIYP Controlled Paid Beta Launch Program
 
-**Last updated:** July 20, 2026
+**Last updated:** August 10, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -33,7 +33,7 @@ The promise is simple: upload or paste a resume, optionally add a job, and get t
 - Guest report persistence
 - Error replay
 - Broad launch campaigns, Product Hunt, or paid acquisition
-- Additional live model evals beyond the approved July 19 quality run
+- Unapproved paid model evaluations; every new run requires an explicit budget
 
 The held-back surfaces must remain disabled, absent from navigation and search discovery, and safe if reached directly.
 
@@ -80,7 +80,7 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-Matt authorized the stored-fixture quality work and the July 28 Luna bake-off. The final candidate-bound `gpt-5.6-luna` run (`eval_1785271781375`) completed with 22 PASS, 1 WARN, and 0 FAIL across all 23 golden fixtures at a token-calculated API cost of $0.287278. Its 95.7% pass rate clears the 90% launch bar, and the bundled evidence binds the exact model and prompt hashes. Any prompt or launch-model change reopens this gate.
+Matt authorized the stored-fixture quality work. The current candidate validation (`eval_1786231390293_replay`) replayed the authorized `gpt-5.6-luna` source outputs through the repaired validator and completed with 22 PASS, 1 WARN, and 0 FAIL across all 23 golden fixtures. The source run cost $0.576062 across 45 calls. Its 95.7% pass rate clears the 90% launch bar, and bundled readiness binds the exact model, reasoning level, source-run hash, and prompt hashes. Any prompt or launch-model change reopens this gate.
 
 - Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.
@@ -143,10 +143,17 @@ npm run launch:rehearsal
 
 `npm run launch:gate:strict` remains the final live-quality gate. It must fail while paid evaluations are not explicitly authorized. That failure is an intentional spend control, not a release-candidate defect.
 
-## Current Blockers
+## Current State and Follow-ups
 
-- Complete the signed-in preview rehearsal with a disposable account: sign-in return path, saved report history, sign-out, and restore after sign-in.
-- Complete one Stripe test-mode Job Search Pass purchase, webhook replay and retry, receipt, restore, portal, refund, and entitlement-revocation cycle.
-- Export and permanently delete the same disposable account, then verify a later sign-in does not resurrect product data.
-- Run remote CI against the exact reviewed release after the branch is explicitly authorized for push.
-- Keep production billing disabled until those rehearsals pass and Matt records the final `GO` for the release identifier.
+Production release `ece17d1804a7099c7567a8fdb5c48ed9fbbc2718` passed exact-commit CI, deployed successfully, and reported configured services with no incidents on August 10, 2026. The billing, support, alerting, account deletion, recovery, and refund rehearsals above are complete; they are preserved in `95-launch-rehearsal.md` and `87-operational-ownership.md`.
+
+No known configuration blocker remains for the controlled beta. These follow-ups must not be mistaken for completed evidence:
+
+- The formal Gauntlet was ended by Matt on August 10 because its token and review cost outweighed its usefulness. Its ledger is retired without a quality verdict.
+- Main currently relies on release convention rather than required PR and CI status checks. Add enforced branch rules before expanding the contributor set.
+- `/api/status` reports configuration readiness, not uptime. Add an external uptime monitor before depending on it as an availability signal.
+- Populated signed-in report history is implemented and browser-tested, but a real production customer-created history has not been documented yet.
+- A formal Codex Deep Security Scan protocol is not on record. Multiple specialist reviews and automated security suites passed; do not relabel them as that formal scan.
+- Google search-result replacement remains asynchronous after accepted sitemap and recrawl requests.
+
+Supabase still reports leaked-password protection as disabled. The organization is on the Free plan, where Supabase does not offer that control, and RIYP's current sign-in is passwordless. Reassess this setting if password authentication is introduced or the Supabase plan changes.

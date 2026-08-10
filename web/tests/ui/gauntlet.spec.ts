@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("operator gauntlet", () => {
-  test("renders an honest pending baseline on desktop", async ({ page }) => {
+  test("renders an honest retired record on desktop", async ({ page }) => {
     await page.goto("/launch/gauntlet", { waitUntil: "domcontentloaded" });
     await page.waitForSelector("[data-visual-anchor='gauntlet-progress']", { timeout: 30_000 });
 
@@ -17,12 +17,12 @@ test.describe("operator gauntlet", () => {
 
     const ledgerStatus = await page.locator("dt", { hasText: /^Status$/ })
       .locator("xpath=following-sibling::dd[1]").textContent();
-    if (ledgerStatus === "pending") {
-      await expect(page.getByText("EVIDENCE PENDING", { exact: true })).toBeVisible();
-      await expect(page.getByText("0/12 production/candidate report plus rendered-presentation pairs are present", { exact: true })).toBeVisible();
+    if (ledgerStatus === "retired") {
+      await expect(page.getByText("GAUNTLET ENDED", { exact: true })).toBeVisible();
+      await expect(page.getByText("No eval, evidence capture, or critic work remains authorized for this iteration.", { exact: true })).toBeVisible();
       await expect(page.getByText("Not measured", { exact: true }).first()).toBeVisible();
-      await expect(page.getByText("No product-quality or deployment claim is made. This iteration remains pending until the final candidate commit and fresh evidence are attached.", { exact: true })).toBeVisible();
-      await expect(page.getByText("No sealed evidence tree exists to verify yet", { exact: true })).toBeVisible();
+      await expect(page.getByText("No product-quality or deployment claim is made. This iteration is retired, not passed or sealed.", { exact: true })).toBeVisible();
+      await expect(page.getByText("Not pursued; Matt ended this Gauntlet before evidence capture.", { exact: true }).first()).toBeVisible();
     }
 
     await page.getByRole("link", { name: "Machine learning engineering" }).click();

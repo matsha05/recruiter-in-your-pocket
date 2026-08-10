@@ -41,6 +41,7 @@ const SAFE_SELECTOR = /^[a-z0-9][a-z0-9-]{0,63}$/;
 function statusClass(status: GateStatus) {
   if (status === "pass") return "border-success/35 bg-success/10 text-success";
   if (status === "fail") return "border-destructive/35 bg-error-surface text-destructive";
+  if (status === "retired") return "border-line bg-paper-muted text-muted-foreground";
   return "border-warning/35 bg-warning/10 text-warning-foreground";
 }
 
@@ -230,11 +231,13 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
     if (error instanceof UnknownGauntletIterationError) notFound();
     notFound();
   }
-  if (protectedHost && !["pending", "baseline_pending"].includes(snapshot.iteration.status)) notFound();
+  if (protectedHost && !["pending", "baseline_pending", "retired"].includes(snapshot.iteration.status)) notFound();
   const selectedCase = caseParam ? snapshot.cases.find((testCase) => testCase.id === caseParam) : undefined;
   if (caseParam && !selectedCase) notFound();
 
-  const overallLabel = snapshot.overallStatus === "pass"
+  const overallLabel = snapshot.overallStatus === "retired"
+    ? "GAUNTLET ENDED"
+    : snapshot.overallStatus === "pass"
     ? "QUALITY BAR CLEARED"
     : snapshot.overallStatus === "fail"
       ? "EVIDENCE BLOCKED"
@@ -251,12 +254,16 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
           </Link>
           <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Gauntlet loop · operator only</p>
+              <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
+                Gauntlet loop · {snapshot.iteration.status === "retired" ? "ended by owner" : "operator only"}
+              </p>
               <h1 className="mt-3 max-w-4xl font-display text-4xl riyp-weight-620 riyp-leading-098 riyp-track-n055 text-foreground sm:text-5xl lg:text-6xl">
                 Can the first free review earn the second?
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
-                Twelve existing synthetic resumes. Nine candidate wins in every dimension. Zero invented facts. Zero critical desktop or mobile journey failures.
+                {snapshot.iteration.status === "retired"
+                  ? "Matt ended this loop before evidence capture. It is retired without a quality verdict, not waiting for more tokens or review."
+                  : "Twelve existing synthetic resumes. Nine candidate wins in every dimension. Zero invented facts. Zero critical desktop or mobile journey failures."}
               </p>
             </div>
             <div className={`inline-flex min-h-12 items-center gap-2 self-start border-l-4 px-4 py-3 text-sm font-semibold ${statusClass(snapshot.overallStatus)}`}>
@@ -286,7 +293,9 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
           </div>
         </header>
 
-        <Panel title="Iteration record" description="Ledger selection is read-only. Every completed record is chained to its predecessor and sealed to its exact evidence tree.">
+        <Panel title="Iteration record" description={snapshot.iteration.status === "retired"
+          ? "This read-only record preserves the decision to stop without claiming a pass."
+          : "Ledger selection is read-only. Every completed record is chained to its predecessor and sealed to its exact evidence tree."}>
           <form method="get" className="grid gap-3 border border-line bg-paper-muted p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
             <label className="text-sm font-semibold text-foreground">
               Inspect iteration
@@ -347,7 +356,9 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
           </div>
         </Panel>
 
-        <Panel title="Evidence gates" description="Missing evidence stays pending. Invalid, stale, mutated, or unsafe evidence fails closed.">
+        <Panel title="Evidence gates" description={snapshot.iteration.status === "retired"
+          ? "Unfinished gates are retired, not passed and not queued for more work."
+          : "Missing evidence stays pending. Invalid, stale, mutated, or unsafe evidence fails closed."}>
           <div className="grid gap-x-8 md:grid-cols-2">
             {snapshot.gates.map((gate) => (
               <div key={gate.id} className="flex gap-3 border-t border-line py-4 first:border-t-0 md:[&:nth-child(2)]:border-t-0">
@@ -425,7 +436,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
               ))}
             </div>
           </Panel>
-          <Panel title="What is actually missing" description={snapshot.iteration.baselineStatement}>
+          <Panel title={snapshot.iteration.status === "retired" ? "Why this ended" : "What is actually missing"} description={snapshot.iteration.baselineStatement}>
             <ol className="space-y-4">
               {snapshot.baselineGaps.map((gap, index) => (
                 <li key={`${index}-${gap}`} className="flex gap-3 text-sm leading-6 text-muted-foreground">
@@ -442,10 +453,16 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
             {snapshot.dataIssues.length > 0 ? <ShieldAlert aria-hidden="true" className="size-5" /> : <FlaskConical aria-hidden="true" className="size-5" />}
           </span>
           <div>
-            <p className="text-sm font-semibold text-foreground">Operator command</p>
-            <code className="mt-2 block overflow-x-auto border border-line bg-background px-3 py-2 text-xs text-muted-foreground">
-              npm run gauntlet:strict -- --iteration={snapshot.iteration.id}
-            </code>
+            <p className="text-sm font-semibold text-foreground">
+              {snapshot.iteration.status === "retired" ? "Retired record" : "Operator command"}
+            </p>
+            {snapshot.iteration.status === "retired" ? (
+              <p className="mt-2 text-sm text-muted-foreground">No eval, evidence capture, or critic work remains authorized for this iteration.</p>
+            ) : (
+              <code className="mt-2 block overflow-x-auto border border-line bg-background px-3 py-2 text-xs text-muted-foreground">
+                npm run gauntlet:strict -- --iteration={snapshot.iteration.id}
+              </code>
+            )}
             <p className="mt-2 text-xs text-muted-foreground">Snapshot generated <time dateTime={snapshot.generatedAt}>{new Date(snapshot.generatedAt).toLocaleString()}</time>.</p>
           </div>
         </footer>

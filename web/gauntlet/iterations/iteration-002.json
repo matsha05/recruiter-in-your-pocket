@@ -1,9 +1,9 @@
 {
   "schemaVersion": "2",
   "id": "iteration-002",
-  "label": "First-customer evidence rerun",
+  "label": "First-customer evidence rerun (retired)",
   "createdAt": "2026-08-02T18:47:49.000Z",
-  "status": "pending",
+  "status": "retired",
   "production": {
     "ref": "main",
     "deploymentStatus": "deployed_baseline",
@@ -27,13 +27,13 @@
     "renderer": null
   },
   "builder": {
-    "change": "Prepared a clean iteration-002 evidence harness against deployed main 181bf60. No product candidate is bound yet.",
-    "claim": "No product-quality or deployment claim is made. This iteration remains pending until the final candidate commit and fresh evidence are attached."
+    "change": "Matt ended the formal Gauntlet on 2026-08-10 before iteration-002 evidence capture because its token and review cost outweighed its usefulness.",
+    "claim": "No product-quality or deployment claim is made. This iteration is retired, not passed or sealed."
   },
   "critic": {
     "verdict": "pending",
-    "rationale": "Iteration 002 has no inherited artifacts and no fresh reviewer evidence.",
-    "remainingGap": "Bind the final candidate commit on codex/gauntlet-iteration-002, capture all required evidence, and run an independent critic review.",
+    "rationale": "No critic review was run because Matt ended the Gauntlet before evidence capture.",
+    "remainingGap": "None. The iteration was intentionally retired rather than completed.",
     "reviewer": null,
     "reviewedAt": null,
     "artifact": null
@@ -43,5 +43,5 @@
     "ledgerSha256": "18181f226139ac5ced89ae99d256b67f34dc752af8fdb12f63471705abc98e57"
   },
   "seal": null,
-  "baselineStatement": "Iteration 002 compares a future commit on codex/gauntlet-iteration-002 with deployed main 181bf60. It starts with zero outputs, judgments, audits, journey receipts, or verdicts. Rejected iteration-001 evidence is not inherited."
+  "baselineStatement": "Retired by Matt on 2026-08-10 with zero outputs, judgments, audits, journey receipts, or verdicts. Rejected iteration-001 evidence is not inherited, and no Gauntlet quality claim was earned."
 }

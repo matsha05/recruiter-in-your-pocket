@@ -1,8 +1,12 @@
 # A3: UX, UI, and Copy Spec
 
+> [!WARNING]
+> Historical 2025 design exercise only. This file is not authoritative for current product behavior, pricing, or launch copy. Use `80-go-no-go-program.md`, the shared pricing constants, and the live product instead.
+
 **Agent:** A3 UX, UI, and Copy Lead  
 **Date:** 2025-12-28  
-**Purpose:** Specify premium product experience at polished bar
+**Status:** Historical, superseded
+**Purpose:** Preserve the original premium-experience exploration
 
 ---
 

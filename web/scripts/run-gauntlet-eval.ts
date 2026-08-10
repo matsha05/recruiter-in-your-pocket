@@ -17,6 +17,10 @@ const OPENAI_CHAT_COMPLETIONS = "https://api.openai.com/v1/chat/completions";
 
 type ProviderIdentity = { id: string; createdAt: string; model: string };
 
+export function assertGauntletEvalActive(status: string) {
+  if (status === "retired") throw new Error("Gauntlet was ended by owner; paid eval is disabled");
+}
+
 function sha256(value: Buffer) {
   return createHash("sha256").update(value).digest("hex");
 }
@@ -151,11 +155,17 @@ export async function runGauntletEval(argv: string[]) {
   const { attestationPath, options } = parseGauntletEvalCli(argv);
   if (existsSync(attestationPath)) throw new Error("attestation target already exists; refusing to overwrite it");
   const repositoryRoot = await gitText(process.cwd(), ["rev-parse", "--show-toplevel"]);
-  const runnerCommit = await runnerCommitFor(repositoryRoot);
   const manifest = JSON.parse(await readFile(path.join(process.cwd(), "gauntlet/manifest.json"), "utf8")) as {
+    activeIterationId: string;
     target: { caseCount: number };
     cases: Array<{ fixtureId: string }>;
   };
+  const iteration = JSON.parse(await readFile(
+    path.join(process.cwd(), "gauntlet/iterations", `${manifest.activeIterationId}.json`),
+    "utf8",
+  )) as { status: string };
+  assertGauntletEvalActive(iteration.status);
+  const runnerCommit = await runnerCommitFor(repositoryRoot);
   const providerResponses: ProviderIdentity[] = [];
   const restoreFetch = installProviderIdentityRecorder(providerResponses);
   let output: EvalRunOutput;

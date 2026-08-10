@@ -33,7 +33,7 @@ export const LAUNCH_OWNERS: LaunchOwner[] = [
   { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard plus GitHub Issues backup alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
   { surface: "Held-back surfaces", owner: "Matt", backup: "Launch flags + status page", channel: "docs/launch-readiness/80-go-no-go-program.md" },
   { surface: "AI quality and prompt changes", owner: "Matt", backup: "PromptOps shipping gate", channel: "docs/promptops/shipping-gate.md" },
-  { surface: "Trust and security disclosures", owner: "Matt", backup: "Security mailbox", channel: "security@recruiterinyourpocket.com" },
+  { surface: "Trust and security disclosures", owner: "Matt", backup: "Verified support mailbox", channel: "support@recruiterinyourpocket.com" },
 ];
 
 export const ROLLBACK_CONTROLS: RollbackControl[] = [

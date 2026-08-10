@@ -48,7 +48,7 @@ const CANONICAL_RENDERER_PREFIXES = [
 ];
 
 export function unboundCandidateAllowed(status: GauntletIteration["status"]) {
-  return status === "baseline_pending" || status === "pending";
+  return status === "baseline_pending" || status === "pending" || status === "retired";
 }
 
 export class UnknownGauntletIterationError extends Error {}
@@ -70,7 +70,7 @@ function validateIterationShape(iteration: GauntletIteration, ledgerName: string
   if (!isSafeComponent(iteration.id)) issues.push(`${ledgerName}: id is unsafe`);
   if (!isNonEmptyString(iteration.label)) issues.push(`${ledgerName}: label is missing`);
   if (!isIsoTimestamp(iteration.createdAt)) issues.push(`${ledgerName}: createdAt must be an ISO timestamp`);
-  if (!["baseline_pending", "pending", "collecting", "complete"].includes(iteration.status)) {
+  if (!["baseline_pending", "pending", "collecting", "complete", "retired"].includes(iteration.status)) {
     issues.push(`${ledgerName}: status is invalid`);
   }
   issues.push(...validateBindingShape(iteration.production, "production", ledgerName));
