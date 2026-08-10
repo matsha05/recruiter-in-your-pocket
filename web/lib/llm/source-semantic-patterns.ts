@@ -1,10 +1,12 @@
 const commonCapitalizedWords = new Set([
-  "A", "Across", "Add", "After", "All", "An", "And", "Annual", "At", "Before", "Built", "Candidate",
-  "Company", "Coordinated", "Created", "Details", "Did", "Do", "Education", "Experience", "For",
-  "From", "Generated", "How", "If", "In", "Keep", "Led", "Maintained", "Managed", "Marketing", "No", "Of",
-  "On", "Operations", "Product", "Ran", "Recorded", "Recruiter", "Resume", "Role", "Sales", "Scaled", "Senior",
-  "Skills", "Strong", "Summary", "Supported", "The", "This", "To", "Use", "What",
-  "When", "Where", "Which", "Who", "Why", "With", "Work", "Your",
+  "A", "Across", "Accounting", "Add", "After", "All", "An", "And", "Annual", "As", "At", "Before", "Built", "Candidate",
+  "Choose", "Clear", "Company", "Concrete", "Coordinated", "Created", "Current", "Dense", "Define", "Describe", "Detailed", "Details", "Did", "Do", "Document", "Earlier",
+  "Education", "Evidence", "Experience", "Financial", "For", "From", "Generated", "High-volume", "How", "If", "In",
+  "It", "Keep", "Large-scale", "Led", "Long", "Maintained", "Make", "Managed", "Marketing", "Measured", "No", "Not", "Of",
+  "On", "Operational", "Operations", "Organized", "Partnership", "Position", "Principal", "Product", "Quantified", "Ran", "Recent",
+  "Recorded", "Recruiter", "Reducing", "Register", "Relevant", "Resume", "Retail", "Rewrite", "Role", "Sales", "Scaled", "Section",
+  "SaaS-focused", "Senior", "Sharpen", "Show", "Skills", "Specific", "Split", "State", "Strong", "Summary", "Supported", "That", "The", "This", "To",
+  "Tighten", "Training", "Use", "Useful", "We", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [
@@ -33,13 +35,13 @@ const qualifierPatterns: Array<[string, RegExp]> = [
   ["qualifier:cross-functional", /\bcross[- ]functional\b/giu],
   ["qualifier:multiple", /\b(?:multiple|several|numerous)\b/giu],
   ["qualifier:major", /\b(?:major|significant|material|mission-critical|high-stakes)\b/giu],
-  ["causal:through", /\bthrough\b/giu],
   ["causal:resulting", /\b(?:resulting in|leading to|led to|because of|thereby)\b/giu],
 ];
 
 export const trackedSemanticPatterns = [...ownershipPatterns, ...outcomePatterns, ...qualifierPatterns];
 
 export function isCommonCapitalizedWord(value: string) {
+  if (/-level$/iu.test(value)) return true;
   if (commonCapitalizedWords.has(value)) return true;
   return trackedSemanticPatterns.some(([, pattern]) => {
     pattern.lastIndex = 0;

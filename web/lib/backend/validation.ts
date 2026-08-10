@@ -146,7 +146,7 @@ export function validateResumeModelPayload(
     if (contradictions.length > 0) {
       throw createAppError(
         "OPENAI_RESPONSE_SHAPE_INVALID",
-        `The model response contradicted positive source evidence at ${contradictions[0].path}.`,
+        `The model response failed the evidence grounding contract: contradicted positive source evidence at ${contradictions[0].path}.`,
         502,
       );
     }
@@ -159,7 +159,15 @@ export function validateResumeModelPayload(
       );
     }
     obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
-    obj = removeUnsafeRewrites(obj, resumeText).report;
+    const rewriteScreen = removeUnsafeRewrites(obj, resumeText);
+    if (rewriteScreen.removed.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response failed the evidence grounding contract at rewrites[${rewriteScreen.removed[0].index}].better source fidelity.`,
+        502,
+      );
+    }
+    obj = rewriteScreen.report;
   }
 
   obj.score = normalizeScore(obj.score, "score");

@@ -162,6 +162,9 @@ export interface EvalRunMetadata {
     max_calls: number;
     concurrency: number;
     baseline_path?: string;
+    validation_mode?: "in_run" | "saved_output_replay";
+    validation_timestamp?: string;
+    source_run_sha256?: string;
 }
 
 // ============================================

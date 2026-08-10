@@ -1,5 +1,4 @@
-import { baseNarrativeStopWords, interpretationContextForPath, narrativeTokenPolicy,
-  normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
+import { baseNarrativeStopWords, interpretationContextForPath, narrativeTokenPolicy, normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
@@ -7,6 +6,8 @@ import { assertsNegativePresence, negativePresenceSubject } from "./report-polar
 import { semanticMissingDisposition } from "./semantic-missing-policy";
 import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-semantic-patterns";
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
+import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion } from "./narrative-fact-support";
+import { supportsInferredIndustrySignal } from "./source-industry-signals";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
@@ -21,7 +22,6 @@ const leadingBulletPattern = /^(?:[•●◦▪▫‣⁃]\s*|[-*]\s+(?=[\p{L}\p{
 const sourceContinuationPattern = /[\p{L}\p{M}\p{N}\p{Pc}]/u;
 const meaningBearingEdgePattern = /[+\-−<>=≤≥$€£¥₹%&/.*#]/u;
 const trailingMeaningBearingEdgePattern = /[+\-−<>=≤≥$€£¥₹%&/*#]/u;
-
 export type VerifiedFact = { key: string; value: string };
 export type SourceFidelityIssue = {
   code:
@@ -33,19 +33,16 @@ export type SourceFidelityIssue = {
     | "unsupported_content";
   detail: string;
 };
-
 export type RewriteComparison = {
   safe: boolean;
   sourceLine?: string;
   issues: SourceFidelityIssue[];
 };
-
 export type NarrativeFidelityIssue = {
   path: string;
   claim: string;
   unsupportedFacts: string[];
 };
-
 export function isExactAbsenceSentinel(value: string) {
   return absenceSentinels.has(value.normalize("NFC").trim().replace(/\s+/gu, " "));
 }
@@ -133,8 +130,8 @@ export function resolveUniqueSourceLine(locator: string, sourceText?: string) {
 
 type ProtectedFact = { key: string; display: string };
 
-const metricPattern = /(?:(?:teams?|groups?|organizations?|departments?)\s+of\s+)?[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:%|[kmb]|x|×))?\+?(?:\s*(?:[-–]\s*)?(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
-const writtenMetricPattern = /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)(?:[- ]person|\s+(?:people|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?))\b/giu;
+const metricPattern = /(?<![\p{L}\p{N}])(?:(?:teams?|groups?|organizations?|departments?)\s+of\s+)?(?:exceeding|greater\s+than|more\s+than|over|less\s+than|under|about|approximately|roughly|up\s+to)?\s*[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d(?:[\d,]*\d)?(?:\.\d+)?(?:\s*%|[kmbx×](?![\p{L}\p{N}]))?\+?(?:\s*(?:[-–]\s*)?(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?(?![\p{L}\p{N}])/giu;
+const writtenMetricPattern = /\b(?:(?:teams?|groups?|staff)\s+of\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)(?:[- ]person|\s+(?:(?!(?:to|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b)[\p{L}\p{M}-]+\s+){0,2}(?:people|staff|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?)))\b/giu;
 const symbolicEntityPattern = /\.NET\b|\bR&D\b|\bA\/B\b|\bC\+\+(?=\W|$)/gu;
 const acronymPattern = /\b[A-Z][A-Z0-9]*(?:[.+#/-][A-Z0-9]+)*\b/gu;
 const titlePhrasePattern = /\b[A-Z][\p{L}\p{M}\d'’.-]*(?:\s+[A-Z][\p{L}\p{M}\d'’.-]*){1,3}\b/gu;
@@ -153,8 +150,7 @@ function addMatches(target: Map<string, ProtectedFact>, kind: string, value: str
 
 function protectedFacts(value: string) {
   const withoutPlaceholders = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
-  const facts = new Map<string, ProtectedFact>();
-
+  const facts = new Map<string, ProtectedFact>(), lexicalWordCount = (withoutPlaceholders.match(/[\p{L}\p{M}\d]+/gu) || []).length;
   for (const match of withoutPlaceholders.matchAll(metricPattern)) addMatches(facts, "metric", match[0].toLowerCase());
   for (const match of withoutPlaceholders.matchAll(writtenMetricPattern)) addMatches(facts, "metric-word", match[0].toLowerCase());
   for (const match of withoutPlaceholders.matchAll(symbolicEntityPattern)) addMatches(facts, "symbol", match[0]);
@@ -168,7 +164,8 @@ function protectedFacts(value: string) {
     if (words.length > 1) addMatches(facts, "entity", words.join(" "));
   }
   for (const match of withoutPlaceholders.matchAll(singleNamePattern)) {
-    if (!isCommonCapitalizedWord(match[0])) addMatches(facts, "entity", match[0]);
+    const sentenceInitial = /^[\s"“'‘(\[]*$/u.test(withoutPlaceholders.slice(0, match.index || 0));
+    if (!isCommonCapitalizedWord(match[0]) && (!sentenceInitial || lexicalWordCount === 1)) addMatches(facts, "entity", match[0]);
   }
   for (const match of withoutPlaceholders.matchAll(shortNamePattern)) {
     if (match[0] !== "I" && !isCommonCapitalizedWord(match[0])) {
@@ -182,12 +179,10 @@ function protectedFacts(value: string) {
   return Array.from(facts.values());
 }
 
-const semanticTokenAliases = new Map([
-  ["journey", "workflow"],
-]);
+const semanticTokenAliases = new Map([["journey", "workflow"], ["non-profit", "nonprofit"]]);
 
 function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
-  let untracked = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
+  let untracked = canonicalizeUserSourceText(value).replace(/\b([\p{L}])\.(?=[\p{L}]\b)/gu, "$1").replace(/\[[^\]]+\]/gu, "");
   for (const [, pattern] of trackedSemanticPatterns) {
     untracked = untracked.replace(pattern, " ");
     pattern.lastIndex = 0;
@@ -195,7 +190,7 @@ function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
   return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
     .map(normalizeNarrativeToken)
     .map((token) => semanticTokenAliases.get(token) || token)
-    .filter((token) => token.length > 2 && !ignoredTokens.has(token)));
+    .filter((token) => token.length > 1 && !ignoredTokens.has(token)));
 }
 
 export function compareSourceBoundRewrite(input: {
@@ -280,18 +275,16 @@ function claimSegments(value: string) {
     .map((segment) => segment.trim())
     .filter(Boolean);
 }
-
 function narrativeSourceClauses(sourceText: string) {
   return narrativeEvidenceClauses(sourceText)
     .map((clause) => canonicalSourceIdentity(clause))
     .filter(Boolean);
 }
-
 export function auditNarrativeClaim(
   value: string,
   sourceText: string,
   options: {
-    interpretationContext?: "observation" | "missing" | "advice" | "question";
+    interpretationContext?: "observation" | "assessment" | "missing" | "advice" | "question";
     rejectPositiveSourceAbsence?: boolean;
   } = {},
 ) {
@@ -303,17 +296,40 @@ export function auditNarrativeClaim(
   return claimSegments(value).flatMap((claim) => {
     const unsupportedPlaceholders = unsupportedBracketPayloads(claim);
     if (unsupportedPlaceholders.length > 0) return [{ claim, unsupportedFacts: unsupportedPlaceholders }];
-    const relationshipIssues = relationshipBindingIssues(claim, sourceText);
-    if (relationshipIssues.length > 0) return [{ claim, unsupportedFacts: relationshipIssues }];
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
-    const hasPolarityBearingClaim = hasTrackedClaim || sourceClauseIsNegated(claim);
-    const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasPolarityBearingClaim);
+    const directFactualAssertion = isDirectFactualAssertion(claim);
+    const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasTrackedClaim, directFactualAssertion);
+    const relationshipIssues = relationshipBindingIssues(claim, sourceText)
+      .filter((issue) => directFactualAssertion || !issue.startsWith("unresolved relationship binding:"));
+    if (relationshipIssues.length > 0) return [{ claim, unsupportedFacts: relationshipIssues }];
     const claimTokens = materialTokens(claim, policy.ignoredTokens);
     const eligibleCandidates = candidates.filter(({ negated }) =>
       policy.sourcePolarity === "any" || negated === (policy.sourcePolarity === "negative")
     );
+    if (
+      options.rejectPositiveSourceAbsence
+      && assertsNegativePresence(claim)
+      && (() => {
+        const subjectTokens = materialTokens(negativePresenceSubject(claim));
+        return subjectTokens.size > 0 && candidates.some(({ negated, tokens }) => (
+          !negated && Array.from(subjectTokens).every((token) => tokens.has(token))
+        ));
+      })()
+    ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
+    if (policy.assessment || policy.interpretive) return assessmentNarrativeIssues({
+      claim,
+      claimFacts: facts,
+      claimTokens,
+      sourceCandidates: eligibleCandidates,
+      assertsPresence: policy.assertsPresence,
+      interpretive: policy.interpretive,
+      directFactualAssertion,
+      skipSpecificFacts: policy.lexicalAbsence,
+      requirePresenceAnchor: policy.assessment || !options.interpretationContext || options.interpretationContext === "observation",
+      contradictsNegativeSource: policy.assertsPresence && claimTokens.size > 0 && candidates.some(({ negated, tokens }) => negated && Array.from(claimTokens).every((token) => tokens.has(token))) && !candidates.some(({ negated, tokens }) => !negated && Array.from(claimTokens).every((token) => tokens.has(token))),
+    });
     const supporting = eligibleCandidates.filter(({ facts: sourceFacts }) => {
       const sourceFactKeys = new Set(sourceFacts.map((fact) => fact.key));
       return facts.every((fact) => sourceFactKeys.has(fact.key));
@@ -350,16 +366,6 @@ export function auditNarrativeClaim(
         : facts.map((fact) => fact.display);
       return [{ claim, unsupportedFacts }];
     }
-    if (
-      options.rejectPositiveSourceAbsence
-      && assertsNegativePresence(claim)
-      && (() => {
-        const subjectTokens = materialTokens(negativePresenceSubject(claim));
-        return subjectTokens.size > 0 && candidates.some(({ negated, tokens }) => (
-          !negated && Array.from(subjectTokens).every((token) => tokens.has(token))
-        ));
-      })()
-    ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
     const hasCompleteUntrackedMatch = sourceAnchored.some(({ facts: sourceFacts }) =>
       sourceFacts
         .filter((fact) => !/^(?:agency|outcome|qualifier|causal):/u.test(fact.key))
@@ -419,17 +425,17 @@ function reportNarrativeStrings(report: any) {
   add("job_alignment.positioning_suggestion", alignment?.positioning_suggestion);
   return values;
 }
-
 function isJobDescriptionGroundableRole(path: string) {
   return /^job_alignment\.role_fit\.(?:best_fit_roles|stretch_roles)\[\d+\]$/u.test(path);
 }
-
 function jobDescriptionKeywordKind(path: string) {
   return path.match(/^job_alignment\.jd_keywords\.(matched|missing)\[\d+\]$/u)?.[1];
 }
 
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
+    if (/^job_alignment\.role_fit\.industry_signals\[\d+\]$/u.test(path) && supportsInferredIndustrySignal(value, resumeText)) return [];
+    if (path === "job_alignment.jd_match_summary" && ((value === "No job description provided.") !== !jobDescription?.trim())) return [{ path, claim: value, unsupportedFacts: [value] }];
     const jdRelationshipIssues = /^job_alignment\.missing\[\d+\]$/u.test(path) ? relationshipBindingIssues(value, jobDescription || "") : [];
     if (jdRelationshipIssues.length > 0) return [{ path, claim: value, unsupportedFacts: jdRelationshipIssues }];
     if (isAllowedReportNarrativeException(report, path, value, jobDescription)) return [];
@@ -455,8 +461,10 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
       return (issues.length > 0 ? issues : [{ claim: value, unsupportedFacts: [value] }])
         .map((issue) => ({ path, ...issue }));
     }
-    const resumeIssues = auditNarrativeClaim(value, resumeText, {
-      interpretationContext: interpretationContextForPath(path),
+    const auditableValue = auditableNarrativeValue(path, value, resumeText);
+    if (!auditableValue) return [];
+    const resumeIssues = auditNarrativeClaim(auditableValue, resumeText, {
+      interpretationContext: path === "biggest_gap_example" ? "assessment" : interpretationContextForPath(path),
       rejectPositiveSourceAbsence: true,
     });
     if (resumeIssues.length === 0) return [];

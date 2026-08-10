@@ -148,8 +148,9 @@ export function checkScoreRange(
 
     // Also check against expected range
     if (actual < expected.min || actual > expected.max) {
-        const mid = (expected.min + expected.max) / 2;
-        const drift = actual - mid;
+        const drift = actual < expected.min
+            ? actual - expected.min
+            : actual - expected.max;
         if (Math.abs(drift) > ERROR_THRESH) {
             results.push({
                 passed: false,

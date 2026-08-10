@@ -1,6 +1,6 @@
 const structuralReportVocabulary = {
   section: new Set([
-    "Certifications", "Education", "Experience", "Professional Experience", "Projects",
+    "Certifications", "Education", "Experience", "Header", "Professional Experience", "Projects",
     "Resume", "Skills", "Summary", "Work Experience",
   ]),
   rewriteLabel: new Set([
