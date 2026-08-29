@@ -3,13 +3,26 @@
 const { existsSync, readFileSync, writeFileSync, mkdirSync } = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const {
+  candidateBindingIsValid,
+  describeReleaseCandidate,
+  inspectReleaseCandidate,
+  releaseCandidateIsUnchanged,
+  summarizeLaunchGate,
+} = require("./release-evidence.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const webDir = path.join(repoRoot, "web");
 const extensionDir = path.join(repoRoot, "extension");
+const { resolveReleaseReadinessBypassPolicy } = require(path.join(
+  webDir,
+  "lib/launch/releasePolicy.cjs"
+));
 const args = new Set(process.argv.slice(2));
 const strict = args.has("--strict");
 const json = args.has("--json");
+const candidate = inspectReleaseCandidate(repoRoot);
+const candidateReady = candidateBindingIsValid(candidate);
 
 const results = [];
 
@@ -110,6 +123,10 @@ const replayEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY,
 const hasLiveEvalKey = Boolean(process.env.OPENAI_API_KEY);
 const paidEvalsAllowed = normalizeFlag(process.env.RIYP_ALLOW_PAID_EVALS, false);
 const generationDailyLimit = Number(process.env.RIYP_MAX_DAILY_GENERATIONS);
+const releaseBypassPolicy = resolveReleaseReadinessBypassPolicy({
+  env: process.env,
+  releaseState: strict ? "strict" : "local",
+});
 
 checkFile("go_no_go_doc", "Go/no-go program doc", "docs/launch-readiness/80-go-no-go-program.md");
 checkFile("vendor_review_doc", "Vendor privacy review doc", "docs/launch-readiness/85-vendor-privacy-review.md");
@@ -222,6 +239,14 @@ checkCondition(
 
 if (strict) {
   checkCondition(
+    "release_bypass_policy",
+    "Test-only release bypasses disabled",
+    releaseBypassPolicy.status === "ok",
+    "No test-only release-readiness bypass flags are enabled.",
+    `Strict launch readiness cannot run with test-only bypass flags enabled: ${releaseBypassPolicy.enabledFlags.join(", ")}.`
+  );
+
+  checkCondition(
     "paid_beta_billing_enabled",
     "Paid beta billing enabled",
     billingEnabled,
@@ -256,6 +281,14 @@ checkCondition(
   "Public share links remain disabled until a real share artifact exists.",
   "Public share links should remain disabled until a dedicated share model ships.",
   "important"
+);
+
+checkCondition(
+  "candidate_binding",
+  "Immutable release candidate",
+  candidateReady,
+  `Release receipt is bound to ${describeReleaseCandidate(candidate)}.`,
+  "Release receipts require a Git commit, a clean tracked tree, and no untracked release inputs. Untracked paths are never emitted.",
 );
 
 runCommand("web_lint", "Web lint", {
@@ -340,7 +373,10 @@ runCommand("eval_dry_run", "Eval dry run", {
   passMessage: "Eval dry run passed.",
 });
 
-if (hasLiveEvalKey && paidEvalsAllowed) {
+const candidateBeforeLiveEval = inspectReleaseCandidate(repoRoot);
+const paidEvalCandidateReady = releaseCandidateIsUnchanged(candidate, candidateBeforeLiveEval);
+
+if (hasLiveEvalKey && paidEvalsAllowed && paidEvalCandidateReady) {
   runCommand("eval_smoke", "Live smoke eval", {
     command: "npm",
     args: ["run", "eval:smoke", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json"],
@@ -365,30 +401,47 @@ if (hasLiveEvalKey && paidEvalsAllowed) {
     "Live eval authorization",
     false,
     "",
-    !paidEvalsAllowed
-      ? "RIYP_ALLOW_PAID_EVALS=true is required before the strict gate may spend money on live evaluations."
-      : "OPENAI_API_KEY is required for strict go/no-go eval gates."
+    !paidEvalCandidateReady
+      ? "The exact Git candidate must remain clean and unchanged before the strict gate may spend money on live evaluations."
+      : !paidEvalsAllowed
+        ? "RIYP_ALLOW_PAID_EVALS=true is required before the strict gate may spend money on live evaluations."
+        : "OPENAI_API_KEY is required for strict go/no-go eval gates."
   );
 } else {
   addInfo(
     "live_eval_authorization",
     "Live eval authorization",
-    paidEvalsAllowed
-      ? "OPENAI_API_KEY is not set, so live smoke/golden evals were skipped."
-      : "Paid evaluations are intentionally disabled; only zero-spend fixture validation ran."
+    !paidEvalCandidateReady
+      ? "Live evaluations were skipped because the exact Git candidate was not clean and unchanged."
+      : paidEvalsAllowed
+        ? "OPENAI_API_KEY is not set, so live smoke/golden evals were skipped."
+        : "Paid evaluations are intentionally disabled; only zero-spend fixture validation ran."
   );
 }
 
+const candidateAtCompletion = inspectReleaseCandidate(repoRoot);
+const candidateStable = releaseCandidateIsUnchanged(candidate, candidateAtCompletion);
+checkCondition(
+  "candidate_stability",
+  "Immutable release candidate remained unchanged",
+  candidateStable,
+  `Release checks completed against ${describeReleaseCandidate(candidateAtCompletion)}.`,
+  "The Git SHA, branch, tracked-tree cleanliness, or untracked release-input count changed while release checks ran. Untracked paths are never emitted.",
+);
+
 const blockers = results.filter((result) => result.status === "fail");
-// A launch gate must never print GO while any check is visibly failing. The
-// severity still helps triage the blocker, but it does not turn a failure into
-// an advisory result.
-const goNoGo = blockers.length === 0;
+// This command proves only the automated slice of the release program. It must
+// never authorize promotion or print GO without the exact-SHA remote CI,
+// immutable preview rehearsal, hosted readiness, and human approval gates.
+const gateSummary = summarizeLaunchGate(results);
 
 const payload = {
   generatedAt: new Date().toISOString(),
+  candidate,
+  candidateAtCompletion,
+  candidateStable,
   strict,
-  goNoGo,
+  ...gateSummary,
   blockers: blockers.map(({ id, label, severity, details }) => ({ id, label, severity, details })),
   results,
 };
@@ -403,7 +456,12 @@ if (json) {
   console.log("\nRIYP Launch Gate");
   console.log("================");
   console.log(`Mode: ${strict ? "STRICT" : "STANDARD"}`);
-  console.log(`Verdict: ${goNoGo ? "GO" : "NO-GO"}`);
+  console.log(
+    `Verdict: ${gateSummary.automatedChecksPassed
+      ? "AUTOMATED CHECKS PASSED; MANUAL REHEARSAL REQUIRED (NOT GO)"
+      : "NO-GO"}`,
+  );
+  console.log("Exit status reflects automated checks only; it never authorizes production promotion.");
   console.log("");
 
   for (const result of results) {
@@ -416,4 +474,4 @@ if (json) {
   console.log(`Saved report: docs/launch-readiness/generated/go-no-go-latest.json`);
 }
 
-process.exit(goNoGo ? 0 : 1);
+process.exit(gateSummary.automatedChecksPassed ? 0 : 1);

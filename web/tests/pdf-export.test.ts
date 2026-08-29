@@ -12,10 +12,15 @@ import {
   verifyValidatedReportReceipt,
 } from "../lib/reports/report-receipt";
 import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "../lib/reports/report-trust";
+import { ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 const sampleReportPath = path.join(process.cwd(), "public", "sample-report.json");
 const sampleReport = JSON.parse(readFileSync(sampleReportPath, "utf8"));
+const parsedSampleReport = ResumeFeedbackResponseSchema.safeParse(sampleReport);
+if (!parsedSampleReport.success) {
+  assert.fail(`public sample must match the production report schema: ${parsedSampleReport.error.message}`);
+}
 
 const normalizedSample = normalizeReportForPdf(sampleReport);
 assert.ok(normalizedSample, "sample report should normalize");
@@ -26,8 +31,8 @@ assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 
 const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
 assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
-assert.match(sampleReport.rewrites[0].better, /\[program length\].*\[number of hires\].*\[teams\].*\[verified outcome\]/i);
-assert.match(sampleReport.rewrites[1].better, /\[team count\].*\[verified before-and-after result\]/i);
+assert.match(sampleReport.rewrites[0].better, /\[measurable result\]/i);
+assert.match(sampleReport.rewrites[1].better, /\[measurable result\]/i);
 for (const rewrite of sampleReport.rewrites) {
   assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
 }
@@ -187,6 +192,19 @@ const postbuildSource = readFileSync(path.join(process.cwd(), "scripts", "ensure
 for (const font of ["space-grotesk-latin-variable.ttf", "instrument-sans-latin-variable.ttf"]) {
   assert.match(nextConfigSource, new RegExp(font.replace(".", "\\.")), `${font} should be included in output tracing`);
   assert.match(postbuildSource, new RegExp(font.replace(".", "\\.")), `${font} should be asserted after build`);
+}
+for (const runtimeAsset of ["chromium.br", "fonts.tar.br", "swiftshader.tar.br", "al2023.tar.br"]) {
+  const escapedAsset = runtimeAsset.replace(".", "\\.");
+  assert.match(
+    nextConfigSource,
+    new RegExp(`@sparticuz/chromium/bin/${escapedAsset}`),
+    `${runtimeAsset} should be included in the PDF route trace`,
+  );
+  assert.match(
+    postbuildSource,
+    new RegExp(escapedAsset),
+    `${runtimeAsset} should be required by the postbuild trace assertion`,
+  );
 }
 
 const ogImage = readFileSync(path.join(process.cwd(), "public", "assets", "og-image.png"));

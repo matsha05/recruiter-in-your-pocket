@@ -24,6 +24,7 @@ type ResumeModeSectionProps = {
   isExporting: boolean;
   isSample: boolean;
   onNewReport: () => void;
+  onKeepReport?: () => void;
   onUpgrade: () => void;
   justUnlocked: boolean;
   highlightSection?: string | null;
@@ -53,6 +54,7 @@ export default function ResumeModeSection({
   isExporting,
   isSample,
   onNewReport,
+  onKeepReport,
   onUpgrade,
   justUnlocked,
   highlightSection,
@@ -110,6 +112,7 @@ export default function ResumeModeSection({
       isExporting={isExporting}
       isSample={isSample}
       onNewReport={onNewReport}
+      onKeepReport={onKeepReport}
       freeUsesRemaining={freeUsesRemaining}
       onUpgrade={onUpgrade}
       isGated={false}

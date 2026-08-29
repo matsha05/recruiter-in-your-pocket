@@ -1,6 +1,6 @@
 # RIYP Controlled Paid Beta Launch Program
 
-**Last updated:** August 10, 2026
+**Last updated:** August 29, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -71,7 +71,7 @@ No external model calls are allowed.
 
 Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
-- The ordered database migration set is verified through migration 016 and applied to the preview database.
+- The complete ordered migration manifest in `scripts/migrate.js` replays cleanly and is applied to the preview database. Do not hard-code an older terminal migration number in release evidence.
 - Job Search Pass checkout uses Stripe test mode.
 - Webhook delivery, retry, restore, portal, and entitlement behavior work.
 - Anonymous and signed-in storage behavior matches public copy.
@@ -141,7 +141,20 @@ npm run launch:gate
 npm run launch:rehearsal
 ```
 
-`npm run launch:gate:strict` remains the final live-quality gate. It must fail while paid evaluations are not explicitly authorized. That failure is an intentional spend control, not a release-candidate defect.
+`npm run launch:autopilot` records the current Git SHA, branch, and tracked-tree cleanliness at both the beginning and completion of automated verification. The receipt fails if the candidate changes between those checks. It reports automated checks separately and always leaves the release verdict at `MANUAL REHEARSAL REQUIRED` until the checklist in `95-launch-rehearsal.md` has been completed against the same candidate. Generating that checklist is not a rehearsal pass.
+
+`npm run launch:gate` and its strict variant return a successful process status when their automated checks pass, but they never print or record a release-level `GO`. Their success means only that the automated slice passed; the immutable preview rehearsal, hosted readiness proof, exact-commit CI, and Matt's promotion approval remain mandatory.
+
+`npm run launch:gate:strict` remains the live-quality command. It must fail while paid evaluations are not explicitly authorized. That failure is an intentional spend control, not a release-candidate defect. A strict local result is still not permission to promote: exact-commit CI and the manual preview record are required.
+
+### Immutable release sequence
+
+1. Commit the candidate and start from a clean tracked tree. Local untracked files stay outside the receipt and must never be copied into release evidence.
+2. Push the candidate SHA and require the complete CI workflow to pass for that exact commit.
+3. Verify an immutable preview deployment built from the same SHA. Record the deployment ID and preview URL.
+4. Complete `95-launch-rehearsal.md` manually against that preview and record the candidate SHA, test date, browser/device coverage, failures, and accepted beta issues.
+5. Stop for Matt's explicit production-promotion approval. Automated checks, preview creation, or checklist generation do not grant that authority.
+6. Promote only the approved immutable deployment, then verify the canonical homepage, pricing, sample report, auth, robots, `/api/status`, and the protected `/api/ready` behavior. Preserve the exact-commit CI URL, deployment receipt, endpoint results, and final decision together.
 
 ## Current State and Follow-ups
 

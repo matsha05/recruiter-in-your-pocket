@@ -16,6 +16,7 @@ import {
   REQUIRED_PUBLIC_TRUST_FILES,
   resolvePublicTrustSurfaceStatus,
 } from "./program";
+import { resolveReleaseReadinessBypassPolicy } from "./releasePolicy.cjs";
 
 export type ReadinessCheckStatus = "ok" | "missing" | "disabled";
 export type LaunchGateStatus = "pass" | "warn" | "fail";
@@ -219,6 +220,20 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   const hasDocsDir = repoHasDir(repoRoot, "docs");
   const hasTestsDir = repoHasDir(repoRoot, "tests");
   const hasWebAppDir = existsSync(path.join(repoRoot, "web", "app"));
+
+  const releaseBypassPolicy = resolveReleaseReadinessBypassPolicy({
+    releaseState: hostedRuntime ? "hosted" : "local",
+  });
+  addCheck(
+    checks,
+    "release_bypass_policy",
+    releaseBypassPolicy.status,
+    releaseBypassPolicy.enabledFlags.length === 0
+      ? "No test-only release-readiness bypass flags are enabled."
+      : hostedRuntime
+        ? `Hosted readiness cannot run with test-only bypass flags enabled: ${releaseBypassPolicy.enabledFlags.join(", ")}.`
+        : `Local test harness bypasses are enabled: ${releaseBypassPolicy.enabledFlags.join(", ")}.`
+  );
 
   const requiredEnv = [
     "SESSION_SECRET",
@@ -520,7 +535,14 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   );
 
   if (isTruthyEnv(process.env.SKIP_DB_READY_CHECK)) {
-    addCheck(checks, "database", "disabled", "Database readiness check skipped for local test harness.");
+    addCheck(
+      checks,
+      "database",
+      hostedRuntime ? "missing" : "disabled",
+      hostedRuntime
+        ? "SKIP_DB_READY_CHECK cannot disable database verification in a hosted release."
+        : "Database readiness check skipped for local test harness."
+    );
   } else {
     try {
       const supabase = await maybeCreateSupabaseServerClient();

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A high-end resume studio that reads your resume like a recruiter, providing crafted feedback on how you read, what's working, what's harder to see, stronger bullets, and simple next steps.",
   "scripts": {
-    "install:web": "npm install --prefix web",
+    "install:web": "npm ci --prefix web",
     "postinstall": "npm run install:web",
     "dev": "npm run dev --prefix web",
     "dev:backend": "npm run dev",
@@ -21,7 +21,8 @@
     "simulate:cohort": "node scripts/simulate-founder-cohort.cjs",
     "test:cohort-simulation": "node tests/founder-cohort-simulation.test.js",
     "assets:chrome-web-store": "npm run assets:chrome-web-store --prefix web",
-    "test": "node tests/next_server_marker.test.js && node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
+    "test": "npm run test:release-evidence && node tests/next_server_marker.test.js && node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
+    "test:release-evidence": "node tests/release_evidence.test.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "eval:dry-run": "npm run eval:dry-run --prefix web",
     "eval:smoke": "npm run eval:smoke --prefix web",
@@ -45,7 +46,7 @@
   "type": "commonjs",
   "dependencies": {
     "@openai/codex": "^0.64.0",
-    "@sparticuz/chromium": "^131.0.0",
+    "@sparticuz/chromium": "149.0.0",
     "@supabase/supabase-js": "^2.87.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
@@ -55,8 +56,8 @@
     "multer": "^2.0.2",
     "pdf-parse": "^1.1.1",
     "pg": "^8.11.5",
-    "puppeteer": "^22.15.0",
-    "puppeteer-core": "^22.15.0",
+    "puppeteer": "25.1.0",
+    "puppeteer-core": "25.1.0",
     "resend": "^4.8.0",
     "stripe": "^14.25.0"
   },

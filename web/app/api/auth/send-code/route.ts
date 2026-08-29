@@ -6,6 +6,7 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
 
 export async function POST(request: NextRequest) {
     const request_id = getRequestId(request);
@@ -26,10 +27,10 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await readJsonWithLimit<any>(request, 16 * 1024);
-        const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
-        if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const email = normalizeAuthEmail(body?.email);
+        if (!isValidAuthEmail(email)) {
             const res = NextResponse.json(
-                { ok: false, message: "Email is required" },
+                { ok: false, message: "Please enter a valid email address" },
                 { status: 400 }
             );
             res.headers.set("x-request-id", request_id);

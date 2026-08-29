@@ -120,6 +120,9 @@ jobs:
       - name: Production dependency audit
         run: npm audit --omit=dev --audit-level=high
 
+      - name: Release evidence contracts
+        run: npm run test:release-evidence && node tests/next_server_marker.test.js
+
       - name: Verify clean database migration replay
         run: npm run migrate:replay-check
 

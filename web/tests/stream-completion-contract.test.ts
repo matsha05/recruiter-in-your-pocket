@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { streamLinkedInFeedback, streamResumeFeedback } from "../lib/api";
+import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 type StreamEvent = Record<string, unknown>;
 
@@ -10,15 +11,17 @@ function responseFor(events: StreamEvent[]) {
   });
 }
 
-async function capturePartials(
+async function capturePartials<T extends { ok: boolean; report?: { score?: number } }>(
   expectedPartials: unknown[],
-  run: (partials: unknown[]) => Promise<{ ok: boolean; report?: { score?: number } }>,
-) {
+  run: (partials: unknown[]) => Promise<T>,
+  expectedScore = 77,
+): Promise<T> {
   const partials: unknown[] = [];
   const result = await run(partials);
   assert.deepEqual(partials, expectedPartials, "only explicitly supported streams may expose raw progress callbacks");
   assert.ok(result.ok && result.report, "the complete event must return a report");
-  assert.equal(result.report.score, 77, "only the complete event may become authoritative report data");
+  assert.equal(result.report.score, expectedScore, "only the complete event may become authoritative report data");
+  return result;
 }
 
 async function run() {
@@ -26,13 +29,80 @@ async function run() {
   try {
     globalThis.fetch = async () => responseFor([
       { type: "chunk", content: '{"score":91,"summary":"partial and unvalidated"}' },
-      { type: "complete", data: { score: 77, summary: "authoritative" } },
+      {
+        type: "complete",
+        ok: true,
+        data: { ...structuredClone(schemaValidReport), unknown_terminal_field: "must not escape" },
+      },
     ]);
-    await capturePartials([], (partials) => streamResumeFeedback(
+    const canonical = await capturePartials([], (partials) => streamResumeFeedback(
       "Resume source",
       undefined,
       (_text, partial) => partials.push(partial),
-    ));
+    ), schemaValidReport.score);
+    assert.equal(canonical.report?.score_label, "Mostly clear", "the client must return canonical schema output");
+    assert.equal(
+      (canonical.report as unknown as Record<string, unknown>).unknown_terminal_field,
+      undefined,
+      "unvalidated report fields must not cross the client boundary",
+    );
+
+    for (const malformedComplete of [
+      { type: "complete", ok: true, data: { contract_version: "v2", score: 77, summary: "partial" } },
+      { type: "complete", ok: true, data: { ...structuredClone(schemaValidReport), contract_version: "v1" } },
+      { type: "complete", data: structuredClone(schemaValidReport) },
+      { type: "complete", ok: false, data: structuredClone(schemaValidReport) },
+    ]) {
+      globalThis.fetch = async () => responseFor([malformedComplete]);
+      const malformed = await streamResumeFeedback("Resume source", undefined, () => undefined);
+      assert.equal(malformed.ok, false, "an invalid complete event must not expose a report");
+      assert.equal(malformed.report, undefined);
+      assert.equal(malformed.errorCode, "STREAM_COMPLETION_INVALID");
+      assert.equal(malformed.attemptConsumed, true, "a terminal completion follows the committed attempt boundary");
+      assert.match(malformed.message || "", /completed safely/i);
+    }
+
+    const legacyIdeasReport = {
+      questions: ["What scope can you verify?"],
+      notes: ["Keep the answer source-bound."],
+      how_to_use: "Use the prompt to find missing context.",
+    };
+    globalThis.fetch = async () => responseFor([{
+      type: "complete",
+      data: legacyIdeasReport,
+    }]);
+    const legacyIdeas = await streamResumeFeedback(
+      "Resume source",
+      undefined,
+      () => undefined,
+      "resume_ideas",
+    );
+    assert.equal(legacyIdeas.ok, true, "strict v2 validation must not break legacy non-resume modes");
+    assert.deepEqual(legacyIdeas.report, legacyIdeasReport);
+
+    const eofComplete = JSON.stringify({
+      type: "complete",
+      ok: true,
+      data: structuredClone(schemaValidReport),
+    });
+    let eofPull = 0;
+    globalThis.fetch = async () => new Response(new ReadableStream<Uint8Array>({
+      pull(controller) {
+        eofPull += 1;
+        if (eofPull === 1) {
+          controller.enqueue(new TextEncoder().encode(eofComplete.slice(0, 47)));
+          return;
+        }
+        if (eofPull === 2) {
+          controller.enqueue(new TextEncoder().encode(eofComplete.slice(47)));
+          return;
+        }
+        controller.close();
+      },
+    }), { status: 200 });
+    const completedAtEof = await streamResumeFeedback("Resume source", undefined, () => undefined);
+    assert.equal(completedAtEof.ok, true, "a canonical complete event may end at EOF without a trailing newline");
+    assert.equal(completedAtEof.report?.score, schemaValidReport.score);
 
     const completedThenStopped = new AbortController();
     let terminalStreamCanceled = false;
@@ -40,7 +110,8 @@ async function run() {
       start(controller) {
         controller.enqueue(new TextEncoder().encode(`${JSON.stringify({
           type: "complete",
-          data: { score: 77, summary: "authoritative before Stop" },
+          ok: true,
+          data: structuredClone(schemaValidReport),
           report_id: "report-terminal",
         })}\n`));
         completedThenStopped.abort();
@@ -58,6 +129,7 @@ async function run() {
     assert.equal(terminal.ok, true, "an authoritative complete event must beat a later caller abort");
     assert.equal(terminal.aborted, undefined);
     assert.equal(terminal.reportId, "report-terminal");
+    assert.equal(terminal.report?.report_id, "report-terminal", "existing report metadata must stay on the report object");
     await Promise.resolve();
     assert.equal(terminalStreamCanceled, true, "the reader should be released without waiting for EOF");
 

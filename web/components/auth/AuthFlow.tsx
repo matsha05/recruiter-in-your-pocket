@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
+import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
 
 type AuthStep = "email" | "code" | "name";
 
@@ -94,8 +95,13 @@ export function AuthFlow({
   }, [resendCooldown]);
 
   const handleSendCode = useCallback(async () => {
-    if (!email.trim()) {
+    const normalizedEmail = normalizeAuthEmail(email);
+    if (!normalizedEmail) {
       setError("Please enter your email");
+      return;
+    }
+    if (!isValidAuthEmail(normalizedEmail)) {
+      setError("Please enter a valid email address");
       return;
     }
     setLoading(true);
@@ -105,7 +111,7 @@ export function AuthFlow({
       const res = await fetch("/api/auth/send-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), next: redirectTo || "/workspace" })
+        body: JSON.stringify({ email: normalizedEmail, next: redirectTo || "/workspace" })
       });
       const data = await res.json();
       if (!data?.ok) {
@@ -319,7 +325,11 @@ export function AuthFlow({
               <div className="gap-y-2">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
-                  <EnvelopeSimple className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" weight="bold" />
+                  <EnvelopeSimple
+                    aria-hidden="true"
+                    className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/90"
+                    weight="bold"
+                  />
                   <Input
                     ref={emailInputRef}
                     id="auth-email"
@@ -328,10 +338,13 @@ export function AuthFlow({
                     inputMode="email"
                     placeholder="name@company.com"
                     value={email}
-                    aria-invalid={Boolean(error)}
                     aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
+                    error={Boolean(error)}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 pl-10 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
+                    className={cn(
+                      "h-12 pl-10 text-base",
+                      !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                    )}
                   />
                 </div>
                 <p id="auth-email-help" className="text-xs text-muted-foreground">
@@ -358,10 +371,13 @@ export function AuthFlow({
                   inputMode="numeric"
                   pattern="[0-9]*"
                   placeholder="00000000"
-                  className="h-14 font-mono tracking-wide text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
+                  className={cn(
+                    "h-14 text-center font-mono text-2xl tracking-wide",
+                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  )}
                   value={code}
-                  aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
+                  error={Boolean(error)}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
                     setCode(value);
@@ -412,10 +428,13 @@ export function AuthFlow({
                   autoComplete="given-name"
                   placeholder="Jane"
                   value={firstName}
-                  aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
+                  error={Boolean(error)}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40"
+                  className={cn(
+                    "h-12 text-base",
+                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  )}
                 />
               </div>
               <Button type="submit" variant="brand" disabled={loading || !firstName.trim()} className="h-12 w-full text-base font-medium">

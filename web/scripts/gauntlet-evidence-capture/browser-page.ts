@@ -189,7 +189,7 @@ async function installHermeticPage(input: {
       await route.fulfill({
         status: 200,
         contentType: "application/x-ndjson",
-        body: `${JSON.stringify({ type: "complete", data: input.report })}\n`,
+        body: `${JSON.stringify({ type: "complete", ok: true, data: input.report })}\n`,
       });
       return;
     }

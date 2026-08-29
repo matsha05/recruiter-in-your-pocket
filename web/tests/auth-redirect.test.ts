@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
-import { normalizeAuthContext, safeAuthRedirect } from "../lib/auth/utils";
+import {
+  isValidAuthEmail,
+  normalizeAuthContext,
+  normalizeAuthEmail,
+  safeAuthRedirect,
+} from "../lib/auth/utils";
 import { getAppUrlForRequest, getConfiguredAppUrl } from "../lib/runtime/appUrl";
 import { PRIVATE_ROUTE_ROBOTS } from "../lib/seo/privateRouteMetadata";
 
@@ -21,6 +26,11 @@ assertEqual(safeAuthRedirect("/%E0%A4%A", fallback), fallback, "rejects malforme
 assertEqual(normalizeAuthContext("reports"), "history", "report history receives its authored sign-in context");
 assertEqual(normalizeAuthContext("purchase"), "paywall", "purchase recovery receives the billing sign-in context");
 assertEqual(normalizeAuthContext("extension"), "extension", "extension sync receives its authored sign-in context");
+assertEqual(normalizeAuthEmail("  Person+Test@Example.com "), "person+test@example.com", "auth email is normalized once");
+assertEqual(isValidAuthEmail("person+test@example.com"), true, "normal email is accepted");
+assertEqual(isValidAuthEmail("not-an-email"), false, "malformed email is rejected");
+assertEqual(isValidAuthEmail("person@example"), false, "email without a domain suffix is rejected");
+assertEqual(isValidAuthEmail(`${"a".repeat(250)}@example.com`), false, "oversized email is rejected");
 assertEqual(PRIVATE_ROUTE_ROBOTS.index, false, "private surfaces opt out of indexing");
 assertEqual(PRIVATE_ROUTE_ROBOTS.follow, false, "private surfaces opt out of link following");
 assertEqual(PRIVATE_ROUTE_ROBOTS.googleBot.index, false, "Googlebot receives the private route policy");

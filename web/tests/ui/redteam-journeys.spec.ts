@@ -35,8 +35,11 @@ async function runAnonymousReview(page: Page, testIp: string) {
 
 test.describe("launch red-team journeys", () => {
   test("1. landing page drives users toward the workspace", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
+    const heroFirstRead = page.getByRole("article", { name: /Strong operator/i });
+    await expect(heroFirstRead.getByText("Exact resume line", { exact: true })).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
@@ -119,50 +122,20 @@ test.describe("launch red-team journeys", () => {
     );
     await expect(page.getByRole("heading", { name: "Three moves. In order.", exact: true })).toBeVisible();
 
-    const firstFix = page.locator("#section-fix-1");
-    const sourceNeeded = firstFix.getByRole("button", { name: "Source needed to copy" });
-    await expect(sourceNeeded).toBeDisabled();
-    await expect(firstFix).toContainText("Copy is unavailable because this view does not include the source resume.");
-    await firstFix.getByRole("button", { name: "Edit" }).click();
-    const firstDraft = firstFix.getByLabel("Edit suggested line 1");
-    const originalDraft = await firstDraft.inputValue();
-    await firstDraft.fill(
-      "Redesigned onboarding using the program length, audience, teams, and outcome I verified.",
-    );
-    await expect(sourceNeeded).toBeDisabled();
-    await firstDraft.fill(originalDraft);
+    const evidenceJump = firstRead.getByRole("button", { name: "See the fixes", exact: true });
+    await expect(evidenceJump).toBeVisible();
+    await evidenceJump.click();
 
-    const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
-    await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
-    await expect(keepFacts).toBeDisabled();
-    await firstFix.getByLabel("Fact for number of hires in fix 1").fill("18 weekly hires");
-    await firstFix.getByLabel("Fact for teams in fix 1").fill("Sales, Support, and Operations");
-    await firstFix.getByLabel("Fact for verified outcome in fix 1").fill("28% shorter ramp time");
-    await expect(keepFacts).toBeEnabled();
-    await keepFacts.click();
-    await expect(sourceNeeded).toBeDisabled();
-    await expect(firstDraft).toHaveValue(
-      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
-    );
-    await firstDraft.fill(
-      "Redesigned 30-day program onboarding for 18 weekly hires across Salesforce, Support, and Operations, improving 28% shorter ramp time.",
-    );
-    await expect(sourceNeeded).toBeDisabled();
-    await firstDraft.fill(
-      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
-    );
-    await expect(sourceNeeded).toBeDisabled();
-    await firstDraft.fill(
-      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 45% shorter ramp time.",
-    );
-    await expect(sourceNeeded).toBeDisabled();
+    const sampleFixes = page.locator('[id^="section-fix-"]');
+    const firstFix = sampleFixes.first();
+    await expect(firstFix).toContainText("Read-only example. Your report will use the facts in your resume.");
+    await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
+    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Keep these facts|Not relevant|Source needed/i })).toHaveCount(0);
+    await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
-    const unquantifiedFix = page.locator("#section-fix-3");
-    await expect(unquantifiedFix.getByText("Question to answer")).toBeVisible();
-    await expect(unquantifiedFix).toContainText("No source-safe rewrite is attached to this fix.");
-    await expect(unquantifiedFix.getByRole("button", { name: "Edit" })).toHaveCount(0);
-
-    await sampleCta.click();
+    const terminalCta = page.getByTestId("sample-terminal-cta");
+    await expect(terminalCta).toContainText("Now see what lands in yours.");
+    await terminalCta.getByRole("button", { name: "Get my free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
@@ -219,14 +192,22 @@ test.describe("launch red-team journeys", () => {
     }
   });
 
-  test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
+  test("5. guest save prompt opens only after Keep report and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
     const saveDialog = page.getByRole("dialog", { name: /Keep this report/i });
+    const keepReport = page.getByTestId("workspace-keep-report");
+    await expect(keepReport).toBeVisible();
+    await page.waitForTimeout(5_500);
+    await expect(saveDialog).toHaveCount(0);
+    await keepReport.click();
     await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
     await expect(page.getByText(/We only save reports to verified signed-in accounts/i)).toBeVisible();
     await saveDialog.getByRole("button", { name: /Sign in and keep this report/i }).click();
-    await expect(page.locator("#auth-email")).toBeVisible();
-    await expect(page.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
+    const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });
+    await expect(authDialog).toBeVisible();
+    await expect(authDialog).toHaveAccessibleDescription("Use your email to receive a secure one-time sign-in code.");
+    await expect(authDialog.locator("#auth-email")).toBeVisible();
+    await expect(authDialog.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
   });
 
   test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {

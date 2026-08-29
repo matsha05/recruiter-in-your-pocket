@@ -282,9 +282,9 @@ export async function generatePdfBuffer(report: ReportForPdf): Promise<Buffer> {
   const browser = useChromium
     ? await puppeteerCore.launch({
       args: [...chromium.args, ...launchArgs],
-      defaultViewport: chromium.defaultViewport,
+      defaultViewport: { width: 1200, height: 1600 },
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: "shell",
       timeout: 30000
     })
     : await puppeteer.launch({
@@ -302,7 +302,8 @@ export async function generatePdfBuffer(report: ReportForPdf): Promise<Buffer> {
       await page.setViewport({ width: 1200, height: 1600 });
     }
 
-    await page.setContent(html, { waitUntil: "networkidle0", timeout: 30000 });
+    await page.setContent(html, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.waitForNetworkIdle({ idleTime: 500, timeout: 30000 });
     await page.evaluate(() => document.fonts.ready);
     const pdfBuffer = await page.pdf({
       printBackground: true,

@@ -1,7 +1,5 @@
 # PromptOps Fixture Validation Report
 
-**Run ID:** eval_1785271995313
-**Timestamp:** 2026-07-28T20:53:15.318Z
 **Tier:** golden
 **Prompt Version:** v1
 **Contract Version:** v2

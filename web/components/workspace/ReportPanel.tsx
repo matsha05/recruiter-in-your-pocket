@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
+import { ArrowRight, BookmarkSimple, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DownloadIcon } from "@/components/ui/download";
@@ -28,6 +28,7 @@ interface ReportPanelProps {
     isExporting?: boolean;
     isSample?: boolean;
     onNewReport?: () => void;
+    onKeepReport?: () => void;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     isGated?: boolean;
@@ -51,6 +52,7 @@ export default function ReportPanel({
     isExporting = false,
     isSample = false,
     onNewReport,
+    onKeepReport,
     freeUsesRemaining = 1,
     onUpgrade,
     isGated = false,
@@ -249,6 +251,19 @@ export default function ReportPanel({
                                             Get my free report <ArrowRight className="ml-1 size-4" weight="bold" />
                                         </Button>
                                     )}
+                                    {!isSample && !isStreaming && !shareMode && onKeepReport && (
+                                        <Button
+                                            data-testid="workspace-keep-report"
+                                            type="button"
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={onKeepReport}
+                                            className="min-h-11 shrink-0 px-3 text-foreground"
+                                        >
+                                            <BookmarkSimple className="size-4 text-brand" weight="duotone" />
+                                            Keep report
+                                        </Button>
+                                    )}
                                     {canExport && !isSample && (
                                         <button type="button"
                                             onClick={handleExport}
@@ -298,6 +313,7 @@ export default function ReportPanel({
                                 hasPaidAccess={hasPaidAccess}
                                 comparisonBaseline={comparisonBaseline}
                                 onStartRevision={onStartRevision}
+                                onStartReport={onNewReport}
                                 resumeText={resumeText}
                                 className="max-w-none sm:pb-16"
                             />

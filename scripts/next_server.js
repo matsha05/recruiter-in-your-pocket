@@ -1,5 +1,6 @@
-const { existsSync, readFileSync, writeFileSync } = require("fs");
+const { existsSync, readFileSync, realpathSync, statSync, writeFileSync } = require("fs");
 const { spawn, spawnSync } = require("child_process");
+const { createHash } = require("crypto");
 const path = require("path");
 const net = require("net");
 
@@ -10,6 +11,7 @@ function withLaunchTestDefaults(env) {
   const testEnv = {
     ...env,
     USE_MOCK_OPENAI: "1",
+    BYPASS_PAYWALL: "false",
     NEXT_PUBLIC_APP_URL: "http://localhost:3000",
     VERCEL_ENV: "development",
     VERCEL_URL: "",
@@ -72,18 +74,157 @@ async function waitForHealth(baseUrl, maxWaitMs = 30000) {
   throw new Error("Next server did not become ready in time");
 }
 
+function runGit(args) {
+  const result = spawnSync("git", args, {
+    cwd: repoRoot,
+    encoding: "utf8",
+    maxBuffer: 20 * 1024 * 1024,
+  });
+  if (result.status !== 0) {
+    throw new Error(`Unable to fingerprint the contract-build candidate: git ${args.join(" ")} failed`);
+  }
+  return result.stdout;
+}
+
+function updateFingerprint(hash, label, value) {
+  const buffer = Buffer.isBuffer(value) ? value : Buffer.from(String(value), "utf8");
+  hash.update(`${label}\0${buffer.length}\0`, "utf8");
+  hash.update(buffer);
+}
+
+function computeContractBuildDigest({
+  head,
+  diff,
+  untrackedInputs = [],
+  environmentInputs = [],
+  publicBuildEnv = {},
+}) {
+  const hash = createHash("sha256");
+  updateFingerprint(hash, "git-head", head);
+  updateFingerprint(hash, "tracked-web-diff", diff);
+
+  for (const input of untrackedInputs) {
+    updateFingerprint(hash, "untracked-web-path", input.relativePath);
+    updateFingerprint(hash, "untracked-web-content", input.contents);
+  }
+
+  for (const input of environmentInputs) {
+    updateFingerprint(hash, "next-environment-file", input.name);
+    updateFingerprint(hash, "next-environment-content", input.contents);
+  }
+
+  updateFingerprint(hash, "public-build-environment", JSON.stringify(publicBuildEnv));
+  return hash.digest("hex");
+}
+
+function readWebFingerprintInput(absolutePath) {
+  try {
+    const realWebDir = realpathSync(webDir);
+    const realInputPath = realpathSync(absolutePath);
+    const relativePath = path.relative(realWebDir, realInputPath);
+    if (!relativePath || relativePath.startsWith(`..${path.sep}`) || path.isAbsolute(relativePath)) {
+      throw new Error("outside web directory");
+    }
+    if (!statSync(realInputPath).isFile()) {
+      throw new Error("not a regular file");
+    }
+    return readFileSync(realInputPath);
+  } catch (_) {
+    throw new Error("Unable to read a contract-build fingerprint input inside the web directory");
+  }
+}
+
+function computeWebSourceDigest(env = process.env) {
+  const head = runGit(["rev-parse", "HEAD"]);
+  const diff = runGit([
+    "diff",
+    "--binary",
+    "HEAD",
+    "--",
+    "web",
+    ":(exclude)web/next-env.d.ts",
+  ]);
+
+  const untrackedFiles = runGit([
+    "ls-files",
+    "--others",
+    "--exclude-standard",
+    "-z",
+    "--",
+    "web",
+    ":(exclude)web/next-env.d.ts",
+  ]).split("\0").filter(Boolean).sort();
+  const untrackedInputs = untrackedFiles.map((relativePath) => {
+    const absolutePath = path.resolve(repoRoot, relativePath);
+    if (!absolutePath.startsWith(`${webDir}${path.sep}`)) {
+      throw new Error("Contract-build fingerprint escaped the web directory");
+    }
+    return {
+      relativePath,
+      contents: readWebFingerprintInput(absolutePath),
+    };
+  });
+
+  const environmentInputs = [
+    ".env.production.local",
+    ".env.local",
+    ".env.production",
+    ".env",
+    ".env.sentry-build-plugin",
+  ].flatMap((name) => {
+    const absolutePath = path.join(webDir, name);
+    if (!existsSync(absolutePath)) return [];
+    return [{ name, contents: readWebFingerprintInput(absolutePath) }];
+  });
+
+  const buildEnv = withLaunchTestDefaults(env);
+  const publicBuildEnv = Object.fromEntries(
+    Object.entries(buildEnv)
+      .filter(([key]) => key.startsWith("NEXT_PUBLIC_") || key === "VERCEL_ENV")
+      .sort(([left], [right]) => left.localeCompare(right))
+  );
+  return computeContractBuildDigest({
+    head,
+    diff,
+    untrackedInputs,
+    environmentInputs,
+    publicBuildEnv,
+  });
+}
+
+function readContractBuildMarker(markerPath) {
+  if (!existsSync(markerPath)) return null;
+  try {
+    const marker = JSON.parse(readFileSync(markerPath, "utf8"));
+    if (
+      marker &&
+      typeof marker.buildId === "string" &&
+      typeof marker.sourceDigest === "string"
+    ) {
+      return marker;
+    }
+  } catch (_) {}
+  return null;
+}
+
+function markerMatchesCandidate(marker, buildId, sourceDigest) {
+  return Boolean(
+    marker &&
+    buildId &&
+    marker.buildId === buildId &&
+    marker.sourceDigest === sourceDigest
+  );
+}
+
 function ensureWebBuild() {
   const buildIdPath = path.join(webDir, ".next", "BUILD_ID");
   const localContractBuildMarker = path.join(webDir, ".next", ".launch-test-build");
   const hasProductionBuild = existsSync(buildIdPath);
-  const forceRequested = process.env.FORCE_NEXT_BUILD === "1" || process.env.FORCE_NEXT_BUILD === "true";
   const currentBuildId = hasProductionBuild ? readFileSync(buildIdPath, "utf8").trim() : "";
-  const markedBuildId = existsSync(localContractBuildMarker)
-    ? readFileSync(localContractBuildMarker, "utf8").trim()
-    : "";
-  const shouldForce = forceRequested && (!currentBuildId || markedBuildId !== currentBuildId);
+  const sourceDigest = computeWebSourceDigest();
+  const marker = readContractBuildMarker(localContractBuildMarker);
 
-  if (!shouldForce && hasProductionBuild) {
+  if (hasProductionBuild && markerMatchesCandidate(marker, currentBuildId, sourceDigest)) {
     return;
   }
 
@@ -108,13 +249,18 @@ function ensureWebBuild() {
   if (!existsSync(buildIdPath)) {
     throw new Error("Build completed but BUILD_ID is missing");
   }
-  if (forceRequested) {
-    writeFileSync(
-      localContractBuildMarker,
-      `${readFileSync(buildIdPath, "utf8").trim()}\n`,
-      "utf8"
-    );
+  const sourceDigestAtCompletion = computeWebSourceDigest();
+  if (sourceDigestAtCompletion !== sourceDigest) {
+    throw new Error("The web source or build environment changed while the contract build ran");
   }
+  writeFileSync(
+    localContractBuildMarker,
+    `${JSON.stringify({
+      buildId: readFileSync(buildIdPath, "utf8").trim(),
+      sourceDigest: sourceDigestAtCompletion,
+    })}\n`,
+    "utf8"
+  );
 }
 
 async function startNextServer({ ensureBuild = true, dev = false } = {}) {
@@ -149,4 +295,10 @@ async function startNextServer({ ensureBuild = true, dev = false } = {}) {
   return { baseUrl, port, stop };
 }
 
-module.exports = { startNextServer, withLaunchTestDefaults };
+module.exports = {
+  computeContractBuildDigest,
+  computeWebSourceDigest,
+  markerMatchesCandidate,
+  startNextServer,
+  withLaunchTestDefaults,
+};

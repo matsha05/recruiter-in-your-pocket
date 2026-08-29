@@ -66,6 +66,7 @@ export function FixCanvas({
   locked,
   onUnlock,
   resumeText,
+  isSample = false,
 }: {
   fix: Fix;
   rewrite?: Rewrite;
@@ -73,6 +74,7 @@ export function FixCanvas({
   locked?: boolean;
   onUnlock?: () => void;
   resumeText?: string;
+  isSample?: boolean;
 }) {
   const evidence = evidenceFor(fix);
   const sourceLocator = rewrite?.original || evidence || "";
@@ -182,7 +184,9 @@ export function FixCanvas({
         <div className="min-w-0">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <h3 className="max-w-[28ch] font-display text-[clamp(1.85rem,4vw,3rem)] riyp-weight-520 leading-[1.02] tracking-[-0.025em] text-foreground">{action}</h3>
-            <button type="button" onClick={() => setDismissed(true)} className="min-h-11 shrink-0 self-start px-2 text-xs font-semibold text-muted-foreground hover:text-foreground">Not relevant</button>
+            {!isSample && (
+              <button type="button" onClick={() => setDismissed(true)} className="min-h-11 shrink-0 self-start px-2 text-xs font-semibold text-muted-foreground hover:text-foreground">Not relevant</button>
+            )}
           </div>
 
           <div className="mt-7 bg-paper-muted/55 px-4 py-4 sm:px-5">
@@ -201,11 +205,19 @@ export function FixCanvas({
           <div className="mt-7 grid gap-px bg-[hsl(var(--paper-line))] sm:grid-cols-2">
             <div className="bg-accent-apricot/20 p-5 sm:p-6">
               <p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What is missing</p>
-              <p className="mt-3 text-[0.95rem] leading-6 text-foreground/80">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
+              <p className="riyp-type-095 mt-3 leading-6 text-foreground/80">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
             </div>
             <div className="bg-accent-butter/20 p-5 sm:p-6">
-              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">Facts to verify</p>
-              {placeholderKeys.length > 0 ? (
+              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">{isSample ? "Facts the candidate would verify" : "Facts to verify"}</p>
+              {isSample ? (
+                placeholderKeys.length > 0 ? (
+                  <ul className="riyp-type-095 mt-3 grid list-disc gap-2 pl-5 font-medium leading-6 text-foreground/80">
+                    {placeholderKeys.map((key) => <li key={key}>{placeholderLabel(key)}</li>)}
+                  </ul>
+                ) : (
+                  <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">The suggestion stays within the facts shown in the source line.</p>
+                )
+              ) : placeholderKeys.length > 0 ? (
                 <div className="mt-4 grid gap-3">
                   {placeholderKeys.map((key) => (
                     <label key={key} className="grid gap-1.5 text-xs font-semibold text-foreground/75">
@@ -223,7 +235,7 @@ export function FixCanvas({
                   <Button type="button" variant="outline" size="sm" className="mt-1 min-h-11 justify-self-start border-brand/30 bg-paper px-4" onClick={handleUseFacts} disabled={!allRequiredFactsProvided}>Keep these facts</Button>
                 </div>
               ) : (
-                <p className="mt-3 text-[0.95rem] font-medium leading-6 text-foreground">This suggestion should use only the facts in the source line.</p>
+                <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">This suggestion should use only the facts in the source line.</p>
               )}
             </div>
           </div>
@@ -232,27 +244,29 @@ export function FixCanvas({
             <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
-                  <p className="mt-1 max-w-xl text-xs text-muted-foreground">{copyGuidance(copyPolicy.reason)}</p>
+                  <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">{isSample ? "Example suggestion" : "Try this"}</p>
+                  <p className="mt-1 max-w-xl text-xs text-muted-foreground">{isSample ? "Read-only example. Your report will use the facts in your resume." : copyGuidance(copyPolicy.reason)}</p>
                 </div>
-                <div className="flex items-center gap-1">
-                  <button type="button" onClick={() => setEditing((current) => !current)} className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-muted-foreground hover:text-foreground">
-                    <PencilSimple className="size-4" /> {editing ? "Done" : "Edit"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleCopy}
-                    disabled={!copyPolicy.copyable}
-                    aria-disabled={!copyPolicy.copyable}
-                    title={!copyPolicy.copyable ? copyGuidance(copyPolicy.reason) : undefined}
-                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
-                  >
-                    {!copyPolicy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                    {!copyPolicy.copyable ? (copyPolicy.reason === "source_unavailable" ? "Source needed to copy" : "Verify facts to copy") : copied ? "Copied" : "Copy"}
-                  </button>
-                </div>
+                {!isSample && (
+                  <div className="flex items-center gap-1">
+                    <button type="button" onClick={() => setEditing((current) => !current)} className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-muted-foreground hover:text-foreground">
+                      <PencilSimple className="size-4" /> {editing ? "Done" : "Edit"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleCopy}
+                      disabled={!copyPolicy.copyable}
+                      aria-disabled={!copyPolicy.copyable}
+                      title={!copyPolicy.copyable ? copyGuidance(copyPolicy.reason) : undefined}
+                      className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
+                    >
+                      {!copyPolicy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
+                      {!copyPolicy.copyable ? (copyPolicy.reason === "source_unavailable" ? "Source needed to copy" : "Verify facts to copy") : copied ? "Copied" : "Copy"}
+                    </button>
+                  </div>
+                )}
               </div>
-              {editing ? (
+              {editing && !isSample ? (
                 <textarea value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-5 min-h-[8rem] w-full resize-y border border-brand/25 bg-paper px-4 py-3 font-display text-xl leading-8 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/20" aria-label={`Edit suggested line ${index + 1}`} />
               ) : (
                 <p className="mt-5 max-w-[42rem] font-display text-[1.45rem] riyp-weight-520 leading-[1.35] text-foreground sm:text-[1.7rem]">{draft}</p>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, LogOut, Home, Settings } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { PocketMark, Wordmark } from "@/components/icons";
@@ -32,6 +32,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                             <Wordmark className="h-5 text-foreground" />
                         </Link>
                     </SheetTitle>
+                    <SheetDescription className="sr-only">Navigate the studio, reports, settings, and account actions.</SheetDescription>
                 </SheetHeader>
 
                 <div className="flex-1 overflow-y-auto py-6 px-4">
@@ -151,6 +152,7 @@ function MobileNavLink({
     return (
         <Link
             href={href}
+            aria-current={active ? "page" : undefined}
             onClick={() => setOpen(false)}
             className={cn(
                 "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded transition-colors",

@@ -29,6 +29,11 @@ const RESEARCH_SYSTEM_FILES = [
   "components/shared/diagrams/DiagramPrimitives.tsx", "components/shared/diagrams/EvidenceVisuals.tsx",
 ];
 
+const MARKER_ASSET_BUDGETS = [
+  { file: "public/assets/brand/citron-marker-shallow-v3.webp", maxBytes: 50 * 1024 },
+  { file: "public/assets/brand/citron-marker-bold-v3.webp", maxBytes: 200 * 1024 },
+];
+
 const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divide|from|via|to)-(?:teal|emerald|cyan|indigo|violet|purple|slate|gray|zinc|neutral|stone|rose|amber|yellow|orange|blue|sky)-(?:50|100|200|300|400|500|600|700|800|900|950)(?:\/[0-9]{1,3})?\b/g;
 
 const HEX_ALLOWLIST = new Set([
@@ -339,6 +344,24 @@ function validateRuntimeSystem() {
     }
   }
 
+  if (/citron-marker-(?:shallow|bold)-v3\.png/.test(globalsSource)) {
+    errors.push("globals.css must use the optimized WebP marker assets");
+  }
+  for (const { file, maxBytes } of MARKER_ASSET_BUDGETS) {
+    const assetPath = path.join(ROOT, file);
+    if (!fs.existsSync(assetPath)) {
+      errors.push(`missing marker asset: ${file}`);
+      continue;
+    }
+    if (fs.statSync(assetPath).size > maxBytes) {
+      errors.push(`${file} exceeds its ${Math.round(maxBytes / 1024)} KB transfer budget`);
+    }
+    const publicHref = `/${file.replace(/^public\//, "")}`;
+    if (!globalsSource.includes(`url("${publicHref}")`)) {
+      errors.push(`globals.css is not wired to ${publicHref}`);
+    }
+  }
+
   return errors;
 }
 
@@ -349,8 +372,11 @@ function validateFontStack() {
   const layoutErrors = [];
   const dependencyErrors = [];
 
-  if (!layoutSource.includes('@fontsource-variable/instrument-sans/standard.css')) {
-    layoutErrors.push("Missing Instrument Sans variable font import in `app/layout.tsx`.");
+  if (!layoutSource.includes('@fontsource-variable/instrument-sans/wght.css')) {
+    layoutErrors.push("Missing the weight-only Instrument Sans variable font import in `app/layout.tsx`.");
+  }
+  if (layoutSource.includes('@fontsource-variable/instrument-sans/standard.css')) {
+    layoutErrors.push("Instrument Sans should not ship the unused width axis.");
   }
   if (!layoutSource.includes('import "@fontsource-variable/space-grotesk"')) {
     layoutErrors.push("Missing Space Grotesk variable font import in `app/layout.tsx`.");

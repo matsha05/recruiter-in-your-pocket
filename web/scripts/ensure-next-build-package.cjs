@@ -55,6 +55,17 @@ assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
   "/public/assets/fonts/instrument-sans-latin-variable.ttf"
 );
+for (const runtimeAsset of [
+  "chromium.br",
+  "fonts.tar.br",
+  "swiftshader.tar.br",
+  "al2023.tar.br",
+]) {
+  assertTraceIncludes(
+    path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
+    `/node_modules/@sparticuz/chromium/bin/${runtimeAsset}`
+  );
+}
 
 // Vercel's Next.js finalizer currently resolves this package marker from the
 // repository root for this monorepo, even though the configured app root is

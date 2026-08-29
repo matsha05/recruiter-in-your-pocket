@@ -10,6 +10,7 @@ import { relationshipBindingIssues } from "../lib/llm/source-relationship-fideli
 import { saveReceiptValidatedReport } from "../lib/reports/client-report-save";
 import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "../lib/reports/report-receipt";
+import { ResumeFeedbackResponseSchema } from "../lib/validation/resume-report-schema";
 import {
   hubspotJobDescription,
   hubspotSource,
@@ -50,6 +51,142 @@ const { ReportStream } = require("../components/workspace/report/ReportStream.ts
   ReportStream: (props: any) => any;
 };
 runtimeModule._load = originalLoad;
+
+const completeReport = structuredClone(schemaValidReport) as any;
+completeReport.score_comment_short = "PRIMARY SHORT COPY.";
+completeReport.first_impression = "DETAILED OPENING SENTINEL.";
+completeReport.summary = "DETAILED SUMMARY SENTINEL one. DETAILED SUMMARY SENTINEL two. DETAILED SUMMARY SENTINEL three.";
+completeReport.score_comment_long = "DETAILED SCORE REASON SENTINEL one. DETAILED SCORE REASON SENTINEL two.";
+completeReport.score_plain = "DETAILED SCORE MEANING SENTINEL.";
+completeReport.biggest_gap_example = "DETAILED GAP EXAMPLE SENTINEL";
+completeReport.strengths = [
+  "VISIBLE STRENGTH ONE",
+  "VISIBLE STRENGTH TWO",
+  "VISIBLE STRENGTH THREE",
+  "REMAINING STRENGTH SENTINEL",
+];
+completeReport.gaps = [
+  "VISIBLE GAP ONE",
+  "REMAINING GAP TWO SENTINEL",
+  "REMAINING GAP THREE SENTINEL",
+];
+completeReport.section_review.Summary = {
+  grade: "A",
+  priority: "high",
+  working: "SECTION WORKING SENTINEL",
+  missing: "SECTION MISSING SENTINEL",
+  fix: "SECTION FIX SENTINEL",
+};
+completeReport.next_steps = [
+  "NEXT STEP ONE SENTINEL",
+  "NEXT STEP TWO SENTINEL",
+  "NEXT STEP THREE SENTINEL",
+];
+completeReport.job_alignment = {
+  ...completeReport.job_alignment,
+  jd_match_score: 74,
+  positioning_suggestion: "VISIBLE ROLE POSITIONING",
+  jd_match_summary: "DETAILED JOB SUMMARY SENTINEL",
+  strongly_aligned: ["ALIGNED DETAIL SENTINEL", "ALIGNED DETAIL TWO", "ALIGNED DETAIL THREE"],
+  underplayed: ["UNDERPLAYED DETAIL SENTINEL", "UNDERPLAYED DETAIL TWO"],
+  missing: ["MISSING DETAIL SENTINEL"],
+  jd_keywords: {
+    matched: ["MATCHED KEYWORD SENTINEL"],
+    missing: ["MISSING KEYWORD SENTINEL"],
+    match_count: 1,
+    total_count: 2,
+  },
+  role_fit: {
+    best_fit_roles: ["VISIBLE ROLE ONE", "VISIBLE ROLE TWO", "VISIBLE ROLE THREE", "EXTRA ROLE SENTINEL"],
+    stretch_roles: ["STRETCH ROLE SENTINEL"],
+    seniority_read: "VISIBLE SENIORITY",
+    industry_signals: ["INDUSTRY SENTINEL"],
+    company_stage_fit: "COMPANY STAGE SENTINEL",
+  },
+};
+assert.doesNotThrow(
+  () => ResumeFeedbackResponseSchema.parse(completeReport),
+  "the UI completeness fixture must stay inside the client-visible v2 schema",
+);
+
+const completeReportHtml = renderToStaticMarkup(createElement(ReportStream, {
+  report: completeReport,
+  hasJobDescription: true,
+}));
+const fullNotesStart = completeReportHtml.indexOf('<details id="section-full-notes"');
+assert.notEqual(fullNotesStart, -1, "the report must expose a full recruiter notes disclosure");
+const fullNotesEnd = completeReportHtml.indexOf("</details>", fullNotesStart);
+assert.notEqual(fullNotesEnd, -1, "the full recruiter notes disclosure must be structurally complete");
+const fullNotesHtml = completeReportHtml.slice(fullNotesStart, fullNotesEnd + "</details>".length);
+assert.match(fullNotesHtml, /<summary\b/, "full recruiter notes must use a native accessible disclosure");
+assert.match(fullNotesHtml, /role="heading" aria-level="2"/, "full recruiter notes must remain available in heading navigation");
+assert.doesNotMatch(
+  fullNotesHtml.slice(0, fullNotesHtml.indexOf(">") + 1),
+  /\sopen(?:=|>)/,
+  "full recruiter notes must stay collapsed until requested",
+);
+for (const expected of [
+  "DETAILED OPENING SENTINEL",
+  "DETAILED SUMMARY SENTINEL",
+  "DETAILED SCORE REASON SENTINEL",
+  "DETAILED SCORE MEANING SENTINEL",
+  "DETAILED GAP EXAMPLE SENTINEL",
+  "REMAINING STRENGTH SENTINEL",
+  "REMAINING GAP TWO SENTINEL",
+  "REMAINING GAP THREE SENTINEL",
+  "SECTION WORKING SENTINEL",
+  "SECTION MISSING SENTINEL",
+  "SECTION FIX SENTINEL",
+  "NEXT STEP ONE SENTINEL",
+  "DETAILED JOB SUMMARY SENTINEL",
+  "ALIGNED DETAIL SENTINEL",
+  "UNDERPLAYED DETAIL SENTINEL",
+  "MISSING DETAIL SENTINEL",
+  "MATCHED KEYWORD SENTINEL",
+  "MISSING KEYWORD SENTINEL",
+  "EXTRA ROLE SENTINEL",
+  "STRETCH ROLE SENTINEL",
+  "INDUSTRY SENTINEL",
+  "COMPANY STAGE SENTINEL",
+]) {
+  assert.ok(fullNotesHtml.includes(expected), `full recruiter notes must render ${expected}`);
+}
+for (const alreadyVisible of [
+  "PRIMARY SHORT COPY",
+  "VISIBLE STRENGTH ONE",
+  "VISIBLE GAP ONE",
+  "VISIBLE ROLE POSITIONING",
+  "VISIBLE ROLE ONE",
+  "VISIBLE SENIORITY",
+]) {
+  assert.equal(fullNotesHtml.includes(alreadyVisible), false, `full recruiter notes must not repeat ${alreadyVisible}`);
+}
+
+const sampleReportHtml = renderToStaticMarkup(createElement(ReportStream, {
+  report: completeReport,
+  isSample: true,
+}));
+const sampleFullNotesStart = sampleReportHtml.indexOf('<details id="section-full-notes"');
+assert.notEqual(sampleFullNotesStart, -1, "the public sample must expose the same full recruiter notes disclosure");
+const sampleFullNotesEnd = sampleReportHtml.indexOf("</details>", sampleFullNotesStart);
+const sampleFullNotesHtml = sampleReportHtml.slice(sampleFullNotesStart, sampleFullNotesEnd + "</details>".length);
+for (const expected of [
+  "DETAILED SUMMARY SENTINEL",
+  "REMAINING GAP TWO SENTINEL",
+  "SECTION WORKING SENTINEL",
+  "NEXT STEP ONE SENTINEL",
+  "STRETCH ROLE SENTINEL",
+  "COMPANY STAGE SENTINEL",
+]) {
+  assert.ok(sampleFullNotesHtml.includes(expected), `the public sample full notes must render ${expected}`);
+}
+for (const jobOnlyDetail of [
+  "DETAILED JOB SUMMARY SENTINEL",
+  "ALIGNED DETAIL SENTINEL",
+  "MATCHED KEYWORD SENTINEL",
+]) {
+  assert.equal(sampleFullNotesHtml.includes(jobOnlyDetail), false, `reports without a job description must hide ${jobOnlyDetail}`);
+}
 
 const exactRelationshipCases = [
   {

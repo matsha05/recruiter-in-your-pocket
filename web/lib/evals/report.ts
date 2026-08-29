@@ -21,8 +21,10 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     // Header
     lines.push(isDryRun ? "# PromptOps Fixture Validation Report" : "# PromptOps Live Eval Report");
     lines.push("");
-    lines.push(`**Run ID:** ${run.metadata.run_id}`);
-    lines.push(`**Timestamp:** ${run.metadata.timestamp}`);
+    if (!isDryRun) {
+        lines.push(`**Run ID:** ${run.metadata.run_id}`);
+        lines.push(`**Timestamp:** ${run.metadata.timestamp}`);
+    }
     lines.push(`**Tier:** ${run.metadata.tier}`);
     lines.push(`**Prompt Version:** ${run.metadata.prompt_version_hash}`);
     lines.push(`**Contract Version:** ${run.metadata.contract_version}`);

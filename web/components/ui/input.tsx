@@ -9,7 +9,7 @@ const inputVariants = cva(
         variants: {
             variant: {
                 default:
-                    "border-transparent focus-visible:ring-1 focus-visible:ring-ring focus-visible:bg-background focus-visible:border-border/30",
+                    "border-muted-foreground/70 focus-visible:border-brand focus-visible:bg-background focus-visible:ring-1 focus-visible:ring-ring",
                 error:
                     "border-destructive/50 bg-destructive/5 focus-visible:ring-1 focus-visible:ring-destructive focus-visible:border-destructive/50 text-foreground placeholder:text-destructive/60",
                 success:

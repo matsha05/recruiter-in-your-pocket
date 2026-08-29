@@ -1,6 +1,11 @@
 "use client";
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import { AuthFlow } from "@/components/auth/AuthFlow";
 import type { AuthContext } from "@/lib/auth/content";
 
@@ -16,6 +21,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
             <DialogContent className="sm:max-w-md bg-background border border-border/60 shadow-sm p-8 rounded-lg">
+                <DialogTitle className="sr-only">Sign in to continue</DialogTitle>
+                <DialogDescription className="sr-only">
+                    Use your email to receive a secure one-time sign-in code.
+                </DialogDescription>
                 <AuthFlow
                     variant="modal"
                     context={context}

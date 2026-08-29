@@ -1759,7 +1759,13 @@
   }
 
   .lift-first-read-compact .lift-first-read-evidence {
-    display: none;
+    min-height: 0;
+    padding: 1rem 1.1rem 1.15rem;
+  }
+
+  .lift-first-read-compact .lift-first-read-evidence blockquote {
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   .lift-hero-grid {
@@ -2059,7 +2065,7 @@
     left: -0.06em;
     z-index: -1;
     height: 0.36em;
-    background-image: url("/assets/brand/citron-marker-shallow-v3.png");
+    background-image: url("/assets/brand/citron-marker-shallow-v3.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -2072,7 +2078,7 @@
     bottom: -0.045em;
     left: -0.24em;
     height: 1.08em;
-    background-image: url("/assets/brand/citron-marker-bold-v3.png");
+    background-image: url("/assets/brand/citron-marker-bold-v3.webp");
   }
 
   .riyp-tabular-label {
@@ -2215,6 +2221,7 @@
 
   /* Editorial type and evidence tokens shared by landing, research, and reports. */
   .riyp-border-paper-line { border-color: hsl(var(--paper-line)); }
+  .riyp-divide-paper-line > :not([hidden]) ~ :not([hidden]) { border-color: hsl(var(--paper-line)); }
   .riyp-border-ink-line { border-color: hsl(var(--ink-line)); }
   .riyp-border-cream { border-color: hsl(var(--cream)); }
   .riyp-border-brass { border-color: hsl(var(--brass)); }
