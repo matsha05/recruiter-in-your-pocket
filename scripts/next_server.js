@@ -11,6 +11,7 @@ function withLaunchTestDefaults(env) {
   const testEnv = {
     ...env,
     USE_MOCK_OPENAI: "1",
+    BYPASS_PAYWALL: "false",
     NEXT_PUBLIC_APP_URL: "http://localhost:3000",
     VERCEL_ENV: "development",
     VERCEL_URL: "",

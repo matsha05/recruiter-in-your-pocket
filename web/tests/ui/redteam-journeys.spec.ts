@@ -38,7 +38,8 @@ test.describe("launch red-team journeys", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
-    await expect(page.getByText("Exact resume line", { exact: true })).toBeVisible();
+    const heroFirstRead = page.getByRole("article", { name: /Strong operator/i });
+    await expect(heroFirstRead.getByText("Exact resume line", { exact: true })).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
@@ -202,8 +203,11 @@ test.describe("launch red-team journeys", () => {
     await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
     await expect(page.getByText(/We only save reports to verified signed-in accounts/i)).toBeVisible();
     await saveDialog.getByRole("button", { name: /Sign in and keep this report/i }).click();
-    await expect(page.locator("#auth-email")).toBeVisible();
-    await expect(page.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
+    const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });
+    await expect(authDialog).toBeVisible();
+    await expect(authDialog).toHaveAccessibleDescription("Use your email to receive a secure one-time sign-in code.");
+    await expect(authDialog.locator("#auth-email")).toBeVisible();
+    await expect(authDialog.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
   });
 
   test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
