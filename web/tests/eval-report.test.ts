@@ -53,10 +53,25 @@ assert.match(dryRunReport, /^# PromptOps Fixture Validation Report/m);
 assert.match(dryRunReport, /not evidence of model output quality/i);
 assert.match(dryRunReport, /Fixture Validation Rate/);
 assert.doesNotMatch(dryRunReport, /fixture_1 \(score:/);
+assert.doesNotMatch(dryRunReport, /Run ID:|Timestamp:/);
+assert.equal(
+  generateMarkdownReport({
+    ...buildRun("dry_run"),
+    metadata: {
+      ...buildRun("dry_run").metadata,
+      run_id: "a_different_run",
+      timestamp: "2099-12-31T23:59:59.999Z",
+    },
+  }),
+  dryRunReport,
+  "fixture-validation evidence must be deterministic across run times",
+);
 
 const liveReport = generateMarkdownReport(buildRun("live"));
 assert.match(liveReport, /^# PromptOps Live Eval Report/m);
 assert.match(liveReport, /Live model evaluation/);
+assert.match(liveReport, /Run ID:\*\* test_live/);
+assert.match(liveReport, /Timestamp:\*\* 2026-07-09T00:00:00\.000Z/);
 assert.match(liveReport, /Reasoning effort:\*\* low/);
 assert.match(liveReport, /fixture_1 \(score: 82\)/);
 assert.match(liveReport, /Resume prompt SHA-256:\*\* a{64}/);
