@@ -20,7 +20,7 @@
 | Billing and unlocks | Matt | Stripe Dashboard plus GitHub Issues backup alert |
 | Extension sync | Matt | status page + support |
 | AI quality | Matt | PromptOps shipping gate |
-| Trust and security | Matt | security@recruiterinyourpocket.com |
+| Trust and security | Matt | support@recruiterinyourpocket.com |
 
 ## Alert Routing
 
@@ -71,7 +71,7 @@ Preview rehearsal uses a disposable preview alias: point the alias to candidate 
 ## Public Communication Standard
 
 - Update `/status` if the issue affects live users
-- Send security reports to `security@recruiterinyourpocket.com`
+- Send security reports to the verified inbound address, `support@recruiterinyourpocket.com`
 - Keep user messaging factual, brief, and recovery-oriented
 
 ## Recovery Criteria

@@ -1,22 +1,29 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
-import crypto from "crypto";
 import {
+  ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
+  ensureAnonymousIdentity,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
+  parseAnonymousIdentityCookie,
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
+import {
+  anonymousNetworkHashFromRequest,
+  attachAnonymousIdentityCookie,
+  hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
 import { runJson } from "@/lib/llm/orchestrator";
 import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
 } from "@/lib/llm/reportRepair";
-import { buildResumeEvidenceCatalog } from "@/lib/llm/evidence-canonicalizer";
+import { buildResumeProviderMessages } from "@/lib/llm/resume-provider-messages";
 import { resolveOpenAIModel } from "@/lib/llm/model-config";
-import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
+import { loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
   validateResumeFeedbackRequest,
@@ -32,88 +39,28 @@ import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { resolveEffectiveJobDescription } from "@/lib/security/effectiveJobDescription";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { generationOperationDigest, requireAuthenticatedGenerationOperationId } from "@/lib/billing/generationOperation";
+import { loadOwnedTrustedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
 import {
   assertGenerationAccessDependencies,
   assertGenerationAuthLookup,
   commitGenerationAccess,
   markGenerationProviderCallStarted,
-  releaseGenerationAccess,
-  releaseReasonForError,
   reserveGenerationAccess,
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { appendFailureDisposition, generationFailureCompletion, logGenerationReleaseFailure, settleGenerationFailure } from "@/lib/billing/generationFailure";
+import { persistGeneratedReport } from "@/lib/reports/generated-report-store";
+import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
+import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
+import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
+import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function hashResumeText(text: string) {
-  return crypto.createHash("sha256").update(text).digest("hex");
-}
-
-function reportPersistenceError() {
-  const error = new Error("We could not safely save this report. Your report credit was restored; please try again.") as Error & { code: string; httpStatus: number };
-  error.code = "REPORT_PERSISTENCE_FAILED";
-  error.httpStatus = 503;
-  return error;
-}
-
-function buildReportTrustMetadata(payload: any) {
-  const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
-  const evidence = topFixes
-    .map((fix: any) => ({
-      fix: fix?.fix || "",
-      confidence: fix?.confidence || "medium",
-      impact_level: fix?.impact_level || "medium",
-      effort: fix?.effort || "moderate",
-      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
-      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
-    }))
-    .filter((item: any) => item.fix || item.excerpt);
-
-  const confidenceValues = evidence.map((item: any) => item.confidence);
-  const confidence_band = confidenceValues.includes("low")
-    ? "low"
-    : confidenceValues.includes("medium")
-      ? "medium"
-      : evidence.length > 0
-        ? "high"
-        : null;
-
-  return {
-    evidence_json: evidence.length > 0 ? evidence : null,
-    evidence_version: payload?.contract_version || "v2",
-    evidence_summary: evidence.length > 0
-      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
-      : null,
-    confidence_band
-  };
-}
-
-const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
-async function resolveUserSavedJobId(
-  supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>,
-  userId: string,
-  value: string | null
-) {
-  if (!value || !UUID_PATTERN.test(value)) return null;
-
-  const { data, error } = await supabase
-    .from("saved_jobs")
-    .select("id")
-    .eq("id", value)
-    .eq("user_id", userId)
-    .maybeSingle();
-
-  if (error || !data?.id) return null;
-  return data.id as string;
-}
 
 export async function POST(request: Request) {
   const request_id = getRequestId(request);
@@ -123,10 +70,19 @@ export async function POST(request: Request) {
   let accessReservation: GenerationAccessReservation | null = null;
   let reservationCommitted = false;
   let reservationAdmin: GenerationAccessRpcClient | null = null;
+  let requestedOperationId: string | null = null;
+  let authenticatedOperationId: string | null = null;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
+  const cookieStore = await cookies();
+  const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
+  const hadAnonymousIdentity = Boolean(parseAnonymousIdentityCookie(anonymousIdentityCookie));
+  const anonymousIdentity = ensureAnonymousIdentity(anonymousIdentityCookie);
+  const respond = <T extends NextResponse>(response: T) =>
+    attachAnonymousIdentityCookie(response, anonymousIdentity.cookieValue);
+  const anonymousShadowHash = anonymousNetworkHashFromRequest(request);
 
   try {
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || `request:${request_id}`;
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
@@ -142,10 +98,11 @@ export async function POST(request: Request) {
         latency_ms: Date.now() - startedAt,
         outcome: "rate_limited"
       });
-      return res;
+      return respond(res);
     }
 
     const body = await readJsonWithLimit<any>(request, 128 * 1024);
+    requestedOperationId = typeof body?.operation_id === "string" ? body.operation_id : null;
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     const validation = validateResumeFeedbackRequest(body);
     if (!validation.ok || !validation.value) {
@@ -169,11 +126,11 @@ export async function POST(request: Request) {
         latency_ms: Date.now() - startedAt,
         outcome: "validation_error"
       });
-      return res;
+      return respond(res);
     }
 
     const { text, mode, jobDescription } = validation.value;
-    const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
+    const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -194,19 +151,40 @@ export async function POST(request: Request) {
       : null;
 
     // Determine access
-    const cookieStore = await cookies();
     const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
     const freeMeta =
       freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
 
     const bypass = isDevelopmentPaywallBypassEnabled();
+    const requestedRecoveryId = requireAnonymousReportRecoveryId({
+      mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
+    });
+    if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
+      return respond(NextResponse.json({
+        ok: false,
+        errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+        message: "Your browser identity is ready. Please retry to generate the report safely.",
+        attempt_consumed: false,
+        attempt_disposition: "restored",
+      }, { status: 409 }));
+    }
+    authenticatedOperationId = requireAuthenticatedGenerationOperationId({
+      mode, userId: user?.id, bypass, operationId: requestedOperationId,
+    });
     accessReservation = await reserveGenerationAccess({
       userId: user?.id || null,
       admin,
       reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
       bypass,
       freeMeta,
-      anonymousIdentityHash: hashForLogs(ip),
+      anonymousIdentityHash: user
+        ? null
+        : hashAnonymousIdentity(anonymousIdentity.identity),
+      anonymousShadowHash: user ? null : anonymousShadowHash,
+      operationId: authenticatedOperationId,
+      requestDigest: user && mode === "resume" ? generationOperationDigest({
+        mode, text, jobDescription, savedJobId: requestedSavedJobId,
+      }) : null,
     });
 
     const activePass = accessReservation.activePass;
@@ -215,7 +193,7 @@ export async function POST(request: Request) {
     const access = accessReservation.access;
 
     if (access === "preview") {
-      return NextResponse.json(
+      return respond(NextResponse.json(
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
@@ -225,69 +203,60 @@ export async function POST(request: Request) {
           access_tier: "preview"
         },
         { status: 402 }
+      ));
+    }
+
+    authenticatedOperationId = accessReservation.operationId === authenticatedOperationId
+      ? authenticatedOperationId
+      : null;
+    if (user && accessReservation.recoveredReportId) {
+      // This operation is already durably committed. A recovery/readback error
+      // must never enter the release/refund path for its consumed entitlement.
+      reservationCommitted = true;
+      const recoveredReport = await loadOwnedTrustedReport(
+        admin, user.id, accessReservation.recoveredReportId,
       );
-    }
-
-    // Build system prompt
-    let systemPrompt = await loadPromptForMode(mode);
-    if (mode === "resume_ideas") {
-      systemPrompt = `${baseTone}\n\n${systemPrompt}`;
-    }
-
-    if (hasJobDescription) {
-      systemPrompt += `
-
-JOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)
-
-The user has provided a specific job description. In your job_alignment response, pay special attention to:
-- How well the resume aligns with THIS specific job's requirements
-- Themes in the job description that the resume demonstrates (strongly_aligned)
-- Themes in the job description that are present but underemphasized (underplayed)
-- Critical requirements from the job description that are missing (missing)
-
-The user wants to know: "Am I a fit for THIS role, and what should I emphasize or add?"
-`;
-    }
-
-    let userPrompt = "";
-
-    if (mode === "case_interview") {
-      userPrompt = `CONTEXT (Role & Question):
-${jobDescription || "No specific context provided."}
-
-TRANSCRIPT (Candidate Answer):
-${text}`;
-    } else if (mode === "case_negotiation") {
-      userPrompt = `CONTEXT (Role & Goals):
-${jobDescription || "No specific context."}
-
-OFFER DETAILS:
-${text}`;
-    } else {
-      userPrompt = `Here is the user's input. Use the system instructions to respond.
-
-USER RESUME:
-${text}`;
-      if (mode === "resume") {
-        userPrompt += `
-
-SOURCE CATALOG (reference only; copy source text after each tag and never output the tags):
-${buildResumeEvidenceCatalog(text)}`;
-      }
-      if (hasJobDescription && jobDescription) {
-        userPrompt += `
-
-JOB DESCRIPTION (for alignment analysis):
-${jobDescription}`;
-      }
+      return respond(NextResponse.json({
+        ok: true,
+        access,
+        access_tier: accessTier,
+        active_pass: activePass,
+        user: { email: user.email },
+        free_uses_remaining: freeUsesRemaining,
+        report_id: accessReservation.recoveredReportId,
+        report_receipt: null,
+        recovery_id: null,
+        operation_id: authenticatedOperationId,
+        has_job_description: effectiveJobDescription.hasValue,
+        data: recoveredReport,
+      }));
     }
 
     const model = resolveOpenAIModel(mode);
-    const messages = [
-      { role: "system" as const, content: JSON_INSTRUCTION },
-      { role: "system" as const, content: systemPrompt },
-      { role: "user" as const, content: userPrompt }
-    ];
+    const { messages, sanitization: sanitizedInput } = buildResumeProviderMessages({
+      mode,
+      systemPrompt: await loadPromptForMode(mode),
+      text,
+      effectiveJobDescription,
+    });
+    const canonicalResumeText = sanitizedInput.sanitizedText;
+    const sanitizedJobDescription = effectiveJobDescription.sanitization;
+    if (sanitizedInput.injectionDetected || sanitizedJobDescription?.injectionDetected) {
+      logWarn({
+        msg: "security.prompt_injection_detected",
+        request_id,
+        route,
+        user_id,
+        security: {
+          injection_detected: true,
+          patterns_matched: [
+            ...sanitizedInput.detectedPatterns,
+            ...(sanitizedJobDescription?.detectedPatterns || []),
+          ],
+          json_injection: sanitizedInput.hadJsonInjection || Boolean(sanitizedJobDescription?.hadJsonInjection),
+        },
+      });
+    }
     await markGenerationProviderCallStarted(accessReservation);
     const initialRun = await runJson<any>({
       ctx: { request_id, user_id, route },
@@ -296,7 +265,8 @@ ${jobDescription}`;
       model,
       prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
       schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
-      messages
+      messages,
+      signal: request.signal,
     });
     const parsedJson = initialRun.parsed;
 
@@ -311,7 +281,7 @@ ${jobDescription}`;
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       try {
-        payload = validateResumeModelPayload(parsedJson, text);
+        payload = validateResumeModelPayload(parsedJson, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
       } catch (err: any) {
         if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
@@ -331,94 +301,53 @@ ${jobDescription}`;
           prompt_version: "resume_v2_repair",
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
+          signal: request.signal,
         });
-        payload = validateResumeModelPayload(repaired.parsed, text);
+        payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
     }
 
-    // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
-    if (user && supabase && mode === "resume") {
-      const resumeHash = hashResumeText(text);
-      let preview = text.slice(0, 200).trim();
-      const lastSpace = preview.lastIndexOf(" ");
-      if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
-      else if (text.length > 200) preview += "...";
-
-      reportId = crypto.randomUUID();
-
-      const { error: reportInsertError } = await supabase.from("reports").insert({
-        id: reportId,
-        user_id: user.id,
-        resume_hash: resumeHash,
-        score: payload.score,
-        score_label: payload.score_label || null,
-        report_json: payload,
-        ...buildReportTrustMetadata(payload),
-        ...(savedJobId ? { saved_job_id: savedJobId } : {}),
-        resume_preview: preview,
-        job_description_text: jobDescription || null,
-        target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-        created_at: nowIso()
+    let anonymousRecovery: Awaited<ReturnType<typeof finalizeAnonymousGeneratedReport>> | null = null;
+    if (user && mode === "resume" && accessReservation.entitlementKind !== "bypass") {
+      if (!admin) throw new Error("Report finalization is unavailable.");
+      const finalized = await finalizeAuthenticatedGeneratedReport({
+        admin,
+        reservation: accessReservation,
+        userId: user.id,
+        payload,
+        resumeText: canonicalResumeText,
+        savedJobId,
+        jobDescriptionText: effectiveJobDescription.persistenceText,
       });
-      if (reportInsertError) {
-        reportId = null;
-        logError({
-          msg: "report.persistence_failed",
-          request_id,
-          route,
-          user_id,
-          outcome: "provider_error",
-          err: { name: "ReportPersistenceError", message: "Report insert failed", code: String(reportInsertError.code || "REPORT_INSERT_FAILED") }
+      reportId = finalized.reportId;
+      reservationCommitted = true;
+    } else if (mode === "resume" && accessReservation.entitlementKind === "anonymous_free") {
+      if (!requestedRecoveryId) throw new Error("Anonymous report recovery was not established.");
+      anonymousRecovery = await finalizeAnonymousGeneratedReport({
+        reservation: accessReservation,
+        payload,
+        resumeText: canonicalResumeText,
+        recoveryId: requestedRecoveryId,
+      });
+      reservationCommitted = true;
+    } else {
+      if (user && mode === "resume" && accessReservation.entitlementKind === "bypass") {
+        if (!admin) throw new Error("Report persistence is unavailable.");
+        reportId = await persistGeneratedReport({
+          supabase: admin,
+          userId: user.id,
+          payload,
+          resumeText: canonicalResumeText,
+          savedJobId,
+          jobDescriptionText: effectiveJobDescription.persistenceText,
+          context: { request_id, route, user_id },
         });
-        throw reportPersistenceError();
       }
-      if (savedJobId) {
-        const { error: jobUpdateError } = await supabase
-          .from("saved_jobs")
-          .update({ latest_report_id: reportId, updated_at: nowIso() })
-          .eq("id", savedJobId)
-          .eq("user_id", user.id);
-        if (jobUpdateError) {
-          logWarn({
-            msg: "saved_job.report_link_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "provider_error",
-            err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(jobUpdateError.code || "SAVED_JOB_UPDATE_FAILED") }
-          });
-        }
-      }
-    }
-
-    // Commit only after a signed-in report is durably saved. If the commit
-    // fails, remove that uncharged report before returning an error.
-    try {
       await commitGenerationAccess(accessReservation, admin);
       reservationCommitted = true;
-    } catch (commitError) {
-      if (reportId && user && supabase) {
-        const { error: rollbackError } = await supabase
-          .from("reports")
-          .delete()
-          .eq("id", reportId)
-          .eq("user_id", user.id);
-        if (rollbackError) {
-          logError({
-            msg: "report.rollback_failed",
-            request_id,
-            route,
-            user_id,
-            outcome: "internal_error",
-            err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(rollbackError.code || "REPORT_ROLLBACK_FAILED") }
-          });
-        }
-        reportId = null;
-      }
-      throw commitError;
     }
 
     const newFreeUsed = accessReservation.anonymousCookieMeta?.used
@@ -436,7 +365,13 @@ ${jobDescription}`;
       free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       free_uses_left: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
       report_id: reportId,
-      data: payload
+      report_receipt: anonymousRecovery
+        ? null
+        : (reportId ? null : makeValidatedReportReceipt(payload)),
+      recovery_id: anonymousRecovery?.recovery_id ?? null,
+      operation_id: authenticatedOperationId,
+      has_job_description: effectiveJobDescription.hasValue,
+      data: anonymousRecovery?.report ?? payload
     };
 
     const res = NextResponse.json(responseBody);
@@ -461,31 +396,18 @@ ${jobDescription}`;
       outcome: "success",
       user_id
     });
-    return res;
+    return respond(res);
   } catch (err: any) {
-    if (accessReservation && !reservationCommitted) {
-      try {
-        await releaseGenerationAccess(
-          accessReservation,
-          reservationAdmin,
-          releaseReasonForError(err)
-        );
-      } catch (releaseErr: any) {
-        logError({
-          msg: "billing.access_release_failed",
-          request_id,
-          route,
-          outcome: "internal_error",
-          err: {
-            name: releaseErr?.name || "GenerationAccessError",
-            message: releaseErr?.message || "Access release failed",
-            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
-          },
-        });
-      }
-    }
+    const disposition = await settleGenerationFailure({
+      reservation: accessReservation,
+      admin: reservationAdmin,
+      error: err,
+      attemptConsumed: reservationCommitted,
+    });
+    logGenerationReleaseFailure(disposition, { request_id, route });
 
-    const status = err?.httpStatus || 500;
+    const completion = generationFailureCompletion(err);
+    const status = completion.status;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
 
     if (
@@ -499,7 +421,7 @@ ${jobDescription}`;
       });
     }
 
-    const message =
+    const baseMessage =
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
         : code === "OPENAI_NETWORK_ERROR"
@@ -508,8 +430,9 @@ ${jobDescription}`;
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? "The report did not pass its evidence check. Your report credit was restored; please try again."
+              ? "The report did not pass its evidence check."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
+    const message = appendFailureDisposition(baseMessage, disposition);
 
     logError({
       msg: "http.request.completed",
@@ -519,11 +442,24 @@ ${jobDescription}`;
       path,
       status,
       latency_ms: Date.now() - startedAt,
-      outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
+      outcome: completion.outcome,
       err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
     });
-    const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    const res = NextResponse.json({
+      ok: false,
+      errorCode: code,
+      message,
+      attempt_consumed: disposition.attemptConsumed,
+      attempt_disposition: disposition.attemptDisposition,
+      credit_restored: disposition.creditRestored,
+      operation_id: code === "GENERATION_OPERATION_TERMINAL"
+        ? requestedOperationId
+        : accessReservation?.operationId ?? null,
+    }, { status });
     res.headers.set("x-request-id", request_id);
-    return res;
+    if (disposition.anonymousCookieMeta) {
+      res.cookies.set(FREE_COOKIE, makeFreeCookie(disposition.anonymousCookieMeta), freeCookieOptions());
+    }
+    return respond(res);
   }
 }

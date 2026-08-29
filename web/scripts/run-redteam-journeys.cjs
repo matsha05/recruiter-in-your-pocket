@@ -4,9 +4,10 @@ const path = require("path");
 const { startNextServer } = require(path.resolve(process.cwd(), "..", "scripts", "next_server"));
 
 async function main() {
-  // This suite is meant to validate the current worktree, not a stale production build.
-  process.env.FORCE_NEXT_BUILD = process.env.FORCE_NEXT_BUILD || "1";
-  const next = await startNextServer();
+  // The production build is gated separately. Mock journeys use Next dev so
+  // the explicitly local anonymous ledger remains available while production
+  // continues to fail closed when Redis is unavailable.
+  const next = await startNextServer({ ensureBuild: false, dev: true });
 
   try {
     const playwrightBin = path.join(process.cwd(), "node_modules", ".bin", "playwright");

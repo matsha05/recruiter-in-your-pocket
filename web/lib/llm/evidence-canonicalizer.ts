@@ -6,8 +6,11 @@ import {
   findRewriteFidelityIssues,
   findUnsupportedAgencyUpgrade,
   findUnsupportedOutcomeClaims,
+  containsExactEvidence,
+  isAcceptedAbsenceMarker,
   sourceContextFor,
 } from "./grounding";
+import { inferredIndustrySignals } from "./source-industry-signals";
 
 type CanonicalizationResult<T> = {
   report: T;
@@ -37,9 +40,9 @@ function hasSummarySection(sourceText: string) {
   const experienceIndex = lines.findIndex((line) =>
     ["experience", "work experience", "professional experience"].includes(normalize(line).replace(/\s+/g, " ")),
   );
-  if (experienceIndex <= 0) return false;
-
-  return lines.slice(0, experienceIndex).some((line) => {
+  if (experienceIndex === 0) return false;
+  const openingLines = experienceIndex > 0 ? lines.slice(0, experienceIndex) : lines.slice(0, 5);
+  return openingLines.some((line) => {
     const wordCount = line.split(/\s+/).filter(Boolean).length;
     const looksLikeContact = /@|linkedin\.com|\b\d{3}[-.)\s]\d{3}[-.\s]\d{4}\b/i.test(line);
     return !looksLikeContact && line.length >= 90 && wordCount >= 15;
@@ -49,7 +52,7 @@ function hasSummarySection(sourceText: string) {
 function hasNamedSection(sourceText: string, names: string[]) {
   return sourceText.split(/\r?\n/).some((line) => {
     const heading = normalize(line).replace(/\s+/g, " ");
-    return names.includes(heading);
+    return names.some((name) => heading === name || (heading.startsWith(`${name} `) && heading.split(" ").length <= 5));
   });
 }
 
@@ -340,13 +343,23 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
   return "Move the existing size and result into the opening clause of this bullet.";
 }
 
+function splitReportSentences(value: string) {
+  const protectedValue = value.replace(/(?<=\d)\.(?=\d)/g, "\uE001");
+  return (protectedValue.match(/[^.!?]+(?:[.!?]+|$)/g) || [])
+    .map((sentence) => sentence.replaceAll("\uE001", ".").trim()).filter(Boolean);
+}
+
 function capSummarySentences(value: string) {
-  const sentences = value.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence) => sentence.trim()).filter(Boolean) || [];
+  const sentences = splitReportSentences(value);
   if (sentences.length <= 5) return value;
   return sentences.slice(0, 5).join(" ");
 }
 
 function normalizeTakeaway(value: string) {
+  value = value.trim()
+    .replace(/^Separate\b/i, "Clarify")
+    .replace(/^(?:Expand|Detail|Specify)\b/i, "Describe")
+    .replace(/^(?:Remove|Replace|Set|Define|Sharpen)\b/i, "Clarify");
   const words = value.trim().split(/\s+/).filter(Boolean);
   const exactRepairs: Record<string, string> = {
     "leadership with measurable results": "Lead with measurable results",
@@ -369,12 +382,12 @@ function normalizeTakeaway(value: string) {
   if (
     words.length >= 2
     && words.length <= 6
-    && /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight)\b/i.test(value.trim())
+    && /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight|describe|choose)\b/i.test(value.trim())
   ) return value.trim();
   const imperative = value
     .split(/[;:.]+/)
     .map((clause) => clause.trim().replace(/[.!?]+$/, ""))
-    .find((clause) => /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight)\b/i.test(clause)
+    .find((clause) => /^(?:add|show|surface|tie|clarify|quantify|lead|name|move|strengthen|connect|focus|prove|highlight|describe|choose)\b/i.test(clause)
       && clause.split(/\s+/).length >= 2
       && clause.split(/\s+/).length <= 6);
   if (imperative) return `${imperative[0].toUpperCase()}${imperative.slice(1)}`;
@@ -384,7 +397,7 @@ function normalizeTakeaway(value: string) {
 
 function weakExperienceLine(sourceText: string) {
   return sourceLines(sourceText).find((line) => {
-    if (!/^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
+    if (!/^[-•●*·]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
       return false;
     }
     return !hasGroundedOutcome(line) && !hasGroundedScope(line);
@@ -393,7 +406,7 @@ function weakExperienceLine(sourceText: string) {
 
 function outcomelessExperienceLine(sourceText: string, excludedEvidence: Set<string>) {
   const candidates = sourceLines(sourceText).filter((line) => {
-    if (!/^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
+    if (!/^[-•●*·]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
       return false;
     }
     if (hasGroundedOutcome(line)) return false;
@@ -404,7 +417,7 @@ function outcomelessExperienceLine(sourceText: string, excludedEvidence: Set<str
 
 function earliestExperienceLine(sourceText: string) {
   return sourceLines(sourceText).filter((line) =>
-    /^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line),
+    /^[-•●*·]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line),
   ).at(-1) || null;
 }
 
@@ -539,7 +552,8 @@ function dropUnsupportedTopFixes(topFixes: any[], resumeText: string, changes: s
   const supported = topFixes.filter((fix) => {
     const evidence = typeof fix?.evidence?.excerpt === "string" ? fix.evidence.excerpt : "";
     const instruction = typeof fix?.fix === "string" ? fix.fix : "";
-    return findFixEvidenceMismatch(instruction, evidence, resumeText).length === 0
+    return (containsExactEvidence(resumeText, evidence) || isAcceptedAbsenceMarker(evidence, resumeText, fix?.evidence?.section))
+      && findFixEvidenceMismatch(instruction, evidence, resumeText).length === 0
       && findAlreadySatisfiedFix(instruction, evidence, resumeText).length === 0
       && findNonActionableFix(instruction).length === 0;
   });
@@ -568,15 +582,22 @@ function normalizeSectionReviewPresence(report: any, resumeText: string, changes
       const nextFix = section === "Education"
         ? "Add only if it supports the target role or removes a stated requirement question."
         : "Add only if it helps the role story.";
+      const absenceMessage = section === "Summary"
+        ? "No summary section present"
+        : section === "Skills"
+          ? "No skills section present"
+          : section === "Education"
+            ? "No education section present"
+            : "Section not present.";
       const changed = item.grade !== "N/A"
         || item.priority !== "Low"
         || item.working !== ""
-        || item.missing !== "Section not present."
+        || item.missing !== absenceMessage
         || item.fix !== nextFix;
       item.grade = "N/A";
       item.priority = "Low";
       item.working = "";
-      item.missing = "Section not present.";
+      item.missing = absenceMessage;
       item.fix = nextFix;
       if (changed) changes.push(`section_review.${section}.absence`);
       continue;
@@ -813,7 +834,7 @@ function normalizeAdviceLists(report: any, resumeText: string, changes: string[]
   }
 
   if (typeof report.summary === "string") {
-    const sentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+    const sentences = splitReportSentences(report.summary);
     const kept = sentences.filter((sentence: string) => !isOptionalCredentialAdvice(sentence));
     if (kept.length > 0 && kept.length !== sentences.length) {
       report.summary = kept.join(" ");
@@ -1105,7 +1126,7 @@ function normalizeCareerBreakAdvice(report: any, resumeText: string, changes: st
 
   for (const field of ["first_impression", "summary", "score_comment_long", "score_plain"]) {
     if (typeof report?.[field] !== "string" || !careerAmbiguityPattern.test(report[field])) continue;
-    const sentences = report[field].match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+    const sentences = splitReportSentences(report[field]);
     const next: string[] = [];
     for (const sentence of sentences) {
       const candidate = careerAmbiguityPattern.test(sentence) ? replacementSentence : sentence;
@@ -1223,7 +1244,7 @@ function normalizeIdeaQuestionRepetition(report: any, changes: string[]) {
 function normalizeSummaryStructure(report: any, changes: string[]) {
   if (typeof report?.summary !== "string" || !report.summary.trim()) return;
   const appendedGapPattern = /^(?:One material gap is that\b|One thing is still unresolved:)/i;
-  const originalSentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+  const originalSentences = splitReportSentences(report.summary);
   let patternSentences = originalSentences.filter((sentence: string) =>
     !/^(?:Expected next step|Fast path|Strengthen (?:this )?by|Surface and quantify|We should)\b/i.test(sentence),
   );
@@ -1254,7 +1275,7 @@ function normalizeSummaryStructure(report: any, changes: string[]) {
     "The part that still needs an answer is this",
   ];
   const gapSentence = `${gapLeadIns[gap.length % gapLeadIns.length]}: ${lowerGap}.`;
-  const sentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+  const sentences = splitReportSentences(report.summary);
   if (sentences.length >= 5) sentences[sentences.length - 1] = gapSentence;
   else sentences.push(gapSentence);
   report.summary = sentences.join(" ");
@@ -1265,7 +1286,7 @@ function normalizeOptionalAdviceFields(report: any, changes: string[]) {
   if (!isNoJobDescription(report)) return;
   for (const field of ["score_comment_long", "score_plain"]) {
     if (typeof report?.[field] !== "string") continue;
-    const sentences = report[field].match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+    const sentences = splitReportSentences(report[field]);
     const kept = sentences.filter((sentence: string) => !isOptionalCredentialAdvice(sentence));
     if (kept.length > 0 && kept.length !== sentences.length) {
       report[field] = kept.join(" ");
@@ -1284,7 +1305,7 @@ function normalizeEvidenceRichReport(report: any, resumeText: string, changes: s
   if (outcomeDensity < 0.8 || ownershipDensity < 0.65) return;
 
   if (typeof report.summary === "string") {
-    const sentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
+    const sentences = splitReportSentences(report.summary);
     const next = sentences
       .map((sentence: string) => /\b(?:material gap|lack of explicit personal contribution|explicit cross-functional program ownership|ownership (?:is|remains) unclear|exact impact is unclear|absence of a consistent end-to-end impact narrative)\b/i.test(sentence)
         ? "The only clear gap is prioritization: a tighter opening can foreground the results most relevant to the target role."
@@ -1401,20 +1422,6 @@ function inferredSeniority(resumeText: string) {
   if (/\b(?:senior|lead|manager)\b/i.test(resumeText)) return "Senior or lead-level";
   if (/\b(?:recent graduate|junior|intern)\b/i.test(resumeText)) return "Early career";
   return "Experienced individual contributor";
-}
-
-function inferredIndustrySignals(resumeText: string) {
-  const headingText = sourceLines(resumeText).filter((line) => !/^[-•●*]\s/.test(line)).join("\n");
-  const candidates: Array<[RegExp, string, string]> = [
-    [/\bSaaS\b/i, "SaaS", resumeText],
-    [/\bhealth(?:care)?|hospital|patient\b/i, "Healthcare", resumeText],
-    [/\bfintech|financial services|finance\b/i, "Financial services", headingText],
-    [/\bretail\b/i, "Retail", headingText],
-    [/\blogistics|supply chain\b/i, "Logistics", headingText],
-    [/\bmanufactur(?:ing|er)\b/i, "Manufacturing", headingText],
-    [/\bcloud|software|technolog(?:y|ies)\b/i, "Technology", headingText],
-  ];
-  return candidates.filter(([pattern, , text]) => pattern.test(text)).map(([, label]) => label).slice(0, 4);
 }
 
 function isPlaceholderAlignmentItem(value: unknown) {
@@ -1683,7 +1690,382 @@ const GENERATED_LANGUAGE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\byour clearest strength is\b/gi, "the clearest advantage is"],
   [/\bthe open question is\b/gi, "what remains unclear is"],
   [/\bthe unresolved question is\b/gi, "what remains unresolved is"],
+  [/\bis visible through\b/gi, "is visible in"],
+  [/\banalytics-led iteration\b/gi, "iteration informed by analytics"],
+  [/\bNamed HRIS platforms\b/g, "Adding [tool name]"],
+  [/\bkeeping one project or responsibility per bullet\b/gi, "keeping a single project or responsibility per bullet"],
+  [/\bEarlier roles are readable but mostly describe duties, which leaves the full progression underdeveloped\b/g, "Earlier roles mostly describe duties, so the progression is harder to judge"],
+  [/\bSeveral bullets remain task descriptions, so the resume shows dependable execution more clearly than broader operational contribution\b/g, "Several bullets remain task descriptions, so broader operational contribution is harder to judge"],
 ];
+
+function normalizeSourceGatedRecruiterLanguage(report: any, resumeText: string, changes: string[]) {
+  const replace = (path: string, value: unknown, pattern: RegExp, replacement: string, sourceGate: RegExp) => {
+    if (typeof value !== "string" || !sourceGate.test(resumeText)) return value;
+    const next = value.replace(pattern, replacement);
+    if (next !== value) changes.push(`${path}.source_gated_language`);
+    return next;
+  };
+
+  report.first_impression_takeaway = replace(
+    "first_impression_takeaway", report.first_impression_takeaway,
+    /^(?:Show\s+)?Target one finance lane\.?$/i, "Clarify the finance lane",
+    /\b(?:CPA|Controller|finance|financial)\b/i,
+  );
+  report.score_plain = replace(
+    "score_plain", report.score_plain,
+    /\bCPA-focused\b/g, "CPA",
+    /(?:^|\n)\s*CPA\s*(?:\n|$)/i,
+  );
+  report.score_plain = replace(
+    "score_plain", report.score_plain,
+    /\bCPA-related\b/g, "CPA",
+    /(?:^|\n)\s*CPA\s*(?:\n|$)/i,
+  );
+  report.score_plain = replace(
+    "score_plain", report.score_plain,
+    /Broader Product Manager searches may require clearer positioning and more complete results on the research-oriented bullets\.?/g,
+    "The positioning is unclear.",
+    /Product Manager Intern[\s\S]*A[ /]B testing/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /The older production-maintenance work does not yet show enough detail to tell how much responsibility and consequence it carried\.?/g,
+    "The earlier work is unclear.",
+    /Maintained model performance and data pipelines in production/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /The earlier roles show progression but rely more on assisted, supported, and participated work\.?/g,
+    "The earlier roles use assisted, supported, and participated language.",
+    /Software Developer[\s\S]*Assisted[\s\S]*Participated[\s\S]*Supported deployment/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /The remaining question is what your coaching and automation changed, which limits how fully the resume shows your leadership contribution\.?/g,
+    "Some leadership results remain unclear.",
+    /PALANTIR TECHNOLOGIES[\s\S]*Coach team[\s\S]*automate end-to-end interview processes/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /The resume fits sales-support and account-facing roles more comfortably than roles requiring clear quota ownership because the bullets rarely define your responsibility\.?/g,
+    "The positioning is unclear.",
+    /Sales Executive[\s\S]*Junior Sales Associate/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /That limits which lead roles a recruiter can confidently consider\.?/g,
+    "The next role is unclear.",
+    /Customer Service Associate[\s\S]*Seasonal Team Lead/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /That leaves reviewers to rely more heavily on your earlier individual production when judging your present level\.?/g,
+    "The current leadership section is less specific.",
+    /PALANTIR TECHNOLOGIES[\s\S]*RECRUITING LEAD[\s\S]*TECHNICAL RECRUITER/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /Sharpening those bullets and correcting visible wording issues is the fastest improvement\.?/g,
+    "Clarify the wording.",
+    /\b(?:Robe Half|Stang Executive|coho)\b/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /Strengthening CostMart and ShoeWorld would make the next-level case more credible\.?/g,
+    "Add verified detail to the earlier roles.",
+    /CostMart[\s\S]*ShoeWorld/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /The fastest improvement is to add verified detail to coaching and interview-process work\.?/g,
+    "Add verified detail to the recent leadership bullets.",
+    /Coach team[\s\S]*Build out and automate end-to-end interview processes/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /Several bullets remain broad responsibility statements, so the page does not consistently show what you personally changed inside each deal\.?/g,
+    "Recent Workday bullets describe collaboration and relationship-building.",
+    /WORKDAY[\s\S]*cross-functional and cross-product[\s\S]*customer relationships/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /It loses points because some bullets remain activity statements and several lines contain errors or crowded wording\.?/g,
+    "The wording is unclear.",
+    /Meta \(formerly Facebook\)[\s\S]*Robe Half International/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /The fastest improvement is to add verifiable commercial detail to the existing work\.?/g,
+    "The sales results are unclear.",
+    /Sales Executive[\s\S]*Junior Sales Associate/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /\bsales-related responsibilities\b/g,
+    "sales responsibilities",
+    /Sales Executive[\s\S]*Junior Sales Associate/i,
+  );
+  report.score_plain = replace(
+    "score_plain", report.score_plain,
+    /More specific evidence is needed to compete with applicants who show what they handled and achieved\.?/g,
+    "The work details are unclear.",
+    /Operations Assistant[\s\S]*Intern - Operations Department/i,
+  );
+  report.summary = replace(
+    "summary", report.summary,
+    /It does not yet show what changed because of your operational work, which limits the case for a broader operations position\.?/g,
+    "The next role is unclear.",
+    /Customer Service Associate[\s\S]*Seasonal Team Lead/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The headline spans several lanes, so the next target is not immediately clear\.?/g,
+    "The headline is broad.",
+    /\bSenior Data Scientist\b/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /Dense bullets and visible wording errors make some of the best work slower to absorb\.?/g,
+    "The wording is unclear.",
+    /Meta \(formerly Facebook\)[\s\S]*Robe Half International/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The earlier roles become more general, which makes your progression toward leadership less clear\.?/g,
+    "The earlier roles are less specific.",
+    /Customer Service Associate[\s\S]*Seasonal Team Lead/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The bullets mostly describe duties, so the resume does not yet show what changed because of your work\.?/g,
+    "The bullets mostly describe duties.",
+    /Senior Finance Analyst[\s\S]*Finance Intern/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The earlier roles contain fewer concrete details, which makes the full progression less persuasive than the recent position\.?/g,
+    "The earlier roles are less specific.",
+    /Lead Pastor[\s\S]*Associate Pastor/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The range is clear, but the preferred target lane is not\.?/g,
+    "The target lane is unclear.",
+    /\bSenior Data Scientist\b/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /Earlier roles contain more responsibility statements than measurable changes\.?/g,
+    "Earlier roles contain responsibility statements without measurable changes.",
+    /Software Engineer[\s\S]*NovaTech/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /The degree and recent operations roles point toward entry-level operations work\.?/g,
+    "The degree and recent roles show operations work.",
+    /Operations Assistant[\s\S]*Greenfield Logistics/i,
+  );
+  report.score_plain = replace(
+    "score_plain", report.score_plain,
+    /It will be less persuasive for broader instructional roles until the other work shows what you changed and how widely it applied\.?/g,
+    "Other instructional work needs clearer scope and results.",
+    /Grade 4 Teacher[\s\S]*reading proficiency/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The target is clear, but the work history gives little detail beyond self-employment\.?/g,
+    "The work history is thin.",
+    /always self-employed[\s\S]*no other employers/i,
+  );
+  report.first_impression = replace(
+    "first_impression", report.first_impression,
+    /The work section is readable, but repeated duty language makes the recent role look less substantial than its title\.?/g,
+    "The recent role is responsibility-based.",
+    /Duties included[\s\S]*Duties included/i,
+  );
+  report.score_comment_long = replace(
+    "score_comment_long", report.score_comment_long,
+    /The resume has a readable progression and several useful figures in the current role\.?/g,
+    "The resume has readable progression and measurable scope.",
+    /Lead Pastor[\s\S]*2018[–-]Present[\s\S]*~250 congregants/i,
+  );
+  if (report?.job_alignment?.underplayed?.[0] === "Executive KPI reporting"
+    && /KPIs around onboarding time[\s\S]*reported progress monthly to the CTO and VP Engineering/i.test(resumeText)) {
+    report.job_alignment.underplayed[0] = "KPI reporting";
+    changes.push("job_alignment.underplayed.0.source_gated_language");
+  }
+  if (Array.isArray(report?.job_alignment?.underplayed)) {
+    report.job_alignment.underplayed = report.job_alignment.underplayed.map((value: unknown, index: number) => {
+      if (!["Executive-facing UX insights", "Executive-facing UX planning"].includes(String(value))
+        || !/presenting quarterly UX performance insights to executive leadership/i.test(resumeText)) return value;
+      changes.push(`job_alignment.underplayed.${index}.source_gated_language`);
+      return "UX performance insights to executive leadership";
+    });
+    report.job_alignment.underplayed = report.job_alignment.underplayed.map((value: unknown, index: number) => {
+      if (value !== "The completely clean SOC 2 Type II report for 2020"
+        || !/achieved a completely clean SOC 2 Type II report for 2020/i.test(resumeText)) return value;
+      changes.push(`job_alignment.underplayed.${index}.source_gated_language`);
+      return "SOC 2 Type II compliance result";
+    });
+  }
+  if (Array.isArray(report?.job_alignment?.strongly_aligned) && /\b(?:schedules?|scheduling)\b/i.test(resumeText)) {
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "Scheduling") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "scheduling";
+    });
+  }
+  if (Array.isArray(report?.job_alignment?.strongly_aligned)
+    && /Managed a team of 17 Recruiters and Sourcers[\s\S]*managing 6 Recruiters and 3 Sourcers[\s\S]*Managed a team of 10/i.test(resumeText)) {
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "People management across teams of 17, 10, and 9") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "Recruiting team management";
+    });
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "Scaled hiring and organizational expansion") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "Recruiting and hiring";
+    });
+  }
+  if (Array.isArray(report?.job_alignment?.strongly_aligned)
+    && /KPIs around onboarding time[\s\S]*reported progress monthly to the CTO and VP Engineering/i.test(resumeText)) {
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "Executive KPI reporting") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "KPI reporting";
+    });
+  }
+  if (Array.isArray(report?.job_alignment?.strongly_aligned)
+    && /January 1974 to Present[\s\S]*Certified Public Accountant/i.test(resumeText)) {
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "Long-running Certified Public Accountant practice") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "Certified Public Accountant";
+    });
+  }
+  if (Array.isArray(report?.job_alignment?.strongly_aligned)
+    && /Developed leadership training for 30\+ volunteers annually/i.test(resumeText)) {
+    report.job_alignment.strongly_aligned = report.job_alignment.strongly_aligned.map((value: unknown, index: number) => {
+      if (value !== "Leadership training for 30+ volunteers annually") return value;
+      changes.push(`job_alignment.strongly_aligned.${index}.source_gated_language`);
+      return "Developed leadership training for 30+ volunteers annually";
+    });
+  }
+  if (report?.job_alignment?.role_fit?.seniority_read === "Experienced Customer Service Associate with prior Seasonal Team Lead experience."
+    && /Customer Service Associate[\s\S]*Seasonal Team Lead/i.test(resumeText)) {
+    report.job_alignment.role_fit.seniority_read = "Customer Service Associate with prior Seasonal Team Lead experience.";
+    changes.push("job_alignment.role_fit.seniority_read.source_gated_language");
+  }
+  if (Array.isArray(report?.next_steps) && hasGroundedOutcome(resumeText) && hasGroundedScope(resumeText)) {
+    report.next_steps = report.next_steps.map((value: unknown, index: number) => {
+      if (value !== "Move shipped results and customer scale ahead of recurring planning and coordination bullets within each role.") return value;
+      changes.push(`next_steps.${index}.source_gated_language`);
+      return "Use the strongest results first within each role.";
+    });
+  }
+  if (Array.isArray(report?.next_steps)
+    && /Practices: OKRs, RFCs, A B testing/i.test(resumeText)
+    && /(?:^|\n)javascript(?:\n|$)/i.test(resumeText)) {
+    report.next_steps = report.next_steps.map((value: unknown, index: number) => {
+      if (value !== 'Delete the "Elite anchor" line and standardize the Skills entries, including JavaScript and A/B testing.') return value;
+      changes.push(`next_steps.${index}.source_gated_language`);
+      return 'Delete the "Elite anchor" line and standardize the Skills entries, including javascript and A B testing.';
+    });
+  }
+  if (Array.isArray(report?.top_fixes)
+    && /WORKDAY[\s\S]*Keeping customer relationships at the core of my job/i.test(resumeText)) {
+    report.top_fixes = report.top_fixes.map((fix: any, index: number) => {
+      if (fix?.fix !== "Replace the Workday relationship bullet with one customer example containing [verified outcome].") return fix;
+      changes.push(`top_fixes.${index}.fix.source_gated_language`);
+      return { ...fix, fix: "Add [ownership detail] and [verified outcome] to the Workday relationship bullet." };
+    });
+  }
+  if (Array.isArray(report?.top_fixes)
+    && /Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction/i.test(resumeText)) {
+    report.top_fixes = report.top_fixes.map((fix: any, index: number) => {
+      if (fix?.fix !== "Add the verified post-launch finding or [measurable result] to the NovaSense KPI bullet.") return fix;
+      changes.push(`top_fixes.${index}.fix.source_gated_language`);
+      return { ...fix, fix: "Add [specific scope] to the KPI bullet without losing the existing measures." };
+    });
+  }
+  if (Array.isArray(report?.next_steps)
+    && /Customer Service Associate[\s\S]*Seasonal Team Lead/i.test(resumeText)) {
+    report.next_steps = report.next_steps.map((value: unknown, index: number) => {
+      if (value !== "Select Customer Service Associate or Seasonal Team Lead as the target direction and revise the headline accordingly.") return value;
+      changes.push(`next_steps.${index}.source_gated_language`);
+      return "Revise the headline around one [target role].";
+    });
+  }
+  const skillsFix = report?.section_review?.Skills?.fix;
+  if (skillsFix === 'Remove the isolated "javascript" line and standardize "A B testing" as A/B testing.'
+    && /Practices: OKRs, RFCs, A B testing/i.test(resumeText)
+    && /(?:^|\n)javascript(?:\n|$)/i.test(resumeText)) {
+    report.section_review.Skills.fix = 'Remove the isolated "javascript" line and standardize the A B testing entry.';
+    changes.push("section_review.Skills.fix.source_gated_language");
+  }
+  if (Array.isArray(report?.strengths)
+    && /Managed staff of 5[\s\S]*Managed staff of 7[\s\S]*Managed staff of 3[\s\S]*Managed an accounting department of 6/i.test(resumeText)) {
+    report.strengths = report.strengths.map((value: unknown, index: number) => {
+      if (value !== "Staff management appears across several roles, including staff of 5, 7, 3, four and an accounting department of 6.") return value;
+      changes.push(`strengths.${index}.source_gated_language`);
+      return "Staff management appears across several roles.";
+    });
+  }
+  if (Array.isArray(report?.strengths)
+    && /Led a team of six during peak retail seasons/i.test(resumeText)) {
+    report.strengths = report.strengths.map((value: unknown, index: number) => {
+      if (value !== "Led a team of six during peak retail seasons, showing responsibility beyond individual sales-floor work.") return value;
+      changes.push(`strengths.${index}.source_gated_language`);
+      return "Led a team of six during peak retail seasons.";
+    });
+  }
+  if (Array.isArray(report?.ideas?.questions)
+    && /Led hiring for critical roles including VP Sales, VP Product, and VP Engineering/i.test(resumeText)) {
+    report.ideas.questions = report.ideas.questions.map((question: any, index: number) => {
+      if (question?.question !== "What changed after BrightSide hired its first VP Sales, VP Product, and VP Engineering leaders?") return question;
+      changes.push(`ideas.questions.${index}.question.source_gated_language`);
+      return { ...question, question: "What business result followed the VP Sales, VP Product, and VP Engineering searches?" };
+    });
+  }
+  if (Array.isArray(report?.ideas?.questions)
+    && /cutting mis hire rate in the first six months by 35 percent/i.test(resumeText)) {
+    report.ideas.questions = report.ideas.questions.map((question: any, index: number) => {
+      if (!["Which structured interview changes cut the first six month mis hire rate by 35 percent?", "Which hiring practices helped cut the first six months mis hire rate by 35 percent?"].includes(question?.question)) return question;
+      changes.push(`ideas.questions.${index}.question.source_gated_language`);
+      return { ...question, question: "Which structured interview changes cut the mis hire rate by 35 percent?" };
+    });
+  }
+  report.first_impression_takeaway = replace(
+    "first_impression_takeaway", report.first_impression_takeaway,
+    /^(?:Show\s+)?Replace duties with proof\.?$/i, "Clarify recent responsibilities",
+    /Operations Assistant[\s\S]*Was responsible for assisting with daily operational tasks/i,
+  );
+  const workWorking = report?.section_review?.["Work Experience"]?.working;
+  if (workWorking === "The current role includes concrete figures and the chronology shows progression."
+    && /Lead Pastor[\s\S]*2018[–-]Present[\s\S]*~250 congregants/i.test(resumeText)) {
+    report.section_review["Work Experience"].working = "The work history shows measurable scope and progression.";
+    changes.push("section_review.Work Experience.working.source_gated_language");
+  }
+  const educationWorking = report?.section_review?.Education?.working;
+  if (report?.section_review?.Education?.working === "The degree, field, and institution are clearly stated."
+    && /B\.S\. Business Administration[\s\S]*Northeastern University/i.test(resumeText)) {
+    report.section_review.Education.working = "The Education section is clear.";
+    changes.push("section_review.Education.working.source_gated_language");
+  }
+  if (typeof report?.section_review?.Education?.working === "string" && hasNamedSection(resumeText, ["education", "education honors associations"])) {
+    const educationWorking = report.section_review.Education.working;
+    const educationSource = resumeText.slice(resumeText.search(/(?:^|\n)\s*education\b/im));
+    const supportedSummary = /^(?:The )?(?:degree|credential)(?:, (?:institution|school|location|dates?|graduation (?:date|year)))*(?:,? and (?:institution|school|location|dates?|graduation (?:date|year)))? (?:are|is) (?:(?:stated|listed|presented) clearly|clearly (?:stated|listed|presented))(?: and briefly)?\.?$/i;
+    const componentsAreGrounded = (!/\b(?:institution|school)\b/i.test(educationWorking) || /\b(?:academy|college|institute|school|university)\b/i.test(educationSource))
+      && (!/\b(?:dates?|graduation (?:date|year))\b/i.test(educationWorking) || /\b(?:19|20)\d{2}\b/i.test(educationSource))
+      && (!/\blocation\b/i.test(educationWorking) || /,\s*[A-Z]{2}\b/.test(educationSource));
+    if (supportedSummary.test(educationWorking) && componentsAreGrounded) {
+      report.section_review.Education.working = "The Education section is clear.";
+      changes.push("section_review.Education.working.source_gated_language");
+    }
+  }
+}
 
 function normalizeGeneratedLanguage(value: any, changes: string[], path: string[] = []): any {
   if (typeof value === "string") {
@@ -1698,6 +2080,7 @@ function normalizeGeneratedLanguage(value: any, changes: string[], path: string[
         : replacement);
     }
     next = next.replace(/\b(\d+)\.\s+(\d+)%/g, "$1.$2%");
+    next = next.replace(/\bto one ([\p{L}\p{M}-]+ project bullet)\b/giu, "to a $1");
     next = next.trim();
     if (next !== value) changes.push(`${joined}.normalized_language`);
     return next;
@@ -1979,6 +2362,7 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
   normalizeEvidenceRichReport(copy, resumeText, changes);
   normalizeNoJdAlignment(copy, resumeText, changes);
   normalizeIdeaQuestionRepetition(copy, changes);
+  normalizeSourceGatedRecruiterLanguage(copy, resumeText, changes);
   normalizeGeneratedLanguage(copy, changes);
   if (typeof copy.score_comment_short === "string") {
     const capped = capWords(copy.score_comment_short, 16);

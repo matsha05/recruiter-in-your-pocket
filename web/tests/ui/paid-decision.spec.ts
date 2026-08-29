@@ -3,7 +3,10 @@ import path from "path";
 
 import { expect, test, type Page } from "@playwright/test";
 
+import { ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY } from "../../lib/reports/anonymous-report-recovery-client";
 import type { UnlockSection } from "../../lib/unlock/unlockContext";
+import { ResumeFeedbackResponseSchema } from "../../lib/validation/schemas";
+import { schemaValidReport } from "../helpers/report-fidelity-fixture";
 
 type UnlockExpectation = Readonly<{
   title: string;
@@ -51,6 +54,8 @@ Partnered with stakeholders to surface risks, unblock decisions, and drive execu
 const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B2B SaaS launches.
 Coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
+
+const MOCK_COMPLETE_REPORT = ResumeFeedbackResponseSchema.parse(schemaValidReport);
 
 const PAID_PASS_EXPIRES_AT = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -102,8 +107,15 @@ function createMockPaidSession() {
   };
 }
 
-async function runAnonymousReview(page: Page) {
-  await page.setExtraHTTPHeaders({ "x-forwarded-for": "198.51.100.144" });
+async function fillAnonymousReview(page: Page, forwardedFor = "198.51.100.144") {
+  await page.setExtraHTTPHeaders({ "x-forwarded-for": forwardedFor });
+  await page.route("**/auth/v1/user", async (route) => {
+    await route.fulfill({
+      status: 401,
+      contentType: "application/json",
+      body: JSON.stringify({ message: "Auth session missing" }),
+    });
+  });
   await page.goto("/workspace");
   await expect(page.getByRole("link", { name: "Log in", exact: true })).toBeVisible({ timeout: 30_000 });
   await page.getByTestId("workspace-paste-mode").click();
@@ -111,6 +123,10 @@ async function runAnonymousReview(page: Page) {
   await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
   await page.getByTestId("workspace-role-toggle").click();
   await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
+}
+
+async function runAnonymousReview(page: Page) {
+  await fillAnonymousReview(page);
   await page.getByTestId("workspace-run-report").click();
   await expect(page.locator("#section-first-impression h1")).toBeVisible({ timeout: 35_000 });
 
@@ -185,6 +201,67 @@ test.describe("paid decision boundary", () => {
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].title)).size).toBe(UNLOCK_SECTIONS.length);
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].label)).size).toBe(UNLOCK_SECTIONS.length);
 
+    let reportCompleted = false;
+    let streamRequests = 0;
+    let submittedRecoveryId: string | null = null;
+    let submittedOperationId: string | null = null;
+    const freeStatusResponses: number[] = [];
+
+    await page.route("**/api/free-status", async (route) => {
+      const remaining = reportCompleted ? 0 : 1;
+      freeStatusResponses.push(remaining);
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, free_uses_left: remaining, free_uses_remaining: remaining }),
+      });
+    });
+
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      streamRequests += 1;
+      const requestBody = route.request().postDataJSON() as { recovery_id?: unknown; operation_id?: unknown };
+      submittedRecoveryId = typeof requestBody.recovery_id === "string" ? requestBody.recovery_id : null;
+      submittedOperationId = typeof requestBody.operation_id === "string" ? requestBody.operation_id : null;
+      const recoveryId = submittedRecoveryId;
+      reportCompleted = true;
+
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "content-type": "text/event-stream",
+          "cache-control": "no-cache",
+          "x-request-id": "paid-decision-ui-test",
+          "x-riyp-recovery-id": recoveryId || "",
+        },
+        body: [
+          JSON.stringify({
+            type: "meta",
+            request_id: "paid-decision-ui-test",
+            access: "free_full",
+            access_tier: "free_full",
+            user: null,
+            has_job_description: true,
+            bypass: false,
+            attempt_consumed: false,
+            attempt_disposition: "pending",
+            recovery_id: recoveryId,
+          }),
+          JSON.stringify({
+            type: "complete",
+            ok: true,
+            data: MOCK_COMPLETE_REPORT,
+            report_id: null,
+            report_receipt: null,
+            recovery_id: recoveryId,
+            operation_id: null,
+            free_run_index: 1,
+            free_uses_remaining: 0,
+          }),
+          "",
+        ].join("\n"),
+      });
+    });
+
     const checkoutRequests: string[] = [];
     page.on("request", (request) => {
       if (new URL(request.url()).pathname === "/api/checkout") {
@@ -193,6 +270,16 @@ test.describe("paid decision boundary", () => {
     });
 
     await runAnonymousReview(page);
+    expect(streamRequests).toBe(1);
+    expect(submittedRecoveryId).toMatch(/^[0-9a-f]{8}-[0-9a-f-]{27}$/i);
+    expect(submittedOperationId).toBe(submittedRecoveryId);
+    expect(freeStatusResponses).toContain(1);
+    await expect.poll(() => freeStatusResponses.includes(0)).toBe(true);
+    expect(await page.evaluate((key) => {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw).recoveryId : null;
+    }, ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBe(submittedRecoveryId);
+
     const purchaseButton = page
       .getByTestId("post-report-purchase-decision")
       .getByRole("button", { name: /Get 5 more reports · \$29/ });
@@ -245,6 +332,71 @@ test.describe("paid decision boundary", () => {
     }
 
     expect(checkoutRequests).toHaveLength(0);
+  });
+
+  test("a repeated identity handshake gives one definite no-use message", async ({ page }) => {
+    let handshakeRequests = 0;
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      handshakeRequests += 1;
+      await route.fulfill({
+        status: 409,
+        contentType: "application/json",
+        body: JSON.stringify({
+          type: "error",
+          errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+          message: "Your browser identity could not be confirmed.",
+          access_consumed: false,
+        }),
+      });
+    });
+
+    await fillAnonymousReview(page, "198.51.100.145");
+    await page.getByTestId("workspace-run-report").click();
+
+    const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" });
+    await expect(failureToast).toHaveCount(1);
+    await expect(failureToast).toContainText("No report was delivered, so this attempt did not use your free report or a paid report credit.");
+    await expect(failureToast).not.toContainText("could not confirm this attempt's status", { ignoreCase: true });
+    expect(handshakeRequests).toBe(2);
+  });
+
+  test("an identity handshake followed by a limit response opens the pass decision", async ({ page }) => {
+    let requests = 0;
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      requests += 1;
+      const requestBody = route.request().postDataJSON() as { operation_id?: string };
+      if (requests === 1) {
+        await route.fulfill({
+          status: 409,
+          contentType: "application/json",
+          body: JSON.stringify({
+            type: "error",
+            errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
+            message: "Your browser identity is ready.",
+            access_consumed: false,
+          }),
+        });
+        return;
+      }
+      await route.fulfill({
+        status: 402,
+        contentType: "application/json",
+        body: JSON.stringify({
+          type: "error",
+          errorCode: "PAYWALL_REQUIRED",
+          message: "You've used your free report.",
+          access_consumed: false,
+          operation_id: requestBody.operation_id,
+        }),
+      });
+    });
+
+    await fillAnonymousReview(page, "198.51.100.146");
+    await page.getByTestId("workspace-run-report").click();
+
+    await expect(page.getByRole("dialog", { name: "Run another report" })).toBeVisible();
+    await expect(page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" })).toHaveCount(0);
+    expect(requests).toBe(2);
   });
 
   test("mocked paid confirmation restores the unchanged report and shows truthful pass-ready copy", async ({ page }) => {

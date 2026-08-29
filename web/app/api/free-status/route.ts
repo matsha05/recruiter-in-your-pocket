@@ -1,21 +1,33 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import {
+  ANONYMOUS_ID_COOKIE,
   FREE_COOKIE,
   FREE_RUN_LIMIT,
+  ensureAnonymousIdentity,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
-  parseFreeCookie
+  parseFreeCookie,
 } from "@/lib/backend/freeCookie";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import {
+  anonymousGenerationAccessBackend,
+  resolveAnonymousFreeUsesRemaining,
+} from "@/lib/billing/anonymousGenerationAccess";
+import {
+  anonymousNetworkHashFromRequest,
+  anonymousReceiptId,
+  hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
+import { assertGenerationAuthLookup } from "@/lib/billing/generationAccess";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     // Dev bypass for testing
     if (isDevelopmentPaywallBypassEnabled()) {
@@ -30,6 +42,7 @@ export async function GET() {
     // Check if user is logged in
     const supabase = await maybeCreateSupabaseServerClient();
     const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+    assertGenerationAuthLookup("error" in userData ? userData.error : null);
     const user = userData.data.user || null;
 
     let freeUsesRemaining = 0;
@@ -42,16 +55,16 @@ export async function GET() {
         .eq('user_id', user.id)
         .maybeSingle();
 
-      // If no record or no free_report_used_at, they have 1 free remaining
-      freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
-
       if (error) {
         logWarn({
           msg: "free_status.query_failed",
           user_id: hashForLogs(user.id),
           supabase: { table: "user_usage", op: "select", error_code: error.code },
         });
+        throw new Error("Free status database lookup failed");
       }
+      // If no record or no free_report_used_at, they have 1 free remaining
+      freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
 
       return NextResponse.json({
         ok: true,
@@ -60,27 +73,70 @@ export async function GET() {
         source: "database"
       });
     } else {
-      // For anonymous users: check cookie
+      // The cookie is a signed client hint. The shared ledger is authoritative
+      // for an in-flight or completed anonymous report on this identity.
       const cookieStore = await cookies();
       const raw = cookieStore.get(FREE_COOKIE)?.value;
       const parsed = parseFreeCookie(raw);
-
       const meta = parsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
-      freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - (meta.used || 0));
+      const identityResult = ensureAnonymousIdentity(
+        cookieStore.get(ANONYMOUS_ID_COOKIE)?.value
+      );
+      const identityHash = hashAnonymousIdentity(identityResult.identity);
+      const shadowHash = anonymousNetworkHashFromRequest(request);
+      if (!shadowHash) throw new Error("Anonymous network identity is unavailable");
+      const monthKey = getCurrentMonthKey();
+      let ledgerStatus = await anonymousGenerationAccessBackend.status({
+        identityHash,
+        shadowHash,
+        monthKey,
+      });
+
+      // A signed used receipt is fail-closed evidence. If shared state was
+      // evicted or the durable identity had to be reissued, seed a committed
+      // ledger entry instead of minting another report.
+      if (
+        ledgerStatus === "committed"
+        || (ledgerStatus === "available" && (meta.used || 0) >= FREE_RUN_LIMIT)
+      ) {
+        ledgerStatus = await anonymousGenerationAccessBackend.reconcileCommitted({
+          identityHash,
+          shadowHash,
+          monthKey,
+          receiptId: anonymousReceiptId(identityResult.identity, monthKey),
+        });
+      }
+      freeUsesRemaining = resolveAnonymousFreeUsesRemaining(
+        ledgerStatus,
+        meta.used || 0,
+        FREE_RUN_LIMIT,
+      );
 
       const res = NextResponse.json({
         ok: true,
         free_uses_left: freeUsesRemaining,
         free_uses_remaining: freeUsesRemaining,
         reset_month: meta.reset_month,
-        source: "cookie"
+        source: ledgerStatus === "available" ? "cookie" : "anonymous_ledger"
       });
 
-      // If cookie missing/invalid or month reset occurred, persist updated cookie.
-      if (!parsed || meta.needs_reset) {
+      // A successful streaming response commits the shared ledger after the
+      // response headers are fixed. Synchronize the signed cookie here so a
+      // later network change cannot make that completed report look unused.
+      const shouldPersistCommittedUse = ledgerStatus === "committed" && (meta.used || 0) < FREE_RUN_LIMIT;
+      if (identityResult.cookieValue) {
+        res.cookies.set(
+          ANONYMOUS_ID_COOKIE,
+          identityResult.cookieValue,
+          freeCookieOptions()
+        );
+      }
+      if (!parsed || meta.needs_reset || shouldPersistCommittedUse) {
         const newMeta = {
-          used: meta.used || 0,
-          last_free_ts: meta.last_free_ts || null,
+          used: shouldPersistCommittedUse ? FREE_RUN_LIMIT : meta.used || 0,
+          last_free_ts: shouldPersistCommittedUse
+            ? meta.last_free_ts || new Date().toISOString()
+            : meta.last_free_ts || null,
           reset_month: meta.reset_month
         };
         res.cookies.set(FREE_COOKIE, makeFreeCookie(newMeta), freeCookieOptions());

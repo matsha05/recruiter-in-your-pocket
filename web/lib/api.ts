@@ -1,8 +1,18 @@
+import { withGenerationAccessOutcome } from "./billing/generationFailureCopy";
+import {
+  attachAnonymousReportRecoveryMarker,
+  clearAnonymousReportRecoveryMarker,
+  fetchAnonymousReportRecovery,
+  type AnonymousReportRecoveryMarker,
+} from "./reports/anonymous-report-recovery-client";
+import { parseGenerationFailureResponse, retireTerminalGenerationMarker } from "./reports/generation-operation-marker";
+
 export type ResumeFeedbackRequest = {
   text: string;
   jobDescription?: string;
   savedJobId?: string | null;
   mode?: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
+  recovery_id?: string; operation_id?: string;
 };
 
 export type ResumeFeedbackResponse = {
@@ -19,12 +29,15 @@ export type ResumeFeedbackResponse = {
       underplayed?: string[];
       missing?: string[];
     };
-    missing_wins?: string[];
     next_steps?: string[];
   };
   free_uses_remaining?: number;
   access_tier?: string;
   access?: string;
+  has_job_description?: boolean;
+  report_id?: string | null;
+  report_receipt?: string | null;
+  recovery_id?: string | null; operation_id?: string | null;
 };
 
 export type ResumeFeedbackError = {
@@ -34,22 +47,37 @@ export type ResumeFeedbackError = {
   free_uses_remaining?: number;
 };
 
-async function postResumeFeedback(
-  payload: ResumeFeedbackRequest
-): Promise<ResumeFeedbackResponse | ResumeFeedbackError> {
+async function postResumeFeedback(payload: ResumeFeedbackRequest): Promise<ResumeFeedbackResponse | ResumeFeedbackError> {
+  const requestPayload = {
+    text: payload.text,
+    jobDescription: payload.jobDescription,
+    savedJobId: payload.savedJobId || undefined,
+    mode: payload.mode || "resume",
+  };
+  const recovery = requestPayload.mode === "resume"
+    ? attachAnonymousReportRecoveryMarker(requestPayload)
+    : { marker: null, created: false, payload: requestPayload };
   const res = await fetch(`/api/resume-feedback`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
-    body: JSON.stringify({
-      text: payload.text,
-      jobDescription: payload.jobDescription,
-      savedJobId: payload.savedJobId || undefined,
-      mode: payload.mode || "resume"
-    })
+    body: JSON.stringify(recovery.payload)
   });
 
   const data = await res.json();
+  const recoveryMarker = recovery.marker;
+  if (recoveryMarker && data?.operation_id === recoveryMarker.recoveryId && (
+    data?.ok === true || data?.attempt_disposition === "restored" || data?.errorCode === "GENERATION_OPERATION_TERMINAL"
+  )) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+  else if (data?.ok === true && data?.recovery_id && recovery.marker) {
+    data.data = { ...data.data, recovery_id: data.recovery_id };
+  } else if (
+    recovery.marker && recovery.created
+    && data?.attempt_disposition !== "consumed"
+    && data?.attempt_disposition !== "unknown"
+  ) {
+    clearAnonymousReportRecoveryMarker(recovery.marker.recoveryId);
+  }
   return data;
 }
 
@@ -62,31 +90,9 @@ export async function parseResume(formData: FormData): Promise<{ ok: boolean; te
   return data;
 }
 
-// Wrapper for postResumeFeedback that returns data in format expected by WorkspaceClient
-async function createResumeFeedback(resumeText: string, jobDescription?: string): Promise<{ ok: boolean; report?: any; message?: string }> {
-  const result = await postResumeFeedback({
-    text: resumeText,
-    jobDescription,
-    mode: "resume"
-  });
-
-  if (result.ok) {
-    // The backend returns the report data in `data` property
-    return {
-      ok: true,
-      report: result.data
-    };
-  }
-
-  return {
-    ok: false,
-    message: result.message || "Failed to generate report"
-  };
-}
-
 /**
- * Streaming version of createResumeFeedback.
- * Calls onChunk with accumulated JSON as it arrives.
+ * Streams resume feedback and exposes a report only after the server sends the
+ * authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamResumeFeedback(
@@ -95,53 +101,141 @@ export async function streamResumeFeedback(
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   options?: { signal?: AbortSignal; savedJobId?: string | null }
-): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean; reportId?: string | null }> {
-  let res: Response;
-  try {
-    res = await fetch("/api/resume-feedback-stream", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
+): Promise<{
+  ok: boolean;
+  report?: any;
+  message?: string;
+  errorCode?: string;
+  aborted?: boolean;
+  reportId?: string | null;
+  accessConsumed?: boolean;
+  attemptConsumed?: boolean;
+  attemptDisposition?: "consumed" | "restored" | "unknown" | "not_started";
+  creditRestored?: boolean;
+}> {
+  const attached = mode === "resume"
+    ? attachAnonymousReportRecoveryMarker({
+      text: resumeText,
+      jobDescription,
+      savedJobId: options?.savedJobId || undefined,
+      mode,
+    })
+    : {
+      marker: null,
+      created: false,
+      payload: {
         text: resumeText,
         jobDescription,
         savedJobId: options?.savedJobId || undefined,
-        mode: mode
-      }),
-      signal: options?.signal
-    });
-  } catch (err: any) {
-    if (err?.name === "AbortError") {
-      return { ok: false, message: "Canceled", aborted: true };
+        mode,
+      },
+    };
+  const recoveryMarker = attached.marker;
+  const recoveryMarkerWasCreated = attached.created;
+  let res: Response;
+  let identityRetryAttempted = false;
+  while (true) {
+    try {
+      res = await fetch("/api/resume-feedback-stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(attached.payload),
+        signal: options?.signal
+      });
+    } catch (err: any) {
+      if (options?.signal?.aborted) {
+        return { ok: false, message: "Canceled", aborted: true };
+      }
+      return {
+        ok: false,
+        errorCode: "STREAM_TRANSPORT_ERROR",
+        message: "The connection ended before the report finished.",
+      };
     }
-    throw err;
-  }
 
-  if (!res.ok) {
-    return { ok: false, message: `HTTP error: ${res.status}` };
+    if (res.ok) break;
+    const failure = await parseGenerationFailureResponse(res);
+    if (failure.errorCode === "ANONYMOUS_IDENTITY_REQUIRED" && !identityRetryAttempted) {
+      identityRetryAttempted = true;
+      continue;
+    }
+    retireTerminalGenerationMarker({
+      markerId: recoveryMarker?.recoveryId,
+      errorCode: failure.errorCode,
+      acknowledgedOperationId: failure.operationId,
+    });
+    return {
+      ok: false,
+      errorCode: failure.errorCode,
+      message: withGenerationAccessOutcome(failure.message, failure.accessConsumed),
+      accessConsumed: failure.accessConsumed ?? undefined,
+      attemptConsumed: failure.attemptConsumed,
+      attemptDisposition: failure.attemptDisposition,
+      creditRestored: failure.creditRestored,
+    };
   }
 
   if (!res.body) {
-    return { ok: false, message: "No response body" };
+    return {
+      ok: false,
+      errorCode: "STREAM_TRANSPORT_ERROR",
+      message: "The connection ended before the report finished.",
+    };
   }
 
+  let acknowledgedRecoveryId = res.headers.get("x-riyp-recovery-id") === recoveryMarker?.recoveryId
+    ? recoveryMarker.recoveryId
+    : null;
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
-  let accumulatedJson = "";
-  let finalReport: any = null;
-  let finalReportId: string | null = null;
+  void onChunk;
   let errorMessage: string | null = null;
+  let errorCode: string | undefined;
+  let attemptConsumed: boolean | undefined = res.headers.get("x-riyp-attempt-consumed") === "1"
+    ? true
+    : undefined;
+  let attemptDisposition: "consumed" | "restored" | "unknown" | "not_started" | undefined = attemptConsumed
+    ? "consumed"
+    : undefined;
+  let creditRestored = false;
+
+  const recoverCompletedReport = async (marker: AnonymousReportRecoveryMarker | null) => {
+    if (!marker || acknowledgedRecoveryId !== marker.recoveryId) return null;
+    const recovered = await fetchAnonymousReportRecovery(marker);
+    return recovered.status === "found"
+      ? { ...recovered.report, recovery_id: recovered.recoveryId }
+      : null;
+  };
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
     try {
       readResult = await reader.read();
     } catch (err: any) {
-      if (err?.name === "AbortError") {
-        return { ok: false, message: "Canceled", aborted: true };
+      if (options?.signal?.aborted) {
+        return { ok: false, message: "Canceled", aborted: true, attemptConsumed, attemptDisposition, creditRestored };
       }
-      throw err;
+      const recoveredReport = await recoverCompletedReport(recoveryMarker);
+      if (recoveredReport) {
+        return {
+          ok: true,
+          report: recoveredReport,
+          reportId: null,
+          accessConsumed: true,
+          attemptConsumed: true,
+          attemptDisposition: "consumed",
+        };
+      }
+      return {
+        ok: false,
+        errorCode: "STREAM_TRANSPORT_ERROR",
+        message: "The connection ended before the report finished.",
+        attemptConsumed,
+        attemptDisposition,
+        creditRestored,
+      };
     }
     const { done, value } = readResult;
     if (done) {
@@ -158,21 +252,60 @@ export async function streamResumeFeedback(
       try {
         const event = JSON.parse(line);
 
-        if (event.type === "chunk") {
-          accumulatedJson += event.content;
-          // Try to parse partial JSON for early display
-          const partialReport = tryParsePartialJson(accumulatedJson);
-          onChunk(accumulatedJson, partialReport);
-        } else if (event.type === "complete") {
-          finalReport = event.data;
-          if (finalReport && event.report_id) {
-            finalReport.report_id = event.report_id;
-          }
-          finalReportId = event.report_id || null;
+        if (event.type === "complete" && event.data && typeof event.data === "object") {
+          const completeReport = event.data;
+          if (event.report_id) completeReport.report_id = event.report_id;
+          if (event.report_receipt) completeReport.report_receipt = event.report_receipt;
+          const completedOperationId = recoveryMarker && event.operation_id === recoveryMarker.recoveryId ? recoveryMarker.recoveryId : null;
+          if (completedOperationId) clearAnonymousReportRecoveryMarker(completedOperationId);
+          const completedRecoveryId = !completedOperationId && recoveryMarker && event.recovery_id === recoveryMarker.recoveryId
+            ? recoveryMarker.recoveryId
+            : acknowledgedRecoveryId;
+          if (completedRecoveryId) completeReport.recovery_id = completedRecoveryId;
+          else if (recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+          void reader.cancel().catch(() => undefined);
+          return {
+            ok: true,
+            report: completeReport,
+            reportId: event.report_id || null,
+            accessConsumed: true,
+            attemptConsumed: true,
+            attemptDisposition: "consumed",
+          };
         } else if (event.type === "error") {
           errorMessage = event.message;
+          errorCode = typeof event.errorCode === "string" ? event.errorCode : undefined;
+          attemptDisposition = event.attempt_disposition === "consumed"
+            || event.attempt_disposition === "restored"
+            || event.attempt_disposition === "unknown"
+            || event.attempt_disposition === "not_started"
+            ? event.attempt_disposition
+            : undefined;
+          attemptConsumed = attemptDisposition === "unknown"
+            ? undefined
+            : event.attempt_consumed === true
+              ? true
+              : event.access_consumed === true
+                ? true
+                : event.credit_restored === true || event.access_consumed === false
+                  ? false
+                  : undefined;
+          creditRestored = event.credit_restored === true;
+          retireTerminalGenerationMarker({
+            markerId: recoveryMarker?.recoveryId,
+            errorCode,
+            acknowledgedOperationId: event.operation_id,
+            restored: attemptDisposition === "restored",
+          });
+          if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
         } else if (event.type === "meta") {
-          // Reserved for future non-sensitive stream metadata.
+          if (recoveryMarker && event.recovery_id === recoveryMarker.recoveryId) {
+            acknowledgedRecoveryId = recoveryMarker.recoveryId;
+          }
+          if (event.attempt_consumed === true) {
+            attemptConsumed = true;
+            attemptDisposition = "consumed";
+          }
         }
       } catch {
         // Ignore malformed lines
@@ -181,63 +314,50 @@ export async function streamResumeFeedback(
   }
 
   if (errorMessage) {
-    return { ok: false, message: errorMessage };
-  }
-
-  if (finalReport) {
-    return { ok: true, report: finalReport, reportId: finalReportId };
-  }
-
-  return { ok: false, message: "Stream ended without completion" };
-}
-
-/**
- * Attempts to parse partial JSON and extract any complete fields.
- * Returns null if parsing fails.
- */
-function tryParsePartialJson(json: string): any | null {
-  // Try direct parse first
-  try {
-    return JSON.parse(json);
-  } catch {
-    // Try to close incomplete object
-    let attempt = json;
-    // Count open braces/brackets and close them
-    let braceCount = 0;
-    let bracketCount = 0;
-    let inString = false;
-    let escaped = false;
-
-    for (const char of attempt) {
-      if (escaped) {
-        escaped = false;
-        continue;
-      }
-      if (char === "\\") {
-        escaped = true;
-        continue;
-      }
-      if (char === '"') {
-        inString = !inString;
-        continue;
-      }
-      if (inString) continue;
-      if (char === "{") braceCount++;
-      if (char === "}") braceCount--;
-      if (char === "[") bracketCount++;
-      if (char === "]") bracketCount--;
+    const recoveredReport = attemptConsumed !== false
+      ? await recoverCompletedReport(recoveryMarker)
+      : null;
+    if (recoveredReport) {
+      return {
+        ok: true,
+        report: recoveredReport,
+        reportId: null,
+        accessConsumed: true,
+        attemptConsumed: true,
+        attemptDisposition: "consumed",
+      };
     }
-
-    // Add missing closers
-    for (let i = 0; i < bracketCount; i++) attempt += "]";
-    for (let i = 0; i < braceCount; i++) attempt += "}";
-
-    try {
-      return JSON.parse(attempt);
-    } catch {
-      return null;
-    }
+    return {
+      ok: false,
+      errorCode,
+      message: errorMessage,
+      accessConsumed: attemptConsumed,
+      attemptConsumed,
+      attemptDisposition,
+      creditRestored,
+    };
   }
+
+  const recoveredReport = await recoverCompletedReport(recoveryMarker);
+  if (recoveredReport) {
+    return {
+      ok: true,
+      report: recoveredReport,
+      reportId: null,
+      accessConsumed: true,
+      attemptConsumed: true,
+      attemptDisposition: "consumed",
+    };
+  }
+  return {
+    ok: false,
+    errorCode: "STREAM_TRANSPORT_ERROR",
+    message: "The connection ended before the report finished.",
+    accessConsumed: attemptConsumed,
+    attemptConsumed,
+    attemptDisposition,
+    creditRestored,
+  };
 }
 
 // ============================================
@@ -261,7 +381,8 @@ export type LinkedInStreamResult = {
 
 /**
  * Streaming LinkedIn profile feedback.
- * Calls onChunk with accumulated JSON as it arrives.
+ * Calls onChunk with raw progress only. A report object is exposed only after
+ * the server sends the authoritative complete event.
  * Returns the complete report when done.
  */
 export async function streamLinkedInFeedback(
@@ -335,8 +456,7 @@ export async function streamLinkedInFeedback(
 
         if (event.type === "chunk") {
           accumulatedJson += event.content;
-          const partialReport = tryParsePartialJson(accumulatedJson);
-          onChunk(accumulatedJson, partialReport);
+          onChunk(accumulatedJson, null);
         } else if (event.type === "complete") {
           finalReport = event.data;
           finalProfile = event.profile;
@@ -362,21 +482,4 @@ export async function streamLinkedInFeedback(
   }
 
   return { ok: false, message: "Stream ended without completion" };
-}
-
-/**
- * Parse a LinkedIn PDF file and return the extracted text.
- */
-async function parseLinkedInPdf(file: File): Promise<{ ok: boolean; text?: string; message?: string }> {
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("type", "linkedin");
-
-  const res = await fetch("/api/parse-resume", {
-    method: "POST",
-    body: formData,
-  });
-
-  const data = await res.json();
-  return data;
 }

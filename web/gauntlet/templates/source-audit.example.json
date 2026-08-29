@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "2",
+  "iterationId": "REPLACE_WITH_ACTIVE_ITERATION",
+  "caseId": "REPLACE_WITH_CASE_ID",
+  "candidateArtifactSha256": "REPLACE_WITH_CANDIDATE_ARTIFACT_SHA256",
+  "auditor": "REPLACE_WITH_AUDITOR",
+  "auditedAt": "REPLACE_WITH_ISO_TIMESTAMP",
+  "inventedFacts": [],
+  "notes": "REPLACE_WITH_WHAT_WAS_CHECKED"
+}

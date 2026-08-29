@@ -347,7 +347,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What happens to uploaded resume data?",
-                a: "Anonymous reports aren't saved unless you choose to. Signed-in reports save your history. You can delete reports or your entire account at any time.",
+                a: "RIYP does not store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time.",
               },
               {
                 q: "Is my data used to train public models?",

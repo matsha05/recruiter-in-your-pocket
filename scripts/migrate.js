@@ -6,9 +6,15 @@ const path = require("path");
 const assert = require("assert/strict");
 const dotenv = require("dotenv");
 const { Client } = require("pg");
+const { verifyReportReceiptSecurity } = require("./migration-replay/verify-report-receipts.cjs");
+const { verifyAtomicReportFinalization } = require("./migration-replay/verify-atomic-report-finalization.cjs");
+const {
+  verifyAuthenticatedGenerationOperations,
+} = require("./migration-replay/verify-authenticated-generation-operations.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const migrationsDir = path.join(repoRoot, "web", "database", "migrations");
+const BASE_SCHEMA_CHECKSUM = "c2ec82405509f3388715dc976d98a034d516c9559db4a5de822dba76229e60e9";
 
 // Explicit order is intentional. Two historical migrations share the 003
 // prefix and three predate the numbering convention, so filesystem sorting is
@@ -34,6 +40,10 @@ const MIGRATIONS = [
   ["014_atomic_stripe_event_leases", "web/database/migrations/014_atomic_stripe_event_leases.sql"],
   ["015_account_export_database_cron", "web/database/migrations/015_account_export_database_cron.sql"],
   ["016_billing_reversals_and_deletion_safety", "web/database/migrations/016_billing_reversals_and_deletion_safety.sql"],
+  ["017_generation_access_commit_finality", "web/database/migrations/017_generation_access_commit_finality.sql"],
+  ["018_single_use_report_receipts", "web/database/migrations/018_single_use_report_receipts.sql"],
+  ["019_atomic_generation_report_finalization", "web/database/migrations/019_atomic_generation_report_finalization.sql"],
+  ["020_authenticated_generation_operations", "web/database/migrations/020_authenticated_generation_operations.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -110,6 +120,10 @@ function buildManifest() {
     throw new Error(`Unlisted migration files: ${unlisted.join(", ")}`);
   }
 
+  if (manifest[0]?.checksum !== BASE_SCHEMA_CHECKSUM) {
+    throw new Error("Historical base migration 000 changed on disk; add schema changes in a forward migration.");
+  }
+
   return manifest;
 }
 
@@ -137,7 +151,7 @@ async function verifyCleanReplay(manifest) {
     await db.exec(`
       CREATE ROLE anon NOLOGIN;
       CREATE ROLE authenticated NOLOGIN;
-      CREATE ROLE service_role NOLOGIN;
+      CREATE ROLE service_role NOLOGIN BYPASSRLS;
       CREATE SCHEMA auth;
       CREATE TABLE auth.users (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -147,19 +161,49 @@ async function verifyCleanReplay(manifest) {
       RETURNS UUID
       LANGUAGE SQL
       STABLE
-      AS 'SELECT NULL::UUID';
+      AS 'SELECT NULLIF(current_setting(''request.jwt.claim.sub'', true), '''')::UUID';
 
       -- PGlite does not bundle Supabase's pg_cron extension. This provider
       -- stub preserves parse and execution coverage for migration 015 while
       -- the hosted-environment gate separately verifies the real extension.
       CREATE SCHEMA cron;
+      CREATE TABLE cron.job (
+        jobid BIGSERIAL PRIMARY KEY,
+        jobname TEXT UNIQUE NOT NULL,
+        schedule_text TEXT NOT NULL,
+        command TEXT NOT NULL
+      );
       CREATE FUNCTION cron.schedule(job_name TEXT, schedule TEXT, command TEXT)
       RETURNS BIGINT
-      LANGUAGE SQL
-      AS 'SELECT 1::BIGINT';
+      LANGUAGE plpgsql
+      AS $$
+      DECLARE scheduled_id BIGINT;
+      BEGIN
+        INSERT INTO cron.job (jobname, schedule_text, command)
+        VALUES (job_name, schedule, command)
+        ON CONFLICT (jobname) DO UPDATE
+          SET schedule_text = EXCLUDED.schedule_text, command = EXCLUDED.command
+        RETURNING jobid INTO scheduled_id;
+        RETURN scheduled_id;
+      END;
+      $$;
     `);
 
-    for (const migration of manifest) {
+    const baselineIndex = manifest.findIndex(
+      (migration) => migration.id === "016_billing_reversals_and_deletion_safety",
+    );
+    assert.ok(baselineIndex >= 0, "forward migration baseline must end at 016");
+    const upgradeBaseline = manifest.slice(0, baselineIndex + 1);
+    assert.deepEqual(
+      manifest.slice(baselineIndex + 1).map((migration) => migration.id),
+      [
+        "017_generation_access_commit_finality",
+        "018_single_use_report_receipts",
+        "019_atomic_generation_report_finalization",
+        "020_authenticated_generation_operations",
+      ],
+    );
+    for (const migration of upgradeBaseline) {
       const replaySql = migration.id === "015_account_export_database_cron"
         ? migration.sql.replace(
           /CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;\s*/i,
@@ -175,6 +219,19 @@ async function verifyCleanReplay(manifest) {
         throw new Error(`Clean replay failed at ${migration.id}: ${error.message}`, { cause: error });
       }
     }
+
+    await createMigrationLedger(db);
+    for (const migration of upgradeBaseline) {
+      await db.query(
+        `INSERT INTO private.riyp_schema_migrations (id, file_path, checksum_sha256)
+         VALUES ($1, $2, $3)`,
+        [migration.id, migration.relativePath, migration.checksum],
+      );
+    }
+    await applyMigrations(db, manifest);
+    await verifyReportReceiptSecurity(db);
+    await verifyAtomicReportFinalization(db);
+    await verifyAuthenticatedGenerationOperations(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";
@@ -243,8 +300,11 @@ async function verifyCleanReplay(manifest) {
     `);
     assert.equal(rls.rows[0].relrowsecurity, true);
 
-    console.log(`Clean migration replay passed: ${manifest.length} ordered files.`);
+    console.log(`Ledgered migration upgrade passed: ${manifest.length} ordered files.`);
     console.log("Atomic Stripe lease ownership, terminal completion, grants, and RLS passed.");
+    console.log("Durable report receipt replay, grants, owner rename/delete, and deletion safety passed.");
+    console.log("Atomic report finalization, rollback, idempotency, finality, and grants passed.");
+    console.log("Authenticated operation ownership, denial binding, recovery status, and grants passed.");
   } finally {
     await db.close();
   }
@@ -323,7 +383,8 @@ async function applyMigrations(client, manifest) {
     await client.query("BEGIN");
     try {
       await client.query("SET LOCAL statement_timeout = '60s'");
-      await client.query(migration.sql);
+      if (typeof client.exec === "function") await client.exec(migration.sql);
+      else await client.query(migration.sql);
       await client.query(
         `INSERT INTO private.riyp_schema_migrations (id, file_path, checksum_sha256)
          VALUES ($1, $2, $3)`,

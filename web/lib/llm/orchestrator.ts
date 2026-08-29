@@ -10,6 +10,7 @@ type Messages = Array<{ role: "system" | "user" | "assistant"; content: string }
 
 function outcomeFromError(err: any): LlmTelemetry["outcome"] {
   const code = String(err?.code || "");
+  if (code === "CLIENT_CANCELED") return "client_disconnect";
   if (code === "OPENAI_TIMEOUT") return "timeout";
   if (code === "OPENAI_NETWORK_ERROR") return "network_error";
   if (code === "OPENAI_HTTP_ERROR") {
@@ -28,7 +29,8 @@ export async function runJson<T>({
   model,
   prompt_version,
   schema_version,
-  messages
+  messages,
+  signal,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -37,6 +39,7 @@ export async function runJson<T>({
   prompt_version: string;
   schema_version: string;
   messages: Messages;
+  signal?: AbortSignal;
 }): Promise<{ parsed: T; raw: string; telemetry: LlmTelemetry }> {
   const startedAt = Date.now();
   logInfo({
@@ -48,7 +51,7 @@ export async function runJson<T>({
   });
 
   try {
-    const data = await callOpenAIChat(messages, mode, model);
+    const data = await callOpenAIChat(messages, mode, model, { signal });
     const raw = data?.choices?.[0]?.message?.content;
     const parsed = extractJsonFromText(raw) as T;
 
@@ -115,6 +118,7 @@ export async function* streamJson({
   schema_version,
   messages,
   reasoning_effort,
+  signal,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -124,6 +128,7 @@ export async function* streamJson({
   schema_version: string;
   messages: Messages;
   reasoning_effort?: ReasoningEffort;
+  signal?: AbortSignal;
 }): AsyncGenerator<{ type: "chunk"; content: string } | { type: "done"; telemetry: LlmTelemetry }, void, void> {
   const startedAt = Date.now();
   logInfo({
@@ -137,7 +142,9 @@ export async function* streamJson({
   let usage: TokenUsage | null = null;
 
   try {
-    const { stream, usagePromise } = callOpenAIChatStreamingWithUsage(messages, mode, reasoning_effort, model);
+    const { stream, usagePromise } = callOpenAIChatStreamingWithUsage(
+      messages, mode, reasoning_effort, model, { signal },
+    );
     for await (const chunk of stream) {
       yield { type: "chunk", content: chunk };
     }

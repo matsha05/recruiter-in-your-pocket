@@ -33,7 +33,7 @@ export default function SaveReportPrompt({
         if (score >= 85) {
             return "Strong read. Use a verified account to keep this report and compare future versions.";
         } else if (score >= 70) {
-            return `This report scored ${score}. Save it to a verified account before you close this browser view.`;
+            return `This report scored ${score}. Save it to a verified account for permanent history.`;
         } else {
             return `This report scored ${score}. Save it now if you want the fix list backed up while you revise.`;
         }
@@ -94,7 +94,8 @@ export default function SaveReportPrompt({
                         {loading ? "Opening secure sign-in…" : "Sign in and keep this report"}
                     </Button>
 
-                    <button type="button"
+                    <Button type="button"
+                        variant="ghost"
                         onClick={() => {
                             Analytics.track('save_prompt_dismissed', { score });
                             onClose();
@@ -102,11 +103,11 @@ export default function SaveReportPrompt({
                         className="min-h-11 w-full text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                         Maybe later
-                    </button>
+                    </Button>
                 </div>
 
                 <p className="mt-4 text-center text-xs text-muted-foreground">
-                    If you skip, this browser view is not backed up to report history.
+                    If you skip, this browser can recover the completed report for up to 24 hours, but it is not saved to history.
                 </p>
             </DialogContent>
         </Dialog>

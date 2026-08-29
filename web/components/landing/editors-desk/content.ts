@@ -15,7 +15,7 @@ export const trustPoints: TrustPoint[] = [
     {
         icon: Trash2,
         title: "Private by default",
-        copy: "Anonymous reports are not attached to an account. If you save a report, you can remove it later.",
+        copy: "A completed anonymous report can be recovered in this browser for up to 24 hours, but is not attached to an account. Raw anonymous resume and job-description text are not stored by RIYP.",
     },
     {
         icon: Receipt,

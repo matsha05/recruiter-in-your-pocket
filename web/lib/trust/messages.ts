@@ -3,13 +3,13 @@ export const workspaceTrustMessage = {
   body:
     "Your upload is encrypted in transit. We send resume text and optional job descriptions to OpenAI to generate the report.",
   detail:
-    "Anonymous reports are not attached to an account unless you choose to sign in and save them. Signed-in reports save the report output, evidence excerpts, a short resume preview, and any job description you add until you delete them.",
+    "A completed anonymous report can be recovered in this browser for up to 24 hours, but is not attached to an account unless you sign in and save it. RIYP does not keep the raw anonymous resume or job description. Signed-in reports stay in history until you delete them.",
 };
 
 export const workspaceTrustPoints = [
   {
     title: "Anonymous by default",
-    detail: "RIYP does not save raw resume text from an anonymous report.",
+    detail: "RIYP does not save raw resume or job-description text from an anonymous report. Its completed report output expires from browser recovery within 24 hours.",
   },
   {
     title: "Used for this report",

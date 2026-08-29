@@ -16,6 +16,7 @@ export type LlmTelemetry = {
     | "network_error"
     | "provider_error"
     | "schema_invalid"
+    | "client_disconnect"
     | "internal_error";
 };
 
@@ -24,4 +25,3 @@ export type LlmRunContext = {
   user_id?: string;
   route: string;
 };
-

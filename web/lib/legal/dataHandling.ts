@@ -1,7 +1,7 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
 export const LEGAL_LAST_UPDATED = "August 2, 2026";
-export const PRIVACY_LAST_UPDATED = "July 29, 2026";
+export const PRIVACY_LAST_UPDATED = "August 2, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -22,9 +22,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Report output + resume preview",
     purpose: "So you can open past reports, compare versions, inspect evidence excerpts, and export.",
-    retention: "Saved when you keep a report or run one while signed in. Includes report output, evidence excerpts, a short resume preview, and any job description you add. Deleted when you delete the report or your account.",
-    userControl: "Delete individual reports in History, or delete your account in Settings.",
-    processor: "Supabase"
+    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, and any job description you add until you delete the report or account.",
+    userControl: "Anonymous recovery expires automatically. Delete saved reports in History, or delete your account in Settings.",
+    processor: "Upstash, Supabase"
   },
   {
     dataType: "Saved resume profile (default resume)",
@@ -56,9 +56,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Usage, reliability, and abuse-prevention metadata",
-    purpose: "Rate limiting, reliability diagnostics, billing state, and product health.",
-    retention: "Rate-limit and idempotency records are short-lived. Other operational records are retained for product and security needs.",
-    userControl: "Deleting your account removes app-level history.",
+    purpose: "Free-report eligibility, rate limiting, reliability diagnostics, billing state, and product health.",
+    retention: "Signed browser cookies used for anonymous identity and free-report status may remain for up to 365 days, and their browser expiration renews when we set them again. Server-side anonymous eligibility records, including separately salted network hashes, expire within 40 days. Raw network addresses are not stored in the eligibility ledger. Rate-limit and idempotency records are short-lived; other operational records are retained for product and security needs.",
+    userControl: "Anonymous eligibility records are not attached to an account. Deleting your account removes app-level history.",
     processor: "Supabase, Sentry, Vercel, Upstash"
   },
   {
@@ -86,7 +86,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 
 export const TRUST_PROMISES = [
   "Your upload is encrypted in transit.",
-  "Anonymous reports are not saved to an account automatically.",
+  "Completed anonymous report output can be recovered in the same browser for up to 24 hours, but is not saved to an account automatically. RIYP does not store the raw anonymous resume or job description.",
   "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",

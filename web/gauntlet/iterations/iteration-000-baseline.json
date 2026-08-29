@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "2",
+  "id": "iteration-000-baseline",
+  "label": "Deployed production baseline",
+  "createdAt": "2026-08-02T18:47:49.000Z",
+  "status": "baseline_pending",
+  "production": {
+    "ref": "main",
+    "deploymentStatus": "deployed_baseline",
+    "commit": "181bf60ba636d4d461d0fc0b965f36120b296fb4",
+    "model": "gpt-5.6-luna",
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    },
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "591f506be33314215641e1053e4cbe86cda6381d7dbe68ad4df3dce53bac870c"
+    }
+  },
+  "candidate": {
+    "ref": "codex/gauntlet-iteration-002",
+    "deploymentStatus": "not_deployed",
+    "commit": null,
+    "model": null,
+    "resumePrompt": null,
+    "renderer": null
+  },
+  "builder": {
+    "change": "Recorded deployed main at 181bf60 as the comparison baseline without importing an earlier Gauntlet result.",
+    "claim": "This record identifies the deployed code baseline only. It makes no report-quality, journey, or candidate-deployment claim."
+  },
+  "critic": {
+    "verdict": "pending",
+    "rationale": "No iteration-002 candidate outputs, blind judgments, source audits, reference assessments, or journey receipts exist yet.",
+    "remainingGap": "Bind the final candidate commit, capture fresh evidence, and obtain an independent critic verdict.",
+    "reviewer": null,
+    "reviewedAt": null,
+    "artifact": null
+  },
+  "previous": null,
+  "seal": null,
+  "baselineStatement": "Production deployment is bound to main commit 181bf60. The prior iteration-001 result was rejected and none of its artifacts, source snapshots, judgments, or verdicts are inherited."
+}

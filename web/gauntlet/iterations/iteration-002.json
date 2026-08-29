@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "2",
+  "id": "iteration-002",
+  "label": "First-customer evidence rerun (retired)",
+  "createdAt": "2026-08-02T18:47:49.000Z",
+  "status": "retired",
+  "production": {
+    "ref": "main",
+    "deploymentStatus": "deployed_baseline",
+    "commit": "181bf60ba636d4d461d0fc0b965f36120b296fb4",
+    "model": "gpt-5.6-luna",
+    "resumePrompt": {
+      "path": "web/prompts/resume_v2.txt",
+      "sha256": "1739a456f600b36d517ecd68e84a02a68480624a09e9559946fed04b4f1a9ba3"
+    },
+    "renderer": {
+      "path": "web/components/workspace/report/ReportStream.tsx",
+      "sha256": "591f506be33314215641e1053e4cbe86cda6381d7dbe68ad4df3dce53bac870c"
+    }
+  },
+  "candidate": {
+    "ref": "codex/gauntlet-iteration-002",
+    "deploymentStatus": "not_deployed",
+    "commit": null,
+    "model": null,
+    "resumePrompt": null,
+    "renderer": null
+  },
+  "builder": {
+    "change": "Matt ended the formal Gauntlet on 2026-08-10 before iteration-002 evidence capture because its token and review cost outweighed its usefulness.",
+    "claim": "No product-quality or deployment claim is made. This iteration is retired, not passed or sealed."
+  },
+  "critic": {
+    "verdict": "pending",
+    "rationale": "No critic review was run because Matt ended the Gauntlet before evidence capture.",
+    "remainingGap": "None. The iteration was intentionally retired rather than completed.",
+    "reviewer": null,
+    "reviewedAt": null,
+    "artifact": null
+  },
+  "previous": {
+    "iterationId": "iteration-000-baseline",
+    "ledgerSha256": "18181f226139ac5ced89ae99d256b67f34dc752af8fdb12f63471705abc98e57"
+  },
+  "seal": null,
+  "baselineStatement": "Retired by Matt on 2026-08-10 with zero outputs, judgments, audits, journey receipts, or verdicts. Rejected iteration-001 evidence is not inherited, and no Gauntlet quality claim was earned."
+}

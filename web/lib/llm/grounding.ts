@@ -1,3 +1,5 @@
+import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "./source-fidelity";
+
 const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|participated)\b/i;
 const elevatedOwnershipPattern = /\b(led|owned|drove|managed|spearheaded|directed|headed)\b/gi;
 const outcomePattern = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|accelerate|accelerated|accelerating|raise|raised|lower|lowered|result|resulted|resulting)\b/gi;
@@ -49,9 +51,12 @@ function hasSectionHeading(sourceText: string, names: string[]) {
   });
 }
 
-export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
+export function isAcceptedAbsenceMarker(value: string, sourceText?: string, section?: string) {
+  if (!isExactAbsenceSentinel(value)) return false;
   const marker = normalizeMarker(value);
-  if (!ABSENCE_MARKERS.has(marker)) return false;
+  const expectedSection = marker.match(/^no (summary|skills|education) section present$/)?.[1];
+  if (!expectedSection) return false;
+  if (section && normalizeMarker(section) !== expectedSection) return false;
   if (!sourceText) return true;
 
   if (marker === "no summary section present") {
@@ -64,7 +69,7 @@ export function isAcceptedAbsenceMarker(value: string, sourceText?: string) {
     return !hasSectionHeading(sourceText, ["education", "academic background", "academic experience"]);
   }
 
-  return true;
+  return false;
 }
 
 export function sourceContextFor(original: string, sourceText?: string) {
@@ -81,8 +86,7 @@ export function sourceContextFor(original: string, sourceText?: string) {
 }
 
 export function containsExactEvidence(sourceText: string, excerpt: string) {
-  const normalizeWhitespace = (value: string) => value.replace(/\s+/g, " ").trim();
-  return normalizeWhitespace(sourceText).includes(normalizeWhitespace(excerpt));
+  return containsBoundedSourceExcerpt(sourceText, excerpt);
 }
 
 export function findAlreadySatisfiedFix(
@@ -171,12 +175,13 @@ export function findFixEvidenceMismatch(
   fix: string,
   evidenceExcerpt: string,
   resumeText: string,
+  section?: string,
 ): string[] {
   const findings: string[] = [];
   const normalizedMarker = normalizeMarker(evidenceExcerpt);
 
   if (ABSENCE_MARKERS.has(normalizedMarker)) {
-    if (!isAcceptedAbsenceMarker(evidenceExcerpt, resumeText)) {
+    if (!isAcceptedAbsenceMarker(evidenceExcerpt, resumeText, section)) {
       findings.push("absence marker is contradicted by the resume");
     }
     const expectedSection = normalizedMarker.match(/^no (summary|skills|education) section present$/)?.[1];

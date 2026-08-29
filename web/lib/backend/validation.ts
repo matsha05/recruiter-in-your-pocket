@@ -3,6 +3,8 @@ import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validati
 import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
+import { positiveSourceContradictions, removeUnsafeRewrites } from "../llm/source-fidelity";
+import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -131,7 +133,7 @@ export function ensureLayoutAndContentFields(obj: any) {
 export function validateResumeModelPayload(
   obj: any,
   resumeText?: string,
-  options: { forceGrounding?: boolean } = {},
+  options: { forceGrounding?: boolean; jobDescription?: string } = {},
 ) {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
@@ -140,7 +142,32 @@ export function validateResumeModelPayload(
   const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
   if (resumeText && shouldGround) {
+    const contradictions = positiveSourceContradictions(obj, resumeText, options.jobDescription);
+    if (contradictions.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response failed the evidence grounding contract: contradicted positive source evidence at ${contradictions[0].path}.`,
+        502,
+      );
+    }
+    const ambiguousLocators = ambiguousReportSourceLocators(obj, resumeText);
+    if (ambiguousLocators.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response used ambiguous source evidence: ${ambiguousLocators.join(", ")}.`,
+        502,
+      );
+    }
     obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
+    const rewriteScreen = removeUnsafeRewrites(obj, resumeText);
+    if (rewriteScreen.removed.length > 0) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response failed the evidence grounding contract at rewrites[${rewriteScreen.removed[0].index}].better source fidelity.`,
+        502,
+      );
+    }
+    obj = rewriteScreen.report;
   }
 
   obj.score = normalizeScore(obj.score, "score");
@@ -196,7 +223,7 @@ export function validateResumeModelPayload(
   }
 
   if (resumeText && shouldGround) {
-    const grounding = assertReportGrounding(parsed.data, resumeText);
+    const grounding = assertReportGrounding(parsed.data, resumeText, options.jobDescription);
     if (!grounding.ok) {
       const issue = grounding.missingEvidence[0] || grounding.inventedSpecifics[0] || "response";
       throw createAppError(

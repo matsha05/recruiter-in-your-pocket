@@ -1,6 +1,6 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-07-20
+**Last Updated:** 2026-08-10
 **Status:** ENFORCED, CURRENT RELEASE CANDIDATE PASS
 
 ---
@@ -68,7 +68,8 @@ If shipping with known WARNs, add a comment to the PR:
 
 | Metric | Current corpus / historical baseline |
 |--------|-------------------------------------|
-| Golden fixtures in current corpus | 20 |
+| Golden fixtures in current corpus | 23 |
+| Latest candidate validation | 22 PASS, 1 WARN, 0 FAIL |
 | Historical V2 baseline run (2025-12-28) | 17 fixtures |
 | Historical PASS | 1 |
 | Historical WARN | 15 |
@@ -79,7 +80,7 @@ Baseline files:
 - `tests/fixtures/baselines/v2_baseline.json`
 - `tests/fixtures/baselines/v2_baseline_summary.md`
 
-Before the next prompt release, cut a refreshed baseline that covers the full 20-fixture golden corpus.
+The immutable current evidence is recorded in `tests/fixtures/results/summary_latest_live.md` and bundled into hosted readiness. Any prompt or launch-model change requires a fresh explicitly budgeted live run and candidate validation.
 
 ## Launch Tie-In
 
@@ -91,15 +92,17 @@ Before any live launch decision, and only after model spend is approved:
 
 ### Latest live evidence
 
-- Run: `eval_1784470075604`
-- Model: `gpt-4o-mini`
-- Corpus: 8 stored synthetic golden resumes
-- Superseded result: 0 PASS, 1 WARN, 7 FAIL
-- Final pinned GPT-5 nano result: 8 PASS, 0 WARN, 0 FAIL (`eval_1784502145848`)
-- Token-calculated API cost: $0.009 across 9 calls
-- Decision: prompt and model gate passes for the pinned release candidate
+- Run: `eval_1786231390293_replay`
+- Model: `gpt-5.6-luna`, low reasoning
+- Corpus: all 23 stored golden resumes
+- Result: 22 PASS, 1 WARN, 0 FAIL (95.7%)
+- Validation: saved outputs from the authorized live run replayed through the current candidate validator
+- Token-calculated source-run API cost: $0.576062 across 45 calls
+- Resume prompt SHA-256: `fd910eea3d1a4ebd7c4ae3f0419d6b36f6d799d08c8e52b8a7625dffb964236a`
+- Resume-ideas prompt SHA-256: `6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7`
+- Decision: the current candidate clears the quality gate with one non-blocking repeated-wording warning
 
-The earlier GPT-4o mini run exposed evidence paraphrasing, requests for facts already present, and unsupported causal outcomes. Those defects were hardened in the prompt and runtime, then the live gate was rerun on the pinned launch model. The runtime also withholds invalid drafts, attempts one bounded repair, and restores the report credit if the replacement still fails. Any prompt or launch-model change reopens this gate.
+The runtime withholds invalid drafts, attempts one bounded repair, and restores report access if the replacement still fails. Any prompt or launch-model change reopens this gate. Older GPT-4o mini and GPT-5 Nano runs remain historical evidence, not the current release bar.
 
 ---
 

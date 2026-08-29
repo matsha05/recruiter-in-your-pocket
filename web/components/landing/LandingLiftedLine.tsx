@@ -126,7 +126,7 @@ function SupportBand() {
                         />
                         <div>
                             <h2 id="lift-credibility-title">Built by Matt Shaw.</h2>
-                            <p><strong>14 years in recruiting and hiring.</strong> I built this to give candidates the honest résumé feedback they usually never receive.</p>
+                            <p><strong>14 years in recruiting and hiring.</strong> I built this to give candidates the honest resume feedback they usually never receive.</p>
                         </div>
                     </div>
                     <p className="lift-credibility-label lift-support-label">Experience across</p>
@@ -191,9 +191,9 @@ export function LandingLiftedLine() {
                         <div className="lift-hero-copy">
                             <p className="lift-kicker">Recruiter feedback, before you apply.</p>
                             <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
-                            <p className="lift-hero-deck">Upload or paste your résumé. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.</p>
+                            <p className="lift-hero-deck">Upload or paste your resume. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.</p>
                             <div className="lift-actions">
-                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free résumé review <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free resume review <ArrowRight aria-hidden="true" weight="bold" /></Link>
                                 <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>
                             </div>
                             <div className="lift-hero-trust">
@@ -219,7 +219,7 @@ export function LandingLiftedLine() {
                     </div>
                     <div>
                         <p>Good experience gets missed all the time. Usually for fixable reasons.</p>
-                        <Link href="/workspace" className="lift-button-primary">Get my free résumé review <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                        <Link href="/workspace" className="lift-button-primary">Get my free resume review <ArrowRight aria-hidden="true" weight="bold" /></Link>
                     </div>
                 </div>
             </section>

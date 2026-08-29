@@ -109,6 +109,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
 export default function PaywallModal({
     isOpen,
     onClose,
+    hasCurrentReport = false,
     workspaceState = null,
 }: PaywallModalProps) {
     const { user } = useAuth();
@@ -207,13 +208,17 @@ export default function PaywallModal({
                             You&apos;ve reached the preview limit
                         </DialogTitle>
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
-                            Paid access is not open yet. Your existing report stays available, and we will make the next step clear before checkout ever enters the picture.
+                            {hasCurrentReport
+                                ? "Paid access is not open yet. Your existing report stays available."
+                                : "Paid access is not open yet. Stay in the workspace to keep working on your resume."}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="mt-5 border-y border-border/70 py-4 text-sm leading-6 text-muted-foreground">
                         We&apos;re deliberately keeping this preview small while the report experience is still being tuned.
                     </div>
-                    <Button className="mt-5 w-full" onClick={onClose}>Back to my report</Button>
+                    <Button className="mt-5 w-full" onClick={onClose}>
+                        {hasCurrentReport ? "Back to my report" : "Back to workspace"}
+                    </Button>
                 </DialogContent>
             </Dialog>
         );

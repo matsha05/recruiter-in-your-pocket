@@ -12,9 +12,12 @@ function isLocalHost(host: string | null | undefined) {
   return LOCAL_HOSTS.has(normalizeHostname(host));
 }
 
-function shouldProtectInternalLaunchSurfaceForHost(host: string | null | undefined) {
-  if (isLocalHost(host)) return false;
-  return true;
+export function shouldProtectInternalLaunchSurfaceForHost(
+  host: string | null | undefined,
+  localRuntime = process.env.NODE_ENV === "development"
+    || TRUE_VALUES.has((process.env.RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS || "").trim().toLowerCase()),
+) {
+  return !(localRuntime && isLocalHost(host));
 }
 
 function parseAdminEmails() {

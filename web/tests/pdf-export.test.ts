@@ -2,9 +2,17 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { renderReportHtml } from "../lib/backend/pdf";
-import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
+import {
+  makeValidatedReportReceipt,
+  RECEIPT_TTL_MS,
+  validatedReportReceiptClaim,
+  verifyValidatedReportReceipt,
+} from "../lib/reports/report-receipt";
+import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "../lib/reports/report-trust";
+import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 const sampleReportPath = path.join(process.cwd(), "public", "sample-report.json");
 const sampleReport = JSON.parse(readFileSync(sampleReportPath, "utf8"));
@@ -56,11 +64,76 @@ assert.equal(normalizedLegacy?.summary, legacyReport.score_comment_long);
 assert.deepEqual(normalizedLegacy?.next_steps, ["Add one scope number to your strongest bullet"]);
 assert.equal(normalizedLegacy?.rewrites.length, 1);
 
-const request = buildPdfExportRequest(legacyReport);
-assert.ok(request, "request payload should build");
-assert.deepEqual(Object.keys(request ?? {}).sort(), ["report"]);
-assert.equal("skim" in ((request as { report: Record<string, unknown> }).report), false);
-assert.equal("ideas" in ((request as { report: Record<string, unknown> }).report), false);
+assert.equal(buildPdfExportRequest(legacyReport), null, "inline client reports must never become export payloads");
+const reportId = "123e4567-e89b-42d3-a456-426614174000";
+assert.deepEqual(buildPdfExportRequest({ ...legacyReport, report_id: reportId }), { report_id: reportId });
+assert.deepEqual(buildPdfExportRequest({ ...legacyReport, id: reportId }), { report_id: reportId });
+assert.equal(buildPdfExportRequest({ score: 42 }), null, "incomplete client payloads must fail closed");
+const newlySavedReport = attachStoredReportId(schemaValidReport, reportId);
+assert.deepEqual(
+  buildPdfExportRequest(newlySavedReport),
+  { report_id: reportId },
+  "an anonymous report must export by the stored ID returned after sign-in save",
+);
+
+const originalSessionSecret = process.env.SESSION_SECRET;
+process.env.SESSION_SECRET = "pdf-export-contract-test-secret";
+const receipt = makeValidatedReportReceipt(schemaValidReport);
+assert.equal(verifyValidatedReportReceipt(schemaValidReport, receipt), true);
+assert.equal(verifyValidatedReportReceipt({ ...schemaValidReport, score: 99 }, receipt), false);
+assert.equal(
+  verifyValidatedReportReceipt(schemaValidReport, `${receipt}.ignored`),
+  false,
+  "anonymous receipts must contain exactly two segments",
+);
+const mintedAt = Date.now();
+const boundedReceipt = makeValidatedReportReceipt(schemaValidReport, mintedAt);
+assert.equal(
+  validatedReportReceiptClaim(schemaValidReport, boundedReceipt, mintedAt)?.expiresAt,
+  new Date(mintedAt + RECEIPT_TTL_MS).toISOString(),
+  "the storage expiry must come from the verified signed receipt payload",
+);
+assert.equal(
+  validatedReportReceiptClaim(schemaValidReport, makeValidatedReportReceipt(schemaValidReport, mintedAt + 1), mintedAt),
+  null,
+  "a valid signature must not bypass the maximum receipt TTL",
+);
+assert.equal(validatedReportReceiptClaim(schemaValidReport, boundedReceipt, mintedAt + RECEIPT_TTL_MS), null);
+const ownerId = "11111111-1111-4111-8111-111111111111";
+const otherOwnerId = "22222222-2222-4222-8222-222222222222";
+const trustMetadata = buildGroundedReportTrustMetadata(schemaValidReport, ownerId);
+assert.ok(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  ownerId,
+), "an exact server-signed stored report must be accepted");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  { items: trustMetadata.evidence_json.items },
+  ownerId,
+), null, "a marker-only stored report forgery must be rejected");
+assert.equal(parseTrustedStoredReport(
+  { ...schemaValidReport, score: 73 },
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  ownerId,
+), null, "post-sign report mutation must be rejected");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  trustMetadata.evidence_version,
+  trustMetadata.evidence_json,
+  otherOwnerId,
+), null, "a signed report must not replay across users");
+assert.equal(parseTrustedStoredReport(
+  schemaValidReport,
+  "v2:source-grounded",
+  trustMetadata.evidence_json,
+  ownerId,
+), null, "legacy marker-only rows must fail closed");
+if (originalSessionSecret === undefined) delete process.env.SESSION_SECRET;
+else process.env.SESSION_SECRET = originalSessionSecret;
 
 assert.equal(normalizeReportForPdf({ summary: "Missing score" }), null);
 
@@ -74,7 +147,9 @@ assert.equal(canonicalCeiling?.score, 99, "first-read score should never display
 assert.equal(canonicalCeiling?.score_label, "Clear and specific", "model labels must not override canonical bands");
 assert.deepEqual(canonicalCeiling?.subscores, { story: 99, impact: 99, clarity: 99, readability: 99 });
 
-const pdfRendererSource = readFileSync(path.join(process.cwd(), "lib", "backend", "pdf.ts"), "utf8");
+const pdfRendererSource = ["pdf.ts", "pdf-styles.ts"]
+  .map((fileName) => readFileSync(path.join(process.cwd(), "lib", "backend", fileName), "utf8"))
+  .join("\n");
 assert.match(pdfRendererSource, /Instrument Sans/);
 assert.match(pdfRendererSource, /Space Grotesk Variable/);
 assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsreader/);

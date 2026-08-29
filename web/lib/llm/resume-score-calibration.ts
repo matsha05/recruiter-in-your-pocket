@@ -1,9 +1,6 @@
 type ScoreableReport = {
   score?: unknown;
   subscores?: Record<string, unknown>;
-  score_comment_short?: unknown;
-  score_comment_long?: unknown;
-  score_plain?: unknown;
 };
 
 export type ScoreCalibration = {
@@ -86,22 +83,6 @@ export function calibrateResumeScore<T extends ScoreableReport>(
 
   calibratedScore = clampScore(calibratedScore);
   const calibratedReport = { ...report, score: calibratedScore } as T;
-
-  if (calibratedScore !== originalScore) {
-    if (calibratedScore >= 88) {
-      calibratedReport.score_comment_short = "Dense outcome evidence makes the impact easy to verify; remaining work is mostly positioning.";
-      calibratedReport.score_comment_long = "The resume repeatedly shows scope, ownership, and measurable outcomes across roles. Leadership and business impact are easy to verify. Remaining opportunities are about scan order and optional context, not missing evidence.";
-      calibratedReport.score_plain = "This is a strong, evidence-rich resume. Focus the next pass on positioning and scan speed.";
-    } else if (calibratedScore >= 78) {
-      calibratedReport.score_comment_short = "Several concrete outcomes are visible, with a few uneven areas still limiting the first read.";
-      calibratedReport.score_comment_long = "The resume contains multiple specific outcomes and credible ownership signals. Evidence is not equally strong in every role. Tightening the weakest bullets will make the story easier to place.";
-      calibratedReport.score_plain = "This has a credible evidence base. Strengthen the few thin bullets instead of rewriting what already works.";
-    } else if (calibratedScore <= 68) {
-      calibratedReport.score_comment_short = "Most bullets describe responsibilities; measurable outcomes and scope are still too sparse.";
-      calibratedReport.score_comment_long = "The resume shows relevant responsibilities but limited evidence of scale or results. Titles and tenure cannot substitute for outcomes on the page. Add grounded scope and before-and-after evidence to the highest-value bullets first.";
-      calibratedReport.score_plain = "The experience may be relevant, but the proof is too thin. Add real scope and outcomes before polishing the wording.";
-    }
-  }
 
   if (report.subscores && typeof report.subscores === "object" && calibratedScore !== originalScore) {
     calibratedReport.subscores = Object.fromEntries(

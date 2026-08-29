@@ -19,6 +19,12 @@ const receiptsSource = fs.readFileSync(
   "utf8"
 );
 
+const purchaseGateIndex = checkoutSource.indexOf('if (!isLaunchFlagEnabled("billingUnlock")');
+assert.ok(
+  purchaseGateIndex >= 0 && purchaseGateIndex < checkoutSource.indexOf("if (!stripe)", purchaseGateIndex),
+  "the purchase-disabled gate must run before Stripe configuration",
+);
+
 assert.match(
   checkoutSource,
   /Checkout could not be started\. Try again shortly\./,

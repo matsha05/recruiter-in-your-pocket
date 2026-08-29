@@ -100,6 +100,12 @@ export async function POST(request: Request) {
         return res;
     }
 
+    if (!isLaunchFlagEnabled("billingUnlock") || areNewPurchasesDisabled()) {
+        const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
+        res.headers.set("x-request-id", request_id);
+        return res;
+    }
+
     if (!stripe) {
         logError({
             msg: "http.request.completed",
@@ -113,12 +119,6 @@ export async function POST(request: Request) {
             err: { name: "ConfigError", message: "STRIPE_SECRET_KEY not set", code: "STRIPE_SECRET_KEY_MISSING" }
         });
         const res = NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
-        res.headers.set("x-request-id", request_id);
-        return res;
-    }
-
-    if (!isLaunchFlagEnabled("billingUnlock") || areNewPurchasesDisabled()) {
-        const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
         res.headers.set("x-request-id", request_id);
         return res;
     }

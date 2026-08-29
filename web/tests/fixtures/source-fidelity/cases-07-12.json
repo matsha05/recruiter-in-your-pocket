@@ -1,0 +1,38 @@
+[
+  {
+    "id": "less-than-currency-qualifier",
+    "source": "Managed an annual budget of <$5M.",
+    "safe": "Annual budget managed: <$5M.",
+    "unsafe": "Managed an annual budget of $5M."
+  },
+  {
+    "id": "dotnet-entity",
+    "source": "Built .NET services for billing.",
+    "safe": "For billing, built .NET services.",
+    "unsafe": "Built NET services for billing."
+  },
+  {
+    "id": "research-and-development-entity",
+    "source": "Led R&D programs across two regions.",
+    "safe": "Across two regions, led R&D programs.",
+    "unsafe": "Led R D programs across two regions."
+  },
+  {
+    "id": "ab-test-entity",
+    "source": "Ran A/B tests for checkout flows.",
+    "safe": "For checkout flows, ran A/B tests.",
+    "unsafe": "Ran A B tests for checkout flows."
+  },
+  {
+    "id": "singular-team-scope",
+    "source": "Managed a team of 25+ engineers across platform delivery.",
+    "safe": "Across platform delivery, managed a team of 25+ engineers.",
+    "unsafe": "Managed teams of 25+ engineers across platform delivery."
+  },
+  {
+    "id": "causal-strengthening",
+    "source": "Scaled Northline from 300 to 1,000 employees, with a focus on R&D hiring.",
+    "safe": "With a focus on R&D hiring, scaled Northline from 300 to 1,000 employees.",
+    "unsafe": "Scaled Northline from 300 to 1,000 employees through R&D hiring."
+  }
+]

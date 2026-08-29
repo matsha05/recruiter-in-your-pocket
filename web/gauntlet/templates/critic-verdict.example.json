@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1",
+  "iterationId": "iteration-002",
+  "reviewer": "independent-reviewer-id",
+  "reviewerRole": "independent_critic",
+  "reviewedAt": "2026-08-02T00:00:00.000Z",
+  "verdict": "fail",
+  "candidateCommit": "0000000000000000000000000000000000000000",
+  "evidenceSetSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "rationale": "Replace with an evidence-bound independent review.",
+  "remainingGap": "Replace with the exact remaining gap."
+}

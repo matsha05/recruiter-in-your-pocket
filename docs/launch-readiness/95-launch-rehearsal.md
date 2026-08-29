@@ -1,8 +1,8 @@
 # RIYP Solo Launch Rehearsal
 
-**Last updated:** July 19, 2026
+**Last updated:** August 10, 2026
 **Tester:** Matt Shaw
-**Status:** Required before public launch
+**Status:** Reusable runbook with historical production records
 
 Run this against a production-like preview in a clean browser profile. Use Stripe test mode. Capture one screenshot or short note for every section, including failures and confusing moments.
 
@@ -186,3 +186,14 @@ Current verdict: `NO-GO` for broad promotion until the remaining blockers above 
 - Production evidence: `RIYP_SECONDARY_ALERT_VERIFIED=true` was configured in Vercel Production after both receipts were confirmed.
 
 Current verdict: `GO` for broad promotion once the release containing the GitHub backup workflow and this evidence record is deployed and `/api/status` reports `ok: true`, `summary.status: configured`, no incidents, and Operational safeguards configured. Google search-result replacement remains asynchronous after the accepted sitemap and priority recrawl requests; it is not a runtime launch blocker.
+
+## August 8–10 Validator and Production Record
+
+- Candidate: `ece17d1804a7099c7567a8fdb5c48ed9fbbc2718`.
+- Quality proof: `eval_1786231390293_replay`, Luna low reasoning, 23 fixtures, 22 PASS, 1 WARN, 0 FAIL, saved-output replay through the repaired candidate validator.
+- Source-run cost: $0.576062 across 45 API calls; no second generation spend was required for replay.
+- Production deployment: `dpl_CLTHPxQ3YsbmFkr8jHHxnyqoacBH`, Ready, with the full candidate SHA bound as the Sentry release.
+- Exact-commit CI, Vercel checks, canonical homepage, pricing, sample report, auth, robots, and `/api/status` passed after deployment.
+- Formal Gauntlet: ended by Matt on August 10 and retired without a pass, seal, or quality claim.
+
+Current verdict: `GO` for the controlled beta. Remaining follow-ups are branch-rule enforcement, external uptime monitoring, and observing a real production customer-created populated report history.

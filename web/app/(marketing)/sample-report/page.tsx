@@ -8,13 +8,13 @@ import sampleReport from "@/public/sample-report.json";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Example Résumé Report",
-  description: "Read a complete recruiter-style résumé report with an opening read, quoted evidence, factual rewrite prompts, strengths, and role direction.",
+  title: "Example Resume Report",
+  description: "Read a complete recruiter-style resume report with an opening read, quoted evidence, factual rewrite prompts, strengths, and role direction.",
   alternates: {
     canonical: "/sample-report",
   },
   openGraph: {
-    title: "See a Complete Recruiter-Style Résumé Report",
+    title: "See a Complete Recruiter-Style Resume Report",
     description: "A real product sample: recruiter-style judgment, quoted evidence, factual rewrite prompts, strengths, and role direction.",
     url: "https://www.recruiterinyourpocket.com/sample-report",
     images: ["/opengraph-image?v=20260730"],
@@ -22,12 +22,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "See a Complete Recruiter-Style Résumé Report",
+    title: "See a Complete Recruiter-Style Resume Report",
     description: "A real product sample with recruiter-style judgment, quoted evidence, and factual rewrite prompts.",
     images: ["/opengraph-image?v=20260730"],
   },
 };
 
 export default function SampleReportPage() {
-  return <WorkspaceClient initialReport={sampleReport as ReportData} />;
+  return (
+    <div className="sample-report-page-shell">
+      <WorkspaceClient initialReport={sampleReport as ReportData} />
+    </div>
+  );
 }
