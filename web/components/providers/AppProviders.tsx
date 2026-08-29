@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MotionConfig } from "motion/react";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -11,7 +10,6 @@ type AppProvidersProps = {
 };
 
 export function AppProviders({ children }: AppProvidersProps) {
-  const pathname = usePathname();
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -29,8 +27,6 @@ export function AppProviders({ children }: AppProvidersProps) {
       })
   );
 
-  const isIsolatedSystemLab = pathname === "/internal/system-lab";
-
   useEffect(() => {
     const root = document.documentElement;
     root.removeAttribute("data-theme");
@@ -46,7 +42,7 @@ export function AppProviders({ children }: AppProvidersProps) {
   return (
     <MotionConfig reducedMotion="user">
       <QueryClientProvider client={queryClient}>
-        {isIsolatedSystemLab ? children : <AuthProvider>{children}</AuthProvider>}
+        <AuthProvider>{children}</AuthProvider>
       </QueryClientProvider>
     </MotionConfig>
   );

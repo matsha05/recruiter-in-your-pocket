@@ -332,10 +332,13 @@ export function AuthFlow({
                     inputMode="email"
                     placeholder="name@company.com"
                     value={email}
-                    aria-invalid={Boolean(error)}
                     aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
+                    error={Boolean(error)}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 border-muted-foreground/70 bg-secondary/10 pl-10 text-base placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                    className={cn(
+                      "h-12 pl-10 text-base",
+                      !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                    )}
                   />
                 </div>
                 <p id="auth-email-help" className="text-xs text-muted-foreground">
@@ -362,10 +365,13 @@ export function AuthFlow({
                   inputMode="numeric"
                   pattern="[0-9]*"
                   placeholder="00000000"
-                  className="h-14 border-muted-foreground/70 bg-secondary/10 text-center font-mono text-2xl tracking-wide placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  className={cn(
+                    "h-14 text-center font-mono text-2xl tracking-wide",
+                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  )}
                   value={code}
-                  aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
+                  error={Boolean(error)}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
                     setCode(value);
@@ -416,10 +422,13 @@ export function AuthFlow({
                   autoComplete="given-name"
                   placeholder="Jane"
                   value={firstName}
-                  aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
+                  error={Boolean(error)}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="h-12 border-muted-foreground/70 bg-secondary/10 text-base placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  className={cn(
+                    "h-12 text-base",
+                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                  )}
                 />
               </div>
               <Button type="submit" variant="brand" disabled={loading || !firstName.trim()} className="h-12 w-full text-base font-medium">

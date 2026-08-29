@@ -69,16 +69,33 @@ test("active navigation exposes the current page across site, app, mobile, and l
   await expect(legalNav.getByRole("link", { name: "Privacy Policy", exact: true })).toHaveAttribute("aria-current", "page");
 });
 
-test("shared input defaults to a semantic visible boundary without flattening state variants", async ({ page }) => {
-  await page.goto("/internal/system-lab", { waitUntil: "domcontentloaded" });
+test("sign-in input keeps its visible default boundary and exposes its error state", async ({ page }) => {
+  await page.goto("/auth", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
 
-  const defaultInput = page.getByRole("textbox", { name: "Default field example" });
-  await expect(defaultInput).toHaveClass(/border-muted-foreground\/70/);
+  const emailInput = page.getByRole("textbox", { name: "Email address" });
+  await expect(emailInput).toHaveClass(/border-muted-foreground\/70/);
 
-  const errorInput = page.getByRole("textbox", { name: "Error field example" });
-  await expect(errorInput).toHaveClass(/border-destructive\/50/);
-  await expect(errorInput).not.toHaveClass(/border-muted-foreground\/70/);
+  await page.getByRole("button", { name: "Send sign-in code" }).click();
+
+  await expect(page.locator("#auth-error")).toHaveText("Please enter your email");
+  await expect(emailInput).toHaveAttribute("aria-invalid", "true");
+  await expect(emailInput).toHaveClass(/border-destructive\/50/);
+  await expect(emailInput).toHaveClass(/bg-destructive\/5/);
+  await expect(emailInput).not.toHaveClass(/border-muted-foreground\/70/);
+  await expect(emailInput).not.toHaveClass(/bg-secondary\/10/);
+});
+
+test("production-protected internal routes render a stable not-found page", async ({ page }) => {
+  const pageErrors: string[] = [];
+  page.on("pageerror", (error) => pageErrors.push(error.message));
+
+  const response = await page.goto("/internal/system-lab", { waitUntil: "domcontentloaded" });
+  expect(response?.status()).toBe(404);
+  await waitForAppHydration(page);
+
+  await expect(page.getByRole("heading", { name: "This page is not here." })).toBeVisible();
+  expect(pageErrors).toEqual([]);
 });
 
 test("open mobile workspace navigation exposes the current page and has no serious axe violations", async ({ page }) => {
