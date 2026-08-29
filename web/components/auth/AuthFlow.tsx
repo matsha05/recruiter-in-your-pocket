@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
+import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
 
 type AuthStep = "email" | "code" | "name";
 
@@ -94,8 +95,13 @@ export function AuthFlow({
   }, [resendCooldown]);
 
   const handleSendCode = useCallback(async () => {
-    if (!email.trim()) {
+    const normalizedEmail = normalizeAuthEmail(email);
+    if (!normalizedEmail) {
       setError("Please enter your email");
+      return;
+    }
+    if (!isValidAuthEmail(normalizedEmail)) {
+      setError("Please enter a valid email address");
       return;
     }
     setLoading(true);
@@ -105,7 +111,7 @@ export function AuthFlow({
       const res = await fetch("/api/auth/send-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), next: redirectTo || "/workspace" })
+        body: JSON.stringify({ email: normalizedEmail, next: redirectTo || "/workspace" })
       });
       const data = await res.json();
       if (!data?.ok) {

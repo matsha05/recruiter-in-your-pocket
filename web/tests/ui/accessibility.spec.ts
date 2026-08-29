@@ -70,6 +70,13 @@ test("active navigation exposes the current page across site, app, mobile, and l
 });
 
 test("sign-in input keeps its visible default boundary and exposes its error state", async ({ page }) => {
+  const authRequests: string[] = [];
+  page.on("request", (request) => {
+    if (request.method() === "POST" && request.url().endsWith("/api/auth/send-code")) {
+      authRequests.push(request.url());
+    }
+  });
+
   await page.goto("/auth", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
 
@@ -84,6 +91,12 @@ test("sign-in input keeps its visible default boundary and exposes its error sta
   await expect(emailInput).toHaveClass(/bg-destructive\/5/);
   await expect(emailInput).not.toHaveClass(/border-muted-foreground\/70/);
   await expect(emailInput).not.toHaveClass(/bg-secondary\/10/);
+
+  await emailInput.fill("not-an-email");
+  await page.getByRole("button", { name: "Send sign-in code" }).click();
+
+  await expect(page.locator("#auth-error")).toHaveText("Please enter a valid email address");
+  expect(authRequests).toEqual([]);
 });
 
 test("production-protected internal routes render a stable not-found page", async ({ page }) => {
