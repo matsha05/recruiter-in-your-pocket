@@ -45,6 +45,15 @@ const shutdown = () => {
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
 
-child.on("exit", (code) => {
-  process.exit(code || 0);
+child.once("error", (error) => {
+  console.error(error);
+  process.exit(1);
+});
+
+child.once("exit", (code, signal) => {
+  if (signal) {
+    console.error(`Launch smoke server exited on signal ${signal}.`);
+    process.exit(1);
+  }
+  process.exit(code ?? 1);
 });

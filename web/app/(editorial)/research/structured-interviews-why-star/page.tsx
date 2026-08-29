@@ -113,7 +113,7 @@ export default function StructuredInterviewsWhyStarPage() {
                 Treat STAR as a check, not a template. Make your action visible, add the outcome when you know it, and include only the context the result needs. Situation and task may already be clear from the role.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
-                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground/60">Illustrative example</div>
+                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Illustrative example</div>
                 <p className="text-foreground">
                     Ran a pricing test across three self-serve plans, lifting trial-to-paid conversion from 12% to 16% and adding $1.2M in annualized revenue without increasing 90-day churn.
                 </p>

@@ -12,9 +12,11 @@ import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
 function IndependentRewriteCard({
   item,
   resumeText,
+  isReadOnly,
 }: {
   item: IndependentRewrite;
   resumeText?: string;
+  isReadOnly: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const policy = resolveRewriteCopyPolicy({
@@ -22,7 +24,9 @@ function IndependentRewriteCard({
     original: item.rewrite.original,
     draft: item.rewrite.better,
   });
-  const guidance = policy.reason === "source_unavailable"
+  const guidance = isReadOnly
+    ? "Read-only example. Your report will use the facts in your resume."
+    : policy.reason === "source_unavailable"
     ? "Copy is unavailable because this view does not include the source resume."
     : policy.reason === "unresolved_placeholders"
       ? "Replace every bracket with a fact from your actual work before copying."
@@ -49,17 +53,19 @@ function IndependentRewriteCard({
         </div>
         <div className="bg-brand/[0.065] px-5 py-5">
           <div className="flex items-start justify-between gap-3">
-            <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-brand">Suggestion</p>
-            <button
-              type="button"
-              onClick={handleCopy}
-              disabled={!policy.copyable}
-              title={!policy.copyable ? guidance : undefined}
-              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 px-2 text-xs font-semibold text-brand disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
-            >
-              {!policy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-              {!policy.copyable ? "Not copy-ready" : copied ? "Copied" : "Copy"}
-            </button>
+            <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example suggestion" : "Suggestion"}</p>
+            {!isReadOnly && (
+              <button
+                type="button"
+                onClick={handleCopy}
+                disabled={!policy.copyable}
+                title={!policy.copyable ? guidance : undefined}
+                className="inline-flex min-h-11 shrink-0 items-center gap-1.5 px-2 text-xs font-semibold text-brand disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
+              >
+                {!policy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
+                {!policy.copyable ? "Not copy-ready" : copied ? "Copied" : "Copy"}
+              </button>
+            )}
           </div>
           <p className="mt-3 font-display text-xl leading-7 text-foreground">{item.rewrite.better}</p>
           <RewriteEnhancementNote note={item.rewrite.enhancement_note} className="mt-4" />
@@ -74,10 +80,12 @@ export function IndependentAdvice({
   rewrites,
   questions,
   resumeText,
+  isReadOnly = false,
 }: {
   rewrites: IndependentRewrite[];
   questions: IndependentQuestion[];
   resumeText?: string;
+  isReadOnly?: boolean;
 }) {
   if (rewrites.length === 0 && questions.length === 0) return null;
 
@@ -91,7 +99,7 @@ export function IndependentAdvice({
             These suggestions do not share a unique evidence match with the ordered fixes above, so they stay separate.
           </p>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
-            {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} />)}
+            {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
           </div>
         </div>
       )}

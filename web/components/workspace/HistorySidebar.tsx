@@ -6,6 +6,7 @@ import { EmptyReportIcon } from "@/components/icons";
 import {
     Sheet,
     SheetContent,
+    SheetDescription,
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
@@ -207,6 +208,7 @@ export default function HistorySidebar({
                                 Saved reports
                             </SheetTitle>
                         </div>
+                        <SheetDescription className="sr-only">Review, compare, rename, or delete saved reports.</SheetDescription>
                     </SheetHeader>
 
                     {/* Content */}

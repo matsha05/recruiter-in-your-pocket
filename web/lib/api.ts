@@ -6,6 +6,7 @@ import {
   type AnonymousReportRecoveryMarker,
 } from "./reports/anonymous-report-recovery-client";
 import { parseGenerationFailureResponse, retireTerminalGenerationMarker } from "./reports/generation-operation-marker";
+import { parseResumeStreamCompletion } from "./validation/resume-stream-completion";
 
 export type ResumeFeedbackRequest = {
   text: string;
@@ -238,13 +239,9 @@ export async function streamResumeFeedback(
       };
     }
     const { done, value } = readResult;
-    if (done) {
-      break;
-    }
-
-    buffer += decoder.decode(value, { stream: true });
+    buffer += done ? decoder.decode() : decoder.decode(value, { stream: true });
     const lines = buffer.split("\n");
-    buffer = lines.pop() || "";
+    buffer = done ? "" : lines.pop() || "";
 
     for (const line of lines) {
       if (!line.trim()) continue;
@@ -252,8 +249,15 @@ export async function streamResumeFeedback(
       try {
         const event = JSON.parse(line);
 
-        if (event.type === "complete" && event.data && typeof event.data === "object") {
-          const completeReport = event.data;
+        if (event.type === "complete" && (
+          mode === "resume" || (event.data && typeof event.data === "object")
+        )) {
+          const completion = parseResumeStreamCompletion(event, mode);
+          if (!completion.valid) {
+            void reader.cancel().catch(() => undefined);
+            return completion.failure;
+          }
+          const completeReport: any = completion.report;
           if (event.report_id) completeReport.report_id = event.report_id;
           if (event.report_receipt) completeReport.report_receipt = event.report_receipt;
           const completedOperationId = recoveryMarker && event.operation_id === recoveryMarker.recoveryId ? recoveryMarker.recoveryId : null;
@@ -311,6 +315,8 @@ export async function streamResumeFeedback(
         // Ignore malformed lines
       }
     }
+
+    if (done) break;
   }
 
   if (errorMessage) {

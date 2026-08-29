@@ -268,7 +268,7 @@ export function LinkedInInputPanel({
 
                 <div className="mt-4 flex flex-col items-center gap-2.5 text-center">
                     <TrustBadges variant="inline" className="flex-wrap justify-center gap-x-3 gap-y-1 text-xs" />
-                    <p className="text-xs font-medium text-muted-foreground/70">
+                    <p className="text-xs font-medium text-muted-foreground">
                         {getRunHint()}
                     </p>
                     <p className="text-xs text-muted-foreground">

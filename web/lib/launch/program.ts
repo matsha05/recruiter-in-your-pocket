@@ -258,7 +258,7 @@ export const LAUNCH_GATE_DEFINITIONS = [
     id: "trust",
     label: "Trust and security",
     description: "Privacy posture, public trust surfaces, and safe defaults for monitoring.",
-    checks: ["runtime_env", "shared_rate_limit", "generation_cost_control", "support_delivery", "secondary_alert", "public_trust_surfaces", "analytics_configuration", "error_replay"],
+    checks: ["release_bypass_policy", "runtime_env", "shared_rate_limit", "generation_cost_control", "support_delivery", "secondary_alert", "public_trust_surfaces", "analytics_configuration", "error_replay"],
   },
   {
     id: "auth",

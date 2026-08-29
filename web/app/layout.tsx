@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/instrument-sans/standard.css";
+import "@fontsource-variable/instrument-sans/wght.css";
 import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";

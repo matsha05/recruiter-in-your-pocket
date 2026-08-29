@@ -18,8 +18,16 @@ async function main() {
       stdio: "inherit",
     });
 
-    const exitCode = await new Promise((resolve) => {
-      child.on("exit", (code) => resolve(code || 0));
+    const exitCode = await new Promise((resolve, reject) => {
+      child.once("error", reject);
+      child.once("exit", (code, signal) => {
+        if (signal) {
+          console.error(`Launch smoke browser exited on signal ${signal}.`);
+          resolve(1);
+          return;
+        }
+        resolve(code ?? 1);
+      });
     });
 
     await next.stop();

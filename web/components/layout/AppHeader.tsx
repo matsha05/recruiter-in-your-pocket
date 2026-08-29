@@ -58,11 +58,13 @@ export function AppHeader() {
                 <nav className="flex items-center gap-1 md:gap-2">
                     <div className="hidden items-center gap-1 md:flex">
                         {APP_NAV.map((item) => {
+                            const active = isActive(item.href);
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={cn("app-nav-link hidden md:inline-flex", isActive(item.href) && "app-nav-link-active")}
+                                    aria-current={active ? "page" : undefined}
+                                    className={cn("app-nav-link hidden md:inline-flex", active && "app-nav-link-active")}
                                 >
                                     {item.label}
                                 </Link>

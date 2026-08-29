@@ -93,7 +93,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 </div>
                 <Link
                     href="/research/how-we-score"
-                    className="text-xs text-muted-foreground/60 hover:text-brand transition-colors font-medium"
+                    className="text-xs font-medium text-muted-foreground transition-colors hover:text-brand"
                     target="_blank"
                     rel="noopener"
                 >

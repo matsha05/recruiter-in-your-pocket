@@ -4,7 +4,6 @@ import { useCallback, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { parseResume, streamResumeFeedback } from "@/lib/api";
-import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
@@ -157,14 +156,6 @@ export function useResumeReview(input: {
             shouldApply: () => input.isAnalysisCurrent(controller),
           }),
         });
-        if (!input.user && !isLaunchFlagEnabled("guestReportSave")) {
-          input.setPendingReportForSave(result.report);
-          setTimeout(() => {
-            if (!input.isAnalysisCurrent(controller)) return;
-            Analytics.track("save_prompt_viewed", { score: result.report?.score || 0 });
-            input.setIsSavePromptOpen(true);
-          }, 5000);
-        }
         return;
       }
       if (result.errorCode === "PAYWALL_REQUIRED") {

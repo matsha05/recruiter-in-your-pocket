@@ -4,7 +4,6 @@ import type { AuthUser } from "@/components/providers/AuthProvider";
 import { streamResumeFeedback, parseResume } from "@/lib/api";
 import { Analytics } from "@/lib/analytics";
 import { REPORT_ACCESS_OUTCOME_UNKNOWN } from "@/lib/billing/generationFailureCopy";
-import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { toast } from "sonner";
 
 type RefreshFreeStatus = (options?: {
@@ -26,8 +25,6 @@ type ResumeAnalysisOptions = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   setIsStreaming: Dispatch<SetStateAction<boolean>>;
   setReport: Dispatch<SetStateAction<any>>;
-  setPendingReportForSave: Dispatch<SetStateAction<any>>;
-  setIsSavePromptOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export function useResumeAnalysis({
@@ -43,8 +40,6 @@ export function useResumeAnalysis({
   setIsLoading,
   setIsStreaming,
   setReport,
-  setPendingReportForSave,
-  setIsSavePromptOpen,
 }: ResumeAnalysisOptions) {
   const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
   const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
@@ -194,13 +189,6 @@ export function useResumeAnalysis({
           requireOk: true,
         });
 
-        if (!user && !isLaunchFlagEnabled("guestReportSave")) {
-          setPendingReportForSave(result.report);
-          setTimeout(() => {
-            Analytics.track("save_prompt_viewed", { score: result.report?.score || 0 });
-            setIsSavePromptOpen(true);
-          }, 5000);
-        }
         return;
       }
 
@@ -229,9 +217,7 @@ export function useResumeAnalysis({
     reconcileAfterUnsuccessfulRun,
     setIsLoading,
     setIsPaywallOpen,
-    setIsSavePromptOpen,
     setIsStreaming,
-    setPendingReportForSave,
     setReport,
   ]);
 

@@ -1,9 +1,14 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+
+async function waitForAppHydration(page: Page) {
+  await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
+}
 
 const routes = [
   "/",
   "/pricing",
+  "/sample-report",
   "/workspace",
   "/auth",
   "/settings/account",
@@ -28,8 +33,7 @@ test.describe("a11y baseline", () => {
       });
 
       await page.goto(route, { waitUntil: "domcontentloaded" });
-      await page.waitForSelector("body", { timeout: 30_000 });
-      await page.waitForTimeout(500);
+      await waitForAppHydration(page);
 
       const results = await new AxeBuilder({ page }).analyze();
       const blockingViolations = results.violations.filter((violation) =>
@@ -39,4 +43,88 @@ test.describe("a11y baseline", () => {
       expect(blockingViolations, JSON.stringify(blockingViolations, null, 2)).toEqual([]);
     });
   }
+});
+
+test("active navigation exposes the current page across site, app, mobile, and legal shells", async ({ page }) => {
+  await page.goto("/pricing", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+  const siteHeader = page.locator("header.site-header");
+  await expect(siteHeader.getByRole("link", { name: "Pricing", exact: true })).toHaveAttribute("aria-current", "page");
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await siteHeader.getByRole("button", { name: "Open navigation" }).click();
+  const siteMobileNav = page.getByRole("navigation", { name: "Mobile navigation" });
+  await expect(siteMobileNav.getByRole("link", { name: "Pricing", exact: true })).toHaveAttribute("aria-current", "page");
+  await page.keyboard.press("Escape");
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/workspace", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+  const appHeader = page.locator("header.app-shell-header");
+  await expect(appHeader.getByRole("link", { name: "Studio", exact: true })).toHaveAttribute("aria-current", "page");
+
+  await page.goto("/privacy", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+  const legalNav = page.getByRole("navigation", { name: "Trust and legal pages" });
+  await expect(legalNav.getByRole("link", { name: "Privacy Policy", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+test("shared input defaults to a semantic visible boundary without flattening state variants", async ({ page }) => {
+  await page.goto("/internal/system-lab", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+
+  const defaultInput = page.getByRole("textbox", { name: "Default field example" });
+  await expect(defaultInput).toHaveClass(/border-muted-foreground\/70/);
+
+  const errorInput = page.getByRole("textbox", { name: "Error field example" });
+  await expect(errorInput).toHaveClass(/border-destructive\/50/);
+  await expect(errorInput).not.toHaveClass(/border-muted-foreground\/70/);
+});
+
+test("open mobile workspace navigation exposes the current page and has no serious axe violations", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/workspace", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+  await page.getByRole("button", { name: "Toggle menu" }).click();
+
+  const mobileSheet = page.getByRole("dialog");
+  await expect(mobileSheet.getByRole("link", { name: "The Studio", exact: true })).toHaveAttribute("aria-current", "page");
+
+  const results = await new AxeBuilder({ page }).analyze();
+  const blockingViolations = results.violations.filter((violation) =>
+    violation.impact === "critical" || violation.impact === "serious"
+  );
+  expect(blockingViolations, JSON.stringify(blockingViolations, null, 2)).toEqual([]);
+});
+
+test("keyboard resume upload announces success and moves focus to the file action", async ({ page }) => {
+  await page.route("**/api/parse-resume", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        ok: true,
+        text: "Senior product manager who led onboarding improvements across product, sales, and support.",
+      }),
+    });
+  });
+
+  await page.goto("/workspace", { waitUntil: "domcontentloaded" });
+  await waitForAppHydration(page);
+  const chooseFile = page.getByRole("button", { name: "Choose a file" });
+  await chooseFile.focus();
+
+  const fileChooserPromise = page.waitForEvent("filechooser");
+  await page.keyboard.press("Enter");
+  const fileChooser = await fileChooserPromise;
+  await fileChooser.setFiles({
+    name: "candidate-resume.pdf",
+    mimeType: "application/pdf",
+    buffer: Buffer.from("%PDF-1.4 test resume"),
+  });
+
+  const readyStatus = page.getByRole("status").filter({ hasText: "Ready for a first read" });
+  await expect(readyStatus).toContainText("candidate-resume.pdf");
+  const removeFile = page.getByRole("button", { name: "Remove candidate-resume.pdf" });
+  await expect(removeFile).toBeFocused();
 });

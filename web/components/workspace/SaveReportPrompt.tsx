@@ -15,8 +15,8 @@ interface SaveReportPromptProps {
 }
 
 /**
- * SaveReportPrompt - Appears after a guest generates a report
- * Allows them to save the report by entering their email
+ * SaveReportPrompt - Opens when a guest chooses to keep a completed report.
+ * Saving continues through verified sign-in before the report reaches history.
  */
 export default function SaveReportPrompt({
     isOpen,

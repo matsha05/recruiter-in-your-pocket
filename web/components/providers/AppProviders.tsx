@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MotionConfig } from "motion/react";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 
 type AppProvidersProps = {
@@ -31,14 +32,22 @@ export function AppProviders({ children }: AppProvidersProps) {
   const isIsolatedSystemLab = pathname === "/internal/system-lab";
 
   useEffect(() => {
-    document.documentElement.removeAttribute("data-theme");
-    document.documentElement.classList.remove("dark");
+    const root = document.documentElement;
+    root.removeAttribute("data-theme");
+    root.classList.remove("dark");
     localStorage.setItem("theme", "light");
+    root.setAttribute("data-app-hydrated", "true");
+
+    return () => {
+      root.removeAttribute("data-app-hydrated");
+    };
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {isIsolatedSystemLab ? children : <AuthProvider>{children}</AuthProvider>}
-    </QueryClientProvider>
+    <MotionConfig reducedMotion="user">
+      <QueryClientProvider client={queryClient}>
+        {isIsolatedSystemLab ? children : <AuthProvider>{children}</AuthProvider>}
+      </QueryClientProvider>
+    </MotionConfig>
   );
 }

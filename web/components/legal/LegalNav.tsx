@@ -59,6 +59,7 @@ export function LegalNav({ className }: LegalNavProps) {
                             ref={isActive ? activeRef : undefined}
                             key={tab.href}
                             href={tab.href}
+                            aria-current={isActive ? "page" : undefined}
                             className={cn(
                                 "focus-ring min-h-11 snap-start whitespace-nowrap border-b-2 px-0 py-3 text-[13px] font-semibold transition-colors duration-200",
                                 isActive

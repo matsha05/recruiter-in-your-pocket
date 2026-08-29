@@ -88,6 +88,14 @@ const nextConfig = {
       "./public/assets/fonts/space-grotesk-bold.ttf",
       "./public/assets/fonts/instrument-sans-latin-variable.ttf",
     ],
+    // Sparticuz resolves these runtime payloads dynamically, so Next's file
+    // tracer cannot discover them from the executablePath() call alone.
+    "/api/export-pdf": [
+      "./node_modules/@sparticuz/chromium/bin/chromium.br",
+      "./node_modules/@sparticuz/chromium/bin/fonts.tar.br",
+      "./node_modules/@sparticuz/chromium/bin/swiftshader.tar.br",
+      "./node_modules/@sparticuz/chromium/bin/al2023.tar.br",
+    ],
   },
   turbopack: {
     // Keep Next's root inside web/ even with a monorepo lockfile.

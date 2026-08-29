@@ -58,6 +58,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                         <div className="flex items-center gap-4">
                             <Link
                                 href="/workspace"
+                                aria-current={isStudioActive ? "page" : undefined}
                                 className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-md border border-citron bg-citron px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-citron/85 hover:bg-citron/85 sm:inline-flex lg:hidden"
                             >
                                 Studio
@@ -71,6 +72,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                         <div className="flex items-center gap-4">
                             <Link
                                 href="/auth"
+                                aria-current={isMarketingActive("/auth") ? "page" : undefined}
                                 className={cn(
                                     "focus-ring hidden min-h-12 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors sm:inline-flex",
                                     "text-background/70 hover:text-background"
@@ -90,6 +92,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                         </div>
                     )}
                     <SiteMobileMenu
+                        pathname={pathname}
                         user={user}
                         onSignOut={signOut}
                         authLoading={authLoading}
@@ -103,12 +106,14 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
 }
 
 function SiteMobileMenu({
+    pathname,
     user,
     onSignOut,
     authLoading,
     showResearchLink,
     showResourcesLink,
 }: {
+    pathname: string | null;
     user: { email?: string | null } | null;
     onSignOut: () => Promise<void> | void;
     authLoading: boolean;
@@ -129,10 +134,10 @@ function SiteMobileMenu({
                 </SheetHeader>
                 <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile navigation">
                     <MobileSiteLink href="/#how-it-works">How it works</MobileSiteLink>
-                    <MobileSiteLink href="/pricing">Pricing</MobileSiteLink>
-                    {isLaunchFlagEnabled("extensionSync") && <MobileSiteLink href="/extension">Extension</MobileSiteLink>}
-                    {showResearchLink && <MobileSiteLink href="/research">Research</MobileSiteLink>}
-                    {showResourcesLink && <MobileSiteLink href="/resources">Resources</MobileSiteLink>}
+                    <MobileSiteLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</MobileSiteLink>
+                    {isLaunchFlagEnabled("extensionSync") && <MobileSiteLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</MobileSiteLink>}
+                    {showResearchLink && <MobileSiteLink href="/research" active={isPathActive(pathname, "/research")}>Research</MobileSiteLink>}
+                    {showResourcesLink && <MobileSiteLink href="/resources" active={isPathActive(pathname, "/resources")}>Resources</MobileSiteLink>}
                     <div className="my-5 h-px bg-slate-300" />
                     {authLoading ? (
                         <p className="min-h-12 px-3 py-3 text-base text-slate-600" role="status" aria-live="polite">
@@ -140,9 +145,9 @@ function SiteMobileMenu({
                         </p>
                     ) : user ? (
                         <>
-                            <MobileSiteLink href="/workspace">Studio</MobileSiteLink>
-                            <MobileSiteLink href="/reports">Reports</MobileSiteLink>
-                            <MobileSiteLink href="/settings/account">Settings</MobileSiteLink>
+                            <MobileSiteLink href="/workspace" active={isPathActive(pathname, "/workspace")}>Studio</MobileSiteLink>
+                            <MobileSiteLink href="/reports" active={isPathActive(pathname, "/reports")}>Reports</MobileSiteLink>
+                            <MobileSiteLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</MobileSiteLink>
                             <SheetClose asChild>
                                 <button
                                     type="button"
@@ -155,7 +160,7 @@ function SiteMobileMenu({
                         </>
                     ) : (
                         <>
-                            <MobileSiteLink href="/auth">Log in</MobileSiteLink>
+                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Log in</MobileSiteLink>
                             <SheetClose asChild>
                                 <Link href="/workspace" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
                                     Get my free report
@@ -169,10 +174,18 @@ function SiteMobileMenu({
     );
 }
 
-function MobileSiteLink({ href, children }: { href: string; children: React.ReactNode }) {
+function isPathActive(pathname: string | null, href: string) {
+    return pathname === href || pathname?.startsWith(`${href}/`) || false;
+}
+
+function MobileSiteLink({ href, children, active = false }: { href: string; children: React.ReactNode; active?: boolean }) {
     return (
         <SheetClose asChild>
-            <Link href={href} className="focus-ring min-h-12 rounded-md px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-white hover:text-slate-950">
+            <Link
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className="focus-ring min-h-12 rounded-md px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-white hover:text-slate-950"
+            >
                 {children}
             </Link>
         </SheetClose>
@@ -193,6 +206,7 @@ function SiteNavLink({
     return (
         <Link
             href={href}
+            aria-current={active ? "page" : undefined}
             className={cn(
                 "site-nav-link",
                 active && "site-nav-link-active",

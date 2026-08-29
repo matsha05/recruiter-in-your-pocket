@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { useDropzone, FileRejection } from "react-dropzone";
+import { useState, useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from "react";
+import { useDropzone, type DropEvent, type FileRejection } from "react-dropzone";
 import { m as motion, AnimatePresence } from "motion/react";
 import { FilePdf, FileText, UploadSimple, WarningCircle, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
@@ -44,15 +44,31 @@ export function ResumeDropzone({
     const [error, setError] = useState<string | null>(null);
     const [rejectedFile, setRejectedFile] = useState<File | null>(null);
     const [localFileName, setLocalFileName] = useState<string | null>(null);
+    const successActionRef = useRef<HTMLButtonElement>(null);
+    const shouldMoveFocusOnSuccessRef = useRef(false);
     const displayFileName = fileName !== undefined ? fileName : localFileName;
 
-    const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
+    useEffect(() => {
+        if (!displayFileName || !shouldMoveFocusOnSuccessRef.current) return;
+
+        shouldMoveFocusOnSuccessRef.current = false;
+        const frame = window.requestAnimationFrame(() => {
+            successActionRef.current?.focus({ preventScroll: true });
+        });
+        return () => window.cancelAnimationFrame(frame);
+    }, [displayFileName]);
+
+    const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
+        if (!Array.isArray(event) && event.type === "drop") {
+            shouldMoveFocusOnSuccessRef.current = false;
+        }
         setError(null);
         setRejectedFile(null);
         onValidationStateChange?.(false);
 
         const selectedFile = acceptedFiles[0] ?? fileRejections[0]?.file;
         if (selectedFile && selectedFile.size > MAX_FILE_SIZE_BYTES) {
+            shouldMoveFocusOnSuccessRef.current = false;
             setRejectedFile(selectedFile);
             setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 4 MB.`);
             onValidationStateChange?.(true);
@@ -61,6 +77,7 @@ export function ResumeDropzone({
 
         // Handle rejections (wrong type, too big)
         if (fileRejections.length > 0) {
+            shouldMoveFocusOnSuccessRef.current = false;
             const rejection = fileRejections[0];
             setRejectedFile(rejection.file);
             onValidationStateChange?.(true);
@@ -83,6 +100,7 @@ export function ResumeDropzone({
     }, [onFileSelect, variant, fileName, onValidationStateChange]);
 
     const handleRemoveFile = () => {
+        shouldMoveFocusOnSuccessRef.current = false;
         setLocalFileName(null);
         setRejectedFile(null);
         setError(null);
@@ -97,6 +115,7 @@ export function ResumeDropzone({
         if (!selectedFile || selectedFile.size <= MAX_FILE_SIZE_BYTES) return;
 
         event.stopPropagation();
+        shouldMoveFocusOnSuccessRef.current = false;
         setLocalFileName(null);
         setRejectedFile(selectedFile);
         setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 4 MB.`);
@@ -117,6 +136,15 @@ export function ResumeDropzone({
         noKeyboard: true,
     });
 
+    const openFilePicker = (event: ReactMouseEvent<HTMLButtonElement>) => {
+        shouldMoveFocusOnSuccessRef.current = event.detail === 0;
+        open();
+    };
+
+    const handleDropzonePointerDown = useCallback(() => {
+        shouldMoveFocusOnSuccessRef.current = false;
+    }, []);
+
     if (variant === "hero") {
         return (
             <div className={cn("w-full max-w-xl mx-auto", className)}>
@@ -131,7 +159,7 @@ export function ResumeDropzone({
                         <Button
                             variant="brand"
                             size="sm"
-                            onClick={open}
+                            onClick={openFilePicker}
                             disabled={isProcessing}
                             className="px-3"
                         >
@@ -141,6 +169,7 @@ export function ResumeDropzone({
 
                     <div
                         {...getRootProps()}
+                        onPointerDown={handleDropzonePointerDown}
                         className={cn(
                             "rounded border border-dashed px-4 py-8 text-center transition-colors cursor-pointer hover:border-brand/40 hover:bg-brand/5",
                             isDragActive ? "border-brand/60 bg-brand/5 text-foreground" : "border-border/40 text-muted-foreground",
@@ -181,9 +210,14 @@ export function ResumeDropzone({
         <div className={cn("w-full", className)}>
             {displayFileName ? (
                 <div className="animate-in fade-in slide-in-from-top-2 flex min-h-40 items-center justify-between gap-4 border border-brand/25 bg-brand/5 p-5 sm:p-6">
-                    <span className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand">
+                    <span
+                        role="status"
+                        aria-live="polite"
+                        aria-atomic="true"
+                        className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand"
+                    >
                         <span className="flex size-11 shrink-0 items-center justify-center rounded-sm bg-brand/10">
-                            <FileText className="size-5" weight="duotone" />
+                            <FileText aria-hidden="true" className="size-5" weight="duotone" />
                         </span>
                         <span className="min-w-0">
                             <span className="block truncate text-base font-medium text-foreground">{displayFileName}</span>
@@ -191,9 +225,11 @@ export function ResumeDropzone({
                         </span>
                     </span>
                     <Button
+                        ref={successActionRef}
+                        aria-label={`Remove ${displayFileName}`}
                         variant="ghost"
                         size="sm"
-                    className="min-h-11 shrink-0 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                        className="min-h-11 shrink-0 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                         onClick={handleRemoveFile}
                     >
                         Remove
@@ -243,6 +279,7 @@ export function ResumeDropzone({
                 <div>
                     <div
                         {...getRootProps()}
+                        onPointerDown={handleDropzonePointerDown}
                         className={cn(
                             "workspace-upload-drop group relative flex cursor-pointer flex-col items-center justify-center border border-dashed px-5 py-8 text-center transition-all duration-150",
                             isDragActive
@@ -273,7 +310,7 @@ export function ResumeDropzone({
                             size="sm"
                             onClick={(event) => {
                                 event.stopPropagation();
-                                open();
+                                openFilePicker(event);
                             }}
                             disabled={isProcessing}
                             className="mt-5 min-h-12 border-foreground bg-paper px-6 text-lg text-foreground hover:border-foreground hover:bg-paper"

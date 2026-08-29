@@ -51,6 +51,7 @@ async function run() {
       }
       return new Response(`${JSON.stringify({
         type: "complete",
+        ok: true,
         data: schemaValidReport,
         recovery_id: recoveryId,
       })}\n`, {
@@ -170,6 +171,7 @@ async function run() {
       const request = JSON.parse(String(init?.body));
       return completeResponse({
         type: "complete",
+        ok: true,
         data: schemaValidReport,
         report_id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
         recovery_id: null,
@@ -234,6 +236,7 @@ async function run() {
       purchasedOperationId = JSON.parse(String(init?.body)).operation_id;
       return completeResponse({
         type: "complete",
+        ok: true,
         data: schemaValidReport,
         operation_id: purchasedOperationId,
       });

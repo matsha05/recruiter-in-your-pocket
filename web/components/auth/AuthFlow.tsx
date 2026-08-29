@@ -319,7 +319,11 @@ export function AuthFlow({
               <div className="gap-y-2">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
-                  <EnvelopeSimple className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" weight="bold" />
+                  <EnvelopeSimple
+                    aria-hidden="true"
+                    className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/90"
+                    weight="bold"
+                  />
                   <Input
                     ref={emailInputRef}
                     id="auth-email"
@@ -331,7 +335,7 @@ export function AuthFlow({
                     aria-invalid={Boolean(error)}
                     aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 pl-10 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
+                    className="h-12 border-muted-foreground/70 bg-secondary/10 pl-10 text-base placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
                   />
                 </div>
                 <p id="auth-email-help" className="text-xs text-muted-foreground">
@@ -358,7 +362,7 @@ export function AuthFlow({
                   inputMode="numeric"
                   pattern="[0-9]*"
                   placeholder="00000000"
-                  className="h-14 font-mono tracking-wide text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
+                  className="h-14 border-muted-foreground/70 bg-secondary/10 text-center font-mono text-2xl tracking-wide placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
                   value={code}
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
@@ -415,7 +419,7 @@ export function AuthFlow({
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? "auth-error" : undefined}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40"
+                  className="h-12 border-muted-foreground/70 bg-secondary/10 text-base placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
                 />
               </div>
               <Button type="submit" variant="brand" disabled={loading || !firstName.trim()} className="h-12 w-full text-base font-medium">

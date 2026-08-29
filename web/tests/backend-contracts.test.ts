@@ -7,9 +7,15 @@ import { validateResumeFeedbackRequest } from "../lib/backend/validation";
 import { isResumeIdeasApiEnabled } from "../lib/launch/serverFlags";
 import { resolveEffectiveJobDescription } from "../lib/security/effectiveJobDescription";
 import {
+  LAUNCH_GATE_DEFINITIONS,
   REQUIRED_PUBLIC_TRUST_FILES,
   resolvePublicTrustSurfaceStatus,
 } from "../lib/launch/program";
+import {
+  RELEASE_READINESS_BYPASS_FLAGS,
+  getEnabledReleaseReadinessBypassFlags,
+  resolveReleaseReadinessBypassPolicy,
+} from "../lib/launch/releasePolicy.cjs";
 
 assert.equal(
   freeCookieOptions().maxAge,
@@ -58,9 +64,87 @@ assert.equal(
   "ok",
 );
 
+assert.deepEqual(
+  RELEASE_READINESS_BYPASS_FLAGS,
+  ["USE_MOCK_OPENAI", "SKIP_DB_READY_CHECK"],
+  "only test flags that independently replace release evidence belong in the release bypass policy",
+);
+assert.deepEqual(
+  getEnabledReleaseReadinessBypassFlags({
+    USE_MOCK_OPENAI: " TRUE ",
+    SKIP_DB_READY_CHECK: "on",
+    RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
+    RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
+    RIYP_ALLOW_TEST_INTERNAL_LAUNCH_BYPASS: "true",
+    BYPASS_PAYWALL: "true",
+  }),
+  ["USE_MOCK_OPENAI", "SKIP_DB_READY_CHECK"],
+  "hosted and strict policy must recognize every supported truthy representation without absorbing local-only dependent flags",
+);
+for (const releaseState of ["hosted", "strict"] as const) {
+  assert.deepEqual(
+    resolveReleaseReadinessBypassPolicy({
+      env: { USE_MOCK_OPENAI: "yes", SKIP_DB_READY_CHECK: "1" },
+      releaseState,
+    }),
+    {
+      enabledFlags: ["USE_MOCK_OPENAI", "SKIP_DB_READY_CHECK"],
+      status: "missing",
+    },
+    `${releaseState} release readiness must fail closed when test-only bypasses are enabled`,
+  );
+}
+assert.equal(
+  resolveReleaseReadinessBypassPolicy({
+    env: { USE_MOCK_OPENAI: "true", SKIP_DB_READY_CHECK: "true" },
+    releaseState: "local",
+  }).status,
+  "disabled",
+  "the same bypasses must remain available to an explicitly local test harness",
+);
+assert.equal(
+  resolveReleaseReadinessBypassPolicy({
+    env: { USE_MOCK_OPENAI: "false", SKIP_DB_READY_CHECK: "0" },
+    releaseState: "hosted",
+  }).status,
+  "ok",
+  "a hosted release with real provider and database checks must remain eligible for readiness",
+);
+for (const releaseState of [undefined, "hostd"]) {
+  assert.equal(
+    resolveReleaseReadinessBypassPolicy({
+      env: { USE_MOCK_OPENAI: "true" },
+      releaseState: releaseState as never,
+    }).status,
+    "missing",
+    "an invalid or missing release state must fail closed when a test-only bypass is enabled",
+  );
+}
+
 const repoRoot = fs.existsSync(path.join(process.cwd(), "web"))
   ? process.cwd()
   : path.resolve(process.cwd(), "..");
+const trustGate = LAUNCH_GATE_DEFINITIONS.find((gate) => gate.id === "trust");
+assert.ok(
+  trustGate?.checks.includes("release_bypass_policy"),
+  "hosted runtime bypass policy must participate in a blocking launch gate",
+);
+
+const launchGateSource = fs.readFileSync(
+  path.join(repoRoot, "scripts/launch-go-no-go.cjs"),
+  "utf8",
+);
+assert.match(
+  launchGateSource,
+  /releaseState:\s*strict\s*\?\s*"strict"\s*:\s*"local"/,
+  "the CLI must evaluate the shared release policy in strict state only for a strict gate",
+);
+assert.match(
+  launchGateSource,
+  /if \(strict\) \{[\s\S]*?"release_bypass_policy"[\s\S]*?releaseBypassPolicy\.status === "ok"/,
+  "strict launch verdicts must make the shared bypass policy a blocking condition",
+);
+
 for (const relativePath of REQUIRED_PUBLIC_TRUST_FILES) {
   assert.equal(
     fs.existsSync(path.join(repoRoot, relativePath)),

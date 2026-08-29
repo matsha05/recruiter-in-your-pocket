@@ -234,6 +234,13 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         replace("/workspace?revision=1", { scroll: false });
     }, [handleCancelAnalysis, replace, report]);
 
+    const handleKeepReport = useCallback(() => {
+        if (!report || user) return;
+        setPendingReportForSave(report);
+        Analytics.track("save_prompt_viewed", { score: report?.score || 0 });
+        setIsSavePromptOpen(true);
+    }, [report, user]);
+
     const handleResumeSample = useCallback(async () => {
         try {
             const data = await fetchSampleReport();
@@ -436,6 +443,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             isExporting={isExporting}
                             isSample={isSampleReport}
                             onNewReport={handleNewReport}
+                            onKeepReport={!user && !isSampleReport && !isLaunchFlagEnabled("guestReportSave") ? handleKeepReport : undefined}
                             onUpgrade={() => setIsPaywallOpen(true)}
                             justUnlocked={justUnlocked}
                             highlightSection={highlightSection}

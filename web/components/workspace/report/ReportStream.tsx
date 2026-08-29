@@ -23,6 +23,7 @@ import {
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
 import { FixCanvas, evidenceFor } from "./FixCanvas";
+import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
 import type { ReportData } from "./ReportTypes";
@@ -41,6 +42,7 @@ interface ReportStreamProps {
   hasPaidAccess?: boolean;
   comparisonBaseline?: ReportData | null;
   onStartRevision?: () => void;
+  onStartReport?: () => void;
   resumeText?: string;
 }
 
@@ -77,6 +79,7 @@ export function ReportStream({
   hasPaidAccess = false,
   comparisonBaseline = null,
   onStartRevision,
+  onStartReport,
   resumeText,
 }: ReportStreamProps) {
   const fixes = useMemo(() => (report.top_fixes || []).slice(0, 3), [report.top_fixes]);
@@ -162,7 +165,7 @@ export function ReportStream({
             const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
           }}>
-            See all evidence <ArrowRight className="size-4" weight="bold" />
+            See the fixes <ArrowRight className="size-4" weight="bold" />
           </button>
         </div>
       </section>
@@ -186,12 +189,13 @@ export function ReportStream({
               locked={isGated && index > 0}
               onUnlock={handleUnlock}
               resumeText={resumeText}
+              isSample={isSample}
             />
           ))}
         </div>
       </section>
 
-      <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={resumeText} />
+      <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={resumeText} isReadOnly={isSample} />
 
       {strengths.length > 0 && (
         <section id="section-keep" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
@@ -251,6 +255,26 @@ export function ReportStream({
           </div>
         </div>
       </details>
+
+      <FullRecruiterNotes report={report} hasJobDescription={hasJobDescription} />
+
+      {isSample && onStartReport && (
+        <section className={styles.revisionSection} aria-labelledby="sample-report-next-step-title" data-testid="sample-terminal-cta">
+          <div className={styles.revisionPanel}>
+            <div>
+              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Your first read</p>
+              <h2 id="sample-report-next-step-title" className={styles.revisionTitle}>Now see what lands in yours.</h2>
+              <p className={styles.revisionCopy}>Upload or paste your resume for the same evidence-first read, built from your actual work and the role you want.</p>
+            </div>
+            <div className={styles.revisionAction}>
+              <Button variant="brand" size="lg" onClick={onStartReport}>
+                Get my free report <ArrowRight className="ml-2 size-4" weight="bold" />
+              </Button>
+              <p className={styles.revisionNote}>{FREE_REPORT_ENTITLEMENT.promise} No account required.</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {!isSample && onStartRevision && (
         <section className={styles.revisionSection} aria-labelledby="revision-loop-title" data-testid={isExhausted ? "post-report-purchase-decision" : undefined}>

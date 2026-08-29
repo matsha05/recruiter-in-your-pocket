@@ -1,14 +1,14 @@
 {
   "contract_version": "v2",
   "score": 78,
-  "score_label": "Strong foundation",
-  "score_comment_short": "You come across as the person who keeps complicated launches moving. The page just hides how much you were actually carrying.",
-  "score_comment_long": "You read as a senior Program Manager who ships, someone who takes messy workstreams and makes them land. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What's harder to see is the exact scope (teams, volume, dollars) and the before/after change you drove. The next step is simple: surface the scale and measurable outcomes that are probably already in your head.",
-  "first_impression": "You read as a capable Program Manager with real ownership. The missing piece is scale: how many people, which teams, and what changed because you were there.",
-  "score_plain": "This is a strong foundation. What's missing is the 'so what', the numbers, the scale, the before-and-after.",
-  "biggest_gap_example": "'Led onboarding work across the company, improving productivity' leaves every useful detail off the page: which teams, how many new hires, and what got better.",
-  "first_impression_takeaway": "The work is bigger than the writing.",
-  "summary": "You read as a senior Program Manager who ships, someone who takes messy workstreams and makes them land. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What's harder to see is the exact scope (teams, volume, dollars) and the before/after change you drove. The next step is simple: surface the scale and measurable outcomes that are probably already in your head.",
+  "score_label": "Mostly clear",
+  "score_comment_short": "Ownership is visible, but the work's size and results stay mostly unmeasured.",
+  "score_comment_long": "The launch and onboarding lines show you coordinating work across teams. The quarterly roadmap landing on time gives one concrete result. Add the missing team, volume, and before-and-after details to show how much changed.",
+  "first_impression": "Cross-team launch ownership stands out first, especially the clear owners and checkpoints. The resume still leaves recruiters guessing about team size, program volume, and what improved.",
+  "score_plain": "This should earn a closer read for Program Manager roles. It may lose stronger matches when recruiters cannot size the work.",
+  "biggest_gap_example": "'Led onboarding work across the company, improving productivity.' names no team, volume, or productivity measure, so recruiters cannot size the result.",
+  "first_impression_takeaway": "Show the scale you carried",
+  "summary": "Cross-team launches are the clearest thread in your Program Manager experience. You keep work moving through clear owners, checkpoints, stakeholder alignment, and a quarterly roadmap delivered on time. That makes day-to-day ownership believable. How many teams or people were involved, and what changed after the work? Until those facts are visible, the resume stops short of a senior-level first read.",
   "subscores": {
     "impact": 72,
     "clarity": 81,
@@ -16,23 +16,19 @@
     "readability": 86
   },
   "strengths": [
-    "Ownership is easy to see: you make decisions, name risks, and close the loop.",
-    "The launch work feels real because you show the mechanisms—owners, checkpoints, and risk reviews.",
-    "Your progression suggests steadily larger and messier work, not a string of disconnected jobs.",
-    "You show pattern recognition in how you prevent issues from recurring.",
-    "Your progression across roles shows increasing scope and responsibility."
+    "The launch bullet names clear owners and checkpoints, so the way you coordinate work is easy to follow.",
+    "Delivering the quarterly roadmap on time gives recruiters one concrete result to hold onto.",
+    "Onboarding, launches, and stakeholder alignment form a consistent Program Manager story."
   ],
   "gaps": [
-    "The scale is hidden: the resume rarely says which teams, how many people, or how much work was moving.",
-    "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
-    "Some bullets blend multiple ideas; split them so impact lands.",
-    "A few phrases could be more specific to the systems or programs you ran.",
-    "No clear positioning statement in summary—recruiters can't bucket you quickly."
+    "The onboarding line never names the teams, weekly volume, or the specific productivity change, so its scale is impossible to judge.",
+    "The launch line explains the process but stops before the result, leaving its business value unanswered.",
+    "Without a summary, recruiters must infer whether you are targeting program management, product operations, or core product work."
   ],
   "top_fixes": [
     {
-      "fix": "Name the teams, weekly volume, and result in the onboarding line.",
-      "why": "The line says you improved onboarding, but not who it served, how often it ran, or what improved. Those details are the proof.",
+      "fix": "Add the teams served, weekly volume, and verified productivity change to the onboarding bullet.",
+      "why": "The line says onboarding improved, but recruiters cannot tell who it served or how much changed.",
       "confidence": "high",
       "evidence": {
         "excerpt": "Led onboarding work across the company, improving productivity.",
@@ -43,8 +39,8 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Put the before-and-after result in the launch bullet.",
-      "why": "The mechanics are clear. The outcome is not. A baseline and result would show whether the new launch process actually worked.",
+      "fix": "Add the verified before-and-after result to the cross-team launch bullet.",
+      "why": "The owners and checkpoints explain how you worked, but not whether the launch process improved delivery.",
       "confidence": "high",
       "evidence": {
         "excerpt": "Ran a cross-team launch with clear owners and checkpoints.",
@@ -55,116 +51,77 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Open with the kind of Program Manager you actually are.",
-      "why": "The experience points toward complex launch and operations work, but the page never names that lane. A short summary can make the pattern easier to see.",
-      "confidence": "medium",
-      "evidence": {
-        "excerpt": "No summary section present",
-        "section": "Summary"
-      },
-      "impact_level": "high",
-      "effort": "moderate",
-      "section_ref": "Summary"
-    },
-    {
-      "fix": "Split bullets that mix decisions and outcomes into separate lines",
-      "why": "When you combine what you decided with what happened, neither lands clearly. Recruiters skim, and blended bullets get skipped.",
-      "confidence": "medium",
+      "fix": "Add the functions aligned and your key decision to the quarterly-roadmap bullet.",
+      "why": "Delivering on time is useful, but recruiters still cannot see how broad the alignment was or what you personally decided.",
+      "confidence": "high",
       "evidence": {
         "excerpt": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
         "section": "Work Experience"
       },
-      "impact_level": "medium",
-      "effort": "quick",
+      "impact_level": "high",
+      "effort": "moderate",
       "section_ref": "Work Experience"
-    },
-    {
-      "fix": "List 2-3 specific tools or frameworks you use (e.g., 'Jira, Asana, Linear')",
-      "why": "Generic skills like 'project management' don't help. Recruiters search for specific tools. If you use Jira, Asana, or Linear, say so.",
-      "confidence": "low",
-      "evidence": {
-        "excerpt": "Skilled in project management and cross-functional collaboration.",
-        "section": "Skills"
-      },
-      "impact_level": "medium",
-      "effort": "quick",
-      "section_ref": "Skills"
     }
   ],
   "rewrites": [
     {
       "label": "Impact",
       "original": "Led onboarding work across the company, improving productivity.",
-      "better": "Redesigned [program length] onboarding for [number of hires] across [teams], improving [verified outcome].",
-      "enhancement_note": "Add the program length, number of hires, teams, and verified outcome before using this line."
+      "better": "Led onboarding work across the company; productivity change: [measurable result].",
+      "enhancement_note": "Add the verified productivity measure so recruiters can judge the result."
     },
     {
       "label": "Scope",
       "original": "Ran a cross-team launch with clear owners and checkpoints.",
-      "better": "Ran a [team count]-team launch with clear owners and checkpoints; outcome: [verified before-and-after result].",
-      "enhancement_note": "Add the team count and verified before-and-after result before using this line."
-    },
-    {
-      "label": "Clarity",
-      "original": "(No summary on the resume.)",
-      "better": "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and calmer execution.",
-      "enhancement_note": "Add this only if it accurately reflects the role and operating style you want to target."
+      "better": "Ran a cross-team launch with clear owners and checkpoints; outcome: [measurable result].",
+      "enhancement_note": "Add the verified launch result so the process has a business consequence."
     },
     {
       "label": "Ownership",
-      "original": "Managed cross-functional initiatives.",
-      "better": "Led cross-functional initiatives across [functions] by documenting decisions, risks, and next steps through launch.",
-      "enhancement_note": "Add the functions involved and the outcome so ownership is easier to trust."
-    },
-    {
-      "label": "Before/After",
-      "original": "Drove process improvements.",
-      "better": "Drove process improvements that reduced [pain point] from [baseline] to [result] while maintaining quality.",
-      "enhancement_note": "Add the before and after so the line moves from responsibility to result."
+      "original": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
+      "better": "Managed stakeholder alignment across [specific scope] and delivered the quarterly roadmap on time.",
+      "enhancement_note": "Add the functions involved so recruiters can see the coordination load."
     }
   ],
   "section_review": {
     "Summary": {
-      "working": "There is no dedicated summary to evaluate.",
-      "missing": "The resume does not open with a positioning statement for this Program Manager profile.",
-      "fix": "Add a short summary that names the role, operating style, and strongest scope.",
-      "grade": "C",
-      "priority": "high"
+      "working": "",
+      "missing": "Section not present.",
+      "fix": "Add only if it helps your story.",
+      "grade": "N/A",
+      "priority": "Low"
     },
     "Work Experience": {
-      "working": "Strong ownership language and decision framing; good progression shown",
-      "missing": "Scope and metrics are implied rather than stated; some bullets try to do too much",
-      "fix": "Pick your top 3 bullets and add one number each (team size, user count, revenue impact, time saved)",
+      "working": "Clear owners, checkpoints, and an on-time roadmap make the work easy to follow.",
+      "missing": "The onboarding and launch bullets do not show team size, volume, or a verified result.",
+      "fix": "Add the missing scope and result to the onboarding and launch bullets first.",
       "grade": "B+",
       "priority": "high"
     },
     "Skills": {
-      "working": "Organized and scannable",
-      "missing": "Generic list could apply to any PM; no differentiation",
-      "fix": "Replace 3 generic skills with specific tools or frameworks you've used deeply (e.g., 'Amplitude for product analytics' vs 'Analytics')",
+      "working": "The section is short and easy to scan.",
+      "missing": "'Project management' and 'cross-functional collaboration' repeat what the experience already says.",
+      "fix": "Use the planning and launch methods already named in your experience instead of broad category labels.",
       "grade": "C+",
       "priority": "medium"
     },
     "Education": {
-      "working": "Clean formatting, appropriate detail level",
-      "missing": "Nothing critical—education section is solid",
-      "fix": null,
+      "working": "The section is complete and proportionate to the rest of the resume.",
+      "missing": "No material section-specific gap identified.",
+      "fix": "No change needed unless it improves role alignment.",
       "grade": "A-",
       "priority": "low"
     }
   },
   "job_alignment": {
     "jd_match_score": 72,
-    "jd_match_summary": "Strong on execution and stakeholder management, but missing depth in data analytics and product strategy.",
+    "jd_match_summary": "The resume covers launch execution, stakeholder management, and roadmap delivery. It does not yet show the analytics or user-research work named in the job description.",
     "jd_keywords": {
       "matched": [
-        "Cross-functional leadership",
         "Stakeholder management",
         "Program management",
         "Launch execution",
-        "Process improvement",
-        "Roadmap planning",
-        "Risk management"
+        "Roadmap planning"
       ],
       "missing": [
         "SQL",
@@ -172,87 +129,69 @@
         "Product analytics",
         "User research"
       ],
-      "match_count": 7,
-      "total_count": 11
+      "match_count": 4,
+      "total_count": 8
     },
     "strongly_aligned": [
-      "Cross-functional coordination",
       "Stakeholder management",
       "Launch execution and delivery",
-      "Process improvement"
+      "Roadmap planning"
     ],
     "underplayed": [
-      "Data-driven decision making",
-      "Technical depth and roadmap influence",
-      "Customer discovery and user research"
+      "Product analytics",
+      "User research"
     ],
     "missing": [
-      "B2B SaaS experience",
-      "Revenue or growth metrics ownership"
+      "SQL"
     ],
     "role_fit": {
       "best_fit_roles": [
         "Program Manager",
         "Technical Program Manager",
-        "Product Operations Manager",
-        "Launch/GTM Product Manager"
+        "Product Operations Manager"
       ],
       "stretch_roles": [
-        "Product Manager (core)",
-        "Chief of Staff"
+        "Product Manager"
       ],
-      "seniority_read": "Senior IC / early Manager",
-      "industry_signals": [
-        "B2B",
-        "Enterprise",
-        "Platform/Infrastructure"
-      ],
-      "company_stage_fit": "Growth-stage to established companies (50-5000 employees)"
+      "seniority_read": "Senior individual contributor",
+      "industry_signals": [],
+      "company_stage_fit": "Not enough employer context to call."
     },
-    "positioning_suggestion": "You read strongest as an execution-focused PM who keeps complex, cross-functional work on track. If you want to position for core PM roles, surface more user insight and product strategy work. If TPM/Program Manager is your target, lean into the coordination and process wins—that's already your edge."
+    "positioning_suggestion": "Program Manager is the clearest fit because the resume shows launches, stakeholder alignment, and roadmap delivery. For core Product Manager roles, add the analytics and user-research work only if you have done it."
   },
   "ideas": {
     "questions": [
       {
         "question": "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
-        "archetype": "TENSION POINT",
-        "why": "This tells recruiters whether you can make calls under pressure, not just execute tasks."
+        "archetype": "SCALING",
+        "why": "That answer would turn 'across the company' into a size recruiters can understand."
       },
       {
         "question": "What was happening before the new launch process, and what was measurably different after it?",
         "archetype": "HIGH STAKES",
-        "why": "Recruiters look for ownership and composure. Both are hard to fake and memorable."
+        "why": "The process is visible; this answer would show whether it changed delivery."
       },
       {
-        "question": "Which role should this resume be unmistakably aiming for—and what kind of work do you want to be hired to own?",
+        "question": "Which role should this resume unmistakably target, and what kind of work do you want to own?",
         "archetype": "SCALING",
-        "why": "Scope is often hidden; surfacing it can jump you to the next tier."
+        "why": "The experience could point to program management, product operations, or core product work, so the target should guide what leads."
       },
       {
         "question": "When did you change your mind based on data or customer feedback, and what happened?",
         "archetype": "IMPROVEMENT",
-        "why": "Recruiters value intellectual honesty and user focus. This shows you can update your thinking."
+        "why": "The current page shows coordination, but not how you evaluated or changed a plan."
       },
       {
-        "question": "What system, process, or tool did you build that's still running without you?",
+        "question": "What decision did you personally make during the cross-team launch, and what changed because of it?",
         "archetype": "END-TO-END OWNERSHIP",
-        "why": "Lasting impact signals senior thinking. Recruiters want to know you build foundations, not just ship."
+        "why": "A concrete decision would separate your ownership from meeting facilitation."
       }
-    ],
-    "notes": [
-      "Each question maps to a common gap: decision-making, scale, learning, or lasting impact.",
-      "Answer in 1-2 sentences first, then see if it belongs on your resume.",
-      "Even qualitative answers (morale improved, process stuck) can strengthen a bullet.",
-      "The best bullets come from moments you almost forgot—these questions help surface them."
-    ],
-    "how_to_use": "Pick one question, write a rough answer, then turn it into a bullet using the Mechanism → Scope → Impact pattern. If you can add a number, do it."
+    ]
   },
   "next_steps": [
-    "Add scope (teams, volume, regions) to two top bullets.",
-    "State one before/after metric in a headline bullet.",
-    "Rewrite your summary to position your PM style and domain preference.",
-    "Split any bullet that mixes decisions and outcomes.",
-    "Consider adding a Projects section if you have side work to show."
+    "Add the teams served, weekly volume, and verified productivity change to the onboarding bullet.",
+    "Add the launch result and the functions involved to the next two bullets.",
+    "After those facts are visible, add a short summary naming Program Manager as the target."
   ],
   "layout_score": 86,
   "layout_band": "strong",
