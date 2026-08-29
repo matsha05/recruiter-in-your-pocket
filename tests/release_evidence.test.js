@@ -8,6 +8,7 @@ const {
   inspectReleaseCandidate,
   releaseCandidateIsUnchanged,
   summarizeAutopilot,
+  summarizeLaunchGate,
 } = require("../scripts/release-evidence.cjs");
 
 function git(repo, args) {
@@ -100,6 +101,23 @@ try {
   assert.equal(candidateBindingIsValid(dirty), false);
   assert.equal(releaseCandidateIsUnchanged(clean, dirty), false);
   assert.equal(summarizeAutopilot([{ category: "check", outcome: "pass" }], dirty).releaseVerdict, "no_go");
+
+  const automatedGatePass = summarizeLaunchGate([
+    { status: "pass" },
+    { status: "info" },
+  ]);
+  assert.equal(automatedGatePass.automatedChecksPassed, true);
+  assert.equal(automatedGatePass.manualRehearsalRequired, true);
+  assert.equal(automatedGatePass.goNoGo, false);
+  assert.equal(automatedGatePass.releaseVerdict, "manual_rehearsal_required");
+
+  const automatedGateFailure = summarizeLaunchGate([
+    { status: "pass" },
+    { status: "fail" },
+  ]);
+  assert.equal(automatedGateFailure.automatedChecksPassed, false);
+  assert.equal(automatedGateFailure.goNoGo, false);
+  assert.equal(automatedGateFailure.releaseVerdict, "no_go");
 } finally {
   fs.rmSync(repo, { recursive: true, force: true });
 }

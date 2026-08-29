@@ -143,6 +143,8 @@ npm run launch:rehearsal
 
 `npm run launch:autopilot` records the current Git SHA, branch, and tracked-tree cleanliness at both the beginning and completion of automated verification. The receipt fails if the candidate changes between those checks. It reports automated checks separately and always leaves the release verdict at `MANUAL REHEARSAL REQUIRED` until the checklist in `95-launch-rehearsal.md` has been completed against the same candidate. Generating that checklist is not a rehearsal pass.
 
+`npm run launch:gate` and its strict variant return a successful process status when their automated checks pass, but they never print or record a release-level `GO`. Their success means only that the automated slice passed; the immutable preview rehearsal, hosted readiness proof, exact-commit CI, and Matt's promotion approval remain mandatory.
+
 `npm run launch:gate:strict` remains the live-quality command. It must fail while paid evaluations are not explicitly authorized. That failure is an intentional spend control, not a release-candidate defect. A strict local result is still not permission to promote: exact-commit CI and the manual preview record are required.
 
 ### Immutable release sequence

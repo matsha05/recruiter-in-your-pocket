@@ -8,6 +8,7 @@ const {
   describeReleaseCandidate,
   inspectReleaseCandidate,
   releaseCandidateIsUnchanged,
+  summarizeLaunchGate,
 } = require("./release-evidence.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -429,10 +430,10 @@ checkCondition(
 );
 
 const blockers = results.filter((result) => result.status === "fail");
-// A launch gate must never print GO while any check is visibly failing. The
-// severity still helps triage the blocker, but it does not turn a failure into
-// an advisory result.
-const goNoGo = blockers.length === 0;
+// This command proves only the automated slice of the release program. It must
+// never authorize promotion or print GO without the exact-SHA remote CI,
+// immutable preview rehearsal, hosted readiness, and human approval gates.
+const gateSummary = summarizeLaunchGate(results);
 
 const payload = {
   generatedAt: new Date().toISOString(),
@@ -440,7 +441,7 @@ const payload = {
   candidateAtCompletion,
   candidateStable,
   strict,
-  goNoGo,
+  ...gateSummary,
   blockers: blockers.map(({ id, label, severity, details }) => ({ id, label, severity, details })),
   results,
 };
@@ -455,7 +456,12 @@ if (json) {
   console.log("\nRIYP Launch Gate");
   console.log("================");
   console.log(`Mode: ${strict ? "STRICT" : "STANDARD"}`);
-  console.log(`Verdict: ${goNoGo ? "GO" : "NO-GO"}`);
+  console.log(
+    `Verdict: ${gateSummary.automatedChecksPassed
+      ? "AUTOMATED CHECKS PASSED; MANUAL REHEARSAL REQUIRED (NOT GO)"
+      : "NO-GO"}`,
+  );
+  console.log("Exit status reflects automated checks only; it never authorizes production promotion.");
   console.log("");
 
   for (const result of results) {
@@ -468,4 +474,4 @@ if (json) {
   console.log(`Saved report: docs/launch-readiness/generated/go-no-go-latest.json`);
 }
 
-process.exit(goNoGo ? 0 : 1);
+process.exit(gateSummary.automatedChecksPassed ? 0 : 1);

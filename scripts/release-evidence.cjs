@@ -170,10 +170,25 @@ function summarizeAutopilot(results, candidate, candidateAtCompletion = candidat
   };
 }
 
+function summarizeLaunchGate(results) {
+  const automatedChecksPassed = results.length > 0
+    && results.every((result) => result.status !== "fail");
+
+  return {
+    automatedChecksPassed,
+    manualRehearsalRequired: true,
+    // Preserve the legacy field for consumers while making its release-level
+    // meaning explicit: automated checks alone never authorize promotion.
+    goNoGo: false,
+    releaseVerdict: automatedChecksPassed ? "manual_rehearsal_required" : "no_go",
+  };
+}
+
 module.exports = {
   candidateBindingIsValid,
   describeReleaseCandidate,
   inspectReleaseCandidate,
   releaseCandidateIsUnchanged,
   summarizeAutopilot,
+  summarizeLaunchGate,
 };

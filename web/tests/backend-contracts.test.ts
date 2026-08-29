@@ -144,6 +144,16 @@ assert.match(
   /if \(strict\) \{[\s\S]*?"release_bypass_policy"[\s\S]*?releaseBypassPolicy\.status === "ok"/,
   "strict launch verdicts must make the shared bypass policy a blocking condition",
 );
+assert.match(
+  launchGateSource,
+  /MANUAL REHEARSAL REQUIRED \(NOT GO\)/,
+  "the automated launch gate must never present its success as release authorization",
+);
+assert.doesNotMatch(
+  launchGateSource,
+  /Verdict:.*\?\s*"GO"/,
+  "the automated launch gate must never print a standalone GO verdict",
+);
 
 for (const relativePath of REQUIRED_PUBLIC_TRUST_FILES) {
   assert.equal(
