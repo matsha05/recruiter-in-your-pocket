@@ -36,8 +36,8 @@ export default function TechOfferNegotiationGuidePage() {
                     <div>
                         <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
                         <h1 className="mt-5 max-w-4xl font-display text-6xl riyp-weight-500 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-7xl lg:text-8xl">
-                            What will this tech offer pay you?
-                            <span className="mt-2 block text-brand">Compare the pay year by year.</span>
+                            Compare your tech offer
+                            <span className="mt-2 block text-brand">year by year.</span>
                         </h1>
                     </div>
                     <div className="border-l-2 border-brand pl-5">
