@@ -160,7 +160,7 @@ test.describe("launch red-team journeys", () => {
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
     const feedback = page.getByTestId("report-feedback");
-    await expect(feedback).toContainText("Tell us which advice helped and which line needs another look.");
+    await expect(feedback).toContainText("Tell us which advice helped or felt wrong. Include an example so we can look into it.");
     await expect(feedback).not.toContainText("beta");
     await expect(feedback).toContainText("Your resume is never attached.");
     const feedbackLink = feedback.getByRole("link", { name: "Send feedback", exact: true });
