@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowsClockwise, Info, LockKey, Receipt, ShieldCheck } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
@@ -10,6 +10,7 @@ import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
 const billingPoints = [
     {
@@ -25,7 +26,7 @@ const billingPoints = [
     {
         icon: Receipt,
         title: "Immediate access",
-        body: "Your five-report pass begins after checkout and can be restored from the same email.",
+        body: "Your pass starts after checkout. Use the same account to restore it if needed.",
     },
 ];
 
@@ -71,8 +72,8 @@ function PricingHeroActions({
                     className="flex min-h-14 cursor-not-allowed items-center justify-between gap-4 rounded-md border border-border bg-muted/35 px-4 py-3 text-left text-muted-foreground"
                 >
                     <span>
-                        <span className="block text-sm font-semibold">5 careful reports · $29</span>
-                        <span className="mt-0.5 block text-xs leading-4">Checkout opens after beta verification</span>
+                        <span className="block text-sm font-semibold">5 reports · $29</span>
+                        <span className="mt-0.5 block text-xs leading-4">Paid passes are currently unavailable</span>
                     </span>
                     <LockKey aria-hidden="true" className="size-4 shrink-0" weight="bold" />
                 </Button>
@@ -81,14 +82,13 @@ function PricingHeroActions({
     );
 }
 
-export default function PricingPageClient() {
+export default function PricingPageClient({ returnTo: requestedReturnTo = null, paymentCancelled = false }: {
+    returnTo?: string | null;
+    paymentCancelled?: boolean;
+}) {
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
-    const [paymentCancelled, setPaymentCancelled] = useState(false);
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
-
-    useEffect(() => {
-        setPaymentCancelled(new URLSearchParams(window.location.search).get("payment") === "cancelled");
-    }, []);
+    const returnTo = normalizeCheckoutReturnTo(requestedReturnTo);
 
     async function handleCheckout() {
         const tier: PricingTier = "30d";
@@ -102,6 +102,7 @@ export default function PricingPageClient() {
                     tier,
                     source: "pricing",
                     idempotencyKey: crypto.randomUUID(),
+                    ...(returnTo ? { returnTo } : {}),
                 }),
             });
             const data = await res.json();
@@ -125,9 +126,9 @@ export default function PricingPageClient() {
                         <div className="pricing-rail mx-auto">
                             <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-10 lg:items-end">
                                 <div>
-                                    <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Beta access</p>
+                                    <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Pricing</p>
                                     <h1 className="max-w-3xl text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[1.08] tracking-[-0.05em]">
-                                        One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
+                                        Your first report is <span className="riyp-marker riyp-marker-block">free.</span><br className="sm:hidden" /> Five more are $29.
                                     </h1>
                                     <PricingHeroActions
                                         billingEnabled={false}
@@ -136,9 +137,13 @@ export default function PricingPageClient() {
                                     />
                                 </div>
                                 <p className="max-w-lg text-pretty text-lg leading-8 text-muted-foreground lg:mb-2">
-                                    Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will give you five careful recruiter-style reports for the revisions and applications that matter most. One payment, 30 days, no renewal.
+                                    Paid passes are currently unavailable. You can still get your first complete report free.
                                 </p>
                             </div>
+
+                            {returnTo ? (
+                                <Link href={returnTo} className="mt-6 inline-flex text-sm font-semibold text-foreground underline underline-offset-4">Back to my comparison</Link>
+                            ) : null}
 
                             <div className="mt-10 grid overflow-hidden border-y border-border bg-background/60 md:grid-cols-2">
                                 <div className="border-b border-border p-7 md:border-b-0 md:border-r md:px-8 md:py-8">
@@ -146,22 +151,23 @@ export default function PricingPageClient() {
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
-                                        The recruiter takeaway, evidence, questions to answer, and rewrites are all included. {FREE_REPORT_ENTITLEMENT.promise} {FREE_REPORT_ENTITLEMENT.boundary}
+                                        Get the overall impression, the lines behind it, and the changes to make first. {FREE_REPORT_ENTITLEMENT.promise}
                                     </p>
+                                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
                                     <Link href="/workspace" className="pricing-primary-cta mt-10 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
-                                        Run your free report
+                                        Get my free report
                                         <ArrowRight className="size-4" />
                                     </Link>
                                 </div>
                                 <div className="p-7 md:px-8 md:py-8">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$29</p>
-                                    <p className="mt-2 text-base text-muted-foreground">Five careful reports for 30 days</p>
+                                    <p className="mt-2 text-base text-muted-foreground">Five reports to use within 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
-                                        For the resume revisions and applications that matter most. No subscription and no automatic renewal.
+                                        Compare revisions or review your resume against another job posting. One payment, no automatic renewal.
                                     </p>
                                     <p role="status" className="pricing-disabled-cta mt-10 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
-                                        Checkout opens after beta verification
+                                        Paid passes are currently unavailable
                                     </p>
                                 </div>
                             </div>
@@ -185,7 +191,7 @@ export default function PricingPageClient() {
                                     id="pricing-page-title"
                                     className="max-w-[760px] text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]"
                                 >
-                                    One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
+                                    Your first report is <span className="riyp-marker riyp-marker-block">free.</span><br className="sm:hidden" /> Five more are $29.
                                 </h1>
                                 <PricingHeroActions
                                     billingEnabled
@@ -194,7 +200,7 @@ export default function PricingPageClient() {
                                 />
                             </div>
                             <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">
-                                No teaser score and no subscription waiting in the weeds. The Job Search Pass gives you five careful recruiter-style reports for important revisions and applications.
+                                Five additional reports for $29. Use them within 30 days to compare revisions or review another application. No automatic renewal.
                             </p>
                         </div>
 
@@ -203,6 +209,13 @@ export default function PricingPageClient() {
                                 <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
                                 <p><span className="font-semibold">Checkout canceled.</span> Nothing was charged.</p>
                             </div>
+                        ) : null}
+
+                        {returnTo ? (
+                            <p className="mt-6 text-sm leading-6 text-muted-foreground">
+                                After checkout, you can return to your saved report and compare a revision.{" "}
+                                <Link href={returnTo} className="font-semibold text-foreground underline underline-offset-4">Back to my comparison</Link>
+                            </p>
                         ) : null}
 
                         <div className="mt-10 grid gap-0 md:grid-cols-2">
@@ -233,12 +246,12 @@ export default function PricingPageClient() {
                 <section className="border-y border-line bg-surface-sky/45 px-6 py-14 md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.65fr_1.35fr]">
                         <div>
-                            <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand">Billing clarity</p>
+                            <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand">Before you pay</p>
                             <h2 className="max-w-sm font-display text-[clamp(2.2rem,4vw,3.5rem)] riyp-weight-560 leading-[1.02] tracking-[-0.035em] riyp-stretch-94">
-                                The terms, in plain language.
+                                What happens after checkout.
                             </h2>
                             <p className="mt-4 max-w-sm text-lg leading-7 text-muted-foreground">
-                                The price, expiration date, and included reports stay visible before checkout.
+                                Your pass starts right away and ends after 30 days. Your card will not be charged again automatically.
                             </p>
                         </div>
 
@@ -263,7 +276,7 @@ export default function PricingPageClient() {
                             <p className="mt-2 text-lg text-muted-foreground">Restore an existing purchase or open billing settings.</p>
                         </div>
                         <Link
-                            href="/purchase/restore"
+                            href={getCheckoutRestoreHref(returnTo)}
                             className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-md border border-line px-5 py-3 text-base font-semibold text-foreground transition-[background-color,border-color,transform] duration-200 hover:border-brand/45 hover:bg-brand/5 active:scale-[0.99]"
                         >
                             Restore access

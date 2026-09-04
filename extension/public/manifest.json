@@ -52,8 +52,7 @@
         "https://www.linkedin.com/*",
         "https://www.indeed.com/*",
         "https://*.indeed.com/*",
-        "https://recruiterinyourpocket.com/*",
-        "http://localhost:3000/*"
+        "https://www.recruiterinyourpocket.com/*"
     ],
     "web_accessible_resources": [
         {

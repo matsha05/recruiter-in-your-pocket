@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
     Clock,
@@ -119,6 +120,7 @@ async function fetchReceiptsRequest(): Promise<ReceiptRecord[]> {
 }
 
 export default function SettingsClient({ initialTab = "account" }: SettingsClientProps) {
+    const pathname = usePathname();
     const { user, refreshUser, isLoading: authLoading } = useAuth();
     const queryClient = useQueryClient();
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
@@ -481,7 +483,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         </p>
                         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                             <Link
-                                href="/auth"
+                                href={`/auth?from=settings&next=${encodeURIComponent(pathname || `/settings/${activeTab}`)}`}
                                 className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
                             >
                                 Sign in

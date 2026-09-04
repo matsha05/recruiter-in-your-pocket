@@ -24,7 +24,7 @@ async function run() {
   assert.equal(configuredDailyGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "not-a-number" }), null);
   assert.equal(
     DAILY_CAPACITY_EXHAUSTED_MESSAGE,
-    "Today's beta report capacity has been reached. Please try again tomorrow.",
+    "Today's report capacity has been reached. Please try again tomorrow.",
   );
 
   const local = await reserveDailyGenerationCapacity({ env: { NODE_ENV: "development" }, redis: null });

@@ -12,6 +12,8 @@ import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
+import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
 
 type ReportLoadState = "loading" | "ready" | "signed_out" | "not_found" | "error";
 
@@ -21,19 +23,39 @@ type ReportDetailClientProps = {
 
 export default function ReportDetailClient({ reportId }: ReportDetailClientProps) {
   const { push } = useRouter();
-  const { user } = useAuth();
-  const [state, setState] = useState<ReportLoadState>("loading");
+  const { user, isLoading: isAuthLoading } = useAuth();
+  const userId = user?.id ?? null;
+  const requestIdentity = JSON.stringify([reportId, userId, isAuthLoading]);
+  const [loadedFor, setLoadedFor] = useState(requestIdentity);
+  const [loadState, setState] = useState<ReportLoadState>("loading");
+  const [loadAttempt, setLoadAttempt] = useState(0);
+  const state = loadedFor === requestIdentity ? loadState : "loading";
   const [report, setReport] = useState<ReportData | null>(null);
   const [hasJobDescription, setHasJobDescription] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
+  const canExportPdf = Boolean(user?.canExportPdf);
+  const revisionHref = getSavedReportRevisionHref(reportId);
   const freeUsesRemaining = Math.max(0, user?.freeUsesLeft ?? 0);
 
-  const loadReport = useCallback(async () => {
+  const loadReport = useCallback(async (signal: AbortSignal) => {
+    setLoadedFor(requestIdentity);
     setState("loading");
+    setReport(null);
+    setHasJobDescription(false);
+    if (isAuthLoading) return;
+    if (!userId) {
+      setState("signed_out");
+      return;
+    }
     try {
-      const res = await fetch(`/api/reports/${reportId}`);
+      const res = await fetch(`/api/reports/${encodeURIComponent(reportId)}`, {
+        signal,
+        credentials: "same-origin",
+        cache: "no-store",
+      });
+      if (signal.aborted) return;
 
       if (res.status === 401) {
         setState("signed_out");
@@ -46,6 +68,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       }
 
       const data = await res.json().catch(() => null);
+      if (signal.aborted) return;
       if (!res.ok || !data?.ok || !data?.report) {
         setState("error");
         return;
@@ -57,13 +80,15 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       setState("ready");
       Analytics.track("report_detail_opened");
     } catch {
-      setState("error");
+      if (!signal.aborted) setState("error");
     }
-  }, [reportId]);
+  }, [isAuthLoading, reportId, requestIdentity, userId]);
 
   useEffect(() => {
-    void loadReport();
-  }, [loadReport]);
+    const controller = new AbortController();
+    void loadReport(controller.signal);
+    return () => controller.abort();
+  }, [loadAttempt, loadReport]);
 
   async function handleExportPdf(overrideReport?: ReportData) {
     const payload = overrideReport || report;
@@ -188,7 +213,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             </p>
             <div className="mt-5 flex items-center justify-center gap-2">
               <button type="button"
-                onClick={() => void loadReport()}
+                onClick={() => setLoadAttempt((attempt) => attempt + 1)}
                 className="min-h-11 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
               >
                 Retry
@@ -244,7 +269,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               }
             />
             <div className="mt-4 border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
-              Saved reports preserve the first impression and rewrites from that run. If you want a fresh report with new role context, get another report from the workspace.
+              Saved reports preserve the original findings and rewrites. Choose Compare my revision to add your updated resume and see what changed.
             </div>
           </div>
 
@@ -252,12 +277,13 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             report={report}
             isLoading={false}
             hasJobDescription={hasJobDescription}
-            onExportPdf={hasPaidAccess ? handleExportPdf : undefined}
+            onExportPdf={canExportPdf ? handleExportPdf : undefined}
             isExporting={isExporting}
             isSample={false}
             onNewReport={() => push("/workspace")}
+            onStartRevision={revisionHref ? () => push(revisionHref) : undefined}
             freeUsesRemaining={freeUsesRemaining}
-            onUpgrade={() => push("/pricing")}
+            onUpgrade={() => push(getCheckoutPricingHref(revisionHref))}
             isGated={false}
             justUnlocked={false}
             highlightSection={null}

@@ -8,6 +8,7 @@ import {
   type IndependentRewrite,
 } from "@/lib/reports/report-presentation";
 import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
+import { hasBracketPlaceholders } from "@/lib/llm/report-placeholder-policy";
 
 function IndependentRewriteCard({
   item,
@@ -19,20 +20,23 @@ function IndependentRewriteCard({
   isReadOnly: boolean;
 }) {
   const [copied, setCopied] = useState(false);
+  const needsFacts = hasBracketPlaceholders(item.rewrite.better);
   const policy = resolveRewriteCopyPolicy({
     sourceText: resumeText,
     original: item.rewrite.original,
     draft: item.rewrite.better,
   });
   const guidance = isReadOnly
-    ? "Read-only example. Your report will use the facts in your resume."
+    ? needsFacts
+      ? "The brackets mark details missing from the original. Add only what you can verify."
+      : "This example uses only the details in the original line."
     : policy.reason === "source_unavailable"
-    ? "Copy is unavailable because this view does not include the source resume."
+    ? "The original resume is not available in this view, so copying is disabled."
     : policy.reason === "unresolved_placeholders"
-      ? "Replace every bracket with a fact from your actual work before copying."
+      ? "The brackets mark missing details. Add only what you can verify before copying."
       : policy.reason === "unsafe"
-        ? "This wording changes or drops source facts, so it stays read-only."
-        : "Source facts are preserved.";
+        ? "This draft changes or leaves out a detail from your resume, so copying is disabled."
+        : "Check the wording, then make it sound like you.";
 
   const handleCopy = async () => {
     if (!policy.copyable) return;
@@ -53,7 +57,7 @@ function IndependentRewriteCard({
         </div>
         <div className="bg-brand/[0.065] px-5 py-5">
           <div className="flex items-start justify-between gap-3">
-            <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example suggestion" : "Suggestion"}</p>
+            <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-brand">{needsFacts ? "Draft to complete with your facts" : isReadOnly ? "Example wording" : "Suggested wording"}</p>
             {!isReadOnly && (
               <button
                 type="button"
@@ -93,10 +97,10 @@ export function IndependentAdvice({
     <section id="section-independent-advice" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
       {rewrites.length > 0 && (
         <div>
-          <p className="riyp-type-11px font-semibold uppercase riyp-track-017 text-brand">Other source lines</p>
-          <h2 className="mt-3 max-w-[18ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">Rewrites that stand on their own.</h2>
+          <p className="riyp-type-11px font-semibold uppercase riyp-track-017 text-brand">Other suggestions</p>
+          <h2 className="mt-3 max-w-[18ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">A few more lines to consider.</h2>
           <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">
-            These suggestions do not share a unique evidence match with the ordered fixes above, so they stay separate.
+            Consider these suggestions alongside the edits above. Compare each one with its original line.
           </p>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
             {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
@@ -111,7 +115,7 @@ export function IndependentAdvice({
             <p className="riyp-type-11px font-semibold uppercase riyp-track-017">Details to add</p>
           </div>
           <h2 className="mt-3 max-w-[20ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">Questions only you can answer.</h2>
-          <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">Keep these separate from the edits above. Add an answer only when you can verify it.</p>
+          <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">Your answers may help fill the gaps. Add a detail only when you know it is accurate.</p>
           <ol className="mt-6 divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
             {questions.map(({ question, originalIndex }) => (
               <li key={`${originalIndex}-${question.question}`} className="grid gap-2 py-5 sm:grid-cols-[2.5rem_1fr]">

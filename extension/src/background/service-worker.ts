@@ -92,20 +92,20 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
         case 'GET_JOBS': {
             const auth = await refreshAuth();
             if (auth.verified && !auth.authenticated) {
-                return { success: true, data: await getLocalJobs() };
+                return { success: true, data: await getLocalJobs(), syncStatus: 'signed-out' };
             }
             try {
                 const { jobs, userId } = await getSavedJobs();
                 const savedJobs = await reconcileSavedJobs(jobs, userId);
                 await updateBadge();
-                return { success: true, data: savedJobs };
+                return { success: true, data: savedJobs, syncStatus: 'synced' };
             } catch (error) {
                 if (error instanceof ApiError && error.status === 401) {
                     await setActiveUser(null);
                     await updateBadge();
                 }
                 // Keep the last confirmed snapshot on network/API failure.
-                return { success: true, data: await getLocalJobs() };
+                return { success: true, data: await getLocalJobs(), syncStatus: error instanceof ApiError && error.status === 401 ? 'signed-out' : 'offline' };
             }
         }
 

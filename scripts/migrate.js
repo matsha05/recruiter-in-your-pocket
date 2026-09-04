@@ -11,6 +11,7 @@ const { verifyAtomicReportFinalization } = require("./migration-replay/verify-at
 const {
   verifyAuthenticatedGenerationOperations,
 } = require("./migration-replay/verify-authenticated-generation-operations.cjs");
+const { verifyRevokedPassAccess } = require("./migration-replay/verify-revoked-pass-access.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const migrationsDir = path.join(repoRoot, "web", "database", "migrations");
@@ -44,6 +45,7 @@ const MIGRATIONS = [
   ["018_single_use_report_receipts", "web/database/migrations/018_single_use_report_receipts.sql"],
   ["019_atomic_generation_report_finalization", "web/database/migrations/019_atomic_generation_report_finalization.sql"],
   ["020_authenticated_generation_operations", "web/database/migrations/020_authenticated_generation_operations.sql"],
+  ["021_revoked_pass_generation_access", "web/database/migrations/021_revoked_pass_generation_access.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -201,6 +203,7 @@ async function verifyCleanReplay(manifest) {
         "018_single_use_report_receipts",
         "019_atomic_generation_report_finalization",
         "020_authenticated_generation_operations",
+        "021_revoked_pass_generation_access",
       ],
     );
     for (const migration of upgradeBaseline) {
@@ -232,6 +235,7 @@ async function verifyCleanReplay(manifest) {
     await verifyReportReceiptSecurity(db);
     await verifyAtomicReportFinalization(db);
     await verifyAuthenticatedGenerationOperations(db);
+    await verifyRevokedPassAccess(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";

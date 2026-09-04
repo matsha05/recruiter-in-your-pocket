@@ -6,7 +6,7 @@ import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { normalizeReportForPdf, parsePdfExportRequest } from "@/lib/reports/pdf-export";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { isPassActive } from "@/lib/billing/entitlements";
+import { hasPdfExportAccess } from "@/lib/billing/entitlements";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
@@ -55,12 +55,12 @@ export async function POST(request: NextRequest) {
     if (!isDevelopmentPaywallBypassEnabled()) {
       const { data: passes, error: passesError } = await supabase
         .from("passes")
-        .select("tier, uses_remaining, expires_at")
+        .select("tier, uses_remaining, expires_at, revoked_at")
         .eq("user_id", user.id);
 
       if (passesError) throw passesError;
-      const hasPaidAccess = (passes || []).some((pass: any) => isPassActive(pass));
-      if (!hasPaidAccess) {
+      const canExportPdf = (passes || []).some((pass) => hasPdfExportAccess(pass));
+      if (!canExportPdf) {
         const res = NextResponse.json(
           { ok: false, errorCode: "PAID_ACCESS_REQUIRED", message: "PDF export is included with paid access." },
           { status: 402 }

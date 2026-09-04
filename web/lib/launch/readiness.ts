@@ -271,7 +271,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     sharedRateLimitConfigured
       ? "Shared rate limiting and idempotency are configured."
       : hostedRuntime
-        ? "A compatible Upstash or Vercel KV REST credential pair is required for paid beta traffic."
+        ? "A compatible Upstash or Vercel KV REST credential pair is required for paid traffic."
         : "Shared rate limiting is not configured in this local environment."
   );
 
@@ -370,7 +370,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       "billing_unlock",
       hostedRuntime ? "missing" : "disabled",
       hostedRuntime
-        ? "Billing unlock must be explicitly enabled for the paid beta."
+        ? "Billing must be explicitly enabled for the paid product."
         : "Billing unlock is disabled by launch flag in this local environment."
     );
     addCheck(
@@ -378,7 +378,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       "billing_webhook",
       hostedRuntime ? "missing" : "disabled",
       hostedRuntime
-        ? "Stripe webhook configuration is required for the paid beta."
+        ? "Stripe webhook configuration is required for the paid product."
         : "Stripe webhook is disabled because billing is disabled."
     );
   }
@@ -661,7 +661,7 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
       ? [{
           name: "Extension-assisted workflows",
           status: toPublicStatus(gateStatus("extension")),
-          message: "Extension sync reports configured status only when the private beta is enabled.",
+          message: "Extension sync reports configured status only when the extension is enabled.",
         }]
       : []),
   ];

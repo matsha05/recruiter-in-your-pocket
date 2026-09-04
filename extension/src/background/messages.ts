@@ -19,6 +19,7 @@ export interface JobMeta {
 
 // Job status workflow
 export type JobStatus = 'saved' | 'interested' | 'applying' | 'interviewing' | 'archived';
+export type JobSyncStatus = 'synced' | 'signed-out' | 'offline';
 
 // Saved job with match score
 export interface SavedJob extends JobMeta {
@@ -54,7 +55,7 @@ export type ExtensionMessage =
 
 // Response types
 export type ExtensionResponse =
-    | { success: true; data: SavedJob[] }
+    | { success: true; data: SavedJob[]; syncStatus?: JobSyncStatus }
     | { success: true; data: SavedJob }
     | { success: true; data: { score: number } }
     | { success: true; data: { authenticated: boolean; user: AuthUser | null } }

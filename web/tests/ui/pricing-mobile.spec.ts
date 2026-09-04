@@ -12,10 +12,10 @@ test.describe("mobile pricing actions", () => {
     await expect(freeAction).toHaveAttribute("href", "/workspace");
     await expect(paidState).toBeVisible();
     await expect(paidState).toBeDisabled();
-    await expect(paidState).toContainText("Checkout opens after beta verification");
+    await expect(paidState).toContainText("Paid passes are currently unavailable");
     await expect(paidState).not.toHaveAttribute("href", /.+/);
     await expect(page.getByText(/Your first complete report is free\. No card required\./).first()).toBeVisible();
-    await expect(page.getByText(/daily beta capacity applies/).first()).toBeVisible();
+    await expect(page.getByText(/Daily capacity limits apply/).first()).toBeVisible();
 
     const actionsBottom = await paidState.evaluate((element) => element.getBoundingClientRect().bottom);
     expect(actionsBottom).toBeLessThanOrEqual(820);

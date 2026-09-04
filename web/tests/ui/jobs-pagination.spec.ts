@@ -14,6 +14,7 @@ interface HarnessPlugin {
 }
 const HARNESS_ORIGIN = "http://127.0.0.1:3100";
 let harnessScript = "";
+let detailHarnessScript = "";
 
 const USER_A = "11111111-1111-4111-8111-111111111111";
 const USER_B = "22222222-2222-4222-8222-222222222222";
@@ -43,7 +44,7 @@ function makeJobs(first: number, count: number, status: JobStatus = "saved") {
 
 type MockJob = ReturnType<typeof makeJobs>[number];
 
-async function buildJobsHarness() {
+async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'JobsClient') {
   const mocks: Record<string, string> = {
     "next/link": `import React from "react";
       export default function Link({href, children, ...props}) {
@@ -67,8 +68,13 @@ async function buildJobsHarness() {
       contents: `import React from "react";
         import {createRoot} from "react-dom/client";
         import {TestAuthProvider} from "@/components/providers/AuthProvider";
-        import JobsClient from "@/components/jobs/JobsClient";
-        createRoot(document.getElementById("root")).render(<TestAuthProvider><JobsClient /></TestAuthProvider>);`,
+        import Component from "@/components/jobs/${component}";
+        function DetailHarness() {
+          const [jobId, setJobId] = React.useState("00000000-0000-4000-8000-000000000001");
+          window.__jobsDetailHarness = {setJobId};
+          return <Component jobId={jobId} />;
+        }
+        createRoot(document.getElementById("root")).render(<TestAuthProvider>${component === 'JobsClient' ? '<Component />' : '<DetailHarness />'}</TestAuthProvider>);`,
       loader: "tsx",
       resolveDir: WEB_ROOT,
       sourcefile: "jobs-pagination-harness.tsx",
@@ -91,10 +97,10 @@ async function buildJobsHarness() {
       },
     }],
   });
-  harnessScript = result.outputFiles[0].text;
+  return result.outputFiles[0].text as string;
 }
 
-async function installJobsHarness(page: Page) {
+async function installJobsHarness(page: Page, script = harnessScript) {
   // Bundle the actual list, resume card, and delete dialog. Only the surrounding
   // auth and Next navigation boundaries are mocked; every request is fulfilled
   // in-process, so no Next server, real account, or remote service is involved.
@@ -121,7 +127,7 @@ async function installJobsHarness(page: Page) {
       });
     }
     if (url.pathname === "/jobs-harness.js") {
-      return route.fulfill({ contentType: "text/javascript", body: harnessScript });
+      return route.fulfill({ contentType: "text/javascript", body: script });
     }
     if (url.pathname === "/favicon.ico") return route.fulfill({ status: 204 });
     await route.abort("blockedbyclient");
@@ -155,7 +161,10 @@ function jobButton(page: Page, number: number) {
 
 test.describe("saved jobs pagination", () => {
   let runtimeErrors: string[];
-  test.beforeAll(buildJobsHarness);
+  test.beforeAll(async () => {
+    harnessScript = await buildJobsHarness();
+    detailHarnessScript = await buildJobsHarness('JobDetailClient');
+  });
   test.beforeEach(({ page }) => {
     runtimeErrors = [];
     page.on("pageerror", (error) => runtimeErrors.push(error.message));
@@ -403,5 +412,44 @@ test.describe("saved jobs pagination", () => {
     await expect(page.getByText("2 saved jobs", { exact: true })).toBeVisible();
     await expect(page.getByLabel("Search saved jobs", { exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Load more jobs", exact: true })).toHaveCount(0);
+  });
+
+  test("job detail cannot show a previous account's delayed response after sign-out", async ({ page }) => {
+    const auth = await installJobsHarness(page, detailHarnessScript);
+    let pendingDetail: Route | undefined;
+    await page.route('**/api/extension/saved-jobs/*', (route) => { pendingDetail = route; });
+    await page.goto(`${HARNESS_ORIGIN}/jobs`);
+    await expect.poll(() => Boolean(pendingDetail)).toBe(true);
+    await auth.switchAccount('');
+    await expect(page.getByRole('link', { name: 'Sign in', exact: true })).toBeVisible();
+    await pendingDetail!.fulfill({ json: { success: true, data: makeJobs(1, 1)[0] } });
+    await expect(page.getByRole('heading', { name: 'Program Manager 01', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Sign in', exact: true })).toBeVisible();
+  });
+
+  test("changing job detail IDs cannot let an older response replace the new job", async ({ page }) => {
+    await installJobsHarness(page, detailHarnessScript);
+    let firstDetail: Route | undefined;
+    await page.route('**/api/extension/saved-jobs/*', (route) => {
+      if (route.request().url().endsWith(makeJobs(1, 1)[0].id)) { firstDetail = route; return; }
+      return route.fulfill({ json: { success: true, data: { ...makeJobs(2, 1)[0], matchedSkills: [], missingSkills: [], topGaps: [] } } });
+    });
+    await page.goto(`${HARNESS_ORIGIN}/jobs`);
+    await expect.poll(() => Boolean(firstDetail)).toBe(true);
+    await page.evaluate((jobId) => {
+      (window as typeof window & { __jobsDetailHarness: { setJobId: (id: string) => void } }).__jobsDetailHarness.setJobId(jobId);
+    }, makeJobs(2, 1)[0].id);
+    await expect(page.getByRole('heading', { name: 'Program Manager 02', exact: true })).toBeVisible();
+    await firstDetail!.fulfill({ json: { success: true, data: makeJobs(1, 1)[0] } });
+    await expect(page.getByRole('heading', { name: 'Program Manager 01', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Program Manager 02', exact: true })).toBeVisible();
+  });
+
+  test("deleted job detail offers recovery without claiming it was a browser-only save", async ({ page }) => {
+    await installJobsHarness(page, detailHarnessScript);
+    await page.route('**/api/extension/saved-jobs/*', (route) => route.fulfill({ status: 404, json: { success: false } }));
+    await page.goto(`${HARNESS_ORIGIN}/jobs`);
+    await expect(page.getByRole('alert')).toContainText('This saved job is no longer available.');
+    await expect(page.getByRole('link', { name: 'Open studio instead', exact: true })).toHaveAttribute('href', '/workspace');
   });
 });

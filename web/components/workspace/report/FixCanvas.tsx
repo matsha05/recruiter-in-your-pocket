@@ -48,15 +48,15 @@ function placeholderLabel(value: string) {
 
 function copyGuidance(reason: ReturnType<typeof resolveRewriteCopyPolicy>["reason"]) {
   if (reason === "source_unavailable") {
-    return "Copy is unavailable because this view does not include the source resume. This rewrite stays read-only.";
+    return "The original resume is not available in this view, so copying is disabled.";
   }
   if (reason === "unresolved_placeholders") {
-    return "Add every bracketed fact from your actual work before copying.";
+    return "The brackets mark missing details. Add only what you can verify before copying.";
   }
   if (reason === "unsafe") {
-    return "This draft changes or drops source facts. Keep it as guidance until the wording matches the resume evidence.";
+    return "This draft changes or leaves out a detail from your resume. Check it against the original before copying.";
   }
-  return "Source facts are preserved. Edit the sentence until it sounds like you.";
+  return "Check the wording, then make it sound like you.";
 }
 
 export function FixCanvas({
@@ -162,7 +162,7 @@ export function FixCanvas({
             <MinusCircle className="mt-0.5 size-5 shrink-0 text-muted-foreground" weight="duotone" />
             <div>
               <p className="text-sm font-semibold text-foreground">Fix {String(index + 1).padStart(2, "0")} marked not relevant.</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">The report is advice, not an instruction. Keep the call that matches your actual work.</p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">You know the work best. You can bring this suggestion back if it helps later.</p>
             </div>
           </div>
           <button type="button" onClick={() => setDismissed(false)} className="min-h-11 self-start px-3 text-xs font-semibold text-brand hover:text-brand/75 sm:self-auto">
@@ -208,14 +208,14 @@ export function FixCanvas({
               <p className="riyp-type-095 mt-3 leading-6 text-foreground/80">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
             </div>
             <div className="bg-accent-butter/20 p-5 sm:p-6">
-              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">{isSample ? "Facts the candidate would verify" : "Facts to verify"}</p>
+              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">{isSample ? "Details missing from the original" : "Details you can add"}</p>
               {isSample ? (
                 placeholderKeys.length > 0 ? (
                   <ul className="riyp-type-095 mt-3 grid list-disc gap-2 pl-5 font-medium leading-6 text-foreground/80">
                     {placeholderKeys.map((key) => <li key={key}>{placeholderLabel(key)}</li>)}
                   </ul>
                 ) : (
-                  <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">The suggestion stays within the facts shown in the source line.</p>
+                  <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">This example uses only the details in the original line.</p>
                 )
               ) : placeholderKeys.length > 0 ? (
                 <div className="mt-4 grid gap-3">
@@ -235,7 +235,7 @@ export function FixCanvas({
                   <Button type="button" variant="outline" size="sm" className="mt-1 min-h-11 justify-self-start border-brand/30 bg-paper px-4" onClick={handleUseFacts} disabled={!allRequiredFactsProvided}>Keep these facts</Button>
                 </div>
               ) : (
-                <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">This suggestion should use only the facts in the source line.</p>
+                <p className="riyp-type-095 mt-3 font-medium leading-6 text-foreground">Check that the suggestion still describes the work you did.</p>
               )}
             </div>
           </div>
@@ -244,8 +244,8 @@ export function FixCanvas({
             <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">{isSample ? "Example suggestion" : "Try this"}</p>
-                  <p className="mt-1 max-w-xl text-xs text-muted-foreground">{isSample ? "Read-only example. Your report will use the facts in your resume." : copyGuidance(copyPolicy.reason)}</p>
+                  <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">{placeholderKeys.length > 0 && !factsApplied ? "Draft to complete with your facts" : isSample ? "Example wording" : "Suggested wording"}</p>
+                  <p className="mt-1 max-w-xl text-xs text-muted-foreground">{isSample ? (placeholderKeys.length > 0 ? "The brackets mark details missing from the original. Add only what you can verify." : "This example uses only the details in the original line.") : copyGuidance(copyPolicy.reason)}</p>
                 </div>
                 {!isSample && (
                   <div className="flex items-center gap-1">
@@ -261,7 +261,7 @@ export function FixCanvas({
                       className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
                     >
                       {!copyPolicy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                      {!copyPolicy.copyable ? (copyPolicy.reason === "source_unavailable" ? "Source needed to copy" : "Verify facts to copy") : copied ? "Copied" : "Copy"}
+                      {!copyPolicy.copyable ? (copyPolicy.reason === "source_unavailable" ? "Original resume needed" : "Verify facts to copy") : copied ? "Copied" : "Copy"}
                     </button>
                   </div>
                 )}
@@ -280,7 +280,7 @@ export function FixCanvas({
                 What result or scope can you verify for this work?
               </p>
               <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-                No source-safe rewrite is attached to this fix. Keep the quoted line as your boundary and add only facts you can verify.
+                We need more detail before suggesting a rewrite. Start with the original line and add the result or scale you can verify.
               </p>
             </div>
           )}

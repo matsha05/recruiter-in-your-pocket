@@ -81,10 +81,16 @@ jobs:
         run: npm run test:redteam-journeys
 
       - name: Feedback acceptance UI
-        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/homepage-responsive.spec.ts tests/ui/report-navigation.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts --workers=1
+        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/homepage-responsive.spec.ts tests/ui/report-navigation.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts tests/ui/auth-code-retry.spec.ts tests/ui/auth-provider-lifecycle.spec.ts tests/ui/workspace-handoffs.spec.ts tests/ui/checkout-revision-return.spec.ts --workers=1
 
       - name: Sample report content
         run: npm run test:sample-report
+
+      - name: Research figure contracts
+        run: npm run test:research-figures
+
+      - name: Saved report revision contracts
+        run: npm run test:saved-report-revision
 
       - name: Extension popup regression
         run: npm run test:ui --prefix ../extension

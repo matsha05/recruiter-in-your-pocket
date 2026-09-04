@@ -2,7 +2,7 @@ import FAQClient from "@/components/legal/FAQClient";
 
 export const metadata = {
     title: "FAQ",
-    description: "Frequently asked questions about pricing, privacy, and how the resume audit works.",
+    description: "Answers about resume reports, supported files, privacy, pricing, and PDF exports.",
 };
 
 export default function FAQPage() {

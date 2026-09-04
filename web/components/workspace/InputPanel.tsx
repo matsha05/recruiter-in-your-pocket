@@ -20,6 +20,7 @@ interface InputPanelProps {
     onResumeTextChange: (text: string) => void;
     onJobDescChange: (text: string) => void;
     onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
+    commandUploadName?: string | null;
     onRun: () => void;
     isLoading: boolean;
     freeUsesRemaining: number;
@@ -40,6 +41,7 @@ export default function InputPanel({
     onResumeTextChange,
     onJobDescChange,
     onFileSelect,
+    commandUploadName,
     onRun,
     isLoading,
     freeUsesRemaining,
@@ -52,6 +54,13 @@ export default function InputPanel({
     const [showPaste, setShowPaste] = useState(false);
     const [hasRejectedResume, setHasRejectedResume] = useState(false);
     const pasteInputRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (!commandUploadName) return;
+        setFileName(commandUploadName);
+        setShowPaste(false);
+        setHasRejectedResume(false);
+    }, [commandUploadName]);
 
     useEffect(() => {
         if (loadedJobContext) setShowJD(true);
@@ -94,14 +103,14 @@ export default function InputPanel({
         >
             <div className="mx-auto w-full max-w-5xl">
                 <header className="mx-auto max-w-3xl text-center">
-                    <p className="text-2xs font-semibold uppercase riyp-track-015 text-brand">{isRevision ? "Second read" : "Recruiter first read"}</p>
+                    <p className="text-2xs font-semibold uppercase riyp-track-015 text-brand">{isRevision ? "Resume comparison" : "Resume review"}</p>
                     <h1 className="workspace-first-read-title mt-6 font-display font-semibold tracking-[-0.055em] text-foreground">
                         {isRevision ? "Now let’s see what changed." : <>Let&apos;s see what <span className="riyp-marker">lands.</span></>}
                     </h1>
                     <p className="mx-auto mt-5 max-w-xl text-lg leading-7 text-muted-foreground sm:leading-8">
                         {isRevision
-                            ? "Upload the revised resume. We’ll compare its opening read with the report you just saw."
-                            : "Upload the resume you’re about to send. We’ll show you what lands, where the reader has to guess, and what to change first."}
+                            ? "Upload your revision to see what improved and what still needs attention."
+                            : "Add the resume you’re about to send. We’ll look at the whole document, show you what’s clear, and help you decide what to change first."}
                     </p>
                 </header>
 
@@ -110,7 +119,7 @@ export default function InputPanel({
                         <Target className="mt-0.5 size-5 shrink-0 text-brand" weight="duotone" />
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-foreground">{loadedJobContext.title}</p>
-                            <p className="truncate text-xs text-muted-foreground">{loadedJobContext.company} · role context added</p>
+                            <p className="truncate text-xs text-muted-foreground">{loadedJobContext.company} · job posting added</p>
                         </div>
                         {loadedJobContext.score != null && loadedJobContext.score > 0 && (
                             <span className="shrink-0 text-xs font-semibold text-brand">{loadedJobContext.score}% match</span>
@@ -187,8 +196,8 @@ export default function InputPanel({
                             >
                                 <Target className={cn("size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="duotone" />
                                 <span className="min-w-0 flex-1">
-                                    <span className="block text-lg font-medium text-foreground">Tailor it to a role <span className="font-normal text-muted-foreground">(optional)</span></span>
-                                    <span className="mt-0.5 block text-sm text-muted-foreground">Add the job posting for role-specific feedback.</span>
+                                    <span className="block text-lg font-medium text-foreground">Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></span>
+                                    <span className="mt-0.5 block text-sm text-muted-foreground">Add a posting to see how your experience fits.</span>
                                 </span>
                                 {jobDescription.length > 0 && <Check className="size-4 text-brand" weight="bold" />}
                                 <CaretDown className={cn("size-4 text-muted-foreground transition-transform", showJD && "rotate-180")} />
@@ -220,7 +229,7 @@ export default function InputPanel({
                         >
                             {isLoading ? "Reading your resume…" : hasContent ? (
                                 <span className="flex items-center gap-2">
-                                    {isRevision ? "Compare the new read" : "See my first read"} <ArrowRight className="size-5" weight="bold" />
+                                    {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>
                             ) : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>

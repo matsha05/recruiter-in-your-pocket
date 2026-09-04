@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, AlertCircle } from "lucide-react";
 import JobDetailHeader from "@/components/jobs/JobDetailHeader";
 import JobDetailTabs from "@/components/jobs/JobDetailTabs";
 import type { JobDetail } from "@/components/jobs/jobDetailTypes";
+import { STATUS_CONFIG } from "@/components/jobs/jobDetailTypes";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { useAuth } from "@/components/providers/AuthProvider";
 
@@ -15,22 +16,34 @@ interface JobDetailClientProps {
 
 export default function JobDetailClient({ jobId }: JobDetailClientProps) {
   const { user, isLoading: authLoading } = useAuth();
+  return <JobDetailContent key={`${user?.id ?? 'signed-out'}:${jobId}`} jobId={jobId} userId={user?.id ?? null} authLoading={authLoading} />;
+}
+
+function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps & { userId: string | null; authLoading: boolean }) {
   const [job, setJob] = useState<JobDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const pendingRequest = useRef<AbortController | null>(null);
 
   const fetchJob = useCallback(async () => {
+    pendingRequest.current?.abort();
+    const controller = new AbortController();
+    pendingRequest.current = controller;
     setLoading(true);
     setError(null);
+    setJob(null);
     try {
-      const res = await fetch(`/api/extension/saved-jobs/${jobId}`);
+      const res = await fetch(`/api/extension/saved-jobs/${encodeURIComponent(jobId)}`, { signal: controller.signal });
       if (!res.ok) {
+        if (controller.signal.aborted) return;
         if (res.status === 401) setError("Sign in to view saved job details.");
-        else if (res.status === 404) setError("This job is not synced online. Open the studio for a fresh report.");
+        else if (res.status === 404) setError("This saved job is no longer available. Open the studio for a fresh report.");
         else setError("Failed to load job");
         return;
       }
       const data = await res.json();
+      if (controller.signal.aborted) return;
+      if (!data.success || !data.data) throw new Error('Invalid saved job response');
       const jobData = data.data;
       setJob({
         id: jobData.id,
@@ -40,7 +53,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
         location: jobData.location,
         url: jobData.url,
         source: jobData.source || "linkedin",
-        status: jobData.status || "saved",
+        status: Object.hasOwn(STATUS_CONFIG, jobData.status) ? jobData.status : "saved",
         match_score: jobData.score,
         captured_at: jobData.capturedAt,
         job_description_text: jobData.jobDescription || jobData.jdText,
@@ -49,25 +62,29 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
         topGaps: jobData.topGaps || []
       });
     } catch (err) {
+      if (controller.signal.aborted) return;
       console.error("Failed to fetch job:", err);
       setError("Failed to load job");
     } finally {
-      setLoading(false);
+      if (!controller.signal.aborted) setLoading(false);
     }
   }, [jobId]);
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) {
+    if (!userId) {
+      pendingRequest.current?.abort();
+      setJob(null);
       setError("Sign in to view saved job details.");
       setLoading(false);
       return;
     }
 
     void fetchJob();
-  }, [authLoading, fetchJob, user]);
+    return () => pendingRequest.current?.abort();
+  }, [authLoading, fetchJob, userId]);
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div data-visual-anchor="job-detail-page" className="app-card flex items-center justify-center py-24">
         <div className="text-muted-foreground">Loading job details…</div>
@@ -88,7 +105,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
         <div className="app-card p-8 text-center" role="alert">
           <AlertCircle className="size-8 mx-auto text-destructive mb-3" />
           <p className="text-muted-foreground">{error || "Job not found"}</p>
-          {error?.includes("not synced online") ? (
+          {error?.includes("no longer available") ? (
             <Link
               href="/workspace"
               className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:bg-foreground/90"

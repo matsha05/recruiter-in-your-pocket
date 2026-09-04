@@ -100,7 +100,7 @@ Record:
 - Test date and browser/device coverage
 - Zero-spend launch-gate result
 - Live quality-proof result, once separately authorized
-- Known issues accepted for beta
+- Remaining limitations, with any unresolved customer-journey defects blocking release
 - Final verdict: `GO` or `NO-GO`
 
 Any failed section means `NO-GO` until it is fixed and rerun.

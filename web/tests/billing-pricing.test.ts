@@ -24,23 +24,23 @@ assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
 assert.equal(PRICING_PLANS["30d"].price, "$29");
-assert.match(PRICING_PLANS["30d"].description, /Five careful recruiter-style reports/);
-assert.match(PRICING_PLANS["30d"].description, /applications that matter most/);
+assert.match(PRICING_PLANS["30d"].description, /Five additional reports/);
+assert.match(PRICING_PLANS["30d"].description, /compare revisions|applications/);
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /first complete report is free/i);
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /no card required/i);
 assert.match(FREE_REPORT_ENTITLEMENT.boundary, /repeat use across browsers or shared networks/i);
-assert.match(FREE_REPORT_ENTITLEMENT.boundary, /daily beta capacity/i);
+assert.match(FREE_REPORT_ENTITLEMENT.boundary, /daily capacity limits/i);
 assert.doesNotMatch(FREE_REPORT_ENTITLEMENT.boundary, /device|monthly/i);
 assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /one free report per calendar month/i);
 assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /repeat use across browsers or shared networks/i);
-assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /daily beta capacity/i);
+assert.match(FREE_REPORT_ENTITLEMENT.anonymousBoundary, /daily capacity limits/i);
 assert.ok(
   TRUST_PROMISES.includes(`${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`),
   "the public trust checklist must state the bounded free entitlement",
 );
 assert.equal(LEGAL_LAST_UPDATED, "August 2, 2026");
 assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /do not need to pay to see the rest/i);
-assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /only when/i);
+assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /revision to compare or another application to review/i);
 assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/i);
 assert.equal(JOB_SEARCH_PASS_DECISION.cta, "Get 5 more reports · $29");
 assert.equal(

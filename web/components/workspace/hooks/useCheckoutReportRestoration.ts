@@ -9,17 +9,23 @@ type Setter<T> = Dispatch<SetStateAction<T>>;
 
 export function useCheckoutReportRestoration(input: {
   user: any;
+  allowRestore?: boolean;
   setResumeText: Setter<string>;
   setJobDescription: Setter<string>;
   setReport: Setter<any>;
   setSkipSample: Setter<boolean>;
 }) {
-  const { user, setResumeText, setJobDescription, setReport, setSkipSample } = input;
+  const { user, allowRestore = true, setResumeText, setJobDescription, setReport, setSkipSample } = input;
   const restoredReport = useRef<any>(null);
   const saveStarted = useRef(false);
 
   useEffect(() => {
     const restored = takeCheckoutWorkspaceState();
+    if (!allowRestore) {
+      restoredReport.current = null;
+      saveStarted.current = false;
+      return;
+    }
     if (!restored) return;
     restoredReport.current = restored.report;
     setResumeText(restored.resumeText || "");
@@ -29,7 +35,7 @@ export function useCheckoutReportRestoration(input: {
     toast.success("Your report is back", {
       description: "Checkout did not discard the read you were working from.",
     });
-  }, [setJobDescription, setReport, setResumeText, setSkipSample]);
+  }, [allowRestore, setJobDescription, setReport, setResumeText, setSkipSample]);
 
   useEffect(() => {
     if (!user || !restoredReport.current || saveStarted.current) return;

@@ -1,8 +1,10 @@
 # Chrome Extension Permissions Justification
 
 **Version:** 0.2.1  
-**Date:** 2026-03-09
+**Date:** 2026-09-04
 **Purpose:** Document and justify all extension permissions for Chrome Web Store review
+
+**Release status:** Local manifest version 0.2.1. Store publication, listing ID, and published version are unverified. Public extension sync remains held back; this document does not establish installation availability.
 
 ---
 
@@ -13,11 +15,11 @@
 
 **Data stored:**
 - Job metadata (title, company, URL)
-- Job description text (first 200 chars preview)
+- Captured job description text and a separate first-200-character preview
 - Match scores
 - User preferences (onboarding state)
 
-**Privacy:** Local storage powers immediate popup use. If the user signs in, saved-job workflows can also sync with the RIYP web app so history is attached to the right account.
+**Privacy:** Local storage powers immediate popup use. Signed-in captures can also sync with the RIYP web app. Signing in does not upload existing browser-only captures automatically; capture a role again while signed in to sync it. The popup distinguishes browser-only captures from the account's recent synced cache. Failed refreshes retain saved copies; confirmed sign-out hides account-bound cache entries.
 
 ---
 
@@ -53,21 +55,23 @@
 
 ---
 
-### `https://recruiterinyourpocket.com/*`
+### `https://www.recruiterinyourpocket.com/*`
 **Justification:** Communicate with the RIYP web app for:
 - Authentication state sync (check if user is logged in)
 - Quick match scoring (send JD, receive score)
 - Saved-job sync for signed-in users
 - Deep linking to full analysis
 
-**Privacy:** Job description text and saved-job metadata are only sent for extension workflows the user triggers or enables. Resume data stays on the web app.
+The extension requests the canonical `www` host directly so authentication and host permissions do not depend on the apex-domain redirect.
+
+**Privacy:** Job description text and saved-job metadata are only sent for extension workflows the user triggers or enables. Full resume text stays on the web app. The popup can receive the matching-profile summary (filename, short preview, skill count, and embedding availability); it does not persist that summary in extension storage.
 
 ---
 
-### `http://localhost:3000/*`
-**Justification:** Development only. Allows local testing against development server.
+### Development server origin
+**Justification:** Development builds add the origin configured by `VITE_WEBAPP_URL`, defaulting to `http://localhost:3000/*`, for local testing.
 
-**Note:** This permission is only used in development builds and does not affect production users.
+**Build rule:** `vite build --mode development` adds that development origin. The normal `npm run build` uses the production API host and emits a manifest without localhost or other development-origin permissions. The source release manifest also omits localhost.
 
 ---
 
@@ -88,10 +92,10 @@
 
 1. **User-initiated only:** Data capture requires explicit button click
 2. **Local-first behavior:** The popup works with local capture first; sign-in is only needed for synced saved-job history
-3. **Minimal transmission:** JD text and saved-job metadata are used for extension workflows; resume data stays on the web app
+3. **Minimal transmission:** JD text, saved-job metadata, and matching-profile summaries are used for extension workflows; full resume text stays on the web app
 4. **No tracking:** No analytics in content scripts; no browsing behavior recorded
 5. **Clear deletion:** Users can delete local or synced saved jobs from the popup and web app
 
 ---
 
-*Last updated: 2026-03-09*
+*Last updated: 2026-09-04*

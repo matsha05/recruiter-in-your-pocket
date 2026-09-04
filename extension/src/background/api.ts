@@ -13,12 +13,12 @@ export class ApiError extends Error {
 }
 
 // Base URL for API calls
-// Production: https://recruiterinyourpocket.com
+// Production requests use the canonical host so session cookies and host
+// permissions do not depend on an apex-to-www redirect.
 // Development: set VITE_WEBAPP_URL to match the active local web app server.
-export const API_BASE = import.meta.env.VITE_WEBAPP_URL
-    || (import.meta.env.VITE_DEV_MODE === 'true'
-        ? 'http://localhost:3000'
-        : 'https://recruiterinyourpocket.com');
+export const API_BASE = import.meta.env.MODE === 'development'
+    ? (import.meta.env.VITE_WEBAPP_URL || 'http://localhost:3000').replace(/\/$/, '')
+    : 'https://www.recruiterinyourpocket.com';
 
 /**
  * Capture a job description and get quick match score.
@@ -28,6 +28,7 @@ export async function captureJob(jd: string, meta: JobMeta): Promise<SavedJob> {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
+        signal: AbortSignal.timeout(30_000),
         body: JSON.stringify({ jd, meta }),
     });
 
@@ -47,6 +48,7 @@ export async function getSavedJobs(): Promise<{ jobs: SavedJob[]; userId?: strin
     const response = await fetch(`${API_BASE}/api/extension/saved-jobs`, {
         method: 'GET',
         credentials: 'include',
+        signal: AbortSignal.timeout(10_000),
     });
 
     const data = await response.json();
@@ -68,6 +70,7 @@ export async function deleteJob(jobId: string): Promise<void> {
     const response = await fetch(`${API_BASE}/api/extension/delete-job?id=${encodeURIComponent(jobId)}`, {
         method: 'DELETE',
         credentials: 'include',
+        signal: AbortSignal.timeout(15_000),
     });
 
     const data = await response.json();
@@ -85,6 +88,7 @@ export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthU
         const response = await fetch(`${API_BASE}/api/extension/auth-status`, {
             method: 'GET',
             credentials: 'include',
+            signal: AbortSignal.timeout(8_000),
         });
 
         const data = await response.json();

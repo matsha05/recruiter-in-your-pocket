@@ -167,7 +167,7 @@ export const VENDOR_REVIEW_ITEMS: VendorReviewItem[] = [
     vendor: "Google (Gmail)",
     purpose: "Private operator mailbox for responding to forwarded support requests.",
     dataClasses: "Support-message content, sender address, and support attachments.",
-    launchDecision: "Approved for founder-operated beta support",
+    launchDecision: "Approved for founder-operated support",
     reviewNotes: "Keep the private mailbox address server-only, use the public support identity for replies, and delete support records when they are no longer reasonably needed.",
   },
 ];

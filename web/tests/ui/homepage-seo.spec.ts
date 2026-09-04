@@ -13,7 +13,7 @@ test.describe("homepage feedback and SEO contract", () => {
     );
     await expect(homepage).toContainText("Recruiter feedback, before you apply.");
     await expect(homepage).toContainText(
-      "Upload or paste your resume. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.",
+      "Upload or paste your resume. See what it makes clear, where it leaves questions, and up to three changes to make first.",
     );
 
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get my free report");
@@ -26,13 +26,19 @@ test.describe("homepage feedback and SEO contract", () => {
       "/sample-report",
     );
     await expect(homepage).toContainText("Your first complete report is free. No card required.");
-    await expect(homepage).toContainText("repeat use across browsers or shared networks");
-    await expect(homepage).toContainText("daily beta capacity");
+    const freeLimits = homepage.locator("details").filter({ hasText: "Free report limits" });
+    await expect(freeLimits).not.toHaveAttribute("open", "");
+    await freeLimits.locator("summary").focus();
+    await page.keyboard.press("Enter");
+    await expect(freeLimits).toHaveAttribute("open", "");
+    await expect(freeLimits.locator("p")).toBeVisible();
+    await expect(freeLimits).toContainText("Repeat use across browsers or shared networks");
+    await expect(freeLimits).toContainText("Daily capacity limits apply");
     await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).toContainText(
-      "AI-powered feedback, informed by Matt Shaw's 14 years of real recruiting experience.",
+      "AI feedback shaped by Matt Shaw's 14 years in recruiting.",
     );
-    await expect(homepage).toContainText(
+    await expect(homepage).not.toContainText(
       "Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.",
     );
 
@@ -99,7 +105,7 @@ test.describe("homepage feedback and SEO contract", () => {
       await expect(main).toContainText("Your first complete report is free. No card required.");
       await expect(main).toContainText("Anonymous use is limited to one free report per calendar month.");
       await expect(main).toContainText("Repeat use across browsers or shared networks can affect eligibility");
-      await expect(main).toContainText("daily beta capacity applies");
+      await expect(main).toContainText("Daily capacity limits apply");
     };
 
     await page.goto("/terms");

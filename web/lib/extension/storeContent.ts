@@ -30,7 +30,7 @@ export const extensionStoreContent = {
     "Save supported LinkedIn and Indeed roles, keep saved jobs close, and open the full report in RIYP when you need it.",
   longDescription: [
     "Recruiter in Your Pocket helps you save supported job postings while you're browsing and carry that context back into the studio.",
-    "Use the popup to save a role, check the basics, and jump into the full report when you're ready.",
+    "Save a role using the capture button on a supported LinkedIn or Indeed job page. Use the popup to browse saved roles, remove them, and open the studio when you're ready for a report.",
     "Sign-in is only required if you want synced saved jobs across devices. Local capture and browsing support stay explicit and purpose-bound.",
   ],
   privacyFieldSummary:

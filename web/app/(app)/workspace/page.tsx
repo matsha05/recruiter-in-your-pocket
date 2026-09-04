@@ -21,7 +21,6 @@ export default async function WorkspacePage({ searchParams }: WorkspacePageProps
 
   return (
     <WorkspaceClient
-      key={sampleRequested ? "sample-workspace" : "standard-workspace"}
       initialReport={sampleRequested ? sampleReport as ReportData : null}
     />
   );

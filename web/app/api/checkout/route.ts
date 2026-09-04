@@ -15,6 +15,7 @@ import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 import { createStripeClient } from "@/lib/billing/stripeClient";
 import { getLaunchStripeOffer } from "@/lib/billing/stripeOffers";
 import { areNewPurchasesDisabled } from "@/lib/launch/serverFlags";
+import { normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
 // Initialize Stripe
 const stripe = createStripeClient();
@@ -37,7 +38,13 @@ function normalizeCheckoutSource(input: unknown): CheckoutSource {
     return "unknown";
 }
 
-function getCancelUrl(baseUrl: string, source: CheckoutSource): string {
+function getCancelUrl(baseUrl: string, source: CheckoutSource, returnTo: string | null): string {
+    if (returnTo) {
+        const url = new URL(`${baseUrl}/pricing`);
+        url.searchParams.set("payment", "cancelled");
+        url.searchParams.set("returnTo", returnTo);
+        return url.toString();
+    }
     if (source === "settings") return `${baseUrl}/settings/billing?payment=cancelled`;
     if (source === "paywall" || source === "workspace") return `${baseUrl}/workspace?payment=cancelled`;
     return `${baseUrl}/pricing?payment=cancelled`;
@@ -127,6 +134,12 @@ export async function POST(request: Request) {
         const body = await readJsonWithLimit<any>(request, 64 * 1024);
         const requestedTier = normalizeRequestedTier(body?.tier);
         const checkoutSource = normalizeCheckoutSource(body?.source);
+        const returnTo = normalizeCheckoutReturnTo(body?.returnTo);
+        if (body?.returnTo != null && !returnTo) {
+            const res = NextResponse.json({ ok: false, message: "Invalid checkout return destination." }, { status: 400 });
+            res.headers.set("x-request-id", request_id);
+            return res;
+        }
         const idempotencyKey = typeof body?.idempotencyKey === "string"
             ? body.idempotencyKey.trim().slice(0, 200)
             : null;
@@ -227,6 +240,7 @@ export async function POST(request: Request) {
         successUrl.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
         successUrl.searchParams.set("tier", requestedTier);
         successUrl.searchParams.set("source", checkoutSource);
+        if (returnTo) successUrl.searchParams.set("returnTo", returnTo);
         if (unlockSection) {
             successUrl.searchParams.set("unlock", unlockSection);
         }
@@ -255,7 +269,7 @@ export async function POST(request: Request) {
                 billing_address_collection: "required",
                 automatic_tax: { enabled: true },
                 success_url: stripeSuccessUrl,
-                cancel_url: getCancelUrl(baseUrl, checkoutSource),
+                cancel_url: getCancelUrl(baseUrl, checkoutSource, returnTo),
                 metadata: {
                     email: checkoutEmail || "",
                     tier: requestedTier,
@@ -281,8 +295,10 @@ export async function POST(request: Request) {
         };
 
         const dedupeIdentity = hashForLogs(`${userId || "guest"}:${checkoutEmail || "no-email"}`);
+        // A changed return destination must reach Stripe's unchanged idempotency
+        // key and fail as a conflicting retry, not reuse a stale cached URL.
         const dedupeKey = idempotencyKey
-            ? `checkout:${idempotencyKey}:${requestedTier}:${checkoutSource}:${dedupeIdentity}`
+            ? `checkout:${idempotencyKey}:${requestedTier}:${checkoutSource}:${dedupeIdentity}${returnTo ? `:${returnTo}` : ""}`
             : null;
 
         const checkoutSession = dedupeKey

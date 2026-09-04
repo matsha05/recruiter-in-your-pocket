@@ -11,6 +11,8 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
 import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { useAuthFieldFocus } from "./useAuthFieldFocus";
 
 type AuthStep = "email" | "code" | "name";
 
@@ -34,7 +36,10 @@ export function AuthFlow({
   initialError = null
 }: AuthFlowProps) {
   const { push, refresh } = useRouter();
-  const copy = getAuthCopy(context);
+  const copy = getAuthCopy(context, {
+    billingEnabled: isLaunchFlagEnabled("billingUnlock"),
+    extensionEnabled: isLaunchFlagEnabled("extensionSync"),
+  });
 
   const [step, setStep] = useState<AuthStep>("email");
   const [email, setEmail] = useState("");
@@ -43,11 +48,8 @@ export function AuthFlow({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(initialError);
   const [resendCooldown, setResendCooldown] = useState(0);
-  const isVerifyingRef = useRef(false);
-  const errorRef = useRef<HTMLDivElement>(null);
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const codeInputRef = useRef<HTMLInputElement>(null);
-  const nameInputRef = useRef<HTMLInputElement>(null);
+  const authRequestRef = useRef({ id: 0, pending: false, verified: false, attemptedCode: null as string | null });
+  const currentCodeRef = useRef("");
 
   useEffect(() => {
     if (initialError) {
@@ -55,19 +57,7 @@ export function AuthFlow({
     }
   }, [initialError]);
 
-  useEffect(() => {
-    if (error) errorRef.current?.focus({ preventScroll: true });
-  }, [error]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const frame = window.requestAnimationFrame(() => {
-      if (step === "email") emailInputRef.current?.focus({ preventScroll: true });
-      if (step === "code") codeInputRef.current?.focus({ preventScroll: true });
-      if (step === "name") nameInputRef.current?.focus({ preventScroll: true });
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [isOpen, step]);
+  const { errorRef, emailInputRef, codeInputRef, nameInputRef } = useAuthFieldFocus(step, isOpen, error);
 
   const resetFlow = useCallback(() => {
     setStep("email");
@@ -77,7 +67,8 @@ export function AuthFlow({
     setLoading(false);
     setError(null);
     setResendCooldown(0);
-    isVerifyingRef.current = false;
+    authRequestRef.current = { id: authRequestRef.current.id + 1, pending: false, verified: false, attemptedCode: null };
+    currentCodeRef.current = "";
   }, []);
 
   useEffect(() => {
@@ -85,6 +76,11 @@ export function AuthFlow({
       resetFlow();
     }
   }, [isOpen, resetFlow]);
+
+  useEffect(() => () => {
+    authRequestRef.current.id += 1;
+    authRequestRef.current.pending = false;
+  }, []);
 
   useEffect(() => {
     if (resendCooldown <= 0) return;
@@ -95,6 +91,7 @@ export function AuthFlow({
   }, [resendCooldown]);
 
   const handleSendCode = useCallback(async () => {
+    if (!isOpen || authRequestRef.current.pending) return;
     const normalizedEmail = normalizeAuthEmail(email);
     if (!normalizedEmail) {
       setError("Please enter your email");
@@ -104,6 +101,8 @@ export function AuthFlow({
       setError("Please enter a valid email address");
       return;
     }
+    const requestId = ++authRequestRef.current.id;
+    authRequestRef.current.pending = true;
     setLoading(true);
     setError(null);
 
@@ -114,6 +113,7 @@ export function AuthFlow({
         body: JSON.stringify({ email: normalizedEmail, next: redirectTo || "/workspace" })
       });
       const data = await res.json();
+      if (requestId !== authRequestRef.current.id) return;
       if (!data?.ok) {
         if (data?.errorCode === "otp_disabled") {
           throw new Error("Email sign-in is temporarily unavailable. Contact support if you need access now.");
@@ -123,14 +123,22 @@ export function AuthFlow({
         }
         throw new Error(data?.message || data?.hint || "Failed to send code");
       }
+      // A new email invalidates the previous code and its automatic attempt.
+      currentCodeRef.current = "";
+      authRequestRef.current.attemptedCode = null;
+      authRequestRef.current.verified = false;
+      setCode("");
       setStep("code");
       setResendCooldown(30);
     } catch (err: any) {
-      setError(err?.message || "Failed to send code");
+      if (requestId === authRequestRef.current.id) setError(err?.message || "Failed to send code");
     } finally {
-      setLoading(false);
+      if (requestId === authRequestRef.current.id) {
+        authRequestRef.current.pending = false;
+        setLoading(false);
+      }
     }
-  }, [email, redirectTo]);
+  }, [email, isOpen, redirectTo]);
 
   const finishAuth = useCallback(() => {
     onSuccess?.();
@@ -143,7 +151,11 @@ export function AuthFlow({
   }, [onClose, onSuccess, redirectTo, push, refresh, variant]);
 
   const verifyCode = useCallback(async () => {
-    if (!code.trim() || loading) return;
+    if (!isOpen || step !== "code" || !/^\d{8}$/.test(code) || authRequestRef.current.pending || authRequestRef.current.verified) return;
+    const requestId = ++authRequestRef.current.id;
+    const submittedCode = code;
+    authRequestRef.current.pending = true;
+    authRequestRef.current.attemptedCode = submittedCode;
     setLoading(true);
     setError(null);
 
@@ -151,31 +163,37 @@ export function AuthFlow({
       const res = await fetch("/api/auth/verify-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), code: code.trim() })
+        body: JSON.stringify({ email: email.trim(), code: submittedCode })
       });
       const data = await res.json();
+      if (requestId !== authRequestRef.current.id) return;
       if (!data?.ok) {
         throw new Error(data?.message || "Invalid code");
       }
+      authRequestRef.current.verified = true;
       if (data.user?.firstName) {
         finishAuth();
       } else {
         setStep("name");
       }
     } catch (err: any) {
-      setError(err?.message || "Invalid code. Please try again.");
-      isVerifyingRef.current = false;
+      // A response to the previous value must not replace feedback for an edit.
+      if (requestId === authRequestRef.current.id && submittedCode === currentCodeRef.current) {
+        setError(err?.message || "Invalid code. Please try again.");
+      }
     } finally {
-      setLoading(false);
+      if (requestId === authRequestRef.current.id) {
+        authRequestRef.current.pending = false;
+        setLoading(false);
+      }
     }
-  }, [code, email, finishAuth, loading]);
+  }, [code, email, finishAuth, isOpen, step]);
 
   useEffect(() => {
-    if (step === "code" && code.length === 8 && !loading && !isVerifyingRef.current) {
-      isVerifyingRef.current = true;
-      verifyCode();
+    if (isOpen && step === "code" && code.length === 8 && !loading && authRequestRef.current.attemptedCode !== code) {
+      void verifyCode();
     }
-  }, [code, step, loading, verifyCode]);
+  }, [code, isOpen, step, loading, verifyCode]);
 
   const handleSaveName = useCallback(async () => {
     if (!firstName.trim()) {
@@ -336,7 +354,7 @@ export function AuthFlow({
                     type="email"
                     autoComplete="email"
                     inputMode="email"
-                    placeholder="name@company.com"
+                    placeholder="you@example.com"
                     value={email}
                     aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
                     error={Boolean(error)}
@@ -380,6 +398,11 @@ export function AuthFlow({
                   error={Boolean(error)}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
+                    if (value !== currentCodeRef.current) {
+                      authRequestRef.current.attemptedCode = null;
+                      currentCodeRef.current = value;
+                      setError(null);
+                    }
                     setCode(value);
                   }}
                 />
@@ -393,11 +416,15 @@ export function AuthFlow({
                 <button
                   type="button"
                   className="hover:text-foreground transition-colors"
+                  disabled={loading}
                   onClick={() => {
+                    if (authRequestRef.current.pending) return;
                     setStep("email");
                     setCode("");
                     setError(null);
-                    isVerifyingRef.current = false;
+                    currentCodeRef.current = "";
+                    authRequestRef.current.attemptedCode = null;
+                    authRequestRef.current.verified = false;
                   }}
                 >
                   Use a different email
@@ -408,7 +435,7 @@ export function AuthFlow({
                     "hover:text-foreground transition-colors",
                     resendCooldown > 0 && "cursor-not-allowed opacity-60"
                   )}
-                  disabled={resendCooldown > 0}
+                  disabled={loading || resendCooldown > 0}
                   onClick={() => handleSendCode()}
                 >
                   {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend code"}

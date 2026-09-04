@@ -18,7 +18,7 @@ const supportTopics = [
   },
   {
     title: "Billing or refund",
-    body: "Include the receipt email, purchase date, and the last four characters of the Stripe receipt ID if available. We can investigate duplicate or unrecognized charges.",
+    body: "Include the email you used at checkout and the purchase date. A receipt ID helps too, if you have it. We can investigate duplicate or unrecognized charges.",
   },
   {
     title: "Privacy or deletion",
@@ -31,14 +31,14 @@ export default function SupportPage() {
     <LegalShell
       pageKey="support"
       eyebrow="Support"
-      title="A direct line when something goes wrong"
-      description="Practical help for report, account, billing, and privacy issues. We will never ask for your password or full card number."
+      title="Help with your report or account"
+      description="Tell us where you got stuck and what you expected to happen. We will never ask for your password or full card number."
     >
       <section className="border-y border-line bg-surface-sky/30 px-5 py-7 md:px-7 md:py-9">
         <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Support inbox</p>
         <h2 className="mt-3 break-all font-display text-xl riyp-weight-560 tracking-[-0.025em] text-foreground sm:text-2xl">support@recruiterinyourpocket.com</h2>
         <p className="mt-3 text-[1.0625rem] leading-8 text-muted-foreground">
-          Describe what happened and the outcome you expected. Include a screenshot when useful, after removing sensitive information.
+          A screenshot can help us understand the problem. Remove personal information before sending it.
         </p>
         <Link
           href="mailto:support@recruiterinyourpocket.com?subject=Recruiter%20in%20Your%20Pocket%20support"

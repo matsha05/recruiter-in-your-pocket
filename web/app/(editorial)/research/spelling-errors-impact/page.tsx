@@ -5,7 +5,7 @@ import { InferenceLadderDiagram } from "@/components/research/diagrams/Inference
 
 export const metadata: Metadata = {
     title: "How Spelling Errors Changed Recruiter Ratings | Hiring Research",
-    description: "What one 2023 experiment with 445 hiring professionals found about spelling errors and interview-probability ratings.",
+    description: "What one 2023 experiment with 445 hiring professionals found about spelling errors and hypothetical interview ratings.",
 };
 
 export default function SpellingErrorsPage() {
@@ -20,10 +20,10 @@ export default function SpellingErrorsPage() {
             }}
             keyFinding={{
                 subtitle: "The clearest result",
-                stat: "Five errors: −18.5 points on the interview rating",
+                stat: "Five errors: −1.85 on a 0–10 interview rating",
                 statDescription: (
                     <>
-                        In the 2023 experiment, hiring professionals assigned graduate resumes containing five spelling errors an 18.5 percentage-point lower interview-probability rating than error-free resumes.
+                        In the 2023 experiment, graduate resumes with five spelling errors received ratings 1.85 points lower on a 0–10 interview scale than error-free resumes. These were hypothetical judgments, not observed callbacks.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -36,7 +36,7 @@ export default function SpellingErrorsPage() {
                 <>
                     <h2 className="research-h2">What the experiment actually tested</h2>
                     <p className="research-body mb-6">
-                        Recruiters evaluated otherwise comparable resumes with zero, two, or five spelling errors across eight occupations. The penalty was clearest at five errors; the study does not establish that one typo ruins an application.
+                        Recruiters evaluated otherwise comparable resumes with zero, two, or five spelling errors across eight occupations. Both error conditions lowered ratings, with a larger penalty at five errors. A single typo was not tested.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <ErrorImpactDiagram figureNumber={1} />
@@ -63,7 +63,7 @@ export default function SpellingErrorsPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Costly mistakes: Evidence on spelling errors in resumes",
+                    title: "Costly mistakes: Why and when spelling errors in resumes jeopardise interview chances",
                     publisher: "PLOS ONE",
                     year: "2023",
                     href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"
@@ -86,7 +86,7 @@ export default function SpellingErrorsPage() {
         >
             <h2 className="research-h2">The penalty grows when errors become a pattern</h2>
             <p className="research-body mb-6">
-                In the 2023 study, hiring professionals evaluated fictitious resumes with a randomized number of spelling errors. They assigned the five-error version a lower interview-probability rating than the error-free version.
+                In the 2023 study, hiring professionals evaluated fictitious resumes with a randomized number of spelling errors. They assigned the five-error version a lower hypothetical interview rating than the error-free version.
                 <Citation id="source-1">1</Citation>
             </p>
 

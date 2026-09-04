@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useEffect, useRef, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { parseResume, streamResumeFeedback } from "@/lib/api";
@@ -10,6 +10,7 @@ import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
 import { REPORT_ACCESS_NOT_USED } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
+export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean };
 
 export function useResumeReview(input: {
   resumeText: string;
@@ -30,17 +31,29 @@ export function useResumeReview(input: {
   setIsSavePromptOpen: Setter<boolean>;
   setIsAuthOpen: Setter<boolean>;
   setAuthContext: Setter<any>;
+  onReportReady?: () => void;
+  canRun?: boolean;
+  captureUploadOwner?: () => unknown;
+  isUploadOwnerCurrent?: (owner: unknown) => boolean;
 }) {
-  const handleFileSelect = useCallback(async (file: File) => {
+  const latestUpload = useRef(0);
+  useEffect(() => () => { latestUpload.current += 1; }, []);
+  const handleFileSelect = useCallback(async (file: File, options?: ResumeFileSelectionOptions) => {
+    const upload = ++latestUpload.current;
+    const owner = input.captureUploadOwner?.();
+    const isCurrent = () => latestUpload.current === upload && (input.isUploadOwnerCurrent?.(owner) ?? true);
+    const keepReportVisible = Boolean(options?.preserveExisting && options.onParsed);
     try {
       Analytics.track("workspace_upload_started", {
         source: "workspace", file_type: file.type || "unknown", file_size_bytes: file.size,
       });
-      input.setIsLoading(true);
+      if (!keepReportVisible) input.setIsLoading(true);
       const formData = new FormData();
       formData.append("file", file);
       const result = await parseResume(formData);
+      if (!isCurrent()) return false;
       if (result.ok && result.text) {
+        options?.onParsed?.();
         input.setResumeText(result.text);
         Analytics.track("workspace_upload_succeeded", {
           source: "workspace",
@@ -53,15 +66,16 @@ export function useResumeReview(input: {
       }
       console.error("Failed to parse resume:", result.message);
       toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
-      input.setResumeText("");
+      if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } catch (error) {
+      if (!isCurrent()) return false;
       console.error("File parsing error:", error);
       toast.error("File parsing error", { description: "Please try another file." });
-      input.setResumeText("");
+      if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } finally {
-      input.setIsLoading(false);
+      if (isCurrent() && !keepReportVisible) input.setIsLoading(false);
     }
   }, [input]);
 
@@ -83,6 +97,7 @@ export function useResumeReview(input: {
   }, [input]);
 
   const handleRun = useCallback(async () => {
+    if (input.canRun === false) return;
     if (!input.resumeText.trim()) {
       toast.error("Add your resume first", {
         description: "Upload a file or paste the resume text before creating the report.",
@@ -141,6 +156,7 @@ export function useResumeReview(input: {
       if (result.ok && result.report) {
         publishAuthoritativeAnalysis({
           showReport: () => {
+            input.onReportReady?.();
             input.setReport(result.report);
             Analytics.reportCompleted(result.report?.score || 0);
           },

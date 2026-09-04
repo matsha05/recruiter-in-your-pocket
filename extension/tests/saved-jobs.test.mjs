@@ -27,7 +27,7 @@ function response(data, status = 200) {
     return { ok: status >= 200 && status < 300, status, json: async () => data };
 }
 
-function harness(savedJobs, options = {}) {
+function harness(savedJobs, options = {}, requestTimeoutMs) {
     let stored = { savedJobs: structuredClone(savedJobs), activeUserId: accountA, lastUpdated: 1 };
     let onMessage;
     const requests = [];
@@ -38,7 +38,15 @@ function harness(savedJobs, options = {}) {
         ...options,
     };
     const context = vm.createContext({
-        URL, URLSearchParams, console: { log() {}, warn() {}, error() {} },
+        URL, URLSearchParams,
+        AbortSignal: requestTimeoutMs === undefined ? AbortSignal : {
+            timeout() {
+                const controller = new AbortController();
+                setTimeout(() => controller.abort(new Error('Request timed out')), requestTimeoutMs);
+                return controller.signal;
+            },
+        },
+        console: { log() {}, warn() {}, error() {} },
         fetch: async (url, init) => {
             requests.push({ url, method: init?.method });
             const handler = handlers[new URL(url).pathname];
@@ -287,4 +295,36 @@ test('local undo and another deletion preserve each other; synced jobs cannot us
     assert.deepEqual(h.storage().savedJobs, [job('restore-me')]);
     assert.equal((await h.send({ type: 'RESTORE_LOCAL_JOB', payload: { job: syncedJob() } })).success, false);
     assert.deepEqual(h.storage().savedJobs, [job('restore-me')]);
+});
+
+test('production requests use the permitted canonical host and abortable fetches', async () => {
+    const h = harness([], {
+        '/api/extension/auth-status': (url, init) => {
+            assert.equal(new URL(url).origin, 'https://www.recruiterinyourpocket.com');
+            assert.ok(init.signal instanceof AbortSignal);
+            return response({ success: true, authenticated: true, user: { id: accountA } });
+        },
+        '/api/extension/saved-jobs': (url, init) => {
+            assert.equal(new URL(url).origin, 'https://www.recruiterinyourpocket.com');
+            assert.ok(init.signal instanceof AbortSignal);
+            return response({ success: true, userId: accountA, jobs: [] });
+        },
+    });
+    assert.equal((await h.send({ type: 'GET_JOBS' })).syncStatus, 'synced');
+});
+
+test('a stalled refresh times out, reports cached data, and releases queued local deletion', async () => {
+    const local = job('local');
+    const h = harness([syncedJob(), local], {
+        '/api/extension/saved-jobs': (_url, init) => new Promise((_resolve, reject) => {
+            init.signal.addEventListener('abort', () => reject(init.signal.reason));
+        }),
+    }, 5);
+    const refresh = h.send({ type: 'GET_JOBS' });
+    const deletion = h.send({ type: 'DELETE_JOB', payload: { jobId: local.id } });
+    const result = await refresh;
+    assert.equal(result.syncStatus, 'offline');
+    assert.equal(result.data.length, 2);
+    assert.equal((await deletion).success, true);
+    assert.deepEqual(h.storage().savedJobs, [syncedJob()]);
 });

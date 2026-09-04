@@ -302,7 +302,7 @@ test.describe("paid decision boundary", () => {
         await expect(dialog.getByRole("heading", { name: expected.title, exact: true })).toBeVisible();
         await expect(dialog.getByTestId("paywall-context-label")).toHaveText(expected.label);
         await expect(dialog).toContainText("This free report is complete. You do not need to pay to see the rest.");
-        await expect(dialog).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
+        await expect(dialog).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
         await expect(dialog).toContainText("5 additional reports");
         await expect(dialog).toContainText("$29");
         await expect(dialog).toContainText("30 days");

@@ -28,7 +28,7 @@ export type GenerationBudgetStatus = {
 };
 
 export const DAILY_CAPACITY_EXHAUSTED_MESSAGE =
-  "Today's beta report capacity has been reached. Please try again tomorrow.";
+  "Today's report capacity has been reached. Please try again tomorrow.";
 
 export class GenerationBudgetError extends Error {
   code: "GENERATION_PAUSED" | "GENERATION_BUDGET_EXHAUSTED" | "GENERATION_BUDGET_UNAVAILABLE";

@@ -1,13 +1,22 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { crx } from '@crxjs/vite-plugin';
 import { resolve } from 'path';
 import manifest from './public/manifest.json';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, process.cwd(), 'VITE_');
+    const developmentOrigin = mode === 'development'
+        ? new URL(env.VITE_WEBAPP_URL || 'http://localhost:3000').origin
+        : null;
+    const buildManifest = developmentOrigin
+        ? { ...manifest, host_permissions: [...manifest.host_permissions, `${developmentOrigin}/*`] }
+        : manifest;
+
+    return {
     plugins: [
         react(),
-        crx({ manifest }),
+        crx({ manifest: buildManifest }),
     ],
     build: {
         outDir: 'dist',
@@ -33,4 +42,5 @@ export default defineConfig({
             port: 5173,
         },
     },
+    };
 });

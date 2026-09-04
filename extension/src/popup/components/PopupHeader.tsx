@@ -4,12 +4,15 @@
  * Premium brand header with RIYP logo mark and status.
  */
 
+import type { JobSyncStatus } from '../../background/messages';
+
 interface PopupHeaderProps {
     user?: { email: string; firstName?: string } | null;
     authenticated?: boolean;
+    syncStatus?: JobSyncStatus | null;
 }
 
-export default function PopupHeader({ user, authenticated = false }: PopupHeaderProps) {
+export default function PopupHeader({ user, authenticated = false, syncStatus }: PopupHeaderProps) {
     return (
         <header className="popup-header">
             <div className="popup-logo">
@@ -21,10 +24,10 @@ export default function PopupHeader({ user, authenticated = false }: PopupHeader
                     <>
                         <span className="popup-status-dot" />
                         <span>{user.firstName || user.email.split('@')[0]}</span>
-                        <span className="popup-status-badge">Sync on</span>
+                        <span className="popup-status-badge">{syncStatus === 'offline' ? 'Offline' : 'Sync on'}</span>
                     </>
                 ) : (
-                    <span className="popup-status-text">{authenticated ? "Checking sync…" : "Local only"}</span>
+                    <span className="popup-status-text">{syncStatus === 'offline' ? 'Offline' : authenticated ? "Checking sync…" : "Local only"}</span>
                 )}
             </div>
         </header>

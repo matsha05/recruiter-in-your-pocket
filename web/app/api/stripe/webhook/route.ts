@@ -518,7 +518,8 @@ async function syncSubscriptionStatus(
         .from("passes")
         .select("id, price_id")
         .eq("stripe_subscription_id", subscriptionId)
-        .eq("tier", "monthly");
+        .eq("tier", "monthly")
+        .is("revoked_at", null);
     if (lookupError) throw lookupError;
     if (!passes?.length) return;
 
@@ -545,7 +546,10 @@ async function syncSubscriptionStatus(
             .update({ expires_at: update.expiresAt, uses_remaining: isActive ? 9_999 : 0 })
             .eq("id", update.id)
             .eq("stripe_subscription_id", subscriptionId)
-            .eq("tier", "monthly");
+            .eq("tier", "monthly")
+            // A refund/dispute may land after the lookup above. Recheck the
+            // revocation on the write so a late update cannot restore access.
+            .is("revoked_at", null);
         if (error) throw error;
     }
 

@@ -1,5 +1,5 @@
-import { useReducer, useEffect, useCallback } from 'react';
-import type { SavedJob, AuthUser } from '../background/messages';
+import { useReducer, useEffect, useCallback, useRef } from 'react';
+import type { SavedJob, AuthUser, JobSyncStatus } from '../background/messages';
 import { isSyncedJob } from '../background/storage';
 import PopupHeader from './components/PopupHeader';
 import ResumeContextCard from './components/ResumeContextCard';
@@ -19,11 +19,12 @@ type AppState = {
     authenticated: boolean;
     error: string | null;
     deletedJob: SavedJob | null;
+    syncStatus: JobSyncStatus | null;
 };
 
 type AppAction =
     | { type: 'patch'; patch: Partial<AppState> }
-    | { type: 'jobsLoaded'; jobs: SavedJob[]; authenticated: boolean }
+    | { type: 'jobsLoaded'; jobs: SavedJob[]; authenticated: boolean; syncStatus: JobSyncStatus }
     | { type: 'deleteOptimistic'; job: SavedJob; authenticated: boolean }
     | { type: 'deleteSucceeded'; job: SavedJob }
     | { type: 'deleteFailed'; job: SavedJob; error: string }
@@ -36,6 +37,7 @@ const initialAppState: AppState = {
     authenticated: false,
     error: null,
     deletedJob: null,
+    syncStatus: null,
 };
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -49,7 +51,8 @@ function appReducer(state: AppState, action: AppAction): AppState {
                     : action.authenticated
                         ? 'empty'
                         : 'unauthenticated';
-            return { ...state, jobs: action.jobs, view };
+            return { ...state, jobs: action.jobs, view, syncStatus: action.syncStatus, authenticated: action.authenticated,
+                ...(action.syncStatus === 'signed-out' ? { user: null } : {}), error: null, deletedJob: null };
         }
         case 'deleteOptimistic': {
             const jobs = state.jobs.filter((job) => job.id !== action.job.id);
@@ -87,13 +90,19 @@ function appReducer(state: AppState, action: AppAction): AppState {
 }
 
 export default function App() {
-    const [{ view, jobs, user, authenticated, error, deletedJob }, dispatch] = useReducer(appReducer, initialAppState);
+    const [{ view, jobs, user, authenticated, error, deletedJob, syncStatus }, dispatch] = useReducer(appReducer, initialAppState);
+    const refreshing = useRef(false);
 
     useEffect(() => {
-        initialize();
+        void initialize();
+        const refresh = () => { void initialize(); };
+        window.addEventListener('focus', refresh);
+        return () => window.removeEventListener('focus', refresh);
     }, []);
 
     async function initialize() {
+        if (refreshing.current) return;
+        refreshing.current = true;
         try {
             // Check onboarding status
             const result = await chrome.storage.local.get('riyp_onboarding_complete');
@@ -119,6 +128,8 @@ export default function App() {
         } catch (err) {
             console.error('[RIYP] Init error:', err);
             dispatch({ type: 'patch', patch: { error: 'Failed to initialize', view: 'error' } });
+        } finally {
+            refreshing.current = false;
         }
     }
 
@@ -129,7 +140,8 @@ export default function App() {
 
             if (response.success) {
                 const savedJobs = response.data as SavedJob[];
-                dispatch({ type: 'jobsLoaded', jobs: savedJobs, authenticated: authenticatedOverride });
+                const status: JobSyncStatus = response.syncStatus ?? (authenticatedOverride ? 'synced' : 'signed-out');
+                dispatch({ type: 'jobsLoaded', jobs: savedJobs, authenticated: status === 'signed-out' ? false : authenticatedOverride, syncStatus: status });
             } else {
                 if (response.error?.includes('Not authenticated') || response.error?.includes('AUTH_REQUIRED')) {
                     dispatch({ type: 'patch', patch: { view: 'unauthenticated' } });
@@ -211,18 +223,31 @@ export default function App() {
 
     async function handleOnboardingComplete() {
         await chrome.storage.local.set({ riyp_onboarding_complete: true });
-        await loadJobs();
+        await initialize();
     }
 
     function handleRetryLoadJobs() {
-        void loadJobs();
+        void initialize();
     }
 
     return (
         <div className="popup-container">
-            <PopupHeader user={user} authenticated={authenticated} />
+            <PopupHeader user={user} authenticated={authenticated} syncStatus={syncStatus} />
 
             <div className="popup-content">
+                {view !== 'onboarding' && (
+                    <div className="section-header">
+                        <span className="section-title">{syncStatus === 'offline' ? 'Showing saved copies' : 'Saved-job context'}</span>
+                        <button type="button" className="btn btn-ghost" disabled={view === 'loading'} onClick={() => void initialize()}>
+                            Refresh
+                        </button>
+                    </div>
+                )}
+                {syncStatus === 'offline' && (
+                    <p role="status" className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
+                        Synced jobs could not refresh. Your browser saves are still available. Try Refresh when your connection returns.
+                    </p>
+                )}
                 {error && view !== 'error' && (
                     <p role="alert" className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
                         {error}
@@ -251,6 +276,7 @@ export default function App() {
                         {jobs.some((job) => !isSyncedJob(job)) && (
                             <div className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
                                 Some jobs are saved on this browser only. Open the studio for a fresh report, or sign in and capture again to sync.
+                                {!authenticated && <button type="button" className="btn btn-ghost" onClick={handleLogin}>Sign in for sync</button>}
                             </div>
                         )}
                         <RecentJobsList

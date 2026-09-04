@@ -8,6 +8,7 @@ import {
 } from "../lib/auth/utils";
 import { getAppUrlForRequest, getConfiguredAppUrl } from "../lib/runtime/appUrl";
 import { PRIVATE_ROUTE_ROBOTS } from "../lib/seo/privateRouteMetadata";
+import { getAuthCopy } from "../lib/auth/content";
 
 function assertEqual(actual: unknown, expected: unknown, label: string) {
   if (actual !== expected) {
@@ -34,6 +35,16 @@ assertEqual(isValidAuthEmail(`${"a".repeat(250)}@example.com`), false, "oversize
 assertEqual(PRIVATE_ROUTE_ROBOTS.index, false, "private surfaces opt out of indexing");
 assertEqual(PRIVATE_ROUTE_ROBOTS.follow, false, "private surfaces opt out of link following");
 assertEqual(PRIVATE_ROUTE_ROBOTS.googleBot.index, false, "Googlebot receives the private route policy");
+
+const defaultAuthCopy = getAuthCopy("default");
+assertEqual(/jobs|role context/i.test(defaultAuthCopy.subtext), false, "default sign-in does not promise disabled job sync");
+assertEqual(getAuthCopy("extension"), defaultAuthCopy, "disabled extension sign-in uses available account benefits");
+assertEqual(getAuthCopy("paywall"), defaultAuthCopy, "disabled billing sign-in does not promise purchase recovery");
+assertEqual(/billing|receipts|restore/i.test(JSON.stringify(getAuthCopy("settings"))), false, "settings copy omits disabled billing");
+assertEqual(/jobs/i.test(getAuthCopy("default", { extensionEnabled: true }).subtext), true, "enabled job sync is named in default account copy");
+assertEqual(/saved jobs/i.test(getAuthCopy("extension", { extensionEnabled: true }).subtext), true, "enabled extension sign-in describes job sync");
+assertEqual(/receipts.*restore/i.test(getAuthCopy("settings", { billingEnabled: true }).subtext), true, "enabled billing settings describe receipt and recovery access");
+assertEqual(/pass|purchase/i.test(getAuthCopy("paywall", { billingEnabled: true }).subtext), true, "enabled paid access uses purchase-specific copy");
 
 for (const routeFile of [
   "app/(app)/layout.tsx",

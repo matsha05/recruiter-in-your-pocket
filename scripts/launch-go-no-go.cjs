@@ -164,7 +164,7 @@ checkCondition(
   "Shared production rate limiting",
   hasSharedRedis(),
   "Upstash Redis is configured for cross-instance rate limiting and idempotency.",
-  "A compatible UPSTASH_REDIS_REST_* or KV_REST_API_* credential pair is required before paid beta traffic."
+  "A compatible UPSTASH_REDIS_REST_* or KV_REST_API_* credential pair is required before paid traffic."
 );
 
 checkCondition(
@@ -248,10 +248,10 @@ if (strict) {
 
   checkCondition(
     "paid_beta_billing_enabled",
-    "Paid beta billing enabled",
+    "Paid product billing enabled",
     billingEnabled,
-    "Billing is explicitly enabled for the paid beta.",
-    "NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=true is required for the strict paid-beta gate."
+    "Billing is explicitly enabled for the paid product.",
+    "NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=true is required for the strict paid-product gate."
   );
 }
 

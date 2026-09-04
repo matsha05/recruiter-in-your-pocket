@@ -210,25 +210,16 @@ function FirstReadMap() {
 function FindingVisual({ visual }: { visual: FindingVisual }) {
     if (visual === "spelling") {
         return (
-            <div className="research-finding-visual research-finding-spelling" role="img" aria-label="Five spelling errors were associated with an 18.5 percentage-point lower interview probability than an error-free resume in the cited experiment">
+            <div className="research-finding-visual research-finding-spelling" role="img" aria-label="In a hypothetical hiring experiment, five spelling errors reduced the average invitation rating by 1.85 points on a zero-to-ten scale compared with error-free resumes">
                 <div className="flex items-center justify-between gap-5">
                     <div>
-                        <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">Interview probability</p>
-                        <p className="mt-3 font-display text-[clamp(4.5rem,9vw,8rem)] leading-none tracking-[-0.06em] text-foreground">−18.5<span className="ml-1 text-[0.34em] tracking-normal text-brand">pp</span></p>
+                        <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">Change in invitation rating</p>
+                        <p className="mt-3 font-display text-[clamp(4.5rem,9vw,8rem)] leading-none tracking-[-0.06em] text-foreground">−1.85<span className="ml-2 text-[0.25em] tracking-normal text-brand">points</span></p>
                     </div>
                     <TextAa size={58} weight="duotone" className="text-brand" aria-hidden="true" />
                 </div>
-                <p className="mt-5 max-w-[33rem] text-base leading-7 text-muted-foreground">Five spelling errors versus error-free resumes in the experiment.</p>
-                <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                    <div>
-                        <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground"><span>0 errors</span><span>reference</span></div>
-                        <progress className="research-progress mt-3" max="100" value="100">100%</progress>
-                    </div>
-                    <div>
-                        <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground"><span>5 errors</span><span>−18.5 points</span></div>
-                        <progress className="research-progress research-progress-warn mt-3" max="100" value="81.5">81.5%</progress>
-                    </div>
-                </div>
+                <p className="mt-5 max-w-[33rem] text-base leading-7 text-muted-foreground">Five spelling errors versus error-free resumes, rated on a 0–10 scale.</p>
+                <p className="mt-6 border-t border-line pt-4 text-sm leading-6 text-muted-foreground">These were hypothetical invitation ratings. The study did not measure actual callbacks.</p>
             </div>
         );
     }
@@ -416,28 +407,24 @@ function ResearchEvidenceTrace() {
 export default function ResearchClient() {
     return (
         <div className="lift-page research-page selection:bg-brand/15" data-visual-anchor="research-hub">
-            <ResearchSection density="hero" className="!bg-paper !pb-12 !pt-24 md:!pb-16 md:!pt-32" containerClassName="max-w-screen-xl">
-                <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-24">
+            <ResearchSection density="hero" className="!bg-paper !pb-9 !pt-24 md:!pb-12 md:!pt-28" containerClassName="max-w-screen-xl">
+                <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
                     <div>
                         <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Evidence library</p>
-                        <h1 className="mt-5 max-w-[8ch] font-display text-[clamp(4.5rem,9vw,9rem)] riyp-weight-620 leading-[0.82] tracking-[-0.07em] text-foreground">Research</h1>
+                        <h1 className="mt-4 font-display text-[clamp(3.5rem,7vw,6rem)] riyp-weight-620 leading-[0.9] tracking-[-0.06em] text-foreground">Research</h1>
                     </div>
                     <div>
-                        <p className="max-w-[18ch] font-display text-[clamp(2.5rem,5vw,5.4rem)] riyp-weight-540 leading-[0.95] tracking-[-0.045em] text-foreground">
-                            Resume advice is plentiful. Reliable evidence is harder to find.
-                        </p>
-                        <p className="mt-7 max-w-2xl text-base leading-8 text-muted-foreground">
-                            We track down the studies, platform documentation, and recruiter experiments—then keep the part that changes what you should do.
+                        <p className="max-w-prose text-lg leading-7 text-muted-foreground">
+                            What does the evidence actually say? Find the studies, recruiter experiments, and platform documentation behind the advice.
                         </p>
                     </div>
                 </div>
 
-                <dl className="research-source-ledger">
-                    <div><dt>445 recruiters</dt><dd>Spelling experiment</dd></div>
-                    <div><dt>694 hiring professionals</dt><dd>Trust experiment</dd></div>
-                    <div><dt>40 recruiters · 60 resumes</dt><dd>Real-document study</dd></div>
-                    <div><dt>Greenhouse + Lever</dt><dd>Current parser documentation</dd></div>
-                </dl>
+            </ResearchSection>
+
+            <ResearchSection density="tight" className="!bg-paper" containerClassName="max-w-screen-xl">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">Find your question</h2>
+                <ResearchLibrary />
             </ResearchSection>
 
             <ResearchSection density="default" className="!bg-surface-sky" containerClassName="max-w-screen-xl">
@@ -474,17 +461,8 @@ export default function ResearchClient() {
                 </div>
             </ResearchSection>
 
-            <ResearchSection density="default" className="!bg-paper" divider={false} containerClassName="max-w-[72rem]">
-                <div className="grid gap-5 md:grid-cols-[16rem_minmax(0,1fr)] md:gap-12">
-                    <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">All research</p>
-                    <div>
-                        <h2 className="font-display text-[clamp(2.75rem,5vw,5rem)] riyp-weight-620 leading-[0.96] tracking-[-0.04em] text-foreground">Read the evidence behind the advice.</h2>
-                        <p className="mt-5 max-w-prose text-base leading-7 text-muted-foreground">Browse the underlying research on first impressions, writing, getting found, and hiring systems.</p>
-                    </div>
-                </div>
-                <ResearchLibrary />
-
-                <div className="mt-16 flex flex-col gap-5 border-t border-line bg-surface-sky p-6 md:flex-row md:items-end md:justify-between md:p-8">
+            <ResearchSection density="tight" className="!bg-paper" divider={false} containerClassName="max-w-[72rem]">
+                <div className="flex flex-col gap-5 border-t border-line bg-surface-sky p-6 md:flex-row md:items-end md:justify-between md:p-8">
                     <div>
                         <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Apply it to your resume</p>
                         <p className="mt-2 max-w-[46rem] text-base leading-7 text-muted-foreground">Your report uses the same evidence standards to show what is clear, what needs more context, and what to fix first.</p>

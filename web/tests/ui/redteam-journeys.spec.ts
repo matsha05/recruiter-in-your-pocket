@@ -38,7 +38,7 @@ test.describe("launch red-team journeys", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
-    const heroFirstRead = page.getByRole("article", { name: /Strong operator/i });
+    const heroFirstRead = page.getByRole("article", { name: /You led the work/i });
     await expect(heroFirstRead.getByText("Exact resume line", { exact: true })).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
@@ -118,7 +118,7 @@ test.describe("launch red-team journeys", () => {
     await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
     await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
     await expect(page.getByTestId("clarity-summary-basis")).toContainText(
-      "the four signals are not presented as a simple average",
+      "it is not a simple average",
     );
     await expect(page.getByRole("heading", { name: "Three moves. In order.", exact: true })).toBeVisible();
 
@@ -128,13 +128,14 @@ test.describe("launch red-team journeys", () => {
 
     const sampleFixes = page.locator('[id^="section-fix-"]');
     const firstFix = sampleFixes.first();
-    await expect(firstFix).toContainText("Read-only example. Your report will use the facts in your resume.");
+    await expect(firstFix).toContainText("Draft to complete with your facts");
+    await expect(firstFix).toContainText("The brackets mark details missing from the original. Add only what you can verify.");
     await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
-    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Keep these facts|Not relevant|Source needed/i })).toHaveCount(0);
+    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Keep these facts|Not relevant|Original resume needed/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
-    await expect(terminalCta).toContainText("Now see what lands in yours.");
+    await expect(terminalCta).toContainText("Let's look at your resume.");
     await terminalCta.getByRole("button", { name: "Get my free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
@@ -148,24 +149,22 @@ test.describe("launch red-team journeys", () => {
 
     const purchaseDecision = page.getByTestId("post-report-purchase-decision");
     await expect(purchaseDecision).toContainText("This free report is complete. You do not need to pay to see the rest.");
-    await expect(purchaseDecision).toContainText("Buy the Job Search Pass only when you have a revised resume to compare or another important role to review.");
+    await expect(purchaseDecision).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
     await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
-    const reportPaywall = page.getByRole("dialog", { name: /reached the preview limit/i });
+    const reportPaywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");
     await expect(reportPaywall.getByRole("button", { name: "Back to my report" })).toBeVisible();
     await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
-    const feedback = page.getByTestId("beta-feedback");
-    await expect(feedback).toContainText("Your first complete report is free. No card required.");
-    await expect(feedback).toContainText("repeat use across browsers or shared networks");
-    await expect(feedback).toContainText("daily beta capacity");
-    await expect(feedback).not.toContainText("paid beta");
+    const feedback = page.getByTestId("report-feedback");
+    await expect(feedback).toContainText("Tell us which advice helped and which line needs another look.");
+    await expect(feedback).not.toContainText("beta");
     await expect(feedback).toContainText("Your resume is never attached.");
-    const feedbackLink = feedback.getByRole("link", { name: "Send a two-minute note", exact: true });
-    await expect(feedbackLink).toHaveAttribute("href", /subject=Beta%20report%20feedback/);
+    const feedbackLink = feedback.getByRole("link", { name: "Send feedback", exact: true });
+    await expect(feedbackLink).toHaveAttribute("href", /subject=Report%20feedback/);
 
     const firstGeneratedFix = page.locator("#section-fix-1");
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
@@ -288,11 +287,10 @@ test.describe("launch red-team journeys", () => {
     await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
     await page.getByTestId("workspace-run-report").click();
 
-    const paywall = page.getByRole("dialog", { name: /reached the preview limit/i });
+    const paywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
     await expect(paywall).toBeVisible();
-    await expect(paywall.getByText(/Paid access is not open yet/i)).toBeVisible();
     await expect(paywall).not.toContainText("Your existing report stays available");
-    await expect(paywall).toContainText("Stay in the workspace");
+    await expect(paywall).toContainText("You can return to your resume below");
     await expect(paywall.getByRole("button", { name: "Back to workspace" })).toBeVisible();
     await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
   });

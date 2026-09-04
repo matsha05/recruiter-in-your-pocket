@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import Module from "node:module";
 import path from "node:path";
 import { NextRequest } from "next/server";
+import { hasPdfExportAccess, isPassActive } from "../lib/billing/entitlements";
 
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
@@ -44,6 +45,7 @@ async function run() {
   let failedEvents = 0;
   let eventType = "customer.subscription.updated";
   let session: any;
+  let beforePassUpdate: (() => void) | null = null;
   const monthlySession = {
     id: "cs_test_monthly1234", mode: "subscription", status: "complete", payment_status: "paid",
     subscription: "sub_monthly", created: nowUnix - 16 * 86_400, customer: "cus_monthly",
@@ -57,6 +59,7 @@ async function run() {
       const filters: Array<(row: any) => boolean> = [];
       const execute = () => {
         assert.ok(table === "passes" || table === "billing_entitlement_blocks", `unexpected table ${table}`);
+        if (table === "passes" && operation === "update") beforePassUpdate?.();
         const rows = table === "passes" ? passes.filter((row) => filters.every((filter) => filter(row))) : [];
         if (operation === "insert") { mutations += 1; passes.push(values); }
         if (operation === "update") { mutations += 1; for (const row of rows) Object.assign(row, values); }
@@ -65,6 +68,7 @@ async function run() {
       const query: any = {
         select: () => query,
         eq: (key: string, value: unknown) => { filters.push((row) => row[key] === value); return query; },
+        is: (key: string, value: null) => { filters.push((row) => (row[key] ?? null) === value); return query; },
         in: (key: string, values: unknown[]) => { filters.push((row) => values.includes(row[key])); return query; },
         limit: () => query,
         insert: (payload: unknown) => { operation = "insert"; values = payload; return query; },
@@ -112,6 +116,7 @@ async function run() {
     mutations = 0;
     failedEvents = 0;
     eventType = "customer.subscription.updated";
+    beforePassUpdate = null;
   };
   const existingPass = () => ({
     id: "pass_monthly", user_id: user.id, tier: "monthly", price_id: "price_monthly",
@@ -173,6 +178,45 @@ async function run() {
       assert.equal(passes[0].expires_at, expectedExpiry, "subscription update matches the canonical item for current and migrated passes");
       assert.equal(passes[1].expires_at, otherExpiry, "another subscription is untouched");
     }
+    for (const reason of ["refund", "dispute"]) {
+      for (const status of ["active", "trialing", "past_due"]) {
+        for (const duringWrite of [false, true]) {
+          reset();
+          subscription.status = status;
+          const revokedAt = new Date(nowUnix * 1000).toISOString();
+          const revoke = () => Object.assign(passes[0], {
+            revoked_at: revokedAt, revocation_reason: reason, expires_at: revokedAt, uses_remaining: 0,
+          });
+          passes = [existingPass()];
+          if (duringWrite) beforePassUpdate = revoke;
+          else revoke();
+          assert.equal((await webhook(webhookRequest())).status, 200);
+          assert.equal(passes[0].expires_at, revokedAt, `${reason} expiry survives a late ${status} update`);
+          assert.equal(passes[0].uses_remaining, 0, `${reason} credits cannot be restored`);
+          assert.equal(passes[0].revoked_at, revokedAt);
+          assert.equal(passes[0].revocation_reason, reason);
+          assert.equal(isPassActive(passes[0]), false);
+          assert.equal(hasPdfExportAccess(passes[0]), false);
+        }
+      }
+    }
+    reset();
+    const revoked = { ...existingPass(), revoked_at: new Date(nowUnix * 1000).toISOString(), revocation_reason: "refund" };
+    passes = [revoked];
+    subscription.items.data = [];
+    assert.equal((await webhook(webhookRequest())).status, 200, "revoked-only subscription needs no billing-period resolution");
+    assert.equal(mutations, 0);
+    subscription.status = "canceled";
+    eventType = "customer.subscription.deleted";
+    assert.equal((await webhook(webhookRequest())).status, 200, "cancellation preserves an existing revocation");
+    assert.equal(mutations, 0);
+
+    reset();
+    passes = [{ ...revoked }, { ...existingPass(), id: "pass_valid" }];
+    const revokedBefore = structuredClone(passes[0]);
+    assert.equal((await webhook(webhookRequest())).status, 200);
+    assert.deepEqual(passes[0], revokedBefore, "a mixed subscription leaves its revoked row untouched");
+    assert.equal(passes[1].expires_at, expectedExpiry, "a valid row on that subscription still updates");
     reset();
     passes = [existingPass()];
     subscription.current_period_end = periodEnd;

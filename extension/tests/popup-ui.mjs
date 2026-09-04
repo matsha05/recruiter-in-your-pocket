@@ -34,20 +34,20 @@ function jobs(count, synced = false) {
     }));
 }
 
-async function openPopup(fixtures, authenticated = false, deleteError = null, restoreError = null) {
+async function openPopup(fixtures, authenticated = false, deleteError = null, restoreError = null, syncStatus = authenticated ? 'synced' : 'signed-out', onboardingComplete = true) {
     const page = await browser.newPage({ viewport: { width: 380, height: 600 } });
     await page.route('**/api/**', (route) => route.fulfill({
         status: 200, contentType: 'application/json', body: JSON.stringify({ success: true, data: { hasResume: false } }),
     }));
-    await page.addInitScript(({ fixtures, authenticated, deleteError, restoreError }) => {
-        const state = { jobs: fixtures, messages: [], tabs: [] };
+    await page.addInitScript(({ fixtures, authenticated, deleteError, restoreError, syncStatus, onboardingComplete }) => {
+        const state = { jobs: fixtures, messages: [], tabs: [], authenticated, syncStatus, onboardingComplete };
         window.__testState = state;
         window.chrome = {
             runtime: {
                 async sendMessage(message) {
                     state.messages.push(message);
-                    if (message.type === 'CHECK_AUTH') return { success: true, data: { authenticated, user: authenticated ? { id: 'account-a', email: 'test@example.com' } : null } };
-                    if (message.type === 'GET_JOBS') return { success: true, data: state.jobs };
+                    if (message.type === 'CHECK_AUTH') return { success: true, data: { authenticated: state.authenticated, user: state.authenticated ? { id: 'account-a', email: 'test@example.com' } : null } };
+                    if (message.type === 'GET_JOBS') return { success: true, data: state.jobs, syncStatus: state.syncStatus };
                     if (message.type === 'DELETE_JOB') {
                         if (deleteError) return { success: false, error: deleteError };
                         state.jobs = state.jobs.filter((job) => job.id !== message.payload.jobId);
@@ -62,17 +62,23 @@ async function openPopup(fixtures, authenticated = false, deleteError = null, re
                 },
             },
             storage: { local: {
-                async get(key) { return key === 'riyp_onboarding_complete' ? { riyp_onboarding_complete: true } : { riyp_extension_data: { savedJobs: state.jobs } }; },
-                async set(value) { if (value.riyp_extension_data) state.jobs = value.riyp_extension_data.savedJobs; },
+                async get(key) { return key === 'riyp_onboarding_complete' ? { riyp_onboarding_complete: state.onboardingComplete } : { riyp_extension_data: { savedJobs: state.jobs } }; },
+                async set(value) {
+                    if (value.riyp_extension_data) state.jobs = value.riyp_extension_data.savedJobs;
+                    if (value.riyp_onboarding_complete) state.onboardingComplete = true;
+                },
             } },
             tabs: { create(tab) { state.tabs.push(tab); } },
         };
-    }, { fixtures, authenticated, deleteError, restoreError });
+    }, { fixtures, authenticated, deleteError, restoreError, syncStatus, onboardingComplete });
     await page.goto(`${base}/src/popup/index.html`);
     return page;
 }
 
 try {
+    const builtManifest = JSON.parse(await readFile(new URL('manifest.json', dist), 'utf8'));
+    assert.ok(builtManifest.host_permissions.includes('https://www.recruiterinyourpocket.com/*'));
+    assert.equal(builtManifest.host_permissions.some((host) => /localhost|127\.0\.0\.1/.test(host)), false, 'production bundle must not include development host permissions');
     browser = await chromium.launch();
     const page = await openPopup(jobs(8));
     await expect(page.locator('.job-card')).toHaveCount(5);
@@ -123,7 +129,32 @@ try {
     await expect(undoFailurePage.locator('.job-card')).toHaveCount(1);
     await expect(undoFailurePage.getByRole('button', { name: 'Undo', exact: true })).toBeVisible();
     await undoFailurePage.close();
-    console.log('Popup regressions passed: signed-out expansion, last-job actions, local undo, bounded scroll, deletion failure rollback, failed-undo feedback.');
+
+    const reconnectPage = await openPopup(jobs(1));
+    await reconnectPage.getByRole('button', { name: 'Sign in for sync', exact: true }).click();
+    assert.equal(await reconnectPage.evaluate(() => window.__testState.messages.some((message) => message.type === 'OPEN_WEBAPP' && message.payload.path.startsWith('/auth?'))), true);
+    await reconnectPage.evaluate(() => { window.__testState.authenticated = true; window.__testState.syncStatus = 'synced'; });
+    await reconnectPage.getByRole('button', { name: 'Refresh', exact: true }).click();
+    await expect(reconnectPage.getByText('Sync on', { exact: true })).toBeVisible();
+    await reconnectPage.evaluate(() => { window.__testState.syncStatus = 'offline'; });
+    await reconnectPage.getByRole('button', { name: 'Refresh', exact: true }).click();
+    await expect(reconnectPage.getByRole('status')).toContainText('Synced jobs could not refresh');
+    await expect(reconnectPage.locator('.job-card')).toHaveCount(1);
+    await reconnectPage.evaluate(() => {
+        window.__testState.authenticated = false;
+        window.__testState.syncStatus = 'signed-out';
+        window.dispatchEvent(new Event('focus'));
+    });
+    await expect(reconnectPage.getByText('Local only', { exact: true })).toBeVisible();
+    await expect(reconnectPage.getByText('Sync on', { exact: true })).toHaveCount(0);
+    await reconnectPage.close();
+
+    const onboardingPage = await openPopup(jobs(1, true), true, null, null, 'synced', false);
+    await onboardingPage.getByRole('button', { name: /^Start with job capture/ }).click();
+    await expect(onboardingPage.getByText('Sync on', { exact: true })).toBeVisible();
+    await expect(onboardingPage.locator('.job-card')).toHaveCount(1);
+    await onboardingPage.close();
+    console.log('Popup regressions passed: list/actions, delete/Undo failures, production permissions, sign-in/refresh/offline recovery, and authenticated onboarding.');
 } finally {
     await browser?.close();
     await new Promise((resolve) => server.close(resolve));

@@ -46,7 +46,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const detailedReadCandidates = [
     { label: "Opening read", text: report.first_impression },
     { label: "Recruiter summary", text: report.summary },
-    { label: "Why the score landed here", text: report.score_comment_long },
+    { label: "What shaped the score", text: report.score_comment_long },
     { label: "What the score means", text: report.score_plain },
     { label: "Line worth revisiting", text: report.biggest_gap_example },
   ];
@@ -122,7 +122,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
         <span className="min-w-0">
           <span className="riyp-type-11px riyp-track-017 block font-semibold uppercase text-brand">Complete report</span>
           <span role="heading" aria-level={2} className="mt-2 block font-display text-2xl riyp-weight-520 leading-tight text-foreground sm:text-3xl">Full recruiter notes</span>
-          <span className="mt-2 block text-sm leading-6 text-muted-foreground">The detailed read, section notes, and revision order.</span>
+          <span className="mt-2 block text-sm leading-6 text-muted-foreground">The full assessment, section by section, with next steps.</span>
         </span>
         <CaretDown className="size-5 shrink-0 text-brand transition-transform group-open:rotate-180" aria-hidden="true" />
       </summary>
@@ -131,7 +131,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
         {detailedRead.length > 0 && (
           <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
             <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">Detailed read</p>
-            <h3 id="full-notes-read-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">What the short read leaves out.</h3>
+            <h3 id="full-notes-read-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">The detailed assessment.</h3>
             <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {detailedRead.map(({ label, text }) => (
                 <div key={label} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">
@@ -147,7 +147,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
           <section className="riyp-border-paper-line grid gap-8 border-t py-8 sm:py-10 lg:grid-cols-2 lg:gap-12" aria-label="Additional strengths and gaps">
             {remainingStrengths.length > 0 && (
               <div>
-                <h3 className="font-display text-2xl riyp-weight-520 text-foreground">More that lands</h3>
+                <h3 className="font-display text-2xl riyp-weight-520 text-foreground">Other strengths</h3>
                 <div className="mt-5"><NoteList items={remainingStrengths} /></div>
               </div>
             )}
@@ -163,7 +163,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
         {sectionNotes.length > 0 && (
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-sections-title">
             <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">Section by section</p>
-            <h3 id="full-notes-sections-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">The rest of the page.</h3>
+            <h3 id="full-notes-sections-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">Notes on each section.</h3>
             <div className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {sectionNotes.map(({ name, review, notes }) => (
                 <article key={name} className="py-6">
@@ -190,7 +190,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
         {nextSteps.length > 0 && (
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-next-title">
             <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">Revision order</p>
-            <h3 id="full-notes-next-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">Your next focused pass.</h3>
+            <h3 id="full-notes-next-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">What to do next.</h3>
             <div className="mt-6"><NoteList items={nextSteps} /></div>
           </section>
         )}
@@ -221,7 +221,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
               <dl className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {extraBestFitRoles.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">More fit roles</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{extraBestFitRoles.join(", ")}</dd></div>}
                 {stretchRoles.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Stretch roles</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{stretchRoles.join(", ")}</dd></div>}
-                {industrySignals.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Industry signals</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{industrySignals.join(", ")}</dd></div>}
+                {industrySignals.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Industry context</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{industrySignals.join(", ")}</dd></div>}
                 {companyStageFit && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Company stage</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{companyStageFit}</dd></div>}
               </dl>
             )}

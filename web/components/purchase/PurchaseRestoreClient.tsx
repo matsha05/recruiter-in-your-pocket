@@ -15,6 +15,7 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import Footer from "@/components/landing/Footer";
+import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
 type ReceiptItem = {
   id: string;
@@ -46,6 +47,11 @@ export default function PurchaseRestoreClient() {
   const [receiptsMessage, setReceiptsMessage] = useState<string | null>(null);
 
   const billingUpdated = getSearchParam("billing") === "updated";
+  const returnTo = normalizeCheckoutReturnTo(getSearchParam("returnTo"));
+  const workspaceHref = returnTo || "/workspace";
+  const signInHref = returnTo
+    ? `/auth?from=paywall&next=${encodeURIComponent(getCheckoutRestoreHref(returnTo))}`
+    : "/auth?from=paywall&next=/purchase/restore";
   const signedIn = Boolean(user?.email);
 
   const header = useMemo(() => {
@@ -174,10 +180,10 @@ export default function PurchaseRestoreClient() {
                 ) : !signedIn ? (
                   <>
                     <Button asChild variant="brand" size="lg">
-                      <Link href="/auth?from=paywall&next=/purchase/restore">Sign in <ArrowRight className="size-4" weight="bold" /></Link>
+                      <Link href={signInHref}>Sign in <ArrowRight className="size-4" weight="bold" /></Link>
                     </Button>
                     <Button asChild variant="outline" size="lg">
-                      <Link href="/workspace">Back to the studio</Link>
+                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to the studio"}</Link>
                     </Button>
                   </>
                 ) : (
@@ -195,7 +201,7 @@ export default function PurchaseRestoreClient() {
                       Load receipts
                     </Button>
                     <Button asChild variant="ghost" size="lg">
-                      <Link href="/workspace">Back to the studio</Link>
+                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to the studio"}</Link>
                     </Button>
                   </>
                 )}

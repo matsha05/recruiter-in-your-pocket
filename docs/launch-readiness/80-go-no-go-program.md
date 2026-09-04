@@ -1,6 +1,6 @@
-# RIYP Controlled Paid Beta Launch Program
+# RIYP Production Launch Program
 
-**Last updated:** August 29, 2026
+**Last updated:** September 4, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -8,7 +8,7 @@ This program supersedes older launch plans that required the Chrome extension, r
 
 ## Launch Decision
 
-RIYP will launch first as a controlled, web-only paid beta.
+Matt has requested a fully live web product. The launch bar is complete, verified customer journeys, with no unresolved defects dismissed as accepted beta issues. This supersedes the earlier controlled-beta target; it does not turn unfinished additional features into public promises.
 
 The promise is simple: upload or paste a resume, optionally add a job, and get the first-read brief a strong recruiter would want you to see.
 
@@ -88,7 +88,7 @@ Matt authorized the stored-fixture quality work. The current candidate validatio
 - Reject the launch if results are generic, unsupported, unstable, or materially worse than the sample report.
 - Disable paid eval authorization immediately after evidence is captured.
 
-### Gate 4: Controlled beta release
+### Gate 4: Production release
 
 - All earlier gates pass.
 - `/api/ready` reports no launch blockers in the hosted environment.
@@ -98,18 +98,18 @@ Matt authorized the stored-fixture quality work. The current candidate validatio
 
 ## Commercial Plan
 
-Start with a small founder-led cohort rather than a public splash.
+The core web product must support customers without live assistance. Promotion and acquisition remain separate from completing the product and its release verification.
 
 - Invite 10 to 25 people who are actively applying or revising a resume.
 - Make the first complete report included and keep one $29 Job Search Pass: five additional reports, one payment, 30-day expiration.
 - Describe the product as a recruiter first-read brief, not an AI resume grader.
 - Personally follow up after the first report with three questions: what felt immediately useful, what felt untrustworthy, and what almost stopped you.
 - Track activation, report completion, paywall reach, purchase, return use, and support demand. Keep analytics off until the privacy implementation is deliberately approved.
-- Expand only after the first cohort can complete the core journey without live help and the product produces consistently useful reports.
+- Verify that customers can complete the core journey without live help and that the product produces consistently useful reports.
 
 ## Go/No-Go Rule
 
-The beta is `GO` only when:
+The production release is `GO` only when:
 
 1. The zero-spend release gate passes.
 2. The complete preview rehearsal passes.
@@ -152,8 +152,8 @@ npm run launch:rehearsal
 1. Commit the candidate and start from a clean tracked tree. Local untracked files stay outside the receipt and must never be copied into release evidence.
 2. Push the candidate SHA and require the complete CI workflow to pass for that exact commit.
 3. Verify an immutable preview deployment built from the same SHA. Record the deployment ID and preview URL.
-4. Complete `95-launch-rehearsal.md` manually against that preview and record the candidate SHA, test date, browser/device coverage, failures, and accepted beta issues.
-5. Stop for Matt's explicit production-promotion approval. Automated checks, preview creation, or checklist generation do not grant that authority.
+4. Complete `95-launch-rehearsal.md` against that preview and record the candidate SHA, test date, browser/device coverage, failures, and any remaining limitations. Unresolved customer-journey defects block release.
+5. Confirm production-promotion authority from the current user request. Matt explicitly requested the full live launch on September 4, 2026; automated checks or checklist generation alone never grant that authority.
 6. Promote only the approved immutable deployment, then verify the canonical homepage, pricing, sample report, auth, robots, `/api/status`, and the protected `/api/ready` behavior. Preserve the exact-commit CI URL, deployment receipt, endpoint results, and final decision together.
 
 ## Current State and Follow-ups

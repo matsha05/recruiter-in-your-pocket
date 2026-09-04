@@ -15,6 +15,7 @@ type ResumeModeSectionProps = {
   onResumeTextChange: (text: string) => void;
   onJobDescChange: (text: string) => void;
   onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
+  commandUploadName?: string | null;
   onRun: () => void;
   freeUsesRemaining: number;
   user: AuthUser | null;
@@ -45,6 +46,7 @@ export default function ResumeModeSection({
   onResumeTextChange,
   onJobDescChange,
   onFileSelect,
+  commandUploadName,
   onRun,
   freeUsesRemaining,
   user,
@@ -89,6 +91,7 @@ export default function ResumeModeSection({
           onResumeTextChange={onResumeTextChange}
           onJobDescChange={onJobDescChange}
           onFileSelect={onFileSelect}
+          commandUploadName={commandUploadName}
           onRun={onRun}
           isLoading={isLoading}
           freeUsesRemaining={freeUsesRemaining}

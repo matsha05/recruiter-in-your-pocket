@@ -42,9 +42,9 @@ const DEFAULT_UNLOCK_COPY = {
     subtitle: COMPLETE_REPORT_SUBTITLE,
     bullets: [
         ADDITIONAL_REPORTS_BULLET,
-        "Reviews tailored to a job posting",
+        "Reports tailored to a job posting",
         "Side-by-side revision comparisons",
-        "Saved history and PDF exports"
+        "PDF exports for 30 days"
     ]
 };
 
@@ -57,7 +57,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
             ADDITIONAL_REPORTS_BULLET,
             "Evidence-backed recommendations for another role or revision",
             "Suggested rewrites tied to that resume",
-            "Saved report history and PDF exports"
+            "PDF exports for 30 days"
         ]
     },
     bullet_upgrades: {
@@ -101,7 +101,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
             ADDITIONAL_REPORTS_BULLET,
             "PDF export for saved reports",
             "Export without re-running",
-            "Saved report history"
+            "Exports stay available after all five reports are used"
         ]
     }
 };
@@ -203,19 +203,16 @@ export default function PaywallModal({
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
-                        <p className="mx-auto mb-2 text-xs font-bold uppercase riyp-track-010 text-brand">Private preview</p>
+                        <p className="mx-auto mb-2 text-xs font-bold uppercase riyp-track-010 text-brand">Another report</p>
                         <DialogTitle className="font-display text-2xl font-medium">
-                            You&apos;ve reached the preview limit
+                            Paid passes are currently unavailable
                         </DialogTitle>
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
                             {hasCurrentReport
-                                ? "Paid access is not open yet. Your existing report stays available."
-                                : "Paid access is not open yet. Stay in the workspace to keep working on your resume."}
+                                ? "Your existing report stays available. You can return to it below."
+                                : "You can return to your resume below. Another report requires available free access or a Job Search Pass."}
                         </DialogDescription>
                     </DialogHeader>
-                    <div className="mt-5 border-y border-border/70 py-4 text-sm leading-6 text-muted-foreground">
-                        We&apos;re deliberately keeping this preview small while the report experience is still being tuned.
-                    </div>
                     <Button className="mt-5 w-full" onClick={onClose}>
                         {hasCurrentReport ? "Back to my report" : "Back to workspace"}
                     </Button>
@@ -232,7 +229,7 @@ export default function PaywallModal({
                         {unlockCopy.title}
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        {unlockCopy.subtitle}
+                        {hasCurrentReport ? unlockCopy.subtitle : JOB_SEARCH_PASS_DECISION.whenToBuy}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -242,11 +239,6 @@ export default function PaywallModal({
                         <span data-testid="paywall-context-label" className="text-foreground/80">{unlockCopy.label}</span>
                     </div>
                     <UnlockValueList items={unlockCopy.bullets} dense />
-                    {unlockContext?.section && (
-                        <p className="text-xs text-muted-foreground">
-                            Your earlier context: <span className="text-foreground font-medium">{unlockCopy.label}</span>.
-                        </p>
-                    )}
                 </div>
 
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">

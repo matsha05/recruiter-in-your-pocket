@@ -25,6 +25,7 @@ export type PassLike = {
 export type PassStatus = "active" | "used" | "expired" | "revoked" | "invalid";
 
 const UNLIMITED_PASS_TIERS = new Set<string>(["monthly", "lifetime"]);
+const PAID_PASS_TIERS = new Set<string>(["monthly", "lifetime", "single_use", "30d", "90d"]);
 
 export function normalizeRequestedTier(input: unknown): RequestedPricingTier | null {
   if (typeof input !== "string") return null;
@@ -107,6 +108,14 @@ export function getPassStatusLabel(pass: PassLike | null | undefined, now = new 
 
 export function isPassActive(pass: PassLike | null | undefined, now = new Date()): boolean {
   return getPassStatus(pass, now) === "active";
+}
+
+export function hasPdfExportAccess(pass: PassLike | null | undefined, now = new Date()): boolean {
+  if (!pass?.tier || !PAID_PASS_TIERS.has(pass.tier)) return false;
+  const status = getPassStatus(pass, now);
+  // Report credits limit generation; saved-report exports last until the paid
+  // pass expires or is revoked, including after its final credit is consumed.
+  return status === "active" || status === "used";
 }
 
 export function shouldConsumePassCredit(pass: PassLike | null | undefined): boolean {

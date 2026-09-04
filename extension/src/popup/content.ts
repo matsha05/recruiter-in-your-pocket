@@ -22,11 +22,10 @@ export const popupContent = {
   auth: {
     title: "Sign in for synced saved jobs",
     description:
-      "Keep saved roles across devices, reopen them in the studio, and attach your extension history to the right account.",
+      "Save new captures to your account and reopen synced roles across devices. Existing browser saves stay local until you capture them again while signed in.",
     supportLine:
-      "You can still use the extension locally. Sign-in is only required for synced history and personalized context.",
+      "Local capture still works. Sign in in your browser, then reopen the extension or choose Refresh to reconnect.",
     primaryCta: "Open secure sign-in",
-    secondaryCta: "Open in browser instead",
     footer: "Need a RIYP account?",
   },
   empty: {

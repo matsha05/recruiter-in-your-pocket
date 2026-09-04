@@ -51,13 +51,13 @@ test.describe("workspace saved-job context", () => {
     await pasteAndRun(page);
     expect(submissions[0].savedJobId).toBe(JOB_A.id);
 
-    await page.getByRole("button", { name: "Review the revised resume", exact: true }).click();
+    await page.getByRole("button", { name: "Compare my revision", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace\?revision=1$/);
     await expect(page.getByText(JOB_A.title, { exact: true })).toHaveCount(0);
     await page.getByTestId("workspace-paste-mode").click();
     await expect(page.getByTestId("workspace-resume-text")).toHaveValue("");
     await page.getByTestId("workspace-resume-text").fill(`${RESUME_TEXT}\nRevised with clearer examples.`);
-    await expect(page.getByTestId("workspace-run-report")).toContainText("Compare the new read");
+    await expect(page.getByTestId("workspace-run-report")).toContainText("Compare my revision");
     await page.getByTestId("workspace-run-report").click();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     expect(submissions).toHaveLength(2);

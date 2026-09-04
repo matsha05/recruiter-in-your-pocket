@@ -22,6 +22,7 @@ import {
   type GenerationAccessRpcClient,
 } from "../lib/billing/generationAccess";
 import { requireAnonymousReportRecoveryId } from "../lib/reports/anonymous-report-recovery-requirement";
+import { hasPdfExportAccess } from "../lib/billing/entitlements";
 type HeldReservation = {
   id: string;
   userId: string;
@@ -207,6 +208,20 @@ assert.equal(passRpc.commitMutations, 1);
 await releaseGenerationAccess(passReservation, passRpc, "delivery_error");
 await releaseGenerationAccess(passReservation, passRpc, "delivery_error");
 assert.equal(passRpc.refundMutations, 0, "cleanup must never refund committed access");
+
+// A paid PDF entitlement survives the final report credit, but it cannot
+// reserve another report after both paid credits and the separate free use end.
+const freeReservation = [passA, passB].find((reservation) => reservation.entitlementKind === "free")!;
+await commitGenerationAccess(freeReservation, passRpc);
+assert.equal(hasPdfExportAccess({
+  tier: "single_use", uses_remaining: 0, expires_at: "2099-01-01T00:00:00.000Z",
+}), true);
+const exhaustedReservation = await reserveGenerationAccess({
+  userId: "user-2", admin: passRpc, reportKind: "resume_feedback", bypass: false, freeMeta,
+  randomUUID: () => "55555555-5555-4555-8555-555555555555",
+});
+assert.equal(exhaustedReservation.access, "preview", "PDF access must not grant another report");
+assert.equal(exhaustedReservation.entitlementKind, null);
 
 // Reservation keys are internal UUIDs, not request headers or user content.
 const reserveCall = passRpc.calls.find((call) => call.functionName === "reserve_generation_access")!;

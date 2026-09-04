@@ -3,30 +3,50 @@ export type AuthContext = "default" | "report" | "settings" | "paywall" | "histo
 const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   default: {
     headline: "Pick up where you left off",
-    subtext: "Use secure sign-in to reach your reports, privacy settings, and saved role context."
+    subtext: "Sign in to open your saved reports and account settings."
   },
   report: {
     headline: "Save this report",
-    subtext: "Sign in to save this report to the right account and compare later versions."
+    subtext: "Sign in to keep this report with your account."
   },
   settings: {
-    headline: "Manage billing and account controls",
-    subtext: "Use one secure sign-in to reach receipts, restore access, and account settings."
+    headline: "Your account settings",
+    subtext: "Sign in to manage your profile, export your data, or delete your account."
   },
   paywall: {
-    headline: "Use the access you already paid for",
-    subtext: "Purchases, billing restores, and paid access stay tied to your signed-in account."
+    headline: "Keep your reports and access together",
+    subtext: "Sign in to use your pass or save a new purchase to your account."
   },
   history: {
-    headline: "Open your saved history",
-    subtext: "Sign in to open saved reports, compare versions, and keep everything in one place."
+    headline: "Your saved reports",
+    subtext: "Sign in to return to a report or compare your revisions."
   },
   extension: {
     headline: "Sync saved jobs across devices",
-    subtext: "Sign in only if you want your extension history and studio history to stay in sync."
+    subtext: "Sign in to access your saved jobs on other devices."
   }
 };
 
-export function getAuthCopy(context: AuthContext) {
+export function getAuthCopy(
+  context: AuthContext,
+  { billingEnabled = false, extensionEnabled = false }: {
+    billingEnabled?: boolean;
+    extensionEnabled?: boolean;
+  } = {},
+) {
+  if (context === "extension" && !extensionEnabled) return AUTH_COPY.default;
+  if (context === "paywall" && !billingEnabled) return AUTH_COPY.default;
+  if (context === "settings" && billingEnabled) {
+    return {
+      headline: "Your account and billing",
+      subtext: "Sign in to find receipts, restore a purchase, or manage your account.",
+    };
+  }
+  if (context === "default" && extensionEnabled) {
+    return {
+      ...AUTH_COPY.default,
+      subtext: "Sign in to open your saved reports, jobs, and account settings.",
+    };
+  }
   return AUTH_COPY[context] || AUTH_COPY.default;
 }

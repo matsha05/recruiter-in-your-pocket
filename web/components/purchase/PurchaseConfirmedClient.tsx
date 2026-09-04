@@ -15,6 +15,7 @@ import { usePaymentConfirmation } from "@/hooks/usePaymentConfirmation";
 import { saveUnlockContext, scheduleCheckoutWorkspaceExpiry, type UnlockSection } from "@/lib/unlock/unlockContext";
 import Footer from "@/components/landing/Footer";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { getCheckoutPricingHref, getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
 export default function PurchaseConfirmedClient() {
   const { user, isLoading: authLoading, refreshUser } = useAuth();
@@ -26,6 +27,9 @@ export default function PurchaseConfirmedClient() {
   const tier = getSearchParam("tier");
   const source = getSearchParam("source");
   const unlock = getSearchParam("unlock");
+  const returnTo = normalizeCheckoutReturnTo(getSearchParam("returnTo"));
+  const workspaceHref = returnTo || "/workspace";
+  const restoreHref = getCheckoutRestoreHref(returnTo);
 
   const { state, attempt, sessionSuffix } = usePaymentConfirmation({
     sessionId,
@@ -133,15 +137,15 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : state.status === "unlocked" && hasPaidAccess ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href="/workspace">Open the studio <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Open the studio"} <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" && user ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href="/purchase/restore">Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={restoreHref}>Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href="/auth?next=%2Fworkspace&from=paywall">Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={`/auth?next=${encodeURIComponent(workspaceHref)}&from=paywall`}>Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : (
                   <Button type="button" variant="brand" size="lg" onClick={() => window.location.reload()}>
@@ -150,14 +154,14 @@ export default function PurchaseConfirmedClient() {
                 )}
 
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/purchase/restore">Restore access</Link>
+                  <Link href={restoreHref}>Restore access</Link>
                 </Button>
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/settings/billing">Billing settings</Link>
                 </Button>
                 {state.status === "error" ? (
                   <Button asChild variant="ghost" size="lg">
-                    <Link href="/pricing">Back to pricing</Link>
+                    <Link href={getCheckoutPricingHref(returnTo)}>Back to pricing</Link>
                   </Button>
                 ) : null}
               </div>

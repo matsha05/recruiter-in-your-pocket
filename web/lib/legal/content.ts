@@ -86,7 +86,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Receipt,
             title: "Simple billing",
-            body: "When paid access is open, Stripe handles checkout and card details. The only offer is a $29 Job Search Pass: five reports over 30 days, with no renewal.",
+            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 30 days, with no automatic renewal.",
           },
           {
             icon: Trash,
@@ -248,7 +248,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} When paid access is open, one $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
+            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
             { type: "text", value: " before contacting Support." },
           ],
@@ -330,15 +330,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What does the report cover?",
-                a: "We look at the first impression a recruiter would have, the impact of your bullets, how clear your resume is, and how well it fits the role. You get a score breakdown and specific rewrites.",
+                a: "Your report explains the impression your resume may give, what it makes clear, and where a reader needs more detail. It quotes the lines behind the feedback and suggests what to change first. Add a job posting for feedback on that role.",
               },
               {
                 q: "How is this different from ATS keyword tools?",
-                a: "ATS tools check if a parser can read your file. We focus on what a human recruiter really thinks when they read it, and tie every suggestion to evidence from your resume.",
+                a: "The report goes beyond a keyword list. It explains what your experience communicates, quotes the lines behind its feedback, and asks for facts that are missing.",
               },
               {
                 q: "What file formats are supported?",
-                a: "PDF and Word documents (.docx). If parsing doesn't work, you can paste your text directly in the Workspace.",
+                a: "PDF and Word documents (.docx), up to 4 MB. If the file cannot be read, you can paste the resume text instead.",
               },
             ],
           },
@@ -355,7 +355,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "How do I delete my data?",
-                a: "Go to Settings. You can delete reports, export your data, or delete your account entirely.",
+                a: "Delete individual reports from Reports. In Settings, you can export your account data or delete your account entirely.",
               },
             ],
           },
@@ -368,11 +368,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What is the Job Search Pass?",
-                a: "When paid access is open, it is a $29 one-time purchase for five additional complete reports. The pass expires 30 days after purchase and never renews automatically.",
+                a: "It is a $29 one-time purchase for five additional complete reports and PDF exports. The pass expires 30 days after purchase and never renews automatically.",
+              },
+              {
+                q: "What happens after I use all five reports?",
+                a: "You can keep opening your saved reports. PDF exports remain available until the pass expires, even after all five reports are used. Refunded or revoked passes no longer include exports. Another report requires a new pass or available free access.",
               },
               {
                 q: "How do I restore access and get receipts?",
-                a: "When billing controls are available, go to Settings > Billing or use Restore Access with the email used at checkout. Stripe processes the payment; receipts stay in billing history.",
+                a: "Use Restore Access with the email you used at checkout. Receipts are available in Settings > Billing when billing controls are enabled. If you cannot reach them, contact support with your checkout email and purchase date.",
               },
             ],
           },

@@ -200,7 +200,7 @@ export const featuredFindings: Array<{
         slug: "spelling-mistakes",
         navLabel: "Spelling",
         question: "Do spelling mistakes actually change the decision?",
-        conclusion: "Yes—when they pile up. In a 2023 experiment, resumes with five spelling errors received an 18.5 percentage-point lower interview probability than error-free versions.",
+        conclusion: "Repeated errors lowered recruiters' ratings in a 2023 experiment. Five errors reduced the average invitation rating by 1.85 points on a 0–10 scale. These were hypothetical decisions, not observed callbacks.",
         sourceName: "Sterkens et al., PLOS ONE (2023)",
         sourceDetail: "Factorial survey experiment with 445 genuine recruiters evaluating resumes across eight occupations.",
         sourceHref: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280",
