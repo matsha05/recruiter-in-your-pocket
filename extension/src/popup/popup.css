@@ -5,12 +5,14 @@
     flex-direction: column;
     height: 100%;
     min-height: 480px;
+    max-height: 600px;
     background: hsl(var(--background-subtle));
 }
 
 /* ============= HEADER ============= */
 .popup-header {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
     padding: 14px 16px;
@@ -82,6 +84,7 @@
 /* ============= CONTENT ============= */
 .popup-content {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     padding: 16px;
 }
@@ -404,6 +407,7 @@
 
 /* ============= FOOTER ============= */
 .popup-footer {
+    flex-shrink: 0;
     padding: 12px 16px;
     border-top: 1px solid hsl(var(--border));
     background: hsl(var(--card));

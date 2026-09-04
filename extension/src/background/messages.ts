@@ -22,6 +22,8 @@ export type JobStatus = 'saved' | 'interested' | 'applying' | 'interviewing' | '
 
 // Saved job with match score
 export interface SavedJob extends JobMeta {
+    syncState?: 'local' | 'synced';
+    ownerUserId?: string;
     externalId?: string | null;
     score: number | null;
     jdPreview: string; // First 200 chars
@@ -42,6 +44,7 @@ export type ExtensionMessage =
     | { type: 'CAPTURE_JD'; payload: { jd: string; meta: JobMeta } }
     | { type: 'GET_JOBS' }
     | { type: 'DELETE_JOB'; payload: { jobId: string } }
+    | { type: 'RESTORE_LOCAL_JOB'; payload: { job: SavedJob } }
     | { type: 'GET_QUICK_MATCH'; payload: { jobId: string } }
     | { type: 'GET_CURRENT_TAB_JOB' }
     | { type: 'JD_DETECTED'; payload: JobMeta }
@@ -63,6 +66,7 @@ export type ExtensionResponse =
 // Storage schema
 export interface ExtensionStorage {
     savedJobs: SavedJob[];
+    activeUserId?: string | null;
     cachedResumeHash?: string;
     lastUpdated: number;
     onboardingComplete?: boolean;

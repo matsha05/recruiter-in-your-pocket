@@ -15,9 +15,12 @@ import {
     deleteSavedJob,
     updateBadge,
     isJobCaptured,
-    getSavedJobDedupeKey
+    isSyncedJob,
+    reconcileSavedJobs,
+    setActiveUser
 } from './storage';
 import {
+    ApiError,
     captureJob,
     getSavedJobs,
     deleteJob,
@@ -26,10 +29,21 @@ import {
     getJobsUrl
 } from './api';
 
+// Keep fetch/reconcile and read/modify/write operations in message order. A slow
+// older snapshot must not overwrite a newer deletion or account change.
+let savedJobsQueue: Promise<void> = Promise.resolve();
+const statefulMessages = new Set(['CAPTURE_JD', 'GET_JOBS', 'DELETE_JOB', 'RESTORE_LOCAL_JOB', 'CHECK_AUTH']);
+
 // Message handler
 chrome.runtime.onMessage.addListener(
     (message: ExtensionMessage, _sender, sendResponse: (response: ExtensionResponse) => void) => {
-        handleMessage(message)
+        const result = statefulMessages.has(message.type)
+            ? savedJobsQueue.then(() => handleMessage(message))
+            : handleMessage(message);
+        if (statefulMessages.has(message.type)) {
+            savedJobsQueue = result.then(() => {}, () => {});
+        }
+        result
             .then(sendResponse)
             .catch((error) => {
                 console.error('[RIYP] Message handler error:', error);
@@ -50,6 +64,8 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
                 // Try real API first
                 const savedJob = await captureJob(jd, meta);
 
+                if (savedJob.ownerUserId) await setActiveUser(savedJob.ownerUserId);
+
                 // Also save locally for offline access
                 await addSavedJobAndUpdateBadge(savedJob);
 
@@ -60,6 +76,7 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
 
                 const localJob: SavedJob = {
                     ...meta,
+                    syncState: 'local',
                     externalId: null,
                     score: null,
                     jdPreview: jd.slice(0, 200),
@@ -73,44 +90,56 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
         }
 
         case 'GET_JOBS': {
+            const auth = await refreshAuth();
+            if (auth.verified && !auth.authenticated) {
+                return { success: true, data: await getLocalJobs() };
+            }
             try {
-                // Try to get from API first
-                const apiJobs = await getSavedJobs();
-
-                // Merge with local jobs
-                const localJobs = await getLocalJobs();
-                const mergedJobs = mergeJobs(apiJobs, localJobs);
-
-                return { success: true, data: mergedJobs };
-            } catch (error: any) {
-                // Fallback to local storage
-                const localJobs = await getLocalJobs();
-                if (error?.message?.includes('Not authenticated')) {
-                    return { success: true, data: localJobs };
+                const { jobs, userId } = await getSavedJobs();
+                const savedJobs = await reconcileSavedJobs(jobs, userId);
+                await updateBadge();
+                return { success: true, data: savedJobs };
+            } catch (error) {
+                if (error instanceof ApiError && error.status === 401) {
+                    await setActiveUser(null);
+                    await updateBadge();
                 }
-                return { success: true, data: localJobs };
+                // Keep the last confirmed snapshot on network/API failure.
+                return { success: true, data: await getLocalJobs() };
             }
         }
 
         case 'DELETE_JOB': {
             const { jobId } = message.payload;
+            const jobs = await getLocalJobs();
+            const job = jobs.find((savedJob) => savedJob.id === jobId);
 
-            try {
-                // Delete from API
+            if (!job) return { success: false, error: 'Saved job not found. Reopen the extension and try again.' };
+
+            if (isSyncedJob(job)) {
+                const auth = await refreshAuth();
+                if (!auth.authenticated || !job.ownerUserId || auth.user?.id !== job.ownerUserId) {
+                    return { success: false, error: 'Sign in to the account that saved this job, then try again.' };
+                }
+                // Do not remove the cache or claim success until the server confirms deletion.
                 await deleteJob(jobId);
-            } catch (error) {
-                console.warn('[RIYP] API delete failed (maybe local-only job):', error);
             }
 
-            // Always delete from local storage
             await deleteSavedJob(jobId);
             await updateBadge();
 
             return { success: true, deleted: jobId };
         }
 
+        case 'RESTORE_LOCAL_JOB': {
+            const { job } = message.payload;
+            if (isSyncedJob(job)) return { success: false, error: 'Only browser-only jobs can be restored here.' };
+            await addSavedJobAndUpdateBadge({ ...job, syncState: 'local' });
+            return { success: true };
+        }
+
         case 'CHECK_AUTH': {
-            const result = await checkAuth();
+            const result = await refreshAuth();
             return { success: true, data: result };
         }
 
@@ -152,25 +181,13 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
     }
 }
 
-/**
- * Merge API jobs with local jobs, preferring API data.
- */
-function mergeJobs(apiJobs: SavedJob[], localJobs: SavedJob[]): SavedJob[] {
-    const jobMap = new Map<string, SavedJob>();
-
-    // Add local jobs first
-    for (const job of localJobs) {
-        jobMap.set(getSavedJobDedupeKey(job), job);
+async function refreshAuth() {
+    const result = await checkAuth();
+    if (result.verified) {
+        await setActiveUser(result.authenticated ? result.user?.id ?? null : null);
+        await updateBadge();
     }
-
-    // Overwrite with API jobs (they have scores)
-    for (const job of apiJobs) {
-        jobMap.set(getSavedJobDedupeKey(job), job);
-    }
-
-    // Sort by captured time, most recent first
-    return Array.from(jobMap.values())
-        .sort((a, b) => b.capturedAt - a.capturedAt);
+    return result;
 }
 
 // Initialize badge on install

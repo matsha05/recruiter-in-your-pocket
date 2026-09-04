@@ -15,6 +15,7 @@ import {
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 import { createStripeClient } from "@/lib/billing/stripeClient";
+import { getSubscriptionPeriodEndUnix } from "@/lib/billing/subscriptionPeriod";
 import {
   STRIPE_CHECKOUT_SESSION_EXPAND,
   getLaunchStripeOffer,
@@ -26,22 +27,6 @@ const stripe = createStripeClient();
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function extractCurrentPeriodEndUnix(
-  subscription:
-    | Stripe.Subscription
-    | Stripe.Response<Stripe.Subscription>
-    | null
-    | undefined
-): number | null {
-  const direct = (subscription as any)?.current_period_end;
-  if (typeof direct === "number") return direct;
-
-  const wrapped = (subscription as any)?.data?.current_period_end;
-  if (typeof wrapped === "number") return wrapped;
-
-  return null;
-}
 
 export async function POST() {
   try {
@@ -234,7 +219,7 @@ export async function POST() {
           if (subscription.status !== "active" && subscription.status !== "trialing") {
             continue;
           }
-          subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
+          subscriptionPeriodEndUnix = getSubscriptionPeriodEndUnix(subscription, validation.offer);
         } catch {
           continue;
         }

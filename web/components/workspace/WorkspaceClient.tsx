@@ -111,7 +111,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         pendingAutoRunRef
     });
 
-    useJobContextFromExtension({
+    const { clearJobContext } = useJobContextFromExtension({
         searchParams,
         setResumeText,
         setJobDescription,
@@ -209,6 +209,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const handleNewReport = useCallback(() => {
         handleCancelAnalysis(true, true);
+        clearJobContext();
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
@@ -220,19 +221,19 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setLinkedInProfileHeadline('');
         // Use the Next router so useSearchParams updates before the sample hook can reload.
         replace("/workspace", { scroll: false });
-    }, [handleCancelAnalysis, replace]);
+    }, [handleCancelAnalysis, clearJobContext, replace]);
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
         handleCancelAnalysis(true, true);
+        clearJobContext();
         setComparisonBaseline(report as ReportData);
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
         setReport(null);
-        setLoadedJobContext(null);
         replace("/workspace?revision=1", { scroll: false });
-    }, [handleCancelAnalysis, replace, report]);
+    }, [handleCancelAnalysis, clearJobContext, replace, report]);
 
     const handleKeepReport = useCallback(() => {
         if (!report || user) return;

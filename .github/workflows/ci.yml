@@ -47,6 +47,9 @@ jobs:
       - name: Install Chromium for browser checks
         run: npx playwright install --with-deps chromium
 
+      - name: Install extension dependencies for popup checks
+        run: npm ci --prefix ../extension
+
       - name: Lint
         run: npm run lint
 
@@ -78,7 +81,13 @@ jobs:
         run: npm run test:redteam-journeys
 
       - name: Feedback acceptance UI
-        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts --workers=1
+        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts --workers=1
+
+      - name: Extension popup regression
+        run: npm run test:ui --prefix ../extension
+
+      - name: Saved job pagination contracts
+        run: npm run test:saved-jobs-pagination
 
       - name: Gauntlet operator UI
         run: npx playwright test tests/ui/gauntlet.spec.ts --project=chromium --workers=1
@@ -192,6 +201,9 @@ jobs:
 
       - name: Production dependency audit
         run: npm audit --omit=dev --audit-level=high
+
+      - name: Saved job regressions
+        run: npm test
 
       - name: Build
         run: npm run build

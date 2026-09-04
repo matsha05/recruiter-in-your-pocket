@@ -1263,86 +1263,6 @@
   line-height: 1.55;
 }
 
-.lift-offer-comparison {
-  padding: clamp(3rem, 5vw, 5rem) 0;
-  border-bottom: 1px solid var(--lift-line);
-  background: hsl(var(--surface-sky));
-}
-
-.lift-offer-comparison-grid {
-  display: grid;
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: center;
-}
-
-.lift-offer-comparison-grid h2 {
-  max-width: 16ch;
-  margin-top: 0.85rem;
-  color: var(--lift-ink);
-  font-family: var(--font-display);
-  font-size: clamp(2.35rem, 4vw, 4rem);
-  font-weight: 650;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-}
-
-.lift-offer-comparison-grid h2 + p {
-  max-width: 34rem;
-  margin-top: 1rem;
-  color: var(--lift-muted);
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-.lift-offer-comparison-grid .lift-button-secondary {
-  margin-top: 1.5rem;
-  background: hsl(var(--surface-raised));
-}
-
-.lift-offer-comparison-proof {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1.25rem;
-  align-items: start;
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--lift-line);
-  background: hsl(var(--surface-raised));
-}
-
-.lift-offer-comparison-proof > svg {
-  width: 2rem;
-  height: 2rem;
-  color: var(--lift-iris);
-}
-
-.lift-offer-comparison-proof dl {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.lift-offer-comparison-proof dl > div {
-  min-width: 0;
-  padding: 0.25rem 0.85rem 0.85rem;
-  border-bottom: 1px solid var(--lift-line);
-}
-
-.lift-offer-comparison-proof dt {
-  color: var(--lift-muted);
-  font-size: 0.6875rem;
-  font-weight: 720;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.lift-offer-comparison-proof dd {
-  margin-top: 0.35rem;
-  color: var(--lift-ink);
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 580;
-  line-height: 1.2;
-}
-
 .lift-proof-section {
   padding: clamp(2.5rem, 3.6vw, 3.75rem) 0;
   background: hsl(var(--surface-proof));
@@ -1645,9 +1565,6 @@
     height: 7rem;
   }
 
-  .lift-offer-comparison-grid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(30rem, 1.1fr);
-  }
 }
 
 @media (max-width: 720px) {
@@ -1717,18 +1634,6 @@
   .lift-founder-links {
     display: grid;
     gap: 0;
-  }
-
-  .lift-offer-comparison-proof {
-    grid-template-columns: 1fr;
-  }
-
-  .lift-offer-comparison-proof dl {
-    gap: 0.5rem;
-  }
-
-  .lift-offer-comparison-proof dl > div {
-    padding-inline: 0;
   }
 
   .lift-first-read-verdict,

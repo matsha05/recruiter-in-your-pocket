@@ -6,6 +6,7 @@
  * Secondary action: Opens original job posting
  */
 
+import { useId, useState } from 'react';
 import type { SavedJob } from '../../background/messages';
 import QuickMatchCard from './QuickMatchCard';
 
@@ -17,23 +18,29 @@ interface RecentJobsListProps {
 }
 
 export default function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDeleteJob }: RecentJobsListProps) {
-    function handleViewAll() {
-        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/jobs' } });
-    }
+    const [showAll, setShowAll] = useState(false);
+    const listId = useId();
+    const visibleJobs = showAll ? jobs : jobs.slice(0, 5);
 
     return (
         <div className="animate-in">
             <div className="section-header">
                 <span className="section-title">Saved jobs ({jobs.length})</span>
                 {jobs.length > 5 && (
-                    <button type="button" className="btn btn-ghost" onClick={handleViewAll}>
-                        View All
+                    <button
+                        type="button"
+                        className="btn btn-ghost"
+                        aria-expanded={showAll}
+                        aria-controls={listId}
+                        onClick={() => setShowAll((expanded) => !expanded)}
+                    >
+                        {showAll ? 'Show recent' : `View all ${jobs.length}`}
                     </button>
                 )}
             </div>
 
-            <div className="jobs-list">
-                {jobs.slice(0, 5).map((job) => (
+            <div id={listId} className="jobs-list">
+                {visibleJobs.map((job) => (
                     <QuickMatchCard
                         key={job.id}
                         job={job}

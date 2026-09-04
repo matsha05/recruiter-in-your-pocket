@@ -4,7 +4,6 @@ import {
     ArrowRight,
     BookOpenText,
     BracketsAngle,
-    Calculator,
     CornersOut,
     LinkedinLogo,
     LockKey,
@@ -156,32 +155,6 @@ function SupportBand() {
     );
 }
 
-function OfferComparisonBand() {
-    return (
-        <section className="lift-offer-comparison" aria-labelledby="lift-offer-comparison-title">
-            <div className="lift-shell lift-offer-comparison-grid">
-                <div>
-                    <p className="lift-kicker">Free offer tool</p>
-                    <h2 id="lift-offer-comparison-title">Comparing job offers?</h2>
-                    <p>See salary, bonus, equity, and vesting on the same four-year timeline.</p>
-                    <Link className="lift-button-secondary" href="/resources/tools/comp-calculator">
-                        Compare offers for free <ArrowRight aria-hidden="true" weight="bold" />
-                    </Link>
-                </div>
-                <div className="lift-offer-comparison-proof" aria-label="Offer comparison calculator includes salary, bonus, equity, and vesting">
-                    <Calculator aria-hidden="true" weight="duotone" />
-                    <dl>
-                        <div><dt>Salary</dt><dd>Year 1–4</dd></div>
-                        <div><dt>Bonus</dt><dd>Target + timing</dd></div>
-                        <div><dt>Equity</dt><dd>Modeled value</dd></div>
-                        <div><dt>Vesting</dt><dd>Same timeline</dd></div>
-                    </dl>
-                </div>
-            </div>
-        </section>
-    );
-}
-
 export function LandingLiftedLine() {
     return (
         <div data-visual-anchor="landing-home" className="lift-page">
@@ -193,7 +166,7 @@ export function LandingLiftedLine() {
                             <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
                             <p className="lift-hero-deck">Upload or paste your resume. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.</p>
                             <div className="lift-actions">
-                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free resume review <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                                <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free report <ArrowRight aria-hidden="true" weight="bold" /></Link>
                                 <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>
                             </div>
                             <div className="lift-hero-trust">
@@ -209,7 +182,6 @@ export function LandingLiftedLine() {
 
             <ReportFirstSection />
             <SupportBand />
-            <OfferComparisonBand />
 
             <section className="lift-close" aria-labelledby="lift-close-title">
                 <div className="lift-shell lift-close-grid">
@@ -219,7 +191,7 @@ export function LandingLiftedLine() {
                     </div>
                     <div>
                         <p>Good experience gets missed all the time. Usually for fixable reasons.</p>
-                        <Link href="/workspace" className="lift-button-primary">Get my free resume review <ArrowRight aria-hidden="true" weight="bold" /></Link>
+                        <Link href="/workspace" className="lift-button-primary">Get my free report <ArrowRight aria-hidden="true" weight="bold" /></Link>
                     </div>
                 </div>
             </section>

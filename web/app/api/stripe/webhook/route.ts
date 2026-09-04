@@ -16,8 +16,10 @@ import {
     stripeId,
 } from "@/lib/billing/checkoutFulfillment";
 import { createStripeClient } from "@/lib/billing/stripeClient";
+import { getSubscriptionPeriodEndUnix } from "@/lib/billing/subscriptionPeriod";
 import {
     STRIPE_CHECKOUT_SESSION_EXPAND,
+    getStripeOfferCatalog,
     isUnrelatedStripeCheckout,
     validateStripeCheckoutSession,
     type ApprovedStripeOffer,
@@ -82,22 +84,6 @@ function extractInvoicePeriod(invoice: Stripe.Invoice): { start: string | null; 
         start: toIsoFromUnix(firstLine?.period?.start),
         end: toIsoFromUnix(firstLine?.period?.end),
     };
-}
-
-function extractCurrentPeriodEndUnix(
-    subscription:
-        | Stripe.Subscription
-        | Stripe.Response<Stripe.Subscription>
-        | null
-        | undefined
-): number | null {
-    const fromDirect = (subscription as any)?.current_period_end;
-    if (typeof fromDirect === "number") return fromDirect;
-
-    const fromData = (subscription as any)?.data?.current_period_end;
-    if (typeof fromData === "number") return fromData;
-
-    return null;
 }
 
 function asStripeObjectRecord(value: unknown): Record<string, unknown> {
@@ -322,23 +308,14 @@ async function upsertPassForCheckout(
     let subscriptionId: string | null = null;
     let subscriptionPeriodEndUnix: number | null = null;
 
-    if (typeof session.subscription === "string" && session.subscription) {
-        subscriptionId = session.subscription;
-        try {
-            const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
-            subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
-        } catch (err: any) {
-            logWarn({
-                msg: "stripe.webhook.subscription_lookup_failed",
-                request_id: context.request_id,
-                route: context.route,
-                method: context.method,
-                path: context.path,
-                outcome: "provider_error",
-                stripe: { session_id: session.id },
-                err: { name: err?.name || "Error", message: err?.message || "Failed to load subscription" }
-            });
-        }
+    if (session.mode === "subscription") {
+        subscriptionId = stripeId(session.subscription);
+        if (!subscriptionId) throw new Error("Checkout subscription is missing");
+        const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
+        if (subscription.status !== "active" && subscription.status !== "trialing") return;
+        subscriptionPeriodEndUnix = getSubscriptionPeriodEndUnix(subscription, offer);
+        if (!subscriptionPeriodEndUnix) throw new Error("Approved subscription item billing period is unavailable");
+        if (subscriptionPeriodEndUnix * 1000 <= Date.now()) return;
     }
 
     const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
@@ -537,23 +514,39 @@ async function syncSubscriptionStatus(
 ) {
     const subscriptionId = subscription.id;
     const isActive = subscription.status === "active" || subscription.status === "trialing" || subscription.status === "past_due";
-    const subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
-    const fallbackActiveExpiry = new Date(Date.now() + 31 * 24 * 60 * 60 * 1000).toISOString();
-    const expiresAt = isActive
-        ? (subscriptionPeriodEndUnix ? new Date(subscriptionPeriodEndUnix * 1000).toISOString() : fallbackActiveExpiry)
-        : new Date().toISOString();
-
-    const { error } = await admin
+    const { data: passes, error: lookupError } = await admin
         .from("passes")
-        .update({
-            expires_at: expiresAt,
-            uses_remaining: isActive ? 9_999 : 0
-        })
+        .select("id, price_id")
         .eq("stripe_subscription_id", subscriptionId)
         .eq("tier", "monthly");
+    if (lookupError) throw lookupError;
+    if (!passes?.length) return;
 
-    if (error) {
-        throw error;
+    const monthlyOffers = getStripeOfferCatalog().offers.filter((offer) => offer.tier === "monthly");
+    const updates = passes.map((pass: { id: string; price_id: string | null }) => {
+        if (!isActive) return { id: pass.id, expiresAt: new Date().toISOString() };
+
+        // Migration 014 retained old subscription ids in price_id. Those rows
+        // can use the sole configured monthly offer, still verified on the item.
+        const legacyPriceId = !pass.price_id || pass.price_id === subscriptionId;
+        const offer = legacyPriceId && monthlyOffers.length === 1
+            ? monthlyOffers[0]
+            : monthlyOffers.find((candidate) => candidate.priceId === pass.price_id);
+        const periodEnd = offer ? getSubscriptionPeriodEndUnix(subscription, offer) : null;
+        if (!periodEnd) throw new Error("Approved subscription item billing period is unavailable");
+        return { id: pass.id, expiresAt: new Date(periodEnd * 1000).toISOString() };
+    });
+
+    // Resolve every period before writing so incomplete data cannot partially
+    // extend this subscription's access. Failed deliveries remain retryable.
+    for (const update of updates) {
+        const { error } = await admin
+            .from("passes")
+            .update({ expires_at: update.expiresAt, uses_remaining: isActive ? 9_999 : 0 })
+            .eq("id", update.id)
+            .eq("stripe_subscription_id", subscriptionId)
+            .eq("tier", "monthly");
+        if (error) throw error;
     }
 
     logInfo({

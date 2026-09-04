@@ -14,6 +14,7 @@ import {
 import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { createStripeClient } from "@/lib/billing/stripeClient";
+import { getSubscriptionPeriodEndUnix } from "@/lib/billing/subscriptionPeriod";
 import {
   STRIPE_CHECKOUT_SESSION_EXPAND,
   validateStripeCheckoutSession,
@@ -57,22 +58,6 @@ async function findUserIdByEmail(admin: any, email: string): Promise<string | nu
   return null;
 }
 
-function extractCurrentPeriodEndUnix(
-  subscription:
-    | Stripe.Subscription
-    | Stripe.Response<Stripe.Subscription>
-    | null
-    | undefined
-): number | null {
-  const direct = (subscription as any)?.current_period_end;
-  if (typeof direct === "number") return direct;
-
-  const wrapped = (subscription as any)?.data?.current_period_end;
-  if (typeof wrapped === "number") return wrapped;
-
-  return null;
-}
-
 async function ensurePassForCheckoutSession(
   admin: any,
   session: Stripe.Checkout.Session,
@@ -109,14 +94,13 @@ async function ensurePassForCheckoutSession(
 
   let subscriptionId: string | null = null;
   let subscriptionPeriodEndUnix: number | null = null;
-  if (typeof session.subscription === "string" && session.subscription) {
-    subscriptionId = session.subscription;
-    try {
-      const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
-      subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
-    } catch {
-      // Best-effort; defaults below.
-    }
+  if (session.mode === "subscription") {
+    subscriptionId = stripeId(session.subscription);
+    if (!subscriptionId) return null;
+    const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
+    if (subscription.status !== "active" && subscription.status !== "trialing") return null;
+    subscriptionPeriodEndUnix = getSubscriptionPeriodEndUnix(subscription, offer);
+    if (!subscriptionPeriodEndUnix || subscriptionPeriodEndUnix * 1000 <= Date.now()) return null;
   }
 
   const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(

@@ -163,6 +163,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
             success: true,
+            userId: user.id,
             data: {
                 id: savedJob.id,
                 externalId: savedJob.external_id,

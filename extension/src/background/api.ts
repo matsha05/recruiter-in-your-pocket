@@ -6,6 +6,12 @@
 
 import type { JobMeta, SavedJob, AuthUser } from './messages';
 
+export class ApiError extends Error {
+    constructor(message: string, readonly status: number) {
+        super(message);
+    }
+}
+
 // Base URL for API calls
 // Production: https://recruiterinyourpocket.com
 // Development: set VITE_WEBAPP_URL to match the active local web app server.
@@ -27,17 +33,17 @@ export async function captureJob(jd: string, meta: JobMeta): Promise<SavedJob> {
 
     const data = await response.json();
 
-    if (!data.success) {
+    if (!response.ok || !data.success) {
         throw new Error(data.error || 'Failed to capture job');
     }
 
-    return data.data;
+    return { ...data.data, syncState: 'synced', ownerUserId: data.userId };
 }
 
 /**
- * Get all saved jobs for the current user.
+ * Get the latest saved jobs for the current user (the API returns up to 20).
  */
-export async function getSavedJobs(): Promise<SavedJob[]> {
+export async function getSavedJobs(): Promise<{ jobs: SavedJob[]; userId?: string }> {
     const response = await fetch(`${API_BASE}/api/extension/saved-jobs`, {
         method: 'GET',
         credentials: 'include',
@@ -45,11 +51,14 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
 
     const data = await response.json();
 
-    if (!data.success) {
-        throw new Error(data.error || 'Failed to fetch jobs');
+    if (!response.ok || !data.success || !Array.isArray(data.jobs)) {
+        throw new ApiError(data.error || 'Failed to fetch jobs', response.status);
     }
 
-    return Array.isArray(data.jobs) ? data.jobs : [];
+    return {
+        jobs: data.jobs.map((job: SavedJob) => ({ ...job, syncState: 'synced', ownerUserId: data.userId })),
+        userId: data.userId,
+    };
 }
 
 /**
@@ -63,15 +72,15 @@ export async function deleteJob(jobId: string): Promise<void> {
 
     const data = await response.json();
 
-    if (!data.success) {
-        throw new Error(data.error || 'Failed to delete job');
+    if (!response.ok || !data.success || data.local) {
+        throw new Error(data.error || 'Could not remove the saved job. Sign in and try again.');
     }
 }
 
 /**
  * Check authentication status.
  */
-export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthUser | null }> {
+export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthUser | null; verified: boolean }> {
     try {
         const response = await fetch(`${API_BASE}/api/extension/auth-status`, {
             method: 'GET',
@@ -80,12 +89,17 @@ export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthU
 
         const data = await response.json();
 
+        if (!response.ok || !data.success) {
+            throw new Error('Could not check sign-in status');
+        }
+
         return {
             authenticated: data.authenticated ?? false,
             user: data.user ?? null,
+            verified: true,
         };
     } catch {
-        return { authenticated: false, user: null };
+        return { authenticated: false, user: null, verified: false };
     }
 }
 

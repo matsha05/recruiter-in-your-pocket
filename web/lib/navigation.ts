@@ -120,6 +120,7 @@ export const FOOTER_NAV = {
         ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
         { label: "Research", href: "/research" },
         { label: "Resources", href: "/resources" },
+        { label: "Offer calculator", href: "/resources/tools/comp-calculator" },
     ],
     legalLinks: [
         { label: "FAQ", href: "/faq" },

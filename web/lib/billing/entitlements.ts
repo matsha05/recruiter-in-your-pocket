@@ -1,3 +1,5 @@
+import { isValidSubscriptionPeriodEndUnix } from "./subscriptionPeriod";
+
 export type RequestedPricingTier =
   | "monthly"
   | "lifetime"
@@ -138,11 +140,12 @@ export function getTierDefaults(
   const nowMs = now.getTime();
 
   if (tier === "monthly") {
-    const fallback = nowMs + 31 * 24 * 60 * 60 * 1000;
-    const periodEndMs = (options?.subscriptionPeriodEndUnix || 0) * 1000;
+    if (!isValidSubscriptionPeriodEndUnix(options?.subscriptionPeriodEndUnix)) {
+      throw new Error("A verified subscription billing period is required for monthly access");
+    }
     return {
       usesRemaining: 9_999,
-      expiresAt: new Date(periodEndMs > nowMs ? periodEndMs : fallback).toISOString()
+      expiresAt: new Date(options.subscriptionPeriodEndUnix * 1000).toISOString()
     };
   }
 

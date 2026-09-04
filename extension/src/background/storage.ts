@@ -50,9 +50,6 @@ async function addSavedJob(job: SavedJob): Promise<void> {
         storage.savedJobs.unshift(job);
     }
 
-    // Keep only last 50 jobs
-    storage.savedJobs = storage.savedJobs.slice(0, 50);
-
     await setStorage({ savedJobs: storage.savedJobs });
 }
 
@@ -68,11 +65,15 @@ export async function deleteSavedJob(jobIdOrUrl: string): Promise<SavedJob | nul
     const storage = await getStorage();
     const normalizedUrl = normalizeJobUrl(jobIdOrUrl);
 
-    const index = storage.savedJobs.findIndex(
-        (job) => job.id === jobIdOrUrl
-            || job.externalId === jobIdOrUrl
+    // A local capture ID can also be a cached server job's external ID.
+    // Prefer the selected record's exact ID before legacy URL/external-ID lookup.
+    const exactIndex = storage.savedJobs.findIndex((job) => job.id === jobIdOrUrl);
+    const index = exactIndex >= 0 ? exactIndex : storage.savedJobs.findIndex(
+        (job) => isVisibleJob(job, storage.activeUserId) && (
+            job.externalId === jobIdOrUrl
             || job.url === jobIdOrUrl
             || normalizeJobUrl(job.url) === normalizedUrl
+        )
     );
 
     if (index === -1) {
@@ -90,16 +91,50 @@ export async function deleteSavedJob(jobIdOrUrl: string): Promise<SavedJob | nul
  */
 export async function getSavedJobs(): Promise<SavedJob[]> {
     const storage = await getStorage();
-    return storage.savedJobs;
+    return storage.savedJobs.filter((job) => isVisibleJob(job, storage.activeUserId));
+}
+
+/** Remember confirmed sign-in changes, without treating a network failure as sign-out. */
+export async function setActiveUser(userId: string | null): Promise<void> {
+    await setStorage({ activeUserId: userId });
+}
+
+/**
+ * The server list is a recent, account-scoped cache, not a complete job inventory.
+ * Replace only that disposable snapshot; never evict browser-only captures.
+ * Older synced jobs remain available on the website.
+ */
+export async function reconcileSavedJobs(apiJobs: SavedJob[], userId?: string): Promise<SavedJob[]> {
+    const storage = await getStorage();
+    const snapshot = apiJobs.map((job) => ({ ...job, syncState: 'synced' as const, ownerUserId: userId }));
+    const syncedKeys = new Set(snapshot.map(getSavedJobDedupeKey));
+    const localJobs = storage.savedJobs.filter((job) =>
+        !isSyncedJob(job) && !syncedKeys.has(getSavedJobDedupeKey(job))
+    );
+    const savedJobs = [...snapshot, ...localJobs].sort((a, b) => b.capturedAt - a.capturedAt);
+    await setStorage({ savedJobs, ...(userId ? { activeUserId: userId } : {}) });
+    return savedJobs;
+}
+
+/** Legacy records predate explicit sync metadata. Server IDs were UUIDs. */
+export function isSyncedJob(job: SavedJob): boolean {
+    if (job.syncState) return job.syncState === 'synced';
+    return Boolean(job.externalId) || isLikelyServerId(job.id);
+}
+
+function isVisibleJob(job: SavedJob, activeUserId: string | null | undefined): boolean {
+    if (!isSyncedJob(job)) return true;
+    // Records with unknown ownership are refreshed from the API before display.
+    return Boolean(activeUserId && job.ownerUserId === activeUserId);
 }
 
 /**
  * Check if a job URL was already captured
  */
 export async function isJobCaptured(url: string): Promise<{ captured: boolean; job?: SavedJob }> {
-    const storage = await getStorage();
+    const jobs = await getSavedJobs();
     const normalizedUrl = normalizeJobUrl(url);
-    const job = storage.savedJobs.find((savedJob) => normalizeJobUrl(savedJob.url) === normalizedUrl);
+    const job = jobs.find((savedJob) => normalizeJobUrl(savedJob.url) === normalizedUrl);
     return { captured: !!job, job };
 }
 
@@ -157,7 +192,11 @@ function normalizeJobUrl(url: string): string {
 
 function findSavedJobIndex(savedJobs: SavedJob[], incomingJob: SavedJob): number {
     const incomingKey = getSavedJobDedupeKey(incomingJob);
-    return savedJobs.findIndex((savedJob) => getSavedJobDedupeKey(savedJob) === incomingKey);
+    return savedJobs.findIndex((savedJob) =>
+        getSavedJobDedupeKey(savedJob) === incomingKey
+        && isSyncedJob(savedJob) === isSyncedJob(incomingJob)
+        && savedJob.ownerUserId === incomingJob.ownerUserId
+    );
 }
 
 function getExternalJobId(job: SavedJob): string | null {

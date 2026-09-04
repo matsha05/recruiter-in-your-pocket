@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -31,18 +31,36 @@ export function useJobContextFromExtension({
   setSkipSample,
   shouldHydrateDefaultResume = false
 }: JobContextOptions) {
+  const query = searchParams.toString();
+  const pendingRequestRef = useRef<AbortController | null>(null);
+  const dismissedQueryRef = useRef<string | null>(null);
+
+  const clearJobContext = useCallback(() => {
+    // Invalidate immediately: router.replace can finish after a pending fetch.
+    pendingRequestRef.current?.abort();
+    dismissedQueryRef.current = query;
+    setLoadedJobContext(null);
+  }, [query, setLoadedJobContext]);
+
   useEffect(() => {
-    const jobId = searchParams.get("job");
-    const source = searchParams.get("source");
+    if (dismissedQueryRef.current === query) return;
+    dismissedQueryRef.current = null;
+    const params = new URLSearchParams(query);
+    const jobId = params.get("job");
+    const source = params.get("source");
+    const controller = new AbortController();
+    pendingRequestRef.current = controller;
+    const isCurrent = () => !controller.signal.aborted;
+
+    setLoadedJobContext(null);
+
     if (!jobId && source === "extension-local") {
-      const jobDescription = searchParams.get("jd") || "";
-      const title = searchParams.get("title") || "Saved job";
-      const company = searchParams.get("company") || "Saved from extension";
+      const jobDescription = params.get("jd") || "";
+      const title = params.get("title") || "Saved job";
+      const company = params.get("company") || "Saved from extension";
 
       setSkipSample(true);
-      if (jobDescription) {
-        setJobDescription(jobDescription);
-      }
+      setJobDescription(jobDescription);
       setLoadedJobContext({
         id: "extension-local",
         externalId: null,
@@ -53,27 +71,30 @@ export function useJobContextFromExtension({
         jobDescription
       });
       void hydrateDefaultResume();
-      return;
+      return () => controller.abort();
     }
 
-    if (!jobId) return;
+    if (!jobId) return () => controller.abort();
+
+    setJobDescription("");
 
     const fetchJob = async () => {
       try {
-        const res = await fetch(`/api/extension/saved-jobs/${jobId}`);
+        const res = await fetch(`/api/extension/saved-jobs/${encodeURIComponent(jobId)}`, {
+          signal: controller.signal,
+        });
+        if (!isCurrent()) return;
         if (!res.ok) {
-          setLoadedJobContext(null);
           return;
         }
 
         const data = await res.json();
+        if (!isCurrent()) return;
 
         if (data.success && data.data) {
           const job = data.data;
           const jobDescription = job.jobDescription || job.jdText || job.jd_text || job.job_description_text || "";
-          if (jobDescription) {
-            setJobDescription(jobDescription);
-          }
+          setJobDescription(jobDescription);
           setLoadedJobContext({
             id: job.id,
             externalId: job.externalId || null,
@@ -88,26 +109,32 @@ export function useJobContextFromExtension({
           console.log("[Workspace] Loaded job from extension:", job.title);
         }
       } catch (error) {
-        console.error("[Workspace] Failed to load job:", error);
+        if (isCurrent()) console.error("[Workspace] Failed to load job:", error);
       }
     };
 
-    fetchJob();
+    void fetchJob();
     async function hydrateDefaultResume() {
-      if (!shouldHydrateDefaultResume) return;
+      if (!shouldHydrateDefaultResume || !isCurrent()) return;
 
       try {
-        const res = await fetch("/api/user/default-resume?includeText=1");
-        if (!res.ok) return;
+        const res = await fetch("/api/user/default-resume?includeText=1", {
+          signal: controller.signal,
+        });
+        if (!isCurrent() || !res.ok) return;
 
         const data = await res.json();
+        if (!isCurrent()) return;
         const resumeText = data?.data?.resumeText;
         if (data.success && typeof resumeText === "string" && resumeText.trim()) {
-          setResumeText(resumeText);
+          setResumeText((current) => isCurrent() && !current.trim() ? resumeText : current);
         }
       } catch {
         // No saved resume or not signed in; the workspace upload step remains visible.
       }
     }
-  }, [searchParams, setResumeText, setJobDescription, setLoadedJobContext, setSkipSample, shouldHydrateDefaultResume]);
+    return () => controller.abort();
+  }, [query, setResumeText, setJobDescription, setLoadedJobContext, setSkipSample, shouldHydrateDefaultResume]);
+
+  return { clearJobContext };
 }

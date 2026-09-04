@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const homepageDescription = "Get a free recruiter-style first read of your resume: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
-  test("the active homepage explains the review, founder, AI role, and free offer tool", async ({ page }) => {
+  test("the homepage explains the report and keeps the offer tool in the footer", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
@@ -16,7 +16,8 @@ test.describe("homepage feedback and SEO contract", () => {
       "Upload or paste your resume. Your free first-read report shows what lands, the exact lines that raise questions, and up to three prioritized changes to make before you apply.",
     );
 
-    await expect(page.getByRole("link", { name: "Get my free resume review", exact: true }).first()).toHaveAttribute(
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get my free report");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
@@ -48,11 +49,9 @@ test.describe("homepage feedback and SEO contract", () => {
       "https://www.linkedin.com/in/mattrshaw",
     );
 
-    const calculator = page.getByRole("link", { name: "Compare offers for free" });
-    await expect(page.getByRole("heading", { level: 2, name: "Comparing job offers?" })).toBeVisible();
-    await expect(homepage).toContainText(
-      "See salary, bonus, equity, and vesting on the same four-year timeline.",
-    );
+    const calculator = page.locator("footer").getByRole("link", { name: "Offer calculator", exact: true });
+    await expect(calculator).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Comparing job offers?" })).toHaveCount(0);
     await expect(calculator).toHaveAttribute("href", "/resources/tools/comp-calculator");
 
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(

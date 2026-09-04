@@ -1,5 +1,6 @@
 import { useReducer, useEffect, useCallback } from 'react';
 import type { SavedJob, AuthUser } from '../background/messages';
+import { isSyncedJob } from '../background/storage';
 import PopupHeader from './components/PopupHeader';
 import ResumeContextCard from './components/ResumeContextCard';
 import RecentJobsList from './components/RecentJobsList';
@@ -24,7 +25,8 @@ type AppAction =
     | { type: 'patch'; patch: Partial<AppState> }
     | { type: 'jobsLoaded'; jobs: SavedJob[]; authenticated: boolean }
     | { type: 'deleteOptimistic'; job: SavedJob; authenticated: boolean }
-    | { type: 'deleteFailed'; job: SavedJob }
+    | { type: 'deleteSucceeded'; job: SavedJob }
+    | { type: 'deleteFailed'; job: SavedJob; error: string }
     | { type: 'undoDelete'; job: SavedJob };
 
 const initialAppState: AppState = {
@@ -54,22 +56,29 @@ function appReducer(state: AppState, action: AppAction): AppState {
             return {
                 ...state,
                 jobs,
-                deletedJob: action.authenticated ? state.deletedJob : action.job,
+                deletedJob: null,
+                error: null,
                 view: jobs.length > 0 ? 'jobs' : action.authenticated ? 'empty' : 'unauthenticated',
             };
         }
+        case 'deleteSucceeded':
+            return { ...state, deletedJob: isSyncedJob(action.job) ? null : action.job };
         case 'deleteFailed':
             return {
                 ...state,
-                jobs: [action.job, ...state.jobs],
+                jobs: [action.job, ...state.jobs.filter((job) => job.id !== action.job.id)]
+                    .sort((a, b) => b.capturedAt - a.capturedAt),
                 deletedJob: null,
+                error: action.error,
                 view: 'jobs',
             };
         case 'undoDelete':
             return {
                 ...state,
-                jobs: [action.job, ...state.jobs].sort((a, b) => b.capturedAt - a.capturedAt),
+                jobs: [action.job, ...state.jobs.filter((job) => job.id !== action.job.id)]
+                    .sort((a, b) => b.capturedAt - a.capturedAt),
                 deletedJob: null,
+                error: null,
                 view: 'jobs',
             };
         default:
@@ -176,24 +185,24 @@ export default function App() {
 
         // Delete in background
         try {
-            await chrome.runtime.sendMessage({ type: 'DELETE_JOB', payload: { jobId: job.id } });
+            const response = await chrome.runtime.sendMessage({ type: 'DELETE_JOB', payload: { jobId: job.id } });
+            if (!response?.success) throw new Error(response?.error || 'Could not remove the saved job. Try again.');
+            dispatch({ type: 'deleteSucceeded', job });
         } catch (err) {
             console.error('[RIYP] Delete failed:', err);
-            dispatch({ type: 'deleteFailed', job });
+            dispatch({ type: 'deleteFailed', job, error: err instanceof Error ? err.message : 'Could not remove the saved job. Try again.' });
         }
     }, [authenticated]);
 
     const handleUndo = useCallback(async () => {
         if (!deletedJob) return;
-
-        dispatch({ type: 'undoDelete', job: deletedJob });
-
-        // Restore to storage
-        const storage = await chrome.storage.local.get('riyp_extension_data');
-        const data = storage.riyp_extension_data || { savedJobs: [] };
-        data.savedJobs = [deletedJob, ...(data.savedJobs || [])];
-        await chrome.storage.local.set({ riyp_extension_data: data });
-
+        try {
+            const response = await chrome.runtime.sendMessage({ type: 'RESTORE_LOCAL_JOB', payload: { job: deletedJob } });
+            if (!response?.success) throw new Error(response?.error || 'Could not restore the saved job. Try again.');
+            dispatch({ type: 'undoDelete', job: deletedJob });
+        } catch (err) {
+            dispatch({ type: 'patch', patch: { error: err instanceof Error ? err.message : 'Could not restore the saved job. Try again.' } });
+        }
     }, [deletedJob]);
 
     const handleUndoDismiss = useCallback(() => {
@@ -214,6 +223,11 @@ export default function App() {
             <PopupHeader user={user} authenticated={authenticated} />
 
             <div className="popup-content">
+                {error && view !== 'error' && (
+                    <p role="alert" className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
+                        {error}
+                    </p>
+                )}
                 {view === 'loading' && <LoadingSkeleton />}
 
                 {view === 'onboarding' && (
@@ -276,7 +290,7 @@ export default function App() {
                 </button>
             </div>
 
-            {deletedJob && !authenticated && (
+            {deletedJob && !isSyncedJob(deletedJob) && (
                 <UndoToast
                     message={`Removed "${deletedJob.title.slice(0, 30)}..."`}
                     onUndo={handleUndo}
@@ -285,10 +299,6 @@ export default function App() {
             )}
         </div>
     );
-}
-
-function isSyncedJob(job: SavedJob): boolean {
-    return Boolean(job.externalId) || isLikelyServerId(job.id);
 }
 
 function buildLocalWorkspacePath(job: SavedJob): string {
@@ -309,10 +319,6 @@ function buildLocalWorkspacePath(job: SavedJob): string {
     }
 
     return `/workspace?${params.toString()}`;
-}
-
-function isLikelyServerId(id: string): boolean {
-    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 }
 
 function LoadingSkeleton() {
