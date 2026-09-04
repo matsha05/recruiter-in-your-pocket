@@ -81,7 +81,10 @@ jobs:
         run: npm run test:redteam-journeys
 
       - name: Feedback acceptance UI
-        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts --workers=1
+        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/homepage-responsive.spec.ts tests/ui/report-navigation.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts --workers=1
+
+      - name: Sample report content
+        run: npm run test:sample-report
 
       - name: Extension popup regression
         run: npm run test:ui --prefix ../extension

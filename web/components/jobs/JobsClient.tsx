@@ -17,6 +17,7 @@ import ResumeContextCard from './ResumeContextCard';
 import ConfirmModal from '@/components/shared/ConfirmModal';
 import { AppPageIntro } from '@/components/layout/AppPageIntro';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { Button } from '@/components/ui/button';
 
 // =============================================================================
 // TYPES
@@ -389,14 +390,15 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 {!loading && !loadError && hasMore && (
                     <div className="border-t border-border p-4 text-center">
                         {pageError && <p role="alert" className="mb-3 text-sm text-destructive">{pageError}</p>}
-                        <button
+                        <Button
                             type="button"
+                            variant="outline"
                             onClick={() => void handleLoadMore()}
                             disabled={loadingMore}
-                            className="min-h-11 rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-60"
+                            className="border-border bg-transparent font-semibold text-foreground hover:bg-muted/40 disabled:cursor-wait disabled:opacity-60"
                         >
                             {loadingMore ? 'Loading more jobs…' : pageError ? 'Retry loading jobs' : 'Load more jobs'}
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>

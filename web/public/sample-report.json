@@ -67,20 +67,20 @@
     {
       "label": "Impact",
       "original": "Led onboarding work across the company, improving productivity.",
-      "better": "Led onboarding work across the company; productivity change: [measurable result].",
-      "enhancement_note": "Add the verified productivity measure so recruiters can judge the result."
+      "better": "Led onboarding work across the company ([teams]; [specific scope]), improving productivity: [measurable result].",
+      "enhancement_note": "Add the teams served, weekly onboarding volume, and verified productivity change. Use [specific scope] for the number of people onboarded each week."
     },
     {
       "label": "Scope",
       "original": "Ran a cross-team launch with clear owners and checkpoints.",
-      "better": "Ran a cross-team launch with clear owners and checkpoints; outcome: [measurable result].",
-      "enhancement_note": "Add the verified launch result so the process has a business consequence."
+      "better": "Ran a cross-team launch with clear owners and checkpoints; [verified before-and-after result].",
+      "enhancement_note": "Add the verified before-and-after launch result, including what changed and how it was measured."
     },
     {
       "label": "Ownership",
       "original": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
-      "better": "Managed stakeholder alignment across [specific scope] and delivered the quarterly roadmap on time.",
-      "enhancement_note": "Add the functions involved so recruiters can see the coordination load."
+      "better": "Managed stakeholder alignment ([functions]; [ownership detail]) and delivered the quarterly roadmap on time.",
+      "enhancement_note": "Add the functions aligned and your key decision. Use [ownership detail] to state what you personally decided, while keeping the on-time delivery already on the page."
     }
   ],
   "section_review": {
@@ -190,7 +190,7 @@
   },
   "next_steps": [
     "Add the teams served, weekly volume, and verified productivity change to the onboarding bullet.",
-    "Add the launch result and the functions involved to the next two bullets.",
+    "Add the before-and-after launch result, then the functions aligned and your key decision to the roadmap bullet.",
     "After those facts are visible, add a short summary naming Program Manager as the target."
   ],
   "layout_score": 86,

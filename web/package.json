@@ -33,6 +33,7 @@
     "test:stripe-fulfillment": "node scripts/run-ts-test.cjs tests/stripe-fulfillment.test.ts && node scripts/run-ts-test.cjs tests/subscription-period.test.ts && node scripts/run-ts-test.cjs tests/billing-subscription-routes.test.ts",
     "test:workspace-context": "node scripts/run-ts-test.cjs tests/workspace-job-context.test.ts",
     "test:saved-jobs-pagination": "node scripts/run-ts-test.cjs tests/saved-jobs-pagination.test.ts",
+    "test:sample-report": "node scripts/run-ts-test.cjs tests/sample-report-contract.test.ts",
     "test:request-body": "node scripts/run-ts-test.cjs tests/request-body.test.ts",
     "test:generation-access": "node scripts/run-ts-test.cjs tests/generation-access.test.ts && node scripts/run-ts-test.cjs tests/atomic-report-finalization.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation-status.test.ts && node scripts/run-ts-test.cjs tests/anonymous-report-recovery.test.ts && node scripts/run-ts-test.cjs tests/generation-delivery-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/generation-finality.test.ts && node scripts/run-ts-test.cjs tests/generation-route-http.test.ts && node scripts/run-ts-test.cjs tests/generation-failure.test.ts && node scripts/run-ts-test.cjs tests/generation-cancellation.test.ts && node scripts/run-ts-test.cjs tests/generated-report-lifecycle.test.ts",
     "test:generation-budget": "node scripts/run-ts-test.cjs tests/generation-budget.test.ts",

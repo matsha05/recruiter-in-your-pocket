@@ -286,6 +286,7 @@
 }
 
 .lift-hero-copy {
+  min-width: 0;
   max-width: 42rem;
 }
 
@@ -1453,7 +1454,7 @@
 
 @media (min-width: 960px) {
   .lift-hero-grid {
-    grid-template-columns: minmax(25rem, 0.855fr) minmax(35rem, 1fr);
+    grid-template-columns: minmax(0, 0.855fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: center;
   }
@@ -2656,7 +2657,7 @@
   }
 
   .site-nav-link {
-    @apply relative inline-flex items-center rounded-md text-base font-medium;
+    @apply relative inline-flex items-center whitespace-nowrap rounded-md text-base font-medium;
     font-size: 0.9375rem;
     min-height: 2.75rem;
     padding-inline: 0.72rem;

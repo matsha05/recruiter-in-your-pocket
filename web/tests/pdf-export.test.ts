@@ -32,7 +32,7 @@ assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
 assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
 assert.match(sampleReport.rewrites[0].better, /\[measurable result\]/i);
-assert.match(sampleReport.rewrites[1].better, /\[measurable result\]/i);
+assert.match(sampleReport.rewrites[1].better, /\[verified before-and-after result\]/i);
 for (const rewrite of sampleReport.rewrites) {
   assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
 }

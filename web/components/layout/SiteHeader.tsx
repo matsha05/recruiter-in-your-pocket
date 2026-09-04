@@ -29,13 +29,13 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
         <header className={cn("site-header", isInkHeader && "site-header-ink")}>
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-3 rounded-md">
-                    <PocketMark className="size-9 text-background sm:hidden" />
-                    <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background sm:hidden">Recruiter in<br />Your Pocket</span>
-                    <Wordmark className="site-wordmark hidden text-background transition-transform group-hover:scale-[1.01] sm:inline-flex" />
+                    <PocketMark className="size-9 text-background md:hidden" />
+                    <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background md:hidden">Recruiter in<br />Your Pocket</span>
+                    <Wordmark className="site-wordmark hidden text-background transition-transform group-hover:scale-[1.01] md:inline-flex" />
                 </Link>
 
-                <nav className="flex items-center gap-2 sm:gap-4 lg:gap-8">
-                    <div className="hidden items-center gap-7 lg:flex">
+                <nav className="flex shrink-0 items-center gap-2 md:gap-4 xl:gap-8">
+                    <div className="hidden items-center gap-7 xl:flex">
                         <SiteNavLink href="/#how-it-works">How it works</SiteNavLink>
                         <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
                         {isLaunchFlagEnabled("extensionSync") && (
@@ -47,7 +47,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
 
                     {authLoading ? (
                         <div
-                            className="hidden h-12 w-36 shrink-0 items-center justify-center gap-2 border border-background/15 bg-background/5 text-xs font-medium text-background/55 sm:flex"
+                            className="hidden h-12 w-36 shrink-0 items-center justify-center gap-2 border border-background/15 bg-background/5 text-xs font-medium text-background/55 md:flex"
                             role="status"
                             aria-label="Checking account status"
                         >
@@ -59,11 +59,11 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <Link
                                 href="/workspace"
                                 aria-current={isStudioActive ? "page" : undefined}
-                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-md border border-citron bg-citron px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-citron/85 hover:bg-citron/85 sm:inline-flex lg:hidden"
+                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-md border border-citron bg-citron px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-citron/85 hover:bg-citron/85 md:inline-flex xl:hidden"
                             >
                                 Studio
                             </Link>
-                            <div className="hidden items-center gap-4 lg:flex">
+                            <div className="hidden items-center gap-4 xl:flex">
                                 <SiteNavLink href="/workspace" active={isStudioActive}>Studio</SiteNavLink>
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
@@ -74,7 +74,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                 href="/auth"
                                 aria-current={isMarketingActive("/auth") ? "page" : undefined}
                                 className={cn(
-                                    "focus-ring hidden min-h-12 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors sm:inline-flex",
+                                    "focus-ring hidden min-h-12 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors md:inline-flex",
                                     "text-background/70 hover:text-background"
                                 )}
                             >
@@ -83,7 +83,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <Link
                                 href="/workspace"
                                 className={cn(
-                                    "site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center whitespace-nowrap rounded-md border py-2 font-semibold transition-colors sm:inline-flex",
+                                    "site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center whitespace-nowrap rounded-md border py-2 font-semibold transition-colors md:inline-flex",
                                     "border-citron bg-citron text-foreground hover:border-citron/85 hover:bg-citron/85"
                                 )}
                             >
@@ -123,7 +123,7 @@ function SiteMobileMenu({
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-md border border-background/30 text-background transition-colors hover:bg-white/10 lg:hidden">
+                <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-md border border-background/30 text-background transition-colors hover:bg-white/10 xl:hidden">
                     <List className="size-5" weight="bold" />
                 </button>
             </SheetTrigger>

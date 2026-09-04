@@ -14,6 +14,22 @@ const REPORT_TOC_ITEMS = [
     { id: "section-role", label: "Role direction" },
 ] as const;
 
+function getScrollContainer(element: HTMLElement) {
+    for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+        if (/(auto|scroll|overlay)/.test(getComputedStyle(parent).overflowY) && parent.scrollHeight > parent.clientHeight) {
+            return parent;
+        }
+    }
+    return (document.scrollingElement || document.documentElement) as HTMLElement;
+}
+
+function getReadingLine(section: HTMLElement, nav: HTMLElement | null, container: HTMLElement) {
+    const containerTop = container === document.scrollingElement ? 0 : container.getBoundingClientRect().top;
+    const navigationBottom = nav?.closest("aside")?.getBoundingClientRect().bottom || containerTop;
+    const sectionMargin = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+    return Math.max(navigationBottom, containerTop + sectionMargin);
+}
+
 export function ReportTOC({ activeId }: ReportTOCProps) {
     const [visibleId, setVisibleId] = React.useState(REPORT_TOC_ITEMS[0].id as string);
     const navRef = React.useRef<HTMLElement | null>(null);
@@ -23,30 +39,50 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
         const sections = REPORT_TOC_ITEMS
             .map((item) => document.getElementById(item.id))
             .filter((section): section is HTMLElement => Boolean(section));
-        if (!sections.length || typeof IntersectionObserver === "undefined") return;
+        if (!sections.length) return;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-                if (visible?.target.id) setVisibleId(visible.target.id);
-            },
-            { rootMargin: "-22% 0px -66% 0px", threshold: [0.05, 0.2, 0.5] }
-        );
-        sections.forEach((section) => observer.observe(section));
-        return () => observer.disconnect();
-    }, []);
+        let frame = 0;
+        const updateCurrentSection = () => {
+            frame = 0;
+            const container = getScrollContainer(sections[0]);
+            let current = sections[0];
+            for (const section of sections) {
+                // Use every section's start, including sections taller than the viewport.
+                // One pixel accounts for subpixel rounding at the scroll destination.
+                if (section.getBoundingClientRect().top <= getReadingLine(section, navRef.current, container) + 1) {
+                    current = section;
+                }
+            }
+            setVisibleId(current.id);
+        };
+        const scheduleUpdate = () => {
+            if (!frame) frame = requestAnimationFrame(updateCurrentSection);
+        };
+        // Capture scrolls from both the workspace panel and normal page layouts.
+        window.addEventListener("scroll", scheduleUpdate, { capture: true, passive: true });
+        window.addEventListener("resize", scheduleUpdate);
+        const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(scheduleUpdate);
+        sections.forEach((section) => resizeObserver?.observe(section));
+        if (navRef.current) resizeObserver?.observe(navRef.current);
+        scheduleUpdate();
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener("scroll", scheduleUpdate, true);
+            window.removeEventListener("resize", scheduleUpdate);
+            resizeObserver?.disconnect();
+        };
+    }, [activeId]);
 
     const handleScroll = (id: string) => {
         const element = document.getElementById(id);
         if (!element) return;
-        setVisibleId(id);
+        const container = getScrollContainer(element);
+        const top = container.scrollTop + element.getBoundingClientRect().top - getReadingLine(element, navRef.current, container);
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        element.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+        container.scrollTo({ top, behavior: reducedMotion ? "instant" : "smooth" });
     };
 
-    const selectedId = activeId || visibleId;
+    const selectedId = visibleId;
 
     React.useEffect(() => {
         const nav = navRef.current;
