@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
-const homepageDescription = "Get a free recruiter-style first read of your resume: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
+const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
 
 export const metadata: Metadata = {
   title: "AI Resume Feedback Shaped by a Recruiter",
@@ -51,7 +51,7 @@ const structuredData = {
           "@type": "Offer",
           price: "29",
           priceCurrency: "USD",
-          description: "Five additional careful recruiter-style resume reports over 30 days with no recurring subscription.",
+          description: "Five additional resume reports over 30 days. One payment of $29, with no automatic renewal.",
         },
       ],
     },

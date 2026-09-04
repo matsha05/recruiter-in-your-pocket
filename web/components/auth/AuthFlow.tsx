@@ -284,13 +284,13 @@ export function AuthFlow({
               {step === "email" ? (
                 <>
                   <p className="text-[1.02rem] leading-8 text-foreground/85">
-                    Sign in is for report history and role context you choose to keep. Anonymous reports stay separate unless you choose otherwise.
+                    Sign in to save reports and return to them later. Reports you created without signing in are saved to your account only when you choose to keep them.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3">
                     {[
                       { label: "Reports", value: "Keep versions in one place." },
-                      { label: "Privacy", value: "Anonymous work stays separate." },
-                      { label: "Role context", value: "Keep the jobs that matter with the report." },
+                      { label: "Privacy", value: "Choose which reports to save." },
+                      { label: "Comparisons", value: "See how your revisions compare." },
                     ].map((item) => (
                       <div key={item.label} className="border-t border-line pt-3">
                         <p className="text-xs font-semibold uppercase riyp-track-008 text-brand">{item.label}</p>
@@ -302,7 +302,7 @@ export function AuthFlow({
               ) : (
                 <div className="max-w-[28rem] border-t border-line pt-4">
                   <p className="text-base leading-7 text-muted-foreground">
-                    One quick step and you&apos;re back in. We keep the flow short on purpose.
+                    There&apos;s no password to create or remember.
                   </p>
                 </div>
               )}
@@ -316,7 +316,7 @@ export function AuthFlow({
             <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
               <div className="mx-auto max-w-sm border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
-                Sign-in is only for report history and role context you choose to keep. Anonymous reports are not silently attached to an account.
+                Sign in to save reports. Reports you created without signing in are saved to your account only when you choose to keep them.
               </div>
             ) : null}
           </div>

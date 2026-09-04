@@ -74,8 +74,8 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
                 <div className="relative min-h-52 overflow-hidden border-t border-line bg-surface-sky p-7 md:min-h-full md:border-l md:border-t-0">
                     <div className="relative flex h-full flex-col justify-end">
                         <FileMagnifyingGlass size={52} weight="duotone" className="text-brand" aria-hidden="true" />
-                        <p className="riyp-track-011 mt-6 text-xs font-semibold uppercase text-brand">Cornerstone read</p>
-                        <p className="mt-3 max-w-[24ch] text-sm leading-6 text-muted-foreground">The evidence, the boundary, and the useful decision—kept together.</p>
+                        <p className="riyp-track-011 mt-6 text-xs font-semibold uppercase text-brand">Start here</p>
+                        <p className="mt-3 max-w-[24ch] text-sm leading-6 text-muted-foreground">Each article includes its sources and explains what the findings can tell you about your resume.</p>
                     </div>
                 </div>
             ) : null}
@@ -150,21 +150,21 @@ function FirstReadMap() {
             index: "01",
             label: "The file",
             title: "Can the text be extracted?",
-            detail: "Live text and clear sections give the parser something usable.",
+            detail: "Selectable text and clear sections help software read your resume.",
             icon: FileMagnifyingGlass,
         },
         {
             index: "02",
             label: "The scan",
-            title: "Can the evidence be found?",
-            detail: "Role, scope, dates, and outcomes need a clear reading path.",
+            title: "Can a recruiter find what matters?",
+            detail: "Make your job titles, dates, responsibilities, and results easy to find.",
             icon: Scan,
         },
         {
             index: "03",
             label: "The judgment",
-            title: "Does the evidence support a closer look?",
-            detail: "The reader weighs relevance, ownership, progression, and results.",
+            title: "Is the experience relevant?",
+            detail: "A recruiter looks for relevant experience, your part in the work, and the results.",
             icon: UserFocus,
         },
     ];
@@ -172,12 +172,12 @@ function FirstReadMap() {
     return (
         <figure className="research-read-map" aria-labelledby="research-read-map-title">
             <figcaption className="research-read-map-intro">
-                <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">The first-read map</p>
+                <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">From file to feedback</p>
                 <h2 id="research-read-map-title" className="mt-4 max-w-[15ch] font-display text-[clamp(2.4rem,4.8vw,4.8rem)] riyp-weight-620 leading-[0.96] tracking-[-0.04em] text-foreground">
-                    A resume passes through three different reads.
+                    Three things to check in a resume.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-                    Advice gets muddy when parsing, attention, and judgment are treated as the same problem. They are not.
+                    A file can be easy for software to read and still leave a recruiter unsure what you did. Check both the formatting and the content.
                 </p>
             </figcaption>
 
@@ -201,7 +201,7 @@ function FirstReadMap() {
 
             <div className="research-read-map-note">
                 <MagnifyingGlass size={20} weight="duotone" aria-hidden="true" />
-                <p><strong>Your report works backward from the decision.</strong> It shows where real evidence becomes hard to find—and the first honest fix worth making.</p>
+                <p><strong>Your report helps you revise.</strong> It points out details that are missing or hard to find and suggests what to change first.</p>
             </div>
         </figure>
     );
@@ -264,13 +264,13 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
                     <div className="bg-white p-6">
                         <ChartBarHorizontal size={34} weight="duotone" className="text-muted-foreground" aria-hidden="true" />
                         <p className="mt-6 font-display text-3xl leading-none text-foreground">Resume profile</p>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">Variables reduced to a clean set of cues.</p>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">A simplified profile made from selected resume details.</p>
                         <p className="riyp-track-010 mt-7 border-t border-line pt-4 text-xs font-semibold uppercase text-muted-foreground">More agreement between raters</p>
                     </div>
                     <div className="riyp-bg-sky p-6">
                         <FileText size={34} weight="duotone" className="text-brand" aria-hidden="true" />
                         <p className="mt-6 font-display text-3xl leading-none text-foreground">Actual resume</p>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">The real document, hierarchy, context, and presentation.</p>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">The full document, with its original layout and context.</p>
                         <p className="riyp-track-010 mt-7 border-t border-line pt-4 text-xs font-semibold uppercase text-brand">Different cues drove judgment</p>
                     </div>
                 </div>
@@ -292,7 +292,7 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
                     <div><p className="font-semibold text-foreground">Algorithmic recommendation</p><p className="mt-1 text-sm text-muted-foreground">Lower recruiter trust</p></div>
                 </div>
             </div>
-            <p className="mt-7 max-w-[35rem] text-sm leading-6 text-muted-foreground">The useful lesson is not “humans good, software bad.” It is that unexplained recommendations are harder to trust—especially when they conflict with the evidence.</p>
+            <p className="mt-7 max-w-[35rem] text-sm leading-6 text-muted-foreground">For our product, this means showing why we recommend a change so you can check the reasoning for yourself.</p>
         </div>
     );
 }
@@ -332,7 +332,7 @@ function ResearchEvidenceTrace() {
             <div className="research-evidence-stage-head">
                 <div>
                     <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Four findings worth acting on</p>
-                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Strong evidence changes what we check. Weak evidence stays out of the headline.</p>
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">See what each source found and how we use it in the report.</p>
                 </div>
                 <div className="research-evidence-tabs" role="tablist" aria-label="Research findings">
                     {featuredFindings.map((finding, index) => (

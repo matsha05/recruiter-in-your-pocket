@@ -14,8 +14,8 @@ function firstFix(report: ReportData) {
 
 function snapshot(report: ReportData) {
     return {
-        takeaway: report.first_impression_takeaway || report.first_impression || report.summary || "No opening read was returned.",
-        doubt: report.gaps?.[0] || report.biggest_gap_example || "No central doubt was returned.",
+        takeaway: report.first_impression_takeaway || report.first_impression || report.summary || "No first impression was returned.",
+        doubt: report.gaps?.[0] || report.biggest_gap_example || "No main concern was returned.",
         fix: firstFix(report),
     };
 }
@@ -29,19 +29,19 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
         <section aria-labelledby="read-comparison-title" className={styles.root}>
             <div className={styles.header}>
                 <div>
-                    <p className={styles.kicker}>Second read</p>
+                    <p className={styles.kicker}>Revision comparison</p>
                     <h2 id="read-comparison-title" className={styles.title}>
-                        {changed ? "The read moved." : "The same question is still open."}
+                        {changed ? "Here's what changed in your feedback." : "The main feedback hasn't changed."}
                     </h2>
                 </div>
                 <p className={styles.intro}>
-                    Two reports, side by side. This compares what the page communicates—not your value or your hiring odds.
+                    Compare the main finding, missing details, and first suggested edit from each report.
                 </p>
             </div>
 
             <div className={styles.grid}>
                 <article className={styles.card}>
-                    <p className={styles.cardLabel}>Previous read</p>
+                    <p className={styles.cardLabel}>Previous report</p>
                     <p className={`${styles.headline} ${styles.previousHeadline}`}>{before.takeaway}</p>
                     <dl className={styles.details}>
                         <div className={styles.detail}>
@@ -49,7 +49,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
                             <dd className={styles.detailText}>{before.doubt}</dd>
                         </div>
                         <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>First move</dt>
+                            <dt className={styles.detailLabel}>First suggested edit</dt>
                             <dd className={styles.detailText}>{before.fix}</dd>
                         </div>
                     </dl>
@@ -62,7 +62,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
                 <article className={`${styles.card} ${styles.current}`}>
                     <div className={styles.currentTag}>
                         {changed ? <CheckCircle className={styles.changedIcon} weight="fill" /> : <XCircle className={styles.sameIcon} weight="duotone" />}
-                        <p className={`${styles.cardLabel} ${styles.currentLabel}`}>Current read</p>
+                        <p className={`${styles.cardLabel} ${styles.currentLabel}`}>Current report</p>
                     </div>
                     <p className={styles.headline}>{after.takeaway}</p>
                     <dl className={styles.details}>
@@ -71,7 +71,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
                             <dd className={styles.detailText}>{after.doubt}</dd>
                         </div>
                         <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>Best next move</dt>
+                            <dt className={styles.detailLabel}>First suggested edit</dt>
                             <dd className={styles.detailText}>{after.fix}</dd>
                         </div>
                     </dl>

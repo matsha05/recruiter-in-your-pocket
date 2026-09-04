@@ -18,26 +18,28 @@ assert.equal(presentation.independentRewrites.length, 0, "each sample rewrite mu
 
 const requirements = [
   {
-    request: /teams served, weekly volume, and verified productivity change/i,
+    requests: [/who you onboarded/i, /how many people each week/i, /what improved/i],
     keys: ["teams", "specific scope", "measurable result"],
-    explanations: [/weekly onboarding volume/i, /number of people onboarded each week/i, /verified productivity change/i],
+    explanations: [/teams you supported/i, /number of people onboarded each week/i, /productivity changed.*how you measured it/i],
   },
   {
-    request: /verified before-and-after result/i,
+    requests: [/what improved.*launch/i],
     keys: ["verified before-and-after result"],
-    explanations: [/before-and-after launch result/i, /how it was measured/i],
+    explanations: [/before-and-after launch result/i, /how was it measured/i, /result you can verify/i],
   },
   {
-    request: /functions aligned and your key decision/i,
+    requests: [/teams you brought together/i, /decision you made.*roadmap/i],
     keys: ["functions", "ownership detail"],
-    explanations: [/functions aligned/i, /what you personally decided/i],
+    explanations: [/teams you coordinated/i, /what you personally decided/i],
   },
 ];
 
 for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   const requirement = requirements[index];
   assert.ok(rewrite, `fix ${index + 1} must demonstrate the requested edit`);
-  assert.match(fix.fix || "", requirement.request);
+  for (const request of requirement.requests) {
+    assert.match(fix.fix || "", request);
+  }
   const evidence = typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt;
   assert.equal(rewrite.original, evidence, "the before line must remain the fix's actual quoted source");
   assert.deepEqual(bracketPlaceholderKeys(rewrite.better), requirement.keys,
@@ -58,6 +60,6 @@ for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   }).reason, "unresolved_placeholders", "the example must not become copyable while facts are unknown");
 }
 
-assert.match(sample.next_steps[1], /before-and-after launch result.*functions aligned.*key decision/i,
+assert.match(sample.next_steps[1], /before-and-after launch result.*teams you coordinated.*decision you made/i,
   "the closing next move must ask for the same facts demonstrated in the fixes");
 console.log("Sample report content contracts passed");

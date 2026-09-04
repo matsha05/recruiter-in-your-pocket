@@ -26,10 +26,10 @@ type Fix = NonNullable<ReportData["top_fixes"]>[number];
 type Rewrite = NonNullable<ReportData["rewrites"]>[number];
 
 const fixTrace = [
-  { label: "On the page" },
-  { label: "Open question" },
-  { label: "Your fact" },
-  { label: "Clearer wording" },
+  { label: "Original" },
+  { label: "What's missing" },
+  { label: "Your details" },
+  { label: "Revised wording" },
 ];
 
 export function evidenceFor(fix?: Fix) {
@@ -162,7 +162,7 @@ export function FixCanvas({
             <MinusCircle className="mt-0.5 size-5 shrink-0 text-muted-foreground" weight="duotone" />
             <div>
               <p className="text-sm font-semibold text-foreground">Fix {String(index + 1).padStart(2, "0")} marked not relevant.</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">You know the work best. You can bring this suggestion back if it helps later.</p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">You can bring this suggestion back at any time.</p>
             </div>
           </div>
           <button type="button" onClick={() => setDismissed(false)} className="min-h-11 self-start px-3 text-xs font-semibold text-brand hover:text-brand/75 sm:self-auto">
@@ -178,7 +178,7 @@ export function FixCanvas({
       <div className="grid gap-3 sm:gap-7 lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-10">
         <div className="flex items-baseline gap-3 sm:block">
           <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fix {String(index + 1).padStart(2, "0")}</p>
-          <p className="text-xs leading-5 text-muted-foreground sm:mt-2">{index === 0 ? "Start here" : index === 1 ? "Then this" : "One more pass"}</p>
+          <p className="text-xs leading-5 text-muted-foreground sm:mt-2">{index === 0 ? "Start here" : index === 1 ? "Next" : "Then"}</p>
         </div>
 
         <div className="min-w-0">
@@ -196,7 +196,7 @@ export function FixCanvas({
           {draftSource && (
             <div className="riyp-border-annotation mt-4 border-l-2 pl-4 sm:mt-7 sm:pl-5">
               <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
-                {sectionFor(fix) ? `On the page · ${sectionFor(fix)}` : "On the page"}
+                {sectionFor(fix) ? `Original · ${sectionFor(fix)}` : "Original"}
               </p>
               <p className="mt-2 font-display text-lg leading-[1.625rem] text-foreground/85 sm:text-2xl sm:leading-8">“{draftSource}”</p>
             </div>
@@ -205,7 +205,7 @@ export function FixCanvas({
           <div className="mt-5 grid gap-px bg-[hsl(var(--paper-line))] sm:mt-7 sm:grid-cols-2">
             <div className="bg-accent-apricot/20 p-4 sm:p-6">
               <p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What is missing</p>
-              <p className="riyp-type-095 mt-2 leading-6 text-foreground/80 sm:mt-3">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
+              <p className="riyp-type-095 mt-2 leading-6 text-foreground/80 sm:mt-3">{fix.why || "This example needs more detail about what you did and what changed."}</p>
             </div>
             <div className="bg-accent-butter/20 p-4 sm:p-6">
               <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">{isSample ? "Details missing from the original" : "Details you can add"}</p>
@@ -227,7 +227,7 @@ export function FixCanvas({
                         value={factValues[key] || ""}
                         onChange={(event) => handleFactChange(key, event.target.value)}
                         className="min-h-11 w-full border border-foreground/15 bg-paper/80 px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
-                        placeholder={`Add the ${key} from your actual work`}
+                        placeholder={`Enter ${key}`}
                         aria-label={`Fact for ${key} in fix ${index + 1}`}
                       />
                     </label>
@@ -277,10 +277,10 @@ export function FixCanvas({
             <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">
               <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Question to answer</p>
               <p className="mt-3 max-w-[42rem] font-display text-[1.35rem] riyp-weight-520 leading-[1.4] text-foreground sm:text-[1.55rem]">
-                What result or scope can you verify for this work?
+                What did you do, and what changed as a result?
               </p>
               <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-                We need more detail before suggesting a rewrite. Start with the original line and add the result or scale you can verify.
+                There isn&apos;t enough detail here to suggest a rewrite. Add what you know about the project, your part in it, and the result.
               </p>
             </div>
           )}

@@ -14,12 +14,12 @@ const rubric = [
     {
         name: "Impact",
         role: "Results and scope",
-        detail: "Do your bullets show real results, numbers, scope, and outcomes, not just responsibilities?",
+        detail: "Do your bullets explain what you accomplished and how much work you were responsible for?",
     },
     {
         name: "Clarity",
         role: "Specificity",
-        detail: "Can a recruiter tell what you do, how senior you are, and why you matter without re-reading?",
+        detail: "Can a recruiter tell what you do and how much responsibility you have without reading it twice?",
     },
     {
         name: "Readability",
@@ -34,7 +34,7 @@ export default function MethodologyClient() {
             pageKey="methodology"
             eyebrow="Methodology"
             title="How the resume review works"
-            description="The review looks at four parts of your resume. The clarity summary keeps the result easy to scan, while the written findings show what drove it."
+            description="We look at your career history, accomplishments, and writing. The report explains what a recruiter may understand from your resume and what needs more detail."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
             <section className="border-y border-line bg-surface-sky/35 px-6 py-7 md:px-8 md:py-9">
@@ -53,7 +53,7 @@ export default function MethodologyClient() {
                     What the review considers
                 </h2>
                 <p className="mb-6 text-base leading-7 text-muted-foreground">
-                    These dimensions organize the evidence in the report. The overall score is a whole-document judgment, not a mechanical average. When the resume lacks supporting detail, the report names what is missing instead of making an assumption.
+                    The report covers these four areas. The overall score reflects the resume as a whole rather than an average of the four scores. If a detail is missing, the report asks for it instead of filling it in.
                 </p>
                 <div className="border-y border-line">
                     {rubric.map((item, index) => (
@@ -77,13 +77,13 @@ export default function MethodologyClient() {
                         What the feedback focuses on
                     </h3>
                     <p className="text-[15px] leading-7 text-muted-foreground">
-                        We tell you what&apos;s weakening your resume, what to rewrite first, and where your positioning could be stronger.
+                        We point out what may be unclear to a recruiter and suggest which changes to make first.
                     </p>
                 </div>
                 <div className="border-b border-line p-6 md:p-7">
                     <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
                         <PencilSimpleLine className="size-4 text-brand" weight="bold" />
-                        How we write rewrites
+                        How we suggest rewrites
                     </h3>
                     <p className="text-[15px] leading-7 text-muted-foreground">
                         Rewrites focus on real results and tighter language, not inflated claims or generic filler.

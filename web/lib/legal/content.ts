@@ -65,8 +65,8 @@ export type LegalPageKey = "trust" | "privacy" | "terms" | "faq";
 export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   trust: {
     eyebrow: "Trust",
-    title: "Trust, in plain language",
-    description: "What we claim, where you can verify it, and what controls you have.",
+    title: "Your data, billing, and reports",
+    description: "How we handle your information, what you pay for, and what the report can tell you.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -75,13 +75,13 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         items: [
           {
             icon: ShieldCheck,
-            title: "Evidence, not promises",
-            body: "The clarity summary scores this document review out of 100. The report shows the evidence behind it and never predicts interviews or offers.",
+            title: "What the score tells you",
+            body: "Your resume gets a score out of 100, with an explanation of what affected it. The score does not predict interviews or offers.",
           },
           {
             icon: LockKey,
             title: "Clear data handling",
-            body: "How we store and process your report data and extension capture data is documented clearly on our Security and Privacy pages.",
+            body: "Our Security and Privacy pages explain what report and extension data we collect, how long we keep it, and how to delete it.",
           },
           {
             icon: Receipt,
@@ -125,7 +125,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   privacy: {
     eyebrow: "Privacy policy",
     title: "How we handle your data",
-    description: "What data flows through the product, why it's there, and how you can remove or export it.",
+    description: "What information we collect, why we need it, and how you can delete or export it.",
     lastUpdated: PRIVACY_LAST_UPDATED,
     sections: [
       {

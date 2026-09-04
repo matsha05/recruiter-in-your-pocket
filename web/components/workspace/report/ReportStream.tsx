@@ -117,7 +117,7 @@ export function ReportStream({
               <p className="mt-1 text-[11px] leading-4 text-muted-foreground">Not a prediction of interviews or offers.</p>
             </div>
           ) : (
-            <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+            <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Resume review</p>
           )}
         </div>
 
@@ -156,7 +156,7 @@ export function ReportStream({
           <div>
             <h2 className="font-display text-[clamp(1.85rem,4vw,2.8rem)] riyp-weight-520 leading-tight tracking-[-0.04em] text-foreground">{fixPlanHeadingForCount(fixes.length)}</h2>
           </div>
-          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">Start with the original line. Add the details you can verify.</p>
+          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">Check each suggestion against your experience. Add only details you know are accurate.</p>
         </div>
 
         <div>
@@ -198,7 +198,7 @@ export function ReportStream({
 
       {report.job_alignment && (
         <section id="section-role" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
-          <div className="flex items-center gap-2 text-brand"><Target className="size-5" weight="duotone" /><p className="text-[11px] font-semibold uppercase riyp-track-017">Role direction</p></div>
+          <div className="flex items-center gap-2 text-brand"><Target className="size-5" weight="duotone" /><p className="text-[11px] font-semibold uppercase riyp-track-017">Role fit</p></div>
           <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
             <div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.7rem)] riyp-weight-520 leading-[1.02] tracking-[-0.03em] text-foreground">{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
@@ -218,7 +218,7 @@ export function ReportStream({
       <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
         <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
-            <span className="text-sm font-semibold text-foreground">How the clarity summary breaks down</span>
+            <span className="text-sm font-semibold text-foreground">What goes into your score</span>
             {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100</span>}
           </div>
           <CaretDown className="size-4 shrink-0 text-brand transition-transform group-open:rotate-180" />
@@ -280,8 +280,8 @@ export function ReportStream({
           <div className={styles.feedbackContent}>
             <div>
               <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Help improve the report</p>
-              <h2 id="report-feedback-title" className={styles.feedbackTitle}>What did this report get right—or miss?</h2>
-              <p className={styles.feedbackCopy}>Tell us which advice helped and which line needs another look. A specific example makes your feedback easier to act on.</p>
+              <h2 id="report-feedback-title" className={styles.feedbackTitle}>What did we get right? What did we miss?</h2>
+              <p className={styles.feedbackCopy}>Tell us which advice helped or felt wrong. Include an example so we can look into it.</p>
             </div>
             <div className={styles.feedbackAction}>
               <Button asChild variant="outline" size="lg" className="border-foreground/35 bg-paper hover:border-brand/45 hover:bg-brand/5">

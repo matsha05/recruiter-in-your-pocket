@@ -15,14 +15,14 @@ import {
 
 export const metadata: Metadata = {
     title: "How to Negotiate a Job Offer",
-    description: "A recruiter-grounded guide to reading a job offer, choosing a counter, and making a request that can survive the approval chain.",
+    description: "How to review a job offer, decide what to negotiate, and explain your request to the recruiter.",
     alternates: { canonical: "/resources/offer-negotiation" },
 };
 
 const quickStart = [
     ["Read the whole offer", "Put compensation, schedule, benefits, start date, deadline, and written conditions in one place."],
     ["Choose the ask", "Pick the change that would genuinely affect your decision. Do not send a shopping list."],
-    ["Make it easy to carry", "Give the recruiter the term, your basis, and an honest description of what happens if it moves."],
+    ["Explain your request", "Tell the recruiter what you want to change, why, and whether that change would help you accept the offer."],
 ];
 
 export default function OfferNegotiationGuidePage() {
@@ -43,11 +43,11 @@ export default function OfferNegotiationGuidePage() {
                         <GuideEyebrow>Offer negotiation · 10 minute guide</GuideEyebrow>
                         <h1 className="mt-5 max-w-4xl font-display text-6xl riyp-weight-500 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-7xl lg:text-8xl">
                             An offer is not one number.
-                            <span className="mt-2 block text-brand">Find the part that can move.</span>
+                            <span className="mt-2 block text-brand">See what you can negotiate.</span>
                         </h1>
                     </div>
                     <div className="border-l-2 border-brand pl-5">
-                        <p className="text-base leading-7 text-muted-foreground">Get every term in one place. Decide what would genuinely change your answer. Then make one clear request a recruiter can carry back.</p>
+                        <p className="text-base leading-7 text-muted-foreground">Review the full offer and decide what would change your answer. Then tell the recruiter what you want to negotiate and why.</p>
                         <Link href="/resources/tech-offer-negotiation" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
                             Reading a tech offer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
@@ -64,7 +64,7 @@ export default function OfferNegotiationGuidePage() {
                     ))}
                 </div>
 
-                <GuideSection number="01" title="Your counter has to survive a handoff." intro="The person delivering the offer may not be the person who can change it. Give them a request they can repeat accurately in the next conversation." id="handoff">
+                <GuideSection number="01" title="The recruiter may need someone else's approval" intro="The person delivering the offer may not be the person who can change it. Be specific about what you want so they can explain your request to the decision-maker." id="handoff">
                     <HandoffDiagram />
                     <div className="mt-6 grid gap-5 border-l border-border pl-5 sm:grid-cols-3 sm:border-l-0 sm:pl-0">
                         <p className="text-sm leading-6 text-muted-foreground"><strong className="block text-foreground">The ask</strong>“I’m looking for $115,000 in base.”</p>
@@ -73,7 +73,7 @@ export default function OfferNegotiationGuidePage() {
                     </div>
                 </GuideSection>
 
-                <GuideSection number="02" title="Before you counter" intro="There is no magic script that works for every employer. There is a good order of operations." id="before-you-counter">
+                <GuideSection number="02" title="Before you counter" intro="Get the full terms in writing and give yourself time to review them. These steps will help you decide what to ask for." id="before-you-counter">
                     <div className="divide-y divide-border border-y border-border">
                         {[
                             ["Get the complete offer in writing", "Ask for every compensation component, condition, deadline, and policy that affects the decision."],
@@ -91,17 +91,17 @@ export default function OfferNegotiationGuidePage() {
                     </div>
                 </GuideSection>
 
-                <GuideSection number="03" title="Build a counter someone can approve" intro="The recruiter does not need a performance. They need a clear request, a reason, and the truth about your decision." id="scripts">
+                <GuideSection number="03" title="Explain what you need to accept" intro="Tell the recruiter what you want to change and why. Only say you are ready to accept if you mean it." id="scripts">
                     <div className="space-y-1">
                         <Disclosure title="They ask for salary expectations first" eyebrow="Before the offer" defaultOpen>
-                            <Script>I’d rather price this role from its scope and level. What range has the team approved?</Script>
+                            <Script>Could you share the salary range for this role? I’d like to understand the responsibilities and level before giving you a number.</Script>
                             <WhatItGives>A direct request for the range without pretending you have no expectations. If they cannot share it, offer a researched range of your own.</WhatItGives>
                         </Disclosure>
                         <Disclosure title="The offer is below your target" eyebrow="A clear counter">
                             <Script>I’m excited about the role. Based on the posted range, the scope we discussed, and my experience with [specific responsibility], I was expecting a base closer to [X]. Is there room to revisit that?</Script>
-                            <WhatItGives>The size of the gap and the evidence behind your target. It leaves the recruiter a clean question to take back.</WhatItGives>
+                            <WhatItGives>A specific salary request and the reasons for it. The recruiter can take both to whoever approves the offer.</WhatItGives>
                         </Disclosure>
-                        <Disclosure title="Base cannot move" eyebrow="Change the lever">
+                        <Disclosure title="Base cannot move" eyebrow="Ask about other terms">
                             <Script>Thanks for checking. Which parts of the package have more flexibility? A sign-on bonus, start date, schedule, or an earlier compensation review could change the decision for me.</Script>
                             <WhatItGives>A short list of meaningful alternatives. Ask about repayment terms before counting a sign-on bonus as guaranteed cash.</WhatItGives>
                         </Disclosure>
@@ -111,7 +111,7 @@ export default function OfferNegotiationGuidePage() {
                         </Disclosure>
                         <Disclosure title="You have another offer" eyebrow="Use only what is true">
                             <Script>I want to be transparent that I have another written offer and need to respond by [date]. This role is my preference. If there is room to bring [term] to [X], I would be ready to [honest next step].</Script>
-                            <WhatItGives>A real deadline, the term that matters, and an honest close condition. Never invent an offer or promise to sign unless you mean it.</WhatItGives>
+                            <WhatItGives>The deadline for your other offer and what would help you choose this one. Never invent an offer or promise to sign unless you mean it.</WhatItGives>
                         </Disclosure>
                     </div>
                 </GuideSection>

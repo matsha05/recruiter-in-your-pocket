@@ -46,10 +46,10 @@ export default function QuantifyingImpactPage() {
                 items: [
                     {
                         title: "Missing context",
-                        description: "We point out when a bullet names the activity but not what changed or how much work was involved."
+                        description: "If your resume says what you did but leaves out the result, we ask what changed and how much work you handled."
                     },
                     {
-                        title: "Fact-protective rewrites",
+                        title: "Accurate rewrites",
                         description: "We ask for the missing result or scale instead of inventing a number for you."
                     }
                 ]

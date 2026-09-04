@@ -2,13 +2,13 @@
   "contract_version": "v2",
   "score": 78,
   "score_label": "Mostly clear",
-  "score_comment_short": "Ownership is visible, but the work's size and results stay mostly unmeasured.",
-  "score_comment_long": "The launch and onboarding lines show you coordinating work across teams. The quarterly roadmap landing on time gives one concrete result. Add the missing team, volume, and before-and-after details to show how much changed.",
-  "first_impression": "Cross-team launch ownership stands out first, especially the clear owners and checkpoints. The resume still leaves recruiters guessing about team size, program volume, and what improved.",
-  "score_plain": "The resume makes a clear case for program coordination. Team size, weekly volume, and the onboarding and launch results still need detail.",
-  "biggest_gap_example": "'Led onboarding work across the company, improving productivity.' names no team, volume, or productivity measure, so recruiters cannot size the result.",
-  "first_impression_takeaway": "Show how much work you led",
-  "summary": "You give the reader a clear picture of cross-team launches: owners, checkpoints, stakeholder alignment, and a quarterly roadmap delivered on time. What's missing is how many teams or people were involved and what changed. Those details would show how broad your responsibility was.",
+  "score_comment_short": "You say onboarding improved productivity. Add who you helped and how you measured the improvement.",
+  "score_comment_long": "The launch and onboarding examples show how you coordinated work across teams. You also say the quarterly roadmap was delivered on time. Give the other projects that same detail: which teams were involved, how many people you onboarded, and what improved afterward.",
+  "first_impression": "The launch example is easy to follow because you mention owners and checkpoints. How many teams were involved, and what improved? A recruiter would still need to ask you those questions.",
+  "score_plain": "Your program coordination experience is clear. The onboarding and launch examples would be more useful with team sizes, the number of people onboarded each week, and results.",
+  "biggest_gap_example": "'Led onboarding work across the company, improving productivity.' Which teams did you support? How many people did you onboard? And how did you know productivity improved?",
+  "first_impression_takeaway": "What did your onboarding work improve?",
+  "summary": "You describe assigning launch owners, setting checkpoints, coordinating stakeholders, and delivering a quarterly roadmap on time. That gives a recruiter a useful picture of how you work. Add the number of teams or people involved and the results of your onboarding and launch work, so they can understand how much you were responsible for.",
   "subscores": {
     "impact": 72,
     "clarity": 81,
@@ -16,19 +16,19 @@
     "readability": 86
   },
   "strengths": [
-    "The launch bullet names clear owners and checkpoints, so the way you coordinate work is easy to follow.",
-    "Delivering the quarterly roadmap on time gives recruiters one concrete result to hold onto.",
-    "Onboarding, launches, and stakeholder alignment form a consistent Program Manager story."
+    "The launch example includes owners and checkpoints. Those details show how you organized the project.",
+    "You say the quarterly roadmap was delivered on time. Keep that result; it tells us more than a list of responsibilities would.",
+    "Your onboarding, launch, and stakeholder work is relevant to Program Manager roles."
   ],
   "gaps": [
-    "The onboarding line never names the teams, weekly volume, or the specific productivity change, so its scale is impossible to judge.",
-    "The launch line explains the process but stops before the result, leaving its business value unanswered.",
-    "Without a summary, recruiters must infer whether you are targeting program management, product operations, or core product work."
+    "The onboarding example doesn't say which teams you supported, how many people went through the process each week, or how productivity improved.",
+    "You explain how you organized the launch, but not what happened as a result.",
+    "Your experience could suit program management, product operations, or product management. A short summary could help clarify which role you want."
   ],
   "top_fixes": [
     {
-      "fix": "Add the teams served, weekly volume, and verified productivity change to the onboarding bullet.",
-      "why": "The line says onboarding improved, but recruiters cannot tell who it served or how much changed.",
+      "fix": "Say who you onboarded, how many people each week, and what improved.",
+      "why": "You mention better productivity. Give the reader a way to understand that improvement: who benefited, and how did their work change?",
       "confidence": "high",
       "evidence": {
         "excerpt": "Led onboarding work across the company, improving productivity.",
@@ -39,8 +39,8 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Add the verified before-and-after result to the cross-team launch bullet.",
-      "why": "The owners and checkpoints explain how you worked, but not whether the launch process improved delivery.",
+      "fix": "Explain what improved after you organized the launch.",
+      "why": "The owners and checkpoints tell us how you organized it. A before-and-after result would show whether that process helped the team deliver.",
       "confidence": "high",
       "evidence": {
         "excerpt": "Ran a cross-team launch with clear owners and checkpoints.",
@@ -51,8 +51,8 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Add the functions aligned and your key decision to the quarterly-roadmap bullet.",
-      "why": "Delivering on time is useful, but recruiters still cannot see how broad the alignment was or what you personally decided.",
+      "fix": "Name the teams you brought together and a decision you made for the roadmap.",
+      "why": "The on-time delivery is worth keeping. Now explain which teams you coordinated and what you personally decided, so your contribution is clear.",
       "confidence": "high",
       "evidence": {
         "excerpt": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
@@ -68,47 +68,47 @@
       "label": "Impact",
       "original": "Led onboarding work across the company, improving productivity.",
       "better": "Led onboarding work across the company ([teams]; [specific scope]), improving productivity: [measurable result].",
-      "enhancement_note": "Add the teams served, weekly onboarding volume, and verified productivity change. Use [specific scope] for the number of people onboarded each week."
+      "enhancement_note": "Add the teams you supported and the number of people onboarded each week. Put those details in [teams] and [specific scope]. For [measurable result], explain how productivity changed and how you measured it."
     },
     {
       "label": "Scope",
       "original": "Ran a cross-team launch with clear owners and checkpoints.",
       "better": "Ran a cross-team launch with clear owners and checkpoints; [verified before-and-after result].",
-      "enhancement_note": "Add the verified before-and-after launch result, including what changed and how it was measured."
+      "enhancement_note": "Add the before-and-after launch result: what changed, and how was it measured? Use a result you can verify."
     },
     {
       "label": "Ownership",
       "original": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
-      "better": "Managed stakeholder alignment ([functions]; [ownership detail]) and delivered the quarterly roadmap on time.",
-      "enhancement_note": "Add the functions aligned and your key decision. Use [ownership detail] to state what you personally decided, while keeping the on-time delivery already on the page."
+      "better": "Managed alignment with stakeholders in [functions] and delivered the quarterly roadmap on time. [ownership detail].",
+      "enhancement_note": "Add the teams you coordinated in [functions]. Use [ownership detail] for what you personally decided. Keep the on-time delivery; it's already a useful result."
     }
   ],
   "section_review": {
     "Summary": {
       "working": "",
-      "missing": "Section not present.",
-      "fix": "Add only if it helps your story.",
+      "missing": "There is no summary.",
+      "fix": "Consider a short summary if you want to make your target role clearer.",
       "grade": "N/A",
       "priority": "Low"
     },
     "Work Experience": {
       "working": "Clear owners, checkpoints, and an on-time roadmap make the work easy to follow.",
-      "missing": "The onboarding and launch bullets do not show team size, volume, or a verified result.",
-      "fix": "Add the missing scope and result to the onboarding and launch bullets first.",
+      "missing": "The onboarding and launch examples don't say how many people were involved or what improved.",
+      "fix": "Start with those two examples. Add the teams involved, the number of people onboarded, and results you can verify.",
       "grade": "B+",
       "priority": "high"
     },
     "Skills": {
       "working": "The section is short and easy to scan.",
       "missing": "'Project management' and 'cross-functional collaboration' repeat what the experience already says.",
-      "fix": "Use the planning and launch methods already named in your experience instead of broad category labels.",
+      "fix": "Be more specific: name the planning and launch methods you used, as you do in your work experience.",
       "grade": "C+",
       "priority": "medium"
     },
     "Education": {
-      "working": "The section is complete and proportionate to the rest of the resume.",
-      "missing": "No material section-specific gap identified.",
-      "fix": "No change needed unless it improves role alignment.",
+      "working": "The section includes the details it needs without taking up too much space.",
+      "missing": "Nothing important appears to be missing.",
+      "fix": "No changes needed here.",
       "grade": "A-",
       "priority": "low"
     }
@@ -155,43 +155,43 @@
       ],
       "seniority_read": "Senior individual contributor",
       "industry_signals": [],
-      "company_stage_fit": "Not enough employer context to call."
+      "company_stage_fit": "The resume doesn't include enough detail about your employers to assess this."
     },
-    "positioning_suggestion": "Program Manager is the clearest fit because the resume shows launches, stakeholder alignment, and roadmap delivery. For core Product Manager roles, add the analytics and user-research work only if you have done it."
+    "positioning_suggestion": "Program Manager looks like the strongest fit for the experience you've described: launches, stakeholder coordination, and roadmap delivery. If you're applying for Product Manager roles, include any analytics or user-research work you've done."
   },
   "ideas": {
     "questions": [
       {
         "question": "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
         "archetype": "SCALING",
-        "why": "That answer would turn 'across the company' into a size recruiters can understand."
+        "why": "'Across the company' could mean a few people or hundreds. These details would tell a recruiter what you were responsible for."
       },
       {
-        "question": "What was happening before the new launch process, and what was measurably different after it?",
+        "question": "What was happening before the new launch process, and what improved afterward?",
         "archetype": "HIGH STAKES",
-        "why": "The process is visible; this answer would show whether it changed delivery."
+        "why": "You already explain the process. This would tell a recruiter whether it helped the team deliver."
       },
       {
-        "question": "Which role should this resume unmistakably target, and what kind of work do you want to own?",
+        "question": "Which job are you applying for, and what kind of work do you want to do next?",
         "archetype": "SCALING",
-        "why": "The experience could point to program management, product operations, or core product work, so the target should guide what leads."
+        "why": "Your experience could suit several roles. Knowing which one you want will help you choose what to put first."
       },
       {
         "question": "When did you change your mind based on data or customer feedback, and what happened?",
         "archetype": "IMPROVEMENT",
-        "why": "The current page shows coordination, but not how you evaluated or changed a plan."
+        "why": "You describe coordinating projects, but don't yet give an example of using data or feedback to change a plan."
       },
       {
         "question": "What decision did you personally make during the cross-team launch, and what changed because of it?",
         "archetype": "END-TO-END OWNERSHIP",
-        "why": "A concrete decision would separate your ownership from meeting facilitation."
+        "why": "This would help a recruiter understand what you decided yourself, beyond keeping everyone organized."
       }
     ]
   },
   "next_steps": [
-    "Add the teams served, weekly volume, and verified productivity change to the onboarding bullet.",
-    "Add the before-and-after launch result, then the functions aligned and your key decision to the roadmap bullet.",
-    "After those facts are visible, add a short summary naming Program Manager as the target."
+    "Start with onboarding: which teams did you support, how many people each week, and how did productivity improve?",
+    "Then add the before-and-after launch result. For the roadmap, name the teams you coordinated and a decision you made.",
+    "If Program Manager is the role you want, consider a short summary that says so."
   ],
   "layout_score": 86,
   "layout_band": "strong",

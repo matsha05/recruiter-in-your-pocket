@@ -8,10 +8,10 @@ interface ReportTOCProps {
 }
 
 const REPORT_TOC_ITEMS = [
-    { id: "section-first-impression", label: "The read" },
+    { id: "section-first-impression", label: "Overview" },
     { id: "section-fixes", label: "Fix these first" },
     { id: "section-keep", label: "Keep these" },
-    { id: "section-role", label: "Role direction" },
+    { id: "section-role", label: "Role fit" },
 ] as const;
 
 function getScrollContainer(element: HTMLElement) {

@@ -57,7 +57,7 @@ export function HandoffDiagram() {
                 <ArrowRight aria-hidden className="hidden size-5 text-cyan-bright sm:block" weight="bold" />
                 <HandoffNode label="The basis" text="The scope, range, or evidence behind it" />
                 <ArrowRight aria-hidden className="hidden size-5 text-cyan-bright sm:block" weight="bold" />
-                <HandoffNode label="The decision" text="What changes if they can move it" />
+                <HandoffNode label="The decision" text="Whether the change would help you accept" />
             </div>
         </div>
     );
@@ -114,8 +114,8 @@ export function TechOfferStack() {
         <div className="border border-border bg-foreground p-5 text-background sm:p-8">
             <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                    <div className="text-xs font-semibold uppercase riyp-track-010 text-citron">The honest offer</div>
-                    <div className="mt-2 font-display text-2xl riyp-weight-520">Four numbers, not one</div>
+                    <div className="text-xs font-semibold uppercase riyp-track-010 text-citron">The pay breakdown</div>
+                    <div className="mt-2 font-display text-2xl riyp-weight-520">What is guaranteed, and what could change</div>
                 </div>
                 <Info aria-hidden className="size-6 text-cyan-bright" weight="fill" />
             </div>

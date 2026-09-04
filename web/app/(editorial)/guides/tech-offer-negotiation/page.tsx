@@ -36,12 +36,12 @@ export default function TechOfferNegotiationGuidePage() {
                     <div>
                         <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
                         <h1 className="mt-5 max-w-4xl font-display text-6xl riyp-weight-500 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-7xl lg:text-8xl">
-                            The headline number is not the offer.
-                            <span className="mt-2 block text-brand">Read year one. Then year four.</span>
+                            What will this tech offer pay you?
+                            <span className="mt-2 block text-brand">Compare the pay year by year.</span>
                         </h1>
                     </div>
                     <div className="border-l-2 border-brand pl-5">
-                        <p className="text-base leading-7 text-muted-foreground">Base is the easy line. Level, vesting, bonus rules, and equity mechanics decide what the package may actually pay.</p>
+                        <p className="text-base leading-7 text-muted-foreground">The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
                         <Link href="/resources/offer-negotiation" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
                             Need the counter playbook? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
@@ -51,8 +51,8 @@ export default function TechOfferNegotiationGuidePage() {
                 <div className="mt-14 grid border-y border-border sm:grid-cols-3">
                     {[
                         ["Verify level and location", "Confirm the band, work location, and whether the role’s scope matches the level on the offer."],
-                        ["Build separate years", "Write out base, target bonus, guaranteed cash, and scheduled equity vesting for each year."],
-                        ["Mark the maybes", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
+                        ["Compare pay year by year", "Write out base, target bonus, guaranteed cash, and scheduled equity vesting for each year."],
+                        ["Check what is uncertain", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
                     ].map(([title, body], index) => (
                         <div key={title} className="border-b border-border py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0">
                             <div className="font-mono text-xs text-ink">0{index + 1}</div>
@@ -62,7 +62,7 @@ export default function TechOfferNegotiationGuidePage() {
                     ))}
                 </div>
 
-                <GuideSection number="01" title="Turn the package into honest numbers" intro="A polished total-comp figure can mix cash you will receive with money that depends on performance, vesting, liquidity, and future share value. Separate them before you compare anything." id="honest-numbers">
+                <GuideSection number="01" title="Separate guaranteed pay from estimates" intro="A total-compensation figure can mix cash you will receive with money that depends on performance, vesting, liquidity, and future share value. Separate them before comparing offers." id="honest-numbers">
                     <TechOfferStack />
                     <div className="mt-7 grid gap-5 sm:grid-cols-2">
                         <div className="border-t border-border pt-4"><h3 className="font-semibold">Year one</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Base paid during the first year, guaranteed sign-on cash after any repayment terms, expected bonus based on its actual rules, and equity scheduled to vest.</p></div>
@@ -70,7 +70,7 @@ export default function TechOfferNegotiationGuidePage() {
                     </div>
                 </GuideSection>
 
-                <GuideSection number="02" title="Equity is not salary wearing a hoodie" intro="Ask what the award is, what it costs to own, when it becomes yours, and whether there is any realistic path to liquidity. A grant can be valuable. It can also be worth nothing." id="equity">
+                <GuideSection number="02" title="Understand what your equity could be worth" intro="Ask what the award is, what it costs to own, when it becomes yours, and whether you will be able to sell it. A grant can be valuable. It can also be worth nothing." id="equity">
                     <div className="space-y-1">
                         <Disclosure title="Restricted stock units (RSUs)" eyebrow="A promise to deliver shares" defaultOpen>
                             <p className="text-sm leading-6 text-muted-foreground">Confirm the number of units, the vesting schedule, what event delivers the shares, and what happens if you leave. At a public company, current share price can help model value, but future value is still unknown. At a private company, settlement and liquidity may depend on additional events.</p>
@@ -78,7 +78,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <Disclosure title="Stock options" eyebrow="The right to buy shares">
                             <p className="text-sm leading-6 text-muted-foreground">Ask for the option count, strike price, current common-share fair market value, vesting schedule, expiration date, post-termination exercise window, and liquidity restrictions. The option only has economic value if the share value eventually exceeds the strike price and you can sell.</p>
                         </Disclosure>
-                        <Disclosure title="The questions that make a grant legible" eyebrow="Take these to the recruiter">
+                        <Disclosure title="Questions to ask about your grant" eyebrow="Take these to the recruiter">
                             <Checklist items={[
                                 <>What type of award is this, and how many units or options are included?</>,
                                 <>What vests in each year, and is there a cliff or other trigger?</>,
@@ -88,13 +88,13 @@ export default function TechOfferNegotiationGuidePage() {
                                 <>How have employees historically obtained liquidity? Is any future event guaranteed?</>,
                             ]} />
                         </Disclosure>
-                        <Disclosure title="Taxes need a real answer, not a blog shortcut" eyebrow="Award and timing matter">
+                        <Disclosure title="Check the tax consequences" eyebrow="Award and timing matter">
                             <p className="text-sm leading-6 text-muted-foreground">Tax treatment differs across RSUs, incentive stock options, nonqualified stock options, location, timing, and individual circumstances. Use this guide to know what to ask, then confirm the consequences with a qualified tax professional before exercising or making an election.</p>
                         </Disclosure>
                     </div>
                 </GuideSection>
 
-                <GuideSection number="03" title="Level can be the quietest expensive line" intro="The right salary at the wrong level can affect scope, promotion timing, future bands, and equity. Make the role and the label agree." id="level">
+                <GuideSection number="03" title="Level affects more than your title" intro="Your level can affect your responsibilities, promotion timing, future salary range, and equity. Check that it matches the job you discussed in interviews." id="level">
                     <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
                         <Checklist items={[
                             <>Ask for the formal level and the range attached to your work location.</>,
@@ -109,7 +109,7 @@ export default function TechOfferNegotiationGuidePage() {
                     </div>
                 </GuideSection>
 
-                <GuideSection number="04" title="Counter the part that changes the decision" intro="Once the package is legible, choose the one or two terms that matter most. Keep the math and the message separate." id="counter">
+                <GuideSection number="04" title="Choose what to negotiate" intro="Once you understand the package, choose the one or two changes that would matter most to you. Explain what you are asking for and why." id="counter">
                     <div className="space-y-1">
                         <Disclosure title="The year-one gap" eyebrow="Sign-on, base, or vesting">
                             <Script>When I compare the offers year by year, this package is [X] lower in year one because [specific reason]. This role is my preference. Is there room to close that gap through [term]?</Script>
@@ -125,8 +125,8 @@ export default function TechOfferNegotiationGuidePage() {
                         </Disclosure>
                     </div>
                     <div className="mt-8 border-l-2 border-brand pl-5">
-                        <p className="font-display text-2xl riyp-weight-520 leading-8">You do not need a chess face.</p>
-                        <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">You need the whole offer in writing, the missing facts, and a number you can explain without squirming.</p>
+                        <p className="font-display text-2xl riyp-weight-520 leading-8">Get the revised offer in writing.</p>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">After you agree on a change, check that the updated offer includes it before you sign.</p>
                     </div>
                 </GuideSection>
 

@@ -105,7 +105,7 @@ export default function InputPanel({
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-2xs font-semibold uppercase riyp-track-015 text-brand">{isRevision ? "Resume comparison" : "Resume review"}</p>
                     <h1 className="workspace-first-read-title mt-6 font-display font-semibold tracking-[-0.055em] text-foreground">
-                        {isRevision ? "Now let’s see what changed." : <>Let&apos;s see what <span className="riyp-marker">lands.</span></>}
+                        {isRevision ? "Now let’s see what changed." : <>Start with your <span className="riyp-marker">resume.</span></>}
                     </h1>
                     <p className="mx-auto mt-5 max-w-xl text-lg leading-7 text-muted-foreground sm:leading-8">
                         {isRevision

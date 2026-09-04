@@ -4,7 +4,7 @@
 
 This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
 
-Last updated: 2026-07-11
+Last updated: 2026-09-04
 Owner: Product + Design
 
 ## 1. Product Naming
@@ -25,13 +25,13 @@ If the user is looking at the generated output, call it a `report`.
 
 ## 2. Canonical Report Structure
 
-Generated report sections should stay in this order:
-1. `Likely Takeaway`
-2. `What the Resume Shows`
-3. `Evidence`
-4. `Suggested Rewrites`
-5. `Details to Add`
-6. `Fit for the Role`
+The main report navigation uses these labels:
+1. `Overview`
+2. `Fix these first`
+3. `Keep these`
+4. `Role fit`
+
+Within each recommendation, show the original quotation, what needs clarification, and a suggested revision with any missing facts marked.
 
 These are UI labels. Internal schema and prompt field names may remain stable; do not rewrite Matt's tuned backend prompt merely to match display copy.
 
@@ -46,7 +46,7 @@ Budgets:
 - CTA: 2-4 words
 - error state: what happened + next step
 
-If the line needs three clauses to work, it is probably trying to do too much.
+These are layout guidelines, not a reason to force fragments or slogans. A natural sentence that explains the issue is better than a shorter sentence the reader has to decode.
 
 ## 4. Tone by State
 
@@ -135,7 +135,9 @@ Any pricing or paywall surface must make three things obvious:
 
 Preferred phrasing:
 - `Your first report is free.`
-- `Paid unlocks more reports, deeper rewrites, and saved history.`
+- `The Job Search Pass includes five additional reports for $29, valid for 30 days, with no automatic renewal.`
+
+Do not imply the free report has shallower feedback. Saved history requires sign-in. Paid PDF exports remain available through the valid paid period even after all report credits are used.
 
 ## 9. Trust Copy Rule
 
@@ -156,3 +158,5 @@ Copy is not ready if any of this is true:
 3. the CTA does not say what happens next
 4. the section intro repeats the headline
 5. the report voice sounds like a coach instead of a recruiter
+6. the words are individually familiar but the sentence is something no one would say aloud
+7. personality depends on an unexplained metaphor or an abstract phrase about “the read”

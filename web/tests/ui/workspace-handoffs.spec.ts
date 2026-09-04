@@ -266,7 +266,7 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace`);
     await startReport(page);
     await expect.poll(() => Boolean(pendingReport)).toBe(true);
-    await expect(page.getByRole("region", { name: "A careful read, in four passes." })).toHaveAttribute("aria-busy", "true");
+    await expect(page.getByRole("region", { name: "Reviewing your resume." })).toHaveAttribute("aria-busy", "true");
     const stop = page.getByRole("button", { name: "Stop", exact: true });
     await stop.focus();
     await expect(stop).toBeFocused();
@@ -356,10 +356,10 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByTestId("workspace-run-report")).toHaveText("Compare my revision");
     await page.getByTestId("workspace-run-report").click();
 
-    const comparison = page.getByRole("region", { name: "The read moved.", exact: true });
+    const comparison = page.getByRole("region", { name: "Here's what changed in your feedback.", exact: true });
     await expect(comparison).toBeVisible();
-    const previous = comparison.getByRole("article").filter({ hasText: "Previous read" });
-    const current = comparison.getByRole("article").filter({ hasText: "Current read" });
+    const previous = comparison.getByRole("article").filter({ hasText: "Previous report" });
+    const current = comparison.getByRole("article").filter({ hasText: "Current report" });
     await expect(previous).toContainText(REPORT.first_impression_takeaway);
     await expect(previous).toContainText(REPORT.gaps[0]);
     await expect(previous).toContainText(REPORT.top_fixes[0].fix);

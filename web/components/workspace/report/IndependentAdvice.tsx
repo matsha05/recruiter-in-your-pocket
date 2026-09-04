@@ -98,9 +98,9 @@ export function IndependentAdvice({
       {rewrites.length > 0 && (
         <div>
           <p className="riyp-type-11px font-semibold uppercase riyp-track-017 text-brand">Other suggestions</p>
-          <h2 className="mt-3 max-w-[18ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">A few more lines to consider.</h2>
+          <h2 className="mt-3 max-w-[18ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">Other suggested edits.</h2>
           <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">
-            Consider these suggestions alongside the edits above. Compare each one with its original line.
+            Compare each suggestion with the original before you use it.
           </p>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
             {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}

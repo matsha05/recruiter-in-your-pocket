@@ -38,11 +38,11 @@ test.describe("launch red-team journeys", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
-    const heroFirstRead = page.getByRole("article", { name: /You led the work/i });
+    const heroFirstRead = page.getByRole("article", { name: /You led onboarding/i });
     await expect(heroFirstRead.getByText("Exact resume line", { exact: true })).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
-    await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();
   });
 
   test("2. public trust surfaces publish readiness and disclosure details", async ({ page, request }) => {

@@ -16,23 +16,23 @@ type AnalysisStep = {
 const RESUME_STEPS: AnalysisStep[] = [
     {
         id: "normalize",
-        label: "Read the page",
+        label: "Read your resume",
         detail: "Sections, roles, dates, and visible structure",
     },
     {
         id: "evidence",
-        label: "Find the evidence",
-        detail: "Results, decisions, scope, and ownership",
+        label: "Review your experience",
+        detail: "Your responsibilities, decisions, and results",
     },
     {
         id: "review",
-        label: "Check the read",
-        detail: "What is clear, easy to miss, or still open",
+        label: "Check for missing details",
+        detail: "Anything unclear or easy for a recruiter to miss",
     },
     {
         id: "prioritize",
-        label: "Order the work",
-        detail: "The few changes that matter most on this document",
+        label: "Recommend changes",
+        detail: "What to revise first in your resume",
     },
 ];
 
@@ -44,18 +44,18 @@ const LINKEDIN_STEPS: AnalysisStep[] = [
     },
     {
         id: "evidence",
-        label: "Find the evidence",
-        detail: "Achievements, skills, and role context",
+        label: "Review your experience",
+        detail: "Your achievements, skills, and responsibilities",
     },
     {
         id: "review",
-        label: "Check the read",
-        detail: "What is clear, easy to miss, or still open",
+        label: "Check for missing details",
+        detail: "Anything unclear or easy for a recruiter to miss",
     },
     {
         id: "prioritize",
-        label: "Order the work",
-        detail: "The few changes that matter most on this profile",
+        label: "Recommend changes",
+        detail: "What to revise first in your profile",
     },
 ];
 
@@ -111,17 +111,17 @@ export default function AnalysisScanning({
                     <div>
                         <p className="riyp-track-015 text-xs font-bold uppercase text-brand">Building your report</p>
                         <h2 id="analysis-title" className="analysis-title mt-3 font-display font-semibold tracking-[-0.055em] text-foreground">
-                            A careful read, in four passes.
+                            Reviewing your {subject}.
                         </h2>
                     </div>
                     <p className="max-w-[23rem] text-lg leading-8 text-muted-foreground">
-                        We read the {subject}, find the evidence, check what comes through, and put the useful actions in order.
+                        We&apos;re checking what your {subject} tells a recruiter about your experience and where more detail would help.
                     </p>
                 </header>
 
                 <div className="mt-9 overflow-hidden border border-line bg-paper sm:mt-10">
                     <div className="grid min-h-16 items-center gap-3 border-b border-line px-5 sm:grid-cols-[14rem_1fr_auto] sm:px-8">
-                        <p className="riyp-track-012 text-sm font-bold uppercase text-brand">Review map</p>
+                        <p className="riyp-track-012 text-sm font-bold uppercase text-brand">Your report</p>
                         <p className="text-base text-muted-foreground">What the report is checking</p>
                         <p className="riyp-track-012 inline-flex items-center gap-2 text-sm font-bold uppercase text-brand">
                             <span className="relative flex size-2" aria-hidden="true">
@@ -147,8 +147,8 @@ export default function AnalysisScanning({
                     </ol>
 
                     <div className="grid gap-2 border-t border-line px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:px-8">
-                        <p className="riyp-track-010 text-sm font-bold uppercase text-brand">Four passes</p>
-                        <p className="text-base leading-6 text-muted-foreground">This is the shape of the review, not a completion estimate.</p>
+                        <p className="riyp-track-010 text-sm font-bold uppercase text-brand">What we cover</p>
+                        <p className="text-base leading-6 text-muted-foreground">These are the areas being reviewed. They do not show how much time is left.</p>
                     </div>
                 </div>
 

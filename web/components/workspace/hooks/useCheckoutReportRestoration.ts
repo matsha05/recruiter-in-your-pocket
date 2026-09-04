@@ -33,7 +33,7 @@ export function useCheckoutReportRestoration(input: {
     setReport(restored.report);
     setSkipSample(true);
     toast.success("Your report is back", {
-      description: "Checkout did not discard the read you were working from.",
+      description: "You can continue from the report you opened before checkout.",
     });
   }, [allowRestore, setJobDescription, setReport, setResumeText, setSkipSample]);
 

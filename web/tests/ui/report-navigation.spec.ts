@@ -1,10 +1,10 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const SECTIONS = [
-  { id: "section-first-impression", label: "The read" },
+  { id: "section-first-impression", label: "Overview" },
   { id: "section-fixes", label: "Fix these first" },
   { id: "section-keep", label: "Keep these" },
-  { id: "section-role", label: "Role direction" },
+  { id: "section-role", label: "Role fit" },
 ] as const;
 
 async function expectCurrent(page: Page, label: string) {
@@ -68,7 +68,7 @@ for (const viewport of [
     await page.goto("/sample-report");
     await page.evaluate(() => document.fonts.ready);
     const navigation = page.getByRole("navigation", { name: "Resume report sections" });
-    await expectCurrent(page, "The read");
+    await expectCurrent(page, "Overview");
 
     // Visit non-adjacent targets in both directions so intermediate scroll events
     // cannot leave the previous observer entry selected after a smooth jump.
@@ -92,11 +92,11 @@ for (const viewport of [
     await scrollInsideSection(page, "section-keep", 0.3);
     await expectCurrent(page, "Keep these");
     await scrollInsideSection(page, "section-role", 0.3);
-    await expectCurrent(page, "Role direction");
+    await expectCurrent(page, "Role fit");
     await scrollInsideSection(page, "section-fixes", 0.3);
     await expectCurrent(page, "Fix these first");
     await scrollInsideSection(page, "section-first-impression", 0.3);
-    await expectCurrent(page, "The read");
+    await expectCurrent(page, "Overview");
   });
 }
 

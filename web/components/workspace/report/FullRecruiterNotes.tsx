@@ -44,11 +44,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const visibleOpening = report.score_comment_short || report.first_impression || report.summary;
   const visibleGap = report.gaps?.[0] || report.biggest_gap_example;
   const detailedReadCandidates = [
-    { label: "Opening read", text: report.first_impression },
+    { label: "First impression", text: report.first_impression },
     { label: "Recruiter summary", text: report.summary },
     { label: "What shaped the score", text: report.score_comment_long },
     { label: "What the score means", text: report.score_plain },
-    { label: "Line worth revisiting", text: report.biggest_gap_example },
+    { label: "Example to improve", text: report.biggest_gap_example },
   ];
   const seenDetailedCopy = new Set(
     [visibleOpening, visibleGap].filter(isCopy).map(copyKey),
@@ -130,7 +130,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">
         {detailedRead.length > 0 && (
           <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
-            <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">Detailed read</p>
+            <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">Review details</p>
             <h3 id="full-notes-read-title" className="mt-2 font-display text-2xl riyp-weight-520 text-foreground">The detailed assessment.</h3>
             <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {detailedRead.map(({ label, text }) => (
@@ -199,7 +199,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-role-title">
             <p className="riyp-type-11px riyp-track-015 font-semibold uppercase text-brand">{hasJobDescription ? "Job alignment" : "Role context"}</p>
             <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
-              <h3 id="full-notes-role-title" className="font-display text-2xl riyp-weight-520 text-foreground">{hasJobDescription ? "The details behind the match." : "Additional role context."}</h3>
+              <h3 id="full-notes-role-title" className="font-display text-2xl riyp-weight-520 text-foreground">{hasJobDescription ? "How you match the job description." : "More about potential roles."}</h3>
               {hasJobDescription && typeof alignment?.jd_match_score === "number" && (
                 <p className="riyp-tabular-label text-xs text-muted-foreground">Job match: {alignment.jd_match_score}/100</p>
               )}
@@ -219,7 +219,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
             )}
             {(extraBestFitRoles.length > 0 || stretchRoles.length > 0 || industrySignals.length > 0 || companyStageFit) && (
               <dl className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {extraBestFitRoles.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">More fit roles</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{extraBestFitRoles.join(", ")}</dd></div>}
+                {extraBestFitRoles.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Other roles to consider</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{extraBestFitRoles.join(", ")}</dd></div>}
                 {stretchRoles.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Stretch roles</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{stretchRoles.join(", ")}</dd></div>}
                 {industrySignals.length > 0 && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Industry context</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{industrySignals.join(", ")}</dd></div>}
                 {companyStageFit && <div><dt className="riyp-type-10px riyp-track-013 font-semibold uppercase text-muted-foreground">Company stage</dt><dd className="mt-2 text-sm leading-6 text-foreground/80">{companyStageFit}</dd></div>}

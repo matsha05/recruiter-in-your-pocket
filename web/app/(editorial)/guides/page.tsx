@@ -44,7 +44,7 @@ const researchLinks = [
         href: "/research/salary-history-bans",
     },
     {
-        title: "Structured Interviews Beat Vibes",
+        title: "Why Structured Interviews Are More Reliable",
         href: "/research/structured-interviews-why-star",
     },
 ];
@@ -63,10 +63,10 @@ export default function GuidesPage() {
                                 Practical career advice
                             </div>
                             <h1 className="mt-5 max-w-4xl font-display text-5xl riyp-weight-520 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-6xl lg:text-7xl">
-                                Scripts, strategy, and tools for big career conversations
+                                Work out what to ask for in your next offer
                             </h1>
                             <p className="editorial-copy-lg mt-5 max-w-2xl text-muted-foreground">
-                                Negotiation help, compensation context, and straight answers you can use right away.
+                                Compare the pay, understand the terms, and find words you can use with the recruiter.
                             </p>
                         </div>
                     </div>
@@ -172,8 +172,8 @@ export default function GuidesPage() {
                         <div className="border-y border-background/15 bg-background/5 p-6">
                             <div className="gap-y-4">
                                 <div>
-                                    <p className="text-sm font-medium text-background">Real scripts, not theory.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Every conversation in these guides is something you could actually say out loud.</p>
+                                    <p className="text-sm font-medium text-background">Examples you can adapt.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Use the sample wording to ask about pay, request more time, or make a counteroffer.</p>
                                 </div>
                                 <div className="border-t border-background/10 pt-4">
                                     <p className="text-sm font-medium text-background">Backed by research.</p>
@@ -181,7 +181,7 @@ export default function GuidesPage() {
                                 </div>
                                 <div className="border-t border-background/10 pt-4">
                                     <p className="text-sm font-medium text-background">Built for your next conversation.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Not a course. Not a webinar. Pick what you need and use it this week.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Go straight to the question you need help with, whether you have an offer or are still interviewing.</p>
                                 </div>
                             </div>
                         </div>

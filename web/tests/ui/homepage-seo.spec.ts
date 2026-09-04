@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const homepageDescription = "Get a free recruiter-style first read of your resume: the exact lines that raise questions and up to three prioritized changes to make before you apply.";
+const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
   test("the homepage explains the report and keeps the offer tool in the footer", async ({ page }) => {
@@ -13,7 +13,7 @@ test.describe("homepage feedback and SEO contract", () => {
     );
     await expect(homepage).toContainText("Recruiter feedback, before you apply.");
     await expect(homepage).toContainText(
-      "Upload or paste your resume. See what it makes clear, where it leaves questions, and up to three changes to make first.",
+      "Upload or paste your resume. See what a recruiter might notice, what needs more detail, and what to change first.",
     );
 
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get my free report");
@@ -46,7 +46,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
     await expect(homepage).toContainText("14 years in recruiting and hiring.");
-    await expect(page.getByText(/Matt does not personally review every submission/i)).toBeVisible();
+    await expect(page.getByText(/Your report does not include a personal review from Matt/i)).toBeVisible();
     await expect(homepage).toContainText(
       "no current or former employer sponsors or endorses it",
     );

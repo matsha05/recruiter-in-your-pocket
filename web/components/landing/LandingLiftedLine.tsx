@@ -24,9 +24,9 @@ function FirstReadHero() {
             </header>
 
             <div className="lift-first-read-verdict">
-                <p className="lift-builder-label">Likely takeaway</p>
-                <h2 id="lift-first-read-title">You led the work.<br /><em>Now show the scale.</em></h2>
-                <p>The line names the work. How many new hires went through it, and what improved?</p>
+                <p className="lift-builder-label">What to clarify</p>
+                <h2 id="lift-first-read-title">You led onboarding.<br /><em>What changed?</em></h2>
+                <p>How many new hires did you help onboard? Include what improved and how you measured it.</p>
             </div>
 
             <footer className="lift-first-read-evidence">
@@ -44,9 +44,9 @@ function ReportFirstSection() {
                 <div className="lift-report-first-heading">
                     <div>
                         <p className="lift-kicker">Inside your report</p>
-                        <h2 id="lift-report-first-title">The detail that changes the picture.</h2>
+                        <h2 id="lift-report-first-title">What does “across teams” mean?</h2>
                     </div>
-                    <p>Start with the overall impression, then see the lines behind it and what to change. The score is a summary; the useful part is knowing why.</p>
+                    <p>You know which teams you worked with. A recruiter reading this resume doesn&apos;t. Your report points out where more detail would help.</p>
                 </div>
 
                 <article className="lift-report-excerpt" aria-label="Sample first-read report excerpt">
@@ -63,8 +63,8 @@ function ReportFirstSection() {
                         <section className="lift-report-cell" data-tone="butter">
                             <BookOpenText aria-hidden="true" weight="duotone" />
                             <p>Likely takeaway</p>
-                            <strong>You led the work. Now show the scale.</strong>
-                            <span>“Led” names your role. “Across teams” leaves the size open.</span>
+                            <strong>You were responsible for onboarding.</strong>
+                            <span>It&apos;s clear you were in charge, but “across teams” doesn&apos;t say which teams or how many new hires were involved.</span>
                         </section>
                         <section className="lift-report-cell" data-tone="plain">
                             <BracketsAngle aria-hidden="true" weight="duotone" />
@@ -74,14 +74,14 @@ function ReportFirstSection() {
                         <section className="lift-report-cell" data-tone="sky">
                             <PaperPlaneTilt aria-hidden="true" weight="duotone" />
                             <p>First action</p>
-                            <strong>Name the teams, the people served, and what improved.</strong>
+                            <strong>Add the teams you worked with, how many people you onboarded, and the result.</strong>
                         </section>
                     </div>
 
                     <div className="lift-report-handoff">
                         <div>
                             <p className="lift-kicker">Your turn</p>
-                            <h3>Now see what yours says.</h3>
+                            <h3>Get feedback on your resume.</h3>
                             <p>{FREE_REPORT_ENTITLEMENT.promise}</p>
                         </div>
                         <div className="lift-report-handoff-actions">
@@ -91,17 +91,6 @@ function ReportFirstSection() {
                     </div>
                 </article>
 
-                <div className="lift-transformation" aria-label="Details that make the work clearer">
-                    <div>
-                        <p className="lift-kicker">Details to add</p>
-                        <p>You know the work. Fill in what the page leaves out.</p>
-                    </div>
-                    <dl>
-                        <div><dt>Work</dt><dd>What you did</dd></div>
-                        <div><dt>Scope</dt><dd>Who or how many</dd></div>
-                        <div><dt>Result</dt><dd>What changed</dd></div>
-                    </dl>
-                </div>
             </div>
         </section>
     );
@@ -138,7 +127,7 @@ function SupportBand() {
                         </a>
                         <Link className="lift-credibility-link" href="/methodology">See how the report works <ArrowRight aria-hidden="true" /></Link>
                     </div>
-                    <p className="lift-founder-ai-note">AI generates your report using guidance shaped by Matt&apos;s recruiting experience. Matt does not personally review every submission.</p>
+                    <p className="lift-founder-ai-note">AI generates the feedback using resume review criteria developed by Matt. Your report does not include a personal review from Matt.</p>
                     <p className="lift-credibility-disclosure">Recruiter in Your Pocket is independent. Company names identify the founder&apos;s work history; no current or former employer sponsors or endorses it.</p>
                 </div>
 
@@ -164,7 +153,7 @@ export function LandingLiftedLine() {
                         <div className="lift-hero-copy">
                             <p className="lift-kicker">Recruiter feedback, before you apply.</p>
                             <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
-                            <p className="lift-hero-deck">Upload or paste your resume. See what it makes clear, where it leaves questions, and up to three changes to make first.</p>
+                            <p className="lift-hero-deck">Upload or paste your resume. See what a recruiter might notice, what needs more detail, and what to change first.</p>
                             <div className="lift-actions">
                                 <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">Get my free report <ArrowRight aria-hidden="true" weight="bold" /></Link>
                                 <Link href="/sample-report" className="lift-button-secondary">See an example report</Link>
@@ -190,10 +179,10 @@ export function LandingLiftedLine() {
                 <div className="lift-shell lift-close-grid">
                     <div>
                         <p className="lift-kicker">Before you send it</p>
-                        <h2 id="lift-close-title">Make the good work easy to see.</h2>
+                        <h2 id="lift-close-title">Ready to send your resume?</h2>
                     </div>
                     <div>
-                        <p>Start with the line that leaves the most questions. Your report will show you where.</p>
+                        <p>Get feedback on the resume you&apos;re about to send, with up to three changes to make first.</p>
                         <Link href="/workspace" className="lift-button-primary">Get my free report <ArrowRight aria-hidden="true" weight="bold" /></Link>
                     </div>
                 </div>

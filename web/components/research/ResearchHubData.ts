@@ -38,7 +38,7 @@ export const categories: ResearchCategory[] = [
             {
                 id: "resume-length-myths",
                 title: "Should a Resume Be One Page?",
-                description: "When one page carries the case, and when a second page adds useful depth.",
+                description: "When one page is enough, and when a second page adds relevant experience.",
                 readTime: "6 min read",
                 href: "/research/resume-length-myths",
             },
@@ -82,7 +82,7 @@ export const categories: ResearchCategory[] = [
             {
                 id: "structured-interviews-why-star",
                 title: "Why Are Structured Interviews More Reliable?",
-                description: "Why evidence beats charisma in evaluation.",
+                description: "How consistent questions and scoring criteria help interviewers compare candidates.",
                 readTime: "6 min read",
                 href: "/research/structured-interviews-why-star",
             },
@@ -205,7 +205,7 @@ export const featuredFindings: Array<{
         sourceDetail: "Factorial survey experiment with 445 genuine recruiters evaluating resumes across eight occupations.",
         sourceHref: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280",
         sourceLabel: "Read the study",
-        reportUse: "We flag visible errors because they can cast doubt on otherwise strong work—not because one typo predicts job performance.",
+        reportUse: "We flag spelling errors so you can correct them before sending your resume. An error does not tell us how well you would do the job.",
         href: "/research/spelling-errors-impact",
         visual: "spelling",
     },
@@ -233,7 +233,7 @@ export const featuredFindings: Array<{
         sourceDetail: "Forty recruiters judged 60 actual resumes or corresponding resume profiles.",
         sourceHref: "https://stars.library.ucf.edu/facultybib2000/3203/",
         sourceLabel: "Read the study record",
-        reportUse: "The written first read comes before the score. We keep role progression, ownership, and context attached to the evidence.",
+        reportUse: "The report explains the findings behind your score. It considers your career progression, responsibilities, and results together.",
         href: "/research/how-we-score",
         visual: "artifact",
     },
@@ -247,7 +247,7 @@ export const featuredFindings: Array<{
         sourceDetail: "Experiment with 694 professionals involved in screening job applications.",
         sourceHref: "https://pubmed.ncbi.nlm.nih.gov/35874355/",
         sourceLabel: "Read the study",
-        reportUse: "We show the evidence and reasoning behind a recommendation instead of asking you to trust a black-box verdict.",
+        reportUse: "We quote your resume and explain each recommendation so you can decide whether it fits your experience.",
         href: "/research/human-vs-algorithm",
         visual: "judgment",
     },
@@ -266,7 +266,7 @@ export const evidenceGaps = [
     },
     {
         claim: "A resume should always fit on one page.",
-        correction: "Use the space your relevant evidence needs. The real rule is that page two must earn the read.",
+        correction: "Use a second page when it adds experience that matters for the role. Cut repetition before shrinking the text to fit one page.",
         href: "/research/resume-length-myths",
     },
 ];

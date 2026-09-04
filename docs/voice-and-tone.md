@@ -6,10 +6,10 @@ Recruiter in Your Pocket gives job seekers a clear, recruiter-grounded read of t
 
 The voice is **plainspoken expertise**: an experienced recruiter with excellent judgment, a generous spirit, and no need to perform cleverness.
 
-- Clear enough to trust. Light enough to breathe.
+- Use complete, natural sentences that are easy to understand on the first reading.
 - Rooting for the candidate without flattering them.
 - Specific, not absolute.
-- Warm through attention, respect, and genuine little celebrations.
+- Show attention by referring to the candidate's actual experience.
 - Light in low-stakes moments; direct and unadorned when trust matters.
 - Skeptical of ATS folklore, magic scores, and invented achievements without sounding bitter about the category.
 
@@ -25,16 +25,9 @@ Recruiter in Your Pocket makes that gap visible. The product is not an ATS oracl
 
 The supporting truth is: what you meant is not always what they read.
 
-The most ownable language territory is:
+Use the candidate's subject matter instead of a stock vocabulary about writing. When the example is about onboarding, talk about the new hires, the teams involved, and what improved. Avoid explaining it through phrases such as “the line names the work,” “the read moved,” or “show the scale.” Those phrases ask the reader to translate our terminology before they can use the advice.
 
-- what you meant / what they read
-- the page / the person
-- evidence / inference
-- the detail that changes the read
-- advice you can verify
-- the good stuff / the missing stuff
-- one small mystery / one useful next move
-- the facts / resume fan fiction
+Distinctiveness should come from the observation. Do not force a memorable phrase into every heading, label, or explanation. Ordinary navigation such as “Overview” is useful precisely because the reader already understands it.
 
 ## The writing pattern
 
@@ -59,9 +52,9 @@ Example:
 - Use the candidate's own facts. Label examples and placeholders clearly.
 - Show the original beside any suggested rewrite.
 - Use the same term for the same thing across the product.
-- Make actions literal: “See my first read,” “Read a sample report,” “Delete report.”
+- Make actions literal: “See my report,” “Read a sample report,” “Delete report.”
 - Use lightness only when it makes the message easier to receive.
-- Let the product celebrate a clear result: “There it is: a result with real scale.”
+- Acknowledge a useful detail directly: “The 28% reduction in delays makes the result clear.”
 - Aim playful language at the document, the process, or bad advice—never the candidate.
 
 ## Use sparingly
@@ -88,12 +81,14 @@ Prefer the concrete meaning: role, result, scope, decision, question, detail, re
 - Cheerful error messages, joke density, or praise that is not supported by the resume.
 - Snark, roasts, hustle language, meme copy, or a mascot voice pasted onto serious moments.
 - Suggestions that silently add facts, metrics, tools, or ownership.
+- Commentary about writing that hides the actual issue: “the line names the work,” “the page carries the signal,” “the read moved,” “ownership is visible.” Explain what the resume says and what it leaves unanswered.
+- Decorative metaphors where an explanation would help: “salary wearing a hoodie,” “the quietest expensive line,” “page two must earn the read.”
 
 ## Tone by moment
 
 | Moment | Tone | What the user needs |
 | --- | --- | --- |
-| Marketing | Buoyant, quotable, lightly playful | A recognizable hiring truth and the feeling that improvement is possible |
+| Marketing | Specific, welcoming, and confident | What the product does, an example of useful feedback, and how to try it |
 | Upload | Calm and explicit | What to add, what is optional, what happens next |
 | Analysis | Transparent | What is being reviewed and how long it may take |
 | Report | Precise, generous, and calibrated | What is working, one open question, and what to change |
@@ -143,9 +138,9 @@ Use normal labels such as “What the research found,” “What this means for 
 
 ## Tone boundaries
 
-Marketing gets the highest voltage. Reports do not imitate it.
+The language should fit the reader's immediate question.
 
-- Marketing can use contrast, rhythm, and one small, surprising turn of phrase.
+- Marketing can have rhythm and personality. Read the heading and paragraph together: repeated punchlines and slogans usually weaken the explanation.
 - Research should answer the question, show its sources and limits, and explain the practical implication.
 - Reports stay evidence-led and calibrated because the user is making decisions from them.
 - Errors, privacy, and billing never use wit.
@@ -162,3 +157,16 @@ Before shipping copy, ask:
 4. Are we criticizing the resume rather than the person?
 5. Does the user know what happens next?
 6. Did we preserve the candidate's facts and control?
+7. Would an experienced recruiter actually say this sentence to a candidate? Read the entire paragraph aloud, including its heading. A banned-word scan cannot answer this question.
+8. Does the sentence name the actual subject, or make the reader translate words like “read,” “signal,” “scale,” and “the page”?
+9. Have we repeated the same observation in the heading, description, and next card? Cut the repetition or make each part do a different job.
+
+## September 4 editorial correction
+
+The first copy review passed technically valid but unnatural sentences. Passing UI tests and checking factual accuracy do not establish writing quality. Review the rendered copy as prose, separately from those checks.
+
+Before: “The line names the work. How many new hires went through it, and what improved?”
+
+After: “How many new hires did you help onboard? Include what improved and how you measured it.”
+
+The second version refers directly to the work, addresses the candidate, and asks for information they can supply. Use that standard across the site; do not reuse the wording as a formula.
