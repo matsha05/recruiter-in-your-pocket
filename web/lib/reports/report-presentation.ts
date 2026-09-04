@@ -29,9 +29,9 @@ export interface IndependentQuestion {
 }
 
 export function fixPlanHeadingForCount(count: number) {
-  if (count === 1) return "One move. Start here.";
-  if (count === 2) return "Two moves. In order.";
-  return "Three moves. In order.";
+  if (count === 1) return "Start with this change.";
+  if (count === 2) return "Start with these two changes.";
+  return "Start with these three changes.";
 }
 
 function evidenceFor(fix: ReportFix) {

@@ -120,7 +120,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByTestId("clarity-summary-basis")).toContainText(
       "it is not a simple average",
     );
-    await expect(page.getByRole("heading", { name: "Three moves. In order.", exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Start with these three changes.", exact: true })).toBeVisible();
 
     const evidenceJump = firstRead.getByRole("button", { name: "See the fixes", exact: true });
     await expect(evidenceJump).toBeVisible();
