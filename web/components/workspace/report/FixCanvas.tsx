@@ -174,40 +174,40 @@ export function FixCanvas({
   }
 
   return (
-    <article id={`section-fix-${index + 1}`} className="scroll-mt-36 border-t border-[hsl(var(--paper-line))] py-9 first:border-t-0 sm:py-12">
-      <div className="grid gap-7 lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-10">
-        <div>
+    <article id={`section-fix-${index + 1}`} className="scroll-mt-36 border-t border-[hsl(var(--paper-line))] py-5 first:border-t-0 sm:py-12">
+      <div className="grid gap-3 sm:gap-7 lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-10">
+        <div className="flex items-baseline gap-3 sm:block">
           <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fix {String(index + 1).padStart(2, "0")}</p>
-          <p className="mt-2 text-xs leading-5 text-muted-foreground">{index === 0 ? "Start here" : index === 1 ? "Then this" : "One more pass"}</p>
+          <p className="text-xs leading-5 text-muted-foreground sm:mt-2">{index === 0 ? "Start here" : index === 1 ? "Then this" : "One more pass"}</p>
         </div>
 
         <div className="min-w-0">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <h3 className="max-w-[28ch] font-display text-[clamp(1.85rem,4vw,3rem)] riyp-weight-520 leading-[1.02] tracking-[-0.025em] text-foreground">{action}</h3>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+            <h3 className="font-display text-xl riyp-weight-520 leading-[1.2] tracking-[-0.025em] text-foreground sm:max-w-[28ch] sm:text-[clamp(1.85rem,4vw,3rem)] sm:leading-[1.02]">{action}</h3>
             {!isSample && (
               <button type="button" onClick={() => setDismissed(true)} className="min-h-11 shrink-0 self-start px-2 text-xs font-semibold text-muted-foreground hover:text-foreground">Not relevant</button>
             )}
           </div>
 
-          <div className="mt-7 bg-paper-muted/55 px-4 py-4 sm:px-5">
+          <div className="mt-7 hidden bg-paper-muted/55 px-4 py-4 sm:block sm:px-5">
             <LiftedTrace items={fixTrace} progress={traceProgress} ariaLabel={`How fix ${index + 1} moves from resume evidence to clearer wording`} compact />
           </div>
 
           {draftSource && (
-            <div className="riyp-border-annotation mt-7 border-l-2 pl-4 sm:pl-5">
+            <div className="riyp-border-annotation mt-4 border-l-2 pl-4 sm:mt-7 sm:pl-5">
               <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
                 {sectionFor(fix) ? `On the page · ${sectionFor(fix)}` : "On the page"}
               </p>
-              <p className="mt-2 font-display text-xl leading-7 text-foreground/85 sm:text-2xl sm:leading-8">“{draftSource}”</p>
+              <p className="mt-2 font-display text-lg leading-[1.625rem] text-foreground/85 sm:text-2xl sm:leading-8">“{draftSource}”</p>
             </div>
           )}
 
-          <div className="mt-7 grid gap-px bg-[hsl(var(--paper-line))] sm:grid-cols-2">
-            <div className="bg-accent-apricot/20 p-5 sm:p-6">
+          <div className="mt-5 grid gap-px bg-[hsl(var(--paper-line))] sm:mt-7 sm:grid-cols-2">
+            <div className="bg-accent-apricot/20 p-4 sm:p-6">
               <p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What is missing</p>
-              <p className="riyp-type-095 mt-3 leading-6 text-foreground/80">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
+              <p className="riyp-type-095 mt-2 leading-6 text-foreground/80 sm:mt-3">{fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}</p>
             </div>
-            <div className="bg-accent-butter/20 p-5 sm:p-6">
+            <div className="bg-accent-butter/20 p-4 sm:p-6">
               <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">{isSample ? "Details missing from the original" : "Details you can add"}</p>
               {isSample ? (
                 placeholderKeys.length > 0 ? (
