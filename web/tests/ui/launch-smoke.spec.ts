@@ -34,8 +34,8 @@ test.describe("launch smoke", () => {
     await page.goto("/status", { waitUntil: "domcontentloaded" });
     await page.waitForSelector("[data-visual-anchor='legal-status']", { timeout: 30_000 });
 
-    await expect(page.getByRole("heading", { name: /launch configuration status/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /customer-facing systems/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Configuration checks", exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: /support and trust/i })).toBeVisible();
   });
 
