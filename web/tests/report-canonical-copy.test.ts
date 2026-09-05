@@ -193,7 +193,7 @@ assert.deepEqual(auditReportNarrative({ top_fixes: [{ fix: "In the sales bullet,
   "asking for one example does not assert a historical customer count");
 assert.ok(auditReportNarrative({ top_fixes: [{ fix: "Add that you managed one customer." }] }, "Sales involved product areas.").length > 0,
   "an instruction must still reject an invented customer count");
-const optionalOnly = structuredClone(schemaValidReport);
+const optionalOnly = ResumeFeedbackResponseSchema.parse(structuredClone(schemaValidReport));
 optionalOnly.section_review["Work Experience"].priority = "high";
 optionalOnly.top_fixes[0].evidence = { excerpt: "No summary section present", section: "Summary" };
 optionalOnly.top_fixes[0].fix = "Add a summary naming the target role.";
