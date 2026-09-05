@@ -14,7 +14,7 @@ const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
     subtext: "Sign in to manage your profile, export your data, or delete your account."
   },
   paywall: {
-    headline: "Keep your reports and access together",
+    headline: "Sign in to use your pass",
     subtext: "Sign in to use your pass or save a new purchase to your account."
   },
   history: {

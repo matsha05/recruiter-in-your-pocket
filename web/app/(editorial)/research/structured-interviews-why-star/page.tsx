@@ -13,13 +13,13 @@ export default function StructuredInterviewsWhyStarPage() {
             header={{
                 tag: "Interview research",
                 title: "Why structured interviews are more reliable",
-                description: "The research advantage comes from job-related questions and consistent scoring. STAR is an answer organizer, not the intervention being validated.",
+                description: "Consistent questions and scoring help employers compare candidates. Here is what that means when you prepare for an interview.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
                 subtitle: "The mechanism",
-                stat: "Same questions. Same rubric. Better comparison.",
+                stat: "Candidates are evaluated against shared criteria",
                 statDescription: (
                     <>
                         Structured interviews constrain the questions and evaluation criteria. Research reviews and OPM guidance associate higher structure with stronger validity, rater reliability, and agreement.
@@ -34,7 +34,7 @@ export default function StructuredInterviewsWhyStarPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">How STAR borrows from structured interviews</h2>
+                    <h2 className="research-h2">Where STAR fits</h2>
                     <p className="research-body mb-6">
                         Past-behavior questions ask what you actually did in a relevant situation. STAR can keep that answer organized. The evidence below supports the employer&apos;s structured process, not one mandatory response acronym.
                     </p>
@@ -42,15 +42,15 @@ export default function StructuredInterviewsWhyStarPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Use your resume to prepare examples",
                 items: [
                     {
                         title: "Action and result",
-                        description: "We point out where the line leaves your contribution or the outcome unclear."
+                        description: "Choose a relevant achievement and be ready to explain what you did, why, and what happened."
                     },
                     {
-                        title: "Interview bridge",
-                        description: "A specific bullet gives you facts to develop into an interview story."
+                        title: "Details beyond the bullet",
+                        description: "Your resume may summarize the result. Prepare the context, tradeoffs, and your own contribution for follow-up questions."
                     }
                 ]
             }}
@@ -77,54 +77,47 @@ export default function StructuredInterviewsWhyStarPage() {
             ]}
             faq={[
                 {
-                    question: "Is STAR only for interviews?",
-                    answer: "STAR was designed as an answer structure. On a resume, action plus outcome can be useful, but the research cited here did not test STAR-formatted bullets."
+                    question: "Will every question ask about past experience?",
+                    answer: "No. Structured interviews can ask what you did in the past or what you would do in a hypothetical job situation. Answer the question asked rather than forcing a prepared story into it."
                 },
                 {
                     question: "Why do structured interviews perform better?",
                     answer: "They reduce interviewer discretion by standardizing job-related questions and evaluation."
                 },
                 {
-                    question: "How do I apply this to resume bullets?",
-                    answer: "Make action and result explicit in the line. Keep situation and task implied by role context."
+                    question: "Do I need a perfectly memorized answer?",
+                    answer: "Prepare the facts and sequence of relevant examples. Leave room to answer the specific question and explain details the interviewer asks about."
                 }
             ]}
         >
             <h2 className="research-h2">What structured interviews actually structure</h2>
             <p className="research-body mb-6">
-                The employer identifies job-related competencies, asks candidates the same predetermined questions, and evaluates responses against the same standards. That shared process, not an answer acronym, is the research-backed intervention.
+                The employer identifies skills relevant to the job and sets the questions and rating criteria in advance. Higher levels of structure limit how much individual interviewers can change the questions or their evaluation standards.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
-                    title="Action + Result"
-                    desc="An outcome can make the contribution easier to evaluate."
+                    title="Past experience"
+                    desc="A behavioral question asks you to describe something you did. Choose a real example that addresses the skill being assessed."
                 />
                 <ArticleInsight
-                    title="More useful detail"
-                    desc="A clear structure can add context without making the bullet much longer."
+                    title="A hypothetical situation"
+                    desc="A situational question asks what you would do. Explain your reasoning and the information you would need before deciding."
                 />
             </div>
 
-            <h2 className="research-h2">Use STAR on a resume</h2>
+            <h2 className="research-h2">Prepare examples, then listen to the question</h2>
             <p className="research-body mb-6">
-                Treat STAR as a check, not a template. Make your action visible, add the outcome when you know it, and include only the context the result needs. Situation and task may already be clear from the role.
+                <strong>Our preparation advice:</strong> use the job description to choose relevant examples from your work. For each one, note the problem, your responsibility, the choices you made, and the outcome. During the interview, choose the example that answers the actual question.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
-                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Illustrative example</div>
+                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Example preparation notes</div>
                 <p className="text-foreground">
-                    Ran a pricing test across three self-serve plans, lifting trial-to-paid conversion from 12% to 16% and adding $1.2M in annualized revenue without increasing 90-day churn.
+                    If you plan to discuss a delayed launch, be ready to explain what caused the delay, which decision was yours, who you involved, and what happened after you changed the plan.
                 </p>
             </div>
-
-            <h2 className="research-h2">What structured interviewing means</h2>
-            <p className="research-body mb-6">
-                Structured interviewing uses job-related, consistent questions and common scoring criteria. STAR can organize one candidate&apos;s response; it cannot make an employer&apos;s process structured by itself.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
 
             <h2 className="research-h2">What this evidence does not prove</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -133,11 +126,11 @@ export default function StructuredInterviewsWhyStarPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not make a vague or invented result more credible.</li>
             </ul>
 
-            <h2 className="research-h2">Common pitfalls</h2>
+            <h2 className="research-h2">Check your answer before the interview</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Listing tasks without outcomes.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Overloading a single bullet with multiple situations.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Using vague results like improved or optimized without proof.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Can someone tell what you did, separate from the team&apos;s work?</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Have you explained why you chose that approach?</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Can you describe the outcome accurately, including what did not work?</li>
             </ul>
         </ResearchArticle>
     );

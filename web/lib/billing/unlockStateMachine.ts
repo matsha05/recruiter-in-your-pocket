@@ -31,30 +31,30 @@ export type UnlockEvent =
   | { type: "timeout" };
 
 const CONFIRM_MESSAGES: Record<UnlockConfirmState, string> = {
-  unlocked: "Access unlocked.",
-  fulfillment_pending: "Payment received. Finalizing access...",
+  unlocked: "Your pass is active.",
+  fulfillment_pending: "Payment received. Activating your pass...",
   checkout_incomplete: "Checkout is not complete yet.",
-  not_paid: "Payment is not marked as paid yet.",
+  not_paid: "We haven't received payment confirmation yet.",
 };
 
 const UI_TITLES: Record<UnlockUiStatus, string> = {
-  checking: "Finalizing your access",
-  pending: "Finalizing your access",
+  checking: "Checking your purchase",
+  pending: "Checking your purchase",
   unlocked: "Purchase confirmed",
-  error: "Unlock is delayed",
-  missing: "Missing confirmation details",
+  error: "We couldn't confirm access",
+  missing: "Find your purchase",
 };
 
 const UI_MESSAGES = {
-  checking: "Confirming payment and unlocking access...",
-  pending: "Payment received. Finalizing access...",
-  unlocked: "Your access is active. You can continue in the workspace.",
-  missing: "Missing confirmation details.",
+  checking: "Checking your payment and report access...",
+  pending: "Payment received. Activating your pass...",
+  unlocked: "Your pass is active. You can continue to your report.",
+  missing: "This link doesn't identify a purchase. Use Restore access with the email you entered at checkout.",
   checkout_incomplete: "Checkout is not complete yet. If you closed Stripe early, restart checkout.",
-  not_paid: "Payment is not marked as paid yet. Check your receipt or try Restore Access.",
-  error: "We could not confirm unlock yet.",
-  network: "Still confirming your unlock...",
-  timeout: "Payment succeeded, but unlock is still processing. Use Restore Access to sync now.",
+  not_paid: "We haven't received payment confirmation yet. Check your receipt or use Restore access.",
+  error: "We couldn't confirm your access yet. Use Restore access or contact support.",
+  network: "We couldn't reach the payment service. We're trying again.",
+  timeout: "We couldn't confirm your purchase in time. If you received a receipt, use Restore access or contact support before paying again.",
 };
 
 export function buildConfirmResponse(input: {

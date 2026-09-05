@@ -49,7 +49,7 @@ export function createEmptyOffer(id: string, isCurrentJob = false, styleIndex = 
 export function isVestingScheduleValid(schedule: number[]): boolean {
   return schedule.length === 4
     && schedule.every((value) => Number.isFinite(value) && value >= 0 && value <= 100)
-    && schedule.reduce((sum, value) => sum + value, 0) === 100;
+    && Math.abs(schedule.reduce((sum, value) => sum + value, 0) - 100) < 1e-8;
 }
 
 export function offerHasValidVesting(offer: OfferData): boolean {

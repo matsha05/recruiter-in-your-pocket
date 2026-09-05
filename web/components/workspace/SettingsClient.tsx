@@ -25,6 +25,7 @@ import DefaultResumeSection from "@/components/settings/DefaultResumeSection";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { cn } from "@/lib/utils";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 import { getPassStatus, getPassStatusLabel, getTierLabel, isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
@@ -105,7 +106,7 @@ async function fetchPassesRequest(): Promise<PassRecord[]> {
     const res = await fetch("/api/passes");
     const data = await res.json().catch(() => ({} as any));
     if (!res.ok || !data?.ok) {
-        throw new Error(data?.message || "Failed to load purchases");
+        throw new ClientActionError(data?.message, "We couldn't load your purchases. Please try again.");
     }
     return Array.isArray(data.passes) ? data.passes : [];
 }
@@ -114,7 +115,7 @@ async function fetchReceiptsRequest(): Promise<ReceiptRecord[]> {
     const res = await fetch("/api/billing/receipts");
     const data = await res.json().catch(() => ({} as any));
     if (!res.ok || !data?.ok) {
-        throw new Error(data?.message || "Failed to load receipts");
+        throw new ClientActionError(data?.message, "We couldn't load your receipts. Please try again.");
     }
     return Array.isArray(data.receipts) ? data.receipts : [];
 }
@@ -188,13 +189,13 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     useEffect(() => {
         if (passesError instanceof Error) {
-            toast.error(passesError.message || "Failed to load purchase history");
+            toast.error(getClientActionError(passesError, "We couldn't load your purchases. Please try again."));
         }
     }, [passesError]);
 
     useEffect(() => {
         if (receiptsError instanceof Error) {
-            toast.error(receiptsError.message || "Failed to load receipts");
+            toast.error(getClientActionError(receiptsError, "We couldn't load your receipts. Please try again."));
         }
     }, [receiptsError]);
 
@@ -209,7 +210,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             profileForm.reset({ displayName: trimmed });
             toast.success("Profile updated");
         } catch (err: any) {
-            toast.error(err.message || "Failed to update profile");
+            toast.error("We couldn't save your name. Please try again.");
         }
     }
 
@@ -220,7 +221,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const res = await fetch("/api/account/delete", { method: "DELETE" });
             const data = await res.json();
             if (!data.ok) {
-                throw new Error(data.message || "Failed to delete account");
+                throw new ClientActionError(data.message, "We couldn't delete your account. Please try again or contact support.");
             }
 
             // The server clears the SSR cookie and returns Clear-Site-Data.
@@ -235,7 +236,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             toast.success("Account deleted");
             window.location.replace("/");
         } catch (err: any) {
-            toast.error(err.message || "Failed to delete account");
+            toast.error(getClientActionError(err, "We couldn't delete your account. Please try again or contact support."));
         } finally {
             setIsDeletingAccount(false);
         }
@@ -249,7 +250,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const createRes = await fetch("/api/account/export", { method: "POST" });
             const createData = await createRes.json().catch(() => ({} as any));
             if (!createRes.ok || !createData?.ok || !createData?.job?.id) {
-                throw new Error(createData?.message || "Could not start export");
+                throw new ClientActionError(createData?.message, "We couldn't start your download. Please try Export data again.");
             }
 
             const jobId = String(createData.job.id);
@@ -258,7 +259,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
             if (job?.status !== "completed") {
                 toast.message("Preparing export", {
-                    description: "We are gathering your account data now.",
+                    description: "We're gathering your account data for download.",
                 });
             }
 
@@ -271,23 +272,23 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 });
                 const statusData = await statusRes.json().catch(() => ({} as any));
                 if (!statusRes.ok || !statusData?.ok || !statusData?.job) {
-                    throw new Error(statusData?.message || "Failed to check export status");
+                    throw new ClientActionError(statusData?.message, "We couldn't check whether your download is ready. Please try Export data again.");
                 }
 
                 job = statusData.job as ExportJobRecord;
                 if (job.status === "failed" || job.status === "expired") {
-                    throw new Error(job.error_message || "Export could not be completed");
+                    throw new ClientActionError(job.error_message, "We couldn't prepare your download. Please try Export data again.");
                 }
             }
 
             if (!job || job.status !== "completed") {
-                throw new Error("Export is still processing. Please try again in a moment.");
+                throw new ClientActionError(null, "Your export is still processing. Please try again in a moment.");
             }
 
             const downloadRes = await fetch(`/api/account/export?jobId=${encodeURIComponent(jobId)}&download=1`);
             if (!downloadRes.ok) {
                 const data = await downloadRes.json().catch(() => ({} as any));
-                throw new Error(data?.message || "Export download failed");
+                throw new ClientActionError(data?.message, "We couldn't download your account data. Please try Export data again.");
             }
 
             const blob = await downloadRes.blob();
@@ -307,7 +308,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             Analytics.track("account_export_completed", { source: "settings" });
             toast.success("Export downloaded");
         } catch (err: any) {
-            toast.error(err?.message || "Export failed");
+            toast.error(getClientActionError(err, "We couldn't download your account data. Please try Export data again."));
         } finally {
             setIsExportingData(false);
         }
@@ -336,12 +337,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             });
             const data = await res.json();
             if (!data.ok || !data.url) {
-                throw new Error(data.message || "Checkout failed");
+                throw new ClientActionError(data.message, "We couldn't open checkout. Please try again.");
             }
             window.location.href = data.url;
         } catch (err: any) {
             Analytics.track("checkout_start_failed", { source: "settings", tier });
-            toast.error(err.message || "Something went wrong");
+            toast.error(getClientActionError(err, "We couldn't open checkout. Please try again."));
         } finally {
             setIsCheckoutLoading(null);
             setShowEmailInput(null);
@@ -359,12 +360,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             });
             const data = await res.json();
             if (!data.ok || !data.url) {
-                throw new Error(data.message || "Billing portal unavailable");
+                throw new ClientActionError(data.message, "We couldn't open the billing portal. Please try again.");
             }
 
             window.location.href = data.url;
         } catch (err: any) {
-            toast.error(err.message || "Unable to open billing portal");
+            toast.error(getClientActionError(err, "We couldn't open the billing portal. Please try again."));
         } finally {
             setIsPortalLoading(false);
         }
@@ -377,7 +378,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const res = await fetch("/api/billing/restore", { method: "POST" });
             const data = await res.json();
             if (!data.ok) {
-                throw new Error(data.message || "Could not restore access");
+                throw new ClientActionError(data.message, "We couldn't restore your purchase. Please try again.");
             }
 
             await Promise.all([
@@ -386,11 +387,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 refreshUser?.()
             ]);
             toast.success("Access check complete", {
-                description: data.message || "Billing state refreshed."
+                description: data.message || "Your purchases and available reports are up to date."
             });
             Analytics.track("billing_restore_succeeded", { restored: data.restored || 0 });
         } catch (err: any) {
-            toast.error(err?.message || "Could not refresh access");
+            toast.error(getClientActionError(err, "We couldn't restore your purchase. Please try again."));
         } finally {
             setIsRestoreLoading(false);
         }
@@ -436,9 +437,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
         : null;
     const showRestoreNudge = !loadingPasses && !passesError && passes.length === 0 && hasPaidMembership;
     const tabDescriptions: Record<Tab, string> = {
-        account: "Profile, exports, and account controls. Clear, reversible where possible, and easy to audit.",
-        matching: "Choose the resume that powers your extension match scores so job triage stays fast and accurate.",
-        billing: "See access status, restore purchases, and open billing controls without leaving the product.",
+        account: "Update your name, download your account data, or delete your account.",
+        matching: "Choose the resume to compare with jobs you save through the extension.",
+        billing: "Check your remaining reports, restore a purchase, or find a receipt.",
     };
 
     if (authLoading) {
@@ -449,7 +450,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         anchor="settings-loading"
                         eyebrow="Settings"
                         title="Opening your settings"
-                        description="Checking your account before showing profile, matching, or billing controls."
+                        description="Your account details will appear here shortly."
                     />
                     <div className="app-card mt-8 flex min-h-40 items-center justify-center gap-3 p-8 text-sm text-muted-foreground">
                         <Loader2 className="size-5 animate-spin motion-reduce:animate-none" aria-hidden="true" />
@@ -469,8 +470,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         eyebrow="Settings"
                         title="Settings"
                         description={billingEnabled
-                            ? "Sign in to manage your account and billing. We keep these controls simple so you can verify and change things yourself."
-                            : "Sign in to manage your account. We keep these controls simple so you can verify and change things yourself."}
+                            ? "Sign in to manage your account and billing."
+                            : "Sign in to manage your account."}
                     />
 
                     <section className="app-card app-card-highlight p-8 text-center md:p-10">
@@ -479,7 +480,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             Sign in to open settings
                         </h2>
                         <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
-                            Signed-in settings give you profile controls, data export, purchase history, and account deletion.
+                            Update your name, download your account data, or delete your account after signing in.
                         </p>
                         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                             <Link
@@ -614,7 +615,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
-                                        <p className="text-xs text-muted-foreground">Create a portable copy of your reports, jobs, profile, usage, and billing records.</p>
+                                        <p className="text-xs text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
                                     </div>
                                     <button type="button"
                                         onClick={handleExportData}
@@ -651,11 +652,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <div className="mb-2">
                                 <h2 className="text-lg font-medium text-foreground">Job Matching</h2>
                                 <p className="text-sm text-muted-foreground mt-1">
-                                    Upload your default resume for instant match scores in the Chrome extension.
+                                    Save a resume to compare with jobs in the Chrome extension.
                                 </p>
                             </div>
                             <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
-                                The extension reads supported job pages only when you capture a role. Your default resume here powers match context once you choose to use it.
+                                The extension reads a supported job page when you choose to save the job. It compares the description with the resume you save here.
                             </div>
                             <DefaultResumeSection />
                         </div>
@@ -740,7 +741,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             </section>
 
                             <section className="border-l-2 border-line bg-paper-muted p-4 text-sm text-muted-foreground">
-                                Need procurement, invoices, or a billing edge case handled by a person?{" "}
+                                Need help with a payment or invoice? Email{" "}
                                 <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
                                     support@recruiterinyourpocket.com
                                 </Link>
@@ -756,7 +757,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : passesError ? (
                                         <div role="alert" className="border-l-2 border-destructive bg-error-surface p-6 text-sm text-destructive">
                                             <p className="font-medium">Purchase history could not load.</p>
-                                            <p className="mt-1 text-destructive/80">Your access has not changed. Try the request again before relying on this list.</p>
+                                            <p className="mt-1 text-destructive/80">We couldn&apos;t retrieve your purchases. Try again to see the list.</p>
                                             <button type="button" onClick={() => void refetchPasses()} className="mt-4 inline-flex min-h-11 items-center border border-destructive/40 bg-background px-4 py-2 font-medium">
                                                 Try again
                                             </button>
@@ -841,14 +842,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : receiptsError ? (
                                         <div role="alert" className="border-l-2 border-destructive bg-error-surface p-6 text-sm text-destructive">
                                             <p className="font-medium">Receipts could not load.</p>
-                                            <p className="mt-1 text-destructive/80">Try again or open the billing portal if you need an invoice now.</p>
+                                            <p className="mt-1 text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
                                             <button type="button" onClick={() => void refetchReceipts()} className="mt-4 inline-flex min-h-11 items-center border border-destructive/40 bg-background px-4 py-2 font-medium">
                                                 Try again
                                             </button>
                                         </div>
                                     ) : receipts.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
-                                            No receipts yet. Try Refresh or open the billing portal.
+                                            No receipts found for this account. If you recently paid, try Refresh.
                                         </div>
                                     ) : (
                                         <div className="divide-y divide-border/20">
@@ -902,7 +903,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <section className="border-l-2 border-line bg-paper-muted p-4">
                                 <p className="text-xs text-muted-foreground flex items-start gap-2">
                                     <ShieldAlert className="size-4 mt-0.5 shrink-0" />
-                                    Job Search Passes do not renew. Receipts stay available here. If you paid with a different email, use Restore Access first.
+                                    Job Search Passes do not renew. Receipts stay available here. If you paid with a different email, sign in with that email and choose Restore Access.
                                 </p>
                             </section>
                         </div>

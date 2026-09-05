@@ -13,7 +13,7 @@ export default function AutomationBiasPage() {
             header={{
                 tag: "ATS & Automation",
                 title: "Where automation enters the hiring process",
-                description: "Hiring automation is not one bot. It is a chain of systems that can shape exposure, eligibility, ranking, and review.",
+                description: "Different tools can affect which job ads you see, whether your application is eligible, and how it reaches a reviewer.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
@@ -35,7 +35,7 @@ export default function AutomationBiasPage() {
                 <>
                     <h2 className="research-h2">Where automation enters hiring</h2>
                     <p className="research-body mb-6">
-                        Automation isn&apos;t just &quot;scanning keywords&quot; at the end. It starts before you even see the job ad.
+                        Automated decisions can happen before you apply, including when a platform chooses who will see a job ad.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <AutomationPipeline />
@@ -45,8 +45,8 @@ export default function AutomationBiasPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Reduce system friction",
-                        description: "We use conventional structure and explicit evidence so both systems and people have less to decode."
+                        title: "Check the resume text",
+                        description: "We review the text you submit and point out details that are missing or unclear. We cannot inspect the employer's advertising or screening tools."
                     },
                     {
                         title: "Separate fact from folklore",
@@ -82,7 +82,7 @@ export default function AutomationBiasPage() {
                 },
                 {
                     question: "Can a resume fix algorithmic bias?",
-                    answer: "No. A resume can only reduce avoidable noise, not systemic bias."
+                    answer: "No. Making a resume easier to read does not remove bias from the tools or decisions an employer uses."
                 },
                 {
                     question: "What should candidates do?",
@@ -92,17 +92,17 @@ export default function AutomationBiasPage() {
         >
             <h2 className="research-h2">One hiring process, several decision points</h2>
             <p className="research-body mb-6">
-                Most candidate advice focuses on resume parsing. The Upturn report shows a wider system: job advertising, sourcing, screening, assessment, and ranking can each involve automated decisions. If an ad is not delivered to someone, that person cannot enter the applicant pool at all.
+                The Upturn report examines job advertising, sourcing, screening, assessment, and ranking. Automated decisions can affect each stage. Someone who never sees a job ad may never learn about the opportunity.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                We cannot fix the ad servers. Once you <em className="text-foreground">are</em> in the pipeline, clear structure can reduce parser friction and make your qualifications easier to interpret.
+                Once you have an opportunity to apply, check that your file contains readable text and clear sections. That addresses a possible parsing problem, not the broader risks documented in the report.
                 <Citation id="source-2">2</Citation>
             </p>
 
             <h2 className="research-h2">When the system changes who gets seen</h2>
             <p className="research-body mb-6">
-                Exposure bias happens when the system decides who sees a job or who is surfaced first. Candidates who are not surfaced never get evaluated.
+                A system that decides who sees a job ad or appears in a search can change who receives attention. Candidates left out may still find another route to the employer, but the initial decision can limit their opportunity.
                 <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>

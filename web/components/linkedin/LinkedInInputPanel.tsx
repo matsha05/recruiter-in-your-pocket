@@ -70,11 +70,11 @@ export function LinkedInInputPanel({
             if (data.ok && data.text) {
                 setPdfText(data.text);
             } else {
-                setParseError(data.message || 'Failed to parse PDF');
+                setParseError(data.message || 'Could not read this PDF. Export it from LinkedIn again and upload the new file.');
                 setPdfFile(null);
             }
         } catch {
-            setParseError('Failed to parse PDF. Please try again.');
+            setParseError('Could not read this PDF. Try uploading it again.');
             setPdfFile(null);
         } finally {
             setIsParsing(false);
@@ -107,7 +107,7 @@ export function LinkedInInputPanel({
             const paid = Number(user?.paidUsesLeft || 0);
             return `${paid} paid report${paid === 1 ? '' : 's'} remaining`;
         }
-        if (freeUsesRemaining > 0) return 'First report included';
+        if (freeUsesRemaining > 0) return 'Your first report is free';
         return 'A Job Search Pass is required for another report';
     };
 
@@ -197,7 +197,7 @@ export function LinkedInInputPanel({
                                 <span className="block max-w-[220px] truncate text-foreground">{pdfFile.name}</span>
                                 <span className="mt-0.5 block text-xs text-muted-foreground">
                                     {isParsing ? (
-                                        'Parsing your export...'
+                                        'Reading your PDF…'
                                     ) : (
                                         <span className="flex items-center gap-1 text-success">
                                             <CheckCircle2 className="size-3" />

@@ -126,6 +126,10 @@ export interface FixtureResult {
     provider_calls?: number;
     response_model?: string;
     raw_output?: unknown;
+    model_output?: unknown;
+    normalization_changes?: string[];
+    generation_normalization_changes?: string[];
+    initial_validation_error?: string;
     judge_result?: {
         evidence_score: number;
         actionability_score: number;
@@ -148,6 +152,7 @@ export interface EvalRunMetadata {
     top_p: number | null;
     reasoning_effort: string | null;
     incomplete_retry_reasoning_effort?: string | null;
+    repair_reasoning_effort?: string | null;
     max_completion_tokens: number | null;
     prompt_version_hash: string;
     resume_prompt_sha256?: string;
@@ -163,6 +168,7 @@ export interface EvalRunMetadata {
     concurrency: number;
     baseline_path?: string;
     validation_mode?: "in_run" | "saved_output_replay";
+    validation_input?: "model_output_when_available";
     validation_timestamp?: string;
     source_run_sha256?: string;
 }

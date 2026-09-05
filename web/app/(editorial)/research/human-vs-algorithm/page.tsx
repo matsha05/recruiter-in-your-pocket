@@ -54,12 +54,12 @@ export default function HumanVsAlgorithmPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "No all-knowing score",
+                        title: "A score you can question",
                         description: "A number is useful only when you can trace it back to the resume and the criteria. It cannot stand in for an employer's decision."
                     },
                     {
-                        title: "Show the judgment behind the output",
-                        description: "We surface the evidence behind feedback so you can accept, reject, or refine it instead of obeying a black box."
+                        title: "Check the recommendation",
+                        description: "We quote the resume behind each recommendation. Compare the advice with what you actually did before accepting it."
                     }
                 ]
             }}
@@ -98,7 +98,7 @@ export default function HumanVsAlgorithmPage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                For a candidate-facing product, the honest response is not &quot;humans good, algorithms bad.&quot; It is to make automated feedback inspectable, bounded, and easy to challenge.
+                A resume tool should explain its recommendations so you can check them. Trusting a tool less does not necessarily protect you from following a weak suggestion.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -124,7 +124,7 @@ export default function HumanVsAlgorithmPage() {
 
             <h2 className="research-h2">What this means in practice</h2>
             <p className="research-body mb-6">
-                <strong>RIYP interpretation:</strong> use automated feedback as a second set of eyes, not a verdict. Ask what evidence produced the judgment, whether the advice fits the role, and what would change the conclusion. If the system cannot answer those questions, confidence should stay limited.
+                <strong>Our advice:</strong> compare a suggested change with the original resume and the job you want. Keep it only if it makes your experience clearer without adding facts or overstating your contribution.
             </p>
         </ResearchArticle>
     );

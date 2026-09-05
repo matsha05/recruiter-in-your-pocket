@@ -3,7 +3,7 @@ import SettingsClient from "@/components/workspace/SettingsClient";
 
 export const metadata: Metadata = {
   title: "Account Settings",
-  description: "Profile, data export, and account deletion controls."
+  description: "Update your name, download your data, or delete your account."
 };
 
 export default function SettingsAccountPage() {

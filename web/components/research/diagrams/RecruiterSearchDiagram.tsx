@@ -7,14 +7,14 @@ export function RecruiterSearchDiagram({ figureNumber = 1 }: { figureNumber?: nu
     return (
         <DiagramFigure className="max-w-[46rem]" label="What is publicly known and unknown about recruiter search">
             <DiagramFrame>
-                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What we know" title="LinkedIn explains some search features, not its full ranking system." note="We can use published documentation and studies. We cannot honestly promise a secret way to rank first." />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What is public" title="LinkedIn does not disclose its full ranking system." note="Published documentation explains some search features. It does not tell us exactly where a profile will appear." />
                 <ComparisonField
                     left={{ eyebrow: "Published or observable", title: "What we can support", tone: "insight", items: ["Platform scale and activity", "Recruiter usage surveys", "Skills-first sourcing findings"] }}
                     right={{ eyebrow: "Not disclosed", title: "What remains unknown", tone: "quiet", items: ["Exact ranking weights", "Search-scoring logic", "The complete visibility model"] }}
-                    verdict={<><strong className="text-foreground">The useful advice:</strong> use accurate role language and complete your profile. Ignore anyone promising a secret ranking formula.</>}
+                    verdict={<><strong className="text-foreground">What you can do:</strong> describe your roles and skills accurately, and fill in relevant profile sections. No wording guarantees a search position.</>}
                 />
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / What is public`} title="Good advice stops where the public evidence stops." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / What is public`} title="Platform documentation and usage studies answer different questions about recruiter search." />
         </DiagramFigure>
     );
 }

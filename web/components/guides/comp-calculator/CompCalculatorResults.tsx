@@ -18,8 +18,9 @@ function ModelAssumptions() {
     <section aria-labelledby="model-assumptions-title" className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-4">
       <h3 id="model-assumptions-title" className="text-xs font-semibold uppercase riyp-track-010 text-ink">Assumptions in this model</h3>
       <ul className="mt-3 space-y-2 text-xs leading-5 text-muted-foreground">
+        <li>Base salary stays the same for four full years of employment. Raises, time off without pay, and leaving early are not modeled.</li>
         <li>Target bonus is shown at 100% of target in every year.</li>
-        <li>Equity uses the grant value, vesting schedule, and growth rate you enter. Liquidity and taxes are not modeled.</li>
+        <li>Equity uses the grant value, vesting schedule, and growth rate you enter. Option exercise costs, liquidity, and taxes are not modeled.</li>
         <li>Signing and relocation payments appear in year one. Repayment terms are not modeled.</li>
       </ul>
     </section>
@@ -59,7 +60,7 @@ function Summary({ offers }: { offers: OfferData[] }) {
                   </div>
                 </div>
                 <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:grid-cols-4">
-                  <div><dt className="text-muted-foreground">Guaranteed base</dt><dd className="mt-1 font-semibold text-foreground">{formatCurrency(components.guaranteedBase)}</dd></div>
+                  <div><dt className="text-muted-foreground">Base salary</dt><dd className="mt-1 font-semibold text-foreground">{formatCurrency(components.guaranteedBase)}</dd></div>
                   <div><dt className="text-muted-foreground">Target bonus</dt><dd className="mt-1 font-semibold text-foreground">{formatCurrency(components.targetBonus)}</dd></div>
                   <div><dt className="text-muted-foreground">Modeled equity</dt><dd className="mt-1 font-semibold text-foreground">{formatCurrency(components.modeledEquity)}</dd></div>
                   <div><dt className="text-muted-foreground">One-time cash</dt><dd className="mt-1 font-semibold text-foreground">{formatCurrency(components.oneTimeCash)}</dd></div>
@@ -178,7 +179,7 @@ function BenefitsAndRiskNote() {
       <div className="flex items-start gap-3">
         <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand" weight="fill" />
         <div>
-          <h3 id="outside-model-title" className="text-sm font-semibold text-foreground">Keep the decision outside the ranking</h3>
+          <h3 id="outside-model-title" className="text-sm font-semibold text-foreground">What the comparison leaves out</h3>
           <p className="mt-2 text-xs leading-5 text-muted-foreground">Health coverage, retirement matching, paid time off, severance, taxes, liquidity, role scope, and personal priorities are not included. Compare the actual terms separately.</p>
         </div>
       </div>

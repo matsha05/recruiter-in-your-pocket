@@ -3,6 +3,7 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import { ResumeFeedbackResponseSchema } from "../../lib/validation/schemas";
 import { schemaValidReport } from "../helpers/report-fidelity-fixture";
+import { registerActionFailureCases } from "../helpers/action-failure-cases";
 
 const WEB_ROOT = path.resolve(__dirname, "../..");
 const requireExtension = createRequire(path.resolve(WEB_ROOT, "../extension/package.json"));
@@ -33,7 +34,7 @@ async function buildWorkspaceHarness() {
       const subscribe = (callback) => { window.addEventListener("popstate", callback); return () => window.removeEventListener("popstate", callback); };
       const snapshot = () => window.location.pathname + window.location.search;
       const navigate = (href, method) => { window.history[method](null, "", href); window.dispatchEvent(new PopStateEvent("popstate")); };
-      const router = { push: (href) => navigate(href, "pushState"), replace: (href) => navigate(href, "replaceState") };
+      const router = { push: (href) => navigate(href, "pushState"), replace: (href) => navigate(href, "replaceState"), refresh() {} };
       export function useRouter() { return router; }
       export function usePathname() { return useSyncExternalStore(subscribe, snapshot).split("?")[0]; }
       export function useSearchParams() {
@@ -60,11 +61,17 @@ async function buildWorkspaceHarness() {
         import ReportDetailClient from "@/components/reports/ReportDetailClient";
         import WorkspaceClient from "@/components/workspace/WorkspaceClient";
         import SettingsClient from "@/components/workspace/SettingsClient";
+        import {AuthFlow} from "@/components/auth/AuthFlow";
+        import PurchaseRestoreClient from "@/components/purchase/PurchaseRestoreClient";
+        import HistorySidebar from "@/components/workspace/HistorySidebar";
         function HarnessApp() {
           const pathname = usePathname();
           return <>
             <button type="button" data-testid="outside-workspace-control">Account menu</button>
-            {pathname.startsWith("/settings/")
+            {pathname === "/auth" ? <AuthFlow />
+              : pathname === "/history" ? <HistorySidebar isOpen onClose={() => {}} user={{email: "candidate@example.test"}} />
+              : pathname === "/purchase/restore" ? <PurchaseRestoreClient />
+              : pathname.startsWith("/settings/")
               ? <SettingsClient initialTab={pathname.split("/")[2]} />
               : pathname.startsWith("/reports/")
                 ? <ReportDetailClient reportId={pathname.split("/")[2]} />
@@ -115,7 +122,7 @@ async function installWorkspaceHarness(page: Page) {
       await route.abort("blockedbyclient");
       throw new Error(`Unexpected external request in workspace harness: ${url.origin}${url.pathname}`);
     }
-    if (url.pathname === "/workspace" || url.pathname.startsWith("/settings/") || url.pathname.startsWith("/reports/")) {
+    if (["/workspace", "/auth", "/history", "/purchase/restore"].includes(url.pathname) || url.pathname.startsWith("/settings/") || url.pathname.startsWith("/reports/")) {
       return route.fulfill({ contentType: "text/html; charset=utf-8", body: `<!doctype html><html><head><meta charset="utf-8">
         <title>Workspace handoffs — browser contract</title><style>${harnessStyles}
           body { font: 16px system-ui; margin: 24px; } #root { max-width: 1050px; margin: auto; }
@@ -181,6 +188,48 @@ test.describe("workspace command and completion handoffs", () => {
     expect(runtimeErrors, "Production workspace components must not throw browser runtime errors").toEqual([]);
   });
 
+  registerActionFailureCases({ origin: ORIGIN, savedReportId: SAVED_REPORT_ID, report: REPORT });
+
+  test("long source context is available without hiding the relevant excerpt", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    const excerpt = "Coordinated interviews with hiring managers.";
+    const fullSource = `Managed recruiting programs across the organization, including candidate communication, interview scheduling, and follow-up with regional teams. ${excerpt} Maintained the shared interview guide and worked with operations to resolve scheduling conflicts and document feedback for the next hiring round.`;
+    const report = structuredClone(REPORT);
+    report.top_fixes[0].fix = "In the interview coordination bullet, describe the interview materials you prepared, the hiring groups that used them, and the scheduling decisions you handled.";
+    report.top_fixes[0].evidence = { excerpt, section: "Work Experience" };
+    report.rewrites = [];
+    await page.route("**/api/resume-feedback-stream", route => completeReport(route, report));
+    await page.goto(`${ORIGIN}/workspace`);
+    await page.getByTestId("workspace-paste-mode").click();
+    await page.getByTestId("workspace-resume-text").fill(`Alex Rivera\nWork Experience\n${fullSource}`);
+    await page.getByTestId("workspace-run-report").click();
+    const fix = page.locator("#section-fix-1");
+    await expect(fix).toBeVisible();
+    await expect(fix.getByText(`“${excerpt}”`, { exact: true })).toBeVisible();
+    const fullText = fix.getByText(fullSource, { exact: true });
+    await expect(fullText).toBeHidden();
+    await fix.getByText("Show full original text", { exact: true }).click();
+    await expect(fullText).toBeVisible();
+  });
+
+  test("a normal review wait does not encourage another paid generation", async ({ page }) => {
+    await page.clock.install();
+    await page.route("**/api/resume-feedback-stream", route => route.fulfill({
+      headers: { "content-type": "text/event-stream" },
+      body: `${JSON.stringify({ type: "progress", message: "Reviewing" })}\n`,
+    }));
+    // Render the production waiting screen directly; no generation or service is used.
+    await page.goto(`${ORIGIN}/workspace`);
+    await page.route("**/api/resume-feedback-stream", () => new Promise(() => {}));
+    await startReport(page);
+    await expect(page.getByRole("heading", { name: "Reviewing your resume." })).toBeVisible();
+    await page.clock.fastForward(90_000);
+    await expect(page.getByRole("button", { name: "Retry", exact: true })).toHaveCount(0);
+    await page.clock.fastForward(31_000);
+    await expect(page.getByRole("complementary", { name: "Review still in progress" })).toBeVisible();
+    await expect(page.getByText(/A retry may use another report/)).toBeVisible();
+  });
+
   test("Upload Resume opens the native picker from paste mode and applies parsed text", async ({ page }) => {
     let parsedFile = false;
     let submittedText: string | undefined;
@@ -235,7 +284,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(reportHeading(page)).toBeVisible();
     await expect(page.getByRole("status").filter({ hasText: "Reading your resume file." })).toHaveCount(1);
     await parseRequests[0].fulfill({ json: { ok: false, message: "This PDF did not contain readable text." } });
-    await expect(page.getByText("Failed to parse resume", { exact: true })).toBeVisible();
+    await expect(page.getByText("We couldn’t read this resume", { exact: true })).toBeVisible();
     await expect(page.getByRole("status").filter({ hasText: "Reading your resume file." })).toHaveCount(0);
     await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
     await expect(page).toHaveURL(`${ORIGIN}/workspace?job=${JOB.id}`);

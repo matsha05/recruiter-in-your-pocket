@@ -1,3 +1,4 @@
+import { resolveResumeRepairReasoningEffort } from "../llm/model-config";
 /**
  * PromptOps Eval Harness - Batch Runner
  */
@@ -34,12 +35,13 @@ import {
     resolveReasoningEffortForMode,
     type ReasoningEffort,
 } from "../llm/model-config";
-import { buildResumeEvidenceCatalog } from "../llm/evidence-canonicalizer";
+import { buildResumeEvidenceCatalog, canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import {
     buildResumeRepairMessages,
     isRepairableResumeResponseError,
 } from "../llm/reportRepair";
 import { validateResumeModelPayload } from "../backend/validation";
+import { resumeTextFromFixture } from "./fixture-input";
 
 // ============================================
 // COST ESTIMATION
@@ -270,6 +272,7 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
         incomplete_retry_reasoning_effort: tuning.reasoning_effort
             ? increaseReasoningEffort(tuning.reasoning_effort)
             : null,
+        repair_reasoning_effort: resolveResumeRepairReasoningEffort(model, reasoningEffort),
         prompt_version_hash: options.promptVersion || "v1",
         resume_prompt_sha256: sha256(resumePrompt),
         resume_ideas_prompt_sha256: sha256(resumeIdeasPrompt),
@@ -422,7 +425,7 @@ async function processFixture(
     // Read resume
     let resumeText: string;
     try {
-        resumeText = await readFile(resumePath, "utf-8");
+        resumeText = resumeTextFromFixture(await readFile(resumePath, "utf-8"));
     } catch {
         return {
             fixture_id: fixture.id,
@@ -444,9 +447,12 @@ async function processFixture(
     }
 
     let output: unknown;
+    let modelOutput = initialResult.output;
+    let initialValidationError: string | undefined;
     try {
         output = validateResumeModelPayload(initialResult.output, resumeText, { forceGrounding: true });
     } catch (err: any) {
+        initialValidationError = err.message;
         if (!isRepairableResumeResponseError(err)) {
             return failedFixtureResult(
                 fixture,
@@ -461,7 +467,7 @@ async function processFixture(
             repairedResult = await runProviderGeneration(
                 buildResumeRepairMessages(messages, initialResult.raw, err),
                 providerMetrics,
-                providerConfig,
+                { ...providerConfig, reasoningEffort: resolveResumeRepairReasoningEffort(providerConfig.model, providerConfig.reasoningEffort) },
             );
         } catch (repairCallError: any) {
             return failedFixtureResult(
@@ -472,6 +478,7 @@ async function processFixture(
             );
         }
 
+        modelOutput = repairedResult.output;
         try {
             output = validateResumeModelPayload(repairedResult.output, resumeText, { forceGrounding: true });
         } catch (repairValidationError: any) {
@@ -552,7 +559,10 @@ async function processFixture(
         subscore_drifts: subscoreDrifts,
         evidence_flags: evidenceFlags.length > 0 ? evidenceFlags : undefined,
         ...aggregateProviderMetrics(providerMetrics),
-        raw_output: output
+        raw_output: output,
+        model_output: modelOutput,
+        normalization_changes: canonicalizeResumeReportEvidence(modelOutput, resumeText).changes,
+        initial_validation_error: initialValidationError,
     };
 
     // Run LLM-as-Judge if requested

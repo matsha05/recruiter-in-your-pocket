@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
         if (!jd || !meta) {
             return NextResponse.json(
-                { success: false, errorCode: 'INVALID_REQUEST', error: 'Missing jd or meta' },
+                { success: false, errorCode: 'INVALID_REQUEST', error: 'Could not read this posting. Refresh the job page and save it again.' },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
         if (saveError) {
             console.error('[Extension] Save job error:', saveError);
             return NextResponse.json(
-                { success: false, errorCode: 'SAVE_FAILED', error: 'Failed to save job' },
+                { success: false, errorCode: 'SAVE_FAILED', error: 'Could not save this job to your account. Try again.' },
                 { status: 500, headers: corsHeaders }
             );
         }
@@ -186,7 +186,7 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Capture JD error:', error);
         return NextResponse.json(
-            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error' },
+            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Could not save this job to your account. Try again.' },
             { status: 500, headers: corsHeaders }
         );
     }

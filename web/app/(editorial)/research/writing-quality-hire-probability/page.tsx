@@ -12,7 +12,7 @@ export default function WritingQualityHireProbabilityPage() {
         <ResearchArticle
             header={{
                 tag: "Writing quality",
-                title: "Clear writing changes how evidence is judged",
+                title: "Resume writing assistance increased hires in one experiment",
                 description: "A large field experiment found better outcomes when job seekers received writing assistance, even when their underlying experience did not change.",
                 lastUpdated: "December 2025",
                 readTime: "4 min read"
@@ -45,11 +45,11 @@ export default function WritingQualityHireProbabilityPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Clarity Pass",
+                        title: "Find the main point",
                         description: "We flag dense bullets that make the main point harder to find."
                     },
                     {
-                        title: "Rewrite Suggestions",
+                        title: "Suggested revisions",
                         description: "We propose edits that surface outcomes earlier in the line."
                     }
                 ]
@@ -75,23 +75,23 @@ export default function WritingQualityHireProbabilityPage() {
                 },
                 {
                     question: "Can AI rewriting replace human insight?",
-                    answer: "AI can improve clarity, but it cannot invent evidence. You still need real outcomes."
+                    answer: "It can help you explain your experience, but you need to check its suggestions against the facts. Reject details that are invented, misleading, or stronger than your actual contribution."
                 },
                 {
                     question: "What is the fastest way to improve clarity?",
-                    answer: "Start bullets with outcomes and remove filler phrases that delay the point."
+                    answer: "Start with the most useful detail: what you did or what changed. Remove phrases that repeat the role title or leave your responsibility unclear."
                 }
             ]}
         >
-            <h2 className="research-h2">Why clarity beats polish</h2>
+            <h2 className="research-h2">What the assistance helped employers see</h2>
             <p className="research-body mb-6">
-                Clear writing is useful when it makes your evidence easier to understand. That is different from making a weak claim sound elegant. The goal is not polish for its own sake. It is helping a reader find the ability and results that are already true.
+                The researchers suggest that clearer writing helped employers recognize candidates&apos; ability. That is an explanation of the result, not a finding that every kind of rewrite works equally well.
                 <Citation id="source-1">1</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
-                    title="Clarity Reveals Signal"
+                    title="Relevant experience is easier to understand"
                     desc={
                         <>
                             Better writing can help an employer recognize ability that the resume was obscuring.
@@ -100,8 +100,8 @@ export default function WritingQualityHireProbabilityPage() {
                     }
                 />
                 <ArticleInsight
-                    title="Polish Alone Does Not Close the Gap"
-                    desc="Elegant phrasing without proof does not move the decision."
+                    title="A rewrite still needs accurate facts"
+                    desc="Our advice: use wording that explains your actual experience. Do not add an achievement just because it makes a sentence sound stronger."
                 />
             </div>
 

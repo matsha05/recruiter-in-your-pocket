@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import Footer from "@/components/landing/Footer";
 import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 type ReceiptItem = {
   id: string;
@@ -57,7 +58,7 @@ export default function PurchaseRestoreClient() {
   const header = useMemo(() => {
     if (authLoading) return "Checking your account.";
     if (!signedIn) return "Sign in to restore your purchase.";
-    return "Put your access back where it belongs.";
+    return "Restore your purchase.";
   }, [authLoading, signedIn]);
 
   async function handleRestore() {
@@ -68,14 +69,15 @@ export default function PurchaseRestoreClient() {
       Analytics.track("billing_restore_requested", { source: "purchase_restore_page" });
       const res = await fetch("/api/billing/restore", { method: "POST" });
       const data = await res.json();
-      if (!data?.ok) throw new Error(data?.message || "Restore failed");
+      if (!data?.ok) throw new ClientActionError(data?.message, "We couldn’t restore your pass. Try again or contact support.");
       await refreshUser();
-      setRestoreMessage(data.message || "Restore completed.");
+      setRestoreMessage(data.message || "The purchase check is complete.");
       Analytics.track("billing_restore_succeeded", { restored: data.restored || 0 });
       toast.success(data.restored > 0 ? "Access restored" : "Access check complete");
     } catch (err: any) {
-      toast.error(err?.message || "Restore failed");
-      setRestoreMessage(err?.message || "Restore failed.");
+      const message = getClientActionError(err, "We couldn’t restore your pass. Try again or contact support.");
+      toast.error(message);
+      setRestoreMessage(message);
       setRestoreError(true);
     } finally {
       setIsRestoring(false);
@@ -91,10 +93,10 @@ export default function PurchaseRestoreClient() {
         body: JSON.stringify({ returnTo: "restore" }),
       });
       const data = await res.json();
-      if (!data?.ok || !data?.url) throw new Error(data?.message || "Unable to open billing portal");
+      if (!data?.ok || !data?.url) throw new ClientActionError(data?.message, "Stripe billing couldn’t open. Please try again.");
       window.location.href = data.url;
     } catch (err: any) {
-      toast.error(err?.message || "Unable to open billing portal");
+      toast.error(getClientActionError(err, "Stripe billing couldn’t open. Please try again."));
     } finally {
       setIsPortalLoading(false);
     }
@@ -106,7 +108,7 @@ export default function PurchaseRestoreClient() {
     try {
       const res = await fetch("/api/billing/receipts");
       const data = await res.json();
-      if (!data?.ok) throw new Error(data?.message || "Failed to load receipts");
+      if (!data?.ok) throw new ClientActionError(data?.message, "We couldn’t load your receipts. Please try again.");
       const nextReceipts = Array.isArray(data.receipts) ? data.receipts : [];
       setReceipts(nextReceipts);
       setReceiptsState("loaded");
@@ -114,7 +116,7 @@ export default function PurchaseRestoreClient() {
         ? "No receipts were found for this account. If you paid with another email, sign in with that email and restore access first."
         : null);
     } catch (err: any) {
-      const message = err?.message || "Failed to load receipts";
+      const message = getClientActionError(err, "We couldn’t load your receipts. Please try again.");
       setReceiptsState("error");
       setReceiptsMessage(message);
       toast.error(message);
@@ -134,7 +136,7 @@ export default function PurchaseRestoreClient() {
             <div>
               <p className="text-xs font-semibold uppercase riyp-track-012 text-brand">Billing help</p>
               <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
-                Use the same email address you used at checkout. We will check Stripe and repair the access record if it is missing.
+                Use the email address you used at checkout. We’ll check your payment with Stripe and restore any missing pass.
               </p>
             </div>
             <div>
@@ -145,7 +147,7 @@ export default function PurchaseRestoreClient() {
                 {header}
               </h1>
               <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">
-                Restore a completed purchase, open Stripe billing controls, or pull a receipt without running another report.
+                Find a missing pass, view receipts, or manage billing through Stripe.
               </p>
             </div>
           </header>
@@ -162,11 +164,11 @@ export default function PurchaseRestoreClient() {
           <div className="grid gap-8 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div className="text-sm leading-6 text-muted-foreground">
               {authLoading ? (
-                <p role="status">Checking your sign-in before showing billing controls.</p>
+                <p role="status">Checking which account you’re signed in to.</p>
               ) : signedIn ? (
                 <p>Signed in as <span className="font-semibold text-foreground">{user?.email}</span></p>
               ) : (
-                <p>Sign in first so we can attach the restored pass to the correct account.</p>
+                <p>Sign in with your checkout email so we can find your purchase.</p>
               )}
             </div>
 
@@ -183,7 +185,7 @@ export default function PurchaseRestoreClient() {
                       <Link href={signInHref}>Sign in <ArrowRight className="size-4" weight="bold" /></Link>
                     </Button>
                     <Button asChild variant="outline" size="lg">
-                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to the studio"}</Link>
+                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to workspace"}</Link>
                     </Button>
                   </>
                 ) : (
@@ -198,10 +200,10 @@ export default function PurchaseRestoreClient() {
                     </Button>
                     <Button type="button" variant="outline" size="lg" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
                       {isReceiptsLoading ? <CircleNotch className="size-4 animate-spin" weight="bold" /> : <Receipt className="size-4" weight="duotone" />}
-                      Load receipts
+                      View receipts
                     </Button>
                     <Button asChild variant="ghost" size="lg">
-                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to the studio"}</Link>
+                      <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to workspace"}</Link>
                     </Button>
                   </>
                 )}

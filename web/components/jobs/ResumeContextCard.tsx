@@ -15,8 +15,8 @@ import {
     X
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { InsightSparkleIcon } from "@/components/icons";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 // =============================================================================
 // TYPES
@@ -69,12 +69,12 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             if (data.success) {
                 setProfile(data.data);
             } else {
-                throw new Error(data.error || 'Could not load matching resume');
+                throw new ClientActionError(data.error, 'Could not load your matching resume. Please try again.');
             }
         } catch (error) {
             console.error("[ResumeContext] Fetch error:", error);
             setProfile(null);
-            setProfileError("Could not load your matching resume.");
+            setProfileError(getClientActionError(error, "Could not load your matching resume. Please try again."));
         } finally {
             setIsLoading(false);
         }
@@ -123,7 +123,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 const parseData = await parseRes.json();
 
                 if (!parseData.ok) {
-                    toast.error(parseData.message || "Failed to parse file");
+                    toast.error(new ClientActionError(parseData.message, "We couldn't read this file. Try a different PDF, DOCX, or TXT file.").message);
                     setFileName(null);
                     setIsSaving(false);
                     return;
@@ -148,7 +148,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
 
             const saveData = await saveRes.json();
             if (saveData.success) {
-                toast.success(`Resume indexed! ${saveData.data.skillsCount} skills detected.`);
+                toast.success(`Resume saved. ${saveData.data.skillsCount} skills identified.`);
                 setProfile({
                     hasResume: true,
                     resumePreview: saveData.data.resumePreview,
@@ -159,11 +159,11 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 });
                 onResumeUpdated?.();
             } else {
-                throw new Error(saveData.error || "Failed to save");
+                throw new ClientActionError(saveData.error, "We couldn't save your resume. Please upload it again.");
             }
         } catch (error: any) {
             console.error("[ResumeContext] Error:", error);
-            toast.error(error.message || "Failed to process resume");
+            toast.error(getClientActionError(error, "We couldn't save your resume. Please upload it again."));
         } finally {
             setFileName(null);
             setIsSaving(false);
@@ -194,23 +194,26 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     };
 
     const handleRename = async () => {
-        if (!renameValue.trim() || !profile) return;
+        if (!renameValue.trim() || !profile || isSaving) return;
+        const filename = renameValue.trim();
         setIsSaving(true);
         try {
             const res = await fetch('/api/user/default-resume', {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ filename: renameValue.trim() })
+                body: JSON.stringify({ filename })
             });
-            if (res.ok) {
-                setProfile(prev => prev ? { ...prev, resumeFilename: renameValue.trim() } : prev);
-                toast.success('Resume renamed');
+            const result = await res.json().catch(() => null);
+            if (!res.ok || !result?.success) {
+                throw new Error('Resume rename was not confirmed');
             }
+            setProfile(prev => prev ? { ...prev, resumeFilename: filename } : prev);
+            setIsRenaming(false);
+            toast.success('Resume renamed');
         } catch {
-            toast.error('Failed to rename');
+            toast.error("We couldn't rename your resume. Please try again.");
         } finally {
             setIsSaving(false);
-            setIsRenaming(false);
         }
     };
 
@@ -257,6 +260,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                         <input
                                             type="text"
                                             value={renameValue}
+                                            disabled={isSaving}
                                             onChange={(e) => setRenameValue(e.target.value)}
                                             onKeyDown={(e) => {
                                                 if (e.key === 'Enter') handleRename();
@@ -285,7 +289,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                 ) : (
                                     <>
                                         <span className="font-medium text-foreground text-sm">
-                                            {profile.resumeFilename || 'Resume Locked In'}
+                                            {profile.resumeFilename || 'Default resume saved'}
                                         </span>
                                         <button type="button"
                                             onClick={() => {
@@ -307,14 +311,8 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                             <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
                                 <span className="flex items-center gap-1">
                                     <Target className="size-3" />
-                                    {profile.skillsCount} skills
+                                    {profile.skillsCount} skills identified
                                 </span>
-                                {profile.hasEmbedding && (
-                                    <span className="flex items-center gap-1 text-warning-foreground">
-                                        <InsightSparkleIcon className="size-3" />
-                                        Semantic matching
-                                    </span>
-                                )}
                                 <span>Updated {formatDate(profile.updatedAt || "")}</span>
                             </div>
                         </div>
@@ -355,9 +353,9 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                             <Upload className="size-4 text-muted-foreground" />
                         </div>
                         <div>
-                            <p className="text-sm font-medium text-foreground">Sign in to set your matching resume</p>
+                            <p className="text-sm font-medium text-foreground">Sign in to save your default resume</p>
                             <p className="mt-1 text-xs text-muted-foreground">
-                                We use your saved default resume to calculate match scores next to each role.
+                                We compare this resume with the jobs you save.
                             </p>
                         </div>
                     </div>
@@ -403,7 +401,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 <div className="flex items-center gap-3">
                     <Loader2 className="size-5 text-brand animate-spin" />
                     <div>
-                        <p className="text-sm font-medium text-foreground">Indexing skills…</p>
+                        <p className="text-sm font-medium text-foreground">Saving your resume…</p>
                         {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
                     </div>
                 </div>
@@ -417,7 +415,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                             Upload resume for matching
                         </p>
                         <p className="text-xs text-muted-foreground">
-                            PDF, DOCX, or TXT • Get instant match scores
+                            PDF, DOCX, or TXT, up to 4 MB
                         </p>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   const tabs: { id: TabId; label: string; icon: ElementType }[] = [
     { id: "overview", label: "Overview", icon: InsightSparkleIcon },
     { id: "job-description", label: "Job Description", icon: FileText },
-    { id: "analysis", label: "Full Analysis", icon: CheckCircle2 }
+    { id: "analysis", label: "Skills and gaps", icon: CheckCircle2 }
   ];
 
   const selectTab = (id: TabId) => {
@@ -128,7 +128,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
           <div id="job-panel-analysis" role="tabpanel" aria-labelledby="job-tab-analysis" tabIndex={0} className="gap-y-6 outline-none">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">What you already cover</h3>
+                <h3 className="font-medium text-foreground mb-4">Skills found in your resume</h3>
                 {job.matchedSkills.length > 0 ? (
                   <div className="gap-y-3">
                     {job.matchedSkills.slice(0, 12).map((skill) => (
@@ -146,7 +146,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               </div>
 
               <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">Missing or underplayed</h3>
+                <h3 className="font-medium text-foreground mb-4">Skills not found in your resume</h3>
                 {job.missingSkills.length > 0 ? (
                   <div className="gap-y-3">
                     {job.missingSkills.slice(0, 12).map((skill) => (
@@ -159,14 +159,14 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-muted-foreground">No missing skills  -  great match!</p>
+                  <p className="text-sm text-muted-foreground">No skill gaps listed.</p>
                 )}
               </div>
             </div>
 
             {job.topGaps.length > 0 && (
               <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">Priority Gaps to Address</h3>
+                <h3 className="font-medium text-foreground mb-4">Details to check before applying</h3>
                 <ul className="gap-y-3">
                   {job.topGaps.map((gap, i) => (
                     <li key={gap} className="flex items-start gap-3">
@@ -217,9 +217,9 @@ function RecruiterFitSummary({
     <div className="border border-border rounded p-6 bg-card gap-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-medium text-foreground">Recruiter Fit Summary</h3>
+          <h3 className="font-medium text-foreground">Resume match</h3>
           <p className="text-sm text-muted-foreground">
-            How a recruiter would view your resume against this role
+            How your resume compares with the job description
           </p>
         </div>
         <div
@@ -253,7 +253,7 @@ function RecruiterFitSummary({
         <div className="gap-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
             <CheckCircle2 className="size-4 text-success" />
-            Skills recruiters will see
+            Skills found in your resume
           </h4>
           {matchedSkills.length > 0 ? (
             <ul className="gap-y-2">
@@ -282,7 +282,7 @@ function RecruiterFitSummary({
         <div className="gap-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
             <XCircle className="size-4 text-destructive" />
-            Gaps to address
+            Details to check
           </h4>
           {topGaps.length > 0 || missingSkills.length > 0 ? (
             <ul className="gap-y-2">
@@ -295,12 +295,12 @@ function RecruiterFitSummary({
               {missingSkills.slice(0, Math.max(0, 3 - topGaps.length)).map((skill) => (
                 <li key={skill} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-destructive mt-1">•</span>
-                  Missing: {skill}
+                  Not found in your resume: {skill}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-sm text-muted-foreground/70 italic">Great match! No major gaps detected</p>
+            <p className="text-sm text-muted-foreground/70 italic">No gaps listed. Check the job description for requirements this comparison may have missed.</p>
           )}
         </div>
       </div>
@@ -313,40 +313,40 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | 
   const gapCount = job.topGaps.length;
   const hasJobText = Boolean(job.job_description_text?.trim());
   const readinessLabel = score == null
-    ? "Run a role-specific briefing"
+    ? "No match score yet"
     : score >= 75
-      ? "Ready to tailor"
+      ? "Higher match score"
       : score >= 60
-        ? "Needs a focused pass"
-        : "High-risk stretch";
+        ? "Moderate match score"
+        : "Lower match score";
 
   return (
     <div className="rounded border border-brand/20 bg-brand/[0.045] p-5">
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Application readiness
+            Resume comparison
           </p>
           <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-foreground">
             {readinessLabel}
           </h3>
         </div>
         <span className="rounded bg-background/80 px-2 py-1 text-xs font-semibold tabular-nums text-brand">
-          {score != null ? `${score}%` : "No score"}
+          {score != null ? `${score}/100` : "No score"}
         </span>
       </div>
 
       <div className="gap-y-3 text-sm">
-        <ReadinessRow complete={hasJobText} label="Job description captured" />
-        <ReadinessRow complete={score != null} label={score == null ? "Quick fit score not run" : "Quick fit score available"} />
-        <ReadinessRow complete={missingCount + gapCount === 0} label={missingCount + gapCount > 0 ? `${missingCount + gapCount} gaps to resolve` : "No priority gaps detected"} />
+        <ReadinessRow complete={hasJobText} label={hasJobText ? "Job description saved" : "Job description not saved"} />
+        <ReadinessRow complete={score != null} label={score == null ? "Match score unavailable" : "Match score available"} />
+        <ReadinessRow complete={missingCount + gapCount === 0} label={missingCount + gapCount > 0 ? `${missingCount + gapCount} details to check` : "No gaps listed"} />
       </div>
 
       <Link
         href={`/workspace?job=${job.id}`}
         className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
       >
-        Run role-specific briefing
+        Start a report
         <ArrowRight className="size-4" />
       </Link>
     </div>
@@ -369,19 +369,19 @@ function ReadinessRow({ complete, label }: { complete: boolean; label: string })
 function NextBestActions({ jobId, onReviewJobDescription }: { jobId: string; onReviewJobDescription: () => void }) {
   return (
     <div className="border border-border rounded p-6 bg-card gap-y-4">
-      <h3 className="font-medium text-foreground">Next best actions</h3>
+      <h3 className="font-medium text-foreground">What to do next</h3>
 
       <div className="gap-y-2">
         <ActionButton
           icon={FileText}
-          label="Role-specific brief"
-          description="See the exact edits for this job"
+          label="Start a report"
+          description="Get resume feedback for this job"
           href={`/workspace?job=${jobId}`}
         />
         <ActionButton
           icon={InsightSparkleIcon}
           label="Review job description"
-          description="Use the analysis tab to see present and missing signals"
+          description="Read the requirements and responsibilities"
           onClick={onReviewJobDescription}
         />
       </div>

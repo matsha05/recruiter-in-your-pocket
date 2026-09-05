@@ -14,7 +14,7 @@ export function generateMetadata(): Metadata {
 
     return {
         title: 'Jobs — Recruiter in Your Pocket',
-        description: 'Track and compare jobs with recruiter-grade match insights.',
+        description: 'Save job descriptions, compare them with your resume, and track your applications.',
     };
 }
 

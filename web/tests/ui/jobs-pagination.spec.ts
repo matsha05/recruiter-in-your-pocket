@@ -66,6 +66,7 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
     absWorkingDir: WEB_ROOT,
     stdin: {
       contents: `import React from "react";
+        import {Toaster} from "sonner";
         import {createRoot} from "react-dom/client";
         import {TestAuthProvider} from "@/components/providers/AuthProvider";
         import Component from "@/components/jobs/${component}";
@@ -74,7 +75,7 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
           window.__jobsDetailHarness = {setJobId};
           return <Component jobId={jobId} />;
         }
-        createRoot(document.getElementById("root")).render(<TestAuthProvider>${component === 'JobsClient' ? '<Component />' : '<DetailHarness />'}</TestAuthProvider>);`,
+        createRoot(document.getElementById("root")).render(<TestAuthProvider>${component === 'JobsClient' ? '<Component />' : '<DetailHarness />'}<Toaster /></TestAuthProvider>);`,
       loader: "tsx",
       resolveDir: WEB_ROOT,
       sourcefile: "jobs-pagination-harness.tsx",
@@ -450,6 +451,47 @@ test.describe("saved jobs pagination", () => {
     await page.route('**/api/extension/saved-jobs/*', (route) => route.fulfill({ status: 404, json: { success: false } }));
     await page.goto(`${HARNESS_ORIGIN}/jobs`);
     await expect(page.getByRole('alert')).toContainText('This saved job is no longer available.');
-    await expect(page.getByRole('link', { name: 'Open studio instead', exact: true })).toHaveAttribute('href', '/workspace');
+    await expect(page.getByRole('link', { name: 'Start a report', exact: true })).toHaveAttribute('href', '/workspace');
   });
+
+  test("failed resume rename keeps the draft open and succeeds on retry", async ({ page }) => {
+    await installJobsHarness(page);
+    let renameAttempts = 0;
+    await page.route('**/api/extension/saved-jobs*', (route) => fulfillPage(route, [], null));
+    await page.route('**/api/user/default-resume', (route) => {
+      if (route.request().method() === 'PATCH') {
+        expect(route.request().postDataJSON()).toEqual({ filename: 'Updated resume.pdf' });
+        renameAttempts += 1;
+        return route.fulfill(renameAttempts === 1
+          ? { status: 500, json: { success: false, error: 'Internal server error' } }
+          : { json: { success: true } });
+      }
+      return route.fulfill({ json: { success: true, data: {
+        hasResume: true, resumeFilename: 'Original resume.pdf', skillsCount: 4,
+        updatedAt: '2026-09-04T12:00:00Z',
+      } } });
+    });
+    await page.goto(`${HARNESS_ORIGIN}/jobs`);
+    await page.getByRole('button', { name: 'Rename resume', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Resume filename', exact: true }).fill('Updated resume.pdf');
+    await page.getByRole('button', { name: 'Save resume filename', exact: true }).click();
+    await expect(page.getByText("We couldn't rename your resume. Please try again.", { exact: true })).toBeVisible();
+    await expect(page.getByRole('textbox', { name: 'Resume filename', exact: true })).toHaveValue('Updated resume.pdf');
+    await page.getByRole('button', { name: 'Save resume filename', exact: true }).click();
+    await expect(page.getByRole('textbox', { name: 'Resume filename', exact: true })).toHaveCount(0);
+    await expect(page.getByText('Updated resume.pdf', { exact: true })).toBeVisible();
+    expect(renameAttempts).toBe(2);
+  });
+  for (const failure of ['network', 'malformed'] as const) {
+    test(`${failure} failure shows a useful saved-jobs error`, async ({ page }) => {
+      await installJobsHarness(page);
+      await page.route('**/api/extension/saved-jobs*', (route) => failure === 'network'
+        ? route.abort('failed')
+        : route.fulfill({ contentType: 'application/json', body: '<invalid-json>' }));
+      await page.goto(`${HARNESS_ORIGIN}/jobs`);
+      await expect(page.getByRole('alert')).toContainText('We could not load your saved jobs. Please try again.');
+      await expect(page.getByRole('alert')).not.toContainText(/Failed to fetch|Unexpected token|JSON|TypeError/);
+      await expect(page.getByRole('button', { name: 'Try again', exact: true })).toBeVisible();
+    });
+  }
 });

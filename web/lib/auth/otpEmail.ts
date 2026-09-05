@@ -56,7 +56,7 @@ function htmlEmail(otp: string) {
               <td style="padding:32px 32px 12px;">
                 <p style="margin:0;color:#00738f;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Recruiter in Your Pocket</p>
                 <h1 style="margin:18px 0 10px;font-size:30px;line-height:1.08;letter-spacing:-1px;">Your sign-in code</h1>
-                <p style="margin:0;color:#52606a;font-size:16px;line-height:1.55;">Enter this code in the open sign-in window. It expires shortly and can only be used once.</p>
+                <p style="margin:0;color:#52606a;font-size:16px;line-height:1.55;">Enter this code on the sign-in screen. It expires shortly and can only be used once.</p>
               </td>
             </tr>
             <tr>
@@ -83,8 +83,9 @@ function textEmail(otp: string) {
     "",
     `Your sign-in code is: ${otp}`,
     "",
-    "Enter it in the open sign-in window. It expires shortly and can only be used once.",
+    "Enter it on the sign-in screen. It expires shortly and can only be used once.",
     "If you did not request this, you can safely ignore this email.",
+    "Recruiter in Your Pocket will never ask you to send this code to anyone.",
   ].join("\n");
 }
 

@@ -4,6 +4,7 @@ import { useEffect, useRef, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
+import { getClientActionError } from "@/lib/client-action-error";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 
@@ -47,7 +48,7 @@ export function useCheckoutReportRestoration(input: {
     }).catch((error: any) => {
       saveStarted.current = false;
       toast.error("Your report is restored but not saved yet", {
-        description: error?.message || "Try exporting again to retry the secure save.",
+        description: getClientActionError(error, "Try exporting the report again to retry saving it."),
       });
     });
   }, [user, setReport]);

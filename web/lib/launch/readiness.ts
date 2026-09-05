@@ -621,47 +621,57 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
 
   const incidents: string[] = [];
   if (gateStatus("quality") === "fail") {
-    incidents.push("The review studio remains limited while report quality is being calibrated against the launch bar.");
+    incidents.push("Report configuration checks need attention. If you cannot generate a report, contact support.");
   }
   if (gateStatus("auth") === "fail") {
-    incidents.push("Account sign-in, saved history, or secure return flows may be temporarily limited.");
+    incidents.push("Account configuration checks need attention. Sign-in or saved reports may be affected.");
   }
   if (gateStatus("billing") === "fail") {
-    incidents.push("Checkout, restore, or receipt access may be temporarily limited.");
+    incidents.push("Billing configuration checks need attention. Checkout, purchase restoration, or receipts may be affected.");
   }
   if (gateStatus("extension") === "fail") {
-    incidents.push("Extension sync may be limited while local capture and studio review remain available.");
+    incidents.push("Extension configuration checks need attention. Saved jobs may not sync to your account.");
   }
   if (gateStatus("trust") === "fail") {
-    incidents.push("Support or operational safeguards are not fully verified for launch traffic.");
+    incidents.push("Some support, privacy, or monitoring requirements could not be verified.");
   }
 
   const services: PublicStatusSnapshot["services"] = [
     {
-      name: "Review studio",
+      name: "Resume reports",
       status: toPublicStatus(gateStatus("quality")),
-      message: "Required review assets and configuration are present; live availability is not measured here.",
+      message: gateStatus("quality") === "fail"
+        ? "Some required report settings or quality checks need attention."
+        : "Required report settings and quality checks are in place.",
     },
     {
-      name: "Account and saved history",
+      name: "Sign-in and saved reports",
       status: toPublicStatus(gateStatus("auth")),
-      message: "Required account configuration is present; live availability is not measured here.",
+      message: gateStatus("auth") === "fail"
+        ? "Some required sign-in or account settings need attention."
+        : "Required sign-in and account settings are in place.",
     },
     {
-      name: "Billing and restore",
+      name: "Payments and purchase restoration",
       status: toPublicStatus(gateStatus("billing")),
-      message: "Required billing configuration is present when paid access is enabled.",
+      message: gateStatus("billing") === "fail"
+        ? "Some required payment or purchase restoration settings need attention."
+        : "Required payment and purchase restoration settings are in place.",
     },
     {
-      name: "Operational safeguards",
+      name: "Privacy, support, and monitoring",
       status: toPublicStatus(gateStatus("trust")),
-      message: "Required privacy, support, cost-control, and monitoring safeguards are configured only after verification.",
+      message: gateStatus("trust") === "fail"
+        ? "Some required privacy, support, usage-limit, or monitoring checks need attention."
+        : "Required privacy, support, usage-limit, and monitoring checks are in place.",
     },
     ...(launchFlags.extensionSync
       ? [{
-          name: "Extension-assisted workflows",
+          name: "Chrome extension sync",
           status: toPublicStatus(gateStatus("extension")),
-          message: "Extension sync reports configured status only when the extension is enabled.",
+          message: gateStatus("extension") === "fail"
+            ? "Some required extension sync settings need attention."
+            : "Extension sync is enabled and its required settings are in place.",
         }]
       : []),
   ];
@@ -672,11 +682,11 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     generatedAt: snapshot.generatedAt,
     summary: {
       status: ok ? "configured" : "limited",
-      title: ok ? "Core launch checks configured" : "Some features are limited",
+      title: ok ? "Required settings are in place" : "Some settings need attention",
       message:
         ok
-          ? "This page reports configuration readiness, not real-time uptime. Contact support if a workflow is unavailable."
-          : "One or more required configurations are incomplete. This page does not provide real-time uptime monitoring.",
+          ? "The configuration checks passed. This does not confirm that every feature is working right now. Contact support if you need help."
+          : "One or more configuration checks failed. See the details below. These checks do not measure live uptime.",
     },
     services,
     incidents,

@@ -36,6 +36,7 @@ import {
   resolveOpenAIModel,
   resolveProductionOpenAIRetryLimit,
   resolveReasoningEffortForMode,
+  resolveResumeRepairReasoningEffort,
 } from "../lib/llm/model-config";
 
 type JsonSchema = {
@@ -202,6 +203,24 @@ assert.deepEqual(
   [],
   "existing-result edits should remain actionable after copy naturalization",
 );
+for (const instruction of [
+  "In the customer-complaint bullet, name the problems you handled and the decisions you could make without a manager.",
+  "Describe the deliverables you created for the launch.",
+  "Explain which departments used the onboarding process.",
+]) {
+  assert.deepEqual(findNonActionableFix(instruction), [], "specific qualitative details are actionable without invented metrics");
+}
+assert.notDeepEqual(findNonActionableFix("Explain your value more clearly."), [], "general encouragement is not a concrete fact request");
+const qualitativeInstruction = "In the customer-complaint bullet, name the problems you handled and the decisions you could make without a manager.";
+const qualitativeSource = "- Resolved customer complaints and processed returns.";
+const qualitativeReport = canonicalizeResumeReportEvidence({ top_fixes: [{
+  fix: qualitativeInstruction,
+  why: "This would explain what you handled yourself and when you needed a manager.",
+  evidence: { excerpt: qualitativeSource, section: "Work Experience" },
+  section_ref: "Work Experience",
+}] }, qualitativeSource);
+assert.equal(qualitativeReport.report.top_fixes[0].fix, qualitativeInstruction,
+  "useful requests for decisions must survive finalization instead of becoming generic metric placeholders");
 assert.deepEqual(
   findNonActionableFix("Replace the generic opening with [target product lane], [target role level], and one verified result."),
   [],
@@ -246,6 +265,7 @@ assert.equal(
 );
 
 import "./llm-canonicalizer-contract.test";
+import "./report-canonical-copy.test";
 import "./llm-calibration-contract.test";
 
 const contributionGapLine = "- I collaborated on Agile teams serving 50K+ users, improving satisfaction by 15%.";
@@ -389,7 +409,7 @@ assert.doesNotMatch(
   /getChatCompletionTuning\(/,
   "the production OpenAI backend must not retain an uncapped tuning path",
 );
-assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5.6-luna");
+assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5.6-terra");
 assert.equal(resolveReasoningEffortForMode("resume", "gpt-5-nano"), "low");
 
 const nanoUsage = normalizeTokenUsage({
@@ -478,3 +498,11 @@ assert.ok(
 );
 
 console.log("llm-response-contract tests passed");
+
+assert.equal(resolveResumeRepairReasoningEffort("gpt-5.6-luna", "low"), "medium");
+assert.equal(resolveResumeRepairReasoningEffort("gpt-5.6-luna", "high"), "high", "repair must not reduce a stronger configured effort");
+
+assert.deepEqual(findMechanicalCopyIssues({ summary: "The roles include $180M in annual sales and $35M in annual sales." }), [],
+  "a shared unit on two different measurements is not repetitive prose");
+assert.ok(findMechanicalCopyIssues({ summary: "The resume needs more detail, because it needs more detail about the work." }).length > 0,
+  "genuine repeated prose must still be detected");

@@ -21,18 +21,18 @@ const storeUrl = getChromeWebStoreUrl();
 const flowSteps = [
   {
     number: "01",
-    title: "Capture the role in place",
-    copy: "On supported LinkedIn and Indeed job pages, you choose when RIYP reads the posting and saves it.",
+    title: "Save a job while you browse",
+    copy: "Choose Save job on a supported LinkedIn or Indeed page. RIYP reads the posting when you ask it to.",
   },
   {
     number: "02",
-    title: "Keep the decision context",
-    copy: "Company, title, source, and posting text stay attached to the role so you can compare it later without rebuilding the brief.",
+    title: "Return to the details later",
+    copy: "The saved job includes the company, title, link, and posting text. You can look through your saved jobs from the extension.",
   },
   {
     number: "03",
-    title: "Reopen it in the studio",
-    copy: "When a role is worth pursuing, carry the same context into a recruiter-grade resume review and focused rewrite pass.",
+    title: "Check your resume against the job",
+    copy: "Open a saved job in your workspace to get a resume report for that role. The job description is already there.",
   },
 ] as const;
 
@@ -44,13 +44,13 @@ const trustPoints = [
   },
   {
     icon: ShieldCheck,
-    title: "Capture is always initiated by you",
+    title: "You choose what to save",
     copy: "There is no hidden scraping, automatic saving, or background job collection.",
   },
   {
     icon: LockKey,
     title: "Account sync is optional",
-    copy: "Local capture works before sign-in. Sign in only when you want history across devices.",
+    copy: "Sign in before saving to sync jobs to your account. Jobs saved while signed out stay in this browser.",
   },
 ] as const;
 
@@ -59,7 +59,7 @@ export default function ExtensionPageClient() {
   const primaryHref = installReady ? storeUrl : "#preview";
   const primaryLabel = installReady
     ? extensionStoreContent.page.primaryCta
-    : "See the product flow";
+    : "See how it works";
 
   return (
     <>
@@ -74,11 +74,11 @@ export default function ExtensionPageClient() {
                 {extensionStoreContent.page.eyebrow}
               </p>
               <h1 className="mt-7 max-w-[11ch] font-display text-[clamp(3.25rem,7.4vw,6.5rem)] font-semibold leading-[0.88] tracking-[-0.055em] riyp-stretch-91">
-                Save the role. Keep your momentum.
+                Save a job. Come back to it later.
               </h1>
               <p className="mt-8 max-w-[34rem] text-lg leading-8 text-muted-foreground">
-                Capture a supported job posting while it is in front of you, then
-                reopen the same context in RIYP when the role deserves a deeper pass.
+                Save a LinkedIn or Indeed job posting while you browse. Open it in
+                RIYP when you want to check your resume against the role.
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -92,15 +92,14 @@ export default function ExtensionPageClient() {
                   <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
                 </Link>
                 <Link href="/privacy" className="landing-btn-secondary">
-                  Read the privacy boundary
+                  Read the privacy policy
                 </Link>
               </div>
 
               {!installReady ? (
                 <p className="mt-5 max-w-[34rem] text-sm leading-6 text-muted-foreground">
-                  Store review is still pending. The working product flow and its
-                  permissions are shown below; installation stays unavailable until
-                  the public listing is approved.
+                  The extension is not available to install yet. You can see how it
+                  works below, or paste a job description into your workspace now.
                 </p>
               ) : null}
             </div>
@@ -108,15 +107,15 @@ export default function ExtensionPageClient() {
             <figure id="preview" className="border border-line bg-background p-2 md:p-3">
               <Image
                 src="/assets/chrome-web-store/capture-context.png"
-                alt="RIYP extension on a supported LinkedIn role, showing an explicit Save this job action and optional studio handoff"
+                alt="RIYP extension on a LinkedIn job page with a button for saving the job"
                 width={1280}
                 height={800}
                 priority
                 className="h-auto w-full"
               />
               <figcaption className="flex flex-col gap-2 border-t border-line px-3 py-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-                <span>Actual extension capture flow</span>
-                <span className="font-medium text-foreground">User-initiated. Purpose-bound. Reopenable.</span>
+                <span>Saving a job from LinkedIn</span>
+                <span className="font-medium text-foreground">Saved only when you choose</span>
               </figcaption>
             </figure>
           </div>
@@ -137,9 +136,9 @@ export default function ExtensionPageClient() {
           <div className="mx-auto max-w-[var(--page-max)]">
             <div className="grid gap-10 border-t border-line pt-6 lg:grid-cols-[0.36fr_0.64fr]">
               <div>
-                <p className="editorial-kicker text-brand">One continuous workflow</p>
+                <p className="editorial-kicker text-brand">How it works</p>
                 <h2 className="mt-6 max-w-[9ch] font-display text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[0.94] tracking-[-0.045em] riyp-stretch-91">
-                  Capture here. Decide there.
+                  From job posting to resume report.
                 </h2>
               </div>
               <div className="border-t border-line">
@@ -165,19 +164,19 @@ export default function ExtensionPageClient() {
                   className="h-auto w-full"
                 />
                 <figcaption className="border-t border-line px-3 py-4 text-sm text-muted-foreground">
-                  Saved roles stay lightweight until one earns a deeper review.
+                  Browse saved jobs in the extension and remove any you no longer want.
                 </figcaption>
               </figure>
               <figure className="border border-line bg-background p-2">
                 <Image
                   src="/assets/chrome-web-store/workspace-return.png"
-                  alt="A saved extension role reopened in the RIYP studio with match context and next steps"
+                  alt="A saved job open in the RIYP workspace with its job description and resume report options"
                   width={1280}
                   height={800}
                   className="h-auto w-full"
                 />
                 <figcaption className="border-t border-line px-3 py-4 text-sm text-muted-foreground">
-                  The studio reuses the captured context instead of asking you to start over.
+                  Open a saved job in your workspace with the job description already filled in.
                 </figcaption>
               </figure>
             </div>
@@ -187,9 +186,9 @@ export default function ExtensionPageClient() {
         <section className="border-t border-line bg-paper-muted px-5 py-20 md:px-8 md:py-24">
           <div className="mx-auto grid max-w-[var(--page-max)] gap-12 lg:grid-cols-[0.42fr_0.58fr]">
             <div>
-              <p className="editorial-kicker text-brand">The access boundary</p>
+              <p className="editorial-kicker text-brand">Permissions and privacy</p>
               <h2 className="mt-6 max-w-[11ch] font-display text-[clamp(2.5rem,4.8vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.045em] riyp-stretch-91">
-                Narrow by design.
+                What the extension can read.
               </h2>
               <p className="mt-6 max-w-[34rem] text-base leading-8 text-muted-foreground">
                 {extensionDisclosureMessage}

@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
 
     if (!payload) {
       const res = NextResponse.json(
-        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "This report needs to be rerun before it can be exported safely." },
+        { ok: false, errorCode: "UNTRUSTED_REPORT", message: "We could not verify this saved report for export. Run a new report while signed in, or contact support." },
         { status: 409 }
       );
       res.headers.set("x-request-id", request_id);
@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
     const message =
       typeof error?.message === "string" && (error.message.includes("timeout") || error.message.includes("Timeout"))
         ? "PDF took too long to generate. Try again."
-        : "Failed to generate PDF";
+        : "Could not create your PDF. Try exporting again.";
 
     logError({
       msg: "http.request.completed",

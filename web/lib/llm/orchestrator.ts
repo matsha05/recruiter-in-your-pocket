@@ -31,6 +31,7 @@ export async function runJson<T>({
   schema_version,
   messages,
   signal,
+  reasoning_effort,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -40,6 +41,7 @@ export async function runJson<T>({
   schema_version: string;
   messages: Messages;
   signal?: AbortSignal;
+  reasoning_effort?: ReasoningEffort;
 }): Promise<{ parsed: T; raw: string; telemetry: LlmTelemetry }> {
   const startedAt = Date.now();
   logInfo({
@@ -51,7 +53,7 @@ export async function runJson<T>({
   });
 
   try {
-    const data = await callOpenAIChat(messages, mode, model, { signal });
+    const data = await callOpenAIChat(messages, mode, model, { signal, reasoningEffort: reasoning_effort });
     const raw = data?.choices?.[0]?.message?.content;
     const parsed = extractJsonFromText(raw) as T;
 

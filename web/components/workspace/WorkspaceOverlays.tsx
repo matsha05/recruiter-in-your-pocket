@@ -1,5 +1,7 @@
 "use client";
 
+import { getClientActionError } from "@/lib/client-action-error";
+
 import AuthModal from "@/components/shared/AuthModal";
 import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
@@ -66,7 +68,7 @@ export default function WorkspaceOverlays(props: {
           try {
             await props.saveReportForCurrentUser(props.pendingReportForSave);
           } catch (error: any) {
-            toast.error(error?.message || "Failed to save report");
+            toast.error(getClientActionError(error, "This report couldn’t be saved. Keep this tab open and contact support for help."));
           }
         }
         props.setIsAuthOpen(false);

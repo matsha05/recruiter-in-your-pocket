@@ -18,7 +18,7 @@ export function generateMetadata(): Metadata {
   return {
     title: "Chrome Extension",
     description:
-      "Install the RIYP Chrome extension to save supported job postings, keep saved roles close, and open the full report when you need it.",
+      "Save LinkedIn and Indeed job postings with the RIYP Chrome extension, then check your resume against a saved role.",
     robots: {
       index: publicListingReady,
       follow: publicListingReady,

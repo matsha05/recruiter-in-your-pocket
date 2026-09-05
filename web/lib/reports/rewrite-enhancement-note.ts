@@ -1,6 +1,6 @@
 import { createElement } from "react";
 
-export function RewriteEnhancementNote({ note, className }: { note?: string; className?: string }) {
+export function RewriteEnhancementNote({ note, className, label = "Before you use this" }: { note?: string; className?: string; label?: string }) {
   const normalized = note?.trim();
   if (!normalized) return null;
 
@@ -13,7 +13,7 @@ export function RewriteEnhancementNote({ note, className }: { note?: string; cla
     createElement(
       "p",
       { className: "text-[11px] font-semibold uppercase riyp-track-015 text-brand" },
-      "Why this is stronger",
+      label,
     ),
     createElement(
       "p",

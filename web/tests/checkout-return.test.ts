@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import Module from "node:module";
 import path from "node:path";
+import { getInitialUnlockState, transitionUnlockState } from "../lib/billing/unlockStateMachine";
 import {
   getCheckoutPricingHref,
   getCheckoutRestoreHref,
@@ -63,6 +64,15 @@ const invalidDestinations: Array<{ label: string; input: unknown }> = [
 ];
 
 async function run() {
+  const checking = getInitialUnlockState("cs_test_unconfirmed");
+  const disconnected = transitionUnlockState(checking, { type: "network_error" });
+  const timedOut = transitionUnlockState(disconnected, { type: "timeout" });
+  assert.equal(timedOut.status, "error");
+  assert.doesNotMatch(timedOut.message, /payment succeeded|payment received|purchase confirmed/i,
+    "A timeout without payment confirmation must not tell the customer they paid");
+  assert.match(timedOut.message, /receipt.*restore access.*before paying again/i,
+    "Unconfirmed purchases need a recovery path that avoids accidental repeat payment");
+
   for (const candidate of [returnTo, otherReturnTo, `/workspace?revision=${reportId.toUpperCase()}`]) {
     assert.equal(normalizeCheckoutReturnTo(candidate), candidate, "an exact saved-report revision path is retained");
     assert.equal(getCheckoutPricingHref(candidate), `/pricing?returnTo=${encodeURIComponent(candidate)}`);

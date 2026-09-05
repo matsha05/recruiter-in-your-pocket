@@ -50,8 +50,8 @@ export default function SpellingErrorsPage() {
                         description: "Your report is not a spell-checker. Use a dedicated spelling and consistency check after the content review."
                     },
                     {
-                        title: "No catastrophe language",
-                        description: "One typo is worth fixing. It is not evidence that your whole application is doomed."
+                        title: "Keep one typo in perspective",
+                        description: "Fix an error when you find it. This study did not test a single typo or show that it automatically causes rejection."
                     }
                 ]
             }}
@@ -80,7 +80,7 @@ export default function SpellingErrorsPage() {
                 },
                 {
                     question: "What is the fastest fix?",
-                    answer: "Run a dedicated error pass, then fix spacing, punctuation, and tense consistency."
+                    answer: "Run a spelling check, then read the final document for spacing, punctuation, and inconsistent verb tenses."
                 }
             ]}
         >

@@ -35,7 +35,7 @@ export async function captureJob(jd: string, meta: JobMeta): Promise<SavedJob> {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Failed to capture job');
+        throw new Error(data.error || 'Could not save this job to your account. Try again.');
     }
 
     return { ...data.data, syncState: 'synced', ownerUserId: data.userId };
@@ -54,7 +54,7 @@ export async function getSavedJobs(): Promise<{ jobs: SavedJob[]; userId?: strin
     const data = await response.json();
 
     if (!response.ok || !data.success || !Array.isArray(data.jobs)) {
-        throw new ApiError(data.error || 'Failed to fetch jobs', response.status);
+        throw new ApiError(data.error || 'Could not load your saved jobs. Try Refresh.', response.status);
     }
 
     return {

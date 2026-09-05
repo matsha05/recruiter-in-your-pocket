@@ -95,7 +95,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
                 </div>
                 <div className="resume-context-info">
                     <span className="resume-context-title">Upload resume for matching</span>
-                    <span className="resume-context-subtitle">Add a default resume so saved jobs have fit context</span>
+                    <span className="resume-context-subtitle">Compare job requirements with your experience</span>
                 </div>
                 <span className="resume-context-arrow">→</span>
             </button>
@@ -112,7 +112,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
             </div>
             <div className="resume-context-info">
                 <div className="resume-context-header">
-                    <span className="resume-context-title">{profile.resumeFilename || 'Resume Active'}</span>
+                    <span className="resume-context-title">{profile.resumeFilename || 'Your default resume'}</span>
                     <span className="resume-context-badge">Active</span>
                 </div>
                 <div className="resume-context-meta">

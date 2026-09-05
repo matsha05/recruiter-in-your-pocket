@@ -5,7 +5,7 @@ import { launchFlags } from "@/lib/launch/flags";
 
 export const metadata: Metadata = {
   title: "Matching Settings",
-  description: "Manage default resume for job matching and extension workflows."
+  description: "Choose the default resume to compare with jobs you save through the extension."
 };
 
 export default function SettingsMatchingPage() {

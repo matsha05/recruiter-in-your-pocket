@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
         if (fetchError) {
             console.error('[Extension] Fetch jobs error:', fetchError);
             return NextResponse.json(
-                { success: false, errorCode: 'FETCH_FAILED', error: 'Failed to fetch jobs', jobs: [] },
+                { success: false, errorCode: 'FETCH_FAILED', error: 'Could not load your saved jobs. Refresh and try again.', jobs: [] },
                 { status: 500, headers: corsHeaders }
             );
         }
@@ -92,7 +92,7 @@ export async function GET(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Get saved jobs error:', error);
         return NextResponse.json(
-            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error', jobs: [] },
+            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Could not load your saved jobs. Refresh and try again.', jobs: [] },
             { status: 500, headers: corsHeaders }
         );
     }

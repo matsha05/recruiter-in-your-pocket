@@ -13,7 +13,7 @@ export default function SocialScreeningPage() {
             header={{
                 tag: "Social screening",
                 title: "How public social cues changed candidate ratings",
-                description: "One hiring experiment found an effect on judgment. A separate review explains why that judgment needs firm boundaries.",
+                description: "Social-media content affected ratings in one hiring experiment. That does not mean the ratings predicted job performance.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
@@ -87,8 +87,8 @@ export default function SocialScreeningPage() {
                     answer: "Link it when it gives the reviewer useful work evidence that the resume cannot show on its own."
                 },
                 {
-                    question: "What is the biggest mistake?",
-                    answer: "A material contradiction in a checkable fact, such as a title, date, or credential, is more defensible to fix than trying to engineer a universally appealing personality online."
+                    question: "What should I check on my public profiles?",
+                    answer: "Check that titles, dates, credentials, and work links are accurate and consistent with your resume. Review the privacy settings on personal accounts and decide what you want to share."
                 }
             ]}
         >
@@ -119,7 +119,7 @@ export default function SocialScreeningPage() {
                 />
             </div>
 
-            <h2 className="research-h2">Why this needs a boundary</h2>
+            <h2 className="research-h2">Why social screening can be unreliable</h2>
             <p className="research-body mb-6">
                 A 2021 systematic review concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.
                 <Citation id="source-2">2</Citation>
@@ -132,7 +132,7 @@ export default function SocialScreeningPage() {
 
             <h2 className="research-h2">What is worth doing</h2>
             <p className="research-body mb-6">
-                <strong>RIYP guidance:</strong> focus on accurate, checkable information and work evidence. That is more useful and more honest than trying to make every personal interest look recruiter-approved.
+                <strong>Our advice:</strong> check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Reconcile titles, dates, credentials, and public work links.</li>

@@ -18,11 +18,11 @@ interface LinkedInReportTOCProps {
 
 export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
     const items: TOCItem[] = [
-        { id: "linkedin-first-impression", label: "First Impression", icon: Eye },
-        { id: "linkedin-headline", label: "Headline Analysis", icon: PenLine },
-        { id: "linkedin-about", label: "About Section", icon: InsightSparkleIcon },
-        { id: "linkedin-visibility", label: "Search Visibility", icon: Search },
-        { id: "linkedin-quick-wins", label: "Quick Wins", icon: Lightbulb },
+        { id: "linkedin-first-impression", label: "First impression", icon: Eye },
+        { id: "linkedin-headline", label: "Headline", icon: PenLine },
+        { id: "linkedin-about", label: "About section", icon: InsightSparkleIcon },
+        { id: "linkedin-visibility", label: "Search visibility", icon: Search },
+        { id: "linkedin-quick-wins", label: "Priority edits", icon: Lightbulb },
     ]
 
     const handleScroll = (id: string) => {

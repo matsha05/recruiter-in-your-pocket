@@ -14,7 +14,7 @@ const rubric = [
     {
         name: "Impact",
         role: "Results and scope",
-        detail: "Do your bullets explain what you accomplished and how much work you were responsible for?",
+        detail: "Do your bullets explain what you accomplished and what you were responsible for?",
     },
     {
         name: "Clarity",
@@ -34,7 +34,7 @@ export default function MethodologyClient() {
             pageKey="methodology"
             eyebrow="Methodology"
             title="How the resume review works"
-            description="We look at your career history, accomplishments, and writing. The report explains what a recruiter may understand from your resume and what needs more detail."
+            description="AI reviews your career history, accomplishments, and writing using criteria developed by Matt Shaw. Your report explains what a recruiter may notice and what needs more detail."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
             <section className="border-y border-line bg-surface-sky/35 px-6 py-7 md:px-8 md:py-9">
@@ -101,7 +101,7 @@ export default function MethodologyClient() {
                 <div className="p-6 md:border-t md:border-line md:p-7">
                     <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
                         <ShieldCheck className="size-4 text-brand" weight="bold" />
-                        What evidence means
+                        Where the feedback comes from
                     </h3>
                     <p className="text-[15px] leading-7 text-muted-foreground">
                         Evidence excerpts should quote the resume directly. If a recommendation depends on missing context, the report should ask for that detail instead of inventing it.
@@ -115,7 +115,7 @@ export default function MethodologyClient() {
                     <WarningCircle className="size-4 text-accent-apricot" weight="fill" />
                     Limits and responsible use
                 </h3>
-                <ul className="gap-y-2 text-[15px] leading-7 text-muted-foreground">
+                <ul className="space-y-2 text-[15px] leading-7 text-muted-foreground">
                     <li>1. The score summarizes this resume review. It does not predict interviews or offers.</li>
                     <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>

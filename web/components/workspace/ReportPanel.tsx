@@ -173,7 +173,7 @@ export default function ReportPanel({
                             onClick={onNewReport}
                             className="min-h-11 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            Want a sample first? <span className="text-brand hover:underline">View sample →</span>
+                            <span className="text-brand hover:underline">Add your resume →</span>
                         </button>
                     </div>
                 </div>
@@ -198,7 +198,7 @@ export default function ReportPanel({
                                     role="note"
                                     className="border-y border-amber-500/25 bg-amber-50/70 px-4 py-3 text-sm leading-6 text-foreground/75"
                                 >
-                                    This saved report does not include the source resume. Rewrites remain readable, but Copy stays off until the source can be verified in a new report.
+                                    Copy is unavailable because this saved report does not include the original resume. You can still read the suggestions.
                                 </div>
                             )}
                             {shareEnabled && shareMode && (
@@ -208,7 +208,7 @@ export default function ReportPanel({
                                         <div>
                                             <p className="text-foreground font-medium">Share view is on.</p>
                                             <p className="text-xs text-muted-foreground">
-                                                Personal details are hidden in this view, so you can share it safely.
+                                                Some personal details are hidden. Check the report for anything else you want to remove before sharing.
                                             </p>
                                         </div>
                                     </div>
@@ -234,7 +234,7 @@ export default function ReportPanel({
                             <div className="animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b border-citron pb-3 duration-150 motion-reduce:animate-none">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
-                                        {isSample ? "Example report" : "Your resume review"}
+                                        {isSample ? "Example report" : "Your resume report"}
                                     </span>
                                     {shareEnabled && shareMode && <span className="text-[11px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
                                 </div>

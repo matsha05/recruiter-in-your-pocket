@@ -160,7 +160,7 @@ export async function POST(req: NextRequest) {
       return response(
         buildConfirmResponse({
           state: "not_paid",
-          message: "Payments are not configured yet.",
+          message: "We could not confirm your payment. Try again later or contact support before paying again.",
           pending: false,
         }),
         500
@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
     const ipLimit = await rateLimitAsync(`ip:${hashForLogs(ip)}:billing-confirm`, 30, 10 * 60 * 1000);
     if (!ipLimit.ok) {
       return response(
-        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many confirmation attempts." }),
+        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many payment checks. Wait a few minutes before trying again." }),
         429,
       );
     }
@@ -182,7 +182,7 @@ export async function POST(req: NextRequest) {
       return response(
         buildConfirmResponse({
           state: "checkout_incomplete",
-          message: "Missing sessionId.",
+          message: "This link does not include a valid purchase reference. Restore your purchase from Billing.",
           pending: false,
         }),
         400
@@ -196,7 +196,7 @@ export async function POST(req: NextRequest) {
     );
     if (!sessionLimit.ok) {
       return response(
-        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many confirmation attempts." }),
+        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many payment checks. Wait a few minutes before trying again." }),
         429,
       );
     }
@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
         return response(
           buildConfirmResponse({
             state: "checkout_incomplete",
-            message: "Checkout session not found.",
+            message: "We could not find this checkout. Restore your purchase from Billing or contact support.",
             pending: false,
           }),
           404
@@ -265,7 +265,7 @@ export async function POST(req: NextRequest) {
         buildConfirmResponse({
           state: "fulfillment_pending",
           status,
-          message: "Database is not configured.",
+          message: "We could not confirm your pass yet. Try again later or contact support before paying again.",
         }),
         500
       );

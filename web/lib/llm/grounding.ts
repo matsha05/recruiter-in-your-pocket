@@ -1,3 +1,4 @@
+import { hasSkillsSection } from "./source-sections";
 import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "./source-fidelity";
 
 const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|participated)\b/i;
@@ -60,10 +61,10 @@ export function isAcceptedAbsenceMarker(value: string, sourceText?: string, sect
   if (!sourceText) return true;
 
   if (marker === "no summary section present") {
-    return !hasSectionHeading(sourceText, ["summary", "professional summary", "profile", "professional profile"]);
+    return !hasSectionHeading(sourceText, ["summary", "professional summary", "profile", "professional profile", "objective", "career objective"]);
   }
   if (marker === "no skills section present") {
-    return !hasSectionHeading(sourceText, ["skills", "technical skills", "core skills", "core competencies"]);
+    return !hasSkillsSection(sourceText);
   }
   if (marker === "no education section present") {
     return !hasSectionHeading(sourceText, ["education", "academic background", "academic experience"]);
@@ -110,9 +111,9 @@ export function findAlreadySatisfiedFix(
   const asksForTools = /\[(?:tool|software|framework|platform|technology)(?: name)?\]/i.test(fix)
     || /\b(?:name|mention|list|highlight)\b[^.]{0,60}\b(?:tool|tools|software|frameworks?|platforms?|technologies|technology stack)\b/i.test(fix)
     || /\b(?:add|include)\b[^.]{0,60}\b(?:tool name|named tools?|software used|framework name|platform name|technology stack)\b/i.test(fix);
-  const resumeHasNamedToolList = /\b(?:tools?|software|platforms?|prototyping|analytics|stack)\b[^\n]{0,80}\([^)]+(?:,|\|)[^)]+\)/i.test(resumeText)
-    || /\b(Figma|Sketch|Python|TensorFlow|PyTorch|Spark|AWS|Marketo|HubSpot|Salesforce|Workday|SAP|Oracle|Tableau|Power BI)\b/i.test(resumeText);
-  if (asksForTools && resumeHasNamedToolList) findings.push("named tools already present in resume");
+  const sourceHasNamedToolList = /\b(?:tools?|software|platforms?|prototyping|analytics|stack)\b[^\n]{0,80}\([^)]+(?:,|\|)[^)]+\)/i.test(sourceLine)
+    || /\b(Figma|Sketch|Python|TensorFlow|PyTorch|Spark|AWS|Marketo|HubSpot|Salesforce|Workday|SAP|Oracle|Tableau|Power BI)\b/i.test(sourceLine);
+  if (asksForTools && sourceHasNamedToolList) findings.push("named tools already present in cited bullet");
 
   const asksForTime = /\b(cycle[- ]?time|timeframe|time to market|time-to-market|duration|speed)\b/i.test(fix);
   const lineHasTime = /\b(?:time[- ]?to[- ]?market|cycle[- ]?time)\b|\b\d+(?:\.\d+)?\s*(?:days?|weeks?|months?|years?)\b/i.test(sourceLine);
@@ -132,24 +133,43 @@ export function findAlreadySatisfiedFix(
 
   const asksForOwnership = /\b(add|include|clarify|highlight|show|surface|specify)\b[^.]{0,60}\b(ownership|owner|accountability|responsibility)\b/i.test(fix);
   const lineHasOwnership = /\b(led|owned|drove|managed|spearheaded|directed|headed|built|decided|architected|implemented)\b/i.test(sourceLine);
-  if (asksForOwnership && lineHasOwnership) findings.push("ownership already present in cited bullet");
+  const asksAboutManagementWork = /\b(?:whether|which|what|how|hired|hiring|performance reviews|set (?:work )?priorities)\b/i.test(fix);
+  if (asksForOwnership && lineHasOwnership && !asksAboutManagementWork) findings.push("ownership already present in cited bullet");
 
   return findings;
 }
 
 const FIX_TARGET_PATTERN = /\[[^\]]+\]|\d|%|\b(team size|budget|revenue|pipeline|cycle[- ]?time|timeframe|conversion|adoption|retention|tool name|named tools?|system name|user count|customer count|region count|project count|cost|savings|accuracy|volume|frequency|baseline|before and after|existing scope|existing outcome|existing result|opening clause|opening line|first bullet|top bullet|summary|skills section|education section|job title|ownership verb|(?:this|the|hiring|experience|recruiting|budgeting|mentoring|customer|project|product|operations|marketing|sales|teaching|ministry|compliance|legal|research|migration|inventory|HR) bullet)\b|["“][^"”]{4,}["”]/i;
+// Concrete facts can describe judgment or responsibilities without a metric.
+// Evidence matching and unsupported-claim checks still validate the cited work.
+const QUALITATIVE_FIX_TARGET_PATTERN = /\b(?:decisions? (?:you|made|about)|problems? (?:you|handled|resolved|solved)|deliverables? (?:you|created|delivered)|responsibilit(?:y|ies) (?:you|held)|trade[- ]?offs? (?:you|made)|(?:teams?|departments?|people) (?:you|involved|supported|served)|what (?:you (?:decided|built|delivered|changed)|changed)|which (?:teams?|departments?|decisions?|problems?))\b/i;
+
+// A concrete request can name a qualitative detail without matching a metric vocabulary.
+export function namesConcreteEditDetail(fix: string) {
+  // The attached evidence locates the edit; prose need not repeat the word bullet.
+  const request = fix.match(/\b(?:add|align|name|say|turn|state|identify|describe|explain|specify|clarify|compare|expand|revise|replace|rewrite)\b(.*)/i)?.[1];
+  if (!request) return false;
+  const generic = new Set(["the", "this", "that", "your", "you", "each", "every", "one", "more", "better", "stronger", "detail", "details", "bullet", "entry", "line", "section", "statement", "resume", "experience", "show", "scope", "impact", "outcome", "outcomes", "result", "results", "specific", "concrete", "clear", "clearly", "improve", "potential"]);
+  return contentTokens(request).filter(token => !generic.has(token)).length >= 4;
+}
 
 export function findNonActionableFix(fix: string): string[] {
   const findings: string[] = [];
+  if (/\bshow (?:more |greater |stronger )?(?:impact|results?|outcomes?)\.?$/i.test(fix)
+    && !/\[[^\]]+\]|["“][^"”]+["”]|\d/.test(fix)) {
+    findings.push("does not name the detail to add");
+  }
   const isLabelWithoutDirection = /^\s*(?:bullet|line|section)\s+to\s+(?:rewrite|replace|change|shorten|combine)\b/i.test(fix);
-  if (!/\b(add|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten)\b/i.test(fix)) {
+  if (!/\b(add|align|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten|describe|explain|clarify|include|expand|connect|correct|separate|state|identify|compare|revise|say|turn)\b/i.test(fix)) {
     findings.push("missing a concrete edit action");
   }
-  if (!FIX_TARGET_PATTERN.test(fix)) {
+  const namesBulletAndDetail = /\b(?:bullet|section|statement)\b/i.test(fix)
+    && /\b(?:decisions?|deliverables?|responsibilit(?:y|ies)|process|audience|recipients?|cadence|deal stage)\b/i.test(fix);
+  if (!FIX_TARGET_PATTERN.test(fix) && !QUALITATIVE_FIX_TARGET_PATTERN.test(fix) && !namesBulletAndDetail && !namesConcreteEditDetail(fix)) {
     findings.push("missing a specific fact or placeholder to add");
   }
   if (
-    /\b(rewrite|replace|change|shorten|combine)\b/i.test(fix)
+    (isLabelWithoutDirection || /(?:^|[,;]\s*)\s*(?:then\s+)?(?:rewrite|replace|change|shorten|combine)\b/i.test(fix))
     && (
       isLabelWithoutDirection
       || !/\b(?:by|to|with)\b\s+(?!(?:rewrite|replace|change|shorten|combine)\b)\S+/i.test(fix)
@@ -161,10 +181,10 @@ export function findNonActionableFix(fix: string): string[] {
 }
 
 const FIX_EVIDENCE_TOPICS: Array<{ label: string; pattern: RegExp }> = [
-  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|talent acquisition|candidate)s?\b/i },
+  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|interviews?|talent acquisition|candidate|requisition|backfill)s?\b/i },
   { label: "budget", pattern: /\b(budget|spend|expense|resource allocation)s?\b/i },
   { label: "training", pattern: /\b(training|learning|development program|upskill|workshop)s?\b/i },
-  { label: "mentoring", pattern: /\b(mentor(?:ing|ship|ed)?|mentee|coaching)s?\b/i },
+  { label: "mentoring", pattern: /\b(mentor(?:ing|ship|ed)?|mentee|coach(?:ing|ed)?)s?\b/i },
   { label: "compliance", pattern: /\b(compliance|employment law|policy|policies|audit)s?\b/i },
   { label: "launch", pattern: /\b(launch|time[- ]?to[- ]?market|go[- ]?to[- ]?market)s?\b/i },
   { label: "acquisition cost", pattern: /\b(CAC|customer acquisition cost|acquisition cost)s?\b/i },
@@ -192,7 +212,12 @@ export function findFixEvidenceMismatch(
   }
 
   const sourceLine = sourceContextFor(evidenceExcerpt, resumeText);
+  const isDatedRoleReference = /\b(?:dates?|months?|years?|timeline|chronology)\b/i.test(fix)
+    && /\b(?:19|20)\d{2}\b/.test(sourceLine);
   for (const topic of FIX_EVIDENCE_TOPICS) {
+    if (isDatedRoleReference && topic.label === "recruiting") continue;
+    // Asking about an internal policy does not assert regulated compliance work.
+    if (topic.label === "compliance" && !/\b(?:audit|compliance|law)\b/i.test(fix)) continue;
     if (topic.pattern.test(fix) && !topic.pattern.test(sourceLine)) {
       findings.push(`cited evidence does not support the ${topic.label} fix`);
     }

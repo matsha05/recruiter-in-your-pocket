@@ -45,13 +45,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const visibleGap = report.gaps?.[0] || report.biggest_gap_example;
   const detailedReadCandidates = [
     { label: "First impression", text: report.first_impression },
-    { label: "Recruiter summary", text: report.summary },
-    { label: "What shaped the score", text: report.score_comment_long },
-    { label: "What the score means", text: report.score_plain },
+    { label: "Overall assessment", text: report.summary },
     { label: "Example to improve", text: report.biggest_gap_example },
   ];
   const seenDetailedCopy = new Set(
-    [visibleOpening, visibleGap].filter(isCopy).map(copyKey),
+    [visibleOpening, visibleGap, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])].filter(isCopy).map(copyKey),
   );
   const detailedRead = detailedReadCandidates.filter(({ text }) => {
     if (!isCopy(text)) return false;
@@ -62,14 +60,14 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   }) as Array<{ label: string; text: string }>;
 
   const remainingStrengths = uniqueCopy((report.strengths || []).slice(3));
-  const remainingGaps = uniqueCopy((report.gaps || []).slice(1), [visibleGap]);
+  const remainingGaps = uniqueCopy((report.gaps || []).slice(1), [visibleGap, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])]);
   const sectionNotes = SECTION_ORDER.flatMap((name) => {
     const review = report.section_review?.[name];
     if (!review) return [];
     const notes = [
       { label: "What works", text: review.working },
       { label: "Still unclear", text: review.missing },
-      { label: "Best edit", text: review.fix },
+      { label: "Suggested change", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
     return [{ name, review, notes }];
@@ -88,11 +86,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const companyStageFit = isCopy(roleFit?.company_stage_fit) ? roleFit.company_stage_fit : undefined;
   const alignmentGroups = hasJobDescription
     ? [
-      { label: "Already aligned", items: uniqueCopy(alignment?.strongly_aligned || []) },
-      { label: "Underplayed", items: uniqueCopy(alignment?.underplayed || []) },
-      { label: "Still missing", items: uniqueCopy(alignment?.missing || []) },
-      { label: "Matched language", items: uniqueCopy(alignment?.jd_keywords?.matched || []) },
-      { label: "Missing language", items: uniqueCopy(alignment?.jd_keywords?.missing || []) },
+      { label: "Relevant experience", items: uniqueCopy(alignment?.strongly_aligned || []) },
+      { label: "Needs more detail", items: uniqueCopy(alignment?.underplayed || []) },
+      { label: "Not shown in the resume", items: uniqueCopy(alignment?.missing || []) },
+      { label: "Job terms found", items: uniqueCopy(alignment?.jd_keywords?.matched || []) },
+      { label: "Job terms not found", items: uniqueCopy(alignment?.jd_keywords?.missing || []) },
     ].filter(({ items }) => items.length > 0)
     : [];
   const hasRoleDetails = Boolean(
@@ -122,7 +120,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
         <span className="min-w-0">
           <span className="riyp-type-11px riyp-track-017 block font-semibold uppercase text-brand">Complete report</span>
           <span role="heading" aria-level={2} className="mt-2 block font-display text-2xl riyp-weight-520 leading-tight text-foreground sm:text-3xl">Full recruiter notes</span>
-          <span className="mt-2 block text-sm leading-6 text-muted-foreground">The full assessment, section by section, with next steps.</span>
+          <span className="mt-2 block text-sm leading-6 text-muted-foreground">Section feedback, role details, and a plan for your revision.</span>
         </span>
         <CaretDown className="size-5 shrink-0 text-brand transition-transform group-open:rotate-180" aria-hidden="true" />
       </summary>

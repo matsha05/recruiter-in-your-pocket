@@ -27,17 +27,8 @@ export default function SaveReportPrompt({
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Extract score for personalized messaging
+    // Keep the score in analytics; saving is useful at every score.
     const score = report?.score || 0;
-    const getPersonalizedMessage = () => {
-        if (score >= 85) {
-            return "Strong read. Use a verified account to keep this report and compare future versions.";
-        } else if (score >= 70) {
-            return `This report scored ${score}. Save it to a verified account for permanent history.`;
-        } else {
-            return `This report scored ${score}. Save it now if you want the fix list backed up while you revise.`;
-        }
-    };
 
     const handleSave = async () => {
         setLoading(true);
@@ -45,8 +36,8 @@ export default function SaveReportPrompt({
 
         try {
             await onRequestAuth();
-        } catch (err: any) {
-            setError(err.message || "Something went wrong");
+        } catch {
+            setError("Sign-in could not open. Try again to save this report.");
         } finally {
             setLoading(false);
         }
@@ -71,7 +62,7 @@ export default function SaveReportPrompt({
                         Keep this report
                     </DialogTitle>
                     <DialogDescription className="text-sm leading-relaxed">
-                        {getPersonalizedMessage()}
+                        Sign in to save your feedback and return to it while you revise.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -91,7 +82,7 @@ export default function SaveReportPrompt({
                         onClick={handleSave}
                         isLoading={loading}
                     >
-                        {loading ? "Opening secure sign-in…" : "Sign in and keep this report"}
+                        {loading ? "Opening sign-in…" : "Sign in to save"}
                     </Button>
 
                     <Button type="button"

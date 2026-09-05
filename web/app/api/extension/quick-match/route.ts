@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
         if (!jdText || typeof jdText !== "string") {
             return NextResponse.json(
-                { success: false, errorCode: "INVALID_REQUEST", error: "Job description text is required" },
+                { success: false, errorCode: "INVALID_REQUEST", error: "Add a job description to compare with your resume." },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error("[QuickMatch] Error:", error);
         return NextResponse.json(
-            { success: false, errorCode: "INTERNAL_ERROR", error: "Internal server error" },
+            { success: false, errorCode: "INTERNAL_ERROR", error: "Could not compare this job with your resume. Try again." },
             { status: 500, headers: corsHeaders }
         );
     }

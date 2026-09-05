@@ -186,7 +186,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "VALIDATION_ERROR",
-                        message: "Invalid source type. Expected 'url' or 'pdf'."
+                        message: "Upload a PDF exported from your LinkedIn profile."
                     }) + "\n"));
                     controller.close();
                     return;
@@ -206,7 +206,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "VALIDATION_ERROR",
-                        message: "PDF text is required."
+                        message: "Upload your LinkedIn PDF before requesting a report."
                     }) + "\n"));
                     controller.close();
                     return;
@@ -280,7 +280,7 @@ export async function POST(request: Request) {
                         controller.enqueue(encoder.encode(JSON.stringify({
                             type: "error",
                             errorCode: "SCRAPE_UNAVAILABLE",
-                            message: "URL fetching is not available yet. Please upload your LinkedIn PDF instead.",
+                            message: "Profile links are not supported. Upload a PDF exported from LinkedIn instead.",
                             fallback: "pdf"
                         }) + "\n"));
                         controller.close();
@@ -383,7 +383,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "JSON_PARSE_ERROR",
-                        message: "Failed to parse LinkedIn analysis response."
+                        message: "The LinkedIn report could not be completed. Try again."
                     }) + "\n"));
                     controller.close();
                     return;
@@ -480,7 +480,7 @@ export async function POST(request: Request) {
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "error",
                     errorCode: "INTERNAL_ERROR",
-                    message: "An error occurred while analyzing your LinkedIn profile."
+                    message: "Could not complete your LinkedIn report. Try again."
                 }) + "\n"));
                 controller.close();
             }

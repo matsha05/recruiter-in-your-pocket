@@ -37,8 +37,8 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
       if (!res.ok) {
         if (controller.signal.aborted) return;
         if (res.status === 401) setError("Sign in to view saved job details.");
-        else if (res.status === 404) setError("This saved job is no longer available. Open the studio for a fresh report.");
-        else setError("Failed to load job");
+        else if (res.status === 404) setError("This saved job is no longer available. You can still start a report with a job description you paste in.");
+        else setError("We couldn't load this saved job. Please try again.");
         return;
       }
       const data = await res.json();
@@ -64,7 +64,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
     } catch (err) {
       if (controller.signal.aborted) return;
       console.error("Failed to fetch job:", err);
-      setError("Failed to load job");
+      setError("We couldn't load this saved job. Please try again.");
     } finally {
       if (!controller.signal.aborted) setLoading(false);
     }
@@ -110,7 +110,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
               href="/workspace"
               className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:bg-foreground/90"
             >
-              Open studio instead
+              Start a report
             </Link>
           ) : error?.includes("Sign in") ? (
             <Link href={`/auth?from=jobs&next=${encodeURIComponent(`/jobs/${jobId}`)}`} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:bg-foreground/90">Sign in</Link>
@@ -137,7 +137,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
       <AppPageIntro
         eyebrow="Role detail"
         title={job.title}
-        description="Keep role context, match gaps, and next actions in one place while you decide how to tailor the resume."
+        description="Compare your resume with the job description and track your application."
         meta={
           <>
             <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">

@@ -5,7 +5,7 @@ import { launchFlags } from "@/lib/launch/flags";
 
 export const metadata: Metadata = {
   title: "Billing Settings",
-  description: "Manage plans, receipts, and purchase restoration."
+  description: "Check your remaining reports, restore a purchase, or find a receipt."
 };
 
 export default function SettingsBillingPage() {

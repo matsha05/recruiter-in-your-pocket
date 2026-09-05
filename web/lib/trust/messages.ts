@@ -1,5 +1,5 @@
 export const workspaceTrustMessage = {
-  title: "Before you run",
+  title: "Before you get a report",
   body:
     "Your upload is encrypted in transit. We send resume text and optional job descriptions to OpenAI to generate the report.",
   detail:
@@ -8,7 +8,7 @@ export const workspaceTrustMessage = {
 
 export const workspaceTrustPoints = [
   {
-    title: "Anonymous by default",
+    title: "No account required",
     detail: "RIYP does not save raw resume or job-description text from an anonymous report. Its completed report output expires from browser recovery within 24 hours.",
   },
   {
@@ -16,16 +16,16 @@ export const workspaceTrustPoints = [
     detail: "OpenAI's API processes the text. API data is not used to train OpenAI models by default; abuse-monitoring logs may be kept for up to 30 days.",
   },
   {
-    title: "You stay in control",
-    detail: "If you sign in and save a report, you can delete it—or your account—at any time.",
+    title: "Delete saved reports",
+    detail: "If you sign in and save a report, you can delete it or your account at any time.",
   },
 ] as const;
 
 export const saveReportTrustMessage =
-  "We only save reports to verified signed-in accounts. Saved history includes the report output, evidence excerpts, a short resume preview, and any job description you added.";
+  "Saving keeps the report, quoted resume excerpts, a short resume preview, and any job description you added in your account. You can delete the saved report at any time.";
 
 export const extensionDisclosureMessage =
-  "The extension only reads supported job pages when you ask it to capture a role. Sign-in is only required if you want synced history across devices.";
+  "The extension reads supported job pages when you choose to save a job. You can save jobs in this browser without an account. Sign in before saving to sync a job to your account.";
 
 const billingTrustMessage = {
   summary: "Stripe handles checkout, card details, and receipts. The Job Search Pass does not renew.",

@@ -146,8 +146,8 @@ export const RESUME_REPORT_JSON_SCHEMA = {
         role_fit: {
           type: "object",
           properties: {
-            best_fit_roles: stringList(3, 5),
-            stretch_roles: stringList(1, 3),
+            best_fit_roles: stringList(1, 5),
+            stretch_roles: stringList(0, 3),
             seniority_read: stringValue,
             industry_signals: stringList(0, 8),
             company_stage_fit: stringValue,

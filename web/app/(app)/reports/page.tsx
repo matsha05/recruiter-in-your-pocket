@@ -48,7 +48,7 @@ export default async function ReportsPage() {
         <AppPageIntro
           eyebrow="Report history"
           title="Your saved reports"
-          description="Reopen past reports, compare your progress, and keep a clean record of the versions you want to revisit."
+          description="Find feedback from earlier reports or open one to compare with a revised resume."
           meta={
             <>
               <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
@@ -91,8 +91,8 @@ export default async function ReportsPage() {
         <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
           Signed-in reports stay attached to this account until you delete them.
           {launchFlags.extensionSync
-            ? " Extension-saved jobs can send role context back into the studio when you want a fresh comparison."
-            : " Add a role in the workspace whenever you want a targeted comparison."}
+            ? " Choose a saved job to review your resume against its requirements."
+            : " Add a job posting in the workspace to review your resume against its requirements."}
         </div>
 
         {!reportsError && hasMoreReports ? (
@@ -104,7 +104,7 @@ export default async function ReportsPage() {
             <AlertTriangle className="mx-auto size-7 text-destructive" aria-hidden="true" />
             <h2 className="mt-4 font-display text-2xl text-foreground">Your report history could not load.</h2>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-              Your saved reports have not been removed. Try the request again, or contact support if this keeps happening.
+              Try again in a moment. If you still can’t open your reports, contact support.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
               <form action="/reports" method="get">

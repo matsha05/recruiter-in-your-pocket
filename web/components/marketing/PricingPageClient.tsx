@@ -26,7 +26,7 @@ const billingPoints = [
     {
         icon: Receipt,
         title: "Immediate access",
-        body: "Your pass starts after checkout. Use the same account to restore it if needed.",
+        body: "Your pass starts after checkout. If you need to restore it, sign in with the email you used to pay.",
     },
 ];
 
@@ -92,6 +92,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
 
     async function handleCheckout() {
         const tier: PricingTier = "30d";
+        let checkoutError = "Could not open checkout. Try again. If this continues, contact support.";
         try {
             setLoadingTier(tier);
             Analytics.checkoutStarted(tier, 29);
@@ -107,12 +108,13 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
             });
             const data = await res.json();
             if (!data.ok || !data.url) {
-                throw new Error(data.message || "Unable to start checkout");
+                checkoutError = typeof data.message === "string" && data.message.trim() ? data.message : checkoutError;
+                throw new Error(checkoutError);
             }
             window.location.href = data.url;
-        } catch (err: any) {
+        } catch {
             Analytics.track("checkout_start_failed", { source: "pricing", tier });
-            toast.error(err.message || "Checkout failed. Please try again.");
+            toast.error(checkoutError);
         } finally {
             setLoadingTier(null);
         }
@@ -273,7 +275,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     <div className="mx-auto flex max-w-[1120px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <h2 className="font-display text-3xl riyp-weight-560 tracking-[-0.025em] riyp-stretch-96">Already paid?</h2>
-                            <p className="mt-2 text-lg text-muted-foreground">Restore an existing purchase or open billing settings.</p>
+                            <p className="mt-2 text-lg text-muted-foreground">Find your pass or receipts using the email you used at checkout.</p>
                         </div>
                         <Link
                             href={getCheckoutRestoreHref(returnTo)}

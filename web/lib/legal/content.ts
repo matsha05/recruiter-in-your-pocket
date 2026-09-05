@@ -91,7 +91,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Trash,
             title: "You control deletion",
-            body: "Saved reports can be deleted from report history. Deleting your account removes reports, saved jobs, default resume profile, and usage history from our database.",
+            body: "Delete individual reports from Reports, or delete your account in Settings to remove your reports, saved jobs, default resume, and usage history from our database.",
           },
         ],
       },
@@ -171,7 +171,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can export your account data, delete individual reports, and permanently delete your account from Settings. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
+              value: "You can delete individual reports from Reports. In Settings, you can export your account data or permanently delete your account. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
             },
           ],
         ],
@@ -235,11 +235,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "3. Privacy and data",
         paragraphs: [
           [
-            { type: "text", value: "Privacy behavior is documented at " },
-            { type: "link", label: "/privacy", href: "/privacy" },
+            { type: "text", value: "Our " },
+            { type: "link", label: "Privacy Policy", href: "/privacy" },
             { type: "text", value: " and " },
-            { type: "link", label: "/security", href: "/security" },
-            { type: "text", value: ". If you're signed in, your report history is saved until you delete it." },
+            { type: "link", label: "Security page", href: "/security" },
+            { type: "text", value: " explain how we handle your data. If you're signed in, your report history is saved until you delete it." },
           ],
         ],
       },
@@ -337,6 +337,10 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
                 a: "The report goes beyond a keyword list. It explains what your experience communicates, quotes the lines behind its feedback, and asks for facts that are missing.",
               },
               {
+                q: "Does a person review my resume?",
+                a: "AI generates your report using resume review criteria developed by Matt Shaw. A personal review from Matt is not included. Check suggested edits against your own experience before using them.",
+              },
+              {
                 q: "What file formats are supported?",
                 a: "PDF and Word documents (.docx), up to 4 MB. If the file cannot be read, you can paste the resume text instead.",
               },
@@ -376,7 +380,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "How do I restore access and get receipts?",
-                a: "Use Restore Access with the email you used at checkout. Receipts are available in Settings > Billing when billing controls are enabled. If you cannot reach them, contact support with your checkout email and purchase date.",
+                a: "Open Restore Access and sign in with the email you used at checkout. You can restore your pass and view receipts there, or in Settings > Billing. If you still need help, contact support with your checkout email and purchase date.",
+              },
+              {
+                q: "Can I get a refund?",
+                a: "You can request a full refund within 14 calendar days of purchase if you have not used any paid reports. We also review duplicate charges, processing errors, and cases where the service failed. Contact support from your checkout email with the purchase date and receipt ID. See Terms of Service for the full refund policy.",
               },
             ],
           },

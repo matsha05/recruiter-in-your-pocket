@@ -9,21 +9,21 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Example Resume Report",
-  description: "Read a complete recruiter-style resume report with an opening read, quoted evidence, factual rewrite prompts, strengths, and role direction.",
+  description: "See how a resume report explains what works, quotes the details behind its feedback, and suggests what to change before applying.",
   alternates: {
     canonical: "/sample-report",
   },
   openGraph: {
-    title: "See a Complete Recruiter-Style Resume Report",
-    description: "A real product sample: recruiter-style judgment, quoted evidence, factual rewrite prompts, strengths, and role direction.",
+    title: "Read an Example Resume Report",
+    description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
     url: "https://www.recruiterinyourpocket.com/sample-report",
     images: ["/opengraph-image?v=20260730"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "See a Complete Recruiter-Style Resume Report",
-    description: "A real product sample with recruiter-style judgment, quoted evidence, and factual rewrite prompts.",
+    title: "Read an Example Resume Report",
+    description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
     images: ["/opengraph-image?v=20260730"],
   },
 };

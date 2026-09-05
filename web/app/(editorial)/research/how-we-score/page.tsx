@@ -13,14 +13,14 @@ export default function HowWeScorePage() {
             header={{
                 tag: "Methodology",
                 title: "How the report score works",
-                description: "The number stays visible. The report shows the evidence behind it, the questions it raises, and the first change worth making.",
+                description: "Your score summarizes the resume review. The written findings explain what is clear, what is missing, and where to start.",
                 lastUpdated: "July 2026",
                 sourceSummary: "2 peer-reviewed studies"
             }}
             keyFinding={{
                 subtitle: "Bottom line",
                 stat: "85 / 100",
-                statDescription: "Clear and specific. The story is easy to follow, with one important scope detail still missing.",
+                statDescription: "Your recent roles and results are easy to follow. One important responsibility needs more detail.",
                 source: {
                     text: "Worked example. The score summarizes a document review, not hiring odds."
                 }
@@ -111,7 +111,7 @@ export default function HowWeScorePage() {
 
             <h2 className="research-h2">Why the overall score is not a simple average</h2>
             <p className="research-body mb-6">
-                One missing fact can change the entire read. A resume with clean formatting may still leave ownership impossible to place. Another may have uneven prose but make the candidate&apos;s scope and results unmistakable. The four diagnostics organize the evidence; the overall score reflects the whole document.
+                Clean formatting does not answer a missing question about what you did. Uneven writing does not erase a well-supported achievement. We consider how the strengths and gaps affect the resume as a whole, rather than averaging the four categories.
             </p>
 
             {/* The Thresholds */}
@@ -147,10 +147,10 @@ export default function HowWeScorePage() {
             {/* The Bottom Line */}
             <h2 className="research-h2">How to use the score</h2>
             <p className="research-body mb-6">
-                Start with the written finding that would make the biggest difference. Use the score to see where to begin; do not edit only to raise the number. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. The study did not test our score. It supports the simpler point that useful evidence needs clarity and context to earn a closer look.
+                Start with the first recommended change and check it against your experience. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. That study informed our interest in how recruiters review experience; it did not test our score or prove that an edit causes more attention.
                 <Citation id="source-1">2</Citation>
             </p>
-            <p className="research-body">This method helps us review resumes consistently. It is not an ATS hack or a prediction of your chances.</p>
+            <p className="research-body">Use the score alongside the feedback. If an edit raises the number but makes the resume less accurate, do not use it.</p>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">

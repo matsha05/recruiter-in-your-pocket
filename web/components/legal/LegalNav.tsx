@@ -19,8 +19,8 @@ export function LegalNav({ className }: LegalNavProps) {
     const [hasMore, setHasMore] = useState(false);
 
     const tabs = [
-        { name: "Trust & Security", href: "/trust" },
-        { name: "Data Handling", href: "/security" },
+        { name: "Trust", href: "/trust" },
+        { name: "Security & Data", href: "/security" },
         ...(isLaunchFlagEnabled("extensionSync") ? [{ name: "Extension", href: "/extension" }] : []),
         { name: "Support", href: "/support" },
         { name: "Status", href: "/status" },

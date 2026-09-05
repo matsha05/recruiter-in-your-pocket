@@ -75,7 +75,7 @@ export function ResearchArticle({
     sources,
     faq,
     cta = {
-        title: "See what your resume makes clear—and what it leaves open.",
+        title: "Find out where your resume needs more detail.",
         buttonText: "Review my resume",
         href: "/workspace",
     },
@@ -143,7 +143,7 @@ export function ResearchArticle({
 
                             <aside className="border-t border-line bg-surface-sky p-5 lg:border-l lg:border-t-0 lg:p-7" aria-label="Best-supported conclusion">
                                 <div className="text-xs font-semibold uppercase tracking-[0.11em] text-brand">
-                                    {keyFinding.label ?? (header.tag === "Methodology" ? "Bottom line" : "What the research says")}
+                                    {keyFinding.label ?? (header.tag === "Methodology" ? "Example score" : "Key finding")}
                                 </div>
                                 <p className="mt-3 font-display text-[clamp(2rem,3.5vw,3.25rem)] riyp-weight-540 leading-[1] tracking-[-0.03em] text-foreground riyp-stretch-91">
                                     {keyFinding.stat}

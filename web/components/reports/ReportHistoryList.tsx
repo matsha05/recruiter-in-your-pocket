@@ -1,5 +1,7 @@
 "use client";
 
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -75,7 +77,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         body: JSON.stringify({ name: nextName }),
       });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.ok) throw new Error(data?.message || "Could not rename this report.");
+      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not rename this report. Please try again.");
 
       setReports((current) => current.map((item) => (
         item.id === report.id ? { ...item, name: nextName || null } : item
@@ -84,7 +86,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
       toast.success(nextName ? "Report renamed" : "Report name cleared");
       router.refresh();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not rename this report.");
+      toast.error(getClientActionError(error, "Could not rename this report. Please try again."));
     } finally {
       setSavingId(null);
     }
@@ -98,14 +100,14 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
     try {
       const response = await fetch(`/api/reports/${reportId}`, { method: "DELETE" });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.ok) throw new Error(data?.message || "Could not delete this report.");
+      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not delete this report. Please try again.");
 
       setReports((current) => current.filter((report) => report.id !== reportId));
       setDeleteId(null);
       toast.success("Report deleted");
       router.refresh();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not delete this report.");
+      toast.error(getClientActionError(error, "Could not delete this report. Please try again."));
     } finally {
       setDeletingId(null);
     }
@@ -119,7 +121,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         </div>
         <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-          Run a first read, then keep the versions you want to compare or revisit.
+          Get a report on your resume, then save it to return to the feedback later.
         </p>
         <Link
           href="/workspace"

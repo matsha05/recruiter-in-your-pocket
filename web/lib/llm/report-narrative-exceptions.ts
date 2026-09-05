@@ -49,8 +49,8 @@ function isCanonicalAbsentSectionInstruction(report: any, path: string, value: s
   const item = report?.section_review?.[section];
   const expectedMissing = `No ${section.toLocaleLowerCase()} section present`;
   const expectedFix = section === "Education"
-    ? "Add only if it supports the target role or removes a stated requirement question."
-    : "Add only if it helps the role story.";
+    ? "Add this section if the job asks for it or it helps explain your qualifications."
+    : "Add this section if it helps explain why your experience fits the job.";
   return item?.missing === expectedMissing && value === expectedFix;
 }
 

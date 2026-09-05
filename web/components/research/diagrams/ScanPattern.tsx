@@ -8,7 +8,7 @@ const transferSteps = [
     {
         index: "01",
         label: "Eye tracking",
-        title: "Experience earns attention",
+        title: "Time spent on experience",
         body: "In the 2023 study, longer viewing of the Experience section was associated with resumes moving forward.",
     },
     {
@@ -20,8 +20,8 @@ const transferSteps = [
     {
         index: "03",
         label: "Practical takeaway",
-        title: "Make orientation easy",
-        body: "Use stable headings, visible role information, and a predictable reading order so evidence is easier to find.",
+        title: "Make key details easy to find",
+        body: "Use familiar headings and clear role titles and dates. Keep related details together.",
     },
 ];
 
@@ -37,9 +37,9 @@ export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
-                    label="What carries over"
-                    title="Give the reader a clear route from role to evidence."
-                    note="The research does not establish one scan path. It does show that attention and judgment depend on what the full document makes available."
+                    label="Research and practical advice"
+                    title="Help the reader find your roles and results."
+                    note="The studies below examine attention and judgment. They do not establish one ideal layout or reading order."
                 />
 
                 <div className="px-5 py-7 md:px-7 md:py-9">
@@ -68,8 +68,8 @@ export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
                 </div>
             </DiagramFrame>
             <DiagramCaption
-                kicker={`Fig. ${figureNumber} / What carries over`}
-                title="Make recent experience easy to enter and useful evidence easy to follow."
+                kicker={`Fig. ${figureNumber} / Research and advice`}
+                title="Clear headings are practical advice, not proof that every recruiter reads the same way."
             />
         </DiagramFigure>
     );

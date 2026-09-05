@@ -8,25 +8,25 @@ const dimensions = [
     {
         title: "Story",
         score: 84,
-        question: "Can a reader follow the roles, progression, and direction?",
-        receipt: "The progression is clear, but the target role is not named up front.",
+        question: "Can a reader follow your career and understand what role you want next?",
+        receipt: "The career progression is clear, but the target role is not named at the top.",
     },
     {
         title: "Impact",
         score: 82,
         question: "Does the resume show what changed because of the work?",
-        receipt: "Results appear, but two strong bullets still hide the size of the work.",
+        receipt: "Two bullets describe improvements without saying how many people or teams were involved.",
     },
     {
         title: "Clarity",
         score: 88,
-        question: "Are role and ownership easy to place?",
+        question: "Is it clear what you were responsible for?",
         receipt: "The candidate's decisions and responsibilities are consistently specific.",
     },
     {
         title: "Readability",
         score: 90,
-        question: "Can a reader find the useful evidence quickly?",
+        question: "Can a reader find your roles, dates, and results quickly?",
         receipt: "Headings, dates, and recent experience are easy to scan.",
     },
 ];
@@ -47,24 +47,24 @@ export function FirstReadModelDiagram() {
                             <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">Worked example</p>
                             <p className="mt-6 font-display text-[clamp(5rem,10vw,8rem)] riyp-weight-520 leading-[0.78] tracking-[-0.07em] text-foreground">85</p>
                             <p className="mt-4 text-sm font-semibold text-foreground">Clear and specific</p>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">The document is easy to understand. Missing scope keeps the strongest work from reading even better.</p>
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">Your responsibilities are clear. Add how many people or teams were involved in the improvements you describe.</p>
                         </div>
                         <div className="mt-8 border-t border-line pt-5">
                             <div className="flex items-start gap-3">
                                 <Quotes className="mt-0.5 size-5 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
-                                <p className="text-sm leading-6 text-foreground">“Led onboarding across teams” needs the team count and result.</p>
+                                <p className="text-sm leading-6 text-foreground">“Led onboarding across teams” leaves two questions: which teams, and what improved?</p>
                             </div>
-                            <p className="mt-4 text-xs leading-5 text-muted-foreground">This is the receipt: the exact line behind the main question.</p>
+                            <p className="mt-4 text-xs leading-5 text-muted-foreground">Each recommendation points to the wording that needs attention.</p>
                         </div>
                     </section>
 
                     <section className="p-6 lg:p-8" aria-label="Four score diagnostics">
                         <div className="flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">What drove it</p>
-                                <h3 className="mt-2 font-display text-3xl riyp-weight-540 tracking-[-0.03em] text-foreground">Four views of the same resume</h3>
+                                <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">How the score is explained</p>
+                                <h3 className="mt-2 font-display text-3xl riyp-weight-540 tracking-[-0.03em] text-foreground">Four parts of the review</h3>
                             </div>
-                            <p className="max-w-[18rem] text-xs leading-5 text-muted-foreground">Diagnostics explain the review. They are not four separate hiring predictions.</p>
+                            <p className="max-w-[18rem] text-xs leading-5 text-muted-foreground">These scores summarize the feedback. They do not predict interviews or offers.</p>
                         </div>
 
                         <ol className="divide-y divide-line">
@@ -94,7 +94,7 @@ export function FirstReadModelDiagram() {
                     />
                 </div>
             </div>
-            <DiagramCaption kicker="Fig. 1 / Score and evidence" title="The number stays visible. The evidence makes it useful." />
+            <DiagramCaption kicker="Fig. 1 / Illustrative report" title="Use the written feedback to decide what to change first." />
         </DiagramFigure>
     );
 }

@@ -10,8 +10,8 @@ export default function SecurityClient() {
         <LegalShell
             pageKey="security"
             eyebrow="Security & data"
-            title="How we handle your data"
-            description="What we collect, why, how long we keep it, and what you can do about it."
+            title="Security and data handling"
+            description="What we collect, who processes it, how long we keep it, and how you can delete it."
             lastUpdated={LEGAL_LAST_UPDATED}
             contentClassName="max-w-5xl"
         >

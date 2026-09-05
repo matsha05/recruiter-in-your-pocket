@@ -36,7 +36,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     buttonText: "Included",
     features: [
       { text: "1 full in-browser resume report", bold: true },
-      { text: "A likely recruiter takeaway" },
+      { text: "What a recruiter may notice first" },
       { text: "Evidence behind each recommendation" },
       { text: "Suggested rewrites using your facts" },
       { text: "Role comparison when you add a job posting" },

@@ -80,7 +80,7 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-Matt authorized the stored-fixture quality work. The current candidate validation (`eval_1786231390293_replay`) replayed the authorized `gpt-5.6-luna` source outputs through the repaired validator and completed with 22 PASS, 1 WARN, and 0 FAIL across all 23 golden fixtures. The source run cost $0.576062 across 45 calls. Its 95.7% pass rate clears the 90% launch bar, and bundled readiness binds the exact model, reasoning level, source-run hash, and prompt hashes. Any prompt or launch-model change reopens this gate.
+Matt authorized up to $10 for the September 4 stored-fixture quality work. The current candidate validation (`eval_1788577888513_targeted_cohort_replay`) replays the 23-fixture `gpt-5.6-terra` live cohort with five designated targeted replacements and completes with 22 PASS, 1 WARN, and 0 FAIL. It uses medium reasoning, an 8,000-token per-call ceiling and a bounded high-reasoning repair. Every selected report was independently read against its resume. The original failures, per-fixture origins, final fresh smoke and replay results and total token-calculated cost are recorded in `tests/fixtures/results/summary_latest_live.md`. This is saved-output replay, not a new full-batch generation. Bundled readiness binds the model, reasoning, source cohort and prompt hashes; any prompt or launch-model change reopens this gate.
 
 - Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.

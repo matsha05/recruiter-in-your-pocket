@@ -50,19 +50,19 @@ const DEFAULT_UNLOCK_COPY = {
 
 const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     evidence_ledger: {
-        label: "Evidence Ledger",
-        title: "Apply the evidence to your next report",
+        label: "Resume feedback",
+        title: "Review your revised resume",
         subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
-            "Evidence-backed recommendations for another role or revision",
+            "Feedback on a revised resume or another job posting",
             "Suggested rewrites tied to that resume",
             "PDF exports for 30 days"
         ]
     },
     bullet_upgrades: {
         label: "Suggested rewrites",
-        title: "Compare rewrites after you revise",
+        title: "Get feedback on your revision",
         subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
@@ -79,7 +79,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
             ADDITIONAL_REPORTS_BULLET,
             "New questions raised by a revised resume",
             "Why each new detail matters",
-            "A clear comparison with the earlier read"
+            "Compare the new feedback with your earlier report"
         ]
     },
     job_alignment: {
@@ -89,13 +89,13 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
             "Compare a resume with specific job postings",
-            "Relevant experience and open gaps",
-            "A role-specific positioning suggestion"
+            "Where your experience fits and what is missing",
+            "Suggestions for explaining your relevant experience"
         ]
     },
     export_pdf: {
         label: "Export",
-        title: "Add PDF exports to your search",
+        title: "Export your report as a PDF",
         subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
@@ -176,9 +176,9 @@ export default function PaywallModal({
                 Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
                 setError(result.message || "Checkout could not start. Try again or restore an existing purchase.");
             }
-        } catch (err: any) {
+        } catch {
             Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
-            setError(err.message || "Checkout could not start. Try again or restore an existing purchase.");
+            setError("Checkout could not start. Try again or restore an existing purchase.");
         } finally {
             setLoading(false);
         }

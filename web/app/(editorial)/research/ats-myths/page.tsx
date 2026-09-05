@@ -19,7 +19,8 @@ export default function ATSMythsPage() {
             }}
             keyFinding={{
                 subtitle: "The useful distinction",
-                stat: "Parsing extracts. Employers decide what happens next.",
+                label: "What the documentation says",
+                stat: "Parsing extracts information from your resume",
                 statDescription: (
                     <>
                         Greenhouse and Lever document resume parsing as the extraction of readable information into candidate fields. Parsing trouble can lose or scramble information; it is not proof of one universal rejection score.
@@ -47,12 +48,12 @@ export default function ATSMythsPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "A parser-safe baseline",
-                        description: "We look for selectable text, familiar section headings, and a reading order that survives extraction."
+                        title: "Readable resume text",
+                        description: "We extract text from uploaded files and review its structure. Check that the extracted text includes your sections in the right order."
                     },
                     {
-                        title: "No magic-score theater",
-                        description: "We do not pretend every employer uses the same software, configuration, filters, or ranking logic."
+                        title: "A resume score, not an ATS score",
+                        description: "Our score summarizes the resume report. It does not reproduce an employer's screening settings or predict whether a filter will accept your application."
                     }
                 ]
             }}

@@ -24,7 +24,12 @@ async function buildCheckoutHarness() {
     "next/navigation": `import {useMemo} from "react";
       export function useSearchParams() { return useMemo(() => new URLSearchParams(window.location.search), []); }`,
     "@/components/providers/AuthProvider": `const user = JSON.parse(sessionStorage.getItem("checkout-harness-user") || "null");
-      const refreshUser = async () => sessionStorage.setItem("checkout-harness-refreshes", String(Number(sessionStorage.getItem("checkout-harness-refreshes") || 0) + 1));
+      const refreshUser = async () => {
+        sessionStorage.setItem("checkout-harness-refreshes", String(Number(sessionStorage.getItem("checkout-harness-refreshes") || 0) + 1));
+        if (sessionStorage.getItem("checkout-harness-defer-refresh")) {
+          await new Promise((resolve) => { window.completeCheckoutAccountRefresh = resolve; });
+        }
+      };
       export function useAuth() { return {user, isLoading: false, refreshUser}; }`,
     "@/lib/analytics": `export const Analytics = new Proxy({}, {get: () => () => {}});`,
   };
@@ -144,6 +149,25 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveAttribute("href", REVISION_PATH);
     await expect(page.getByRole("link", { name: "Restore access", exact: true })).toHaveAttribute("href", RESTORE_PATH);
     expect(await page.evaluate(() => sessionStorage.getItem("checkout-harness-refreshes"))).toBe("1");
+    await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+    await expect(page.getByText("Your account has paid access. You can return to your report.", { exact: true })).toBeVisible();
+  });
+
+  test("confirmed payment waits for the account refresh before claiming access is ready", async ({ page }) => {
+    await setUser(page, "30d");
+    await page.addInitScript(() => sessionStorage.setItem("checkout-harness-defer-refresh", "1"));
+    await confirmPayment(page);
+    await page.goto(`${ORIGIN}${CONFIRMED_PATH}`);
+    await expect(page.getByText("Checking account access", { exact: true })).toBeVisible();
+    await expect(page.getByText("Your payment is confirmed. We’re checking access for your account.", { exact: true })).toBeVisible();
+    await expect(page.getByText("Checking your account", { exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Refreshing access…", exact: true })).toBeDisabled();
+    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
+    await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
+    await page.evaluate(() => (window as any).completeCheckoutAccountRefresh());
+    await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveAttribute("href", REVISION_PATH);
   });
 
   test("a signed-out confirmation carries the comparison through sign-in", async ({ page }) => {
@@ -156,6 +180,12 @@ test.describe("saved-report checkout return", () => {
     expect(signInUrl.searchParams.get("next")).toBe(REVISION_PATH);
     expect(signInUrl.searchParams.get("from")).toBe("paywall");
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveCount(0);
+    await expect(page.getByText("Payment confirmed", { exact: true })).toBeVisible();
+    await expect(page.getByText("Your payment is confirmed. Sign in with your checkout email to use the pass.", { exact: true })).toBeVisible();
+    await expect(page.getByText("Sign in to continue", { exact: true })).toBeVisible();
+    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
+    await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
   });
 
   test("confirmation without paid account access preserves context while requesting verification", async ({ page }) => {
@@ -164,6 +194,12 @@ test.describe("saved-report checkout return", () => {
     await page.goto(`${ORIGIN}${CONFIRMED_PATH}`);
     await expect(page.getByRole("link", { name: "Verify purchase access", exact: true })).toHaveAttribute("href", RESTORE_PATH);
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveCount(0);
+    await expect(page.getByText("Payment confirmed", { exact: true })).toBeVisible();
+    await expect(page.getByText("Your payment is confirmed, but this account does not show the pass yet.", { exact: true })).toBeVisible();
+    await expect(page.getByText("Verify account access", { exact: true })).toBeVisible();
+    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
+    await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
   });
 
   test("a failed confirmation keeps its pricing and recovery continuations", async ({ page }) => {
@@ -215,7 +251,7 @@ test.describe("saved-report checkout return", () => {
 
     await page.goto(`${ORIGIN}/purchase/restore?returnTo=${foreignReturnTo}`);
     await expect(page.getByRole("link", { name: "Sign in", exact: true })).toHaveAttribute("href", "/auth?from=paywall&next=/purchase/restore");
-    await expect(page.getByRole("link", { name: "Back to the studio", exact: true })).toHaveAttribute("href", "/workspace");
+    await expect(page.getByRole("link", { name: "Back to workspace", exact: true })).toHaveAttribute("href", "/workspace");
     await expect(page.locator('a[href*="example.org"]')).toHaveCount(0);
   });
 });

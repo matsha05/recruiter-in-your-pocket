@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
         if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\d{8}$/.test(code)) {
             const res = NextResponse.json(
-                { ok: false, message: "Email and code are required" },
+                { ok: false, message: "Enter your email address and sign-in code." },
                 { status: 400 }
             );
             res.headers.set("x-request-id", request_id);
@@ -65,14 +65,14 @@ export async function POST(request: NextRequest) {
                 outcome: "provider_error",
                 err: { name: "SupabaseError", message: error.message }
             });
-            const res = NextResponse.json({ ok: false, message: "Invalid code. Please try again." }, { status: 400 });
+            const res = NextResponse.json({ ok: false, message: "That code was not accepted. Check the latest email or request a new code." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             return res;
         }
 
         if (!data.user) {
             const res = NextResponse.json(
-                { ok: false, message: "Verification failed" },
+                { ok: false, message: "Could not complete sign-in. Try again." },
                 { status: 400 }
             );
             res.headers.set("x-request-id", request_id);
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
             err: { name: (error as any)?.name || "Error", message: (error as any)?.message || "Failed to verify code", stack: (error as any)?.stack }
         });
         const res = NextResponse.json(
-            { ok: false, message: "Failed to verify code" },
+            { ok: false, message: "Could not check your sign-in code. Try again." },
             { status: 500 }
         );
         res.headers.set("x-request-id", request_id);

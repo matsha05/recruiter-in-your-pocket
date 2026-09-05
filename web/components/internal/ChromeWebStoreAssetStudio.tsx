@@ -18,14 +18,14 @@ const popupJobs = [
     role: "Senior Product Designer",
     source: "LinkedIn",
     sync: "Synced to RIYP",
-    score: "84 match",
+    score: "84 / 100",
   },
   {
     company: "Ramp",
     role: "Product Marketing Manager",
     source: "Indeed",
     sync: "Saved locally",
-    score: "Strong rewrite candidate",
+    score: "Not compared yet",
   },
 ];
 
@@ -44,8 +44,8 @@ const screenshotCards = [
   },
   {
     id: "workspace-return",
-    title: "Saved role back in the studio",
-    eyebrow: "Studio handoff",
+    title: "Saved job in the workspace",
+    eyebrow: "Resume comparison",
     scene: <WorkspaceReturnScene />,
   },
   {
@@ -79,9 +79,8 @@ export default function ChromeWebStoreAssetStudio() {
                 Launch-ready screenshots with the real RIYP story.
               </h1>
               <p className="mt-4 max-w-[64ch] text-base leading-8 text-slate-600">
-                Every frame keeps the same promise: capture a supported job when it matters,
-                understand what sync unlocks, and return to the studio only when you want the
-                full recruiter-grade review.
+                These examples show how to save a supported job, choose whether to sync it,
+                and use its description in a resume report.
               </p>
             </div>
             <div className="w-[320px] rounded-[28px] border border-black/8 bg-[#faf6f1] p-5">
@@ -219,24 +218,24 @@ function PopupJobsScene() {
               Screenshot 1
             </p>
             <h3 className="mt-4 font-display text-5xl tracking-[-0.05em] text-slate-900">
-              Save the job, then choose the next step with confidence.
+              Keep the jobs you want to revisit.
             </h3>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              The popup stays simple: captured roles, sync visibility, and one clear path back to
-              the studio when you want the deeper pass.
+              Browse saved jobs, reopen the original posting, or compare a job description
+              with your resume.
             </p>
           </div>
 
           <div className="grid max-w-[560px] gap-4">
             <InfoStrip
               icon={<CheckCircle2 className="size-4" />}
-              title="Sync stays explicit"
-              body="Saved-job history follows your account only after sign-in."
+              title="Choose where jobs are saved"
+              body="Sign in before saving to add a job to your account. Existing browser saves stay local."
             />
             <InfoStrip
               icon={<ShieldCheck className="size-4" />}
-              title="Purpose-bound capture"
-              body="Capture is initiated from supported LinkedIn and Indeed job pages."
+              title="Save when you choose"
+              body="Choose Save job on a supported LinkedIn or Indeed posting."
             />
           </div>
         </div>
@@ -247,12 +246,12 @@ function PopupJobsScene() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                    Saved jobs
+                    Example saved jobs
                   </div>
-                  <div className="mt-1 text-lg font-semibold text-slate-900">2 roles in view</div>
+                  <div className="mt-1 text-lg font-semibold text-slate-900">2 saved jobs</div>
                 </div>
                 <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                  Sync ready
+                  Sync on
                 </span>
               </div>
               <div className="mt-4 gap-y-3">
@@ -280,7 +279,7 @@ function PopupJobsScene() {
                 ))}
               </div>
               <button type="button" className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
-                Open saved jobs in studio
+                Open saved jobs
                 <ArrowRight className="size-4" />
               </button>
             </div>
@@ -302,24 +301,24 @@ function PopupAuthScene() {
               Screenshot 2
             </p>
             <h3 className="mt-4 font-display text-5xl tracking-[-0.05em] text-slate-900">
-              Keep using it locally. Sign in only when sync matters.
+              Save in this browser, or sign in to sync.
             </h3>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              The popup makes the boundary clear at a glance: local capture works first, while
-              sign-in unlocks saved-job history across devices and a cleaner handoff to the studio.
+              You can save jobs without an account. Sign in before saving to access new jobs
+              on your other devices.
             </p>
           </div>
 
           <div className="grid max-w-[540px] gap-4">
             <InfoStrip
               icon={<BriefcaseBusiness className="size-4" />}
-              title="Local use first"
-              body="You can still capture supported roles without committing to sync."
+              title="No account needed to save"
+              body="Jobs you save while signed out stay in this browser."
             />
             <InfoStrip
               icon={<Lock className="size-4" />}
-              title="Sync when you want it"
-              body="Passwordless sign-in keeps saved jobs across devices and opens the studio on the right account."
+              title="Sign in for other devices"
+              body="New jobs save to your account. To sync an earlier browser save, save that posting again."
             />
           </div>
         </div>
@@ -329,28 +328,27 @@ function PopupAuthScene() {
             <div className="rounded-[22px] border border-black/6 bg-white p-5">
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-3">
                 <div className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                  Local capture is already on
+                  Browser saves are available
                 </div>
                 <div className="mt-1 text-sm text-slate-600">
-                  Sign in only if you want synced saved jobs and studio continuity.
+                  You can save jobs without signing in.
                 </div>
               </div>
               <div className="mx-auto mt-5 flex size-12 items-center justify-center rounded-full bg-brand/10 text-brand">
                 <Lock className="size-5" />
               </div>
               <h4 className="mt-4 text-center text-xl font-semibold text-slate-900">
-                Sign in for synced saved jobs
+                Access saved jobs on other devices
               </h4>
               <p className="mt-3 text-center text-sm leading-6 text-slate-600">
-                Keep saved roles across devices, reopen them in the studio, and attach extension
-                history to the right account.
+                Sign in to save new jobs to your account. Existing browser saves stay here
+                unless you save those postings again.
               </p>
               <div className="mt-5 rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4 text-sm leading-6 text-slate-600">
-                You can still use the extension locally. Sign-in is only required for synced
-                history and personalized context.
+                After signing in, reopen the extension or choose Refresh.
               </div>
               <button type="button" className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
-                Open secure sign-in
+                Sign in
                 <ArrowRight className="size-4" />
               </button>
               <button type="button" className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
@@ -385,21 +383,20 @@ function WorkspaceReturnScene() {
                 </h4>
               </div>
             </div>
-            <p className="mt-3 text-sm text-slate-500">Notion · LinkedIn capture · reopened in studio</p>
+            <p className="mt-3 text-sm text-slate-500">Notion · Saved from LinkedIn · Example job</p>
 
             <div className="mt-6 rounded-[24px] border border-brand/15 bg-brand/8 p-5">
               <div className="text-xs font-semibold uppercase tracking-wide text-brand">
                 Why reopen it
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-700">
-                The extension keeps the role in view. The studio picks up that same context for the
-                deeper recruiter-grade review.
+                Open a saved job in your workspace to check your resume against its requirements.
               </p>
             </div>
 
             <div className="mt-5 gap-y-3">
               <MetricCard label="Resume match" value="84 / 100" />
-              <MetricCard label="Best next move" value="Refine leadership bullets" />
+              <MetricCard label="Example recommendation" value="Clarify your leadership role" />
             </div>
 
             <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-[#fbfaf7] px-4 py-3 text-sm font-medium text-slate-700">
@@ -412,43 +409,43 @@ function WorkspaceReturnScene() {
             <div className="flex items-start justify-between gap-6 border-b border-black/6 pb-6">
               <div className="max-w-[580px]">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                  Recruiter-grade review
+                  Example resume feedback
                 </p>
                 <h3 className="mt-3 font-display text-[2.7rem] tracking-[-0.05em] text-slate-900">
-                  Extension capture turns into a real studio handoff.
+                  How does your resume fit this job?
                 </h3>
                 <p className="mt-3 text-base leading-7 text-slate-600">
-                  One saved role becomes a clearer review, stronger bullets, and a cleaner decision
-                  about whether this job deserves the next pass.
+                  Use the saved description in your resume report to see relevant experience,
+                  missing details, and suggested changes.
                 </p>
               </div>
               <div className="rounded-[26px] border border-brand/15 bg-brand/8 px-6 py-5 text-center">
                 <div className="text-xs font-semibold uppercase tracking-wide text-brand">
-                  Match signal
+                  Resume match
                 </div>
                 <div className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-slate-900">
                   84
                 </div>
-                <div className="mt-2 text-sm text-slate-500">strong fit with rewrite upside</div>
+                <div className="mt-2 text-sm text-slate-500">illustrative score, out of 100</div>
               </div>
             </div>
 
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               <ReportCard
-                title="What reads strongly"
-                body="Leadership, systems thinking, and product-shaping language show up fast."
+                title="Relevant experience"
+                body="Your design systems and product leadership experience relate to this role."
               />
               <ReportCard
-                title="What gets lost"
-                body="The strongest outcomes sit too low, so the opening read underweights scope."
+                title="What to clarify"
+                body="Which decisions did you make, and how many designers did you lead?"
               />
               <ReportCard
-                title="Rewrite direction"
-                body="Lead with shipped outcomes, clarify team span, and tighten the top three bullets."
+                title="What to revise"
+                body="Move the relevant design work earlier and explain your role in the result."
               />
               <ReportCard
-                title="Next studio move"
-                body="Export the update, then compare against similar design leadership roles."
+                title="Next step"
+                body="Update your resume with details you can verify, then review the new version."
               />
             </div>
           </section>
@@ -473,20 +470,20 @@ function InstallDisclosureScene() {
               Save the job while it’s in front of you.
             </h3>
             <p className="mt-4 max-w-[54ch] text-lg leading-8 text-slate-600">
-              Capture supported LinkedIn and Indeed roles, then reopen them in the studio when you
-              want the deeper recruiter-grade pass.
+              Save LinkedIn and Indeed postings while you browse, then check your resume against
+              a saved job in Recruiter in Your Pocket.
             </p>
 
             <div className="mt-6 grid gap-3">
               <InfoStrip
                 icon={<CheckCircle2 className="size-4" />}
                 title="Supported job pages only"
-                body="Capture starts only when you ask to save a supported LinkedIn or Indeed role."
+                body="The extension saves a posting when you choose Save job."
               />
               <InfoStrip
                 icon={<Lock className="size-4" />}
                 title="Sign-in is optional"
-                body="Use your account only when you want synced saved jobs across devices."
+                body="Save in this browser, or sign in before saving to sync a new job."
               />
             </div>
 
@@ -510,21 +507,21 @@ function InstallDisclosureScene() {
               <div className="flex items-center justify-between border-b border-black/6 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                    One obvious next step
+                    Save a job
                   </p>
                   <h4 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
                     Supported sites only
                   </h4>
                 </div>
                 <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
-                  Purpose-bound
+                  LinkedIn and Indeed
                 </span>
               </div>
               <div className="mt-5 gap-y-3">
                 {[
-                  "Capture a supported role in one click",
-                  "Check fit without breaking browsing flow",
-                  "Open the studio only when you want deeper review",
+                  "Save a supported posting while you browse",
+                  "Reopen the job description when you need it",
+                  "Use the saved description in your resume report",
                 ].map((item) => (
                   <div
                     key={item}
@@ -590,27 +587,27 @@ function CaptureContextScene() {
 
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               <ReportCard
-                title="Role signal"
+                title="Example requirements"
                 body="Design systems leadership, product craft, and strong cross-functional ownership."
               />
               <ReportCard
-                title="Why capture now"
-                body="This role is worth reopening in the studio while the context is still fresh."
+                title="Save for later"
+                body="Keep the job description and link so you can come back to them."
               />
             </div>
 
             <div className="mt-6 flex items-center gap-2">
               <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
-                One-click capture
+                Save job
               </span>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Reopen later in studio
+                Reopen from saved jobs
               </span>
             </div>
 
             <div className="mt-6 rounded-[24px] border border-black/8 bg-[#fbfaf7] p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                Purpose-bound access
+                Supported sites only
               </p>
               <p className="mt-3 text-sm leading-7 text-slate-600">
                 The extension reads supported job pages only when needed for user-initiated job
@@ -619,8 +616,8 @@ function CaptureContextScene() {
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-2">
-              <MetricCard label="Supported flow" value="Save here, review later" />
-              <MetricCard label="Account boundary" value="Sync is optional" />
+              <MetricCard label="Job description" value="Saved for later" />
+              <MetricCard label="Account" value="Sign-in is optional" />
             </div>
           </section>
 
@@ -635,21 +632,20 @@ function CaptureContextScene() {
                     </span>
                     <div>
                       <div className="text-sm font-semibold text-slate-900">
-                        Capture this role
+                        Save this job
                       </div>
                       <div className="text-xs text-slate-500">Supported LinkedIn page</div>
                     </div>
                   </div>
                   <div className="mt-4 rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4 text-sm leading-6 text-slate-600">
-                    Save this posting while it matters, then reopen it later for match context and
-                    the full recruiter-grade review.
+                    Keep this posting so you can compare it with your resume later.
                   </div>
                   <button type="button" className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
-                    Save this job
+                    Save job
                     <ArrowRight className="size-4" />
                   </button>
                   <button type="button" className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
-                    Open studio for deeper review
+                    Review my resume
                   </button>
                 </div>
               </PopupShell>
@@ -672,11 +668,10 @@ function PromoTileScene() {
         </div>
         <div>
           <h3 className="max-w-[240px] font-display text-[2.2rem] leading-[0.95] tracking-[-0.05em] text-slate-900">
-            Save the job before it disappears.
+            Keep jobs worth revisiting.
           </h3>
           <p className="mt-3 max-w-[290px] text-sm leading-6 text-slate-600">
-            Capture supported LinkedIn and Indeed roles, then reopen them in the studio for the
-            recruiter-grade pass.
+            Save LinkedIn and Indeed postings. Check your resume against a saved job in RIYP.
           </p>
         </div>
         <div className="flex items-center justify-between">

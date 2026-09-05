@@ -157,12 +157,12 @@ async function injectCaptureButton() {
 function getCaptureButtonHTML(alreadyCaptured: boolean = false, score: number | null = null): string {
   // Determine button state and content
   const isCaptured = alreadyCaptured;
-  const hasScore = score !== null && score > 0;
+  const hasScore = typeof score === 'number' && Number.isFinite(score);
 
   // Button text based on state
   const buttonText = isCaptured
-    ? (hasScore ? `${score}% Match` : 'Saved ✓')
-    : 'Capture JD';
+    ? (hasScore ? `Resume match: ${score}/100` : 'Saved')
+    : 'Save job';
 
   // Button class based on state
   const buttonClass = isCaptured ? 'riyp-capture-btn captured' : 'riyp-capture-btn';
@@ -170,7 +170,7 @@ function getCaptureButtonHTML(alreadyCaptured: boolean = false, score: number | 
   // Title for accessibility
   const buttonTitle = isCaptured
     ? 'View saved jobs'
-    : 'Capture JD for RIYP';
+    : 'Save this job to Recruiter in Your Pocket';
 
   return `
     <style>
@@ -273,14 +273,14 @@ async function handleCapture() {
 
     // Show loading state
     if (iconSvg) iconSvg.outerHTML = '<div class="riyp-spinner"></div>';
-    textSpan.textContent = 'Capturing...';
+    textSpan.textContent = 'Saving…';
 
     // Extract job data
     const jd = extractJobDescription();
     const meta = extractJobMeta();
 
     if (!jd || !meta.id) {
-      throw new Error('Could not extract job data');
+      throw new Error('Could not read this posting. Refresh the page and try again.');
     }
 
     // Send to service worker
@@ -292,19 +292,19 @@ async function handleCapture() {
     const response = await safeMessage(message);
 
     if (!response.success) {
-      throw new Error(response.error || 'Failed to save job');
+      throw new Error(response.error || 'Could not save this job. Try again.');
     }
 
     // Show success state
     button.classList.remove('loading');
     button.classList.add('success');
     const score = response.data?.score;
-    textSpan.textContent = score ? `Match: ${score}%` : '✓ Saved';
+    textSpan.textContent = typeof score === 'number' && Number.isFinite(score) ? `Resume match: ${score}/100` : 'Saved';
 
     // Reset after delay
     setTimeout(() => {
       button.classList.remove('success');
-      textSpan.textContent = 'Capture JD';
+      textSpan.textContent = 'Save job';
       button.querySelector('.riyp-spinner')?.remove();
       const newIcon = document.createElement('div');
       newIcon.innerHTML = `
@@ -324,11 +324,11 @@ async function handleCapture() {
 
     button.classList.remove('loading');
     button.classList.add('error');
-    textSpan.textContent = 'Error';
+    textSpan.textContent = 'Could not save. Try again.';
 
     setTimeout(() => {
       button.classList.remove('error');
-      textSpan.textContent = 'Capture JD';
+      textSpan.textContent = 'Save job';
       isCapturing = false;
     }, 2000);
   }

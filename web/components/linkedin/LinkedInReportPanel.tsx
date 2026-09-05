@@ -40,7 +40,7 @@ export function LinkedInReportPanel({
     const score = Math.round(report.score || 0);
     const subscores = [
         { key: "visibility", label: "Visibility", score: report.subscores?.visibility },
-        { key: "first-impression", label: "First read", score: report.subscores?.first_impression },
+        { key: "first-impression", label: "First impression", score: report.subscores?.first_impression },
         { key: "content", label: "Content", score: report.subscores?.content_quality },
         { key: "completeness", label: "Completeness", score: report.subscores?.completeness },
     ];
@@ -52,7 +52,7 @@ export function LinkedInReportPanel({
                     <div className="flex min-w-0 items-center gap-3">
                         <span className="flex size-8 shrink-0 items-center justify-center border border-ink font-display text-sm text-ink">in</span>
                         <div className="min-w-0">
-                            <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-ink">LinkedIn first read</p>
+                            <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-ink">LinkedIn report</p>
                             <p className="mt-1 truncate text-xs text-muted-foreground">
                                 {profileName || "Profile report"}{profileHeadline ? ` · ${profileHeadline}` : ""}
                             </p>
@@ -72,7 +72,7 @@ export function LinkedInReportPanel({
                     <div className="px-5 py-8 sm:px-7 md:border-r md:riyp-border-paper-line md:px-9 md:py-10">
                         <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-brand">What comes through first</p>
                         <h2 id="linkedin-report-verdict" className="mt-5 max-w-[18ch] font-display riyp-display-report riyp-weight-520 riyp-leading-098 riyp-track-n04 text-ink riyp-stretch-88">
-                            {report.first_impression?.profile_card_verdict || report.score_comment_short || "Your positioning needs a clearer lead."}
+                            {report.first_impression?.profile_card_verdict || report.score_comment_short || "Your profile feedback"}
                         </h2>
                         {(report.score_comment_long || report.score_comment_short) && (
                             <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">
@@ -88,7 +88,7 @@ export function LinkedInReportPanel({
                         </div>
                         <div className="md:mt-5">
                             <p className="text-sm font-semibold text-brand">{report.score_label || "Needs work"}</p>
-                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Organizes this review. It is not a hiring prediction.</p>
+                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Summarizes the feedback below. It does not predict hiring outcomes.</p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ export function LinkedInReportPanel({
                     icon={<PrincipalRecruiterIcon className="size-4 text-brand" />}
                     number="01"
                     title="Likely takeaway"
-                    subtitle="What the uploaded profile communicates before someone reads deeper."
+                    subtitle="What a recruiter may notice first."
                 />
 
                 <div className="mt-7 space-y-7">
@@ -138,7 +138,7 @@ export function LinkedInReportPanel({
                     icon={<TransformArrowIcon className="size-4 text-brand" />}
                     number="02"
                     title="Headline"
-                    subtitle="The line that frames the rest of the profile."
+                    subtitle="Does your headline make your experience clear?"
                 />
 
                 <div className="mt-7 space-y-7">
@@ -161,7 +161,7 @@ export function LinkedInReportPanel({
                     )}
 
                     {report.headline_analysis?.rewrite && (
-                        <CopyableSuggestionCard label="Stronger when accurate" content={report.headline_analysis.rewrite} note={report.headline_analysis.why_better} />
+                        <CopyableSuggestionCard label="Suggested headline" content={report.headline_analysis.rewrite} note={report.headline_analysis.why_better} />
                     )}
                 </div>
             </section>
@@ -171,7 +171,7 @@ export function LinkedInReportPanel({
                     icon={<InsightSparkleIcon className="size-4 text-brand" />}
                     number="03"
                     title="About section"
-                    subtitle="Whether the opening earns a deeper read and the rest supports it."
+                    subtitle="What does your introduction tell a recruiter?"
                 />
 
                 <div className="mt-7 space-y-6">
@@ -190,7 +190,7 @@ export function LinkedInReportPanel({
                     icon={<SignalRadarIcon className="size-4 text-brand" />}
                     number="04"
                     title="Search visibility"
-                    subtitle="Language that supports the roles you want to be found for."
+                    subtitle="Which relevant terms appear in your profile?"
                 />
 
                 <div className="mt-7 space-y-7">
@@ -209,8 +209,8 @@ export function LinkedInReportPanel({
                 <ReportSectionHeader
                     icon={<RoleTargetIcon className="size-4 text-brand" />}
                     number="05"
-                    title="Positioning"
-                    subtitle="The roles this profile currently supports—and the story it needs to reinforce."
+                    title="Role fit"
+                    subtitle="Which roles match the experience you describe?"
                 />
 
                 <div className="mt-7 grid gap-7 md:grid-cols-[0.75fr_1.25fr]">
@@ -220,15 +220,15 @@ export function LinkedInReportPanel({
                             {(report.role_fit?.best_fit_roles || []).map((role, index) => (
                                 <li key={`${role}-${index}`} className="py-3 font-display text-xl riyp-weight-520 text-ink">{role}</li>
                             ))}
-                            {(!report.role_fit?.best_fit_roles || report.role_fit.best_fit_roles.length === 0) && <li className="py-3 text-sm text-muted-foreground">No clear role cluster was identified.</li>}
+                            {(!report.role_fit?.best_fit_roles || report.role_fit.best_fit_roles.length === 0) && <li className="py-3 text-sm text-muted-foreground">The report did not identify specific roles from this profile.</li>}
                         </ul>
                     </div>
                     <div className="space-y-6">
                         {report.role_fit?.current_positioning && (
-                            <div><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Current read</p><p className="mt-3 text-sm leading-6 text-foreground">{report.role_fit.current_positioning}</p></div>
+                            <div><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Experience described</p><p className="mt-3 text-sm leading-6 text-foreground">{report.role_fit.current_positioning}</p></div>
                         )}
                         {report.role_fit?.positioning_suggestion && (
-                            <div className="border-l-2 border-brand pl-5"><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Sharpen the through-line</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{report.role_fit.positioning_suggestion}</p></div>
+                            <div className="border-l-2 border-brand pl-5"><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">What to clarify</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{report.role_fit.positioning_suggestion}</p></div>
                         )}
                     </div>
                 </div>
@@ -239,7 +239,7 @@ export function LinkedInReportPanel({
                     icon={<HiddenGemIcon className="size-4 text-brand" />}
                     number="06"
                     title="Priority edits"
-                    subtitle="The changes most likely to improve clarity first."
+                    subtitle="Start with these changes."
                 />
 
                 <div className="mt-7 border-y riyp-border-paper-line">
@@ -261,7 +261,7 @@ export function LinkedInReportPanel({
                         icon={<TransformArrowIcon className="size-4 text-brand" />}
                         number="07"
                         title="Suggested rewrites"
-                        subtitle="Clearer versions of lines that leave useful details buried."
+                        subtitle="Review these suggestions before you use them."
                     />
 
                     <div className="mt-7 space-y-9">
@@ -270,7 +270,7 @@ export function LinkedInReportPanel({
                                 <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">{rewrite.company}</p>
                                 <p className="mt-4 text-sm leading-6 text-muted-foreground line-through decoration-[hsl(var(--annotation))] decoration-2">{rewrite.original}</p>
                                 <div className="mt-5 border-l-2 border-brand pl-5">
-                                    <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Stronger when verified</p>
+                                    <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Suggested wording</p>
                                     <p className="mt-2 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{rewrite.better}</p>
                                 </div>
                                 {rewrite.enhancement_note && <p className="mt-4 text-xs leading-5 text-muted-foreground">{rewrite.enhancement_note}</p>}
@@ -284,9 +284,9 @@ export function LinkedInReportPanel({
             <footer className="border-t border-brand pt-8">
                 <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
                     <div>
-                        <p className="riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">Next move</p>
+                        <p className="riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">Next step</p>
                         <h3 className="mt-3 max-w-[22ch] font-display text-3xl leading-tight text-ink">
-                            {isSample ? "See what your own profile communicates." : "Make one meaningful edit, then compare the next version."}
+                            {isSample ? "Get feedback on your own profile." : "Update your profile, then review it again when you are ready."}
                         </h3>
                         {!isSample && !isExhausted && (
                             <p className="mt-3 text-sm text-muted-foreground">
@@ -353,8 +353,8 @@ function StatusBadge({ status }: { status: string }) {
 function HookStrengthBadge({ strength }: { strength: string }) {
     const configs: Record<string, { color: string; label: string }> = {
         strong: { color: "text-success", label: "Strong opening" },
-        adequate: { color: "text-brand", label: "Clear, not distinctive" },
-        weak: { color: "text-warning-foreground", label: "Needs a sharper lead" },
+        adequate: { color: "text-brand", label: "Clear opening" },
+        weak: { color: "text-warning-foreground", label: "Opening needs more detail" },
         missing: { color: "text-destructive", label: "Missing" },
     };
     const config = configs[strength] || configs.missing;
@@ -398,11 +398,12 @@ function CopyableSuggestionCard({ label, content, note }: { label: string; conte
                     aria-live="polite"
                 >
                     {copyState === "copied" ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-                    {copyState === "copied" ? "Copied" : copyState === "error" ? "Copy failed" : "Copy"}
+                    {copyState === "copied" ? "Copied" : copyState === "error" ? "Try copying again" : "Copy"}
                 </button>
             </div>
             <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{content}</p>
             {note && <p className="mt-3 text-xs leading-5 text-muted-foreground">{note}</p>}
+            <p className="mt-3 text-xs leading-5 text-muted-foreground">Check that every detail describes your experience before using this wording.</p>
         </div>
     );
 }

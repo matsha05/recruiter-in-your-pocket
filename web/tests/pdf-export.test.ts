@@ -31,8 +31,8 @@ assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 
 const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
 assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
-assert.match(sampleReport.rewrites[0].better, /\[measurable result\]/i);
-assert.match(sampleReport.rewrites[1].better, /\[verified before-and-after result\]/i);
+assert.match(sampleReport.rewrites[0].better, /\[verified before-and-after result\]/i);
+assert.match(sampleReport.rewrites[1].better, /\[ownership detail\]/i);
 for (const rewrite of sampleReport.rewrites) {
   assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
 }
@@ -162,13 +162,16 @@ assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsre
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /Clarity summary/);
+assert.match(renderedHtml, /Review score/);
 assert.match(renderedHtml, /78<span>\/100<\/span>/);
 assert.match(renderedHtml, /Not a prediction of interviews or offers\./);
 assert.match(renderedHtml, new RegExp(getScoreLabel(sampleReport.score)));
-assert.match(renderedHtml, /What lands/);
+assert.match(renderedHtml, /What works well/);
 assert.match(renderedHtml, /What stays unclear/);
-assert.match(renderedHtml, /Strongest next wording/);
+assert.match(renderedHtml, /Suggested edits/);
+assert.match(renderedHtml, /Draft template/);
+assert.match(renderedHtml, /Complete the bracketed details with facts from your experience/);
+assert.doesNotMatch(renderedHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
 assert.doesNotMatch(renderedHtml, /PocketMark|#0d9488|#22c55e|#d97706|#dc2626/);
 assert.doesNotMatch(renderedHtml, /[\u2010-\u2015\u2212]/, "PDF text should use ASCII hyphens");
 

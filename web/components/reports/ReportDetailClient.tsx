@@ -14,6 +14,7 @@ import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 type ReportLoadState = "loading" | "ready" | "signed_out" | "not_found" | "error";
 
@@ -95,7 +96,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
     if (!payload) return;
     const requestBody = buildPdfExportRequest(payload);
     if (!requestBody) {
-      toast.error("This report is missing some data. Please rerun it and try exporting again.");
+      toast.error("This report is missing details needed for a PDF. Contact support for help exporting it.");
       return;
     }
 
@@ -109,7 +110,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       if (!response.ok) {
         const error = await response.json().catch(() => ({}));
-        throw new Error(error?.message || "Failed to export PDF");
+        throw new ClientActionError(error?.message, "The PDF couldn’t download. Try exporting again.");
       }
 
       const blob = await response.blob();
@@ -124,7 +125,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       Analytics.pdfExported();
     } catch (err: any) {
-      toast.error(err?.message || "Failed to export PDF");
+      toast.error(getClientActionError(err, "The PDF couldn’t download. Try exporting again."));
     } finally {
       setIsExporting(false);
     }
@@ -236,8 +237,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               eyebrow="Saved recruiter report"
               title="Recruiter report"
               description={hasJobDescription
-                ? "Your saved recruiter report, with role-fit context and the exact fixes worth making first."
-                : "Your saved recruiter report, preserved with the original read, rewrites, and evidence trail."}
+                ? "Revisit the feedback on your resume and how it fits the job posting."
+                : "Revisit the feedback and suggested changes from your original report."}
               meta={
                 <>
                   <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">

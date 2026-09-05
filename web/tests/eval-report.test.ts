@@ -130,8 +130,8 @@ async function runCandidateBindingTests() {
   const resumePrompt = await loadPromptForMode("resume");
   const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-luna",
-    reasoningEffort: "low",
+    model: "gpt-5.6-terra",
+    reasoningEffort: "medium",
     resumePrompt,
     resumeIdeasPrompt,
   }), true);
@@ -142,14 +142,14 @@ async function runCandidateBindingTests() {
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-luna",
-    reasoningEffort: "medium",
+    model: "gpt-5.6-terra",
+    reasoningEffort: "low",
     resumePrompt,
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-luna",
-    reasoningEffort: "low",
+    model: "gpt-5.6-terra",
+    reasoningEffort: "medium",
     resumePrompt: `${resumePrompt}\nchanged`,
     resumeIdeasPrompt,
   }), false);

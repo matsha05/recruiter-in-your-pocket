@@ -52,7 +52,7 @@ export function UserNav({
                 {/* User info header */}
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col gap-y-1">
-                        <p className="text-sm font-medium">{user.firstName || 'User'}</p>
+                        <p className="text-sm font-medium">{user.firstName || 'Your account'}</p>
                         <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                     </div>
 
@@ -78,7 +78,7 @@ export function UserNav({
                         )}
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
-                                <span className="text-muted-foreground">Free Plan</span>
+                                <span className="text-muted-foreground">Free account</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
                                     <span className="text-success lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'report' : 'reports'} remaining</span>
                                 ) : (

@@ -40,15 +40,15 @@ export default function EmptyState() {
             <div className="empty-features">
                 <div className="empty-feature">
                     <span className="empty-feature-dot empty-feature-success" />
-                    <span>Match scoring</span>
+                    <span>Saved descriptions</span>
                 </div>
                 <div className="empty-feature">
                     <span className="empty-feature-dot empty-feature-brand" />
-                    <span>Gap analysis</span>
+                    <span>Original postings</span>
                 </div>
                 <div className="empty-feature">
                     <span className="empty-feature-dot empty-feature-premium" />
-                    <span>Suggestions</span>
+                    <span>Resume comparison</span>
                 </div>
             </div>
         </div>

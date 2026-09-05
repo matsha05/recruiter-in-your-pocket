@@ -127,7 +127,7 @@ export default function App() {
             await loadJobs(isAuthenticated);
         } catch (err) {
             console.error('[RIYP] Init error:', err);
-            dispatch({ type: 'patch', patch: { error: 'Failed to initialize', view: 'error' } });
+            dispatch({ type: 'patch', patch: { error: 'The extension could not open. Close it and try again.', view: 'error' } });
         } finally {
             refreshing.current = false;
         }
@@ -146,7 +146,7 @@ export default function App() {
                 if (response.error?.includes('Not authenticated') || response.error?.includes('AUTH_REQUIRED')) {
                     dispatch({ type: 'patch', patch: { view: 'unauthenticated' } });
                 } else {
-                    throw new Error(response.error || 'Failed to load jobs');
+                    throw new Error(response.error || 'Could not load your saved jobs. Try Refresh.');
                 }
             }
         } catch (err) {
@@ -154,7 +154,7 @@ export default function App() {
             dispatch({
                 type: 'patch',
                 patch: {
-                    error: err instanceof Error ? err.message : 'Failed to load jobs',
+                    error: err instanceof Error ? err.message : 'Could not load your saved jobs. Try Refresh.',
                     view: 'error',
                 },
             });
@@ -237,7 +237,7 @@ export default function App() {
             <div className="popup-content">
                 {view !== 'onboarding' && (
                     <div className="section-header">
-                        <span className="section-title">{syncStatus === 'offline' ? 'Showing saved copies' : 'Saved-job context'}</span>
+                        <span className="section-title">{syncStatus === 'offline' ? 'Showing saved copies' : 'Your saved jobs'}</span>
                         <button type="button" className="btn btn-ghost" disabled={view === 'loading'} onClick={() => void initialize()}>
                             Refresh
                         </button>
@@ -245,7 +245,7 @@ export default function App() {
                 )}
                 {syncStatus === 'offline' && (
                     <p role="status" className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
-                        Synced jobs could not refresh. Your browser saves are still available. Try Refresh when your connection returns.
+                        We could not refresh jobs from your account. You can still open the copies saved in this browser. Choose Refresh to try again.
                     </p>
                 )}
                 {error && view !== 'error' && (
@@ -275,8 +275,8 @@ export default function App() {
                         <ResumeContextCard />
                         {jobs.some((job) => !isSyncedJob(job)) && (
                             <div className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
-                                Some jobs are saved on this browser only. Open the studio for a fresh report, or sign in and capture again to sync.
-                                {!authenticated && <button type="button" className="btn btn-ghost" onClick={handleLogin}>Sign in for sync</button>}
+                                Some jobs are saved in this browser only. To access them on other devices, sign in and save those postings again.
+                                {!authenticated && <button type="button" className="btn btn-ghost" onClick={handleLogin}>Sign in</button>}
                             </div>
                         )}
                         <RecentJobsList
@@ -297,10 +297,10 @@ export default function App() {
                                 <line x1="12" y1="16" x2="12.01" y2="16" />
                             </svg>
                         </div>
-                        <div className="empty-state-title">Something went wrong</div>
+                        <div className="empty-state-title">Your jobs could not load</div>
                         <div className="empty-state-description">{error}</div>
                         <button type="button" className="btn btn-secondary" onClick={handleRetryLoadJobs}>
-                            Try Again
+                            Try again
                         </button>
                     </div>
                 )}
@@ -318,7 +318,7 @@ export default function App() {
 
             {deletedJob && !isSyncedJob(deletedJob) && (
                 <UndoToast
-                    message={`Removed "${deletedJob.title.slice(0, 30)}..."`}
+                    message={`Removed "${deletedJob.title.length > 30 ? `${deletedJob.title.slice(0, 30)}…` : deletedJob.title}"`}
                     onUndo={handleUndo}
                     onDismiss={handleUndoDismiss}
                 />

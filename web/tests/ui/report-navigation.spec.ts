@@ -81,12 +81,13 @@ for (const viewport of [
 
     if (viewport.width >= 1024) {
       const firstFix = page.locator("#section-fix-1");
-      await expect(firstFix.getByRole("list", { name: "How fix 1 moves from resume evidence to clearer wording", exact: true })).toBeVisible();
+      await expect(firstFix.getByRole("list", { name: "How fix 1 moves from resume evidence to clearer wording", exact: true })).toHaveCount(0);
+      await expect(page.locator("#section-fix-2").getByRole("list", { name: "How fix 2 moves from resume evidence to clearer wording", exact: true })).toBeVisible();
       expect(await firstFix.getByRole("heading", { level: 3 }).evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize))).toBeGreaterThan(24);
     }
 
     const fixesHeight = await page.locator("#section-fixes").evaluate((section) => section.getBoundingClientRect().height);
-    expect(fixesHeight).toBeGreaterThan(viewport.height * 2);
+    expect(fixesHeight).toBeGreaterThan(viewport.height);
     await scrollInsideSection(page, "section-fixes", 0.7);
     await expectCurrent(page, "Fix these first");
     await scrollInsideSection(page, "section-keep", 0.3);

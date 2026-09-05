@@ -115,6 +115,11 @@ export function assertReportGrounding(
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
 
+    if (String(report.section_review["Work Experience"].priority).toLowerCase() === "high"
+        && report.top_fixes.length > 0
+        && report.top_fixes.every(fix => /^No (?:summary|skills|education) section present$/i.test(fix.evidence.excerpt))) {
+        missingEvidence.push("top_fixes must include an actionable experience edit when Work Experience is high priority; optional sections alone do not address the report's main concern");
+    }
     for (const [index, fix] of report.top_fixes.entries()) {
         if (!containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText, fix.evidence.section)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);

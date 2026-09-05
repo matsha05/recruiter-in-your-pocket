@@ -15,7 +15,7 @@ export default function ReferralAdvantagePage() {
             header={{
                 tag: "Job search strategy",
                 title: "What a referral changes",
-                description: "In one online labor market, referrals carried information profiles did not reveal. The study did not estimate interview lift.",
+                description: "A field experiment found that referrals added information about workers' performance. It did not measure their chance of getting an interview.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
@@ -44,15 +44,15 @@ export default function ReferralAdvantagePage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "What to include with a referral request",
                 items: [
                     {
-                        title: "Resume as conversation starter",
-                        description: "A strong resume gives your referrer something concrete to advocate with."
+                        title: "The role and your relevant experience",
+                        description: "Send the job link and your resume. Explain which part of your experience fits the role."
                     },
                     {
-                        title: "Shareability",
-                        description: "We help you create a resume that's easy to forward and explain."
+                        title: "Context the referrer can confirm",
+                        description: "Mention work you did together so they can add a firsthand example, if they are comfortable recommending you."
                     }
                 ]
             }}
@@ -77,7 +77,7 @@ export default function ReferralAdvantagePage() {
                 },
                 {
                     question: "Should I ask for a referral before applying?",
-                    answer: "When someone knows your work and can add relevant context, yes. A weak cold ask from a stranger is not the same signal as a genuine recommendation."
+                    answer: "Ask someone who knows your work whether they are comfortable referring you, and check the employer's process before applying. This study did not test the best timing for a referral request."
                 },
                 {
                     question: "What should I send with a referral request?",
@@ -98,7 +98,7 @@ export default function ReferralAdvantagePage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                The practical inference is narrower than &quot;referrals guarantee attention.&quot; A credible referrer can add context that the application alone does not carry. Whether that changes screening depends on the employer, role, relationship, and what the referrer can honestly say.
+                <strong>Our interpretation:</strong> someone who has worked with you may be able to explain strengths that your resume does not capture. Whether that changes a screening decision depends on the employer and what the referrer can honestly say.
             </p>
 
             <h2 className="research-h2">Key findings</h2>
@@ -153,17 +153,16 @@ export default function ReferralAdvantagePage() {
             </p>
             <p className="research-body mb-6">
                 <strong>When you&apos;re looking:</strong> Be specific about what you want. &quot;I&apos;m looking for
-                a Senior PM role at a growth-stage fintech&quot; is actionable. &quot;Let me know if you hear
-                of anything&quot; is not.
+                a Senior PM role at a growth-stage fintech&quot; helps someone recognize a relevant opening. Add a job link when you have one.
             </p>
             <p className="research-body">
                 <strong>Make it easy:</strong> When asking for a referral, include your resume and a
-                2-sentence pitch. Your referrer shouldn&apos;t have to write your case for you.
+                short explanation of why the role fits your experience. Give them room to decline.
             </p>
 
             <h2 className="research-h2">What a useful referral adds</h2>
             <p className="research-body mb-6">
-                A useful referral adds specific, firsthand context: what you did together, how you worked, and why that experience is relevant now. &quot;I know this person&quot; is thin. &quot;I watched them lead the migration that cut our close by three days&quot; gives the reviewer something real to evaluate.
+                A useful referral can explain what you did together and how you worked. For example: &quot;We worked on the finance-system migration together. She led the data cleanup, which helped our team shorten the month-end close.&quot; Use only details the referrer can confirm.
             </p>
         </ResearchArticle>
     );

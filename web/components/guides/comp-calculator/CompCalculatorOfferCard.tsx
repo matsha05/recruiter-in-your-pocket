@@ -33,6 +33,8 @@ function NumberInput({
 }: NumberInputProps) {
   const inputId = useId();
   const hintId = `${inputId}-hint`;
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState("");
 
   return (
     <div className="space-y-1.5">
@@ -44,9 +46,21 @@ function NumberInput({
         <input
           id={inputId}
           type="text"
-          inputMode="numeric"
-          value={value === 0 ? "" : value.toLocaleString()}
-          onChange={(event) => onChange(Number.parseInt(event.target.value.replace(/[^0-9]/g, ""), 10) || 0)}
+          inputMode="decimal"
+          value={editing ? draft : value === 0 ? "" : value.toLocaleString("en-US", { maximumFractionDigits: 10 })}
+          onFocus={() => {
+            setDraft(value === 0 ? "" : String(value));
+            setEditing(true);
+          }}
+          onBlur={() => setEditing(false)}
+          onChange={(event) => {
+            const next = event.target.value.replaceAll(",", "").replace(/^\$/, "").trim();
+            if (!/^\d*(?:\.\d*)?$/.test(next)) return;
+            const amount = next === "" || next === "." ? 0 : Number(next);
+            if (!Number.isFinite(amount)) return;
+            setDraft(next);
+            onChange(amount);
+          }}
           readOnly={readOnly}
           aria-describedby={hint ? hintId : undefined}
           className={`min-h-12 w-full rounded-sm border border-line bg-background px-3 py-2.5 font-display text-xl font-medium text-foreground transition-colors placeholder:text-muted-foreground/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 read-only:cursor-default read-only:bg-paper-muted read-only:text-muted-foreground ${prefix ? "pl-7" : ""} ${suffix ? "pr-10" : ""}`}
@@ -96,12 +110,13 @@ function VestingEditor({ schedule, onChange, readOnly }: {
                   value={schedule[index] ?? 0}
                   min={0}
                   max={100}
+                  step="any"
                   readOnly={readOnly}
                   aria-invalid={!valid}
                   aria-describedby={!valid ? errorId : undefined}
                   onChange={(event) => {
                     const next = [...schedule];
-                    next[index] = Number.parseInt(event.target.value, 10) || 0;
+                    next[index] = Number.parseFloat(event.target.value) || 0;
                     onChange(next);
                   }}
                   className="min-h-11 w-full rounded-sm border border-line bg-background px-2 py-2 text-center text-sm text-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 read-only:cursor-default read-only:bg-paper-muted"
@@ -123,7 +138,6 @@ function AdvancedOptions({ offer, onChange, readOnly }: {
 }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
-  const relocationId = `${panelId}-relocation`;
   const growthId = `${panelId}-growth`;
   const growthHintId = `${growthId}-hint`;
   const hasAdvanced = offer.relocationBonus > 0 || offer.stockGrowth !== 0;
@@ -143,22 +157,7 @@ function AdvancedOptions({ offer, onChange, readOnly }: {
       </button>
       {open ? (
         <div id={panelId} className="space-y-6 pt-4">
-          <div className="space-y-1.5">
-            <label htmlFor={relocationId} className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Relocation payment</label>
-            <div className="relative">
-              <span aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
-              <input
-                id={relocationId}
-                type="text"
-                inputMode="numeric"
-                value={offer.relocationBonus === 0 ? "" : offer.relocationBonus.toLocaleString()}
-                readOnly={readOnly}
-                onChange={(event) => onChange({ ...offer, relocationBonus: Number.parseInt(event.target.value.replace(/[^0-9]/g, ""), 10) || 0 })}
-                className="min-h-11 w-full rounded-sm border border-line bg-background py-2 pl-7 pr-3 text-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 read-only:cursor-default read-only:bg-paper-muted"
-                placeholder="0"
-              />
-            </div>
-          </div>
+          <NumberInput label="Relocation payment" value={offer.relocationBonus} onChange={(value) => onChange({ ...offer, relocationBonus: value })} readOnly={readOnly} />
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-4">
               <label htmlFor={growthId} className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Modeled annual equity growth</label>
@@ -235,9 +234,9 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
       />
 
       <div className="mb-5 grid gap-4 sm:grid-cols-2">
-        <NumberInput label="Guaranteed annual base" value={offer.baseSalary} onChange={(value) => onChange({ ...offer, baseSalary: value })} readOnly={readOnly} />
+        <NumberInput label="Annual base salary" value={offer.baseSalary} onChange={(value) => onChange({ ...offer, baseSalary: value })} readOnly={readOnly} />
         <NumberInput label="Annual target bonus" value={offer.bonusPercent} onChange={(value) => onChange({ ...offer, bonusPercent: value })} prefix="" suffix="%" hint="Modeled at 100% of target each year" readOnly={readOnly} />
-        <NumberInput label="Equity grant value" value={offer.stockTotal} onChange={(value) => onChange({ ...offer, stockTotal: value })} hint="Value entered before growth assumptions" readOnly={readOnly} />
+        <NumberInput label="Equity grant value" value={offer.stockTotal} onChange={(value) => onChange({ ...offer, stockTotal: value })} hint="Total grant value across the four-year schedule" readOnly={readOnly} />
         <NumberInput label="Signing payment" value={offer.signingBonus} onChange={(value) => onChange({ ...offer, signingBonus: value })} hint="Included in year one; check repayment terms" readOnly={readOnly} />
       </div>
 

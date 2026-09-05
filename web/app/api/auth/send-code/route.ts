@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         const email = normalizeAuthEmail(body?.email);
         if (!isValidAuthEmail(email)) {
             const res = NextResponse.json(
-                { ok: false, message: "Please enter a valid email address" },
+                { ok: false, message: "Enter a valid email address." },
                 { status: 400 }
             );
             res.headers.set("x-request-id", request_id);
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
             const res = NextResponse.json(
                 {
                     ok: false,
-                    message: "Could not send code. Try again shortly.",
+                    message: "Could not send your sign-in code. Try again shortly.",
                     errorCode: code
                 },
                 { status: 503 }
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
             err: { name: (error as any)?.name || "Error", message: (error as any)?.message || "Failed to send code", stack: (error as any)?.stack }
         });
         const res = NextResponse.json(
-            { ok: false, message: "Failed to send code" },
+            { ok: false, message: "Could not send your sign-in code. Try again shortly." },
             { status: 500 }
         );
         res.headers.set("x-request-id", request_id);

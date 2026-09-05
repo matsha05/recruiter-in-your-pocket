@@ -48,23 +48,15 @@ const REPORT_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=$
   "Report feedback",
 )}&body=${encodeURIComponent(
   [
-    "What felt immediately useful?",
+    "Which advice was useful?",
     "",
-    "What felt untrustworthy, generic, or wrong?",
+    "What was unclear, generic, or wrong?",
     "",
-    "What almost stopped you from finishing?",
+    "Did anything make the report hard to use?",
     "",
-    "Optional: Did the score feel like a document review, or did it mean something else to you?",
+    "Optional: What did you understand the score to mean?",
   ].join("\n"),
 )}`;
-
-function MarkedTakeaway({ text }: { text: string }) {
-  const match = text.match(/\bbigger\b/i);
-  if (!match || match.index === undefined) return <>{text}</>;
-  const start = match.index;
-  const end = start + match[0].length;
-  return <>{text.slice(0, start)}<span className="riyp-marker">{text.slice(start, end)}</span>{text.slice(end)}</>;
-}
 
 export function ReportStream({
   report,
@@ -91,6 +83,7 @@ export function ReportStream({
     [report.ideas?.questions],
   );
   const strengths = (report.strengths || []).slice(0, 3);
+  const strengthsToKeep = strengths.slice(1);
   const roleFit = report.job_alignment?.role_fit;
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
@@ -124,7 +117,7 @@ export function ReportStream({
         <div className="pt-5">
           <div className="border-l-2 border-cyan-bright pl-4 sm:pl-6">
             <h1 className={cn(styles.openingTitle, "font-display font-semibold tracking-[-0.045em] text-foreground")}>
-              <MarkedTakeaway text={report.first_impression_takeaway || "Here's where to start."} />
+              {report.first_impression_takeaway || "Here's where to start."}
             </h1>
           </div>
           <p className="mt-4 max-w-[43rem] text-base leading-7 text-foreground/80 sm:text-lg sm:leading-8">{report.score_comment_short || report.first_impression || report.summary}</p>
@@ -133,11 +126,11 @@ export function ReportStream({
         <div className="mt-5 grid border-y border-[hsl(var(--paper-line))] sm:grid-cols-2 sm:divide-x sm:divide-[hsl(var(--paper-line))]">
           <div className="border-b border-[hsl(var(--paper-line))] bg-accent-butter/20 px-4 py-4 sm:border-b-0 sm:px-5">
             <div className="flex items-center gap-3 text-brand"><CornersOut className="size-4" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/75">What works</p></div>
-            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{strengths[0] || "The core of your experience is easy to follow."}</p>
+            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{strengths[0] || "No specific strength was included in this report."}</p>
           </div>
           <div className="bg-surface-sky px-4 py-4 sm:px-5">
             <div className="flex items-center gap-3 text-brand"><BracketsAngle className="size-4" weight="bold" aria-hidden="true" /><p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What needs context</p></div>
-            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{report.gaps?.[0] || report.biggest_gap_example || "The scale and result need more detail."}</p>
+            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{report.gaps?.[0] || report.biggest_gap_example || "No specific gap was included in this report."}</p>
           </div>
         </div>
 
@@ -177,15 +170,15 @@ export function ReportStream({
 
       <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={resumeText} isReadOnly={isSample} />
 
-      {strengths.length > 0 && (
+      {strengthsToKeep.length > 0 && (
         <section id="section-keep" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
             <div>
               <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Keep these</p>
-              <h2 className="mt-3 font-display text-3xl riyp-weight-520 leading-tight text-foreground">Keep what&apos;s working.</h2>
+              <h2 className="mt-3 font-display text-3xl riyp-weight-520 leading-tight text-foreground">Also worth keeping.</h2>
             </div>
             <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
-              {strengths.map((strength, index) => (
+              {strengthsToKeep.map((strength, index) => (
                 <li key={strength} className="grid grid-cols-[2rem_1fr] gap-3 py-5">
                   <span className="riyp-tabular-label text-[11px] font-semibold text-brand">0{index + 1}</span>
                   <p className="text-base leading-7 text-foreground/85">{strength}</p>
@@ -205,7 +198,7 @@ export function ReportStream({
               <p className="mt-5 max-w-[42rem] text-base leading-7 text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             </div>
             <div className="border-l-2 border-brand/30 pl-5">
-              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">Best fit now</p>
+              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">Roles to consider</p>
               <ul className="mt-4 space-y-3">
                 {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role} className="text-sm font-medium leading-6 text-foreground">{role}</li>)}
               </ul>
@@ -234,6 +227,12 @@ export function ReportStream({
             ))}
           </div>
         </div>
+        {(report.score_comment_long || report.score_plain) && (
+          <div className="grid gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-sm leading-6 text-foreground/80">
+            {report.score_comment_long && <p>{report.score_comment_long}</p>}
+            {report.score_plain && report.score_plain !== report.score_comment_long && <p>{report.score_plain}</p>}
+          </div>
+        )}
       </details>
 
       <FullRecruiterNotes report={report} hasJobDescription={hasJobDescription} />
@@ -287,7 +286,7 @@ export function ReportStream({
               <Button asChild variant="outline" size="lg" className="border-foreground/35 bg-paper hover:border-brand/45 hover:bg-brand/5">
                 <a href={REPORT_FEEDBACK_HREF}>Send feedback<EnvelopeSimple className="ml-1 size-4 text-brand" weight="bold" /></a>
               </Button>
-              <p className={styles.feedbackNote}>Three prompts open in your email. Your resume is never attached.</p>
+              <p className={styles.feedbackNote}>Opens your email with a few questions. Your resume is never attached.</p>
             </div>
           </div>
         </section>

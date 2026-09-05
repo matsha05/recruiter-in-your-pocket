@@ -33,7 +33,7 @@ export async function GET() {
     const { data: userData } = await supabase.auth.getUser();
     const user = userData.user;
     if (!user?.email) {
-      return NextResponse.json({ ok: false, receipts: [], message: "Please log in first." }, { status: 401 });
+      return NextResponse.json({ ok: false, receipts: [], message: "Sign in to view your receipts." }, { status: 401 });
     }
 
     const receiptLimit = await rateLimitAsync(
@@ -52,7 +52,7 @@ export async function GET() {
 
     const admin = createSupabaseAdminClient();
     if (!admin) {
-      return NextResponse.json({ ok: false, receipts: [], message: "Database is not configured." }, { status: 500 });
+      return NextResponse.json({ ok: false, receipts: [], message: "Receipts are temporarily unavailable. Try again later or contact support." }, { status: 500 });
     }
 
     // DB-first: authoritative app view, populated by webhook.
@@ -65,7 +65,7 @@ export async function GET() {
 
     if (storedError) {
       return NextResponse.json(
-        { ok: false, receipts: [], message: "Failed to load stored receipts." },
+        { ok: false, receipts: [], message: "Could not load your receipts. Try again." },
         { status: 500 },
       );
     }
@@ -99,7 +99,7 @@ export async function GET() {
       .limit(10);
 
     if (passCustomerError) {
-      return NextResponse.json({ ok: false, receipts: [], message: "Failed to load billing account links." }, { status: 500 });
+      return NextResponse.json({ ok: false, receipts: [], message: "Could not load your billing account. Try again." }, { status: 500 });
     }
 
     const customerIds = [...new Set((passCustomers || [])
@@ -135,7 +135,7 @@ export async function GET() {
       err: { name: err?.name || "Error", message: err?.message || "Failed to load receipts", code: err?.code },
     });
     return NextResponse.json(
-      { ok: false, receipts: [], message: "Failed to load receipts." },
+      { ok: false, receipts: [], message: "Could not load your receipts. Try again." },
       { status: 500 }
     );
   }

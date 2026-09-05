@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { InsightSparkleIcon } from "@/components/icons";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 interface DefaultResumeSectionProps {
     className?: string;
@@ -35,11 +35,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         try {
             const res = await fetch("/api/user/default-resume");
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.success) throw new Error(data.error || "Failed to load the default resume");
+            if (!res.ok || !data.success) throw new ClientActionError(data.error, "We couldn't load your default resume. Please try again.");
             setProfile(data.data);
         } catch (error) {
             console.error("[DefaultResume] Fetch error:", error);
-            setLoadError(error instanceof Error ? error.message : "Failed to load the default resume");
+            setLoadError(getClientActionError(error, "We couldn't load your default resume. Please try again."));
         } finally {
             setIsLoading(false);
         }
@@ -87,7 +87,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 const parseData = await parseRes.json();
 
                 if (!parseData.ok) {
-                    toast.error(parseData.message || "Failed to parse file");
+                    toast.error(new ClientActionError(parseData.message, "We couldn't read this file. Try a different PDF, DOCX, or TXT file.").message);
                     setFileName(null);
                     setIsSaving(false);
                     return;
@@ -106,7 +106,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 await saveResume(text);
             } catch (error: any) {
                 console.error("[DefaultResume] Parse error:", error);
-                toast.error("Failed to parse file. Try pasting your resume text.");
+                toast.error("We couldn't read this file. Try a different PDF, DOCX, or TXT file.");
                 setFileName(null);
             } finally {
                 setIsSaving(false);
@@ -119,7 +119,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     };
 
     const removeResume = async () => {
-        if (!window.confirm("Remove your default resume profile? Saved reports stay in history, but extension match scores will stop until you add another resume.")) {
+        if (!window.confirm("Remove your default resume? Saved reports stay in history, but the extension won't calculate new match scores until you add another resume.")) {
             return;
         }
 
@@ -128,7 +128,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             const res = await fetch("/api/user/default-resume", { method: "DELETE" });
             const data = await res.json();
             if (!data.success) {
-                throw new Error(data.error || "Failed to remove resume");
+                throw new ClientActionError(data.error, "We couldn't remove your default resume. Please try again.");
             }
             toast.success("Default resume removed");
             setProfile({ hasResume: false });
@@ -136,7 +136,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             setPendingText(null);
         } catch (error: any) {
             console.error("[DefaultResume] Remove error:", error);
-            toast.error(error.message || "Failed to remove resume");
+            toast.error(getClientActionError(error, "We couldn't remove your default resume. Please try again."));
         } finally {
             setIsRemoving(false);
         }
@@ -153,7 +153,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
             const data = await res.json();
             if (data.success) {
-                toast.success(`Resume indexed! ${data.data.skillsCount} skills detected.`);
+                toast.success(`Resume saved. ${data.data.skillsCount} skills identified.`);
                 setProfile({
                     hasResume: true,
                     resumePreview: data.data.resumePreview,
@@ -163,11 +163,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 });
                 setPendingText(null);
             } else {
-                throw new Error(data.error || "Failed to save");
+                throw new ClientActionError(data.error, "We couldn't save your resume. Please upload it again.");
             }
         } catch (error: any) {
             console.error("[DefaultResume] Save error:", error);
-            toast.error(error.message || "Failed to save resume");
+            toast.error(getClientActionError(error, "We couldn't save your resume. Please upload it again."));
             setPendingText(null);
             setFileName(null);
         } finally {
@@ -208,7 +208,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         return (
             <section className={cn("border-l-2 border-destructive bg-error-surface p-6", className)} role="alert">
                 <h3 className="font-semibold text-destructive">Default resume could not load</h3>
-                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}. Your saved resume has not been changed.</p>
+                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
+                <p className="mt-2 text-sm leading-6 text-destructive/80">Your saved resume has not been changed.</p>
                 <button type="button" onClick={() => void fetchProfile()} className="mt-4 inline-flex min-h-11 items-center gap-2 border border-destructive/40 bg-background px-4 py-2 text-sm font-medium text-destructive">
                     <RefreshCw className="size-4" />
                     Try again
@@ -229,28 +230,22 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
                     <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-foreground">Resume Locked In</h3>
+                            <h3 className="font-semibold text-foreground">Default resume saved</h3>
                             <span className="border-l-2 border-success bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
                                 Active
                             </span>
                         </div>
 
                         <p className="text-sm text-muted-foreground mb-3">
-                            Capture jobs from LinkedIn to see instant match scores.
+                            Save a job through the extension to compare it with this resume.
                         </p>
 
                         {/* Stats */}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3">
                             <span className="flex items-center gap-1.5">
                                 <Target className="size-3.5 text-success" />
-                                <strong>{profile.skillsCount}</strong> skills
+                                <strong>{profile.skillsCount}</strong> skills identified
                             </span>
-                            {profile.hasEmbedding && (
-                                <span className="flex items-center gap-1.5 text-warning-foreground">
-                                    <InsightSparkleIcon className="size-3.5" />
-                                    Semantic matching on
-                                </span>
-                            )}
                             <span className="text-muted-foreground/70 text-xs">
                                 Updated {formatDate(profile.updatedAt || "")}
                             </span>
@@ -306,7 +301,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 <div>
                     <h3 className="font-semibold text-foreground mb-1">Upload Your Resume</h3>
                     <p className="text-sm text-muted-foreground">
-                        Get instant match scores when you capture jobs. No report run needed.
+                        Compare this resume with jobs you save through the extension. This does not use a report credit.
                     </p>
                 </div>
             </div>
@@ -331,17 +326,17 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     {isSaving ? (
                         <div className="flex flex-col items-center gap-2" role="status" aria-live="polite">
                             <Loader2 className="size-8 text-brand animate-spin" />
-                            <p className="text-sm font-medium text-foreground">Indexing skills…</p>
+                            <p className="text-sm font-medium text-foreground">Saving your resume…</p>
                             {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
                         </div>
                     ) : (
                         <>
                             <Upload className="size-8 text-muted-foreground/50 mx-auto mb-2" />
                             <p className="text-sm font-medium text-foreground mb-1">
-                                Drop your resume here
+                                Choose a file or drop it here
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                PDF, DOCX, or TXT
+                                PDF, DOCX, or TXT, up to 4 MB
                             </p>
                         </>
                     )}

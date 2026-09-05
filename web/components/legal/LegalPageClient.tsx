@@ -47,7 +47,7 @@ function renderSection(section: LegalSection, index: number) {
           className="border-t border-line bg-transparent py-7 md:py-9"
         >
           <h2 className="mb-4 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground riyp-stretch-96">{section.title}</h2>
-          <div className="gap-y-3">
+          <div className="space-y-3">
             {section.paragraphs.map(renderParagraph)}
           </div>
         </section>
@@ -59,7 +59,7 @@ function renderSection(section: LegalSection, index: number) {
           className="border-t border-line bg-transparent py-7 md:py-9"
         >
           <h2 className="mb-4 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground riyp-stretch-96">{section.title}</h2>
-          <ul className="list-disc gap-y-2 pl-5 text-[1.0625rem] leading-8 text-muted-foreground marker:text-brand">
+          <ul className="list-disc space-y-2 pl-5 text-[1.0625rem] leading-8 text-muted-foreground marker:text-brand">
             {section.items.map((item, itemIndex) => (
               <li key={`${itemIndex}-${item}`}>{item}</li>
             ))}
@@ -165,7 +165,7 @@ function renderSection(section: LegalSection, index: number) {
           key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className={`border-y border-line bg-surface-sky/30 px-5 py-6 md:px-7 md:py-8 ${section.align === "center" ? "text-center" : ""}`}
         >
-          <div className="gap-y-3">
+          <div className="space-y-3">
             {section.paragraphs.map(renderParagraph)}
           </div>
         </section>
@@ -180,7 +180,7 @@ function renderSection(section: LegalSection, index: number) {
               className="border-t border-line bg-transparent py-7 md:py-9"
             >
               <h2 className="mb-4 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground riyp-stretch-96">{category.category}</h2>
-              <Accordion type="single" collapsible className="gap-y-2">
+              <Accordion type="single" collapsible className="space-y-2">
                 {category.questions.map((item, idx) => (
                   <AccordionItem
                     key={`${idx}-${item.q}`}

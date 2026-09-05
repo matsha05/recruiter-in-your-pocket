@@ -6,7 +6,10 @@ import { renderReportHtml } from "../lib/backend/pdf";
 import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "../lib/reports/report-receipt";
 import { checkEvidence, checkRewriteGrounding } from "../lib/evals/evidence-checks";
 import { containsExactEvidence, isAcceptedAbsenceMarker } from "../lib/llm/grounding";
+import { supportsInferredIndustrySignal } from "../lib/llm/source-industry-signals";
+import { narrativeMeaningIssues } from "../lib/llm/narrative-meaning";
 import {
+  auditNarrativeClaim,
   auditReportNarrative,
   canonicalSourceIdentity,
   compareSourceBoundRewrite,
@@ -25,6 +28,26 @@ import {
   hubspotSource,
   schemaValidReport,
 } from "./helpers/report-fidelity-fixture";
+
+assert.deepEqual(auditNarrativeClaim("Resolve those points to make the narrative cleaner.", hubspotSource, {
+  interpretationContext: "assessment", rejectPositiveSourceAbsence: true,
+}), [], "an imperative is editorial advice even inside an assessment field");
+assert.ok(auditNarrativeClaim("Resolve the $10M Salesforce rollout.", hubspotSource, {
+  interpretationContext: "assessment", rejectPositiveSourceAbsence: true,
+}).length > 0, "imperative wording must not exempt invented entities or amounts");
+
+assert.equal(supportsInferredIndustrySignal("Technology", "Led recruiting for Cloud Sales and AI and ML Software Engineering hiring."), true);
+assert.equal(supportsInferredIndustrySignal("Technology", "SOFTWARE: Excel, Workday. Managed accounting staff."), false,
+  "software proficiency alone must not establish the employer industry");
+const staffSource = "Managed staff of 5 at North. Managed staff of 7 at South. Managed staff of 3 at East. Managed staff of four at West. Managed staff of 6 at Central.";
+assert.deepEqual(auditNarrativeClaim("Managed staff of 5, 7, 3, four, and 6 makes people oversight visible throughout the work history.",
+  staffSource, { interpretationContext: "assessment" }), [], "separate the sourced responsibilities from the explanation of what they show");
+assert.ok(auditNarrativeClaim("Managed staff of 50 makes people oversight visible throughout the work history.",
+  staffSource, { interpretationContext: "assessment" }).length > 0, "assessment wording must not license a changed staff count");
+assert.ok(auditNarrativeClaim("This makes people oversight visible throughout the work history.",
+  "Managed a budget of $5M.", { interpretationContext: "assessment" }).length > 0, "budget management is not people management");
+assert.deepEqual(narrativeMeaningIssues("Graduation timing conflicts between the top line and the Education entry.",
+  "Header: 2017. Education: Dec. 2013."), []);
 
 for (const sentinel of [
   "No job description provided",
@@ -173,9 +196,9 @@ for (const factualPlaceholder of [
   }
 }
 
-for (const bracketed of [
-  "［onboarding revenue increase］",
-  "﹇customer onboarding completed﹈",
+for (const { bracketed, omitted } of [
+  { bracketed: "［onboarding revenue increase］", omitted: true },
+  { bracketed: "﹇customer onboarding completed﹈", omitted: false },
 ]) {
   assert.ok(unsupportedBracketPayloads(`Add ${bracketed}.`).length > 0, `${bracketed} must normalize before policy checks`);
   const report: any = structuredClone(schemaValidReport);
@@ -185,14 +208,20 @@ for (const bracketed of [
     better: `Created customer journeys using HubSpot ${bracketed}.`,
     enhancement_note: "Add ［verified result］.",
   }];
-  assert.throws(
-    () => validateResumeModelPayload(report, hubspotSource, {
-      forceGrounding: true,
-      jobDescription: hubspotJobDescription,
-    }),
-    /evidence grounding contract/,
-    `${bracketed} must not reach report rendering or export`,
-  );
+  const validate = () => validateResumeModelPayload(report, hubspotSource, {
+    forceGrounding: true,
+    jobDescription: hubspotJobDescription,
+  });
+  if (!omitted) {
+    assert.throws(validate, /evidence grounding contract/,
+      `${bracketed} must still fail the final source-fidelity guard`);
+    continue;
+  }
+  const validated = validate();
+  assert.deepEqual(validated.rewrites, [],
+    `${bracketed} must be omitted rather than converted into a synthesized replacement draft`);
+  assert.equal(renderReportHtml(normalizeReportForPdf(validated)!).includes(bracketed), false,
+    `${bracketed} must not reach report export`);
 }
 
 const compatibilitySafePlaceholder = "Created customer journeys using HubSpot ［verified result］.";

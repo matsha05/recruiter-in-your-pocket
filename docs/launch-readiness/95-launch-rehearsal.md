@@ -129,6 +129,8 @@ Any failed section means `NO-GO` until it is fixed and rerun.
 
 ## July 28 Luna Promotion Record
 
+Historical record. The current September 4 Terra candidate and its evidence are described in `docs/promptops/shipping-gate.md`.
+
 - User authorization: production promotion explicitly authorized in the active launch task.
 - Launch model: `gpt-5.6-luna`, low reasoning, 24K completion ceiling.
 - Live quality proof: `eval_1785271781375`, 23 golden fixtures, 22 PASS, 1 WARN, 0 FAIL, 95.7% pass rate, $0.287278 token-calculated cost.

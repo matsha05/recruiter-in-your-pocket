@@ -91,10 +91,10 @@ export function CompCalculatorClient() {
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 md:py-20">
         <header className="mb-12 grid gap-8 border-b border-line pb-12 lg:grid-cols-3 lg:items-end lg:gap-14">
           <h1 className="max-w-4xl font-display text-5xl riyp-weight-540 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-6xl lg:col-span-2 lg:text-7xl">
-            A headline number is not the whole offer.
+            Compare your offers over four years.
           </h1>
           <div>
-            <p className="text-lg leading-8 text-muted-foreground">Model cash, target bonus, equity, vesting, and one-time payments on the same four-year timeline.</p>
+            <p className="text-lg leading-8 text-muted-foreground">See how base salary, bonus, equity, and one-time payments add up each year. Amounts are in US dollars, before tax.</p>
             <p className="mt-4 text-sm leading-6 text-muted-foreground">No account required. This page does not save the numbers you enter.</p>
           </div>
         </header>
@@ -104,7 +104,7 @@ export function CompCalculatorClient() {
             <div className="mb-5 flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 id="offers-heading" className="font-display text-3xl riyp-weight-560 tracking-tight text-foreground">Offer details</h2>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter only terms you can verify. Leave unknown amounts at zero.</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter the terms from each offer. Unknown amounts left at zero are excluded, so the comparison will be incomplete until you confirm them.</p>
               </div>
               {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-11 rounded-sm px-2 text-sm font-semibold text-ink underline decoration-brand/30 underline-offset-4 hover:decoration-brand">See a read-only example</button> : null}
             </div>

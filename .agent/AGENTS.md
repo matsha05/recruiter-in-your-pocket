@@ -31,6 +31,7 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 <constraints>
   Do not break existing behavior during refactors.
   September 4, 2026 product direction: Matt wants a fully live product, not a beta stopping point. Complete the core customer journeys and their release verification; do not relabel unresolved defects as accepted beta issues. Keep the voice human and specific, with character grounded in useful recruiter observations. Additional features still need working end-to-end behavior before public exposure.
+  Apply the same editorial standard to every layer: public pages, reports, research and figures, tools, account and payment flows, errors, emails, PDF exports, and generated-feedback instructions and fallbacks. A polished homepage does not establish quality across the product. Keep advice useful and factual; do not impose numbers or timeframes without a reason, praise incomplete templates as finished writing, or pad reports with repeated observations.
 </constraints>
 
 <oracle>

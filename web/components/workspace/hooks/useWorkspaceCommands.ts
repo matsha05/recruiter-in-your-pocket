@@ -28,7 +28,7 @@ export function useWorkspaceCommands(input: {
         input.onRun();
         break;
       case "keyboard-shortcuts":
-        toast.info("Keyboard shortcuts: Cmd+K to open commands");
+        toast.info("Press Cmd+K on Mac or Ctrl+K on Windows to open commands. Use the arrow keys to choose an action, then press Enter.");
         break;
     }
   });

@@ -60,8 +60,9 @@ export default function SupportPage() {
       <section className="border-y border-line py-7 md:py-9">
         <h2 className="font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">Things you can do now</h2>
         <div className="mt-5 flex flex-wrap gap-3">
-          <SupportLink href="/auth">Sign in or restore access</SupportLink>
-          <SupportLink href="/settings/account">Account and billing settings</SupportLink>
+          <SupportLink href="/auth">Sign in</SupportLink>
+          <SupportLink href="/purchase/restore">Restore a purchase</SupportLink>
+          <SupportLink href="/settings/account">Account settings</SupportLink>
           <SupportLink href="/faq">Read the FAQ</SupportLink>
           <SupportLink href="/security">Security details</SupportLink>
         </div>

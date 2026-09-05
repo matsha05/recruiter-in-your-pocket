@@ -10,15 +10,15 @@ export const extensionStoreContent = {
     eyebrow: "Chrome extension",
     title: "Save the job while it's in front of you.",
     description:
-      "Save supported LinkedIn and Indeed roles while you're browsing, keep them in view, and open the full report when you want a closer look.",
+      "Save LinkedIn and Indeed job postings while you browse, then open a saved job in RIYP to check your resume against the role.",
     primaryCta: "Install on Chrome",
     fallbackCta: "Read privacy",
     disclosure:
-      "Works on supported LinkedIn and Indeed job pages. Capture only happens when you ask for it. Sign in only if you want saved jobs to sync.",
+      "Works on supported LinkedIn and Indeed job pages. The extension saves jobs only when you ask. Sign in before saving to sync a job to your account.",
     highlights: [
-      "Save a role without breaking your browsing flow",
-      "Keep match context close while you compare jobs",
-      "Open the full workspace when you want the report and rewrites",
+      "Save jobs from supported LinkedIn and Indeed pages",
+      "Browse and remove saved jobs from the extension",
+      "Use a saved job description in your resume report",
     ],
     trustPoints: [
       "No all-sites access",
@@ -27,11 +27,11 @@ export const extensionStoreContent = {
     ],
   },
   shortDescription:
-    "Save supported LinkedIn and Indeed roles, keep saved jobs close, and open the full report in RIYP when you need it.",
+    "Save LinkedIn and Indeed job postings, then check your resume against a saved role in RIYP.",
   longDescription: [
-    "Recruiter in Your Pocket helps you save supported job postings while you're browsing and carry that context back into the studio.",
-    "Save a role using the capture button on a supported LinkedIn or Indeed job page. Use the popup to browse saved roles, remove them, and open the studio when you're ready for a report.",
-    "Sign-in is only required if you want synced saved jobs across devices. Local capture and browsing support stay explicit and purpose-bound.",
+    "Recruiter in Your Pocket saves job postings while you browse so you can review them later.",
+    "Choose Save job on a supported LinkedIn or Indeed page. Use the extension to browse your saved jobs, remove them, or open a job in your RIYP workspace for a resume report.",
+    "Saving jobs in this browser does not require an account. Sign in before saving to sync a job to your account. Jobs saved while signed out stay in this browser.",
   ],
   privacyFieldSummary:
     "The extension reads supported LinkedIn and Indeed job pages only when needed for user-initiated job capture. Saved-job history can sync to your RIYP account when you sign in.",
@@ -51,8 +51,8 @@ export const extensionStoreContent = {
     },
     {
       id: "workspace-return",
-      title: "Studio handoff",
-      caption: "Show the saved job flowing into the studio for deeper recruiter-grade report guidance.",
+      title: "Saved job in the workspace",
+      caption: "Show the saved job open in the workspace with its description ready for a resume report.",
     },
     {
       id: "install-disclosure",

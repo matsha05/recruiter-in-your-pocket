@@ -1,62 +1,62 @@
 export const popupContent = {
   onboarding: {
-    title: "Save the job before it disappears.",
+    title: "Keep the jobs you want to revisit.",
     subtitle:
-      "Capture supported LinkedIn and Indeed roles in one click, then bring that context back into RIYP when you want the full recruiter-grade review.",
+      "Save job descriptions from supported LinkedIn and Indeed pages, then compare them with your resume in Recruiter in Your Pocket.",
     primaryFeature: {
-      title: "Capture while you browse",
-      body: "Save a supported job posting the moment it matters so you can review it later without losing context.",
+      title: "Save while you browse",
+      body: "Choose Save job on a posting to keep its description and link.",
     },
     supportingFeatures: [
       {
-        title: "Check fit when you need it",
-        body: "Use match context to decide whether a role deserves the deeper studio pass.",
+        title: "Compare a job with your resume",
+        body: "Add a default resume to see where your experience matches the job requirements.",
       },
       {
-        title: "Sign in only for sync",
-        body: "Local capture works first. Sign in only if you want saved jobs across devices.",
+        title: "Choose where jobs are saved",
+        body: "Save jobs in this browser, or sign in to save new jobs to your account.",
       },
     ],
-    cta: "Start with job capture",
+    cta: "Start saving jobs",
   },
   auth: {
-    title: "Sign in for synced saved jobs",
+    title: "Access saved jobs on other devices",
     description:
-      "Save new captures to your account and reopen synced roles across devices. Existing browser saves stay local until you capture them again while signed in.",
+      "Sign in to save new jobs to your account. Jobs already saved in this browser stay here unless you save them again while signed in.",
     supportLine:
-      "Local capture still works. Sign in in your browser, then reopen the extension or choose Refresh to reconnect.",
-    primaryCta: "Open secure sign-in",
+      "You can keep saving jobs without an account. After signing in, reopen the extension or choose Refresh.",
+    primaryCta: "Sign in",
     footer: "Need a RIYP account?",
   },
   empty: {
-    title: "No jobs captured yet",
+    title: "No saved jobs yet",
     description:
-      "Open a supported LinkedIn or Indeed job, then capture it from the page so you can compare fit and reopen it in the studio.",
+      "Open a supported LinkedIn or Indeed posting and choose Save job. It will appear here.",
   },
   footer: {
     onboarding: {
-      title: "The studio is where the full rewrite happens.",
-      cta: "Open RIYP Studio",
+      title: "For feedback on your resume, open Recruiter in Your Pocket.",
+      cta: "Review my resume",
     },
     unauthenticated: {
-      title: "Stay local here, or open the studio for the full review flow.",
-      cta: "Open studio for full review",
+      title: "You can also get a report on your resume.",
+      cta: "Review my resume",
     },
     empty: {
-      title: "Need deeper feedback instead of another saved role?",
-      cta: "Open studio",
+      title: "Get resume feedback with or without a job description.",
+      cta: "Review my resume",
     },
     jobs: {
-      title: "Open the studio when you want the full recruiter-grade pass.",
-      cta: "Open saved jobs in studio",
+      title: "Select a job to compare it with your resume.",
+      cta: "Open Recruiter in Your Pocket",
     },
     error: {
-      title: "If the popup fails, the studio is still available.",
-      cta: "Open RIYP Studio",
+      title: "You can also try opening the website.",
+      cta: "Open Recruiter in Your Pocket",
     },
     loading: {
-      title: "Loading your saved-job context…",
-      cta: "Open RIYP Studio",
+      title: "Loading your saved jobs…",
+      cta: "Open Recruiter in Your Pocket",
     },
   },
 };

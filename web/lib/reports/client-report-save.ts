@@ -1,5 +1,6 @@
 import { attachStoredReportId, buildPdfExportRequest } from "./pdf-export";
 import { clearAnonymousReportRecoveryMarker } from "./anonymous-report-recovery-client";
+import { ClientActionError } from "../client-action-error";
 
 type FetchLike = typeof fetch;
 const inFlightSaves = new WeakMap<object, Promise<any>>();
@@ -26,10 +27,10 @@ async function postReceiptValidatedReport(report: object, fetchImpl: FetchLike) 
       recoveryId
       && (result.errorCode === "REPORT_RECEIPT_CONSUMED" || result.errorCode === "RECOVERED_REPORT_GONE")
     ) clearAnonymousReportRecoveryMarker(recoveryId);
-    throw new Error(result.message || "Failed to save report");
+    throw new ClientActionError(result.message, "This report couldn’t be saved. Please try again.");
   }
   const saved = attachStoredReportId(report, result.reportId);
-  if (!buildPdfExportRequest(saved)) throw new Error("The saved report did not return a valid report ID.");
+  if (!buildPdfExportRequest(saved)) throw new ClientActionError(null, "We couldn’t confirm that this report was saved. Please try again.");
   if (recoveryId) clearAnonymousReportRecoveryMarker(recoveryId);
   return saved;
 }

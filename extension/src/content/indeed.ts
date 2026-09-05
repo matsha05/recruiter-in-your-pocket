@@ -145,14 +145,14 @@ function getCaptureButtonHTML(): string {
       }
       @keyframes spin { to { transform: rotate(360deg); } }
     </style>
-    <button class="riyp-capture-btn" title="Capture JD for RIYP">
+    <button class="riyp-capture-btn" title="Save this job to Recruiter in Your Pocket">
       <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
         <line x1="12" y1="18" x2="12" y2="12"/>
         <line x1="9" y1="15" x2="15" y2="15"/>
       </svg>
-      <span class="riyp-text">Capture JD</span>
+      <span class="riyp-text">Save job</span>
     </button>
   `;
 }
@@ -171,13 +171,13 @@ async function handleCapture() {
         button.classList.add('loading');
 
         if (iconSvg) iconSvg.outerHTML = '<div class="riyp-spinner"></div>';
-        textSpan.textContent = 'Capturing...';
+        textSpan.textContent = 'Saving…';
 
         const jd = extractJobDescription();
         const meta = extractJobMeta();
 
         if (!jd) {
-            throw new Error('Could not extract job data');
+            throw new Error('Could not read this posting. Refresh the page and try again.');
         }
 
         const message: ExtensionMessage = {
@@ -188,16 +188,17 @@ async function handleCapture() {
         const response = await safeMessage(message);
 
         if (!response.success) {
-            throw new Error(response.error || 'Failed to save job');
+            throw new Error(response.error || 'Could not save this job. Try again.');
         }
 
         button.classList.remove('loading');
         button.classList.add('success');
-        textSpan.textContent = response.data.score ? `Matched: ${response.data.score}%` : 'Saved!';
+        const score = response.data.score;
+        textSpan.textContent = typeof score === 'number' && Number.isFinite(score) ? `Resume match: ${score}/100` : 'Saved';
 
         setTimeout(() => {
             button.classList.remove('success');
-            textSpan.textContent = 'Capture JD';
+            textSpan.textContent = 'Save job';
             resetButtonIcon(button);
             isCapturing = false;
         }, 3000);
@@ -207,11 +208,11 @@ async function handleCapture() {
 
         button.classList.remove('loading');
         button.classList.add('error');
-        textSpan.textContent = 'Error';
+        textSpan.textContent = 'Could not save. Try again.';
 
         setTimeout(() => {
             button.classList.remove('error');
-            textSpan.textContent = 'Capture JD';
+            textSpan.textContent = 'Save job';
             isCapturing = false;
         }, 2000);
     }

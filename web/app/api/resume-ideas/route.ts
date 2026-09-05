@@ -166,7 +166,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free report. Paid access adds more reports, saved history, and export.",
+          message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
         },
         { status: 402 }
       );

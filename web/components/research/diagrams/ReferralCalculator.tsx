@@ -8,49 +8,57 @@ function formatCurrency(value: number) {
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
+function formatCount(value: number) {
+    return new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
+}
+
+export function calculateReferralComparison(salary: number, coldRate: number, referralRate: number, minutesPerApp: number) {
+    const coldAppsNeeded = coldRate > 0 ? 100 / coldRate : null;
+    const referralAppsNeeded = referralRate > 0 ? 100 / referralRate : null;
+    const appsDifference = coldAppsNeeded !== null && referralAppsNeeded !== null ? coldAppsNeeded - referralAppsNeeded : null;
+    const hoursDifference = appsDifference !== null ? appsDifference * minutesPerApp / 60 : null;
+    const timeEquivalent = hoursDifference !== null ? hoursDifference * salary / 2080 : null;
+    const maxApps = Math.max(coldAppsNeeded ?? 0, referralAppsNeeded ?? 0);
+    const width = (applications: number | null) => applications !== null && maxApps > 0 ? `${applications / maxApps * 100}%` : "0%";
+    return { coldAppsNeeded, referralAppsNeeded, appsDifference, hoursDifference, timeEquivalent, coldWidth: width(coldAppsNeeded), referralWidth: width(referralAppsNeeded) };
+}
+
 export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number }) {
     const [salary, setSalary] = useState(120000);
     const [coldRate, setColdRate] = useState(2);
     const [referralRate, setReferralRate] = useState(40);
     const [minutesPerApp, setMinutesPerApp] = useState(45);
 
-    const stats = useMemo(() => {
-        const coldAppsNeeded = Math.round(1 / (Math.max(coldRate, 0.1) / 100));
-        const referralAppsNeeded = Math.round(1 / (Math.max(referralRate, 0.1) / 100));
-        const appsSaved = Math.max(coldAppsNeeded - referralAppsNeeded, 0);
-        const hoursSaved = Math.round((appsSaved * minutesPerApp) / 60);
-        const timeEquivalent = Math.round(hoursSaved * (salary / 2080));
-        const maxApps = Math.max(coldAppsNeeded, referralAppsNeeded);
-        return { coldAppsNeeded, referralAppsNeeded, appsSaved, hoursSaved, timeEquivalent, coldWidth: `${(coldAppsNeeded / maxApps) * 100}%`, referralWidth: `${(referralAppsNeeded / maxApps) * 100}%` };
-    }, [salary, coldRate, referralRate, minutesPerApp]);
+    const stats = useMemo(() => calculateReferralComparison(salary, coldRate, referralRate, minutesPerApp), [salary, coldRate, referralRate, minutesPerApp]);
+    const timeLabel = stats.hoursDifference === null || stats.hoursDifference === 0 ? "Time difference" : stats.hoursDifference > 0 ? "Time saved with referral" : "Time added with referral";
 
     return (
         <DiagramFigure className="max-w-[50rem]" label="Calculator comparing applications per callback with and without a referral">
             <DiagramFrame>
-                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="Example calculator" title="Try different response rates and see how many applications they imply." note="This is simple arithmetic, not a forecast. Use rates that fit your role, market, and referral strength." />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="Example calculator" title="Compare applications at different callback rates." note="The starting rates are examples, not research benchmarks. Change them to explore the arithmetic; this does not predict your results." />
                 <div className="grid gap-10 px-5 py-7 md:grid-cols-[0.85fr_1.15fr] md:px-7 md:py-9">
                     <div className="space-y-6">
                         <RangeControl id="salary" label="Annual salary" value={salary} onChange={setSalary} min={30000} max={500000} step={5000} display={formatCurrency(salary)} />
                         <RangeControl id="minutes" label="Minutes per application" value={minutesPerApp} onChange={setMinutesPerApp} min={5} max={120} step={5} display={`${minutesPerApp} min`} />
-                        <RangeControl id="cold-rate" label="Cold callback rate" value={coldRate} onChange={setColdRate} min={0.5} max={20} step={0.5} display={`${coldRate}%`} />
-                        <RangeControl id="referral-rate" label="Referral callback rate" value={referralRate} onChange={setReferralRate} min={10} max={90} step={5} display={`${referralRate}%`} accent />
+                        <RangeControl id="cold-rate" label="Callback rate without referral" value={coldRate} onChange={setColdRate} min={0} max={90} step={0.5} display={`${coldRate}%`} />
+                        <RangeControl id="referral-rate" label="Callback rate with referral" value={referralRate} onChange={setReferralRate} min={0} max={90} step={0.5} display={`${referralRate}%`} accent />
                     </div>
 
                     <div className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-                        <div className="riyp-evidence-label text-muted-foreground">Applications per callback</div>
+                        <div className="riyp-evidence-label text-muted-foreground">Average applications per callback</div>
                         <div className="mt-7 space-y-7">
-                            <ModelBar label={`Cold / ${coldRate}%`} value={`${stats.coldAppsNeeded}`} width={stats.coldWidth} />
-                            <ModelBar label={`Referred / ${referralRate}%`} value={`${stats.referralAppsNeeded}`} width={stats.referralWidth} accent />
+                            <ModelBar label={`Without referral / ${coldRate}%`} value={stats.coldAppsNeeded === null ? "No callbacks" : formatCount(stats.coldAppsNeeded)} width={stats.coldWidth} />
+                            <ModelBar label={`With referral / ${referralRate}%`} value={stats.referralAppsNeeded === null ? "No callbacks" : formatCount(stats.referralAppsNeeded)} width={stats.referralWidth} accent />
                         </div>
                         <dl className="mt-9 grid grid-cols-2 border-y border-line">
-                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-muted-foreground">Time difference</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.hoursSaved}h</dd></div>
-                            <div className="border-l border-line py-4 pl-4"><dt className="riyp-evidence-label text-muted-foreground">Time equivalent</dt><dd className="mt-2 font-display text-3xl text-foreground">{formatCurrency(stats.timeEquivalent)}</dd></div>
+                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-muted-foreground">{timeLabel}</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.hoursDifference === null ? "No estimate" : `${formatCount(Math.abs(stats.hoursDifference))}h`}</dd></div>
+                            <div className="border-l border-line py-4 pl-4"><dt className="riyp-evidence-label text-muted-foreground">Value of that time</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.timeEquivalent === null ? "No estimate" : formatCurrency(Math.abs(stats.timeEquivalent))}</dd></div>
                         </dl>
-                        <p className="mt-4 text-xs leading-5 text-muted-foreground">At these assumptions, the model avoids {stats.appsSaved} applications. “Time equivalent” values the modeled hours at salary ÷ 2,080; it is not money earned or saved.</p>
+                        <p className="mt-4 text-xs leading-5 text-muted-foreground">{stats.appsDifference === null ? "A 0% rate means no expected callbacks, so there is no finite time comparison." : stats.appsDifference === 0 ? "Equal callback rates imply the same number of applications." : `At these rates, referrals imply about ${formatCount(Math.abs(stats.appsDifference))} ${stats.appsDifference > 0 ? "fewer" : "more"} applications per callback.`} The time value uses annual salary ÷ 2,080 hours. It is not money earned or saved and excludes time spent finding referrals.</p>
                     </div>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Example calculator`} title="Even a small change in response rate can change how many applications you need." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Example calculator`} title="An average describes repeated applications; it does not guarantee when a callback will arrive." />
         </DiagramFigure>
     );
 }

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to view your report history." },
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Sign in to view your saved reports." },
         { status: 401 }
       );
     }
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
     const body = await readJsonWithLimit<any>(request, 256 * 1024);
     const submitted = body?.report;
     if (!submitted || typeof submitted !== "object") {
-      return NextResponse.json({ ok: false, errorCode: "INVALID_REPORT", message: "Report payload is required." }, { status: 400 });
+      return NextResponse.json({ ok: false, errorCode: "INVALID_REPORT", message: "Open the report you want to save, then try again." }, { status: 400 });
     }
     const { report_receipt: receipt, ...reportWithoutReceipt } = submitted;
     const parsed = ResumeFeedbackResponseSchema.safeParse(reportWithoutReceipt);
@@ -106,13 +106,13 @@ export async function POST(request: NextRequest) {
     logError({
       msg: "reports.save_failed",
       outcome: "internal_error",
-      err: { name: error?.name || "Error", message: error?.message || "Failed to save report", code: error?.code },
+      err: { name: error?.name || "Error", message: "Could not save this report. Check History before trying again.", code: error?.code },
     });
     const status = Number(error?.httpStatus || 0) || 500;
     return NextResponse.json({
       ok: false,
       errorCode: error?.code || "SAVE_REPORT_FAILED",
-      message: error?.message || "Failed to save report",
+      message: "Could not save this report. Check History before trying again.",
     }, { status });
   }
 }

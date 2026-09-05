@@ -158,7 +158,13 @@ export function validateResumeModelPayload(
         502,
       );
     }
-    obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
+    const canonical = canonicalizeResumeReportEvidence(obj, resumeText);
+    const sectionIssue = canonical.unresolved.find(issue => issue.startsWith("section_review."));
+    if (sectionIssue) {
+      throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response failed the evidence grounding contract at ${sectionIssue}.`, 502);
+    }
+    obj = canonical.report;
     const rewriteScreen = removeUnsafeRewrites(obj, resumeText);
     if (rewriteScreen.removed.length > 0) {
       throw createAppError(
@@ -218,7 +224,8 @@ export function validateResumeModelPayload(
     throw createAppError(
       "OPENAI_RESPONSE_SHAPE_INVALID",
       `The model response failed the recruiter briefing contract at ${path}.`,
-      502
+      502,
+      { schemaIssues: parsed.error.issues.map(issue => ({ path: issue.path.join("."), message: issue.message })) }
     );
   }
 

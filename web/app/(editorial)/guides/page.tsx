@@ -13,7 +13,7 @@ const playbooks = [
     {
         title: "Offer Negotiation Playbook",
         subtitle: "All industries",
-        readTime: "12 min",
+        readTime: "10 min",
         href: "/resources/offer-negotiation",
         points: [
             "A step-by-step sequence you can adapt to the employer",
@@ -139,7 +139,7 @@ export default function GuidesPage() {
                                         Compensation Calculator
                                     </h3>
                                     <p className="mt-2 max-w-2xl text-base leading-7 text-muted-foreground">
-                                        Compare offers on the same four-year timeline, model equity assumptions explicitly, and separate guaranteed cash from target compensation.
+                                        Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
                                     </p>
                                 </div>
                                 <Link
@@ -176,7 +176,7 @@ export default function GuidesPage() {
                                     <p className="mt-1 text-sm leading-relaxed text-background/70">Use the sample wording to ask about pay, request more time, or make a counteroffer.</p>
                                 </div>
                                 <div className="border-t border-background/10 pt-4">
-                                    <p className="text-sm font-medium text-background">Backed by research.</p>
+                                    <p className="text-sm font-medium text-background">Sources and limits included.</p>
                                     <p className="mt-1 text-sm leading-relaxed text-background/70">Research links are included where relevant, with source limits stated plainly.</p>
                                 </div>
                                 <div className="border-t border-background/10 pt-4">
@@ -197,7 +197,7 @@ export default function GuidesPage() {
                                     Connected research
                                 </p>
                                 <h2 className="mt-2 font-display text-4xl riyp-weight-540 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-5xl">
-                                    Evidence behind the playbooks
+                                    Related hiring research
                                 </h2>
                             </div>
                             <Link

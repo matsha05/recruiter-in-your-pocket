@@ -65,13 +65,13 @@ export function useResumeReview(input: {
         return true;
       }
       console.error("Failed to parse resume:", result.message);
-      toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
+      toast.error("We couldn’t read this resume", { description: result.message || "Try another PDF or DOCX, or paste the resume text." });
       if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } catch (error) {
       if (!isCurrent()) return false;
       console.error("File parsing error:", error);
-      toast.error("File parsing error", { description: "Please try another file." });
+      toast.error("We couldn’t read this file", { description: "Try another PDF or DOCX, or paste the resume text." });
       if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } finally {
@@ -137,17 +137,17 @@ export function useResumeReview(input: {
         });
         if (!input.isAnalysisCurrent(controller)) return;
         if (result.attemptConsumed) {
-          toast.warning("Analysis stopped after generation started", {
+          toast.warning("Review stopped", {
             description: refreshed
               ? "This report attempt was used. Your remaining reports are current."
               : "This report attempt was used. Check History and your remaining reports before retrying.",
           });
         } else if (result.creditRestored) {
-          toast.info("Analysis stopped", {
+          toast.info("Review stopped", {
             description: "Your report credit was restored. You can run the report again.",
           });
         } else {
-          toast.info("Analysis stopped", {
+          toast.info("Review stopped", {
             description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
           });
         }
@@ -203,9 +203,9 @@ export function useResumeReview(input: {
         : result.creditRestored
           ? "Your report credit was restored. You can try again."
           : "We could not confirm this attempt's status. Check History and your remaining reports before retrying.";
-      const hasDisposition = /report attempt was used|report credit was restored|did not use your free report or a paid report credit|could not confirm (?:whether report access changed|that your report credit was restored|this attempt's status)/iu
+      const hasDisposition = /report attempt was used|counted toward your report allowance|report credit was restored|did not use your free report or a paid report credit|could not confirm (?:whether (?:report access changed|this attempt used a report)|that your report credit was restored|this attempt's status)/iu
         .test(result.message || "");
-      toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "Connection ended" : "Failed to generate report", {
+      toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "The connection ended" : "We couldn’t finish your report", {
         description: hasDisposition
             ? result.message
             : `${result.message || "The report did not finish."} · ${attemptCopy}`,
@@ -219,7 +219,7 @@ export function useResumeReview(input: {
         shouldApply: () => input.isAnalysisCurrent(controller),
       });
       if (!input.isAnalysisCurrent(controller)) return;
-      toast.error("Report generation error", {
+      toast.error("We couldn’t finish your report", {
         description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
       });
     } finally {

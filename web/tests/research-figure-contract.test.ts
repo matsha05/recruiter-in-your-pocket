@@ -22,6 +22,27 @@ runtimeModule._load = function loadFigureAliases(request, parent, isMain) {
 try {
   const { ErrorImpactDiagram } = require("../components/research/diagrams/ErrorImpactDiagram");
   const { InferenceLadderDiagram } = require("../components/research/diagrams/InferenceLadderDiagram");
+  const { calculateReferralComparison } = require("../components/research/diagrams/ReferralCalculator");
+  const favorableReferral = calculateReferralComparison(120000, 2, 40, 45);
+  assert.equal(favorableReferral.referralAppsNeeded, 2.5, "an average must not be rounded to a whole application before calculating time");
+  assert.equal(favorableReferral.appsDifference, 47.5);
+  assert.equal(favorableReferral.hoursDifference, 35.625);
+
+  const weakerReferral = calculateReferralComparison(120000, 20, 10, 45);
+  assert.equal(weakerReferral.appsDifference, -5, "a lower referral rate must show a disadvantage, not silently clamp it to zero");
+  assert.equal(weakerReferral.hoursDifference, -3.75);
+  assert.ok(weakerReferral.timeEquivalent < 0);
+
+  const equalRates = calculateReferralComparison(120000, 10, 10, 45);
+  assert.equal(equalRates.appsDifference, 0);
+  assert.equal(equalRates.hoursDifference, 0);
+  for (const [coldRate, referralRate] of [[0, 0], [0, 10], [10, 0]]) {
+    const noFiniteComparison = calculateReferralComparison(120000, coldRate, referralRate, 45);
+    assert.equal(noFiniteComparison.appsDifference, null, "a zero callback rate has no finite applications-per-callback comparison");
+    assert.equal(noFiniteComparison.hoursDifference, null);
+    assert.equal(noFiniteComparison.timeEquivalent, null);
+    assert.doesNotMatch(`${noFiniteComparison.coldWidth} ${noFiniteComparison.referralWidth}`, /NaN|Infinity/);
+  }
   const ratingFigure = renderToStaticMarkup(createElement(ErrorImpactDiagram, { figureNumber: 1 }));
   const perceptionFigure = renderToStaticMarkup(createElement(InferenceLadderDiagram, { figureNumber: 2 }));
   // Sterkens et al. (2023), Table 4 (1A), reports -0.730 and -1.850

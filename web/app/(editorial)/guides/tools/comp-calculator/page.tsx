@@ -4,7 +4,7 @@ import { CompCalculatorClient } from "@/components/guides/comp-calculator/CompCa
 
 export const metadata: Metadata = {
   title: "Offer Comparison Calculator",
-  description: "Compare guaranteed base, target bonus, modeled equity, vesting, and one-time compensation across job offers.",
+  description: "Compare base salary, target bonus, modeled equity, vesting, and one-time compensation across job offers.",
   alternates: { canonical: "/resources/tools/comp-calculator" },
 };
 

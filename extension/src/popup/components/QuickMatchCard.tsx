@@ -16,7 +16,7 @@ interface QuickMatchCardProps {
 }
 
 export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }: QuickMatchCardProps) {
-    const score = job.score ?? 0;
+    const score = typeof job.score === 'number' && Number.isFinite(job.score) ? job.score : null;
 
     function handleDelete(e: React.MouseEvent) {
         e.stopPropagation();
@@ -37,7 +37,7 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
                 type="button"
                 className="job-card-main"
                 onClick={onClick}
-                title="Open analysis"
+                title="Open saved job"
             >
                 <ScoreDial score={score} />
                 <div className="job-info">
@@ -55,7 +55,7 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
                             <span className="job-source">{job.source === 'linkedin' ? 'LI' : 'IN'}</span>
                         )}
                     </div>
-                    {score > 0 && (
+                    {score !== null && (
                         <div className="job-alignment">
                             <span className={`alignment-badge ${getRoleAlignmentClass(score)}`}>
                                 {getRoleAlignmentLabel(score)}
@@ -64,7 +64,7 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
                     )}
                     <div className="job-status">
                         <span className="job-status-text">
-                            Captured {capturedAgo} • {score > 0 ? `${getScoreBandLabel(score)}: ${score}%` : 'Ready to analyze'}
+                            Saved {capturedAgo} • {score !== null ? `${getScoreBandLabel(score)}: ${score}/100` : 'Not compared yet'}
                         </span>
                     </div>
                 </div>
@@ -102,15 +102,15 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
 }
 
 interface ScoreDialProps {
-    score: number;
+    score: number | null;
 }
 
 function ScoreDial({ score }: ScoreDialProps) {
     const radius = 18;
     const circumference = 2 * Math.PI * radius;
-    const progress = (score / 100) * circumference;
+    const progress = ((score ?? 0) / 100) * circumference;
     const offset = circumference - progress;
-    const scoreClass = getScoreClass(score);
+    const scoreClass = getScoreClass(score ?? 0);
 
     return (
         <div className="score-dial">
@@ -131,7 +131,7 @@ function ScoreDial({ score }: ScoreDialProps) {
                 />
             </svg>
             <div className={`score-dial-text score-${scoreClass}`}>
-                {score || '—'}
+                {score ?? '—'}
             </div>
         </div>
     );
@@ -144,18 +144,18 @@ function getScoreClass(score: number): 'success' | 'premium' | 'destructive' {
 }
 
 function getScoreBandLabel(score: number): string {
-    if (score >= 86) return 'Excellent Fit';
-    if (score >= 71) return 'Strong Match';
-    if (score >= 41) return 'Plausible Fit';
-    if (score >= 16) return 'Career Stretch';
-    return 'Not a Match';
+    if (score >= 86) return 'High resume match';
+    if (score >= 71) return 'Strong resume match';
+    if (score >= 41) return 'Partial resume match';
+    if (score >= 16) return 'Limited resume match';
+    return 'Little resume overlap';
 }
 
 function getRoleAlignmentLabel(score: number): string {
-    if (score >= 71) return 'Role Match';
-    if (score >= 41) return 'Adjacent Role';
-    if (score >= 16) return 'Different Field';
-    return 'Mismatch';
+    if (score >= 71) return 'Strong overlap';
+    if (score >= 41) return 'Some overlap';
+    if (score >= 16) return 'Limited overlap';
+    return 'Little overlap';
 }
 
 function getRoleAlignmentClass(score: number): string {

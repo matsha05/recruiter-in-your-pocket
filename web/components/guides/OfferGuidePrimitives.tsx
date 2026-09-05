@@ -105,7 +105,7 @@ export function Checklist({ items }: { items: ReactNode[] }) {
 
 export function TechOfferStack() {
     const rows = [
-        ["Guaranteed cash", "Base + any guaranteed sign-on"],
+        ["Base and sign-on", "Salary while employed; sign-on conditions and repayment terms"],
         ["Target cash", "Bonus target, rules, and payout history"],
         ["Equity schedule", "What actually vests in each year"],
         ["Unknowns", "Refreshers, private liquidity, future share price"],
@@ -115,7 +115,7 @@ export function TechOfferStack() {
             <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
                     <div className="text-xs font-semibold uppercase riyp-track-010 text-citron">The pay breakdown</div>
-                    <div className="mt-2 font-display text-2xl riyp-weight-520">What is guaranteed, and what could change</div>
+                    <div className="mt-2 font-display text-2xl riyp-weight-520">What you receive, and what depends on conditions</div>
                 </div>
                 <Info aria-hidden className="size-6 text-cyan-bright" weight="fill" />
             </div>

@@ -29,9 +29,61 @@ export interface IndependentQuestion {
 }
 
 export function fixPlanHeadingForCount(count: number) {
+  if (count === 0) return "Review the suggestions below.";
   if (count === 1) return "Start with this change.";
   if (count === 2) return "Start with these two changes.";
   return "Start with these three changes.";
+}
+
+export function questionForPlaceholder(key: string) {
+  const questions: Record<string, string> = {
+    teams: "Which teams were involved?",
+    functions: "Which teams were involved?",
+    "specific scope": "Who or what did the work cover?",
+    "missing scope": "Who or what did the work cover?",
+    "measurable result": "What changed, and how did you measure it?",
+    "verified before-and-after result": "What was different before and after?",
+    "verified outcome": "What was the outcome?",
+    "verified result": "What result can you confirm?",
+    result: "What was the result?",
+    "ownership detail": "What did you personally decide or do?",
+    "leadership scope": "What were you responsible for leading?",
+    timeframe: "Over what period?",
+    "team count": "How many teams were involved?",
+    "team size": "How many people were on the team?",
+    "number of hires": "How many people were hired?",
+    "customer count": "How many customers were involved?",
+    "budget size": "What was the budget?",
+    budget: "What was the budget?",
+    baseline: "What was the starting point?",
+    "impact metric": "How did you measure the result?",
+    "kpi change": "How did the measure change?",
+    "cycle time": "How long did the process take?",
+    "cycle-time change": "How did the time required change?",
+    "cycle-time improvement": "How much faster was the process?",
+    "program length": "How long did the program run?",
+    "adoption rate": "What was the adoption rate?",
+    "adoption result": "What did adoption look like?",
+    "application scope": "What did the application cover?",
+    "campaign scope": "Who or what did the campaign cover?",
+    "completed artifact": "What did you deliver?",
+    "conversion rate": "What was the conversion rate?",
+    "onboarding retention rate": "What was the retention rate after onboarding?",
+    "retention increase": "How much did retention increase?",
+    "retention metric": "How did you measure retention?",
+    "recruitment cycle time": "How long did hiring take?",
+    "quota result": "What was the result against your quota?",
+    "pain point": "What problem were you addressing?",
+    "tool name": "Which tool did you use?",
+    "target role": "Which role are you applying for?",
+    "target role level": "What level are you applying for?",
+    "target product lane": "What kind of product work are you targeting?",
+    degree: "Which degree did you earn?",
+    school: "Which school did you attend?",
+    university: "Which university did you attend?",
+    year: "Which year?",
+  };
+  return questions[key.trim().toLocaleLowerCase()] || `Details about ${key}`;
 }
 
 function evidenceFor(fix: ReportFix) {

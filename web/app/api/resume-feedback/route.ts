@@ -1,3 +1,4 @@
+import { resolveResumeRepairReasoningEffort } from "@/lib/llm/model-config";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
@@ -163,7 +164,7 @@ export async function POST(request: Request) {
       return respond(NextResponse.json({
         ok: false,
         errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
-        message: "Your browser identity is ready. Please retry to generate the report safely.",
+        message: "Your browser is ready. Try creating your report again.",
         attempt_consumed: false,
         attempt_disposition: "restored",
       }, { status: 409 }));
@@ -197,7 +198,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free report. Paid access adds more reports, saved history, and export.",
+          message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"
@@ -299,6 +300,7 @@ export async function POST(request: Request) {
           mode: "resume",
           model,
           prompt_version: "resume_v2_repair",
+        reasoning_effort: resolveResumeRepairReasoningEffort(model),
           schema_version: "report_v1",
           messages: buildResumeRepairMessages(messages, initialRun.raw, err),
           signal: request.signal,

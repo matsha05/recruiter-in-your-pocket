@@ -6,9 +6,9 @@ import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
 export function PageTwoGateDiagram() {
     return (
-        <DiagramFigure className="max-w-[43rem]" label="Why a clear first page makes a second page more likely to be read">
+        <DiagramFigure className="max-w-[43rem]" label="One way to organize relevant experience across a two-page resume">
             <DiagramFrame>
-                <EvidenceHeader index="01" label="What earns a closer look" title="Page one should answer the obvious questions. Page two can add depth." note="Lead with the experience and results that best match the role." />
+                <EvidenceHeader index="01" label="Organizing two pages" title="Put your most relevant experience first." note="Use a second page when it adds information that helps the employer assess your experience." />
                 <div className="grid items-stretch px-5 py-7 sm:grid-cols-[1fr_5rem_1fr] md:px-7 md:py-9">
                     <section className="border-t-2 border-cyan-bright py-5 sm:py-6">
                         <div className="font-display text-6xl riyp-weight-540 leading-none tabular-nums text-brand">01</div>
@@ -21,12 +21,12 @@ export function PageTwoGateDiagram() {
                     <section className="border-t border-line py-5 sm:py-6">
                         <div className="font-display text-6xl riyp-weight-540 leading-none tabular-nums text-muted-foreground">02</div>
                         <div className="riyp-evidence-label mt-5 text-muted-foreground">Page two</div>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">Earlier roles, additional projects, publications, or domain depth.</p>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">Relevant earlier roles, additional projects, publications, or specialist experience.</p>
                     </section>
                 </div>
                 <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">The test:</strong> does page two add evidence that helps someone judge your fit?</div>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Page order" title="Put the strongest case first. Use page two for relevant depth." />
+            <DiagramCaption kicker="Fig. 1 / Page order" title="Keep a second page for useful detail, not material you are reluctant to cut." />
         </DiagramFigure>
     );
 }

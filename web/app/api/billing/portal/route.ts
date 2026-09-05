@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     }
 
     if (!stripe) {
-      return NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
+      return NextResponse.json({ ok: false, message: "Billing is temporarily unavailable. Try again later or contact support." }, { status: 500 });
     }
 
     let returnTo: "settings" | "restore" = "settings";
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const user = userData.user;
 
     if (!user?.email) {
-      return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
+      return NextResponse.json({ ok: false, message: "Sign in to open your billing account." }, { status: 401 });
     }
 
     const portalLimit = await rateLimitAsync(
@@ -132,6 +132,6 @@ export async function POST(req: Request) {
         { status: requestStatus },
       );
     }
-    return NextResponse.json({ ok: false, message: "Failed to open billing portal." }, { status: 500 });
+    return NextResponse.json({ ok: false, message: "Could not open your billing account. Try again." }, { status: 500 });
   }
 }

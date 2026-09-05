@@ -27,7 +27,7 @@ test.describe("editorial resources", () => {
     await page.goto("/resources/tools/comp-calculator", { waitUntil: "domcontentloaded" });
     await page.locator('[data-calculator-hydrated="true"]').waitFor();
 
-    await page.getByLabel("Guaranteed annual base").fill("100000");
+    await page.getByLabel("Annual base salary").fill("100000");
     await page.getByLabel("Annual target bonus").fill("10");
     await page.getByLabel("Equity grant value").fill("100000");
     await page.getByRole("button", { name: /Vesting/ }).click();
@@ -60,6 +60,30 @@ test.describe("editorial resources", () => {
     expect(editableInputs).toBe(0);
     await expect(page.getByRole("button", { name: "Exit example" })).toBeVisible();
   });
+
+  test("calculator preserves typed decimals in bonuses, payments, and vesting", async ({ page }) => {
+    await page.goto("/resources/tools/comp-calculator", { waitUntil: "domcontentloaded" });
+    await page.locator('[data-calculator-hydrated="true"]').waitFor();
+    await page.getByLabel("Annual base salary").fill("100000");
+    const bonus = page.getByLabel("Annual target bonus");
+    await bonus.fill("");
+    await bonus.pressSequentially("12.5");
+    await expect(bonus).toHaveValue("12.5");
+    await page.getByLabel("Equity grant value").fill("100000");
+    await page.getByRole("button", { name: /Vesting/ }).click();
+    for (const [index, value] of ["0", "33.3", "33.3", "33.4"].entries()) {
+      await page.getByLabel(`Year ${index + 1} %`).fill(value);
+    }
+    const offer = page.locator('section[aria-label="Offer 1 details"]');
+    await expect(offer.getByText("$550,000", { exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "Advanced assumptions" }).click();
+    const relocation = page.getByLabel("Relocation payment");
+    await relocation.fill("1,000.50");
+    await relocation.blur();
+    await expect(relocation).toHaveValue("1,000.5");
+    await expect(offer.getByText("$551,001", { exact: true })).toBeVisible();
+    await expect(bonus).toHaveValue("12.5");
+  });
 });
 
 const numberedResearchRoutes = [
@@ -70,6 +94,26 @@ const numberedResearchRoutes = [
 ] as const;
 
 test.describe("multi-figure research articles", () => {
+  test("referral calculator shows added time and zero-rate limits on mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
+    const calculator = page.getByRole("figure", { name: "Calculator comparing applications per callback with and without a referral" });
+    await calculator.getByLabel("Callback rate without referral").fill("20");
+    await calculator.getByLabel("Callback rate with referral").fill("10");
+    await expect(calculator.getByText("Time added with referral", { exact: true })).toBeVisible();
+    await expect(calculator).toContainText("5 more applications per callback");
+    await expect(calculator.getByText("3.8h", { exact: true })).toBeVisible();
+
+    await calculator.getByLabel("Callback rate without referral").fill("0");
+    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(1);
+    await expect(calculator.getByText("No estimate", { exact: true })).toHaveCount(2);
+    await calculator.getByLabel("Callback rate with referral").fill("0");
+    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(2);
+    await expect(calculator).toContainText("no finite time comparison");
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+
   for (const { route, figures } of numberedResearchRoutes) {
     test(`${route} numbers every figure in reading order`, async ({ page }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });

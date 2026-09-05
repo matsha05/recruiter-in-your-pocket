@@ -2,9 +2,11 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { validateResumeModelPayload } from "../lib/backend/validation";
+import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
 import { runAllChecks } from "../lib/evals/checks";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { ErrorCode, EvalRunOutput, FixtureResult, WarningCode } from "../lib/evals/types";
+import { resumeTextFromFixture } from "../lib/evals/fixture-input";
 
 function argumentValue(name: string) {
   const index = process.argv.indexOf(name);
@@ -12,8 +14,8 @@ function argumentValue(name: string) {
 }
 
 async function main() {
-  const inputArg = process.argv.slice(2).find((value) => !value.startsWith("--") && value !== argumentValue("--write-summary"));
-  if (!inputArg) throw new Error("Usage: replay-live-eval.ts <saved-run.json> [--write-summary <summary.md>]");
+  const inputArg = process.argv.slice(2).find((value) => !value.startsWith("--") && value !== argumentValue("--write-summary") && value !== argumentValue("--write-json"));
+  if (!inputArg) throw new Error("Usage: replay-live-eval.ts <saved-run.json> [--write-summary <summary.md>] [--write-json <replay.json>]");
 
   const runPath = path.resolve(process.cwd(), inputArg);
   const runBytes = await readFile(runPath);
@@ -28,13 +30,14 @@ async function main() {
   for (const original of run.results) {
     const fixture = calibration.fixtures.find((item: any) => item.id === original.fixture_id);
     if (!fixture) throw new Error(`Missing fixture definition: ${original.fixture_id}`);
-    const resumeText = await readFile(
+    const resumeText = resumeTextFromFixture(await readFile(
       path.resolve(process.cwd(), `../tests/resumes/${fixture.path}`),
       "utf8",
-    );
+    ));
 
+    const replayChanges = canonicalizeResumeReportEvidence(structuredClone(original.model_output ?? original.raw_output), resumeText).changes;
     try {
-      const output = validateResumeModelPayload(structuredClone(original.raw_output), resumeText, { forceGrounding: true });
+      const output = validateResumeModelPayload(structuredClone(original.model_output ?? original.raw_output), resumeText, { forceGrounding: true });
       const checks = runAllChecks({
         output,
         resumeText,
@@ -53,6 +56,8 @@ async function main() {
       }));
       results.push({
         ...original,
+        generation_normalization_changes: original.normalization_changes,
+        normalization_changes: replayChanges,
         status: errors.length > 0 ? "FAIL" : warnings.length > 0 ? "WARN" : "PASS",
         errors,
         warnings,
@@ -63,6 +68,8 @@ async function main() {
     } catch (error) {
       results.push({
         ...original,
+        generation_normalization_changes: original.normalization_changes,
+        normalization_changes: replayChanges,
         status: "FAIL",
         errors: [{ code: "E_SCHEMA", message: error instanceof Error ? error.message : String(error) }],
         warnings: [],
@@ -82,6 +89,7 @@ async function main() {
       ...run.metadata,
       run_id: `${run.metadata.run_id}_replay`,
       validation_mode: "saved_output_replay",
+      validation_input: "model_output_when_available",
       validation_timestamp: new Date().toISOString(),
       source_run_sha256: createHash("sha256").update(runBytes).digest("hex"),
     },
@@ -92,6 +100,10 @@ async function main() {
   const outputPath = argumentValue("--write-summary");
   if (outputPath) {
     await writeFile(path.resolve(process.cwd(), outputPath), generateMarkdownReport(replay), "utf8");
+  }
+  const jsonOutputPath = argumentValue("--write-json");
+  if (jsonOutputPath) {
+    await writeFile(path.resolve(process.cwd(), jsonOutputPath), JSON.stringify(replay, null, 2), "utf8");
   }
   console.log(JSON.stringify({
     runId: replay.metadata.run_id,

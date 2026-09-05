@@ -1,3 +1,4 @@
+import { resolveResumeRepairReasoningEffort } from "@/lib/llm/model-config";
 import { extractJsonFromText } from "../backend/openai";
 import {
   ensureLayoutAndContentFields,
@@ -100,6 +101,7 @@ export async function validateResumeStreamOutput(input: {
         mode: "resume",
         model: input.model,
         prompt_version: "resume_v2_repair",
+        reasoning_effort: resolveResumeRepairReasoningEffort(input.model),
         schema_version: "report_v1",
         messages: buildResumeRepairMessages(input.messages, input.raw, error),
         signal: input.signal,

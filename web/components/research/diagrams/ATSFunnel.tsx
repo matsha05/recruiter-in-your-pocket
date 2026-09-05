@@ -5,20 +5,20 @@ import { EvidenceHeader, ProcessRail } from "@/components/shared/diagrams/Eviden
 
 export function ATSFunnel() {
     return (
-        <DiagramFigure className="max-w-[46rem]" label="Decision-rights map showing ATS infrastructure, screening rules, recruiter review, and human hiring decisions">
+        <DiagramFigure className="max-w-[46rem]" label="Examples of parsing, filtering, and review tools documented by Greenhouse">
             <DiagramFrame>
-                <EvidenceHeader index="01" label="What the software does" title="An ATS organizes applications. People still make the decisions." note="Software may parse, sort, or filter applications. Employers decide how to use it and who moves forward." />
+                <EvidenceHeader index="01" label="Example: Greenhouse" title="Parsing, filtering, and review are different steps." note="Greenhouse documents tools for each. How an employer uses them depends on its hiring process." />
                 <ProcessRail
                     steps={[
-                        { label: "Infrastructure", title: "Store and route", detail: "Parsing, records, search, and workflow movement." },
-                        { label: "Rules", title: "Screen and rank", detail: "Eligibility questions, tests, and configured filters.", tone: "caution" },
-                        { label: "Recruiter", title: "Build the shortlist", detail: "Context, comparison, and role judgment.", tone: "focus" },
-                        { label: "Hiring team", title: "Interview and decide", detail: "Evidence is weighed; the final call is human.", tone: "focus" },
+                        { label: "Parsing", title: "Fill in the record", detail: "Extract information from the resume into candidate fields." },
+                        { label: "Filtering", title: "Find applications", detail: "Filter by status, source, education, or application fields.", tone: "caution" },
+                        { label: "Review", title: "Track assessments", detail: "Record interviews, scorecards, and test results.", tone: "focus" },
+                        { label: "Decision", title: "Manage next steps", detail: "Track applications awaiting a decision or an offer.", tone: "focus" },
                     ]}
                     footer={<><strong className="text-foreground">Write for both:</strong> use a layout the software can read, then make the experience clear to the person reviewing it.</>}
                 />
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Software and people" title="The system handles information. The employer decides how it affects the process." />
+            <DiagramCaption kicker="Fig. 1 / Software and process" title="These tools do not establish one universal ATS score or rejection rule." description="Greenhouse Support: resume parsing and candidate filters." />
         </DiagramFigure>
     );
 }

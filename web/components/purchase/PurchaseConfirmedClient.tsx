@@ -21,6 +21,7 @@ export default function PurchaseConfirmedClient() {
   const { user, isLoading: authLoading, refreshUser } = useAuth();
   const refreshedEntitlementRef = useRef(false);
   const [entitlementRefreshing, setEntitlementRefreshing] = useState(false);
+  const [accountCheckComplete, setAccountCheckComplete] = useState(false);
   const searchParams = useSearchParams();
   const getSearchParam = searchParams.get.bind(searchParams);
   const sessionId = getSearchParam("session_id");
@@ -76,12 +77,35 @@ export default function PurchaseConfirmedClient() {
     ) return;
     refreshedEntitlementRef.current = true;
     setEntitlementRefreshing(true);
-    void refreshUser().finally(() => setEntitlementRefreshing(false));
+    void refreshUser().finally(() => {
+      setEntitlementRefreshing(false);
+      setAccountCheckComplete(true);
+    });
   }, [authLoading, refreshUser, state.status, user]);
 
   const isWaiting = state.status === "checking" || state.status === "pending";
   const isProblem = state.status === "error" || state.status === "missing";
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
+  const paymentConfirmed = state.status === "unlocked";
+  const checkingAccountAccess = paymentConfirmed && (
+    authLoading || entitlementRefreshing || Boolean(user && !accountCheckComplete)
+  );
+  const accountReady = paymentConfirmed && !checkingAccountAccess && hasPaidAccess;
+  const statusLabel = isWaiting ? "Confirming with Stripe"
+    : checkingAccountAccess ? "Checking account access"
+    : accountReady ? "Access confirmed"
+    : paymentConfirmed ? "Payment confirmed"
+    : "Needs attention";
+  const confirmationMessage = !paymentConfirmed ? state.message
+    : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
+    : accountReady ? "Your account has paid access. You can return to your report."
+    : user ? "Your payment is confirmed, but this account does not show the pass yet."
+    : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
+  const nextStepLabel = !paymentConfirmed ? "Next step"
+    : checkingAccountAccess ? "Checking your account"
+    : accountReady ? "Ready when you are"
+    : user ? "Verify account access"
+    : "Sign in to continue";
 
   return (
     <>
@@ -97,7 +121,7 @@ export default function PurchaseConfirmedClient() {
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
                 {isWaiting ? <CircleNotch className="size-5 animate-spin text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
-                <span>{isWaiting ? "Confirming with Stripe" : state.status === "unlocked" ? "Access confirmed" : "Needs attention"}</span>
+                <span>{statusLabel}</span>
               </div>
             </div>
             <div>
@@ -107,7 +131,7 @@ export default function PurchaseConfirmedClient() {
               >
                 {state.title}
               </h1>
-              <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">{state.message}</p>
+              <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">{confirmationMessage}</p>
             </div>
           </header>
 
@@ -128,16 +152,16 @@ export default function PurchaseConfirmedClient() {
 
             <div className="border-y border-line bg-surface-sky/45 px-5 py-6 sm:px-7 sm:py-7">
               <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
-                {state.status === "unlocked" ? "Ready when you are" : "Next step"}
+                {nextStepLabel}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {state.status === "unlocked" && (authLoading || entitlementRefreshing) ? (
+                {checkingAccountAccess ? (
                   <Button type="button" variant="brand" size="lg" disabled isLoading>
                     Refreshing access…
                   </Button>
                 ) : state.status === "unlocked" && hasPaidAccess ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Open the studio"} <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Open workspace"} <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" && user ? (
                   <Button asChild variant="brand" size="lg">
@@ -165,12 +189,12 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : null}
               </div>
-              {state.status === "unlocked" && !authLoading && !entitlementRefreshing && !user ? (
+              {paymentConfirmed && !checkingAccountAccess && !user ? (
                 <p className="mt-4 border-l-2 border-cyan-bright px-3 text-sm leading-6 text-muted-foreground">
                   Sign in with the email used at checkout to use this pass. A passwordless sign-in email may already be in your inbox.
                 </p>
               ) : null}
-              {state.status === "unlocked" && !authLoading && !entitlementRefreshing && user && !hasPaidAccess ? (
+              {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
                 <p className="mt-4 border-l-2 border-warning px-3 text-sm leading-6 text-muted-foreground">
                   Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
                 </p>

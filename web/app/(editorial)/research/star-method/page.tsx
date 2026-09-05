@@ -12,14 +12,14 @@ export default function StarMethodPage() {
         <ResearchArticle
             header={{
                 tag: "Interview prep",
-                title: "STAR: useful structure, narrower evidence",
+                title: "How to use STAR without forcing the formula",
                 description: "Situation, task, action, and result can organize an answer. The research supports structured interviews, not a universal STAR formula for resumes.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
             keyFinding={{
                 subtitle: "What the evidence supports",
-                stat: "Same questions. Same standards. More consistent evaluation.",
+                stat: "Interview structure helps reviewers compare answers",
                 statDescription: (
                     <>
                         Structured interviews limit interviewer discretion by using job-related questions and common rating standards. Higher structure is associated with stronger validity, rater reliability, and agreement.
@@ -49,7 +49,7 @@ export default function StarMethodPage() {
                         description: "We point out when the line does not make your part or the result clear."
                     },
                     {
-                        title: "Interview bridge",
+                        title: "Prepare an interview example",
                         description: "A specific bullet gives you facts to develop into a behavioral interview answer."
                     }
                 ]
@@ -78,7 +78,7 @@ export default function StarMethodPage() {
             faq={[
                 {
                     question: "Is STAR only for interviews?",
-                    answer: "The research cited here is about interviews. On a resume, action plus outcome is a useful writing heuristic, not a scientifically validated requirement to squeeze all four STAR parts into every bullet."
+                    answer: "You can also use it to check whether a resume bullet explains what you did and what changed. The studies cited here did not test STAR-formatted resumes, and you do not need all four parts in every bullet."
                 },
                 {
                     question: "Do I need all four parts in every bullet?",
@@ -97,7 +97,7 @@ export default function StarMethodPage() {
                 <Citation id="source-2">2</Citation>
             </p>
             <p className="research-body mb-6">
-                STAR solves a different problem for the candidate: it keeps a past-behavior answer from losing the action or outcome. That is a practical bridge, not the source of structured interviews&apos; research advantage.
+                STAR helps you organize an example from your own experience. It can remind you to explain what you did and what happened, but it does not determine the employer&apos;s questions or scoring.
             </p>
 
             <h2 className="research-h2">Breaking down STAR</h2>
@@ -112,7 +112,7 @@ export default function StarMethodPage() {
                 />
                 <ArticleInsight
                     title="Action"
-                    desc="What you actually did. Be specific about your contributions, not the team&apos;s."
+                    desc="What you actually did. Explain your contribution and distinguish it from the team's work."
                 />
                 <ArticleInsight
                     title="Result"
@@ -125,26 +125,18 @@ export default function StarMethodPage() {
                 Do not force four labeled parts into a bullet. A useful line usually needs a clear action, the context needed to understand it, and an outcome when one is known. Situation and task often live in the role title or surrounding bullets.
             </p>
             <p className="text-sm text-muted-foreground mb-4">
-                Illustrative pair. The facts and numbers belong to the example and should never be invented in a real rewrite.
+                These are fictional examples. Only add details like these to your own resume if they are true.
             </p>
             <p className="research-body mb-6">
                 <strong>Weak:</strong> &quot;Worked on the customer support team handling inquiries.&quot;
             </p>
             <p className="research-body mb-6">
-                <strong>Strong:</strong> &quot;Resolved 50+ daily customer escalations, reducing average
-                resolution time from 4 hours to 45 minutes and improving satisfaction scores by 22%.&quot;
+                <strong>With more detail:</strong> &quot;Handled customer escalations and created a troubleshooting guide that helped the support team resolve repeat billing issues.&quot;
             </p>
             <p className="research-body">
-                The situation (customer support) is implied. The action (resolved escalations) and
-                result (faster resolution, higher satisfaction) are explicit. That&apos;s STAR in one sentence.
+                The role supplies the context. The revision explains the action, identifies the problem, and names a useful outcome. A verified measure could add detail, but the sentence does not need an invented number.
             </p>
 
-            <h2 className="research-h2">Why interview structure matters</h2>
-            <p className="research-body mb-6">
-                Structured interviews use consistent, job-related questions and common scoring criteria. STAR can help a candidate answer a past-behavior question clearly, but it does not standardize the interview and it does not guarantee a high score.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
         </ResearchArticle>
     );
 }

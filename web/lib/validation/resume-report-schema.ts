@@ -142,8 +142,8 @@ export const ResumeFeedbackResponseSchema = z.object({
     underplayed: z.array(z.string()).min(2).max(4),
     missing: z.array(z.string()).min(1).max(3),
     role_fit: z.object({
-      best_fit_roles: z.array(z.string()).min(3).max(5),
-      stretch_roles: z.array(z.string()).min(1).max(3),
+      best_fit_roles: z.array(z.string()).min(1).max(5),
+      stretch_roles: z.array(z.string()).max(3),
       seniority_read: z.string(),
       industry_signals: z.array(z.string()).max(8),
       company_stage_fit: z.string(),

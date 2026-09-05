@@ -258,7 +258,7 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
 
     if (visual === "artifact") {
         return (
-            <div className="research-finding-visual" role="img" aria-label="Comparison between a stripped-down resume profile and the actual resume artifact">
+            <div className="research-finding-visual" role="img" aria-label="Comparison between a simplified resume profile and the full resume">
                 <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">What the study compared</p>
                 <div className="mt-7 grid gap-px overflow-hidden rounded-sm bg-line sm:grid-cols-2">
                     <div className="bg-white p-6">
@@ -292,7 +292,7 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
                     <div><p className="font-semibold text-foreground">Algorithmic recommendation</p><p className="mt-1 text-sm text-muted-foreground">Lower recruiter trust</p></div>
                 </div>
             </div>
-            <p className="mt-7 max-w-[35rem] text-sm leading-6 text-muted-foreground">For our product, this means showing why we recommend a change so you can check the reasoning for yourself.</p>
+            <p className="mt-7 max-w-[35rem] text-sm leading-6 text-muted-foreground">Trust and influence were different: misleading algorithmic advice still affected ratings. Check the reasoning behind a recommendation before using it.</p>
         </div>
     );
 }
@@ -332,7 +332,7 @@ function ResearchEvidenceTrace() {
             <div className="research-evidence-stage-head">
                 <div>
                     <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Four findings worth acting on</p>
-                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">See what each source found and how we use it in the report.</p>
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">See what each source found, what it does not establish, and what to do with the advice.</p>
                 </div>
                 <div className="research-evidence-tabs" role="tablist" aria-label="Research findings">
                     {featuredFindings.map((finding, index) => (
@@ -377,7 +377,7 @@ function ResearchEvidenceTrace() {
                     <p className="mt-7 max-w-2xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-7 text-muted-foreground">{activeFinding.conclusion}</p>
 
                     <div className="mt-8 border-l-2 border-brand pl-5">
-                        <p className="riyp-track-010 text-xs font-semibold uppercase text-muted-foreground">What this changes in your report</p>
+                        <p className="riyp-track-010 text-xs font-semibold uppercase text-muted-foreground">How to use this finding</p>
                         <p className="mt-3 max-w-[38rem] text-sm leading-6 text-muted-foreground">{activeFinding.reportUse}</p>
                     </div>
 

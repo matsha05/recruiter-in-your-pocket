@@ -25,14 +25,14 @@ export default function NotFound() {
                                 This page is not here.
                             </h1>
                             <p className="mt-6 max-w-[38rem] text-lg leading-8 text-muted-foreground">
-                                The address may have changed. Start a first read, or browse the research behind the report.
+                                The link may be outdated or the address may be mistyped. You can open your workspace or browse the research behind the report.
                             </p>
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Link
                                     href="/workspace"
                                     className="focus-ring inline-flex min-h-13 items-center justify-center gap-3 rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
                                 >
-                                    Get my free report
+                                    Open my workspace
                                     <ArrowRight className="size-4 text-citron" weight="bold" />
                                 </Link>
                                 <Link

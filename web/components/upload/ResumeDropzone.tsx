@@ -190,7 +190,7 @@ export function ResumeDropzone({
                                 exit={{ opacity: 0, y: 6 }}
                                 className="text-xs text-muted-foreground"
                             >
-                                Building your first-read report.
+                                Reading your resume file…
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -221,7 +221,7 @@ export function ResumeDropzone({
                         </span>
                         <span className="min-w-0">
                             <span className="block truncate text-base font-medium text-foreground">{displayFileName}</span>
-                            <span className="mt-1 block text-xs font-normal text-muted-foreground">Ready for a first read</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">Ready to review</span>
                         </span>
                     </span>
                     <Button

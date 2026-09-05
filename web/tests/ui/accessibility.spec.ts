@@ -153,7 +153,7 @@ test("keyboard resume upload announces success and moves focus to the file actio
     buffer: Buffer.from("%PDF-1.4 test resume"),
   });
 
-  const readyStatus = page.getByRole("status").filter({ hasText: "Ready for a first read" });
+  const readyStatus = page.getByRole("status").filter({ hasText: "Ready to review" });
   await expect(readyStatus).toContainText("candidate-resume.pdf");
   const removeFile = page.getByRole("button", { name: "Remove candidate-resume.pdf" });
   await expect(removeFile).toBeFocused();

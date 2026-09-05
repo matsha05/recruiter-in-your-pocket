@@ -125,7 +125,7 @@ export async function POST(request: Request) {
             outcome: "internal_error",
             err: { name: "ConfigError", message: "STRIPE_SECRET_KEY not set", code: "STRIPE_SECRET_KEY_MISSING" }
         });
-        const res = NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
+        const res = NextResponse.json({ ok: false, message: "Checkout is temporarily unavailable. Try again later or contact support." }, { status: 500 });
         res.headers.set("x-request-id", request_id);
         return res;
     }
@@ -136,7 +136,7 @@ export async function POST(request: Request) {
         const checkoutSource = normalizeCheckoutSource(body?.source);
         const returnTo = normalizeCheckoutReturnTo(body?.returnTo);
         if (body?.returnTo != null && !returnTo) {
-            const res = NextResponse.json({ ok: false, message: "Invalid checkout return destination." }, { status: 400 });
+            const res = NextResponse.json({ ok: false, message: "Could not open checkout from this page. Refresh the page and try again." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             return res;
         }
@@ -145,7 +145,7 @@ export async function POST(request: Request) {
             : null;
         const unlockSection = normalizeUnlockSection(body?.unlockSection);
         if (!requestedTier) {
-            const res = NextResponse.json({ ok: false, message: "Invalid plan selection." }, { status: 400 });
+            const res = NextResponse.json({ ok: false, message: "This purchase option is unavailable. Refresh the page and choose the Job Search Pass." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             logInfo({
                 msg: "http.request.completed",
@@ -184,7 +184,7 @@ export async function POST(request: Request) {
         }
 
         if (!checkoutEmail && body?.email != null && !isValidEmail(body?.email)) {
-            const res = NextResponse.json({ ok: false, message: "A valid email is required." }, { status: 400 });
+            const res = NextResponse.json({ ok: false, message: "Enter a valid email address for your purchase." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             logInfo({
                 msg: "http.request.completed",

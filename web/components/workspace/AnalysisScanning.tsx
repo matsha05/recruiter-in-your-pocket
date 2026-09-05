@@ -59,7 +59,9 @@ const LINKEDIN_STEPS: AnalysisStep[] = [
     },
 ];
 
-const LONG_WAIT_MS = 45_000;
+// The September live corpus included completed reviews taking up to 117 seconds.
+// Do not encourage a second generation while the first is within that observed range.
+const LONG_WAIT_MS = 120_000;
 
 interface AnalysisScanningProps {
     mode?: AnalysisMode;
@@ -104,7 +106,7 @@ export default function AnalysisScanning({
             <section className="analysis-shell mx-auto w-full" aria-labelledby="analysis-title" aria-busy="true">
                 <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
                     {isSlow
-                        ? `The ${subject} review is taking longer than usual. You can keep waiting, retry, or stop.`
+                        ? `We are still working on your ${subject} report. You can keep waiting, retry, or stop.`
                         : `Building your ${subject} report. Keep this tab open.`}
                 </p>
                 <header className="grid gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-end md:gap-12">
@@ -161,9 +163,9 @@ export default function AnalysisScanning({
                 </div>
 
                 {isSlow ? (
-                    <aside className="mt-7 border-y border-warning/35 bg-warning/10 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Review taking longer than usual">
+                    <aside className="mt-7 border-y border-warning/35 bg-warning/10 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Review still in progress">
                         <div>
-                            <p className="font-medium text-foreground">This is taking longer than usual.</p>
+                            <p className="font-medium text-foreground">Still working on your report.</p>
                             <p className="mt-1 text-xs leading-5 text-muted-foreground">You can keep waiting or retry. A retry may use another report if this review finishes in the background.</p>
                         </div>
                         <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">

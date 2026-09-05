@@ -28,7 +28,7 @@ export async function DELETE(req: NextRequest) {
 
         if (!jobId) {
             return NextResponse.json(
-                { success: false, errorCode: 'MISSING_ID', error: 'Missing job ID' },
+                { success: false, errorCode: 'MISSING_ID', error: 'Choose a saved job to remove.' },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -56,7 +56,7 @@ export async function DELETE(req: NextRequest) {
         if (deleteError) {
             console.error('[Extension] Delete job error:', deleteError);
             return NextResponse.json(
-                { success: false, errorCode: 'DELETE_FAILED', error: 'Failed to delete job' },
+                { success: false, errorCode: 'DELETE_FAILED', error: 'Could not remove this job. Try again.' },
                 { status: 500, headers: corsHeaders }
             );
         }
@@ -69,7 +69,7 @@ export async function DELETE(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Delete job error:', error);
         return NextResponse.json(
-            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error' },
+            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Could not remove this job. Try again.' },
             { status: 500, headers: corsHeaders }
         );
     }

@@ -68,15 +68,15 @@ export default function LinkedInModeSection({
                 <Linkedin className="size-4" /> LinkedIn report
               </p>
               <h1 className="font-display text-[clamp(2.75rem,6vw,4.6rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-foreground riyp-stretch-88">
-                See what your profile says first.
+                Review your LinkedIn profile.
               </h1>
               <p className="mt-5 max-w-[28rem] text-lg leading-8 text-muted-foreground">
-                Export the profile you are actually using. We&apos;ll show what reads clearly, what gets lost, and what to fix first.
+                Upload your LinkedIn PDF for feedback on your headline, experience, and missing details.
               </p>
               <dl className="mt-9 border-y border-border/70">
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">01</dt><dd className="text-sm leading-6 text-muted-foreground">Profile-card first impression</dd></div>
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">02</dt><dd className="text-sm leading-6 text-muted-foreground">Headline and About clarity</dd></div>
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">03</dt><dd className="text-sm leading-6 text-muted-foreground">Search visibility and next moves</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">01</dt><dd className="text-sm leading-6 text-muted-foreground">First impression</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">02</dt><dd className="text-sm leading-6 text-muted-foreground">Headline and About section</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">03</dt><dd className="text-sm leading-6 text-muted-foreground">Skills and relevant keywords</dd></div>
               </dl>
             </div>
 
@@ -106,7 +106,7 @@ export default function LinkedInModeSection({
                 </h1>
               </div>
               <p className="text-sm text-muted-foreground">
-                A structured read of the profile you uploaded.
+                Feedback on the profile you uploaded.
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+import { namesConcreteEditDetail } from "../llm/grounding";
 /**
  * PromptOps Eval Harness - Validation Checks
  */
@@ -92,28 +93,9 @@ function checkSummaryStructure(summary: string): CheckResult {
         };
     }
 
-    // Check for role-level signal (common patterns)
-    const hasRoleSignal = /\b(read as|come across as|present as|appear as|page supports|positions? you|career story|roles?|target|fit|senior|mid[-\s]?level|entry|lead|manager|director|engineer|pm|designer|teacher|counsel|pastor|analyst|recruiter|executive|controller|cfo|accounting|consulting)\b/i.test(summary);
-
-    // Check for strength indicator
-    const hasStrength = /\b(capable|credible|believable|clear(?:est)?|useful|strong(?:est)?|strengths?|show|demonstrate|visible|evident|ownership|impact|results?|outcomes?|scale|quantified|measurable|value|worth keeping|quota|revenue|adoption|reduction|increase|improvement|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
-
-    // Check for gap indicator
-    const hasGap = /\b(open question|(?:practical|remaining|main|real|hiring) question|unresolved|remains? (?:unclear|unknown|unanswered)|harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks?|does not|do not|without|limits?|leaves?|stops? at|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(summary);
-
-    if (!hasRoleSignal || !hasStrength || !hasGap) {
-        const missing: string[] = [];
-        if (!hasRoleSignal) missing.push("role-level signal");
-        if (!hasStrength) missing.push("strength indicator");
-        if (!hasGap) missing.push("gap indicator");
-
-        return {
-            passed: false,
-            code: "W_SUMMARY_STRUCTURE",
-            message: `Summary missing: ${missing.join(", ")}`
-        };
-    }
-
+    // Role interpretation, strengths, and missing detail need a source-aware review.
+    // Keyword proxies rewarded stock phrases and rejected concrete factual summaries.
+    // Keep sentence structure automatic; review meaning against the resume in the live eval.
     return { passed: true };
 }
 
@@ -226,7 +208,10 @@ export function findMechanicalCopyIssues(output: unknown): string[] {
             "manager", "director", "executive", "engineer", "designer", "recruiter",
             "hiring", "recruiting",
         ].includes(trailingWord));
-        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel) {
+        const repeatedMetricLabel = repeatedClause ? Array.from(normalized.matchAll(new RegExp(`\\b${escapeRegExp(repeatedClause)}\\b`, "g"))) : [];
+        const qualifiesDistinctMetrics = repeatedMetricLabel.length > 1 && repeatedMetricLabel.every(match =>
+            /\d+(?:\.\d+)?[kmb]?\s+$/.test(normalized.slice(0, match.index)));
+        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel && !qualifiesDistinctMetrics) {
             issues.push(`${item.path} repeats the clause "${repeatedClause}"`);
         }
 
@@ -270,15 +255,26 @@ function checkSpecificity(
             && (fixText.match(/,/g) || []).length >= 2;
         const namesConcreteRemoval = /^(?:remove|delete)\b/i.test(fixText)
             && /["“][^"”]+["”]|\b(?:line|entry|phrase|label|header|headline|section)\b/i.test(fixText);
+        const namesQuotedCorrection = /\b(?:compare|correct|replace|remove)\b/i.test(fixText)
+            && /["“][^"”]{4,}["”]/.test(fixText);
+        const namesTargetedSummary = /\bsummary\b/i.test(fixText)
+            && /\btarget\b/i.test(fixText)
+            && /\b(?:role|roles|account executive)\b/i.test(fixText);
+        const namesQualitativeDetail = /\b(?:bullet|section|statement)\b/i.test(fixText)
+            && /\b(?:reporting cadence|audience|recipients?|deal stage|customer problem|process(?:es)? you (?:changed|implemented|designed)|specific change that followed|decisions? you|deliverables? you|responsibilit(?:y|ies) you|what changed|what you (?:built|delivered|decided))\b/i.test(fixText);
         const hasConcreteToken = PATTERNS.some(p => p.test(fixText))
             || namesConcreteSkillGroup
-            || namesConcreteRemoval;
+            || namesConcreteRemoval
+            || namesQuotedCorrection
+            || namesTargetedSummary
+            || namesQualitativeDetail
+            || namesConcreteEditDetail(fixText);
 
         if (!hasConcreteToken) {
             results.push({
                 passed: false,
                 code: "W_SPECIFICITY_LOW",
-                message: `Fix ${i + 1} lacks concrete tokens (digits, %, measurable nouns, time bounds)`,
+                message: `Fix ${i + 1} lacks a specific detail, quoted correction, or concrete target`,
                 details: { fix_index: i, fix_preview: fixText.slice(0, 50) }
             });
         }

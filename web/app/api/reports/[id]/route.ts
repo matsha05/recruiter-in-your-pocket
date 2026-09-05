@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     if (!user) {
       return NextResponse.json(
-        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to view this report.", report: null },
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Sign in to view this report.", report: null },
         { status: 401 }
       );
     }
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
     });
   } catch (error: any) {
     logError({ msg: "reports.detail_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to fetch report", code: error?.code } });
-    return NextResponse.json({ ok: false, report: null, message: "Failed to fetch report" }, { status: 500 });
+    return NextResponse.json({ ok: false, report: null, message: "Could not load this report. Try again." }, { status: 500 });
   }
 }
 
@@ -92,7 +92,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
 
     if (!user) {
       return NextResponse.json(
-        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to delete this report." },
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Sign in to delete this report." },
         { status: 401 }
       );
     }
@@ -113,7 +113,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
         err: { name: "SupabaseError", message: "Report ownership check failed", code: String(fetchError.code || "DELETE_FETCH_FAILED") },
       });
       return NextResponse.json(
-        { ok: false, errorCode: "DELETE_FAILED", message: "Could not verify report ownership." },
+        { ok: false, errorCode: "DELETE_FAILED", message: "Could not confirm access to this report. Refresh the page and try again." },
         { status: 500 }
       );
     }
@@ -168,7 +168,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     return NextResponse.json({ ok: true, message: "Report deleted." });
   } catch (error: any) {
     logError({ msg: "reports.delete_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to delete report", code: error?.code } });
-    return NextResponse.json({ ok: false, message: "Failed to delete report" }, { status: 500 });
+    return NextResponse.json({ ok: false, message: "Could not delete this report. Try again." }, { status: 500 });
   }
 }
 
@@ -189,7 +189,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
 
     if (!user) {
       return NextResponse.json(
-        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to rename this report." },
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Sign in to rename this report." },
         { status: 401 }
       );
     }
@@ -203,7 +203,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     if (name !== undefined) {
       if (typeof name !== "string" || name.length > 100) {
         return NextResponse.json(
-          { ok: false, errorCode: "INVALID_NAME", message: "Name must be a string under 100 characters." },
+          { ok: false, errorCode: "INVALID_NAME", message: "Keep the report name to 100 characters or fewer." },
           { status: 400 }
         );
       }
@@ -213,7 +213,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     if (resume_variant !== undefined) {
       if (typeof resume_variant !== "string" || resume_variant.length > 50) {
         return NextResponse.json(
-          { ok: false, errorCode: "INVALID_VARIANT", message: "Variant must be a string under 50 characters." },
+          { ok: false, errorCode: "INVALID_VARIANT", message: "Keep the version name to 50 characters or fewer." },
           { status: 400 }
         );
       }
@@ -222,7 +222,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
 
     if (Object.keys(updates).length === 0) {
       return NextResponse.json(
-        { ok: false, errorCode: "NO_UPDATES", message: "No valid fields to update." },
+        { ok: false, errorCode: "NO_UPDATES", message: "Enter a report name or version name to save." },
         { status: 400 }
       );
     }
@@ -250,6 +250,6 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     return NextResponse.json({ ok: true, message: "Report updated." });
   } catch (error: any) {
     logError({ msg: "reports.update_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to update report", code: error?.code } });
-    return NextResponse.json({ ok: false, message: "Failed to rename report" }, { status: 500 });
+    return NextResponse.json({ ok: false, message: "Could not rename this report. Try again." }, { status: 500 });
   }
 }

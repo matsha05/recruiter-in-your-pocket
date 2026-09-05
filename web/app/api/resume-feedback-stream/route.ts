@@ -177,7 +177,7 @@ export async function POST(request: Request) {
             return respond(singleGenerationStreamEvent(request_id, {
                 type: "error",
                 errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
-                message: "Your browser identity is ready. Please retry to generate the report safely.",
+                message: "Your browser is ready. Try creating your report again.",
                 access_consumed: false,
                 attempt_consumed: false,
                 attempt_disposition: "restored",
@@ -217,7 +217,7 @@ export async function POST(request: Request) {
             return respond(singleGenerationStreamEvent(request_id, {
                 type: "error",
                 errorCode: "PAYWALL_REQUIRED",
-                message: "You've used your free report. Paid access adds more reports, saved history, and export.",
+                message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
                 access_consumed: false,
                 attempt_consumed: false,
                 attempt_disposition: "not_started",

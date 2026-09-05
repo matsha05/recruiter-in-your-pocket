@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     const file = incoming.get("file");
 
     if (!file || !(file instanceof File)) {
-      const res = NextResponse.json({ ok: false, errorCode: "NO_FILE", message: "No file provided." }, { status: 400 });
+      const res = NextResponse.json({ ok: false, errorCode: "NO_FILE", message: "Choose a file to upload." }, { status: 400 });
       res.headers.set("x-request-id", request_id);
       logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
       return res;
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
 
     if (file.size > MAX_FILE_SIZE) {
       const res = NextResponse.json(
-        { ok: false, errorCode: "FILE_TOO_LARGE", message: "File is too large. Max 4 MB." },
+        { ok: false, errorCode: "FILE_TOO_LARGE", message: "This file is too large. Choose a file of 4 MB or less." },
         { status: 400 }
       );
       res.headers.set("x-request-id", request_id);
@@ -97,7 +97,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "UNSUPPORTED_FILE_TYPE",
-          message: "Only PDF and DOCX files are supported.",
+          message: "Choose a PDF or DOCX file.",
           details: { fileName: file.name, fileType: file.type || "unknown" }
         },
         { status: 400 }
@@ -128,7 +128,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "EXTRACTED_TEXT_TOO_LARGE",
-          message: "This document contains too much text to review safely. Paste only the resume content you want reviewed."
+          message: "This document exceeds the 30,000-character limit. Upload a shorter file."
         },
         { status: 400 }
       );
@@ -154,7 +154,7 @@ export async function POST(request: Request) {
       err: { name: err?.name || "Error", message: err?.message || "Parse error", stack: err?.stack }
     });
     const res = NextResponse.json(
-      { ok: false, errorCode: "PARSE_ERROR", message: "Something went wrong while processing your file." },
+      { ok: false, errorCode: "PARSE_ERROR", message: "Could not read this file. Try uploading a new PDF or DOCX copy." },
       { status: 500 }
     );
     res.headers.set("x-request-id", request_id);

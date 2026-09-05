@@ -25,6 +25,12 @@ assert.equal(getFourYearTotal(backloaded), 540_000);
 assert.equal(isVestingScheduleValid([0, 33, 33, 34]), true);
 assert.equal(isVestingScheduleValid([25, 25, 25, 20]), false);
 assert.equal(isVestingScheduleValid([25, 25, 25]), false);
+assert.equal(isVestingScheduleValid([0, 33.3, 33.3, 33.4]), true);
+assert.equal(isVestingScheduleValid([25, 25, 25, 24.99]), false);
+
+const fractionalBonus = { ...backloaded, bonusPercent: 12.5 };
+assert.equal(getYearBreakdown(fractionalBonus, 1).bonus, 12_500);
+assert.equal(getFourYearTotal(fractionalBonus), 550_000);
 
 const invalidEquityOffer = {
   ...backloaded,

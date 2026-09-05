@@ -1,6 +1,6 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-08-10
+**Last Updated:** 2026-09-04
 **Status:** ENFORCED, CURRENT RELEASE CANDIDATE PASS
 
 ---
@@ -92,15 +92,20 @@ Before any live launch decision, and only after model spend is approved:
 
 ### Latest live evidence
 
-- Run: `eval_1786231390293_replay`
-- Model: `gpt-5.6-luna`, low reasoning
+- Run: `eval_1788577888513_targeted_cohort_replay`
+- Model: `gpt-5.6-terra`, medium reasoning, 8,000 completion tokens per call; bounded high-reasoning repair
 - Corpus: all 23 stored golden resumes
 - Result: 22 PASS, 1 WARN, 0 FAIL (95.7%)
-- Validation: saved outputs from the authorized live run replayed through the current candidate validator
-- Token-calculated source-run API cost: $0.576062 across 45 calls
-- Resume prompt SHA-256: `fd910eea3d1a4ebd7c4ae3f0419d6b36f6d799d08c8e52b8a7625dffb964236a`
+- Validation: saved-output replay of the full live run with five designated fixtures replaced by their latest targeted live outputs. Original failures and source receipts are retained; no report prose was manually edited.
+- Source cohort SHA-256: `245686e38edf51014b54412f47e4c9d4ff6e3c235739190e4cc8d11413399d35`
+- Budget: Matt authorized $10 total. The final smoke receipt and token-calculated campaign cost are recorded in `tests/fixtures/results/summary_latest_live.md`.
+- Resume prompt SHA-256: `67c7257730ac5b53f3465454d7bc6831e83f07d50255435e7cafbc09d1f8fa86`
 - Resume-ideas prompt SHA-256: `6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7`
-- Decision: the current candidate clears the quality gate with one non-blocking repeated-wording warning
+- Decision: the current candidate clears the quality gate with one non-blocking repeated teacher-role warning. All 23 selected reports received a separate source-by-source copy review.
+
+The September 4 release uses the bounded live evaluations and separately recorded final smoke replay, followed by the standard zero-spend launch gate and exact-commit CI. The strict command is not rerun because it would repeat paid work outside the remaining authorized allocation. This replay is not described as a fresh full-batch pass. The original full run returned 14 PASS, 1 WARN and 8 FAIL before validation corrections and the targeted replacements. Repair instructions were refined during those replacements; the initial model and prompt stayed fixed.
+
+The validator now preserves specific advice instead of replacing it with stock prose. Paired regressions protect section presence, metric qualifiers, source relationships and the reproduced factual presuppositions. These bounded checks do not establish universal accuracy for future generated reports. Minor wording limitations remain documented in the independent review; automated passage alone is not an editorial verdict.
 
 The runtime withholds invalid drafts, attempts one bounded repair, and restores report access if the replacement still fails. Any prompt or launch-model change reopens this gate. Older GPT-4o mini and GPT-5 Nano runs remain historical evidence, not the current release bar.
 

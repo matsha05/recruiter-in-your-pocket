@@ -64,7 +64,7 @@ export async function POST(_request: Request) {
     const user = authData.user;
 
     if (!user?.id) {
-      return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
+      return NextResponse.json({ ok: false, message: "Sign in to export your account data." }, { status: 401 });
     }
 
     const rateLimit = await enforceExportRateLimit(user.id, "create");
@@ -89,7 +89,7 @@ export async function POST(_request: Request) {
     });
 
     if (insertError) {
-      return NextResponse.json({ ok: false, message: "Could not create export job." }, { status: 500 });
+      return NextResponse.json({ ok: false, message: "Could not start your data export. Try again." }, { status: 500 });
     }
 
     if (isAsyncAccountExportEnabled()) {
@@ -121,7 +121,7 @@ export async function POST(_request: Request) {
       .maybeSingle();
 
     if (jobError || !job) {
-      return NextResponse.json({ ok: false, message: "Could not confirm export status." }, { status: 500 });
+      return NextResponse.json({ ok: false, message: "Could not check whether your export is ready. Try again." }, { status: 500 });
     }
 
     return NextResponse.json(
@@ -143,7 +143,7 @@ export async function GET(request: Request) {
     const user = authData.user;
 
     if (!user?.id) {
-      return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
+      return NextResponse.json({ ok: false, message: "Sign in to export your account data." }, { status: 401 });
     }
 
     const rateLimit = await enforceExportRateLimit(user.id, "read");
@@ -171,7 +171,7 @@ export async function GET(request: Request) {
         .limit(EXPORT_LOOKBACK_LIMIT);
 
       if (error) {
-        return NextResponse.json({ ok: false, message: "Failed to load export jobs." }, { status: 500 });
+        return NextResponse.json({ ok: false, message: "Could not load your data exports. Try again." }, { status: 500 });
       }
 
       return NextResponse.json({
@@ -188,10 +188,10 @@ export async function GET(request: Request) {
       .maybeSingle();
 
     if (error) {
-      return NextResponse.json({ ok: false, message: "Failed to load export job." }, { status: 500 });
+      return NextResponse.json({ ok: false, message: "Could not load this data export. Try again." }, { status: 500 });
     }
     if (!job) {
-      return NextResponse.json({ ok: false, message: "Export job not found." }, { status: 404 });
+      return NextResponse.json({ ok: false, message: "This data export was not found. Request a new one in Settings." }, { status: 404 });
     }
 
     if (!download) {
@@ -215,7 +215,7 @@ export async function GET(request: Request) {
 
     if (access === "missing") {
       return NextResponse.json(
-        { ok: false, message: "Export completed without downloadable content.", job: serializeJob(job) },
+        { ok: false, message: "The export finished, but the download is missing. Request a new export or contact support.", job: serializeJob(job) },
         { status: 500 }
       );
     }
@@ -230,6 +230,6 @@ export async function GET(request: Request) {
       },
     });
   } catch {
-    return NextResponse.json({ ok: false, message: "Export failed." }, { status: 500 });
+    return NextResponse.json({ ok: false, message: "Could not download your data export. Try again or request a new export." }, { status: 500 });
   }
 }

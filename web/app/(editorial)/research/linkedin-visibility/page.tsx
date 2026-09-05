@@ -14,7 +14,7 @@ export default function LinkedInVisibilityPage() {
             header={{
                 tag: "LinkedIn discovery",
                 title: "What makes a LinkedIn profile easier to find",
-                description: "LinkedIn documents what its recruiter tools search. That gives us useful advice without pretending to know a secret ranking formula.",
+                description: "LinkedIn explains which profile fields its recruiter tools can search, but does not publish the ranking weights.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read",
                 sourceSummary: "2 current LinkedIn Recruiter help records"
@@ -37,7 +37,7 @@ export default function LinkedInVisibilityPage() {
                 <>
                     <h2 className="research-h2">What affects LinkedIn visibility</h2>
                     <p className="research-body mb-6">
-                        Visibility begins with recognizable role and skill language. LinkedIn documents the inputs its recruiter tools can use, but not the exact ranking weights, so the useful goal is accurate discoverability, not gaming a score.
+                        Recruiters can search for titles and skills. Use language that accurately describes your experience so your profile can match those searches.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -56,8 +56,8 @@ export default function LinkedInVisibilityPage() {
                         description: "List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong."
                     },
                     {
-                        title: "Let experience prove it",
-                        description: "A searchable term can help your profile appear. A specific project, responsibility, or result gives the recruiter a reason to believe the fit."
+                        title: "Explain where you used the skill",
+                        description: "A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience."
                     }
                 ]
             }}
@@ -99,7 +99,7 @@ export default function LinkedInVisibilityPage() {
         >
             <h2 className="research-h2">Start with the fields recruiters can actually search</h2>
             <p className="research-body mb-6">
-                LinkedIn Recruiter includes filters for job title, skills, company, location, seniority, years of experience, and other criteria. Its Skills filter can use skills you list directly and skills inferred from profile text. That makes your headline useful, but not magical: your titles, summary, and experience descriptions also contribute evidence.
+                LinkedIn Recruiter includes filters for job title, skills, company, location, seniority, years of experience, and other criteria. Its Skills filter can use skills you list directly and skills inferred from profile text, including your headline, titles, summary, and experience descriptions.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
@@ -193,7 +193,7 @@ export default function LinkedInVisibilityPage() {
 
             <h2 className="research-h2">The practical rule</h2>
             <p className="research-body mb-6">
-                Use the role titles and skills a recruiter would reasonably search for, then make the experience underneath prove them. The platform can connect profile language to a search; a person still has to believe the fit.
+                Check your title and Skills section, then explain where you used those skills in your experience descriptions. Use the terms that fit your actual work. Repeating a keyword everywhere does not explain what you know how to do.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>

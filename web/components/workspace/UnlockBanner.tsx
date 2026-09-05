@@ -70,7 +70,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 Your Job Search Pass is ready.
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                This report is unchanged. Use your 5 additional reports for a revised resume or another important role.
+                                You now have five additional reports to use with a revised resume or another job posting.
                             </p>
                         </div>
 
@@ -80,7 +80,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 size="sm"
                                 onClick={onJumpToRewrites}
                             >
-                                Jump to Rewrites
+                                See suggested changes
                                 <ArrowRight className="size-3.5 ml-2" />
                             </Button>
                             <Button

@@ -18,6 +18,7 @@ import ConfirmModal from '@/components/shared/ConfirmModal';
 import { AppPageIntro } from '@/components/layout/AppPageIntro';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { Button } from '@/components/ui/button';
+import { getClientActionError } from '@/lib/client-action-error';
 
 // =============================================================================
 // TYPES
@@ -161,7 +162,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
             } catch (err) {
                 if (controller.signal.aborted) return;
                 console.error('Failed to fetch jobs:', err);
-                setLoadError(err instanceof Error ? err.message : 'We could not load your saved jobs.');
+                setLoadError(getClientActionError(err, 'We could not load your saved jobs. Please try again.'));
             } finally {
                 if (!controller.signal.aborted) {
                     pendingRequest.current = null;
@@ -247,7 +248,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
             }
         } catch (err) {
             console.error('Failed to delete job:', err);
-            toast.error(err instanceof Error ? err.message : 'We could not delete that job.');
+            toast.error(getClientActionError(err, 'We could not delete that job. Please try again.'));
         } finally {
             setDeleteLoading(false);
         }
@@ -269,9 +270,9 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
         <div data-visual-anchor="jobs-page" className="gap-y-6">
             <AppPageIntro
                 anchor="jobs-page"
-                eyebrow="Opportunity tracker"
+                eyebrow="Job search"
                 title="Jobs"
-                description="Track saved roles, compare fit, and keep the recruiter-grade context next to every application."
+                description="Keep job descriptions, resume comparisons, and application status together."
                 meta={
                     <>
                         <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
@@ -334,7 +335,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                         onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
                         className="min-h-11 rounded border border-border bg-background px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                     >
-                        <option value="all">All Status</option>
+                        <option value="all">All statuses</option>
                         <option value="saved">Saved</option>
                         <option value="interested">Interested</option>
                         <option value="applying">Applying</option>
@@ -351,7 +352,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
             )}
 
             <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
-                Saved jobs are easiest to build from the extension. Capture a supported role while you browse, then return here when you want to compare fit and move it forward.
+                Save jobs with the browser extension. Return here to compare each job with your resume and update your application status.
             </div>
 
             {/* Jobs List */}
@@ -577,7 +578,7 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                 <div className="gap-y-3">
                     <h3 className="font-display text-lg font-medium text-foreground">Sign in to see saved jobs</h3>
                     <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
-                        Your job tracker is tied to your account, so we only load saved roles and default resume context after you sign in.
+                        Sign in with the same email you use in the extension to see your saved jobs and resume.
                     </p>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-3">
@@ -614,9 +615,9 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                 </div>
             </div>
             <div className="gap-y-3">
-                <h3 className="font-display text-lg font-medium text-foreground">No jobs captured yet</h3>
+                <h3 className="font-display text-lg font-medium text-foreground">No saved jobs yet</h3>
                 <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                    Save your first job from LinkedIn or Indeed using the RIYP extension, and we&apos;ll show you how your resume stacks up.
+                    Use the RIYP extension to save a job from LinkedIn or Indeed. Add your default resume to compare it with the job description.
                 </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -630,7 +631,7 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                     href="/workspace"
                     className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
                 >
-                    Get report manually
+                    Start a report
                 </Link>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-5 pt-2 sm:gap-8">

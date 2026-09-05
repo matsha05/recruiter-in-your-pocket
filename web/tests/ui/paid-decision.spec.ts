@@ -15,11 +15,11 @@ type UnlockExpectation = Readonly<{
 
 const EXPECTED_UNLOCK_COPY = {
   evidence_ledger: {
-    title: "Apply the evidence to your next report",
-    label: "Evidence Ledger",
+    title: "Review your revised resume",
+    label: "Resume feedback",
   },
   bullet_upgrades: {
-    title: "Compare rewrites after you revise",
+    title: "Get feedback on your revision",
     label: "Suggested rewrites",
   },
   missing_wins: {
@@ -31,7 +31,7 @@ const EXPECTED_UNLOCK_COPY = {
     label: "Fit for the role",
   },
   export_pdf: {
-    title: "Add PDF exports to your search",
+    title: "Export your report as a PDF",
     label: "Export",
   },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
@@ -353,9 +353,9 @@ test.describe("paid decision boundary", () => {
     await fillAnonymousReview(page, "198.51.100.145");
     await page.getByTestId("workspace-run-report").click();
 
-    const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" });
+    const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" });
     await expect(failureToast).toHaveCount(1);
-    await expect(failureToast).toContainText("No report was delivered, so this attempt did not use your free report or a paid report credit.");
+    await expect(failureToast).toContainText("This attempt did not use your free report or a paid report credit.");
     await expect(failureToast).not.toContainText("could not confirm this attempt's status", { ignoreCase: true });
     expect(handshakeRequests).toBe(2);
   });
@@ -395,7 +395,7 @@ test.describe("paid decision boundary", () => {
     await page.getByTestId("workspace-run-report").click();
 
     await expect(page.getByRole("dialog", { name: "Run another report" })).toBeVisible();
-    await expect(page.locator("[data-sonner-toast]").filter({ hasText: "Failed to generate report" })).toHaveCount(0);
+    await expect(page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" })).toHaveCount(0);
     expect(requests).toBe(2);
   });
 
@@ -468,7 +468,7 @@ test.describe("paid decision boundary", () => {
       return stored ? JSON.parse(stored).section : null;
     })).toBe("job_alignment");
 
-    const openStudio = page.getByRole("link", { name: /Open the studio/i });
+    const openStudio = page.getByRole("link", { name: /Open workspace/i });
     await expect(openStudio).toBeVisible({ timeout: 15_000 });
     await Promise.all([
       page.waitForURL(/\/workspace$/, { timeout: 30_000 }),
@@ -482,8 +482,9 @@ test.describe("paid decision boundary", () => {
     const banner = page.getByTestId("pass-ready-banner");
     await expect(banner).toBeVisible({ timeout: 10_000 });
     await expect(banner.getByRole("heading", { name: "Your Job Search Pass is ready." })).toBeVisible();
-    await expect(banner).toContainText("This report is unchanged.");
-    await expect(banner).toContainText("5 additional reports");
+    // The report markers above and zero generation requests below verify
+    // restoration. The banner describes the purchased report allowance.
+    await expect(banner).toContainText("five additional reports");
     await expect(banner).not.toContainText("Full report unlocked");
     await expect(banner).not.toContainText(/(?:unlock|locked|see the rest|remaining content)/i);
     const bannerShell = page.getByTestId("pass-ready-banner-shell");

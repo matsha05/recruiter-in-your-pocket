@@ -24,6 +24,7 @@ import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { VersionComparisonView } from "./VersionComparisonView";
 import { ResumeLabel } from "./ResumeLabel";
 import { toast } from "sonner";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 interface HistoryReport {
     id: string;
@@ -86,16 +87,15 @@ export default function HistorySidebar({
                 body: JSON.stringify({ name: editName.trim() })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new Error(data.message || "Failed to rename report");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The report couldn’t be renamed. Please try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
             ));
-        } catch (error) {
-            console.error("Failed to rename report:", error);
-            toast.error(error instanceof Error ? error.message : "Failed to rename report");
-        } finally {
             setRenamingId(null);
             setEditName("");
+        } catch (error) {
+            console.error("Failed to rename report:", error);
+            toast.error(getClientActionError(error, "The report couldn’t be renamed. Please try again."));
         }
     };
 
@@ -107,13 +107,13 @@ export default function HistorySidebar({
                 body: JSON.stringify({ resume_variant: variant })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new Error(data.message || "Failed to update resume label");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The label couldn’t be saved. Please try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, resumeVariant: variant } : r
             ));
         } catch (error) {
             console.error("Failed to update variant:", error);
-            toast.error(error instanceof Error ? error.message : "Failed to update resume label");
+            toast.error(getClientActionError(error, "The label couldn’t be saved. Please try again."));
         }
     };
 
@@ -128,11 +128,11 @@ export default function HistorySidebar({
         try {
             const res = await fetch("/api/reports");
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new Error(data.message || "Saved reports could not be loaded");
+            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new ClientActionError(data.message, "Saved reports could not be loaded. Please try again.");
             setReports(data.reports);
         } catch (error) {
             console.error("Failed to fetch reports:", error);
-            setLoadError(error instanceof Error ? error.message : "Saved reports could not be loaded");
+            setLoadError(getClientActionError(error, "Saved reports could not be loaded. Please try again."));
         } finally {
             setLoading(false);
         }
@@ -160,12 +160,12 @@ export default function HistorySidebar({
                 setReports(prev => prev.filter(r => r.id !== reportId));
                 toast.success("Report deleted");
             } else {
-                toast.error(data.message || "Failed to delete report");
+                toast.error(data.message || "The report couldn’t be deleted. Please try again.");
                 console.error("Delete failed:", data);
             }
         } catch (error) {
             console.error("Failed to delete report:", error);
-            toast.error("Failed to delete report. Please try again.");
+            toast.error("The report couldn’t be deleted. Please try again.");
         } finally {
             setDeletingId(null);
         }
@@ -223,14 +223,14 @@ export default function HistorySidebar({
                                     Save reports you want to revisit
                                 </h3>
                                 <p className="text-sm text-muted-foreground mb-8 max-w-[240px]">
-                                    Log in to keep reports, compare resume versions, and return to your edits later.
+                                    Sign in to save reports and compare feedback on different resume versions.
                                 </p>
                                 <Button
                                     variant="brand"
                                     className="w-full max-w-[200px]"
                                     onClick={onSignIn}
                                 >
-                                    Log in to save reports
+                                    Sign in to save reports
                                 </Button>
                             </div>
                         ) : loading ? (
@@ -255,7 +255,7 @@ export default function HistorySidebar({
                         ) : loadError ? (
                             <div className="m-4 border-l-2 border-destructive bg-error-surface p-5" role="alert">
                                 <h3 className="font-display text-lg font-semibold text-destructive">Saved reports could not load</h3>
-                                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}. This is not an empty history.</p>
+                                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
                                 <Button type="button" variant="outline" className="mt-4" onClick={() => void fetchReports()}>
                                     Try again
                                 </Button>
@@ -270,7 +270,7 @@ export default function HistorySidebar({
                                     No reports yet
                                 </h3>
                                 <p className="text-sm text-muted-foreground max-w-[240px]">
-                                    Complete a review, then save it if you want to return to it later.
+                                    Get a report on your resume, then save it to return to the feedback later.
                                 </p>
                             </div>
                         ) : (
@@ -349,7 +349,7 @@ export default function HistorySidebar({
                                                         const [dataA, dataB] = await Promise.all([resA.json(), resB.json()]);
 
                                                         if (!resA.ok || !resB.ok || !dataA.ok || !dataB.ok) {
-                                                            throw new Error(dataA.message || dataB.message || "Reports could not be compared");
+                                                            throw new ClientActionError(dataA.message || dataB.message, "Reports could not be compared. Please try again.");
                                                         }
                                                         {
                                                             const reportInfoA = reports.find(r => r.id === selectedForCompare[0]);
@@ -383,7 +383,7 @@ export default function HistorySidebar({
                                                         }
                                                     } catch (err) {
                                                         console.error('Failed to load reports for comparison:', err);
-                                                        toast.error(err instanceof Error ? err.message : "Reports could not be compared");
+                                                        toast.error(getClientActionError(err, "Reports could not be compared. Please try again."));
                                                     } finally {
                                                         setLoadingComparison(false);
                                                     }

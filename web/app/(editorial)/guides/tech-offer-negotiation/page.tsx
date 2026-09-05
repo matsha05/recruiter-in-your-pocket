@@ -43,7 +43,7 @@ export default function TechOfferNegotiationGuidePage() {
                     <div className="border-l-2 border-brand pl-5">
                         <p className="text-base leading-7 text-muted-foreground">The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
                         <Link href="/resources/offer-negotiation" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
-                            Need the counter playbook? <ArrowRight aria-hidden className="size-4" weight="bold" />
+                            Ready to make a counteroffer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
                     </div>
                 </header>
@@ -62,11 +62,11 @@ export default function TechOfferNegotiationGuidePage() {
                     ))}
                 </div>
 
-                <GuideSection number="01" title="Separate guaranteed pay from estimates" intro="A total-compensation figure can mix cash you will receive with money that depends on performance, vesting, liquidity, and future share value. Separate them before comparing offers." id="honest-numbers">
+                <GuideSection number="01" title="Check the conditions behind each amount" intro="A compensation total can combine base salary with bonuses and equity that depend on performance, vesting, or a future share price. Check how each part is earned and paid before comparing offers." id="honest-numbers">
                     <TechOfferStack />
                     <div className="mt-7 grid gap-5 sm:grid-cols-2">
-                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Year one</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Base paid during the first year, guaranteed sign-on cash after any repayment terms, expected bonus based on its actual rules, and equity scheduled to vest.</p></div>
-                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Steady state</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">What remains after a sign-on ends, how vesting changes, and whether any future grant or bonus is documented or merely customary.</p></div>
+                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Year one</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">List the base paid during the year, sign-on payment and any repayment conditions, bonus under its actual rules, and equity scheduled to vest.</p></div>
+                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Later years</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Check what remains after a sign-on ends, how vesting changes, and whether future grants or bonuses are documented or only customary.</p></div>
                     </div>
                 </GuideSection>
 
@@ -76,7 +76,7 @@ export default function TechOfferNegotiationGuidePage() {
                             <p className="text-sm leading-6 text-muted-foreground">Confirm the number of units, the vesting schedule, what event delivers the shares, and what happens if you leave. At a public company, current share price can help model value, but future value is still unknown. At a private company, settlement and liquidity may depend on additional events.</p>
                         </Disclosure>
                         <Disclosure title="Stock options" eyebrow="The right to buy shares">
-                            <p className="text-sm leading-6 text-muted-foreground">Ask for the option count, strike price, current common-share fair market value, vesting schedule, expiration date, post-termination exercise window, and liquidity restrictions. The option only has economic value if the share value eventually exceeds the strike price and you can sell.</p>
+                            <p className="text-sm leading-6 text-muted-foreground">Ask for the option count, strike price, current common-share fair market value, vesting schedule, expiration date, post-termination exercise window, and liquidity restrictions. To estimate possible proceeds, compare the share value with the strike price and account for exercise costs, taxes, and whether you can sell the shares.</p>
                         </Disclosure>
                         <Disclosure title="Questions to ask about your grant" eyebrow="Take these to the recruiter">
                             <Checklist items={[
@@ -104,7 +104,7 @@ export default function TechOfferNegotiationGuidePage() {
                         ]} />
                         <div>
                             <Script>I want to make sure the level matches the scope we discussed. The role includes [specific responsibility]. How did the team map that scope to [offered level], and what would distinguish the next level?</Script>
-                            <WhatItGives>A concrete scope question instead of “I deserve a higher title.” The answer tells you whether the disagreement is about labeling, responsibilities, or the approved band.</WhatItGives>
+                            <WhatItGives>The responsibilities you want the team to compare with its level expectations. Their answer can help you decide whether the offered role matches what you want.</WhatItGives>
                         </div>
                     </div>
                 </GuideSection>
@@ -121,7 +121,7 @@ export default function TechOfferNegotiationGuidePage() {
                         </Disclosure>
                         <Disclosure title="The level does not match the scope" eyebrow="Make the mismatch visible">
                             <Script>Several responsibilities we discussed, including [specific responsibility], appear closer to [level] scope. Could the team revisit the level, or clarify which responsibilities would change at the offered level?</Script>
-                            <WhatItGives>A decision the team can evaluate: move the level, or narrow the scope. Either answer teaches you something important.</WhatItGives>
+                            <WhatItGives>The specific responsibility you want clarified. The team may explain the existing level, revisit it, or adjust the responsibilities.</WhatItGives>
                         </Disclosure>
                     </div>
                     <div className="mt-8 border-l-2 border-brand pl-5">

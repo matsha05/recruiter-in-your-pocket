@@ -17,7 +17,7 @@ interface TrustBadgesProps {
 export function TrustBadges({ variant = "inline", className }: TrustBadgesProps) {
     const badges = [
         { icon: Shield, label: "Encrypted in transit" },
-        { label: "Delete reports anytime" },
+        { label: "Delete saved reports anytime" },
         { label: "We do not sell your data" }
     ];
 

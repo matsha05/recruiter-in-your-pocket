@@ -13,7 +13,7 @@ export default function SkillsFirstPromiseRealityPage() {
             header={{
                 tag: "Industry trends",
                 title: "Skills-first hiring: promise vs reality",
-                description: "Skills-first expands talent pools, but adoption is uneven across employers.",
+                description: "Removing a degree requirement does not always change who gets hired. A 2024 analysis found large differences between employers.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
@@ -35,7 +35,7 @@ export default function SkillsFirstPromiseRealityPage() {
                 <>
                     <h2 className="research-h2">Policy vs practice</h2>
                     <p className="research-body mb-6">
-                        Skills-first is a direction, not a guarantee. The gap between stated policy and actual hiring shows why evidence still matters.
+                        The report compared changes in job requirements with changes in hiring. Some employers hired more workers without degrees; many did not.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <SkillsPromiseRealityDiagram />
@@ -45,8 +45,8 @@ export default function SkillsFirstPromiseRealityPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Evidence-first bullets",
-                        description: "We connect important skills to the real projects, decisions, scope, and outcomes on the page."
+                        title: "Skills shown through experience",
+                        description: "We look for the work behind a listed skill, such as a project, decision, or result."
                     },
                     {
                         title: "Skills alignment",
@@ -78,7 +78,7 @@ export default function SkillsFirstPromiseRealityPage() {
             faq={[
                 {
                     question: "Is skills-first hiring a guarantee?",
-                    answer: "No. It expands pools, but adoption varies by company and role."
+                    answer: "No. Removing a degree requirement can make more people eligible, but this report found that many employers did not meaningfully change who they hired."
                 },
                 {
                     question: "How should I write for skills-first hiring?",
@@ -114,21 +114,15 @@ export default function SkillsFirstPromiseRealityPage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="research-h2">How to translate skills into proof</h2>
+            <h2 className="research-h2">Show where you used the skill</h2>
             <p className="research-body mb-6">
-                Treat &quot;skills-first&quot; as permission to make relevant ability unmistakable, not as proof that credentials no longer matter. Connect important skills to projects, scope, and outcomes a reviewer can inspect.
+                A skill list tells the reader what you claim to know. An example of using the skill helps them assess that claim. You can add that context whether or not the employer describes its process as skills-first.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Pair important skills with a project, decision, or result.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Anchor skills in the context of a real project.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use the job description&apos;s wording only when it accurately describes your experience.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Name the project or responsibility where you used the skill.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Explain your contribution and include a result when you can verify it.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Keep required qualifications visible; do not assume the employer has stopped considering them.</li>
             </ul>
-
-            <h2 className="research-h2">What has actually changed</h2>
-            <p className="research-body mb-6">
-                The promise is a broader talent pool. In practice, many employers that removed degree language did not materially change who they hired. Candidates still need clear evidence of relevant work and role alignment.
-                <Citation id="source-1">1</Citation>
-            </p>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">

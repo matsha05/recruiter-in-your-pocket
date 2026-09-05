@@ -14,7 +14,7 @@ type ClauseContext = Pick<RelationshipTuple, "actor" | "action" | "object">;
 
 const actionPattern = /\b(?:lead|leads|leading|led|support|supports|supported|supporting|billed|onboarded|onboarding(?=\s+[<>≤≥~≈]?\s*\d)|hired|tracked|tracking(?=\s+(?:inventory|sales|product|project|campaign|customer|key))|boost|boosts|boosted|boosting|grow|grows|growing|grew|grown|reduce|reduces|reduced|reducing|increase|increases|increased|increasing|improve|improves|improved|improving|raise|raises|raised|raising|enhance|enhances|enhanced|enhancing|lower|lowers|lowered|lowering|cut|cuts|cutting|decrease|decreases|decreased|decreasing|double|doubles|doubled|doubling|triple|triples|tripled|tripling|achieve|achieves|achieved|achieving|ship|ships|shipped|shipping|accelerate|accelerates|accelerated|accelerating|earn|earns|earned|earning|build|builds|building|built|design|designs|designed|designing|implement|implements|implemented|implementing|create|creates|created|creating|manage|manages|managed|managing|own|owns|owned|owning|drive|drives|driving|drove|driven|deliver|delivers|delivered|delivering|launch|launches|launched|launching|coordinate|coordinates|coordinated|coordinating|migrate|migrates|migrated|migrating|develop|develops|developed|developing|generate|generates|generated|generating|save|saves|saved|saving|scale|scales|scaled|scaling|move|moves|moved|moving|transition|transitions|transitioned|transitioning|promote|promotes|promoted|promoting)\b/giu;
 const metricPattern = /(?<![\p{L}\p{N}])[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d(?:[\d,]*\d)?(?:\.\d+)?(?:\s*%|[kmbx×])?\+?(?:\s+(?:people|persons?|members?|hires?|employees?|engineers?|scientists?|designers?|researchers?|teams?|groups?|users?|customers?|clients?|countries?|regions?|projects?|releases?|records?|reports?|meetings?|schedules?|days?|weeks?|months?|years?))?/giu;
-const directionPattern = /\bfrom\s+(.+?)\s+to\s+(.+?)(?=,\s+(?=[\p{Ll}\p{M}]+ing\b)|\s+(?:and|but|while|whereas|by|within|over|during|provides?|shows?|gives?|demonstrates?)\b|[;!?](?:\s|$)|\.(?:\s|$)|$)/giu;
+const directionPattern = /\bfrom\s+(.+?)\s+to\s+(.+?)(?=,\s+(?=[\p{Ll}\p{M}]+ing\b)|\s+(?:and|but|while|whereas|by|within|over|during|provides?|shows?|gives?|demonstrates?|anchors?)\b|[;!?](?:\s|$)|\.(?:\s|$)|$)/giu;
 const arrowMarkerPattern = /(?:-{1,2}>|={1,2}>|[→⟶⟹➜➝➞⟾])/u;
 const passiveAuxiliaryPattern = /\b(?:(?:has|have|had)\s+been|am|are|is|was|were|be|been|being)\s*$/iu;
 
@@ -341,7 +341,9 @@ export function relationshipBindingIssues(candidate: string, sourceText: string)
     const actorExists = !relation.actor || sourceRelations.some((source) => source.actor === relation.actor);
     const actionExists = sourceRelations.some((source) => source.action === relation.action);
     const objectExists = sourceRelations.some((source) => source.object === relation.object);
-    if (actorExists && actionExists && objectExists && sourceRelations.length > 1) {
+    // "measure" is a parser label for a noun phrase with a number, not an
+    // assertion that the candidate performed an action on that object.
+    if (relation.action !== "measure" && actorExists && actionExists && objectExists && sourceRelations.length > 1) {
       const actor = relation.actor ? `${relation.actor} ` : "";
       issues.push(`unsupported responsibility binding: ${actor}${relation.action} ${relation.object}`);
     }

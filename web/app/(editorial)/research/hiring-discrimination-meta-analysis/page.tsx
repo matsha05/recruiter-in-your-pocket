@@ -13,7 +13,7 @@ export default function DiscriminationMetaPage() {
             header={{
                 tag: "Industry Analysis",
                 title: "Discrimination in hiring has not disappeared",
-                description: "A large review of hiring studies shows both why resume quality matters and why it cannot explain every rejection.",
+                description: "A review of US hiring experiments found persistent racial discrimination, even when applicants had comparable qualifications.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
@@ -49,8 +49,8 @@ export default function DiscriminationMetaPage() {
                         description: "We make the boundary explicit: stronger materials can reduce avoidable doubt, but they cannot fix systemic bias."
                     },
                     {
-                        title: "Keep rejection in perspective",
-                        description: "Sometimes rejection is not about your skills or your resume. It's the market."
+                        title: "Do not diagnose a rejection from a resume",
+                        description: "A resume report cannot tell you why an employer rejected an application, including whether discrimination played a part."
                     },
                     {
                         title: "Improve what you can",
@@ -82,7 +82,7 @@ export default function DiscriminationMetaPage() {
             faq={[
                 {
                     question: "Does a better resume eliminate discrimination?",
-                    answer: "No. A stronger resume reduces avoidable noise, but it cannot remove systemic bias."
+                    answer: "No. Clearer writing can help someone understand your experience. It cannot remove discrimination from hiring decisions."
                 },
                 {
                     question: "Why include this in a resume product?",
@@ -94,15 +94,16 @@ export default function DiscriminationMetaPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">The resume is necessary, not sufficient</h2>
+            <h2 className="research-h2">What a rejection cannot tell you</h2>
             <p className="research-body mb-6">
-                This research is sobering. It reminds us that &quot;optimizing keywords&quot; is a trivial concern compared to the structural barriers many candidates face.
+                A rejection does not, by itself, tell you what was wrong with your resume. These experiments found different treatment of applicants with comparable qualifications.
+                <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                It also clarifies the useful role of this product: make <strong>poor communication</strong> less likely to hide relevant experience, while being honest about the system you are navigating.
+                Our report can identify details that are missing or hard to understand. It cannot explain a particular employer&apos;s decision or assign responsibility for a rejection to the candidate.
             </p>
             <p className="research-body mb-6">
-                Automation can compound inequities when exposure and ranking systems are opaque. That makes clarity and documentation even more important at the individual level.
+                The Upturn report describes additional risks when automated tools affect advertising, screening, and ranking. Those are risks employers and platform operators need to address; resume edits are not a remedy.
                 <Citation id="source-2">2</Citation>
             </p>
 

@@ -13,7 +13,7 @@ export default function ResumeLengthPage() {
             header={{
                 tag: "Resume structure",
                 title: "Resume length: there is no universal one-page rule",
-                description: "The evidence is narrower than the advice. Relevance and context decide what earns space.",
+                description: "One study favored two-page resumes for entry-level accountants. It does not establish the best length for every role.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
@@ -33,9 +33,9 @@ export default function ResumeLengthPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Give every page a job</h2>
+                    <h2 className="research-h2">When to use a second page</h2>
                     <p className="research-body mb-6">
-                        The study does not set a rule for every field or career stage. A useful editing approach is to make page one carry the core case, then use page two only for relevant depth.
+                        Put your most relevant experience on page one. Consider a second page when it adds useful work, projects, or qualifications that would otherwise be cut. This is editing advice, not a finding tested across every role.
                     </p>
                     <PageTwoGateDiagram />
                 </>
@@ -105,7 +105,7 @@ export default function ResumeLengthPage() {
 
             <h2 className="research-h2">Make the important details easy to find</h2>
             <p className="research-body mb-6">
-                A second page is not a permission slip for repetition. Keep the role, scope, and strongest results easy to locate. If page two mostly repeats page one or preserves irrelevant history, cut it.
+                If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it. Check that your recent responsibilities and strongest results remain easy to find.
             </p>
 
             <h2 className="research-h2">Limitations</h2>

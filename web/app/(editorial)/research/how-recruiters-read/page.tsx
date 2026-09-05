@@ -14,7 +14,7 @@ export default function HowRecruitersReadPage() {
             header={{
                 tag: "Recruiter attention",
                 title: "What recruiters notice in the first pass",
-                description: "The strongest evidence says more than a stopwatch can: attention is uneven, experience matters, and the whole document changes the judgment.",
+                description: "Eye-tracking studies show where recruiters spent time. They do not establish a six-second deadline for every resume.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read",
                 sourceSummary: "2 peer-reviewed studies and 1 historical vendor report"
@@ -41,9 +41,9 @@ export default function HowRecruitersReadPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Put each claim beside the evidence behind it</h2>
+                    <h2 className="research-h2">What the studies measured</h2>
                     <p className="research-body mb-6">
-                        Peer-reviewed studies carry the practical conclusion. The company report that popularized the six-second line is included only to explain where that claim came from and why it should not be treated as a rule.
+                        The studies below used different tasks and groups of recruiters. The 2012 company report explains where the six-second claim came from; the peer-reviewed studies offer a fuller view of attention and judgment.
                     </p>
                     <ResumeHeatmap figureNumber={1} />
                 </>
@@ -52,8 +52,8 @@ export default function HowRecruitersReadPage() {
                 title: "How this shows up in your report",
                 items: [
                     {
-                        title: "First-pass clarity",
-                        description: "We identify what the page communicates immediately and what still requires a reader to infer the story."
+                        title: "Details a recruiter may need",
+                        description: "We point out where your resume leaves questions about your role, responsibilities, or results."
                     },
                     {
                         title: "Experience in context",
@@ -104,7 +104,7 @@ export default function HowRecruitersReadPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">The six-second line is a reminder, not a law</h2>
+            <h2 className="research-h2">Where the six-second claim came from</h2>
             <p className="research-body mb-6">
                 The memorable number comes from a small, company-sponsored eye-tracking report published in 2012. It is useful as category history, but it cannot support a universal claim about how every recruiter reads.
                 <Citation id="source-3">3</Citation>
@@ -114,7 +114,7 @@ export default function HowRecruitersReadPage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="research-h2">What deserves confidence</h2>
+            <h2 className="research-h2">What the larger eye-tracking study found</h2>
             <p className="research-body mb-6">
                 Pina and colleagues recruited 221 people who hired computer science graduates. Each reviewed entry-level resumes in a simulated first-round screen with no time limit. After incomplete sessions and resumes were removed, the paper analyzed 2,043 reviews.
                 <Citation id="source-1">1</Citation>
@@ -143,7 +143,7 @@ export default function HowRecruitersReadPage() {
                     title="How the details fit together"
                     desc={
                         <>
-                            Keep evidence attached to the real resume. Recruiters used cues differently when they judged full resumes instead of stripped-down profiles.
+                            Keep useful context beside the achievement. Recruiters used information differently when they judged full resumes instead of simplified profiles.
                             <Citation id="source-2">2</Citation>
                         </>
                     }
@@ -156,7 +156,7 @@ export default function HowRecruitersReadPage() {
 
             <h2 className="research-h2">What the evidence changes</h2>
             <p className="research-body mb-6">
-                Do not write for a stopwatch. Write so a quick orientation pass reveals the target role and recent experience, then gives the reader a reason to stay. The goal is not to force every recruiter through the same path. It is to remove avoidable searching.
+                <strong>Our editing advice:</strong> put your recent, relevant experience where it is easy to find. Use recognizable headings and explain your part in the work. The studies do not tell you to design around one reading speed or scan path.
             </p>
 
             <div className="not-prose my-10">
@@ -167,7 +167,7 @@ export default function HowRecruitersReadPage() {
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2023 study focused on entry-level computer science resumes and a simulated screen.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Eye-tracking associations do not prove that a resume section caused a decision.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2002 study shows that the full artifact changes judgments; it does not prescribe one layout.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2002 study found different judgments for full resumes and simplified profiles; it does not prescribe one layout.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2012 vendor report is historical context, not the foundation for our advice.</li>
             </ul>
         </ResearchArticle>

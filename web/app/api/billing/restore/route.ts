@@ -32,7 +32,7 @@ export async function POST() {
   try {
     if (!isLaunchFlagEnabled("billingUnlock")) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Billing restore is temporarily unavailable." },
+        { ok: false, restored: 0, message: "Purchase recovery is temporarily unavailable. Try again later or contact support." },
         { status: 503 }
       );
     }
@@ -65,21 +65,21 @@ export async function POST() {
     const admin = createSupabaseAdminClient();
     if (!admin) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Database is not configured." },
+        { ok: false, restored: 0, message: "Could not check your purchases. Try again later or contact support." },
         { status: 500 }
       );
     }
 
     if (!stripe) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Payments are not configured yet." },
+        { ok: false, restored: 0, message: "Could not check your purchases. Try again later or contact support." },
         { status: 500 }
       );
     }
 
     if (!getLaunchStripeOffer()) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "The billing offer catalog is not configured." },
+        { ok: false, restored: 0, message: "Could not check your purchases. Try again later or contact support." },
         { status: 500 }
       );
     }
@@ -91,7 +91,7 @@ export async function POST() {
 
     if (existingError) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Failed to load existing access." },
+        { ok: false, restored: 0, message: "Could not check your current pass. Try again." },
         { status: 500 }
       );
     }
@@ -106,7 +106,7 @@ export async function POST() {
         restored: 0,
         active_before: activeBefore,
         active_after: activeBefore,
-        message: "No billing account found for this email."
+        message: "No purchases were found for this email. Sign in with the email you used at checkout."
       });
     }
 
@@ -138,7 +138,7 @@ export async function POST() {
         restored: 0,
         active_before: activeBefore,
         active_after: activeBefore,
-        message: "No completed purchases found to restore."
+        message: "No completed purchases were found for this email. If you paid with a different email, sign in with that address."
       });
     }
 
@@ -149,7 +149,7 @@ export async function POST() {
       .in("checkout_session_id", sessionIds);
     if (blockedSessionsError) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Failed to verify purchase eligibility." },
+        { ok: false, restored: 0, message: "Could not confirm which purchases can be restored. Try again or contact support." },
         { status: 500 },
       );
     }
@@ -285,7 +285,7 @@ export async function POST() {
           err: { name: "SupabaseError", message: insertError.message }
         });
         return NextResponse.json(
-          { ok: false, restored: 0, message: "Failed to restore purchases." },
+          { ok: false, restored: 0, message: "Could not restore your purchases. Try again or contact support." },
           { status: 500 }
         );
       }
@@ -316,7 +316,7 @@ export async function POST() {
       err: { name: err?.name || "BillingRestoreError", message: err?.message || "Failed to restore access" }
     });
     return NextResponse.json(
-      { ok: false, restored: 0, message: "Failed to restore access." },
+      { ok: false, restored: 0, message: "Could not restore your purchases. Try again or contact support." },
       { status: 500 }
     );
   }

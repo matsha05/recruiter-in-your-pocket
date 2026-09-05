@@ -74,7 +74,7 @@ test.describe("launch red-team journeys", () => {
     expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/security");
 
     await page.goto("/status");
-    await expect(page.getByRole("heading", { name: /Customer-facing systems/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Support and trust/i })).toBeVisible();
   });
 
@@ -128,10 +128,20 @@ test.describe("launch red-team journeys", () => {
 
     const sampleFixes = page.locator('[id^="section-fix-"]');
     const firstFix = sampleFixes.first();
-    await expect(firstFix).toContainText("Draft to complete with your facts");
-    await expect(firstFix).toContainText("The brackets mark details missing from the original. Add only what you can verify.");
+    await expect(firstFix.getByTestId("fact-only-recommendation")).toBeVisible();
+    await expect(firstFix).toContainText("over what period");
+    await expect(firstFix.locator("details")).toHaveCount(0);
+    await expect(firstFix.getByText("Suggested wording", { exact: true })).toHaveCount(0);
+    const sampleTemplate = sampleFixes.nth(1).locator("details");
+    await expect(sampleTemplate).not.toHaveAttribute("open", "");
+    await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeHidden();
+    await sampleTemplate.locator("summary").focus();
+    await sampleTemplate.locator("summary").press("Enter");
+    await expect(sampleTemplate).toHaveAttribute("open", "");
+    await expect(sampleTemplate).toContainText("This is unfinished wording.");
+    await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeVisible();
     await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
-    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Keep these facts|Not relevant|Original resume needed/i })).toHaveCount(0);
+    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant|Original resume needed/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
@@ -170,24 +180,28 @@ test.describe("launch red-team journeys", () => {
     const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
     const generatedFactCount = await generatedFactInputs.count();
     if (generatedFactCount > 0) {
-      await expect(firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" })).toBeDisabled();
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Use these details" })).toBeDisabled();
       for (let index = 0; index < generatedFactCount; index += 1) {
         await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
       }
-      await firstGeneratedFix.getByRole("button", { name: "Keep these facts" }).click();
+      await firstGeneratedFix.getByRole("button", { name: "Use these details" }).click();
       const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
       for (let index = 0; index < generatedFactCount; index += 1) {
         await expect(generatedDraft).toHaveValue(new RegExp(`Candidate supplied fact ${index + 1}`));
       }
       await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
       await generatedFactInputs.first().fill("Changed but not confirmed");
-      await expect(firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" })).toBeDisabled();
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
+      await firstGeneratedFix.getByRole("button", { name: "Edit original wording" }).click();
+      await expect(firstGeneratedFix.getByLabel("Edit suggested line 1")).not.toHaveValue(/Candidate supplied fact|Changed but not confirmed/);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
     } else {
       const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
       const verifyButton = firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" });
       if (await copyButton.count()) await expect(copyButton).toBeEnabled();
       else if (await verifyButton.count()) await expect(verifyButton).toBeDisabled();
-      else await expect(firstGeneratedFix.getByText("Question to answer")).toBeVisible();
+      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation")).toBeVisible();
     }
   });
 
@@ -200,8 +214,8 @@ test.describe("launch red-team journeys", () => {
     await expect(saveDialog).toHaveCount(0);
     await keepReport.click();
     await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByText(/We only save reports to verified signed-in accounts/i)).toBeVisible();
-    await saveDialog.getByRole("button", { name: /Sign in and keep this report/i }).click();
+    await expect(saveDialog.getByText("Saving keeps the report, quoted resume excerpts, a short resume preview, and any job description you added in your account. You can delete the saved report at any time.", { exact: true })).toBeVisible();
+    await saveDialog.getByRole("button", { name: /Sign in to save/i }).click();
     const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });
     await expect(authDialog).toBeVisible();
     await expect(authDialog).toHaveAccessibleDescription("Use your email to receive a secure one-time sign-in code.");

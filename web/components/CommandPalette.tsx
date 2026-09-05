@@ -20,7 +20,6 @@ import {
     CommandItem,
     CommandList,
     CommandSeparator,
-    CommandShortcut,
 } from "@/components/ui/command"
 
 /**
@@ -31,7 +30,6 @@ import {
  * Features:
  * - Opens with Cmd+K (or Ctrl+K on Windows)
  * - Opens in 0-90ms (no data fetch on open)
- * - Shows compact shortcut hints in the system mono role
  * - Context-aware actions based on current route
  * - Recent commands (last 8, persisted to localStorage)
  */
@@ -199,7 +197,6 @@ export function CommandPalette() {
                             >
                                 <Upload className="mr-2 size-4" />
                                 <span>Upload Resume</span>
-                                <CommandShortcut>U</CommandShortcut>
                             </CommandItem>
                             {workspaceReportVisible && (
                                 <>
@@ -211,7 +208,6 @@ export function CommandPalette() {
                                     >
                                         <Download className="mr-2 size-4" />
                                         <span>Export PDF</span>
-                                        <CommandShortcut>E</CommandShortcut>
                                     </CommandItem>
                                 </>
                             )}
@@ -230,17 +226,15 @@ export function CommandPalette() {
                     >
                         <Home className="mr-2 size-4" />
                         <span>Go to Home</span>
-                        <CommandShortcut>G H</CommandShortcut>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
                             () => push("/workspace"),
-                            { id: "nav:/workspace", label: "Go to Studio", icon: "FileText" }
+                            { id: "nav:/workspace", label: "Go to Workspace", icon: "FileText" }
                         )}
                     >
                         <FileText className="mr-2 size-4" />
-                        <span>Go to Studio</span>
-                        <CommandShortcut>G S</CommandShortcut>
+                        <span>Go to Workspace</span>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
@@ -250,7 +244,6 @@ export function CommandPalette() {
                     >
                         <BookOpen className="mr-2 size-4" />
                         <span>Go to Research</span>
-                        <CommandShortcut>G R</CommandShortcut>
                     </CommandItem>
                 </CommandGroup>
 
@@ -266,7 +259,6 @@ export function CommandPalette() {
                             >
                                 <Keyboard className="mr-2 size-4" />
                                 <span>Keyboard Shortcuts</span>
-                                <CommandShortcut>?</CommandShortcut>
                             </CommandItem>
                         </CommandGroup>
                     </>

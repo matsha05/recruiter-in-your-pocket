@@ -12,8 +12,8 @@ export default function SalaryHistoryPage() {
         <ResearchArticle
             header={{
                 tag: "Negotiation",
-                title: "Salary history: the evidence is more complicated than ‘never tell’",
-                description: "Bans changed population-level wage outcomes. Disclosure experiments show tradeoffs that depend on who is disclosing and what employers infer.",
+                title: "Should you share your salary history?",
+                description: "Studies of salary history bans and disclosure found different effects. Neither supports one script for every pay conversation.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
@@ -42,15 +42,15 @@ export default function SalaryHistoryPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "How to prepare for the conversation",
                 items: [
                     {
                         title: "Bring your market evidence",
-                        description: "The negotiation review can use the role scope, level, location, and market evidence you provide. It does not fetch a private compensation benchmark."
+                        description: "Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is."
                     },
                     {
                         title: "No universal disclosure rule",
-                        description: "We do not pretend the evidence says every candidate should always disclose or always refuse. Law, leverage, and employer inference all matter."
+                        description: "The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share."
                     }
                 ]
             }}
@@ -105,7 +105,7 @@ export default function SalaryHistoryPage() {
 
             <h2 className="research-h2">Disclosure can help and hurt</h2>
             <p className="research-body mb-6">
-                A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose. For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. That is a tradeoff, not a slogan.
+                A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose. For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone.
                 <Citation id="source-2">2</Citation>
             </p>
 

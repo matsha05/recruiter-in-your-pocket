@@ -40,10 +40,10 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
         onJobUpdate((prev) => (prev ? { ...prev, status: statusKey } : prev));
         toast.success(`Status updated to ${STATUS_CONFIG[statusKey].label}`);
       } else {
-        toast.error("Failed to update status");
+        toast.error("We couldn't update the status. Please try again.");
       }
     } catch {
-      toast.error("Failed to update status");
+      toast.error("We couldn't update the status. Please try again.");
     } finally {
       setUpdatingStatus(false);
     }
@@ -110,7 +110,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           )}
           <span className="flex items-center gap-1.5">
             <CalendarBlank className="size-4" aria-hidden="true" />
-            Captured {capturedDate.toLocaleDateString()}
+            Saved {capturedDate.toLocaleDateString()}
           </span>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
         >
           <ArrowSquareOut className="size-4" aria-hidden="true" />
-          View Original
+          View job posting
         </a>
       </div>
     </div>

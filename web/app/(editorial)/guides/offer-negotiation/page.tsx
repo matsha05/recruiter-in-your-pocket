@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const quickStart = [
     ["Read the whole offer", "Put compensation, schedule, benefits, start date, deadline, and written conditions in one place."],
-    ["Choose the ask", "Pick the change that would genuinely affect your decision. Do not send a shopping list."],
+    ["Choose what matters most", "Pick the changes that would affect your decision and make your priorities clear."],
     ["Explain your request", "Tell the recruiter what you want to change, why, and whether that change would help you accept the offer."],
 ];
 
@@ -116,9 +116,9 @@ export default function OfferNegotiationGuidePage() {
                     </div>
                 </GuideSection>
 
-                <GuideSection number="04" title="Read the answer, not just the number" intro="A good outcome is not always a higher base. It is a package you understand and a decision you can stand behind." id="decision">
+                <GuideSection number="04" title="Check the revised offer before you accept" intro="Compare the written terms with what you discussed. Then decide whether the full package works for you." id="decision">
                     <Checklist items={[
-                        <>Separate guaranteed year-one cash from target or discretionary pay.</>,
+                        <>List base salary and one-time payments separately from target or discretionary pay.</>,
                         <>Read sign-on repayment terms and any conditions attached to the offer.</>,
                         <>Confirm schedule, location, start date, title, level, and review timing in writing.</>,
                         <>Compare benefits that matter to you by their actual cost and coverage, not by a headline total.</>,

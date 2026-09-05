@@ -166,9 +166,9 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                         !isImprovement && !isDecline && "text-muted-foreground"
                     )}>
                         {isImprovement
-                            ? "The newer version is clearer in this review."
+                            ? "The newer report scored higher. Compare the feedback below to see what changed."
                             : isDecline
-                                ? "Some recent edits may have made the resume less clear."
+                                ? "The newer report scored lower. Compare the feedback below before deciding what to revise."
                                 : "The overall review score did not change."}
                     </p>
                 </div>

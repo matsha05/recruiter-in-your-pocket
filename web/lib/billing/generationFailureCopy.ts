@@ -1,11 +1,11 @@
 export const REPORT_ACCESS_NOT_USED =
-  "No report was delivered, so this attempt did not use your free report or a paid report credit.";
+  "This attempt did not use your free report or a paid report credit.";
 
 export const REPORT_ACCESS_USED_BEFORE_DELIVERY =
-  "The report passed its checks and used one report, but the connection ended before it reached this screen.";
+  "Your report was completed and counted toward your report allowance, but the connection ended before it appeared here.";
 
 export const REPORT_ACCESS_OUTCOME_UNKNOWN =
-  "We could not confirm whether report access changed. Check your report count before retrying.";
+  "We could not confirm whether this attempt used a report. Check how many reports you have left before trying again.";
 
 export function withGenerationAccessOutcome(
   message: string,

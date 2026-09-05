@@ -40,7 +40,7 @@ function getSubscoreBar(value: number | undefined): string {
 
 function firstSentence(value: string): string {
   const normalized = String(value || "").trim();
-  if (!normalized) return "Your recruiter first read";
+  if (!normalized) return "Your resume report";
   const match = normalized.match(/^(.+?[.!?])(?:\s|$)/);
   const sentence = match?.[1] || normalized;
   return sentence.length > 220 ? `${sentence.slice(0, 217).trimEnd()}...` : sentence;
@@ -77,23 +77,26 @@ export function renderReportHtml(report: ReportForPdf) {
     rewrites
       .map((r, index) => {
         if (!r) return "";
+        const isTemplate = /\[[^\]]+\]/.test(r.better);
+        const noteHtml = r.enhancement_note ? `<div class="note"><strong>${isTemplate ? "Details to add" : "Before you use this"}</strong><span>${escapeHtml(r.enhancement_note)}</span></div>` : "";
         return `
           <div class="rewrite-card">
             <div class="rewrite-heading">
-              <span>Rewrite ${String(index + 1).padStart(2, "0")}</span>
+              <span>Suggested edit ${String(index + 1).padStart(2, "0")}</span>
               ${r.label ? `<span>${escapeHtml(r.label)}</span>` : ""}
             </div>
+            ${isTemplate ? noteHtml : ""}
             <div class="rewrite-grid">
               <div class="col original">
-                <div class="col-label">Before</div>
+                <div class="col-label">Original</div>
                 <div class="content">${escapeHtml(r.original)}</div>
               </div>
               <div class="col better">
-                <div class="col-label">After</div>
+                <div class="col-label">${isTemplate ? "Draft template" : "Suggested wording"}</div>
                 <div class="content">${escapeHtml(r.better)}</div>
               </div>
             </div>
-            ${r.enhancement_note ? `<div class="note"><strong>Why this is stronger</strong><span>${escapeHtml(r.enhancement_note)}</span></div>` : ""}
+            ${isTemplate ? "" : noteHtml}
           </div>`;
       })
       .join("");
@@ -127,8 +130,8 @@ export function renderReportHtml(report: ReportForPdf) {
   // Job alignment uses a teaching surface, not a separate score palette.
   const jobAlignmentHtml = report.job_alignment ? `
     <section class="section alignment-section">
-      <div class="section-kicker">Positioning</div>
-      <h2>Where you compete</h2>
+      <div class="section-kicker">Role fit</div>
+      <h2>Roles to consider</h2>
       
       ${report.job_alignment.role_fit?.best_fit_roles?.length ? `
         <div class="tag-row">
@@ -168,14 +171,14 @@ export function renderReportHtml(report: ReportForPdf) {
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Recruiter first-read report | Recruiter in Your Pocket</title>
+  <title>Resume report | Recruiter in Your Pocket</title>
   <style>${pdfReportStyles(SPACE_GROTESK_TTF, INSTRUMENT_SANS_TTF)}</style>
 </head>
 <body>
   <header>
     <div class="brand-block">
       <div class="brand-wordmark">Recruiter in Your Pocket</div>
-      <div class="tagline">Private recruiter report</div>
+      <div class="tagline">Resume report</div>
     </div>
     <div class="date">${escapeHtml(generatedOn)}</div>
   </header>
@@ -183,19 +186,19 @@ export function renderReportHtml(report: ReportForPdf) {
   <section class="hero">
     <div class="hero-grid">
       <div>
-        <div class="section-kicker">Recruiter first read</div>
+        <div class="section-kicker">Overview</div>
         <h1>${escapeHtml(verdict)}</h1>
         ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
       </div>
       <div class="score-card">
-        <div class="score-name">Clarity summary</div>
+        <div class="score-name">Review score</div>
         <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
         <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
         <div class="score-scale">Not a prediction of interviews or offers.</div>
       </div>
     </div>
     <div class="score-note">
-      <strong>What this means:</strong> a quick summary of this document's clarity. It is not an ATS ranking or a prediction of interviews or offers.
+      <strong>About the score:</strong> it summarizes the feedback on your resume's story, impact, clarity, and readability. It is not an ATS ranking.
     </div>
   </section>
 
@@ -203,12 +206,12 @@ export function renderReportHtml(report: ReportForPdf) {
 
   <div class="two-col">
     <section class="signal-panel lands">
-      <div class="section-kicker">Caught attention</div>
-      <h2>What lands</h2>
+      <div class="section-kicker">Keep these</div>
+      <h2>What works well</h2>
       <ul>${signalListHtml(report.strengths, "lands")}</ul>
     </section>
     <section class="signal-panel context">
-      <div class="section-kicker">Needs context</div>
+      <div class="section-kicker">Details to clarify</div>
       <h2>What stays unclear</h2>
       <ul>${signalListHtml(report.gaps, "context")}</ul>
     </section>
@@ -216,7 +219,7 @@ export function renderReportHtml(report: ReportForPdf) {
 
   ${report.top_fixes?.length ? `
     <section class="section priority-section">
-      <div class="section-kicker">Evidence-backed priorities</div>
+      <div class="section-kicker">Fix these first</div>
       <div class="section-header"><h2>Start here</h2></div>
       <ul class="priority-list">${topFixesHtml(report.top_fixes)}</ul>
     </section>
@@ -224,14 +227,16 @@ export function renderReportHtml(report: ReportForPdf) {
 
   ${report.rewrites.length ? `
     <section class="section">
-      <div class="section-kicker">Strongest next wording</div>
-      <div class="section-header"><h2>Bullet upgrades</h2></div>
+      <div class="section-kicker">Suggested edits</div>
+      <div class="section-header"><h2>Revising your resume</h2></div>
+      ${report.rewrites.some((rewrite) => /\[[^\]]+\]/.test(rewrite.better)) ? '<div class="note"><strong>About draft templates</strong><span>Complete the bracketed details with facts from your experience before using a draft.</span></div>' : ""}
       ${rewriteHtml(report.rewrites)}
     </section>
   ` : ""}
 
   ${jobAlignmentHtml}
 
+  <div style="break-inside: avoid; page-break-inside: avoid;">
   ${report.next_steps.length ? `
     <section class="section">
       <div class="section-kicker">Working list</div>
@@ -241,9 +246,10 @@ export function renderReportHtml(report: ReportForPdf) {
   ` : ""}
 
   <footer>
-    <div>Generated by Recruiter in Your Pocket</div>
+    <div>AI-generated feedback. Check every suggested detail before using it.</div>
     <div>recruiterinyourpocket.com</div>
   </footer>
+  </div>
 </body>
 </html>`;
 }

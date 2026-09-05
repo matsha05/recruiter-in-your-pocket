@@ -26,11 +26,8 @@ assert.equal(
   (canonicalized.report as any).rewrites[0].original,
   "- Improved retention by 15% within six months.",
 );
-assert.match(
-  (canonicalized.report as any).rewrites[1].better,
-  /outcome: \[measurable result\]/,
-  "a weak no-op rewrite should become a safe fill-in template",
-);
+assert.equal((canonicalized.report as any).rewrites.length, 1,
+  "a no-op rewrite must be omitted rather than turned into a mechanical fill-in template");
 assert.match((canonicalized.report as any).biggest_gap_example, /Led a cross-functional team of 8 engineers/);
 
 const normalizedRepairOutput = canonicalizeResumeReportEvidence({
@@ -50,12 +47,14 @@ assert.equal(
   "You read as a capable backend engineer. Outcomes are visible. The career break is explained. Some bullets lack scope. The level reads as mid-senior.",
   "repair output must be capped at the five-sentence product contract",
 );
-assert.equal((normalizedRepairOutput.report as any).first_impression_takeaway, "Tie early actions to outcomes");
+assert.equal((normalizedRepairOutput.report as any).first_impression_takeaway, "Missing summary and education; tie early actions to outcomes", "invalid headings must reach repair without silently changing the recommendation");
 assert.equal(
   (normalizedRepairOutput.report as any).top_fixes[0].fix,
-  "Add [measurable result] to the budgeting bullet and connect it to the work already named.",
-  "a rewrite sentence in a top-fix slot must become a concrete edit instruction",
+  "Managed a 30-person team with a $12M budget; outcome: [measurable result]",
+  "a rewrite in an instruction slot must reach validation instead of becoming generic advice",
 );
+
+assert.ok(findNonActionableFix((normalizedRepairOutput.report as any).top_fixes[0].fix).length > 0, "an invalid instruction must remain invalid for the repair pass");
 
 const partialFixRepair = canonicalizeResumeReportEvidence({
   top_fixes: [{
@@ -67,7 +66,7 @@ const partialFixRepair = canonicalizeResumeReportEvidence({
 }, "- Designed portals serving 200,000 monthly users.");
 assert.equal(
   (partialFixRepair.report as any).top_fixes[0].fix,
-  "Add [measurable result] to the experience bullet and connect it to the work already named.",
+  "Explain what changed ([measurable result]) in the experience bullet.",
 );
 assert.doesNotMatch((partialFixRepair.report as any).top_fixes[0].why, /score/i);
 
@@ -76,7 +75,7 @@ const quotedGapRepair = canonicalizeResumeReportEvidence({
 }, "- Participated in sprint planning and retrospectives, helping the team improve delivery predictability.");
 assert.match(
   (quotedGapRepair.report as any).biggest_gap_example,
-  /^"-?\s*Participated in sprint planning and retrospectives, helping the team improve delivery predictability\." shows a qualitative outcome but is missing clear scope/,
+  /^"-?\s*Participated in sprint planning and retrospectives, helping the team improve delivery predictability\."/,
   "an exact unquoted gap citation should be recovered before strict grounding",
 );
 
@@ -85,7 +84,7 @@ const unrecoverableGapRepair = canonicalizeResumeReportEvidence({
 }, "- Managed a 30-person marketing team with a $12M budget across global demand generation.");
 assert.equal(
   (unrecoverableGapRepair.report as any).biggest_gap_example,
-  '"- Managed a 30-person marketing team with a $12M budget across global demand generation." is missing a measurable outcome, so we cannot place the impact.',
+  '"Led a 12-person global organization" lacks impact.',
 );
 
 const summaryEvidenceRepair = canonicalizeResumeReportEvidence({
@@ -99,7 +98,7 @@ const summaryEvidenceRepair = canonicalizeResumeReportEvidence({
 assert.deepEqual(
   (summaryEvidenceRepair.report as any).top_fixes[0],
   {
-    fix: "Add a summary section with [target role], [leadership scope], and [measurable result].",
+  fix: "Add a summary section that names your target role and highlights relevant experience already on the resume.",
     why: "The resume lacks a narrative bridge between education and the UX career.",
     evidence: { excerpt: "No summary section present", section: "Summary" },
     section_ref: "Summary",
@@ -152,13 +151,14 @@ assert.equal(
   "verbatim evidence must never be style-normalized",
 );
 
-const cappedShortVerdict = canonicalizeResumeReportEvidence({
-  score_comment_short: "Long CPA tenure is clear, but the work section lacks enough detail for CFO or Controller hiring.",
-}, "Practicing Certified Public Accountant");
+const overlongVerdict = "Two strong classroom results anchor the resume, while several leadership bullets still lack scope or measurable outcomes.";
+const uncappedShortVerdict = canonicalizeResumeReportEvidence({
+  score_comment_short: overlongVerdict,
+}, "Classroom teacher");
 assert.equal(
-  (cappedShortVerdict.report as any).score_comment_short,
-  "Long CPA tenure is clear, but the work section lacks enough detail for CFO or Controller.",
-  "minor word-limit overages should be corrected deterministically",
+  (uncappedShortVerdict.report as any).score_comment_short,
+  overlongVerdict,
+  "an overlength verdict must reach validation intact instead of ending with the fragment 'scope or measurable.'",
 );
 
 const duplicateSummaryGapRepair = canonicalizeResumeReportEvidence({
@@ -221,12 +221,14 @@ const sectionPresenceRepair = canonicalizeResumeReportEvidence({
 assert.equal((sectionPresenceRepair.report as any).top_fixes.length, 1);
 assert.equal(
   (sectionPresenceRepair.report as any).section_review.Summary.missing,
-  "The existing opening is generic and does not show verified impact.",
+  "Section not present.",
 );
 assert.equal(
   (sectionPresenceRepair.report as any).section_review["Work Experience"].missing,
-  "No material section-specific gap identified.",
+  "Section not present.",
 );
+assert.equal(sectionPresenceRepair.unresolved.filter(issue => issue.startsWith("section_review.")).length, 2,
+  "false absence must reach repair instead of becoming an invented section review");
 
 const humanReadResume = `Senior UX Designer with over 12 years of experience leading design teams and driving user-centered strategy for digital products while managing cross-functional teams and budgets.
 PROFESSIONAL EXPERIENCE
@@ -281,12 +283,13 @@ const humanReadRepair = canonicalizeResumeReportEvidence({
     },
   },
 }, humanReadResume);
-assert.match((humanReadRepair.report as any).top_fixes[0].evidence.excerpt, /Led cross-team workshops/);
+assert.match((humanReadRepair.report as any).top_fixes[0].evidence.excerpt, /Spearheaded redesign/, "keep the evidence supporting the original recommendation");
 assert.doesNotMatch((humanReadRepair.report as any).summary, /benefit from a concise executive summary/i);
 assert.doesNotMatch((humanReadRepair.report as any).gaps.join(" "), /certification|beyond a BA/i);
 assert.doesNotMatch((humanReadRepair.report as any).next_steps.join(" "), /add (?:an? )?(?:executive )?summary|certification/i);
-assert.equal((humanReadRepair.report as any).section_review.Summary.grade, "B");
-assert.ok((humanReadRepair.report as any).section_review.Education.fix.length > 0);
+assert.equal((humanReadRepair.report as any).section_review.Summary.grade, "");
+assert.ok(humanReadRepair.unresolved.some(issue => issue.startsWith("section_review.Summary")));
+assert.equal((humanReadRepair.report as any).section_review.Education.fix, "", "an empty review must not acquire a fabricated recommendation");
 assert.deepEqual(
   (humanReadRepair.report as any).job_alignment.strongly_aligned,
   ["UX leadership", "Product design strategy", "Cross-functional design delivery"],
@@ -307,8 +310,11 @@ const clutteredFixRepair = canonicalizeResumeReportEvidence({
 }, "Work Experience\n- Supported HR strategies across several departments.");
 assert.equal(
   (clutteredFixRepair.report as any).top_fixes[0].fix,
-  "Add [specific scope] and [measurable result] to the HR bullet.",
+  'Bullet to rewrite: "Supported HR strategies across several departments."',
+  "an incomplete instruction must reach validation without a fabricated recommendation",
 );
+
+assert.ok(findNonActionableFix((clutteredFixRepair.report as any).top_fixes[0].fix).length > 0);
 
 const genericExistingResultRepair = canonicalizeResumeReportEvidence({
   top_fixes: [
@@ -414,9 +420,9 @@ const careerBreakFixRepair = canonicalizeResumeReportEvidence({
 }, "Career Break\n- Maintained technical skills through coursework and personal projects while preparing to return to software engineering.");
 assert.equal(
   (careerBreakFixRepair.report as any).top_fixes[0].fix,
-  "Name one real recent course or personal project and the [completed artifact] it produced.",
+  "Rewrite the experience bullet to show more impact.",
 );
-assert.deepEqual(findNonActionableFix((careerBreakFixRepair.report as any).top_fixes[0].fix), []);
+assert.ok(findNonActionableFix((careerBreakFixRepair.report as any).top_fixes[0].fix).length > 0, "generic advice must not be laundered into a passing template");
 
 const weakWorkReviewRepair = canonicalizeResumeReportEvidence({
   score: 65,
@@ -431,11 +437,9 @@ const weakWorkReviewRepair = canonicalizeResumeReportEvidence({
     },
   },
 }, "Work Experience\n- Was responsible for daily operational tasks.");
-assert.equal((weakWorkReviewRepair.report as any).section_review["Work Experience"].grade, "C");
-assert.equal(
-  (weakWorkReviewRepair.report as any).section_review["Work Experience"].missing,
-  "Most bullets do not yet show verified scope or results.",
-);
+assert.equal((weakWorkReviewRepair.report as any).section_review["Work Experience"].grade, "N/A");
+assert.ok(weakWorkReviewRepair.unresolved.some(issue => issue.startsWith("section_review.Work Experience")),
+  "a present section with no model review must be repaired, not given an automatic grade");
 
 const unsupportedFixRepair = canonicalizeResumeReportEvidence({
   top_fixes: [
@@ -526,8 +530,8 @@ const dotBulletGapRepair = canonicalizeResumeReportEvidence({
 }, "PALANTIR TECHNOLOGIES\n· Coach team to improve overall passthrough and close rates\n· Hired over 60% of entire global Palantir Information Security team");
 assert.match(
   (dotBulletGapRepair.report as any).biggest_gap_example,
-  /Coach team to improve overall passthrough and close rates.*missing clearer scope or outcome evidence/,
-  "middle-dot bullets must be eligible for a grounded gap replacement",
+  /Coach team to improve overall passthrough and close rates.*gives no measured change/,
+  "a specific gap about a middle-dot bullet must retain its original meaning",
 );
 
 const vpQuestionRepair = canonicalizeResumeReportEvidence({

@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
     const resolvedParams = await params;
     return {
         title: "Job Details",
-        description: 'View match insights and take action on this job.',
+        description: 'Compare your resume with this job and update your application status.',
     };
 }
 

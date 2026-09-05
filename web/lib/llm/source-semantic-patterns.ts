@@ -1,12 +1,12 @@
 const commonCapitalizedWords = new Set([
-  "A", "Across", "Accounting", "Add", "After", "All", "An", "And", "Annual", "As", "At", "Before", "Built", "Candidate",
-  "Choose", "Clear", "Company", "Concrete", "Coordinated", "Created", "Current", "Dense", "Define", "Describe", "Detailed", "Details", "Did", "Do", "Document", "Earlier",
-  "Education", "Evidence", "Experience", "Financial", "For", "From", "Generated", "High-volume", "How", "If", "In",
-  "It", "Keep", "Large-scale", "Led", "Long", "Maintained", "Make", "Managed", "Marketing", "Measured", "No", "Not", "Of",
+  "A", "Across", "Accounting", "Add", "After", "All", "An", "And", "Annual", "As", "At", "Before", "Broad", "Built", "Candidate",
+  "Choose", "Clarify", "Clear", "Company", "Compare", "Complete", "Concrete", "Coordinated", "Correct", "Created", "Current", "Dense", "Define", "Describe", "Detailed", "Details", "Did", "Do", "Document", "Earlier",
+  "Education", "Evidence", "Experience", "Explain", "Financial", "For", "From", "Generated", "High-volume", "How", "If", "In",
+  "It", "Keep", "Large-scale", "Led", "Long", "Maintained", "Make", "Managed", "Name", "Marketing", "Measured", "No", "Not", "Of",
   "On", "Operational", "Operations", "Organized", "Partnership", "Position", "Principal", "Product", "Quantified", "Ran", "Recent",
-  "Recorded", "Recruiter", "Reducing", "Register", "Relevant", "Resume", "Retail", "Rewrite", "Role", "Sales", "Scaled", "Section",
+  "Recorded", "Recruiter", "Reducing", "Register", "Relevant", "Reorder", "Replace", "Resume", "Retail", "Revise", "Rewrite", "Role", "Sales", "Scaled", "Section", "Separate",
   "SaaS-focused", "Senior", "Sharpen", "Show", "Skills", "Specific", "Split", "State", "Strong", "Summary", "Supported", "That", "The", "This", "To",
-  "Tighten", "Training", "Use", "Useful", "We", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
+  "Tighten", "Training", "Turn", "Say", "Use", "Useful", "We", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [

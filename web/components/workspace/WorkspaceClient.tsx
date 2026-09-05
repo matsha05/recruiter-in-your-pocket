@@ -1,5 +1,7 @@
 "use client";
 
+import { getClientActionError } from "@/lib/client-action-error";
+
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -186,7 +188,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsStreaming(false);
         setAnalysisStartedAt(null);
         if (!silent) {
-            toast.info("Analysis canceled");
+            toast.info("Review stopped");
         }
     }, []);
 
@@ -309,7 +311,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             }
             const requestBody = buildPdfExportRequest(payload);
             if (!requestBody) {
-                toast.error("This report is missing some data. Please rerun it and try exporting again.");
+                toast.error("This report is missing details needed for a PDF. Contact support for help exporting it.");
                 return;
             }
             const response = await fetch("/api/export-pdf", {
@@ -320,7 +322,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
             if (!response.ok) {
                 const error = await response.json().catch(() => ({}));
-                toast.error(error.message || "Failed to export PDF");
+                toast.error(error.message || "The PDF couldn’t download. Try exporting again.");
                 return;
             }
 
@@ -336,7 +338,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             URL.revokeObjectURL(url);
         } catch (err) {
             console.error("PDF export error:", err);
-            toast.error("Failed to export PDF");
+            toast.error(getClientActionError(err, "The PDF couldn’t download. Try exporting again."));
         } finally {
             setIsExporting(false);
         }

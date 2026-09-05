@@ -56,10 +56,10 @@ const exceptionalRepair = canonicalizeResumeReportEvidence({
     },
   },
 }, `Work Experience\n${exceptionalResume}`);
-assert.doesNotMatch((exceptionalRepair.report as any).summary, /lack of explicit personal contribution/i);
+assert.match((exceptionalRepair.report as any).summary, /lack of explicit personal contribution/i, "numeric calibration must not manufacture a different editorial judgment");
 assert.equal(
   (exceptionalRepair.report as any).section_review["Work Experience"].missing,
-  "No material section-specific gap identified.",
+  "Some lower-signal bullets do not yet show verified scope or results.",
 );
 const strongResume = [
   "- Improved retention by 15%.",

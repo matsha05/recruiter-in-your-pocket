@@ -10,7 +10,7 @@ export async function POST() {
         if (error) {
             console.error("Sign out error:", error);
             return NextResponse.json(
-                { ok: false, message: error.message },
+                { ok: false, message: "Could not sign out. Try again." },
                 { status: 400 }
             );
         }
@@ -19,7 +19,7 @@ export async function POST() {
     } catch (error) {
         console.error("Sign out error:", error);
         return NextResponse.json(
-            { ok: false, message: "Failed to sign out" },
+            { ok: false, message: "Could not sign out. Try again." },
             { status: 500 }
         );
     }

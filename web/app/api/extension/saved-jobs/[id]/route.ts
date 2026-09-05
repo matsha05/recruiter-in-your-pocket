@@ -46,14 +46,14 @@ export async function GET(
         if (fetchError) {
             console.error('[Extension] Fetch job error:', fetchError);
             return NextResponse.json(
-                { success: false, error: 'Failed to fetch job' },
+                { success: false, error: 'Could not load this job. Refresh and try again.' },
                 { status: 500 }
             );
         }
 
         if (!job) {
             return NextResponse.json(
-                { success: false, error: 'Job not found' },
+                { success: false, error: 'This job was not found. Return to your saved jobs.' },
                 { status: 404 }
             );
         }
@@ -84,7 +84,7 @@ export async function GET(
     } catch (error) {
         console.error('[Extension] Get saved job error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, error: 'Could not complete this job request. Refresh and try again.' },
             { status: 500 }
         );
     }
@@ -135,14 +135,14 @@ export async function DELETE(
         if (findError) {
             console.error('[Extension] Find job error:', findError);
             return NextResponse.json(
-                { success: false, error: 'Failed to find job' },
+                { success: false, error: 'Could not find this job. Refresh your saved jobs and try again.' },
                 { status: 500 }
             );
         }
 
         if (!found) {
             return NextResponse.json(
-                { success: false, error: 'Job not found' },
+                { success: false, error: 'This job was not found. Return to your saved jobs.' },
                 { status: 404 }
             );
         }
@@ -156,7 +156,7 @@ export async function DELETE(
         if (deleteError) {
             console.error('[Extension] Delete job error:', deleteError);
             return NextResponse.json(
-                { success: false, error: 'Failed to delete job' },
+                { success: false, error: 'Could not remove this job. Try again.' },
                 { status: 500 }
             );
         }
@@ -166,7 +166,7 @@ export async function DELETE(
     } catch (error) {
         console.error('[Extension] Delete saved job error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, error: 'Could not complete this job request. Refresh and try again.' },
             { status: 500 }
         );
     }
@@ -189,7 +189,7 @@ export async function PATCH(
         const validStatuses = ['saved', 'interested', 'applying', 'interviewing', 'archived'];
         if (!validStatuses.includes(status)) {
             return NextResponse.json(
-                { success: false, error: 'Invalid status' },
+                { success: false, error: 'Choose a status from the list.' },
                 { status: 400 }
             );
         }
@@ -227,7 +227,7 @@ export async function PATCH(
         if (findError || !found) {
             console.error('[Extension] Find job error:', findError);
             return NextResponse.json(
-                { success: false, error: 'Job not found' },
+                { success: false, error: 'This job was not found. Return to your saved jobs.' },
                 { status: 404 }
             );
         }
@@ -243,7 +243,7 @@ export async function PATCH(
         if (updateError) {
             console.error('[Extension] Update job error:', updateError);
             return NextResponse.json(
-                { success: false, error: 'Failed to update job' },
+                { success: false, error: 'Could not update this job. Try again.' },
                 { status: 500 }
             );
         }
@@ -256,7 +256,7 @@ export async function PATCH(
     } catch (error) {
         console.error('[Extension] Update saved job error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, error: 'Could not complete this job request. Refresh and try again.' },
             { status: 500 }
         );
     }

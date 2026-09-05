@@ -352,7 +352,7 @@ const safeEnhancementNote = safeEnhancementSchema.data.rewrites[0].enhancement_n
 const browserEnhancementHtml = renderToStaticMarkup(createElement(RewriteEnhancementNote, { note: safeEnhancementNote }));
 const safeEnhancementPdf = renderReportHtml(normalizeReportForPdf(safeEnhancementSchema.data)!);
 for (const html of [browserEnhancementHtml, safeEnhancementPdf]) {
-  assert.ok(html.includes("Why this is stronger"));
+  assert.ok(html.includes("Before you use this"));
   assert.ok(html.includes(safeEnhancementNote), "browser and PDF must render the same grounded enhancement note");
 }
 
@@ -479,7 +479,7 @@ for (const [claim, source, label] of [
   ["REST APIs are easy to scan.", "Implemented RESTful API endpoints.", "REST and RESTful equivalence"],
   ["CI/CD is easy to scan.", "Practices: Continuous Integration/Delivery.", "CI/CD expansion"],
   ["The $12M+ budget stands out.", "Managed budgets exceeding $12M.", "greater-than metric equivalence"],
-  ["Bring the 200,000-user portal work forward.", "Designed portals serving over 200,000 monthly users.", "monthly must not parse as a million suffix"],
+  ["Bring the portal work serving over 200,000 users forward.", "Designed portals serving over 200,000 monthly users.", "monthly must not parse as a million suffix"],
   ["Expanded small-group ministry from six to eighteen active groups provides a concrete program-growth result.", "Expanded small-group ministry from six to eighteen active groups.", "direction followed by assessment wording"],
   ["Scaling the Solutions Engineering Org from <5 to 300+ employees shows substantial expansion.", "Scaled the Solutions Engineering Org from <5 to 300+ employees, managing teams across regions.", "direction followed by comma gerund"],
 ] as const) {

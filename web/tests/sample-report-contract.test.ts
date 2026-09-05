@@ -18,29 +18,38 @@ assert.equal(presentation.independentRewrites.length, 0, "each sample rewrite mu
 
 const requirements = [
   {
-    requests: [/who you onboarded/i, /how many people each week/i, /what improved/i],
-    keys: ["teams", "specific scope", "measurable result"],
-    explanations: [/teams you supported/i, /number of people onboarded each week/i, /productivity changed.*how you measured it/i],
+    requests: [/onboarding improved productivity/i],
+    source: "Led onboarding work across the company, improving productivity.",
+    keys: [],
+    explanations: [/how many people did you onboard/i, /which teams/i, /over what period/i, /how did you measure it/i],
   },
   {
-    requests: [/what improved.*launch/i],
+    requests: [/result.*launch/i],
+    source: "Ran a cross-team launch with clear owners and checkpoints.",
     keys: ["verified before-and-after result"],
-    explanations: [/before-and-after launch result/i, /how was it measured/i, /result you can verify/i],
+    explanations: [/before-and-after measure/i, /launch meant to achieve/i, /result you can verify/i],
   },
   {
-    requests: [/teams you brought together/i, /decision you made.*roadmap/i],
+    requests: [/your part.*roadmap/i],
+    source: "Managed stakeholder alignment and delivered quarterly roadmap on time.",
     keys: ["functions", "ownership detail"],
-    explanations: [/teams you coordinated/i, /what you personally decided/i],
+    explanations: [/teams you coordinated/i, /decision you personally made/i],
   },
 ];
 
 for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   const requirement = requirements[index];
-  assert.ok(rewrite, `fix ${index + 1} must demonstrate the requested edit`);
   for (const request of requirement.requests) {
     assert.match(fix.fix || "", request);
   }
   const evidence = typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt;
+  assert.equal(evidence, requirement.source, "every recommendation must preserve its actual quoted source");
+  if (requirement.keys.length === 0) {
+    assert.equal(rewrite, undefined, "a useful fact question must not be padded with a synthetic rewrite");
+    for (const explanation of requirement.explanations) assert.match(fix.why || "", explanation);
+    continue;
+  }
+  assert.ok(rewrite, `fix ${index + 1} must retain its useful source-safe draft`);
   assert.equal(rewrite.original, evidence, "the before line must remain the fix's actual quoted source");
   assert.deepEqual(bracketPlaceholderKeys(rewrite.better), requirement.keys,
     `FixCanvas must show a fact field for every detail requested by fix ${index + 1}`);
@@ -60,6 +69,8 @@ for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   }).reason, "unresolved_placeholders", "the example must not become copyable while facts are unknown");
 }
 
-assert.match(sample.next_steps[1], /before-and-after launch result.*teams you coordinated.*decision you made/i,
-  "the closing next move must ask for the same facts demonstrated in the fixes");
+assert.doesNotMatch(JSON.stringify(sample), /each week|per week|weekly/i,
+  "the sample must not invent an onboarding frequency absent from its source");
+assert.match(sample.next_steps[1], /three examples.*read them together/i,
+  "the closing plan should help apply the priority edits rather than repeat every missing fact");
 console.log("Sample report content contracts passed");

@@ -203,12 +203,12 @@ export async function callOpenAIChat(
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
   mode: Mode,
   model?: string,
-  options?: { signal?: AbortSignal },
+  options?: { signal?: AbortSignal; reasoningEffort?: ReasoningEffort },
 ) {
   const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   const OPENAI_MODEL = resolveOpenAIModel(mode, model);
-  const baseReasoningEffort = resolveReasoningEffortForMode(mode, OPENAI_MODEL);
+  const baseReasoningEffort = resolveReasoningEffortForMode(mode, OPENAI_MODEL, options?.reasoningEffort);
   const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000); // 90s - large prompt needs time
   const OPENAI_MAX_RETRIES = resolveProductionOpenAIRetryLimit(process.env.OPENAI_MAX_RETRIES ?? 1);
   const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);

@@ -9,6 +9,7 @@ import { hasExactRelationshipBindings, relationshipBindingIssues } from "./sourc
 import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion } from "./narrative-fact-support";
 import { supportsInferredIndustrySignal } from "./source-industry-signals";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { narrativeMeaningIssues } from "./narrative-meaning";
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
   "No skills section present",
@@ -46,7 +47,6 @@ export type NarrativeFidelityIssue = {
 export function isExactAbsenceSentinel(value: string) {
   return absenceSentinels.has(value.normalize("NFC").trim().replace(/\s+/gu, " "));
 }
-
 export function canonicalSourceIdentity(value: string) {
   return canonicalizeUserSourceText(value)
     .trim()
@@ -54,7 +54,6 @@ export function canonicalSourceIdentity(value: string) {
     .replace(/\s+/gu, " ")
     .trim();
 }
-
 function sourceLines(sourceText: string) {
   return sourceText
     .split(/\r?\n/u)
@@ -271,7 +270,7 @@ export function compareSourceBoundRewrite(input: {
 
 function claimSegments(value: string) {
   return value
-    .split(/;\s*|(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
+    .split(/;\s*|,?\s+but\s+|,\s+(?=placing you at\b)|\s+(?=makes?\b[^.!?]{1,80}\bvisible\b[^.!?]{0,50}\b(?:resume|work history|page)\b)|(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
     .map((segment) => segment.trim())
     .filter(Boolean);
 }
@@ -294,6 +293,8 @@ export function auditNarrativeClaim(
     negated: sourceClauseIsNegated(line),
   }));
   return claimSegments(value).flatMap((claim) => {
+    const meaningIssues = narrativeMeaningIssues(claim, sourceText);
+    if (meaningIssues.length > 0) return [{ claim, unsupportedFacts: meaningIssues }];
     const unsupportedPlaceholders = unsupportedBracketPayloads(claim);
     if (unsupportedPlaceholders.length > 0) return [{ claim, unsupportedFacts: unsupportedPlaceholders }];
     const facts = protectedFacts(claim);
@@ -431,7 +432,6 @@ function isJobDescriptionGroundableRole(path: string) {
 function jobDescriptionKeywordKind(path: string) {
   return path.match(/^job_alignment\.jd_keywords\.(matched|missing)\[\d+\]$/u)?.[1];
 }
-
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
     if (/^job_alignment\.role_fit\.industry_signals\[\d+\]$/u.test(path) && supportsInferredIndustrySignal(value, resumeText)) return [];
@@ -439,6 +439,8 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     const jdRelationshipIssues = /^job_alignment\.missing\[\d+\]$/u.test(path) ? relationshipBindingIssues(value, jobDescription || "") : [];
     if (jdRelationshipIssues.length > 0) return [{ path, claim: value, unsupportedFacts: jdRelationshipIssues }];
     if (isAllowedReportNarrativeException(report, path, value, jobDescription)) return [];
+    const meaning = narrativeMeaningIssues(value, resumeText);
+    if (meaning.length) return [{ path, claim: value, unsupportedFacts: meaning }];
     const semanticMissing = semanticMissingDisposition({ path, value, resumeText, jobDescription });
     if (semanticMissing === "contradicts_positive_source") {
       return [{ path, claim: value, unsupportedFacts: ["contradicts positive source evidence"] }];
@@ -461,7 +463,7 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
       return (issues.length > 0 ? issues : [{ claim: value, unsupportedFacts: [value] }])
         .map((issue) => ({ path, ...issue }));
     }
-    const auditableValue = auditableNarrativeValue(path, value, resumeText);
+    const auditableValue = auditableNarrativeValue(path, value, resumeText, report.score);
     if (!auditableValue) return [];
     const resumeIssues = auditNarrativeClaim(auditableValue, resumeText, {
       interpretationContext: path === "biggest_gap_example" ? "assessment" : interpretationContextForPath(path),

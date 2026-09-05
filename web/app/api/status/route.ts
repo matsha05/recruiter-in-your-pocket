@@ -16,8 +16,8 @@ export async function GET() {
         generatedAt: new Date().toISOString(),
         summary: {
           status: "limited",
-          title: "Configuration status unavailable",
-          message: "We could not load the launch configuration snapshot right now.",
+          title: "We could not check the configuration",
+          message: "Try again, or contact support if you are having trouble using the site.",
         },
         services: [],
         incidents: [],

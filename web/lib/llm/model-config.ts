@@ -18,9 +18,8 @@ export type ChatCompletionTuning = {
 
 const GPT_5_REASONING_PATTERN = /^gpt-5(?:\.\d+)?(?:-(?:sol|terra|luna|mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/;
 
-// July 28 Luna/low-reasoning release evidence (23 single-call reports) averaged
-// 1,961 and maxed at 2,232 completion tokens, including reasoning. An 8k cap
-// leaves more than 3.5x observed headroom without preserving the old 24k risk.
+// Production and release evaluations share this per-call ceiling. The bounded
+// repair may make another call; the request budget accounts for those calls.
 export const PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS = 8_000;
 export const PRODUCTION_OPENAI_MAX_RETRIES = 1;
 
@@ -66,7 +65,7 @@ export function resolveOpenAIModel(mode: LlmMode, explicitModel?: string) {
   const explicit = String(explicitModel || "").trim();
   if (explicit) return explicit;
   if (mode === "resume") {
-    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5.6-luna";
+    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5.6-terra";
   }
   return String(process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
 }
@@ -83,6 +82,11 @@ export function resolveReasoningEffortForMode(
   return modeEffort
     || parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
     || defaultReasoningEffortForModel(model);
+}
+
+// A failed draft needs a stronger reasoning pass within the existing call/token limits.
+export function resolveResumeRepairReasoningEffort(model: string, initialEffort?: ReasoningEffort) {
+  return increaseReasoningEffort(resolveReasoningEffortForMode("resume", model, initialEffort));
 }
 
 export function getChatCompletionTuning(

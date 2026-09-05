@@ -14,7 +14,7 @@ const studies = [
         source: "Fritzsche & Brannick / 2002",
         evidence: "Peer-reviewed judgment study",
         observed: "Forty recruiters judged 60 actual resumes or corresponding resume profiles; ratings and cue use differed between formats.",
-        boundary: "Shows that the full artifact matters; it does not prescribe one resume layout or reading order.",
+        boundary: "The format affected recruiter judgments; the study does not prescribe one resume layout or reading order.",
     },
     {
         source: "TheLadders / 2012",
@@ -31,8 +31,8 @@ export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
                     label="Evidence hierarchy"
-                    title="The stronger studies support a close read, not a countdown."
-                    note="The practical conclusion is modest: make recent work and relevant evidence easy to locate, then keep each claim in context."
+                    title="The studies answer different questions about resume review."
+                    note="Compare what each study observed with what its setting and methods can establish."
                 />
 
                 <div className="px-5 py-7 md:px-7 md:py-9">

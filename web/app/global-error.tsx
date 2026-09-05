@@ -23,10 +23,10 @@ export default function GlobalError({
             <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:items-end">
               <div>
                 <h1 id="global-error-title" className="exception-page-title max-w-[44rem] font-display riyp-weight-620 text-foreground riyp-stretch-91">
-                  The app hit a hard stop.
+                  We couldn&apos;t load the app.
                 </h1>
                 <p className="mt-5 max-w-[38rem] text-lg leading-8 text-muted-foreground">
-                  Your saved work is not being deleted. Try loading the app again, or return to the studio in a fresh page.
+                  Try again, or open your workspace in a new page. If this keeps happening, contact support and include the error reference below if one is shown.
                 </p>
               </div>
               <div className="flex flex-col gap-3">
@@ -34,7 +34,10 @@ export default function GlobalError({
                   Try loading again
                 </button>
                 <a href="/workspace" className="focus-ring inline-flex min-h-12 items-center justify-center border border-foreground bg-paper px-5 py-3 text-sm font-semibold text-foreground">
-                  Return to the studio
+                  Open my workspace
+                </a>
+                <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold text-foreground underline underline-offset-4">
+                  Contact support
                 </a>
               </div>
             </div>

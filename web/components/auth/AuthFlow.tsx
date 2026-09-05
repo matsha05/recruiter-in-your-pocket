@@ -13,6 +13,7 @@ import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
 import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { useAuthFieldFocus } from "./useAuthFieldFocus";
+import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 type AuthStep = "email" | "code" | "name";
 
@@ -116,12 +117,12 @@ export function AuthFlow({
       if (requestId !== authRequestRef.current.id) return;
       if (!data?.ok) {
         if (data?.errorCode === "otp_disabled") {
-          throw new Error("Email sign-in is temporarily unavailable. Contact support if you need access now.");
+          throw new ClientActionError(null, "Email sign-in is temporarily unavailable. Contact support if you need access now.");
         }
         if (data?.errorCode === "rate_limited") {
-          throw new Error(data?.hint || "Too many sign-in emails were sent. Wait before requesting another.");
+          throw new ClientActionError(data?.hint, "Too many sign-in emails were sent. Wait before requesting another.");
         }
-        throw new Error(data?.message || data?.hint || "Failed to send code");
+        throw new ClientActionError(data?.message || data?.hint, "We couldn’t send a code. Please try again.");
       }
       // A new email invalidates the previous code and its automatic attempt.
       currentCodeRef.current = "";
@@ -131,7 +132,7 @@ export function AuthFlow({
       setStep("code");
       setResendCooldown(30);
     } catch (err: any) {
-      if (requestId === authRequestRef.current.id) setError(err?.message || "Failed to send code");
+      if (requestId === authRequestRef.current.id) setError(getClientActionError(err, "We couldn’t send a code. Please try again."));
     } finally {
       if (requestId === authRequestRef.current.id) {
         authRequestRef.current.pending = false;
@@ -168,7 +169,7 @@ export function AuthFlow({
       const data = await res.json();
       if (requestId !== authRequestRef.current.id) return;
       if (!data?.ok) {
-        throw new Error(data?.message || "Invalid code");
+        throw new ClientActionError(data?.message, "That code didn’t work. Check the email or request a new code.");
       }
       authRequestRef.current.verified = true;
       if (data.user?.firstName) {
@@ -179,7 +180,7 @@ export function AuthFlow({
     } catch (err: any) {
       // A response to the previous value must not replace feedback for an edit.
       if (requestId === authRequestRef.current.id && submittedCode === currentCodeRef.current) {
-        setError(err?.message || "Invalid code. Please try again.");
+        setError(getClientActionError(err, "We couldn’t verify that code. Please try again."));
       }
     } finally {
       if (requestId === authRequestRef.current.id) {
@@ -213,7 +214,7 @@ export function AuthFlow({
       }
       finishAuth();
     } catch (err: any) {
-      setError(err?.message || "Could not save your name. Try again.");
+      setError("Could not save your name. Try again.");
     } finally {
       setLoading(false);
     }
@@ -244,7 +245,6 @@ export function AuthFlow({
     }
     return "What should we call you?";
   }, [copy.subtext, email, step]);
-
   const outerClass = variant === "page"
     ? "min-h-screen bg-paper px-4 pb-16 pt-24 text-foreground selection:bg-brand/15 sm:px-5 sm:pt-28 md:px-8 md:pb-20 md:pt-36"
     : "";
@@ -366,7 +366,7 @@ export function AuthFlow({
                   />
                 </div>
                 <p id="auth-email-help" className="text-xs text-muted-foreground">
-                  We&apos;ll email a one-time code so you can save securely without a password.
+                  We&apos;ll email a one-time code so you can sign in without a password.
                 </p>
               </div>
               <Button type="submit" variant="brand" disabled={loading} className="min-h-12 w-full whitespace-normal px-4 text-base font-medium">

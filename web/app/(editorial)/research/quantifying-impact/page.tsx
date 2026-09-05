@@ -18,11 +18,12 @@ export default function QuantifyingImpactPage() {
                 readTime: "5 min read"
             }}
             keyFinding={{
+                label: "Practitioner guidance",
                 subtitle: "Practitioner guidance",
                 stat: "X → Y → Z",
                 statDescription: (
                     <>
-                        Accomplished [X] as measured by [Y], by doing [Z]. Start with the result, add scale, then explain how.
+                        Accomplished [X] as measured by [Y], by doing [Z]. Name the result, explain how you measured it, and describe what you did.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -78,7 +79,7 @@ export default function QuantifyingImpactPage() {
             faq={[
                 {
                     question: "What if I do not have numbers?",
-                    answer: "Use counts, time saved, or scope. If you cannot quantify, describe the outcome in terms of scale or impact."
+                    answer: "Describe what changed or what you were responsible for. For example, name the process you documented, the decision you made, or the teams you supported. You do not need a number in every bullet."
                 },
                 {
                     question: "Is the XYZ formula the only format?",
@@ -123,8 +124,8 @@ export default function QuantifyingImpactPage() {
                     desc="Managed a team of 12. Handled 500+ customer tickets monthly. Launched in 8 markets."
                 />
                 <ArticleInsight
-                    title="Frequency"
-                    desc="First time in company history. Implemented process used by 200+ employees."
+                    title="Scope without a metric"
+                    desc="Wrote the onboarding guide for new support agents. Coordinated release testing with engineering and customer success."
                 />
             </div>
 
@@ -145,7 +146,7 @@ export default function QuantifyingImpactPage() {
 
             <h2 className="research-h2">Give the reader the context behind the result</h2>
             <p className="research-body mb-6">
-                A number without context can still mislead. &quot;Cut time by 40%&quot; is more useful when the reader can tell what process changed, from what baseline, and what you actually did. The goal is not maximum numerals; it is a claim another person can understand and defend.
+                A number without context can still mislead. &quot;Cut time by 40%&quot; leaves the reader asking: time spent on what, compared with when, and what did you change? Include those details when you can verify them.
             </p>
 
             <h2 className="research-h2">What the evidence does not prove</h2>

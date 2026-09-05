@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
         if (authError || !user) {
             return NextResponse.json(
-                { success: false, error: "Unauthorized" },
+                { success: false, error: "Sign in to manage your default resume." },
                 { status: 401 }
             );
         }
@@ -43,21 +43,21 @@ export async function POST(request: NextRequest) {
 
         if (!resumeText) {
             return NextResponse.json(
-                { success: false, error: "Resume text is required" },
+                { success: false, error: "Add your resume text before saving." },
                 { status: 400 }
             );
         }
 
         if (resumeText.length < 100) {
             return NextResponse.json(
-                { success: false, error: "Resume text too short (minimum 100 characters)" },
+                { success: false, error: "Add at least 100 characters of resume text." },
                 { status: 400 }
             );
         }
 
         if (resumeText.length > MAX_RESUME_CHARACTERS) {
             return NextResponse.json(
-                { success: false, error: "Resume text is too long (maximum 30,000 characters)" },
+                { success: false, error: "Keep your resume text to 30,000 characters or fewer." },
                 { status: 400 }
             );
         }
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
             .maybeSingle();
         if (existingProfileError) {
             return NextResponse.json(
-                { success: false, error: "Failed to verify the saved resume" },
+                { success: false, error: "Could not check your saved resume. Try again." },
                 { status: 500 }
             );
         }
@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
                     .eq("user_id", user.id);
                 if (filenameError) {
                     return NextResponse.json(
-                        { success: false, error: "Failed to update the resume filename" },
+                        { success: false, error: "Could not rename your resume. Try again." },
                         { status: 500 }
                     );
                 }
@@ -167,12 +167,7 @@ export async function POST(request: NextRequest) {
 
         if (error) {
             console.error("[DefaultResume] Upsert error:", error);
-            // Provide more detail to help diagnose the issue
-            const errorMessage = error.code === '42P01'
-                ? "Database table 'user_profiles' doesn't exist. Run the migration in database/migrations/003_user_resume_profiles.sql"
-                : error.code === '42501'
-                    ? "Database permission denied. Check RLS policies on user_profiles table."
-                    : `Failed to save resume profile: ${error.message}`;
+            const errorMessage = "Could not save your default resume. Try again. If this continues, contact support.";
             return NextResponse.json(
                 { success: false, error: errorMessage, code: error.code },
                 { status: 500 }
@@ -199,7 +194,7 @@ export async function POST(request: NextRequest) {
                     ? "Request body too large"
                     : requestStatus === 400
                         ? "Invalid request body"
-                        : "Internal server error",
+                        : "Could not access your default resume. Refresh the page and try again.",
             },
             { status: requestStatus === 400 || requestStatus === 413 ? requestStatus : 500 }
         );
@@ -214,7 +209,7 @@ export async function GET(request: NextRequest) {
 
         if (authError || !user) {
             return NextResponse.json(
-                { success: false, error: "Unauthorized" },
+                { success: false, error: "Sign in to manage your default resume." },
                 { status: 401 }
             );
         }
@@ -234,7 +229,7 @@ export async function GET(request: NextRequest) {
             // PGRST116 = no rows found (expected for new users)
             console.error("[DefaultResume] Fetch error:", error);
             return NextResponse.json(
-                { success: false, error: "Failed to fetch profile" },
+                { success: false, error: "Could not load your default resume. Try again." },
                 { status: 500 }
             );
         }
@@ -265,7 +260,7 @@ export async function GET(request: NextRequest) {
     } catch (error) {
         console.error("[DefaultResume] Error:", error);
         return NextResponse.json(
-            { success: false, error: "Internal server error" },
+            { success: false, error: "Could not access your default resume. Refresh the page and try again." },
             { status: 500 }
         );
     }
@@ -279,7 +274,7 @@ export async function PATCH(request: NextRequest) {
 
         if (authError || !user) {
             return NextResponse.json(
-                { success: false, error: "Unauthorized" },
+                { success: false, error: "Sign in to manage your default resume." },
                 { status: 401 }
             );
         }
@@ -305,7 +300,7 @@ export async function PATCH(request: NextRequest) {
         if (error) {
             console.error("[DefaultResume] Update error:", error);
             return NextResponse.json(
-                { success: false, error: "Failed to update filename" },
+                { success: false, error: "Could not rename your resume. Try again." },
                 { status: 500 }
             );
         }
@@ -321,7 +316,7 @@ export async function PATCH(request: NextRequest) {
                     ? "Request body too large"
                     : requestStatus === 400
                         ? "Invalid request body"
-                        : "Internal server error",
+                        : "Could not access your default resume. Refresh the page and try again.",
             },
             { status: requestStatus === 400 || requestStatus === 413 ? requestStatus : 500 }
         );
@@ -336,7 +331,7 @@ export async function DELETE() {
 
         if (authError || !user) {
             return NextResponse.json(
-                { success: false, error: "Unauthorized" },
+                { success: false, error: "Sign in to manage your default resume." },
                 { status: 401 }
             );
         }
@@ -349,7 +344,7 @@ export async function DELETE() {
         if (error) {
             console.error("[DefaultResume] Delete error:", error);
             return NextResponse.json(
-                { success: false, error: "Failed to remove resume profile" },
+                { success: false, error: "Could not remove your default resume. Try again." },
                 { status: 500 }
             );
         }
@@ -358,7 +353,7 @@ export async function DELETE() {
     } catch (error) {
         console.error("[DefaultResume] Error:", error);
         return NextResponse.json(
-            { success: false, error: "Internal server error" },
+            { success: false, error: "Could not access your default resume. Refresh the page and try again." },
             { status: 500 }
         );
     }

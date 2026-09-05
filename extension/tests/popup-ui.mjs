@@ -131,14 +131,14 @@ try {
     await undoFailurePage.close();
 
     const reconnectPage = await openPopup(jobs(1));
-    await reconnectPage.getByRole('button', { name: 'Sign in for sync', exact: true }).click();
+    await reconnectPage.getByRole('button', { name: 'Sign in', exact: true }).click();
     assert.equal(await reconnectPage.evaluate(() => window.__testState.messages.some((message) => message.type === 'OPEN_WEBAPP' && message.payload.path.startsWith('/auth?'))), true);
     await reconnectPage.evaluate(() => { window.__testState.authenticated = true; window.__testState.syncStatus = 'synced'; });
     await reconnectPage.getByRole('button', { name: 'Refresh', exact: true }).click();
     await expect(reconnectPage.getByText('Sync on', { exact: true })).toBeVisible();
     await reconnectPage.evaluate(() => { window.__testState.syncStatus = 'offline'; });
     await reconnectPage.getByRole('button', { name: 'Refresh', exact: true }).click();
-    await expect(reconnectPage.getByRole('status')).toContainText('Synced jobs could not refresh');
+    await expect(reconnectPage.getByRole('status')).toContainText('We could not refresh jobs from your account');
     await expect(reconnectPage.locator('.job-card')).toHaveCount(1);
     await reconnectPage.evaluate(() => {
         window.__testState.authenticated = false;
@@ -150,10 +150,21 @@ try {
     await reconnectPage.close();
 
     const onboardingPage = await openPopup(jobs(1, true), true, null, null, 'synced', false);
-    await onboardingPage.getByRole('button', { name: /^Start with job capture/ }).click();
+    await onboardingPage.getByRole('button', { name: /^Start saving jobs/ }).click();
     await expect(onboardingPage.getByText('Sync on', { exact: true })).toBeVisible();
     await expect(onboardingPage.locator('.job-card')).toHaveCount(1);
     await onboardingPage.close();
+    const scoreFixtures = jobs(2);
+    scoreFixtures[0].score = 0;
+    const scorePage = await openPopup(scoreFixtures);
+    const zeroCard = scorePage.locator('.job-card').filter({ hasText: 'Role 1' });
+    const unknownCard = scorePage.locator('.job-card').filter({ hasText: 'Role 2' });
+    await expect(zeroCard.locator('.score-dial-text')).toHaveText('0');
+    await expect(zeroCard).toContainText('Little resume overlap: 0/100');
+    await expect(zeroCard).not.toContainText('Not compared yet');
+    await expect(unknownCard.locator('.score-dial-text')).toHaveText('—');
+    await expect(unknownCard).toContainText('Not compared yet');
+    await scorePage.close();
     console.log('Popup regressions passed: list/actions, delete/Undo failures, production permissions, sign-in/refresh/offline recovery, and authenticated onboarding.');
 } finally {
     await browser?.close();

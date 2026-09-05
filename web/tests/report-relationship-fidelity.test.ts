@@ -5,7 +5,8 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { renderReportHtml } from "../lib/backend/pdf";
-import { compareSourceBoundRewrite } from "../lib/llm/source-fidelity";
+import { auditNarrativeClaim, compareSourceBoundRewrite } from "../lib/llm/source-fidelity";
+import { narrativeMeaningIssues } from "../lib/llm/narrative-meaning";
 import { relationshipBindingIssues } from "../lib/llm/source-relationship-fidelity";
 import { saveReceiptValidatedReport } from "../lib/reports/client-report-save";
 import { buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
@@ -113,6 +114,23 @@ const completeReportHtml = renderToStaticMarkup(createElement(ReportStream, {
   report: completeReport,
   hasJobDescription: true,
 }));
+const factOnlyStart = completeReportHtml.indexOf('<article id="section-fix-1"');
+assert.notEqual(factOnlyStart, -1, "a recommendation without a rewrite must remain visible");
+const factOnlyEnd = completeReportHtml.indexOf("</article>", factOnlyStart);
+const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd + "</article>".length);
+assert.ok(factOnlyHtml.includes(hubspotSource), "the original evidence must survive when no rewrite is supplied");
+assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].fix));
+assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why));
+assert.ok(factOnlyHtml.includes('data-testid="fact-only-recommendation"'));
+assert.doesNotMatch(factOnlyHtml, /Suggested wording|View draft template|Why this is stronger/,
+  "a fact-only recommendation must not promise or praise an absent rewrite");
+const scoreStart = completeReportHtml.indexOf('<details id="section-score"');
+assert.notEqual(scoreStart, -1, "score explanations must remain available beside the score");
+const scoreEnd = completeReportHtml.indexOf("</details>", scoreStart);
+const scoreHtml = completeReportHtml.slice(scoreStart, scoreEnd + "</details>".length);
+for (const expected of ["DETAILED SCORE REASON SENTINEL", "DETAILED SCORE MEANING SENTINEL"]) {
+  assert.ok(scoreHtml.includes(expected), `the score disclosure must retain ${expected}`);
+}
 const fullNotesStart = completeReportHtml.indexOf('<details id="section-full-notes"');
 assert.notEqual(fullNotesStart, -1, "the report must expose a full recruiter notes disclosure");
 const fullNotesEnd = completeReportHtml.indexOf("</details>", fullNotesStart);
@@ -128,8 +146,6 @@ assert.doesNotMatch(
 for (const expected of [
   "DETAILED OPENING SENTINEL",
   "DETAILED SUMMARY SENTINEL",
-  "DETAILED SCORE REASON SENTINEL",
-  "DETAILED SCORE MEANING SENTINEL",
   "DETAILED GAP EXAMPLE SENTINEL",
   "REMAINING STRENGTH SENTINEL",
   "REMAINING GAP TWO SENTINEL",
@@ -158,6 +174,8 @@ for (const alreadyVisible of [
   "VISIBLE ROLE POSITIONING",
   "VISIBLE ROLE ONE",
   "VISIBLE SENIORITY",
+  "DETAILED SCORE REASON SENTINEL",
+  "DETAILED SCORE MEANING SENTINEL",
 ]) {
   assert.equal(fullNotesHtml.includes(alreadyVisible), false, `full recruiter notes must not repeat ${alreadyVisible}`);
 }
@@ -429,6 +447,46 @@ assert.equal(
   false,
   "quantified onboarding must be treated as an action while onboarding paperwork remains a noun",
 );
+
+const plannedExecutionCases = [
+  {
+    source: "Presented findings that influenced the decision to expand onboarding personalization to additional modules.",
+    question: "What findings did you present before onboarding personalization expanded?",
+    completed: "Expanded onboarding personalization to additional modules.",
+  },
+  {
+    source: "Planned to launch customer billing.", question: "What did you monitor after customer billing was launched?",
+    completed: "Customer billing was launched.",
+  },
+  {
+    source: "Agreed to expand checkout support.", question: "What changed before checkout support expanded?",
+    completed: "Checkout support expanded.",
+  },
+  {
+    source: "Decided to launch checkout.", question: "What did you review after checkout launched?",
+    completed: "Launched checkout.",
+  },
+];
+for (const { source, question, completed } of plannedExecutionCases) {
+  assert.ok(narrativeMeaningIssues(question, source).some(issue => issue.includes("decision or plan")));
+  assert.ok(auditNarrativeClaim(question, source, { interpretationContext: "question" })
+    .some(issue => issue.unsupportedFacts.some(fact => fact.includes("decision or plan"))));
+  for (const actualSource of [completed, `${source} ${completed}`]) {
+    assert.deepEqual(narrativeMeaningIssues(question, actualSource), [], "explicit execution supports the temporal question");
+  }
+}
+assert.deepEqual(narrativeMeaningIssues("What findings supported the decision to expand onboarding personalization?", plannedExecutionCases[0].source), []);
+assert.deepEqual(narrativeMeaningIssues("Did onboarding personalization expand after the decision?", plannedExecutionCases[0].source), []);
+assert.ok(narrativeMeaningIssues("What changed after checkout launched?", "Planned to launch checkout and launched reporting.")
+  .some(issue => issue.includes("decision or plan")), "an unrelated launch must not establish checkout execution");
+const statusUpdateSource = "Participated in meetings and followed up on project statuses at Greenfield Logistics.";
+assert.deepEqual(narrativeMeaningIssues("The Education year in the header conflicts with the Dec. 2013 date shown here.",
+  "Header: 2012. Education: Dec. 2013."), [], "a written date discrepancy is not an interpersonal conflict");
+assert.ok(narrativeMeaningIssues("How did feedback conflict with analytics during your graduation year?", statusUpdateSource)
+  .some(issue => issue.includes("conflicting inputs")), "a date reference must not license invented disagreement");
+assert.deepEqual(narrativeMeaningIssues("At Greenfield, did project-status updates ever conflict, and how did you help reconcile them?", statusUpdateSource), []);
+assert.ok(narrativeMeaningIssues("At Greenfield, how did you resolve the conflict?", statusUpdateSource)
+  .some(issue => issue.includes("conflicting inputs")), "a location lead-in must not license an assumed conflict");
 
 assertReceiptWireSavePdfChain()
   .then(() => console.log("report relationship fidelity tests passed"))

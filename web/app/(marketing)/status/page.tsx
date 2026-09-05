@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import StatusClient from "@/components/legal/StatusClient";
 
 export const metadata: Metadata = {
-  title: "Launch configuration",
-  description: "A configuration snapshot for Recruiter in Your Pocket. This is not a real-time uptime page.",
+  title: "Configuration Checks",
+  description: "Check whether the settings required for reports, sign-in, billing, and support are in place. These checks do not measure live uptime.",
   robots: { index: false, follow: false },
 };
 
