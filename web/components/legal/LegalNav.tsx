@@ -11,6 +11,15 @@ interface LegalNavProps {
     className?: string;
 }
 
+function centerLinkInNav(nav: HTMLElement, link: HTMLAnchorElement) {
+    const linkBounds = link.getBoundingClientRect();
+    const navBounds = nav.getBoundingClientRect();
+    nav.scrollTo({
+        left: nav.scrollLeft + linkBounds.left - navBounds.left - (nav.clientWidth - linkBounds.width) / 2,
+        behavior: "auto",
+    });
+}
+
 /** Compact, horizontally scrollable trust navigation. */
 export function LegalNav({ className }: LegalNavProps) {
     const pathname = usePathname();
@@ -34,7 +43,7 @@ export function LegalNav({ className }: LegalNavProps) {
         const nav = navRef.current;
         if (!nav) return;
 
-        activeRef.current?.scrollIntoView({ block: "nearest", inline: "center" });
+        if (activeRef.current) centerLinkInNav(nav, activeRef.current);
         const update = () => setHasMore(nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4);
         update();
         nav.addEventListener("scroll", update, { passive: true });
@@ -54,13 +63,7 @@ export function LegalNav({ className }: LegalNavProps) {
                 onFocusCapture={(event) => {
                     const link = event.target;
                     if (!(link instanceof HTMLAnchorElement) || !link.matches(":focus-visible")) return;
-                    const nav = event.currentTarget;
-                    const linkBounds = link.getBoundingClientRect();
-                    const navBounds = nav.getBoundingClientRect();
-                    nav.scrollTo({
-                        left: nav.scrollLeft + linkBounds.left - navBounds.left - (nav.clientWidth - linkBounds.width) / 2,
-                        behavior: "auto",
-                    });
+                    centerLinkInNav(event.currentTarget, link);
                 }}
             >
                 {tabs.map((tab) => {
