@@ -7,6 +7,12 @@
     .still { object-fit: cover; object-position: right center; }
 }
 
+@media (max-width: 900px) {
+    /* Follow the pocket and overhanging paper on the fixed 43:50 mobile crop.
+       The approved illustration's subject pixels stay untouched. */
+    .still { clip-path: polygon(3.82% 7.62%, 6.43% 7.81%, 11.09% 8.40%, 43.68% 8.98%, 77.29% 9.67%, 84.56% 10.06%, 90.80% 10.45%, 94.32% 11.04%, 94.89% 12.21%, 94.10% 21.97%, 93.30% 35.45%, 92.73% 51.76%, 92.28% 67.48%, 91.48% 82.32%, 91.03% 85.35%, 81.83% 87.99%, 81.38% 92.29%, 69.79% 91.21%, 47.08% 97.95%, 43.45% 98.44%, 40.38% 97.56%, 7.45% 81.25%, 4.50% 79.69%, 3.59% 77.83%, 3.82% 58.30%, 3.93% 36.72%, 4.05% 19.82%, 3.71% 13.09%); }
+}
+
 @media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse), (max-width: 900px) {
     .scene[data-motion-state="ready"] .canvas { opacity: 0; }
 }

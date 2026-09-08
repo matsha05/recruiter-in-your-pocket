@@ -307,6 +307,8 @@
     gap: clamp(2.5rem, 6vw, 6rem);
 }
 
+.overviewToggle { display: none; }
+
 .label {
     margin: 0;
 }
@@ -752,26 +754,45 @@
 }
 
 @media (max-width: 460px) {
-    .shell { width: calc(100% - 32px); }
+    .section { padding-top: 24px; padding-bottom: 24px; }
+    .shell { width: calc(100% - 40px); }
+    .intro { gap: 24px; margin-bottom: 32px; }
+    .intro h2 { font-size: 36px; }
+    .eyebrow { font-size: 10px; line-height: 1.5; letter-spacing: .14em; }
     .summaryPaper { grid-template-columns: 1fr; }
-    .summaryPreview { padding: 0.65rem; }
-    .summaryAssessment, .summaryPriorities { padding: 1.1rem; }
-    .summaryAssessment { padding-right: 1.1rem; }
+    .summaryPreview { padding: 20px; border-radius: 18px; background: hsl(var(--surface-raised)); }
+    .summaryAssessment, .summaryPriorities { padding: 0; background: transparent; box-shadow: none; border-radius: 0; }
+    .summaryAssessment h3, .summaryPriorities h3 { font-size: 13px; }
     .assessmentHeading { display: grid; grid-template-columns: minmax(0, 1fr) 76px; align-items: center; }
     .assessmentHeading > div:first-child { display: contents; }
     .assessmentHeading h3 { grid-column: 1; grid-row: 1; }
-    .assessmentVerdict { grid-column: 1 / -1; grid-row: 2; margin-top: 0; text-wrap: balance; }
-    .summaryPriorities ol { gap: 0.6rem; margin-top: 0.8rem; }
+    .assessmentVerdict { grid-column: 1 / -1; grid-row: 2; margin-top: 4px; font-size: 25px; text-wrap: balance; }
+    .assessmentCopy { font-size: 14px; line-height: 1.5; margin-top: 12px; }
+    .summaryPriorities { border-top: 1px solid var(--report-rule); margin-top: 18px; padding-top: 18px; }
+    .summaryPriorities ol { gap: 10px; margin-top: 12px; }
+    .summaryPriorities li { align-items: flex-start; gap: 9px; font-size: 13px; line-height: 1.5; }
+    .summaryPriorities li > span { flex-basis: 20px; width: 20px; height: 20px; font-size: 11px; }
     .summaryAttribution { margin-left: 0.4rem; }
     .scoreRing { position: relative; top: auto; right: auto; grid-column: 2; grid-row: 1; width: 76px; height: 76px; }
     .reportHeader { padding: 1.25rem; }
     .reportIdentity { gap: 0.9rem; }
     .reportContext { font-size: 0.75rem; }
+    .reportMark { font-size: 32px; }
+    .overviewToggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 60px; padding: 16px 20px; font-size: 14px; font-weight: 600; text-align: left; }
+    .overviewToggle > svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .overviewToggle:focus-visible { outline: 2px solid var(--report-cyan); outline-offset: -4px; }
+    .overviewGroup[data-expanded="false"] .overview { display: none; }
+    .overviewGroup[data-expanded="true"] .overviewToggle > svg { transform: rotate(180deg); }
     .overview { padding: 1.75rem 1.25rem; }
     .firstImpression > p { font-size: 1.4rem; }
-    .priorityIndex { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .priorityList .priorityButton { grid-template-columns: 1.45rem 1fr 1rem; gap: 0.5rem; padding-left: 0.75rem; }
-    .detailArea { padding-left: 1rem; padding-right: 1rem; margin: 0.75rem; }
+    .priorityIndex { padding: 20px 16px 0; }
+    .priorityList { margin-top: 12px; gap: 4px; }
+    .priorityList .priorityButton { grid-template-columns: 1.45rem 1fr 1rem; gap: 0.5rem; padding: 12px; font-size: 14px; line-height: 1.5; }
+    .detailArea { padding: 20px 16px; margin: 12px; }
+    .detailArea .label { font-size: 10px; letter-spacing: .09em; }
+    .evidence { margin-top: 20px; }
+    .evidence blockquote { font-size: 20px; }
+    .interpretation { margin-top: 20px; }
     .detailMeta { gap: 0.75rem; }
     .evidence { padding-left: 1rem; }
     .reportFooter { padding-left: 1.25rem; padding-right: 1.25rem; }

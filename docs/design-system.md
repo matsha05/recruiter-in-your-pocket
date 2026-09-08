@@ -145,6 +145,14 @@ Do not assign errors to missing career evidence or use green/red scores as subst
 
 Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allows.
 
+### Mobile composition
+
+On phones, compose the landing as headline, complete pocket illustration, explanation, and full-width action. Use 20-24px outer gutters, a 36-46px headline, and a 52px primary action. Between 701 and 900px, place that complete illustration beside the copy in a compact two-column composition. The approved pocket and overhanging resume keep their original pixels; a silhouette mask removes the rectangular backdrop from the fixed 43:50 mobile crop. Do not introduce a newly generated face or a competing texture behind the page.
+
+Keep the six trusted-company marks in a balanced two-column phone grid, including the Apple mark. The illustrative assessment remains colorful. Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
+
+The upload surface uses a compact file picker instead of a desktop-sized drop area. The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public navigation sheets keep their close control visible and scroll their links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+
 ### Spacing scale
 
 Use the 4px rhythm in `globals.css`: `--space-4`, `--space-8`, `--space-12`, `--space-16`, `--space-20`, `--space-24`, `--space-32`, `--space-40`, `--space-56`, and `--space-72`.

@@ -51,6 +51,17 @@ export function LegalNav({ className }: LegalNavProps) {
                 ref={navRef}
                 className="flex w-full snap-x items-center gap-1 overflow-x-auto py-1 pr-9 [scrollbar-width:none] md:pr-0 [&::-webkit-scrollbar]:hidden"
                 aria-label="Trust and legal pages"
+                onFocusCapture={(event) => {
+                    const link = event.target;
+                    if (!(link instanceof HTMLAnchorElement) || !link.matches(":focus-visible")) return;
+                    const nav = event.currentTarget;
+                    const linkBounds = link.getBoundingClientRect();
+                    const navBounds = nav.getBoundingClientRect();
+                    nav.scrollTo({
+                        left: nav.scrollLeft + linkBounds.left - navBounds.left - (nav.clientWidth - linkBounds.width) / 2,
+                        behavior: "auto",
+                    });
+                }}
             >
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;

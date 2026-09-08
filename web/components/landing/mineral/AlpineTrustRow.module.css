@@ -103,6 +103,11 @@
 }
 
 @media (max-width: 460px) {
-    .inner { width: calc(100% - 32px); gap: 10px; }
-    .logos { gap: 0 20px; }
+    .row { --sprite-width: 1200px; }
+    .inner { width: calc(100% - 48px); gap: 8px; padding: 18px 0 26px; }
+    .logos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); justify-items: center; gap: 0 16px; }
+    .logos > li { align-self: center; }
+    .logos > .bain { --sprite-width: min(1360px, 340vw); }
+    .heading { font-size: 10px; }
+    .more { font-size: 9px; }
 }

@@ -17,7 +17,22 @@
 .processing { opacity: 0.5; cursor: not-allowed; }
 .uploadIcon { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); }
 .title { font-family: var(--font-body); font-size: 1.25rem; font-weight: var(--weight-display); line-height: 1.5; color: hsl(var(--text-strong)); }
+.details, .chooseButton { margin-top: 1.25rem; }
+.mobileTitle { display: none; }
 .accepted { display: flex; min-height: 10rem; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid hsl(var(--brand) / 0.25); border-radius: 0.75rem; background: hsl(var(--surface-sky)); padding: 1.25rem; }
 .rejected { display: flex; min-height: 15rem; flex-direction: column; align-items: center; justify-content: center; border: 1px solid hsl(var(--destructive) / 0.55); border-radius: 0.75rem; background: hsl(var(--error-surface)); padding: 1.25rem; }
 .rejectedFile { display: flex; width: 100%; max-width: 30rem; align-items: center; justify-content: space-between; gap: 0.75rem; border: 1px solid hsl(var(--line)); border-radius: 0.625rem; background: hsl(var(--surface-raised)); padding: 1rem; }
+@media (max-width: 639px) {
+    .drop { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); min-height: 0; gap: 1rem 0.75rem; padding: 1rem; text-align: left; }
+    .uploadIcon { width: 2.5rem; height: 2.5rem; border-radius: 0.625rem; }
+    .uploadIcon svg { width: 1.375rem; height: 1.375rem; }
+    .details { min-width: 0; margin-top: 0; }
+    .title { font-size: 1rem; line-height: 1.375; font-weight: var(--weight-control); }
+    .details > p + p { margin-top: 0.25rem; font-size: 0.8125rem; line-height: 1.25rem; }
+    .desktopTitle { display: none; }
+    .mobileTitle { display: inline; }
+    .drop .chooseButton { grid-column: 1 / -1; width: 100%; margin-top: 0; }
+    .accepted { min-height: 5.5rem; padding: 1rem; }
+    .rejected { min-height: 0; padding: 1rem; }
+}
 @media (prefers-reduced-motion: reduce) { .drop { transition: none; } }

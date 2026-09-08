@@ -71,7 +71,7 @@ export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
                                         <p className="mt-1 text-data text-muted-foreground">{study.evidence}</p>
                                     </div>
                                 </div>
-                                <dl className="mt-4 space-y-4 pl-8">
+                                <dl className="mt-4 space-y-4 sm:pl-8">
                                     <div>
                                         <dt className="riyp-evidence-label text-muted-foreground">Observed</dt>
                                         <dd className="mt-1 text-data text-foreground/80">{study.observed}</dd>

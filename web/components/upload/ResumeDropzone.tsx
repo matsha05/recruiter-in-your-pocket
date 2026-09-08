@@ -294,9 +294,10 @@ export function ResumeDropzone({
                             <UploadSimple className="size-7" weight="regular" />
                         </span>
 
-                        <div className="mt-5">
+                        <div className={styles.details}>
                             <p className={styles.title}>
-                                Drop your resume here
+                                <span className={styles.desktopTitle}>Drop your resume here</span>
+                                <span className={styles.mobileTitle}>Add your resume</span>
                             </p>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">
                                 PDF or DOCX · 4 MB max
@@ -312,7 +313,7 @@ export function ResumeDropzone({
                                 openFilePicker(event);
                             }}
                             disabled={isProcessing}
-                            className="mt-5 min-h-12 px-6 text-sm"
+                            className={cn(styles.chooseButton, "min-h-12 px-6 text-sm")}
                         >
                             Choose a file
                         </Button>

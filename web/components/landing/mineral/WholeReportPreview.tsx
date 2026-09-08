@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { CaretDown } from "@phosphor-icons/react";
 import sampleReport from "@/public/sample-report.json";
 import { Button } from "@/components/ui/button";
 import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
@@ -33,6 +34,7 @@ function Arrow({ className }: { className?: string }) {
 export function WholeReportPreview() {
     // Open on the launch example so the report immediately shows more than onboarding.
     const [selectedPriority, setSelectedPriority] = useState(1);
+    const [overviewExpanded, setOverviewExpanded] = useState(false);
     const priorityButtons = useRef<Array<HTMLButtonElement | null>>([]);
     const reportRef = useRef<HTMLElement>(null);
     const id = useId();
@@ -148,24 +150,35 @@ export function WholeReportPreview() {
                         <span className={styles.sampleLabel}>An example, from the full report</span>
                     </header>
 
-                    <div className={styles.overview}>
-                        <section className={styles.firstImpression} aria-labelledby={`${id}-impression`}>
-                            <h3 id={`${id}-impression`} className={styles.label}>The first impression</h3>
-                            <p>{sampleReport.first_impression}</p>
-                            <div className={styles.overviewNote}>
-                                <span className={styles.noteMark} aria-hidden="true" />
-                                <p>{sampleReport.score_plain}</p>
-                            </div>
-                        </section>
+                    <div className={styles.overviewGroup} data-expanded={overviewExpanded}>
+                        <button
+                            type="button"
+                            className={styles.overviewToggle}
+                            aria-expanded={overviewExpanded}
+                            aria-controls={`${id}-overview`}
+                            onClick={() => setOverviewExpanded(expanded => !expanded)}
+                        >
+                            First impression &amp; strengths <CaretDown aria-hidden="true" />
+                        </button>
+                        <div id={`${id}-overview`} className={styles.overview}>
+                            <section className={styles.firstImpression} aria-labelledby={`${id}-impression`}>
+                                <h3 id={`${id}-impression`} className={styles.label}>The first impression</h3>
+                                <p>{sampleReport.first_impression}</p>
+                                <div className={styles.overviewNote}>
+                                    <span className={styles.noteMark} aria-hidden="true" />
+                                    <p>{sampleReport.score_plain}</p>
+                                </div>
+                            </section>
 
-                        <section className={styles.strengths} aria-labelledby={`${id}-strengths`}>
-                            <h3 id={`${id}-strengths`} className={styles.label}>What’s already working</h3>
-                            <ul>
-                                {sampleReport.strengths.map((strength) => (
-                                    <li key={strength}><span aria-hidden="true">+</span>{strength}</li>
-                                ))}
-                            </ul>
-                        </section>
+                            <section className={styles.strengths} aria-labelledby={`${id}-strengths`}>
+                                <h3 id={`${id}-strengths`} className={styles.label}>What’s already working</h3>
+                                <ul>
+                                    {sampleReport.strengths.map((strength) => (
+                                        <li key={strength}><span aria-hidden="true">+</span>{strength}</li>
+                                    ))}
+                                </ul>
+                            </section>
+                        </div>
                     </div>
 
                     <div className={styles.priorities}>

@@ -24,15 +24,26 @@
 .page a:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 5px; }
 .close a:focus-visible { outline-color: hsl(var(--surface-page)); }
 @media (max-width: 700px) {
-    .founder { grid-template-columns: 1fr; gap: 32px; padding: 62px 24px; }
-    .founderPortrait { max-width: 180px; }
-    .founderPortrait img { aspect-ratio: 1; }
+    .founder { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; }
+    .founderPortrait { display: grid; grid-template-columns: 88px 1fr; align-items: center; gap: 18px; max-width: none; }
+    .founderPortrait img { aspect-ratio: 1; border-radius: 10px; }
+    .founderPortrait > p { display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 0; font-size: 15px; font-weight: 600; }
+    .founderPortrait > p span { font-size: 13px; font-weight: 400; }
     .founderCopy h2 { font-size: 34px; }
     .introduction { font-size: 16px; }
     .career { font-size: 15px; gap: 13px 22px; }
+    .careerLabel { font-size: 11px; line-height: 1.5; }
+    .finePrint { font-size: 13px; line-height: 1.6; }
+    .founderLinks a { font-size: 14px; }
     .close { align-items: start; flex-direction: column; padding: 54px 24px 62px; gap: 32px; }
     .close h2 { font-size: 49px; }
     .closeAction { width: 100%; }
     .closeAction a { max-width: 330px; }
+}
+@media (max-width: 360px) {
+    .founder { padding-inline: 20px; }
+    .founderCopy h2 { font-size: 28px; line-height: 1.15; }
+    .close { padding-inline: 20px; gap: 24px; }
+    .close h2 { font-size: 40px; line-height: 1.05; }
 }
 @media (prefers-reduced-motion: reduce) { .page * { transition: none !important; } }

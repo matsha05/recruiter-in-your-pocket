@@ -37,9 +37,27 @@ test.describe("launch red-team journeys", () => {
   test("1. landing page drives users toward the workspace", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
-    const heroFirstRead = page.getByRole("article", { name: /You led onboarding/i });
-    await expect(heroFirstRead.getByText("Exact resume line", { exact: true })).toBeVisible();
+    const samplePreview = page.getByRole("article", { name: "Sample resume report preview", exact: true });
+    const launchDetail = samplePreview.getByRole("tabpanel", { name: /Add the result of the launch/i });
+    await expect(launchDetail.locator("blockquote")).toContainText(
+      "Ran a cross-team launch with clear owners and checkpoints.",
+    );
+    await expect(launchDetail).toContainText("It doesn't tell a recruiter whether the launch met its goal.");
+    await expect(launchDetail.getByRole("heading", { name: "Your next move", exact: true })).toBeVisible();
+    await expect(launchDetail).toContainText("Add a result you can verify. What was the launch meant to achieve, and what happened?");
+
+    const onboardingPriority = samplePreview.getByRole("tab", { name: /Explain how onboarding improved productivity/i });
+    await onboardingPriority.click();
+    await expect(onboardingPriority).toHaveAttribute("aria-selected", "true");
+    const onboardingDetail = samplePreview.getByRole("tabpanel", { name: /Explain how onboarding improved productivity/i });
+    await expect(onboardingDetail.locator("blockquote")).toContainText(
+      "Led onboarding work across the company, improving productivity.",
+    );
+    await expect(onboardingDetail).toContainText("How many people did you onboard, on which teams, and over what period?");
+    await expect(onboardingDetail).toContainText("Gather the missing details before editing.");
+    await expect(launchDetail).toBeHidden();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();

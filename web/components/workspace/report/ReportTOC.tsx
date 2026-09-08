@@ -8,10 +8,10 @@ interface ReportTOCProps {
 }
 
 const REPORT_TOC_ITEMS = [
-    { id: "section-first-impression", label: "Overview" },
-    { id: "section-fixes", label: "Fix these first" },
-    { id: "section-keep", label: "Keep these" },
-    { id: "section-role", label: "Role fit" },
+    { id: "section-first-impression", label: "Overview", mobileLabel: "Overview" },
+    { id: "section-fixes", label: "Fix these first", mobileLabel: "Fixes" },
+    { id: "section-keep", label: "Keep these", mobileLabel: "Keep" },
+    { id: "section-role", label: "Role fit", mobileLabel: "Role fit" },
 ] as const;
 
 function getScrollContainer(element: HTMLElement) {
@@ -95,7 +95,7 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
     }, [selectedId]);
 
     return (
-        <nav ref={navRef} aria-label="Resume report sections" className="mx-auto grid w-full grid-cols-2 gap-x-1 py-1 sm:flex sm:items-center sm:overflow-x-auto sm:py-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <nav ref={navRef} aria-label="Resume report sections" className="mx-auto grid w-full grid-cols-4 gap-x-1 sm:flex sm:items-center sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {REPORT_TOC_ITEMS.map((item) => {
                 const active = selectedId === item.id;
                 return (
@@ -104,13 +104,15 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
                         ref={(element) => { buttonRefs.current[item.id] = element; }}
                         key={item.id}
                         onClick={() => handleScroll(item.id)}
+                        aria-label={item.label}
                         aria-current={active ? "location" : undefined}
                         className={cn(
-                            "focus-ring relative min-h-11 w-full rounded-lg px-2 text-sm font-semibold transition-colors motion-reduce:transition-none sm:w-auto sm:shrink-0 sm:snap-start sm:px-4",
+                            "focus-ring relative min-h-11 w-full rounded-lg px-1 text-xs font-semibold transition-colors motion-reduce:transition-none sm:w-auto sm:shrink-0 sm:snap-start sm:px-4 sm:text-sm",
                             active ? "bg-surface-sky text-brand" : "text-muted-foreground hover:bg-proof hover:text-foreground"
                         )}
                     >
-                        {item.label}
+                        <span className="sm:hidden">{item.mobileLabel}</span>
+                        <span className="hidden sm:inline">{item.label}</span>
                     </button>
                 );
             })}

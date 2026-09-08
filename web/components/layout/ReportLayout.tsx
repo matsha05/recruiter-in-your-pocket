@@ -4,11 +4,12 @@ import styles from "./ReportLayout.module.css"
 interface ReportLayoutProps {
     children: React.ReactNode
     toc?: React.ReactNode
+    mobileReading?: boolean
 }
 
-export function ReportLayout({ children, toc }: ReportLayoutProps) {
+export function ReportLayout({ children, toc, mobileReading = false }: ReportLayoutProps) {
     return (
-        <div className={styles.shell}>
+        <div className={`${styles.shell} ${mobileReading ? styles.mobileReading : ""}`}>
             {toc && (
                 <aside
                     aria-label="Report navigation"

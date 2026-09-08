@@ -101,11 +101,11 @@ export function ReportStream({
   return (
     <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
-      <section id="section-first-impression" className="scroll-mt-36 pb-6 pt-2 sm:pb-8 sm:pt-4">
-        <div className="flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
+      <section id="section-first-impression" className={cn(styles.openingSection, "scroll-mt-36 pb-6 pt-2 sm:pb-8 sm:pt-4")}>
+        <div className={cn(styles.openingMeta, "flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4")}>
           <p className={styles.label}>First impression</p>
           {typeof report.score === "number" ? (
-            <div className="max-w-[14rem] text-right">
+            <div className={cn(styles.scoreContext, "max-w-[14rem] text-right")}>
               <p className={cn(styles.scoreSummary, "riyp-tabular-label text-xs font-semibold text-foreground")}>Clarity summary: {report.score}/100</p>
               <p className="mt-1 text-xs leading-5 text-muted-foreground">Not a prediction of interviews or offers.</p>
             </div>
@@ -114,7 +114,7 @@ export function ReportStream({
           )}
         </div>
 
-        <div className="pt-5">
+        <div className={cn(styles.openingCopy, "pt-5")}>
           <div>
             <h1 className={styles.openingTitle}>
               {report.first_impression_takeaway || "Here's where to start."}
@@ -134,7 +134,7 @@ export function ReportStream({
           </div>
         </div>
 
-        <div className="mt-2 flex justify-end">
+        <div className={cn(styles.fixesLink, "mt-2 flex justify-end")}>
           <button type="button" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => {
             const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });

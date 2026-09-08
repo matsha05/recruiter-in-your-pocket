@@ -195,7 +195,7 @@ export default function InputPanel({
                                 aria-expanded={showJD}
                                 className={cn(styles.roleToggle, "focus-ring")}
                             >
-                                <Target className={cn("size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="duotone" />
+                                <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="duotone" />
                                 <span className="min-w-0 flex-1">
                                     <span className="block text-base font-semibold text-foreground">Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></span>
                                     <span className="mt-0.5 block text-sm text-muted-foreground">Add a posting to see how your experience fits.</span>

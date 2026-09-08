@@ -181,7 +181,7 @@ export default function ReportPanel({
 
             {/* 3. The working report */}
             {showReport && !isLoading && displayReport && (
-                <ReportLayout toc={<ReportTOC activeId={tocActiveId} />}>
+                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} />}>
                         <div className="gap-y-6">
                             {isStreaming && (
                                 <div
@@ -231,7 +231,7 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-4">
+                            <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}
@@ -246,7 +246,7 @@ export default function ReportPanel({
                                             variant="brand"
                                             size="sm"
                                             onClick={onNewReport}
-                                            className="min-h-11 shrink-0 px-3 sm:px-4"
+                                            className="min-h-11 shrink-0 px-2 sm:px-4"
                                         >
                                             Get my free report <ArrowRight className="ml-1 size-4" weight="bold" />
                                         </Button>

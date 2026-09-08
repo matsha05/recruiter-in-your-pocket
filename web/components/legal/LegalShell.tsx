@@ -58,7 +58,7 @@ export function LegalShell({
 
                 {/* Content */}
                 <section className="px-5 pb-16 md:px-8 md:pb-24">
-                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
+                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm [overflow-wrap:anywhere] sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
                         {children}
                     </div>
                 </section>

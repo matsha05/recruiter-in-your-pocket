@@ -13,13 +13,13 @@ type EvidenceHeaderProps = {
 
 export function EvidenceHeader({ index = "01", label, title, note, className }: EvidenceHeaderProps) {
     return (
-        <DiagramHeader className={cn("items-start", className)}>
-            <div>
+        <DiagramHeader className={cn("items-start max-sm:grid max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-y-0", className)}>
+            <div className="max-sm:contents">
                 <div className="riyp-evidence-label text-brand">{label}</div>
-                <h3 className="riyp-evidence-title mt-3 max-w-[22ch] text-foreground">{title}</h3>
-                {note ? <p className="mt-3 max-w-reading text-data text-muted-foreground">{note}</p> : null}
+                <h3 className="riyp-evidence-title mt-3 max-w-[22ch] text-foreground max-sm:col-span-2 max-sm:max-w-none">{title}</h3>
+                {note ? <p className="mt-3 max-w-reading text-data text-muted-foreground max-sm:col-span-2">{note}</p> : null}
             </div>
-            <span className="riyp-evidence-label text-muted-foreground tabular-nums">FIG {index}</span>
+            <span className="riyp-evidence-label text-muted-foreground tabular-nums max-sm:col-start-2 max-sm:row-start-1 max-sm:whitespace-nowrap">FIG {index}</span>
         </DiagramHeader>
     );
 }

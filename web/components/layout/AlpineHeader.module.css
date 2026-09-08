@@ -11,4 +11,5 @@
 .navigation > button { color: hsl(var(--text-strong)); border-color: hsl(var(--text-strong) / .2); }
 .header a:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 5px; }
 @media (max-width: 1279px) { .links { display: none; } .navigation { margin-left: 24px; gap: 16px; } }
-@media (max-width: 700px) { .header .inner { min-height: 78px; padding: 18px 24px; } .wordmark { font-size: 10px; } .cta { display: none; } .navigation { flex: 0; } }
+@media (max-width: 700px) { .header .inner { min-height: 78px; padding: 14px 24px; } .wordmark { font-size: 12px; font-weight: 700; } .cta { display: none; } .navigation { flex: 0; } }
+@media (max-width: 360px) { .header .inner { padding-inline: 20px; } }

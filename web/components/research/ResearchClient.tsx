@@ -37,9 +37,9 @@ function ResearchSection({
             className={cn(
                 density === "hero" ? "bg-paper" : "bg-proof",
                 divider && "border-b border-line",
-                density === "hero" && "px-6 pb-14 pt-20 md:px-8 md:pb-18 md:pt-24",
-                density === "default" && "px-6 py-14 md:px-8 md:py-18",
-                density === "tight" && "px-6 py-10 md:px-8 md:py-12",
+                density === "hero" && "px-5 pb-14 pt-20 md:px-8 md:pb-18 md:pt-24",
+                density === "default" && "px-5 py-14 max-md:py-10 md:px-8 md:py-18",
+                density === "tight" && "px-5 py-6 md:px-8 md:py-12",
                 className
             )}
         >
@@ -53,29 +53,29 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
             href={article.href}
             className={cn(
                 "focus-ring group relative overflow-hidden rounded-2xl border border-line bg-card transition-colors hover:border-brand md:rounded-3xl",
-                featured && "grid min-h-[21rem] md:grid-cols-[1.2fr_0.8fr] md:items-stretch lg:col-span-2"
+                featured && "grid md:min-h-[21rem] md:grid-cols-[1.2fr_0.8fr] md:items-stretch lg:col-span-2"
             )}
         >
-            <div className={cn("p-6 md:p-7", featured && "flex flex-col justify-between md:p-9") }>
+            <div className={cn("p-5 md:p-7", featured && "flex flex-col justify-between md:p-9") }>
                 <div>
                     <div className="flex items-center justify-between gap-4">
                         <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                         {article.note ? <span className="riyp-evidence-label text-brand">{article.note}</span> : null}
                     </div>
-                    <h4 className={cn("mt-8 font-display text-report-title tracking-tight text-foreground transition-colors group-hover:text-brand", featured ? "max-w-[26ch]" : "max-w-[24ch]")}>{article.title}</h4>
-                    <p className={cn("mt-4 max-w-[38rem] leading-7 text-muted-foreground", featured ? "text-base" : "text-sm")}>{article.description}</p>
+                    <h4 className={cn("mt-5 font-display text-[1.375rem] leading-7 tracking-tight text-foreground transition-colors group-hover:text-brand md:mt-8 md:text-report-title md:tracking-tight", featured ? "max-w-[26ch]" : "max-w-[24ch]")}>{article.title}</h4>
+                    <p className={cn("mt-3 max-w-[38rem] text-sm leading-6 text-muted-foreground md:mt-4", featured ? "md:text-base" : "md:text-sm")}>{article.description}</p>
                 </div>
-                <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-4 text-xs text-muted-foreground">
+                <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4 text-xs text-muted-foreground md:mt-8 md:gap-4">
                     <span>{article.readTime}</span>
                     <span className="inline-flex items-center gap-2 font-semibold text-brand">Read the research <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" /></span>
                 </div>
             </div>
             {featured ? (
-                <div className="relative min-h-52 overflow-hidden border-t border-line bg-muted p-7 md:min-h-full md:border-l md:border-t-0">
-                    <div className="relative flex h-full flex-col justify-end">
-                        <FileMagnifyingGlass size={52} weight="duotone" className="text-brand" aria-hidden="true" />
-                        <p className="riyp-evidence-label mt-6 text-brand">Start here</p>
-                        <p className="mt-3 max-w-[24ch] text-sm leading-6 text-muted-foreground">Each article includes its sources and explains what the findings can tell you about your resume.</p>
+                <div className="relative overflow-hidden border-t border-line bg-muted p-5 md:min-h-full md:border-l md:border-t-0 md:p-7">
+                    <div className="relative grid grid-cols-[1.75rem_minmax(0,1fr)] items-start gap-x-3 md:flex md:h-full md:flex-col md:items-stretch md:justify-end">
+                        <FileMagnifyingGlass size={52} weight="duotone" className="size-7 text-brand md:size-[52px]" aria-hidden="true" />
+                        <p className="riyp-evidence-label text-brand md:mt-6">Start here</p>
+                        <p className="col-start-2 mt-2 text-sm leading-6 text-muted-foreground md:mt-3 md:max-w-[24ch]">Each article includes its sources and explains what the findings can tell you about your resume.</p>
                     </div>
                 </div>
             ) : null}
@@ -107,7 +107,7 @@ function ResearchLibrary() {
     };
 
     return (
-        <div className="mt-10 grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16">
+        <div className="mt-5 grid gap-6 md:mt-10 md:gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16">
             <nav aria-label="Filter evidence by topic" className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:flex-col">
                 {categories.map((category, index) => {
                     const active = category.id === activeCategory.id;
@@ -118,13 +118,13 @@ function ResearchLibrary() {
                             aria-pressed={active}
                             onClick={() => selectCategory(category.id)}
                             className={cn(
-                                "focus-ring flex min-h-12 items-center gap-3 rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors",
+                                "focus-ring flex min-h-11 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors md:min-h-12 md:gap-3",
                                 active
                                     ? "border-brand/40 bg-surface-sky text-brand"
                                     : "border-line text-muted-foreground hover:border-brand hover:text-foreground"
                             )}
                         >
-                            <span className={cn("h-0.5 w-5 shrink-0", active ? "bg-brand" : "bg-line")} />
+                            <span className={cn("h-0.5 w-3 shrink-0 md:w-5", active ? "bg-brand" : "bg-line")} />
                             <span><span className="mr-1.5 text-xs tabular-nums">{String(index + 1).padStart(2, "0")}</span>{category.navLabel}</span>
                         </button>
                     );
@@ -134,9 +134,9 @@ function ResearchLibrary() {
             <div>
                 <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
                 <p className="riyp-evidence-label text-brand">{activeCategory.descriptor}</p>
-                <h3 className="mt-3 max-w-[28ch] font-display text-3xl font-normal text-foreground md:text-section-title">{activeCategory.title}</h3>
-                <p className="mt-4 max-w-reading text-prose text-muted-foreground">{activeCategory.subtitle}</p>
-                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-normal text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
+                <p className="mt-3 max-w-reading text-base leading-6 text-muted-foreground md:mt-4 md:text-prose">{activeCategory.subtitle}</p>
+                <div className="mt-5 grid gap-3 md:mt-8 md:grid-cols-2 md:gap-4">
                     {activeCategory.articles.map((article, index) => <ResearchArticleCard key={article.id} article={article} index={index} featured={index === 0} />)}
                 </div>
             </div>
@@ -407,14 +407,14 @@ function ResearchEvidenceTrace() {
 export default function ResearchClient() {
     return (
         <div className="lift-page research-page selection:bg-brand/15" data-visual-anchor="research-hub">
-            <ResearchSection density="hero" className="!bg-paper !pb-9 !pt-24 md:!pb-12 md:!pt-28" containerClassName="max-w-screen-xl">
-                <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
+            <ResearchSection density="hero" className="!bg-paper !pb-6 !pt-24 md:!pb-12 md:!pt-28" containerClassName="max-w-screen-xl">
+                <div className="grid gap-4 md:gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
                     <div>
                         <p className="riyp-evidence-label text-brand">Evidence library</p>
                         <h1 className="mt-4 font-display text-workspace-title text-foreground md:text-page-title">Research</h1>
                     </div>
                     <div>
-                        <p className="max-w-reading text-prose text-muted-foreground">
+                        <p className="max-w-reading text-base leading-7 text-muted-foreground md:text-prose">
                             What does the evidence actually say? Find the studies, recruiter experiments, and platform documentation behind the advice.
                         </p>
                     </div>
