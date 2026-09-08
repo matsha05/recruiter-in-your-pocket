@@ -10,6 +10,12 @@ async function main() {
   const next = await startNextServer({ ensureBuild: false, dev: true });
 
   try {
+    // Finish the first development page compilation before the browser requests
+    // its chunks. A healthy API route alone does not establish page readiness.
+    const homepage = await fetch(next.baseUrl);
+    if (!homepage.ok) throw new Error(`Red-team homepage readiness failed: ${homepage.status}`);
+    await homepage.arrayBuffer();
+
     const playwrightBin = path.join(process.cwd(), "node_modules", ".bin", "playwright");
     const child = spawn(playwrightBin, ["test", "tests/ui/redteam-journeys.spec.ts", "--workers=1"], {
       cwd: process.cwd(),
