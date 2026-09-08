@@ -119,17 +119,18 @@ test.describe("launch red-team journeys", () => {
     const reportNavigation = page.getByRole("navigation", { name: "Resume report sections" });
     const navigationBoxes = await reportNavigation.getByRole("button").evaluateAll((buttons) => buttons.map((button) => {
       const rect = button.getBoundingClientRect();
-      return { left: rect.left, right: rect.right, top: Math.round(rect.top) };
+      return { left: rect.left, right: rect.right, top: Math.round(rect.top), height: rect.height };
     }));
     const headerBottom = await page.locator("header.site-header").evaluate((header) => (
       Math.round(header.getBoundingClientRect().bottom)
     ));
     expect(navigationBoxes).toHaveLength(4);
-    expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(2);
+    expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(1);
     for (const box of navigationBoxes) {
       expect(box.left).toBeGreaterThanOrEqual(0);
       expect(box.right).toBeLessThanOrEqual(390);
       expect(box.top).toBeGreaterThanOrEqual(headerBottom);
+      expect(box.height).toBeGreaterThanOrEqual(44);
     }
 
     const firstRead = page.locator("#section-first-impression");
