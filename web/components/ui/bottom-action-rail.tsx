@@ -94,7 +94,7 @@ export function BottomActionRail({
                                 "px-3 py-1.5 rounded-md text-sm font-medium",
                                 toast.type === "success" && "bg-success/10 text-success",
                                 toast.type === "error" && "bg-destructive/10 text-destructive",
-                                (!toast.type || toast.type === "info") && "bg-brand/10 text-brand"
+                                (!toast.type || toast.type === "info") && "bg-brand-tint text-brand"
                             )}
                         >
                             {toast.message}

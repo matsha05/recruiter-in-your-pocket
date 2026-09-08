@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
@@ -220,7 +221,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     // Loading state
     if (isLoading) {
         return (
-            <div className={cn("rounded border border-border bg-card p-4 animate-pulse", className)}>
+            <div className={cn("animate-pulse rounded-2xl border border-border bg-card p-5 motion-reduce:animate-none sm:rounded-3xl sm:p-6", className)}>
                 <div className="h-4 bg-muted rounded w-1/3"></div>
             </div>
         );
@@ -228,14 +229,14 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
 
     if (profileError) {
         return (
-            <div className={cn("border-l-2 border-destructive bg-error p-4", className)} role="alert">
-                <div className="flex items-start gap-3">
+            <div className={cn("rounded-2xl border border-destructive/30 bg-error-surface p-5 sm:rounded-3xl sm:p-6", className)} role="alert">
+                <div className="flex min-w-0 items-start gap-3">
                     <AlertCircle className="mt-0.5 size-5 shrink-0 text-destructive" />
                     <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium text-foreground">{profileError}</p>
                         <p className="mt-1 text-xs text-muted-foreground">Your saved resume has not been removed.</p>
                     </div>
-                    <button type="button" onClick={() => void fetchProfile()} className="inline-flex min-h-11 shrink-0 items-center px-2 text-xs font-semibold text-foreground hover:text-brand">Retry</button>
+                    <button type="button" onClick={() => void fetchProfile()} className="inline-flex min-h-11 shrink-0 items-center rounded-xl px-3 text-sm font-medium text-foreground hover:bg-muted hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">Retry</button>
                 </div>
             </div>
         );
@@ -245,18 +246,18 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     if (profile?.hasResume) {
         return (
             <div className={cn(
-                "rounded border border-success/30 bg-success/5 p-4",
+                "rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6",
                 className
             )}>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="size-8 rounded bg-success/10 flex items-center justify-center">
+                <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex min-w-0 items-start gap-3">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-success/10">
                             <Check className="size-4 text-success" />
                         </div>
-                        <div>
-                            <div className="flex items-center gap-2">
+                        <div className="min-w-0 flex-1">
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                                 {isRenaming ? (
-                                    <div className="flex items-center gap-1">
+                                    <div className="flex w-full min-w-0 items-center gap-1">
                                         <input
                                             type="text"
                                             value={renameValue}
@@ -266,21 +267,21 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                                 if (e.key === 'Enter') handleRename();
                                                 if (e.key === 'Escape') setIsRenaming(false);
                                             }}
-                                            className="h-6 px-1.5 text-sm font-medium border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-brand"
+                                            className="min-h-12 w-full min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-base font-medium focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                                             aria-label="Resume filename"
                                             autoFocus
                                         />
                                         <button type="button"
                                             onClick={handleRename}
                                             disabled={isSaving}
-                                            className="inline-flex size-11 items-center justify-center rounded text-success hover:bg-success/10"
+                                            className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-success hover:bg-success/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                                             aria-label="Save resume filename"
                                         >
                                             <Check className="size-3" />
                                         </button>
                                         <button type="button"
                                             onClick={() => setIsRenaming(false)}
-                                            className="inline-flex size-11 items-center justify-center rounded text-muted-foreground hover:bg-muted"
+                                            className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                                             aria-label="Cancel resume rename"
                                         >
                                             <X className="size-3" />
@@ -288,7 +289,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                     </div>
                                 ) : (
                                     <>
-                                        <span className="font-medium text-foreground text-sm">
+                                        <span className="min-w-0 break-words text-base font-medium text-foreground">
                                             {profile.resumeFilename || 'Default resume saved'}
                                         </span>
                                         <button type="button"
@@ -296,7 +297,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                                 setRenameValue(profile.resumeFilename || '');
                                                 setIsRenaming(true);
                                             }}
-                                            className="inline-flex size-11 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                            className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                                             title="Rename"
                                             aria-label="Rename resume"
                                         >
@@ -304,11 +305,11 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                         </button>
                                     </>
                                 )}
-                                <span className="text-xs text-success bg-success/10 px-1.5 py-0.5 rounded-sm">
+                                <span className="rounded-full bg-success/10 px-2.5 py-1 text-xs font-medium text-success">
                                     Active
                                 </span>
                             </div>
-                            <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-muted-foreground">
                                 <span className="flex items-center gap-1">
                                     <Target className="size-3" />
                                     {profile.skillsCount} skills identified
@@ -321,7 +322,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                     <button type="button"
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isSaving}
-                        className="inline-flex min-h-11 items-center gap-1.5 px-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                        className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                         aria-label="Upload a different resume"
                     >
                         <RefreshCw className={cn("size-3", isSaving && "animate-spin")} />
@@ -346,10 +347,10 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
 
     if (!user) {
         return (
-            <div className={cn("rounded border border-border/60 bg-card p-4", className)}>
-                <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-3">
-                        <div className="flex size-8 items-center justify-center rounded bg-muted/50">
+            <div className={cn("rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6", className)}>
+                <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div className="flex min-w-0 items-start gap-3">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted">
                             <Upload className="size-4 text-muted-foreground" />
                         </div>
                         <div>
@@ -359,12 +360,13 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                             </p>
                         </div>
                     </div>
-                    <Link
-                        href="/auth?from=jobs"
-                        className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-xs font-semibold text-background transition-colors hover:bg-foreground/90"
-                    >
-                        Sign In
-                    </Link>
+                    <Button asChild className="shrink-0">
+                      <Link
+                          href="/auth?from=jobs"
+                      >
+                          Sign In
+                      </Link>
+                    </Button>
                 </div>
             </div>
         );
@@ -374,10 +376,10 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     return (
         <div
             className={cn(
-                "relative rounded border-2 border-dashed transition-all duration-200 cursor-pointer p-4",
+                "relative cursor-pointer rounded-2xl border border-dashed border-input bg-card p-5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:rounded-3xl sm:p-6",
                 isDragOver
-                    ? "border-brand bg-brand/5"
-                    : "border-border/50 hover:border-brand/50 hover:bg-muted/30",
+                    ? "border-brand bg-brand/10"
+                    : "border-input hover:border-brand hover:bg-brand/5",
                 className
             )}
             onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
@@ -398,7 +400,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             aria-label="Upload resume for job matching"
         >
             {isSaving ? (
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 items-start gap-3">
                     <Loader2 className="size-5 text-brand animate-spin" />
                     <div>
                         <p className="text-sm font-medium text-foreground">Saving your resume…</p>
@@ -406,8 +408,8 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                     </div>
                 </div>
             ) : (
-                <div className="flex items-center gap-3">
-                    <div className="size-8 rounded bg-muted/50 flex items-center justify-center">
+                <div className="flex min-w-0 items-start gap-3">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted">
                         <Upload className="size-4 text-muted-foreground" />
                     </div>
                     <div>

@@ -46,7 +46,7 @@ export function DiagramHeader({ label, className, rightSlot, children }: Diagram
           {label}
         </span>
       )}
-      {rightSlot ? <div className="text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground tabular-nums">{rightSlot}</div> : null}
+      {rightSlot ? <div className="riyp-evidence-label text-muted-foreground tabular-nums">{rightSlot}</div> : null}
     </div>
   );
 }
@@ -71,10 +71,10 @@ export function DiagramCaption({
     <figcaption className={cn("mt-4 grid gap-1 border-t border-line pt-3 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-6", alignClass, className)}>
       {kicker ? <span className="block riyp-figure-kicker">{kicker}</span> : null}
       {title ? (
-        <span className="block text-sm font-semibold leading-6 text-foreground">{title}</span>
+        <span className="block text-data font-medium text-foreground">{title}</span>
       ) : null}
       {description ? (
-        <span className="block text-xs leading-5 text-muted-foreground md:col-start-2">{description}</span>
+        <span className="block text-data text-muted-foreground md:col-start-2">{description}</span>
       ) : null}
     </figcaption>
   );
@@ -96,7 +96,7 @@ export function DiagramBulletList({ items, dense, className }: DiagramBulletList
       )}
     >
       {items.map((item) => (
-        <li key={item} className="text-sm leading-6 text-muted-foreground">
+        <li key={item} className="text-data text-muted-foreground">
           {item}
         </li>
       ))}

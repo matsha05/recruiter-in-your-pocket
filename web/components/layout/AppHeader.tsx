@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
-import { PocketMark, Wordmark } from "@/components/icons";
+import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "./MobileNav";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
@@ -50,12 +50,10 @@ export function AppHeader() {
         <header className="app-shell-header">
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-2.5 rounded-md">
-                    <PocketMark className="size-9 text-background sm:hidden" />
-                    <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background sm:hidden">Recruiter in<br />Your Pocket</span>
-                    <Wordmark className="site-wordmark hidden text-background sm:inline-flex" />
+                    <Wordmark compact className="site-wordmark text-foreground" />
                 </Link>
 
-                <nav className="flex items-center gap-1 md:gap-2">
+                <nav className="flex items-center gap-1 md:gap-2" aria-label="Main navigation">
                     <div className="hidden items-center gap-1 md:flex">
                         {APP_NAV.map((item) => {
                             const active = isActive(item.href);
@@ -77,11 +75,11 @@ export function AppHeader() {
                     <div className="flex items-center gap-1.5">
                         {authLoading ? (
                             <span
-                                className="hidden size-11 items-center justify-center border border-background/15 bg-background/5 md:flex"
+                                className="hidden size-11 items-center justify-center rounded-[10px] border border-border bg-card md:flex"
                                 role="status"
                                 aria-label="Checking account status"
                             >
-                                <span className="size-1.5 animate-pulse rounded-full bg-citron motion-reduce:animate-none" aria-hidden="true" />
+                                <span className="size-1.5 animate-pulse rounded-full bg-brand motion-reduce:animate-none" aria-hidden="true" />
                             </span>
                         ) : user ? (
                             <div className="hidden md:block">

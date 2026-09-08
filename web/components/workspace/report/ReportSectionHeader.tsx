@@ -2,14 +2,15 @@
 
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import styles from "./ReportStream.module.css";
 
 /**
  * ReportSectionHeader
  * 
  * A systemized header component for all report sections.
- * Typography follows V3 design system:
- * - Eyebrow: compact Instrument Sans label treatment
- * - Subtitle: narrowed Instrument Sans display treatment for recruiter judgment
+ * Typography follows the shared browser design system:
+ * - Eyebrow: compact shared sans label treatment
+ * - Subtitle: readable report heading scale
  * 
  * Usage:
  *   <ReportSectionHeader
@@ -41,7 +42,7 @@ export function ReportSectionHeader({
         <div className={cn("space-y-3", className)}>
             {/* Eyebrow: Number + Title + Optional Badge */}
             <div className="flex items-center justify-between gap-3">
-                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {icon}
                     {number}. {title}
                 </h2>
@@ -49,7 +50,7 @@ export function ReportSectionHeader({
             </div>
 
             {subtitle ? (
-                <p className="max-w-2xl font-display text-[1.15rem] font-medium leading-snug tracking-tight text-foreground md:text-[1.25rem]">
+                <p className={cn(styles.sectionTitle, "max-w-2xl")}>
                     {subtitle}
                 </p>
             ) : null}

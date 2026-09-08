@@ -9,7 +9,7 @@ export function SupportReplySubmitButton({ disabled = false }: { disabled?: bool
     <button
       type="submit"
       disabled={disabled || pending}
-      className="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-5 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
+      className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {pending ? "Sending privately…" : disabled ? "Reply sent" : "Send private reply"}
     </button>

@@ -21,8 +21,8 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     const resolvedParams = await params;
 
     return (
-        <div className="flex-1 p-6 md:p-8 lg:p-12">
-            <div className="mx-auto w-full max-w-5xl">
+        <div className="flex-1 bg-background px-4 py-8 sm:px-6 sm:py-12">
+            <div className="mx-auto w-full max-w-workspace">
                 <JobDetailClient jobId={resolvedParams.id} />
             </div>
         </div>

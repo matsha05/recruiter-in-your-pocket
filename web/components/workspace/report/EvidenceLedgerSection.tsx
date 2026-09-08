@@ -24,7 +24,7 @@ type LedgerItem = {
 };
 
 const confidenceStyles: Record<NonNullable<LedgerItem["confidence"]>, string> = {
-  high: "bg-brand/10 text-brand",
+  high: "bg-brand-tint text-brand",
   medium: "bg-muted/50 text-muted-foreground",
   low: "bg-warning/10 text-warning-foreground"
 };

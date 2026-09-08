@@ -1,4 +1,4 @@
-# Research UI Contract (v5.0 - Lifted Line)
+# Research UI Contract (v6.0 - Alpine)
 
 Applies to: Research hub and all Hiring Research Library articles.
 
@@ -47,30 +47,30 @@ They should not feel like:
 ## 3. Visual Language
 
 ### Typography and Layout
-- Headlines and large findings use Space Grotesk Variable; body, labels, controls, and data use Instrument Sans.
+- Headlines, large findings, body, labels, controls, and data use the shared Instrument Sans family, weights 400-700. Display/body 400, controls 600, labels 600. Selected short verdicts may use Source Serif 4 at 400 through the shared editorial token.
 - Use the exact type roles, weights, tracking, and leading defined in `docs/design-system.md`. Research does not have a separate editorial font system.
 - Favor whitespace, clear sectioning, and tight editorial hierarchy.
 - Use lists and rules to structure reading flow.
-- Use the same rectilinear report grammar as the approved homepage and report references: ink structural chrome, warm chalk fields, pale-cyan teaching surfaces, and one restrained citron completion cue where it carries meaning.
+- Prose uses 18px/30px at about 66ch. Tables use 14px/22px with labeled numeric columns. Report excerpts remain readable at 16px/25px rather than marketing-preview scale.
+- Use the approved Alpine materials: warm canvas and paper sheets, quiet headers, restrained aqua, dark pill actions, and softened sheet geometry. The older ink-header, neon-CTA, and rectilinear requirements are retired.
 
 ### Color Contract
 Primary palette:
 - `--foreground` for text and primary strokes
-- `--muted` for supporting text and labels
-- `--border` for dividers and figure frames
-- `--brand` (deep cyan) for recruiter insight, action, active evidence, and key findings
-- `--cyan-bright` for small active indicators and 2px rules only
-- `--citron` for acquisition, selection, and completed evidence
-- `--surface-sky` for explanatory fields and evidence stages
-- `--annotation` for consequential edits or omissions; it maps to readable deep cyan
+- `--text-muted` / muted foreground for supporting text and labels
+- `--line` for subtle dividers; the stronger control boundary identifies inputs
+- `--brand` / `--brand-strong` (aqua) for readable links, focus, active evidence, and key findings
+- `--surface-sky` / `--brand-tint` for restrained aqua explanatory fields
+- `--annotation` for consequential edits or omissions; it maps to readable aqua
+- Cyan-bright and apricot names are compatibility aliases into the approved palette. Citron #c8f238 and its butter alias remain explicitly permitted for compatibility, not general action or header colors.
 
 Allowable accent usage:
-- Deep cyan for readable emphasis, links, and data focus.
-- Citron for a single completed or selected state, never as general decoration.
+- Aqua for readable emphasis, links, and data focus; the darker aqua role is for hover/emphasis. Pair selection/completion with explicit labels or icons.
+- Ink for dark pill primary actions; neutral surfaces for evidence and restrained aqua when grouping adds meaning.
 - Heatmaps are allowed only when raw spatial data is available; illustrative attention maps are prohibited.
-- Gradients are not part of the Lifted Line reference system and should not be introduced for atmosphere.
+- Gradients should not be introduced for atmosphere.
 
-Research content should remain mostly warm white and graphite, with pale sky used to distinguish diagrams and proof fields.
+Research uses canvas #f6f3ef, sheet #fbfaf8, inset #f0efeb, ink #12191b, muted #5f6667, aqua #00738f, aqua surface #e6f3f2, divider #dcdedb, and control boundary #7e888a. Use shared semantic tokens rather than route-local values. Keep diagnostic findings distinct from operational errors and preserve success, warning, and error semantics.
 
 ---
 
@@ -98,21 +98,21 @@ Figures are the primary place where visual expression is encouraged.
 
 ### Visual Style
 - Strokes: 1px or 1.5px.
-- Corners: 4 radius for UI elements, up to 12 radius inside figures when it improves legibility.
+- Corners: 10px for fields, 12px for inset figures, 24px desktop/16px mobile for main sheets. Primary actions are pills; not every utility control is a pill.
 - Fills: flat or subtle gradients inside figures only.
 - Shadows: a single soft shadow is allowed inside a figure to create depth or separation.
 - Backgrounds: transparent or `--background`.
 - Annotations: callout chips, underlines, and highlighter bars are allowed if they map to the insight.
 
 ### Typography in Figures
-- Axis labels: Instrument Sans, 10px, uppercase, `--muted`, with tabular numerics where numbers appear.
-- Data labels: Instrument Sans, 11px, `--foreground`, with tabular numerics where numbers appear.
-- Figure caption: Instrument Sans, 12px, `--muted`.
-- Key conclusion callout: Space Grotesk Variable, 24 to 40px, with Instrument Sans supporting detail.
+- Axis labels: Instrument Sans, normally at least 12px at actual display size, muted foreground, tabular numerics where numbers appear.
+- Data labels: Instrument Sans, 12-14px, foreground, tabular numerics where numbers appear.
+- Figure caption: Instrument Sans, 14px/22px, muted foreground.
+- Key conclusion callout: Instrument Sans, 24px/30px, with readable Instrument Sans supporting detail.
 
 ### Figure Labeling
 Every figure must include:
-- Figure number: "Fig. 1" (Instrument Sans, 10px, uppercase, muted, tabular numerics)
+- Figure number: "Fig. 1" (Instrument Sans, 12px, weight 600, muted foreground, tabular numerics)
 - Caption: one sentence explaining what the figure shows
 
 Captions can live under the figure or inside the figure if the layout demands it.
@@ -157,8 +157,8 @@ Citation content and source quality follow `docs/source-quality.md`. Figure stru
 - Sources and notes
 
 ### Cross-surface fidelity
-- The approved landing, workspace, report, and pricing reference images are visual contracts, not inspiration.
-- Research must use the same header height, wordmark treatment, font pairing, ink/chalk/cyan/citron palette, line weight, radius language, action treatment, and footer as those references.
+- The approved Alpine homepage and shared product contract govern the visual system. Old baseline captures document migration gaps, not competing reference designs.
+- Research shares the warm header, wordmark, Instrument Sans/Source Serif 4 tokens, warm neutral/aqua palette, line weights, softened geometry, dark pill actions, and footer. Reading density varies intentionally.
 - The research index and every article must be checked at 390, 1024, and 1440 pixels.
 - Shared article and diagram primitives are the source of truth. Route-level overrides may explain a specific idea, but may not introduce a competing visual system.
 
@@ -207,11 +207,13 @@ Before merge, every research page must pass:
 - Figures are labeled and captioned
 - Motion is purposeful and non-looping
 - All claims are cited
-- No retired serif, iris, teal-first, premium-color, gradient, or glass treatment
+- No retired font pairing, iris/teal-first/premium color system, atmospheric gradient, or glass treatment; Source Serif 4 is approved only for short verdicts
 - Any anecdotal callout is labeled and qualitative
 - No legacy palette utility relies on a scoped compatibility override
 - No horizontal overflow at 320 or 390 pixels
-- Header, footer, CTA, and article shell match the approved Lifted Line references
+- Header, footer, CTA, and article shell match the approved Alpine system
+- Visible keyboard focus, labeled controls/errors, 44px targets, sufficient text/graphics contrast, and reduced-motion behavior remain release requirements
+- Check actual display-size figure labels, long titles, 200% zoom, and narrow layouts; screenshots alone do not prove accessibility
 
 Restraint is still the baseline. Use visual craft to deepen understanding, not to decorate.
 

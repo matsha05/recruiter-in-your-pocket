@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useCallback, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, AlertCircle } from "lucide-react";
@@ -86,7 +87,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
 
   if (authLoading || loading) {
     return (
-      <div data-visual-anchor="job-detail-page" className="app-card flex items-center justify-center py-24">
+      <div data-visual-anchor="job-detail-page" className="flex items-center justify-center rounded-2xl border border-border bg-card px-5 py-24 sm:rounded-3xl">
         <div className="text-muted-foreground">Loading job details…</div>
       </div>
     );
@@ -94,28 +95,31 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
 
   if (error || !job) {
     return (
-      <div data-visual-anchor="job-detail-page" className="gap-y-4">
+      <div data-visual-anchor="job-detail-page" className="space-y-4">
         <Link
           href="/jobs"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
         >
           <ArrowLeft className="size-4" />
           Back to Jobs
         </Link>
-        <div className="app-card p-8 text-center" role="alert">
+        <div className="rounded-2xl border border-border bg-card px-5 py-10 text-center sm:rounded-3xl sm:p-10" role="alert">
           <AlertCircle className="size-8 mx-auto text-destructive mb-3" />
           <p className="text-muted-foreground">{error || "Job not found"}</p>
           {error?.includes("no longer available") ? (
-            <Link
-              href="/workspace"
-              className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:bg-foreground/90"
-            >
-              Start a report
-            </Link>
+            <Button asChild className="mt-4">
+              <Link
+                href="/workspace"
+              >
+                Start a report
+              </Link>
+            </Button>
           ) : error?.includes("Sign in") ? (
-            <Link href={`/auth?from=jobs&next=${encodeURIComponent(`/jobs/${jobId}`)}`} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:bg-foreground/90">Sign in</Link>
+            <Button asChild className="mt-4">
+              <Link href={`/auth?from=jobs&next=${encodeURIComponent(`/jobs/${jobId}`)}`}>Sign in</Link>
+            </Button>
           ) : (
-            <button type="button" onClick={() => void fetchJob()} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md border border-foreground px-4 py-2 text-sm font-semibold text-foreground hover:bg-paper-muted">Retry</button>
+            <Button type="button" onClick={() => void fetchJob()} variant="outline" className="mt-4">Retry</Button>
           )}
         </div>
       </div>
@@ -125,10 +129,10 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
   const score = job.match_score ?? null;
 
   return (
-    <div data-visual-anchor="job-detail-page" className="gap-y-6">
+    <div data-visual-anchor="job-detail-page" className="space-y-6">
       <Link
         href="/jobs"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
         <ArrowLeft className="size-4" />
         Back to Jobs
@@ -140,11 +144,11 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
         description="Compare your resume with the job description and track your application."
         meta={
           <>
-            <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
+            <span className="inline-flex max-w-full items-center rounded-full bg-brand-tint px-3 py-1.5 text-xs font-medium text-brand [overflow-wrap:anywhere]">
               {job.company}
             </span>
             {job.location ? (
-              <span className="inline-flex items-center border-l-2 border-line bg-paper-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="inline-flex max-w-full items-center rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground [overflow-wrap:anywhere]">
                 {job.location}
               </span>
             ) : null}

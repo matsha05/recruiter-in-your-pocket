@@ -7,6 +7,7 @@ import { FilePdf, FileText, UploadSimple, WarningCircle, X } from "@phosphor-ico
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { ChangeEvent } from "react";
+import styles from "./ResumeDropzone.module.css";
 
 interface ResumeDropzoneProps {
     onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
@@ -209,14 +210,14 @@ export function ResumeDropzone({
     return (
         <div className={cn("w-full", className)}>
             {displayFileName ? (
-                <div className="animate-in fade-in slide-in-from-top-2 flex min-h-40 items-center justify-between gap-4 border border-brand/25 bg-brand/5 p-5 sm:p-6">
+                <div className={cn(styles.accepted, "animate-in fade-in slide-in-from-top-2 motion-reduce:animate-none")}>
                     <span
                         role="status"
                         aria-live="polite"
                         aria-atomic="true"
                         className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand"
                     >
-                        <span className="flex size-11 shrink-0 items-center justify-center rounded-sm bg-brand/10">
+                        <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/10">
                             <FileText aria-hidden="true" className="size-5" weight="duotone" />
                         </span>
                         <span className="min-w-0">
@@ -236,15 +237,15 @@ export function ResumeDropzone({
                     </Button>
                 </div>
             ) : rejectedFile && error ? (
-                <div className="workspace-upload-drop animate-in fade-in slide-in-from-top-2 flex flex-col items-center justify-center border border-dashed border-destructive/55 bg-error-surface px-6 py-8">
-                    <div className="workspace-error-file flex w-full items-center justify-between gap-4 border border-line bg-background px-5 py-4">
+                <div className={cn(styles.rejected, "animate-in fade-in slide-in-from-top-2 motion-reduce:animate-none")}>
+                    <div className={styles.rejectedFile}>
                         <div className="flex min-w-0 items-center gap-4">
                             <span className="flex size-11 shrink-0 items-center justify-center text-destructive">
                                 <FilePdf className="size-10" weight="duotone" />
                             </span>
                             <div className="min-w-0">
-                                <p className="truncate text-xl font-semibold text-foreground">{rejectedFile.name}</p>
-                                <p className="mt-1 text-base tabular-nums text-muted-foreground">{formatMegabytes(rejectedFile.size)}</p>
+                                <p className="truncate text-base font-semibold text-foreground">{rejectedFile.name}</p>
+                                <p className="mt-1 text-sm tabular-nums text-muted-foreground">{formatMegabytes(rejectedFile.size)}</p>
                             </div>
                         </div>
                         <button
@@ -258,11 +259,11 @@ export function ResumeDropzone({
                     </div>
                     <div className="mt-5 flex items-center gap-2 text-destructive">
                         <WarningCircle className="size-5 shrink-0" weight="bold" />
-                        <p role="alert" className="text-lg font-medium leading-6">{error}</p>
+                        <p role="alert" className="text-base leading-6">{error}</p>
                     </div>
                     <Button
                         type="button"
-                        variant="outline"
+                        variant="brand"
                         size="sm"
                         onClick={() => {
                             setRejectedFile(null);
@@ -270,7 +271,7 @@ export function ResumeDropzone({
                             onValidationStateChange?.(false);
                             window.setTimeout(open, 0);
                         }}
-                        className="workspace-error-action mt-5 border-foreground bg-background text-foreground hover:border-foreground hover:bg-background"
+                        className="mt-5 min-h-12 px-6 text-sm"
                     >
                         Choose another file
                     </Button>
@@ -281,39 +282,37 @@ export function ResumeDropzone({
                         {...getRootProps()}
                         onPointerDown={handleDropzonePointerDown}
                         className={cn(
-                            "workspace-upload-drop group relative flex cursor-pointer flex-col items-center justify-center border border-dashed px-5 py-8 text-center transition-all duration-150",
-                            isDragActive
-                                ? "border-brand/55 bg-brand/5"
-                                : "border-border/55 bg-paper-muted/45 hover:border-brand/45 hover:bg-brand/5",
-                            isDragReject && "border-destructive/50 bg-destructive/5",
-                            isProcessing && "opacity-50 cursor-not-allowed"
+                            styles.drop,
+                            isDragActive && styles.dragActive,
+                            isDragReject && styles.dragRejected,
+                            isProcessing && styles.processing
                         )}
                     >
                         <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
 
-                        <span className="flex items-center justify-center text-cyan-bright transition-transform duration-150 group-hover:-translate-y-0.5">
-                            <UploadSimple className="size-11" weight="regular" />
+                        <span className={styles.uploadIcon}>
+                            <UploadSimple className="size-7" weight="regular" />
                         </span>
 
                         <div className="mt-5">
-                            <p className="font-display text-2xl riyp-weight-520 leading-tight text-foreground">
+                            <p className={styles.title}>
                                 Drop your resume here
                             </p>
-                            <p className="mt-2 text-lg leading-6 text-muted-foreground">
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">
                                 PDF or DOCX · 4 MB max
                             </p>
                         </div>
 
                         <Button
                             type="button"
-                            variant="outline"
+                            variant="brand"
                             size="sm"
                             onClick={(event) => {
                                 event.stopPropagation();
                                 openFilePicker(event);
                             }}
                             disabled={isProcessing}
-                            className="mt-5 min-h-12 border-foreground bg-paper px-6 text-lg text-foreground hover:border-foreground hover:bg-paper"
+                            className="mt-5 min-h-12 px-6 text-sm"
                         >
                             Choose a file
                         </Button>

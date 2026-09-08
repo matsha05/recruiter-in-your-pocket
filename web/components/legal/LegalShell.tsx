@@ -15,7 +15,7 @@ type LegalShellProps = {
     contentClassName?: string;
 };
 
-/** Lifted Line shell for factual trust and legal surfaces. */
+/** Shared reading layout for factual trust and legal surfaces. */
 export function LegalShell({
     pageKey,
     eyebrow,
@@ -27,23 +27,23 @@ export function LegalShell({
 }: LegalShellProps) {
     return (
         <>
-            <div data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
+            <div data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                 {/* Hero */}
                 <section className="px-5 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-[72rem]">
-                        <LegalNav className="mb-8 md:mb-10" />
-                        <div className="grid gap-5 border-t border-line pt-7 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-12">
-                            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
+                    <div className="mx-auto max-w-report">
+                        <LegalNav className="mb-10 md:mb-14" />
+                        <div className="mx-auto max-w-form">
+                            <p className="mb-4 text-label uppercase tracking-wider text-muted-foreground">
                                 {eyebrow}
                             </p>
                             <div>
                                 <h1
                                     id={pageKey ? `legal-${pageKey}-title` : undefined}
-                                    className="max-w-[18ch] text-balance font-display text-[clamp(3rem,6vw,5.4rem)] riyp-weight-520 leading-[0.94] tracking-[-0.045em] text-foreground riyp-stretch-90"
+                                    className="max-w-xl text-balance font-display text-workspace-title text-foreground md:text-page-title"
                                 >
                                     {title}
                                 </h1>
-                                <p className="mt-5 max-w-[42rem] text-pretty text-lg leading-8 text-muted-foreground">
+                                <p className="mt-5 max-w-reading text-pretty text-prose text-muted-foreground">
                                     {description}
                                 </p>
                                 {lastUpdated && (
@@ -58,7 +58,7 @@ export function LegalShell({
 
                 {/* Content */}
                 <section className="px-5 pb-16 md:px-8 md:pb-24">
-                    <div className={cn("mx-auto max-w-[48rem] space-y-2", contentClassName)}>
+                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
                         {children}
                     </div>
                 </section>

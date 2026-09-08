@@ -83,7 +83,7 @@ for (const viewport of [
       const firstFix = page.locator("#section-fix-1");
       await expect(firstFix.getByRole("list", { name: "How fix 1 moves from resume evidence to clearer wording", exact: true })).toHaveCount(0);
       await expect(page.locator("#section-fix-2").getByRole("list", { name: "How fix 2 moves from resume evidence to clearer wording", exact: true })).toBeVisible();
-      expect(await firstFix.getByRole("heading", { level: 3 }).evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize))).toBeGreaterThan(24);
+      expect(await firstFix.getByRole("heading", { level: 3 }).evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize))).toBe(24);
     }
 
     const fixesHeight = await page.locator("#section-fixes").evaluate((section) => section.getBoundingClientRect().height);
@@ -115,8 +115,7 @@ for (const width of [320, 390]) {
     const firstFix = page.locator("#section-fix-1");
     const title = firstFix.getByRole("heading", { level: 3 });
     const titleSize = await title.evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize));
-    expect(titleSize, "The action title stays readable without consuming the small-screen reading area").toBeGreaterThanOrEqual(18);
-    expect(titleSize).toBeLessThanOrEqual(22);
+    expect(titleSize, "The action title uses the shared 24px report heading scale").toBe(24);
     await expect(firstFix.locator('ol[aria-label="How fix 1 moves from resume evidence to clearer wording"]')).toBeHidden();
 
     // Inspect the source text and question label themselves. Checking document

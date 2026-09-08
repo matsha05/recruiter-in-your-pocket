@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
@@ -24,10 +24,14 @@ export function calculateReferralComparison(salary: number, coldRate: number, re
 }
 
 export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number }) {
+    const [isHydrated, setIsHydrated] = useState(false);
     const [salary, setSalary] = useState(120000);
     const [coldRate, setColdRate] = useState(2);
     const [referralRate, setReferralRate] = useState(40);
     const [minutesPerApp, setMinutesPerApp] = useState(45);
+
+    // Do not accept slider input before React can preserve the change.
+    useEffect(() => setIsHydrated(true), []);
 
     const stats = useMemo(() => calculateReferralComparison(salary, coldRate, referralRate, minutesPerApp), [salary, coldRate, referralRate, minutesPerApp]);
     const timeLabel = stats.hoursDifference === null || stats.hoursDifference === 0 ? "Time difference" : stats.hoursDifference > 0 ? "Time saved with referral" : "Time added with referral";
@@ -38,10 +42,10 @@ export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number
                 <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="Example calculator" title="Compare applications at different callback rates." note="The starting rates are examples, not research benchmarks. Change them to explore the arithmetic; this does not predict your results." />
                 <div className="grid gap-10 px-5 py-7 md:grid-cols-[0.85fr_1.15fr] md:px-7 md:py-9">
                     <div className="space-y-6">
-                        <RangeControl id="salary" label="Annual salary" value={salary} onChange={setSalary} min={30000} max={500000} step={5000} display={formatCurrency(salary)} />
-                        <RangeControl id="minutes" label="Minutes per application" value={minutesPerApp} onChange={setMinutesPerApp} min={5} max={120} step={5} display={`${minutesPerApp} min`} />
-                        <RangeControl id="cold-rate" label="Callback rate without referral" value={coldRate} onChange={setColdRate} min={0} max={90} step={0.5} display={`${coldRate}%`} />
-                        <RangeControl id="referral-rate" label="Callback rate with referral" value={referralRate} onChange={setReferralRate} min={0} max={90} step={0.5} display={`${referralRate}%`} accent />
+                        <RangeControl id="salary" label="Annual salary" value={salary} onChange={setSalary} min={30000} max={500000} step={5000} display={formatCurrency(salary)} disabled={!isHydrated} />
+                        <RangeControl id="minutes" label="Minutes per application" value={minutesPerApp} onChange={setMinutesPerApp} min={5} max={120} step={5} display={`${minutesPerApp} min`} disabled={!isHydrated} />
+                        <RangeControl id="cold-rate" label="Callback rate without referral" value={coldRate} onChange={setColdRate} min={0} max={90} step={0.5} display={`${coldRate}%`} disabled={!isHydrated} />
+                        <RangeControl id="referral-rate" label="Callback rate with referral" value={referralRate} onChange={setReferralRate} min={0} max={90} step={0.5} display={`${referralRate}%`} disabled={!isHydrated} accent />
                     </div>
 
                     <div className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
@@ -51,10 +55,10 @@ export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number
                             <ModelBar label={`With referral / ${referralRate}%`} value={stats.referralAppsNeeded === null ? "No callbacks" : formatCount(stats.referralAppsNeeded)} width={stats.referralWidth} accent />
                         </div>
                         <dl className="mt-9 grid grid-cols-2 border-y border-line">
-                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-muted-foreground">{timeLabel}</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.hoursDifference === null ? "No estimate" : `${formatCount(Math.abs(stats.hoursDifference))}h`}</dd></div>
-                            <div className="border-l border-line py-4 pl-4"><dt className="riyp-evidence-label text-muted-foreground">Value of that time</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.timeEquivalent === null ? "No estimate" : formatCurrency(Math.abs(stats.timeEquivalent))}</dd></div>
+                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-muted-foreground">{timeLabel}</dt><dd className="mt-2 font-display text-report-title text-foreground">{stats.hoursDifference === null ? "No estimate" : `${formatCount(Math.abs(stats.hoursDifference))}h`}</dd></div>
+                            <div className="border-l border-line py-4 pl-4"><dt className="riyp-evidence-label text-muted-foreground">Value of that time</dt><dd className="mt-2 font-display text-report-title text-foreground">{stats.timeEquivalent === null ? "No estimate" : formatCurrency(Math.abs(stats.timeEquivalent))}</dd></div>
                         </dl>
-                        <p className="mt-4 text-xs leading-5 text-muted-foreground">{stats.appsDifference === null ? "A 0% rate means no expected callbacks, so there is no finite time comparison." : stats.appsDifference === 0 ? "Equal callback rates imply the same number of applications." : `At these rates, referrals imply about ${formatCount(Math.abs(stats.appsDifference))} ${stats.appsDifference > 0 ? "fewer" : "more"} applications per callback.`} The time value uses annual salary ÷ 2,080 hours. It is not money earned or saved and excludes time spent finding referrals.</p>
+                        <p className="mt-4 text-data text-muted-foreground">{stats.appsDifference === null ? "A 0% rate means no expected callbacks, so there is no finite time comparison." : stats.appsDifference === 0 ? "Equal callback rates imply the same number of applications." : `At these rates, referrals imply about ${formatCount(Math.abs(stats.appsDifference))} ${stats.appsDifference > 0 ? "fewer" : "more"} applications per callback.`} The time value uses annual salary ÷ 2,080 hours. It is not money earned or saved and excludes time spent finding referrals.</p>
                     </div>
                 </div>
             </DiagramFrame>
@@ -63,11 +67,11 @@ export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number
     );
 }
 
-function RangeControl({ id, label, value, onChange, min, max, step, display, accent }: { id: string; label: string; value: number; onChange: (value: number) => void; min: number; max: number; step: number; display: string; accent?: boolean }) {
+function RangeControl({ id, label, value, onChange, min, max, step, display, disabled, accent }: { id: string; label: string; value: number; onChange: (value: number) => void; min: number; max: number; step: number; display: string; disabled: boolean; accent?: boolean }) {
     return (
         <div>
-            <div className="flex items-baseline justify-between gap-4"><label htmlFor={id} className="text-sm font-medium text-foreground/80">{label}</label><output htmlFor={id} className={accent ? "text-xs font-bold text-brand tabular-nums" : "text-xs font-bold text-muted-foreground tabular-nums"}>{display}</output></div>
-            <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer appearance-none bg-line accent-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2" />
+            <div className="flex items-baseline justify-between gap-4 text-data"><label htmlFor={id} className="font-medium text-foreground/80">{label}</label><output htmlFor={id} className={accent ? "font-semibold text-brand tabular-nums" : "font-semibold text-muted-foreground tabular-nums"}>{display}</output></div>
+            <input id={id} type="range" min={min} max={max} step={step} value={value} disabled={disabled} onChange={(event) => onChange(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer appearance-none bg-line accent-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2" />
         </div>
     );
 }
@@ -75,8 +79,8 @@ function RangeControl({ id, label, value, onChange, min, max, step, display, acc
 function ModelBar({ label, value, width, accent }: { label: string; value: string; width: string; accent?: boolean }) {
     return (
         <div>
-            <div className="flex items-baseline justify-between gap-4 text-xs"><span className={accent ? "font-semibold text-brand" : "text-muted-foreground"}>{label}</span><span className="font-display text-2xl text-foreground">{value}</span></div>
-            <div className="mt-2 h-2 w-full bg-line"><div className={accent ? "h-full bg-cyan-bright transition-[width] duration-200 ease-out" : "h-full bg-muted-foreground transition-[width] duration-200 ease-out"} style={{ width }} /></div>
+            <div className="flex items-baseline justify-between gap-4 text-data"><span className={accent ? "font-semibold text-brand" : "text-muted-foreground"}>{label}</span><span className="font-medium tabular-nums text-foreground">{value}</span></div>
+            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-line"><div className={accent ? "h-full rounded-full bg-brand transition-[width] duration-200 ease-out" : "h-full rounded-full bg-muted-foreground transition-[width] duration-200 ease-out"} style={{ width }} /></div>
         </div>
     );
 }

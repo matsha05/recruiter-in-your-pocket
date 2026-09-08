@@ -201,7 +201,7 @@ export default function HistorySidebar({
                 <SheetContent side="right" className="w-[380px] max-w-[90vw] p-0 flex flex-col">
                     <SheetHeader className="px-6 py-5 border-b border-border/60">
                         <div className="flex items-center gap-3">
-                            <div className="size-8 rounded-md bg-brand/10 flex items-center justify-center">
+                            <div className="size-8 rounded-md bg-brand-tint flex items-center justify-center">
                                 <EmptyReportIcon className="size-4 text-brand" />
                             </div>
                             <SheetTitle className="font-display text-lg font-semibold">
@@ -216,7 +216,7 @@ export default function HistorySidebar({
                         {!user?.email ? (
                             /* Logged out state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="mb-6 flex size-16 items-center justify-center rounded-sm bg-brand/10">
+                                <div className="mb-6 flex size-16 items-center justify-center rounded-sm bg-brand-tint">
                                     <TrendingUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
@@ -289,7 +289,7 @@ export default function HistorySidebar({
                                             }}
                                             className={`min-h-11 px-3 text-xs font-medium transition-colors ${isCompareMode
                                                 ? 'bg-brand text-white'
-                                                : 'text-brand hover:bg-brand/10'
+                                                : 'text-brand hover:bg-brand-tint'
                                                 }`}
                                             aria-pressed={isCompareMode}
                                         >
@@ -522,7 +522,7 @@ export default function HistorySidebar({
                                                         onClear={() => handleVariantChange(report.id, "")}
                                                     />
                                                     {report.targetRole && (
-                                                        <span className="text-xs px-2 py-0.5 rounded bg-brand/10 text-brand border border-brand/20">
+                                                        <span className="text-xs px-2 py-0.5 rounded bg-brand-tint text-brand border border-brand/20">
                                                             → {report.targetRole}
                                                         </span>
                                                     )}

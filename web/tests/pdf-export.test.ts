@@ -156,8 +156,8 @@ const pdfRendererSource = ["pdf.ts", "pdf-styles.ts"]
   .map((fileName) => readFileSync(path.join(process.cwd(), "lib", "backend", fileName), "utf8"))
   .join("\n");
 assert.match(pdfRendererSource, /Instrument Sans/);
-assert.match(pdfRendererSource, /Space Grotesk Variable/);
-assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsreader/);
+assert.match(pdfRendererSource, /Source Serif 4/);
+assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|Newsreader/);
 
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
@@ -192,7 +192,7 @@ for (const tag of ["html", "head", "style", "body", "section", "div", "span", "u
 
 const nextConfigSource = readFileSync(path.join(process.cwd(), "next.config.mjs"), "utf8");
 const postbuildSource = readFileSync(path.join(process.cwd(), "scripts", "ensure-next-build-package.cjs"), "utf8");
-for (const font of ["space-grotesk-latin-variable.ttf", "instrument-sans-latin-variable.ttf"]) {
+for (const font of ["SourceSerif4-Variable.ttf", "InstrumentSans-Variable.ttf"]) {
   assert.match(nextConfigSource, new RegExp(font.replace(".", "\\.")), `${font} should be included in output tracing`);
   assert.match(postbuildSource, new RegExp(font.replace(".", "\\.")), `${font} should be asserted after build`);
 }

@@ -206,11 +206,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
     if (loadError) {
         return (
-            <section className={cn("border-l-2 border-destructive bg-error-surface p-6", className)} role="alert">
-                <h3 className="font-semibold text-destructive">Default resume could not load</h3>
+            <section className={cn("rounded-2xl border border-destructive/25 bg-error-surface p-6 sm:rounded-3xl", className)} role="alert">
+                <h3 className="font-medium text-destructive">Default resume could not load</h3>
                 <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
                 <p className="mt-2 text-sm leading-6 text-destructive/80">Your saved resume has not been changed.</p>
-                <button type="button" onClick={() => void fetchProfile()} className="mt-4 inline-flex min-h-11 items-center gap-2 border border-destructive/40 bg-background px-4 py-2 text-sm font-medium text-destructive">
+                <button type="button" onClick={() => void fetchProfile()} className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive">
                     <RefreshCw className="size-4" />
                     Try again
                 </button>
@@ -221,22 +221,22 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     // ===== ACTIVE STATE: Resume saved =====
     if (profile?.hasResume) {
         return (
-            <section className={cn("relative overflow-hidden border-l-2 border-success bg-success/5 p-6", className)} aria-busy={isSaving || isRemoving}>
+            <section className={cn("app-card relative overflow-hidden p-6", className)} aria-busy={isSaving || isRemoving}>
                 <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className="flex size-12 shrink-0 items-center justify-center border border-success/25 bg-success/10">
+                    <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-success/10">
                         <Check className="size-5 text-success" />
                     </div>
 
                     <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-foreground">Default resume saved</h3>
-                            <span className="border-l-2 border-success bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                            <h3 className="font-medium text-foreground">Default resume saved</h3>
+                            <span className="rounded-md bg-success/10 px-2.5 py-1 text-xs font-medium text-success">
                                 Active
                             </span>
                         </div>
 
-                        <p className="text-sm text-muted-foreground mb-3">
+                        <p className="mb-4 text-base leading-6 text-muted-foreground">
                             Save a job through the extension to compare it with this resume.
                         </p>
 
@@ -256,7 +256,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             <button type="button"
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={isSaving || isRemoving}
-                                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-success transition-colors hover:text-success/80"
+                                className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full border border-input bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                             >
                             <RefreshCw className={cn("size-3.5", isSaving && "animate-spin")} />
                             {isSaving ? "Updating…" : "Change Resume"}
@@ -264,7 +264,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             <button type="button"
                                 onClick={removeResume}
                                 disabled={isSaving || isRemoving}
-                                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-destructive"
+                                className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-error-surface hover:text-destructive"
                             >
                                 <Trash2 className={cn("size-3.5", isRemoving && "animate-pulse")} />
                                 {isRemoving ? "Removing…" : "Remove"}
@@ -295,12 +295,12 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     return (
         <section className={cn("app-card p-6", className)} aria-busy={isSaving}>
             <div className="flex items-start gap-4 mb-5">
-                <div className="flex size-12 shrink-0 items-center justify-center border border-brand/20 bg-brand/10">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand/5">
                     <FileText className="size-5 text-brand" />
                 </div>
                 <div>
-                    <h3 className="font-semibold text-foreground mb-1">Upload Your Resume</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="mb-2 text-lg font-medium text-foreground">Upload Your Resume</h3>
+                    <p className="text-base leading-6 text-muted-foreground">
                         Compare this resume with jobs you save through the extension. This does not use a report credit.
                     </p>
                 </div>
@@ -312,27 +312,27 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 aria-label="Choose a default resume file"
                 disabled={isSaving}
                 className={cn(
-                    "relative w-full cursor-pointer border-2 border-dashed transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 disabled:cursor-wait",
+                    "relative w-full cursor-pointer rounded-xl border border-dashed transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 disabled:cursor-wait",
                     isDragOver
                         ? "border-brand bg-brand/5"
-                        : "border-border/50 hover:border-brand/50 hover:bg-muted/30"
+                        : "border-input bg-muted/30 hover:border-brand hover:bg-brand/5"
                 )}
                 onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
                 onDragLeave={() => setIsDragOver(false)}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
             >
-                <div className="py-8 text-center">
+                <div className="px-4 py-8 text-center">
                     {isSaving ? (
                         <div className="flex flex-col items-center gap-2" role="status" aria-live="polite">
                             <Loader2 className="size-8 text-brand animate-spin" />
                             <p className="text-sm font-medium text-foreground">Saving your resume…</p>
-                            {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
+                            {fileName && <p className="break-all text-sm text-muted-foreground">{fileName}</p>}
                         </div>
                     ) : (
                         <>
                             <Upload className="size-8 text-muted-foreground/50 mx-auto mb-2" />
-                            <p className="text-sm font-medium text-foreground mb-1">
+                            <p className="text-sm mb-2 text-lg font-medium text-foreground">
                                 Choose a file or drop it here
                             </p>
                             <p className="text-xs text-muted-foreground">
@@ -344,8 +344,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             </button>
 
             {/* Privacy note */}
-            <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground/70">
-                <ShieldCheck className="size-3.5" />
+            <div className="mt-4 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                <ShieldCheck className="mt-1 size-4 shrink-0" />
                 <span>Saved as your default resume for matching until you replace or remove it.</span>
             </div>
 

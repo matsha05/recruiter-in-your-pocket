@@ -12,20 +12,20 @@ export function SignalClarityDiagram() {
                 <div className="grid gap-0 px-5 py-7 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center md:px-7 md:py-9">
                     <div className="border-t border-line py-5">
                         <div className="riyp-evidence-label text-muted-foreground">Your experience</div>
-                        <div className="mt-3 font-display text-2xl leading-tight text-foreground">What you did</div>
-                        <p className="mt-2 text-xs leading-5 text-muted-foreground">Your responsibilities, decisions, and results.</p>
+                        <div className="mt-3 font-display text-report-title text-foreground">What you did</div>
+                        <p className="mt-2 text-data text-muted-foreground">Your responsibilities, decisions, and results.</p>
                     </div>
                     <ArrowRight className="mx-4 hidden size-4 text-muted-foreground sm:block" aria-hidden="true" />
-                    <div className="border-t-2 border-cyan-bright py-5">
+                    <div className="border-t-2 border-brand py-5">
                         <div className="riyp-evidence-label text-brand">Your resume</div>
-                        <div className="mt-3 font-display text-2xl leading-tight text-brand">How you explain it</div>
-                        <p className="mt-2 text-xs leading-5 text-muted-foreground">Clear sentences and headings help the reader find those details.</p>
+                        <div className="mt-3 font-display text-report-title text-brand">How you explain it</div>
+                        <p className="mt-2 text-data text-muted-foreground">Clear sentences and headings help the reader find those details.</p>
                     </div>
                     <ArrowRight className="mx-4 hidden size-4 text-muted-foreground sm:block" aria-hidden="true" />
-                    <div className="border-t-2 border-citron py-5">
+                    <div className="border-t-2 border-foreground/60 py-5">
                         <div className="riyp-evidence-label text-foreground">The review</div>
-                        <div className="mt-3 font-display text-2xl leading-tight text-foreground">What the employer understands</div>
-                        <p className="mt-2 text-xs leading-5 text-muted-foreground">The reader can assess your experience with fewer unanswered questions.</p>
+                        <div className="mt-3 font-display text-report-title text-foreground">What the employer understands</div>
+                        <p className="mt-2 text-data text-muted-foreground">The reader can assess your experience with fewer unanswered questions.</p>
                     </div>
                 </div>
                 <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">Keep the facts intact.</strong> Improve how you explain your experience without adding responsibilities or results you cannot support.</div>

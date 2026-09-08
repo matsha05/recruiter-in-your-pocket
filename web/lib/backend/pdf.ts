@@ -7,12 +7,12 @@ import type { ReportForPdf } from "../reports/pdf-export";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
- * Lifted Line PDF generator
+ * Alpine report PDF generator
  * 
  * Design principles:
  * 1. Written recruiter verdict before the numeric summary
  * 2. Stable evidence colors instead of traffic-light scoring
- * 3. Space Grotesk for judgment and Instrument Sans for explanation
+ * 3. Source Serif 4 for the verdict and Instrument Sans for explanation
  * 4. Page-safe sections and printable action checkboxes
  */
 
@@ -24,12 +24,12 @@ function escapeHtml(str: string) {
     .replace(/>/g, "&gt;");
 }
 
-const SPACE_GROTESK_TTF = readFileSync(
-  join(process.cwd(), "public", "assets", "fonts", "space-grotesk-latin-variable.ttf")
+const SOURCE_SERIF_TTF = readFileSync(
+  join(process.cwd(), "public", "fonts", "source-serif-4", "SourceSerif4-Variable.ttf")
 ).toString("base64");
 
 const INSTRUMENT_SANS_TTF = readFileSync(
-  join(process.cwd(), "public", "assets", "fonts", "instrument-sans-latin-variable.ttf")
+  join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Variable.ttf")
 ).toString("base64");
 
 function getSubscoreBar(value: number | undefined): string {
@@ -172,7 +172,7 @@ export function renderReportHtml(report: ReportForPdf) {
 <head>
   <meta charset="utf-8" />
   <title>Resume report | Recruiter in Your Pocket</title>
-  <style>${pdfReportStyles(SPACE_GROTESK_TTF, INSTRUMENT_SANS_TTF)}</style>
+  <style>${pdfReportStyles(SOURCE_SERIF_TTF, INSTRUMENT_SANS_TTF)}</style>
 </head>
 <body>
   <header>

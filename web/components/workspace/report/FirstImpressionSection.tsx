@@ -164,7 +164,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                                 className={cn(
                                                     "min-h-11 px-3 text-xs transition-colors",
                                                     peekOpen
-                                                        ? "bg-brand/10 text-brand hover:bg-brand/10 hover:text-brand"
+                                                        ? "bg-brand-tint text-brand hover:bg-brand-tint hover:text-brand"
                                                         : "text-muted-foreground hover:text-foreground"
                                                 )}
                                             >

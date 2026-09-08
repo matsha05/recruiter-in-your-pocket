@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useRef, useState } from "react";
 import type { ElementType, KeyboardEvent } from "react";
 import Link from "next/link";
@@ -50,9 +51,9 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   };
 
   return (
-    <div className="gap-y-6">
+    <div className="space-y-6">
       <div className="border-b border-border">
-        <div className="flex gap-5 overflow-x-auto" role="tablist" aria-label="Saved job details">
+        <div className="flex gap-2 overflow-x-auto px-1" role="tablist" aria-label="Saved job details">
           {tabs.map(({ id, label, icon: Icon }) => (
             <button type="button"
               key={id}
@@ -65,9 +66,9 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               aria-controls={`job-panel-${id}`}
               tabIndex={activeTab === id ? 0 : -1}
               className={cn(
-                "-mb-px flex min-h-11 shrink-0 items-center gap-2 border-b-2 px-1 py-3 text-sm font-medium transition-colors",
+                "flex min-h-12 shrink-0 items-center gap-2 rounded-t-xl border-b-2 px-3 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand",
                 activeTab === id
-                  ? "border-brand text-brand"
+                  ? "border-brand bg-brand/5 text-brand"
                   : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
               )}
             >
@@ -80,8 +81,8 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
 
       <div className="min-h-[400px]">
         {activeTab === "overview" && (
-          <div id="job-panel-overview" role="tabpanel" aria-labelledby="job-tab-overview" tabIndex={0} className="grid grid-cols-1 gap-6 outline-none lg:grid-cols-3">
-            <div className="lg:col-span-2 gap-y-4">
+          <div id="job-panel-overview" role="tabpanel" aria-labelledby="job-tab-overview" tabIndex={0} className="grid grid-cols-1 gap-6 outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand lg:grid-cols-3">
+            <div className="space-y-4 lg:col-span-2">
               <RecruiterFitSummary
                 score={score}
                 matchedSkills={job.matchedSkills}
@@ -89,7 +90,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                 topGaps={job.topGaps}
               />
             </div>
-            <div className="gap-y-4">
+            <div className="space-y-4">
               <ApplicationReadiness job={job} score={score} />
               <NextBestActions jobId={job.id} onReviewJobDescription={() => selectTab("job-description")} />
             </div>
@@ -97,14 +98,14 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
         )}
 
         {activeTab === "job-description" && (
-          <div id="job-panel-job-description" role="tabpanel" aria-labelledby="job-tab-job-description" tabIndex={0} className="overflow-hidden border-y border-border bg-card outline-none">
-            <div className="px-6 py-4 border-b border-border bg-muted/30">
-              <h3 className="font-medium text-foreground">Full Job Description</h3>
+          <div id="job-panel-job-description" role="tabpanel" aria-labelledby="job-tab-job-description" tabIndex={0} className="overflow-hidden rounded-2xl border border-border bg-card outline-none focus-visible:ring-2 focus-visible:ring-brand sm:rounded-3xl">
+            <div className="border-b border-border bg-muted/50 px-5 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-7 text-foreground">Full Job Description</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 {job.company} • {job.location || "Location not specified"}
               </p>
             </div>
-            <div className="p-6 max-h-[600px] overflow-y-auto">
+            <div className="max-h-[600px] overflow-y-auto p-5 sm:p-6">
               {job.job_description_text ? (
                 <FormattedJobDescription text={job.job_description_text} />
               ) : (
@@ -125,16 +126,16 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
         )}
 
         {activeTab === "analysis" && (
-          <div id="job-panel-analysis" role="tabpanel" aria-labelledby="job-tab-analysis" tabIndex={0} className="gap-y-6 outline-none">
+          <div id="job-panel-analysis" role="tabpanel" aria-labelledby="job-tab-analysis" tabIndex={0} className="space-y-6 outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">Skills found in your resume</h3>
+              <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
+                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Skills found in your resume</h3>
                 {job.matchedSkills.length > 0 ? (
-                  <div className="gap-y-3">
+                  <div className="space-y-3">
                     {job.matchedSkills.slice(0, 12).map((skill) => (
                       <span
                         key={skill}
-                        className="mr-2 mb-2 inline-flex items-center border-l-2 border-success bg-success/10 px-2.5 py-1 text-xs font-medium text-success"
+                        className="mr-2 mb-2 inline-flex items-center rounded-lg bg-success/10 px-3 py-1.5 text-sm font-medium text-success"
                       >
                         {skill}
                       </span>
@@ -145,14 +146,14 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                 )}
               </div>
 
-              <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">Skills not found in your resume</h3>
+              <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
+                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Skills not found in your resume</h3>
                 {job.missingSkills.length > 0 ? (
-                  <div className="gap-y-3">
+                  <div className="space-y-3">
                     {job.missingSkills.slice(0, 12).map((skill) => (
                       <span
                         key={skill}
-                        className="mr-2 mb-2 inline-flex items-center border-l-2 border-destructive bg-error-surface px-2.5 py-1 text-xs font-medium text-destructive"
+                        className="mr-2 mb-2 inline-flex items-center rounded-lg bg-muted px-3 py-1.5 text-sm font-medium text-foreground"
                       >
                         {skill}
                       </span>
@@ -165,12 +166,12 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
             </div>
 
             {job.topGaps.length > 0 && (
-              <div className="border border-border rounded bg-card p-6">
-                <h3 className="font-medium text-foreground mb-4">Details to check before applying</h3>
-                <ul className="gap-y-3">
+              <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
+                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Details to check before applying</h3>
+                <ul className="space-y-3">
                   {job.topGaps.map((gap, i) => (
                     <li key={gap} className="flex items-start gap-3">
-                      <span className="flex size-6 flex-shrink-0 items-center justify-center border border-warning/35 bg-warning/10 text-xs font-medium text-warning-foreground">
+                      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-foreground">
                         {i + 1}
                       </span>
                       <span className="text-sm text-muted-foreground">{gap}</span>
@@ -214,26 +215,26 @@ function RecruiterFitSummary({
   const coveragePercent = totalSkills > 0 ? (requirementsMet / totalSkills) * 100 : 0;
 
   return (
-    <div className="border border-border rounded p-6 bg-card gap-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="font-medium text-foreground">Resume match</h3>
+    <div className="space-y-6 rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="text-lg font-medium leading-7 text-foreground">Resume match</h3>
           <p className="text-sm text-muted-foreground">
             How your resume compares with the job description
           </p>
         </div>
         <div
           className={cn(
-            "size-16 rounded-full border-2 flex items-center justify-center",
+            "flex size-16 shrink-0 items-center justify-center rounded-full border",
             scoreColors[scoreClass]
           )}
         >
-          <span className="text-xl font-bold">{score != null ? score : " - "}</span>
+          <span className="text-2xl font-medium tabular-nums">{score != null ? score : " - "}</span>
         </div>
       </div>
 
       {totalSkills > 0 && (
-        <div className="gap-y-2">
+        <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Skills Coverage</span>
             <span className="font-medium">
@@ -250,13 +251,13 @@ function RecruiterFitSummary({
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="gap-y-3">
+        <div className="space-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
             <CheckCircle2 className="size-4 text-success" />
             Skills found in your resume
           </h4>
           {matchedSkills.length > 0 ? (
-            <ul className="gap-y-2">
+            <ul className="space-y-2">
               {(expanded ? matchedSkills : matchedSkills.slice(0, 5)).map((skill) => (
                 <li key={skill} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-success mt-1">•</span>
@@ -279,13 +280,13 @@ function RecruiterFitSummary({
           )}
         </div>
 
-        <div className="gap-y-3">
+        <div className="space-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
             <XCircle className="size-4 text-destructive" />
             Details to check
           </h4>
           {topGaps.length > 0 || missingSkills.length > 0 ? (
-            <ul className="gap-y-2">
+            <ul className="space-y-2">
               {topGaps.map((gap) => (
                 <li key={gap} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-destructive mt-1">•</span>
@@ -321,34 +322,35 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | 
         : "Lower match score";
 
   return (
-    <div className="rounded border border-brand/20 bg-brand/[0.045] p-5">
+    <div className="rounded-2xl border border-border bg-brand/5 p-5 sm:rounded-3xl sm:p-6">
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Resume comparison
           </p>
-          <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-xl font-medium leading-7 tracking-tight text-foreground">
             {readinessLabel}
           </h3>
         </div>
-        <span className="rounded bg-background/80 px-2 py-1 text-xs font-semibold tabular-nums text-brand">
+        <span className="shrink-0 rounded-full bg-card px-2.5 py-1.5 text-xs font-medium tabular-nums text-brand">
           {score != null ? `${score}/100` : "No score"}
         </span>
       </div>
 
-      <div className="gap-y-3 text-sm">
+      <div className="space-y-3 text-sm">
         <ReadinessRow complete={hasJobText} label={hasJobText ? "Job description saved" : "Job description not saved"} />
         <ReadinessRow complete={score != null} label={score == null ? "Match score unavailable" : "Match score available"} />
         <ReadinessRow complete={missingCount + gapCount === 0} label={missingCount + gapCount > 0 ? `${missingCount + gapCount} details to check` : "No gaps listed"} />
       </div>
 
-      <Link
-        href={`/workspace?job=${job.id}`}
-        className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-      >
-        Start a report
-        <ArrowRight className="size-4" />
-      </Link>
+      <Button asChild className="mt-5 w-full">
+        <Link
+          href={`/workspace?job=${job.id}`}
+        >
+          Start a report
+          <ArrowRight className="size-4" />
+        </Link>
+      </Button>
     </div>
   );
 }
@@ -368,10 +370,10 @@ function ReadinessRow({ complete, label }: { complete: boolean; label: string })
 
 function NextBestActions({ jobId, onReviewJobDescription }: { jobId: string; onReviewJobDescription: () => void }) {
   return (
-    <div className="border border-border rounded p-6 bg-card gap-y-4">
-      <h3 className="font-medium text-foreground">What to do next</h3>
+    <div className="space-y-4 rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
+      <h3 className="text-lg font-medium leading-7 text-foreground">What to do next</h3>
 
-      <div className="gap-y-2">
+      <div className="space-y-2">
         <ActionButton
           icon={FileText}
           label="Start a report"
@@ -405,7 +407,7 @@ function ActionButton({
   const content = (
     <>
       <Icon className="size-5 text-brand shrink-0" />
-      <div className="flex-1 text-left">
+      <div className="min-w-0 flex-1 text-left">
         <div className="text-sm font-medium text-foreground">{label}</div>
         <div className="text-xs text-muted-foreground">{description}</div>
       </div>
@@ -416,7 +418,7 @@ function ActionButton({
     return (
       <Link
         href={href}
-        className="flex items-center gap-3 p-3 rounded border border-border hover:bg-muted/50 cursor-pointer transition-colors"
+        className="flex min-h-12 items-center gap-3 rounded-xl bg-muted/50 p-3 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
         {content}
       </Link>
@@ -428,8 +430,8 @@ function ActionButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex min-h-11 w-full items-center gap-3 rounded border border-border p-3 transition-colors",
-        "bg-muted/20 hover:bg-muted/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+        "flex min-h-12 w-full items-center gap-3 rounded-xl p-3 transition-colors",
+        "bg-muted/50 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
       )}
     >
       {content}
@@ -480,13 +482,13 @@ function FormattedJobDescription({ text }: { text: string }) {
   }
 
   return (
-    <div className="gap-y-6">
+    <div className="space-y-6">
       {sections.map((section) => (
-        <div key={`${section.header || "section"}-${section.content.join("|")}`} className="gap-y-2">
+        <div key={`${section.header || "section"}-${section.content.join("|")}`} className="space-y-2">
           {section.header && (
-            <h4 className="text-sm font-semibold text-foreground">{section.header}</h4>
+            <h4 className="text-base font-medium text-foreground">{section.header}</h4>
           )}
-          <div className="text-sm text-muted-foreground leading-relaxed gap-y-2">
+          <div className="max-w-reading space-y-3 text-base text-muted-foreground [overflow-wrap:anywhere]">
             {section.content.map((line, lineIdx) => {
               const isBullet = /^[•\-*]\s/.test(line) || /^\d+[.)]\s/.test(line);
               if (isBullet) {

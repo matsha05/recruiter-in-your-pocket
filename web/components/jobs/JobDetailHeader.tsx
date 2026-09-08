@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { ArrowSquareOut, Buildings, CalendarBlank, CaretDown, MapPin } from "@phosphor-icons/react";
@@ -50,13 +51,13 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
   };
 
   return (
-    <div className="app-card app-card-highlight flex flex-col gap-5 p-5 md:flex-row md:items-start md:justify-between md:p-6">
-      <div className="gap-y-2">
+    <div className="flex flex-col gap-5 rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6 md:flex-row md:items-start md:justify-between">
+      <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Saved role
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+          <h2 className="font-display text-report-title tracking-tight text-foreground">
             Application status
           </h2>
           <DropdownMenu>
@@ -65,7 +66,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
                 type="button"
                 disabled={updatingStatus}
                 className={cn(
-                  "inline-flex min-h-11 items-center gap-2 border-l-2 px-3 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/45",
+                  "inline-flex min-h-12 items-center gap-2 rounded-md border border-input px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/45",
                   statusConfig.bgColor,
                   statusConfig.color,
                   "cursor-pointer hover:opacity-80 disabled:cursor-wait disabled:opacity-60"
@@ -75,7 +76,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
                 <CaretDown className="size-3" weight="bold" aria-hidden="true" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48 rounded-none border-line bg-background p-1">
+            <DropdownMenuContent align="start" className="w-48 rounded-xl border-border bg-card p-1.5">
               <DropdownMenuRadioGroup
                 value={job.status}
                 onValueChange={(value) => void handleStatusSelect(value as JobStatus)}
@@ -87,7 +88,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
                     <DropdownMenuRadioItem
                       key={statusKey}
                       value={statusKey}
-                      className="min-h-11 rounded-none focus:bg-paper-muted"
+                      className="min-h-11 rounded-lg focus:bg-muted"
                     >
                       <span className={config.color}>{config.label}</span>
                     </DropdownMenuRadioItem>
@@ -98,17 +99,17 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           </DropdownMenu>
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1.5">
+          <span className="flex min-w-0 items-center gap-1.5 [overflow-wrap:anywhere]">
             <Buildings className="size-4" aria-hidden="true" />
             {job.company}
           </span>
           {job.location && (
-            <span className="flex items-center gap-1.5">
+            <span className="flex min-w-0 items-center gap-1.5 [overflow-wrap:anywhere]">
               <MapPin className="size-4" aria-hidden="true" />
               {job.location}
             </span>
           )}
-          <span className="flex items-center gap-1.5">
+          <span className="flex min-w-0 items-center gap-1.5 [overflow-wrap:anywhere]">
             <CalendarBlank className="size-4" aria-hidden="true" />
             Saved {capturedDate.toLocaleDateString()}
           </span>
@@ -116,15 +117,16 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
       </div>
 
       <div className="flex shrink-0 items-start">
-        <a
-          href={job.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-        >
-          <ArrowSquareOut className="size-4" aria-hidden="true" />
-          View job posting
-        </a>
+        <Button asChild>
+          <a
+            href={job.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ArrowSquareOut className="size-4" aria-hidden="true" />
+            View job posting
+          </a>
+        </Button>
       </div>
     </div>
   );

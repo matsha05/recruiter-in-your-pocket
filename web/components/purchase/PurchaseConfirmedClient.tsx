@@ -111,13 +111,13 @@ export default function PurchaseConfirmedClient() {
     <>
       <div
         data-visual-anchor="purchase-confirmed"
-        className="bg-paper px-5 pb-20 pt-28 text-foreground selection:bg-brand/15 md:px-8 md:pt-36"
+        className="bg-background px-4 pb-20 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20"
       >
-        <section className="mx-auto max-w-[64rem]" aria-labelledby="purchase-confirmed-title">
-          <header className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
+        <section className="mx-auto max-w-form" aria-labelledby="purchase-confirmed-title">
+          <header className="grid gap-6 border-b border-border pb-8">
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-012 text-brand">Payment</p>
-              <div className="mt-5 flex items-center gap-3 text-sm font-semibold text-foreground" role="status" aria-live="polite">
+              <p className="text-eyebrow uppercase text-muted-foreground">Payment</p>
+              <div className="mt-5 flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
                 {isWaiting ? <CircleNotch className="size-5 animate-spin text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
@@ -127,19 +127,19 @@ export default function PurchaseConfirmedClient() {
             <div>
               <h1
                 id="purchase-confirmed-title"
-                className="max-w-[16ch] text-balance font-display text-[clamp(3rem,7vw,6.5rem)] riyp-weight-520 leading-[0.92] tracking-[-0.05em] riyp-stretch-90"
+                className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
               >
                 {state.title}
               </h1>
-              <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">{confirmationMessage}</p>
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">{confirmationMessage}</p>
             </div>
           </header>
 
-          <div className="grid gap-8 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div className="grid gap-5 py-8">
             <div className="text-sm leading-6 text-muted-foreground">
               {unlockLabel && state.status !== "missing" ? (
                 <p>
-                  We kept your place in <span className="font-semibold text-foreground">{unlockLabel}</span>.
+                  We kept your place in <span className="font-medium text-foreground">{unlockLabel}</span>.
                 </p>
               ) : null}
               {state.status !== "missing" ? (
@@ -150,8 +150,8 @@ export default function PurchaseConfirmedClient() {
               ) : null}
             </div>
 
-            <div className="border-y border-line bg-surface-sky/45 px-5 py-6 sm:px-7 sm:py-7">
-              <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
+            <div className="min-w-0 rounded-2xl border border-border bg-card p-6 sm:rounded-3xl sm:p-8">
+              <p className="text-sm font-medium text-foreground">
                 {nextStepLabel}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -190,12 +190,12 @@ export default function PurchaseConfirmedClient() {
                 ) : null}
               </div>
               {paymentConfirmed && !checkingAccountAccess && !user ? (
-                <p className="mt-4 border-l-2 border-cyan-bright px-3 text-sm leading-6 text-muted-foreground">
+                <p className="mt-5 rounded-xl bg-brand/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
                   Sign in with the email used at checkout to use this pass. A passwordless sign-in email may already be in your inbox.
                 </p>
               ) : null}
               {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
-                <p className="mt-4 border-l-2 border-warning px-3 text-sm leading-6 text-muted-foreground">
+                <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
                   Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
                 </p>
               ) : null}
@@ -204,7 +204,7 @@ export default function PurchaseConfirmedClient() {
 
           <p className="border-t border-line pt-6 text-sm leading-6 text-muted-foreground">
             Need help? Email{" "}
-            <a href="mailto:support@recruiterinyourpocket.com" className="font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:text-brand">
+            <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:text-brand">
               support@recruiterinyourpocket.com
             </a>{" "}
             from the address used at checkout.

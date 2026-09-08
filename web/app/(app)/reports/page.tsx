@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { AlertTriangle, ArrowRight, Chrome, ChartNoAxesCombined } from "lucide-react";
@@ -44,17 +45,17 @@ export default async function ReportsPage() {
 
   return (
     <section className="flex-1 bg-background">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10">
+      <div className="mx-auto flex box-content w-auto max-w-workspace flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
         <AppPageIntro
           eyebrow="Report history"
           title="Your saved reports"
           description="Find feedback from earlier reports or open one to compare with a revised resume."
           meta={
             <>
-              <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="inline-flex max-w-full items-center rounded-full bg-brand-tint px-3 py-1.5 text-xs font-medium text-brand [overflow-wrap:anywhere]">
                 {reportCountLabel}
               </span>
-              <span className="inline-flex items-center border-l-2 border-line bg-paper-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="inline-flex max-w-full items-center rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground [overflow-wrap:anywhere]">
                 Signed in as {user.email}
               </span>
             </>
@@ -62,33 +63,36 @@ export default async function ReportsPage() {
           actions={
             <div className="flex flex-wrap items-center gap-2">
               {launchFlags.extensionSync ? (
-                <Link
-                  href="/extension"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-                >
-                  <Chrome className="size-4" />
-                  Extension
-                </Link>
+                <Button asChild variant="outline">
+                  <Link
+                    href="/extension"
+                  >
+                    <Chrome className="size-4" />
+                    Extension
+                  </Link>
+                </Button>
               ) : null}
-              <Link
-                href="/dashboard"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-              >
-                <ChartNoAxesCombined className="size-4" />
-                Progress
-              </Link>
-              <Link
-                href="/workspace"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-              >
-                Get another report
-                <ArrowRight className="size-4 text-citron" />
-              </Link>
+              <Button asChild variant="outline">
+                <Link
+                  href="/dashboard"
+                >
+                  <ChartNoAxesCombined className="size-4" />
+                  Progress
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link
+                  href="/workspace"
+                >
+                  Get another report
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
             </div>
           }
         />
 
-        <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
+        <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
           Signed-in reports stay attached to this account until you delete them.
           {launchFlags.extensionSync
             ? " Choose a saved job to review your resume against its requirements."
@@ -100,27 +104,27 @@ export default async function ReportsPage() {
         ) : null}
 
         {reportsError ? (
-          <div role="alert" className="border-y border-destructive/35 bg-error-surface p-8 text-center">
+          <div role="alert" className="rounded-2xl border border-destructive/30 bg-error-surface px-5 py-10 text-center sm:rounded-3xl sm:p-10">
             <AlertTriangle className="mx-auto size-7 text-destructive" aria-hidden="true" />
-            <h2 className="mt-4 font-display text-2xl text-foreground">Your report history could not load.</h2>
+            <h2 className="mt-4 font-display text-report-title text-foreground">Your report history could not load.</h2>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
               Try again in a moment. If you still can’t open your reports, contact support.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
               <form action="/reports" method="get">
-                <button
+                <Button
                   type="submit"
-                  className="inline-flex min-h-11 items-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background hover:bg-foreground/90"
                 >
                   Try again
-                </button>
+                </Button>
               </form>
-              <Link
-                href="/support"
-                className="inline-flex min-h-11 items-center rounded-md border border-foreground bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-paper-muted"
-              >
-                Contact support
-              </Link>
+              <Button asChild variant="outline">
+                <Link
+                  href="/support"
+                >
+                  Contact support
+                </Link>
+              </Button>
             </div>
           </div>
         ) : (

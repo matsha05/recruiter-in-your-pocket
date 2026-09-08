@@ -2,124 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("/fonts/instrument-sans/InstrumentSans-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/source-serif-4/SourceSerif4-Variable.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
-    /* Recruiter-first design system: Space Grotesk + Instrument Sans */
+    /* Shared typography from the approved alpine reference. */
 
-    /* Canonical Lifted Line semantic palette */
-    --background: 45 33.33% 95.29%;
-    --foreground: 204.44 65.85% 8.04%;
+    /* Approved alpine product palette; HSL channels preserve existing utilities */
+    --background: 34.286 28.000% 95.098%;
+    --foreground: 193.333 20.000% 8.824%;
     --surface-page: var(--background);
     --text-strong: var(--foreground);
-    --text-muted: 208.7 11.44% 39.41%;
-    --text-soft: 208.7 8% 52%;
-    --line: 170 6.25% 81.18%;
-    --control-line: 170 6.25% 68%;
+    --text-muted: 187.500 4.040% 38.824%;
+    --text-soft: 187.500 4.040% 38.824%;
+    --line: 100.000 4.348% 86.471%;
+    --control-line: 190.000 4.878% 51.765%;
 
-    --card: 45 33.33% 97.2%;
-    --card-foreground: 204.44 65.85% 8.04%;
+    --card: 40.000 27.273% 97.843%;
+    --card-foreground: 193.333 20.000% 8.824%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover: 40.000 27.273% 97.843%;
+    --popover-foreground: 193.333 20.000% 8.824%;
 
-    --primary: 204.44 65.85% 8.04%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 193.333 20.000% 8.824%;
+    --primary-foreground: 40.000 27.273% 97.843%;
 
-    --secondary: 210 16% 95%;
-    --secondary-foreground: 218 36% 10%;
+    --secondary: 48.000 14.286% 93.137%;
+    --secondary-foreground: 193.333 20.000% 8.824%;
 
-    --muted: 210 16% 95%;
-    --muted-foreground: 217 15% 38%;
+    --muted: 48.000 14.286% 93.137%;
+    --muted-foreground: 187.500 4.040% 38.824%;
     /* Accessible muted text */
 
-    --accent: 210 20% 95%;
-    --accent-foreground: 218 36% 10%;
+    --accent: 48.000 14.286% 93.137%;
+    --accent-foreground: 193.333 20.000% 8.824%;
 
-    --destructive: 4.23 76.47% 40%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 4.231 76.471% 40.000%;
+    --destructive-foreground: 0.000 0.000% 100.000%;
 
     /* Structural borders */
-    --border: 170 6.25% 81.18%;
-    --input: 170 6.25% 81.18%;
-    --ring: 193.25 100% 31.96%;
+    --border: 100.000 4.348% 86.471%;
+    --input: 190.000 4.878% 51.765%;
+    --ring: 191.748 100.000% 28.039%;
 
-    --radius-sm: 0.25rem;
-    /* 4px - App dense */
-    --radius: 0.5rem;
-    /* 8px - Default */
+    --radius-sm: 0.625rem;
+    --radius: 0.625rem;
     --radius-lg: 0.75rem;
-    /* 12px - Marketing cards */
-    --radius-xl: 0.75rem;
-    /* 12px - Marketing cards (legacy alias) */
+    --radius-xl: 1.5rem;
 
     /* Loading states */
     --skeleton: hsl(var(--muted) / 0.1);
 
     /* Insight, action, and state colors */
-    --brand: 191.748 100% 28.039%;
-    --brand-strong: 193.25 100% 24%;
-    --brand-tint: 193.1 82.43% 88%;
-    --citron: 73.55 87.74% 58.43%;
-    --cyan-bright: 193.1 82.43% 53.14%;
-    --surface-sky: 193.1 82.43% 94%;
-    --sky-strong: 193.1 82.43% 53.14%;
-    --surface-proof: 45 22% 92.5%;
+    --brand: 191.748 100.000% 28.039%;
+    --brand-strong: 191.478 100.000% 22.549%;
+    --brand-tint: 175.385 35.135% 92.745%;
+    --citron: 73.548 87.736% 58.431%;
+    --cyan-bright: 191.748 100.000% 28.039%;
+    --surface-sky: 175.385 35.135% 92.745%;
+    --sky-strong: 191.748 100.000% 28.039%;
+    --surface-proof: 48.000 14.286% 93.137%;
     --accent-apricot: var(--brand);
-    --accent-butter: 73.55 87.74% 58.43%;
-    --butter-ink: 204.44 65.85% 8.04%;
+    --accent-butter: 73.548 87.736% 58.431%;
+    --butter-ink: 193.333 20.000% 8.824%;
     --sky: var(--surface-sky);
 
     /* Legacy aliases retained while older surfaces migrate */
-    --slate: 215 25% 27%;
-    /* Slate-700 #334155 */
-    --slate-muted: 215 16% 47%;
-    /* Slate-500 #64748B */
+    --slate: 187.500 4.040% 38.824%;
+    --slate-muted: 187.500 4.040% 38.824%;
 
     /* Inverted Surface (dark sections in light mode) */
-    --surface-inverted: 204.44 65.85% 8.04%;
+    --surface-inverted: 193.333 20.000% 8.824%;
 
     /* Premium: Gold (Unlock moments ONLY) */
-    --premium: 37 52% 45%;
-    /* Aged brass */
+    --premium: 29.268 80.392% 30.000%;
 
     /* Semantic Colors */
-    --gold: 43 96% 44%;
-    /* Legacy alias */
-    --moss: 142 71% 29%;
-    /* Green-700 */
-    --amber: 48 96% 53%;
-    /* Yellow-500 */
-    --rose: 347 77% 40%;
-    /* Rose-700 */
+    --gold: 29.268 80.392% 30.000%;
+    --moss: 155.455 47.826% 27.059%;
+    --amber: 29.268 80.392% 30.000%;
+    --rose: 4.231 76.471% 40.000%;
 
     /* Status semantics */
-    --success: 142 71% 29%;
-    /* = moss, for positive states (85+ scores, confirmations) */
-    --warning: 48 96% 53%;
-    --warning-foreground: 38 88% 24%;
-    /* = amber, for caution callouts (Critical Miss, gaps) */
+    --success: 155.455 47.826% 27.059%;
+    --warning: 29.268 80.392% 30.000%;
+    --warning-foreground: 29.268 80.392% 30.000%;
+    /* Clear assessment graphics; dark semantic colors above remain the text roles. */
+    --assessment-aqua: 188 85% 34%;
+    --assessment-green: 156 64% 37%;
+    --assessment-amber: 42 94% 58%;
+    /* Reference illustration palette; order does not represent finding severity. */
+    --assessment-priority-coral: 5.652 100% 72.941%;
+    --assessment-priority-gold: 43.537 100% 67.843%;
+    --assessment-priority-gray: 60 2.083% 81.176%;
+    --assessment-number-ink: 225 36.364% 12.941%;
+    --assessment-forest: 152.958 31.839% 43.725%;
+    --assessment-track: 48 8.772% 88.824%;
     /* --destructive already defined above, for errors and <70 scores */
 
-    /* Two-font typography system; technical labels use body with tabular figures. */
-    --font-display: "Space Grotesk Variable", "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-    --font-body: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+    /* One variable sans across marketing and product; serif only for editorial accents. */
+    --font-brand-sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-editorial: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-display: var(--font-brand-sans);
+    --font-body: var(--font-brand-sans);
+    --font-mono: var(--font-brand-sans);
+    --weight-display: 700;
+    --weight-heading: 650;
+    --weight-title: 600;
+    --weight-body: 400;
+    --weight-control: 600;
+    --weight-label: 600;
+
+
+    /* Accessible state surfaces and shared sheet geometry. */
+    --success-surface: 144.000 31.250% 93.725%;
+    --warning-surface: 35.172 100.000% 94.314%;
+    --destructive-surface: 5.000 85.714% 97.255%;
+    --disabled-surface: 80.000 7.692% 92.353%;
+    --radius-sheet: 1.5rem;
+    --radius-inset: 0.75rem;
+    --shadow-sheet: 0 12px 36px rgb(18 25 27 / 5%);
+    --space-48: 3rem;
+    --space-64: 4rem;
+    --space-96: 6rem;
 
     /* Motion */
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --duration-fast: 120ms;
-    --duration-normal: 160ms;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-fast: 140ms;
+    --duration-normal: 180ms;
     --duration-slow: 180ms;
 
     /* Component spacing */
     --space-card-sm: 1rem;
-    /* 16px - compact cards */
     --space-card-md: 1.25rem;
-    /* 20px - default cards */
-    --space-card-lg: 1.5rem;
-    /* 24px - hero cards */
+    --space-card-lg: 2rem;
     --space-section: 4rem;
-    /* 64px - between major sections */
 
     /* Spacing scale (4px rhythm) */
     --space-4: 0.25rem;
@@ -141,24 +172,24 @@
     --border-strong: 40%;
     /* Emphasis, active */
 
-    /* Compatibility tokens mapped to Lifted Line roles */
-    --chrome-line: 170 6.25% 81.18%;
-    --surface-quiet: 210 20% 97%;
-    --surface-raised: 45 33.33% 97.2%;
+    /* Compatibility aliases mapped to the same alpine roles */
+    --chrome-line: 100.000 4.348% 86.471%;
+    --surface-quiet: 48.000 14.286% 93.137%;
+    --surface-raised: 40.000 27.273% 97.843%;
     --text-subtle: var(--text-muted);
     --paper: var(--surface-page);
     --paper-muted: var(--surface-proof);
     --mineral: var(--surface-page);
     --mineral-strong: var(--surface-proof);
-    --mineral-soft: 210 54% 97%;
+    --mineral-soft: 48.000 14.286% 93.137%;
     --ink: var(--text-strong);
-    --ink-deep: 226 38% 9%;
-    --cream: 38 38% 94%;
-    --paper-line: 170 6.25% 81.18%;
-    --ink-line: 204 20% 34%;
-    --teal-bright: 193.1 82.43% 53.14%;
+    --ink-deep: 193.333 20.000% 8.824%;
+    --cream: 34.286 28.000% 95.098%;
+    --paper-line: 100.000 4.348% 86.471%;
+    --ink-line: 187.500 4.040% 38.824%;
+    --teal-bright: 191.748 100.000% 28.039%;
     --annotation: var(--accent-apricot);
-    --brass: 39 55% 40%;
+    --brass: 29.268 80.392% 30.000%;
     /* Locked shell heights: product 64px; marketing 64px mobile / 72px desktop. */
     --product-header-height: 4rem;
     --marketing-header-height-mobile: 4rem;
@@ -166,71 +197,56 @@
     /* Compatibility aliases for existing landing and product utilities. */
     --header-height: var(--product-header-height);
     --header-height-desktop: var(--marketing-header-height-desktop);
-    --page-max: 78rem;
+    --page-max: 85rem;
   }
 
   .dark {
-    /* Dark mode compatibility for product surfaces */
-    --background: 0 0% 7%;
-    /* #111111 */
-    --foreground: 0 0% 93%;
-    /* #EEEEEE */
-
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 93%;
-
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 93%;
-
-    --primary: 0 0% 93%;
-    --primary-foreground: 0 0% 7%;
-
-    --secondary: 220 10% 12%;
-    --secondary-foreground: 0 0% 93%;
-
-    --muted: 220 10% 12%;
-    --muted-foreground: 220 9% 64%;
-
-    --accent: 220 10% 12%;
-    --accent-foreground: 0 0% 93%;
-
-    --destructive: 0 62% 31%;
-    --destructive-foreground: 0 0% 93%;
-
-    --input: 220 10% 20%;
-    --ring: 213 27% 60%;
-    /* Slate-400 */
-
-    /* V2.1 Dark Borders — Modern Editorial */
-    --border: 215 20% 25%;
-    /* Slate-700 equivalent #334155 */
-
-    /* Dark Lifted Line roles */
-    --brand: 244 74% 64%;
-    --brand-strong: 244 76% 72%;
-    --brand-tint: 244 30% 24%;
-    --surface-sky: 224 28% 15%;
-    --surface-proof: 216 16% 16%;
-    --text-muted: 220 12% 72%;
-    --text-soft: 220 9% 64%;
-    --line: 215 20% 25%;
-    --control-line: 215 18% 38%;
-    --sky: var(--surface-sky);
-    --slate: 213 27% 60%;
-    /* Slate-400 */
-    --premium: 38 58% 59%;
-
-    /* Inverted Surface (dark sections in light mode) */
-    --surface-inverted: 222 47% 11%;
-    /* Slate-950 #020617 */
-
-    /* V3.1 Site-Wide System Primitives */
-    --chrome-line: 215 22% 33%;
-    --surface-quiet: 218 20% 14%;
-    --surface-raised: 220 18% 11%;
-    --text-subtle: 220 12% 72%;
-    --paper: 216 16% 13%;
-    --paper-muted: 216 16% 16%;
+    /* The same material and aqua hierarchy at dark-mode contrast. */
+    --background: 180.000 8.000% 9.804%;
+    --foreground: 34.286 28.000% 95.098%;
+    --card: 180.000 7.246% 13.529%;
+    --card-foreground: 34.286 28.000% 95.098%;
+    --popover: 180.000 7.246% 13.529%;
+    --popover-foreground: 34.286 28.000% 95.098%;
+    --primary: 34.286 28.000% 95.098%;
+    --primary-foreground: 180.000 8.000% 9.804%;
+    --secondary: 170.000 6.818% 17.255%;
+    --secondary-foreground: 34.286 28.000% 95.098%;
+    --muted: 170.000 6.818% 17.255%;
+    --muted-foreground: 160.000 6.569% 73.137%;
+    --accent: 170.000 6.818% 17.255%;
+    --accent-foreground: 34.286 28.000% 95.098%;
+    --destructive: 5.000 100.000% 76.471%;
+    --destructive-foreground: 180.000 8.000% 9.804%;
+    --input: 190.000 4.878% 51.765%;
+    --ring: 188.718 61.257% 62.549%;
+    --border: 160.000 6.383% 27.647%;
+    --brand: 188.718 61.257% 62.549%;
+    --brand-strong: 186.835 60.305% 74.314%;
+    --brand-tint: 185.581 48.315% 17.451%;
+    --surface-sky: 185.581 48.315% 17.451%;
+    --surface-proof: 170.000 6.818% 17.255%;
+    --text-muted: 160.000 6.569% 73.137%;
+    --text-soft: 160.000 6.569% 73.137%;
+    --line: 160.000 6.383% 27.647%;
+    --control-line: 190.000 4.878% 51.765%;
+    --slate: 160.000 6.569% 73.137%;
+    --slate-muted: 160.000 6.569% 73.137%;
+    --premium: 32.039 68.212% 70.392%;
+    --surface-inverted: 193.333 20.000% 8.824%;
+    --chrome-line: 160.000 6.383% 27.647%;
+    --surface-quiet: 170.000 6.818% 17.255%;
+    --surface-raised: 180.000 7.246% 13.529%;
+    --text-subtle: 160.000 6.569% 73.137%;
+    --paper: 180.000 8.000% 9.804%;
+    --paper-muted: 170.000 6.818% 17.255%;
+    --success: 144.375 42.105% 70.196%;
+    --success-surface: 147.857 30.435% 18.039%;
+    --warning: 31.765 73.913% 72.941%;
+    --warning-foreground: 31.765 73.913% 72.941%;
+    --warning-surface: 27.857 30.435% 18.039%;
+    --destructive-surface: 4.000 28.846% 20.392%;
+    --disabled-surface: 170.000 6.818% 17.255%;
   }
 }
 
@@ -1939,7 +1955,7 @@
   }
 
   h1 {
-    font-weight: 520;
+    font-weight: 400;
   }
 
   h2,
@@ -1947,14 +1963,14 @@
   h4,
   h5,
   h6 {
-    font-weight: 560;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
 
   .font-display {
-    font-feature-settings: "ss01" 1;
+    font-feature-settings: normal;
   }
 
   .riyp-marker {
@@ -2001,6 +2017,7 @@
     height: calc(100dvh - var(--product-header-height));
   }
 
+  .marketing-header-offset,
   .sample-report-page-shell {
     padding-top: var(--marketing-header-height-mobile);
   }
@@ -2010,6 +2027,7 @@
   }
 
   @media (min-width: 640px) {
+    .marketing-header-offset,
     .sample-report-page-shell {
       padding-top: var(--marketing-header-height-desktop);
     }
@@ -2234,10 +2252,10 @@
   }
 
   .riyp-figure-frame {
-    border: 1px solid hsl(var(--border) / 0.45);
-    background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%);
-    border-radius: 10px;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid hsl(var(--line));
+    background: hsl(var(--surface-raised));
+    border-radius: var(--radius-sheet);
+    box-shadow: var(--shadow-sheet);
   }
 
   .riyp-figure figcaption {
@@ -2246,10 +2264,12 @@
   }
 
   .riyp-figure-kicker {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.04em;
     color: hsl(var(--muted-foreground));
   }
 
@@ -2282,9 +2302,9 @@
   }
 
   .research-body {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: hsl(var(--muted-foreground));
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    color: hsl(var(--foreground));
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -2297,25 +2317,24 @@
   }
 
   /* ==========================================================================
-     LIFTED LINE TYPOGRAPHY SYSTEM
-     - Space Grotesk (Display): verdicts and major headlines
-     - Instrument Sans Regular (Interface): body, labels, controls
-     - System Mono (Data): metrics and indices with tabular numbers
+     ALPINE TYPOGRAPHY SYSTEM
+     - Instrument Sans: headlines, body, controls, tabular metrics
+     - Source Serif 4: written assessments and editorial verdicts
      ========================================================================== */
 
   /* Display: Verdicts (largest, lightest) */
   .text-verdict {
-    font-family: var(--font-display);
+    font-family: var(--font-editorial);
     font-weight: 400;
-    font-size: 3.5rem;
-    line-height: 1.05;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
     letter-spacing: -0.02em;
   }
 
   /* Display: Hero (landing pages) */
   .text-hero {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: var(--weight-display);
     letter-spacing: -0.02em;
     line-height: 1.05;
   }
@@ -2323,7 +2342,7 @@
   /* Display: Headlines */
   .text-headline {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: var(--weight-heading);
     font-size: 2rem;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -2332,19 +2351,19 @@
   /* Display: Section Titles */
   .text-title {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: var(--weight-title);
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
 
   /* Interface: Body Copy */
   .text-body {
-    @apply font-sans text-[0.9375rem] leading-relaxed;
+    @apply font-sans text-base;
   }
 
   /* Interface: Memo (slightly larger body) */
   .text-memo {
-    @apply font-sans text-[15px] leading-relaxed text-foreground/90;
+    @apply font-sans text-base text-foreground;
   }
 
   /* Interface: Caption */
@@ -2354,7 +2373,7 @@
 
   /* Interface: UI Labels (uppercase) */
   .text-label {
-    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.05em] leading-none;
+    @apply font-sans text-xs font-semibold leading-[18px];
   }
 
   /* Data: Large Metrics (scores) */
@@ -2397,9 +2416,10 @@
   }
 
   .editorial-kicker {
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 0.6875rem;
+    line-height: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: hsl(var(--muted-foreground));
   }
@@ -2418,14 +2438,14 @@
   }
 
   .editorial-copy {
-    font-size: 0.9375rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.5625rem;
     color: hsl(var(--muted-foreground));
   }
 
   .editorial-copy-lg {
-    font-size: 1.0625rem;
-    line-height: 1.75;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
     color: hsl(var(--muted-foreground));
   }
 
@@ -2449,24 +2469,24 @@
   }
 
   .app-page-intro {
-    border-block: 1px solid hsl(var(--chrome-line) / 0.52);
     background: transparent;
   }
 
   .app-page-eyebrow {
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.6875rem;
+    line-height: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: hsl(var(--muted-foreground));
   }
 
   .app-page-title {
     font-family: var(--font-display);
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    font-weight: 500;
-    line-height: 1.02;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: var(--weight-title);
+    line-height: 1.1;
     letter-spacing: -0.03em;
     color: hsl(var(--foreground));
   }
@@ -2474,7 +2494,7 @@
   .app-page-description {
     max-width: 42rem;
     font-size: 1rem;
-    line-height: 1.75rem;
+    line-height: 1.5625rem;
     color: hsl(var(--muted-foreground));
   }
 
@@ -2578,68 +2598,21 @@
 
   .site-header {
     @apply fixed top-0 left-0 right-0 z-50;
-    background: hsl(var(--surface-inverted));
-    border-bottom: 1px solid hsl(var(--ink-line));
-  }
-
-  .dark .site-header {
-    background: rgba(15, 23, 42, 0.8);
+    background: hsl(var(--surface-page) / 0.96);
+    border-bottom: 1px solid hsl(var(--line));
   }
 
   .site-header-ink,
+  .dark .site-header,
   .dark .site-header-ink {
-    background: hsl(var(--surface-inverted));
-    border-bottom-color: hsl(var(--ink-line));
-  }
-
-  .site-header-ink .site-nav-link {
-    color: rgb(203 213 225);
-  }
-
-  .site-header-ink .site-nav-link:hover,
-  .site-header-ink .site-nav-link:focus-visible,
-  .site-header-ink .site-nav-link-active {
-    color: hsl(var(--cream));
-    background-color: rgb(255 255 255 / 0.06);
-  }
-
-  .site-header-ink .site-nav-link::after {
-    background: hsl(var(--teal-bright));
+    background: hsl(var(--surface-page) / 0.96);
+    border-bottom-color: hsl(var(--line));
   }
 
   .site-header .app-shell-inner {
-    max-width: none;
+    max-width: var(--page-max);
     min-height: var(--marketing-header-height-desktop);
-    padding-inline: clamp(2rem, 3.2vw, 3rem);
-  }
-
-  .site-wordmark {
-    font-size: 1.875rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.055em !important;
-  }
-
-  .site-header .site-nav-link {
-    color: hsl(var(--background) / 0.72);
-  }
-
-  .site-header .site-nav-link:hover,
-  .site-header .site-nav-link:focus-visible,
-  .site-header .site-nav-link-active {
-    color: hsl(var(--background));
-    background-color: hsl(var(--background) / 0.06);
-  }
-
-  .site-header .site-nav-link-active {
-    background-color: transparent;
-  }
-
-  .site-header .site-nav-link-active::after {
-    background: hsl(var(--citron));
-  }
-
-  .site-header .site-nav-link.site-nav-link-active::after {
-    background: hsl(var(--citron));
+    padding-inline: clamp(1.25rem, 3.2vw, 3rem);
   }
 
   @media (min-width: 1024px) {
@@ -2653,7 +2626,7 @@
   }
 
   .site-header .site-nav-link::after {
-    background: hsl(var(--cyan-bright));
+    background: hsl(var(--brand));
   }
 
   .site-nav-link {
@@ -2710,8 +2683,8 @@
 
   .app-shell-header {
     @apply sticky top-0 z-50 border-b;
-    border-color: hsl(var(--ink-line));
-    background: hsl(var(--surface-inverted));
+    border-color: hsl(var(--line));
+    background: hsl(var(--surface-page) / 0.96);
   }
 
   .app-shell-header::before {
@@ -2734,17 +2707,15 @@
     width: 1px;
     height: 1.35rem;
     margin-inline: 0.4rem;
-    background: hsl(var(--background) / 0.2);
+    background: hsl(var(--line));
   }
 
   .app-nav-link {
-    @apply relative inline-flex items-center rounded-md text-base font-medium;
+    @apply relative inline-flex items-center rounded-md text-sm font-medium;
     min-height: 2.75rem;
     padding-inline: 0.72rem;
-    color: hsl(var(--background) / 0.72);
-    transition:
-      color var(--duration-normal) var(--ease),
-      background-color var(--duration-normal) var(--ease);
+    color: hsl(var(--text-muted));
+    transition: color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease);
   }
 
   .app-nav-link::after {
@@ -2762,8 +2733,8 @@
 
   .app-nav-link:hover,
   .app-nav-link:focus-visible {
-    color: hsl(var(--background));
-    background-color: hsl(var(--background) / 0.06);
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--surface-quiet));
   }
 
   .app-nav-link:hover::after,
@@ -2772,19 +2743,20 @@
   }
 
   .app-nav-link-active {
-    color: hsl(var(--background));
+    color: hsl(var(--foreground));
     background-color: transparent;
   }
 
   .app-nav-link-active::after {
     transform: scaleX(1);
-    background: hsl(var(--citron));
+    background: hsl(var(--brand));
   }
 
   .app-card {
-    @apply border-y;
-    border-color: hsl(var(--chrome-line) / 0.52);
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-sheet);
     background: hsl(var(--surface-raised));
+    box-shadow: var(--shadow-sheet);
     transition: border-color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease);
   }
 
@@ -3511,7 +3483,8 @@
   }
 
   .riyp-diagram-shell {
-    @apply relative overflow-hidden border border-line bg-paper text-foreground;
+    @apply relative overflow-hidden border border-line bg-card text-foreground;
+    border-radius: var(--radius-sheet);
     box-shadow: none;
   }
 
@@ -3521,7 +3494,7 @@
   }
 
   .riyp-diagram-head {
-    @apply border-b border-line bg-surface-sky px-5 py-4 md:px-7;
+    @apply border-b border-line bg-proof px-5 py-4 md:px-7;
   }
 
   .dark .riyp-diagram-shell {
@@ -3555,18 +3528,19 @@
   .riyp-evidence-label {
     font-family: var(--font-body);
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.125rem;
     text-transform: uppercase;
   }
 
   .riyp-evidence-title {
     font-family: var(--font-display);
-    font-size: clamp(1.65rem, 3.5vw, 2.55rem);
-    font-weight: 560;
-    letter-spacing: -0.03em;
-    line-height: 0.98;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-stretch: normal;
+    letter-spacing: -0.02em;
+    line-height: 1.875rem;
   }
 
   @media (max-width: 640px) {
@@ -3613,12 +3587,12 @@
     .riyp-evidence-table td::before {
       content: attr(data-label);
       color: hsl(var(--text-muted));
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      line-height: 1.35;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1.125rem;
       text-transform: uppercase;
-    }
+  }
   }
 
   .riyp-evidence-rule {
@@ -4107,17 +4081,18 @@
 }
 
 .research-source-ledger dt {
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 600;
   color: hsl(var(--foreground));
-}
+  }
 
 .research-source-ledger dd {
   margin-top: 0.35rem;
-  font-size: 0.73rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
   color: hsl(var(--muted-foreground));
-}
+  }
 
 .research-read-map {
   display: grid;
@@ -4147,9 +4122,10 @@
   width: 3.5rem;
   height: 3.5rem;
   place-items: center;
-  border: 1px solid hsl(var(--cyan-bright) / 0.35);
+  border: 1px solid hsl(var(--line));
   background: hsl(var(--surface-page));
   color: hsl(var(--brand));
+  border-radius: var(--radius-inset);
 }
 
 .research-read-map-arrow {
@@ -4206,18 +4182,21 @@
   min-height: 2.75rem;
   flex: none;
   padding: 0.65rem 0.8rem;
-  border-bottom: 2px solid transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
   color: hsl(var(--muted-foreground));
-  font-size: 0.76rem;
-  font-weight: 700;
-  transition: color 160ms ease, border-color 160ms ease;
-}
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+  transition: color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease);
+  }
 
 .research-evidence-tab:hover,
 .research-evidence-tab.is-active {
-  border-color: hsl(var(--foreground));
-  color: hsl(var(--foreground));
-}
+  border-color: hsl(var(--brand));
+  background: hsl(var(--brand-tint));
+  color: hsl(var(--brand));
+  }
 
 .research-finding {
   display: grid;
@@ -4235,7 +4214,7 @@
   flex-direction: column;
   justify-content: center;
   border-left: 1px solid hsl(var(--line));
-  background: hsl(var(--surface-sky));
+  background: hsl(var(--surface-raised));
 }
 
 .research-finding-visual {
@@ -4293,7 +4272,7 @@
   min-height: 10.5rem;
   padding: 1.4rem;
   border: 1px solid hsl(var(--line));
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-inset);
   background: hsl(var(--surface-page));
   color: hsl(var(--brand));
 }
@@ -4306,13 +4285,13 @@
 .research-parser-note {
   padding: 1rem;
   border-top: 1px solid hsl(var(--line));
-  font-size: 0.78rem;
-  line-height: 1.65;
-  color: hsl(var(--foreground) / 0.72);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  color: hsl(var(--text-muted));
 }
 
 .research-parser-note span {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .research-trust-row {
@@ -4322,7 +4301,7 @@
   align-items: center;
   padding: 1.25rem;
   border: 1px solid hsl(var(--line));
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-inset);
   background: hsl(var(--surface-page));
   color: hsl(var(--foreground) / 0.55);
 }

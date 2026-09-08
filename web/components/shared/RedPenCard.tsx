@@ -67,7 +67,7 @@ export function RedPenCard({
                 {/* AFTER Panel */}
                 <div className={cn(
                     "relative p-5 transition-all duration-150 motion-reduce:transition-none",
-                    copied ? "bg-brand/10 ring-1 ring-brand/15 shadow-[0_0_0_6px_rgba(13,148,136,0.06)]" : "bg-brand/5"
+                    copied ? "bg-brand-tint ring-1 ring-brand/15 shadow-[0_0_0_6px_rgba(13,148,136,0.06)]" : "bg-brand/5"
                 )}>
                     <div className="mb-2 flex items-start justify-between gap-3">
                         <div className="text-xs font-semibold uppercase tracking-wider text-brand flex items-center gap-2">
@@ -82,7 +82,7 @@ export function RedPenCard({
                                         "inline-flex min-h-11 min-w-[84px] items-center justify-center gap-1 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider transition-all",
                                         copied
                                             ? "bg-success/10 text-success"
-                                            : "bg-muted/50 text-muted-foreground hover:bg-brand/10 hover:text-brand"
+                                            : "bg-muted/50 text-muted-foreground hover:bg-brand-tint hover:text-brand"
                                     )}
                                     aria-live="polite"
                                 >

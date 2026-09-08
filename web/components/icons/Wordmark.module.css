@@ -1,0 +1,14 @@
+.wordmark {
+    display: inline-block;
+    flex-shrink: 0;
+    height: auto;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.17;
+    letter-spacing: .115em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.compact { font-size: 10px; }

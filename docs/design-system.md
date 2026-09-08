@@ -1,16 +1,17 @@
-# Recruiter in Your Pocket - Lifted Line Design System
+# Recruiter in Your Pocket - Alpine Design System
 
-Last updated: 2026-07-20
+Last updated: 2026-09-07
 Owner: Product Design + Engineering
-Status: Current production source of truth
-System version: Lifted Line 2.0
+Status: Approved implementation contract; route and output verification tracked separately
+System version: Alpine 1.0
 
-This is the single source of truth for how the approved Lifted Line brand is implemented. It replaces the older serif-led, teal-first, Instrument-Sans-only, Ink & Paper, Editorial Proof, dossier, and red-pen directions.
+Matt approved the September 5 6 Pro recommendations for the whole product. On September 7, the approved glasses-wearing pocket lion replaced the granite artwork as the homepage anchor. The shared system remains Instrument Sans and Source Serif 4, warm surfaces, restrained aqua, dark pill actions, and softened sheets. Lifted Line evidence meanings, product truth, security, accessibility, and working behavior remain protected. Approval of this contract does not establish that every route or output has passed verification; see `docs/alpine-product-migration.md` for historical migration evidence and the current release record for deployment checks.
 
 Related authority:
 
 - [`brand-system.md`](./brand-system.md): identity, promise, voice posture, and signature grammar
 - [`copy-system.md`](./copy-system.md) and [`voice-and-tone.md`](./voice-and-tone.md): writing system
+- [`font-operations.md`](./font-operations.md): local font loading, verification, and separate export pipelines
 
 If documentation and runtime disagree, the disagreement is a release blocker. Update both in the same change.
 
@@ -53,99 +54,96 @@ The system is the floor for consistency, not a page template. Do not repeat one 
 
 ## 3. Typography
 
-### Families
+### Families and loading
 
 | Role | Family | Use |
-|---|---|---|
-| Display | **Space Grotesk Variable** | wordmark, page headlines, verdicts, prices, major evidence, and primary actions |
-| Interface | **Instrument Sans Variable** | navigation, controls, labels, metadata, body copy, dense product UI |
-| Technical | **Instrument Sans Variable** with tabular figures | scores, time, compact indices, and machine-readable identifiers |
+| --- | --- | --- |
+| Display and interface | **Instrument Sans** | wordmark, titles, prices, navigation, controls, labels, body, and dense product UI |
+| Technical | **Instrument Sans** with tabular figures | scores, time, indices, and identifiers |
+| Short verdict | **Source Serif 4** | selected brief assessments; never a separate route-wide type system |
 
-Both brand fonts are self-hosted through Fontsource imports in `web/app/layout.tsx`. No runtime font CDN is allowed.
+Both families are self-hosted in `web/app/globals.css` with `font-display: swap`. Instrument Sans is served from `/fonts/instrument-sans/InstrumentSans-Variable.woff2`, normal weights 400-700. Source Serif 4 is served from `/fonts/source-serif-4/SourceSerif4-Variable.woff2`, normal weights 200-900; its short verdict role uses 400. No runtime font CDN is allowed. Retained assets from former systems do not define browser branding.
 
 Runtime mapping:
 
-- `--font-display` -> `"Space Grotesk Variable"`
-- `--font-body` -> `"Instrument Sans Variable"`
-- `--font-mono` -> `"Instrument Sans Variable"` with tabular figures; no third branded font
+- `--font-brand-sans` -> `"Instrument Sans", "Helvetica Neue", Arial, sans-serif`
+- `--font-display`, `--font-body`, and `--font-mono` -> `var(--font-brand-sans)`
+- `--font-editorial` -> `"Source Serif 4", Georgia, "Times New Roman", serif`
+- `--weight-display` -> `700`; `--weight-heading` -> `650`; `--weight-title` -> `600`
+- `--weight-body` -> `400`
+- `--weight-control` and `--weight-label` -> `600`
 
 ### Type roles
 
-| Role | Desktop guidance | Mobile guidance | Treatment |
-|---|---:|---:|---|
-| Display hero | 64-88px | 48-66px | Space Grotesk 620-680, tight leading and tracking |
-| Display section | 42-68px | 34-52px | Space Grotesk 600-680 |
-| Evidence statement | 28-56px | 25-40px | Space Grotesk; readable before decorative |
-| Body large | 18-22px | 17-20px | Instrument Sans 400-500, 1.5-1.7 line height |
-| Body | 15-18px | 15-17px | Instrument Sans 400-500 |
-| Label | 11-13px | 11-13px | Instrument Sans 650-760; tracked only when genuinely categorical |
-| Technical | 12-16px | 12-16px | Instrument Sans with tabular figures and deliberate spacing |
+| Role | Size / leading | Weight and treatment |
+| --- | --- | --- |
+| Landing hero | `clamp(40px, 4.55vw, 82px)` / 0.98; about 70px / 68.5px at 1536px | 700; matches the approved lion composition and preserves its three-line headline |
+| Marketing section title | about 40px / 44px | 650 |
+| Workspace title | 40px / 44px | 600; scale down on narrow screens without clipping |
+| Report heading | 24px / 30px | 600 |
+| Short verdict | 28px / 36px | Source Serif 4, 400 |
+| Report and app body | 16px / 25px | Instrument Sans, 400 |
+| Research prose | 18px / 30px | 400; about 66ch measure |
+| Table data | 14px / 22px | 400; label numeric columns and use tabular figures |
+| Controls | 14-16px | 600 |
+| Labels | 12-14px | 600; tracking only for genuine metadata |
 
-Guardrails:
+Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Avoid a third branded font or separate mono face. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
 
-- Space Grotesk carries the brand voice without making the product look like a consultancy or publication.
-- Instrument Sans carries explanation and interaction.
-- Exactly two families appear in branded product surfaces.
-- Do not use browser serif, Times New Roman, or a third mono family as intentional brand typography.
-- Do not set long paragraphs in Space Grotesk.
-- Avoid all-caps labels as decoration. Use them for genuine metadata and short categories.
-- Use `text-wrap: balance` for display type and `text-wrap: pretty` for prose where supported.
+### Separate output pipelines
+
+PDF, Open Graph, icons, and email carry the same brand roles within each renderer's constraints. They do not inherit browser CSS. The September 5 local output migration was rendered and inspected; evidence is recorded in `output/competitive-visuals-20260905/output-identity/README.md`. Future font/layout changes require the same independent checks. Do not infer completion from a global font change. Email must remain readable with fallback fonts and images disabled; PDF must retain selectable text, useful pagination, and grayscale legibility.
 
 ## 4. Color and surface tokens
 
-The canonical palette is chalk, ink, citron, and cyan. Citron owns decisive action and progress; cyan owns recruiter insight and active state. Neither is general decoration.
+| Role | Canonical value | Semantic usage |
+| --- | --- | --- |
+| Canvas | `#f6f3ef` | `--background` / `--surface-page` / paper |
+| Sheet | `#fbfaf8` | card and report/form surfaces |
+| Inset | `#f0efeb` | secondary or contained evidence areas |
+| Ink | `#12191b` | `--foreground` / `--text-strong`; primary actions |
+| Muted text | `#5f6667` | `--text-muted` / muted foreground |
+| Aqua | `#00738f` | `--brand`; links, focus, selected state |
+| Aqua surface | `#e6f3f2` | `--brand-tint` / `--surface-sky`; restrained explanatory areas |
+| Divider | `#dcdedb` | `--line`; nonessential grouping rules |
+| Control boundary | `#7e888a` | identifiable input and utility-control boundaries |
 
-### Core roles
+Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Update linked aliases together: backgrounds, foregrounds, cards, primary actions, focus, borders, and inverted surfaces. `--brand-strong` is the deliberate darker aqua hover/emphasis role. `--cyan-bright`, `--surface-proof`, and `--accent-apricot` remain compatibility aliases into this palette. The proposal explicitly retains citron `#c8f238` through `--citron` / `--accent-butter` for compatibility; it is not a general CTA, header, or decorative completion treatment.
 
-| Semantic token | Purpose |
-|---|---|
-| `--background` / `--surface-page` | default warm-white page field |
-| `--foreground` / `--text-strong` | primary graphite text |
-| `--text-muted` | secondary explanation and metadata |
-| `--line` | default structural rule |
-| `--brand` / `--brand-strong` | readable deep cyan for recruiter insight, links, and focused state |
-| `--brand-tint` | pale cyan teaching and selected-state treatment |
-| `--citron` | acquisition, selection, completion, and the single marker gesture |
-| `--cyan-bright` | tiny icons, active indicators, and 2px rules only |
-| `--surface-sky` / `--surface-proof` | restrained teaching and evidence surfaces |
-| `--accent-apricot` / `--accent-butter` | compatibility aliases mapped to cyan and citron while older surfaces migrate |
-| `--annotation` | consequential edit or omission, mapped to readable deep cyan |
+Headers use the quiet warm canvas treatment. Dark ink is for text, primary actions, and intentional inverted regions rather than a mandatory header band. Aqua is a restrained semantic accent. Dividers are deliberately subtle; use the stronger control boundary to identify inputs.
 
-### Surface grammar
+Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Preserve accessible error/recovery surfaces and plain-language next actions. Pair color with labels, icons, position, or wording; never rely on color alone.
 
-- **Chalk `#F7F5EF`** is the default field.
-- **Ink `#071722`** provides authority and anchors all header and primary-action chrome.
-- **Citron `#C8F238`** marks acquisition, selection, or completion. Use no more than one marker gesture per screen.
-- **Deep cyan `#00738F`** is the readable recruiter-insight color. It clears WCAG AA for normal text across every approved light surface, including proof and data tints.
-- **Bright cyan `#25BFEA`** is reserved for small indicators and 2px rules.
-- **Error `#B42318`** uses the pale `#FEF3F2` recovery surface and always includes plain-language next action.
-- Prefer rules, whitespace, typography, and contrast over generic bordered cards.
-- No atmospheric gradients, startup glow, faux paper stacks, red-pen cosplay, or decorative grain used to manufacture character.
+Matt's September 5 bold-granite refinement adds saturated assessment graphics: `--assessment-aqua` (HSL 188 85% 34%), `--assessment-green` (156 64% 37%), and `--assessment-amber` (42 94% 58%). Use these for small labeled graphics, score strokes, and priority markers; keep dark semantic colors for readable text. Matt's subsequent exact-reference correction overrides the homepage's static assessment illustration: coral first marker, golden-yellow second and third markers, neutral-gray later markers, dark number ink, and a thick forest-green score ring on a pale-gray track. Keep these in scoped `--illustration-*` roles; they provide illustrative emphasis, not error or severity classifications. These illustration colors preserve the approved report treatment alongside the current lion artwork; they do not change real report data, body weight, or the serif verdict.
 
-Never rely on color alone. Pair semantic color with a label, icon, position, or change in wording.
+Dark mode requires its own verified semantic values. Print uses white paper. Avoid atmospheric gradients, startup glow, red-pen cosplay, or decorative grain used to manufacture character.
 
 ## 5. Signature evidence grammar
 
-The system uses four recurring meanings:
+The Lifted Line meanings remain stable while their old color treatment is retired:
 
-| Meaning | User question | Visual treatment |
-|---|---|---|
-| Caught attention | What lands quickly? | citron completion cue plus explicit label |
-| Needs context | What is hard to understand? | cyan cue plus the missing context |
-| Evidence present | What supports the claim? | restrained citron tint plus the actual proof |
-| Strongest next wording | What should I write instead? | one shallow citron marker or pale-cyan teaching surface |
+| Meaning | User question | Required treatment |
+| --- | --- | --- |
+| Caught attention | What lands quickly? | explicit label and the supporting evidence |
+| Needs context | What is hard to understand? | named missing context; restrained aqua when useful |
+| Evidence present | What supports the claim? | actual proof on a neutral or aqua inset |
+| Strongest next wording | What should I write instead? | wording connected to the user's facts and next action |
 
-These cues must mean the same thing on the homepage, in reports, in the workspace, and in Research. Diagrams may add domain-specific encodings, but they must preserve these meanings.
+Do not assign errors to missing career evidence or use green/red scores as substitutes for judgment. Charts may have domain-specific encodings, but labels and legends must explain them.
 
 ## 6. Layout and spacing
 
 ### Containers
 
-| Surface | Default maximum | Horizontal padding |
-|---|---:|---:|
-| Marketing | 82rem | 1.25rem mobile, 2rem desktop |
-| Editorial and Research | 72rem overall; 42-48rem prose rail | 1.25rem mobile, 2rem desktop |
-| App and reports | 90rem | 1rem mobile, 1.5-2rem desktop |
+| Surface | Default maximum | Density |
+| --- | --- | --- |
+| Marketing | 1360px | generous introduction and composed artwork |
+| Workspace | 960px | focused task area, clear input grouping |
+| Report shell | 1200px | readable assessment and compact useful actions |
+| Authentication | about 440px | concise form and recovery messages |
+| Research prose | about 66ch | 18px / 30px reading, wider figures when needed |
+
+Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allows.
 
 ### Spacing scale
 
@@ -160,22 +158,15 @@ Open layouts are preferred to card farms. Use a container when grouping changes 
 
 ## 7. Shape, borders, and elevation
 
-| Token | Value | Use |
-|---|---:|---|
-| `--radius-sm` | 4px | compact controls and evidence labels |
-| `--radius` | 8px | default controls and restrained panels |
-| `--radius-lg` | 12px | major product surfaces |
-| `--radius-xl` | 12px | legacy alias; do not create larger generic cards |
+| Element | Geometry |
+| --- | --- |
+| Primary action | dark pill; 60px hero height, 48px app height |
+| Input or utility field | 10px radius; visible control boundary |
+| Inset | 12px radius |
+| Main sheet | 24px radius desktop; 16px on mobile |
+| Compact icon control | circle where useful; retain a 44px target |
 
-Rules:
-
-- The Lifted Line system is mostly rectilinear, with modest softening for interaction.
-- Circles are for compact status, avatars, or icon controls - not every icon.
-- Borders are structural. Shadows indicate real elevation only.
-- Avoid generic white-card-plus-shadow components.
-- Marketing headers are 72px; product headers are 64px.
-- Marketing and product chrome use ink. Header acquisition CTAs use citron; in-page primary CTAs use ink with a citron directional icon.
-- Motion is 120-180ms and must honor reduced-motion preferences.
+Primary actions are pills; fields, tables, tabs, and utility controls are not all pills. Secondary actions use restrained borders and clear focus. Compact appearance does not reduce the target below 44px. Shadows indicate real elevation and remain subtle. Marketing and app navigation share warm materials and type while spacing follows context. The old ink-header, citron-CTA, and mostly rectilinear requirements are retired.
 
 ## 8. Icons and diagrams
 
@@ -208,7 +199,7 @@ Required shared categories:
 - diagrams: frame, title, legend, caption, source, takeaway
 - feedback: empty, loading, success, warning, error, paywall
 
-Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending.
+Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion.
 
 Shared primitives are the default. A route-specific component is appropriate when its semantics are route-specific, not because recreating a button or card was faster.
 
@@ -216,19 +207,21 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Homepage
 
-- Lead with the candidate's real work and one visible transformation.
-- Show judgment before listing features.
+- Preserve the complete approved Alpine artwork, copy, three-line desktop headline, original company marks, CTA placement, and report introduction at the 1536 x 1024 comparison size.
+- The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
 ### Workspace and report
 
 - Put the likely takeaway, exact evidence, and next useful action first.
-- Density may increase, but hierarchy must stay calm.
+- Use a quiet shared header, regular-weight introduction, warm form/report sheet, and dark primary action. Report body is 16px/25px.
+- Preserve file/paste modes, optional job context, generation, missing-fact entry, comparison, history, save, and export behavior.
+- Density may increase, but hierarchy must stay calm. Operational errors are not resume findings.
 - Scores support judgment; they do not replace it.
 
 ### Research
 
-- Research is the trust layer, not a blog.
+- Research is the trust layer, not a blog. Prose uses 18px/30px at about 66ch, with readable figures and labeled tables.
 - Start with a concrete recruiter or hiring claim.
 - Show what the evidence supports, what remains uncertain, and what the reader can do with it.
 - Prefer diagrams, comparisons, annotated processes, and source-backed teaching surfaces when they materially improve understanding.
@@ -244,12 +237,12 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 Canonical tokens:
 
-- `--duration-fast`: 100ms
-- `--duration-normal`: 200ms
-- `--duration-slow`: 350ms
-- `--ease`: `cubic-bezier(0.16, 1, 0.3, 1)`
+- `--duration-fast`: 140ms
+- `--duration-normal`: 180ms
+- `--duration-slow`: 180ms
+- `--ease`: `cubic-bezier(0.22, 1, 0.36, 1)`
 
-Motion should clarify transformation, selection, progress, or continuity. Animate `opacity`, `transform`, and color properties. One signature motion moment per screen is enough. Respect `prefers-reduced-motion` and never loop motion on essential content.
+Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage uses a restrained layered lion rig: eyes lead a small head movement toward the pointer, preserving the original face, glasses, mane, and handmade texture. The pocket, paws, pencil, and resume remain fixed. Hold the attentive pose while the pointer stays in the hero and ease back on leave. Render only while the pose changes; stop offscreen, when the page is hidden, and once settled. Touch devices, reduced motion, and graphics failures retain the original still image. No required content or action depends on exploring the artwork. Do not regenerate the approved character to animate one region.
 
 ### Signature behavior: Lifted Trace
 
@@ -260,7 +253,7 @@ Motion should clarify transformation, selection, progress, or continuity. Animat
 3. candidate-supplied fact
 4. resolved wording or action
 
-When a segment becomes active or complete, its structural rule moves three pixels off the baseline: bright cyan for the active segment, citron for completed segments. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+Aqua identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 
@@ -273,13 +266,14 @@ Rules:
 ## 12. Accessibility and responsive contract
 
 - WCAG AA contrast minimums: 4.5:1 body text, 3:1 large text and essential graphics.
-- Every interactive element has a visible focus state.
+- Every interactive element has a visible focus state. Inputs use an identifiable boundary, not the subtle divider alone.
 - Touch targets are at least 44px. Compact-looking controls keep the target and reduce visual weight inside it.
 - Meaning never depends on color, hover, or motion alone.
 - Full keyboard completion is required for upload, auth, report navigation, and purchase entry points.
 - Auth and purchase entry points use semantic forms with correct email and one-time-code autocomplete hints.
 - Dense desktop tables become labeled disclosure rows on small screens. Essential answers never require horizontal panning.
-- Test at 390, 1024, and 1440 pixels. Also check 320px for overflow and 200% zoom for critical flows.
+- Test at 390, 768, 1024, and 1440 pixels. Also check 320px for overflow and 200% zoom for critical flows.
+- Dialogs preserve focus management and screen-reader names. Errors retain associated labels and recovery actions.
 
 Ship blockers include clipped typography, overlapping controls, horizontal overflow, missing states, dead navigation, and layout shift caused by fonts.
 
@@ -299,13 +293,13 @@ npm run lint
 npm run build
 ```
 
-Use focused UI tests when the affected surface has interaction.
+Use focused UI tests when the affected surface has interaction. Keep security, privacy, billing, identity, and accessibility release checks intact. Browser route/state and output verification remain separate; render actual PDFs and inspect embedded fonts, selectable text, long findings, pagination, tables, grayscale output, and links. Check email with fallback fonts and images disabled. Record evidence and pending work in `docs/alpine-product-migration.md`.
 
 The guardrail must fail for:
 
-- missing Space Grotesk or Instrument Sans runtime wiring
-- stale teal-first or single-font design-system claims
-- missing Lifted Line semantic tokens
+- missing local Instrument Sans or Source Serif 4 loading, family ranges, or shared typography tokens
+- stale canonical font, palette, or geometry claims
+- missing Alpine semantic tokens or compatibility aliases
 - external font imports
 - unauthorized hardcoded colors
 - banned public copy patterns

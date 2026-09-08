@@ -134,7 +134,7 @@ export default function ReportPanel({
     return (
         <div className="group relative flex h-full flex-col overflow-y-auto bg-mineral">
 
-            {/* 1. Loading State - Analysis Theater */}
+            {/* Loading preserves the report-generation controls. */}
             {isLoading && (
                 <AnalysisScanning
                     mode="resume"
@@ -148,13 +148,13 @@ export default function ReportPanel({
             {showEmptyState && (
                 <div className="flex h-full flex-col items-center justify-center gap-y-8 p-8 text-center">
                     {/* Icon - Subtle, Calm */}
-                    <div className="flex size-20 items-center justify-center rounded-sm border border-brand/20 bg-white/50 text-brand">
-                        <EmptyReportIcon className="size-12" />
+                    <div className="flex size-14 items-center justify-center rounded-xl border border-line bg-card text-brand">
+                        <EmptyReportIcon className="size-8" />
                     </div>
 
                     {/* Copy - Question Headline */}
                     <div className="gap-y-3 max-w-md">
-                        <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                        <h2 className="font-display text-2xl font-normal leading-tight text-foreground">
                             Your report will appear here.
                         </h2>
                         <p className="text-muted-foreground">
@@ -187,7 +187,7 @@ export default function ReportPanel({
                                 <div
                                     role="status"
                                     aria-live="polite"
-                                    className="flex items-start gap-3 border-y border-brand/20 bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground"
+                                    className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm leading-6 text-muted-foreground"
                                 >
                                     <span className="mt-2 size-1.5 shrink-0 animate-pulse rounded-full bg-brand" aria-hidden="true" />
                                     <p><span className="font-medium text-foreground">Still building your report.</span> You can start reading now; the remaining sections will fill in as they arrive.</p>
@@ -196,13 +196,13 @@ export default function ReportPanel({
                             {!resumeText?.trim() && !isSample && (
                                 <div
                                     role="note"
-                                    className="border-y border-amber-500/25 bg-amber-50/70 px-4 py-3 text-sm leading-6 text-foreground/75"
+                                    className="mb-4 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground"
                                 >
                                     Copy is unavailable because this saved report does not include the original resume. You can still read the suggestions.
                                 </div>
                             )}
                             {shareEnabled && shareMode && (
-                                <div className="flex flex-col gap-3 border-y border-premium/20 bg-premium/5 p-4 md:flex-row md:items-center md:justify-between">
+                                <div className="mb-4 flex flex-col gap-3 rounded-xl border border-line bg-proof p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                         <ShieldCheck className="size-4 text-premium" />
                                         <div>
@@ -231,12 +231,12 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b border-citron pb-3 duration-150 motion-reduce:animate-none">
+                            <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
+                                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}
                                     </span>
-                                    {shareEnabled && shareMode && <span className="text-[11px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
+                                    {shareEnabled && shareMode && <span className="text-xs font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
                                 </div>
                                 <div className="flex shrink-0 items-center gap-1">
                                     {isSample && onNewReport && (

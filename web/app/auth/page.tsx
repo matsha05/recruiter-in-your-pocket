@@ -22,17 +22,17 @@ export default function AuthPage() {
 
 function AuthLoadingSkeleton() {
     return (
-        <div className="flex min-h-[80vh] flex-col items-center justify-center bg-paper px-5">
-            <div className="w-full max-w-md space-y-8">
+        <div className="flex min-h-[80vh] flex-col items-center justify-center bg-background px-5">
+            <div className="w-full max-w-auth space-y-8">
                 <div className="space-y-3">
                     <div className="h-3 w-24 animate-pulse rounded-sm bg-brand/20" />
                     <div className="h-12 w-64 animate-pulse rounded-sm bg-muted" />
                     <div className="h-5 w-72 animate-pulse rounded-sm bg-muted/60" />
                 </div>
-                <div className="space-y-4 border border-line bg-background p-8">
+                <div className="space-y-4 rounded-2xl border border-border bg-card p-6 sm:rounded-3xl sm:p-8">
                     <div className="h-4 w-24 animate-pulse rounded-sm bg-muted" />
                     <div className="h-12 w-full animate-pulse rounded-sm bg-muted/50" />
-                    <div className="h-12 w-full animate-pulse rounded-sm bg-brand/20" />
+                    <div className="h-12 w-full animate-pulse rounded-full bg-foreground/15" />
                 </div>
             </div>
         </div>

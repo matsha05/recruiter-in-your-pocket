@@ -54,8 +54,8 @@ const STATUS_MESSAGES: Record<string, { tone: "success" | "warning"; message: st
 
 function unavailablePanel() {
   return (
-    <section className="border-l-4 border-warning bg-warning/10 p-6">
-      <h1 className="font-display text-2xl text-foreground">Private reply unavailable</h1>
+    <section className="rounded-2xl border border-warning/30 bg-warning/5 p-6 sm:rounded-3xl">
+      <h1 className="font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title">Private reply unavailable</h1>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">
         The original message could not be loaded safely. Nothing was sent; try again later.
       </p>
@@ -79,7 +79,7 @@ export default async function SupportReplyPage({
 
   const provider = getSupportReplyProvider();
   if (!provider) {
-    return <div className="mx-auto w-full max-w-3xl px-5 py-12">{unavailablePanel()}</div>;
+    return <div className="mx-auto box-content w-auto max-w-account px-4 py-12 sm:px-6">{unavailablePanel()}</div>;
   }
 
   const result = await loadSupportReplyContext(
@@ -99,7 +99,7 @@ export default async function SupportReplyPage({
     ) {
       notFound();
     }
-    return <div className="mx-auto w-full max-w-3xl px-5 py-12">{unavailablePanel()}</div>;
+    return <div className="mx-auto box-content w-auto max-w-account px-4 py-12 sm:px-6">{unavailablePanel()}</div>;
   }
 
   const { status } = await searchParams;
@@ -107,13 +107,13 @@ export default async function SupportReplyPage({
   const sent = status === "sent";
 
   return (
-    <section className="flex-1 bg-paper px-5 py-10 sm:px-6 lg:py-14">
-      <div className="mx-auto w-full max-w-3xl">
-        <header className="border-t border-line pt-6">
-          <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
+    <section className="flex-1 bg-background px-4 py-10 sm:px-6 lg:py-14">
+      <div className="mx-auto w-full max-w-account">
+        <header className="pt-2">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
             Private support reply
           </p>
-          <h1 className="mt-3 font-display text-4xl riyp-weight-620 tracking-[-0.04em] text-foreground sm:text-5xl">
+          <h1 className="mt-3 font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title">
             Reply as support, not from Gmail.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
@@ -124,13 +124,13 @@ export default async function SupportReplyPage({
         {statusMessage ? (
           <div
             role="status"
-            className={`mt-7 border-l-4 p-4 text-sm ${statusMessage.tone === "success" ? "border-success bg-success/10 text-success" : "border-warning bg-warning/10 text-warning-foreground"}`}
+            className={`mt-7 rounded-xl border p-4 text-sm leading-6 ${statusMessage.tone === "success" ? "border-success/30 bg-success/10 text-success" : "border-warning/30 bg-warning/10 text-warning-foreground"}`}
           >
             {statusMessage.message}
           </div>
         ) : null}
 
-        <div className="mt-8 border-y border-line bg-background">
+        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card sm:rounded-3xl">
           <dl className="divide-y divide-line">
             <div className="grid gap-1 px-5 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
               <dt className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">From</dt>
@@ -149,7 +149,7 @@ export default async function SupportReplyPage({
           <div className="border-t border-line px-5 py-5">
             <p className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Message</p>
             {result.context.textPreview ? (
-              <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words font-sans text-sm leading-6 text-foreground">
+              <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words font-sans text-base leading-7 text-foreground">
                 {result.context.textPreview}
               </pre>
             ) : (
@@ -165,7 +165,7 @@ export default async function SupportReplyPage({
           </div>
         </div>
 
-        <form action={sendSupportReplyAction} className="mt-8 border-t border-line pt-6">
+        <form action={sendSupportReplyAction} className="mt-8 pt-2">
           <input type="hidden" name="emailId" value={emailId} />
           <label htmlFor="support-reply" className="text-sm font-semibold text-foreground">
             Your reply
@@ -180,7 +180,7 @@ export default async function SupportReplyPage({
             disabled={sent}
             maxLength={MAX_SUPPORT_REPLY_BYTES}
             aria-describedby="support-reply-help"
-            className="mt-3 min-h-48 w-full resize-y rounded-md border border-line bg-background px-4 py-3 text-base leading-7 text-foreground outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-paper-muted"
+            className="mt-3 min-h-48 w-full resize-y rounded-md border border-input bg-card px-4 py-3 text-base leading-7 text-foreground outline-none transition focus:border-brand focus:ring-2 focus:ring-ring/25 disabled:cursor-not-allowed disabled:bg-muted"
           />
           <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">

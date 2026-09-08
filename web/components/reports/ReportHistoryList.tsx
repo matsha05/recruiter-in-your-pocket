@@ -115,40 +115,41 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
 
   if (reports.length === 0) {
     return (
-      <div className="border-y border-border bg-card p-8 text-center sm:p-10">
-        <div className="mx-auto mb-4 flex size-20 items-center justify-center border border-cyan-bright/35 bg-surface-sky text-brand">
+      <div className="rounded-2xl border border-border bg-card px-5 py-10 text-center sm:rounded-3xl sm:p-12">
+        <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-2xl bg-brand-tint text-brand">
           <EmptyReportIcon className="size-12" />
         </div>
-        <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
+        <h2 className="font-display text-report-title text-foreground">No saved reports yet</h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
           Get a report on your resume, then save it to return to the feedback later.
         </p>
-        <Link
-          href="/workspace"
-          className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-        >
-          Get your first report
-          <ArrowRight className="size-4 text-citron" aria-hidden="true" />
-        </Link>
+        <Button asChild className="mt-6">
+          <Link
+            href="/workspace"
+          >
+            Get your first report
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </Button>
       </div>
     );
   }
 
   return (
     <>
-      <div className="divide-y divide-border border-y border-border bg-card">
+      <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card sm:rounded-3xl">
         {reports.map((report) => {
           const title = reportTitle(report);
           const isRenaming = renamingId === report.id;
 
           return (
-            <article key={report.id} className="group grid gap-4 p-5 transition-colors hover:bg-mineral sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <article key={report.id} className="group grid gap-5 p-5 transition-colors hover:bg-muted/40 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <ScoreBadge score={report.score ?? 0} />
                   <span className="text-xs text-muted-foreground">{formatReportDate(report.createdAt)}</span>
                   {report.targetRole && report.targetRole !== title ? (
-                    <span className="border-l-2 border-cyan-bright bg-surface-sky px-2 py-1 text-xs text-muted-foreground">
+                    <span className="max-w-full rounded-full bg-brand-tint px-2.5 py-1 text-xs text-brand [overflow-wrap:anywhere]">
                       {report.targetRole}
                     </span>
                   ) : null}
@@ -167,7 +168,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                         if (event.key === "Enter") void saveRename(report);
                         if (event.key === "Escape") cancelRename();
                       }}
-                      className="min-h-11 min-w-0 flex-1 border border-foreground/25 bg-background px-3 py-2 text-sm text-foreground outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/15"
+                      className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-background px-3 py-2 text-base text-foreground focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/20"
                       placeholder="Name this version"
                     />
                     <div className="flex gap-2">
@@ -175,8 +176,6 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                         type="button"
                         onClick={() => void saveRename(report)}
                         disabled={savingId === report.id}
-                        variant="brand"
-                        className="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background disabled:opacity-50"
                       >
                         {savingId === report.id ? <Loader2 className="mr-2 size-4 animate-spin" aria-hidden="true" /> : null}
                         Save
@@ -186,7 +185,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                         onClick={cancelRename}
                         variant="outline"
                         size="icon"
-                        className="inline-flex size-11 items-center justify-center rounded-md border border-foreground/25 bg-background text-muted-foreground hover:text-foreground"
+                        className="text-muted-foreground hover:text-foreground"
                         aria-label="Cancel rename"
                       >
                         <X className="size-4" aria-hidden="true" />
@@ -194,8 +193,8 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     </div>
                   </div>
                 ) : (
-                  <Link href={`/reports/${report.id}`} className="focus-ring mt-3 block rounded-sm">
-                    <h2 className="font-display text-xl text-foreground transition-colors group-hover:text-brand">{title}</h2>
+                  <Link href={`/reports/${report.id}`} className="focus-ring mt-3 block rounded-lg">
+                    <h2 className="break-words font-display text-xl font-medium leading-7 text-foreground transition-colors group-hover:text-brand">{title}</h2>
                     {report.resumePreview ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm leading-6 text-muted-foreground">{report.resumePreview}</p>
                     ) : (
@@ -206,10 +205,10 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
               </div>
 
               {!isRenaming ? (
-                <div className="flex items-center gap-1 sm:self-start">
+                <div className="flex flex-wrap items-center gap-1 lg:self-start">
                   <Link
                     href={`/reports/${report.id}`}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-brand hover:bg-brand/5"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-brand transition-colors hover:bg-brand-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                   >
                     <FileText className="size-4" aria-hidden="true" />
                     Open
@@ -217,7 +216,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                   <button
                     type="button"
                     onClick={() => beginRename(report)}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-paper-muted hover:text-foreground"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                   >
                     <Pencil className="size-4" aria-hidden="true" />
                     Rename
@@ -225,7 +224,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                   <button
                     type="button"
                     onClick={() => setDeleteId(report.id)}
-                    className="inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    className="inline-flex size-11 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
                     aria-label={`Delete ${title}`}
                   >
                     <Trash2 className="size-4" aria-hidden="true" />

@@ -10,6 +10,7 @@ import {
 } from "@/lib/reports/report-presentation";
 import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
 import { bracketPlaceholderKeys, hasBracketPlaceholders } from "@/lib/llm/report-placeholder-policy";
+import styles from "./ReportStream.module.css";
 
 function IndependentRewriteCard({
   item,
@@ -50,21 +51,21 @@ function IndependentRewriteCard({
 
   return (
     <article className="border-t border-[hsl(var(--paper-line))] py-6 first:border-t-0">
-      <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-muted-foreground">
+      <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">
         {item.rewrite.label || `Rewrite ${String(item.originalIndex + 1).padStart(2, "0")}`}
       </p>
-      <div className="mt-4 grid gap-px bg-[hsl(var(--paper-line))] md:grid-cols-2">
-        <div className="bg-paper-muted px-5 py-5">
-          <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-muted-foreground">Original</p>
-          <p className="mt-3 text-sm leading-6 text-foreground/80">{item.rewrite.original}</p>
+      <div className="mt-4 grid overflow-hidden rounded-xl border border-line md:grid-cols-2">
+        <div className="bg-proof/50 px-5 py-5">
+          <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">Original</p>
+          <p className="mt-3 text-base text-foreground">{item.rewrite.original}</p>
         </div>
-        <div className="bg-brand/[0.065] px-5 py-5">
+        <div className="border-t border-line bg-surface-sky/50 px-5 py-5 md:border-l md:border-t-0">
           {needsFacts ? (
             <>
               {item.rewrite.enhancement_note ? (
                 <RewriteEnhancementNote note={item.rewrite.enhancement_note} label="Details to add" />
               ) : (
-                <ul className="list-disc space-y-2 pl-5 text-sm leading-6 text-foreground/80">
+                <ul className="list-disc space-y-2 pl-5 text-base text-foreground">
                   {bracketPlaceholderKeys(item.rewrite.better).map((key) => <li key={key}>{questionForPlaceholder(key)}</li>)}
                 </ul>
               )}
@@ -77,7 +78,7 @@ function IndependentRewriteCard({
           ) : (
             <>
               <div className="flex items-start justify-between gap-3">
-                <p className="riyp-type-11px font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
+                <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
                 {!isReadOnly && (
                   <button
                     type="button"
@@ -91,10 +92,10 @@ function IndependentRewriteCard({
                   </button>
                 )}
               </div>
-              <p className="mt-3 font-display text-xl leading-7 text-foreground">{item.rewrite.better}</p>
+              <p className={`${styles.body} mt-3 text-foreground`}>{item.rewrite.better}</p>
               <RewriteEnhancementNote note={item.rewrite.enhancement_note} className="mt-4" />
               <p className="mt-3 text-xs leading-5 text-muted-foreground">{guidance}</p>
-              {copyError && <p role="status" className="mt-3 text-sm leading-6 text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
+              {copyError && <p role="status" className="mt-3 text-base text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </>
           )}
         </div>
@@ -117,12 +118,12 @@ export function IndependentAdvice({
   if (rewrites.length === 0 && questions.length === 0) return null;
 
   return (
-    <section id="section-independent-advice" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
+    <section id="section-independent-advice" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
       {rewrites.length > 0 && (
         <div>
-          <p className="riyp-type-11px font-semibold uppercase riyp-track-017 text-brand">More from your resume</p>
-          <h2 className="mt-3 max-w-[18ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">Other suggested edits.</h2>
-          <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">
+          <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">More from your resume</p>
+          <h2 className={`${styles.sectionTitle} mt-3`}>Other suggested edits.</h2>
+          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
             Compare each suggestion with the original before you use it.
           </p>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
@@ -135,17 +136,17 @@ export function IndependentAdvice({
         <div className={rewrites.length > 0 ? "mt-12 border-t border-[hsl(var(--paper-line))] pt-10" : ""}>
           <div className="flex items-center gap-2 text-brand">
             <Question className="size-5" weight="duotone" />
-            <p className="riyp-type-11px font-semibold uppercase riyp-track-017">Other experience to consider</p>
+            <p className="text-xs font-semibold uppercase riyp-track-017">Other experience to consider</p>
           </div>
-          <h2 className="mt-3 max-w-[20ch] font-display text-3xl riyp-weight-520 leading-tight text-foreground">Questions only you can answer.</h2>
-          <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">Use these prompts to recall relevant examples. You don&apos;t need an answer to every one.</p>
+          <h2 className={`${styles.sectionTitle} mt-3`}>Questions only you can answer.</h2>
+          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">Use these prompts to recall relevant examples. You don&apos;t need an answer to every one.</p>
           <ol className="mt-6 divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
             {questions.map(({ question, originalIndex }) => (
               <li key={`${originalIndex}-${question.question}`} className="grid gap-2 py-5 sm:grid-cols-[2.5rem_1fr]">
-                <span className="riyp-tabular-label riyp-type-11px font-semibold text-brand">{String(originalIndex + 1).padStart(2, "0")}</span>
+                <span className="riyp-tabular-label text-xs font-semibold text-brand">{String(originalIndex + 1).padStart(2, "0")}</span>
                 <div>
                   <p className="text-base font-medium leading-7 text-foreground">{question.question}</p>
-                  {question.why && <p className="mt-2 text-sm leading-6 text-muted-foreground">{question.why}</p>}
+                  {question.why && <p className="mt-2 text-base text-muted-foreground">{question.why}</p>}
                 </div>
               </li>
             ))}

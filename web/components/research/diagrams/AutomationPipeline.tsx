@@ -15,7 +15,7 @@ export function AutomationPipeline() {
                         { label: "Ranking", title: "Who gets prioritized", detail: "Using gaps, schools, or titles as shortcuts can repeat past biases.", tone: "risk" },
                         { label: "Assessment", title: "Who advances", detail: "Automated scoring can make a narrow definition of fit look objective.", tone: "risk" },
                     ]}
-                    footer={<><strong className="text-[hsl(var(--annotation))]">Earlier filters matter.</strong> A human reviewer may only see the candidates who made it through every previous step.</>}
+                    footer={<><strong className="text-brand">Earlier filters matter.</strong> A human reviewer may only see the candidates who made it through every previous step.</>}
                 />
             </DiagramFrame>
             <DiagramCaption kicker="Fig. 1 / Before the human review" title="Reviewing the final shortlist alone can miss bias introduced earlier." />

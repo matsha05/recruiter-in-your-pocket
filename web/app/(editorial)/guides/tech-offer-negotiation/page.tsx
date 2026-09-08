@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import styles from "@/components/guides/GuidePresentation";
 import {
     Checklist,
     Disclosure,
@@ -22,42 +23,42 @@ export const metadata: Metadata = {
 export default function TechOfferNegotiationGuidePage() {
     return (
         <>
-        <div className="bg-background text-foreground">
+        <div className="bg-background text-foreground selection:bg-brand/15">
             <div className="border-b border-border">
-                <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
+                <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
                     <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">Resources</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Tech offer negotiation</span>
                 </nav>
             </div>
 
-            <article className="mx-auto max-w-6xl px-5 pb-24 pt-14 sm:px-8 sm:pt-20">
-                <header className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+            <article className="mx-auto max-w-report px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
+                <header className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
                     <div>
                         <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
-                        <h1 className="mt-5 max-w-4xl font-display text-6xl riyp-weight-500 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-7xl lg:text-8xl">
+                        <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                             Compare your tech offer
                             <span className="mt-2 block text-brand">year by year.</span>
                         </h1>
                     </div>
-                    <div className="border-l-2 border-brand pl-5">
-                        <p className="text-base leading-7 text-muted-foreground">The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
-                        <Link href="/resources/offer-negotiation" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
+                    <div className="border-l border-border pl-5">
+                        <p className={styles.readingCopy}>The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
+                        <Link href="/resources/offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
                             Ready to make a counteroffer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
                     </div>
                 </header>
 
-                <div className="mt-14 grid border-y border-border sm:grid-cols-3">
+                <div className={`${styles.sheet} my-14 grid px-5 sm:grid-cols-3 sm:px-6`}>
                     {[
                         ["Verify level and location", "Confirm the band, work location, and whether the role’s scope matches the level on the offer."],
                         ["Compare pay year by year", "Write out base, target bonus, guaranteed cash, and scheduled equity vesting for each year."],
                         ["Check what is uncertain", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
                     ].map(([title, body], index) => (
-                        <div key={title} className="border-b border-border py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0">
-                            <div className="font-mono text-xs text-ink">0{index + 1}</div>
-                            <h2 className="mt-3 font-display text-xl riyp-weight-560">{title}</h2>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
+                        <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+                            <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                            <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
+                            <p className={`${styles.readingCopy} mt-2`}>{body}</p>
                         </div>
                     ))}
                 </div>
@@ -65,18 +66,18 @@ export default function TechOfferNegotiationGuidePage() {
                 <GuideSection number="01" title="Check the conditions behind each amount" intro="A compensation total can combine base salary with bonuses and equity that depend on performance, vesting, or a future share price. Check how each part is earned and paid before comparing offers." id="honest-numbers">
                     <TechOfferStack />
                     <div className="mt-7 grid gap-5 sm:grid-cols-2">
-                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Year one</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">List the base paid during the year, sign-on payment and any repayment conditions, bonus under its actual rules, and equity scheduled to vest.</p></div>
-                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Later years</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Check what remains after a sign-on ends, how vesting changes, and whether future grants or bonuses are documented or only customary.</p></div>
+                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Year one</h3><p className={`${styles.readingCopy} mt-2`}>List the base paid during the year, sign-on payment and any repayment conditions, bonus under its actual rules, and equity scheduled to vest.</p></div>
+                        <div className="border-t border-border pt-4"><h3 className="font-semibold">Later years</h3><p className={`${styles.readingCopy} mt-2`}>Check what remains after a sign-on ends, how vesting changes, and whether future grants or bonuses are documented or only customary.</p></div>
                     </div>
                 </GuideSection>
 
                 <GuideSection number="02" title="Understand what your equity could be worth" intro="Ask what the award is, what it costs to own, when it becomes yours, and whether you will be able to sell it. A grant can be valuable. It can also be worth nothing." id="equity">
                     <div className="space-y-1">
                         <Disclosure title="Restricted stock units (RSUs)" eyebrow="A promise to deliver shares" defaultOpen>
-                            <p className="text-sm leading-6 text-muted-foreground">Confirm the number of units, the vesting schedule, what event delivers the shares, and what happens if you leave. At a public company, current share price can help model value, but future value is still unknown. At a private company, settlement and liquidity may depend on additional events.</p>
+                            <p className={styles.readingCopy}>Confirm the number of units, the vesting schedule, what event delivers the shares, and what happens if you leave. At a public company, current share price can help model value, but future value is still unknown. At a private company, settlement and liquidity may depend on additional events.</p>
                         </Disclosure>
                         <Disclosure title="Stock options" eyebrow="The right to buy shares">
-                            <p className="text-sm leading-6 text-muted-foreground">Ask for the option count, strike price, current common-share fair market value, vesting schedule, expiration date, post-termination exercise window, and liquidity restrictions. To estimate possible proceeds, compare the share value with the strike price and account for exercise costs, taxes, and whether you can sell the shares.</p>
+                            <p className={styles.readingCopy}>Ask for the option count, strike price, current common-share fair market value, vesting schedule, expiration date, post-termination exercise window, and liquidity restrictions. To estimate possible proceeds, compare the share value with the strike price and account for exercise costs, taxes, and whether you can sell the shares.</p>
                         </Disclosure>
                         <Disclosure title="Questions to ask about your grant" eyebrow="Take these to the recruiter">
                             <Checklist items={[
@@ -89,13 +90,13 @@ export default function TechOfferNegotiationGuidePage() {
                             ]} />
                         </Disclosure>
                         <Disclosure title="Check the tax consequences" eyebrow="Award and timing matter">
-                            <p className="text-sm leading-6 text-muted-foreground">Tax treatment differs across RSUs, incentive stock options, nonqualified stock options, location, timing, and individual circumstances. Use this guide to know what to ask, then confirm the consequences with a qualified tax professional before exercising or making an election.</p>
+                            <p className={styles.readingCopy}>Tax treatment differs across RSUs, incentive stock options, nonqualified stock options, location, timing, and individual circumstances. Use this guide to know what to ask, then confirm the consequences with a qualified tax professional before exercising or making an election.</p>
                         </Disclosure>
                     </div>
                 </GuideSection>
 
                 <GuideSection number="03" title="Level affects more than your title" intro="Your level can affect your responsibilities, promotion timing, future salary range, and equity. Check that it matches the job you discussed in interviews." id="level">
-                    <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+                    <div className="grid gap-8">
                         <Checklist items={[
                             <>Ask for the formal level and the range attached to your work location.</>,
                             <>Compare the responsibilities discussed in interviews with the written role.</>,
@@ -125,8 +126,8 @@ export default function TechOfferNegotiationGuidePage() {
                         </Disclosure>
                     </div>
                     <div className="mt-8 border-l-2 border-brand pl-5">
-                        <p className="font-display text-2xl riyp-weight-520 leading-8">Get the revised offer in writing.</p>
-                        <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">After you agree on a change, check that the updated offer includes it before you sign.</p>
+                        <p className={styles.componentTitle}>Get the revised offer in writing.</p>
+                        <p className={`${styles.readingCopy} mt-2`}>After you agree on a change, check that the updated offer includes it before you sign.</p>
                     </div>
                 </GuideSection>
 

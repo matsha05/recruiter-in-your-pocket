@@ -1,0 +1,108 @@
+.row {
+    position: relative;
+    z-index: 2;
+    order: 3;
+    width: 100%;
+    mix-blend-mode: multiply;
+    --sprite-width: min(100vw, 1800px);
+    color: hsl(var(--text-strong));
+    font-family: var(--font-body);
+}
+
+.inner {
+    position: relative;
+    width: min(1591px, 88.4%);
+    height: clamp(70px, 5.46875vw, 98px);
+    margin: 0 auto;
+}
+
+.heading,
+.more {
+    position: absolute;
+    top: calc(50% + 0.39vw);
+    margin: 0;
+    transform: translateY(-50%);
+    font-size: clamp(9px, 0.7vw, 12.6px);
+    font-weight: 450;
+    line-height: 1.5;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.heading { left: 0; }
+.more { left: calc(var(--sprite-width) * 1090 / 1536); }
+
+.logos {
+    position: absolute;
+    inset: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logos > li {
+    position: absolute;
+    left: calc(var(--sprite-width) * (var(--crop-x) - 89) / 1536);
+    top: calc(50% + 0.39vw);
+    width: calc(var(--sprite-width) * var(--crop-width) / 1536);
+    height: calc(var(--sprite-width) * 56 / 1536);
+    transform: translateY(-50%);
+}
+
+.logo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/alpine/alpine-selected-reference.png");
+    background-repeat: no-repeat;
+    background-size: var(--sprite-width) calc(var(--sprite-width) * 2 / 3);
+    background-position: calc(var(--sprite-width) * var(--crop-x) / -1536) calc(var(--sprite-width) * -750 / 1536);
+    filter: grayscale(1) contrast(1.25) brightness(1.06);
+    mix-blend-mode: multiply;
+}
+
+/* Crops preserve the supplied reference pixels, including each original mark. */
+.google { --crop-x: 329; --crop-width: 78; }
+.meta { --crop-x: 453; --crop-width: 83; }
+.apple { --crop-x: 586; --crop-width: 43; }
+.amazon { --crop-x: 681; --crop-width: 79; }
+.microsoft { --crop-x: 803; --crop-width: 107; }
+.bain { --crop-x: 958; --crop-width: 173; }
+
+@media (max-width: 1050px) {
+    .row { --sprite-width: 1536px; }
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: calc(100% - 48px);
+        height: auto;
+        padding: 26px 0;
+    }
+    .heading,
+    .more {
+        position: static;
+        transform: none;
+        font-size: 10px;
+        text-align: center;
+    }
+    .logos {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2px 24px;
+    }
+    .logos > li {
+        position: static;
+        flex-shrink: 0;
+        transform: none;
+    }
+}
+
+@media (max-width: 460px) {
+    .inner { width: calc(100% - 32px); gap: 10px; }
+    .logos { gap: 0 20px; }
+}

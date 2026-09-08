@@ -49,7 +49,7 @@ export function LegalNav({ className }: LegalNavProps) {
         <div className={cn("relative min-w-0", className)}>
             <nav
                 ref={navRef}
-                className="flex w-full snap-x items-center gap-6 overflow-x-auto border-y border-line py-1 pr-9 [scrollbar-width:none] md:pr-0 [&::-webkit-scrollbar]:hidden"
+                className="flex w-full snap-x items-center gap-1 overflow-x-auto py-1 pr-9 [scrollbar-width:none] md:pr-0 [&::-webkit-scrollbar]:hidden"
                 aria-label="Trust and legal pages"
             >
                 {tabs.map((tab) => {
@@ -61,10 +61,10 @@ export function LegalNav({ className }: LegalNavProps) {
                             href={tab.href}
                             aria-current={isActive ? "page" : undefined}
                             className={cn(
-                                "focus-ring min-h-11 snap-start whitespace-nowrap border-b-2 px-0 py-3 text-[13px] font-semibold transition-colors duration-200",
+                                "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200",
                                 isActive
-                                    ? "border-brand text-foreground"
-                                    : "border-transparent text-muted-foreground hover:text-foreground"
+                                    ? "border-brand/20 bg-brand-tint text-brand"
+                                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
                             )}
                         >
                             {tab.name}
@@ -73,7 +73,7 @@ export function LegalNav({ className }: LegalNavProps) {
                 })}
             </nav>
             {hasMore ? (
-                <div className="pointer-events-none absolute inset-y-px right-0 flex w-8 items-center justify-end bg-paper" aria-hidden="true">
+                <div className="pointer-events-none absolute inset-y-px right-0 flex w-8 items-center justify-end bg-background" aria-hidden="true">
                     <CaretRight className="size-4 text-brand" weight="bold" />
                 </div>
             ) : null}

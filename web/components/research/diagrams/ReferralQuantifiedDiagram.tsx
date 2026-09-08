@@ -13,7 +13,7 @@ export function ReferralQuantifiedDiagram({ figureNumber = 1 }: { figureNumber?:
                     { label: "Continued the job", values: ["+20 percentage points", "Referrals contained information about persistence"], emphasis: 0 },
                     { label: "Job performance", values: ["Higher", "The signal extended beyond visible worker characteristics"], emphasis: 0 },
                 ]} />
-                <p className="border-t border-line px-5 py-4 text-xs leading-5 text-muted-foreground md:px-7">Pallais &amp; Sands studied 1,266 workers in an online labor market. Role, company, relationship strength, and labor conditions can materially change the effect.</p>
+                <p className="border-t border-line px-5 py-4 text-data text-muted-foreground md:px-7">Pallais &amp; Sands studied 1,266 workers in an online labor market. Role, company, relationship strength, and labor conditions can materially change the effect.</p>
             </DiagramFrame>
             <DiagramCaption kicker={`Fig. ${figureNumber} / The observed difference`} title="A useful referral can reveal information a resume does not carry." description="Pallais & Sands, Journal of Political Economy (2016); summary by J-PAL." />
         </DiagramFigure>

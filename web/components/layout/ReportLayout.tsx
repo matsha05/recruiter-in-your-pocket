@@ -1,4 +1,5 @@
 import * as React from "react"
+import styles from "./ReportLayout.module.css"
 
 interface ReportLayoutProps {
     children: React.ReactNode
@@ -7,16 +8,16 @@ interface ReportLayoutProps {
 
 export function ReportLayout({ children, toc }: ReportLayoutProps) {
     return (
-        <div className="report-layout-shell relative mx-auto w-full px-0 pb-8 md:pb-14">
+        <div className={styles.shell}>
             {toc && (
                 <aside
                     aria-label="Report navigation"
-                    className="riyp-border-paper-line sticky top-0 z-40 border-y bg-mineral px-2 sm:px-3 md:px-6"
+                    className={styles.navigation}
                 >
                     {toc}
                 </aside>
             )}
-            <article className="riyp-report-paper mt-4 min-w-0 px-5 py-5 sm:mt-8 sm:px-8 sm:py-7">
+            <article className={styles.paper}>
                 {children}
             </article>
         </div>

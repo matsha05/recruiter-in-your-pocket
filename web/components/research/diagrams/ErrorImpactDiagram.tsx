@@ -13,7 +13,7 @@ export function ErrorImpactDiagram({ figureNumber = 1 }: { figureNumber?: number
                     { label: "2 errors", values: ["−0.73 points"], emphasis: 0 },
                     { label: "5 errors", values: ["−1.85 points"], emphasis: 0 },
                 ]} />
-                <p className="border-t border-line px-5 py-4 text-xs leading-5 text-muted-foreground md:px-7">Compared with error-free resumes. These are hypothetical interview ratings, not observed callback rates. A single error was not tested.</p>
+                <p className="border-t border-line px-5 py-4 text-data text-muted-foreground md:px-7">Compared with error-free resumes. These are hypothetical interview ratings, not observed callback rates. A single error was not tested.</p>
             </DiagramFrame>
             <DiagramCaption kicker={`Fig. ${figureNumber} / Measured differences`} title="The larger penalty occurred with five errors." description="Sterkens et al., PLOS ONE (2023), Table 4." />
         </DiagramFigure>

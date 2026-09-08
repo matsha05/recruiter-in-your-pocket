@@ -52,7 +52,7 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
         <Link
             href={article.href}
             className={cn(
-                "focus-ring group relative overflow-hidden rounded-sm border border-line bg-paper transition-colors hover:border-brand",
+                "focus-ring group relative overflow-hidden rounded-2xl border border-line bg-card transition-colors hover:border-brand md:rounded-3xl",
                 featured && "grid min-h-[21rem] md:grid-cols-[1.2fr_0.8fr] md:items-stretch lg:col-span-2"
             )}
         >
@@ -60,9 +60,9 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
                 <div>
                     <div className="flex items-center justify-between gap-4">
                         <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
-                        {article.note ? <span className="riyp-track-010 text-xs font-semibold uppercase text-brand">{article.note}</span> : null}
+                        {article.note ? <span className="riyp-evidence-label text-brand">{article.note}</span> : null}
                     </div>
-                    <h4 className={cn("mt-8 font-display riyp-weight-620 leading-[1] tracking-[-0.03em] text-foreground transition-colors group-hover:text-brand", featured ? "max-w-[18ch] text-[clamp(2.25rem,4vw,4rem)]" : "max-w-[22ch] text-3xl")}>{article.title}</h4>
+                    <h4 className={cn("mt-8 font-display text-report-title tracking-tight text-foreground transition-colors group-hover:text-brand", featured ? "max-w-[26ch]" : "max-w-[24ch]")}>{article.title}</h4>
                     <p className={cn("mt-4 max-w-[38rem] leading-7 text-muted-foreground", featured ? "text-base" : "text-sm")}>{article.description}</p>
                 </div>
                 <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-4 text-xs text-muted-foreground">
@@ -71,10 +71,10 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
                 </div>
             </div>
             {featured ? (
-                <div className="relative min-h-52 overflow-hidden border-t border-line bg-surface-sky p-7 md:min-h-full md:border-l md:border-t-0">
+                <div className="relative min-h-52 overflow-hidden border-t border-line bg-muted p-7 md:min-h-full md:border-l md:border-t-0">
                     <div className="relative flex h-full flex-col justify-end">
                         <FileMagnifyingGlass size={52} weight="duotone" className="text-brand" aria-hidden="true" />
-                        <p className="riyp-track-011 mt-6 text-xs font-semibold uppercase text-brand">Start here</p>
+                        <p className="riyp-evidence-label mt-6 text-brand">Start here</p>
                         <p className="mt-3 max-w-[24ch] text-sm leading-6 text-muted-foreground">Each article includes its sources and explains what the findings can tell you about your resume.</p>
                     </div>
                 </div>
@@ -118,13 +118,13 @@ function ResearchLibrary() {
                             aria-pressed={active}
                             onClick={() => selectCategory(category.id)}
                             className={cn(
-                                "focus-ring flex min-h-12 items-center gap-3 rounded-sm border px-3 py-2 text-left text-sm font-semibold transition-colors",
+                                "focus-ring flex min-h-12 items-center gap-3 rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors",
                                 active
-                                    ? "border-foreground bg-foreground text-background"
+                                    ? "border-brand/40 bg-surface-sky text-brand"
                                     : "border-line text-muted-foreground hover:border-brand hover:text-foreground"
                             )}
                         >
-                            <span className={cn("h-0.5 w-5 shrink-0", active ? "bg-citron" : "bg-cyan-bright")} />
+                            <span className={cn("h-0.5 w-5 shrink-0", active ? "bg-brand" : "bg-line")} />
                             <span><span className="mr-1.5 text-xs tabular-nums">{String(index + 1).padStart(2, "0")}</span>{category.navLabel}</span>
                         </button>
                     );
@@ -133,9 +133,9 @@ function ResearchLibrary() {
 
             <div>
                 <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
-                <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">{activeCategory.descriptor}</p>
-                <h3 className="mt-3 max-w-[28ch] font-display text-[clamp(2.25rem,4vw,3.75rem)] riyp-weight-540 leading-[1] tracking-[-0.035em] text-foreground riyp-stretch-91">{activeCategory.title}</h3>
-                <p className="mt-4 max-w-prose text-base leading-7 text-muted-foreground">{activeCategory.subtitle}</p>
+                <p className="riyp-evidence-label text-brand">{activeCategory.descriptor}</p>
+                <h3 className="mt-3 max-w-[28ch] font-display text-3xl font-normal text-foreground md:text-section-title">{activeCategory.title}</h3>
+                <p className="mt-4 max-w-reading text-prose text-muted-foreground">{activeCategory.subtitle}</p>
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
                     {activeCategory.articles.map((article, index) => <ResearchArticleCard key={article.id} article={article} index={index} featured={index === 0} />)}
                 </div>
@@ -172,8 +172,8 @@ function FirstReadMap() {
     return (
         <figure className="research-read-map" aria-labelledby="research-read-map-title">
             <figcaption className="research-read-map-intro">
-                <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">From file to feedback</p>
-                <h2 id="research-read-map-title" className="mt-4 max-w-[15ch] font-display text-[clamp(2.4rem,4.8vw,4.8rem)] riyp-weight-620 leading-[0.96] tracking-[-0.04em] text-foreground">
+                <p className="riyp-evidence-label text-brand">From file to feedback</p>
+                <h2 id="research-read-map-title" className="mt-4 max-w-[22ch] font-display text-3xl font-normal text-foreground md:text-section-title">
                     Three things to check in a resume.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
@@ -187,11 +187,11 @@ function FirstReadMap() {
                     return (
                         <li key={step.index} className="research-read-map-step">
                             <div className="research-read-map-icon" aria-hidden="true"><Icon size={27} weight="duotone" /></div>
-                            <div className="riyp-track-012 mt-8 flex items-center gap-3 text-xs font-semibold uppercase text-muted-foreground">
+                            <div className="riyp-evidence-label mt-8 flex items-center gap-3 text-muted-foreground">
                                 <span className="text-brand">{step.index}</span>
                                 <span>{step.label}</span>
                             </div>
-                            <h3 className="mt-3 max-w-[16ch] font-display text-[clamp(1.8rem,2.4vw,2.6rem)] riyp-weight-620 leading-[1] tracking-[-0.025em] text-foreground">{step.title}</h3>
+                            <h3 className="mt-3 max-w-[20ch] font-display text-report-title tracking-tight text-foreground">{step.title}</h3>
                             <p className="mt-4 max-w-[30ch] text-sm leading-6 text-muted-foreground">{step.detail}</p>
                             {index < steps.length - 1 ? <ArrowRight className="research-read-map-arrow" size={22} aria-hidden="true" /> : null}
                         </li>
@@ -213,8 +213,8 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
             <div className="research-finding-visual research-finding-spelling" role="img" aria-label="In a hypothetical hiring experiment, five spelling errors reduced the average invitation rating by 1.85 points on a zero-to-ten scale compared with error-free resumes">
                 <div className="flex items-center justify-between gap-5">
                     <div>
-                        <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">Change in invitation rating</p>
-                        <p className="mt-3 font-display text-[clamp(4.5rem,9vw,8rem)] leading-none tracking-[-0.06em] text-foreground">−1.85<span className="ml-2 text-[0.25em] tracking-normal text-brand">points</span></p>
+                        <p className="riyp-evidence-label text-muted-foreground">Change in invitation rating</p>
+                        <p className="mt-3 font-display text-section-title text-foreground md:text-page-title">−1.85<span className="ml-2 text-sm tracking-normal text-brand">points</span></p>
                     </div>
                     <TextAa size={58} weight="duotone" className="text-brand" aria-hidden="true" />
                 </div>
@@ -232,7 +232,7 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
         ];
         return (
             <div className="research-finding-visual" role="img" aria-label="Resume parsing flow from selectable resume text to extracted fields and a recruiter-facing candidate record">
-                <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">What parsing actually does</p>
+                <p className="riyp-evidence-label text-muted-foreground">What parsing actually does</p>
                 <div className="research-parser-flow mt-7">
                     {parserSteps.map((step, index) => {
                         const Icon = step.icon;
@@ -259,19 +259,19 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
     if (visual === "artifact") {
         return (
             <div className="research-finding-visual" role="img" aria-label="Comparison between a simplified resume profile and the full resume">
-                <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">What the study compared</p>
-                <div className="mt-7 grid gap-px overflow-hidden rounded-sm bg-line sm:grid-cols-2">
-                    <div className="bg-white p-6">
+                <p className="riyp-evidence-label text-muted-foreground">What the study compared</p>
+                <div className="mt-7 grid gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2">
+                    <div className="bg-card p-6">
                         <ChartBarHorizontal size={34} weight="duotone" className="text-muted-foreground" aria-hidden="true" />
-                        <p className="mt-6 font-display text-3xl leading-none text-foreground">Resume profile</p>
+                        <p className="mt-6 font-display text-report-title text-foreground">Resume profile</p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">A simplified profile made from selected resume details.</p>
-                        <p className="riyp-track-010 mt-7 border-t border-line pt-4 text-xs font-semibold uppercase text-muted-foreground">More agreement between raters</p>
+                        <p className="riyp-evidence-label mt-7 border-t border-line pt-4 text-muted-foreground">More agreement between raters</p>
                     </div>
                     <div className="riyp-bg-sky p-6">
                         <FileText size={34} weight="duotone" className="text-brand" aria-hidden="true" />
-                        <p className="mt-6 font-display text-3xl leading-none text-foreground">Actual resume</p>
+                        <p className="mt-6 font-display text-report-title text-foreground">Actual resume</p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">The full document, with its original layout and context.</p>
-                        <p className="riyp-track-010 mt-7 border-t border-line pt-4 text-xs font-semibold uppercase text-brand">Different cues drove judgment</p>
+                        <p className="riyp-evidence-label mt-7 border-t border-line pt-4 text-brand">Different cues drove judgment</p>
                     </div>
                 </div>
             </div>
@@ -280,12 +280,12 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
 
     return (
         <div className="research-finding-visual" role="img" aria-label="Recruiters in the cited experiment trusted human expert recommendations more than algorithmic recommendations">
-            <p className="riyp-track-012 text-xs font-semibold uppercase text-muted-foreground">Recommendation source</p>
+            <p className="riyp-evidence-label text-muted-foreground">Recommendation source</p>
             <div className="mt-7 space-y-4">
                 <div className="research-trust-row research-trust-row-strong">
                     <UserFocus size={34} weight="duotone" aria-hidden="true" />
                     <div><p className="font-semibold text-foreground">Human expert</p><p className="mt-1 text-sm text-muted-foreground">Higher recruiter trust</p></div>
-                    <span className="riyp-track-010 ml-auto text-xs font-semibold uppercase text-brand">Trusted more</span>
+                    <span className="riyp-evidence-label ml-auto text-brand">Trusted more</span>
                 </div>
                 <div className="research-trust-row">
                     <Robot size={34} weight="duotone" aria-hidden="true" />
@@ -331,7 +331,7 @@ function ResearchEvidenceTrace() {
         <div className="research-evidence-stage" aria-label="Research findings you can use">
             <div className="research-evidence-stage-head">
                 <div>
-                    <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Four findings worth acting on</p>
+                    <p className="riyp-evidence-label text-brand">Four findings worth acting on</p>
                     <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">See what each source found, what it does not establish, and what to do with the advice.</p>
                 </div>
                 <div className="research-evidence-tabs" role="tablist" aria-label="Research findings">
@@ -372,12 +372,12 @@ function ResearchEvidenceTrace() {
                 className="research-finding riyp-evidence-trace-enter"
             >
                 <div className="research-finding-copy">
-                    <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Finding {activeFinding.index}</p>
-                    <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.5rem,4.8vw,5rem)] riyp-weight-620 leading-[0.94] tracking-[-0.045em] text-foreground">{activeFinding.question}</h2>
-                    <p className="mt-7 max-w-2xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-7 text-muted-foreground">{activeFinding.conclusion}</p>
+                    <p className="riyp-evidence-label text-brand">Finding {activeFinding.index}</p>
+                    <h2 className="mt-5 max-w-[24ch] font-display text-3xl font-normal text-foreground md:text-section-title">{activeFinding.question}</h2>
+                    <p className="mt-7 max-w-reading text-prose text-muted-foreground">{activeFinding.conclusion}</p>
 
                     <div className="mt-8 border-l-2 border-brand pl-5">
-                        <p className="riyp-track-010 text-xs font-semibold uppercase text-muted-foreground">How to use this finding</p>
+                        <p className="riyp-evidence-label text-muted-foreground">How to use this finding</p>
                         <p className="mt-3 max-w-[38rem] text-sm leading-6 text-muted-foreground">{activeFinding.reportUse}</p>
                     </div>
 
@@ -394,7 +394,7 @@ function ResearchEvidenceTrace() {
                 <div className="research-finding-proof">
                     <FindingVisual visual={activeFinding.visual} />
                     <div className="research-source-note">
-                        <p className="riyp-track-010 text-xs font-semibold uppercase text-muted-foreground">Source</p>
+                        <p className="riyp-evidence-label text-muted-foreground">Source</p>
                         <p className="mt-2 font-semibold text-foreground">{activeFinding.sourceName}</p>
                         <p className="mt-2 text-sm leading-6 text-muted-foreground">{activeFinding.sourceDetail}</p>
                     </div>
@@ -410,11 +410,11 @@ export default function ResearchClient() {
             <ResearchSection density="hero" className="!bg-paper !pb-9 !pt-24 md:!pb-12 md:!pt-28" containerClassName="max-w-screen-xl">
                 <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
                     <div>
-                        <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Evidence library</p>
-                        <h1 className="mt-4 font-display text-[clamp(3.5rem,7vw,6rem)] riyp-weight-620 leading-[0.9] tracking-[-0.06em] text-foreground">Research</h1>
+                        <p className="riyp-evidence-label text-brand">Evidence library</p>
+                        <h1 className="mt-4 font-display text-workspace-title text-foreground md:text-page-title">Research</h1>
                     </div>
                     <div>
-                        <p className="max-w-prose text-lg leading-7 text-muted-foreground">
+                        <p className="max-w-reading text-prose text-muted-foreground">
                             What does the evidence actually say? Find the studies, recruiter experiments, and platform documentation behind the advice.
                         </p>
                     </div>
@@ -423,11 +423,11 @@ export default function ResearchClient() {
             </ResearchSection>
 
             <ResearchSection density="tight" className="!bg-paper" containerClassName="max-w-screen-xl">
-                <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">Find your question</h2>
+                <h2 className="font-display text-report-title tracking-tight text-foreground">Find your question</h2>
                 <ResearchLibrary />
             </ResearchSection>
 
-            <ResearchSection density="default" className="!bg-surface-sky" containerClassName="max-w-screen-xl">
+            <ResearchSection density="default" className="!bg-card" containerClassName="max-w-screen-xl">
                 <FirstReadMap />
             </ResearchSection>
 
@@ -438,8 +438,8 @@ export default function ResearchClient() {
             <ResearchSection density="default" className="!bg-proof" containerClassName="max-w-[72rem]">
                 <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
                     <div>
-                        <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Claims under review</p>
-                        <h2 className="mt-4 max-w-[11ch] font-display text-[clamp(2.75rem,4.8vw,4.8rem)] riyp-weight-620 leading-[0.97] tracking-[-0.04em] text-foreground">Three resume rules that need to go.</h2>
+                        <p className="riyp-evidence-label text-brand">Claims under review</p>
+                        <h2 className="mt-4 max-w-[22ch] font-display text-3xl font-normal text-foreground md:text-section-title">Three resume rules that need to go.</h2>
                         <p className="mt-5 max-w-[34rem] text-base leading-7 text-muted-foreground">Each sounds certain. The research is more specific.</p>
                     </div>
                     <div className="border-b border-line">
@@ -462,13 +462,13 @@ export default function ResearchClient() {
             </ResearchSection>
 
             <ResearchSection density="tight" className="!bg-paper" divider={false} containerClassName="max-w-[72rem]">
-                <div className="flex flex-col gap-5 border-t border-line bg-surface-sky p-6 md:flex-row md:items-end md:justify-between md:p-8">
+                <div className="flex flex-col gap-5 rounded-2xl border border-line bg-card p-6 md:flex-row md:items-end md:justify-between md:rounded-3xl md:p-8">
                     <div>
-                        <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Apply it to your resume</p>
+                        <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
                         <p className="mt-2 max-w-[46rem] text-base leading-7 text-muted-foreground">Your report uses the same evidence standards to show what is clear, what needs more context, and what to fix first.</p>
                     </div>
-                    <Link href="/workspace" className="focus-ring inline-flex min-h-12 shrink-0 items-center gap-5 rounded-sm bg-foreground px-5 py-3 font-display text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
-                        Get my free report <ArrowRight className="size-4 text-citron" weight="bold" />
+                    <Link href="/workspace" className="focus-ring inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-control text-background transition-colors hover:bg-foreground/90">
+                        Get my free report <ArrowRight className="size-4" weight="bold" />
                     </Link>
                 </div>
             </ResearchSection>

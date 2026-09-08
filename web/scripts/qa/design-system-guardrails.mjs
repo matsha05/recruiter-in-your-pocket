@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { validateFontStack, validateRuntimeSystem } from "./design-system-runtime.mjs";
 
 const ROOT = process.cwd();
 const TEXT_EXTENSIONS = new Set([".ts", ".tsx", ".css", ".md", ".mdx"]);
@@ -12,7 +13,7 @@ const PRODUCTION_SCOPE_DIRS = [
   "app", "components", "lib",
 ];
 
-const SYSTEM_NAME = "Lifted Line 2.0";
+const SYSTEM_NAME = "Alpine 1.0";
 // Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
 // baselines after the cross-surface launch migration. New work may reduce this
 // debt, but cannot silently increase it.
@@ -27,11 +28,6 @@ const DESIGN_DEBT_BUDGETS = {
 const RESEARCH_SYSTEM_FILES = [
   "components/research/ResearchClient.tsx", "components/research/ResearchArticle.tsx",
   "components/shared/diagrams/DiagramPrimitives.tsx", "components/shared/diagrams/EvidenceVisuals.tsx",
-];
-
-const MARKER_ASSET_BUDGETS = [
-  { file: "public/assets/brand/citron-marker-shallow-v3.webp", maxBytes: 50 * 1024 },
-  { file: "public/assets/brand/citron-marker-bold-v3.webp", maxBytes: 200 * 1024 },
 ];
 
 const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divide|from|via|to)-(?:teal|emerald|cyan|indigo|violet|purple|slate|gray|zinc|neutral|stone|rose|amber|yellow|orange|blue|sky)-(?:50|100|200|300|400|500|600|700|800|900|950)(?:\/[0-9]{1,3})?\b/g;
@@ -50,7 +46,7 @@ const HEX_ALLOWLIST = new Set([
   // Browserless PDF CSS mirrors the canonical palette because app variables are unavailable.
   "lib/backend/pdf-styles.ts",
   // Email clients require inline literal colors. The auth-email contract pins
-  // these literals to the canonical chalk/ink/citron/cyan palette.
+  // these literals to the canonical warm-neutral/ink/aqua palette.
   "lib/auth/otpEmail.ts",
   // The forwarded support notice must remain legible and visually distinct in
   // email clients that cannot consume the runtime CSS token sheet.
@@ -189,7 +185,7 @@ function findViolations(files) {
       violations.externalFontImport.push(file);
     }
 
-    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Newsreader|Sentient|Satoshi)/.test(source)) {
+    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Newsreader|Sentient)/.test(source)) {
       violations.legacyFontBranding.push(file);
     }
 
@@ -255,12 +251,18 @@ function validateDocs() {
   const brandSystemDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "brand-system.md"), "utf8");
   const voiceAndToneDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "voice-and-tone.md"), "utf8");
   const agentInstructions = fs.readFileSync(path.join(ROOT, "..", ".agent", "AGENTS.md"), "utf8");
+  const fontOperationsDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "font-operations.md"), "utf8");
+  const researchContractDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "research-ui-contract.md"), "utf8");
+  const articleStandardDoc = fs.readFileSync(path.join(ROOT, "app", "(editorial)", "research", "article-standard.md"), "utf8");
+  const canonicalDocs = [content, brandSystemDoc, agentInstructions, fontOperationsDoc, researchContractDoc, articleStandardDoc];
   const missing = [];
 
   const requiredStrings = [
     SYSTEM_NAME,
-    "Space Grotesk Variable",
     "Instrument Sans",
+    "Source Serif 4",
+    "--font-brand-sans",
+    "--font-editorial",
     "--brand-strong",
     "--citron",
     "--cyan-bright",
@@ -271,6 +273,17 @@ function validateDocs() {
     "--font-body",
     "--space-4",
     "--space-72",
+    "#f6f3ef",
+    "#fbfaf8",
+    "#f0efeb",
+    "#12191b",
+    "#5f6667",
+    "#00738f",
+    "#e6f3f2",
+    "#dcdedb",
+    "#7e888a",
+    "16px / 25px",
+    "18px / 30px",
     "qa:design-system",
   ];
 
@@ -280,14 +293,19 @@ function validateDocs() {
     }
   }
 
-  if (!brandSystemDoc.includes("The direction: Lifted Line")) {
-    missing.push("brand-system.md -> The direction: Lifted Line");
+  if (!brandSystemDoc.includes("The direction: Alpine")) {
+    missing.push("brand-system.md -> The direction: Alpine");
   }
   if (!voiceAndToneDoc.includes("plainspoken expertise")) {
     missing.push("voice-and-tone.md -> plainspoken expertise");
   }
-  if (!agentInstructions.includes("Lifted Line is the approved brand direction")) {
-    missing.push(".agent/AGENTS.md -> Lifted Line approved direction");
+  if (!agentInstructions.includes("Alpine is the approved visual direction")) {
+    missing.push(".agent/AGENTS.md -> Alpine approved direction");
+  }
+  for (const [index, doc] of canonicalDocs.entries()) {
+    for (const family of ["Instrument Sans", "Source Serif 4"]) {
+      if (!doc.includes(family)) missing.push(`canonical document ${index + 1} -> ${family}`);
+    }
   }
 
   const staleClaims = [
@@ -296,98 +314,21 @@ function validateDocs() {
     "Fonts: Sentient",
     "Fonts: Fraunces",
     "Newsreader Variable",
+    "Browser fonts: Satoshi Variable",
+    "Shared sans: `Satoshi Variable`",
+    "controls 550",
+    "labels 500",
+    "The Lifted Line system is mostly rectilinear",
+    "Marketing and product chrome use ink",
+    "Citron owns decisive action and progress",
   ];
   for (const claim of staleClaims) {
-    if ([content, brandSystemDoc, voiceAndToneDoc, agentInstructions].some((doc) => doc.includes(claim))) {
+    if ([...canonicalDocs, voiceAndToneDoc].some((doc) => doc.includes(claim))) {
       missing.push(`stale design-system claim -> ${claim}`);
     }
   }
 
   return missing;
-}
-
-function validateRuntimeSystem() {
-  const globalsSource = fs.readFileSync(path.join(ROOT, "app", "globals.css"), "utf8");
-  const tailwindSource = fs.readFileSync(path.join(ROOT, "tailwind.config.js"), "utf8");
-  const errors = [];
-
-  const requiredTokenDefinitions = [
-    '--font-display: "Space Grotesk Variable"',
-    '--font-body: "Instrument Sans Variable"',
-    "--brand-strong:",
-    "--brand-tint:",
-    "--surface-sky:",
-    "--surface-proof:",
-    "--accent-apricot:",
-    "--accent-butter:",
-    "--text-muted:",
-    "--line:",
-  ];
-
-  for (const token of requiredTokenDefinitions) {
-    if (!globalsSource.includes(token)) errors.push(`globals.css missing ${token}`);
-  }
-
-  const forbiddenRuntimeClaims = [
-    "Brand: Teal",
-    "V2.1 Brand: Teal",
-    "Sentient (Display)",
-    "Satoshi (Interface)",
-  ];
-  for (const claim of forbiddenRuntimeClaims) {
-    if (globalsSource.includes(claim)) errors.push(`globals.css contains stale claim: ${claim}`);
-  }
-
-  for (const token of ["brand", "paper", "line", "iris", "surface-sky", "accent-apricot", "accent-butter"]) {
-    if (!tailwindSource.includes(`${token}:`) && !tailwindSource.includes(`'${token}':`)) {
-      errors.push(`tailwind.config.js missing ${token} semantic alias`);
-    }
-  }
-
-  if (/citron-marker-(?:shallow|bold)-v3\.png/.test(globalsSource)) {
-    errors.push("globals.css must use the optimized WebP marker assets");
-  }
-  for (const { file, maxBytes } of MARKER_ASSET_BUDGETS) {
-    const assetPath = path.join(ROOT, file);
-    if (!fs.existsSync(assetPath)) {
-      errors.push(`missing marker asset: ${file}`);
-      continue;
-    }
-    if (fs.statSync(assetPath).size > maxBytes) {
-      errors.push(`${file} exceeds its ${Math.round(maxBytes / 1024)} KB transfer budget`);
-    }
-    const publicHref = `/${file.replace(/^public\//, "")}`;
-    if (!globalsSource.includes(`url("${publicHref}")`)) {
-      errors.push(`globals.css is not wired to ${publicHref}`);
-    }
-  }
-
-  return errors;
-}
-
-function validateFontStack() {
-  const layoutPath = path.join(ROOT, "app", "layout.tsx");
-  const layoutSource = fs.readFileSync(layoutPath, "utf8");
-  const packageJson = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
-  const layoutErrors = [];
-  const dependencyErrors = [];
-
-  if (!layoutSource.includes('@fontsource-variable/instrument-sans/wght.css')) {
-    layoutErrors.push("Missing the weight-only Instrument Sans variable font import in `app/layout.tsx`.");
-  }
-  if (layoutSource.includes('@fontsource-variable/instrument-sans/standard.css')) {
-    layoutErrors.push("Instrument Sans should not ship the unused width axis.");
-  }
-  if (!layoutSource.includes('import "@fontsource-variable/space-grotesk"')) {
-    layoutErrors.push("Missing Space Grotesk variable font import in `app/layout.tsx`.");
-  }
-
-  const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
-  for (const dependency of ["@fontsource-variable/instrument-sans", "@fontsource-variable/space-grotesk"]) {
-    if (!dependencies[dependency]) dependencyErrors.push(`Missing font dependency: ${dependency}`);
-  }
-
-  return { dependencyErrors, layoutErrors };
 }
 
 function printList(label, list) {
@@ -454,11 +395,11 @@ function main() {
   }
 
   if (runtimeSystemErrors.length > 0) {
-    errors.push("Lifted Line runtime contract is incomplete or stale.");
+    errors.push("Alpine runtime contract is incomplete or stale.");
   }
 
   if (fontValidation.dependencyErrors.length > 0) {
-    errors.push("Required self-hosted font packages are missing.");
+    errors.push("Required self-hosted font assets are missing.");
   }
 
   if (researchSystemErrors.length > 0) {

@@ -12,14 +12,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// Apple Touch Icon - Lifted Line mark on ink.
+// Apple Touch Icon - Alpine mark on ink.
 export default async function Icon() {
-    const spaceGrotesk = await readFile(join(process.cwd(), "public", "assets", "fonts", "space-grotesk-bold.ttf"));
+    const instrumentSans = await readFile(join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Semibold.ttf"));
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#071722",
+                    background: "#12191b",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -36,18 +36,18 @@ export default async function Icon() {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#F7F5EF",
-                        fontFamily: "Space Grotesk",
+                        color: "#f6f3ef",
+                        fontFamily: "Instrument Sans",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: 82, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#C8F238" }} />
+                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#78aeb8" }} />
                 </div>
             </div>
         ),
         {
             ...size,
-            fonts: [{ name: "Space Grotesk", data: spaceGrotesk, style: "normal", weight: 700 }],
+            fonts: [{ name: "Instrument Sans", data: instrumentSans, style: "normal", weight: 600 }],
         }
     );
 }

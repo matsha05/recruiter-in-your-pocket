@@ -82,6 +82,9 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
     },
     bundle: true,
     write: false,
+    // This behavior harness supplies its own minimal CSS below. App layout and
+    // font styling are checked separately against the real Next-rendered pages.
+    loader: { ".css": "empty", ".module.css": "empty" },
     platform: "browser",
     format: "iife",
     jsx: "automatic",

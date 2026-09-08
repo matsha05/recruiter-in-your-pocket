@@ -98,7 +98,7 @@ function appendUniqueJobs(current: Job[], incoming: Job[]): Job[] {
 
 const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bgColor: string }> = {
     saved: { label: 'Saved', color: 'text-muted-foreground', bgColor: 'bg-muted' },
-    interested: { label: 'Interested', color: 'text-brand', bgColor: 'bg-brand/10' },
+    interested: { label: 'Interested', color: 'text-brand', bgColor: 'bg-brand-tint' },
     applying: { label: 'Applying', color: 'text-premium', bgColor: 'bg-premium/10' },
     interviewing: { label: 'Interviewing', color: 'text-success', bgColor: 'bg-success/10' },
     archived: { label: 'Archived', color: 'text-muted-foreground/70', bgColor: 'bg-muted/30' },
@@ -267,7 +267,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
         : `${jobs.length} saved job${jobs.length === 1 ? '' : 's'}`;
 
     return (
-        <div data-visual-anchor="jobs-page" className="gap-y-6">
+        <div data-visual-anchor="jobs-page" className="space-y-6">
             <AppPageIntro
                 anchor="jobs-page"
                 eyebrow="Job search"
@@ -275,29 +275,31 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 description="Keep job descriptions, resume comparisons, and application status together."
                 meta={
                     <>
-                        <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
+                        <span className="inline-flex max-w-full items-center rounded-full bg-brand-tint px-3 py-1.5 text-xs font-medium text-brand [overflow-wrap:anywhere]">
                             {jobCountLabel}
                         </span>
-                        <span className="inline-flex items-center border-l-2 border-line bg-paper-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                        <span className="inline-flex max-w-full items-center rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground [overflow-wrap:anywhere]">
                             {activeJobs} active role{activeJobs === 1 ? '' : 's'}{hasMore ? ' in loaded jobs' : ''}
                         </span>
                     </>
                 }
                 actions={(
                     <div className="flex flex-wrap items-center gap-2">
-                        <Link
-                            href="/extension"
-                            className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-                        >
-                            <Chrome className="size-4" />
-                            Install extension
-                        </Link>
-                        <Link
-                            href="/workspace"
-                            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-                        >
-                            Get report
-                        </Link>
+                        <Button asChild variant="outline">
+                          <Link
+                              href="/extension"
+                          >
+                              <Chrome className="size-4" />
+                              Install extension
+                          </Link>
+                        </Button>
+                        <Button asChild>
+                          <Link
+                              href="/workspace"
+                          >
+                              Get report
+                          </Link>
+                        </Button>
                     </div>
                 )}
             />
@@ -306,9 +308,9 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
             <ResumeContextCard onResumeUpdated={handleResumeUpdated} />
 
             {/* Toolbar */}
-            <div className="app-card flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between md:px-5">
+            <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-4 sm:rounded-3xl sm:p-5 md:flex-row md:items-center md:justify-between">
                 {/* Search */}
-                <div className="relative flex-1 max-w-md">
+                <div className="relative min-w-0 flex-1 md:max-w-md">
                     <label htmlFor="jobs-search" className="sr-only">{searchLabel}</label>
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                     <input
@@ -318,12 +320,12 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                         aria-describedby={hasMore ? 'jobs-filter-scope' : undefined}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="min-h-11 w-full rounded border border-border bg-background pl-9 pr-4 text-sm placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                        className="min-h-12 w-full rounded-md border border-input bg-background pl-10 pr-4 text-base placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                     />
                 </div>
 
                 {/* Status Filter */}
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 items-center gap-3">
                     <label htmlFor="jobs-status-filter" className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                         <Filter className="size-3.5" />
                         Status
@@ -333,7 +335,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                         aria-describedby={hasMore ? 'jobs-filter-scope' : undefined}
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
-                        className="min-h-11 rounded border border-border bg-background px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                        className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                     >
                         <option value="all">All statuses</option>
                         <option value="saved">Saved</option>
@@ -351,12 +353,12 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 </p>
             )}
 
-            <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
+            <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
                 Save jobs with the browser extension. Return here to compare each job with your resume and update your application status.
             </div>
 
             {/* Jobs List */}
-            <div className="app-card overflow-hidden">
+            <div className="overflow-hidden rounded-2xl border border-border bg-card sm:rounded-3xl">
                 {loading ? (
                     <div className="p-10 text-center text-muted-foreground">
                         Loading jobs…
@@ -365,13 +367,13 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                     <div className="p-10 text-center" role="alert">
                         <p className="text-sm font-medium text-foreground">Saved jobs are unavailable right now.</p>
                         <p className="mt-1 text-sm text-muted-foreground">{loadError}</p>
-                        <button
+                        <Button
                             type="button"
                             onClick={() => setRefreshKey((key) => key + 1)}
-                            className="mt-4 min-h-11 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                            className="mt-4"
                         >
                             Try again
-                        </button>
+                        </Button>
                     </div>
                 ) : filteredJobs.length === 0 ? (
                     <EmptyState hasJobs={jobs.length > 0} signedIn={Boolean(userId)} hasMore={hasMore} />
@@ -396,7 +398,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                             variant="outline"
                             onClick={() => void handleLoadMore()}
                             disabled={loadingMore}
-                            className="border-border bg-transparent font-semibold text-foreground hover:bg-muted/40 disabled:cursor-wait disabled:opacity-60"
+                            className="disabled:cursor-wait"
                         >
                             {loadingMore ? 'Loading more jobs…' : pageError ? 'Retry loading jobs' : 'Load more jobs'}
                         </Button>
@@ -440,12 +442,12 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
     const timeAgo = getTimeAgo(capturedDate);
 
     return (
-        <article className="group flex flex-col items-stretch gap-2 p-2 transition-colors hover:bg-muted/20 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
+        <article className="group flex flex-col items-stretch gap-2 p-3 transition-colors hover:bg-muted/50 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
             <button
                 type="button"
                 onClick={onClick}
                 aria-label={`Open ${job.title} at ${job.company}`}
-                className="flex min-w-0 flex-1 items-center gap-3 rounded-md p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:gap-4"
+                className="flex min-w-0 flex-1 items-center gap-3 rounded-xl p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:gap-4"
             >
                 {/* Score Dial */}
                 <ScoreDial score={job.match_score} />
@@ -453,11 +455,11 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                 {/* Job Info */}
                 <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="truncate font-medium text-foreground">
+                        <h3 className="min-w-0 break-words text-base font-medium leading-6 text-foreground">
                             {job.title}
                         </h3>
                         <span className={cn(
-                            "shrink-0 rounded px-2.5 py-0.5 text-xs font-medium",
+                            "shrink-0 rounded-full px-2.5 py-1 text-xs font-medium",
                             statusConfig.bgColor,
                             statusConfig.color
                         )}>
@@ -482,7 +484,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
             <div className="flex w-full items-center justify-end gap-1 border-t border-line px-2 pt-2 opacity-80 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 sm:w-auto sm:border-0 sm:p-0">
                 <button type="button"
                     onClick={onOpenOriginal}
-                    className="inline-flex size-11 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                    className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                     title="Open original posting"
                     aria-label={`Open the original posting for ${job.title}`}
                 >
@@ -490,7 +492,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                 </button>
                 <button type="button"
                     onClick={onDelete}
-                    className="inline-flex size-11 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                    className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
                     title="Delete job"
                     aria-label={`Delete ${job.title}`}
                 >
@@ -571,68 +573,73 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
 
     if (!signedIn) {
         return (
-            <div className="gap-y-5 border-y border-border bg-card p-8 text-center sm:p-16">
-                <div className="mx-auto flex size-20 items-center justify-center rounded-md border border-border bg-mineral">
+            <div className="space-y-5 px-5 py-10 text-center sm:p-12">
+                <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-muted">
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
-                <div className="gap-y-3">
-                    <h3 className="font-display text-lg font-medium text-foreground">Sign in to see saved jobs</h3>
+                <div className="space-y-3">
+                    <h3 className="font-display text-report-title text-foreground">Sign in to see saved jobs</h3>
                     <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
                         Sign in with the same email you use in the extension to see your saved jobs and resume.
                     </p>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-3">
-                    <Link
-                        href="/auth?from=jobs"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
-                    >
-                        Sign In
-                    </Link>
-                    <Link
-                        href="/workspace"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
-                    >
-                        Open Workspace
-                    </Link>
-                    <Link
-                        href="/extension"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
-                    >
-                        Install extension
-                    </Link>
+                    <Button asChild>
+                      <Link
+                          href="/auth?from=jobs"
+                      >
+                          Sign In
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link
+                          href="/workspace"
+                      >
+                          Open Workspace
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link
+                          href="/extension"
+                      >
+                          Install extension
+                      </Link>
+                    </Button>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="gap-y-6 border-y border-border bg-card p-8 text-center sm:p-16">
+        <div className="space-y-6 px-5 py-10 text-center sm:p-12">
             {/* Visual illustration */}
             <div className="relative mx-auto size-20">
-                <div className="absolute inset-0 rounded-md border border-brand/20 bg-mineral" />
-                <div className="absolute inset-2 flex items-center justify-center rounded-sm bg-card">
+                <div className="absolute inset-0 rounded-2xl bg-muted" />
+                <div className="absolute inset-2 flex items-center justify-center rounded-xl bg-card">
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
             </div>
-            <div className="gap-y-3">
-                <h3 className="font-display text-lg font-medium text-foreground">No saved jobs yet</h3>
+            <div className="space-y-3">
+                <h3 className="font-display text-report-title text-foreground">No saved jobs yet</h3>
                 <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
                     Use the RIYP extension to save a job from LinkedIn or Indeed. Add your default resume to compare it with the job description.
                 </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link
-                    href="/extension"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
-                >
-                    Install extension
-                </Link>
-                <Link
-                    href="/workspace"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
-                >
-                    Start a report
-                </Link>
+                <Button asChild>
+                  <Link
+                      href="/extension"
+                  >
+                      Install extension
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link
+                      href="/workspace"
+                  >
+                      Start a report
+                  </Link>
+                </Button>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-5 pt-2 sm:gap-8">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">

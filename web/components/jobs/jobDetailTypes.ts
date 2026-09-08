@@ -22,7 +22,7 @@ export const STATUS_CONFIG: Record<
   { label: string; color: string; bgColor: string }
 > = {
   saved: { label: "Saved", color: "text-muted-foreground", bgColor: "bg-muted" },
-  interested: { label: "Interested", color: "text-brand", bgColor: "bg-brand/10" },
+  interested: { label: "Interested", color: "text-brand", bgColor: "bg-brand-tint" },
   applying: { label: "Applying", color: "text-premium", bgColor: "bg-premium/10" },
   interviewing: { label: "Interviewing", color: "text-success", bgColor: "bg-success/10" },
   archived: { label: "Archived", color: "text-muted-foreground/70", bgColor: "bg-muted/30" }

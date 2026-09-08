@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import styles from "@/components/guides/GuidePresentation";
 import {
     Checklist,
     Disclosure,
@@ -28,38 +29,38 @@ const quickStart = [
 export default function OfferNegotiationGuidePage() {
     return (
         <>
-        <div className="bg-background text-foreground">
+        <div className="bg-background text-foreground selection:bg-brand/15">
             <div className="border-b border-border">
-                <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
+                <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
                     <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">Resources</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Offer negotiation</span>
                 </nav>
             </div>
 
-            <article className="mx-auto max-w-6xl px-5 pb-24 pt-14 sm:px-8 sm:pt-20">
-                <header className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+            <article className="mx-auto max-w-report px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
+                <header className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
                     <div>
                         <GuideEyebrow>Offer negotiation · 10 minute guide</GuideEyebrow>
-                        <h1 className="mt-5 max-w-4xl font-display text-6xl riyp-weight-500 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-7xl lg:text-8xl">
+                        <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                             An offer is not one number.
                             <span className="mt-2 block text-brand">See what you can negotiate.</span>
                         </h1>
                     </div>
-                    <div className="border-l-2 border-brand pl-5">
-                        <p className="text-base leading-7 text-muted-foreground">Review the full offer and decide what would change your answer. Then tell the recruiter what you want to negotiate and why.</p>
-                        <Link href="/resources/tech-offer-negotiation" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
+                    <div className="border-l border-border pl-5">
+                        <p className={styles.readingCopy}>Review the full offer and decide what would change your answer. Then tell the recruiter what you want to negotiate and why.</p>
+                        <Link href="/resources/tech-offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
                             Reading a tech offer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
                     </div>
                 </header>
 
-                <div className="mt-14 grid border-y border-border sm:grid-cols-3">
+                <div className={`${styles.sheet} my-14 grid px-5 sm:grid-cols-3 sm:px-6`}>
                     {quickStart.map(([title, body], index) => (
-                        <div key={title} className="border-b border-border py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0">
-                            <div className="font-mono text-xs text-ink">0{index + 1}</div>
-                            <h2 className="mt-3 font-display text-xl riyp-weight-560">{title}</h2>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
+                        <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+                            <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                            <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
+                            <p className={`${styles.readingCopy} mt-2`}>{body}</p>
                         </div>
                     ))}
                 </div>
@@ -67,9 +68,9 @@ export default function OfferNegotiationGuidePage() {
                 <GuideSection number="01" title="The recruiter may need someone else's approval" intro="The person delivering the offer may not be the person who can change it. Be specific about what you want so they can explain your request to the decision-maker." id="handoff">
                     <HandoffDiagram />
                     <div className="mt-6 grid gap-5 border-l border-border pl-5 sm:grid-cols-3 sm:border-l-0 sm:pl-0">
-                        <p className="text-sm leading-6 text-muted-foreground"><strong className="block text-foreground">The ask</strong>“I’m looking for $115,000 in base.”</p>
-                        <p className="text-sm leading-6 text-muted-foreground"><strong className="block text-foreground">The basis</strong>“That is within the posted range and reflects the scope we discussed.”</p>
-                        <p className="text-sm leading-6 text-muted-foreground"><strong className="block text-foreground">The decision</strong>“If we can get there, I’m ready to sign.” Use this only when it is true.</p>
+                        <p className={styles.readingCopy}><strong className="block text-foreground">The ask</strong>“I’m looking for $115,000 in base.”</p>
+                        <p className={styles.readingCopy}><strong className="block text-foreground">The basis</strong>“That is within the posted range and reflects the scope we discussed.”</p>
+                        <p className={styles.readingCopy}><strong className="block text-foreground">The decision</strong>“If we can get there, I’m ready to sign.” Use this only when it is true.</p>
                     </div>
                 </GuideSection>
 
@@ -82,10 +83,10 @@ export default function OfferNegotiationGuidePage() {
                             ["Separate needs from preferences", "Know which change would alter your decision and which items would merely make the offer nicer."],
                             ["Counter clearly", "A specific request with a defensible basis is easier to understand and move through an approval chain."],
                         ].map(([title, body], index) => (
-                            <div key={title} className="grid gap-2 py-5 sm:grid-cols-[2rem_15rem_1fr] sm:gap-5">
-                                <span className="font-mono text-xs text-ink">{index + 1}</span>
+                            <div key={title} className="grid gap-2 py-6 md:grid-cols-[2rem_12rem_minmax(0,1fr)] md:gap-5">
+                                <span className={`${styles.label} tabular-nums text-brand`}>{index + 1}</span>
                                 <h3 className="font-semibold text-foreground">{title}</h3>
-                                <p className="text-sm leading-6 text-muted-foreground">{body}</p>
+                                <p className={styles.readingCopy}>{body}</p>
                             </div>
                         ))}
                     </div>

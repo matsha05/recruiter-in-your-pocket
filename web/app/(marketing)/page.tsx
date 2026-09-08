@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
+import { LandingMineral } from "@/components/landing/LandingMineral";
 import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
 const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
@@ -73,7 +73,7 @@ export default function LandingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <LandingEditorsDesk />
+      <LandingMineral />
     </>
   );
 }

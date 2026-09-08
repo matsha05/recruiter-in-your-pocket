@@ -37,22 +37,22 @@ export default function MethodologyClient() {
             description="AI reviews your career history, accomplishments, and writing using criteria developed by Matt Shaw. Your report explains what a recruiter may notice and what needs more detail."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
-            <section className="border-y border-line bg-surface-sky/35 px-6 py-7 md:px-8 md:py-9">
-                <h2 className="mb-3 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+            <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6 md:py-7">
+                <h2 className="mb-3 font-display text-report-title text-foreground">
                     What the score means
                 </h2>
-                <p className="text-[1.0625rem] leading-8 text-muted-foreground">
+                <p className="text-prose text-muted-foreground">
                     Recruiter in Your Pocket reviews how clearly your resume communicates when someone reads it quickly. The score helps compare the four parts of the review and shows which areas need attention. It does not estimate your chances of getting an interview or offer.
                 </p>
             </section>
 
             {/* Rubric card */}
-            <section className="border-t border-line py-7 md:py-9">
-                <h2 className="mb-4 flex items-center gap-2 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+            <section className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-report-title text-foreground">
                     <ChartBar className="size-5 text-brand" weight="bold" />
                     What the review considers
                 </h2>
-                <p className="mb-6 text-base leading-7 text-muted-foreground">
+                <p className="mb-6 text-base text-muted-foreground">
                     The report covers these four areas. The overall score reflects the resume as a whole rather than an average of the four scores. If a detail is missing, the report asks for it instead of filling it in.
                 </p>
                 <div className="border-y border-line">
@@ -60,68 +60,68 @@ export default function MethodologyClient() {
                         <div key={item.name} className="grid gap-3 border-b border-line py-5 last:border-b-0 sm:grid-cols-[3rem_10rem_1fr] sm:items-start">
                             <span className="font-mono text-xs tabular-nums text-brand">0{index + 1}</span>
                             <div>
-                                <p className="text-base font-semibold text-foreground">{item.name}</p>
-                                <p className="mt-1 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">{item.role}</p>
+                                <p className="text-base font-medium text-foreground">{item.name}</p>
+                                <p className="mt-1 text-label uppercase tracking-wider text-muted-foreground">{item.role}</p>
                             </div>
-                            <p className="text-base leading-7 text-muted-foreground">{item.detail}</p>
+                            <p className="text-base text-muted-foreground">{item.detail}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* Focus and rewrites */}
-            <section className="grid border-y border-line md:grid-cols-2">
+            <section className="grid overflow-hidden rounded-xl border border-border bg-muted/50 md:grid-cols-2">
                 <div className="border-b border-line p-6 md:border-b-0 md:border-r md:p-7">
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-medium leading-6 text-foreground">
                         <Target className="size-4 text-brand" weight="bold" />
                         What the feedback focuses on
                     </h3>
-                    <p className="text-[15px] leading-7 text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                         We point out what may be unclear to a recruiter and suggest which changes to make first.
                     </p>
                 </div>
                 <div className="border-b border-line p-6 md:p-7">
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-medium leading-6 text-foreground">
                         <PencilSimpleLine className="size-4 text-brand" weight="bold" />
                         How we suggest rewrites
                     </h3>
-                    <p className="text-[15px] leading-7 text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                         Rewrites focus on real results and tighter language, not inflated claims or generic filler.
                     </p>
                 </div>
                 <div className="border-b border-line p-6 md:border-b-0 md:border-r md:border-t md:p-7">
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-medium leading-6 text-foreground">
                         <ShieldCheck className="size-4 text-brand" weight="bold" />
                         How we handle uncertainty
                     </h3>
-                    <p className="text-[15px] leading-7 text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                         The report shows when a finding is less certain because the resume lacks the context needed to support it.
                     </p>
                 </div>
                 <div className="p-6 md:border-t md:border-line md:p-7">
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-medium leading-6 text-foreground">
                         <ShieldCheck className="size-4 text-brand" weight="bold" />
                         Where the feedback comes from
                     </h3>
-                    <p className="text-[15px] leading-7 text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                         Evidence excerpts should quote the resume directly. If a recommendation depends on missing context, the report should ask for that detail instead of inventing it.
                     </p>
                 </div>
             </section>
 
             {/* Limits */}
-            <section className="border-y border-line bg-proof px-6 py-7">
-                <h3 className="mb-3 flex items-center gap-2 text-[15px] font-semibold text-foreground">
-                    <WarningCircle className="size-4 text-accent-apricot" weight="fill" />
+            <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6">
+                <h3 className="mb-3 flex items-center gap-2 text-base font-medium leading-6 text-foreground">
+                    <WarningCircle className="size-4 shrink-0 text-warning-foreground" weight="fill" />
                     Limits and responsible use
                 </h3>
-                <ul className="space-y-2 text-[15px] leading-7 text-muted-foreground">
+                <ul className="space-y-2 text-base text-muted-foreground">
                     <li>1. The score summarizes this resume review. It does not predict interviews or offers.</li>
                     <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>
                     <li>
                         4. For deeper research references, see{" "}
-                        <Link href="/research/how-we-score" className="text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">
+                        <Link href="/research/how-we-score" className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">
                             the full methodology article
                         </Link>.
                     </li>

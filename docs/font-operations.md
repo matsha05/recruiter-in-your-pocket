@@ -1,47 +1,54 @@
-# Lifted Line Font Operations
+# Shared Font Operations
 
-Last updated: 2026-07-11
+Last updated: 2026-09-05
 Owner: Design + Frontend
-Scope: Runtime typography integrity for Lifted Line
+Scope: Approved Alpine typography across browser and separately rendered outputs
 
-## Runtime stack
+## Approved stack
 
-- Display and expressive evidence: `Newsreader Variable` normal and true italic
-- Interface and body: `Instrument Sans Variable`
-- Data: system monospace only when tabular scanning benefits
-- Source: self-hosted Fontsource packages bundled by the application
-- License: SIL Open Font License 1.1
-- No runtime dependency on Google Fonts, Fontshare, or another font CDN
+- Shared sans: `Instrument Sans`, normal style, weights 400-700.
+- Short verdict: `Source Serif 4`, regular weight, for selected brief assessments.
+- Data: Instrument Sans with tabular figures.
+- Local browser assets: `/fonts/instrument-sans/InstrumentSans-Variable.woff2` and `/fonts/source-serif-4/SourceSerif4-Variable.woff2`.
+- Source Serif 4's variable file supports 200-900; the verdict role uses 400.
+- Both families are self-hosted; retain their source and applicable license information.
+- Loading uses `@font-face` in `web/app/globals.css` with `font-display: swap`. No runtime font CDN dependency.
+- The intermediate Satoshi/Georgia pairing is retired. Retained assets do not define runtime branding.
 
-Canonical entrypoint:
-- `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/app/layout.tsx`
+## Tokens and reading roles
 
-Required packages:
-- `@fontsource-variable/instrument-sans`
-- `@fontsource-variable/newsreader`
+- `--font-brand-sans`: `"Instrument Sans", "Helvetica Neue", Arial, sans-serif`
+- `--font-display`, `--font-body`, and `--font-mono`: `var(--font-brand-sans)`
+- `--font-editorial`: `"Source Serif 4", Georgia, "Times New Roman", serif`
+- `--weight-display`: `700`
+- `--weight-heading`: `650`
+- `--weight-title`: `600`
+- `--weight-body`: `400`
+- `--weight-control`: `600`
+- `--weight-label`: `600`
 
-Token mapping:
-- `--font-display: "Newsreader Variable", Georgia, ui-serif, serif`
-- `--font-body: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif`
-- `--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace`
+Report/app body is 16px/25px. Research prose is 18px/30px at about 66ch. The approved bold-granite refinement uses 700 for the hero, 650 for major marketing headings, and 600 for workspace/report headings. A brief Source Serif 4 verdict is 28px/36px at 400. Do not shrink working report evidence to match a marketing preview. This refinement targets browser typography; the separately rendered outputs retain their previously verified treatment until a dedicated output pass.
 
-Required imports:
-- `@fontsource-variable/instrument-sans/standard.css`
-- `@fontsource-variable/newsreader`
-- `@fontsource-variable/newsreader/standard-italic.css`
+## Separate output pipelines
+
+The same brand roles are the target, but browser CSS does not migrate these renderers:
+
+- PDF: `web/lib/backend/pdf.ts` and `pdf-styles.ts`; inspect actual embedding, text selection, wrapping, tables, and page breaks.
+- Open Graph: `web/app/opengraph-image.tsx`; inspect the actual raster and fallback handling.
+- App and Apple icons: their ImageResponse routes; inspect small-size legibility.
+- Authentication email: `web/lib/auth/otpEmail.ts`; verify supported fallback fonts and images-disabled rendering.
+
+The September 5 local output pass rendered and inspected PDF, Open Graph, icons, and fallback-font email. See `output/competitive-visuals-20260905/output-identity/README.md` for fixtures, embedded-font checks, and limits. This does not establish delivered email-client or hosted production behavior. Future changes still require independent output checks; a browser CSS change alone is insufficient.
 
 ## Automated enforcement
 
-`npm run qa:design-system` verifies:
+`npm run qa:design-system` checks local font wiring and assets, shared family and weight tokens, canonical documentation, and absence of runtime font CDN imports. Palette, component, public-copy, accessibility, and security obligations remain active.
 
-- both Fontsource packages are declared as dependencies
-- `app/layout.tsx` imports Instrument Sans, Newsreader normal, and Newsreader italic
-- production code does not load fonts from a third-party runtime URL
-- the design-system source of truth names the active families and tokens
+Existing launch and Research UI checks assert Instrument Sans as computed body and heading family. Family names alone do not prove successful downloads; browser verification must wait for `document.fonts.ready`, inspect loaded faces/local font requests, and check fallback behavior.
 
 ## Verification
 
-Run from `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web`:
+Run from `web/`:
 
 ```bash
 npm run qa:design-system
@@ -49,13 +56,11 @@ npm run lint
 npm run build
 ```
 
-In a production build, verify that both families are emitted as local `/_next/static/` assets and that the first viewport has no font-driven layout shift.
+Inspect the approved homepage and a real long-form report at matched sizes, plus representative Research/workspace/account surfaces. Check actual face/weights, desktop/mobile wrapping, long headings/evidence, and font-driven layout shift. Verify generated outputs independently and record evidence in the migration status document.
 
 ## Change control
 
-When changing the family:
-
-1. Confirm the package source and license.
-2. Update `app/layout.tsx`, `app/globals.css`, `docs/design-system.md`, and this runbook together.
-3. Update the design-system guardrail rather than leaving it pinned to an obsolete stack.
-4. Run the full verification sequence above.
+1. Confirm the replacement font's source and license.
+2. Update local loading, tokens, canonical docs, and this runbook together.
+3. Update guardrails and existing font assertions in the same change.
+4. Verify browser surfaces before making a site-wide typography claim; verify every output pipeline separately.

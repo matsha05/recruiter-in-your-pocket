@@ -28,9 +28,9 @@ module.exports = {
 					'system-ui'
 				],
 				serif: [
-					'var(--font-display)',
-					'ui-sans-serif',
-					'system-ui'
+					'var(--font-editorial)',
+					'Georgia',
+					'serif'
 				],
 				mono: [
 					'var(--font-mono)',
@@ -80,7 +80,11 @@ module.exports = {
 				},
 				citron: 'hsl(var(--citron))',
 				'cyan-bright': 'hsl(var(--cyan-bright))',
-				'error-surface': 'hsl(5 85.71% 97.25%)',
+				'error-surface': 'hsl(var(--destructive-surface))',
+				'success-surface': 'hsl(var(--success-surface))',
+				'warning-surface': 'hsl(var(--warning-surface))',
+				'disabled-surface': 'hsl(var(--disabled-surface))',
+				'control-line': 'hsl(var(--control-line))',
 				paper: 'hsl(var(--surface-page))',
 				proof: 'hsl(var(--surface-proof))',
 				line: 'hsl(var(--line))',
@@ -126,6 +130,16 @@ module.exports = {
 				'status-error': 'hsl(var(--destructive))'
 			},
 			fontSize: {
+				'page-title': ['3.5rem', { lineHeight: '3.625rem', letterSpacing: '-0.03em', fontWeight: '400' }],
+				'section-title': ['2.75rem', { lineHeight: '2.6875rem', letterSpacing: '-0.03em', fontWeight: '400' }],
+				'workspace-title': ['2.5rem', { lineHeight: '2.75rem', letterSpacing: '-0.03em', fontWeight: '400' }],
+				'report-title': ['1.5rem', { lineHeight: '1.875rem', letterSpacing: '-0.02em', fontWeight: '500' }],
+				'verdict': ['1.75rem', { lineHeight: '2.25rem', letterSpacing: '-0.02em', fontWeight: '400' }],
+				'eyebrow': ['0.6875rem', { lineHeight: '1.125rem', letterSpacing: '0.18em', fontWeight: '500' }],
+				'control': ['1rem', { lineHeight: '1.25rem', fontWeight: '600' }],
+				'prose': ['1.125rem', { lineHeight: '1.875rem' }],
+				'data': ['0.875rem', { lineHeight: '1.375rem' }],
+				'label': ['0.75rem', { lineHeight: '1.125rem', fontWeight: '600' }],
 				'2xs': [
 					'0.6875rem',
 					{
@@ -139,25 +153,25 @@ module.exports = {
 					}
 				],
 				sm: [
-					'0.8125rem',
+					'0.875rem',
 					{
 						lineHeight: '1.25rem'
 					}
 				],
 				base: [
-					'0.875rem',
+					'1rem',
 					{
-						lineHeight: '1.5rem'
+						lineHeight: '1.5625rem'
 					}
 				],
 				lg: [
-					'1rem',
+					'1.125rem',
 					{
 						lineHeight: '1.75rem'
 					}
 				],
 				xl: [
-					'1.125rem',
+					'1.25rem',
 					{
 						lineHeight: '1.75rem'
 					}
@@ -174,19 +188,26 @@ module.exports = {
 				sm: 'var(--radius-sm)',
 				md: 'var(--radius)',
 				lg: 'var(--radius-lg)',
-				xl: 'var(--radius-xl)'
+				xl: 'var(--radius-xl)',
+				sheet: 'var(--radius-sheet)',
+				inset: 'var(--radius-inset)'
+			},
+			maxWidth: {
+				marketing: '85rem', workspace: '60rem', form: '47.5rem',
+				report: '75rem', auth: '27.5rem', account: '47.5rem', reading: '66ch'
 			},
 			boxShadow: {
+				sheet: 'var(--shadow-sheet)',
 				sm: '0 1px 2px 0 rgb(0 0 0 / 0.04)',
 				DEFAULT: '0 1px 2px 0 rgb(0 0 0 / 0.04)'
 			},
 			transitionTimingFunction: {
-				snap: 'cubic-bezier(0.16, 1, 0.3, 1)'
+				snap: 'var(--ease)'
 			},
 			transitionDuration: {
 				micro: '90ms',
-				fast: '100ms',
-				normal: '200ms',
+				fast: 'var(--duration-fast)',
+				normal: 'var(--duration-normal)',
 				slow: '350ms'
 			},
 			keyframes: {

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/instrument-sans/wght.css";
-import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Toaster } from "@/components/ui/sonner";
@@ -42,6 +40,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preload" href="/fonts/instrument-sans/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/source-serif-4/SourceSerif4-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>

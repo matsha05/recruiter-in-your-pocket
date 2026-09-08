@@ -22,7 +22,12 @@ runtimeModule._load = function loadFigureAliases(request, parent, isMain) {
 try {
   const { ErrorImpactDiagram } = require("../components/research/diagrams/ErrorImpactDiagram");
   const { InferenceLadderDiagram } = require("../components/research/diagrams/InferenceLadderDiagram");
-  const { calculateReferralComparison } = require("../components/research/diagrams/ReferralCalculator");
+  const { calculateReferralComparison, ReferralCalculator } = require("../components/research/diagrams/ReferralCalculator");
+  const calculatorMarkup = renderToStaticMarkup(createElement(ReferralCalculator));
+  const serverRenderedSliders = calculatorMarkup.match(/<input\b[^>]*type="range"[^>]*>/g) ?? [];
+  assert.equal(serverRenderedSliders.length, 4);
+  assert.ok(serverRenderedSliders.every((slider) => /\bdisabled=""/.test(slider)),
+    "sliders must not accept changes before their client handlers are ready");
   const favorableReferral = calculateReferralComparison(120000, 2, 40, 45);
   assert.equal(favorableReferral.referralAppsNeeded, 2.5, "an average must not be rounded to a whole application before calculating time");
   assert.equal(favorableReferral.appsDifference, 47.5);

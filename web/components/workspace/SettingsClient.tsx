@@ -444,8 +444,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     if (authLoading) {
         return (
-            <div data-visual-anchor="settings-loading" className="min-h-full pb-20" role="status" aria-live="polite">
-                <div className="mx-auto max-w-4xl px-6 pt-8">
+            <div data-visual-anchor="settings-loading" className="min-h-full bg-background pb-20" role="status" aria-live="polite">
+                <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
                     <AppPageIntro
                         anchor="settings-loading"
                         eyebrow="Settings"
@@ -463,8 +463,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     if (!user) {
         return (
-            <div data-visual-anchor="settings-page" className="min-h-full pb-20">
-                <div className="max-w-4xl mx-auto px-6 pt-8 gap-y-6">
+            <div data-visual-anchor="settings-page" className="min-h-full bg-background pb-20">
+                <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12 space-y-6">
                     <AppPageIntro
                         anchor="settings-page"
                         eyebrow="Settings"
@@ -474,24 +474,24 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             : "Sign in to manage your account."}
                     />
 
-                    <section className="app-card app-card-highlight p-8 text-center md:p-10">
-                        <ShieldAlert className="mx-auto size-8 text-brand" />
-                        <h2 className="mt-4 font-display text-[1.9rem] font-medium tracking-[-0.03em] text-foreground">
+                    <section className="app-card p-6 text-left sm:p-8">
+                        <ShieldAlert className="size-8 text-brand" />
+                        <h2 className="mt-5 font-sans text-2xl font-normal leading-8 tracking-tight text-foreground">
                             Sign in to open settings
                         </h2>
-                        <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
+                        <p className="mt-3 max-w-lg text-base leading-7 text-muted-foreground">
                             Update your name, download your account data, or delete your account after signing in.
                         </p>
-                        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                        <div className="mt-6 flex flex-wrap items-center gap-3">
                             <Link
                                 href={`/auth?from=settings&next=${encodeURIComponent(pathname || `/settings/${activeTab}`)}`}
-                                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
+                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
                             >
                                 Sign in
                             </Link>
                             <Link
                                 href="/workspace"
-                                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
+                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
                             >
                                 Back to workspace
                             </Link>
@@ -503,8 +503,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     }
 
     return (
-        <div data-visual-anchor="settings-page" className="min-h-full pb-20">
-            <div className="max-w-4xl mx-auto px-6 pt-8">
+        <div data-visual-anchor="settings-page" className="min-h-full bg-background pb-20">
+            <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
                 <AppPageIntro
                     anchor="settings-page"
                     eyebrow="Settings"
@@ -512,11 +512,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     description={tabDescriptions[activeTab]}
                     meta={
                         <>
-                            <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
+                            <span className="inline-flex items-center rounded-md bg-brand/5 px-3 py-1 text-sm font-medium text-brand">
                                 {accessLabel}
                             </span>
                             {user?.email ? (
-                                <span className="inline-flex items-center border-l-2 border-line bg-paper-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                                <span className="inline-flex min-w-0 items-center break-all rounded-md bg-muted px-3 py-1 text-sm text-muted-foreground">
                                     {user.email}
                                 </span>
                             ) : null}
@@ -527,7 +527,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             {isLaunchFlagEnabled("extensionSync") ? (
                                 <Link
                                     href="/extension"
-                                    className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
+                                    className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
                                 >
                                     <Chrome className="size-4" />
                                     Extension
@@ -535,7 +535,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             ) : null}
                             <Link
                                 href="/security"
-                                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
+                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
                             >
                                 Review data handling
                             </Link>
@@ -546,17 +546,17 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                 <nav
                     aria-label="Settings sections"
-                    className="mb-8 flex w-full items-center gap-1 overflow-x-auto border-y border-line bg-paper p-1.5"
+                    className="mb-8 flex w-full items-center gap-1 overflow-x-auto border-b border-border pb-1"
                 >
                     {visibleTabs.map(({ id, label, href, icon: Icon }) => (
                         <Link
                             key={id}
                             href={href}
                             className={cn(
-                                "relative flex min-h-11 shrink-0 items-center gap-2 border-b-2 px-5 py-2.5 text-sm font-medium transition-colors duration-150",
+                                "focus-ring relative flex min-h-12 shrink-0 items-center gap-2 rounded-t-lg border-b-2 px-4 py-3 text-sm font-medium transition-colors duration-150",
                                 activeTab === id
-                                    ? "border-citron bg-background text-foreground"
-                                    : "border-transparent text-muted-foreground hover:bg-paper-muted hover:text-foreground"
+                                    ? "border-brand bg-brand/5 text-brand"
+                                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
                             )}
                             aria-current={activeTab === id ? "page" : undefined}
                         >
@@ -566,28 +566,28 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     ))}
                 </nav>
 
-                <div className="gap-y-8">
+                <div className="space-y-8">
                     {activeTab === "account" && (
-                        <div className="gap-y-8 animate-in fade-in duration-200">
+                        <div className="space-y-8 animate-in fade-in duration-200">
                             <section className="app-card p-6">
-                                <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-6">Profile</h2>
+                                <h2 className="mb-6 text-lg font-medium text-foreground">Profile</h2>
                                 <div className="flex flex-col items-start gap-6 sm:flex-row">
-                                    <div className="flex size-14 shrink-0 select-none items-center justify-center border border-cyan-bright/35 bg-surface-sky font-display text-xl font-medium text-brand">
+                                    <div className="flex size-14 shrink-0 select-none items-center justify-center rounded-2xl bg-brand/5 font-sans text-xl font-medium text-brand">
                                         {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
                                     </div>
-                                    <div className="flex-1 gap-y-5">
+                                    <div className="min-w-0 flex-1 space-y-5">
                                         <form
-                                            className="max-w-sm"
+                                            className="w-full max-w-auth"
                                             onSubmit={profileForm.handleSubmit(handleSaveProfile)}
                                         >
-                                            <label htmlFor="settings-display-name" className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Display Name</label>
+                                            <label htmlFor="settings-display-name" className="mb-2 block text-sm font-medium text-foreground">Display Name</label>
                                             <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
                                                 <input
                                                     id="settings-display-name"
                                                     type="text"
                                                     placeholder="Your name"
                                                     {...profileForm.register("displayName")}
-                                                    className="min-h-11 min-w-0 flex-1 border border-border/40 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                                    className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-card px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
                                                 />
                                                 <button
                                                     type="submit"
@@ -596,22 +596,22 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         !displayNameValue.trim() ||
                                                         displayNameValue === (user?.firstName || "")
                                                     }
-                                                    className="flex min-h-11 items-center justify-center gap-1.5 border border-line bg-secondary px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary/80 disabled:opacity-40"
+                                                    className="focus-ring flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-40"
                                                 >
                                                     {profileForm.formState.isSubmitting && <Loader2 className="size-3 animate-spin" />}
                                                     Save
                                                 </button>
                                             </div>
                                         </form>
-                                        <div className="max-w-sm">
-                                            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Email</p>
-                                            <div className="border-l-2 border-line bg-paper-muted px-3 py-2 text-sm text-muted-foreground">{user?.email}</div>
+                                        <div className="w-full max-w-auth">
+                                            <p className="mb-2 text-sm font-medium text-foreground">Email</p>
+                                            <div className="break-all rounded-md bg-muted px-3 py-3 text-base text-muted-foreground">{user?.email}</div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
-                            <section className="border-y border-line bg-paper-muted p-4">
+                            <section className="rounded-xl bg-muted p-5">
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
@@ -620,14 +620,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     <button type="button"
                                         onClick={handleExportData}
                                         disabled={isExportingData}
-                                        className="inline-flex min-h-11 shrink-0 items-center border border-foreground bg-background px-4 py-2 text-xs font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
+                                        className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-input bg-card px-5 py-2 text-sm font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
                                     >
                                         {isExportingData ? "Exporting…" : "Export data"}
                                     </button>
                                 </div>
                             </section>
 
-                            <section className="border-l-2 border-destructive bg-error-surface p-4">
+                            <section className="rounded-xl border border-destructive/25 bg-error-surface p-5">
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
                                     <div>
                                         <h3 className="text-sm font-medium text-destructive mb-0.5">Delete Account</h3>
@@ -637,7 +637,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <button type="button"
                                             onClick={() => setIsDeleteConfirmOpen(true)}
                                             disabled={isDeletingAccount}
-                                            className="inline-flex min-h-11 shrink-0 items-center border border-destructive/30 bg-background px-4 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
+                                            className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
                                         >
                                             {isDeletingAccount ? "Deleting…" : "Delete"}
                                         </button>
@@ -648,14 +648,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "matching" && (
-                        <div className="gap-y-6 animate-in fade-in duration-200">
+                        <div className="space-y-6 animate-in fade-in duration-200">
                             <div className="mb-2">
                                 <h2 className="text-lg font-medium text-foreground">Job Matching</h2>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     Save a resume to compare with jobs in the Chrome extension.
                                 </p>
                             </div>
-                            <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
+                            <div className="rounded-xl bg-brand/5 px-5 py-4 text-sm leading-6 text-muted-foreground">
                                 The extension reads a supported job page when you choose to save the job. It compares the description with the resume you save here.
                             </div>
                             <DefaultResumeSection />
@@ -663,14 +663,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "billing" && (
-                        <div className="gap-y-10 animate-in fade-in duration-200">
-                            <section className="app-card gap-y-4 p-5">
+                        <div className="space-y-10 animate-in fade-in duration-200">
+                            <section className="app-card space-y-4 p-6">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                    <div className="gap-y-2">
-                                        <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Billing Status</h2>
+                                    <div className="space-y-2">
+                                        <h2 className="text-lg font-medium text-foreground">Billing Status</h2>
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className={cn(
-                                                "border-l-2 px-2 py-1 text-xs font-bold uppercase tracking-wide",
+                                                "rounded-md border px-2.5 py-1 text-xs font-medium",
                                                 (hasPaidMembership || activePass) ? "border-success bg-success/10 text-success" : "border-line bg-paper-muted text-muted-foreground"
                                             )}>
                                                 {(hasPaidMembership || activePass) ? "Active" : "Free"}
@@ -678,10 +678,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <p className="text-lg font-medium text-foreground">{accessLabel}</p>
                                         </div>
                                         <div className="text-sm text-muted-foreground">
-                                            Purchases are tied to <span className="font-medium text-foreground">{user?.email}</span>
+                                            Purchases are tied to <span className="break-all font-medium text-foreground">{user?.email}</span>
                                         </div>
                                         {passTierLabel && (
-                                            <div className="text-xs text-muted-foreground gap-y-1">
+                                            <div className="text-xs text-muted-foreground space-y-1">
                                                 <div>
                                                     <span className="text-foreground/70 font-medium">Pass:</span> {passTierLabel}
                                                     {passUsesLabel && <span className="text-foreground/70"> · {passUsesLabel}</span>}
@@ -696,7 +696,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <button type="button"
                                             onClick={handleRestoreAccess}
                                             disabled={isRestoreLoading}
-                                            className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground px-4 py-2 text-sm font-medium transition-colors hover:bg-paper-muted disabled:opacity-50"
+                                            className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input px-4 py-2 text-sm font-medium transition-colors hover:bg-paper-muted disabled:opacity-50"
                                         >
                                             {isRestoreLoading ? (
                                                 <Loader2 className="size-4 animate-spin" />
@@ -709,7 +709,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <button type="button"
                                                 onClick={handleOpenBillingPortal}
                                                 disabled={isPortalLoading}
-                                                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
+                                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
                                             >
                                                 {isPortalLoading ? (
                                                     <Loader2 className="size-4 animate-spin" />
@@ -723,7 +723,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
 
                                 {showRestoreNudge && (
-                                    <div className="border-l-2 border-warning bg-paper-muted px-4 py-3 text-xs text-muted-foreground">
+                                    <div className="rounded-xl border border-warning/30 bg-warning/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
                                         We couldn&apos;t find billing records for this email. If you used a different email at checkout,
                                         sign in with that email and press Restore Access.
                                     </div>
@@ -740,7 +740,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                             </section>
 
-                            <section className="border-l-2 border-line bg-paper-muted p-4 text-sm text-muted-foreground">
+                            <section className="rounded-xl bg-muted p-5 text-sm leading-6 text-muted-foreground">
                                 Need help with a payment or invoice? Email{" "}
                                 <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
                                     support@recruiterinyourpocket.com
@@ -755,10 +755,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <Loader2 className="size-4 animate-spin" /> Loading…
                                         </div>
                                     ) : passesError ? (
-                                        <div role="alert" className="border-l-2 border-destructive bg-error-surface p-6 text-sm text-destructive">
+                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
                                             <p className="font-medium">Purchase history could not load.</p>
                                             <p className="mt-1 text-destructive/80">We couldn&apos;t retrieve your purchases. Try again to see the list.</p>
-                                            <button type="button" onClick={() => void refetchPasses()} className="mt-4 inline-flex min-h-11 items-center border border-destructive/40 bg-background px-4 py-2 font-medium">
+                                            <button type="button" onClick={() => void refetchPasses()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
                                                 Try again
                                             </button>
                                         </div>
@@ -768,7 +768,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             No purchases yet. If you already paid, use Restore Access.
                                         </div>
                                     ) : (
-                                        <div className="divide-y divide-border/20">
+                                        <div className="divide-y divide-border">
                                             {passes.map((pass) => {
                                                 const active = isPassActive(pass);
                                                 const passStatus = getPassStatus(pass);
@@ -780,9 +780,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 const expiryDate = formatDate(pass.expires_at);
 
                                                 return (
-                                                    <div key={pass.id} className="p-4 flex items-center justify-between gap-4">
+                                                    <div key={pass.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                                                         <div className="flex items-center gap-3 min-w-0">
-                                                            <div className="flex size-8 shrink-0 items-center justify-center border border-line bg-paper-muted">
+                                                            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
                                                                 <FileText className="size-3.5" />
                                                             </div>
                                                             <div className="min-w-0">
@@ -803,7 +803,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         </div>
                                                         <span
                                                             className={cn(
-                                                                "border-l-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wider",
+                                                                "rounded-md border px-2.5 py-1 text-xs font-medium",
                                                                 active
                                                                     ? "border-success bg-success/10 text-success"
                                                                     : passStatus === "revoked"
@@ -822,14 +822,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             </section>
 
                             <section>
-                                <div className="flex items-center justify-between gap-3 mb-3">
+                                <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                                     <h2 className="text-base font-medium text-foreground">Receipts & Invoices</h2>
                                     <button type="button"
                                         onClick={() => {
                                             void refetchReceipts();
                                         }}
                                         disabled={loadingReceipts}
-                                        className="min-h-11 border border-border/50 px-3 py-1.5 text-xs transition-colors hover:bg-muted/40 disabled:opacity-50"
+                                        className="focus-ring min-h-11 rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted disabled:opacity-50"
                                     >
                                         {loadingReceipts ? "Loading…" : "Refresh"}
                                     </button>
@@ -840,10 +840,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <Loader2 className="size-4 animate-spin" /> Loading…
                                         </div>
                                     ) : receiptsError ? (
-                                        <div role="alert" className="border-l-2 border-destructive bg-error-surface p-6 text-sm text-destructive">
+                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
                                             <p className="font-medium">Receipts could not load.</p>
                                             <p className="mt-1 text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
-                                            <button type="button" onClick={() => void refetchReceipts()} className="mt-4 inline-flex min-h-11 items-center border border-destructive/40 bg-background px-4 py-2 font-medium">
+                                            <button type="button" onClick={() => void refetchReceipts()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
                                                 Try again
                                             </button>
                                         </div>
@@ -852,9 +852,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             No receipts found for this account. If you recently paid, try Refresh.
                                         </div>
                                     ) : (
-                                        <div className="divide-y divide-border/20">
+                                        <div className="divide-y divide-border">
                                             {receipts.map((receipt) => (
-                                                <div key={receipt.id} className="p-4 flex items-center justify-between gap-4">
+                                                <div key={receipt.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                                                     <div className="min-w-0">
                                                         <p className="text-sm font-medium truncate">
                                                             {receipt.number || receipt.id}
@@ -864,7 +864,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         </p>
                                                         {receipt.status && (
                                                             <span className={cn(
-                                                                "mt-1 inline-flex border-l-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wide",
+                                                                "mt-1 inline-flex rounded-md border px-2.5 py-1 text-xs font-medium",
                                                                 receipt.status === "paid" ? "border-success bg-success/10 text-success" : "border-line bg-paper-muted text-muted-foreground"
                                                             )}>
                                                                 {receipt.status}
@@ -877,7 +877,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                                 href={receipt.hosted_invoice_url}
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                className="inline-flex min-h-11 items-center border border-border/50 px-3 py-2 text-xs transition-colors hover:bg-muted/40"
+                                                                className="focus-ring inline-flex min-h-11 items-center rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted"
                                                             >
                                                                 Invoice
                                                             </a>
@@ -887,7 +887,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                                 href={receipt.invoice_pdf}
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                className="inline-flex min-h-11 items-center border border-border/50 px-3 py-2 text-xs transition-colors hover:bg-muted/40"
+                                                                className="focus-ring inline-flex min-h-11 items-center rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted"
                                                             >
                                                                 PDF
                                                             </a>
@@ -900,7 +900,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                             </section>
 
-                            <section className="border-l-2 border-line bg-paper-muted p-4">
+                            <section className="rounded-xl bg-muted p-5">
                                 <p className="text-xs text-muted-foreground flex items-start gap-2">
                                     <ShieldAlert className="size-4 mt-0.5 shrink-0" />
                                     Job Search Passes do not renew. Receipts stay available here. If you paid with a different email, sign in with that email and choose Restore Access.
@@ -911,12 +911,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 </div>
 
                 <Dialog open={Boolean(showEmailInput)} onOpenChange={(open) => { if (!open) setShowEmailInput(null); }}>
-                    <DialogContent className="max-w-sm gap-y-4 p-6">
+                    <DialogContent className="max-w-auth gap-y-4 p-6 sm:p-8">
                         <DialogHeader className="text-center">
-                            <DialogTitle className="font-display text-lg font-semibold">Where should we send your receipt?</DialogTitle>
+                            <DialogTitle className="font-sans text-2xl font-normal leading-8 tracking-tight">Where should we send your receipt?</DialogTitle>
                             <DialogDescription>We will link access to this email.</DialogDescription>
                         </DialogHeader>
-                            <form onSubmit={handleGuestSubmit} className="gap-y-3">
+                            <form onSubmit={handleGuestSubmit} className="space-y-3">
                                 <input
                                     type="email"
                                     required
@@ -926,19 +926,19 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                     })}
                                     aria-label="Billing email"
-                                    className="min-h-11 w-full border border-border/30 bg-background px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                    className="min-h-12 w-full rounded-md border border-input bg-card px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
                                     autoFocus
                                 />
                                 <button
                                     type="submit"
                                     disabled={!guestEmailValue.trim() || !!isCheckoutLoading}
-                                    className="flex min-h-11 w-full items-center justify-center gap-2 bg-foreground py-2.5 font-semibold text-background transition-colors hover:bg-foreground/90"
+                                    className="focus-ring flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
                                 >
                                     {isCheckoutLoading && <Loader2 className="size-4 animate-spin" />}
                                     Continue to Checkout
                                 </button>
                             </form>
-                            <button type="button" onClick={() => setShowEmailInput(null)} className="min-h-11 w-full text-sm text-muted-foreground hover:text-foreground">
+                            <button type="button" onClick={() => setShowEmailInput(null)} className="focus-ring min-h-11 w-full rounded-full text-sm text-muted-foreground hover:text-foreground">
                                 Cancel
                             </button>
                     </DialogContent>

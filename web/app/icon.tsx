@@ -26,7 +26,7 @@ export function generateImageMetadata() {
     ];
 }
 
-// Generate the Lifted Line mark for all sizes.
+// Generate the Alpine mark for all sizes.
 export default async function Icon({ id }: { id: Promise<string> }) {
     const sizes: Record<string, { size: number; iconSize: number; radius: number }> = {
         small: { size: 32, iconSize: 20, radius: 6 },
@@ -36,13 +36,13 @@ export default async function Icon({ id }: { id: Promise<string> }) {
 
     const resolvedId = await id;
     const { size, iconSize, radius } = sizes[resolvedId] || sizes.small;
-    const spaceGrotesk = await readFile(join(process.cwd(), "public", "assets", "fonts", "space-grotesk-bold.ttf"));
+    const instrumentSans = await readFile(join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Semibold.ttf"));
 
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#071722",
+                    background: "#12191b",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -59,19 +59,19 @@ export default async function Icon({ id }: { id: Promise<string> }) {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#F7F5EF",
-                        fontFamily: "Space Grotesk",
+                        color: "#f6f3ef",
+                        fontFamily: "Instrument Sans",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: iconSize * 0.68, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#C8F238" }} />
+                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#78aeb8" }} />
                 </div>
             </div>
         ),
         {
             width: size,
             height: size,
-            fonts: [{ name: "Space Grotesk", data: spaceGrotesk, style: "normal", weight: 700 }],
+            fonts: [{ name: "Instrument Sans", data: instrumentSans, style: "normal", weight: 600 }],
         }
     );
 }

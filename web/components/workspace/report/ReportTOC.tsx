@@ -106,12 +106,11 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
                         onClick={() => handleScroll(item.id)}
                         aria-current={active ? "location" : undefined}
                         className={cn(
-                            "focus-ring relative min-h-11 w-full rounded-sm px-2 text-xs font-semibold transition-colors sm:min-h-14 sm:w-auto sm:shrink-0 sm:snap-start sm:px-4 sm:text-base",
-                            active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                            "focus-ring relative min-h-11 w-full rounded-lg px-2 text-sm font-semibold transition-colors motion-reduce:transition-none sm:w-auto sm:shrink-0 sm:snap-start sm:px-4",
+                            active ? "bg-surface-sky text-brand" : "text-muted-foreground hover:bg-proof hover:text-foreground"
                         )}
                     >
                         {item.label}
-                        <span className={cn("absolute inset-x-3 bottom-0 h-0.5 bg-citron transition-opacity duration-150", active ? "opacity-100" : "opacity-0")} />
                     </button>
                 );
             })}

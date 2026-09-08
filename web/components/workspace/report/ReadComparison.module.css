@@ -1,8 +1,9 @@
 .root {
-    margin-bottom: 3rem;
-    border-block: 1px solid hsl(var(--brand) / 0.35);
-    background: hsl(var(--brand) / 0.045);
-    padding: 2rem 1.25rem;
+    margin-bottom: 2rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: 0.75rem;
+    background: hsl(var(--surface-proof) / 0.5);
+    padding: 1.25rem;
 }
 
 .header {
@@ -14,9 +15,9 @@
 .kicker,
 .detailLabel,
 .cardLabel {
-    font-size: 0.6875rem;
-    font-weight: 650;
-    letter-spacing: 0.17em;
+    font-size: 0.75rem;
+    font-weight: var(--weight-label);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -31,32 +32,33 @@
 }
 
 .title {
-    max-width: 15ch;
+    max-width: 30ch;
     margin-top: 0.75rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-display);
-    font-size: clamp(2.35rem, 6vw, 4.6rem);
-    font-weight: 520;
-    letter-spacing: -0.04em;
-    line-height: 0.94;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .intro {
     max-width: 24rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5625rem;
 }
 
 .grid {
     display: grid;
-    gap: 1px;
-    margin-top: 2rem;
-    background: hsl(var(--paper-line));
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .card {
-    background: hsl(var(--paper));
+    border: 1px solid hsl(var(--line));
+    border-radius: 0.75rem;
+    background: hsl(var(--surface-raised));
     padding: 1.25rem;
 }
 
@@ -82,10 +84,10 @@
 .headline {
     margin-top: 1rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-display);
+    font-family: var(--font-editorial);
     font-size: 1.5rem;
-    font-weight: 520;
-    line-height: 1.25;
+    font-weight: 400;
+    line-height: 1.33334;
 }
 
 .previousHeadline {
@@ -102,9 +104,9 @@
 
 .detailText {
     margin-top: 0.5rem;
-    color: hsl(var(--foreground) / 0.75);
-    font-size: 0.875rem;
-    line-height: 1.5rem;
+    color: hsl(var(--text-muted));
+    font-size: 1rem;
+    line-height: 1.5625rem;
 }
 
 .current .detailText {
@@ -119,7 +121,7 @@
     display: none;
     align-items: center;
     justify-content: center;
-    background: hsl(var(--paper-muted));
+    background: transparent;
     color: hsl(var(--brand));
 }
 
@@ -130,7 +132,7 @@
 
 @media (min-width: 640px) {
     .root {
-        padding: 2.5rem 2rem;
+        padding: 1.5rem;
     }
 
     .header {
@@ -140,17 +142,17 @@
     }
 
     .card {
-        padding: 1.75rem;
+        padding: 1.5rem;
     }
 
     .headline {
-        font-size: 1.875rem;
+        font-size: 1.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .grid {
-        grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 1.25rem minmax(0, 1fr);
     }
 
     .arrow {

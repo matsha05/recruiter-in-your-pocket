@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { ArrowRight, CaretDown, Check, Info, PaperPlaneTilt } from "@phosphor-icons/react/dist/ssr";
+import styles from "./GuidePresentation";
 
 export function GuideEyebrow({ children }: { children: ReactNode }) {
-    return <div className="text-xs font-semibold uppercase riyp-track-010 text-ink">{children}</div>;
+    return <div className={`${styles.label} text-muted-foreground`}>{children}</div>;
 }
 
 export function GuideSection({ number, title, intro, children, id }: {
@@ -14,11 +15,11 @@ export function GuideSection({ number, title, intro, children, id }: {
 }) {
     return (
         <section id={id} className="scroll-mt-28 border-t border-border py-12 sm:py-16">
-            <div className="grid gap-8 lg:grid-cols-4 lg:gap-12">
-                <div className="font-display text-5xl riyp-weight-520 text-ink">{number}</div>
-                <div className="lg:col-span-3">
-                    <h2 className="max-w-2xl font-display text-4xl riyp-weight-520 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-5xl">{title}</h2>
-                    {intro ? <p className="mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">{intro}</p> : null}
+            <div className="grid gap-5 lg:grid-cols-[8rem_minmax(0,1fr)] lg:gap-12">
+                <div className={`${styles.label} pt-2 tabular-nums text-brand`}>{number}</div>
+                <div className="min-w-0">
+                    <h2 className={`${styles.sectionTitle} max-w-3xl`}>{title}</h2>
+                    {intro ? <p className={`${styles.readingCopy} mt-5`}>{intro}</p> : null}
                     <div className="mt-8">{children}</div>
                 </div>
             </div>
@@ -36,10 +37,10 @@ export function Disclosure({ title, eyebrow, children, defaultOpen = false }: {
         <details open={defaultOpen || undefined} className="group border-t border-border last:border-b">
             <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 [&::-webkit-details-marker]:hidden">
                 <div>
-                    {eyebrow ? <div className="mb-1 text-xs font-semibold uppercase riyp-track-010 text-ink">{eyebrow}</div> : null}
-                    <span className="font-display text-xl riyp-weight-560 leading-tight text-foreground">{title}</span>
+                    {eyebrow ? <div className={`${styles.label} mb-2 text-muted-foreground`}>{eyebrow}</div> : null}
+                    <span className={styles.componentTitle}>{title}</span>
                 </div>
-                <span className="flex size-10 shrink-0 items-center justify-center border border-line bg-background transition group-open:rotate-180">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-card transition group-open:rotate-180 motion-reduce:transition-none">
                     <CaretDown aria-hidden className="size-4" weight="bold" />
                 </span>
             </summary>
@@ -50,13 +51,12 @@ export function Disclosure({ title, eyebrow, children, defaultOpen = false }: {
 
 export function HandoffDiagram() {
     return (
-        <div className="relative overflow-hidden border border-border bg-foreground px-5 py-7 text-background sm:px-8 sm:py-9">
-            <div className="absolute right-0 top-0 h-full w-24 border-l border-background/10 bg-background/5" />
+        <div className={`${styles.sheet} relative overflow-hidden px-5 py-7 text-foreground sm:px-8 sm:py-9`}>
             <div className="relative grid gap-5 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center">
                 <HandoffNode label="The ask" text="The exact term you want changed" />
-                <ArrowRight aria-hidden className="hidden size-5 text-cyan-bright sm:block" weight="bold" />
+                <ArrowRight aria-hidden className="hidden size-5 text-brand sm:block" weight="bold" />
                 <HandoffNode label="The basis" text="The scope, range, or evidence behind it" />
-                <ArrowRight aria-hidden className="hidden size-5 text-cyan-bright sm:block" weight="bold" />
+                <ArrowRight aria-hidden className="hidden size-5 text-brand sm:block" weight="bold" />
                 <HandoffNode label="The decision" text="Whether the change would help you accept" />
             </div>
         </div>
@@ -65,25 +65,25 @@ export function HandoffDiagram() {
 
 function HandoffNode({ label, text }: { label: string; text: string }) {
     return (
-        <div className="border-l-2 border-cyan-bright pl-4">
-            <div className="text-xs font-semibold uppercase riyp-track-010 text-citron">{label}</div>
-            <p className="mt-2 text-sm leading-6 text-background/78">{text}</p>
+        <div className="border-l-2 border-brand/40 pl-4">
+            <div className={`${styles.label} text-brand`}>{label}</div>
+            <p className="mt-2 text-data text-muted-foreground">{text}</p>
         </div>
     );
 }
 
 export function Script({ children, label = "What you can say" }: { children: ReactNode; label?: string }) {
     return (
-        <div className="border-l-2 border-brand bg-brand/5 px-5 py-5">
-            <div className="text-xs font-semibold uppercase riyp-track-010 text-ink">{label}</div>
-            <p className="mt-2 font-display text-xl riyp-weight-500 leading-7 text-foreground">“{children}”</p>
+        <div className="rounded-xl border border-brand/20 bg-accent px-5 py-5 sm:px-6 sm:py-6">
+            <div className={`${styles.label} text-brand`}>{label}</div>
+            <p className={`${styles.script} mt-3`}>“{children}”</p>
         </div>
     );
 }
 
 export function WhatItGives({ children }: { children: ReactNode }) {
     return (
-        <div className="mt-4 flex gap-3 text-sm leading-6 text-muted-foreground">
+        <div className={`${styles.readingCopy} mt-4 flex gap-3`}>
             <PaperPlaneTilt aria-hidden className="mt-1 size-4 shrink-0 text-brand" weight="fill" />
             <p><strong className="font-semibold text-foreground">What this makes clear:</strong> {children}</p>
         </div>
@@ -94,7 +94,7 @@ export function Checklist({ items }: { items: ReactNode[] }) {
     return (
         <ul className="grid gap-3 sm:grid-cols-2">
             {items.map((item, index) => (
-                <li key={index} className="flex gap-3 border-t border-border pt-3 text-sm leading-6 text-muted-foreground">
+                <li key={index} className={`${styles.readingCopy} flex gap-3 border-t border-border pt-4`}>
                     <Check aria-hidden className="mt-1 size-4 shrink-0 text-brand" weight="bold" />
                     <span>{item}</span>
                 </li>
@@ -111,19 +111,19 @@ export function TechOfferStack() {
         ["Unknowns", "Refreshers, private liquidity, future share price"],
     ];
     return (
-        <div className="border border-border bg-foreground p-5 text-background sm:p-8">
+        <div className={`${styles.sheet} p-5 text-foreground sm:p-8`}>
             <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                    <div className="text-xs font-semibold uppercase riyp-track-010 text-citron">The pay breakdown</div>
-                    <div className="mt-2 font-display text-2xl riyp-weight-520">What you receive, and what depends on conditions</div>
+                    <div className={`${styles.label} text-brand`}>The pay breakdown</div>
+                    <div className={`${styles.componentTitle} mt-2`}>What you receive, and what depends on conditions</div>
                 </div>
-                <Info aria-hidden className="size-6 text-cyan-bright" weight="fill" />
+                <Info aria-hidden className="size-6 shrink-0 text-brand" weight="fill" />
             </div>
-            <div className="divide-y divide-background/15 border-y border-background/15">
+            <div className="divide-y divide-border border-y border-border">
                 {rows.map(([label, text], index) => (
-                    <div key={label} className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-5">
-                        <div className="font-mono text-xs text-citron">0{index + 1}</div>
-                        <div><strong className="text-sm text-background">{label}</strong><p className="mt-1 text-sm leading-6 text-background/65">{text}</p></div>
+                    <div key={label} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 py-4">
+                        <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                        <div><strong className="text-sm font-medium text-foreground">{label}</strong><p className="mt-1 text-data text-muted-foreground">{text}</p></div>
                     </div>
                 ))}
             </div>
@@ -133,9 +133,9 @@ export function TechOfferStack() {
 
 export function Sources({ children }: { children: ReactNode }) {
     return (
-        <aside className="mt-16 border-t border-border pt-8 text-sm leading-6 text-muted-foreground">
-            <div className="mb-4 text-xs font-semibold uppercase riyp-track-010 text-foreground">Sources and limits</div>
-            <div className="max-w-3xl space-y-3 [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-brand/40 [&_a]:underline-offset-4 hover:[&_a]:decoration-brand">{children}</div>
+        <aside className="mt-16 border-t border-border pt-8 text-data text-muted-foreground">
+            <div className={`${styles.label} mb-4 text-foreground`}>Sources and limits</div>
+            <div className="max-w-reading space-y-3 [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-brand/40 [&_a]:underline-offset-4 hover:[&_a]:decoration-brand">{children}</div>
         </aside>
     );
 }

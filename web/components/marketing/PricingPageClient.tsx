@@ -40,12 +40,12 @@ function PricingHeroActions({
     onCheckout: () => void;
 }) {
     return (
-        <nav aria-label="Pricing actions" className="mt-7 grid max-w-[34rem] gap-3 sm:grid-cols-2 lg:hidden">
+        <nav aria-label="Pricing actions" className="mt-7 grid max-w-xl gap-3 sm:grid-cols-2 lg:hidden">
             <Link
                 href="/workspace"
                 data-testid="pricing-hero-free-action"
                 onClick={() => Analytics.track("pricing_run_free_review_clicked", { source: "pricing_hero" })}
-                className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-md bg-foreground px-4 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 [&_svg]:text-citron"
+                className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
             >
                 Get my free report
                 <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
@@ -58,7 +58,7 @@ function PricingHeroActions({
                     onClick={onCheckout}
                     disabled={checkoutLoading}
                     variant="outline"
-                    className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-md border border-foreground bg-background/75 px-4 py-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-background disabled:cursor-not-allowed disabled:opacity-60 [&_svg]:text-brand"
+                    className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-full border border-border bg-card px-6 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-60"
                 >
                     {checkoutLoading ? "Opening checkout..." : "Get 5 reports · $29"}
                     <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
@@ -69,7 +69,7 @@ function PricingHeroActions({
                     disabled
                     data-testid="pricing-hero-paid-action"
                     variant="outline"
-                    className="flex min-h-14 cursor-not-allowed items-center justify-between gap-4 rounded-md border border-border bg-muted/35 px-4 py-3 text-left text-muted-foreground"
+                    className="flex min-h-14 cursor-not-allowed items-center justify-between gap-4 rounded-full border border-border bg-muted/35 px-6 py-3 text-left text-muted-foreground"
                 >
                     <span>
                         <span className="block text-sm font-semibold">5 reports · $29</span>
@@ -123,14 +123,14 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
     if (!billingEnabled) {
         return (
             <>
-                <div data-visual-anchor="pricing-page" className="pricing-beta-page !pt-28 bg-mineral text-foreground selection:bg-brand/15 lg:!pt-[9.5rem]">
+                <div data-visual-anchor="pricing-page" className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                     <section className="px-6 pb-14 md:px-8">
-                        <div className="pricing-rail mx-auto">
-                            <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-10 lg:items-end">
+                        <div className="mx-auto max-w-marketing">
+                            <div className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end lg:gap-14">
                                 <div>
-                                    <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Pricing</p>
-                                    <h1 className="max-w-3xl text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[1.08] tracking-[-0.05em]">
-                                        Your first report is <span className="riyp-marker riyp-marker-block">free.</span><br className="sm:hidden" /> Five more are $29.
+                                    <p className="mb-5 text-xs font-medium uppercase riyp-track-010 text-brand">Pricing</p>
+                                    <h1 className="max-w-form text-balance font-display text-workspace-title md:text-page-title">
+                                        Your first report is free.<br className="sm:hidden" /> Five more are $29.
                                     </h1>
                                     <PricingHeroActions
                                         billingEnabled={false}
@@ -147,28 +147,28 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 <Link href={returnTo} className="mt-6 inline-flex text-sm font-semibold text-foreground underline underline-offset-4">Back to my comparison</Link>
                             ) : null}
 
-                            <div className="mt-10 grid overflow-hidden border-y border-border bg-background/60 md:grid-cols-2">
-                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:px-8 md:py-8">
-                                    <p className="text-xs font-bold uppercase riyp-track-010 text-brand">First report</p>
-                                    <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$0</p>
+                            <div className="mt-10 grid gap-5 md:grid-cols-2">
+                                <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
+                                    <p className="text-xs font-medium uppercase riyp-track-010 text-brand">First report</p>
+                                    <p className="mt-5 font-display text-5xl font-normal tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         Get the overall impression, the lines behind it, and the changes to make first. {FREE_REPORT_ENTITLEMENT.promise}
                                     </p>
                                     <p className="mt-3 text-sm leading-6 text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
-                                    <Link href="/workspace" className="pricing-primary-cta mt-10 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
+                                    <Link href="/workspace" className="focus-ring mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98]">
                                         Get my free report
                                         <ArrowRight className="size-4" />
                                     </Link>
                                 </div>
-                                <div className="p-7 md:px-8 md:py-8">
-                                    <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
-                                    <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$29</p>
+                                <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
+                                    <p className="text-xs font-medium uppercase riyp-track-010 text-brand">Job Search Pass</p>
+                                    <p className="mt-5 font-display text-5xl font-normal tracking-tight">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">Five reports to use within 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         Compare revisions or review your resume against another job posting. One payment, no automatic renewal.
                                     </p>
-                                    <p role="status" className="pricing-disabled-cta mt-10 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
+                                    <p role="status" className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-border bg-muted/35 px-5 py-3 text-center text-sm font-medium text-muted-foreground">
                                         Paid passes are currently unavailable
                                     </p>
                                 </div>
@@ -183,17 +183,17 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
 
     return (
         <>
-            <div data-visual-anchor="pricing-page" className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
+            <div data-visual-anchor="pricing-page" className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                 <section className="px-6 pb-16 md:px-8 md:pb-24">
-                    <div className="mx-auto max-w-[1120px]">
-                        <div className="grid gap-10 border-b-2 border-cyan-bright pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end">
+                    <div className="mx-auto max-w-marketing">
+                        <div className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end lg:gap-14">
                             <div>
-                                <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-brand">Pricing</p>
+                                <p className="mb-5 text-xs font-medium uppercase riyp-track-010 text-brand">Pricing</p>
                                 <h1
                                     id="pricing-page-title"
-                                    className="max-w-[760px] text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]"
+                                    className="max-w-form text-balance font-display text-workspace-title md:text-page-title"
                                 >
-                                    Your first report is <span className="riyp-marker riyp-marker-block">free.</span><br className="sm:hidden" /> Five more are $29.
+                                    Your first report is free.<br className="sm:hidden" /> Five more are $29.
                                 </h1>
                                 <PricingHeroActions
                                     billingEnabled
@@ -201,13 +201,13 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     onCheckout={handleCheckout}
                                 />
                             </div>
-                            <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">
+                            <p className="max-w-xl text-pretty text-prose text-muted-foreground">
                                 Five additional reports for $29. Use them within 30 days to compare revisions or review another application. No automatic renewal.
                             </p>
                         </div>
 
                         {paymentCancelled ? (
-                            <div role="status" className="mt-8 flex items-start gap-3 border-y border-line bg-surface-sky/45 px-4 py-3 text-base text-foreground">
+                            <div role="status" className="mt-8 flex items-start gap-3 rounded-xl border border-line bg-surface-sky px-4 py-3 text-base text-foreground">
                                 <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
                                 <p><span className="font-semibold">Checkout canceled.</span> Nothing was charged.</p>
                             </div>
@@ -220,7 +220,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                             </p>
                         ) : null}
 
-                        <div className="mt-10 grid gap-0 md:grid-cols-2">
+                        <div className="mt-10 grid gap-5 md:grid-cols-2">
                             <PricingCard
                                 tier="free"
                                 context="marketing"
@@ -229,7 +229,6 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
                                     window.location.href = "/workspace";
                                 }}
-                                className="border-b-0 md:border-b md:border-r-0"
                             />
                             <PricingCard
                                 tier="30d"
@@ -245,11 +244,11 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     </div>
                 </section>
 
-                <section className="border-y border-line bg-surface-sky/45 px-6 py-14 md:px-8 md:py-20">
-                    <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+                <section className="border-y border-line bg-muted/45 px-6 py-14 md:px-8 md:py-20">
+                    <div className="mx-auto grid max-w-marketing gap-10 lg:grid-cols-[0.65fr_1.35fr]">
                         <div>
-                            <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand">Before you pay</p>
-                            <h2 className="max-w-sm font-display text-[clamp(2.2rem,4vw,3.5rem)] riyp-weight-560 leading-[1.02] tracking-[-0.035em] riyp-stretch-94">
+                            <p className="mb-4 text-xs font-medium uppercase riyp-track-010 text-brand">Before you pay</p>
+                            <h2 className="max-w-sm font-display text-workspace-title md:text-section-title">
                                 What happens after checkout.
                             </h2>
                             <p className="mt-4 max-w-sm text-lg leading-7 text-muted-foreground">
@@ -272,14 +271,14 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                 </section>
 
                 <section className="px-6 py-12 md:px-8 md:py-16">
-                    <div className="mx-auto flex max-w-[1120px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="mx-auto flex max-w-marketing flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <h2 className="font-display text-3xl riyp-weight-560 tracking-[-0.025em] riyp-stretch-96">Already paid?</h2>
+                            <h2 className="font-display text-report-title">Already paid?</h2>
                             <p className="mt-2 text-lg text-muted-foreground">Find your pass or receipts using the email you used at checkout.</p>
                         </div>
                         <Link
                             href={getCheckoutRestoreHref(returnTo)}
-                            className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-md border border-line px-5 py-3 text-base font-semibold text-foreground transition-[background-color,border-color,transform] duration-200 hover:border-brand/45 hover:bg-brand/5 active:scale-[0.99]"
+                            className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-full border border-line bg-card px-6 py-3 text-base font-medium text-foreground transition-[background-color,border-color,transform] duration-200 hover:border-brand/45 hover:bg-brand/5 active:scale-[0.99]"
                         >
                             Restore access
                             <ArrowRight className="size-4" weight="bold" />

@@ -40,12 +40,12 @@ const reviewPath = [
 export function FirstReadModelDiagram() {
     return (
         <DiagramFigure className="max-w-[62rem]" label="Worked example showing a clarity summary, four diagnostic scores, and the evidence behind them">
-            <div className="overflow-hidden border-y border-line bg-paper">
+            <div className="overflow-hidden rounded-2xl border border-line bg-card md:rounded-3xl">
                 <div className="grid lg:grid-cols-[18rem_minmax(0,1fr)]">
-                    <section className="flex flex-col justify-between border-b border-line bg-surface-sky p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="Worked clarity summary">
+                    <section className="flex flex-col justify-between border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="Worked clarity summary">
                         <div>
-                            <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">Worked example</p>
-                            <p className="mt-6 font-display text-[clamp(5rem,10vw,8rem)] riyp-weight-520 leading-[0.78] tracking-[-0.07em] text-foreground">85</p>
+                            <p className="riyp-evidence-label text-brand">Worked example</p>
+                            <p className="mt-6 font-display text-section-title text-foreground">85</p>
                             <p className="mt-4 text-sm font-semibold text-foreground">Clear and specific</p>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">Your responsibilities are clear. Add how many people or teams were involved in the improvements you describe.</p>
                         </div>
@@ -54,17 +54,17 @@ export function FirstReadModelDiagram() {
                                 <Quotes className="mt-0.5 size-5 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
                                 <p className="text-sm leading-6 text-foreground">“Led onboarding across teams” leaves two questions: which teams, and what improved?</p>
                             </div>
-                            <p className="mt-4 text-xs leading-5 text-muted-foreground">Each recommendation points to the wording that needs attention.</p>
+                            <p className="mt-4 text-data text-muted-foreground">Each recommendation points to the wording that needs attention.</p>
                         </div>
                     </section>
 
                     <section className="p-6 lg:p-8" aria-label="Four score diagnostics">
                         <div className="flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">How the score is explained</p>
-                                <h3 className="mt-2 font-display text-3xl riyp-weight-540 tracking-[-0.03em] text-foreground">Four parts of the review</h3>
+                                <p className="riyp-evidence-label text-brand">How the score is explained</p>
+                                <h3 className="mt-2 font-display text-report-title tracking-tight text-foreground">Four parts of the review</h3>
                             </div>
-                            <p className="max-w-[18rem] text-xs leading-5 text-muted-foreground">These scores summarize the feedback. They do not predict interviews or offers.</p>
+                            <p className="max-w-[18rem] text-data text-muted-foreground">These scores summarize the feedback. They do not predict interviews or offers.</p>
                         </div>
 
                         <ol className="divide-y divide-line">

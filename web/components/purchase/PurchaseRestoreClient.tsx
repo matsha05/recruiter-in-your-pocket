@@ -129,24 +129,24 @@ export default function PurchaseRestoreClient() {
     <>
       <div
         data-visual-anchor="purchase-restore"
-        className="bg-paper px-5 pb-20 pt-28 text-foreground selection:bg-brand/15 md:px-8 md:pt-36"
+        className="bg-background px-4 pb-20 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20"
       >
-        <section className="mx-auto max-w-[64rem]" aria-labelledby="purchase-restore-title">
-          <header className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
+        <section className="mx-auto max-w-form" aria-labelledby="purchase-restore-title">
+          <header className="grid gap-6 border-b border-border pb-8">
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-012 text-brand">Billing help</p>
-              <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
+              <p className="text-eyebrow uppercase text-muted-foreground">Billing help</p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
                 Use the email address you used at checkout. We’ll check your payment with Stripe and restore any missing pass.
               </p>
             </div>
             <div>
               <h1
                 id="purchase-restore-title"
-                className="max-w-[16ch] text-balance font-display text-[clamp(3rem,7vw,6.5rem)] riyp-weight-520 leading-[0.92] tracking-[-0.05em] riyp-stretch-90"
+                className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
               >
                 {header}
               </h1>
-              <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">
                 Find a missing pass, view receipts, or manage billing through Stripe.
               </p>
             </div>
@@ -155,25 +155,25 @@ export default function PurchaseRestoreClient() {
           {(billingUpdated || restoreMessage) ? (
             <div
               role={restoreError ? "alert" : "status"}
-              className={`mt-7 border-y px-5 py-4 text-sm leading-6 ${restoreError ? "border-destructive bg-error-surface text-destructive" : "border-line bg-surface-sky/45 text-foreground"}`}
+              className={`mt-7 rounded-xl border px-5 py-4 text-sm leading-6 ${restoreError ? "border-destructive bg-error-surface text-destructive" : "border-brand/20 bg-brand/5 text-foreground"}`}
             >
               {restoreMessage || "Billing settings updated."}
             </div>
           ) : null}
 
-          <div className="grid gap-8 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div className="grid gap-5 py-8">
             <div className="text-sm leading-6 text-muted-foreground">
               {authLoading ? (
                 <p role="status">Checking which account you’re signed in to.</p>
               ) : signedIn ? (
-                <p>Signed in as <span className="font-semibold text-foreground">{user?.email}</span></p>
+                <p>Signed in as <span className="break-all font-medium text-foreground">{user?.email}</span></p>
               ) : (
                 <p>Sign in with your checkout email so we can find your purchase.</p>
               )}
             </div>
 
-            <div className="border-y border-line bg-surface-sky/45 px-5 py-6 sm:px-7 sm:py-7">
-              <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Choose what you need</p>
+            <div className="min-w-0 rounded-2xl border border-border bg-card p-6 sm:rounded-3xl sm:p-8">
+              <p className="text-sm font-medium text-foreground">Choose what you need</p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {authLoading ? (
                   <Button type="button" variant="brand" size="lg" disabled isLoading>
@@ -212,7 +212,7 @@ export default function PurchaseRestoreClient() {
           </div>
 
           {receiptsState === "error" ? (
-            <div role="alert" className="border-y border-destructive bg-error-surface px-5 py-4 text-sm leading-6 text-destructive">
+            <div role="alert" className="rounded-xl border border-destructive bg-error-surface px-5 py-4 text-sm leading-6 text-destructive">
               <p className="font-semibold">Receipts could not load.</p>
               <p className="mt-1">{receiptsMessage}</p>
               <Button type="button" variant="outline" size="sm" className="mt-4" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
@@ -221,10 +221,10 @@ export default function PurchaseRestoreClient() {
             </div>
           ) : receiptsState === "loaded" ? (
             <section className="border-t border-line pt-8" aria-labelledby="receipt-list-title">
-              <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+              <div className="grid gap-6">
                 <div>
-                  <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Receipts</p>
-                  <h2 id="receipt-list-title" className="mt-3 font-display text-3xl riyp-weight-520 tracking-[-0.03em]">Your payment record</h2>
+                  <p className="text-sm font-medium text-foreground">Receipts</p>
+                  <h2 id="receipt-list-title" className="mt-3 font-sans text-report-title">Your payment record</h2>
                 </div>
                 <div className="divide-y divide-line border-y border-line">
                   {receipts.length === 0 ? (
@@ -232,7 +232,7 @@ export default function PurchaseRestoreClient() {
                   ) : receipts.map((item) => (
                     <article key={item.id} className="grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
                       <div>
-                        <p className="font-semibold text-foreground">{item.number || "Stripe receipt"}</p>
+                        <p className="font-medium text-foreground">{item.number || "Stripe receipt"}</p>
                         <p className="mt-1 text-sm text-muted-foreground">
                           {new Date(item.created_at).toLocaleDateString()} · {formatAmount(item.amount_paid, item.currency)}
                         </p>

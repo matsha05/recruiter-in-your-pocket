@@ -1,25 +1,25 @@
 import Link from "next/link";
-import { PocketMark } from "@/components/icons";
+import { Wordmark } from "@/components/icons";
 import { FOOTER_NAV } from "@/lib/navigation";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
     return (
-        <footer className="relative z-10 border-t border-background/20 bg-ink px-6 py-7 text-background/70 md:px-8">
-            <div className="mx-auto flex max-w-[var(--page-max)] flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-                <div className="flex max-w-[27rem] flex-col gap-2">
-                    <div className="flex items-center gap-2 font-display text-base font-semibold text-background">
-                        <PocketMark className="size-4.5 text-citron" />
-                        <span>© 2026 Recruiter in Your Pocket</span>
-                    </div>
-                    <p className="text-sm leading-6 text-background/70">
+        <footer className={styles.footer}>
+            <div className={styles.inner}>
+                <div className={styles.about}>
+                    <Link href="/" aria-label="Recruiter in Your Pocket home" className={`focus-ring ${styles.brand}`}>
+                        <Wordmark />
+                    </Link>
+                    <p className={styles.description}>
                         See what recruiters are likely to notice before you apply. Start free, save your report if it helps, and add the job description when you want more specific feedback.
                     </p>
-                    <p className="text-xs text-background/70">
+                    <p className={styles.support}>
                         Support:{" "}
                         <FooterLink href="/support">support@recruiterinyourpocket.com</FooterLink>
                     </p>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm md:justify-end">
+                <nav className={styles.navigation} aria-label="Footer navigation">
                     {FOOTER_NAV.pillLinks.map((link) => (
                         <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
                     ))}
@@ -27,8 +27,9 @@ export default function Footer() {
                     {FOOTER_NAV.legalLinks.map((link) => (
                         <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
                     ))}
-                </div>
+                </nav>
             </div>
+            <p className={styles.copyright}>© 2026 Recruiter in Your Pocket</p>
         </footer>
     );
 }
@@ -37,7 +38,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     return (
         <Link
             href={href}
-            className="focus-ring relative inline-flex min-h-11 items-center rounded-md px-2 text-background/70 transition-colors duration-150 hover:text-background after:absolute after:bottom-0 after:left-2 after:right-2 after:h-px after:origin-left after:scale-x-0 after:bg-cyan-bright after:transition-transform after:duration-150 hover:after:scale-x-100"
+            className={`focus-ring ${styles.link}`}
         >
             {children}
         </Link>

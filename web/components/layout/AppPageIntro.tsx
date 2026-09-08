@@ -25,17 +25,17 @@ export function AppPageIntro({
     <section
       data-visual-anchor={anchor}
       className={cn(
-        "app-page-intro flex flex-col gap-5 px-5 py-5 md:px-7 md:py-6 lg:flex-row lg:items-end lg:justify-between",
+        "app-page-intro flex flex-col gap-6 px-5 py-7 md:px-7 md:py-8 lg:flex-row lg:items-end lg:justify-between",
         className
       )}
     >
-      <div className="max-w-3xl space-y-3">
+      <div className="min-w-0 max-w-3xl space-y-4">
         {eyebrow ? (
           <p className="app-page-eyebrow">
             {eyebrow}
           </p>
         ) : null}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h1 className="app-page-title">
             {title}
           </h1>

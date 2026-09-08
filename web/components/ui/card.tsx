@@ -5,7 +5,7 @@ import { m as motion, useReducedMotion, HTMLMotionProps } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
 
-/** Lifted Line structural panel. Prefer open layout unless grouping changes meaning. */
+/** Alpine structural sheet. Prefer open layout unless grouping changes meaning. */
 const Card = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
@@ -13,7 +13,7 @@ const Card = React.forwardRef<
     <div
         ref={ref}
         className={cn(
-            "rounded border border-border/60 bg-card text-card-foreground",
+            "rounded-2xl border border-line bg-card text-card-foreground shadow-sheet md:rounded-sheet",
             className
         )}
         {...props}
@@ -38,7 +38,7 @@ const CardInteractive = React.forwardRef<HTMLDivElement, CardInteractiveProps>(
             <motion.div
                 ref={ref}
                 className={cn(
-                    "rounded border border-border/60 bg-card text-card-foreground",
+                    "rounded-2xl border border-line bg-card text-card-foreground shadow-sheet md:rounded-sheet",
                     "cursor-pointer",
                     className
                 )}
@@ -59,7 +59,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <div
         ref={ref}
-        className={cn("flex flex-col space-y-1.5 p-4", className)}
+        className={cn("flex flex-col space-y-2 p-5 md:p-8", className)}
         {...props}
     />
 ))
@@ -71,7 +71,7 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <h3
         ref={ref}
-        className={cn("font-display font-medium leading-none tracking-tight", className)}
+        className={cn("font-display text-2xl font-medium leading-[30px] tracking-tight", className)}
         {...props}
     />
 ))
@@ -93,7 +93,7 @@ const CardContent = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("p-4 pt-0", className)} {...props} />
+    <div ref={ref} className={cn("p-5 pt-0 md:p-8 md:pt-0", className)} {...props} />
 ))
 CardContent.displayName = "CardContent"
 
@@ -103,7 +103,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <div
         ref={ref}
-        className={cn("flex items-center p-4 pt-0", className)}
+        className={cn("flex items-center p-5 pt-0 md:p-8 md:pt-0", className)}
         {...props}
     />
 ))

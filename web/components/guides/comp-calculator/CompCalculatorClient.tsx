@@ -9,6 +9,7 @@ import type { OfferData } from "@/lib/compensation-model";
 import { createEmptyOffer, offerHasValidVesting } from "@/lib/compensation-model";
 import { CompCalculatorOfferCard } from "./CompCalculatorOfferCard";
 import { CompCalculatorResults } from "./CompCalculatorResults";
+import styles from "../GuidePresentation";
 
 const SAMPLE_OFFERS: OfferData[] = [
   {
@@ -79,40 +80,40 @@ export function CompCalculatorClient() {
   }
 
   return (
-    <div data-calculator-hydrated={isHydrated ? "true" : "false"} className="bg-paper text-foreground selection:bg-brand/15">
-      <div className="border-b border-line bg-background">
-        <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 px-5 py-4 text-sm sm:px-8">
+    <div data-calculator-hydrated={isHydrated ? "true" : "false"} className="marketing-header-offset bg-background text-foreground selection:bg-brand/15">
+      <div className="border-b border-border">
+        <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm sm:px-8">
           <Link href="/resources" className="focus-ring min-h-11 rounded-sm py-3 text-muted-foreground transition-colors hover:text-foreground">Resources</Link>
           <CaretRight aria-hidden="true" className="size-3 text-muted-foreground" weight="bold" />
           <span className="font-medium text-foreground">Offer calculator</span>
         </nav>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 md:py-20">
-        <header className="mb-12 grid gap-8 border-b border-line pb-12 lg:grid-cols-3 lg:items-end lg:gap-14">
-          <h1 className="max-w-4xl font-display text-5xl riyp-weight-540 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-6xl lg:col-span-2 lg:text-7xl">
+      <div className="mx-auto max-w-marketing px-5 py-12 sm:px-8 md:py-20">
+        <header className="mb-12 grid gap-8 border-b border-border pb-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
+          <h1 className={`${styles.pageTitle} max-w-3xl`}>
             Compare your offers over four years.
           </h1>
           <div>
-            <p className="text-lg leading-8 text-muted-foreground">See how base salary, bonus, equity, and one-time payments add up each year. Amounts are in US dollars, before tax.</p>
+            <p className={styles.readingCopy}>See how base salary, bonus, equity, and one-time payments add up each year. Amounts are in US dollars, before tax.</p>
             <p className="mt-4 text-sm leading-6 text-muted-foreground">No account required. This page does not save the numbers you enter.</p>
           </div>
         </header>
 
         <div className="grid gap-8 xl:grid-cols-5 xl:items-start">
-          <section aria-labelledby="offers-heading" className="xl:col-span-3">
+          <section aria-labelledby="offers-heading" className="min-w-0 xl:col-span-3">
             <div className="mb-5 flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 id="offers-heading" className="font-display text-3xl riyp-weight-560 tracking-tight text-foreground">Offer details</h2>
+                <h2 id="offers-heading" className={styles.componentTitle}>Offer details</h2>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter the terms from each offer. Unknown amounts left at zero are excluded, so the comparison will be incomplete until you confirm them.</p>
               </div>
-              {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-11 rounded-sm px-2 text-sm font-semibold text-ink underline decoration-brand/30 underline-offset-4 hover:decoration-brand">See a read-only example</button> : null}
+              {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground underline decoration-brand/30 underline-offset-4 hover:decoration-brand">See a read-only example</button> : null}
             </div>
 
             {showingSample ? (
-              <div className="mb-4 flex flex-col gap-3 border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mb-4 flex flex-col gap-3 rounded-xl border border-brand/20 bg-accent px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm leading-6 text-foreground"><strong>Read-only example.</strong> Exit it to enter your own numbers.</p>
-                <button type="button" onClick={() => setShowingSample(false)} className="focus-ring min-h-11 shrink-0 rounded-sm px-2 text-sm font-semibold text-ink underline decoration-brand/30 underline-offset-4 hover:decoration-brand">Exit example</button>
+                <button type="button" onClick={() => setShowingSample(false)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground underline decoration-brand/30 underline-offset-4 hover:decoration-brand">Exit example</button>
               </div>
             ) : null}
 
@@ -133,30 +134,30 @@ export function CompCalculatorClient() {
             {!showingSample ? (
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {!hasCurrentJob && offers.length < 5 ? (
-                  <motion.button layout={!reduceMotion} type="button" onClick={addCurrentJob} className="focus-ring flex min-h-14 items-center justify-center gap-2 rounded-sm border border-dashed border-line px-4 py-3 text-muted-foreground transition-colors hover:border-cyan-bright hover:bg-surface-sky hover:text-foreground">
+                  <motion.button layout={!reduceMotion} type="button" onClick={addCurrentJob} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
                     <Briefcase aria-hidden="true" className="size-4" weight="duotone" />
-                    <span className="text-sm font-semibold">Add current job</span>
+                    <span className="text-sm font-medium">Add current job</span>
                   </motion.button>
                 ) : null}
                 {offers.length < 5 ? (
-                  <motion.button layout={!reduceMotion} type="button" onClick={addOffer} className="focus-ring flex min-h-14 items-center justify-center gap-2 rounded-sm border border-dashed border-line px-4 py-3 text-muted-foreground transition-colors hover:border-cyan-bright hover:bg-surface-sky hover:text-foreground">
+                  <motion.button layout={!reduceMotion} type="button" onClick={addOffer} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
                     <Plus aria-hidden="true" className="size-4" weight="bold" />
-                    <span className="text-sm font-semibold">Compare another offer</span>
+                    <span className="text-sm font-medium">Compare another offer</span>
                   </motion.button>
                 ) : null}
               </div>
             ) : null}
           </section>
 
-          <aside aria-label="Modeled comparison" className="space-y-6 xl:col-span-2 xl:sticky xl:top-24">
+          <aside aria-label="Modeled comparison" className="min-w-0 space-y-6 xl:col-span-2 xl:sticky xl:top-24">
             {hasData ? (
               <CompCalculatorResults offers={displayOffers} hasInvalidVesting={hasInvalidVesting} />
             ) : (
-              <div className="border-y border-line bg-background p-8 text-center">
-                <div className="mx-auto mb-4 flex size-12 items-center justify-center border border-line bg-paper-muted">
+              <div className={`${styles.sheet} p-6 sm:p-8`}>
+                <div className="mb-5 flex size-12 items-center justify-center rounded-full border border-brand/15 bg-accent">
                   <TrendUp aria-hidden="true" className="size-5 text-brand" weight="duotone" />
                 </div>
-                <h2 className="font-display text-xl riyp-weight-560 text-foreground">Your comparison starts here</h2>
+                <h2 className={styles.componentTitle}>Your comparison starts here</h2>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter a base salary to see a modeled four-year breakdown.</p>
               </div>
             )}

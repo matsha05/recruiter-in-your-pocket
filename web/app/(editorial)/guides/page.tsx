@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Clock, ShieldCheck, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
     title: "Career Resources",
@@ -52,20 +53,20 @@ const researchLinks = [
 export default function GuidesPage() {
     return (
         <>
-            <div className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
+            <div className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
 
                 {/* ── Hero ── */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-6xl">
-                        <div className="max-w-3xl">
-                            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase riyp-track-010 text-ink">
+                    <div className="mx-auto max-w-marketing">
+                        <div className="max-w-4xl">
+                            <div className={`${styles.label} inline-flex items-center gap-2 text-muted-foreground`}>
                                 <Sparkle aria-hidden="true" className="size-3.5 text-brand" weight="fill" />
                                 Practical career advice
                             </div>
-                            <h1 className="mt-5 max-w-4xl font-display text-5xl riyp-weight-520 leading-none tracking-tight text-foreground riyp-stretch-88 sm:text-6xl lg:text-7xl">
+                            <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                                 Work out what to ask for in your next offer
                             </h1>
-                            <p className="editorial-copy-lg mt-5 max-w-2xl text-muted-foreground">
+                            <p className={`${styles.readingCopy} mt-5`}>
                                 Compare the pay, understand the terms, and find words you can use with the recruiter.
                             </p>
                         </div>
@@ -74,19 +75,19 @@ export default function GuidesPage() {
 
                 {/* ── Guide cards ── */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-6xl">
-                        <div className="mb-6 flex items-center justify-between">
+                    <div className="mx-auto max-w-marketing">
+                        <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
                             <div>
-                                <p className="text-xs font-semibold uppercase riyp-track-010 text-ink">
+                                <p className={`${styles.label} text-muted-foreground`}>
                                     Guides
                                 </p>
-                                <h2 className="mt-2 font-display text-4xl riyp-weight-540 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-5xl">
+                                <h2 className={`${styles.sectionTitle} mt-3`}>
                                     Choose your guide
                                 </h2>
                             </div>
                             <Link
                                 href="/workspace"
-                                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                             >
                                 Get free report
                                 <ArrowRight className="size-4" />
@@ -98,24 +99,24 @@ export default function GuidesPage() {
                                 <Link
                                     key={guide.title}
                                     href={guide.href}
-                                    className="group block border-y border-line bg-background p-6 transition-colors hover:bg-paper-muted"
+                                    className={`${styles.sheet} focus-ring group block p-6 transition-colors hover:border-brand/40 sm:p-8`}
                                 >
                                     <div className="flex items-center justify-between gap-3">
-                                            <span className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">
+                                            <span className={`${styles.label} text-muted-foreground`}>
                                                 {guide.subtitle}
                                             </span>
-                                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">
+                                        <span className={`${styles.label} inline-flex shrink-0 items-center gap-1.5 text-muted-foreground`}>
                                             <Clock aria-hidden="true" className="size-3.5" />
                                             {guide.readTime}
                                         </span>
                                     </div>
-                                    <h3 className="mt-4 font-display text-2xl riyp-weight-560 leading-tight tracking-tight text-foreground riyp-stretch-96 transition-colors group-hover:text-brand sm:text-3xl">
+                                    <h3 className={`${styles.componentTitle} mt-5 transition-colors group-hover:text-brand`}>
                                         {guide.title}
                                     </h3>
-                                    <ul className="mt-4 gap-y-2.5">
+                                    <ul className="mt-4 space-y-2.5">
                                         {guide.points.map((point) => (
-                                            <li key={point} className="flex items-center gap-2.5 text-base leading-7 text-muted-foreground">
-                                                <span className="inline-block h-px w-3 shrink-0 bg-cyan-bright" />
+                                            <li key={point} className={`${styles.readingCopy} flex items-start gap-2.5`}>
+                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-brand/50" />
                                                 {point}
                                             </li>
                                         ))}
@@ -129,59 +130,59 @@ export default function GuidesPage() {
                         </div>
 
                         {/* Compensation Calculator card */}
-                        <div className="mt-5 border-y border-line bg-background p-6">
+                        <div className={`${styles.sheet} mt-5 p-6 sm:p-8`}>
                             <div className="flex flex-wrap items-end justify-between gap-3">
                                 <div>
-                                    <p className="text-xs font-semibold uppercase riyp-track-010 text-ink">
+                                    <p className={`${styles.label} text-muted-foreground`}>
                                         Tool
                                     </p>
-                                    <h3 className="mt-2 font-display text-2xl riyp-weight-560 leading-tight tracking-tight text-foreground riyp-stretch-96 sm:text-3xl">
+                                    <h3 className={`${styles.componentTitle} mt-2`}>
                                         Compensation Calculator
                                     </h3>
-                                    <p className="mt-2 max-w-2xl text-base leading-7 text-muted-foreground">
+                                    <p className={`${styles.readingCopy} mt-3`}>
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
                                     </p>
                                 </div>
                                 <Link
                                     href="/resources/tools/comp-calculator"
-                                    className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-sm bg-ink px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-ink-deep"
+                                    className={`${styles.primaryAction} focus-ring shrink-0`}
                                 >
                                     Open calculator
-                                    <ArrowRight aria-hidden="true" className="size-4 text-citron" weight="bold" />
+                                    <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
                                 </Link>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* ── Philosophy  -  dark section ── */}
-                <section className="bg-foreground px-6 py-14 text-background md:px-8 md:py-20">
-                    <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2">
+                {/* ── Philosophy ── */}
+                <section className="border-y border-border bg-muted px-6 py-14 text-foreground md:px-8 md:py-20">
+                    <div className="mx-auto grid max-w-marketing items-start gap-10 lg:grid-cols-2">
                         <div>
-                            <p className="text-xs font-semibold uppercase riyp-track-010 text-cyan-bright">
+                            <p className={`${styles.label} text-brand`}>
                                 The philosophy
                             </p>
-                            <h2 className="mt-3 max-w-3xl font-display text-5xl riyp-weight-540 leading-none tracking-tight text-background riyp-stretch-90 lg:text-6xl">
+                            <h2 className={`${styles.sectionTitle} mt-3 max-w-3xl`}>
                                 Written from the recruiter&apos;s side of the table
                             </h2>
-                            <p className="mt-5 max-w-2xl text-base leading-7 text-background/70">
+                            <p className={`${styles.readingCopy} mt-5`}>
                                 These guides explain how a request moves through a hiring team, which facts help someone evaluate it, and what you can say without overstating your leverage.
                             </p>
                         </div>
 
-                        <div className="border-y border-background/15 bg-background/5 p-6">
-                            <div className="gap-y-4">
+                        <div className={`${styles.sheet} p-6 sm:p-8`}>
+                            <div className="space-y-5">
                                 <div>
-                                    <p className="text-sm font-medium text-background">Examples you can adapt.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Use the sample wording to ask about pay, request more time, or make a counteroffer.</p>
+                                    <p className="text-prose font-medium text-foreground">Examples you can adapt.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Use the sample wording to ask about pay, request more time, or make a counteroffer.</p>
                                 </div>
-                                <div className="border-t border-background/10 pt-4">
-                                    <p className="text-sm font-medium text-background">Sources and limits included.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Research links are included where relevant, with source limits stated plainly.</p>
+                                <div className="border-t border-border pt-5">
+                                    <p className="text-prose font-medium text-foreground">Sources and limits included.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Research links are included where relevant, with source limits stated plainly.</p>
                                 </div>
-                                <div className="border-t border-background/10 pt-4">
-                                    <p className="text-sm font-medium text-background">Built for your next conversation.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-background/70">Go straight to the question you need help with, whether you have an offer or are still interviewing.</p>
+                                <div className="border-t border-border pt-5">
+                                    <p className="text-prose font-medium text-foreground">Built for your next conversation.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Go straight to the question you need help with, whether you have an offer or are still interviewing.</p>
                                 </div>
                             </div>
                         </div>
@@ -190,19 +191,19 @@ export default function GuidesPage() {
 
                 {/* ── Connected research ── */}
                 <section className="px-6 py-14 md:px-8 md:py-20">
-                    <div className="mx-auto max-w-6xl">
-                        <div className="mb-6 flex items-center justify-between">
+                    <div className="mx-auto max-w-marketing">
+                        <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
                             <div>
-                                <p className="text-xs font-semibold uppercase riyp-track-010 text-ink">
+                                <p className={`${styles.label} text-muted-foreground`}>
                                     Connected research
                                 </p>
-                                <h2 className="mt-2 font-display text-4xl riyp-weight-540 leading-none tracking-tight text-foreground riyp-stretch-92 sm:text-5xl">
+                                <h2 className={`${styles.sectionTitle} mt-3`}>
                                     Related hiring research
                                 </h2>
                             </div>
                             <Link
                                 href="/research"
-                                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                             >
                                 View all research
                                 <ArrowRight className="size-4" />
@@ -214,12 +215,12 @@ export default function GuidesPage() {
                                 <Link
                                     key={item.title}
                                     href={item.href}
-                                    className="group border-y border-line bg-background p-6 transition-colors hover:bg-paper-muted"
+                                    className={`${styles.sheet} focus-ring group p-6 transition-colors hover:border-brand/40 sm:p-8`}
                                 >
-                                    <div className="mb-3 inline-flex size-8 items-center justify-center border border-cyan-bright/35 bg-surface-sky">
+                                    <div className="mb-5 inline-flex size-11 items-center justify-center rounded-full border border-brand/15 bg-accent">
                                         <ShieldCheck aria-hidden="true" className="size-4 text-brand" weight="duotone" />
                                     </div>
-                                    <h3 className="font-display text-2xl riyp-weight-560 leading-tight tracking-tight text-foreground riyp-stretch-96 transition-colors group-hover:text-brand">
+                                    <h3 className={`${styles.componentTitle} transition-colors group-hover:text-brand`}>
                                         {item.title}
                                     </h3>
                                     <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">

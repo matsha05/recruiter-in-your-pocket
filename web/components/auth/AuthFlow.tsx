@@ -246,12 +246,12 @@ export function AuthFlow({
     return "What should we call you?";
   }, [copy.subtext, email, step]);
   const outerClass = variant === "page"
-    ? "min-h-screen bg-paper px-4 pb-16 pt-24 text-foreground selection:bg-brand/15 sm:px-5 sm:pt-28 md:px-8 md:pb-20 md:pt-36"
+    ? "min-h-[80vh] bg-background px-4 pb-16 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20 md:px-8 md:pb-24"
     : "";
 
   const panelClass = cn(
-    "gap-y-5",
-    variant === "page" && "border border-line bg-background p-5 sm:p-6 md:p-8"
+    "grid gap-5",
+    variant === "page" && "rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-7"
   );
 
   return (
@@ -261,29 +261,29 @@ export function AuthFlow({
     >
       <div
         className={cn(
-          "w-full gap-y-6",
-          variant === "page" && "mx-auto grid max-w-[70rem] gap-8 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_30rem] lg:items-start lg:gap-16",
+          "grid w-full gap-6",
+          variant === "page" && "mx-auto max-w-[1040px] gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-start lg:gap-16",
           variant === "modal" && "max-w-none"
         )}
       >
         {variant === "page" ? (
-          <div className="gap-y-10 pt-2 lg:pt-6">
-            <div className="gap-y-4">
-              <div className="text-xs font-semibold uppercase riyp-track-010 text-brand">Secure sign-in</div>
+          <div className="grid gap-8 pt-2 lg:pt-6">
+            <div className="grid gap-4">
+              <div className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Secure sign-in</div>
               <h1
-                className="max-w-[31rem] text-balance font-display text-[clamp(2.7rem,11vw,4.8rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-foreground riyp-stretch-90"
+                className="max-w-[31rem] text-balance font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title"
               >
                 {stepTitle}
               </h1>
-              <div className="max-w-[32rem] text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              <div className="max-w-lg text-pretty text-base leading-[1.6] text-muted-foreground">
                 {stepSubtitle}
               </div>
             </div>
 
-            <div className="hidden max-w-[36rem] gap-y-5 border-t border-line pt-6 md:grid">
+            <div className="hidden max-w-xl gap-5 border-t border-border pt-6 md:grid">
               {step === "email" ? (
                 <>
-                  <p className="text-[1.02rem] leading-8 text-foreground/85">
+                  <p className="text-base leading-[1.6] text-muted-foreground">
                     Sign in to save reports and return to them later. Reports you created without signing in are saved to your account only when you choose to keep them.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3">
@@ -292,15 +292,15 @@ export function AuthFlow({
                       { label: "Privacy", value: "Choose which reports to save." },
                       { label: "Comparisons", value: "See how your revisions compare." },
                     ].map((item) => (
-                      <div key={item.label} className="border-t border-line pt-3">
-                        <p className="text-xs font-semibold uppercase riyp-track-008 text-brand">{item.label}</p>
-                        <p className="mt-2 text-base leading-6 text-muted-foreground">{item.value}</p>
+                      <div key={item.label} className="pt-2">
+                        <p className="text-sm font-medium text-foreground">{item.label}</p>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.value}</p>
                       </div>
                     ))}
                   </div>
                 </>
               ) : (
-                <div className="max-w-[28rem] border-t border-line pt-4">
+                <div className="max-w-md pt-2">
                   <p className="text-base leading-7 text-muted-foreground">
                     There&apos;s no password to create or remember.
                   </p>
@@ -309,23 +309,23 @@ export function AuthFlow({
             </div>
           </div>
         ) : (
-          <div className="text-center gap-y-2">
-            <h1 className="font-display font-medium text-2xl text-foreground tracking-tight">
+          <div className="grid gap-3 text-left">
+            <h1 className="font-sans text-[28px] font-normal leading-9 tracking-[-0.03em] text-foreground">
               {stepTitle}
             </h1>
-            <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
+            <p className="text-base leading-6 text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
-              <div className="mx-auto max-w-sm border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
+              <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
                 Sign in to save reports. Reports you created without signing in are saved to your account only when you choose to keep them.
               </div>
             ) : null}
           </div>
         )}
 
-        <div className={cn(variant === "page" ? "gap-y-5" : "max-w-md gap-y-5", variant === "modal" && "max-w-none")}>
+        <div className={cn("grid min-w-0 gap-4", variant === "page" ? "w-full max-w-auth" : "max-w-none")}>
           {variant === "page" ? (
             <div>
-              <div className="text-xs font-semibold uppercase riyp-track-008 text-brand">
+              <div className="text-sm font-medium text-foreground">
                 {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : "Finish setup"}
               </div>
             </div>
@@ -333,14 +333,14 @@ export function AuthFlow({
 
           <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
-            <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="border-l-2 border-destructive bg-error px-3 py-2 text-center text-sm text-destructive outline-none">
+            <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="rounded-xl border border-destructive/35 bg-error px-4 py-3 text-left text-sm leading-6 text-destructive outline-none">
               {error}
             </div>
           )}
 
           {step === "email" && (
-            <div className="gap-y-4">
-              <div className="gap-y-2">
+            <div className="grid gap-5">
+              <div className="grid gap-3">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
                   <EnvelopeSimple
@@ -361,11 +361,11 @@ export function AuthFlow({
                     onChange={(e) => setEmail(e.target.value)}
                     className={cn(
                       "h-12 pl-10 text-base",
-                      !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                      !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
                     )}
                   />
                 </div>
-                <p id="auth-email-help" className="text-xs text-muted-foreground">
+                <p id="auth-email-help" className="text-sm leading-6 text-muted-foreground">
                   We&apos;ll email a one-time code so you can sign in without a password.
                 </p>
               </div>
@@ -378,8 +378,8 @@ export function AuthFlow({
           )}
 
           {step === "code" && (
-            <div className="gap-y-4">
-              <div className="gap-y-2">
+            <div className="grid gap-5">
+              <div className="grid gap-3">
                 <Label htmlFor="auth-code" className="sr-only">Login code</Label>
                 <Input
                   ref={codeInputRef}
@@ -391,7 +391,7 @@ export function AuthFlow({
                   placeholder="00000000"
                   className={cn(
                     "h-14 text-center font-mono text-2xl tracking-wide",
-                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                    !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
                   )}
                   value={code}
                   aria-describedby={error ? "auth-error" : undefined}
@@ -412,10 +412,10 @@ export function AuthFlow({
                 Verify Code
                 {!loading && <Check className="ml-2 size-4" weight="bold" />}
               </Button>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 text-sm text-muted-foreground">
                 <button
                   type="button"
-                  className="hover:text-foreground transition-colors"
+                  className="focus-ring min-h-11 rounded-md text-left transition-colors hover:text-foreground disabled:opacity-60"
                   disabled={loading}
                   onClick={() => {
                     if (authRequestRef.current.pending) return;
@@ -432,7 +432,7 @@ export function AuthFlow({
                 <button
                   type="button"
                   className={cn(
-                    "hover:text-foreground transition-colors",
+                    "focus-ring min-h-11 rounded-md text-left transition-colors hover:text-foreground",
                     resendCooldown > 0 && "cursor-not-allowed opacity-60"
                   )}
                   disabled={loading || resendCooldown > 0}
@@ -445,8 +445,8 @@ export function AuthFlow({
           )}
 
           {step === "name" && (
-            <div className="gap-y-4">
-              <div className="gap-y-2">
+            <div className="grid gap-5">
+              <div className="grid gap-3">
                 <Label htmlFor="auth-name" className="sr-only">First name</Label>
                 <Input
                   ref={nameInputRef}
@@ -460,7 +460,7 @@ export function AuthFlow({
                   onChange={(e) => setFirstName(e.target.value)}
                   className={cn(
                     "h-12 text-base",
-                    !error && "bg-secondary/10 placeholder:text-muted-foreground/90 focus-visible:border-brand focus-visible:ring-brand"
+                    !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
                   )}
                 />
               </div>
@@ -480,7 +480,7 @@ export function AuthFlow({
           )}
           </form>
 
-          <div className={cn("gap-y-2", variant === "page" ? "pt-1" : "text-center")}>
+          <div className={cn("grid gap-2", variant === "page" ? "pt-1" : "text-center")}>
             {variant === "modal" ? (
               <div className="text-xs font-medium text-muted-foreground">
                 Secure sign-in. No password required.

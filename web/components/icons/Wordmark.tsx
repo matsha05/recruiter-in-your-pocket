@@ -1,21 +1,23 @@
 /**
  * RIYP wordmark.
  *
- * The wordmark uses Space Grotesk, the Lifted Line display voice, while remaining
- * quiet enough to coexist with dense product navigation.
+ * The reference's stacked mark follows the shared brand sans across the site.
  */
+
+import styles from "./Wordmark.module.css";
 
 interface WordmarkProps {
     className?: string;
+    compact?: boolean;
 }
 
-export function Wordmark({ className = "" }: WordmarkProps) {
+export function Wordmark({ className = "", compact = false }: WordmarkProps) {
     return (
         <span
-            className={`inline-flex h-auto items-center whitespace-nowrap font-display text-[1.125rem] font-medium leading-none tracking-[-0.035em] ${className}`}
+            className={`${styles.wordmark} ${compact ? styles.compact : ""} ${className}`}
             aria-label="Recruiter in Your Pocket"
         >
-            Recruiter in Your Pocket
+            Recruiter<br />in your<br />pocket
         </span>
     );
 }

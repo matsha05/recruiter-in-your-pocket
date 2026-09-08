@@ -1,0 +1,41 @@
+.hero { position: relative; isolation: isolate; overflow: clip; background: hsl(var(--surface-page)); color: hsl(var(--text-strong)); }
+
+/* The approved plate is a complete 3:2 composition with open space for copy.
+   Reserving its full height keeps the pocket and resume above the trust row. */
+.composition { position: relative; isolation: isolate; width: 100%; max-width: 1800px; aspect-ratio: 3 / 2; margin: 0 auto; }
+.copy { position: relative; z-index: 1; width: 38%; margin-left: 5.8%; padding-top: 14%; padding-bottom: 36px; }
+.visual { position: absolute; inset: 0; pointer-events: none; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent), linear-gradient(to bottom, black calc(100% - 18px), transparent); mask-composite: intersect; }
+
+.eyebrow { font-size: clamp(9px, .78125vw, 13px); font-weight: 500; line-height: 1.5; letter-spacing: .22em; text-transform: uppercase; color: hsl(var(--text-muted)); }
+.copy h1 { margin-top: clamp(18px, 1.5vw, 27px); color: hsl(var(--text-strong)); font-family: var(--font-body); font-size: clamp(40px, 4.55vw, 82px); letter-spacing: -.035em; line-height: .98; font-weight: var(--weight-display); }
+.lastLine { letter-spacing: inherit; }
+.deck { max-width: 100%; margin-top: clamp(24px, 2.1vw, 38px); font-size: clamp(16px, 1.4vw, 24px); font-weight: 400; line-height: 1.3913; color: hsl(var(--text-strong) / .94); }
+.primary { display: inline-flex; min-height: clamp(50px, 3.906vw, 64px); align-items: center; justify-content: center; gap: clamp(15px, 1.172vw, 20px); margin-top: clamp(26px, 2.2vw, 35px); padding: clamp(15px, 1.172vw, 20px) clamp(32px, 2.5vw, 42px); background: hsl(var(--text-strong)); color: hsl(var(--surface-page)); border-radius: 100px; line-height: 1.4; font-size: clamp(14px, 1.094vw, 18px); font-weight: var(--weight-control); transition: background .2s; }
+.primary svg { width: clamp(18px, 1.406vw, 23px); height: clamp(18px, 1.406vw, 23px); transition: transform .2s; }
+.primary:hover { background: hsl(var(--brand-strong)); }
+.primary:hover svg { transform: translateX(4px); }
+.free { margin-top: clamp(9px, .651vw, 12px); font-size: clamp(11px, .88vw, 14px); font-weight: var(--weight-body); line-height: 1.7; color: hsl(var(--text-strong) / .9); }
+.hero a:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 5px; }
+
+@media (min-width: 901px) and (max-width: 1050px) {
+    .copy { padding-top: 13.5%; }
+    .eyebrow { font-size: 8px; letter-spacing: .17em; }
+    .deck { font-size: 16px; }
+    .free { font-size: 10px; }
+}
+
+@media (max-width: 900px) {
+    .composition { display: flex; flex-direction: column; aspect-ratio: auto; }
+    .copy { width: auto; margin: 0; padding: 124px 24px 28px; }
+    .eyebrow { font-size: 9px; letter-spacing: .17em; }
+    .copy h1 { margin-top: 22px; font-size: clamp(38px, 8.2vw, 68px); line-height: 1.02; letter-spacing: -.035em; }
+    .deck { max-width: 470px; margin-top: 24px; font-size: 17px; line-height: 1.5; }
+    .primary { min-height: 52px; font-size: 14px; padding: 14px 28px; margin-top: 26px; }
+    .free { margin-top: 12px; font-size: 11px; }
+    /* The rightmost 57% of the original includes the entire pocket. */
+    .visual { position: relative; inset: auto; width: 100%; max-width: 700px; aspect-ratio: 43 / 50; margin: 0 auto; flex-shrink: 0; mask-image: linear-gradient(to bottom, transparent, black 12px, black calc(100% - 8px), transparent); }
+}
+
+@media (max-width: 700px) { .copy { padding-top: 118px; } }
+@media (max-width: 360px) { .copy { padding-left: 20px; padding-right: 20px; } .copy h1 { font-size: 34px; } .free { font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { .hero *, .hero *::before, .hero *::after { animation: none !important; transition: none !important; scroll-behavior: auto; } }

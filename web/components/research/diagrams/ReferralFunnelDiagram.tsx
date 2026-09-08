@@ -8,18 +8,18 @@ const stages = ["Application", "Screen", "Interview"];
 
 function FlowLine({ referred }: { referred?: boolean }) {
     return (
-        <div className="grid grid-cols-[5rem_1fr] items-start gap-4">
+        <div className="grid items-start gap-4 sm:grid-cols-[5rem_1fr]">
             <div className={referred ? "riyp-evidence-label pt-3 text-brand" : "riyp-evidence-label pt-3 text-muted-foreground"}>{referred ? "Referred" : "Cold"}</div>
             <div>
                 <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
                     {stages.map((stage, index) => (
                         <div key={stage} className="contents">
-                            <div className={referred && stage === "Screen" ? "border-t-2 border-cyan-bright py-3 text-center text-xs font-semibold text-brand" : "border-t border-line py-3 text-center text-xs font-medium text-muted-foreground"}>{stage}</div>
+                            <div className={referred && stage === "Screen" ? "border-t-2 border-brand py-3 text-center text-data font-semibold text-brand" : "border-t border-line py-3 text-center text-data font-medium text-muted-foreground"}>{stage}</div>
                             {index < stages.length - 1 ? <ArrowRight className="mx-1 size-3 text-muted-foreground" aria-hidden="true" /> : null}
                         </div>
                     ))}
                 </div>
-                {referred ? <div className="ml-[36%] mt-2 border-l-2 border-cyan-bright pl-4"><span className="riyp-evidence-label text-brand">What the referrer adds</span><p className="mt-1 text-xs leading-5 text-muted-foreground">Someone who knows your work can describe how you contributed.</p></div> : <p className="mt-2 text-xs leading-5 text-muted-foreground">The reviewer starts with the information in your application.</p>}
+                {referred ? <div className="mt-2 border-l-2 border-brand pl-4 sm:ml-[36%]"><span className="riyp-evidence-label text-brand">What the referrer adds</span><p className="mt-1 text-data text-muted-foreground">Someone who knows your work can describe how you contributed.</p></div> : <p className="mt-2 text-data text-muted-foreground">The reviewer starts with the information in your application.</p>}
             </div>
         </div>
     );

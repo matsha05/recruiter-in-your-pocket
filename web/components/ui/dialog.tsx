@@ -29,7 +29,7 @@ const DialogOverlay = React.forwardRef<
         <DialogPrimitive.Overlay
             ref={ref}
             className={cn(
-                "fixed inset-0 z-50 bg-black/75",
+                "fixed inset-0 z-50 bg-black/40",
                 className
             )}
             asChild
@@ -68,7 +68,7 @@ const DialogContent = React.forwardRef<
             <DialogPrimitive.Content
                 ref={ref}
                 className={cn(
-                    "fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-md border border-border bg-background p-6 shadow-sm",
+                    "fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-2xl border border-line bg-card p-6 shadow-sheet md:rounded-sheet",
                     className
                 )}
                 asChild
@@ -127,7 +127,7 @@ const DialogTitle = React.forwardRef<
     <DialogPrimitive.Title
         ref={ref}
         className={cn(
-            "text-lg font-semibold leading-none tracking-tight",
+            "text-2xl font-medium leading-[30px] tracking-tight",
             className
         )}
         {...props}

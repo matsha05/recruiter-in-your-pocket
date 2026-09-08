@@ -84,9 +84,11 @@ const nextConfig = {
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   outputFileTracingIncludes: {
     "/*": [
-      "./public/assets/fonts/space-grotesk-latin-variable.ttf",
-      "./public/assets/fonts/space-grotesk-bold.ttf",
-      "./public/assets/fonts/instrument-sans-latin-variable.ttf",
+      "./public/fonts/source-serif-4/SourceSerif4-Variable.ttf",
+      "./public/fonts/source-serif-4/SourceSerif4-Regular.ttf",
+      "./public/fonts/instrument-sans/InstrumentSans-Variable.ttf",
+      "./public/fonts/instrument-sans/InstrumentSans-Regular.ttf",
+      "./public/fonts/instrument-sans/InstrumentSans-Semibold.ttf",
     ],
     // Sparticuz resolves these runtime payloads dynamically, so Next's file
     // tracer cannot discover them from the executablePath() call alone.

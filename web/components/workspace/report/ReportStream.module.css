@@ -6,27 +6,29 @@
 .revisionPanel {
     display: grid;
     gap: 1.75rem;
-    background: hsl(var(--brand) / 0.055);
+    border: 1px solid hsl(var(--line));
+    border-radius: 0.75rem;
+    background: hsl(var(--surface-proof) / 0.55);
     padding: 1.75rem 1.25rem;
 }
 
 .revisionTitle {
-    max-width: 16ch;
+    max-width: 28ch;
     margin-top: 1rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-display);
-    font-size: clamp(2.1rem, 5vw, 3.8rem);
-    font-weight: 520;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .revisionCopy {
     max-width: 40rem;
     margin-top: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5625rem;
 }
 
 .revisionNote {
@@ -41,36 +43,30 @@
     padding-top: 3rem;
 }
 
-.feedbackRule {
-    width: 3rem;
-    height: 0.25rem;
-    background: hsl(var(--citron));
-}
-
 .feedbackContent {
     display: grid;
     gap: 1.5rem;
-    border-top: 1px solid hsl(var(--foreground) / 0.8);
+    border-top: 1px solid hsl(var(--line));
     padding-top: 1.5rem;
 }
 
 .feedbackTitle {
-    max-width: 20ch;
+    max-width: 32ch;
     margin-top: 0.75rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-display);
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    font-weight: 520;
-    letter-spacing: -0.03em;
-    line-height: 1.02;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .feedbackCopy {
     max-width: 42rem;
     margin-top: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5625rem;
 }
 
 .feedbackNote {
@@ -133,8 +129,47 @@
     }
 }
 
+.root {
+    max-width: 58rem;
+    margin-inline: auto;
+    padding-bottom: 2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5625;
+}
+
 .openingTitle {
-    max-width: 22ch;
-    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
-    line-height: 1.05;
+    max-width: 44ch;
+    color: hsl(var(--text-strong));
+    font-family: var(--font-editorial);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.285715;
+    letter-spacing: -0.015em;
+}
+
+.sectionTitle {
+    color: hsl(var(--text-strong));
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.body { font-size: 1rem; line-height: 1.5625; }
+.label { color: hsl(var(--brand)); font-size: 0.75rem; font-weight: var(--weight-label); letter-spacing: 0.1em; text-transform: uppercase; }
+.scoreSummary { display: inline-flex; align-items: center; gap: 0.5rem; }
+.scoreSummary::before { width: 0.5rem; height: 0.5rem; flex-shrink: 0; border-radius: 50%; background: hsl(var(--assessment-aqua)); content: ""; }
+.overviewNotes { display: grid; overflow: hidden; margin-top: 1.5rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-proof) / 0.5); }
+.overviewNote { padding: 1.25rem; box-shadow: inset 0 3px hsl(var(--note-accent)); }
+.overviewStrength { --note-accent: var(--assessment-green); }
+.overviewContext { --note-accent: var(--assessment-amber); }
+.assessmentIcon { display: inline-flex; width: 1.75rem; height: 1.75rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 50%; background: hsl(var(--note-accent) / 0.16); }
+.overviewStrength .assessmentIcon { color: hsl(var(--success)); }
+.overviewContext .assessmentIcon { color: hsl(var(--warning)); }
+.overviewNote + .overviewNote { border-top: 1px solid hsl(var(--line)); }
+@media (min-width: 640px) {
+    .overviewNotes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .overviewNote + .overviewNote { border-top: 0; border-left: 1px solid hsl(var(--line)); }
 }

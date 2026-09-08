@@ -81,16 +81,17 @@ test("sign-in input keeps its visible default boundary and exposes its error sta
   await waitForAppHydration(page);
 
   const emailInput = page.getByRole("textbox", { name: "Email address" });
-  await expect(emailInput).toHaveClass(/border-muted-foreground\/70/);
+  await expect(emailInput).toBeFocused();
+  await expect(emailInput).toHaveCSS("border-color", "rgb(0, 115, 143)");
+  await page.keyboard.press("Tab");
+  await expect(emailInput).toHaveCSS("border-color", "rgb(126, 136, 138)");
 
   await page.getByRole("button", { name: "Send sign-in code" }).click();
 
   await expect(page.locator("#auth-error")).toHaveText("Please enter your email");
   await expect(emailInput).toHaveAttribute("aria-invalid", "true");
-  await expect(emailInput).toHaveClass(/border-destructive\/50/);
-  await expect(emailInput).toHaveClass(/bg-destructive\/5/);
-  await expect(emailInput).not.toHaveClass(/border-muted-foreground\/70/);
-  await expect(emailInput).not.toHaveClass(/bg-secondary\/10/);
+  await expect(emailInput).toHaveCSS("border-color", "rgb(180, 35, 24)");
+  await expect(emailInput).toHaveCSS("background-color", "rgb(254, 243, 242)");
 
   await emailInput.fill("not-an-email");
   await page.getByRole("button", { name: "Send sign-in code" }).click();

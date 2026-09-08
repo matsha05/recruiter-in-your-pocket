@@ -1,0 +1,14 @@
+.header:global(.site-header) { position: absolute; background: transparent; border: 0; color: hsl(var(--text-strong)); font-family: var(--font-body); }
+.header .inner { display: flex; align-items: center; justify-content: space-between; min-height: clamp(76px, 5.9375vw, 107px); max-width: 1800px; padding: clamp(9px, .703125vw, 13px) 5% clamp(9px, .703125vw, 13px) 5.8%; margin: 0 auto; }
+.wordmark { flex-shrink: 0; padding-block: clamp(5px, .390625vw, 7px); font-family: inherit; font-size: clamp(12px, .9375vw, 17px); font-weight: 600; letter-spacing: .115em; line-height: 1.17; text-transform: uppercase; }
+.navigation { display: flex; flex: 1; align-items: center; gap: 30px; margin-left: clamp(60px, 6.16vw, 110px); }
+.links { display: flex; align-items: center; gap: clamp(25px, 2.7vw, 46px); margin-right: auto; }
+.links a { display: inline-flex; min-height: 44px; align-items: center; font-size: clamp(12px, .91146vw, 16.4px); }
+.links a:hover { opacity: .6; }
+.cta { position: relative; isolation: isolate; display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; gap: clamp(10px, .78125vw, 14px); width: clamp(166px, 13.02vw, 234px); min-height: clamp(44px, 3.4375vw, 62px); margin-left: auto; padding: 0 clamp(18px, 1.40625vw, 25px); color: hsl(var(--surface-page)); font-size: clamp(12px, .91146vw, 16.4px); font-weight: var(--weight-control); white-space: nowrap; }
+.cta::before { position: absolute; z-index: -1; inset: clamp(2.5px, .1953125vw, 3.5px) 0; border-radius: 100px; background: hsl(var(--text-strong)); content: ""; }
+.cta svg { width: clamp(14px, 1.09375vw, 20px); height: clamp(14px, 1.09375vw, 20px); }
+.navigation > button { color: hsl(var(--text-strong)); border-color: hsl(var(--text-strong) / .2); }
+.header a:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 5px; }
+@media (max-width: 1279px) { .links { display: none; } .navigation { margin-left: 24px; gap: 16px; } }
+@media (max-width: 700px) { .header .inner { min-height: 78px; padding: 18px 24px; } .wordmark { font-size: 10px; } .cta { display: none; } .navigation { flex: 0; } }

@@ -99,38 +99,38 @@ export function ReportStream({
   };
 
   return (
-    <div className={cn("mx-auto max-w-[58rem] pb-16", className)}>
+    <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
       <section id="section-first-impression" className="scroll-mt-36 pb-6 pt-2 sm:pb-8 sm:pt-4">
         <div className="flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
-          <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">First impression</p>
+          <p className={styles.label}>First impression</p>
           {typeof report.score === "number" ? (
             <div className="max-w-[14rem] text-right">
-              <p className="riyp-tabular-label text-[11px] font-semibold uppercase riyp-track-015 text-foreground">Clarity summary: {report.score}/100</p>
-              <p className="mt-1 text-[11px] leading-4 text-muted-foreground">Not a prediction of interviews or offers.</p>
+              <p className={cn(styles.scoreSummary, "riyp-tabular-label text-xs font-semibold text-foreground")}>Clarity summary: {report.score}/100</p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">Not a prediction of interviews or offers.</p>
             </div>
           ) : (
-            <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Resume review</p>
+            <p className="riyp-tabular-label text-xs uppercase riyp-track-015 text-muted-foreground">Resume review</p>
           )}
         </div>
 
         <div className="pt-5">
-          <div className="border-l-2 border-cyan-bright pl-4 sm:pl-6">
-            <h1 className={cn(styles.openingTitle, "font-display font-semibold tracking-[-0.045em] text-foreground")}>
+          <div>
+            <h1 className={styles.openingTitle}>
               {report.first_impression_takeaway || "Here's where to start."}
             </h1>
           </div>
-          <p className="mt-4 max-w-[43rem] text-base leading-7 text-foreground/80 sm:text-lg sm:leading-8">{report.score_comment_short || report.first_impression || report.summary}</p>
+          <p className={cn(styles.body, "mt-4 max-w-[43rem] text-foreground")}>{report.score_comment_short || report.first_impression || report.summary}</p>
         </div>
 
-        <div className="mt-5 grid border-y border-[hsl(var(--paper-line))] sm:grid-cols-2 sm:divide-x sm:divide-[hsl(var(--paper-line))]">
-          <div className="border-b border-[hsl(var(--paper-line))] bg-accent-butter/20 px-4 py-4 sm:border-b-0 sm:px-5">
-            <div className="flex items-center gap-3 text-brand"><CornersOut className="size-4" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/75">What works</p></div>
-            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{strengths[0] || "No specific strength was included in this report."}</p>
+        <div className={styles.overviewNotes}>
+          <div className={cn(styles.overviewNote, styles.overviewStrength)}>
+            <div className="flex items-center gap-3"><span className={styles.assessmentIcon}><CornersOut className="size-4" weight="bold" aria-hidden="true" /></span><p className="text-xs font-semibold uppercase riyp-track-015 text-foreground">What works</p></div>
+            <p className={cn(styles.body, "mt-2 text-foreground")}>{strengths[0] || "No specific strength was included in this report."}</p>
           </div>
-          <div className="bg-surface-sky px-4 py-4 sm:px-5">
-            <div className="flex items-center gap-3 text-brand"><BracketsAngle className="size-4" weight="bold" aria-hidden="true" /><p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What needs context</p></div>
-            <p className="mt-2 text-sm font-medium leading-6 text-foreground sm:text-base">{report.gaps?.[0] || report.biggest_gap_example || "No specific gap was included in this report."}</p>
+          <div className={cn(styles.overviewNote, styles.overviewContext)}>
+            <div className="flex items-center gap-3"><span className={styles.assessmentIcon}><BracketsAngle className="size-4" weight="bold" aria-hidden="true" /></span><p className="text-xs font-semibold uppercase riyp-track-015 text-foreground">What needs context</p></div>
+            <p className={cn(styles.body, "mt-2 text-foreground")}>{report.gaps?.[0] || report.biggest_gap_example || "No specific gap was included in this report."}</p>
           </div>
         </div>
 
@@ -144,10 +144,10 @@ export function ReportStream({
         </div>
       </section>
 
-      <section id="section-fixes" className="scroll-mt-36 border-t border-foreground/80 pt-6">
+      <section id="section-fixes" className="scroll-mt-36 border-t border-line pt-6">
         <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-[clamp(1.85rem,4vw,2.8rem)] riyp-weight-520 leading-tight tracking-[-0.04em] text-foreground">{fixPlanHeadingForCount(fixes.length)}</h2>
+            <h2 className={styles.sectionTitle}>{fixPlanHeadingForCount(fixes.length)}</h2>
           </div>
           <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">Check each suggestion against your experience. Add only details you know are accurate.</p>
         </div>
@@ -171,16 +171,16 @@ export function ReportStream({
       <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={resumeText} isReadOnly={isSample} />
 
       {strengthsToKeep.length > 0 && (
-        <section id="section-keep" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
+        <section id="section-keep" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
             <div>
-              <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Keep these</p>
-              <h2 className="mt-3 font-display text-3xl riyp-weight-520 leading-tight text-foreground">Also worth keeping.</h2>
+              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Keep these</p>
+              <h2 className={cn(styles.sectionTitle, "mt-3")}>Also worth keeping.</h2>
             </div>
             <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
               {strengthsToKeep.map((strength, index) => (
                 <li key={strength} className="grid grid-cols-[2rem_1fr] gap-3 py-5">
-                  <span className="riyp-tabular-label text-[11px] font-semibold text-brand">0{index + 1}</span>
+                  <span className="riyp-tabular-label text-xs font-semibold text-brand">0{index + 1}</span>
                   <p className="text-base leading-7 text-foreground/85">{strength}</p>
                 </li>
               ))}
@@ -190,15 +190,15 @@ export function ReportStream({
       )}
 
       {report.job_alignment && (
-        <section id="section-role" className="scroll-mt-36 border-t border-foreground/80 py-11 sm:py-14">
-          <div className="flex items-center gap-2 text-brand"><Target className="size-5" weight="duotone" /><p className="text-[11px] font-semibold uppercase riyp-track-017">Role fit</p></div>
+        <section id="section-role" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
+          <div className="flex items-center gap-2 text-brand"><Target className="size-5" weight="duotone" /><p className="text-xs font-semibold uppercase riyp-track-017">Role fit</p></div>
           <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
             <div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.7rem)] riyp-weight-520 leading-[1.02] tracking-[-0.03em] text-foreground">{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
+              <h2 className={styles.sectionTitle}>{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
               <p className="mt-5 max-w-[42rem] text-base leading-7 text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             </div>
             <div className="border-l-2 border-brand/30 pl-5">
-              <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">Roles to consider</p>
+              <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">Roles to consider</p>
               <ul className="mt-4 space-y-3">
                 {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role} className="text-sm font-medium leading-6 text-foreground">{role}</li>)}
               </ul>
@@ -218,7 +218,7 @@ export function ReportStream({
         </summary>
         <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
           <div>
-            <p className="font-display text-5xl riyp-weight-520 leading-none text-foreground">{report.score ?? "—"}</p>
+            <p className="font-display text-4xl font-semibold leading-none text-foreground">{report.score ?? "—"}</p>
             <p className="mt-2 text-xs leading-5 text-muted-foreground">This score summarizes the four parts of the review shown here. It does not predict interviews or offers, and it is not a simple average.</p>
           </div>
           <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
@@ -275,10 +275,9 @@ export function ReportStream({
 
       {!isSample && (
         <section className={styles.feedbackSection} aria-labelledby="report-feedback-title" data-testid="report-feedback">
-          <div className={styles.feedbackRule} aria-hidden="true" />
           <div className={styles.feedbackContent}>
             <div>
-              <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">Help improve the report</p>
+              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Help improve the report</p>
               <h2 id="report-feedback-title" className={styles.feedbackTitle}>What did we get right? What did we miss?</h2>
               <p className={styles.feedbackCopy}>Tell us which advice helped or felt wrong. Include an example so we can look into it.</p>
             </div>

@@ -1,6 +1,6 @@
 # Recruiter in Your Pocket — Brand System
 
-Last updated: 2026-07-20
+Last updated: 2026-09-07
 
 Owner: Product + Design
 
@@ -8,11 +8,11 @@ Status: Current brand source of truth
 
 Authority: This document owns brand identity, promise, emotional target, voice posture, and the signature Lifted Line grammar. [`design-system.md`](./design-system.md) owns cross-surface visual application and the production implementation contract. [`voice-and-tone.md`](./voice-and-tone.md) owns the writing voice.
 
-## The direction: Lifted Line
+## The direction: Alpine
 
 Recruiter in Your Pocket is the sharp, generous friend who knows hiring from the inside. We show people what their resume already proves, where the proof gets lost, and the smallest honest change that makes it easier to see.
 
-The brand is built around one recognizable move: **a line gets lifted**. A vague line becomes specific. Hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
+The approved pocket-lion artwork establishes the visual world: warm ivory, tactile teal fabric, a handmade lion wearing glasses, and one specific observation on a recognizable resume. The pocket connects the image to our name; his attentive review connects it to the service. Instrument Sans, strong typographic anchors, and dark pill actions extend across the whole product. The Alpine palette remains the shared system; the granite landscape is retired. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
 
 ## What we promise
 
@@ -60,14 +60,16 @@ Avoid:
 
 ## Visual character
 
-The visual world is chalk, ink, citron, and cyan. It is crisp, product-led, and specific without looking like a consultancy deck, an editorial publication, or colorful SaaS wallpaper.
+The visual world is warm ivory, light paper surfaces, dark neutral ink, and restrained aqua. Canvas #f6f3ef, sheet #fbfaf8, inset #f0efeb, ink #12191b, muted #5f6667, aqua #00738f, aqua surface #e6f3f2, divider #dcdedb, and control boundary #7e888a form one shared system. Quiet warm headers, dark pill primary actions, 10px fields, and 24px desktop/16px mobile sheets replace the old ink-header, neon-CTA, and rectilinear rules.
+
+A darker aqua supports hover and emphasis. Citron #c8f238 remains an explicitly permitted compatibility token, not a general action or header color.
 
 Typography carries the authority:
 
-- **Space Grotesk Variable** for wordmark, display headlines, prices, verdicts, and primary actions
-- **Instrument Sans** for navigation, controls, labels, metadata, and body copy
+- **Instrument Sans** for wordmark, headlines, prices, navigation, controls, labels, metadata, and body copy
+- **Source Serif 4** for selected short verdicts through the shared editorial token
 
-Space Grotesk gives the product its opinion and recognizability. Instrument Sans gives it clarity and restraint. No third branded font or decorative serif is part of the system.
+Matt approved the September 5 6 Pro recommendations across the product, followed by the bold-granite refinement: Instrument Sans uses 700 for the hero and wordmark, 650 for major marketing headings, 600 for workspace/report headings, controls and labels, and 400 for body. Saturated aqua, green, and amber assessment graphics sharpen the hierarchy while labels retain dark readable text. Source Serif 4 remains 400 for short assessments rather than long reading passages. The intermediate Satoshi/Georgia pairing is retired. PDF, Open Graph, icons, and email have separate rendering pipelines; their September 5 local migration was independently rendered and inspected, with evidence and external-client limits in `output/competitive-visuals-20260905/output-identity/README.md`. The later bold-granite refinement applies to browser surfaces; separate outputs retain that earlier verified treatment.
 
 The system is a recognizable grammar, not a template. Major surfaces may use bespoke illustration, image-making, motion, or unusual composition when the idea is specific to the product and the execution improves understanding or emotional impact. Custom craft is welcome. Generic decoration is not.
 
@@ -96,11 +98,13 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
-Lead with the human truth and one interactive transformation. Show the product’s judgment before listing features.
+Preserve the complete approved Alpine artwork, copy, three-line desktop headline, warm environment, dark pill actions, and original company marks. The report preview bridges the illustration to the working product. Decorative motion stays inside the source-aligned water treatment with a pause control and still fallback.
 
 ### Workspace and reports
 
 Prioritize the likely takeaway, the exact evidence, and the next action. The interface can be denser than marketing, but it must remain calm and humane.
+
+Report body is 16px/25px. Long Research prose is 18px/30px. Operational errors stay distinct from resume findings; never make report reading or recovery depend on decorative motion.
 
 ### Research
 
@@ -115,9 +119,9 @@ Privacy language should be short and factual. No security theater. Never imply w
 - teal, cobalt, royal blue, purple, or peach as primary brand colors
 - navy-and-paper dossier theater
 - gradients used as atmosphere
-- more than one marker gesture on a screen
+- neon acquisition actions or ornamental completion markers
 - card farms with equal visual weight
-- Times New Roman or browser-serif fallbacks presented as intentional typography
+- a third branded font family or a route-specific type system outside the shared Instrument Sans/Source Serif 4 tokens
 - red-pen cosplay
 - “AI magic” language
 - dashboards that hide the most useful judgment behind scores

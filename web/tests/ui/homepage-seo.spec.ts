@@ -5,52 +5,63 @@ const homepageDescription = "Get a free resume report with feedback on what recr
 test.describe("homepage feedback and SEO contract", () => {
   test("the homepage explains the report and keeps the offer tool in the footer", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "You did the work.Let's make sure they see it.",
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      /You did the work\.\s*Let’s make sure\s*they see it\./,
     );
-    await expect(homepage).toContainText("Recruiter feedback, before you apply.");
+    await expect(homepage).toContainText("AI feedback. Real recruiting experience.");
     await expect(homepage).toContainText(
-      "Upload or paste your resume. See what a recruiter might notice, what needs more detail, and what to change first.",
+      "Get a thorough, honest, and actionable resume diagnostic, shaped by real recruiting experience.",
     );
 
-    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get my free report");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "See an example report", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Explore the sample report", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
-    await expect(homepage).toContainText("Your first complete report is free. No card required.");
-    const freeLimits = homepage.locator("details").filter({ hasText: "Free report limits" });
+    const hero = homepage.locator("section[aria-labelledby='mineral-hero-title']");
+    await expect(hero.getByText("No account required. Your resume is private and secure.", { exact: true })).toBeVisible();
+    const freeLimits = homepage.locator("#how-it-works details").filter({ hasText: "Free report limits" });
     await expect(freeLimits).not.toHaveAttribute("open", "");
     await freeLimits.locator("summary").focus();
     await page.keyboard.press("Enter");
     await expect(freeLimits).toHaveAttribute("open", "");
     await expect(freeLimits.locator("p")).toBeVisible();
+    const limitsPosition = await freeLimits.locator("p").evaluate((paragraph) => getComputedStyle(paragraph).position);
+    expect(["absolute", "fixed"]).not.toContain(limitsPosition);
     await expect(freeLimits).toContainText("Repeat use across browsers or shared networks");
     await expect(freeLimits).toContainText("Daily capacity limits apply");
     await expect(homepage).not.toContainText("per calendar month");
-    await expect(homepage).toContainText(
-      "AI feedback shaped by Matt Shaw's 14 years in recruiting.",
-    );
+    const trustRow = homepage.getByRole("region", { name: "Trusted by people at", exact: true });
+    await expect(trustRow).toBeVisible();
+    await expect(trustRow.getByRole("list", { name: "Companies", exact: true })).toBeVisible();
+    for (const company of ["Google", "Meta", "Apple", "Amazon", "Microsoft", "Bain & Company"]) {
+      await expect(trustRow.getByRole("img", { name: company, exact: true })).toBeVisible();
+    }
+    await expect(trustRow).toContainText("And many more");
+    await expect(homepage.getByRole("article", { name: "Example resume assessment", exact: true })).toBeVisible();
     await expect(homepage).not.toContainText(
       "Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.",
     );
 
-    const founder = page.getByRole("heading", { level: 2, name: "Built by Matt Shaw." });
+    const founder = page.getByRole("heading", { level: 2, name: /A human point of view\.\s*Built into every review\./ });
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("14 years in recruiting and hiring.");
+    await expect(homepage).toContainText("After 14 years in recruiting and hiring");
+    await expect(homepage).toContainText("AI generates the feedback using review criteria developed by Matt.");
     await expect(page.getByText(/Your report does not include a personal review from Matt/i)).toBeVisible();
     await expect(homepage).toContainText(
-      "no current or former employer sponsors or endorses it",
+      "No current or former employer sponsors or endorses Recruiter in Your Pocket.",
     );
-    await expect(page.getByRole("link", { name: "View my LinkedIn" })).toHaveAttribute(
+    await expect(homepage).toContainText("Company names identify Matt's work history.");
+    await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/mattrshaw",
     );
@@ -90,13 +101,6 @@ test.describe("homepage feedback and SEO contract", () => {
       "content",
       /opengraph-image\?v=20260729/,
     );
-    await expect(homepage).toContainText(
-      "Limit: the experiment took place in an online labor market.",
-    );
-    await expect(page.getByRole("link", { name: /Wiles, Munyikwa & Horton/ })).toHaveAttribute(
-      "href",
-      "https://www.nber.org/papers/w30886",
-    );
   });
 
   test("terms and FAQ state the anonymous calendar-month eligibility boundary", async ({ page }) => {
@@ -112,6 +116,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await assertAnonymousBoundary();
 
     await page.goto("/faq");
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await page.getByRole("button", { name: "Is the first report really free?", exact: true }).click();
     await assertAnonymousBoundary();
   });

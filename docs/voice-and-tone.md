@@ -45,6 +45,7 @@ Example:
 
 ## Language rules
 
+- Write "resume" without accents in all product copy and design discussions. This is Matt's explicit spelling preference.
 - Critique the document, not the person: “This line does not show…” rather than “You failed to show…”
 - Use calibrated language when the evidence is incomplete: “may,” “likely,” “suggests,” “does not say.”
 - Prefer concrete nouns and verbs to brand abstractions.

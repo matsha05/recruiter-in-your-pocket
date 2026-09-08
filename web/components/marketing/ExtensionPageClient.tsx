@@ -65,53 +65,53 @@ export default function ExtensionPageClient() {
     <>
       <div
         data-visual-anchor="extension-page"
-        className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36"
+        className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36"
       >
         <section className="px-5 pb-16 md:px-8 md:pb-24">
-          <div className="mx-auto grid max-w-[var(--page-max)] gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <div className="border-t border-line pt-6">
+          <div className="mx-auto grid max-w-marketing gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
               <p className="editorial-kicker text-brand">
                 {extensionStoreContent.page.eyebrow}
               </p>
-              <h1 className="mt-7 max-w-[11ch] font-display text-[clamp(3.25rem,7.4vw,6.5rem)] font-semibold leading-[0.88] tracking-[-0.055em] riyp-stretch-91">
+              <h1 className="mt-5 max-w-md text-balance font-display text-workspace-title md:text-page-title">
                 Save a job. Come back to it later.
               </h1>
-              <p className="mt-8 max-w-[34rem] text-lg leading-8 text-muted-foreground">
+              <p className="mt-6 max-w-xl text-prose text-muted-foreground">
                 Save a LinkedIn or Indeed job posting while you browse. Open it in
                 RIYP when you want to check your resume against the role.
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
                   href={primaryHref}
                   target={installReady ? "_blank" : undefined}
                   rel={installReady ? "noopener noreferrer" : undefined}
-                  className="landing-btn-primary"
+                  className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
                 >
                   {primaryLabel}
                   <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
                 </Link>
-                <Link href="/privacy" className="landing-btn-secondary">
+                <Link href="/privacy" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-brand/45 hover:bg-brand/5">
                   Read the privacy policy
                 </Link>
               </div>
 
               {!installReady ? (
-                <p className="mt-5 max-w-[34rem] text-sm leading-6 text-muted-foreground">
+                <p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground">
                   The extension is not available to install yet. You can see how it
                   works below, or paste a job description into your workspace now.
                 </p>
               ) : null}
             </div>
 
-            <figure id="preview" className="border border-line bg-background p-2 md:p-3">
+            <figure id="preview" className="scroll-mt-24 overflow-hidden rounded-2xl border border-line bg-card p-2 md:rounded-3xl md:p-3">
               <Image
                 src="/assets/chrome-web-store/capture-context.png"
                 alt="RIYP extension on a LinkedIn job page with a button for saving the job"
                 width={1280}
                 height={800}
                 priority
-                className="h-auto w-full"
+                className="h-auto w-full rounded-lg md:rounded-xl"
               />
               <figcaption className="flex flex-col gap-2 border-t border-line px-3 py-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                 <span>Saving a job from LinkedIn</span>
@@ -121,23 +121,23 @@ export default function ExtensionPageClient() {
           </div>
         </section>
 
-        <section className="bg-foreground px-5 py-6 text-background md:px-8">
-          <div className="mx-auto grid max-w-[var(--page-max)] gap-px bg-white/15 md:grid-cols-3">
+        <section className="border-y border-line bg-muted/45 px-5 py-3 text-foreground md:px-8">
+          <div className="mx-auto grid max-w-marketing divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
             {extensionStoreContent.page.highlights.slice(0, 3).map((item) => (
-              <div key={item} className="flex min-h-24 items-start gap-3 bg-foreground px-5 py-6 md:px-7">
-                <Check className="mt-0.5 size-5 shrink-0 text-citron" weight="bold" aria-hidden="true" />
-                <p className="text-sm font-medium leading-6 text-white/85">{item}</p>
+              <div key={item} className="flex min-h-24 items-start gap-3 px-5 py-6 md:px-7">
+                <Check className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" aria-hidden="true" />
+                <p className="text-sm font-medium leading-6 text-foreground">{item}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section className="px-5 py-20 md:px-8 md:py-28">
-          <div className="mx-auto max-w-[var(--page-max)]">
+          <div className="mx-auto max-w-marketing">
             <div className="grid gap-10 border-t border-line pt-6 lg:grid-cols-[0.36fr_0.64fr]">
               <div>
                 <p className="editorial-kicker text-brand">How it works</p>
-                <h2 className="mt-6 max-w-[9ch] font-display text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[0.94] tracking-[-0.045em] riyp-stretch-91">
+                <h2 className="mt-5 max-w-sm font-display text-workspace-title md:text-section-title">
                   From job posting to resume report.
                 </h2>
               </div>
@@ -146,8 +146,8 @@ export default function ExtensionPageClient() {
                   <article key={step.number} className="grid gap-4 border-b border-line py-7 sm:grid-cols-[4rem_1fr] sm:gap-7">
                     <p className="font-mono text-xs font-semibold text-brand">{step.number}</p>
                     <div>
-                      <h3 className="font-display text-2xl font-semibold tracking-[-0.025em]">{step.title}</h3>
-                      <p className="mt-3 max-w-[42rem] leading-7 text-muted-foreground">{step.copy}</p>
+                      <h3 className="font-display text-report-title">{step.title}</h3>
+                      <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">{step.copy}</p>
                     </div>
                   </article>
                 ))}
@@ -155,25 +155,25 @@ export default function ExtensionPageClient() {
             </div>
 
             <div className="mt-16 grid gap-5 lg:grid-cols-2">
-              <figure className="border border-line bg-background p-2">
+              <figure className="overflow-hidden rounded-2xl border border-line bg-card p-2 md:rounded-3xl md:p-3">
                 <Image
                   src="/assets/chrome-web-store/popup-jobs.png"
                   alt="RIYP extension saved-jobs view with two captured roles and explicit sync status"
                   width={1280}
                   height={800}
-                  className="h-auto w-full"
+                  className="h-auto w-full rounded-lg md:rounded-xl"
                 />
                 <figcaption className="border-t border-line px-3 py-4 text-sm text-muted-foreground">
                   Browse saved jobs in the extension and remove any you no longer want.
                 </figcaption>
               </figure>
-              <figure className="border border-line bg-background p-2">
+              <figure className="overflow-hidden rounded-2xl border border-line bg-card p-2 md:rounded-3xl md:p-3">
                 <Image
                   src="/assets/chrome-web-store/workspace-return.png"
                   alt="A saved job open in the RIYP workspace with its job description and resume report options"
                   width={1280}
                   height={800}
-                  className="h-auto w-full"
+                  className="h-auto w-full rounded-lg md:rounded-xl"
                 />
                 <figcaption className="border-t border-line px-3 py-4 text-sm text-muted-foreground">
                   Open a saved job in your workspace with the job description already filled in.
@@ -183,21 +183,21 @@ export default function ExtensionPageClient() {
           </div>
         </section>
 
-        <section className="border-t border-line bg-paper-muted px-5 py-20 md:px-8 md:py-24">
-          <div className="mx-auto grid max-w-[var(--page-max)] gap-12 lg:grid-cols-[0.42fr_0.58fr]">
+        <section className="border-t border-line bg-muted/45 px-5 py-20 md:px-8 md:py-24">
+          <div className="mx-auto grid max-w-marketing gap-12 lg:grid-cols-[0.42fr_0.58fr]">
             <div>
               <p className="editorial-kicker text-brand">Permissions and privacy</p>
-              <h2 className="mt-6 max-w-[11ch] font-display text-[clamp(2.5rem,4.8vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.045em] riyp-stretch-91">
+              <h2 className="mt-5 max-w-sm font-display text-workspace-title md:text-section-title">
                 What the extension can read.
               </h2>
-              <p className="mt-6 max-w-[34rem] text-base leading-8 text-muted-foreground">
+              <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground">
                 {extensionDisclosureMessage}
               </p>
             </div>
             <div className="border-t border-line">
               {trustPoints.map(({ icon: Icon, title, copy }) => (
                 <article key={title} className="grid gap-4 border-b border-line py-6 sm:grid-cols-[3rem_1fr] sm:gap-5">
-                  <div className="flex size-11 items-center justify-center border border-cyan-bright/45 bg-surface-sky text-brand">
+                  <div className="flex size-11 items-center justify-center rounded-xl border border-brand/20 bg-surface-sky text-brand">
                     <Icon className="size-5" weight="bold" aria-hidden="true" />
                   </div>
                   <div>

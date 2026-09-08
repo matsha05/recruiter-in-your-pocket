@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, LogOut, Home, Settings } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { PocketMark, Wordmark } from "@/components/icons";
+import { Wordmark } from "@/components/icons";
 import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
 
 export function MobileNav({ workspaceReportVisible = false }: { workspaceReportVisible?: boolean }) {
@@ -19,7 +19,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="size-11 border border-background/25 text-background hover:bg-background/10 hover:text-background md:hidden">
+                <Button variant="ghost" size="icon" className="size-11 rounded-[10px] border border-border text-foreground hover:bg-muted hover:text-foreground md:hidden">
                     <Menu className="size-5" />
                     <span className="sr-only">Toggle menu</span>
                 </Button>
@@ -28,15 +28,14 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                 <SheetHeader className="p-6 border-b text-left">
                     <SheetTitle>
                         <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-                            <PocketMark className="size-5 text-brand" />
-                            <Wordmark className="h-5 text-foreground" />
+                            <Wordmark className="text-foreground" />
                         </Link>
                     </SheetTitle>
                     <SheetDescription className="sr-only">Navigate the studio, reports, settings, and account actions.</SheetDescription>
                 </SheetHeader>
 
                 <div className="flex-1 overflow-y-auto py-6 px-4">
-                    <nav className="gap-y-2">
+                    <nav className="gap-y-2" aria-label="Mobile navigation">
                         <MobileNavLink
                             href="/"
                             icon={Home}
@@ -83,7 +82,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                     ) : user ? (
                         <div className="gap-y-4">
                             <div className="flex items-center gap-3">
-                                <div className="size-10 rounded bg-brand/10 flex items-center justify-center text-brand font-semibold">
+                                <div className="size-10 rounded bg-brand-tint flex items-center justify-center text-brand font-semibold">
                                     {user.email?.[0].toUpperCase()}
                                 </div>
                                 <div className="flex-1 overflow-hidden">
@@ -91,12 +90,12 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                     <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
                                         {user.membership === "lifetime" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand/10 text-brand">Lifetime</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand-tint text-brand">Lifetime</span>
                                             </span>
                                         )}
                                         {user.membership === "monthly" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand/10 text-brand">Monthly</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand-tint text-brand">Monthly</span>
                                                 {typeof user.daysLeft === "number" ? (
                                                     <span className="text-xs text-muted-foreground font-medium">• {user.daysLeft} days left</span>
                                                 ) : null}
@@ -155,7 +154,7 @@ function MobileNavLink({
             aria-current={active ? "page" : undefined}
             onClick={() => setOpen(false)}
             className={cn(
-                "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded transition-colors",
+                "focus-ring flex min-h-12 items-center gap-3 rounded-[10px] px-4 py-3 text-sm font-medium transition-colors",
                 active
                     ? "bg-brand/5 text-brand"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"

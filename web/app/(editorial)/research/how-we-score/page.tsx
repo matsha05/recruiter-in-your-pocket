@@ -122,21 +122,21 @@ export default function HowWeScorePage() {
 
             <div className="not-prose border-t border-border/30 divide-y divide-border/30 mb-8">
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-display font-semibold text-foreground">85+</span>
+                    <span className="font-display text-report-title text-foreground">85+</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Clear and specific</p>
                         <p className="text-sm text-muted-foreground">The career story, ownership, results, and structure are consistently easy to understand.</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-display font-semibold text-foreground">70-84</span>
+                    <span className="font-display text-report-title text-foreground">70-84</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Mostly clear</p>
                         <p className="text-sm text-muted-foreground">Most of the document is understandable, with a few important details still missing or buried.</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-display font-semibold text-foreground">&lt;70</span>
+                    <span className="font-display text-report-title text-foreground">&lt;70</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Needs more context</p>
                         <p className="text-sm text-muted-foreground">Several parts of the document are difficult to evaluate. Start with the first recommended change.</p>

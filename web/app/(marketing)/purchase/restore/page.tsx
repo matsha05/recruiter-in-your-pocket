@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 function PurchaseRestoreFallback() {
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-paper px-5 pb-20 pt-28 md:px-8 md:pt-36">
-      <div className="mx-auto max-w-3xl border-y border-line py-8 md:py-10">
+    <div className="min-h-[calc(100vh-64px)] bg-background px-5 pb-20 pt-28 md:px-8 md:pt-36">
+      <div className="mx-auto max-w-form rounded-2xl border border-line bg-card p-6 md:rounded-3xl md:p-10">
         <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Billing help</p>
-        <h1 className="mt-4 font-display text-5xl riyp-weight-520 tracking-[-0.04em] text-foreground">Restore your purchase</h1>
+        <h1 className="mt-4 font-display text-3xl font-normal tracking-tight text-foreground sm:text-workspace-title">Restore your purchase</h1>
         <p className="mt-4 text-base leading-7 text-muted-foreground">Loading your purchase details…</p>
       </div>
     </div>
