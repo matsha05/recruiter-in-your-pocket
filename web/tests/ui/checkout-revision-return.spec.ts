@@ -52,6 +52,7 @@ async function buildCheckoutHarness() {
       loader: "tsx", resolveDir: WEB_ROOT, sourcefile: "checkout-revision-return-harness.tsx",
     },
     bundle: true, write: false, platform: "browser", format: "iife", jsx: "automatic",
+    loader: { ".css": "empty", ".module.css": "empty" },
     define: {
       "process.env.NODE_ENV": JSON.stringify("test"),
       "process.env": JSON.stringify({ NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true" }),
@@ -74,7 +75,8 @@ async function buildCheckoutHarness() {
 async function installCheckoutHarness(page: Page) {
   // The pricing, confirmation, restoration, payment polling hook, and action
   // links are the production components. Only Next, auth, analytics, and HTTP
-  // are mocked. This suite needs no app server, app build, account, or purchase.
+  // are mocked; stylesheet imports are omitted from this behavioral harness.
+  // This suite needs no app server, app build, account, or purchase.
   await page.route("**/*", async (route) => {
     const url = new URL(route.request().url());
     if (url.origin !== ORIGIN) {
