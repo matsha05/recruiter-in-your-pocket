@@ -61,6 +61,15 @@ const nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      ...[
+        "/assets/instrument/clean-plate.v1.webp",
+        "/assets/instrument/key-materials.v1.webp",
+        "/assets/alpine/trust-marks.v1.webp",
+      ].map(source => ({
+        source,
+        // Versioned, lossless art can be reused across visits without refetching.
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      })),
     ];
   },
   async redirects() {

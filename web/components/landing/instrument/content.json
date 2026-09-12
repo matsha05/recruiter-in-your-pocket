@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 2,
+  "sample": {
+    "role": "Customer Success Manager",
+    "context": "A fictional B2B SaaS customer success manager. This is an illustrative work sample, not a customer result.",
+    "sourceFacts": [
+      {
+        "id": "F1",
+        "text": "Managed a portfolio of 32 B2B SaaS accounts representing $2.4 million in annual recurring revenue."
+      },
+      {
+        "id": "F2",
+        "text": "Introduced monthly renewal-risk reviews and account plans. The portfolio renewal rate increased from 88% to 94% during that year; the source does not establish how much of the increase those changes caused."
+      },
+      {
+        "id": "F3",
+        "text": "Replaced ad hoc onboarding handoffs with a 30-day onboarding plan and a shared launch checklist."
+      },
+      {
+        "id": "F4",
+        "text": "Worked with Product and Support to build the onboarding plan and address recurring onboarding blockers."
+      },
+      {
+        "id": "F5",
+        "text": "Fictional resume structure: a generic summary appears first, followed by a Customer Success Manager role in B2B SaaS, two broad experience bullets about renewals and onboarding, and a generic skills line. F1–F4 are supplied background; their specific scope, actions, and outcomes have not yet been added to this resume."
+      }
+    ],
+    "jobRequirement": {
+      "label": "Sample job requirement",
+      "text": "Own a mid-market B2B SaaS account portfolio, identify renewal risk, and coordinate customer onboarding with Product and Support.",
+      "provenance": "Invented for this demonstration. The candidate facts do not specify whether the accounts were mid-market.",
+      "shortText": "Own a mid-market SaaS portfolio, review renewal risk, and coordinate onboarding."
+    },
+    "shortContext": "Fictional customer success manager · B2B SaaS",
+    "resume": {
+      "label": "Fictional resume · current wording",
+      "summaryHeading": "Summary",
+      "summary": "Customer-focused professional with strong communication skills and experience helping clients.",
+      "experienceHeading": "Experience",
+      "role": "Customer Success Manager",
+      "industry": "B2B SaaS",
+      "experience": [
+        "Responsible for managing customer relationships and renewals.",
+        "Worked with Product and Support to improve customer onboarding."
+      ],
+      "skillsHeading": "Skills",
+      "skills": "Customer relationships · Communication · Teamwork",
+      "sourceFactsLabel": "Provided background facts",
+      "sourceFactsExplanation": "These fictional details are supplied by the candidate. The current resume above does not yet explain them."
+    }
+  },
+  "modes": [
+    {
+      "id": "story",
+      "label": "Story",
+      "eyebrow": "The first impression",
+      "question": "What should a recruiter understand first?",
+      "sourceExcerpt": "Customer-focused professional with strong communication skills and experience helping clients.",
+      "sourceContext": "Summary · the first sentence of the sample resume",
+      "sourceFactIds": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "integrityNote": "Uses the visible fictional resume and supplied background. Does not predict every recruiter’s reaction or invent experience.",
+      "jobRequirementVisible": false,
+      "accent": "teal",
+      "stages": {
+        "paper": {
+          "title": "Your resume’s opening",
+          "body": "Customer-focused professional with strong communication skills and experience helping clients.",
+          "compactTitle": "Your opening sentence",
+          "compactBody": "Customer-focused professional with strong communication skills and experience helping clients."
+        },
+        "read": {
+          "title": "Your opening hides your actual specialty",
+          "body": "This opening could fit almost any client-facing role. Your actual story is customer success: owning a SaaS portfolio, reviewing renewal risk, and improving onboarding. Bring that into view before the generic traits.",
+          "compactTitle": "Your specialty is the story",
+          "compactBody": "The opening hides your work in portfolio ownership, renewals, and onboarding."
+        },
+        "next": {
+          "title": "Lead with your actual specialty.",
+          "body": "Try: “Customer success manager with experience owning a $2.4M SaaS portfolio, reviewing renewal risk, and improving onboarding with Product and Support.” Then use the experience section to show the evidence.",
+          "compactTitle": "A clearer way to open",
+          "compactBody": "Customer success manager with SaaS portfolio, renewal-risk, and onboarding experience."
+        }
+      }
+    },
+    {
+      "id": "impact",
+      "label": "Impact",
+      "eyebrow": "The contribution",
+      "question": "Does the scale of your work come through?",
+      "sourceExcerpt": "Responsible for managing customer relationships and renewals.",
+      "sourceContext": "Experience · the first bullet under Customer Success Manager",
+      "sourceFactIds": [
+        "F1",
+        "F2",
+        "F5"
+      ],
+      "integrityNote": "The 88% to 94% renewal change is observed over one year. Neither full nor compact advice attributes the entire increase to the candidate’s risk reviews.",
+      "jobRequirementVisible": false,
+      "accent": "coral",
+      "stages": {
+        "paper": {
+          "title": "The first experience point",
+          "body": "Responsible for managing customer relationships and renewals.",
+          "compactTitle": "Your renewal experience",
+          "compactBody": "Responsible for managing customer relationships and renewals."
+        },
+        "read": {
+          "title": "The responsibility is clear. Its scale is missing.",
+          "body": "The line names a duty but leaves out its scale and the observed result. Your background supports 32 accounts, $2.4M ARR, and a renewal rate that rose from 88% to 94%. None of that evidence is visible here.",
+          "compactTitle": "Your scope is missing",
+          "compactBody": "32 accounts. $2.4M ARR. Renewals from 88% to 94%. The scale and result are missing."
+        },
+        "next": {
+          "title": "Add the evidence without overstating cause",
+          "body": "Try: “Managed 32 B2B SaaS accounts ($2.4M ARR) and introduced monthly risk reviews. Portfolio renewal rate rose from 88% to 94% that year.” Report the change; don’t claim the reviews alone caused it.",
+          "compactTitle": "Show what you owned",
+          "compactBody": "Managed 32 B2B SaaS accounts ($2.4M ARR). Introduced monthly risk reviews; portfolio renewal rate rose from 88% to 94% that year."
+        }
+      }
+    },
+    {
+      "id": "fit",
+      "label": "Fit",
+      "eyebrow": "The connection to the role",
+      "question": "Can they see the experience this role asks for?",
+      "sourceExcerpt": "Worked with Product and Support to improve customer onboarding.",
+      "sourceContext": "Experience · the second bullet, considered against the sample job requirement",
+      "sourceFactIds": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "integrityNote": "Portfolio ownership, risk reviews, and onboarding are supported by F1–F4. Mid-market experience is unverified and must not be added as a candidate fact. No fit score or hiring prediction is implied.",
+      "jobRequirementVisible": true,
+      "accent": "amber",
+      "stages": {
+        "paper": {
+          "title": "The experience closest to the job requirement",
+          "body": "Worked with Product and Support to improve customer onboarding.",
+          "compactTitle": "Your onboarding experience",
+          "compactBody": "Worked with Product and Support to improve customer onboarding."
+        },
+        "read": {
+          "title": "You have the examples. The connection needs work.",
+          "body": "The role asks for portfolio ownership, renewal risk, and onboarding. Your facts cover all three. This line shows only onboarding; the other experience point leaves ownership and risk work vague. The account segment is unverified.",
+          "compactTitle": "The work fits. The segment is unverified.",
+          "compactBody": "Portfolio ownership, risk reviews, and onboarding are supported. Mid-market experience needs confirmation."
+        },
+        "next": {
+          "title": "Connect your evidence to the role.",
+          "body": "Try: “Owned a 32-account SaaS portfolio, introduced monthly renewal-risk reviews, and built a 30-day onboarding plan with Product and Support.” These examples address the work in the role. Confirm the account segment before claiming mid-market experience.",
+          "compactTitle": "Make the connection explicit",
+          "compactBody": "Owned a SaaS portfolio, reviewed renewal risk, and built a 30-day onboarding plan with Product and Support.",
+          "compactNote": "Confirm the account segment before adding “mid-market.”"
+        }
+      }
+    }
+  ],
+  "controls": {
+    "modeGroupLabel": "What should we look at?",
+    "modePurpose": "Choose Story, Impact, or Fit to focus the feedback.",
+    "modeLabels": [
+      "Story",
+      "Impact",
+      "Fit"
+    ],
+    "stageGroupLabel": "Choose a view",
+    "stagePurpose": "Move between the original wording, a recruiter-informed reading, and a practical next step.",
+    "stageLabels": [
+      "On paper",
+      "Recruiter’s read",
+      "Next move"
+    ],
+    "dialLabel": "A closer look",
+    "dialInstructions": "Turn the dial or choose a view.",
+    "sceneInstructions": "Choose a key. Turn the dial for a closer look.",
+    "originalLabel": "From the sample resume",
+    "annotationLabel": "What the reading reveals",
+    "nextLabel": "A useful next step",
+    "factsButton": "See the resume and sample facts",
+    "closeFactsButton": "Close sample details",
+    "factsHeading": "The facts behind this advice",
+    "primaryAction": "Get your free report",
+    "privacyLine": "No account required. Your resume is private and secure.",
+    "sampleLabel": "Fictional example",
+    "statusTemplate": "{mode} · {stage}",
+    "keyboardHint": "Use arrow keys within each selector. Press Enter or Space to choose.",
+    "paperQuoteLabel": "Exact excerpt from the fictional resume"
+  },
+  "defaults": {
+    "mode": null,
+    "stage": "read"
+  },
+  "stages": [
+    {
+      "id": "paper",
+      "label": "On paper"
+    },
+    {
+      "id": "read",
+      "label": "Recruiter’s read"
+    },
+    {
+      "id": "next",
+      "label": "Next move"
+    }
+  ],
+  "home": {
+    "revision": "Managed 32 SaaS accounts with $2.4M in annual recurring revenue.",
+    "eyebrow": "HOME",
+    "title": "Add the portfolio size.",
+    "body": "How many accounts did you manage, and what were they worth? This example uses details supplied by the candidate: 32 accounts and $2.4M in annual recurring revenue.",
+    "options": [
+      {
+        "label": "Story",
+        "body": "Make your experience clear."
+      },
+      {
+        "label": "Impact",
+        "body": "Show the scale of your work."
+      },
+      {
+        "label": "Fit",
+        "body": "Connect it to the role."
+      }
+    ],
+    "instruction": "Press a key to begin.",
+    "sourceExcerpt": "Responsible for managing customer relationships and renewals.",
+    "observation": "32 accounts. $2.4M ARR. The scale is missing."
+  }
+}

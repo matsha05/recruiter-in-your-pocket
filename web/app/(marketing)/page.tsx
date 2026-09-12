@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "You Did the Work. Let's Make Sure They See It.",
+    title: "You did the work. Let’s dial in your story.",
     description: homepageDescription,
     url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "You Did the Work. Let's Make Sure They See It.",
+    title: "You did the work. Let’s dial in your story.",
     description: homepageDescription,
     images: ["/opengraph-image?v=20260729"],
   },

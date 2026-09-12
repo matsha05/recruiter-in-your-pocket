@@ -11,7 +11,7 @@
     --illustration-score-track: hsl(var(--assessment-track));
     background: hsl(var(--surface-page));
     color: var(--report-ink);
-    padding: clamp(1.4rem, 1.9vw, 2rem) 0 clamp(4rem, 6vw, 6rem);
+    padding: clamp(1.4rem, 1.9vw, 2rem) 0 clamp(2rem, 3vw, 3rem);
     font-family: var(--font-body);
     scroll-margin-top: 5rem;
 }

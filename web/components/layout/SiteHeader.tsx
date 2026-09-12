@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
 import { Wordmark } from "@/components/icons";
@@ -142,19 +143,66 @@ function SiteMobileMenu({
     showResearchLink: boolean;
     showResourcesLink: boolean;
 }) {
+    const navigationTarget = useRef<URL | null>(null);
+    const menuClosed = useRef(false);
+    const focusFrame = useRef<number | null>(null);
+
+    const focusDestination = useCallback(() => {
+        const target = navigationTarget.current;
+        // Cross-page navigation may finish after the sheet's closing animation.
+        if (!menuClosed.current || !target || pathname !== target.pathname) return;
+        const destination = target.hash
+            ? document.getElementById(decodeURIComponent(target.hash.slice(1)))
+            : document.getElementById("main-content");
+        if (!destination) return;
+        navigationTarget.current = null;
+        if (!destination.hasAttribute("tabindex")) destination.setAttribute("tabindex", "-1");
+        destination.focus({ preventScroll: true });
+        destination.scrollIntoView({ block: "start" });
+    }, [pathname]);
+
+    useEffect(() => {
+        if (menuClosed.current && navigationTarget.current) {
+            focusFrame.current = requestAnimationFrame(focusDestination);
+        }
+        return () => {
+            if (focusFrame.current !== null) cancelAnimationFrame(focusFrame.current);
+        };
+    }, [focusDestination]);
+
     return (
-        <Sheet>
+        <Sheet onOpenChange={open => {
+            if (open) {
+                navigationTarget.current = null;
+                menuClosed.current = false;
+            }
+        }}>
             <SheetTrigger asChild>
                 <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-[10px] border border-border text-foreground transition-colors hover:bg-muted xl:hidden">
                     <List className="size-5" weight="bold" />
                 </button>
             </SheetTrigger>
-            <SheetContent side="right" className="flex w-[min(88vw,22rem)] flex-col gap-0 overflow-hidden bg-background">
+            <SheetContent side="right" className="flex w-[min(88vw,22rem)] flex-col gap-0 overflow-hidden bg-background"
+                onCloseAutoFocus={event => {
+                    if (!navigationTarget.current) return;
+                    // Escape and dismissal restore the trigger normally; navigation
+                    // should keep focus at its destination instead of jumping back.
+                    event.preventDefault();
+                    menuClosed.current = true;
+                    focusFrame.current = requestAnimationFrame(focusDestination);
+                }}>
                 <SheetHeader className="shrink-0 border-b border-border pb-5 text-left">
                     <SheetTitle><Wordmark className="text-foreground" /></SheetTitle>
                     <SheetDescription className="sr-only">Navigate to the main areas of Recruiter in Your Pocket.</SheetDescription>
                 </SheetHeader>
-                <nav className="mt-8 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain" aria-label="Mobile navigation">
+                <nav className="mt-8 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain" aria-label="Mobile navigation"
+                    onClickCapture={event => {
+                        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                        const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+                        if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+                        const target = new URL(link.href, window.location.href);
+                        if (target.origin === window.location.origin) navigationTarget.current = target;
+                    }}>
                     <MobileSiteLink href="/#how-it-works">How it works</MobileSiteLink>
                     {pathname === "/" && <>
                         <MobileSiteLink href="/sample-report">Sample report</MobileSiteLink>

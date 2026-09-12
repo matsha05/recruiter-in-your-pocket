@@ -53,6 +53,17 @@ const HEX_ALLOWLIST = new Set([
   "lib/support/inboundEmail.ts",
 ]);
 
+// These four modules reconstruct the approved photograph's lacquer, brass,
+// shadows and engraved markings. Material samples are image data, not a new UI
+// palette. Keep this exact-file exception out of React UI and CSS modules;
+// validate the live paper text and keyboard focus separately below.
+const CALIBRATED_ARTWORK_FILES = new Set([
+  "components/landing/instrument/runtime/instrument-dial.ts",
+  "components/landing/instrument/runtime/instrument-keys.ts",
+  "components/landing/instrument/runtime/instrument-power.ts",
+  "components/landing/instrument/runtime/reference-instrument.ts",
+]);
+
 const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
@@ -157,6 +168,30 @@ function countRawTextInputs(source) {
   return inputs.filter((input) => !/\btype=["'](?:range|file|checkbox|radio|hidden)["']/.test(input)).length;
 }
 
+function findInstrumentUiColorViolations(source) {
+  const issues = [];
+  // Runtime styles are plain CSS template literals. Restrict the artwork
+  // exception to physical rendering: feedback ink and focus remain semantic.
+  for (const rule of source.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selector = rule[1].trim();
+    const declarations = rule[2];
+    if (/\.ri-[\w-]+:focus-visible\b/.test(selector)) {
+      const outline = declarations.match(/(?:^|;)\s*outline(?:-color)?\s*:\s*([^;]+)/)?.[1];
+      if (outline && !/var\(--(?:ring|surface-page)\)/.test(outline)) {
+        issues.push("keyboard focus must use --ring or contrasting --surface-page");
+      }
+    }
+    if (!/\.ri-(?:paper(?:-[\w-]+)?|source(?:-[\w-]+)?|response(?:-[\w-]+)?|caveat|job)(?=[\s.[#:>,]|$)/.test(selector)) continue;
+    for (const declaration of declarations.matchAll(/(?:^|;)\s*(color|text-decoration-color)\s*:\s*([^;]+)/g)) {
+      if (!/var\(--(?:text-strong|text-muted|brand(?:-strong)?)\)/.test(declaration[2]) &&
+          !/^(?:inherit|currentColor)\s*$/.test(declaration[2])) {
+        issues.push(`${selector} -> ${declaration[1]} must use a shared text or brand token`);
+      }
+    }
+  }
+  return issues;
+}
+
 function findViolations(files) {
   const violations = {
     externalFontImport: [],
@@ -189,7 +224,9 @@ function findViolations(files) {
       violations.legacyFontBranding.push(file);
     }
 
-    if (!HEX_ALLOWLIST.has(file) && /#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/.test(source)) {
+    if (CALIBRATED_ARTWORK_FILES.has(file)) {
+      violations.hardcodedHex.push(...findInstrumentUiColorViolations(source).map(issue => `${file} -> ${issue}`));
+    } else if (!HEX_ALLOWLIST.has(file) && /#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/.test(source)) {
       violations.hardcodedHex.push(file);
     }
 
@@ -250,11 +287,21 @@ function validateDocs() {
   const content = fs.readFileSync(designSystemDoc, "utf8");
   const brandSystemDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "brand-system.md"), "utf8");
   const voiceAndToneDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "voice-and-tone.md"), "utf8");
-  const agentInstructions = fs.readFileSync(path.join(ROOT, "..", ".agent", "AGENTS.md"), "utf8");
+  const legacyAgentEntry = fs.readFileSync(path.join(ROOT, "..", ".agent", "AGENTS.md"), "utf8");
+  const rootAgentPath = path.join(ROOT, "..", "AGENTS.md");
+  const designStandardsPath = path.join(ROOT, "..", "docs", "agent-design-standards.md");
+  // Instruction relocation is independent of a product release. Validate the
+  // original canonical file when that layout is present; a partially relocated
+  // layout must still fail its routing checks rather than silently fall back.
+  const routedInstructions = fs.existsSync(rootAgentPath) || fs.existsSync(designStandardsPath) || legacyAgentEntry.includes("(../AGENTS.md)");
+  const agentInstructions = fs.existsSync(rootAgentPath) ? fs.readFileSync(rootAgentPath, "utf8") : "";
+  const agentDesignStandards = routedInstructions
+    ? (fs.existsSync(designStandardsPath) ? fs.readFileSync(designStandardsPath, "utf8") : "")
+    : legacyAgentEntry;
   const fontOperationsDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "font-operations.md"), "utf8");
   const researchContractDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "research-ui-contract.md"), "utf8");
   const articleStandardDoc = fs.readFileSync(path.join(ROOT, "app", "(editorial)", "research", "article-standard.md"), "utf8");
-  const canonicalDocs = [content, brandSystemDoc, agentInstructions, fontOperationsDoc, researchContractDoc, articleStandardDoc];
+  const canonicalDocs = [content, brandSystemDoc, agentDesignStandards, fontOperationsDoc, researchContractDoc, articleStandardDoc];
   const missing = [];
 
   const requiredStrings = [
@@ -299,8 +346,18 @@ function validateDocs() {
   if (!voiceAndToneDoc.includes("plainspoken expertise")) {
     missing.push("voice-and-tone.md -> plainspoken expertise");
   }
-  if (!agentInstructions.includes("Alpine is the approved visual direction")) {
-    missing.push(".agent/AGENTS.md -> Alpine approved direction");
+  if (routedInstructions) {
+    if (!legacyAgentEntry.includes("(../AGENTS.md)")) {
+      missing.push(".agent/AGENTS.md -> repository-root AGENTS.md routing");
+    }
+    for (const reference of ["agent-design-standards.md", "brand-system.md", "design-system.md"]) {
+      if (!agentInstructions.includes(`(docs/${reference})`)) {
+        missing.push(`AGENTS.md -> docs/${reference} routing`);
+      }
+    }
+  }
+  if (!agentDesignStandards.includes("Alpine is the approved visual direction")) {
+    missing.push(`${routedInstructions ? "docs/agent-design-standards.md" : ".agent/AGENTS.md"} -> Alpine approved direction`);
   }
   for (const [index, doc] of canonicalDocs.entries()) {
     for (const family of ["Instrument Sans", "Source Serif 4"]) {

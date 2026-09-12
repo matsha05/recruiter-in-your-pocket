@@ -157,7 +157,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const canExportPdf = Boolean(user?.canExportPdf);
-    const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining, hasPaidAccess });
+    const { refreshFreeStatus } = useFreeStatus({ accountId: user?.id ?? null, refreshUser, setFreeUsesRemaining, hasPaidAccess });
 
     const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
         resetReportCompletion();

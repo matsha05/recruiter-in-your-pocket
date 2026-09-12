@@ -3,8 +3,15 @@ export type FreeStatusSnapshot = {
   free_uses_left: number;
 };
 
-export async function fetchFreeStatusSnapshot(fetcher: typeof fetch = fetch): Promise<FreeStatusSnapshot> {
-  const response = await fetcher("/api/free-status");
+export const FREE_STATUS_TIMEOUT_MS = 8_000;
+
+type FreeStatusRequestOptions = {
+  signal?: AbortSignal;
+  timeoutMs?: number;
+};
+
+async function readFreeStatusSnapshot(fetcher: typeof fetch, signal: AbortSignal): Promise<FreeStatusSnapshot> {
+  const response = await fetcher("/api/free-status", { signal, cache: "no-store" });
   let body: any;
   try {
     body = await response.json();
@@ -20,14 +27,46 @@ export async function fetchFreeStatusSnapshot(fetcher: typeof fetch = fetch): Pr
   return body as FreeStatusSnapshot;
 }
 
+export async function fetchFreeStatusSnapshot(
+  fetcher: typeof fetch = fetch,
+  { signal, timeoutMs = FREE_STATUS_TIMEOUT_MS }: FreeStatusRequestOptions = {},
+): Promise<FreeStatusSnapshot> {
+  if (signal?.aborted) throw new DOMException("Free status refresh canceled.", "AbortError");
+  const controller = new AbortController();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let cancel: (() => void) | undefined;
+  const interrupted = new Promise<never>((_resolve, reject) => {
+    cancel = () => {
+      controller.abort();
+      reject(new DOMException("Free status refresh canceled.", "AbortError"));
+    };
+    signal?.addEventListener("abort", cancel, { once: true });
+    timer = setTimeout(() => {
+      controller.abort();
+      reject(new Error("Free status refresh timed out."));
+    }, timeoutMs);
+  });
+
+  try {
+    // Bound both response headers and the JSON body. The race also settles if
+    // cancellation arrives after the transport has stopped honoring abort.
+    return await Promise.race([readFreeStatusSnapshot(fetcher, controller.signal), interrupted]);
+  } finally {
+    clearTimeout(timer);
+    if (cancel) signal?.removeEventListener("abort", cancel);
+  }
+}
+
 export async function refreshFreeStatusBalance(input: {
   fallbackDecrement: boolean;
   setRemaining: (value: number | ((previous: number) => number)) => void;
   fetcher?: typeof fetch;
   shouldApply?: () => boolean;
+  signal?: AbortSignal;
+  timeoutMs?: number;
 }) {
   try {
-    const snapshot = await fetchFreeStatusSnapshot(input.fetcher);
+    const snapshot = await fetchFreeStatusSnapshot(input.fetcher, input);
     if (input.shouldApply && !input.shouldApply()) return false;
     input.setRemaining(snapshot.free_uses_left);
     return true;

@@ -1,6 +1,6 @@
 # Recruiter in Your Pocket — Brand System
 
-Last updated: 2026-09-07
+Last updated: 2026-09-12
 
 Owner: Product + Design
 
@@ -12,7 +12,7 @@ Authority: This document owns brand identity, promise, emotional target, voice p
 
 Recruiter in Your Pocket is the sharp, generous friend who knows hiring from the inside. We show people what their resume already proves, where the proof gets lost, and the smallest honest change that makes it easier to see.
 
-The approved pocket-lion artwork establishes the visual world: warm ivory, tactile teal fabric, a handmade lion wearing glasses, and one specific observation on a recognizable resume. The pocket connects the image to our name; his attentive review connects it to the service. Instrument Sans, strong typographic anchors, and dark pill actions extend across the whole product. The Alpine palette remains the shared system; the granite landscape is retired. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
+The approved editorial instrument now anchors the homepage: a tactile teal case, warm brass controls, and a useful resume example in a warm ivory setting. Its Story, Impact, and Fit keys choose a focus; the dial moves from the original wording to a recruiter's read and the next move. The craft attracts attention, and the feedback explains the service. Instrument Sans, strong typographic anchors, and dark pill actions extend across the whole product. The Alpine palette remains the shared system; the pocket lion and granite landscape are retained as earlier explorations, not the current homepage direction. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
 
 ## What we promise
 
@@ -43,7 +43,7 @@ Good copy names the real thing quickly, then helps. It can smile, but it must ea
 
 Prefer:
 
-- “You did the work. Let’s make sure they see it.”
+- “You did the work. Let’s dial in your story.”
 - “The useful part, first.”
 - “Advice with receipts.”
 - “Nothing new was invented. The scope is simply easier to find.”
@@ -98,7 +98,7 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
-Preserve the complete approved Alpine artwork, copy, three-line desktop headline, warm environment, dark pill actions, and original company marks. The report preview bridges the illustration to the working product. Decorative motion stays inside the source-aligned water treatment with a pause control and still fallback.
+Preserve the approved instrument's original materials, camera, and lighting, the three-line desktop headline, warm environment, dark pill actions, and original company marks. The exact artwork is delivered as a lossless WebP with live controls; it is not a freely rotating 3D model. The initial screen shows a concise before-and-after example. Keys and dial reveal one useful observation at a time, with larger feedback available through “Read at full size.” Interaction remains optional: the primary action, trust row, report preview, and founder introduction explain and support the working product. Animate the physical controls only in response to interaction, respect reduced motion, and provide readable fallback controls if the artwork cannot initialize.
 
 ### Workspace and reports
 

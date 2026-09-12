@@ -38,6 +38,35 @@ async function run() {
   assert.equal(refreshed, false);
   assert.equal(remaining, 1, "a consumed attempt must conservatively decrement when refresh is not authoritative");
 
+  let timedOutSignal: AbortSignal | null | undefined;
+  const stalledBalance = await refreshFreeStatusBalance({
+    fallbackDecrement: true,
+    timeoutMs: 15,
+    setRemaining: (value) => {
+      remaining = typeof value === "function" ? value(remaining) : value;
+    },
+    fetcher: ((_url: unknown, init?: RequestInit) => {
+      timedOutSignal = init?.signal;
+      return new Promise<Response>(() => undefined);
+    }) as typeof fetch,
+  });
+  assert.equal(stalledBalance, false, "a stalled balance request must settle instead of blocking failure recovery");
+  assert.equal(timedOutSignal?.aborted, true, "the timed-out transport must be canceled");
+  assert.equal(remaining, 0, "an explicitly consumed attempt still gets its conservative fallback");
+  await assert.rejects(
+    () => fetchFreeStatusSnapshot((async () => new Response(new ReadableStream())) as typeof fetch, { timeoutMs: 15 }),
+    /timed out/,
+    "a response whose JSON body never finishes must obey the same deadline",
+  );
+  const canceledStatus = new AbortController();
+  canceledStatus.abort();
+  let canceledFetchCalls = 0;
+  await assert.rejects(
+    () => fetchFreeStatusSnapshot((() => { canceledFetchCalls += 1; return response({ ok: true, free_uses_left: 1 }); }) as typeof fetch, { signal: canceledStatus.signal }),
+    { name: "AbortError" },
+  );
+  assert.equal(canceledFetchCalls, 0, "an obsolete request must not start a new transport");
+
   let resolveDelayed!: (response: Response) => void;
   const delayedResponse = new Promise<Response>((resolve) => { resolveDelayed = resolve; });
   const stoppedRunA = new AbortController();

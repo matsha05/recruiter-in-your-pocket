@@ -31,7 +31,9 @@ export function AppProviders({ children }: AppProvidersProps) {
     const root = document.documentElement;
     root.removeAttribute("data-theme");
     root.classList.remove("dark");
-    localStorage.setItem("theme", "light");
+    // Remembering a display preference is optional when storage is restricted.
+    // The page must still hydrate in private or policy-controlled browsers.
+    try { localStorage.setItem("theme", "light"); } catch { /* Keep the current light theme. */ }
     root.setAttribute("data-app-hydrated", "true");
 
     return () => {

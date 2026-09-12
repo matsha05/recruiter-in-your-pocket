@@ -132,7 +132,7 @@ export function WholeReportPreview() {
                         <p className={styles.eyebrow}>A full picture, not just fixes.</p>
                         <h2 id={`${id}-heading`}>More than edits.<br />A clearer story.</h2>
                         <p className={styles.introCopy}>
-                            We analyze your entire resume and give you candid, recruiter-informed feedback, including:
+                            See what comes through, what gets missed, and what to improve first—with candid, recruiter-informed feedback on your entire resume.
                         </p>
                         <Link href="/sample-report" className={styles.introLink}>Explore the sample report <Arrow /></Link>
                     </header>

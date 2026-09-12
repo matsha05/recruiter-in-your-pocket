@@ -1,11 +1,11 @@
 # Recruiter in Your Pocket - Alpine Design System
 
-Last updated: 2026-09-07
+Last updated: 2026-09-12
 Owner: Product Design + Engineering
 Status: Approved implementation contract; route and output verification tracked separately
 System version: Alpine 1.0
 
-Matt approved the September 5 6 Pro recommendations for the whole product. On September 7, the approved glasses-wearing pocket lion replaced the granite artwork as the homepage anchor. The shared system remains Instrument Sans and Source Serif 4, warm surfaces, restrained aqua, dark pill actions, and softened sheets. Lifted Line evidence meanings, product truth, security, accessibility, and working behavior remain protected. Approval of this contract does not establish that every route or output has passed verification; see `docs/alpine-product-migration.md` for historical migration evidence and the current release record for deployment checks.
+Matt approved the September 5 6 Pro recommendations for the whole product. The September 12 homepage uses the approved editorial instrument in place of the earlier pocket lion and granite artwork. The shared system remains Instrument Sans and Source Serif 4, warm surfaces, restrained aqua, dark pill actions, and softened sheets. Lifted Line evidence meanings, product truth, security, accessibility, and working behavior remain protected. Approval of this contract does not establish that every route or output has passed verification; see `docs/alpine-product-migration.md` for historical migration evidence and the current release record for deployment checks.
 
 Related authority:
 
@@ -42,6 +42,7 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
+- homepage instrument and calibrated artwork controls: `web/components/landing/instrument/`
 
 Rules:
 
@@ -77,7 +78,7 @@ Runtime mapping:
 
 | Role | Size / leading | Weight and treatment |
 | --- | --- | --- |
-| Landing hero | `clamp(40px, 4.55vw, 82px)` / 0.98; about 70px / 68.5px at 1536px | 700; matches the approved lion composition and preserves its three-line headline |
+| Landing hero | `clamp(40px, 4.55vw, 82px)` / 0.98; about 70px / 68.5px at 1536px | 700; preserves the approved three-line instrument headline |
 | Marketing section title | about 40px / 44px | 650 |
 | Workspace title | 40px / 44px | 600; scale down on narrow screens without clipping |
 | Report heading | 24px / 30px | 600 |
@@ -114,7 +115,7 @@ Headers use the quiet warm canvas treatment. Dark ink is for text, primary actio
 
 Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Preserve accessible error/recovery surfaces and plain-language next actions. Pair color with labels, icons, position, or wording; never rely on color alone.
 
-Matt's September 5 bold-granite refinement adds saturated assessment graphics: `--assessment-aqua` (HSL 188 85% 34%), `--assessment-green` (156 64% 37%), and `--assessment-amber` (42 94% 58%). Use these for small labeled graphics, score strokes, and priority markers; keep dark semantic colors for readable text. Matt's subsequent exact-reference correction overrides the homepage's static assessment illustration: coral first marker, golden-yellow second and third markers, neutral-gray later markers, dark number ink, and a thick forest-green score ring on a pale-gray track. Keep these in scoped `--illustration-*` roles; they provide illustrative emphasis, not error or severity classifications. These illustration colors preserve the approved report treatment alongside the current lion artwork; they do not change real report data, body weight, or the serif verdict.
+Matt's September 5 bold-granite refinement adds saturated assessment graphics: `--assessment-aqua` (HSL 188 85% 34%), `--assessment-green` (156 64% 37%), and `--assessment-amber` (42 94% 58%). Use these for small labeled graphics, score strokes, and priority markers; keep dark semantic colors for readable text. Matt's subsequent exact-reference correction overrides the homepage's static assessment illustration: coral first marker, golden-yellow second and third markers, neutral-gray later markers, dark number ink, and a thick forest-green score ring on a pale-gray track. Keep these in scoped `--illustration-*` roles; they provide illustrative emphasis, not error or severity classifications. These illustration colors preserve the approved report treatment alongside the current instrument; they do not change real report data, body weight, or the serif verdict.
 
 Dark mode requires its own verified semantic values. Print uses white paper. Avoid atmospheric gradients, startup glow, red-pen cosplay, or decorative grain used to manufacture character.
 
@@ -147,7 +148,7 @@ Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allow
 
 ### Mobile composition
 
-On phones, compose the landing as headline, complete pocket illustration, explanation, and full-width action. Use 20-24px outer gutters, a 36-46px headline, and a 52px primary action. Between 701 and 900px, place that complete illustration beside the copy in a compact two-column composition. The approved pocket and overhanging resume keep their original pixels; a silhouette mask removes the rectangular backdrop from the fixed 43:50 mobile crop. Do not introduce a newly generated face or a competing texture behind the page.
+On phones, place the headline, explanation, and full-width action before the complete instrument so trying the controls never delays starting a report. Use 20-24px copy gutters, a 36-54px headline, and a 52px primary action. Between 701 and 900px, place the instrument beside the copy in a compact two-column composition. Preserve the source-aligned controls and the artwork's original materials and lighting. Blend its warm photographic setting into the page without clipping the case or introducing a rectangular panel edge. “Read at full size” expands the current example below the instrument without creating a second visible set of controls; native fallback controls appear if the renderer fails.
 
 Keep the six trusted-company marks in a balanced two-column phone grid, including the Apple mark. The illustrative assessment remains colorful. Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
@@ -215,7 +216,9 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Homepage
 
-- Preserve the complete approved Alpine artwork, copy, three-line desktop headline, original company marks, CTA placement, and report introduction at the 1536 x 1024 comparison size.
+- Preserve the approved instrument artwork and three-line desktop headline: “You did the work. / Let’s dial in / your story.” Keep the original company marks, primary action, report preview, and founder section within the shared Alpine system.
+- Home is the default with no key selected and a concise, fictional before-and-after example. Story, Impact, and Fit choose a focus; pressing the selected key returns Home. The dial chooses On paper, Recruiter’s read, or Next move. The side switch turns the instrument off and restores its previous state when turned on.
+- Keep the larger example available through “Read at full size.” The controls, optional illustration, and full-size feedback must not gate the report action. Facts behind sample advice remain available, and suggestions must not imply unverified achievements or outcomes.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
@@ -250,7 +253,7 @@ Canonical tokens:
 - `--duration-slow`: 180ms
 - `--ease`: `cubic-bezier(0.22, 1, 0.36, 1)`
 
-Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage uses a restrained layered lion rig: eyes lead a small head movement toward the pointer, preserving the original face, glasses, mane, and handmade texture. The pocket, paws, pencil, and resume remain fixed. Hold the attentive pose while the pointer stays in the hero and ease back on leave. Render only while the pose changes; stop offscreen, when the page is hidden, and once settled. Touch devices, reduced motion, and graphics failures retain the original still image. No required content or action depends on exploring the artwork. Do not regenerate the approved character to animate one region.
+Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage instrument uses a fixed-camera photograph with live projected controls, preserving the approved case, lighting, and materials. Key caps move inward while held, settle at a shallower latched depth, and release when deselected. The dial moves between three detents with fixed environmental lighting; the side switch controls the display while preserving the selected view. Animate only during interaction, stop once settled and when hidden, and dispose listeners and observers when navigating away. Reduced motion preserves immediate visible state changes without travel animation. Touch and keyboard controls remain functional. If the renderer fails, retain the artwork where available and expose native controls with full-size feedback. Do not make report access depend on initializing or exploring the instrument.
 
 ### Signature behavior: Lifted Trace
 

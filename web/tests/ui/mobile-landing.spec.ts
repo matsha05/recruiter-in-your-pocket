@@ -4,18 +4,20 @@ for (const width of [320, 390, 430]) {
   test.describe(`phone landing at ${width}px`, () => {
     test.use({ viewport: { width, height: 844 }, hasTouch: true, isMobile: true });
 
-    test("the complete hero composition and main action fit the initial phone view", async ({ page }) => {
+    test("the main action is reachable before the instrument on a phone", async ({ page }) => {
       await page.goto("/");
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
       await page.evaluate(() => document.fonts.ready);
       const title = await page.getByRole("heading", { level: 1 }).boundingBox();
-      const art = await page.getByTestId("lion-hero-scene").boundingBox();
+      const art = await page.getByTestId("instrument-stage").boundingBox();
       const action = await page.getByTestId("landing-primary-cta").boundingBox();
       expect(title && art && action).toBeTruthy();
       expect(art!.y).toBeGreaterThanOrEqual(title!.y + title!.height);
-      expect(art!.y + art!.height).toBeLessThan(action!.y);
+      expect(art!.y).toBeGreaterThan(action!.y + action!.height);
+      expect(art!.x).toBeGreaterThanOrEqual(0);
+      expect(art!.x + art!.width).toBeLessThanOrEqual(width);
       expect(action!.y + action!.height).toBeLessThanOrEqual(844);
-      await expect(page.getByTestId("lion-hero-scene")).toHaveAttribute("data-motion-state", "still");
+      await expect(page.getByTestId("pocket-instrument")).toHaveAttribute("data-status", "ready");
       await page.getByTestId("landing-primary-cta").click();
       await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
     });
@@ -42,13 +44,13 @@ for (const width of [320, 390, 430]) {
   });
 }
 
-test("small tablets see a complete pocket beside the copy", async ({ page }) => {
+test("small tablets see a complete instrument beside the copy", async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 1024 });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   const title = await page.getByRole("heading", { level: 1 }).boundingBox();
-  const art = await page.getByTestId("lion-hero-scene").boundingBox();
-  const composition = await page.getByTestId("lion-hero-composition").boundingBox();
+  const art = await page.getByTestId("instrument-stage").boundingBox();
+  const composition = await page.getByTestId("instrument-hero-composition").boundingBox();
   expect(art!.x).toBeGreaterThanOrEqual(title!.x + title!.width);
   expect(art!.y + art!.height).toBeLessThanOrEqual(1024);
   expect(composition!.height).toBeLessThanOrEqual(700);

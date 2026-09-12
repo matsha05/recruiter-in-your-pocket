@@ -1,0 +1,49 @@
+.instrument { position: relative; width: 100%; min-width: 0; }
+.stage { position: relative; isolation: isolate; width: 100%; aspect-ratio: 839 / 760; overflow: visible; }
+.instrument[data-status="failed"] .stage { display: none; }
+.instrument[data-status="failed"] .caption { margin-top: 24px; }
+.placeholder { position: absolute; inset: 0; pointer-events: none; }
+.plate { position: absolute; left: -83.075%; top: -13.816%; width: 183.075%; height: auto; max-width: none; mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent), linear-gradient(to bottom, transparent, black 3%, black 89%, transparent); mask-composite: intersect; }
+.caption { position: relative; z-index: 1; text-align: center; margin: -5px 36px 0; font-size: 12px; color: hsl(var(--text-muted)); line-height: 1.5; min-height: 18px; }
+.caption p { margin: 0; }
+.example { position: relative; z-index: 1; width: min(560px, 88%); margin: 0 auto; }
+.example > summary { justify-content: center; gap: 8px; font-size: 12px; color: hsl(var(--text-strong)); }
+.example summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; list-style: none; }
+.example summary::-webkit-details-marker { display: none; }
+.example summary > span { font-size: 17px; font-weight: 400; }
+.example[open] > summary > span, .facts[open] > summary > span { transform: rotate(45deg); }
+.example summary:focus-visible, .example button:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 3px; }
+.readable { border-top: 1px solid hsl(var(--line)); padding: 22px 0 12px; }
+.disclosure { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: hsl(var(--text-muted)); margin: 0 0 14px; }
+.modes { display: flex; gap: 8px; margin-bottom: 16px; }
+.modes button { border: 0; border-bottom: 2px solid transparent; background: none; min-height: 44px; min-width: 52px; padding: 0 12px; font: 500 14px var(--font-body); color: hsl(var(--text-muted)); cursor: pointer; }
+.modes button[aria-pressed=true] { border-color: hsl(var(--brand)); color: hsl(var(--brand-strong)); font-weight: 650; }
+.views { display: flex; flex-wrap: wrap; gap: 18px; border: 0; padding: 0; margin: 0 0 24px; }
+.views label { position: relative; cursor: pointer; }
+.views input { position: absolute; width: 100%; height: 100%; opacity: 0; inset: 0; cursor: pointer; }
+.views span { display: flex; align-items: center; min-height: 44px; font-size: 12px; border-bottom: 2px solid transparent; color: hsl(var(--text-muted)); }
+.views input:checked + span { border-color: hsl(var(--brand)); color: hsl(var(--brand-strong)); font-weight: 600; }
+.views input:focus-visible + span { outline: 2px solid hsl(var(--brand)); outline-offset: 3px; }
+.feedback .label { margin: 0 0 12px; color: hsl(var(--text-muted)); text-transform: uppercase; letter-spacing: .13em; font-size: 10px; }
+.feedback blockquote { margin: 0 0 24px; font: 400 20px/1.4 var(--font-body); color: hsl(var(--text-muted)); }
+.feedback h3 { margin: 0 0 13px; font: 600 23px/1.2 var(--font-body); letter-spacing: -.025em; color: hsl(var(--brand-strong)); }
+.feedback p { margin: 0; font-size: 15px; line-height: 1.55; color: hsl(var(--text-muted)); }
+.feedback .sourceContext { font-size: 12px; }
+.feedback .revision { font-size: 23px; line-height: 1.35; color: hsl(var(--text-strong)); }
+.feedback .job { border-left: 2px solid hsl(var(--line)); padding-left: 12px; margin-bottom: 24px; font-size: 13px; }
+.job strong { display: block; margin-bottom: 5px; font-weight: 600; }
+.facts { margin-top: 22px; border-top: 1px solid hsl(var(--line)); font-size: 12px; line-height: 1.5; color: hsl(var(--text-muted)); }
+.facts > summary { justify-content: space-between; gap: 12px; }
+.facts p { margin: 14px 0; }
+.facts ul { padding-left: 18px; list-style: disc; }
+.facts li + li { margin-top: 10px; }
+@media (max-width: 700px) {
+    .caption { margin: -2px 16px 0; font-size: 11px; }
+    .example { width: calc(100% - 48px); }
+    .feedback blockquote { font-size: 21px; }
+    .feedback h3 { font-size: 22px; }
+    .modes { gap: 2px; }
+    .modes button { padding: 0 10px; }
+    .views { gap: 15px; }
+    .views span { font-size: 11px; }
+}

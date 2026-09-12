@@ -54,10 +54,10 @@
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url("/assets/alpine/alpine-selected-reference.png");
+    background-image: url("/assets/alpine/trust-marks.v1.webp");
     background-repeat: no-repeat;
-    background-size: var(--sprite-width) calc(var(--sprite-width) * 2 / 3);
-    background-position: calc(var(--sprite-width) * var(--crop-x) / -1536) calc(var(--sprite-width) * -750 / 1536);
+    background-size: var(--sprite-width) calc(var(--sprite-width) * 56 / 1536);
+    background-position: calc(var(--sprite-width) * var(--crop-x) / -1536) 0;
     filter: grayscale(1) contrast(1.25) brightness(1.06);
     mix-blend-mode: multiply;
 }

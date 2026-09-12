@@ -16,7 +16,7 @@ export default function Footer() {
                     </p>
                     <p className={styles.support}>
                         Support:{" "}
-                        <FooterLink href="/support">support@recruiterinyourpocket.com</FooterLink>
+                        <a href="mailto:support@recruiterinyourpocket.com" className={`focus-ring ${styles.link}`}>support@recruiterinyourpocket.com</a>
                     </p>
                 </div>
                 <nav className={styles.navigation} aria-label="Footer navigation">

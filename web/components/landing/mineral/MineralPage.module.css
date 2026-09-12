@@ -1,5 +1,5 @@
 .page { overflow-x: clip; font-family: var(--font-body); background: hsl(var(--surface-page)); color: hsl(var(--text-strong)); }
-.founder { display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: clamp(40px, 7vw, 110px); max-width: 1240px; margin: 0 auto; padding: 112px 48px; }
+.founder { display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: clamp(40px, 7vw, 110px); max-width: 1240px; margin: 0 auto; padding: 80px 48px 96px; scroll-margin-top: 32px; }
 .founderPortrait { width: 100%; max-width: 320px; }
 .founderPortrait img { width: 100%; height: auto; aspect-ratio: 1 / 1.1; object-fit: cover; object-position: center 38%; border-radius: 2px; }
 .founderPortrait > p { display: flex; justify-content: space-between; gap: 16px; padding-top: 13px; font-size: 12px; }

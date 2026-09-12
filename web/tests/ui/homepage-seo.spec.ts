@@ -10,7 +10,7 @@ test.describe("homepage feedback and SEO contract", () => {
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      /You did the work\.\s*Let’s make sure\s*they see it\./,
+      /You did the work\.\s*Let’s dial in\s*your story\./,
     );
     await expect(homepage).toContainText("AI feedback. Real recruiting experience.");
     await expect(homepage).toContainText(
