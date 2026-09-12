@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "@/components/landing/Footer";
 import { landingContent } from "@/components/landing/landingConfig";
 import { HeroSection } from "@/components/landing/sections/HeroSection";
@@ -12,6 +13,7 @@ import { LandingSectionFrame } from "@/components/landing/sections/SectionPrimit
 import { Analytics } from "@/lib/analytics";
 
 export default function LandingContent() {
+    const router = useRouter();
     const [checkoutLoading, setCheckoutLoading] = useState<"30d" | null>(null);
 
     async function handleCheckout(tier: "30d") {
@@ -70,7 +72,7 @@ export default function LandingContent() {
                         cta: "pricing_run_free_review",
                         destination: "/workspace",
                     });
-                    window.location.href = "/workspace";
+                    router.push("/workspace");
                 }}
             />
 

@@ -22,7 +22,8 @@ async function buildCheckoutHarness() {
     "next/link": `import React from "react";
       export default function Link({href, children, ...props}) { return <a href={href} {...props}>{children}</a>; }`,
     "next/navigation": `import {useMemo} from "react";
-      export function useSearchParams() { return useMemo(() => new URLSearchParams(window.location.search), []); }`,
+      export function useSearchParams() { return useMemo(() => new URLSearchParams(window.location.search), []); }
+      export function useRouter() { return {push: (href) => window.location.assign(href)}; }`,
     "@/components/providers/AuthProvider": `const user = JSON.parse(sessionStorage.getItem("checkout-harness-user") || "null");
       const refreshUser = async () => {
         sessionStorage.setItem("checkout-harness-refreshes", String(Number(sessionStorage.getItem("checkout-harness-refreshes") || 0) + 1));

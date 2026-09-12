@@ -19,6 +19,7 @@ import { getUnlockContext, type UnlockContext, type UnlockSection } from "@/lib/
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { saveCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 
 interface PaywallModalProps {
@@ -112,6 +113,7 @@ export default function PaywallModal({
     hasCurrentReport = false,
     workspaceState = null,
 }: PaywallModalProps) {
+    const router = useRouter();
     const { user } = useAuth();
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
@@ -195,7 +197,7 @@ export default function PaywallModal({
     const handleRestore = async () => {
         Analytics.track("billing_restore_requested", { source: "paywall" });
         setRestoreLoading(true);
-        window.location.href = "/purchase/restore";
+        router.push("/purchase/restore");
     };
 
     if (!billingEnabled) {

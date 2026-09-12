@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowsClockwise, Info, LockKey, Receipt, ShieldCheck } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
@@ -86,6 +87,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
     returnTo?: string | null;
     paymentCancelled?: boolean;
 }) {
+    const router = useRouter();
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
     const returnTo = normalizeCheckoutReturnTo(requestedReturnTo);
@@ -227,7 +229,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 allowFreeSelect
                                 onSelect={() => {
                                     Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
-                                    window.location.href = "/workspace";
+                                    router.push("/workspace");
                                 }}
                             />
                             <PricingCard
