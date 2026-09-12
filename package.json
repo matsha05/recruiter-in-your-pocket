@@ -53,7 +53,7 @@
     "express": "^5.1.0",
     "lucide-react": "^0.561.0",
     "mammoth": "^1.11.0",
-    "multer": "^2.0.2",
+    "multer": "^2.3.0",
     "pdf-parse": "^1.1.1",
     "pg": "^8.11.5",
     "puppeteer": "25.1.0",
