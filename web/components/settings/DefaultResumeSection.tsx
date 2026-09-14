@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { ActionFeedback } from "@/components/ui/action-feedback";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 interface DefaultResumeSectionProps {
@@ -24,7 +25,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     const [isSaving, setIsSaving] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [fileName, setFileName] = useState<string | null>(null);
-    const [pendingText, setPendingText] = useState<string | null>(null);
+    const [isReadingFile, setIsReadingFile] = useState(false);
+    const fileActionRef = useRef(false);
     const [isRemoving, setIsRemoving] = useState(false);
     const [loadError, setLoadError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -50,72 +52,51 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     }, [fetchProfile]);
 
     const handleFile = async (file: File) => {
+        if (fileActionRef.current || isRemoving) return;
         if (file.size > 4 * 1024 * 1024) {
             toast.error("File too large. Please use a file under 4 MB.");
             return;
         }
 
-        // Accept .txt files directly
-        if (file.type === "text/plain" || file.name.endsWith(".txt")) {
-            const text = await file.text();
-            if (text.length < 100) {
-                toast.error("Resume too short. Please upload your full resume.");
-                setFileName(null);
-                return;
-            }
-            setFileName(file.name);
-            setPendingText(text);
-            await saveResume(text);
+        const isText = file.type === "text/plain" || /\.txt$/i.test(file.name);
+        const isPdf = file.type === "application/pdf" || /\.pdf$/i.test(file.name);
+        const isDocx = file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || /\.docx$/i.test(file.name);
+        if (!isText && !isPdf && !isDocx) {
+            toast.error("Please upload a PDF, DOCX, or TXT file.");
             return;
         }
 
-        // For PDF and DOCX, use the parse-resume API
-        const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
-        const isDocx = file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.name.toLowerCase().endsWith(".docx");
-
-        if (isPdf || isDocx) {
-            setIsSaving(true);
-            try {
+        fileActionRef.current = true;
+        setIsSaving(true);
+        setIsReadingFile(true);
+        setFileName(file.name);
+        try {
+            let text: string;
+            if (isText) {
+                text = await file.text();
+            } else {
                 const formData = new FormData();
                 formData.append("file", file);
-
-                const parseRes = await fetch("/api/parse-resume", {
-                    method: "POST",
-                    body: formData,
-                });
-
+                const parseRes = await fetch("/api/parse-resume", { method: "POST", body: formData });
                 const parseData = await parseRes.json();
-
-                if (!parseData.ok) {
-                    toast.error(new ClientActionError(parseData.message, "We couldn't read this file. Try a different PDF, DOCX, or TXT file.").message);
-                    setFileName(null);
-                    setIsSaving(false);
-                    return;
+                if (!parseRes.ok || !parseData.ok || typeof parseData.text !== "string") {
+                    throw new ClientActionError(parseData.message, "We couldn't read this file. Try a different PDF, DOCX, or TXT file.");
                 }
-
-                const text = parseData.text;
-                if (text.length < 100) {
-                    toast.error("Resume too short. Please upload your full resume.");
-                    setFileName(null);
-                    setIsSaving(false);
-                    return;
-                }
-
-                setFileName(file.name);
-                setPendingText(text);
-                await saveResume(text);
-            } catch (error: any) {
-                console.error("[DefaultResume] Parse error:", error);
-                toast.error("We couldn't read this file. Try a different PDF, DOCX, or TXT file.");
-                setFileName(null);
-            } finally {
-                setIsSaving(false);
+                text = parseData.text;
             }
-            return;
+            if (text.length < 100) {
+                throw new ClientActionError(null, "Resume too short. Please upload your full resume.");
+            }
+            setIsReadingFile(false);
+            await saveResume(text);
+        } catch (error) {
+            toast.error(getClientActionError(error, "We couldn't read this file. Try a different PDF, DOCX, or TXT file."));
+            setFileName(null);
+        } finally {
+            fileActionRef.current = false;
+            setIsReadingFile(false);
+            setIsSaving(false);
         }
-
-        toast.error("Please upload a PDF, DOCX, or TXT file.");
-        setFileName(null);
     };
 
     const removeResume = async () => {
@@ -123,6 +104,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             return;
         }
 
+        if (fileActionRef.current || isRemoving) return;
         setIsRemoving(true);
         try {
             const res = await fetch("/api/user/default-resume", { method: "DELETE" });
@@ -133,7 +115,6 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             toast.success("Default resume removed");
             setProfile({ hasResume: false });
             setFileName(null);
-            setPendingText(null);
         } catch (error: any) {
             console.error("[DefaultResume] Remove error:", error);
             toast.error(getClientActionError(error, "We couldn't remove your default resume. Please try again."));
@@ -161,14 +142,12 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     skillsCount: data.data.skillsCount,
                     hasEmbedding: data.data.hasEmbedding,
                 });
-                setPendingText(null);
             } else {
                 throw new ClientActionError(data.error, "We couldn't save your resume. Please upload it again.");
             }
         } catch (error: any) {
             console.error("[DefaultResume] Save error:", error);
             toast.error(getClientActionError(error, "We couldn't save your resume. Please upload it again."));
-            setPendingText(null);
             setFileName(null);
         } finally {
             setIsSaving(false);
@@ -258,16 +237,14 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                                 disabled={isSaving || isRemoving}
                                 className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full border border-input bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                             >
-                            <RefreshCw className={cn("size-3.5", isSaving && "animate-spin")} />
-                            {isSaving ? "Updating…" : "Change Resume"}
-                        </button>
+                                <ActionFeedback state={isSaving ? "pending" : "idle"} states={{ idle: { label: "Change Resume", icon: <RefreshCw className="size-3.5" /> }, pending: { label: isReadingFile ? "Reading…" : "Updating…", icon: <Loader2 className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
+                            </button>
                             <button type="button"
                                 onClick={removeResume}
                                 disabled={isSaving || isRemoving}
                                 className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-error-surface hover:text-destructive"
                             >
-                                <Trash2 className={cn("size-3.5", isRemoving && "animate-pulse")} />
-                                {isRemoving ? "Removing…" : "Remove"}
+                                <ActionFeedback state={isRemoving ? "pending" : "idle"} states={{ idle: { label: "Remove", icon: <Trash2 className="size-3.5" /> }, pending: { label: "Removing…", icon: <Loader2 className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
                             </button>
                         </div>
                         <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
@@ -283,6 +260,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
                     onChange={(e) => {
                         const file = e.target.files?.[0];
+                        e.target.value = "";
                         if (file) handleFile(file);
                     }}
                     className="hidden"
@@ -312,21 +290,21 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 aria-label="Choose a default resume file"
                 disabled={isSaving}
                 className={cn(
-                    "relative w-full cursor-pointer rounded-xl border border-dashed transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 disabled:cursor-wait",
+                    "relative w-full cursor-pointer rounded-xl border border-dashed transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 disabled:cursor-wait",
                     isDragOver
                         ? "border-brand bg-brand/5"
                         : "border-input bg-muted/30 hover:border-brand hover:bg-brand/5"
                 )}
-                onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+                onDragOver={(e) => { e.preventDefault(); if (!isSaving) setIsDragOver(true); }}
                 onDragLeave={() => setIsDragOver(false)}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
             >
-                <div className="px-4 py-8 text-center">
+                <div className="flex min-h-40 flex-col items-center justify-center px-4 py-8 text-center">
                     {isSaving ? (
                         <div className="flex flex-col items-center gap-2" role="status" aria-live="polite">
-                            <Loader2 className="size-8 text-brand animate-spin" />
-                            <p className="text-sm font-medium text-foreground">Saving your resume…</p>
+                            <Loader2 className="size-8 text-brand animate-spin motion-reduce:animate-none" />
+                            <p className="text-sm font-medium text-foreground">{isReadingFile ? "Reading your resume…" : "Saving your resume…"}</p>
                             {fileName && <p className="break-all text-sm text-muted-foreground">{fileName}</p>}
                         </div>
                     ) : (
@@ -356,6 +334,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
                 onChange={(e) => {
                     const file = e.target.files?.[0];
+                    e.target.value = "";
                     if (file) handleFile(file);
                 }}
                 className="hidden"

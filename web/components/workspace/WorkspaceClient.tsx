@@ -32,6 +32,7 @@ import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { needsReceiptValidatedSave, saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { scrollToReportSection } from "@/components/workspace/report/useReportNavigation";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -161,6 +162,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
         resetReportCompletion();
+        setJustUnlocked(false);
         if (abortControllerRef.current) {
             abortControllerRef.current.abort();
         }
@@ -200,6 +202,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setResumeText("");
         setJobDescription("");
         setReport(null);
+        setJustUnlocked(false);
         setComparisonBaseline(null);
         setCommandUploadName(null);
         setLinkedInReport(null);
@@ -269,6 +272,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         try {
             const data = await fetchSampleReport();
             setReport(data);
+            setJustUnlocked(false);
             setReviewMode('resume');
         } catch (err) {
             console.error("Failed to load sample report:", err);
@@ -374,36 +378,40 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         const context = getUnlockContext();
         if (!context?.section) return;
 
+        if (!justUnlocked) {
+            // Commit the confirmation notice before measuring the destination.
+            // Its height is part of the restored report's final layout.
+            setJustUnlocked(true);
+            setHighlightSection(context.section);
+            return;
+        }
+
         const sectionMap: Record<UnlockSection, string | null> = {
-            evidence_ledger: "section-evidence-ledger",
-            bullet_upgrades: "section-bullet-upgrades",
-            missing_wins: "section-missing-wins",
-            job_alignment: "section-job-alignment",
+            evidence_ledger: "section-first-impression",
+            bullet_upgrades: "section-fixes",
+            missing_wins: "section-fixes",
+            job_alignment: "section-role",
             export_pdf: null
         };
 
-        setJustUnlocked(true);
-        setHighlightSection(context.section);
-        Analytics.unlockUiRevealed(context.section, Date.now() - context.timestamp);
-
         const targetId = sectionMap[context.section];
-        if (targetId) {
-            setTimeout(() => {
-                const el = document.getElementById(targetId);
-                const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                el?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-            }, 350);
-        }
+        const scrollFrame = requestAnimationFrame(() => {
+            const navigation = document.querySelector<HTMLElement>('[aria-label="Resume report sections"]');
+            if (targetId && !scrollToReportSection(targetId, navigation)) return;
 
-        clearUnlockContext();
+            // A save may replace the restored report before this frame. Cleanup
+            // cancels that attempt; keep its context for the next committed report.
+            clearUnlockContext();
+            Analytics.unlockUiRevealed(context.section, Date.now() - context.timestamp);
+        });
+        return () => cancelAnimationFrame(scrollFrame);
+    }, [hasPaidAccess, report, justUnlocked]);
 
-        const highlightTimer = setTimeout(() => setHighlightSection(null), 3500);
-        const bannerTimer = setTimeout(() => setJustUnlocked(false), 6500);
-        return () => {
-            clearTimeout(highlightTimer);
-            clearTimeout(bannerTimer);
-        };
-    }, [hasPaidAccess, report]);
+    useEffect(() => {
+        if (!highlightSection) return;
+        const timer = setTimeout(() => setHighlightSection(null), 3500);
+        return () => clearTimeout(timer);
+    }, [highlightSection]);
 
     const isSampleReport = sampleParamEnabled || (!skipSample && !resumeText.trim());
 

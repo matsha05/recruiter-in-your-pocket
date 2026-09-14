@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BracketsAngle,
   Check,
+  CircleNotch,
   Copy,
   LockKey,
   MinusCircle,
@@ -11,7 +12,9 @@ import {
 } from "@phosphor-icons/react";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { Button } from "@/components/ui/button";
+import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Input } from "@/components/ui/input";
+import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import { resolveUniqueSourceLine, type VerifiedFact } from "@/lib/llm/source-fidelity";
 import {
   bracketPlaceholderKeys,
@@ -87,8 +90,11 @@ export function FixCanvas({
   const visibleSource = showSourceExcerpt ? evidence : draftSource;
   const [draft, setDraft] = useState(suggestedLine);
   const [editing, setEditing] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const copiedFeedback = useTransientFeedback();
+  const [copiedDraft, setCopiedDraft] = useState<string | null>(null);
+  const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const copyRequest = useRef(0);
   const [factValues, setFactValues] = useState<Record<string, string>>({});
   const [factsApplied, setFactsApplied] = useState(false);
   const [editingOriginal, setEditingOriginal] = useState(false);
@@ -111,6 +117,9 @@ export function FixCanvas({
     verifiedFacts: factsApplied ? verifiedFacts : [],
   }), [draft, factsApplied, resumeText, sourceLocator, verifiedFacts]);
   const traceProgress = copyPolicy.copyable ? 100 : factsApplied ? 82 : allRequiredFactsProvided ? 68 : 50;
+  const copied = copiedFeedback.active && copiedDraft === draft;
+
+  useEffect(() => () => { copyRequest.current += 1; }, []);
 
   useEffect(() => {
     setDraft(suggestedLine);
@@ -122,14 +131,20 @@ export function FixCanvas({
   }, [suggestedLine]);
 
   const handleCopy = async () => {
-    if (!copyPolicy.copyable) return;
+    if (!copyPolicy.copyable || copying) return;
+    const request = ++copyRequest.current;
+    copiedFeedback.reset();
+    setCopyError(false);
+    setCopying(true);
     try {
       await navigator.clipboard.writeText(draft);
-      setCopyError(false);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
+      if (request !== copyRequest.current) return;
+      setCopiedDraft(draft);
+      copiedFeedback.trigger();
     } catch {
-      setCopyError(true);
+      if (request === copyRequest.current) setCopyError(true);
+    } finally {
+      if (request === copyRequest.current) setCopying(false);
     }
   };
 
@@ -285,19 +300,28 @@ export function FixCanvas({
                 </div>
                 {!isSample && (
                   <div className="flex items-center gap-1">
-                    <button type="button" onClick={() => setEditing((current) => !current)} className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-muted-foreground hover:text-foreground">
-                      <PencilSimple className="size-4" /> {editing ? "Done" : "Edit"}
+                    <button type="button" onClick={() => setEditing((current) => !current)} aria-pressed={editing} className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-3 text-xs font-semibold text-muted-foreground transition-colors duration-fast hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none">
+                      <ActionFeedback state={editing ? "editing" : "idle"} announce={false} states={{
+                        idle: { label: "Edit", icon: <PencilSimple className="size-4" /> },
+                        editing: { label: "Done", icon: <Check className="size-4" /> },
+                      }} />
                     </button>
                     <button
                       type="button"
                       onClick={handleCopy}
                       disabled={!copyPolicy.copyable}
-                      aria-disabled={!copyPolicy.copyable}
+                      aria-disabled={!copyPolicy.copyable || copying}
+                      aria-busy={copying || undefined}
                       title={!copyPolicy.copyable ? copyGuidance(copyPolicy.reason) : undefined}
-                      className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
+                      className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-3 text-xs font-semibold text-brand transition-colors duration-fast hover:text-brand/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-busy:cursor-wait disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70 motion-reduce:transition-none"
                     >
-                      {!copyPolicy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                      {!copyPolicy.copyable ? (copyPolicy.reason === "source_unavailable" ? "Original resume needed" : "Verify facts to copy") : copied ? "Copied" : "Copy"}
+                      {!copyPolicy.copyable ? <><BracketsAngle className="size-4" aria-hidden="true" />{copyPolicy.reason === "source_unavailable" ? "Original resume needed" : "Verify facts to copy"}</> : (
+                        <ActionFeedback state={copying ? "pending" : copied ? "success" : "idle"} states={{
+                          idle: { label: "Copy", icon: <Copy className="size-4" /> },
+                          pending: { label: "Copying", icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
+                          success: { label: "Copied", icon: <Check className="size-4" weight="bold" /> },
+                        }} />
+                      )}
                     </button>
                   </div>
                 )}

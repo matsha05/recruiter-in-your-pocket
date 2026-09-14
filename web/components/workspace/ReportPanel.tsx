@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, BookmarkSimple, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
+import { ArrowRight, BookmarkSimple, CircleNotch, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DownloadIcon } from "@/components/ui/download";
@@ -16,6 +16,8 @@ import { Analytics } from "@/lib/analytics";
 import { redactReport } from "@/lib/redaction";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { Button } from "@/components/ui/button";
+import { ActionFeedback } from "@/components/ui/action-feedback";
+import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -189,7 +191,7 @@ export default function ReportPanel({
                                     aria-live="polite"
                                     className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm leading-6 text-muted-foreground"
                                 >
-                                    <span className="mt-2 size-1.5 shrink-0 animate-pulse rounded-full bg-brand" aria-hidden="true" />
+                                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand motion-safe:animate-pulse" aria-hidden="true" />
                                     <p><span className="font-medium text-foreground">Still building your report.</span> You can start reading now; the remaining sections will fill in as they arrive.</p>
                                 </div>
                             )}
@@ -268,11 +270,17 @@ export default function ReportPanel({
                                         <button type="button"
                                             onClick={handleExport}
                                             disabled={isExporting}
+                                            aria-busy={isExporting || undefined}
                                             aria-label={isExporting ? "Exporting report as PDF" : "Export report as PDF"}
                                             className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
                                         >
-                                            <DownloadIcon size={16} />
-                                            <span className="hidden sm:inline">{isExporting ? "Exporting..." : "Export PDF"}</span>
+                                            <ActionFeedback
+                                                state={isExporting ? "pending" : "idle"}
+                                                states={{
+                                                    idle: { label: <span className="hidden sm:inline">Export PDF</span>, icon: <DownloadIcon size={16} /> },
+                                                    pending: { label: <span className="hidden sm:inline">Exporting...</span>, icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
+                                                }}
+                                            />
                                         </button>
                                     )}
                                     {!isStreaming && shareEnabled && !shareMode && !isSample && (
@@ -291,7 +299,7 @@ export default function ReportPanel({
                             {/* Unlock Banner */}
                             {justUnlocked && report && !shareMode && (
                                 <UnlockBanner
-                                    reportId={report.id || 'current'}
+                                    reportId={buildPdfExportRequest(report)?.report_id || report.id}
                                     onJumpToRewrites={() => {
                                         const el = document.getElementById('section-fixes');
                                         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

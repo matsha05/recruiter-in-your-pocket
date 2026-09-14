@@ -29,6 +29,7 @@ import { ClientActionError, getClientActionError } from "@/lib/client-action-err
 import { getPassStatus, getPassStatusLabel, getTierLabel, isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { ActionFeedback } from "@/components/ui/action-feedback";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import {
     Dialog,
@@ -553,7 +554,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             key={id}
                             href={href}
                             className={cn(
-                                "focus-ring relative flex min-h-12 shrink-0 items-center gap-2 rounded-t-lg border-b-2 px-4 py-3 text-sm font-medium transition-colors duration-150",
+                                "focus-ring relative flex min-h-12 shrink-0 items-center gap-2 rounded-t-lg border-b-2 px-4 py-3 text-sm font-medium transition-colors",
                                 activeTab === id
                                     ? "border-brand bg-brand/5 text-brand"
                                     : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -568,7 +569,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                 <div className="space-y-8">
                     {activeTab === "account" && (
-                        <div className="space-y-8 animate-in fade-in duration-200">
+                        <div className="space-y-8 ui-state-enter">
                             <section className="app-card p-6">
                                 <h2 className="mb-6 text-lg font-medium text-foreground">Profile</h2>
                                 <div className="flex flex-col items-start gap-6 sm:flex-row">
@@ -591,6 +592,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 />
                                                 <button
                                                     type="submit"
+                                                    aria-busy={profileForm.formState.isSubmitting}
                                                     disabled={
                                                         profileForm.formState.isSubmitting ||
                                                         !displayNameValue.trim() ||
@@ -598,8 +600,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                     }
                                                     className="focus-ring flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-40"
                                                 >
-                                                    {profileForm.formState.isSubmitting && <Loader2 className="size-3 animate-spin" />}
-                                                    Save
+                                                    <ActionFeedback state={profileForm.formState.isSubmitting ? "pending" : "idle"} states={{ idle: { label: "Save" }, pending: { label: "Saving…", icon: <Loader2 className="size-3 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                                 </button>
                                             </div>
                                         </form>
@@ -620,9 +621,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     <button type="button"
                                         onClick={handleExportData}
                                         disabled={isExportingData}
+                                        aria-busy={isExportingData}
                                         className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-input bg-card px-5 py-2 text-sm font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
                                     >
-                                        {isExportingData ? "Exporting…" : "Export data"}
+                                        <ActionFeedback state={isExportingData ? "pending" : "idle"} states={{ idle: { label: "Export data" }, pending: { label: "Preparing export…" } }} />
                                     </button>
                                 </div>
                             </section>
@@ -637,9 +639,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <button type="button"
                                             onClick={() => setIsDeleteConfirmOpen(true)}
                                             disabled={isDeletingAccount}
+                                            aria-busy={isDeletingAccount}
                                             className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
                                         >
-                                            {isDeletingAccount ? "Deleting…" : "Delete"}
+                                            <ActionFeedback state={isDeletingAccount ? "pending" : "idle"} states={{ idle: { label: "Delete" }, pending: { label: "Deleting…" } }} />
                                         </button>
                                     </div>
                                 </div>
@@ -648,7 +651,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "matching" && (
-                        <div className="space-y-6 animate-in fade-in duration-200">
+                        <div className="space-y-6 ui-state-enter">
                             <div className="mb-2">
                                 <h2 className="text-lg font-medium text-foreground">Job Matching</h2>
                                 <p className="text-sm text-muted-foreground mt-1">
@@ -663,7 +666,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "billing" && (
-                        <div className="space-y-10 animate-in fade-in duration-200">
+                        <div className="space-y-10 ui-state-enter">
                             <section className="app-card space-y-4 p-6">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                     <div className="space-y-2">
@@ -696,27 +699,19 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <button type="button"
                                             onClick={handleRestoreAccess}
                                             disabled={isRestoreLoading}
+                                            aria-busy={isRestoreLoading}
                                             className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input px-4 py-2 text-sm font-medium transition-colors hover:bg-paper-muted disabled:opacity-50"
                                         >
-                                            {isRestoreLoading ? (
-                                                <Loader2 className="size-4 animate-spin" />
-                                            ) : (
-                                                <RefreshCw className="size-4" />
-                                            )}
-                                            Restore Access
+                                            <ActionFeedback state={isRestoreLoading ? "pending" : "idle"} states={{ idle: { label: "Restore Access", icon: <RefreshCw className="size-4" /> }, pending: { label: "Checking access…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                         </button>
                                         {(user?.membership === "monthly" || user?.membership === "lifetime") && (
                                             <button type="button"
                                                 onClick={handleOpenBillingPortal}
                                                 disabled={isPortalLoading}
+                                                aria-busy={isPortalLoading}
                                                 className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
                                             >
-                                                {isPortalLoading ? (
-                                                    <Loader2 className="size-4 animate-spin" />
-                                                ) : (
-                                                    <ExternalLink className="size-4" />
-                                                )}
-                                                Manage legacy plan
+                                                <ActionFeedback state={isPortalLoading ? "pending" : "idle"} states={{ idle: { label: "Manage legacy plan", icon: <ExternalLink className="size-4" /> }, pending: { label: "Opening billing…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                             </button>
                                         )}
                                     </div>
@@ -752,7 +747,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="app-card overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
-                                            <Loader2 className="size-4 animate-spin" /> Loading…
+                                            <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
                                         </div>
                                     ) : passesError ? (
                                         <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
@@ -829,15 +824,16 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             void refetchReceipts();
                                         }}
                                         disabled={loadingReceipts}
+                                        aria-busy={loadingReceipts}
                                         className="focus-ring min-h-11 rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted disabled:opacity-50"
                                     >
-                                        {loadingReceipts ? "Loading…" : "Refresh"}
+                                        <ActionFeedback state={loadingReceipts ? "pending" : "idle"} states={{ idle: { label: "Refresh" }, pending: { label: "Loading…" } }} />
                                     </button>
                                 </div>
                                 <div className="app-card overflow-hidden">
                                     {loadingReceipts ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
-                                            <Loader2 className="size-4 animate-spin" /> Loading…
+                                            <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
                                         </div>
                                     ) : receiptsError ? (
                                         <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
@@ -932,10 +928,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <button
                                     type="submit"
                                     disabled={!guestEmailValue.trim() || !!isCheckoutLoading}
+                                    aria-busy={!!isCheckoutLoading}
                                     className="focus-ring flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
                                 >
-                                    {isCheckoutLoading && <Loader2 className="size-4 animate-spin" />}
-                                    Continue to Checkout
+                                    <ActionFeedback state={isCheckoutLoading ? "pending" : "idle"} states={{ idle: { label: "Continue to Checkout" }, pending: { label: "Opening checkout…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                 </button>
                             </form>
                             <button type="button" onClick={() => setShowEmailInput(null)} className="focus-ring min-h-11 w-full rounded-full text-sm text-muted-foreground hover:text-foreground">

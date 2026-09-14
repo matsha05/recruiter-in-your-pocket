@@ -5,7 +5,7 @@ import { ClientActionError, getClientActionError } from "@/lib/client-action-err
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { ArrowRight, FileText, Loader2, Pencil, Trash2, X } from "lucide-react";
+import { ArrowRight, FileText, Pencil, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { EmptyReportIcon } from "@/components/icons";
@@ -175,9 +175,9 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                       <Button
                         type="button"
                         onClick={() => void saveRename(report)}
-                        disabled={savingId === report.id}
+                        isLoading={savingId === report.id}
+                        loadingLabel="Saving…"
                       >
-                        {savingId === report.id ? <Loader2 className="mr-2 size-4 animate-spin" aria-hidden="true" /> : null}
                         Save
                       </Button>
                       <Button

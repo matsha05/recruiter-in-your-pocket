@@ -12,7 +12,7 @@ export function MineralHero() {
                     <p className={styles.eyebrow}>AI feedback. Real recruiting experience.</p>
                     <h1 id="mineral-hero-title">You did the work.<br />Let&rsquo;s dial in<br /><span className={styles.lastLine}>your story.</span></h1>
                     <p className={styles.deck}>Get a thorough, honest, and actionable resume diagnostic, shaped by real recruiting experience.</p>
-                    <Link href="/workspace" className={styles.primary} data-testid="landing-primary-cta">Get your free report <ArrowRight aria-hidden="true" /></Link>
+                    <Link href="/workspace" className={styles.primary} data-testid="landing-primary-cta" data-analytics-cta="hero_report">Get your free report <ArrowRight aria-hidden="true" /></Link>
                     <p className={styles.free}>No account required. Your resume is private and secure.</p>
                 </div>
                 <div className={styles.visual}>

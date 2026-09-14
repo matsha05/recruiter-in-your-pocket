@@ -16,6 +16,7 @@ const PRICING_PATH = `/pricing?returnTo=${encodeURIComponent(REVISION_PATH)}`;
 const SESSION_ID = "cs_test_revision_return";
 const CONFIRMED_PATH = `/purchase/confirmed?session_id=${SESSION_ID}&tier=30d&returnTo=${encodeURIComponent(REVISION_PATH)}`;
 let harnessScript = "";
+let harnessStyles = "";
 
 async function buildCheckoutHarness() {
   const mocks: Record<string, string> = {
@@ -53,7 +54,7 @@ async function buildCheckoutHarness() {
       loader: "tsx", resolveDir: WEB_ROOT, sourcefile: "checkout-revision-return-harness.tsx",
     },
     bundle: true, write: false, platform: "browser", format: "iife", jsx: "automatic",
-    loader: { ".css": "empty", ".module.css": "empty" },
+    outdir: "/tmp/riyp-checkout-revision-return-bundle",
     define: {
       "process.env.NODE_ENV": JSON.stringify("test"),
       "process.env": JSON.stringify({ NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true" }),
@@ -70,13 +71,14 @@ async function buildCheckoutHarness() {
       },
     }],
   });
-  harnessScript = result.outputFiles[0].text;
+  harnessScript = result.outputFiles.find((file: { path: string }) => file.path.endsWith(".js")).text;
+  harnessStyles = result.outputFiles.find((file: { path: string }) => file.path.endsWith(".css"))?.text || "";
 }
 
 async function installCheckoutHarness(page: Page) {
   // The pricing, confirmation, restoration, payment polling hook, and action
   // links are the production components. Only Next, auth, analytics, and HTTP
-  // are mocked; stylesheet imports are omitted from this behavioral harness.
+  // are mocked; component styles are emitted and included with the harness.
   // This suite needs no app server, app build, account, or purchase.
   await page.route("**/*", async (route) => {
     const url = new URL(route.request().url());
@@ -86,7 +88,7 @@ async function installCheckoutHarness(page: Page) {
     }
     if (["/pricing", "/purchase/confirmed", "/purchase/restore"].includes(url.pathname)) {
       return route.fulfill({ contentType: "text/html; charset=utf-8", body: `<!doctype html><html><head><meta charset="utf-8">
-        <title>Checkout revision return — browser contract</title><style>
+        <title>Checkout revision return — browser contract</title><style>${harnessStyles}
           body { font: 16px system-ui; margin: 24px; } #root { max-width: 1050px; margin: auto; }
           button, input { padding: 8px; margin: 4px; } button { cursor: pointer; }
           svg { width: 20px; height: 20px; } a { display: inline-block; margin: 4px; }
@@ -228,6 +230,8 @@ test.describe("saved-report checkout return", () => {
     await setUser(page, "free");
     await page.route("**/api/billing/restore", (route) => route.fulfill({ json: { ok: true, restored: 1, message: "Purchase access restored." } }));
     await page.goto(`${ORIGIN}${RESTORE_PATH}`);
+    const feedback = page.getByRole("button", { name: "Restore access", exact: true }).locator("[data-feedback-state]");
+    await expect(feedback.locator(":scope > span:visible"), "Only the current action label is visible; sizing copies retain their component CSS").toHaveCount(1);
     await page.getByRole("button", { name: "Restore access", exact: true }).click();
     await expect(page.getByRole("status").filter({ hasText: "Purchase access restored." })).toBeVisible();
     await expect(page.getByRole("link", { name: "Back to my comparison", exact: true })).toHaveAttribute("href", REVISION_PATH);

@@ -73,7 +73,7 @@ test("a stalled texture optimization cannot block controls or reset them when it
 test("leaving during artwork loading does not mount controls on the next page", async ({ page }) => {
     let releaseArtwork!: () => void;
     const artworkGate = new Promise<void>(resolve => { releaseArtwork = resolve; });
-    await page.route("**/assets/instrument/clean-plate.v1.webp", async route => {
+    await page.route("**/assets/instrument/clean-plate.v2.webp", async route => {
         await artworkGate;
         // A route may already be cancelled by the time client navigation ends.
         await route.continue().catch(() => {});

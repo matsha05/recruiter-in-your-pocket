@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { m as motion, useReducedMotion, HTMLMotionProps } from "motion/react"
+import { m as motion, HTMLMotionProps } from "motion/react"
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils"
-import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
+import { CARD_HOVER, CARD_TAP, INSTANT_TRANSITION } from "@/lib/animation"
 
 /** Alpine structural sheet. Prefer open layout unless grouping changes meaning. */
 const Card = React.forwardRef<
@@ -42,6 +43,7 @@ const CardInteractive = React.forwardRef<HTMLDivElement, CardInteractiveProps>(
                     "cursor-pointer",
                     className
                 )}
+                animate={prefersReducedMotion ? { y: 0, transition: INSTANT_TRANSITION } : undefined}
                 whileHover={prefersReducedMotion ? undefined : CARD_HOVER}
                 whileTap={prefersReducedMotion ? undefined : CARD_TAP}
                 {...props}

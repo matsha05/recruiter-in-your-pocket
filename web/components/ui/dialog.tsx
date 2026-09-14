@@ -3,10 +3,8 @@
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
-import { m as motion, AnimatePresence, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { MODAL_OVERLAY_VARIANTS, MODAL_CONTENT_VARIANTS } from "@/lib/animation"
 
 const Dialog = DialogPrimitive.Root
 
@@ -16,40 +14,19 @@ const DialogPortal = DialogPrimitive.Portal
 
 const DialogClose = DialogPrimitive.Close
 
-/**
- * DialogOverlay with Framer Motion fade
- */
+/** Radix retains the layer until its CSS exit animation completes. */
 const DialogOverlay = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Overlay>,
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => {
-    const prefersReducedMotion = useReducedMotion();
-
-    return (
-        <DialogPrimitive.Overlay
-            ref={ref}
-            className={cn(
-                "fixed inset-0 z-50 bg-black/40",
-                className
-            )}
-            asChild
-            {...props}
-        >
-            <motion.div
-                variants={prefersReducedMotion ? {} : MODAL_OVERLAY_VARIANTS}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-            />
-        </DialogPrimitive.Overlay>
-    );
-})
+>(({ className, ...props }, ref) => (
+    <DialogPrimitive.Overlay
+        ref={ref}
+        className={cn("riyp-overlay-motion fixed inset-0 z-50 bg-black/40", className)}
+        {...props}
+    />
+))
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
-/**
- * DialogContent with Framer Motion spring physics
- * Per motion-primitives.md: Spring enter, quick fade exit
- */
 interface DialogContentProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
     /** Optionally disable motion (for nested dialogs or special cases) */
     disableMotion?: boolean;
@@ -59,9 +36,6 @@ const DialogContent = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Content>,
     DialogContentProps
 >(({ className, children, disableMotion = false, ...props }, ref) => {
-    const prefersReducedMotion = useReducedMotion();
-    const shouldAnimate = !disableMotion && !prefersReducedMotion;
-
     return (
         <DialogPortal>
             <DialogOverlay />
@@ -69,23 +43,16 @@ const DialogContent = React.forwardRef<
                 ref={ref}
                 className={cn(
                     "fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-2xl border border-line bg-card p-6 shadow-sheet md:rounded-sheet",
+                    !disableMotion && "riyp-dialog-motion",
                     className
                 )}
-                asChild
                 {...props}
             >
-                <motion.div
-                    variants={shouldAnimate ? MODAL_CONTENT_VARIANTS : {}}
-                    initial={shouldAnimate ? "hidden" : false}
-                    animate="visible"
-                    exit="exit"
-                >
-                    {children}
-                    <DialogPrimitive.Close className="absolute right-1.5 top-1.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                        <X className="size-5" />
-                        <span className="sr-only">Close</span>
-                    </DialogPrimitive.Close>
-                </motion.div>
+                {children}
+                <DialogPrimitive.Close className="absolute right-1.5 top-1.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity duration-fast ease-snap hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                    <X className="size-5" />
+                    <span className="sr-only">Close</span>
+                </DialogPrimitive.Close>
             </DialogPrimitive.Content>
         </DialogPortal>
     );

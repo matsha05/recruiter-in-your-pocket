@@ -4,6 +4,8 @@ import { m as motion, useAnimation } from "motion/react";
 import type { HTMLAttributes } from "react";
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 
+import { INSTANT_TRANSITION, UI_TRANSITION } from "@/lib/animation";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 export interface SettingsIconHandle {
@@ -18,6 +20,7 @@ interface SettingsIconProps extends HTMLAttributes<HTMLDivElement> {
 const SettingsIcon = forwardRef<SettingsIconHandle, SettingsIconProps>(
   ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
     const controls = useAnimation();
+    const reducedMotion = useReducedMotion();
     const isControlledRef = useRef(false);
 
     useImperativeHandle(ref, () => {
@@ -59,20 +62,20 @@ const SettingsIcon = forwardRef<SettingsIconHandle, SettingsIconProps>(
         {...props}
       >
         <motion.svg
-          animate={controls}
+          animate={reducedMotion ? { rotate: 0, transition: INSTANT_TRANSITION } : controls}
           fill="none"
           height={size}
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          transition={{ type: "spring", stiffness: 50, damping: 10 }}
-          variants={{
+          transition={UI_TRANSITION}
+          variants={reducedMotion ? {} : {
             normal: {
               rotate: 0,
             },
             animate: {
-              rotate: 180,
+              rotate: 30,
             },
           }}
           viewBox="0 0 24 24"

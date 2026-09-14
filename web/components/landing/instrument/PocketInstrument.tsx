@@ -77,12 +77,12 @@ export function PocketInstrument() {
         <div className={styles.instrument} data-testid="pocket-instrument" data-status={status} data-mode={state.mode ?? "home"} data-stage={state.stage} data-powered={state.powered}>
             <div className={styles.stage} ref={stageRef} data-testid="instrument-stage" role="group" aria-label="Interactive sample resume review" aria-describedby={`${id}-instructions`}>
                 <div className={styles.placeholder} aria-hidden="true">
-                    <Image ref={plateRef} src="/assets/instrument/clean-plate.v1.webp" alt="" width={1536} height={1024} priority unoptimized className={styles.plate} />
+                    <Image ref={plateRef} src="/assets/instrument/clean-plate.v2.webp" alt="" width={1536} height={1024} priority unoptimized className={styles.plate} />
                 </div>
             </div>
             <p id={`${id}-instructions`} className="sr-only">Story, Impact, and Fit choose a focus. Press the selected key again to return Home. The dial changes between the resume, a recruiter’s read, and the next move. The brass side switch controls power. Open Read at full size for the same feedback in larger text.</p>
             <div className={status === "failed" ? styles.caption : "sr-only"}><p>{status === "failed" ? "Explore a sample of the feedback below." : hint}</p></div>
-            <details className={styles.example} open={expanded || status === "failed"} onToggle={event => setExpanded(event.currentTarget.open)}>
+            <details className={`${styles.example} ui-disclosure`} open={expanded || status === "failed"} onToggle={event => setExpanded(event.currentTarget.open)}>
                 <summary>Read at full size <span aria-hidden="true">+</span></summary>
                 <div className={styles.readable}>
                     <p className={styles.disclosure}>Fictional example · Customer success</p>
@@ -105,7 +105,7 @@ export function PocketInstrument() {
                         {mode.jobRequirementVisible && !home && <p className={styles.job}><strong>Sample role</strong>{content.sample.jobRequirement.text}</p>}
                         {home ? <><p className={styles.label}>After</p><h3 className={styles.revision}>{content.home.revision}</h3><p>{view.body}</p></> : state.stage === "paper" ? <p className={styles.sourceContext}>{mode.sourceContext}</p> : <><h3>{view.title}</h3><p>{view.body}</p></>}
                     </div>
-                    <details className={styles.facts}>
+                    <details className={`${styles.facts} ui-disclosure`}>
                         <summary>See the facts behind this advice <span aria-hidden="true">+</span></summary>
                         <p>Background supplied with this fictional resume:</p>
                         <ul>{content.sample.sourceFacts.filter(fact => mode.sourceFactIds.includes(fact.id)).map(fact => <li key={fact.id}>{fact.text}</li>)}</ul>

@@ -1,0 +1,56 @@
+.root {
+  display: inline-grid;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.reserve,
+.current {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.reserve {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.reserve * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  min-width: 0;
+}
+
+/* Status text updates immediately; only its visual settling is animated. */
+.root[data-feedback-state="success"] .current,
+.root[data-feedback-state="copied"] .current,
+.root[data-feedback-state="saved"] .current {
+  animation: feedback-settle var(--duration-fast, 140ms) var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+@keyframes feedback-settle {
+  from { opacity: 0.7; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .current { animation: none !important; }
+}

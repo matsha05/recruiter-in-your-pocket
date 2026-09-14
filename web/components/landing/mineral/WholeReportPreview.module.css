@@ -83,7 +83,7 @@
 .introLink > svg {
     width: 17px;
     height: 17px;
-    transition: transform 180ms ease;
+    transition: transform var(--duration-normal) var(--ease);
 }
 
 .introLink:hover > svg { transform: translateX(3px); }
@@ -419,7 +419,7 @@
     line-height: 1.45;
     text-align: left;
     cursor: pointer;
-    transition: background 180ms ease, color 180ms ease;
+    transition: background var(--duration-normal) var(--ease), color var(--duration-normal) var(--ease);
 }
 
 .priorityButton:last-child {
@@ -433,7 +433,7 @@
     width: 2px;
     background: var(--report-cyan);
     transform: scaleY(0);
-    transition: transform 180ms ease;
+    transition: transform var(--duration-normal) var(--ease);
 }
 
 .priorityButton:hover {
@@ -463,7 +463,7 @@
     align-self: center;
     opacity: 0;
     transform: translateX(-4px);
-    transition: transform 180ms ease, opacity 180ms ease;
+    transition: transform var(--duration-normal) var(--ease), opacity var(--duration-normal) var(--ease);
 }
 
 .priorityButton[aria-selected="true"] .priorityArrow,
@@ -482,7 +482,7 @@
 
 .detailPanel {
     min-height: 26rem;
-    animation: detailReveal 230ms ease both;
+    animation: detailReveal var(--duration-fast) var(--ease);
 }
 
 .detailPanel[hidden] {
@@ -589,7 +589,7 @@
 
 .sampleLink svg,
 .primaryLink svg {
-    transition: transform 180ms ease;
+    transition: transform var(--duration-normal) var(--ease);
     flex-shrink: 0;
 }
 
@@ -639,7 +639,7 @@
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background 180ms ease;
+    transition: background var(--duration-normal) var(--ease);
 }
 
 .primaryLink:hover {
@@ -694,8 +694,8 @@
 }
 
 @keyframes detailReveal {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0.7; }
+    to { opacity: 1; }
 }
 
 @media (max-width: 1050px) {
@@ -779,7 +779,7 @@
     .reportContext { font-size: 0.75rem; }
     .reportMark { font-size: 32px; }
     .overviewToggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 60px; padding: 16px 20px; font-size: 14px; font-weight: 600; text-align: left; }
-    .overviewToggle > svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .overviewToggle > svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform var(--duration-normal) var(--ease); }
     .overviewToggle:focus-visible { outline: 2px solid var(--report-cyan); outline-offset: -4px; }
     .overviewGroup[data-expanded="false"] .overview { display: none; }
     .overviewGroup[data-expanded="true"] .overviewToggle > svg { transform: rotate(180deg); }

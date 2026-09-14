@@ -159,7 +159,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
+              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles optional product analytics after you allow it. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
             },
           ],
         ],
@@ -171,7 +171,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can delete individual reports from Reports. In Settings, you can export your account data or permanently delete your account. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
+              value: "Use Privacy choices in the footer to allow or decline optional analytics. Declining does not affect your report or account. We remember your choice in this browser. Withdrawing permission stops future analytics and clears its local identifiers and queued events; it does not delete events already received by Mixpanel. Essential storage still supports sign-in, free-report eligibility, and your privacy choice. You can delete individual reports from Reports. In Settings, you can export your account data or permanently delete your account. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
             },
           ],
         ],

@@ -1,8 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { CaretDown, CaretUp, X } from "@phosphor-icons/react";
+import { CaretDown, X } from "@phosphor-icons/react";
 import type { OfferData } from "@/lib/compensation-model";
 import {
   formatCurrency,
@@ -12,6 +11,7 @@ import {
 } from "@/lib/compensation-model";
 import { offerName, offerStyle } from "./presentation";
 import styles from "../GuidePresentation";
+import motionStyles from "./CompCalculatorMotion.module.css";
 
 type NumberInputProps = {
   label: string;
@@ -86,7 +86,7 @@ function VestingEditor({ schedule, onChange, readOnly }: {
   const valid = isVestingScheduleValid(schedule);
 
   return (
-    <div className="space-y-2">
+    <div>
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -96,38 +96,40 @@ function VestingEditor({ schedule, onChange, readOnly }: {
       >
         <span className={styles.label}>Vesting</span>
         <span className="font-medium text-foreground">{schedule.join(" / ")}</span>
-        {open ? <CaretUp aria-hidden="true" className="size-3" weight="bold" /> : <CaretDown aria-hidden="true" className="size-3" weight="bold" />}
+        <CaretDown aria-hidden="true" className={`size-3 ${motionStyles.chevron}`} data-open={open} weight="bold" />
       </button>
-      {open ? (
-        <div id={panelId} className={`${styles.inset} grid grid-cols-2 gap-3 p-4 sm:grid-cols-4`}>
-          {[1, 2, 3, 4].map((year, index) => {
-            const inputId = `${panelId}-year-${year}`;
-            return (
-              <div key={year} className="space-y-1">
-                <label htmlFor={inputId} className={`${styles.label} text-muted-foreground`}>Year {year} %</label>
-                <input
-                  id={inputId}
-                  type="number"
-                  value={schedule[index] ?? 0}
-                  min={0}
-                  max={100}
-                  step="any"
-                  readOnly={readOnly}
-                  aria-invalid={!valid}
-                  aria-describedby={!valid ? errorId : undefined}
-                  onChange={(event) => {
-                    const next = [...schedule];
-                    next[index] = Number.parseFloat(event.target.value) || 0;
-                    onChange(next);
-                  }}
-                  className={`${styles.field} px-2 py-2 text-center text-sm tabular-nums`}
-                />
-              </div>
-            );
-          })}
-          {!valid ? <p id={errorId} role="alert" className="col-span-2 border-l-2 border-warning pl-3 text-data text-warning-foreground sm:col-span-4">The four years must total 100%. Current total: {total}%.</p> : null}
+      <div id={panelId} className={motionStyles.disclosure} data-open={open} inert={!open} aria-hidden={!open}>
+        <div className={motionStyles.disclosureClip}>
+          <div className={`${styles.inset} mt-2 grid grid-cols-2 gap-3 p-4 sm:grid-cols-4`}>
+            {[1, 2, 3, 4].map((year, index) => {
+              const inputId = `${panelId}-year-${year}`;
+              return (
+                <div key={year} className="space-y-1">
+                  <label htmlFor={inputId} className={`${styles.label} text-muted-foreground`}>Year {year} %</label>
+                  <input
+                    id={inputId}
+                    type="number"
+                    value={schedule[index] ?? 0}
+                    min={0}
+                    max={100}
+                    step="any"
+                    readOnly={readOnly}
+                    aria-invalid={!valid}
+                    aria-describedby={!valid ? errorId : undefined}
+                    onChange={(event) => {
+                      const next = [...schedule];
+                      next[index] = Number.parseFloat(event.target.value) || 0;
+                      onChange(next);
+                    }}
+                    className={`${styles.field} px-2 py-2 text-center text-sm tabular-nums`}
+                  />
+                </div>
+              );
+            })}
+            {!valid ? <p id={errorId} role="alert" className="col-span-2 border-l-2 border-warning pl-3 text-data text-warning-foreground sm:col-span-4">The four years must total 100%. Current total: {total}%.</p> : null}
+          </div>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }
@@ -152,38 +154,40 @@ function AdvancedOptions({ offer, onChange, readOnly }: {
         aria-controls={panelId}
         className="focus-ring flex min-h-12 flex-wrap items-center gap-2 rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        {open ? <CaretUp aria-hidden="true" className="size-3.5" weight="bold" /> : <CaretDown aria-hidden="true" className="size-3.5" weight="bold" />}
+        <CaretDown aria-hidden="true" className={`size-3.5 ${motionStyles.chevron}`} data-open={open} weight="bold" />
         <span className="font-medium">Advanced assumptions</span>
         {hasAdvanced && !open ? <span className={`${styles.label} rounded-full bg-accent px-2.5 py-1 text-brand`}>Changed</span> : null}
       </button>
-      {open ? (
-        <div id={panelId} className="space-y-6 pt-4">
-          <NumberInput label="Relocation payment" value={offer.relocationBonus} onChange={(value) => onChange({ ...offer, relocationBonus: value })} readOnly={readOnly} />
-          <div className="space-y-3">
-            <div className="flex items-center justify-between gap-4">
-              <label htmlFor={growthId} className={`${styles.label} text-muted-foreground`}>Modeled annual equity growth</label>
-              {!readOnly && offer.stockGrowth !== 0 ? <button type="button" onClick={() => onChange({ ...offer, stockGrowth: 0 })} className="focus-ring min-h-11 rounded-md px-2 text-xs font-semibold text-foreground">Reset</button> : null}
+      <div id={panelId} className={motionStyles.disclosure} data-open={open} inert={!open} aria-hidden={!open}>
+        <div className={motionStyles.disclosureClip}>
+          <div className="space-y-6 pt-4">
+            <NumberInput label="Relocation payment" value={offer.relocationBonus} onChange={(value) => onChange({ ...offer, relocationBonus: value })} readOnly={readOnly} />
+            <div className="space-y-3">
+              <div className="flex items-center justify-between gap-4">
+                <label htmlFor={growthId} className={`${styles.label} text-muted-foreground`}>Modeled annual equity growth</label>
+                {!readOnly && offer.stockGrowth !== 0 ? <button type="button" onClick={() => onChange({ ...offer, stockGrowth: 0 })} className="focus-ring min-h-11 rounded-md px-2 text-xs font-semibold text-foreground">Reset</button> : null}
+              </div>
+              <input
+                id={growthId}
+                type="range"
+                min="-20"
+                max="30"
+                value={offer.stockGrowth}
+                disabled={readOnly}
+                aria-describedby={growthHintId}
+                onChange={(event) => onChange({ ...offer, stockGrowth: Number.parseInt(event.target.value, 10) })}
+                className="h-2 w-full cursor-pointer appearance-none rounded-full bg-input accent-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:cursor-default disabled:opacity-60"
+              />
+              <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+                <span>-20%</span>
+                <output htmlFor={growthId} className="text-lg font-medium tabular-nums text-foreground">{offer.stockGrowth > 0 ? "+" : ""}{offer.stockGrowth}% per year</output>
+                <span>+30%</span>
+              </div>
+              <p id={growthHintId} className="text-data text-muted-foreground">Applied to the entered grant value after year one. This is an assumption, not a forecast.</p>
             </div>
-            <input
-              id={growthId}
-              type="range"
-              min="-20"
-              max="30"
-              value={offer.stockGrowth}
-              disabled={readOnly}
-              aria-describedby={growthHintId}
-              onChange={(event) => onChange({ ...offer, stockGrowth: Number.parseInt(event.target.value, 10) })}
-              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-input accent-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:cursor-default disabled:opacity-60"
-            />
-            <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
-              <span>-20%</span>
-              <output htmlFor={growthId} className="text-lg font-medium tabular-nums text-foreground">{offer.stockGrowth > 0 ? "+" : ""}{offer.stockGrowth}% per year</output>
-              <span>+30%</span>
-            </div>
-            <p id={growthHintId} className="text-data text-muted-foreground">Applied to the entered grant value after year one. This is an assumption, not a forecast.</p>
           </div>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }
@@ -196,17 +200,13 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
   canRemove: boolean;
   readOnly: boolean;
 }) {
-  const reduceMotion = useReducedMotion();
   const style = offerStyle(offer);
   const name = offerName(offer, index);
   const total = getFourYearTotal(offer);
   const valid = offerHasValidVesting(offer);
 
   return (
-    <motion.section
-      layout={!reduceMotion}
-      initial={reduceMotion ? false : { y: 8 }}
-      animate={{ y: 0 }}
+    <section
       aria-label={`${name} details`}
       className={`${styles.sheet} relative p-5 sm:p-6`}
     >
@@ -248,6 +248,6 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
         <span className={`${styles.label} text-muted-foreground`}>Modeled four-year value</span>
         <span className={`text-report-title tabular-nums ${style.text}`}>{valid ? formatCurrency(total) : "Fix vesting"}</span>
       </div>
-    </motion.section>
+    </section>
   );
 }

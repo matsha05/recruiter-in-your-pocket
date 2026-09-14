@@ -114,7 +114,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   return (
     <details
       id="section-full-notes"
-      className="group scroll-mt-36 border-b border-line"
+      className="ui-disclosure group scroll-mt-36 border-b border-line"
       data-testid="full-recruiter-notes"
     >
       <summary className="flex min-h-24 cursor-pointer list-none items-center justify-between gap-6 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4 focus-visible:ring-offset-paper [&::-webkit-details-marker]:hidden">
@@ -123,7 +123,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
           <span role="heading" aria-level={2} className={`${styles.sectionTitle} mt-2 block`}>Full recruiter notes</span>
           <span className="mt-2 block text-base text-muted-foreground">Section feedback, role details, and a plan for your revision.</span>
         </span>
-        <CaretDown className="size-5 shrink-0 text-brand transition-transform group-open:rotate-180" aria-hidden="true" />
+        <CaretDown className="size-5 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
       </summary>
 
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">

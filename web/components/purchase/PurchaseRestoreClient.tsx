@@ -7,7 +7,6 @@ import {
   ArrowClockwise,
   ArrowRight,
   ArrowSquareOut,
-  CircleNotch,
   Receipt,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
@@ -190,16 +189,16 @@ export default function PurchaseRestoreClient() {
                   </>
                 ) : (
                   <>
-                    <Button type="button" variant="brand" size="lg" onClick={handleRestore} disabled={isRestoring}>
-                      {isRestoring ? <CircleNotch className="size-4 animate-spin" weight="bold" /> : <ArrowClockwise className="size-4" weight="bold" />}
+                    <Button type="button" variant="brand" size="lg" onClick={handleRestore} isLoading={isRestoring} loadingLabel="Checking access…">
+                      <ArrowClockwise className="size-4" weight="bold" />
                       Restore access
                     </Button>
-                    <Button type="button" variant="outline" size="lg" onClick={handleOpenPortal} disabled={isPortalLoading}>
-                      {isPortalLoading ? <CircleNotch className="size-4 animate-spin" weight="bold" /> : <ArrowSquareOut className="size-4" weight="bold" />}
+                    <Button type="button" variant="outline" size="lg" onClick={handleOpenPortal} isLoading={isPortalLoading} loadingLabel="Opening billing…">
+                      <ArrowSquareOut className="size-4" weight="bold" />
                       Billing portal
                     </Button>
-                    <Button type="button" variant="outline" size="lg" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
-                      {isReceiptsLoading ? <CircleNotch className="size-4 animate-spin" weight="bold" /> : <Receipt className="size-4" weight="duotone" />}
+                    <Button type="button" variant="outline" size="lg" onClick={handleLoadReceipts} isLoading={isReceiptsLoading} loadingLabel="Loading receipts…">
+                      <Receipt className="size-4" weight="duotone" />
                       View receipts
                     </Button>
                     <Button asChild variant="ghost" size="lg">

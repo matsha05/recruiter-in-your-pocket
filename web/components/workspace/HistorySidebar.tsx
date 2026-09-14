@@ -337,7 +337,7 @@ export default function HistorySidebar({
                                             Select 2 reports to compare ({selectedForCompare.length}/2)
                                         </span>
                                         {selectedForCompare.length === 2 && (
-                                            <button type="button"
+                                            <Button type="button"
                                                 onClick={async () => {
                                                     setLoadingComparison(true);
                                                     try {
@@ -388,11 +388,12 @@ export default function HistorySidebar({
                                                         setLoadingComparison(false);
                                                     }
                                                 }}
-                                                disabled={loadingComparison}
+                                                isLoading={loadingComparison}
+                                                loadingLabel="Loading..."
                                                 className="min-h-11 bg-foreground px-3 py-2 text-xs font-medium text-background hover:bg-foreground/90 disabled:opacity-50"
                                             >
-                                                {loadingComparison ? 'Loading...' : 'Compare →'}
-                                            </button>
+                                                Compare →
+                                            </Button>
                                         )}
                                     </div>
                                 )}
@@ -468,7 +469,7 @@ export default function HistorySidebar({
                                                                 setEditName(report.name || '');
                                                                 setRenamingId(report.id);
                                                             }}
-                                                            className="relative z-20 inline-flex size-11 items-center justify-center opacity-0 transition-opacity hover:bg-muted group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
+                                                            className="focus-ring relative z-20 inline-flex size-11 items-center justify-center transition-colors duration-fast ease-snap hover:bg-muted motion-reduce:transition-none"
                                                             aria-label={`Rename ${report.name}`}
                                                         >
                                                             <Pencil className="size-3 text-muted-foreground" />
@@ -481,7 +482,7 @@ export default function HistorySidebar({
                                                             setEditName('');
                                                             setRenamingId(report.id);
                                                         }}
-                                                        className="relative z-20 mb-3 min-h-11 text-xs text-muted-foreground opacity-0 transition-opacity hover:text-foreground group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
+                                                        className="focus-ring relative z-20 mb-3 min-h-11 text-xs text-muted-foreground transition-colors duration-fast ease-snap hover:text-foreground motion-reduce:transition-none"
                                                     >
                                                         + Add name
                                                     </button>
@@ -494,17 +495,17 @@ export default function HistorySidebar({
                                                         size="md"
                                                     />
 
-                                                    {/* Delete button - appears on hover */}
+                                                    {/* Actions remain discoverable on touch and keyboard. */}
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={(e) => handleDeleteClick(e, report.id)}
                                                         disabled={deletingId === report.id}
-                                                        className="relative z-20 opacity-0 hover:bg-destructive/10 hover:text-destructive group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
+                                                        className="relative z-20 hover:bg-destructive/10 hover:text-destructive"
                                                         aria-label="Delete report"
                                                     >
                                                         {deletingId === report.id ? (
-                                                            <div className="size-4 border-2 border-destructive/30 border-t-destructive rounded-full animate-spin" />
+                                                            <div className="size-4 border-2 border-destructive/30 border-t-destructive rounded-full motion-safe:animate-spin" aria-hidden="true" />
                                                         ) : (
                                                             <Trash2 className="size-4" />
                                                         )}

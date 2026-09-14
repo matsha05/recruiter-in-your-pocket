@@ -1,7 +1,6 @@
 "use client";
 
 import { Info } from "@phosphor-icons/react";
-import { motion, useReducedMotion } from "framer-motion";
 import type { OfferData } from "@/lib/compensation-model";
 import {
   formatCompactCurrency,
@@ -13,6 +12,7 @@ import {
 } from "@/lib/compensation-model";
 import { offerName, offerStyle } from "./presentation";
 import styles from "../GuidePresentation";
+import motionStyles from "./CompCalculatorMotion.module.css";
 
 function ModelAssumptions() {
   return (
@@ -76,7 +76,6 @@ function Summary({ offers }: { offers: OfferData[] }) {
 }
 
 function YearChart({ offers }: { offers: OfferData[] }) {
-  const reduceMotion = useReducedMotion();
   const comparable = offers.filter(isComparableOffer);
   if (comparable.length === 0) return null;
   const totals = comparable.flatMap((offer) => [1, 2, 3, 4].map((year) => getYearBreakdown(offer, year).total));
@@ -96,17 +95,15 @@ function YearChart({ offers }: { offers: OfferData[] }) {
                 const equityHeight = (breakdown.stock / Math.max(breakdown.total, 1)) * 100;
                 const style = offerStyle(offer);
                 return (
-                  <motion.div
+                  <div
                     key={offer.id}
-                    className="flex flex-1 flex-col-reverse overflow-hidden"
-                    initial={reduceMotion ? false : { height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ duration: reduceMotion ? 0 : 0.18, ease: "easeOut" }}
+                    className={`flex flex-1 flex-col-reverse overflow-hidden ${motionStyles.yearBar}`}
+                    style={{ height: `${height}%` }}
                   >
                     <div className={style.wash} style={{ height: `${100 - baseHeight - equityHeight}%` }} />
                     <div className={`${style.bar} opacity-60`} style={{ height: `${equityHeight}%` }} />
                     <div className={style.bar} style={{ height: `${baseHeight}%` }} />
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>

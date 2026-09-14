@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import sampleReport from "@/public/sample-report.json";
 import { Button } from "@/components/ui/button";
@@ -36,36 +36,8 @@ export function WholeReportPreview() {
     const [selectedPriority, setSelectedPriority] = useState(1);
     const [overviewExpanded, setOverviewExpanded] = useState(false);
     const priorityButtons = useRef<Array<HTMLButtonElement | null>>([]);
-    const reportRef = useRef<HTMLElement>(null);
     const id = useId();
     const selected = priorities[selectedPriority];
-
-    useEffect(() => {
-        const report = reportRef.current;
-        if (!report) return;
-        const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-        let arrival: Animation | undefined;
-        const stopArrival = () => { if (preference.matches) arrival?.cancel(); };
-        // The reference overview stays still. This lower report remains readable
-        // throughout its one-time arrival, with no pinned or additional scroll.
-        const observer = new IntersectionObserver(([entry]) => {
-            if (!entry.isIntersecting) return;
-            observer.disconnect();
-            if (!preference.matches) {
-                arrival = report.animate(
-                    [{ transform: "translateY(18px)" }, { transform: "translateY(0)" }],
-                    { duration: 850, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
-                );
-            }
-        }, { rootMargin: "0px 0px -5% 0px", threshold: 0 });
-        observer.observe(report);
-        preference.addEventListener("change", stopArrival);
-        return () => {
-            observer.disconnect();
-            arrival?.cancel();
-            preference.removeEventListener("change", stopArrival);
-        };
-    }, []);
 
     function handlePriorityKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
         let nextIndex = index;
@@ -134,11 +106,11 @@ export function WholeReportPreview() {
                         <p className={styles.introCopy}>
                             See what comes through, what gets missed, and what to improve first—with candid, recruiter-informed feedback on your entire resume.
                         </p>
-                        <Link href="/sample-report" className={styles.introLink}>Explore the sample report <Arrow /></Link>
+                        <Link href="/sample-report" data-analytics-cta="sample_report" className={styles.introLink}>Explore the sample report <Arrow /></Link>
                     </header>
                 </div>
 
-                <article ref={reportRef} className={styles.report} aria-label="Sample resume report preview">
+                <article className={styles.report} aria-label="Sample resume report preview">
                     <header className={styles.reportHeader}>
                         <div className={styles.reportIdentity}>
                             <span className={styles.reportMark} aria-hidden="true">R<span>.</span></span>
@@ -248,7 +220,7 @@ export function WholeReportPreview() {
 
                     <footer className={styles.reportFooter}>
                         <p>Also inside: section reviews, suggested edits, and role alignment.</p>
-                        <Link href="/sample-report" className={styles.sampleLink}>
+                        <Link href="/sample-report" data-analytics-cta="sample_report" className={styles.sampleLink}>
                             Read the complete sample <Arrow />
                         </Link>
                     </footer>
@@ -256,7 +228,7 @@ export function WholeReportPreview() {
 
                 <div className={styles.handoff}>
                     <p>A full first report. Free.<span>No account or credit card needed.</span></p>
-                    <Link href="/workspace" className={styles.primaryLink}>
+                    <Link href="/workspace" data-analytics-cta="report_preview" className={styles.primaryLink}>
                         Get your free report <Arrow />
                     </Link>
                 </div>

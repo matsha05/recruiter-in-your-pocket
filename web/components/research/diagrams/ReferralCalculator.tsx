@@ -80,7 +80,7 @@ function ModelBar({ label, value, width, accent }: { label: string; value: strin
     return (
         <div>
             <div className="flex items-baseline justify-between gap-4 text-data"><span className={accent ? "font-semibold text-brand" : "text-muted-foreground"}>{label}</span><span className="font-medium tabular-nums text-foreground">{value}</span></div>
-            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-line"><div className={accent ? "h-full rounded-full bg-brand transition-[width] duration-200 ease-out" : "h-full rounded-full bg-muted-foreground transition-[width] duration-200 ease-out"} style={{ width }} /></div>
+            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-line"><div className={accent ? "h-full rounded-full bg-brand transition-[width] duration-normal ease-snap motion-reduce:transition-none" : "h-full rounded-full bg-muted-foreground transition-[width] duration-normal ease-snap motion-reduce:transition-none"} style={{ width }} /></div>
         </div>
     );
 }

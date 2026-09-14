@@ -4,9 +4,10 @@ import * as React from "react"
 import { m as motion, AnimatePresence } from "motion/react"
 import { Command, Download, Share2, ChevronRight } from "lucide-react"
 
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { DURATION } from "@/lib/animation"
+import { INSTANT_TRANSITION, UI_TRANSITION_FAST } from "@/lib/animation"
 
 /**
  * BottomActionRail - Persistent bar at bottom of report pages
@@ -51,6 +52,8 @@ export function BottomActionRail({
     toast,
     className,
 }: BottomActionRailProps) {
+    const reducedMotion = useReducedMotion()
+    const transition = reducedMotion ? INSTANT_TRANSITION : UI_TRANSITION_FAST
     const [showToast, setShowToast] = React.useState(false)
 
     React.useEffect(() => {
@@ -82,14 +85,16 @@ export function BottomActionRail({
 
             {/* Center: Cmd+K hint + Toast */}
             <div className="flex items-center justify-center gap-2 flex-shrink-0">
-                <AnimatePresence mode="wait">
+                <AnimatePresence initial={false} mode="wait">
                     {showToast && toast ? (
                         <motion.div
                             key="toast"
-                            initial={{ opacity: 0, y: 4 }}
+                            role="status"
+                            aria-live="polite"
+                            initial={reducedMotion ? false : { opacity: 0, y: 2 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            transition={{ duration: DURATION.select }}
+                            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -2 }}
+                            transition={transition}
                             className={cn(
                                 "px-3 py-1.5 rounded-md text-sm font-medium",
                                 toast.type === "success" && "bg-success/10 text-success",
@@ -102,10 +107,10 @@ export function BottomActionRail({
                     ) : (
                         <motion.button
                             key="cmdk"
-                            initial={{ opacity: 0 }}
+                            initial={reducedMotion ? false : { opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: DURATION.select }}
+                            transition={transition}
                             onClick={() => {
                                 // Trigger Cmd+K programmatically
                                 const event = new KeyboardEvent("keydown", {

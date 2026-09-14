@@ -41,10 +41,10 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
             <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
                 <div
                     className={cn(
-                        "h-full rounded-full transition-all duration-150 motion-reduce:transition-none",
+                        "h-full origin-left rounded-full transition-[transform,background-color] duration-normal ease-snap motion-reduce:transition-none",
                         improved ? "bg-success" : declined ? "bg-destructive" : "bg-brand"
                     )}
-                    style={{ width: `${after ?? 0}%` }}
+                    style={{ transform: `scaleX(${(after ?? 0) / 100})` }}
                 />
             </div>
 

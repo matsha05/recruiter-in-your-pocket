@@ -399,102 +399,169 @@ test.describe("paid decision boundary", () => {
     expect(requests).toBe(2);
   });
 
-  test("mocked paid confirmation restores the unchanged report and shows truthful pass-ready copy", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await installPaidAuthMocks(page);
+  for (const saveTiming of ["while visible", "after dismissal"] as const) {
+    test(`mocked paid confirmation preserves the report and pass notice when receipt save finishes ${saveTiming}`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await installPaidAuthMocks(page);
 
-    const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
-    const existingReport = {
-      ...sampleReport,
-      score: 73,
-      first_impression: "Existing report marker: the checkout round trip kept this recruiter read unchanged.",
-      first_impression_takeaway: "Existing report takeaway marker: checkout preserved this exact opening read.",
-      top_fixes: [
-        {
-          ...sampleReport.top_fixes[0],
-          fix: "Existing report fix marker: preserve this exact recommendation after confirmation.",
-        },
-        ...sampleReport.top_fixes.slice(1),
-      ],
-    };
-
-    await page.addInitScript((workspaceState) => {
-      sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify(workspaceState));
-    }, {
-      report: existingReport,
-      resumeText: "Synthetic existing resume text",
-      jobDescription: "Synthetic existing job description",
-      timestamp: Date.now(),
-    });
-
-    let confirmationRequests = 0;
-    let checkoutRequests = 0;
-    let generationRequests = 0;
-    page.on("request", (request) => {
-      const pathname = new URL(request.url()).pathname;
-      if (pathname === "/api/billing/confirm") confirmationRequests += 1;
-      if (pathname === "/api/checkout") checkoutRequests += 1;
-      if (pathname === "/api/resume-feedback" || pathname === "/api/resume-feedback-stream") {
-        generationRequests += 1;
-      }
-    });
-
-    await page.route("**/api/billing/confirm", async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          ok: true,
-          state: "unlocked",
-          pending: false,
-          status: "complete",
-          message: "Access unlocked.",
-          pass: {
-            id: "pass_test_job_search",
-            tier: "30d",
-            expires_at: PAID_PASS_EXPIRES_AT,
-            uses_remaining: 5,
-            active: true,
+      const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
+      const existingReport = {
+        ...sampleReport,
+        // Exercise actual receipt-save restoration, even if the sample gains an ID.
+        id: undefined,
+        report_id: undefined,
+        recovery_id: undefined,
+        report_receipt: "synthetic-checkout-report-receipt",
+        score: 73,
+        first_impression: "Existing report marker: the checkout round trip kept this recruiter read unchanged.",
+        first_impression_takeaway: "Existing report takeaway marker: checkout preserved this exact opening read.",
+        top_fixes: [
+          {
+            ...sampleReport.top_fixes[0],
+            fix: "Existing report fix marker: preserve this exact recommendation after confirmation.",
           },
-        }),
+          ...sampleReport.top_fixes.slice(1),
+        ],
+      };
+
+      const initialDismissalMemory = saveTiming === "while visible" ? "{invalid-json" : JSON.stringify({ current: true });
+      await page.addInitScript(({ workspaceState, dismissalMemory }) => {
+        sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify(workspaceState));
+        // Corrupt memory or the retired shared "current" key cannot suppress a new notice.
+        localStorage.setItem("riyp_dismissed_unlock_banners:v1", dismissalMemory);
+      }, {
+        workspaceState: {
+          report: existingReport,
+          resumeText: "Synthetic existing resume text",
+          jobDescription: "Synthetic existing job description",
+          timestamp: Date.now(),
+        },
+        dismissalMemory: initialDismissalMemory,
       });
+
+      const storedReportId = "123e4567-e89b-42d3-a456-426614174000";
+      let finishReceiptSave!: () => void;
+      const receiptSaveReleased = new Promise<void>((resolve) => { finishReceiptSave = resolve; });
+      let receiptSaveRequests = 0;
+      let receiptSaveBody: unknown;
+      await page.route("**/api/reports", async (route) => {
+        if (route.request().method() !== "POST") return route.fallback();
+        receiptSaveRequests += 1;
+        receiptSaveBody = route.request().postDataJSON();
+        await receiptSaveReleased;
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ok: true, reportId: storedReportId }),
+        });
+      });
+
+      const dismissalFor = (reportId: string) => page.evaluate((id) => {
+        const stored = JSON.parse(localStorage.getItem("riyp_dismissed_unlock_banners:v1") || "{}");
+        return stored[id] === true;
+      }, reportId);
+
+      let confirmationRequests = 0;
+      let checkoutRequests = 0;
+      let generationRequests = 0;
+      page.on("request", (request) => {
+        const pathname = new URL(request.url()).pathname;
+        if (pathname === "/api/billing/confirm") confirmationRequests += 1;
+        if (pathname === "/api/checkout") checkoutRequests += 1;
+        if (pathname === "/api/resume-feedback" || pathname === "/api/resume-feedback-stream") {
+          generationRequests += 1;
+        }
+      });
+
+      await page.route("**/api/billing/confirm", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            ok: true,
+            state: "unlocked",
+            pending: false,
+            status: "complete",
+            message: "Access unlocked.",
+            pass: {
+              id: "pass_test_job_search",
+              tier: "30d",
+              expires_at: PAID_PASS_EXPIRES_AT,
+              uses_remaining: 5,
+              active: true,
+            },
+          }),
+        });
+      });
+
+      await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
+      await expect(page.getByRole("heading", { name: "Purchase confirmed" })).toBeVisible();
+      await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+      await expect.poll(() => page.evaluate(() => {
+        const stored = localStorage.getItem("riyp_unlock_context");
+        return stored ? JSON.parse(stored).section : null;
+      })).toBe("job_alignment");
+
+      const openStudio = page.getByRole("link", { name: /Open workspace/i });
+      await expect(openStudio).toBeVisible({ timeout: 15_000 });
+      await Promise.all([
+        page.waitForURL(/\/workspace$/, { timeout: 30_000 }),
+        openStudio.click(),
+      ]);
+      await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
+      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.locator("#section-fix-1")).toContainText(existingReport.top_fixes[0].fix);
+      await expect(page.getByRole("navigation", { name: "Resume report sections" })
+        .getByRole("button", { name: "Role fit", exact: true })).toHaveAttribute("aria-current", "location");
+
+      const banner = page.getByTestId("pass-ready-banner");
+      await expect(banner).toBeVisible({ timeout: 10_000 });
+      await expect(banner.getByRole("heading", { name: "Your Job Search Pass is ready." })).toBeVisible();
+      // The report markers above and zero generation requests below verify
+      // restoration. The banner describes the purchased report allowance.
+      await expect(banner).toContainText("five additional reports");
+      await expect(banner).not.toContainText("Full report unlocked");
+      await expect(banner).not.toContainText(/(?:unlock|locked|see the rest|remaining content)/i);
+      const bannerShell = page.getByTestId("pass-ready-banner-shell");
+      await expect(bannerShell).toBeVisible();
+      await expect(bannerShell).toHaveAttribute("data-report-id", "unsaved");
+      expect(await bannerShell.evaluate((element) => element.scrollHeight <= element.clientHeight)).toBe(true);
+
+      await expect.poll(() => page.evaluate(() => localStorage.getItem("riyp_unlock_context"))).toBeNull();
+      await expect.poll(() => page.evaluate(() => sessionStorage.getItem("riyp_checkout_workspace"))).toBeNull();
+      expect(confirmationRequests).toBe(1);
+      expect(checkoutRequests).toBe(0);
+      expect(generationRequests).toBe(0);
+
+      await expect.poll(() => receiptSaveRequests).toBe(1);
+      expect(receiptSaveBody).toMatchObject({ report: { report_receipt: existingReport.report_receipt, score: 73 } });
+      if (saveTiming === "while visible") {
+        const originalNotice = await bannerShell.elementHandle();
+        const originalHeight = await bannerShell.evaluate((element) => element.getBoundingClientRect().height);
+        finishReceiptSave();
+        await expect(bannerShell).toHaveAttribute("data-report-id", storedReportId);
+        await expect(bannerShell).toHaveCount(1);
+        // Saving changes persistence identity, never the visible notice or its height.
+        expect(await originalNotice!.evaluate((element) => element === document.querySelector('[data-testid="pass-ready-banner-shell"]'))).toBe(true);
+        expect(await bannerShell.evaluate((element) => element.getBoundingClientRect().height)).toBeCloseTo(originalHeight, 1);
+        await expect(page.getByRole("navigation", { name: "Resume report sections" })
+          .getByRole("button", { name: "Role fit", exact: true })).toHaveAttribute("aria-current", "location");
+        await banner.getByRole("button", { name: "Dismiss banner", exact: true }).click();
+      } else {
+        await banner.getByRole("button", { name: "Dismiss banner", exact: true }).click();
+        await expect(bannerShell).toHaveCount(0);
+        // An unsaved report's dismissal stays local until its stable identity arrives.
+        expect(await page.evaluate(() => localStorage.getItem("riyp_dismissed_unlock_banners:v1"))).toBe(initialDismissalMemory);
+        finishReceiptSave();
+      }
+      // The completed save must retain a prior dismissal under the real report ID.
+      await expect.poll(() => dismissalFor(storedReportId)).toBe(true);
+      await expect(bannerShell).toHaveCount(0);
+      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      expect(receiptSaveRequests).toBe(1);
+      expect(generationRequests).toBe(0);
     });
-
-    await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
-    await expect(page.getByRole("heading", { name: "Purchase confirmed" })).toBeVisible();
-    await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
-    await expect.poll(() => page.evaluate(() => {
-      const stored = localStorage.getItem("riyp_unlock_context");
-      return stored ? JSON.parse(stored).section : null;
-    })).toBe("job_alignment");
-
-    const openStudio = page.getByRole("link", { name: /Open workspace/i });
-    await expect(openStudio).toBeVisible({ timeout: 15_000 });
-    await Promise.all([
-      page.waitForURL(/\/workspace$/, { timeout: 30_000 }),
-      openStudio.click(),
-    ]);
-    await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
-    await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
-    await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
-    await expect(page.locator("#section-fix-1")).toContainText(existingReport.top_fixes[0].fix);
-
-    const banner = page.getByTestId("pass-ready-banner");
-    await expect(banner).toBeVisible({ timeout: 10_000 });
-    await expect(banner.getByRole("heading", { name: "Your Job Search Pass is ready." })).toBeVisible();
-    // The report markers above and zero generation requests below verify
-    // restoration. The banner describes the purchased report allowance.
-    await expect(banner).toContainText("five additional reports");
-    await expect(banner).not.toContainText("Full report unlocked");
-    await expect(banner).not.toContainText(/(?:unlock|locked|see the rest|remaining content)/i);
-    const bannerShell = page.getByTestId("pass-ready-banner-shell");
-    await expect(bannerShell).toBeVisible();
-    expect(await bannerShell.evaluate((element) => element.scrollHeight <= element.clientHeight)).toBe(true);
-
-    await expect.poll(() => page.evaluate(() => localStorage.getItem("riyp_unlock_context"))).toBeNull();
-    await expect.poll(() => page.evaluate(() => sessionStorage.getItem("riyp_checkout_workspace"))).toBeNull();
-    expect(confirmationRequests).toBe(1);
-    expect(checkoutRequests).toBe(0);
-    expect(generationRequests).toBe(0);
-  });
+  }
 });

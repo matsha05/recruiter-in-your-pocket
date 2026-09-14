@@ -1,71 +1,81 @@
-# Lifted Line 2.0 - Final Reference Parity QA
+# Alpine web identity QA
 
-Date closed: 2026-07-21
+2026-09-05. Local implementation; no commit, push, or deployment. This is a visual and interaction validation record, not a production-release or live-account audit.
 
-## Verdict
+## Approved reference and decision
 
-The redesign passes visual QA on the deployed preview. The design system, approved seven-frame reference set, major product journey, minor routes, responsive variants, and customer-facing failure states now read as one product.
+The exact user-selected source is `web/public/assets/alpine/alpine-selected-reference.png` (1536 × 1024), copied from the supplied image. The hero preserves its real granite, alpine forest, water, handwriting, ground, original copy, and all six company marks including Apple. The complete image is visible immediately. There is no slider or required interaction.
 
-This is a design and implementation approval. Production launch still requires the separate operational rehearsals listed in the launch gate, especially live auth, Stripe, account deletion/export, and the final production environment switch.
+After the completed 6 Pro consultation in Visual Improvement Ideas, Matt approved its recommendations. **Instrument Sans + Source Serif 4** now supersedes the earlier Satoshi/Georgia experiment. The original raster typeface remains unidentified; this is the adopted practical pairing, not a claim to have recovered the source font metadata.
 
-## Approved source of truth
+At 1536px the live hero uses an approximately 86px/78px regular heading, 23px/32px deck, and dark pill action. The exact three-line headline, image position, logo row, and report introduction were compared with the reference. The same font families, warm palette, and action hierarchy continue through the web product.
 
-The implementation was checked against:
+## Shared implementation
 
-1. `output/design-approval/2026-07-20-pass-2/01-landing-desktop.png`
-2. `output/design-approval/2026-07-20-pass-2/02-landing-mobile.png`
-3. `output/design-approval/2026-07-20-pass-2/03-workspace-default.png`
-4. `output/design-approval/2026-07-20-pass-2/04-workspace-error.png`
-5. `output/design-approval/2026-07-20-pass-2/05-workspace-analysis.png`
-6. `output/design-approval/2026-07-20-pass-2/06-report.png`
-7. `output/design-approval/2026-07-20-pass-2/07-pricing.png`
+- Canvas `#f6f3ef`, sheet `#fbfaf8`, inset `#f0efeb`, ink `#12191b`, muted text `#5f6667`, aqua `#00738f`, aqua surface `#e6f3f2`.
+- Semantic HSL channels and linked aliases preserve existing utility compatibility. Citron remains a compatibility token, not the primary action color.
+- Marketing, workspace, report, editorial, labels, and controls use shared typography recipes; `cn` recognizes their font-size groups and preserves them beside color classes.
+- Warm shared navigation and stacked wordmark; 48px app primary actions, 10px fields, 12px insets, 16/24px sheet corners, visible focus and distinct state surfaces.
+- The actual report and sample use the same renderer. Existing report facts, priorities, strengths, diagnosis, editing, saving, and access behavior were preserved.
+- Canonical brand/design/font/research documentation and SystemLab now describe and demonstrate this system.
 
-The approved written rules in `output/design-approval/2026-07-20-pass-2/approval-notes.md` govern any small rendering differences in the generated frames, including the 72px marketing header and 64px product header.
+## Browser evidence
 
-## Closed findings
+Artifacts live in `output/alpine-product-system-20260905/`.
 
-### Marker gesture
+| Family | Inspected views | Evidence |
+| --- | --- | --- |
+| Landing | 1536 desktop and 390 mobile | `landing-after.png`, `landing-mobile-after.png` |
+| Upload | 1536 desktop and 390 mobile | `workspace-after.png`, `workspace-mobile-after.png` |
+| Actual sample report | 1536 desktop and 390 mobile | `sample-report-after.png`, `sample-report-mobile-after.png` |
+| Pricing | Desktop | `pricing-after.png` |
+| Authentication | Mobile, focused email state | `auth-mobile-after.png` |
+| Research hub/article | 1440 and 390 | `research-*-after.png` |
+| Resources | 1440 and 390 | `resources-*-after.png` |
+| Account shell | Signed-out 1440 and 390 | `settings-account-*-after.png` |
 
-- Replaced the rectangular CSS approximation with source-derived bold and shallow citron marker assets.
-- Kept one marker gesture per screen and the shallow treatment on product/report surfaces.
+Source/data audits account for 17 research articles, one hub, 11 redirects, 20 shared figures, supporting marketing/legal pages, guide/calculator surfaces, auth/settings, jobs, and report history. This shared-family coverage is not a screenshot of every authenticated state.
 
-### Reference composition
+## Integration findings
 
-- Matched the landing composition, display scale, whitespace, report-card proportions, color roles, typography, and CTA hierarchy.
-- Compared the approved landing and deployed preview together at 1505x1045.
-- Final evidence: `output/design-qa/2026-07-21-reference-parity/final-preview-landing-comparison.png`.
+- Fixed the shared class merger treating custom type sizes as text colors and silently discarding them. Regression checks cover real heading/color combinations and deliberate size overrides.
+- Fixed opaque aqua selection surfaces where translucent overlays reduced small-text contrast below 4.5:1.
+- Preserved flush dialog consumers by avoiding a responsive padding default that defeated their `p-0` override.
+- Added appropriate fixed-header clearance to resources, guides, and calculator breadcrumbs.
+- Fixed 320px report navigation spacing so the finding, source, and missing-detail field fit the reading area; type stays 24/30 for report headings and 16/25 for evidence.
 
-### Major product surfaces
+## Motion
 
-- Verified landing, workspace default, upload/error handling, analysis, sample report, pricing, research hub, research article, research diagram, resources, calculator, auth, dashboard, support, status, security, privacy, terms, purchase restore, purchase confirmation, and 404.
-- Verified the deployed sample report at `/workspace?sample=1` on desktop and phone.
+The Three.js water layer animates only source-traced water regions. Stone, forest, framing, typography, and shadows remain fixed. The upper waterfall flows continuously down/right; the pool has bounded ripples; display-scale compensation keeps the effect perceptible in the narrow app preview. Pause/resume, a still fallback, reduced-motion default, explicit opt-in, offscreen suspension, and graphics-context recovery are retained.
 
-### Minor surfaces and route behavior
+Earlier motion evidence is in `output/alpine-product-system-20260905/motion/`. It measured the visible upper cascade at 519 × 784 and separately verified fixed adjacent rock pixels. A flat-image shader remains a 2D approximation, not a rotatable 3D stone.
 
-- Verified FAQ, trust, methodology, all settings tabs, reports sign-in routing, legacy guide redirects, both negotiation guides, calculator redirect, sign-in redirect, and disabled extension/jobs routes.
-- Disabled extension and jobs routes return the branded 404 state with correct no-index Page Not Found metadata.
-- Auth, dashboard, settings, restore, confirmation, empty, loading, error, disabled, and signed-out states use the same hierarchy and visual grammar.
+## Outputs
 
-### Responsive and constrained layouts
+`output/competitive-visuals-20260905/output-identity/README.md` contains the detailed output record.
 
-- Verified 1505x1045 desktop, 1146x600 constrained desktop, 853px tablet, 390x844 phone, and a 768x523 200-percent-equivalent viewport.
-- No checked route has horizontal document overflow.
-- The phone support email overflow found during preview QA was fixed and rechecked.
-- No checked route has a broken image.
+- Real PDF sample: 3 A4 pages; long-text fixture: 4 pages. Every page was rendered and inspected, including a grayscale sample. Both font families are embedded; text is selectable; 23 report fields were checked against extracted text.
+- Sign-in email inspected at 600px and 375px with dependable fallback fonts. Existing subject, code, HTML/text wording, and delivery flow remain intact. Nothing was sent.
+- Open Graph 1200 × 630, Apple icon, and 32/192/512 icons were rendered and inspected. The static Open Graph fallback matches.
+- PDF/export/access/save contracts, auth-email contracts, research-figure contracts, compensation calculations, and report content/fidelity tests passed.
 
-### Browser and build quality
+## Validation status
 
-- Final Vercel preview status: Ready.
-- Clean Chrome sweep across the critical and minor routes produced zero console errors.
-- Final preview build compiled, type-checked, generated all 88 static pages, and deployed successfully.
-- Lint and `git diff --check` pass after the final responsive and metadata fixes.
+- TypeScript and scoped ESLint pass.
+- Semantic typography regression check passes.
+- Design guardrails pass within the unchanged debt budget: 380 arbitrary utility occurrences against 615; no external font imports, retired font references, hardcoded hex violations, or banned copy terms.
+- Production build passes: compilation, TypeScript, all 88 generated pages, tracing, and postbuild checks. See `output/alpine-product-system-20260905/build.log`.
+- 49 browser checks pass against the production build: 42 homepage/report/accessibility/motion checks and seven research checks covering every canonical article at mobile/tablet/desktop, redirects, accessibility, and browser errors. See `production-browser-tests.log` and `research-browser-tests.log` in the evidence directory.
+- The final production run includes the corrected 320px report reading area, two contrast findings, focused/error input assertions, and the production-only internal-route check. Earlier development-only failures are resolved in this run.
+- Three jobs pagination/recovery fixture checks, five sign-in retry fixtures, and four homepage copy/SEO checks also pass.
+- Final `git diff --check` passes. These are local visual, interaction, and contract checks; the release limitations below remain explicit.
 
-## Evidence index
+The review preview at `http://127.0.0.1:3028/` is serving this verified production build with `next start`. Subsequent source edits require a rebuild or switching the preview back to the development server.
 
-- Final preview: `https://rip-nextjs-frontend-j3wanh195-matts-projects-59b2b24d.vercel.app`
-- Landing side-by-side: `output/design-qa/2026-07-21-reference-parity/final-preview-landing-comparison.png`
-- Desktop surface sheet: `output/design-qa/2026-07-21-reference-parity/preview-all-surfaces-contact-sheet.png`
-- Phone surface sheet: `output/design-qa/2026-07-21-reference-parity/preview-phone-contact-sheet.png`
-- Local reference-parity captures: `output/design-qa/2026-07-21-reference-parity/`
+## Explicit limits
 
-Final result: **PASSED**
+No production deployment, live account mutation, payment, real resume generation, or email delivery was performed. Authenticated account/billing/support states were reviewed in source; the screenshots above show public or signed-out states. Actual 200% desktop zoom and delivered email-client rendering are not claimed.
+
+The separate browser extension and its generated marketing mockups retain their previous visual system. Those images are independently drawn illustrations rather than exact captures of the extension; recoloring them alone would misrepresent the implemented UI. The extension is an explicit follow-up, with details in the output evidence.
+
+Dark-mode compatibility tokens were kept coherent, but the current app provider forces light mode. This pass does not claim an enabled, verified dark theme.

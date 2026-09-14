@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { AlertCircle, ArrowRight, Check, Copy, Plus } from "lucide-react";
+import { AlertCircle, ArrowRight, Check, Copy, Loader2, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
     HiddenGemIcon,
@@ -13,6 +13,8 @@ import {
     TransformArrowIcon,
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { ActionFeedback } from "@/components/ui/action-feedback";
+import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import type { LinkedInReport } from "@/types/linkedin";
 
 interface LinkedInReportPanelProps {
@@ -375,15 +377,24 @@ function KeywordLedger({ label, keywords, tone }: { label: string; keywords: str
 }
 
 function CopyableSuggestionCard({ label, content, note }: { label: string; content: string; note?: string }) {
-    const [copyState, setCopyState] = React.useState<"idle" | "copied" | "error">("idle");
+    const { active: copied, trigger: showCopied, reset: resetCopied } = useTransientFeedback(2000);
+    const [copyFailed, setCopyFailed] = React.useState(false);
+    const [copyPending, setCopyPending] = React.useState(false);
 
     const handleCopy = async () => {
+        if (copyPending) return;
+        setCopyPending(true);
+        setCopyFailed(false);
+        resetCopied();
         try {
             await navigator.clipboard.writeText(content);
-            setCopyState("copied");
-            window.setTimeout(() => setCopyState("idle"), 2000);
+            setCopyFailed(false);
+            showCopied();
         } catch {
-            setCopyState("error");
+            resetCopied();
+            setCopyFailed(true);
+        } finally {
+            setCopyPending(false);
         }
     };
 
@@ -394,11 +405,19 @@ function CopyableSuggestionCard({ label, content, note }: { label: string; conte
                 <button
                     type="button"
                     onClick={handleCopy}
-                    className="focus-ring inline-flex min-h-11 items-center gap-2 px-2 text-xs font-semibold text-muted-foreground transition-colors hover:text-brand"
-                    aria-live="polite"
+                    disabled={copyPending}
+                    aria-busy={copyPending || undefined}
+                    className="focus-ring inline-flex min-h-11 items-center gap-2 px-2 text-xs font-semibold text-muted-foreground transition-colors hover:text-brand disabled:cursor-wait"
                 >
-                    {copyState === "copied" ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-                    {copyState === "copied" ? "Copied" : copyState === "error" ? "Try copying again" : "Copy"}
+                    <ActionFeedback
+                        state={copyPending ? "pending" : copied ? "success" : copyFailed ? "error" : "idle"}
+                        states={{
+                            idle: { label: "Copy", icon: <Copy className="size-3.5" /> },
+                            pending: { label: "Copying", icon: <Loader2 className="size-3.5 motion-safe:animate-spin" /> },
+                            success: { label: "Copied", icon: <Check className="size-3.5" /> },
+                            error: { label: "Try copying again", icon: <Copy className="size-3.5" /> },
+                        }}
+                    />
                 </button>
             </div>
             <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{content}</p>

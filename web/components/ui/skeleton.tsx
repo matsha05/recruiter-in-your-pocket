@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
  * Skeleton
  * 
  * Loading placeholder with subtle pulse animation.
- * V2.1 Design Spec: bg-muted/10, animate-pulse
  * 
  * @example
  * ```tsx
@@ -24,11 +23,12 @@ function Skeleton({
 }: SkeletonProps) {
     return (
         <div
+            aria-hidden="true"
             className={cn(
                 "rounded-sm bg-[var(--skeleton)]",
                 shimmer
-                    ? "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent"
-                    : "animate-pulse",
+                    ? "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent motion-reduce:before:animate-none motion-reduce:before:hidden"
+                    : "animate-pulse motion-reduce:animate-none",
                 className
             )}
             {...props}

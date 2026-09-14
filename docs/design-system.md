@@ -255,6 +255,19 @@ Canonical tokens:
 
 Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage instrument uses a fixed-camera photograph with live projected controls, preserving the approved case, lighting, and materials. Key caps move inward while held, settle at a shallower latched depth, and release when deselected. The dial moves between three detents with fixed environmental lighting; the side switch controls the display while preserving the selected view. Animate only during interaction, stop once settled and when hidden, and dispose listeners and observers when navigating away. Reduced motion preserves immediate visible state changes without travel animation. Touch and keyboard controls remain functional. If the renderer fails, retain the artwork where available and expose native controls with full-size feedback. Do not make report access depend on initializing or exploring the instrument.
 
+### Shared interaction implementation
+
+The September 13 motion pass uses these shared primitives across the product:
+
+- `web/lib/animation.ts` mirrors the CSS tokens through `UI_TRANSITION` and `UI_TRANSITION_FAST`. Shared selection indicators move; report prose stays still.
+- `AppProviders` supplies the Motion features required by existing `m` components. `web/hooks/use-reduced-motion.ts` subscribes to preference changes without remounting forms or losing entered text.
+- `ActionFeedback` reserves the space for short idle, pending, and success labels. Only the current state is exposed to assistive technology; hidden sizing copies do not animate. `Button` accepts `loadingLabel` while keeping its idle children stable.
+- Copy, save, parse, and export feedback follows the actual operation. Success appears only after confirmation, failures stay actionable, and repeated actions cancel stale feedback timers.
+- Radix owns dialog, sheet, menu, and popover focus and dismissal. Shared CSS provides 180ms entry and 140ms exit. Native `ui-disclosure` details progressively animate intrinsic size where supported; their readable fallback and keyboard semantics remain intact.
+- Reduced motion updates immediately, including a preference change while the page is open. Essential content is visible before JavaScript; the interface adds no decorative stagger or artificial waiting period.
+
+The interactive examples in `/internal/system-lab` show these states explicitly. That reference remains protected from public production access.
+
 ### Signature behavior: Lifted Trace
 
 `web/components/shared/LiftedTrace.tsx` is the canonical cross-surface provenance and process rail. Its segments represent real states, not decoration:

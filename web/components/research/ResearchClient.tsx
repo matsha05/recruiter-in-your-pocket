@@ -100,6 +100,7 @@ function ResearchLibrary() {
     }, []);
 
     const selectCategory = (categoryId: string) => {
+        if (categoryId === activeCategoryId) return;
         setActiveCategoryId(categoryId);
         const url = new URL(window.location.href);
         url.searchParams.set("topic", categoryId);
@@ -116,6 +117,7 @@ function ResearchLibrary() {
                             key={category.id}
                             type="button"
                             aria-pressed={active}
+                            aria-controls="research-topic-panel"
                             onClick={() => selectCategory(category.id)}
                             className={cn(
                                 "focus-ring flex min-h-11 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors md:min-h-12 md:gap-3",
@@ -131,10 +133,10 @@ function ResearchLibrary() {
                 })}
             </nav>
 
-            <div>
+            <div id="research-topic-panel" role="region" aria-labelledby="research-topic-title">
                 <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
                 <p className="riyp-evidence-label text-brand">{activeCategory.descriptor}</p>
-                <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-normal text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
+                <h3 id="research-topic-title" className="mt-2 max-w-[28ch] font-display text-2xl font-normal text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
                 <p className="mt-3 max-w-reading text-base leading-6 text-muted-foreground md:mt-4 md:text-prose">{activeCategory.subtitle}</p>
                 <div className="mt-5 grid gap-3 md:mt-8 md:grid-cols-2 md:gap-4">
                     {activeCategory.articles.map((article, index) => <ResearchArticleCard key={article.id} article={article} index={index} featured={index === 0} />)}
@@ -306,7 +308,7 @@ function ResearchEvidenceTrace() {
         const syncFromUrl = () => {
             const finding = new URL(window.location.href).searchParams.get("finding");
             const nextIndex = featuredFindings.findIndex((item) => item.slug === finding);
-            if (nextIndex >= 0) setActiveIndex(nextIndex);
+            setActiveIndex(nextIndex >= 0 ? nextIndex : 0);
         };
 
         syncFromUrl();
@@ -324,7 +326,7 @@ function ResearchEvidenceTrace() {
     const moveFindingFocus = (index: number, direction: -1 | 1) => {
         const nextIndex = (index + direction + featuredFindings.length) % featuredFindings.length;
         selectFinding(nextIndex);
-        window.requestAnimationFrame(() => document.getElementById(`research-finding-tab-${nextIndex}`)?.focus());
+        tabRefs.current[nextIndex]?.focus();
     };
 
     return (
@@ -353,6 +355,11 @@ function ResearchEvidenceTrace() {
                                 } else if (event.key === "ArrowLeft") {
                                     event.preventDefault();
                                     moveFindingFocus(index, -1);
+                                } else if (event.key === "Home" || event.key === "End") {
+                                    event.preventDefault();
+                                    const nextIndex = event.key === "Home" ? 0 : featuredFindings.length - 1;
+                                    selectFinding(nextIndex);
+                                    tabRefs.current[nextIndex]?.focus();
                                 }
                             }}
                             className={cn("research-evidence-tab focus-ring", index === activeIndex && "is-active")}
@@ -368,8 +375,9 @@ function ResearchEvidenceTrace() {
                 key={activeFinding.slug}
                 id="research-finding-panel"
                 role="tabpanel"
+                tabIndex={0}
                 aria-labelledby={`research-finding-tab-${activeIndex}`}
-                className="research-finding riyp-evidence-trace-enter"
+                className="research-finding focus-ring"
             >
                 <div className="research-finding-copy">
                     <p className="riyp-evidence-label text-brand">Finding {activeFinding.index}</p>

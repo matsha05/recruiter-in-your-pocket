@@ -119,7 +119,7 @@ export default function PurchaseConfirmedClient() {
               <p className="text-eyebrow uppercase text-muted-foreground">Payment</p>
               <div className="mt-5 flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
-                {isWaiting ? <CircleNotch className="size-5 animate-spin text-brand" weight="bold" /> : null}
+                {isWaiting ? <CircleNotch className="size-5 animate-spin motion-reduce:animate-none text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
                 <span>{statusLabel}</span>
               </div>

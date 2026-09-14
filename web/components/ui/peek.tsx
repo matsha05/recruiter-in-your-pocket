@@ -2,40 +2,11 @@
 
 import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
-import { m as motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { DURATION } from "@/lib/animation"
 
-/**
- * Peek Panel - Non-destructive overlay for evidence, citations, definitions
- * Supporting evidence overlay within the Lifted Line component system.
- * 
- * Behavior:
- * - Entry: 320ms, opacity 0→1, scale 0.985→1, y 8→0
- * - Exit: 140ms (faster than entry = responsive)
- * - Dismiss: click outside, Esc
- * - Never steals scroll position
- * - Max 420px desktop, bottom sheet on mobile
- */
-
-const peekVariants = {
-    initial: { opacity: 0, scale: 0.985, y: 8 },
-    animate: { opacity: 1, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0.99, y: 4 },
-}
-
-const peekTransitionIn = {
-    duration: 0.16,
-    ease: [0.16, 1, 0.3, 1] as [number, number, number, number], // EASE_SNAP
-}
-
-const peekTransitionOut = {
-    duration: DURATION.select, // 140ms
-    ease: [0.33, 1, 0.68, 1] as [number, number, number, number], // outCubic
-}
-
+/** Supporting evidence with the same opening and dismissal behavior as popovers. */
 interface PeekProps {
     /** Whether the peek is open */
     open: boolean
@@ -68,8 +39,6 @@ export function Peek({
     showClose = true,
     title,
 }: PeekProps) {
-    const prefersReducedMotion = useReducedMotion()
-
     return (
         <PopoverPrimitive.Root open={open} onOpenChange={onOpenChange}>
             {trigger && (
@@ -77,63 +46,34 @@ export function Peek({
                     {trigger}
                 </PopoverPrimitive.Trigger>
             )}
-            <AnimatePresence>
-                {open && (
-                    <PopoverPrimitive.Portal forceMount>
-                        <PopoverPrimitive.Content
-                            side={side}
-                            align={align}
-                            sideOffset={8}
-                            className={cn(
-                                // Base
-                                "z-50 w-full max-w-[420px] border border-border bg-background p-4",
-                                // Shadow per design-system.md
-                                "shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
-                                // Responsive: bottom sheet on mobile could be added later
-                                className
-                            )}
-                            asChild
-                            onOpenAutoFocus={(e) => {
-                                // Don't steal focus - let user maintain context
-                                e.preventDefault()
-                            }}
-                            onCloseAutoFocus={(e) => {
-                                // Return focus to trigger naturally
-                            }}
+            <PopoverPrimitive.Portal>
+                <PopoverPrimitive.Content
+                    side={side}
+                    align={align}
+                    sideOffset={8}
+                    aria-label={title}
+                    className={cn(
+                        "riyp-floating-motion z-50 w-full max-w-[420px] border border-border bg-background p-4",
+                        "origin-[--radix-popover-content-transform-origin] shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+                        className
+                    )}
+                >
+                    {showClose && (
+                        <PopoverPrimitive.Close
+                            className="absolute right-0.5 top-0.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity duration-fast ease-snap hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                            aria-label="Close"
                         >
-                            <motion.div
-                                variants={prefersReducedMotion ? {} : peekVariants}
-                                initial="initial"
-                                animate="animate"
-                                exit="exit"
-                                transition={prefersReducedMotion ? {} : peekTransitionIn}
-                            >
-                                {/* Close button */}
-                                {showClose && (
-                                    <PopoverPrimitive.Close
-                                        className="absolute right-0.5 top-0.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                                        aria-label="Close"
-                                    >
-                                        <X className="size-5" />
-                                    </PopoverPrimitive.Close>
-                                )}
-
-                                {/* Title for screen readers */}
-                                {title && (
-                                    <div className="sr-only" role="heading" aria-level={2}>
-                                        {title}
-                                    </div>
-                                )}
-
-                                {/* Content */}
-                                <div className={cn(showClose && "pr-6")}>
-                                    {children}
-                                </div>
-                            </motion.div>
-                        </PopoverPrimitive.Content>
-                    </PopoverPrimitive.Portal>
-                )}
-            </AnimatePresence>
+                            <X className="size-5" />
+                        </PopoverPrimitive.Close>
+                    )}
+                    {title && (
+                        <div className="sr-only" role="heading" aria-level={2}>
+                            {title}
+                        </div>
+                    )}
+                    <div className={cn(showClose && "pr-6")}>{children}</div>
+                </PopoverPrimitive.Content>
+            </PopoverPrimitive.Portal>
         </PopoverPrimitive.Root>
     )
 }

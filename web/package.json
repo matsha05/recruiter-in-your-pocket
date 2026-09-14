@@ -50,7 +50,8 @@
     "test:stream-contract": "node scripts/run-ts-test.cjs tests/stream-completion-contract.test.ts && node scripts/run-ts-test.cjs tests/client-generation-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/anonymous-report-recovery-client.test.ts && node scripts/run-ts-test.cjs tests/stream-anonymous-recovery.test.ts && npm run test:workspace-context",
     "test:privacy-lifecycle": "node scripts/run-ts-test.cjs tests/account-privacy-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/account-export-job.test.ts",
     "test:vendor-privacy": "node scripts/run-ts-test.cjs tests/vendor-privacy.test.ts",
-    "test:analytics-privacy": "node scripts/run-ts-test.cjs tests/analytics-privacy.test.ts",
+    "test:consent-ui": "NEXT_PUBLIC_ENABLE_ANALYTICS=true NEXT_PUBLIC_MIXPANEL_TOKEN=riyp-checklist-test-token RIYP_ANALYTICS_TEST_ENABLED=1 playwright test tests/ui/privacy-checklist.spec.ts --project=chromium",
+    "test:analytics-privacy": "node scripts/run-ts-test.cjs tests/analytics-privacy.test.ts && node scripts/run-ts-test.cjs tests/analytics-consent.test.ts",
     "test:pdf-export": "node scripts/run-ts-test.cjs tests/pdf-export.test.ts && node scripts/run-ts-test.cjs tests/pdf-export-access.test.ts && node scripts/run-ts-test.cjs tests/client-report-save.test.ts",
     "test:report-storage": "node scripts/run-ts-test.cjs tests/report-storage-security.test.ts && node scripts/run-ts-test.cjs tests/report-delete-finality.test.ts",
     "test:eval-report": "node scripts/run-ts-test.cjs tests/eval-report.test.ts",
@@ -115,6 +116,7 @@
     "stripe": "^22.3.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.185.1",
     "zod": "^4.2.1"
   },
   "devDependencies": {
@@ -124,6 +126,7 @@
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.185.4",
     "autoprefixer": "10.4.19",
     "c8": "^12.0.0",
     "eslint": "^9.39.2",

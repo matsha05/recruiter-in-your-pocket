@@ -5,6 +5,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   Check,
+  Copy,
   Eye,
   MagnifyingGlass,
   QuestionMark,
@@ -15,6 +16,9 @@ import { Wordmark } from "@/components/icons";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ActionFeedback } from "@/components/ui/action-feedback";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const palette = [
   { name: "Canvas", role: "Warm page field", className: "bg-background text-foreground border-line" },
@@ -65,6 +69,8 @@ const liftedTraceReference = [
 
 export default function SystemLab() {
   const [selectedMode, setSelectedMode] = useState("upload");
+  const [feedbackState, setFeedbackState] = useState("idle");
+  const reducedMotion = useReducedMotion();
 
   return (
     <div className="min-h-screen bg-paper text-foreground">
@@ -96,7 +102,7 @@ export default function SystemLab() {
           </div>
           <div className="border-t border-line pt-5">
             <p className="max-w-[38rem] text-lg leading-8 text-muted-foreground">
-              Alpine gives marketing, Research, reports, and the workspace one shared visual system. Warm surfaces, regular titles, dark pill actions, and restrained aqua support different reading and task densities.
+              Alpine gives marketing, Research, reports, and the workspace one shared visual system. Warm surfaces, strong titles, dark pill actions, and restrained aqua support different reading and task densities.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button variant="brand" size="lg">Run free report <ArrowRight weight="bold" className="size-4" /></Button>
@@ -125,7 +131,7 @@ export default function SystemLab() {
             <div className="py-8 lg:pl-10">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">Instrument Sans / interface</p>
               <p className="mt-6 max-w-[42rem] text-base leading-[25px] text-muted-foreground">
-                Instrument Sans uses 400 for display and body, and 600 for controls and labels. Reports use 16px/25px body text. Research uses 18px/30px prose. Source Serif 4 is reserved for selected short verdicts.
+                Instrument Sans uses 700 for the hero, 650 for marketing headings, 600 for report headings and controls, and 400 for body text. Reports use 16px/25px body text. Research uses 18px/30px prose. Source Serif 4 is reserved for selected short verdicts.
               </p>
               <p className="mt-6 font-[family-name:var(--font-editorial)] text-[28px] font-normal leading-[36px]">Your operations experience is clear.</p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -197,7 +203,7 @@ export default function SystemLab() {
 
         <Section eyebrow="04 / Cross-surface contract" title="Same brand. Different density.">
           <div className="grid border-y border-line md:grid-cols-2 lg:grid-cols-4">
-            <Surface name="Homepage" copy="Approved Alpine artwork, regular headline, dark pill action, and a preview of the report." />
+            <Surface name="Homepage" copy="Approved tactile instrument, bold headline, dark pill action, and a preview of the report." />
             <Surface name="Research" copy="Concrete claims, useful visuals, visible sources, honest limits." />
             <Surface name="Report" copy="Likely takeaway, exact evidence, and the next useful edit." />
             <Surface name="Workspace" copy="Calm orientation, clear states, and no mystery about what happens next." />
@@ -253,6 +259,39 @@ export default function SystemLab() {
               <p className="mt-4 text-sm leading-6 text-muted-foreground">These are labeled reference states. Operational errors remain separate from findings about a resume.</p>
             </article>
           </div>
+        </Section>
+        <Section eyebrow="06 / Motion" title="State changes you can follow.">
+          <p className="max-w-2xl text-base leading-7 text-muted-foreground">
+            These controls preview example states. Real product confirmations follow the operation itself.
+            Entry and selection settle in 180ms; presses and dismissal use 140ms.
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground" role="status">Motion preference: {reducedMotion ? "reduced" : "standard"}.</p>
+          <div className="mt-6 flex flex-wrap gap-3" role="group" aria-label="Preview feedback state">
+            {[["idle", "Idle"], ["pending", "Working"], ["success", "Complete"]].map(([state, label]) => (
+              <Button key={state} variant="outline" aria-pressed={feedbackState === state} onClick={() => setFeedbackState(state)}>{label}</Button>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-6">
+            <span className="inline-flex min-h-12 items-center rounded-full border border-line px-6" aria-label="Example copy feedback">
+              <ActionFeedback state={feedbackState} states={{
+                idle: { label: "Copy", icon: <Copy className="size-4" /> },
+                pending: { label: "Copying…", icon: <Copy className="size-4" /> },
+                success: { label: "Copied", icon: <Check className="size-4" /> },
+              }} />
+            </span>
+            <Button isLoading={feedbackState === "pending"} loadingLabel="Saving…">Save example</Button>
+            <Dialog>
+              <DialogTrigger asChild><Button variant="outline">Open example dialog</Button></DialogTrigger>
+              <DialogContent>
+                <DialogTitle>One shared opening and closing treatment.</DialogTitle>
+                <DialogDescription>Close with Escape or the close button. Keyboard focus returns to the control that opened this dialog.</DialogDescription>
+              </DialogContent>
+            </Dialog>
+          </div>
+          <details className="ui-disclosure mt-8 border-y border-line py-5">
+            <summary className="focus-ring min-h-11 cursor-pointer py-2 font-semibold">Read the disclosure example</summary>
+            <p className="max-w-2xl py-4 leading-7 text-muted-foreground">The content remains a native disclosure. Opening and closing preserve keyboard behavior, and reduced motion shows the final state immediately.</p>
+          </details>
         </Section>
       </main>
     </div>

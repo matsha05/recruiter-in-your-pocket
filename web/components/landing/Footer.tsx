@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/icons";
 import { FOOTER_NAV } from "@/lib/navigation";
 import styles from "./Footer.module.css";
+import { PrivacyPreferencesButton } from "@/components/privacy/PrivacyPreferencesButton";
 
 export default function Footer() {
     return (
@@ -27,6 +28,7 @@ export default function Footer() {
                     {FOOTER_NAV.legalLinks.map((link) => (
                         <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
                     ))}
+                    <PrivacyPreferencesButton className={`focus-ring ${styles.link}`} />
                 </nav>
             </div>
             <p className={styles.copyright}>© 2026 Recruiter in Your Pocket</p>

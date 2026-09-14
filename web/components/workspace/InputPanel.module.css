@@ -14,7 +14,7 @@
 .sheet { margin-top: 1.75rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: 1.25rem; box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
 .jobContext { display: flex; align-items: start; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid hsl(var(--brand) / 0.2); border-radius: 0.75rem; background: hsl(var(--surface-sky)); }
 .pasteHeader { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.textAction { display: inline-flex; min-height: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding-inline: 0.5rem; border-radius: 0.625rem; color: hsl(var(--brand)); font-size: 0.875rem; font-weight: var(--weight-control); transition: color 150ms ease, background-color 150ms ease; }
+.textAction { display: inline-flex; min-height: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding-inline: 0.5rem; border-radius: 0.625rem; color: hsl(var(--brand)); font-size: 0.875rem; font-weight: var(--weight-control); transition: color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease); }
 .textAction:hover { color: hsl(var(--text-strong)); background: hsl(var(--surface-proof)); }
 .textAction:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
 .field { width: 100%; min-height: 10rem; resize: vertical; border: 1px solid hsl(var(--input)); border-radius: 0.625rem; padding: 1rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); font-family: var(--font-body); font-size: 1rem; line-height: 1.5625; }

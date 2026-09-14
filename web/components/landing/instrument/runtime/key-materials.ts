@@ -52,7 +52,7 @@ export function waitForKeyMaterials(materials: Promise<PreparedKeyMaterials | nu
 
 /** The calibrated photographic materials are baked once, not traced on every visit. */
 export function loadKeyMaterials(geometry: InstrumentGeometry): Promise<PreparedKeyMaterials | null> {
-    const approvedSource = /^\/assets\/instrument\/clean-plate(?:\.v1)?\.(?:png|webp)$/.test(geometry.source);
+    const approvedSource = /^\/assets\/instrument\/clean-plate(?:\.v[12])?\.(?:png|webp)$/.test(geometry.source);
     if (!approvedSource || geometry.sourceWidth !== approvedGeometry.sourceWidth ||
         geometry.sourceHeight !== approvedGeometry.sourceHeight ||
         JSON.stringify(geometry.keys) !== JSON.stringify(approvedGeometry.keys))

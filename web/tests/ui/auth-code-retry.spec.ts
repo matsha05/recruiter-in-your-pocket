@@ -13,6 +13,7 @@ const ORIGIN = "http://127.0.0.1:3100";
 const REJECTED_CODE = "11112222";
 const EDITED_CODE = "33334444";
 let harnessScript = "";
+let harnessStyles = "";
 
 async function buildAuthHarness() {
   const mocks: Record<string, string> = {
@@ -37,6 +38,7 @@ async function buildAuthHarness() {
       loader: "tsx", resolveDir: WEB_ROOT, sourcefile: "auth-code-retry-harness.tsx",
     },
     bundle: true, write: false, platform: "browser", format: "iife", jsx: "automatic",
+    outdir: "/tmp/riyp-auth-code-retry-bundle",
     define: { "process.env.NODE_ENV": JSON.stringify("test") },
     plugins: [{
       name: "auth-browser-boundaries",
@@ -50,7 +52,8 @@ async function buildAuthHarness() {
       },
     }],
   });
-  harnessScript = result.outputFiles[0].text;
+  harnessScript = result.outputFiles.find((file: { path: string }) => file.path.endsWith(".js")).text;
+  harnessStyles = result.outputFiles.find((file: { path: string }) => file.path.endsWith(".css"))?.text || "";
 }
 
 async function installAuthHarness(page: Page) {
@@ -65,7 +68,7 @@ async function installAuthHarness(page: Page) {
     }
     if (url.pathname === "/signin") return route.fulfill({
       contentType: "text/html",
-      body: `<!doctype html><html><head><title>Auth browser contract</title><style>
+      body: `<!doctype html><html><head><title>Auth browser contract</title><style>${harnessStyles}
         body { font: 16px system-ui; margin: 24px; } button, input { margin: 5px; padding: 10px; }
         svg { width: 18px; height: 18px; } .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; }
       </style></head><body><main id="root"></main><script src="/auth-harness.js"></script></body></html>`,
@@ -139,7 +142,9 @@ test.describe("one-time sign-in code verification", () => {
     await expect.poll(() => pending.length).toBe(1);
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
     await page.getByLabel("Login code", { exact: true }).fill(EDITED_CODE);
-    await expect(page.getByRole("button", { name: "Verify Code", exact: true })).toBeDisabled();
+    const verifying = page.getByRole("button", { name: "Verifying code…", exact: true });
+    await expect(verifying).toBeDisabled();
+    await expect(verifying).toHaveAttribute("aria-busy", "true");
     await expect(page.getByRole("button", { name: "Use a different email", exact: true })).toBeDisabled();
     await page.clock.runFor(31_000);
     await expect(page.getByRole("button", { name: "Resend code", exact: true })).toBeDisabled();

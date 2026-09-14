@@ -18,7 +18,7 @@
 .close .eyebrow { color: hsl(var(--surface-page) / .7); }
 .close h2 { color: inherit; font-family: var(--font-body); font-size: clamp(40px, 5vw, 70px); letter-spacing: -.035em; font-weight: var(--weight-heading); line-height: 1.04; margin-top: 23px; }
 .closeAction p { font-size: 14px; line-height: 1.75; color: hsl(var(--surface-page) / .75); }
-.closeAction a { display: flex; align-items: center; justify-content: space-between; gap: 50px; min-height: 56px; padding: 16px 23px; margin-top: 22px; color: hsl(var(--text-strong)); background: hsl(var(--surface-page)); font-size: 14px; font-weight: 500; border-radius: 100px; transition: background .2s; }
+.closeAction a { display: flex; align-items: center; justify-content: space-between; gap: 50px; min-height: 56px; padding: 16px 23px; margin-top: 22px; color: hsl(var(--text-strong)); background: hsl(var(--surface-page)); font-size: 14px; font-weight: 500; border-radius: 100px; transition: background-color var(--duration-fast) var(--ease); }
 .closeAction a:hover { background: hsl(var(--surface-raised)); }
 .closeAction svg { width: 18px; height: 18px; }
 .page a:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 5px; }

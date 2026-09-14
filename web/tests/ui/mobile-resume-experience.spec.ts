@@ -8,6 +8,9 @@ for (const width of [320, 390]) {
       await page.goto("/workspace", { waitUntil: "domcontentloaded" });
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
       await page.evaluate(() => document.fonts.ready);
+      // Complete the fresh visitor's privacy choice before this resume journey.
+      await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+      await expect(page.getByTestId("privacy-panel")).toBeHidden();
 
       const chooseFile = page.getByRole("button", { name: "Choose a file", exact: true });
       const run = page.getByTestId("workspace-run-report");
@@ -46,6 +49,8 @@ for (const width of [320, 390]) {
       await page.goto("/sample-report", { waitUntil: "domcontentloaded" });
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
       await page.evaluate(() => document.fonts.ready);
+      await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+      await expect(page.getByTestId("privacy-panel")).toBeHidden();
 
       const opening = page.getByRole("heading", { level: 1 });
       const openingBounds = await opening.boundingBox();

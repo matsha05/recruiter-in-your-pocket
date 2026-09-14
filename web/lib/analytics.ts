@@ -1,236 +1,148 @@
-/**
- * Analytics Module
- * Privacy-bounded Mixpanel implementation for product decision telemetry.
- * 
- * Capabilities:
- * - Explicit launch kill switch and Do Not Track compliance
- * - Schema-first event and property allowlists
- * - No report, resume, job, checkout-session, or export identifiers
- */
-
+/** Explicit-consent, schema-bounded product analytics. */
 import { sanitizeAnalyticsEvent } from "./analyticsPolicy";
+import { getAnalyticsConsent, subscribeAnalyticsConsent } from "./analyticsConsent";
 
 const TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 const ANALYTICS_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
-
-let mixpanelInstance: any = null;
+let mixpanelInstance: typeof import("mixpanel-browser").default | null = null;
 let initPromise: Promise<void> | null = null;
 let currentUserId: string | null = null;
+let consentRevision = 0;
+let sessionRevision = 0;
+let sdkEnabled = false;
 
-function debugLog(...args: unknown[]) {
-  if (process.env.NODE_ENV !== "production") {
-    console.log(...args);
-  }
+function canTrack() {
+  return typeof window !== "undefined" && ANALYTICS_ENABLED && Boolean(TOKEN)
+    && getAnalyticsConsent() === "accepted";
+}
+
+function clearAnalyticsStorage() {
+  if (!TOKEN) return;
+  try {
+    for (const key of Object.keys(localStorage)) {
+      if (key === `mp_${TOKEN}_mixpanel` || key.startsWith(`__mpq_${TOKEN}_`)) localStorage.removeItem(key);
+    }
+  } catch { /* Storage can be unavailable in a private browser. */ }
+}
+
+/** Install once at the app root, including cross-tab revocation. */
+export function watchAnalyticsConsent() {
+  let previous = getAnalyticsConsent();
+  const sync = () => {
+    const next = getAnalyticsConsent();
+    if (next !== previous) { consentRevision++; previous = next; }
+    if (!canTrack()) {
+      if (mixpanelInstance && sdkEnabled) {
+        // Clears queued events and stops senders without sending a profile deletion.
+        mixpanelInstance.opt_out_tracking({ delete_user: false });
+        sdkEnabled = false;
+        currentUserId = null;
+      }
+      clearAnalyticsStorage();
+    }
+  };
+  sync();
+  return subscribeAnalyticsConsent(sync);
 }
 
 async function initMixpanel() {
-  if (typeof window === "undefined") return;
-  if (mixpanelInstance) return;
-  if (!ANALYTICS_ENABLED) return;
-  if (!TOKEN) {
-    debugLog("Analytics: NEXT_PUBLIC_MIXPANEL_TOKEN not set");
-    return;
-  }
-
-  try {
+  if (!canTrack()) return;
+  if (!mixpanelInstance) {
     const mixpanel = (await import("mixpanel-browser")).default;
-    mixpanel.init(TOKEN, {
-      debug: process.env.NODE_ENV !== "production",
-      // Automatic pageviews may capture query-string identifiers. RIYP only
-      // emits explicit, schema-approved product events.
+    // Consent can change while the SDK chunk is loading.
+    if (!canTrack()) return;
+    mixpanel.init(TOKEN!, {
+      debug: false,
       track_pageview: false,
+      autocapture: false,
+      record_sessions_percent: 0,
       persistence: "localStorage",
-      ignore_dnt: false, // Respect DNT
-      api_host: "https://api-js.mixpanel.com", // Direct API for better reliability
+      ignore_dnt: false,
+      ip: false,
+      save_referrer: false,
+      stop_utm_persistence: true,
+      skip_first_touch_marketing: true,
+      // The SDK adds marketing/search fields even with automatic capture off.
+      property_blacklist: [
+        "$current_url", "$referrer", "$referring_domain", "$initial_referrer", "$initial_referring_domain", "mp_keyword", "$search_engine",
+        "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id", "utm_source_platform", "utm_campaign_id", "utm_creative_format", "utm_marketing_tactic",
+        "dclid", "fbclid", "gclid", "ko_click_id", "li_fat_id", "msclkid", "sccid", "ttclid", "twclid", "wbraid",
+      ],
+      api_host: "https://api-js.mixpanel.com",
     });
     mixpanelInstance = mixpanel;
-
-    // Set super properties that persist across all events
-    mixpanel.register({
-      app_version: "1.0.0",
-      platform: "web",
-    });
-  } catch (e) {
-    debugLog("Analytics: Failed to load mixpanel", e);
+    sdkEnabled = true;
+    // A previous visit may have left the SDK opt-out marker. RIYP's explicit
+    // consent is authoritative; clearing the marker sends no $opt_in event.
+    mixpanel.clear_opt_in_out_tracking();
+    mixpanel.register({ app_version: "1.0.0", platform: "web" });
+  } else if (!sdkEnabled) {
+    mixpanelInstance.clear_opt_in_out_tracking();
+    mixpanelInstance.reset();
+    mixpanelInstance.register({ app_version: "1.0.0", platform: "web" });
+    sdkEnabled = true;
   }
 }
 
-function ensureInit(): Promise<void> {
-  if (!initPromise) {
-    initPromise = initMixpanel();
+async function withAnalytics(action: (sdk: NonNullable<typeof mixpanelInstance>) => void, accountScoped = false) {
+  if (!canTrack()) return;
+  const revision = consentRevision;
+  const session = sessionRevision;
+  try {
+    if (!initPromise) initPromise = initMixpanel().finally(() => { initPromise = null; });
+    await initPromise;
+    // Never replay actions from before a change of consent.
+    if (canTrack() && revision === consentRevision && (!accountScoped || session === sessionRevision) && mixpanelInstance && sdkEnabled) action(mixpanelInstance);
+  } catch {
+    // Optional telemetry must not interrupt the product or log private values.
   }
-  return initPromise;
 }
 
-function isDNT(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return navigator.doNotTrack === "1" || (navigator as any).doNotTrack === "yes";
-}
-
-// ============================================
-// CORE TRACKING
-// ============================================
-
-/**
- * Track an event with optional properties
- */
-function trackEvent(name: string, props: Record<string, any> = {}) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-
-  if (isDNT()) {
-    debugLog("[Analytics DNT]", name, props);
-    return;
-  }
-
+function trackEvent(name: string, props: Record<string, unknown> = {}) {
   const approved = sanitizeAnalyticsEvent(name, props);
-  if (!approved) {
-    debugLog("[Analytics blocked]", name);
-    return;
-  }
-
-  ensureInit().then(() => {
-    if (mixpanelInstance) {
-      mixpanelInstance.track(approved.name, {
-        ...approved.properties,
-        timestamp: new Date().toISOString(),
-      });
-    } else {
-      debugLog("[Analytics Dev]", approved.name, approved.properties);
-    }
-  });
+  if (!approved) return;
+  void withAnalytics(sdk => sdk.track(approved.name, approved.properties));
 }
 
-// ============================================
-// USER IDENTIFICATION
-// ============================================
-
-/**
- * Identify a user after login/signup
- * This links their anonymous activity to their user ID
- */
 export function identifyUser(userId: string, traits?: {
   created_at?: string;
   plan?: string;
   credits_remaining?: number;
 }) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-  if (isDNT()) return;
-
-  ensureInit().then(() => {
-    if (!mixpanelInstance) return;
-
-    // Only alias if this is a new identification (prevents duplicate aliases)
-    if (!currentUserId && userId) {
-      // Alias links the anonymous distinct_id to the user's real ID
-      mixpanelInstance.alias(userId);
-    }
-
-    // Identify the user going forward
-    mixpanelInstance.identify(userId);
+  void withAnalytics(sdk => {
+    if (!currentUserId && userId) sdk.alias(userId);
+    sdk.identify(userId);
     currentUserId = userId;
-
-    // Keep analytics pseudonymous: account email/name stay in Supabase, not Mixpanel.
     if (traits) {
-      const profile = {
-        $created: traits.created_at,
-        plan: traits.plan,
-        credits_remaining: traits.credits_remaining,
-      };
-      const definedProfile = Object.fromEntries(
-        Object.entries(profile).filter(([, value]) => value !== undefined)
-      );
-      if (Object.keys(definedProfile).length > 0) {
-        mixpanelInstance.people.set(definedProfile);
-      }
+      const profile = { $created: traits.created_at, plan: traits.plan, credits_remaining: traits.credits_remaining };
+      const defined = Object.fromEntries(Object.entries(profile).filter(([, value]) => value !== undefined));
+      if (Object.keys(defined).length) sdk.people.set(defined);
     }
-
-    debugLog("[Analytics] User identified:", userId);
-  });
+  }, true);
 }
 
-/**
- * Update user properties (e.g., after plan change)
- */
-/**
- * Increment a numeric user property
- */
-function incrementUserProperty(prop: string, by: number = 1) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-  if (isDNT()) return;
-
-  ensureInit().then(() => {
-    if (mixpanelInstance) {
-      mixpanelInstance.people.increment(prop, by);
-    }
-  });
+function incrementUserProperty(prop: string, by = 1) {
+  void withAnalytics(sdk => sdk.people.increment(prop, by), true);
 }
 
-/**
- * Reset analytics state on logout
- */
 export function resetAnalytics() {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-
-  ensureInit().then(() => {
-    if (mixpanelInstance) {
-      mixpanelInstance.reset();
-      currentUserId = null;
-      debugLog("[Analytics] User reset");
-    }
-  });
+  // Pending account operations must not restore the previous account after a
+  // reset. Public page views can still record when initial auth resolves empty.
+  sessionRevision++;
+  currentUserId = null;
+  // Logging out must not load an SDK just to reset it.
+  if (mixpanelInstance && sdkEnabled && canTrack()) mixpanelInstance.reset();
 }
 
-// ============================================
-// REVENUE TRACKING
-// ============================================
-
-/**
- * Track a revenue event (purchase)
- */
-function trackRevenue(amount: number, props?: {
-  product?: string;
-  credits?: number;
-  currency?: string;
-}) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-  if (isDNT()) return;
-
-  ensureInit().then(() => {
-    if (!mixpanelInstance) return;
-
-    // Track the event
-    mixpanelInstance.track("purchase_completed", {
-      amount,
-      currency: props?.currency || "USD",
-      product: props?.product,
-      credits: props?.credits,
-    });
-
-    // Track revenue on user profile
-    mixpanelInstance.people.track_charge(amount, {
-      product: props?.product,
-    });
-
-    // Increment total spend
-    mixpanelInstance.people.increment("total_spend", amount);
-
-    debugLog("[Analytics] Revenue tracked:", amount);
-  });
+function trackRevenue(amount: number, props?: { product?: string; credits?: number; currency?: string }) {
+  const approved = sanitizeAnalyticsEvent("purchase_completed", { amount, currency: props?.currency || "USD", product: props?.product, credits: props?.credits });
+  if (!approved || typeof approved.properties.amount !== "number") return;
+  void withAnalytics(sdk => {
+    sdk.track(approved.name, approved.properties);
+    sdk.people.track_charge(amount, { product: approved.properties.product });
+    sdk.people.increment("total_spend", amount);
+  }, true);
 }
-
-// ============================================
-// SUPER PROPERTIES
-// ============================================
-
-/**
- * Set super properties (attached to all future events)
- */
-// PRE-DEFINED EVENT HELPERS
 
 export const Analytics = {
   // Funnel events

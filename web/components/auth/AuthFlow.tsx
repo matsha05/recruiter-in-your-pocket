@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Check, CircleNotch, EnvelopeSimple } from "@phosphor-icons/react";
+import { ArrowRight, Check, EnvelopeSimple } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,6 +47,7 @@ export function AuthFlow({
   const [code, setCode] = useState("");
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingAction, setLoadingAction] = useState<"send" | "verify" | "name" | null>(null);
   const [error, setError] = useState<string | null>(initialError);
   const [resendCooldown, setResendCooldown] = useState(0);
   const authRequestRef = useRef({ id: 0, pending: false, verified: false, attemptedCode: null as string | null });
@@ -66,6 +67,7 @@ export function AuthFlow({
     setCode("");
     setFirstName("");
     setLoading(false);
+    setLoadingAction(null);
     setError(null);
     setResendCooldown(0);
     authRequestRef.current = { id: authRequestRef.current.id + 1, pending: false, verified: false, attemptedCode: null };
@@ -105,6 +107,7 @@ export function AuthFlow({
     const requestId = ++authRequestRef.current.id;
     authRequestRef.current.pending = true;
     setLoading(true);
+    setLoadingAction("send");
     setError(null);
 
     try {
@@ -137,6 +140,7 @@ export function AuthFlow({
       if (requestId === authRequestRef.current.id) {
         authRequestRef.current.pending = false;
         setLoading(false);
+        setLoadingAction(null);
       }
     }
   }, [email, isOpen, redirectTo]);
@@ -158,6 +162,7 @@ export function AuthFlow({
     authRequestRef.current.pending = true;
     authRequestRef.current.attemptedCode = submittedCode;
     setLoading(true);
+    setLoadingAction("verify");
     setError(null);
 
     try {
@@ -186,6 +191,7 @@ export function AuthFlow({
       if (requestId === authRequestRef.current.id) {
         authRequestRef.current.pending = false;
         setLoading(false);
+        setLoadingAction(null);
       }
     }
   }, [code, email, finishAuth, isOpen, step]);
@@ -202,6 +208,7 @@ export function AuthFlow({
       return;
     }
     setLoading(true);
+    setLoadingAction("name");
     setError(null);
 
     try {
@@ -217,6 +224,7 @@ export function AuthFlow({
       setError("Could not save your name. Try again.");
     } finally {
       setLoading(false);
+      setLoadingAction(null);
     }
   }, [finishAuth, firstName]);
 
@@ -339,7 +347,7 @@ export function AuthFlow({
           )}
 
           {step === "email" && (
-            <div className="grid gap-5">
+            <div className="ui-state-enter grid gap-5">
               <div className="grid gap-3">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
@@ -369,16 +377,15 @@ export function AuthFlow({
                   We&apos;ll email a one-time code so you can sign in without a password.
                 </p>
               </div>
-              <Button type="submit" variant="brand" disabled={loading} className="min-h-12 w-full whitespace-normal px-4 text-base font-medium">
-                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
+              <Button type="submit" variant="brand" isLoading={loading} loadingLabel="Sending sign-in code…" className="min-h-12 w-full whitespace-normal px-4 text-base font-medium">
                 Send sign-in code
-                {!loading && <ArrowRight className="ml-2 size-4" weight="bold" />}
+                <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
             </div>
           )}
 
           {step === "code" && (
-            <div className="grid gap-5">
+            <div className="ui-state-enter grid gap-5">
               <div className="grid gap-3">
                 <Label htmlFor="auth-code" className="sr-only">Login code</Label>
                 <Input
@@ -407,10 +414,9 @@ export function AuthFlow({
                   }}
                 />
               </div>
-              <Button type="submit" variant="brand" disabled={loading || code.length !== 8} className="h-12 w-full text-base font-medium">
-                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
+              <Button type="submit" variant="brand" disabled={code.length !== 8} isLoading={loading} loadingLabel={loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="h-12 w-full text-base font-medium">
                 Verify Code
-                {!loading && <Check className="ml-2 size-4" weight="bold" />}
+                <Check className="ml-2 size-4" weight="bold" />
               </Button>
               <div className="flex flex-wrap items-center justify-between gap-x-3 text-sm text-muted-foreground">
                 <button
@@ -432,7 +438,7 @@ export function AuthFlow({
                 <button
                   type="button"
                   className={cn(
-                    "focus-ring min-h-11 rounded-md text-left transition-colors hover:text-foreground",
+                    "focus-ring min-h-11 min-w-[7rem] rounded-md text-left tabular-nums transition-colors hover:text-foreground",
                     resendCooldown > 0 && "cursor-not-allowed opacity-60"
                   )}
                   disabled={loading || resendCooldown > 0}
@@ -445,7 +451,7 @@ export function AuthFlow({
           )}
 
           {step === "name" && (
-            <div className="grid gap-5">
+            <div className="ui-state-enter grid gap-5">
               <div className="grid gap-3">
                 <Label htmlFor="auth-name" className="sr-only">First name</Label>
                 <Input
@@ -464,8 +470,7 @@ export function AuthFlow({
                   )}
                 />
               </div>
-              <Button type="submit" variant="brand" disabled={loading || !firstName.trim()} className="h-12 w-full text-base font-medium">
-                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
+              <Button type="submit" variant="brand" disabled={!firstName.trim()} isLoading={loading} loadingLabel="Saving your name…" className="h-12 w-full text-base font-medium">
                 Continue
               </Button>
               <Button

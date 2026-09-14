@@ -79,7 +79,13 @@ const MAX_RECENT = 8
 function getRecentCommands(): RecentCommand[] {
     if (typeof window === "undefined") return []
     try {
-        return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]")
+        const stored: unknown = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]")
+        if (!Array.isArray(stored)) return []
+        return stored.filter((entry): entry is RecentCommand =>
+            entry !== null && typeof entry === "object" &&
+            typeof entry.id === "string" && typeof entry.label === "string" &&
+            typeof entry.icon === "string" && typeof entry.timestamp === "number"
+        ).slice(0, MAX_RECENT)
     } catch {
         return []
     }
@@ -88,7 +94,11 @@ function getRecentCommands(): RecentCommand[] {
 function addRecentCommand(command: RecentCommand) {
     const recent = getRecentCommands().filter(c => c.id !== command.id)
     recent.unshift({ ...command, timestamp: Date.now() })
-    localStorage.setItem(RECENT_KEY, JSON.stringify(recent.slice(0, MAX_RECENT)))
+    try {
+        localStorage.setItem(RECENT_KEY, JSON.stringify(recent.slice(0, MAX_RECENT)))
+    } catch {
+        // Recent commands are optional; storage policy must not block an action.
+    }
 }
 
 export function CommandPalette() {

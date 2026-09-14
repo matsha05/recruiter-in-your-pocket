@@ -49,7 +49,7 @@ function PricingHeroActions({
                 className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
             >
                 Get my free report
-                <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
+                <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-fast ease-snap motion-reduce:transition-none group-hover:translate-x-0.5" weight="bold" />
             </Link>
 
             {billingEnabled ? (
@@ -62,7 +62,7 @@ function PricingHeroActions({
                     className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-full border border-border bg-card px-6 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-60"
                 >
                     {checkoutLoading ? "Opening checkout..." : "Get 5 reports · $29"}
-                    <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
+                    <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-fast ease-snap motion-reduce:transition-none group-hover:translate-x-0.5" weight="bold" />
                 </Button>
             ) : (
                 <Button
@@ -158,7 +158,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                         Get the overall impression, the lines behind it, and the changes to make first. {FREE_REPORT_ENTITLEMENT.promise}
                                     </p>
                                     <p className="mt-3 text-sm leading-6 text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
-                                    <Link href="/workspace" className="focus-ring mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98]">
+                                    <Link href="/workspace" className="focus-ring mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-background transition-colors duration-fast ease-snap motion-reduce:transition-none hover:bg-foreground/90">
                                         Get my free report
                                         <ArrowRight className="size-4" />
                                     </Link>
@@ -280,7 +280,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                         </div>
                         <Link
                             href={getCheckoutRestoreHref(returnTo)}
-                            className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-full border border-line bg-card px-6 py-3 text-base font-medium text-foreground transition-[background-color,border-color,transform] duration-200 hover:border-brand/45 hover:bg-brand/5 active:scale-[0.99]"
+                            className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-full border border-line bg-card px-6 py-3 text-base font-medium text-foreground transition-colors duration-fast ease-snap motion-reduce:transition-none hover:border-brand/45 hover:bg-brand/5"
                         >
                             Restore access
                             <ArrowRight className="size-4" weight="bold" />

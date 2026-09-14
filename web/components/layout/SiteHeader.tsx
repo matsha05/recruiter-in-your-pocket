@@ -40,7 +40,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <Link href="/#about">About</Link>
                             <Link href="/research">Research</Link>
                         </div>
-                        <Link href="/workspace" className={alpine.cta}>
+                        <Link href="/workspace" data-analytics-cta="header_report" className={alpine.cta}>
                             {user ? "Open my workspace" : "Get your free report"}<ArrowRight aria-hidden="true" />
                         </Link>
                         <SiteMobileMenu pathname={pathname} user={user} onSignOut={signOut} authLoading={authLoading} showResearchLink={showResearchLink} showResourcesLink={showResourcesLink} />
@@ -236,7 +236,7 @@ function SiteMobileMenu({
                         <>
                             <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Log in</MobileSiteLink>
                             <SheetClose asChild>
-                                <Link href="/workspace" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+                                <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
                                     Get my free report
                                 </Link>
                             </SheetClose>

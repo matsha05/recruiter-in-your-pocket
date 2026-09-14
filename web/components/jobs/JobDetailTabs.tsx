@@ -1,8 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { ElementType, KeyboardEvent } from "react";
+import { LayoutGroup, m } from "motion/react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import Link from "next/link";
 import {
   CheckCircle2,
@@ -13,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { InsightSparkleIcon } from "@/components/icons";
 import type { JobDetail } from "@/components/jobs/jobDetailTypes";
+import { UI_TRANSITION } from "@/lib/animation";
 
 type TabId = "overview" | "job-description" | "analysis";
 
@@ -24,6 +27,8 @@ type JobDetailTabsProps = {
 export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const tabRefs = useRef<Partial<Record<TabId, HTMLButtonElement | null>>>({});
+  const layoutId = useId();
+  const reducedMotion = useReducedMotion();
 
   const tabs: { id: TabId; label: string; icon: ElementType }[] = [
     { id: "overview", label: "Overview", icon: InsightSparkleIcon },
@@ -53,30 +58,40 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   return (
     <div className="space-y-6">
       <div className="border-b border-border">
-        <div className="flex gap-2 overflow-x-auto px-1" role="tablist" aria-label="Saved job details">
-          {tabs.map(({ id, label, icon: Icon }) => (
-            <button type="button"
-              key={id}
-              ref={(node) => { tabRefs.current[id] = node; }}
-              onClick={() => setActiveTab(id)}
-              onKeyDown={(event) => handleTabKeyDown(event, id)}
-              id={`job-tab-${id}`}
-              role="tab"
-              aria-selected={activeTab === id}
-              aria-controls={`job-panel-${id}`}
-              tabIndex={activeTab === id ? 0 : -1}
-              className={cn(
-                "flex min-h-12 shrink-0 items-center gap-2 rounded-t-xl border-b-2 px-3 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand",
-                activeTab === id
-                  ? "border-brand bg-brand/5 text-brand"
-                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-              )}
-            >
-              <Icon className="size-4" />
-              {label}
-            </button>
-          ))}
-        </div>
+        <LayoutGroup id={layoutId}>
+          <div className="flex gap-2 overflow-x-auto px-1" role="tablist" aria-label="Saved job details">
+            {tabs.map(({ id, label, icon: Icon }) => (
+              <button type="button"
+                key={id}
+                ref={(node) => { tabRefs.current[id] = node; }}
+                onClick={() => setActiveTab(id)}
+                onKeyDown={(event) => handleTabKeyDown(event, id)}
+                id={`job-tab-${id}`}
+                role="tab"
+                aria-selected={activeTab === id}
+                aria-controls={`job-panel-${id}`}
+                tabIndex={activeTab === id ? 0 : -1}
+                className={cn(
+                  "relative flex min-h-12 shrink-0 items-center gap-2 rounded-t-xl border-b-2 border-transparent px-3 py-3 text-sm font-medium transition-colors duration-fast ease-snap motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand",
+                  activeTab === id
+                    ? "bg-brand/5 text-brand"
+                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+                )}
+              >
+                <Icon className="size-4" />
+                {label}
+                {activeTab === id && (
+                  <m.span
+                    aria-hidden="true"
+                    layoutId="job-detail-tab-indicator"
+                    className="pointer-events-none absolute inset-x-0 bottom-[-2px] h-0.5 bg-brand"
+                    transition={reducedMotion ? { duration: 0 } : UI_TRANSITION}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </LayoutGroup>
       </div>
 
       <div className="min-h-[400px]">
@@ -243,8 +258,8 @@ function RecruiterFitSummary({
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
-              className="h-full bg-brand rounded-full transition-all"
-              style={{ width: `${coveragePercent}%` }}
+              className="h-full origin-left rounded-full bg-brand transition-transform duration-normal ease-snap motion-reduce:transition-none"
+              style={{ transform: `scaleX(${coveragePercent / 100})` }}
             />
           </div>
         </div>
@@ -268,7 +283,8 @@ function RecruiterFitSummary({
                 <li>
                   <button type="button"
                     onClick={() => setExpanded(!expanded)}
-                    className="text-xs text-brand hover:underline font-medium"
+                    aria-expanded={expanded}
+                    className="focus-ring inline-flex min-h-11 items-center rounded px-1 text-xs font-medium text-brand hover:underline"
                   >
                     {expanded ? "Show less" : `+${matchedSkills.length - 5} more skills matched`}
                   </button>

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase, CaretRight, Plus, TrendUp } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import type { OfferData } from "@/lib/compensation-model";
@@ -40,12 +39,12 @@ const SAMPLE_OFFERS: OfferData[] = [
 ];
 
 export function CompCalculatorClient() {
-  const reduceMotion = useReducedMotion();
   const [isHydrated, setIsHydrated] = useState(false);
   const [offers, setOffers] = useState<OfferData[]>([createEmptyOffer("offer-1", false, 0)]);
   const [showingSample, setShowingSample] = useState(false);
   const nextOfferId = useRef(2);
   const nextStyleIndex = useRef(1);
+  const pendingOfferFocus = useRef<string | null>(null);
   const displayOffers = showingSample ? SAMPLE_OFFERS : offers;
   const hasCurrentJob = offers.some((offer) => offer.isCurrentJob);
   const hasData = displayOffers.some((offer) => offer.baseSalary > 0);
@@ -53,14 +52,23 @@ export function CompCalculatorClient() {
 
   useEffect(() => setIsHydrated(true), []);
 
+  useEffect(() => {
+    if (!pendingOfferFocus.current) return;
+    document.getElementById(`${pendingOfferFocus.current}-company`)?.focus();
+    pendingOfferFocus.current = null;
+  }, [offers]);
+
   function updateOffer(id: string, updated: OfferData) {
     if (showingSample) return;
     setOffers((current) => current.map((offer) => offer.id === id ? updated : offer));
   }
 
   function removeOffer(id: string) {
-    if (showingSample) return;
-    setOffers((current) => current.length > 1 ? current.filter((offer) => offer.id !== id) : current);
+    if (showingSample || offers.length <= 1) return;
+    const removedIndex = offers.findIndex((offer) => offer.id === id);
+    const remaining = offers.filter((offer) => offer.id !== id);
+    pendingOfferFocus.current = remaining[Math.min(removedIndex, remaining.length - 1)]?.id ?? null;
+    setOffers(remaining);
   }
 
   function nextOffer(isCurrentJob = false) {
@@ -70,13 +78,17 @@ export function CompCalculatorClient() {
   }
 
   function addOffer() {
-    if (showingSample) return;
-    setOffers((current) => current.length < 5 ? [...current, nextOffer()] : current);
+    if (showingSample || offers.length >= 5) return;
+    const offer = nextOffer();
+    pendingOfferFocus.current = offer.id;
+    setOffers((current) => [...current, offer]);
   }
 
   function addCurrentJob() {
-    if (showingSample || hasCurrentJob) return;
-    setOffers((current) => current.length < 5 ? [...current, nextOffer(true)] : current);
+    if (showingSample || hasCurrentJob || offers.length >= 5) return;
+    const offer = nextOffer(true);
+    pendingOfferFocus.current = offer.id;
+    setOffers((current) => [...current, offer]);
   }
 
   return (
@@ -134,16 +146,16 @@ export function CompCalculatorClient() {
             {!showingSample ? (
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {!hasCurrentJob && offers.length < 5 ? (
-                  <motion.button layout={!reduceMotion} type="button" onClick={addCurrentJob} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
+                  <button type="button" onClick={addCurrentJob} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
                     <Briefcase aria-hidden="true" className="size-4" weight="duotone" />
                     <span className="text-sm font-medium">Add current job</span>
-                  </motion.button>
+                  </button>
                 ) : null}
                 {offers.length < 5 ? (
-                  <motion.button layout={!reduceMotion} type="button" onClick={addOffer} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
+                  <button type="button" onClick={addOffer} className="focus-ring flex min-h-12 items-center justify-center gap-2 rounded-full border border-input bg-card px-4 py-3 text-foreground transition-colors hover:border-brand hover:bg-accent">
                     <Plus aria-hidden="true" className="size-4" weight="bold" />
                     <span className="text-sm font-medium">Compare another offer</span>
-                  </motion.button>
+                  </button>
                 ) : null}
               </div>
             ) : null}

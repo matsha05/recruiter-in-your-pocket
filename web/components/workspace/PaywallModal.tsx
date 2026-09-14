@@ -269,8 +269,9 @@ export default function PaywallModal({
                                 type="submit"
                                 className="w-full"
                                 isLoading={loading}
+                                loadingLabel="Opening checkout…"
                             >
-                                {loading ? "Opening checkout…" : "Continue to Stripe · $29 once"}
+                                Continue to Stripe · $29 once
                             </Button>
                         </>
                     ) : (
@@ -295,8 +296,9 @@ export default function PaywallModal({
                                 className="w-full"
                                 disabled={!email.trim()}
                                 isLoading={loading}
+                                loadingLabel="Opening checkout…"
                             >
-                                {loading ? "Opening checkout…" : "Continue to Stripe checkout"}
+                                Continue to Stripe checkout
                             </Button>
                         </>
                     )}
@@ -307,8 +309,9 @@ export default function PaywallModal({
                     className="w-full text-muted-foreground"
                     onClick={handleRestore}
                     isLoading={restoreLoading}
+                    loadingLabel="Checking access…"
                 >
-                    {!restoreLoading && <ArrowClockwise className="mr-2 size-4" weight="bold" />}
+                    <ArrowClockwise className="mr-2 size-4" weight="bold" />
                     Restore purchase or manage billing
                 </Button>
 

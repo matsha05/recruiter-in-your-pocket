@@ -36,16 +36,20 @@ export const WorkspaceResumePicker = forwardRef<WorkspaceResumePickerHandle, {
       onChange={async (event) => {
         const file = event.currentTarget.files?.[0];
         event.currentTarget.value = "";
-        if (!file) return;
+        if (!file || isBusy || isReading) return;
         if (file.size > 4 * 1024 * 1024 || !/\.(pdf|docx)$/i.test(file.name)) {
           toast.error("Choose a PDF or DOCX under 4 MB.");
           return;
         }
         setIsReading(true);
+        const readingToast = toast.loading("Reading your resume file…");
         try {
           const accepted = await onFileSelect(file, { onParsed: onStartFresh, preserveExisting: true });
           if (accepted) onUploaded(file.name);
+        } catch {
+          toast.error("We couldn’t read this file. Try again or choose another PDF or DOCX.");
         } finally {
+          toast.dismiss(readingToast);
           setIsReading(false);
         }
       }}

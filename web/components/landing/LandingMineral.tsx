@@ -5,6 +5,7 @@ import Footer from "@/components/landing/Footer";
 import { MineralHero } from "./mineral/MineralHero";
 import { WholeReportPreview } from "./mineral/WholeReportPreview";
 import styles from "./mineral/MineralPage.module.css";
+import { MobileReportCTA } from "./mineral/MobileReportCTA";
 
 export function LandingMineral() {
     return (
@@ -39,10 +40,11 @@ export function LandingMineral() {
                 </div>
                 <div className={styles.closeAction}>
                     <p>Your first complete report is free.<br />No account. No card required.</p>
-                    <Link href="/workspace">Get your free report <ArrowRight weight="bold" aria-hidden="true" /></Link>
+                    <Link href="/workspace" data-analytics-cta="closing_report">Get your free report <ArrowRight weight="bold" aria-hidden="true" /></Link>
                 </div>
             </section>
             <Footer />
+            <MobileReportCTA />
         </div>
     );
 }

@@ -1,72 +1,66 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { m as motion } from "motion/react"
-import { Eye, PenLine, Search, Lightbulb } from "lucide-react"
-import { InsightSparkleIcon } from "@/components/icons"
-
-interface TOCItem {
-    id: string
-    label: string
-    icon: React.ElementType
-}
+import * as React from "react";
+import { LayoutGroup, m } from "motion/react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { Eye, PenLine, Search, Lightbulb } from "lucide-react";
+import { InsightSparkleIcon } from "@/components/icons";
+import { useReportNavigation } from "@/components/workspace/report/useReportNavigation";
+import { UI_TRANSITION } from "@/lib/animation";
+import { cn } from "@/lib/utils";
 
 interface LinkedInReportTOCProps {
-    activeId?: string
+    activeId?: string;
 }
 
-export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
-    const items: TOCItem[] = [
-        { id: "linkedin-first-impression", label: "First impression", icon: Eye },
-        { id: "linkedin-headline", label: "Headline", icon: PenLine },
-        { id: "linkedin-about", label: "About section", icon: InsightSparkleIcon },
-        { id: "linkedin-visibility", label: "Search visibility", icon: Search },
-        { id: "linkedin-quick-wins", label: "Priority edits", icon: Lightbulb },
-    ]
+const LINKEDIN_TOC_ITEMS = [
+    { id: "linkedin-first-impression", label: "First impression", icon: Eye },
+    { id: "linkedin-headline", label: "Headline", icon: PenLine },
+    { id: "linkedin-about", label: "About section", icon: InsightSparkleIcon },
+    { id: "linkedin-visibility", label: "Search visibility", icon: Search },
+    { id: "linkedin-quick-wins", label: "Priority edits", icon: Lightbulb },
+] as const;
 
-    const handleScroll = (id: string) => {
-        const el = document.getElementById(id)
-        if (el) {
-            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-            el.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" })
-        }
-    }
+export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
+    const { selectedId, navRef, buttonRefs, handleScroll } = useReportNavigation(LINKEDIN_TOC_ITEMS, activeId);
+    const layoutId = React.useId();
+    const reducedMotion = useReducedMotion();
 
     return (
-        <nav
-            aria-label="LinkedIn report sections"
-            className="overflow-x-auto border-y border-line bg-paper p-2 md:p-3"
-        >
-            <div className="flex min-w-max gap-1 md:block md:min-w-0 md:space-y-1">
-                <div className="hidden px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/50 md:block">
-                    Navigation
-                </div>
-                {items.map((item) => {
-                    const isActive = activeId === item.id
+        <LayoutGroup id={layoutId}>
+            <nav
+                ref={navRef}
+                aria-label="LinkedIn report sections"
+                className="flex items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+                {LINKEDIN_TOC_ITEMS.map((item) => {
+                    const isActive = selectedId === item.id;
                     return (
-                        <button type="button"
+                        <button
+                            type="button"
                             key={item.id}
+                            ref={(element) => { buttonRefs.current[item.id] = element; }}
                             onClick={() => handleScroll(item.id)}
+                            aria-current={isActive ? "location" : undefined}
                             className={cn(
-                                "relative flex min-h-10 shrink-0 items-center gap-2 border-l-2 px-3 py-2 text-sm font-medium transition-colors md:min-h-11 md:w-full md:gap-3",
-                                isActive
-                                    ? "border-cyan-bright bg-surface-sky text-foreground"
-                                    : "border-transparent text-muted-foreground hover:bg-paper-muted hover:text-foreground"
+                                "focus-ring relative flex min-h-11 shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors duration-fast ease-snap motion-reduce:transition-none",
+                                isActive ? "text-brand" : "text-muted-foreground hover:bg-paper-muted hover:text-foreground"
                             )}
                         >
-                            <item.icon className={cn("size-4", isActive ? "text-brand" : "text-muted-foreground")} />
-                            {item.label}
                             {isActive && (
-                                <motion.div
-                                    layoutId="active-linkedin-toc-line"
-                                    className="ml-1 h-px w-4 bg-cyan-bright md:ml-auto"
+                                <m.span
+                                    aria-hidden="true"
+                                    layoutId="linkedin-section-indicator"
+                                    className="pointer-events-none absolute inset-0 rounded-lg bg-surface-sky"
+                                    transition={reducedMotion ? { duration: 0 } : UI_TRANSITION}
                                 />
                             )}
+                            <item.icon className="relative size-4" aria-hidden="true" />
+                            <span className="relative">{item.label}</span>
                         </button>
-                    )
+                    );
                 })}
-            </div>
-        </nav>
-    )
+            </nav>
+        </LayoutGroup>
+    );
 }

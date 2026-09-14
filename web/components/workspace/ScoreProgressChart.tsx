@@ -98,12 +98,12 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                             </div>
                             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                 <div
-                                    className={`h-full rounded-full transition-all duration-150 motion-reduce:transition-none ${point.score >= 75 ? 'bg-success' :
+                                    className={`h-full origin-left rounded-full transition-[transform,background-color] duration-normal ease-snap motion-reduce:transition-none ${point.score >= 75 ? 'bg-success' :
                                         point.score >= 60 ? 'bg-brand' :
                                             point.score >= 45 ? 'bg-warning' :
                                                 'bg-destructive'
                                         }`}
-                                    style={{ width: `${widthPercent}%` }}
+                                    style={{ transform: `scaleX(${widthPercent / 100})` }}
                                 />
                             </div>
                         </div>

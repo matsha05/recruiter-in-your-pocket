@@ -2527,7 +2527,7 @@
   /* Entrance animation (page/modal) */
   .animate-entrance {
     transition-timing-function: var(--ease);
-    transition-duration: 500ms;
+    transition-duration: var(--duration-normal);
   }
 
   /* ==========================================================================
@@ -2859,8 +2859,8 @@
     --landing-border-default: rgb(100 116 139 / 0.34);
     --landing-border-strong: rgb(71 85 105 / 0.46);
     --landing-frame-line: var(--landing-border-soft);
-    --landing-motion-fast: 160ms;
-    --landing-motion-base: 240ms;
+    --landing-motion-fast: var(--duration-fast);
+    --landing-motion-base: var(--duration-normal);
     --landing-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
     @apply relative min-h-screen overflow-x-clip text-slate-900 dark:text-slate-100;
     background: hsl(var(--mineral));
@@ -3964,6 +3964,8 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    animation-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }
@@ -4520,4 +4522,114 @@
     font-size: 0.8em;
     color: #666666 !important;
   }
+}
+
+
+/* State continuity: shared layers keep their own origin and Radix lifecycle. */
+.riyp-overlay-motion[data-state="open"] {
+  animation: riyp-layer-fade-in var(--duration-normal) var(--ease) both;
+}
+.riyp-overlay-motion[data-state="closed"] {
+  animation: riyp-layer-fade-out var(--duration-fast) var(--ease) both;
+}
+.riyp-dialog-motion[data-state="open"] {
+  animation: riyp-dialog-in var(--duration-normal) var(--ease) both;
+}
+.riyp-dialog-motion[data-state="closed"] {
+  animation: riyp-dialog-out var(--duration-fast) var(--ease) both;
+}
+.riyp-floating-motion {
+  --layer-offset-x: 0px;
+  --layer-offset-y: 0px;
+}
+.riyp-floating-motion[data-side="bottom"] { --layer-offset-y: -4px; }
+.riyp-floating-motion[data-side="top"] { --layer-offset-y: 4px; }
+.riyp-floating-motion[data-side="left"] { --layer-offset-x: 4px; }
+.riyp-floating-motion[data-side="right"] { --layer-offset-x: -4px; }
+.riyp-floating-motion[data-state="open"] {
+  animation: riyp-floating-in var(--duration-normal) var(--ease) both;
+}
+.riyp-floating-motion[data-state="closed"] {
+  animation: riyp-floating-out var(--duration-fast) var(--ease) both;
+}
+.ui-state-enter {
+  animation: riyp-state-enter var(--duration-normal) var(--ease) both;
+}
+
+@keyframes riyp-layer-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes riyp-layer-fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* Individual scale preserves the dialog's CSS centering transform. */
+@keyframes riyp-dialog-in {
+  from { opacity: 0; scale: 0.985; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes riyp-dialog-out {
+  from { opacity: 1; scale: 1; }
+  to { opacity: 0; scale: 0.985; }
+}
+@keyframes riyp-floating-in {
+  from { opacity: 0; transform: translate(var(--layer-offset-x), var(--layer-offset-y)) scale(0.985); }
+  to { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+@keyframes riyp-floating-out {
+  from { opacity: 1; transform: translate(0, 0) scale(1); }
+  to { opacity: 0; transform: translate(var(--layer-offset-x), var(--layer-offset-y)) scale(0.985); }
+}
+@keyframes riyp-state-enter {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Native disclosure remains usable when intrinsic-size animation is unsupported. */
+@supports (interpolate-size: allow-keywords) and (transition-behavior: allow-discrete) and selector(details::details-content) {
+  .ui-disclosure { interpolate-size: allow-keywords; }
+  .ui-disclosure::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      block-size var(--duration-normal) var(--ease),
+      opacity var(--duration-fast) var(--ease),
+      content-visibility var(--duration-normal) allow-discrete;
+  }
+  .ui-disclosure:not([open])::details-content {
+    transition-duration: var(--duration-fast);
+  }
+  .ui-disclosure[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riyp-overlay-motion[data-state="open"],
+  .riyp-dialog-motion[data-state="open"],
+  .riyp-floating-motion[data-state="open"],
+  .riyp-sheet-motion[data-state="open"],
+  .riyp-accordion-motion[data-state="open"],
+  .ui-state-enter {
+    animation: none !important;
+  }
+  /* Radix Presence matches animationend by name. Preserve an in-flight exit's
+     identity when this preference changes, so its layer can finish unmounting. */
+  .riyp-overlay-motion[data-state="closed"],
+  .riyp-dialog-motion[data-state="closed"],
+  .riyp-floating-motion[data-state="closed"],
+  .riyp-sheet-motion[data-state="closed"],
+  .riyp-accordion-motion[data-state="closed"] {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .ui-disclosure::details-content {
+    transition: none !important;
+  }
+}
+
+
+/* Sonner retains its swipe mechanics; settled notification changes share UI timing. */
+.toaster[data-sonner-toaster],
+.toaster [data-sonner-toast] {
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease);
 }

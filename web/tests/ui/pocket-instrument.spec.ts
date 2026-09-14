@@ -118,7 +118,7 @@ test("phone controls and reduced motion remain usable", async ({ page }) => {
 });
 
 test("artwork failure keeps the sample and real report action usable", async ({ page }) => {
-    await page.route("**/assets/instrument/clean-plate.v1.webp", route => route.abort());
+    await page.route("**/assets/instrument/clean-plate.v2.webp", route => route.abort());
     await page.goto("/");
     const instrument = page.getByTestId("pocket-instrument");
     await expect(instrument).toHaveAttribute("data-status", "failed");

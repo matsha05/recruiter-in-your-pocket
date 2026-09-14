@@ -54,6 +54,7 @@ export default function InputPanel({
     const [showJD, setShowJD] = useState(!!loadedJobContext);
     const [showPaste, setShowPaste] = useState(false);
     const [hasRejectedResume, setHasRejectedResume] = useState(false);
+    const [isReadingFile, setIsReadingFile] = useState(false);
     const pasteInputRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
@@ -72,9 +73,15 @@ export default function InputPanel({
     }, [showPaste]);
 
     const handleFileSelect = async (file: File) => {
+        setIsReadingFile(true);
         setFileName(null);
-        const accepted = await onFileSelect(file);
-        if (accepted !== false) setFileName(file.name);
+        try {
+            const accepted = await onFileSelect(file);
+            if (accepted !== false) setFileName(file.name);
+            return accepted;
+        } finally {
+            setIsReadingFile(false);
+        }
     };
 
     const handleRemoveFile = () => {
@@ -139,7 +146,7 @@ export default function InputPanel({
                                 onValidationStateChange={setHasRejectedResume}
                             />
                         ) : (
-                            <div className="animate-in fade-in slide-in-from-top-2 motion-reduce:animate-none">
+                            <div className="ui-state-enter">
                                 <div className={styles.pasteHeader}>
                                     <div>
                                         <p className="text-base font-semibold text-foreground">Paste your resume</p>
@@ -179,6 +186,7 @@ export default function InputPanel({
                                     type="button"
                                     data-testid="workspace-paste-mode"
                                     onClick={() => setShowPaste(true)}
+                                    disabled={isReadingFile}
                                     className={styles.textAction}
                                 >
                                     <TextAlignLeft className="size-4" />
@@ -193,6 +201,7 @@ export default function InputPanel({
                                 data-testid="workspace-role-toggle"
                                 onClick={() => setShowJD((current) => !current)}
                                 aria-expanded={showJD}
+                                aria-controls="workspace-job-context"
                                 className={cn(styles.roleToggle, "focus-ring")}
                             >
                                 <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="duotone" />
@@ -205,7 +214,7 @@ export default function InputPanel({
                             </button>
 
                             {showJD && (
-                                <div className="animate-in fade-in slide-in-from-top-1 pb-3 motion-reduce:animate-none">
+                                <div id="workspace-job-context" className="ui-state-enter pb-3">
                                     <label htmlFor="workspace-job-description" className="sr-only">Job posting</label>
                                     <textarea
                                         id="workspace-job-description"
@@ -225,10 +234,11 @@ export default function InputPanel({
                             size="lg"
                             className={styles.runAction}
                             onClick={onRun}
-                            disabled={!hasContent}
+                            disabled={!hasContent || isReadingFile}
                             isLoading={isLoading}
+                            loadingLabel="Reading your resume…"
                         >
-                            {isLoading ? "Reading your resume…" : hasContent ? (
+                            {hasContent ? (
                                 <span className="flex items-center gap-2">
                                     {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>

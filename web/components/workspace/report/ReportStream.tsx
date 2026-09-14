@@ -208,13 +208,13 @@ export function ReportStream({
         </section>
       )}
 
-      <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
-        <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
+      <details id="section-score" className="ui-disclosure group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
+        <summary className="focus-ring flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
             <span className="text-sm font-semibold text-foreground">What goes into your score</span>
             {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100</span>}
           </div>
-          <CaretDown className="size-4 shrink-0 text-brand transition-transform group-open:rotate-180" />
+          <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
           <div>

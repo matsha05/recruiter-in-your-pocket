@@ -2,8 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from "react";
 import { useDropzone, type DropEvent, type FileRejection } from "react-dropzone";
-import { m as motion, AnimatePresence } from "motion/react";
-import { FilePdf, FileText, UploadSimple, WarningCircle, X } from "@phosphor-icons/react";
+import { CircleNotch, FilePdf, FileText, UploadSimple, WarningCircle, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { ChangeEvent } from "react";
@@ -45,21 +44,38 @@ export function ResumeDropzone({
     const [error, setError] = useState<string | null>(null);
     const [rejectedFile, setRejectedFile] = useState<File | null>(null);
     const [localFileName, setLocalFileName] = useState<string | null>(null);
+    const [readingFileName, setReadingFileName] = useState<string | null>(null);
+    const selectionRef = useRef({ id: 0, pending: false });
     const successActionRef = useRef<HTMLButtonElement>(null);
+    const chooseActionRef = useRef<HTMLButtonElement>(null);
     const shouldMoveFocusOnSuccessRef = useRef(false);
+    const shouldRestoreChooseFocusRef = useRef(false);
     const displayFileName = fileName !== undefined ? fileName : localFileName;
+    const isBusy = isProcessing || readingFileName !== null;
+
+    useEffect(() => () => {
+        selectionRef.current.id += 1;
+    }, []);
 
     useEffect(() => {
-        if (!displayFileName || !shouldMoveFocusOnSuccessRef.current) return;
+        if (!displayFileName || isBusy || !shouldMoveFocusOnSuccessRef.current) return;
 
         shouldMoveFocusOnSuccessRef.current = false;
         const frame = window.requestAnimationFrame(() => {
             successActionRef.current?.focus({ preventScroll: true });
         });
         return () => window.cancelAnimationFrame(frame);
-    }, [displayFileName]);
+    }, [displayFileName, isBusy]);
 
-    const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
+    useEffect(() => {
+        if (displayFileName || error || !shouldRestoreChooseFocusRef.current) return;
+        shouldRestoreChooseFocusRef.current = false;
+        const frame = window.requestAnimationFrame(() => chooseActionRef.current?.focus({ preventScroll: true }));
+        return () => window.cancelAnimationFrame(frame);
+    }, [displayFileName, error]);
+
+    const onDrop = useCallback(async (acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
+        if (isProcessing || selectionRef.current.pending) return;
         if (!Array.isArray(event) && event.type === "drop") {
             shouldMoveFocusOnSuccessRef.current = false;
         }
@@ -93,14 +109,38 @@ export function ResumeDropzone({
         }
 
         if (acceptedFiles.length > 0) {
-            if (variant === "compact" && fileName === undefined) {
-                setLocalFileName(acceptedFiles[0].name);
+            const file = acceptedFiles[0];
+            const selectionId = ++selectionRef.current.id;
+            selectionRef.current.pending = true;
+            setReadingFileName(file.name);
+            try {
+                const accepted = await onFileSelect(file);
+                if (selectionId !== selectionRef.current.id) return;
+                if (accepted === false) {
+                    setRejectedFile(file);
+                    setError("We couldn’t read this file. Try another PDF or DOCX.");
+                    onValidationStateChange?.(true);
+                    shouldMoveFocusOnSuccessRef.current = false;
+                } else if (variant === "compact" && fileName === undefined) {
+                    setLocalFileName(file.name);
+                }
+            } catch {
+                if (selectionId !== selectionRef.current.id) return;
+                setRejectedFile(file);
+                setError("We couldn’t read this file. Try again or choose another PDF or DOCX.");
+                onValidationStateChange?.(true);
+                shouldMoveFocusOnSuccessRef.current = false;
+            } finally {
+                if (selectionId === selectionRef.current.id) {
+                    selectionRef.current.pending = false;
+                    setReadingFileName(null);
+                }
             }
-            onFileSelect(acceptedFiles[0]);
         }
-    }, [onFileSelect, variant, fileName, onValidationStateChange]);
+    }, [onFileSelect, variant, fileName, isProcessing, onValidationStateChange]);
 
-    const handleRemoveFile = () => {
+    const handleRemoveFile = (event: ReactMouseEvent<HTMLButtonElement>) => {
+        shouldRestoreChooseFocusRef.current = event.detail === 0;
         shouldMoveFocusOnSuccessRef.current = false;
         setLocalFileName(null);
         setRejectedFile(null);
@@ -131,7 +171,7 @@ export function ResumeDropzone({
         },
         maxFiles: 1,
         maxSize: MAX_FILE_SIZE_BYTES,
-        disabled: isProcessing,
+        disabled: isBusy,
         multiple: false,
         noClick: false,
         noKeyboard: true,
@@ -149,7 +189,8 @@ export function ResumeDropzone({
     if (variant === "hero") {
         return (
             <div className={cn("w-full max-w-xl mx-auto", className)}>
-                <div className={cn("rounded border border-border/60 bg-card p-5 gap-y-4", isProcessing && "opacity-60")}>
+                <input {...getInputProps()} data-testid="workspace-resume-file" onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
+                <div className="rounded border border-border/60 bg-card p-5 gap-y-4" aria-busy={isBusy}>
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
                             <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
@@ -158,10 +199,11 @@ export function ResumeDropzone({
                             <div className="text-xs text-muted-foreground">PDF or DOCX</div>
                         </div>
                         <Button
+                            ref={chooseActionRef}
                             variant="brand"
                             size="sm"
                             onClick={openFilePicker}
-                            disabled={isProcessing}
+                            disabled={isBusy}
                             className="px-3"
                         >
                             Select file
@@ -177,27 +219,16 @@ export function ResumeDropzone({
                             isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
                         )}
                     >
-                        <input {...getInputProps()} data-testid="workspace-resume-file" onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
                         <div className="text-sm font-medium">Drop your resume here</div>
                         <div className="text-xs text-muted-foreground mt-1">No login required</div>
                     </div>
 
-                    <AnimatePresence mode="wait">
-                        {isProcessing && (
-                            <motion.div
-                                key="processing"
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 6 }}
-                                className="text-xs text-muted-foreground"
-                            >
-                                Reading your resume file…
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    <p role="status" aria-live="polite" className="min-h-5 text-xs text-muted-foreground">
+                        {isBusy ? "Reading your resume file…" : ""}
+                    </p>
 
                     {error && (
-                        <div className="flex items-center gap-2 border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                        <div role="alert" className="flex items-center gap-2 border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
                             <WarningCircle className="size-3" />
                             {error}
                         </div>
@@ -209,8 +240,9 @@ export function ResumeDropzone({
 
     return (
         <div className={cn("w-full", className)}>
-            {displayFileName ? (
-                <div className={cn(styles.accepted, "animate-in fade-in slide-in-from-top-2 motion-reduce:animate-none")}>
+            <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
+            {readingFileName || (displayFileName && !error) ? (
+                <div className={cn(styles.accepted, "ui-state-enter")} aria-busy={isBusy}>
                     <span
                         role="status"
                         aria-live="polite"
@@ -218,11 +250,11 @@ export function ResumeDropzone({
                         className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand"
                     >
                         <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/10">
-                            <FileText aria-hidden="true" className="size-5" weight="duotone" />
+                            {isBusy ? <CircleNotch aria-hidden="true" className="size-5 animate-spin motion-reduce:animate-none" /> : <FileText aria-hidden="true" className="size-5" weight="duotone" />}
                         </span>
                         <span className="min-w-0">
-                            <span className="block truncate text-base font-medium text-foreground">{displayFileName}</span>
-                            <span className="mt-1 block text-xs font-normal text-muted-foreground">Ready to review</span>
+                            <span className="block truncate text-base font-medium text-foreground">{readingFileName || displayFileName}</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : "Ready to review"}</span>
                         </span>
                     </span>
                     <Button
@@ -232,12 +264,13 @@ export function ResumeDropzone({
                         size="sm"
                         className="min-h-11 shrink-0 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                         onClick={handleRemoveFile}
+                        disabled={isBusy}
                     >
                         Remove
                     </Button>
                 </div>
             ) : rejectedFile && error ? (
-                <div className={cn(styles.rejected, "animate-in fade-in slide-in-from-top-2 motion-reduce:animate-none")}>
+                <div className={styles.rejected}>
                     <div className={styles.rejectedFile}>
                         <div className="flex min-w-0 items-center gap-4">
                             <span className="flex size-11 shrink-0 items-center justify-center text-destructive">
@@ -269,7 +302,7 @@ export function ResumeDropzone({
                             setRejectedFile(null);
                             setError(null);
                             onValidationStateChange?.(false);
-                            window.setTimeout(open, 0);
+                            open();
                         }}
                         className="mt-5 min-h-12 px-6 text-sm"
                     >
@@ -285,10 +318,9 @@ export function ResumeDropzone({
                             styles.drop,
                             isDragActive && styles.dragActive,
                             isDragReject && styles.dragRejected,
-                            isProcessing && styles.processing
+                            isBusy && styles.processing
                         )}
                     >
-                        <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
 
                         <span className={styles.uploadIcon}>
                             <UploadSimple className="size-7" weight="regular" />
@@ -306,13 +338,14 @@ export function ResumeDropzone({
 
                         <Button
                             type="button"
+                            ref={chooseActionRef}
                             variant="brand"
                             size="sm"
                             onClick={(event) => {
                                 event.stopPropagation();
                                 openFilePicker(event);
                             }}
-                            disabled={isProcessing}
+                            disabled={isBusy}
                             className={cn(styles.chooseButton, "min-h-12 px-6 text-sm")}
                         >
                             Choose a file

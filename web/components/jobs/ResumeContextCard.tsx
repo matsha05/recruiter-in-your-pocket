@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ActionFeedback } from "@/components/ui/action-feedback";
+import { Skeleton } from "@/components/ui/skeleton";
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
@@ -221,8 +223,18 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     // Loading state
     if (isLoading) {
         return (
-            <div className={cn("animate-pulse rounded-2xl border border-border bg-card p-5 motion-reduce:animate-none sm:rounded-3xl sm:p-6", className)}>
-                <div className="h-4 bg-muted rounded w-1/3"></div>
+            <div className={cn("rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6", className)} role="status" aria-live="polite" aria-busy="true">
+                <span className="sr-only">Loading your saved resume…</span>
+                <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center" aria-hidden="true">
+                    <div className="flex min-w-0 items-start gap-3">
+                        <Skeleton className="size-10 shrink-0 rounded-xl" />
+                        <div className="space-y-3 py-1">
+                            <Skeleton className="h-4 w-48 max-w-[45vw] rounded" />
+                            <Skeleton className="h-3 w-36 max-w-[40vw] rounded" />
+                        </div>
+                    </div>
+                    <Skeleton className="h-11 w-24 rounded-xl" />
+                </div>
             </div>
         );
     }
@@ -274,10 +286,11 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                         <button type="button"
                                             onClick={handleRename}
                                             disabled={isSaving}
+                                            aria-busy={isSaving || undefined}
                                             className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl text-success hover:bg-success/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                                             aria-label="Save resume filename"
                                         >
-                                            <Check className="size-3" />
+                                            {isSaving ? <Loader2 className="size-3 motion-safe:animate-spin" aria-hidden="true" /> : <Check className="size-3" aria-hidden="true" />}
                                         </button>
                                         <button type="button"
                                             onClick={() => setIsRenaming(false)}
@@ -322,11 +335,17 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                     <button type="button"
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isSaving}
+                        aria-busy={isSaving || undefined}
                         className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                         aria-label="Upload a different resume"
                     >
-                        <RefreshCw className={cn("size-3", isSaving && "animate-spin")} />
-                        {isSaving ? "Updating…" : "Change"}
+                        <ActionFeedback
+                            state={isSaving ? "pending" : "idle"}
+                            states={{
+                                idle: { label: "Change", icon: <RefreshCw className="size-3" /> },
+                                pending: { label: "Updating…", icon: <Loader2 className="size-3 motion-safe:animate-spin" /> },
+                            }}
+                        />
                     </button>
                 </div>
 
@@ -376,7 +395,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     return (
         <div
             className={cn(
-                "relative cursor-pointer rounded-2xl border border-dashed border-input bg-card p-5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:rounded-3xl sm:p-6",
+                "relative cursor-pointer rounded-2xl border border-dashed border-input bg-card p-5 transition-colors duration-fast ease-snap motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:rounded-3xl sm:p-6",
                 isDragOver
                     ? "border-brand bg-brand/10"
                     : "border-input hover:border-brand hover:bg-brand/5",
@@ -397,11 +416,14 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             role="button"
             tabIndex={isSaving ? -1 : 0}
             aria-disabled={isSaving}
+            aria-busy={isSaving || undefined}
             aria-label="Upload resume for job matching"
         >
             {isSaving ? (
-                <div className="flex min-w-0 items-start gap-3">
-                    <Loader2 className="size-5 text-brand animate-spin" />
+                <div className="flex min-w-0 items-start gap-3" role="status" aria-live="polite">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted">
+                        <Loader2 className="size-4 text-brand motion-safe:animate-spin" aria-hidden="true" />
+                    </div>
                     <div>
                         <p className="text-sm font-medium text-foreground">Saving your resume…</p>
                         {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}

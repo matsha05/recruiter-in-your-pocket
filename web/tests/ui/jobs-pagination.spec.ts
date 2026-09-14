@@ -13,8 +13,9 @@ interface HarnessPlugin {
   onLoad(options: { filter: RegExp; namespace: string }, callback: (args: { path: string }) => { contents: string; loader: string; resolveDir: string }): void;
 }
 const HARNESS_ORIGIN = "http://127.0.0.1:3100";
-let harnessScript = "";
-let detailHarnessScript = "";
+type HarnessBundle = { script: string; styles: string };
+let harnessBundle: HarnessBundle;
+let detailHarnessBundle: HarnessBundle;
 
 const USER_A = "11111111-1111-4111-8111-111111111111";
 const USER_B = "22222222-2222-4222-8222-222222222222";
@@ -82,9 +83,9 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
     },
     bundle: true,
     write: false,
-    // This behavior harness supplies its own minimal CSS below. App layout and
-    // font styling are checked separately against the real Next-rendered pages.
-    loader: { ".css": "empty", ".module.css": "empty" },
+    // Preserve component CSS, including hidden status-sizing labels. App-level
+    // layout and typography are checked against the real Next-rendered pages.
+    outdir: `/tmp/riyp-jobs-${component}-bundle`,
     platform: "browser",
     format: "iife",
     jsx: "automatic",
@@ -101,10 +102,13 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
       },
     }],
   });
-  return result.outputFiles[0].text as string;
+  return {
+    script: result.outputFiles.find((file: { path: string }) => file.path.endsWith(".js")).text as string,
+    styles: (result.outputFiles.find((file: { path: string }) => file.path.endsWith(".css"))?.text || "") as string,
+  };
 }
 
-async function installJobsHarness(page: Page, script = harnessScript) {
+async function installJobsHarness(page: Page, bundle = harnessBundle) {
   // Bundle the actual list, resume card, and delete dialog. Only the surrounding
   // auth and Next navigation boundaries are mocked; every request is fulfilled
   // in-process, so no Next server, real account, or remote service is involved.
@@ -118,7 +122,7 @@ async function installJobsHarness(page: Page, script = harnessScript) {
       return route.fulfill({
         contentType: "text/html",
         body: `<!doctype html><html><head><title>Jobs — browser contract</title>
-          <style>
+          <style>${bundle.styles}
             body { font: 16px system-ui; margin: 24px; }
             #root { max-width: 1000px; margin: auto; }
             article { padding: 8px; border-bottom: 1px solid #ddd; }
@@ -131,7 +135,7 @@ async function installJobsHarness(page: Page, script = harnessScript) {
       });
     }
     if (url.pathname === "/jobs-harness.js") {
-      return route.fulfill({ contentType: "text/javascript", body: script });
+      return route.fulfill({ contentType: "text/javascript", body: bundle.script });
     }
     if (url.pathname === "/favicon.ico") return route.fulfill({ status: 204 });
     await route.abort("blockedbyclient");
@@ -166,8 +170,8 @@ function jobButton(page: Page, number: number) {
 test.describe("saved jobs pagination", () => {
   let runtimeErrors: string[];
   test.beforeAll(async () => {
-    harnessScript = await buildJobsHarness();
-    detailHarnessScript = await buildJobsHarness('JobDetailClient');
+    harnessBundle = await buildJobsHarness();
+    detailHarnessBundle = await buildJobsHarness('JobDetailClient');
   });
   test.beforeEach(({ page }) => {
     runtimeErrors = [];
@@ -419,7 +423,7 @@ test.describe("saved jobs pagination", () => {
   });
 
   test("job detail cannot show a previous account's delayed response after sign-out", async ({ page }) => {
-    const auth = await installJobsHarness(page, detailHarnessScript);
+    const auth = await installJobsHarness(page, detailHarnessBundle);
     let pendingDetail: Route | undefined;
     await page.route('**/api/extension/saved-jobs/*', (route) => { pendingDetail = route; });
     await page.goto(`${HARNESS_ORIGIN}/jobs`);
@@ -432,7 +436,7 @@ test.describe("saved jobs pagination", () => {
   });
 
   test("changing job detail IDs cannot let an older response replace the new job", async ({ page }) => {
-    await installJobsHarness(page, detailHarnessScript);
+    await installJobsHarness(page, detailHarnessBundle);
     let firstDetail: Route | undefined;
     await page.route('**/api/extension/saved-jobs/*', (route) => {
       if (route.request().url().endsWith(makeJobs(1, 1)[0].id)) { firstDetail = route; return; }
@@ -450,7 +454,7 @@ test.describe("saved jobs pagination", () => {
   });
 
   test("deleted job detail offers recovery without claiming it was a browser-only save", async ({ page }) => {
-    await installJobsHarness(page, detailHarnessScript);
+    await installJobsHarness(page, detailHarnessBundle);
     await page.route('**/api/extension/saved-jobs/*', (route) => route.fulfill({ status: 404, json: { success: false } }));
     await page.goto(`${HARNESS_ORIGIN}/jobs`);
     await expect(page.getByRole('alert')).toContainText('This saved job is no longer available.');
@@ -477,6 +481,8 @@ test.describe("saved jobs pagination", () => {
     await page.goto(`${HARNESS_ORIGIN}/jobs`);
     await page.getByRole('button', { name: 'Rename resume', exact: true }).click();
     await page.getByRole('textbox', { name: 'Resume filename', exact: true }).fill('Updated resume.pdf');
+    const feedback = page.getByRole('button', { name: 'Upload a different resume', exact: true }).locator('[data-feedback-state]');
+    await expect(feedback.locator(':scope > span:visible'), 'The current action label appears once; hidden sizing states must not become visible in the harness').toHaveCount(1);
     await page.getByRole('button', { name: 'Save resume filename', exact: true }).click();
     await expect(page.getByText("We couldn't rename your resume. Please try again.", { exact: true })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Resume filename', exact: true })).toHaveValue('Updated resume.pdf');

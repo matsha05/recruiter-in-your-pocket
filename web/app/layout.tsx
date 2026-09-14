@@ -3,6 +3,8 @@ import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
+import { AnalyticsLifecycle } from "@/components/privacy/AnalyticsLifecycle";
+import { PrivacyControls } from "@/components/privacy/PrivacyControls";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.recruiterinyourpocket.com'),
@@ -46,9 +48,11 @@ export default function RootLayout({
       </head>
       <body>
         <AppProviders>
+          <AnalyticsLifecycle />
           {children}
           <CommandPalette />
           <Toaster />
+          <PrivacyControls />
         </AppProviders>
       </body>
     </html>

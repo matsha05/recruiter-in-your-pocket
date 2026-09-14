@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { BracketsAngle, Check, Copy, Question } from "@phosphor-icons/react";
+import { useEffect, useRef, useState } from "react";
+import { BracketsAngle, Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
+import { ActionFeedback } from "@/components/ui/action-feedback";
+import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import {
   resolveRewriteCopyPolicy,
   questionForPlaceholder,
@@ -21,8 +23,12 @@ function IndependentRewriteCard({
   resumeText?: string;
   isReadOnly: boolean;
 }) {
-  const [copied, setCopied] = useState(false);
+  const copiedFeedback = useTransientFeedback();
+  const [copiedText, setCopiedText] = useState<string | null>(null);
+  const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const copyRequest = useRef(0);
+  const copied = copiedFeedback.active && copiedText === item.rewrite.better;
   const needsFacts = hasBracketPlaceholders(item.rewrite.better);
   const policy = resolveRewriteCopyPolicy({
     sourceText: resumeText,
@@ -37,15 +43,23 @@ function IndependentRewriteCard({
         ? "This draft changes or leaves out a detail from your resume, so copying is disabled."
         : "Check the wording, then make it sound like you.";
 
+  useEffect(() => () => { copyRequest.current += 1; }, []);
+
   const handleCopy = async () => {
-    if (!policy.copyable) return;
+    if (!policy.copyable || copying) return;
+    const request = ++copyRequest.current;
+    copiedFeedback.reset();
+    setCopyError(false);
+    setCopying(true);
     try {
       await navigator.clipboard.writeText(item.rewrite.better);
-      setCopyError(false);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
+      if (request !== copyRequest.current) return;
+      setCopiedText(item.rewrite.better);
+      copiedFeedback.trigger();
     } catch {
-      setCopyError(true);
+      if (request === copyRequest.current) setCopyError(true);
+    } finally {
+      if (request === copyRequest.current) setCopying(false);
     }
   };
 
@@ -84,11 +98,18 @@ function IndependentRewriteCard({
                     type="button"
                     onClick={handleCopy}
                     disabled={!policy.copyable}
+                    aria-disabled={!policy.copyable || copying}
+                    aria-busy={copying || undefined}
                     title={!policy.copyable ? guidance : undefined}
-                    className="inline-flex min-h-11 shrink-0 items-center gap-1.5 px-2 text-xs font-semibold text-brand disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70"
+                    className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-2 text-xs font-semibold text-brand transition-colors duration-fast hover:text-brand/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-busy:cursor-wait disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70 motion-reduce:transition-none"
                   >
-                    {!policy.copyable ? <BracketsAngle className="size-4" /> : copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                    {!policy.copyable ? "Not copy-ready" : copied ? "Copied" : "Copy"}
+                    {!policy.copyable ? <><BracketsAngle className="size-4" aria-hidden="true" />Not copy-ready</> : (
+                      <ActionFeedback state={copying ? "pending" : copied ? "success" : "idle"} states={{
+                        idle: { label: "Copy", icon: <Copy className="size-4" /> },
+                        pending: { label: "Copying", icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
+                        success: { label: "Copied", icon: <Check className="size-4" weight="bold" /> },
+                      }} />
+                    )}
                   </button>
                 )}
               </div>

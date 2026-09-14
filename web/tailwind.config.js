@@ -202,13 +202,15 @@ module.exports = {
 				DEFAULT: '0 1px 2px 0 rgb(0 0 0 / 0.04)'
 			},
 			transitionTimingFunction: {
+				DEFAULT: 'var(--ease)',
 				snap: 'var(--ease)'
 			},
 			transitionDuration: {
-				micro: '90ms',
+				DEFAULT: 'var(--duration-normal)',
+				micro: 'var(--duration-fast)',
 				fast: 'var(--duration-fast)',
 				normal: 'var(--duration-normal)',
-				slow: '350ms'
+				slow: 'var(--duration-slow)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -230,7 +232,7 @@ module.exports = {
 				'fade-in-up': {
 					'0%': {
 						opacity: 0,
-						transform: 'translateY(10px)'
+						transform: 'translateY(2px)'
 					},
 					'100%': {
 						opacity: 1,
@@ -248,9 +250,9 @@ module.exports = {
 				}
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in-up': 'fade-in-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'accordion-down': 'accordion-down var(--duration-normal) var(--ease)',
+				'accordion-up': 'accordion-up var(--duration-fast) var(--ease)',
+				'fade-in-up': 'fade-in-up var(--duration-normal) var(--ease) forwards',
 				'pulse-once': 'pulse-once 0.6s ease-out',
 				'bounce-subtle': 'bounce-subtle 1.5s ease-in-out infinite'
 			}

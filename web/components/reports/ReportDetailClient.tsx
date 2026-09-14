@@ -161,8 +161,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       {state === "loading" && (
         <div className="flex flex-1 items-center justify-center px-6 py-10">
-          <div className="app-card inline-flex items-center gap-2 px-5 py-4 text-sm text-muted-foreground">
-            <Loader2 className="size-4 animate-spin" />
+          <div className="app-card inline-flex items-center gap-2 px-5 py-4 text-sm text-muted-foreground" role="status" aria-live="polite">
+            <Loader2 className="size-4 motion-safe:animate-spin" aria-hidden="true" />
             Loading report…
           </div>
         </div>

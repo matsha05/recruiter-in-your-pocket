@@ -4,6 +4,7 @@ export type AnalyticsScalar = string | number | boolean;
 // not listed here are discarded before a vendor SDK sees them. In particular,
 // report, export, checkout, and content identifiers never leave RIYP.
 export const ANALYTICS_EVENT_PROPERTIES = {
+  page_viewed: ["surface"],
   resume_uploaded: ["source"],
   report_started: ["has_jd"],
   report_completed: ["score"],
