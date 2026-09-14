@@ -101,6 +101,8 @@ test.describe("launch red-team journeys", () => {
     // on starting a real review. Public sample CTAs deep-link into this mode.
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/sample-report");
+    await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+    await expect(page.getByTestId("privacy-panel")).toBeHidden();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       "https://www.recruiterinyourpocket.com/sample-report",
