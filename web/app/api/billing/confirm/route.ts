@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
+  getPassStatus,
   isPassActive,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
@@ -332,6 +333,23 @@ export async function POST(req: NextRequest) {
           status,
         }),
         202
+      );
+    }
+
+    const passStatus = getPassStatus(pass);
+    if (passStatus === "expired" || passStatus === "revoked" || passStatus === "invalid") {
+      return response(
+        buildConfirmResponse({
+          state: "checkout_incomplete",
+          status: passStatus,
+          message: passStatus === "expired"
+            ? "This pass has expired. Check Billing for your current access."
+            : passStatus === "revoked"
+              ? "This purchase is no longer eligible for access. Contact support if you need help."
+              : "We could not verify this pass. Use Restore access or contact support before paying again.",
+          pending: false,
+        }),
+        409,
       );
     }
 

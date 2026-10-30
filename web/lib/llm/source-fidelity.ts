@@ -8,6 +8,7 @@ import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-seman
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
 import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion } from "./narrative-fact-support";
 import { supportsInferredIndustrySignal } from "./source-industry-signals";
+import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { narrativeMeaningIssues } from "./narrative-meaning";
 export const EXACT_ABSENCE_SENTINELS = [
@@ -60,7 +61,6 @@ function sourceLines(sourceText: string) {
     .map((line) => canonicalSourceIdentity(line))
     .filter(Boolean);
 }
-
 function isSourceBoundary(value: string, side: "before" | "after") {
   return !value
     || (!sourceContinuationPattern.test(value)
@@ -320,7 +320,7 @@ export function auditNarrativeClaim(
       })()
     ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
     if (policy.assessment || policy.interpretive) return assessmentNarrativeIssues({
-      claim,
+      claim, sourceText,
       claimFacts: facts,
       claimTokens,
       sourceCandidates: eligibleCandidates,
@@ -448,8 +448,8 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     if (semanticMissing === "supported_absence") return [];
     const keywordKind = jobDescriptionKeywordKind(path);
     if (keywordKind) {
-      const inResume = evidenceContainsIdentityPhrase(value, resumeText);
-      const inJobDescription = Boolean(jobDescription?.trim() && evidenceContainsIdentityPhrase(value, jobDescription));
+      const inResume = evidenceContainsRequirement(value, resumeText);
+      const inJobDescription = Boolean(jobDescription?.trim() && evidenceContainsRequirement(value, jobDescription, { jobDescription: true }));
       const grounded = keywordKind === "matched" ? inResume && inJobDescription : !inResume && inJobDescription;
       return grounded ? [] : [{ path, claim: value, unsupportedFacts: [`${keywordKind} JD keyword provenance`] }];
     }

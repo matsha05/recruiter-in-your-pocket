@@ -41,6 +41,8 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Repository guidance is maintained explicitly; dev must not rewrite release inputs.
+  agentRules: false,
   reactStrictMode: true,
   poweredByHeader: false,
   webpack(config, { webpack }) {

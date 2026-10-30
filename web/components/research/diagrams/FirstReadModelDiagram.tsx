@@ -64,7 +64,7 @@ export function FirstReadModelDiagram() {
                                 <p className="riyp-evidence-label text-brand">How the score is explained</p>
                                 <h3 className="mt-2 font-display text-report-title tracking-tight text-foreground">Four parts of the review</h3>
                             </div>
-                            <p className="max-w-[18rem] text-data text-muted-foreground">These scores summarize the feedback. They do not predict interviews or offers.</p>
+                            <p className="max-w-[18rem] text-data text-muted-foreground">Each score summarizes one part of the feedback.</p>
                         </div>
 
                         <ol className="divide-y divide-line">

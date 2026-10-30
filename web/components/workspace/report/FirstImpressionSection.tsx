@@ -13,7 +13,6 @@ import { getScoreColor, getScoreLabel } from "@/lib/score-utils";
 export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [animatedScore, setAnimatedScore] = useState(0);
     const [showBadge, setShowBadge] = useState(false);
-    const [showFirstPassNote, setShowFirstPassNote] = useState(false);
     const [peekOpen, setPeekOpen] = useState(false);
 
     const firstImpressionText = data.first_impression || data.score_comment_long || data.score_comment_short || data.summary;
@@ -38,19 +37,16 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
         if (prefersReducedMotion) {
             setAnimatedScore(targetScore);
             setShowBadge(true);
-            setShowFirstPassNote(true);
             return;
         }
 
         if (targetScore <= 0) {
             setAnimatedScore(targetScore);
             setShowBadge(true);
-            setShowFirstPassNote(true);
             return;
         }
         setAnimatedScore(0);
         setShowBadge(false);
-        setShowFirstPassNote(false);
         const duration = 700;
         const startTime = Date.now();
         let animationFrameId = 0;
@@ -68,7 +64,6 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             } else {
                 badgeTimer = setTimeout(() => {
                     setShowBadge(true);
-                    setShowFirstPassNote(true);
                 }, 100);
             }
         };
@@ -127,12 +122,6 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                     <CheckCircle2 className="size-3" /> {scoreBand.label}
                                 </span>
                             </div>
-                            <p className={cn(
-                                "mt-2 text-xs leading-5 text-muted-foreground transition-[opacity,transform] duration-150 motion-reduce:transition-none",
-                                showFirstPassNote ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-                            )}>
-                                Not a prediction of interviews or offers.
-                            </p>
                         </div>
                     </div>
 

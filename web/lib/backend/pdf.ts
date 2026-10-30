@@ -191,14 +191,13 @@ export function renderReportHtml(report: ReportForPdf) {
         ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
       </div>
       <div class="score-card">
-        <div class="score-name">Review score</div>
+        <div class="score-name">Clarity summary</div>
         <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
         <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
-        <div class="score-scale">Not a prediction of interviews or offers.</div>
       </div>
     </div>
     <div class="score-note">
-      <strong>About the score:</strong> it summarizes the feedback on your resume's story, impact, clarity, and readability. It is not an ATS ranking.
+      <strong>About the score:</strong> it summarizes the feedback on your resume's story, impact, clarity, and readability.
     </div>
   </section>
 

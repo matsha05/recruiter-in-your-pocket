@@ -22,7 +22,7 @@ export default function HowWeScorePage() {
                 stat: "85 / 100",
                 statDescription: "Your recent roles and results are easy to follow. One important responsibility needs more detail.",
                 source: {
-                    text: "Worked example. The score summarizes a document review, not hiring odds."
+                    text: "Worked example. The score summarizes a document review."
                 }
             }}
             productTieIn={{
@@ -61,8 +61,8 @@ export default function HowWeScorePage() {
             ]}
             faq={[
                 {
-                    question: "Does the score predict interviews?",
-                    answer: "No. It summarizes our review of this resume. It is not hiring odds, an ATS score, or a promise of outcomes."
+                    question: "What does the score summarize?",
+                    answer: "It brings together our review of the resume's story, impact, clarity, and readability. The written findings explain what affected it."
                 },
                 {
                     question: "Why these four dimensions?",
@@ -117,7 +117,7 @@ export default function HowWeScorePage() {
             {/* The Thresholds */}
             <h2 className="research-h2">What the scores mean</h2>
             <p className="research-body mb-6">
-                We set these score ranges as part of our review method. They organize the findings; they do not predict hiring outcomes.
+                We set these score ranges as part of our review method to organize the findings.
             </p>
 
             <div className="not-prose border-t border-border/30 divide-y divide-border/30 mb-8">
@@ -154,7 +154,6 @@ export default function HowWeScorePage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The scores are guideposts, not predictions. Read them with the written feedback.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Industry and role context can change what matters most.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>A resume score cannot account for bias, referrals, the job market, or an employer&apos;s hiring process.</li>
             </ul>

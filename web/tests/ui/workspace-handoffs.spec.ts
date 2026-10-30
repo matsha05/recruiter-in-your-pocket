@@ -190,6 +190,41 @@ test.describe("workspace command and completion handoffs", () => {
 
   registerActionFailureCases({ origin: ORIGIN, savedReportId: SAVED_REPORT_ID, report: REPORT });
 
+  test("only an actual sample report shows the free-report acquisition actions", async ({ page }) => {
+    await page.route("**/sample-report.json", (route) => route.fulfill({ json: REPORT }));
+    await page.goto(`${ORIGIN}/workspace?sample=true`);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(page.getByTestId("sample-start-report")).toBeVisible();
+    await expect(page.getByTestId("sample-terminal-cta")).toBeVisible();
+    await page.getByTestId("sample-start-report").click();
+    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+    await expect(page.getByTestId("workspace-run-report")).toBeVisible();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+  });
+
+  test("a restored actual report never inherits sample actions or a late sample response", async ({ page }) => {
+    await page.addInitScript((report) => {
+      sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify({
+        report, resumeText: "Restored original resume", jobDescription: "", timestamp: Date.now(),
+      }));
+    }, REPORT);
+    let sampleRequest: Route | undefined;
+    await page.route("**/sample-report.json", (route) => { sampleRequest = route; });
+    await page.goto(`${ORIGIN}/workspace?sample=true`);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(page.getByText("Your resume report", { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => sessionStorage.getItem("riyp_checkout_workspace"))).toBeNull();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
+    await expect.poll(() => Boolean(sampleRequest)).toBe(true);
+    const sampleResponse = page.waitForResponse("**/sample-report.json");
+    await sampleRequest!.fulfill({ json: { ...REPORT, first_impression_takeaway: "Late sample response" } });
+    await (await sampleResponse).finished();
+    await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(page.getByRole("button", { name: "Get my free report", exact: true })).toHaveCount(0);
+  });
+
   test("long source context is available without hiding the relevant excerpt", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     const excerpt = "Coordinated interviews with hiring managers.";
@@ -322,6 +357,8 @@ test.describe("workspace command and completion handoffs", () => {
     await completeReport(pendingReport!);
     await expect(reportHeading(page)).toBeVisible();
     await expect(reportHeading(page)).toBeFocused();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await expect(reportHeading(page)).toHaveAttribute("tabindex", "-1");
     const announcement = page.getByRole("status").filter({ hasText: "Your report is ready." });
     await expect(announcement).toHaveCount(1);
@@ -386,6 +423,8 @@ test.describe("workspace command and completion handoffs", () => {
 
     await page.goto(`${ORIGIN}/reports/${SAVED_REPORT_ID}`);
     await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await page.evaluate((oldReport) => {
       sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify({
         report: oldReport, resumeText: "Unrelated old resume", jobDescription: "Unrelated old role", timestamp: Date.now(),

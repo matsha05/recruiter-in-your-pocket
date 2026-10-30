@@ -111,6 +111,7 @@ export async function POST() {
     }
 
     const sessionsById = new Map<string, Stripe.Checkout.Session>();
+    let lookupIncomplete = false;
     for (const customer of customers.data) {
       try {
         const sessions = await stripe.checkout.sessions.list({
@@ -122,6 +123,7 @@ export async function POST() {
           if (session.id) sessionsById.set(session.id, session);
         }
       } catch (err: any) {
+        lookupIncomplete = true;
         logWarn({
           msg: "billing.restore.sessions_failed",
           stripe: { customer_id: hashForLogs(customer.id) },
@@ -133,6 +135,7 @@ export async function POST() {
 
     const sessionIds = [...sessionsById.keys()];
     if (sessionIds.length === 0) {
+      if (lookupIncomplete) throw new Error("Checkout session lookup was incomplete");
       return NextResponse.json({
         ok: true,
         restored: 0,
@@ -157,10 +160,11 @@ export async function POST() {
       (blockedSessions || []).map((row: any) => row.checkout_session_id),
     );
 
-    const { data: existingPasses } = await admin
+    const { data: existingPasses, error: existingPassesError } = await admin
       .from("passes")
       .select("checkout_session_id")
       .in("checkout_session_id", sessionIds);
+    if (existingPassesError) throw existingPassesError;
 
     const existingSessionIds = new Set(
       (existingPasses || [])
@@ -182,6 +186,7 @@ export async function POST() {
           expand: [...STRIPE_CHECKOUT_SESSION_EXPAND],
         });
       } catch (err: any) {
+        lookupIncomplete = true;
         logWarn({
           msg: "billing.restore.session_lookup_failed",
           stripe: { session_id: hashForLogs(sessionId) },
@@ -221,6 +226,7 @@ export async function POST() {
           }
           subscriptionPeriodEndUnix = getSubscriptionPeriodEndUnix(subscription, validation.offer);
         } catch {
+          lookupIncomplete = true;
           continue;
         }
 
@@ -245,6 +251,7 @@ export async function POST() {
           }
         } catch {
           // Restoration must fail closed when reversal state cannot be checked.
+          lookupIncomplete = true;
           continue;
         }
       }
@@ -292,11 +299,22 @@ export async function POST() {
       restored += 1;
     }
 
-    const { data: updatedPasses } = await admin
+    const { data: updatedPasses, error: updatedPassesError } = await admin
       .from("passes")
       .select("id, tier, uses_remaining, expires_at, revoked_at")
       .eq("user_id", user.id);
+    if (updatedPassesError) throw updatedPassesError;
     const activeAfter = (updatedPasses || []).filter((pass: any) => isPassActive(pass)).length;
+
+    if (lookupIncomplete) {
+      return NextResponse.json({
+        ok: false,
+        restored,
+        active_before: activeBefore,
+        active_after: activeAfter,
+        message: "Some purchases could not be checked. Try again or contact support before paying again."
+      }, { status: 503 });
+    }
 
     return NextResponse.json({
       ok: true,

@@ -107,7 +107,6 @@ export function ReportStream({
           {typeof report.score === "number" ? (
             <div className={cn(styles.scoreContext, "max-w-[14rem] text-right")}>
               <p className={cn(styles.scoreSummary, "riyp-tabular-label text-xs font-semibold text-foreground")}>Clarity summary: {report.score}/100</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">Not a prediction of interviews or offers.</p>
             </div>
           ) : (
             <p className="riyp-tabular-label text-xs uppercase riyp-track-015 text-muted-foreground">Resume review</p>
@@ -219,7 +218,7 @@ export function ReportStream({
         <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
           <div>
             <p className="font-display text-4xl font-semibold leading-none text-foreground">{report.score ?? "—"}</p>
-            <p className="mt-2 text-xs leading-5 text-muted-foreground">This score summarizes the four parts of the review shown here. It does not predict interviews or offers, and it is not a simple average.</p>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">This score summarizes the four parts of the review shown here; it is not a simple average.</p>
           </div>
           <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
             {Object.entries(report.subscores || {}).map(([label, score]) => (

@@ -42,7 +42,7 @@ export default function MethodologyClient() {
                     What the score means
                 </h2>
                 <p className="text-prose text-muted-foreground">
-                    Recruiter in Your Pocket reviews how clearly your resume communicates when someone reads it quickly. The score helps compare the four parts of the review and shows which areas need attention. It does not estimate your chances of getting an interview or offer.
+                    Recruiter in Your Pocket reviews how clearly your resume communicates when someone reads it quickly. The score helps compare the four parts of the review and shows which areas need attention.
                 </p>
             </section>
 
@@ -116,7 +116,7 @@ export default function MethodologyClient() {
                     Limits and responsible use
                 </h3>
                 <ul className="space-y-2 text-base text-muted-foreground">
-                    <li>1. The score summarizes this resume review. It does not predict interviews or offers.</li>
+                    <li>1. Read the score alongside the written findings and suggested edits.</li>
                     <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>
                     <li>

@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
@@ -152,6 +152,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     const guestCheckoutForm = useForm<GuestCheckoutFormValues>({
         defaultValues: { guestEmail: "" }
     });
+    const displayNameValue = useWatch({ control: profileForm.control, name: "displayName" }) || "";
+    const guestEmailValue = useWatch({ control: guestCheckoutForm.control, name: "guestEmail" }) || "";
 
     const {
         data: passes = [],
@@ -412,8 +414,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             : user?.membership === "credit"
                 ? `${user.paidUsesLeft || 0} paid reports`
                 : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
-    const displayNameValue = profileForm.watch("displayName") || "";
-    const guestEmailValue = guestCheckoutForm.watch("guestEmail") || "";
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
     const latestPass = loadingPasses ? null : passes[0];
     const passForStatus = activePass || latestPass || null;

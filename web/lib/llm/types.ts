@@ -8,7 +8,7 @@ export type LlmTelemetry = {
   tokens_in: number;
   tokens_out: number;
   latency_ms: number;
-  cost_estimate_usd: number;
+  cost_estimate_usd: number | null;
   outcome:
     | "success"
     | "timeout"

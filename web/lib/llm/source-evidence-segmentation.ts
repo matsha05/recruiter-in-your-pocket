@@ -1,4 +1,5 @@
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { sourceClauseIsNegated } from "./narrative-token-policy";
 
 const contrastMarker = "(?:but|however|yet|although|though|while|whereas)";
 const leadingSubordinateContrast = new RegExp(
@@ -50,6 +51,29 @@ const identityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]
 function identityTokens(value: string) {
   const normalized = canonicalizeUserSourceText(value).replace(/[’‘]/gu, "'").replace(/♯/gu, "#");
   return (normalized.match(identityPattern) || []).map((token) => token.toLocaleLowerCase());
+}
+
+export function isPositiveEvidenceClause(value: string) {
+  return !sourceClauseIsNegated(value)
+    && !/\b(?:lacks?|lacked|lacking|unable|cannot|can['’]t|absent|excludes?|excluded|excluding|avoids?|avoided|avoiding)\b/iu.test(value);
+}
+
+// Narrative sentence splitting can divide a dotted company name, and lexical
+// normalization discards the casing used to recognize a CamelCase name. Check
+// a complete, contiguous source identity before those lossy comparisons.
+export function evidenceContainsExactEntity(value: string, sourceText: string, requirePositiveEvidence = false) {
+  const claim = identityTokens(value);
+  if (claim.length === 0) return false;
+  const protectedSource = canonicalizeUserSourceText(sourceText).replace(identityPattern, (token) =>
+    claim.includes(identityTokens(token)[0]) ? token.replaceAll(".", protectedIdentityDot) : token
+  );
+  return narrativeEvidenceClauses(protectedSource).some((clause) => {
+    if (requirePositiveEvidence && !isPositiveEvidenceClause(clause)) return false;
+    const candidate = identityTokens(clause);
+    return candidate.some((token, start) =>
+      token === claim[0] && claim.every((claimToken, offset) => candidate[start + offset] === claimToken)
+    );
+  });
 }
 
 export function evidenceContainsIdentityPhrase(value: string, sourceText: string) {

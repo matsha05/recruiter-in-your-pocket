@@ -23,11 +23,14 @@ import {
 } from "../lib/llm/reportRepair";
 import {
   calculateCostUsd,
+  estimateCostUsd,
+  estimateMaximumCostUsd,
   normalizeTokenUsage,
 } from "../lib/llm/cost";
 import { findMechanicalCopyIssues } from "../lib/evals/checks";
 import {
   getChatCompletionTuning,
+  defaultReasoningEffortForModel,
   getProductionChatCompletionTuning,
   getTuningMetadata,
   increaseReasoningEffort,
@@ -335,6 +338,34 @@ assert.deepEqual(getChatCompletionTuning("gpt-5.6-terra", { reasoningEffort: "lo
   reasoning_effort: "low",
   verbosity: "medium",
 });
+for (const model of ["gpt-6.1-terra", "gpt-6.1-sol", "gpt-6-astra", "gpt-6-luna"]) {
+  assert.equal(defaultReasoningEffortForModel(model), "medium");
+  for (const modelId of [model, `${model}-2026-10-01`]) {
+    assert.deepEqual(getProductionChatCompletionTuning(modelId, {
+      reasoningEffort: "medium",
+      temperature: 0.4,
+    }), {
+      reasoning_effort: "medium",
+      verbosity: "medium",
+      max_completion_tokens: 8_000,
+    }, `${modelId} must use a capped reasoning request without incompatible sampling parameters`);
+    const repairEffort = resolveResumeRepairReasoningEffort(modelId, "medium");
+    assert.equal(repairEffort, "high");
+    assert.equal(getProductionChatCompletionTuning(modelId, { reasoningEffort: repairEffort }).reasoning_effort, "high");
+    assert.equal(getChatCompletionTuning(modelId, { reasoningEffort: "minimal" }).reasoning_effort, "low");
+    assert.equal((getProductionChatCompletionTuning as any)(modelId, {
+      reasoningEffort: "high", maxCompletionTokens: 80_000,
+    }).max_completion_tokens, 8_000);
+  }
+}
+for (const model of ["gpt-6.1-terra", "gpt-6-luna"]) {
+  assert.equal(getChatCompletionTuning(model, { reasoningEffort: "none" }).reasoning_effort, "none");
+}
+for (const model of ["gpt-6.1-sol", "gpt-6-astra"]) {
+  assert.equal(getChatCompletionTuning(model, { reasoningEffort: "none" }).reasoning_effort, "low");
+}
+assert.deepEqual(getChatCompletionTuning("gpt-6.2-unknown"), { temperature: 0 },
+  "new family support must not assume parameters for undocumented future models");
 assert.equal(increaseReasoningEffort("low"), "medium");
 assert.equal(increaseReasoningEffort("medium"), "high");
 assert.deepEqual(getTuningMetadata(getChatCompletionTuning("gpt-5-nano")), {
@@ -440,14 +471,52 @@ assert.equal(
 );
 assert.equal(
   calculateCostUsd("gpt-5.6-luna", nanoUsage),
-  0.0184,
+  0.00368,
   "Luna cost must use its published standard token rates",
 );
 assert.equal(
   calculateCostUsd("gpt-5.6-terra", nanoUsage),
-  0.046,
+  0.0368,
   "Terra cost must use its published standard token rates",
 );
+for (const [model, expectedCost, expectedCeiling] of [
+  ["gpt-6.1-terra", 0.0162, 0.065],
+  ["gpt-6.1-sol", 0.0324, 0.13],
+  ["gpt-6-astra", 0.164, 0.65],
+  ["gpt-6-luna", 0.00164, 0.0065],
+] as const) {
+  assert.equal(calculateCostUsd(model, nanoUsage), expectedCost);
+  assert.equal(calculateCostUsd(`${model}-2026-10-01`, nanoUsage), expectedCost,
+    "dated snapshots must inherit only their documented family price");
+  assert.equal(estimateMaximumCostUsd(model, 20_000, 8_000), expectedCeiling,
+    "the budget ceiling must reserve cold-cache writes and the full output allowance");
+  assert.equal(calculateCostUsd(`${model}-unknown`, nanoUsage), null,
+    "unknown suffixes must not inherit a speculative price");
+}
+assert.equal(estimateCostUsd("unknown-model", nanoUsage), null);
+assert.equal(estimateCostUsd("gpt-6.1-terra", null), null);
+assert.equal(estimateMaximumCostUsd("unknown-model", 20_000, 8_000), null);
+const cacheWriteUsage = normalizeTokenUsage({ usage: {
+  prompt_tokens: 12_000,
+  completion_tokens: 2_000,
+  prompt_tokens_details: { cached_tokens: 4_000, cache_write_tokens: 7_000 },
+  completion_tokens_details: { reasoning_tokens: 500 },
+} });
+assert.equal(cacheWriteUsage?.cache_write_prompt_tokens, 7_000);
+assert.equal(calculateCostUsd("gpt-6.1-terra", cacheWriteUsage), 0.01995,
+  "cached reads, writes, and ordinary input are disjoint; output already includes reasoning tokens");
+assert.equal(normalizeTokenUsage({
+  prompt_tokens: 100,
+  completion_tokens: 10,
+  prompt_tokens_details: { cached_tokens: 80, cache_write_tokens: 90 },
+})?.cache_write_prompt_tokens, 20, "cache details must not exceed total prompt tokens");
+assert.equal(calculateCostUsd("gpt-6.1-terra", {
+  prompt_tokens: 272_000, completion_tokens: 1_000,
+}), 0.277, "the long-context surcharge starts above 272K input tokens");
+assert.equal(calculateCostUsd("gpt-6.1-terra", {
+  prompt_tokens: 300_000, completion_tokens: 1_000,
+  cached_prompt_tokens: 100_000, cache_write_prompt_tokens: 100_000,
+}), 0.4675, "long context reprices every input category and output for the entire request");
 
 assert.deepEqual(
   findMechanicalCopyIssues({

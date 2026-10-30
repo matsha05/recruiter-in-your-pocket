@@ -137,7 +137,7 @@ test.describe("launch red-team journeys", () => {
 
     const firstRead = page.locator("#section-first-impression");
     await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
-    await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
+    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
     await expect(page.getByTestId("clarity-summary-basis")).toContainText(
       "it is not a simple average",
     );
@@ -177,6 +177,10 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Get my free report", exact: true })).toHaveCount(0);
+    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
 
     const purchaseDecision = page.getByTestId("post-report-purchase-decision");
     await expect(purchaseDecision).toContainText("This free report is complete. You do not need to pay to see the rest.");

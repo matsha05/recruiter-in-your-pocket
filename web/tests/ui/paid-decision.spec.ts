@@ -137,6 +137,7 @@ async function runAnonymousReview(page: Page) {
 }
 
 async function installPaidAuthMocks(page: Page) {
+  const requests = { verifiedUser: 0, passes: 0 };
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!supabaseUrl) {
     throw new Error("NEXT_PUBLIC_SUPABASE_URL is required for the paid-decision UI test");
@@ -152,6 +153,7 @@ async function installPaidAuthMocks(page: Page) {
   }, { name: cookieName, value: cookieValue });
 
   await page.route("**/auth/v1/user", async (route) => {
+    requests.verifiedUser += 1;
     await route.fulfill({
       status: 200,
       contentType: "application/json",
@@ -166,6 +168,7 @@ async function installPaidAuthMocks(page: Page) {
     });
   });
   await page.route("**/api/passes", async (route) => {
+    requests.passes += 1;
     await route.fulfill({
       status: 200,
       contentType: "application/json",
@@ -188,6 +191,7 @@ async function installPaidAuthMocks(page: Page) {
       body: JSON.stringify({ ok: true, free_uses_left: 0, free_uses_remaining: 0 }),
     });
   });
+  return requests;
 }
 
 test.describe("paid decision boundary", () => {
@@ -195,6 +199,14 @@ test.describe("paid decision boundary", () => {
 
   test.beforeAll(() => {
     expect(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK).toBe("true");
+  });
+
+  test.beforeEach(async ({ page }) => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (!supabaseUrl) throw new Error("NEXT_PUBLIC_SUPABASE_URL is required for the paid-decision UI test");
+    // Later endpoint-specific routes fulfill the expected auth calls. Any
+    // unexpected provider request must stay local to this mocked UI contract.
+    await page.route(`${new URL(supabaseUrl).origin}/**`, (route) => route.abort("blockedbyclient"));
   });
 
   test("every retained unlock context renders its unique complete-report decision", async ({ page }) => {
@@ -402,7 +414,7 @@ test.describe("paid decision boundary", () => {
   for (const saveTiming of ["while visible", "after dismissal"] as const) {
     test(`mocked paid confirmation preserves the report and pass notice when receipt save finishes ${saveTiming}`, async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await installPaidAuthMocks(page);
+      const accountRequests = await installPaidAuthMocks(page);
 
       const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
       const existingReport = {
@@ -496,6 +508,8 @@ test.describe("paid decision boundary", () => {
 
       await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
       await expect(page.getByRole("heading", { name: "Purchase confirmed" })).toBeVisible();
+      await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
+      await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
       await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
       await expect.poll(() => page.evaluate(() => {
         const stored = localStorage.getItem("riyp_unlock_context");
@@ -511,6 +525,8 @@ test.describe("paid decision boundary", () => {
       await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
       await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
       await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+      await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
       await expect(page.locator("#section-fix-1")).toContainText(existingReport.top_fixes[0].fix);
       await expect(page.getByRole("navigation", { name: "Resume report sections" })
         .getByRole("button", { name: "Role fit", exact: true })).toHaveAttribute("aria-current", "location");

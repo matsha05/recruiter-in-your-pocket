@@ -90,7 +90,7 @@ export function LinkedInReportPanel({
                         </div>
                         <div className="md:mt-5">
                             <p className="text-sm font-semibold text-brand">{report.score_label || "Needs work"}</p>
-                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Summarizes the feedback below. It does not predict hiring outcomes.</p>
+                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Summarizes the feedback below.</p>
                         </div>
                     </div>
                 </div>
