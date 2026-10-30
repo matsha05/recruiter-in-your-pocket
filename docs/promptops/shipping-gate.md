@@ -1,7 +1,7 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-09-04
-**Status:** ENFORCED, CURRENT RELEASE CANDIDATE PASS
+**Last Updated:** 2026-10-30
+**Status:** ENFORCED; bounded model proof passes, hosted release gates remain separate
 
 ---
 
@@ -69,7 +69,8 @@ If shipping with known WARNs, add a comment to the PR:
 | Metric | Current corpus / historical baseline |
 |--------|-------------------------------------|
 | Golden fixtures in current corpus | 23 |
-| Latest candidate validation | 22 PASS, 1 WARN, 0 FAIL |
+| Latest candidate validation | 10 PASS, 0 WARN, 0 FAIL; saved-output replay |
+| Current evaluated subset | 10 synthetic golden fixtures; 13 stored golden fixtures not newly generated |
 | Historical V2 baseline run (2025-12-28) | 17 fixtures |
 | Historical PASS | 1 |
 | Historical WARN | 15 |
@@ -90,7 +91,17 @@ Before any live launch decision, and only after model spend is approved:
 2. Confirm the strict gate ran live smoke and golden evals
 3. Treat any prompt FAIL as an automatic no-go
 
-### Latest live evidence
+### Current bounded launch proof — October 30
+
+The unchanged original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` replays as **10 PASS, 0 WARN, 0 FAIL** through candidate `f9d3903813c2449b205ec39baec9f344650006e5`. Its original **9 PASS, 0 WARN, 1 FAIL** and all provider outputs remain retained; the sole final rejection was corrected by adding the editorial noun “description” to the existing assessment vocabulary with paired fabrication controls. No report prose or selected output was replaced. The replay is bound to source JSON SHA-256 `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`.
+
+Within Matt’s approved testing budget, this proof uses ten synthetic golden fixtures to keep customer and real-person resume fixtures out of the model calls. The prompts and runtime readiness bar remain unchanged: at least eight fixtures, at least 90% PASS, zero FAIL. The other 13 stored golden fixtures were not freshly generated. Medium reasoning, an 8,000-token per-call ceiling and bounded high-reasoning repair match the launch configuration.
+
+A separate fresh Operations run `eval_1793395105340` on that corrected candidate passed (one fixture, two calls, $0.03118420 token-calculated). Four separately receipted streaming cases on `92e45a0` cover with/without-job route behavior; their same raw provider outputs also pass offline replay on the corrected candidate. They are not additional golden fixtures or the standard smoke-tier suite. This chosen proof does not claim `launch:gate:strict` ran. Exact-commit CI and the complete hosted customer journey still determine the release decision.
+
+The parseable [current summary](../../tests/fixtures/results/summary_latest_live.md) records generation/replay candidates, hashes, original failure, costs and the separate targeted confirmation. Any report-behavior change requires validation against the new candidate; any prompt or launch-model change reopens the live quality gate.
+
+### Historical September 4 evidence — Terra 5.6
 
 - Run: `eval_1788577888513_targeted_cohort_replay`
 - Model: `gpt-5.6-terra`, medium reasoning, 8,000 completion tokens per call; bounded high-reasoning repair
@@ -98,12 +109,12 @@ Before any live launch decision, and only after model spend is approved:
 - Result: 22 PASS, 1 WARN, 0 FAIL (95.7%)
 - Validation: saved-output replay of the full live run with five designated fixtures replaced by their latest targeted live outputs. Original failures and source receipts are retained; no report prose was manually edited.
 - Source cohort SHA-256: `245686e38edf51014b54412f47e4c9d4ff6e3c235739190e4cc8d11413399d35`
-- Budget: Matt authorized $10 total. The final smoke receipt and token-calculated campaign cost are recorded in `tests/fixtures/results/summary_latest_live.md`.
+- Budget: Matt authorized $10 total. The final smoke receipt and token-calculated campaign cost are retained in `tests/fixtures/results/summary_historical_2026-09-04.md`.
 - Resume prompt SHA-256: `67c7257730ac5b53f3465454d7bc6831e83f07d50255435e7cafbc09d1f8fa86`
 - Resume-ideas prompt SHA-256: `6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7`
-- Decision: the current candidate clears the quality gate with one non-blocking repeated teacher-role warning. All 23 selected reports received a separate source-by-source copy review.
+- Decision at that time: the September 4 candidate cleared the quality gate with one non-blocking repeated teacher-role warning. All 23 selected reports received a separate source-by-source copy review.
 
-The September 4 release uses the bounded live evaluations and separately recorded final smoke replay, followed by the standard zero-spend launch gate and exact-commit CI. The strict command is not rerun because it would repeat paid work outside the remaining authorized allocation. This replay is not described as a fresh full-batch pass. The original full run returned 14 PASS, 1 WARN and 8 FAIL before validation corrections and the targeted replacements. Repair instructions were refined during those replacements; the initial model and prompt stayed fixed.
+The September 4 release used the bounded live evaluations and separately recorded final smoke replay, followed by the standard zero-spend launch gate and exact-commit CI. For that release, the strict command was not rerun because it would have repeated paid work outside the remaining authorized allocation. This replay is not described as a fresh full-batch pass. The original full run returned 14 PASS, 1 WARN and 8 FAIL before validation corrections and the targeted replacements. Repair instructions were refined during those replacements; the initial model and prompt stayed fixed.
 
 The validator now preserves specific advice instead of replacing it with stock prose. Paired regressions protect section presence, metric qualifiers, source relationships and the reproduced factual presuppositions. These bounded checks do not establish universal accuracy for future generated reports. Minor wording limitations remain documented in the independent review; automated passage alone is not an editorial verdict.
 

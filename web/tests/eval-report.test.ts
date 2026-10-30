@@ -1,16 +1,19 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { EvalRunOutput } from "../lib/evals/types";
 import {
   liveEvalMatchesCandidate,
   liveEvalMeetsLaunchBar,
   parseLiveEvalEvidence,
+  readLiveEvalEvidence,
 } from "../lib/launch/evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "../lib/launch/liveEvalBaseline";
 import { loadPromptForMode } from "../lib/backend/prompts";
 import { checkScoreRange } from "../lib/evals/contract-checks";
 import { aggregateProviderMetrics } from "../lib/evals/runner";
 import { calculateCostUsd } from "../lib/llm/cost";
+import { resolveOpenAIModel } from "../lib/llm/model-config";
 
 function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
   return {
@@ -131,6 +134,20 @@ assert.equal(
 async function runCandidateBindingTests() {
   const resumePrompt = await loadPromptForMode("resume");
   const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
+  assert.deepEqual(
+    readLiveEvalEvidence(path.resolve(__dirname, "../..")),
+    BUNDLED_LIVE_EVAL_EVIDENCE,
+    "tracked latest-live summary and hosted bundled evidence must identify the same evaluated cohort",
+  );
+  const configuredModel = process.env.OPENAI_RESUME_MODEL;
+  try {
+    delete process.env.OPENAI_RESUME_MODEL;
+    assert.equal(BUNDLED_LIVE_EVAL_EVIDENCE.model, resolveOpenAIModel("resume"),
+      "bundled evidence must approve the actual default launch model");
+  } finally {
+    if (configuredModel === undefined) delete process.env.OPENAI_RESUME_MODEL;
+    else process.env.OPENAI_RESUME_MODEL = configuredModel;
+  }
   const recordedModel = BUNDLED_LIVE_EVAL_EVIDENCE.model;
   assert.ok(recordedModel, "bundled evidence must identify the model actually evaluated");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {

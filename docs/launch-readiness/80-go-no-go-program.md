@@ -1,6 +1,6 @@
 # RIYP Production Launch Program
 
-**Last updated:** September 4, 2026
+**Last updated:** October 30, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -80,7 +80,13 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-Matt authorized up to $10 for the September 4 stored-fixture quality work. The current candidate validation (`eval_1788577888513_targeted_cohort_replay`) replays the 23-fixture `gpt-5.6-terra` live cohort with five designated targeted replacements and completes with 22 PASS, 1 WARN, and 0 FAIL. It uses medium reasoning, an 8,000-token per-call ceiling and a bounded high-reasoning repair. Every selected report was independently read against its resume. The original failures, per-fixture origins, final fresh smoke and replay results and total token-calculated cost are recorded in `tests/fixtures/results/summary_latest_live.md`. This is saved-output replay, not a new full-batch generation. Bundled readiness binds the model, reasoning, source cohort and prompt hashes; any prompt or launch-model change reopens this gate.
+The October 30 launch uses bounded synthetic model checks within Matt’s approved testing budget. The original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` is replayed, without changing or replacing any model output, through candidate `f9d3903813c2449b205ec39baec9f344650006e5`: **10 PASS, 0 WARN, 0 FAIL**. Source JSON SHA-256 is `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`. The original 9 PASS, 0 WARN, 1 FAIL is retained; the false rejection of the editorial noun “description” was corrected with a one-word lexical addition and paired negative controls. A separate fresh Operations run on the corrected candidate, `eval_1793395105340`, passed.
+
+This proof covers ten synthetic golden fixtures out of 23 stored golden fixtures, chosen to avoid sending customer or real-person resume fixtures to the model. Four separately receipted streaming cases on `92e45a0` also pass offline replay of the same raw outputs on the corrected candidate; they remain separate from both golden and the standard smoke-tier suite. The other 13 golden fixtures were not newly generated, and the strict command is not claimed to have run. Medium reasoning, an 8,000-token ceiling and bounded high-reasoning repair match the launch configuration. Prompts and the existing readiness threshold (at least eight fixtures, at least 90% PASS, zero FAIL) are unchanged.
+
+`tests/fixtures/results/summary_latest_live.md` and bundled readiness bind the model, reasoning, original source run and both prompt hashes. Final exact-commit CI and a complete hosted customer-journey rehearsal remain mandatory. An evidence-only commit requires a final read-only replay receipt; any report-behavior change reopens candidate validation.
+
+The September 4 Terra 5.6 23-fixture replay (22 PASS, 1 WARN, 0 FAIL, with five targeted replacements) is retained in `tests/fixtures/results/summary_historical_2026-09-04.md`. It is historical evidence, not approval of the Terra 6.1 candidate.
 
 - Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.
@@ -156,17 +162,17 @@ npm run launch:rehearsal
 5. Confirm production-promotion authority from the current user request. Matt explicitly requested the full live launch on September 4, 2026; automated checks or checklist generation alone never grant that authority.
 6. Promote only the approved immutable deployment, then verify the canonical homepage, pricing, sample report, auth, robots, `/api/status`, and the protected `/api/ready` behavior. Preserve the exact-commit CI URL, deployment receipt, endpoint results, and final decision together.
 
-## Current State and Follow-ups
+## Historical August 10 State and Follow-ups
 
 Production release `ece17d1804a7099c7567a8fdb5c48ed9fbbc2718` passed exact-commit CI, deployed successfully, and reported configured services with no incidents on August 10, 2026. The billing, support, alerting, account deletion, recovery, and refund rehearsals above are complete; they are preserved in `95-launch-rehearsal.md` and `87-operational-ownership.md`.
 
-No known configuration blocker remains for the controlled beta. These follow-ups must not be mistaken for completed evidence:
+The August 10 record reported no known configuration blocker for the then-planned controlled beta; it does not establish current launch readiness. These follow-ups must not be mistaken for completed evidence:
 
 - The formal Gauntlet was ended by Matt on August 10 because its token and review cost outweighed its usefulness. Its ledger is retired without a quality verdict.
-- Main currently relies on release convention rather than required PR and CI status checks. Add enforced branch rules before expanding the contributor set.
+- At that time, main relied on release convention rather than required PR and CI status checks. Add enforced branch rules before expanding the contributor set.
 - `/api/status` reports configuration readiness, not uptime. Add an external uptime monitor before depending on it as an availability signal.
 - Populated signed-in report history is implemented and browser-tested, but a real production customer-created history has not been documented yet.
 - A formal Codex Deep Security Scan protocol is not on record. Multiple specialist reviews and automated security suites passed; do not relabel them as that formal scan.
 - Google search-result replacement remains asynchronous after accepted sitemap and recrawl requests.
 
-Supabase still reports leaked-password protection as disabled. The organization is on the Free plan, where Supabase does not offer that control, and RIYP's current sign-in is passwordless. Reassess this setting if password authentication is introduced or the Supabase plan changes.
+The August 10 record reported leaked-password protection disabled on Supabase's Free plan, with passwordless sign-in. Reassess this setting if password authentication is introduced or the Supabase plan changes.
