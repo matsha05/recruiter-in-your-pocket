@@ -57,17 +57,36 @@ function isHostedProduction(env: Record<string, string | undefined>) {
   return env.VERCEL_ENV === "production" || env.NODE_ENV === "production";
 }
 
+/**
+ * Paid reports draw from their own daily ceiling so free traffic can never
+ * exhaust capacity a customer has already paid for. It defaults to the free
+ * ceiling, which keeps total provider spend bounded at twice that value.
+ */
+export function configuredDailyPaidGenerationLimit(
+  env: Record<string, string | undefined> = process.env
+): number | null {
+  const parsed = Number(env.RIYP_MAX_DAILY_PAID_GENERATIONS);
+  if (Number.isSafeInteger(parsed) && parsed >= 1 && parsed <= 100_000) return parsed;
+  return configuredDailyGenerationLimit(env);
+}
+
+export type GenerationCapacityTier = "free" | "paid";
+
 export async function reserveDailyGenerationCapacity(options: {
   env?: Record<string, string | undefined>;
   redis?: BudgetRedis | null;
   now?: Date;
+  tier?: GenerationCapacityTier;
 } = {}): Promise<GenerationBudgetStatus> {
   const env = options.env ?? process.env;
+  const tier = options.tier ?? "free";
+  const limit = tier === "paid"
+    ? configuredDailyPaidGenerationLimit(env)
+    : configuredDailyGenerationLimit(env);
   if (isTruthy(env.RIYP_DISABLE_GENERATION)) {
-    return { allowed: false, used: 0, limit: configuredDailyGenerationLimit(env), reason: "paused" };
+    return { allowed: false, used: 0, limit, reason: "paused" };
   }
 
-  const limit = configuredDailyGenerationLimit(env);
   if (!limit) {
     return {
       allowed: !isHostedProduction(env),
@@ -88,7 +107,7 @@ export async function reserveDailyGenerationCapacity(options: {
   try {
     const result = await redis.eval<[number, number]>(
       DAILY_CAP_SCRIPT,
-      [`ops:generation:daily:${day}`],
+      [tier === "paid" ? `ops:generation:daily:paid:${day}` : `ops:generation:daily:${day}`],
       [limit, 48 * 60 * 60]
     );
     const allowed = Number(result?.[0]) === 1;
@@ -99,8 +118,10 @@ export async function reserveDailyGenerationCapacity(options: {
   }
 }
 
-export async function assertGenerationCapacity(): Promise<void> {
-  const status = await reserveDailyGenerationCapacity();
+export async function assertGenerationCapacity(
+  tier: GenerationCapacityTier = "free"
+): Promise<void> {
+  const status = await reserveDailyGenerationCapacity({ tier });
   if (status.allowed) return;
 
   if (status.reason === "paused") {
