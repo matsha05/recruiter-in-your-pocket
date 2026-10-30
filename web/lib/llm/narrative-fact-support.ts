@@ -1,6 +1,6 @@
 import { normalizeNarrativeToken } from "./narrative-token-policy";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
-import { evidenceContainsExactEntity } from "./source-evidence-segmentation";
+import { evidenceContainsExactEntity, evidenceContainsOnlyNegatedEntity } from "./source-evidence-segmentation";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 
 type NarrativeFact = { key: string; display: string };
@@ -69,6 +69,9 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
   if (toolModifier && sourceText) return toolModifier[2] === "based"
     ? evidenceContainsExactEntity(toolModifier[1], sourceText, true)
     : evidenceContainsRequirement(`${toolModifier[1]} reporting`, sourceText);
+  // An entity named only in negative evidence cannot establish positive presence.
+  if (requirePositiveEntity && /^(?:entity|symbol):/u.test(fact.key)
+    && evidenceContainsOnlyNegatedEntity(fact.display, sourceText)) return false;
   if (sourceFacts.some((sourceFact) => sourceFact.key.toLocaleLowerCase() === fact.key.toLocaleLowerCase())) return true;
   if (fact.key.startsWith("metric:") || fact.key.startsWith("metric-word:")) {
     const identity = metricIdentity(fact.display);

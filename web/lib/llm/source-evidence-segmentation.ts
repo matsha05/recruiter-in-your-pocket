@@ -76,6 +76,33 @@ export function evidenceContainsExactEntity(value: string, sourceText: string, r
   });
 }
 
+// Restrict negative presence to the identity's own grammatical phrase. A
+// modifier such as "without supervision" does not negate a preceding tool.
+export function evidenceContainsOnlyNegatedEntity(value: string, sourceText: string) {
+  const claim = identityTokens(value);
+  if (claim.length === 0) return false;
+  const protectedSource = canonicalizeUserSourceText(sourceText).replace(identityPattern, (token) =>
+    claim.includes(identityTokens(token)[0]) ? token.replaceAll(".", protectedIdentityDot) : token
+  );
+  const occurrences: boolean[] = [];
+  for (const clause of narrativeEvidenceClauses(protectedSource)) {
+    const candidate = identityTokens(clause);
+    for (let start = 0; start < candidate.length; start++) {
+      if (!claim.every((token, offset) => candidate[start + offset] === token)) continue;
+      const before = candidate.slice(0, start).join(" ");
+      const after = candidate.slice(start + claim.length).join(" ");
+      const negatedBefore = /\b(?:no|without|lacks?|lacked|lacking|not|never|unable|cannot|can't|don't|doesn't|didn't)(?:\s+(?:any|prior|previous|experience|knowledge|background|skills?|proficiency|expertise|in|with|of|using|uses?|used|to|work|working|have|has|had|been|able|report|reporting))*$/iu.test(before);
+      const negatedAfter = /^(?:(?:experience|knowledge|skills?|proficiency|expertise)\s+)?(?:(?:is|are|was|were|has been|have been)\s+)?(?:absent|excluded|not\s+(?:used|included|part of)|never\s+used)\b/iu.test(after);
+      // "No SQL errors" negates errors, not SQL; require an identity/capability
+      // head after a bare no/without prefix rather than an arbitrary noun.
+      const bareNegativePrefix = /\b(?:no|without)$/iu.test(before);
+      const entityHead = !after || /^(?:experience|knowledge|background|skills?|proficiency|expertise|use|usage|familiarity|for|in|during|since|at|with|and|or)\b/iu.test(after);
+      occurrences.push((negatedBefore && (!bareNegativePrefix || entityHead)) || negatedAfter);
+    }
+  }
+  return occurrences.length > 0 && occurrences.every(Boolean);
+}
+
 export function evidenceContainsIdentityPhrase(value: string, sourceText: string) {
   const claim = identityTokens(value);
   if (claim.length === 0) return false;

@@ -1,3 +1,5 @@
+import { narrativeEvidenceClauses } from "./source-evidence-segmentation";
+
 // Keep distinctions that a bag of source words cannot establish.
 const recurringPipeline = /\b(?:pipeline\s+(?:in\s+)?(?:ARR|annual recurring revenue)|(?:ARR|annual recurring revenue)\s+pipeline)\b/iu;
 const outcomeFamilies = [
@@ -73,15 +75,31 @@ export function narrativeMeaningIssues(claim: string, source: string): string[] 
   if (unfinished && !describesAccount && !incompleteWork.test(source)) {
     issues.push("missing resume detail does not establish that the work itself was unfinished");
   }
-  const conflict = /\b(?:pointed? in different directions|conflict(?:ed|s|ing)?|competing direction)\b/iu;
+  const conflict = /\b(?:pointed? in different directions|conflict(?:ed|s|ing)?|competing direction|(?:priorities|inputs|feedback|directions)\s+(?:differed|(?:was|were)\s+different))\b/iu;
   const checksWhetherConflictOccurred = /\b(?:if|whether)\b|^\s*(?:(?:at|in|during|for)\s+[^,;.!?\n]{1,80},\s*)?(?:did|were|was|have|has)\b/iu.test(claim);
   // A discrepancy between written Education dates is not an assertion that
   // people or research inputs disagreed. Its dates still face the factual audit.
   const educationDateDiscrepancy = /\b(?:dates?|years?|graduation timing)\b/iu.test(claim)
     && /\b(?:education|graduation|degree|header)\b/iu.test(claim)
     && !/\b(?:feedback|inputs?|updates?|analytics)\b/iu.test(claim);
+  const sourceEstablishesConflict = narrativeEvidenceClauses(source).some((clause) => {
+    for (const asserted of clause.matchAll(/\b(?:conflict(?:ed|s|ing)?|competing|disagree(?:d|s|ing|ment|ments)?|contradict(?:ed|s|ing|ory|ion|ions)?|different directions|(?:priorities|inputs|feedback|directions)\s+(?:differed|(?:was|were)\s+different))\b/giu)) {
+      if (isUnassertedVerb(clause, asserted.index!)) continue;
+      const prefix = clause.slice(0, asserted.index);
+      const suffix = clause.slice(asserted.index! + asserted[0].length);
+      // Negation must describe the disagreement, not an unrelated consequence
+      // such as "resolved conflicts without escalation" or "with no delay".
+      if (/\b(?:no|without|avoided|lacked)\s+(?:(?:any|further|significant|major|minor|actual|reported|unresolved)\s+){0,3}$/iu.test(prefix)) continue;
+      if (/^\s+(?:(?:was|were|is|are)\s+)?(?:absent|avoided|prevented)\b|^\s+(?:did\s+not|never)\s+(?:occur|happen|arise|exist)\b|^\s+(?:was|were|is|are)\s+not\s+(?:present|reported|observed|experienced)\b/iu.test(suffix)) continue;
+      // A possible disagreement or a plan for one is not a past disagreement.
+      if (/\b(?:hypothetical|hypothetically|potential|potentially|possible|possibly|simulated|scenarios?|simulations?)\b/iu.test(prefix)) continue;
+      if (/\b(?:plans?|planned|planning|procedures?|training)\b[^.!?;]*\b(?:for|when|if)\b/iu.test(prefix)) continue;
+      return true;
+    }
+    return false;
+  });
   if (conflict.test(claim) && !checksWhetherConflictOccurred && !educationDateDiscrepancy
-    && !/\b(?:conflict|competing|disagree|contradict|different directions)/iu.test(source)) {
+    && !sourceEstablishesConflict) {
     issues.push("the source does not establish conflicting inputs; ask whether there was a conflict first");
   }
   // Questions and conditional recommendations do not assert an achieved result.

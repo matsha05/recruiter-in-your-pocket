@@ -20,7 +20,7 @@ const EXPECTED_UNLOCK_COPY = {
   },
   bullet_upgrades: {
     title: "Get feedback on your revision",
-    label: "Suggested rewrites",
+    label: "Resume edits",
   },
   missing_wins: {
     title: "Check the details you add",

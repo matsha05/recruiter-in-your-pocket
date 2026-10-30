@@ -52,7 +52,7 @@ const sourceNegationPattern = /\b(?:did\s+not|does\s+not|do\s+not|not|never|no|w
 const questionPattern = /\?\s*$|^\s*(?:what|how|which|where|when|who|why|can|could|would|should|do|did|is|are)\b/iu;
 const advicePattern = /^\s*(?:(?:first|then|finally),?\s+)?(?:add|ask|choose|clarify|compare|complete|correct|define|describe|document|edit|explain|expand|identify|include|keep|make|name|quantify|reorder|replace|resolve|revise|rewrite|separate|sharpen|show|specify|state|surface|tighten|turn|say|use|verify)\b|\b(?:can|should|could|needs?\s+to)\b/iu;
 const absencePattern = /^\s*no\b|\b(?:absent|blurry|seldom|rarely|hardly|cannot\s+tell|missing|needs?|lacks?|unclear|without|not\s+(?:yet\s+)?(?:choose|clear|explicit|included|present|shown|stated|visible)|(?:do|does|did)\s+not\s+(?:choose|include|make\b[^.!?]{0,50}\bexplicit|name|show|state))\b/iu;
-const positivePresencePattern = /\b(?:adds?|appears?|clear(?:ly)?|contains?|explicit|includes?|included|points?|present|readable|shows?|shown|visible)\b/iu;
+const positivePresencePattern = /\b(?:adds?|appears?|clear(?:ly)?|contains?|explicit|includes?|included|(?<![-‐‑‒–—])points?(?![-‐‑‒–—])|present|readable|shows?|shown|visible)\b/iu;
 const assessmentCuePattern = /\b(?:blurry|compete|credible|dense|difficult|easier|fit|harder|limited|read|reader|recruiter|relevant|resume|story|strong|thin|unclear|uneven|useful|weak)\b/iu;
 
 export function sourceClauseIsNegated(value: string) {
@@ -90,10 +90,14 @@ export function narrativeTokenPolicy(
   const isAdvice = context === "advice" || lexicalAdvice;
   const isAbsence = context === "missing" || lexicalAbsence;
   const isAssessment = context === "assessment";
+  // Comparative clarity describes a limitation; retain any other positive cue in the clause.
+  const presenceText = normalized
+    .replace(/\b(?:less|not\s+as)\s+clear(?:ly)?\b/giu, " ")
+    .replace(/\b(?:(?:do|does|did)\s+not|don['’]t|doesn['’]t|didn['’]t)\s+(?:yet\s+)?(?:show|include|contain|add|appear)\b/giu, " ");
   const assertsPresence = !lexicalQuestion
     && !lexicalAdvice
     && !lexicalAbsence
-    && positivePresencePattern.test(normalized);
+    && positivePresencePattern.test(presenceText);
   const allowAssessmentDimensions = !assertsPresence && (isQuestion || isAdvice || isAbsence);
   const ignoredTokens = new Set([...baseNarrativeStopWords, ...styleWords, ...actionWords]);
   if (allowAssessmentDimensions || isAssessment) {

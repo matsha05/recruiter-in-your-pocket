@@ -57,17 +57,17 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
             "Feedback on a revised resume or another job posting",
-            "Suggested rewrites tied to that resume",
+            "Specific edits tied to that resume",
             "PDF exports for 30 days"
         ]
     },
     bullet_upgrades: {
-        label: "Suggested rewrites",
+        label: "Resume edits",
         title: "Get feedback on your revision",
         subtitle: COMPLETE_REPORT_SUBTITLE,
         bullets: [
             ADDITIONAL_REPORTS_BULLET,
-            "New rewrites for each revised resume",
+            "Specific edits for each revised resume",
             "The original beside every suggestion",
             "Why each change may help"
         ]
