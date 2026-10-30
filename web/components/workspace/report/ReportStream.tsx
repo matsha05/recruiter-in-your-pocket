@@ -229,7 +229,7 @@ export function ReportStream({
             </div>
             <div className={styles.revisionAction}>
               <Button variant="brand" size="lg" onClick={onStartReport}>
-                Get my free report <ArrowRight className="ml-2 size-4" weight="bold" />
+                Get your free report <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
               <p className={styles.revisionNote}>{FREE_REPORT_ENTITLEMENT.promise} No account required.</p>
             </div>

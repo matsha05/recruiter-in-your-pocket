@@ -151,7 +151,7 @@ export default function AnalysisScanning({
 
                     <div className="grid gap-2 border-t border-line bg-proof/40 px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:px-8">
                         <p className="tracking-wider text-xs font-semibold uppercase text-muted-foreground">What we cover</p>
-                        <p className="text-sm leading-5 text-muted-foreground">These are the areas being reviewed. They do not show how much time is left.</p>
+                        <p className="text-sm leading-5 text-muted-foreground">Reading it the way a recruiter would. Usually about a minute.</p>
                     </div>
                 </div>
 

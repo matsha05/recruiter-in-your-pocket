@@ -193,7 +193,7 @@ test.describe("workspace command and completion handoffs", () => {
   test("only an actual sample report shows the free-report acquisition actions", async ({ page }) => {
     await page.route("**/sample-report.json", (route) => route.fulfill({ json: REPORT }));
     await page.goto(`${ORIGIN}/workspace?sample=true`);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     await expect(page.getByTestId("sample-start-report")).toBeVisible();
     await expect(page.getByTestId("sample-terminal-cta")).toBeVisible();
     await page.getByTestId("sample-start-report").click();
@@ -211,18 +211,18 @@ test.describe("workspace command and completion handoffs", () => {
     let sampleRequest: Route | undefined;
     await page.route("**/sample-report.json", (route) => { sampleRequest = route; });
     await page.goto(`${ORIGIN}/workspace?sample=true`);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     await expect(page.getByText("Your resume report", { exact: true })).toBeVisible();
     expect(await page.evaluate(() => sessionStorage.getItem("riyp_checkout_workspace"))).toBeNull();
     await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
     await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await expect.poll(() => Boolean(sampleRequest)).toBe(true);
     const sampleResponse = page.waitForResponse("**/sample-report.json");
-    await sampleRequest!.fulfill({ json: { ...REPORT, first_impression_takeaway: "Late sample response" } });
+    await sampleRequest!.fulfill({ json: { ...REPORT, first_impression: "Late sample response.", first_impression_takeaway: "Late sample response" } });
     await (await sampleResponse).finished();
     await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
-    await expect(page.getByRole("button", { name: "Get my free report", exact: true })).toHaveCount(0);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
+    await expect(page.getByRole("button", { name: "Get your free report", exact: true })).toHaveCount(0);
   });
 
   test("long source context is available without hiding the relevant excerpt", async ({ page }) => {
@@ -304,7 +304,7 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace?job=${JOB.id}`);
     await expect(page.getByText(JOB.title, { exact: true })).toBeVisible();
     await startReport(page);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     expect(submissions[0].savedJobId).toBe(JOB.id);
 
     const cancelled = await openUploadCommand(page);
@@ -321,7 +321,7 @@ test.describe("workspace command and completion handoffs", () => {
     await parseRequests[0].fulfill({ json: { ok: false, message: "This PDF did not contain readable text." } });
     await expect(page.getByText("We couldn’t read this resume", { exact: true })).toBeVisible();
     await expect(page.getByRole("status").filter({ hasText: "Reading your resume file." })).toHaveCount(0);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     await expect(page).toHaveURL(`${ORIGIN}/workspace?job=${JOB.id}`);
 
     const successful = await openUploadCommand(page);
@@ -411,6 +411,7 @@ test.describe("workspace command and completion handoffs", () => {
     });
     const revisedReport = ResumeFeedbackResponseSchema.parse({
       ...REPORT,
+      first_impression: "Customer scale now reads clearly.",
       first_impression_takeaway: "Customer scale now reads clearly",
       gaps: ["The time saved still needs context.", ...REPORT.gaps.slice(1)],
       top_fixes: [{ ...REPORT.top_fixes[0], fix: "Add the time saved by the workflow." }],
@@ -422,14 +423,14 @@ test.describe("workspace command and completion handoffs", () => {
     });
 
     await page.goto(`${ORIGIN}/reports/${SAVED_REPORT_ID}`);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
     await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await page.evaluate((oldReport) => {
       sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify({
         report: oldReport, resumeText: "Unrelated old resume", jobDescription: "Unrelated old role", timestamp: Date.now(),
       }));
-    }, { ...REPORT, first_impression_takeaway: "Unrelated old checkout report" });
+    }, { ...REPORT, first_impression: "Unrelated old checkout report.", first_impression_takeaway: "Unrelated old checkout report" });
     await page.getByRole("button", { name: "Compare my revision", exact: true }).click();
     await expect(page).toHaveURL(`${ORIGIN}/workspace?revision=${SAVED_REPORT_ID}`);
     await expect(page.getByRole("heading", { name: "Now let’s see what changed." })).toBeVisible();
@@ -454,7 +455,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(current).toContainText(revisedReport.first_impression_takeaway);
     await expect(current).toContainText(revisedReport.gaps[0]);
     await expect(current).toContainText(revisedReport.top_fixes[0].fix);
-    await expect(reportHeading(page)).toHaveText(revisedReport.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(revisedReport.first_impression);
     expect(submission?.text).toBe(UPLOADED_TEXT);
     expect(submission?.savedJobId).toBeUndefined();
     expect(submission?.jobDescription).toBeUndefined();

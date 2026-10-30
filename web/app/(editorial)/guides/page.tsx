@@ -89,7 +89,7 @@ export default function GuidesPage() {
                                 href="/workspace"
                                 className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                             >
-                                Get free report
+                                Get your free report
                                 <ArrowRight className="size-4" />
                             </Link>
                         </div>

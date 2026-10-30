@@ -48,7 +48,7 @@ function PricingHeroActions({
                 onClick={() => Analytics.track("pricing_run_free_review_clicked", { source: "pricing_hero" })}
                 className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
             >
-                Get my free report
+                Get your free report
                 <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-fast ease-snap motion-reduce:transition-none group-hover:translate-x-0.5" weight="bold" />
             </Link>
 
@@ -159,7 +159,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     </p>
                                     <p className="mt-3 text-sm leading-6 text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
                                     <Link href="/workspace" className="focus-ring mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-background transition-colors duration-fast ease-snap motion-reduce:transition-none hover:bg-foreground/90">
-                                        Get my free report
+                                        Get your free report
                                         <ArrowRight className="size-4" />
                                     </Link>
                                 </div>

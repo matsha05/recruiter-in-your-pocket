@@ -110,7 +110,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                     "bg-primary text-primary-foreground hover:bg-primary/90"
                                 )}
                             >
-                                Get my free report
+                                Get your free report
                             </Link>
                         </div>
                     )}
@@ -237,7 +237,7 @@ function SiteMobileMenu({
                             <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Log in</MobileSiteLink>
                             <SheetClose asChild>
                                 <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                                    Get my free report
+                                    Get your free report
                                 </Link>
                             </SheetClose>
                         </>

@@ -112,7 +112,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
 
     const sampleCta = page.getByTestId("sample-start-report");
-    await expect(sampleCta).toHaveText(/Get my free report/i);
+    await expect(sampleCta).toHaveText(/Get your free report/i);
     expect(await sampleCta.evaluate((element) => {
       const rect = element.getBoundingClientRect();
       return rect.top >= 0 && rect.bottom <= window.innerHeight;
@@ -160,7 +160,7 @@ test.describe("launch red-team journeys", () => {
     await sampleTemplate.locator("summary").focus();
     await sampleTemplate.locator("summary").press("Enter");
     await expect(sampleTemplate).toHaveAttribute("open", "");
-    await expect(sampleTemplate).toContainText("This is unfinished wording.");
+    await expect(sampleTemplate).toContainText("Fill in the brackets with what actually happened");
     await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeVisible();
     await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
     await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant|Original resume needed/i })).toHaveCount(0);
@@ -168,7 +168,7 @@ test.describe("launch red-team journeys", () => {
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
     await expect(terminalCta).toContainText("Let's look at your resume.");
-    await terminalCta.getByRole("button", { name: "Get my free report", exact: true }).click();
+    await terminalCta.getByRole("button", { name: "Get your free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
@@ -180,7 +180,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
     await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
     await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Get my free report", exact: true })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Get your free report", exact: true })).toHaveCount(0);
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
 
     const purchaseDecision = page.getByTestId("post-report-purchase-decision");

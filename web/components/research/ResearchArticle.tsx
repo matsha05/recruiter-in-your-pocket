@@ -76,7 +76,7 @@ export function ResearchArticle({
     faq,
     cta = {
         title: "Find out where your resume needs more detail.",
-        buttonText: "Review my resume",
+        buttonText: "Get your free report",
         href: "/workspace",
     },
 }: ResearchArticleProps) {

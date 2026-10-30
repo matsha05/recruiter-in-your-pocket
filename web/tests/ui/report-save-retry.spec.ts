@@ -140,7 +140,7 @@ test.describe("saving an anonymous report after sign-in", () => {
     await page.goto(`${ORIGIN}/workspace`);
     const heading = page.locator("#section-first-impression h1");
     const save = page.getByTestId("workspace-keep-report");
-    await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+    await expect(heading).toHaveText(REPORT.first_impression);
     await expect(save).toHaveAccessibleName("Keep report");
     await expect(save).toBeEnabled();
     expect(attempts).toHaveLength(0);
@@ -149,7 +149,7 @@ test.describe("saving an anonymous report after sign-in", () => {
     await save.click();
     await expect(page.getByRole("alert")).toContainText("This report wasn’t saved to your history. Keep this tab open and try again.");
     await expect(save).toHaveAccessibleName("Retry save");
-    await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+    await expect(heading).toHaveText(REPORT.first_impression);
     expect(attempts).toHaveLength(1);
     expect(await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!).recoveryId, ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBe(RECOVERY_ID);
     await expect(page.getByRole("dialog")).toHaveCount(0);
@@ -157,7 +157,7 @@ test.describe("saving an anonymous report after sign-in", () => {
     await save.click();
     await expect(save).toHaveCount(0);
     await expect(page.getByRole("alert")).toHaveCount(0);
-    await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+    await expect(heading).toHaveText(REPORT.first_impression);
     expect(attempts).toHaveLength(2);
     expect(await page.evaluate((key) => localStorage.getItem(key), ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBeNull();
   });
@@ -174,7 +174,7 @@ test.describe("saving an anonymous report after sign-in", () => {
       });
       await page.goto(`${ORIGIN}/workspace`);
       const heading = page.locator("#section-first-impression h1");
-      await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+      await expect(heading).toHaveText(REPORT.first_impression);
       await page.getByTestId("workspace-keep-report").click();
       await page.getByRole("button", { name: "Sign in to save", exact: true }).click();
       await page.getByRole("button", { name: "Complete test sign-in", exact: true }).click();
@@ -184,7 +184,7 @@ test.describe("saving an anonymous report after sign-in", () => {
       await expect(error).toContainText("This report wasn’t saved to your history. Keep this tab open and try again.");
       await expect(retry).toHaveAccessibleName("Retry save");
       await expect(retry).toBeEnabled();
-      await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+      await expect(heading).toHaveText(REPORT.first_impression);
       await expect(page.getByRole("dialog", { name: "Test sign-in boundary" })).toHaveCount(0);
       expect(attempts).toHaveLength(1);
       expect(await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!).recoveryId, ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBe(RECOVERY_ID);
@@ -197,12 +197,12 @@ test.describe("saving an anonymous report after sign-in", () => {
       await expect.poll(() => attempts.length).toBe(2);
       await expect(retry).toBeDisabled();
       await expect(retry).toHaveAttribute("aria-busy", "true");
-      await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+      await expect(heading).toHaveText(REPORT.first_impression);
       await attempts[1].fulfill({ json: { ok: true, reportId: SAVED_REPORT_ID, recovery_id: RECOVERY_ID } });
 
       await expect(retry).toHaveCount(0);
       await expect(error).toHaveCount(0);
-      await expect(heading).toHaveText(REPORT.first_impression_takeaway);
+      await expect(heading).toHaveText(REPORT.first_impression);
       expect(attempts).toHaveLength(2);
       expect(await page.evaluate((key) => localStorage.getItem(key), ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBeNull();
     });

@@ -85,7 +85,7 @@ function IndependentRewriteCard({
               )}
               <details className="mt-4 border-t border-brand/15 pt-2">
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">View draft template</summary>
-                <p className="mt-2 text-xs leading-5 text-muted-foreground">This is unfinished wording. Add the missing facts and edit the sentence before using it.</p>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">Fill in the brackets with what actually happened, then make it sound like you.</p>
                 <p className="mt-3 text-base leading-7 text-foreground/85">{item.rewrite.better}</p>
               </details>
             </>

@@ -27,7 +27,7 @@ for (const viewport of [{ width: 844, height: 390 }, { width: 640, height: 400 }
         await page.keyboard.press("Enter");
         const dialog = page.getByRole("dialog");
         const navigation = dialog.getByRole("navigation", { name: "Mobile navigation", exact: true });
-        const finalAction = navigation.getByRole("link", { name: "Get my free report", exact: true });
+        const finalAction = navigation.getByRole("link", { name: "Get your free report", exact: true });
         const close = dialog.getByRole("button", { name: "Close", exact: true });
         await expect(dialog).toBeVisible();
         // Auth resolution replaces the account placeholder with these links.

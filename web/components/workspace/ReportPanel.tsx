@@ -254,7 +254,7 @@ export default function ReportPanel({
                                             onClick={onNewReport}
                                             className="min-h-11 shrink-0 px-2 sm:px-4"
                                         >
-                                            Get my free report <ArrowRight className="ml-1 size-4" weight="bold" />
+                                            Get your free report <ArrowRight className="ml-1 size-4" weight="bold" />
                                         </Button>
                                     )}
                                     {!isSample && !isStreaming && !shareMode && onKeepReport && (

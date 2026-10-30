@@ -34,7 +34,7 @@ export function PricingCard({
     const isFree = tier === "free";
     const isFeatured = tier === "30d";
     const disableForFree = isFree && !allowFreeSelect;
-    const buttonLabel = isFree && allowFreeSelect ? "Get the free report" : data.buttonText;
+    const buttonLabel = isFree && allowFreeSelect ? "Get your free report" : data.buttonText;
     const isMarketing = context === "marketing";
 
     if (variant === "compact") {

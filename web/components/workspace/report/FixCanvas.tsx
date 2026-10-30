@@ -287,7 +287,7 @@ export function FixCanvas({
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">
                   View draft template
                 </summary>
-                <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">This is unfinished wording. The brackets mark missing facts; it needs your details and an edit before it belongs on a resume.</p>
+                <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">Fill in the brackets with what actually happened, then make it sound like you.</p>
                 <p className="my-4 max-w-[42rem] text-base leading-7 text-foreground/85">{suggestedLine}</p>
               </details>
             </div>
