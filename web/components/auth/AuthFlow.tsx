@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { ArrowRight, Check, EnvelopeSimple } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
-import { isValidAuthEmail, normalizeAuthEmail } from "@/lib/auth/utils";
+import { isValidAuthEmail, normalizeAuthEmail, safeAuthRedirect } from "@/lib/auth/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { useAuthFieldFocus } from "./useAuthFieldFocus";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
@@ -36,7 +35,6 @@ export function AuthFlow({
   isOpen = true,
   initialError = null
 }: AuthFlowProps) {
-  const { push, refresh } = useRouter();
   const copy = getAuthCopy(context, {
     billingEnabled: isLaunchFlagEnabled("billingUnlock"),
     extensionEnabled: isLaunchFlagEnabled("extensionSync"),
@@ -148,12 +146,13 @@ export function AuthFlow({
   const finishAuth = useCallback(() => {
     onSuccess?.();
     if (variant === "page") {
-      refresh();
-      push(redirectTo || "/workspace");
+      // Verification sets cookies server-side. Recreate the browser auth state
+      // before opening a protected destination; a router refresh preserves it.
+      window.location.replace(safeAuthRedirect(redirectTo ?? null, "/workspace"));
     } else {
       onClose?.();
     }
-  }, [onClose, onSuccess, redirectTo, push, refresh, variant]);
+  }, [onClose, onSuccess, redirectTo, variant]);
 
   const verifyCode = useCallback(async () => {
     if (!isOpen || step !== "code" || !/^\d{8}$/.test(code) || authRequestRef.current.pending || authRequestRef.current.verified) return;

@@ -32,7 +32,7 @@ async function buildAuthHarness() {
         function Harness() {
           const [isOpen, setOpen] = useState(true);
           window.__authHarness = {setOpen};
-          return <AuthFlow isOpen={isOpen} onSuccess={() => { window.__authSuccesses += 1; }} />;
+          return <AuthFlow variant="modal" isOpen={isOpen} onSuccess={() => { window.__authSuccesses += 1; }} />;
         }
         createRoot(document.getElementById("root")).render(<StrictMode><Harness /></StrictMode>);`,
       loader: "tsx", resolveDir: WEB_ROOT, sourcefile: "auth-code-retry-harness.tsx",
@@ -169,7 +169,7 @@ test.describe("one-time sign-in code verification", () => {
     await expect.poll(() => pending.length).toBe(1);
     await page.getByLabel("Login code", { exact: true }).fill(EDITED_CODE);
     await pending[0].fulfill({ json: { ok: true, user: { firstName: "Candidate" } } });
-    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+    await expect(page).toHaveURL(`${ORIGIN}/signin`);
     await page.clock.runFor(3_000);
     expect(pending).toHaveLength(1);
     expect(await page.evaluate(() => (window as unknown as { __authSuccesses: number }).__authSuccesses)).toBe(1);
@@ -210,7 +210,8 @@ test.describe("one-time sign-in code verification", () => {
     expect(verifyAttempts).toBe(2);
     expect(sendAttempts).toBe(3);
     await page.getByRole("button", { name: "Skip for now", exact: true }).click();
-    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __authSuccesses: number }).__authSuccesses)).toBe(1);
+    await expect(page).toHaveURL(`${ORIGIN}/signin`);
   });
 
   test("closing the flow ignores a delayed verification result", async ({ page }) => {
