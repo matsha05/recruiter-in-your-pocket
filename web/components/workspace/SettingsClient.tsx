@@ -737,7 +737,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             <section className="rounded-xl bg-muted p-5 text-sm leading-6 text-muted-foreground">
                                 Need help with a payment or invoice? Email{" "}
-                                <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
+                                <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] underline underline-offset-4 hover:text-foreground">
                                     support@recruiterinyourpocket.com
                                 </Link>
                             </section>
@@ -776,13 +776,13 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                                                 return (
                                                     <div key={pass.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                        <div className="flex items-center gap-3 min-w-0">
+                                                        <div className="flex w-full min-w-0 items-center gap-3 sm:flex-1">
                                                             <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
                                                                 <FileText className="size-3.5" />
                                                             </div>
-                                                            <div className="min-w-0">
-                                                                <p className="text-sm font-medium truncate">{getTierLabel(pass.tier)}</p>
-                                                                <p className="text-xs text-muted-foreground truncate">
+                                                            <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+                                                                <p className="text-sm font-medium">{getTierLabel(pass.tier)}</p>
+                                                                <p className="text-xs text-muted-foreground">
                                                                     {new Date(pass.created_at).toLocaleDateString()} · {usesLabel}
                                                                 </p>
                                                                 {expiryDate && (
@@ -838,7 +838,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : receiptsError ? (
                                         <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
                                             <p className="font-medium">Receipts could not load.</p>
-                                            <p className="mt-1 text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
+                                            <p className="mt-1 [overflow-wrap:anywhere] text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
                                             <button type="button" onClick={() => void refetchReceipts()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
                                                 Try again
                                             </button>
@@ -851,11 +851,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <div className="divide-y divide-border">
                                             {receipts.map((receipt) => (
                                                 <div key={receipt.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                    <div className="min-w-0">
-                                                        <p className="text-sm font-medium truncate">
+                                                    <div className="w-full min-w-0 [overflow-wrap:anywhere] sm:w-auto sm:flex-1">
+                                                        <p className="text-sm font-medium">
                                                             {receipt.number || receipt.id}
                                                         </p>
-                                                        <p className="text-xs text-muted-foreground truncate">
+                                                        <p className="text-xs text-muted-foreground">
                                                             {new Date(receipt.created_at).toLocaleDateString()} · {formatAmount(receipt.amount_paid, receipt.currency)}
                                                         </p>
                                                         {receipt.status && (
@@ -867,7 +867,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                             </span>
                                                         )}
                                                     </div>
-                                                    <div className="flex items-center gap-2 shrink-0">
+                                                    <div className="flex max-w-full shrink-0 flex-wrap items-center gap-2">
                                                         {receipt.hosted_invoice_url && (
                                                             <a
                                                                 href={receipt.hosted_invoice_url}
