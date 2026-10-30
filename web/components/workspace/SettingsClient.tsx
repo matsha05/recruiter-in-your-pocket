@@ -547,7 +547,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                 <nav
                     aria-label="Settings sections"
-                    className="mb-8 flex w-full items-center gap-1 overflow-x-auto border-b border-border pb-1"
+                    className="mb-8 flex w-full flex-wrap items-center gap-1 border-b border-border pb-1"
                 >
                     {visibleTabs.map(({ id, label, href, icon: Icon }) => (
                         <Link

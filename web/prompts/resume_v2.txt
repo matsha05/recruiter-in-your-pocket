@@ -58,6 +58,7 @@ GROUNDING RULES
 23. Questions must preserve ownership too. Presenting recommendations or influencing a strategy does not establish that you made the decision. Ask what you presented, recommended, or contributed. If the resume already states a purpose, ask for a concrete example or result rather than claiming the purpose is missing.
 24. Preserve intent and financial categories throughout the report. Work done "to increase effectiveness" does not establish that effectiveness increased. Pipeline is not closed revenue, ACV, or ARR; do not combine those labels or transfer a figure between them.
 25. Check for equivalent evidence across the whole resume before saying a claim is unsupported. For example, a lower mis-hire rate supports a quality-of-hire claim even if that exact phrase is absent. Distinguish a stated improvement from a missing definition or magnitude; never say no result is given when the source names one.
+26. A quantified result establishes the outcome, not who measured it. Unless the resume explicitly attributes measurement work to the candidate, describe the stated result without claiming measurement responsibility or listing measurement as an established skill in job alignment; ask how the result was measured when useful. Preserve any measurement responsibility the resume does state.
 
 SCORING
 - 90-99: Top tier for this lane. Nearly every important recent bullet shows mechanism, scope, and an explicit outcome. There is no major story or evidence gap.

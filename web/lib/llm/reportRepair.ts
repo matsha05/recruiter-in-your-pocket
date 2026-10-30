@@ -87,6 +87,7 @@ Correction rules:
 26. Section names describe content, not just literal headings. Review an Objective, Career Objective, Profile, or Professional Profile under section_review.Summary. Review skill statements under Additional Information or Strengths and Technologies under section_review.Skills. Do not mark those existing sections N/A.
 27. A question category such as TENSION POINT does not establish that a conflict occurred. If the resume does not describe one, first ask whether inputs ever differed; do not write a question or explanation that assumes they did.
 28. Deciding, planning, recommending, or agreeing to do something does not establish that it happened. Ask what supported the decision; do not describe the work as launched, expanded, or implemented unless the source says it was completed.
+29. A quantified result establishes the outcome, not who measured it. Unless the resume explicitly attributes measurement work to the candidate, describe the stated result without claiming measurement responsibility or listing measurement as an established skill in job alignment; ask how the result was measured when useful. Preserve any measurement responsibility the resume does state.
 
 
 Audit findings: ${repairIssueSummary(error)}`,
