@@ -7,7 +7,7 @@ import { semanticMissingDisposition } from "./semantic-missing-policy";
 import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-semantic-patterns";
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
 import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion } from "./narrative-fact-support";
-import { supportsInferredIndustrySignal } from "./source-industry-signals";
+import { supportsIndustrySignal } from "./source-industry-signals";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { narrativeMeaningIssues } from "./narrative-meaning";
@@ -434,7 +434,7 @@ function jobDescriptionKeywordKind(path: string) {
 }
 export function auditReportNarrative(report: any, resumeText: string, jobDescription?: string): NarrativeFidelityIssue[] {
   return reportNarrativeStrings(report).flatMap(({ path, value }) => {
-    if (/^job_alignment\.role_fit\.industry_signals\[\d+\]$/u.test(path) && supportsInferredIndustrySignal(value, resumeText)) return [];
+    if (/^job_alignment\.role_fit\.industry_signals\[\d+\]$/u.test(path)) return supportsIndustrySignal(value, resumeText) ? [] : [{ path, claim: value, unsupportedFacts: ["industry signal provenance"] }];
     if (path === "job_alignment.jd_match_summary" && ((value === "No job description provided.") !== !jobDescription?.trim())) return [{ path, claim: value, unsupportedFacts: [value] }];
     const jdRelationshipIssues = /^job_alignment\.missing\[\d+\]$/u.test(path) ? relationshipBindingIssues(value, jobDescription || "") : [];
     if (jdRelationshipIssues.length > 0) return [{ path, claim: value, unsupportedFacts: jdRelationshipIssues }];

@@ -1,4 +1,5 @@
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { evidenceContainsExactEntity, isPositiveEvidenceClause, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 
 const industryDefinitions: Array<{ label: string; pattern: RegExp }> = [
   { label: "Staffing", pattern: /\b(?:staffing agenc(?:y|ies)|recruitment agenc(?:y|ies)|temporary[- ]to[- ]hire|salaried professionals service)\b/iu },
@@ -17,11 +18,15 @@ const industryDefinitions: Array<{ label: string; pattern: RegExp }> = [
 ];
 
 export function inferredIndustrySignals(sourceText: string) {
-  const source = canonicalizeUserSourceText(sourceText);
-  return industryDefinitions.filter(({ pattern }) => pattern.test(source)).map(({ label }) => label).slice(0, 4);
+  const clauses = narrativeEvidenceClauses(canonicalizeUserSourceText(sourceText)).filter(isPositiveEvidenceClause);
+  return industryDefinitions.filter(({ pattern }) => clauses.some((clause) => pattern.test(clause))).map(({ label }) => label).slice(0, 4);
 }
 
 export function supportsInferredIndustrySignal(value: string, sourceText: string) {
   const definition = industryDefinitions.find(({ label }) => label.toLocaleLowerCase() === value.trim().toLocaleLowerCase());
-  return Boolean(definition?.pattern.test(canonicalizeUserSourceText(sourceText)));
+  return Boolean(definition && narrativeEvidenceClauses(sourceText).some((clause) => isPositiveEvidenceClause(clause) && definition.pattern.test(clause)));
+}
+
+export function supportsIndustrySignal(value: string, sourceText: string) {
+  return evidenceContainsExactEntity(value, sourceText, true) || supportsInferredIndustrySignal(value, sourceText);
 }

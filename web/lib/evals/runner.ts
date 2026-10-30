@@ -253,12 +253,14 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
         completion_tokens: total.completion_tokens + (result.usage?.completion_tokens || 0),
         total_tokens: (total.total_tokens || 0) + (result.usage?.total_tokens || 0),
         cached_prompt_tokens: (total.cached_prompt_tokens || 0) + (result.usage?.cached_prompt_tokens || 0),
+        cache_write_prompt_tokens: (total.cache_write_prompt_tokens || 0) + (result.usage?.cache_write_prompt_tokens || 0),
         reasoning_tokens: (total.reasoning_tokens || 0) + (result.usage?.reasoning_tokens || 0),
     }), {
         prompt_tokens: 0,
         completion_tokens: 0,
         total_tokens: 0,
         cached_prompt_tokens: 0,
+        cache_write_prompt_tokens: 0,
         reasoning_tokens: 0,
     });
 
@@ -361,7 +363,7 @@ async function runProviderGeneration(
     throw new Error("Provider retry loop ended unexpectedly");
 }
 
-function aggregateProviderMetrics(calls: ProviderCallMetrics[]) {
+export function aggregateProviderMetrics(calls: ProviderCallMetrics[]) {
     const usages = calls.flatMap((call) => call.usage ? [call.usage] : []);
     const usage = usages.length > 0
         ? usages.reduce<TokenUsage>((total, current) => ({
@@ -369,12 +371,14 @@ function aggregateProviderMetrics(calls: ProviderCallMetrics[]) {
             completion_tokens: total.completion_tokens + current.completion_tokens,
             total_tokens: (total.total_tokens || 0) + (current.total_tokens || 0),
             cached_prompt_tokens: (total.cached_prompt_tokens || 0) + (current.cached_prompt_tokens || 0),
+            cache_write_prompt_tokens: (total.cache_write_prompt_tokens || 0) + (current.cache_write_prompt_tokens || 0),
             reasoning_tokens: (total.reasoning_tokens || 0) + (current.reasoning_tokens || 0),
         }), {
             prompt_tokens: 0,
             completion_tokens: 0,
             total_tokens: 0,
             cached_prompt_tokens: 0,
+            cache_write_prompt_tokens: 0,
             reasoning_tokens: 0,
         })
         : undefined;

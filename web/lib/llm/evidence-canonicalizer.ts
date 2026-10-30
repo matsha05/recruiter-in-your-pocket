@@ -1,4 +1,5 @@
 import { hasSkillsSection } from "./source-sections";
+import { canonicalizeOptionalReportMetadata } from "./optional-report-metadata";
 import {
   findAlreadySatisfiedFix,
   findBiggestGapContradictions,
@@ -1585,7 +1586,7 @@ export function buildResumeEvidenceCatalog(resumeText: string) {
     .join("\n");
 }
 
-export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: string): CanonicalizationResult<T> {
+export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: string, options: { jobDescription?: string } = {}): CanonicalizationResult<T> {
   if (!report || typeof report !== "object") return { report, changes: [], unresolved: [] };
   const copy = JSON.parse(JSON.stringify(report)) as any;
   const changes: string[] = [];
@@ -1774,5 +1775,6 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
   normalizeIdeaQuestionRepetition(copy, changes);
   normalizeSourceGatedRecruiterLanguage(copy, resumeText, changes);
   normalizeGeneratedLanguage(copy, changes);
-  return { report: copy as T, changes, unresolved };
+  const optionalMetadata = canonicalizeOptionalReportMetadata(copy, resumeText, options);
+  return { report: optionalMetadata.report as T, changes: [...changes, ...optionalMetadata.changes], unresolved };
 }

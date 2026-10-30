@@ -73,7 +73,7 @@ export function resolveOpenAIModel(mode: LlmMode, explicitModel?: string) {
   const explicit = String(explicitModel || "").trim();
   if (explicit) return explicit;
   if (mode === "resume") {
-    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5.6-terra";
+    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-6.1-terra";
   }
   return String(process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
 }

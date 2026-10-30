@@ -440,7 +440,27 @@ assert.doesNotMatch(
   /getChatCompletionTuning\(/,
   "the production OpenAI backend must not retain an uncapped tuning path",
 );
-assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5.6-terra");
+const originalModelEnv = {
+  resume: process.env.OPENAI_RESUME_MODEL,
+  general: process.env.OPENAI_MODEL,
+};
+try {
+  delete process.env.OPENAI_RESUME_MODEL;
+  process.env.OPENAI_MODEL = "gpt-4o-mini";
+  assert.equal(resolveOpenAIModel("resume"), "gpt-6.1-terra",
+    "the candidate resume default must not inherit the general-mode model");
+  assert.equal(resolveOpenAIModel("linkedin"), "gpt-4o-mini");
+  process.env.OPENAI_RESUME_MODEL = " gpt-5.6-terra ";
+  assert.equal(resolveOpenAIModel("resume"), "gpt-5.6-terra", "explicit environment overrides remain supported");
+  assert.equal(resolveOpenAIModel("resume", "gpt-6.1-sol"), "gpt-6.1-sol", "isolated eval models take precedence");
+  process.env.OPENAI_RESUME_MODEL = " ";
+  assert.equal(resolveOpenAIModel("resume"), "gpt-6.1-terra");
+} finally {
+  if (originalModelEnv.resume === undefined) delete process.env.OPENAI_RESUME_MODEL;
+  else process.env.OPENAI_RESUME_MODEL = originalModelEnv.resume;
+  if (originalModelEnv.general === undefined) delete process.env.OPENAI_MODEL;
+  else process.env.OPENAI_MODEL = originalModelEnv.general;
+}
 assert.equal(resolveReasoningEffortForMode("resume", "gpt-5-nano"), "low");
 
 const nanoUsage = normalizeTokenUsage({
