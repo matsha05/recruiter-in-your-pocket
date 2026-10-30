@@ -219,6 +219,9 @@ export function useResumeReview(input: {
       const hasDisposition = /report attempt was used|counted toward your report allowance|report credit was restored|did not use your free report or a paid report credit|could not confirm (?:whether (?:report access changed|this attempt used a report)|that your report credit was restored|this attempt's status)/iu
         .test(result.message || "");
       toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "The connection ended" : "We couldn’t finish your report", {
+        // Generation takes about a minute; keep the outcome visible until the user acts.
+        duration: Infinity,
+        closeButton: true,
         description: hasDisposition
             ? result.message
             : `${result.message || "The report did not finish."} · ${attemptCopy}`,
@@ -233,6 +236,8 @@ export function useResumeReview(input: {
       });
       if (!input.isAnalysisCurrent(controller)) return;
       toast.error("We couldn’t finish your report", {
+        duration: Infinity,
+        closeButton: true,
         description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
       });
     } finally {

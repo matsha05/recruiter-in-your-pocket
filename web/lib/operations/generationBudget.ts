@@ -127,7 +127,7 @@ export async function assertGenerationCapacity(
   if (status.reason === "paused") {
     throw new GenerationBudgetError(
       "GENERATION_PAUSED",
-      "Report generation is temporarily paused. Please try again shortly."
+      "Reports are paused for a short while as we fix a problem. Please try again later today."
     );
   }
   if (status.reason === "limit_reached") {

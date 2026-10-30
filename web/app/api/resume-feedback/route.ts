@@ -432,7 +432,7 @@ export async function POST(request: Request) {
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
-              ? "The report did not pass its evidence check."
+              ? "We couldn’t finish this report on our side. Your resume wasn’t the problem."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
     const message = appendFailureDisposition(baseMessage, disposition);
 

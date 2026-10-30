@@ -593,7 +593,7 @@ assert.equal(releaseReasonForError({ name: "AbortError" }), "client_disconnect")
 assert.equal(releaseReasonForError({ code: "OPENAI_TIMEOUT" }), "provider_timeout");
 assert.doesNotMatch(
   streamRoute,
-  /new Error\("The report did not pass its evidence check\. Your report credit was restored/,
+  /new Error\("We couldn’t finish this report on our side\. Your report credit was restored/,
   "post-provider validation errors must not claim an anonymous attempt was restored",
 );
 assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*const refreshed = await input\.refreshFreeStatus/);

@@ -130,7 +130,7 @@ export async function validateResumeStreamOutput(input: {
         },
       });
       const validationError = new Error(
-        "The report did not pass its evidence check. Please try again."
+        "We couldn’t finish this report on our side. Your resume wasn’t the problem. Please try again."
       ) as Error & { code: string };
       validationError.code = "OPENAI_RESPONSE_SHAPE_INVALID";
       throw validationError;

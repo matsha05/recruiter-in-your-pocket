@@ -40,7 +40,7 @@ async function run() {
     assert.match(requestBodies[0].messages.at(-1).content, /Objective.*section_review\.Summary/);
     assert.match(requestBodies[0].messages.at(-1).content, /Additional Information.*section_review\.Skills/);
     reply = draft;
-    await assert.rejects(validateResumeStreamOutput(input), /did not pass its evidence check/);
+    await assert.rejects(validateResumeStreamOutput(input), /couldn’t finish this report on our side/);
     assert.equal(requestBodies.length, 2, "a failed repair must not start an unbounded retry loop");
   } finally {
     globalThis.fetch = originalFetch;

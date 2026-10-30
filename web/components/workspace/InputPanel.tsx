@@ -52,7 +52,8 @@ export default function InputPanel({
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
     const [showJD, setShowJD] = useState(!!loadedJobContext);
-    const [showPaste, setShowPaste] = useState(false);
+    // The panel remounts after a failed run; reopen pasted text instead of hiding it behind the upload view.
+    const [showPaste, setShowPaste] = useState(() => !commandUploadName && resumeText.trim().length > 0);
     const [hasRejectedResume, setHasRejectedResume] = useState(false);
     const [isReadingFile, setIsReadingFile] = useState(false);
     const pasteInputRef = useRef<HTMLTextAreaElement>(null);
