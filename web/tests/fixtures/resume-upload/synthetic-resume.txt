@@ -1,0 +1,18 @@
+Alex Example
+Product Manager
+SUMMARY
+Product manager with experience in customer onboarding and product operations.
+WORK EXPERIENCE
+Bright.Lab — Product Manager — 2022 to Present
+- Interviewed 18 customers about onboarding problems and summarized findings for the design team.
+- Worked with engineering and design on an onboarding checklist that reduced setup time from 5 days to 3 days.
+- Supported customer projects and coordinated product requirements.
+- Presented product priorities to the leadership team.
+LocalAI — Product Analyst — 2019 to 2022
+- Built weekly usage reports in SQL and shared findings with product managers.
+- Supported a pilot for 6 customer teams and documented their feedback.
+- Helped prepare product launch materials.
+SKILLS
+SQL, product discovery, customer interviews, requirements documentation
+EDUCATION
+Bachelor of Science in Information Systems, Cedar College, 2019

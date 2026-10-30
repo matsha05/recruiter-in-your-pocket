@@ -6,6 +6,8 @@ for (const text of ['Other bullets leave your contribution or the resulting work
 for (const text of ['The resume shows SQL ownership.', 'The resume makes SQL ownership clear.', 'Your contribution is less clear, but the resume shows SQL ownership.', 'The resume points to SQL ownership.', 'SQL ownership is explicit.', "The page doesn't yet show your contributions and clearly shows SQL ownership.", 'The page does not yet show your contributions and clearly shows SQL ownership.'])
     assert.equal(narrativeTokenPolicy(text, 'assessment', false, false).assertsPresence, true, text);
 const positiveCases = [
+    { claim: 'The descriptions make the work settings clear, but not always what you did within them.', source: 'Operations Assistant at Greenfield Logistics. Operations internship at MetroRetail. Coordinated campus event logistics.' },
+    { claim: 'The description makes the work setting clear.', source: 'Supported logistics operations.' },
     { claim: 'The resume shows SQL reporting.', source: 'No SQL errors occurred during report generation.' },
     { claim: 'The resume shows SQL reporting.', source: 'Built SQL reports without supervision.' },
     { claim: 'The resume shows SQL reporting.', source: 'Built SQL reports without errors.' },
@@ -24,6 +26,10 @@ const positiveCases = [
     { claim: 'The reporting details are not as clear.', source: 'Prepared weekly reports for the manager.' },
 ];
 const negativeCases = [
+    { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
+    { claim: 'The description clearly shows a team of 500 engineers.', source: 'Worked with an engineering team.' },
+    { claim: 'The descriptions show $9M in revenue.', source: 'Prepared weekly reports for the manager.' },
+    { claim: 'Owned SQL reporting described in the resume.', source: 'Assisted the manager with reports in Excel.' },
     { claim: 'The resume shows SQL reporting.', source: 'Lacks experience using SQL. Built reports in Excel.' },
     { claim: 'The resume shows SQL reporting.', source: 'Cannot use SQL. Built reports in Excel.' },
     { claim: 'The resume shows SQL reporting.', source: 'SQL was excluded from my responsibilities. Built reports in Excel.' },

@@ -37,7 +37,7 @@ const assessmentDimensionWords = normalizedSet([
 ]);
 const assessmentWords = normalizedSet([
   "about", "activity", "afterward", "all", "annual", "area", "base", "breadth", "broad", "broader", "career",
-  "contain", "contracting", "conversion", "credible", "concrete", "deal", "delivery", "dense", "describe",
+  "contain", "contracting", "conversion", "credible", "concrete", "deal", "delivery", "dense", "describe", "description",
   "development", "duty", "earlier", "effect", "evidence", "experience", "experienced", "exposure", "few", "finance", "first",
   "foundation", "general", "give", "history", "individual", "leadership", "learning", "like", "limited", "limiting",
   "list", "little", "long", "many", "measurable", "measured", "most", "mostly", "operation", "ownership", "page",

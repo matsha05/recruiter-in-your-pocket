@@ -87,7 +87,9 @@ export async function POST(request: Request) {
     let extractedText = "";
 
     if (kind === "pdf") {
-      const pdfData: any = await (pdfParse as any)(buffer);
+      // Legacy PDF.js loses pooled Buffer offsets when it creates substreams.
+      // Give it a dedicated typed array so valid PDFs retain their byte offsets.
+      const pdfData: any = await (pdfParse as any)(new Uint8Array(buffer));
       extractedText = pdfData?.text || "";
     } else if (kind === "docx") {
       const docxResult = await mammoth.extractRawText({ buffer });
