@@ -2,6 +2,7 @@ import { hasSkillsSection } from "./source-sections";
 import { canonicalizeOptionalReportMetadata } from "./optional-report-metadata";
 import {
   findAlreadySatisfiedFix,
+  hasAssertedOutcomeMatch,
   findBiggestGapContradictions,
   findFixEvidenceMismatch,
   findNonActionableFix,
@@ -201,9 +202,9 @@ function replaceQuotedEvidence(value: string, sourceText: string) {
 }
 
 function hasGroundedOutcome(value: string) {
-  const rateOrDelta = /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i.test(value);
-  const outcomeVerb = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|decrease|decreased|decreasing|accelerate|accelerated|accelerating|generate|generated|generating|deliver|delivered|delivering|enable|enabled|enabling|result|resulted|resulting)\b/i.test(value);
-  const financialOutcome = /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i.test(value);
+  const rateOrDelta = hasAssertedOutcomeMatch(value, /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i);
+  const outcomeVerb = hasAssertedOutcomeMatch(value, /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|decrease|decreased|decreasing|accelerate|accelerated|accelerating|generate|generated|generating|deliver|delivered|delivering|enable|enabled|enabling|result|resulted|resulting)\b/i);
+  const financialOutcome = hasAssertedOutcomeMatch(value, /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i);
   return rateOrDelta || outcomeVerb || financialOutcome;
 }
 
@@ -283,10 +284,10 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
   const asksForScope = /\[(?:specific )?scope\]|\b(team size|project scope|scope detail|(?:existing )?scope)\b/i.test(fix);
   const asksForOutcome = /\[(?:measurable )?(?:result|outcome|impact)\]|\b(measurable result|measurable outcome|quantified outcome)\b/i.test(fix);
   if (asksForScope && hasGroundedScope(source) && asksForOutcome && !hasGroundedOutcome(source)) {
-    return "Explain what changed ([measurable result]) in this bullet.";
+    return "Explain what changed in this bullet.";
   }
   if (asksForOutcome && hasGroundedOutcome(source) && asksForScope && !hasGroundedScope(source)) {
-    return "Describe the work involved ([specific scope]) in this bullet and keep the existing result.";
+    return "Describe the work involved in this bullet and keep the existing result.";
   }
   const satisfied = findAlreadySatisfiedFix(fix, evidenceExcerpt, resumeText);
   if (satisfied.length === 0) return fix;
@@ -294,10 +295,10 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
     return "Move the existing named tools into the opening clause of this bullet.";
   }
   if (hasGroundedScope(source) && !hasGroundedOutcome(source)) {
-    return "Explain what changed ([measurable result]) in this bullet.";
+    return "Explain what changed in this bullet.";
   }
   if (hasGroundedOutcome(source) && !hasGroundedScope(source)) {
-    return "Describe the work involved ([specific scope]) in this bullet and keep the existing result.";
+    return "Describe the work involved in this bullet and keep the existing result.";
   }
   const metrics = groundedMetricTokens(source);
   if (metrics.length > 0) {

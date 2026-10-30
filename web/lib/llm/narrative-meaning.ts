@@ -36,7 +36,11 @@ function plannedExecutionIssues(claim: string, source: string) {
   const issues: string[] = [];
   // Temporal questions can presuppose execution even though they end with a question mark.
   for (const event of claim.matchAll(/\b(?:before|after)\s+([^,;.!?\n]{1,100}?)\b(expanded|launched)\b/giu)) {
-    const subject = topics(event[1]);
+    const object = claim.slice(event.index! + event[0].length)
+      .split(/[,;.!?\n]|\b(?:in|at|with|by|for|during|after|before|when)\b/iu)[0].slice(0, 160);
+    const objectTopics = topics(object);
+    const passive = event[1].match(/\b(?:was|were|been)(?:\s+(?:[a-z]+ly|already|later|then|further))*\s*$/iu);
+    const subject = passive ? topics(event[1].slice(0, passive.index)) : objectTopics.size > 0 ? objectTopics : topics(event[1]);
     if (subject.size === 0) continue;
     const action = event[2].toLowerCase() === "expanded" ? "expand" : "launch";
     const requiredOverlap = Math.min(2, subject.size);

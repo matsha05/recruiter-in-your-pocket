@@ -167,4 +167,27 @@ for (const control of grammarControls) {
   assert.equal(rejectsPersonalAction(control.claim, control.source), control.reject, JSON.stringify(control));
 }
 
+const expansionDecision = "Presented findings to leadership, influencing the decision to expand onboarding personalization.";
+for (const claim of [
+  "What finding or recommendation did you present before leadership expanded onboarding personalization?",
+  "What did you present before onboarding personalization was expanded?",
+  "What did you present before onboarding personalization was expanded further?",
+  "What did you present before onboarding personalization was later expanded nationally?",
+  "What did you present before onboarding personalization was gradually expanded?",
+]) {
+  assert.ok(narrativeMeaningIssues(claim, expansionDecision).some(issue => /decision or plan/.test(issue)),
+    "a temporal question must not turn a decision into completed expansion");
+  assert.deepEqual(narrativeMeaningIssues(claim, `${expansionDecision}\nLeadership expanded onboarding personalization.`), [],
+    "the same-object completed expansion must remain supported");
+  assert.ok(narrativeMeaningIssues(claim, `${expansionDecision}\nLeadership expanded the sales office.`).length > 0,
+    "an unrelated completed expansion must not satisfy the planned object");
+}
+assert.deepEqual(narrativeMeaningIssues("If leadership expanded onboarding personalization, what did you contribute?", expansionDecision), [],
+  "conditional questions do not presume completion");
+assert.ok(narrativeMeaningIssues("What did you present before leadership launched onboarding?", "Planned to launch onboarding.").length > 0,
+  "a one-word action object must not require overlap with the actor");
+assert.deepEqual(narrativeMeaningIssues("What did you present before leadership launched onboarding?", "Planned to launch onboarding. Leadership launched onboarding."), []);
+assert.ok(narrativeMeaningIssues("What did you present before onboarding was launched nationally?", "Planned to launch onboarding.").length > 0);
+assert.ok(narrativeMeaningIssues("What did you present before onboarding was later launched nationally?", "Planned to launch onboarding.").length > 0);
+assert.deepEqual(narrativeMeaningIssues("What did you present before onboarding was later launched nationally?", "Planned to launch onboarding. Leadership launched onboarding."), []);
 console.log("personal-action presupposition tests passed");

@@ -1,7 +1,49 @@
 import assert from "node:assert/strict";
 import { findMechanicalCopyIssues } from "../lib/evals/checks";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
-import { findNonActionableFix } from "../lib/llm/grounding";
+import { findAlreadySatisfiedFix, findNonActionableFix } from "../lib/llm/grounding";
+
+const salesIntentSource = "Contributed to various projects aimed at improving customer engagement and sales strategies across multiple teams";
+const salesConditionalFix = "In the BrightWave customer engagement project bullet, identify a project and describe what you contributed; add its result if known.";
+const salesIntentReport = {
+  top_fixes: [{
+    fix: salesConditionalFix,
+    why: "The aim is clear, but the project and its result are unspecified.",
+    evidence: { excerpt: salesIntentSource, section: "Experience" },
+    section_ref: "Experience",
+  }],
+};
+const salesIntentCanonical = canonicalizeResumeReportEvidence(salesIntentReport, salesIntentSource);
+assert.equal((salesIntentCanonical.report as any).top_fixes[0].fix, salesConditionalFix,
+  "conditional advice about an intended outcome must survive without an invented result or placeholder");
+assert.equal(salesIntentReport.top_fixes[0].fix, salesConditionalFix, "normalization must not mutate input");
+assert.deepEqual(canonicalizeResumeReportEvidence(salesIntentCanonical.report, salesIntentSource).report,
+  salesIntentCanonical.report, "the preserved advice must normalize idempotently");
+
+for (const source of [
+  salesIntentSource,
+  "Planned to reduce costs by 20%.",
+  "Designed a project intended to improve retention by 15%.",
+  "Set a target of 12.5% improvement in retention.",
+  "Targeted a 20% reduction in costs.",
+  "Built a workflow to improve onboarding.",
+  "Projects aimed at improving engagement and reducing handling time by 20%.",
+  "Planned to improve retention and cut costs by 20%.",
+]) {
+  assert.deepEqual(findAlreadySatisfiedFix("Add the result if known.", source, source), [],
+    `intent does not establish an outcome: ${source}`);
+}
+for (const source of [
+  "Improved retention by 15%.",
+  "Contributed to a project that reduced costs by 20%.",
+  "Aimed at improving retention; reduced costs by 20%.",
+  "Planned to improve retention. Reduced costs by 20%.",
+  "Improved retention while planning to reduce costs.",
+  "Projects aimed at improving engagement and reduced handling time by 20%.",
+]) {
+  assert.ok(findAlreadySatisfiedFix("Add the result.", source, source).includes("outcome already present in cited bullet"),
+    `a stated outcome must remain recognized: ${source}`);
+}
 
 const sourceResume = `EXPERIENCE
 - Led a cross-functional team of 8 engineers to ship the platform.
@@ -66,7 +108,7 @@ const partialFixRepair = canonicalizeResumeReportEvidence({
 }, "- Designed portals serving 200,000 monthly users.");
 assert.equal(
   (partialFixRepair.report as any).top_fixes[0].fix,
-  "Explain what changed ([measurable result]) in the experience bullet.",
+  "Explain what changed in the experience bullet.",
 );
 assert.doesNotMatch((partialFixRepair.report as any).top_fixes[0].why, /score/i);
 

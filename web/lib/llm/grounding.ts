@@ -5,11 +5,24 @@ const limitedOwnershipPattern = /\b(supported|assisted|helped|contributed|partic
 const elevatedOwnershipPattern = /\b(led|owned|drove|managed|spearheaded|directed|headed)\b/gi;
 const outcomePattern = /\b(improve|improvement|improvements|improved|improving|increase|increased|increasing|reduce|reduction|reductions|reduced|reducing|streamline|streamlined|streamlining|enhance|enhanced|enhancing|boost|boosted|boosting|grow|grew|growth|save|saved|saving|cut|accelerate|accelerated|accelerating|raise|raised|lower|lowered|result|resulted|resulting)\b/gi;
 
+export function hasAssertedOutcomeMatch(value: string, pattern: RegExp) {
+  const matches = value.matchAll(new RegExp(pattern.source, pattern.flags.replace(/g/g, "") + "g"));
+  return Array.from(matches).some((match) => {
+    // Purpose and target clauses describe intent, even when they contain a
+    // result verb or a number. Keep an independently stated result elsewhere.
+    const context = value.slice(0, match.index! + match[0].length);
+    const clause = context.split(/[\n;!?]|[.,](?!\d)|\b(?:but|however)\b|\band\s+(?=(?:improved|increased|reduced|streamlined|enhanced|boosted|grew|saved|decreased|accelerated|generated|delivered|enabled|resulted|raised|lowered)\b)/i).at(-1) || "";
+    const prefix = clause.slice(0, Math.max(0, clause.length - match[0].length));
+    const purpose = /\b(?:aim(?:ed|ing|s)?|intend(?:ed|ing|s)?|plan(?:ned|ning|s)?|design(?:ed|ing|s)?)\s+(?:at|to|for)\b|\b(?:goal|objective|purpose|target)\s+(?:of|to|is|was)\b|\bin order to\b/i.test(prefix);
+    const target = /\btarget(?:ed|ing|s)?\s+(?:(?:a|an|the)\s+)?(?:\d[\d,.]*\s*%?\s*)?$/i.test(prefix);
+    return !purpose && !target && !/\bto\s*$/i.test(prefix);
+  });
+}
+
 function hasOutcomeSignal(value: string) {
-  const hasOutcomeVerb = outcomePattern.test(value);
-  outcomePattern.lastIndex = 0;
-  const hasRateOrDelta = /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i.test(value);
-  const hasFinancialOutcome = /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i.test(value);
+  const hasOutcomeVerb = hasAssertedOutcomeMatch(value, outcomePattern);
+  const hasRateOrDelta = hasAssertedOutcomeMatch(value, /\d+(?:\.\d+)?\s*%|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i);
+  const hasFinancialOutcome = hasAssertedOutcomeMatch(value, /(?:\$\s*\d+(?:\.\d+)?\s*[kmb]?[^.]{0,35}\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b|\b(?:revenue|savings?|profit|ARR|MRR|cost reduction)\b[^.]{0,35}\$\s*\d)/i);
   return hasOutcomeVerb || hasRateOrDelta || hasFinancialOutcome;
 }
 

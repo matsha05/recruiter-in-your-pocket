@@ -48,7 +48,7 @@ export async function GET(request: Request) {
     let freeUsesRemaining = 0;
 
     if (user && supabase) {
-      // For logged-in users: check database (deletion-proof)
+      // Account usage survives browser-cookie deletion; a new account has its own allowance.
       const { data: usageData, error } = await supabase
         .from('user_usage')
         .select('free_report_used_at')
