@@ -22,25 +22,6 @@ for (const width of [320, 390, 430]) {
       await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
     });
 
-    test("all trusted-company marks remain visible without overlapping", async ({ page }) => {
-      await page.goto("/");
-      const trust = page.getByRole("region", { name: "Trusted by people at", exact: true });
-      const marks = trust.getByRole("img");
-      await expect(marks).toHaveCount(6);
-      await expect(trust.getByRole("img", { name: "Apple", exact: true })).toBeVisible();
-      const rectangles = await marks.evaluateAll(elements => elements.map(element => {
-        const r = element.getBoundingClientRect();
-        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
-      }));
-      for (let i = 0; i < rectangles.length; i++) {
-        const a = rectangles[i];
-        expect(a.left).toBeGreaterThanOrEqual(0);
-        expect(a.right).toBeLessThanOrEqual(width);
-        for (const b of rectangles.slice(i + 1)) {
-          expect(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top).toBe(true);
-        }
-      }
-    });
   });
 }
 

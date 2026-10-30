@@ -13,7 +13,7 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
     const hero = page.locator("section[aria-labelledby='mineral-hero-title']");
     const report = page.getByRole("article", { name: "Sample resume report preview" });
     await expect(hero.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("article", { name: "Example resume assessment" })).toBeVisible();
+    await expect(page.getByRole("article", { name: "Example first impression" })).toBeVisible();
     await expect(report).toBeVisible();
     await expect(report.getByRole("tablist", { name: "What to improve first" })).toBeVisible();
 
@@ -22,7 +22,6 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
       "section[aria-labelledby='mineral-hero-title'] h1", "section[aria-labelledby='mineral-hero-title'] p",
       "section[aria-labelledby='mineral-hero-title'] a", "section[aria-labelledby='mineral-hero-title'] summary",
       "section[aria-labelledby='mineral-hero-title'] li", "#how-it-works article",
-      "section[aria-labelledby='alpine-trust-label'] :is(p, li, [role='img']):visible",
       "#how-it-works :is(h2, h3, h4, p, blockquote, button, a, li):visible",
     ].join(", ")).evaluateAll((elements) => {
       const viewportWidth = document.documentElement.clientWidth;

@@ -14,7 +14,7 @@ test.describe("homepage feedback and SEO contract", () => {
     );
     await expect(homepage).toContainText("AI feedback. Real recruiting experience.");
     await expect(homepage).toContainText(
-      "Get a thorough, honest, and actionable resume diagnostic, shaped by real recruiting experience.",
+      "See what a recruiter is likely to notice first, the detail they would miss, and what to fix before you apply.",
     );
 
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
@@ -27,7 +27,7 @@ test.describe("homepage feedback and SEO contract", () => {
       "/sample-report",
     );
     const hero = homepage.locator("section[aria-labelledby='mineral-hero-title']");
-    await expect(hero.getByText("No account required. Your resume is private and secure.", { exact: true })).toBeVisible();
+    await expect(hero.getByText("No account needed. Anonymous reports don’t store your resume text.", { exact: true })).toBeVisible();
     const freeLimits = homepage.locator("#how-it-works details").filter({ hasText: "Free report limits" });
     await expect(freeLimits).not.toHaveAttribute("open", "");
     await freeLimits.locator("summary").focus();
@@ -39,14 +39,8 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(freeLimits).toContainText("Repeat use across browsers or shared networks");
     await expect(freeLimits).toContainText("Daily capacity limits apply");
     await expect(homepage).not.toContainText("per calendar month");
-    const trustRow = homepage.getByRole("region", { name: "Trusted by people at", exact: true });
-    await expect(trustRow).toBeVisible();
-    await expect(trustRow.getByRole("list", { name: "Companies", exact: true })).toBeVisible();
-    for (const company of ["Google", "Meta", "Apple", "Amazon", "Microsoft", "Bain & Company"]) {
-      await expect(trustRow.getByRole("img", { name: company, exact: true })).toBeVisible();
-    }
-    await expect(trustRow).toContainText("And many more");
-    await expect(homepage.getByRole("article", { name: "Example resume assessment", exact: true })).toBeVisible();
+    await expect(homepage).not.toContainText("Trusted by people at");
+    await expect(homepage.getByRole("article", { name: "Example first impression", exact: true })).toBeVisible();
     await expect(homepage).not.toContainText(
       "Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.",
     );

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import content from "../../components/landing/instrument/content.json";
 
-test("cold startup downloads the artwork once and only the cropped trust marks", async ({ page }) => {
+test("cold startup downloads the artwork once and no company marks", async ({ page }) => {
     const images: string[] = [];
     // Routing disables the browser cache, exposing accidental duplicate requests.
     await page.route("**/*", route => route.continue());
@@ -9,13 +9,12 @@ test("cold startup downloads the artwork once and only the cropped trust marks",
     await page.goto("/");
     const instrument = page.getByTestId("pocket-instrument");
     await expect(instrument).toHaveAttribute("data-status", "ready");
-    await expect(page.getByRole("img", { name: "Apple", exact: true })).toBeVisible();
     await instrument.locator('[data-instrument-mode="story"]').click();
     await expect(instrument).toHaveAttribute("data-mode", "story");
     await instrument.getByRole("switch", { name: "Instrument power" }).click();
     expect(images.filter(url => url.includes("/assets/instrument/clean-plate"))).toHaveLength(1);
     expect(images.some(url => url.includes("alpine-selected-reference.png"))).toBe(false);
-    expect(images.some(url => url.includes("trust-marks.v1.webp"))).toBe(true);
+    expect(images.some(url => url.includes("trust-marks.v1.webp"))).toBe(false);
 });
 
 test("hero controls latch, release to Home, and retain the dial view through power", async ({ page }) => {
@@ -41,7 +40,7 @@ test("hero controls latch, release to Home, and retain the dial view through pow
     await expect(instrument).toHaveAttribute("data-mode", "home");
     await expect(impact).toHaveAttribute("data-depth", "0.000");
     await expect(dial).toHaveAttribute("aria-disabled", "true");
-    await expect(page.getByText("Trusted by people at", { exact: true })).toBeVisible();
+    await expect(page.getByText("Trusted by people at", { exact: true })).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "A human point of view. Built into every review." })).toBeVisible();
     await expect(page.getByTestId("landing-primary-cta")).toHaveAttribute("href", "/workspace");
 });

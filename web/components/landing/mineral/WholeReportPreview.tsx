@@ -9,13 +9,6 @@ import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 import styles from "./WholeReportPreview.module.css";
 
 const priorities = sampleReport.top_fixes;
-// The selected visual uses an illustrative assessment above the working sample.
-const illustrationPriorities = [
-    "Strengthen impact with measurable results",
-    "Clarify and tighten your core narrative",
-    "Showcase more relevant skills",
-    "Polish formatting for better readability",
-];
 const nextMoves = [
     sampleReport.next_steps[0],
     sampleReport.rewrites[0].enhancement_note,
@@ -68,13 +61,13 @@ export function WholeReportPreview() {
         <section id="how-it-works" className={styles.section} aria-labelledby={`${id}-heading`}>
             <div className={styles.shell}>
                 <div className={styles.intro}>
-                    <article className={styles.summaryPreview} aria-label="Example resume assessment">
+                    <article className={styles.summaryPreview} aria-label="Example first impression">
                         <div className={styles.summaryPaper}>
                             <section className={styles.summaryAssessment} aria-labelledby={`${id}-assessment`}>
                                 <div className={styles.assessmentHeading}>
                                     <div>
-                                        <h3 id={`${id}-assessment`}>Overall Assessment</h3>
-                                        <p className={styles.assessmentVerdict}>Strong foundation. Clear next steps.</p>
+                                        <h3 id={`${id}-assessment`}>First impression · Example</h3>
+                                        <p className={styles.assessmentVerdict}>{sampleReport.score_label}</p>
                                     </div>
                                     <div className={styles.scoreRing} role="img" aria-label={`Review score: ${sampleReport.score} out of 100`}>
                                         <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -84,15 +77,15 @@ export function WholeReportPreview() {
                                         <div aria-hidden="true"><strong>{sampleReport.score}</strong><span>out of 100</span></div>
                                     </div>
                                 </div>
-                                <p className={styles.assessmentCopy}>Your resume shows impressive experience and impact. A few key changes will make it even stronger and more aligned with what top companies look for.</p>
+                                <p className={styles.assessmentCopy}>{sampleReport.score_comment_short}</p>
                             </section>
                             <section className={styles.summaryPriorities} aria-labelledby={`${id}-summary-priorities`}>
-                                <h3 id={`${id}-summary-priorities`}>Top Priorities</h3>
+                                <h3 id={`${id}-summary-priorities`}>Fix these first</h3>
                                 <ol>
-                                    {illustrationPriorities.map((priority, index) => (
-                                        <li key={priority}>
+                                    {priorities.map((priority, index) => (
+                                        <li key={priority.fix}>
                                             <span aria-hidden="true">{index + 1}</span>
-                                            {priority}
+                                            {priority.fix}
                                         </li>
                                     ))}
                                 </ol>

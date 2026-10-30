@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Resume Workspace",
-  description: "Get recruiter-grade feedback on your resume. Upload your resume and job description to see how you read to hiring managers at top companies.",
+  description: "Add your resume to see what a recruiter is likely to notice first, what needs more detail, and what to change before you apply.",
 };
 
 type WorkspacePageProps = {

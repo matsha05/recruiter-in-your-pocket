@@ -189,7 +189,7 @@
     "closeFactsButton": "Close sample details",
     "factsHeading": "The facts behind this advice",
     "primaryAction": "Get your free report",
-    "privacyLine": "No account required. Your resume is private and secure.",
+    "privacyLine": "No account needed. Anonymous reports don’t store your resume text.",
     "sampleLabel": "Fictional example",
     "statusTemplate": "{mode} · {stage}",
     "keyboardHint": "Use arrow keys within each selector. Press Enter or Space to choose.",
