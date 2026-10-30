@@ -34,6 +34,8 @@ const envNames = [
   "USE_MOCK_OPENAI",
   "RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK",
   "NEXT_PUBLIC_APP_URL",
+  "VERCEL_ENV",
+  "VERCEL_URL",
   "UPSTASH_REDIS_REST_URL",
   "UPSTASH_REDIS_REST_TOKEN",
   "KV_REST_API_URL",
@@ -55,6 +57,8 @@ async function run() {
   process.env.USE_MOCK_OPENAI = "1";
   process.env.RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK = "true";
   process.env.NEXT_PUBLIC_APP_URL = "http://localhost:3000";
+  delete process.env.VERCEL_ENV;
+  delete process.env.VERCEL_URL;
   delete process.env.UPSTASH_REDIS_REST_URL;
   delete process.env.UPSTASH_REDIS_REST_TOKEN;
   delete process.env.KV_REST_API_URL;

@@ -243,7 +243,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     });
 
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
-    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser } = useResumeReview({
+    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
@@ -272,12 +272,20 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         replace("/workspace?revision=1", { scroll: false });
     }, [resetWorkspaceInput, clearSavedRevision, replace, report]);
 
-    const handleKeepReport = useCallback(() => {
-        if (!report || user) return;
+    const handleKeepReport = useCallback(async () => {
+        if (!report) return;
+        if (user) {
+            try {
+                await saveReportForCurrentUser(report);
+            } catch {
+                // The report stays visible with its persistent save error and retry.
+            }
+            return;
+        }
         setPendingReportForSave(report);
         Analytics.track("save_prompt_viewed", { score: report?.score || 0 });
         setIsSavePromptOpen(true);
-    }, [report, user]);
+    }, [report, user, saveReportForCurrentUser]);
 
     const handleResumeSample = useCallback(async () => {
         try {
@@ -471,7 +479,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             isExporting={isExporting}
                             isSample={isSampleReport}
                             onNewReport={handleNewReport}
-                            onKeepReport={!user && !isSampleReport && !isLaunchFlagEnabled("guestReportSave") ? handleKeepReport : undefined}
+                            onKeepReport={!isSampleReport && (user ? needsReceiptValidatedSave(report) : !isLaunchFlagEnabled("guestReportSave")) ? handleKeepReport : undefined}
+                            isSavingReport={reportSaveState?.report === report && reportSaveState?.status === "saving"}
+                            reportSaveError={reportSaveState?.report === report ? reportSaveState?.message : null}
                             onUpgrade={() => setIsPaywallOpen(true)}
                             justUnlocked={justUnlocked}
                             highlightSection={highlightSection}

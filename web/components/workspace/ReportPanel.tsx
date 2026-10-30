@@ -31,6 +31,8 @@ interface ReportPanelProps {
     isSample?: boolean;
     onNewReport?: () => void;
     onKeepReport?: () => void;
+    isSavingReport?: boolean;
+    reportSaveError?: string | null;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     isGated?: boolean;
@@ -55,6 +57,8 @@ export default function ReportPanel({
     isSample = false,
     onNewReport,
     onKeepReport,
+    isSavingReport = false,
+    reportSaveError = null,
     freeUsesRemaining = 1,
     onUpgrade,
     isGated = false,
@@ -200,7 +204,7 @@ export default function ReportPanel({
                                     role="note"
                                     className="mb-4 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground"
                                 >
-                                    Copy is unavailable because this saved report does not include the original resume. You can still read the suggestions.
+                                    Copy is unavailable because the original resume isn’t available in this view. You can still read the suggestions.
                                 </div>
                             )}
                             {shareEnabled && shareMode && (
@@ -260,10 +264,13 @@ export default function ReportPanel({
                                             variant="ghost"
                                             size="sm"
                                             onClick={onKeepReport}
+                                            disabled={isSavingReport}
+                                            aria-busy={isSavingReport || undefined}
+                                            aria-describedby={reportSaveError ? "report-save-error" : undefined}
                                             className="min-h-11 shrink-0 px-3 text-foreground"
                                         >
                                             <BookmarkSimple className="size-4 text-brand" weight="duotone" />
-                                            Keep report
+                                            {isSavingReport ? "Saving report…" : reportSaveError ? "Retry save" : "Keep report"}
                                         </Button>
                                     )}
                                     {canExport && !isSample && (
@@ -295,6 +302,12 @@ export default function ReportPanel({
                                     )}
                                 </div>
                             </div>
+
+                            {reportSaveError && !isSample && !shareMode && (
+                                <p id="report-save-error" role="alert" className="mt-3 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground">
+                                    {reportSaveError}
+                                </p>
+                            )}
 
                             {/* Unlock Banner */}
                             {justUnlocked && report && !shareMode && (

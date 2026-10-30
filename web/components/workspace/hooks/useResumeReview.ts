@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 import { parseResume, streamResumeFeedback } from "@/lib/api";
@@ -11,6 +11,7 @@ import { REPORT_ACCESS_NOT_USED } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean };
+type ReportSaveState = { report: object; status: "saving" | "error"; message: string | null } | null;
 
 export function useResumeReview(input: {
   resumeText: string;
@@ -36,6 +37,7 @@ export function useResumeReview(input: {
   captureUploadOwner?: () => unknown;
   isUploadOwnerCurrent?: (owner: unknown) => boolean;
 }) {
+  const [reportSaveState, setReportSaveState] = useState<ReportSaveState>(null);
   const latestUpload = useRef(0);
   useEffect(() => () => { latestUpload.current += 1; }, []);
   const handleFileSelect = useCallback(async (file: File, options?: ResumeFileSelectionOptions) => {
@@ -81,13 +83,24 @@ export function useResumeReview(input: {
 
   const saveReportForCurrentUser = useCallback(async (reportToSave: any) => {
     if (!reportToSave) return;
-    const saved = await saveReceiptValidatedReport(reportToSave);
-    input.setReport((current: any) => (
-      current === reportToSave ? saved : current
-    ));
-    toast.success("Report saved to your history");
-    input.setPendingReportForSave(null);
-    input.setIsSavePromptOpen(false);
+    setReportSaveState({ report: reportToSave, status: "saving", message: null });
+    try {
+      const saved = await saveReceiptValidatedReport(reportToSave);
+      input.setReport((current: any) => (
+        current === reportToSave ? saved : current
+      ));
+      setReportSaveState((current) => current?.report === reportToSave ? null : current);
+      toast.success("Report saved to your history");
+      input.setPendingReportForSave((current: any) => current === reportToSave ? null : current);
+      input.setIsSavePromptOpen(false);
+    } catch (error) {
+      setReportSaveState((current) => current?.report === reportToSave ? {
+        report: reportToSave,
+        status: "error",
+        message: "This report wasn’t saved to your history. Keep this tab open and try again.",
+      } : current);
+      throw error;
+    }
   }, [input]);
 
   const handleRequestSaveAuth = useCallback(() => {
@@ -230,5 +243,5 @@ export function useResumeReview(input: {
     }
   }, [input]);
 
-  return { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser };
+  return { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState };
 }

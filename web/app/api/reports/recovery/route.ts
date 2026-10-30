@@ -4,6 +4,7 @@ import { hashAnonymousIdentity } from "@/lib/billing/anonymousIdentity";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { createSupabaseServerClient, maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { getConfiguredAppUrl } from "@/lib/runtime/appUrl";
 import {
   lookupOwnedTrustedReport,
   ownedStoredReportExists,
@@ -41,7 +42,10 @@ function requestBinding(request: NextRequest) {
 }
 
 function expectedOrigin(request: NextRequest) {
-  const configured = process.env.NEXT_PUBLIC_APP_URL;
+  // Authorization uses trusted deployment configuration, never forwarded host headers.
+  const configured = process.env.VERCEL_ENV === "preview"
+    ? getConfiguredAppUrl()
+    : process.env.NEXT_PUBLIC_APP_URL;
   if (configured) {
     try {
       return new URL(configured).origin;
@@ -49,6 +53,7 @@ function expectedOrigin(request: NextRequest) {
       return null;
     }
   }
+  if (process.env.NEXT_PUBLIC_APP_URL) return null;
   return process.env.NODE_ENV === "production" ? null : request.nextUrl.origin;
 }
 
