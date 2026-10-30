@@ -20,7 +20,7 @@ async function signInHarness(page: Page) {
 export function registerActionFailureCases({ origin, savedReportId, report }: {
   origin: string;
   savedReportId: string;
-  report: { first_impression_takeaway?: string };
+  report: { first_impression?: string; first_impression_takeaway?: string };
 }) {
   for (const failure of FAILURES) {
     test(`history keeps a report name available to retry after ${failure} failure`, async ({ page }) => {
@@ -120,7 +120,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       const exportButton = page.getByRole("button", { name: "Export report as PDF", exact: true });
       await exportButton.click();
       await expect(page.getByText(failure === "api" ? API_MESSAGE : "The PDF couldn’t download. Try exporting again.", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(report.first_impression_takeaway || "");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(report.first_impression || report.first_impression_takeaway || "");
       await expect(exportButton).toBeEnabled();
       const download = page.waitForEvent("download");
       await exportButton.click();

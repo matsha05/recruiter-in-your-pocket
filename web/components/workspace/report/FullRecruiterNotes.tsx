@@ -42,15 +42,14 @@ function NoteList({ items }: { items: string[] }) {
 }
 
 export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRecruiterNotesProps) {
-  const visibleOpening = report.score_comment_short || report.first_impression || report.summary;
-  const visibleGap = report.gaps?.[0] || report.biggest_gap_example;
+  const visibleOpening = [report.first_impression || report.first_impression_takeaway || report.summary, report.score_comment_short];
   const detailedReadCandidates = [
     { label: "First impression", text: report.first_impression },
     { label: "Overall assessment", text: report.summary },
     { label: "Example to improve", text: report.biggest_gap_example },
   ];
   const seenDetailedCopy = new Set(
-    [visibleOpening, visibleGap, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])].filter(isCopy).map(copyKey),
+    [...visibleOpening, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])].filter(isCopy).map(copyKey),
   );
   const detailedRead = detailedReadCandidates.filter(({ text }) => {
     if (!isCopy(text)) return false;
@@ -61,7 +60,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   }) as Array<{ label: string; text: string }>;
 
   const remainingStrengths = uniqueCopy((report.strengths || []).slice(3));
-  const remainingGaps = uniqueCopy((report.gaps || []).slice(1), [visibleGap, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])]);
+  const remainingGaps = uniqueCopy(report.gaps || [], [...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])]);
   const sectionNotes = SECTION_ORDER.flatMap((name) => {
     const review = report.section_review?.[name];
     if (!review) return [];
@@ -71,7 +70,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       { label: "Suggested change", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
-    return [{ name, review, notes }];
+    return [{ name, notes }];
   });
   const nextSteps = uniqueCopy(report.next_steps || []);
 
@@ -164,14 +163,9 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
             <p className="text-xs riyp-track-015 font-semibold uppercase text-brand">Section by section</p>
             <h3 id="full-notes-sections-title" className={`${styles.sectionTitle} mt-2`}>Notes on each section.</h3>
             <div className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
-              {sectionNotes.map(({ name, review, notes }) => (
+              {sectionNotes.map(({ name, notes }) => (
                 <article key={name} className="py-6">
-                  <div className="flex flex-wrap items-baseline justify-between gap-3">
-                    <h4 className="text-base font-semibold text-foreground">{name}</h4>
-                    {(isCopy(review.grade) || isCopy(review.priority)) && (
-                      <p className="text-xs text-muted-foreground">{[review.grade, review.priority].filter(isCopy).join(" · ")}</p>
-                    )}
-                  </div>
+                  <h4 className="text-base font-semibold text-foreground">{name}</h4>
                   <dl className="mt-4 grid gap-4 sm:grid-cols-3 sm:gap-6">
                     {notes.map(({ label, text }) => (
                       <div key={label}>

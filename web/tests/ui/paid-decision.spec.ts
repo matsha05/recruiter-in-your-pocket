@@ -523,8 +523,8 @@ test.describe("paid decision boundary", () => {
         openStudio.click(),
       ]);
       await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
-      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
       await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
       await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
       await expect(page.locator("#section-fix-1")).toContainText(existingReport.top_fixes[0].fix);
@@ -574,8 +574,8 @@ test.describe("paid decision boundary", () => {
       // The completed save must retain a prior dismissal under the real report ID.
       await expect.poll(() => dismissalFor(storedReportId)).toBe(true);
       await expect(bannerShell).toHaveCount(0);
-      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
       expect(receiptSaveRequests).toBe(1);
       expect(generationRequests).toBe(0);
     });

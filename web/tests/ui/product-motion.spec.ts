@@ -63,7 +63,7 @@ async function openEditableReport(page: Page) {
   await page.getByTestId("workspace-paste-mode").click();
   await page.getByTestId("workspace-resume-text").fill(RESUME);
   await page.getByTestId("workspace-run-report").click();
-  await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression_takeaway);
+  await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression);
   const fix = page.locator("#section-fix-1");
   await expect(fix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
   await fix.scrollIntoViewIfNeeded();

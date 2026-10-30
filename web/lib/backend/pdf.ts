@@ -191,7 +191,7 @@ export function renderReportHtml(report: ReportForPdf) {
         ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
       </div>
       <div class="score-card">
-        <div class="score-name">Clarity summary</div>
+        <div class="score-name">First Impression score</div>
         <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
         <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
       </div>

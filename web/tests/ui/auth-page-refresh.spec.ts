@@ -147,7 +147,7 @@ test.describe("page sign-in after server OTP verification", () => {
     await signIn(page);
     await expect(page).toHaveURL(`${ORIGIN}${REPORT_PATH}`);
     await expect(page.getByTestId("account-header")).toHaveText("Signed in");
-    await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression_takeaway);
+    await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression);
     expect(requests.documents).toEqual([REPORT_PATH, `/auth?from=reports&next=${encodeURIComponent(REPORT_PATH)}`, REPORT_PATH]);
     expect(requests.users).toBe(3);
     expect(requests.passes).toBe(1);

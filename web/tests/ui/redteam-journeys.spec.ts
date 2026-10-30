@@ -136,14 +136,15 @@ test.describe("launch red-team journeys", () => {
     }
 
     const firstRead = page.locator("#section-first-impression");
-    await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
+    await expect(firstRead.getByTestId("first-impression-score")).toContainText("78/100");
+    await expect(firstRead.getByTestId("critical-miss")).toContainText("Explain how onboarding improved productivity.");
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
-    await expect(page.getByTestId("clarity-summary-basis")).toContainText(
-      "it is not a simple average",
+    await expect(page.getByTestId("score-basis")).toContainText(
+      "It is not a simple average.",
     );
     await expect(page.getByRole("heading", { name: "Start with these three changes.", exact: true })).toBeVisible();
 
-    const evidenceJump = firstRead.getByRole("button", { name: "See the fixes", exact: true });
+    const evidenceJump = firstRead.getByRole("button", { name: "See how to fix it", exact: true });
     await expect(evidenceJump).toBeVisible();
     await evidenceJump.click();
 

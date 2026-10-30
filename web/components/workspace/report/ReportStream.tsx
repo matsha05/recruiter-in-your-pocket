@@ -3,10 +3,8 @@
 import { useEffect, useMemo } from "react";
 import {
   ArrowRight,
-  BracketsAngle,
   CaretDown,
   CheckCircle,
-  CornersOut,
   EnvelopeSimple,
   Target,
 } from "@phosphor-icons/react";
@@ -85,6 +83,9 @@ export function ReportStream({
   const strengths = (report.strengths || []).slice(0, 3);
   const strengthsToKeep = strengths.slice(1);
   const roleFit = report.job_alignment?.role_fit;
+  const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
+  const verdictReason = report.score_comment_short !== verdict ? report.score_comment_short : undefined;
+  const criticalMiss = fixes[0];
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
   useEffect(() => {
@@ -102,45 +103,42 @@ export function ReportStream({
     <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
       <section id="section-first-impression" className={cn(styles.openingSection, "scroll-mt-36 pb-6 pt-2 sm:pb-8 sm:pt-4")}>
-        <div className={cn(styles.openingMeta, "flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4")}>
-          <p className={styles.label}>First impression</p>
-          {typeof report.score === "number" ? (
-            <div className={cn(styles.scoreContext, "max-w-[14rem] text-right")}>
-              <p className={cn(styles.scoreSummary, "riyp-tabular-label text-xs font-semibold text-foreground")}>Clarity summary: {report.score}/100</p>
+        <p className={styles.label}>Verdict</p>
+        <h1 className={cn(styles.openingTitle, "mt-3")}>{verdict}</h1>
+        {verdictReason && <p className={cn(styles.body, "mt-4 max-w-[43rem] text-foreground")}>{verdictReason}</p>}
+
+        {typeof report.score === "number" && (
+          <div className={styles.scoreRow} data-testid="first-impression-score">
+            <p className={styles.scoreValue}>
+              {report.score}<span className={styles.scoreScale}>/100</span>
+            </p>
+            <div>
+              <p className="text-sm font-semibold text-foreground">First Impression score</p>
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">How clearly your resume shows your work today. It doesn&apos;t predict interviews or offers.</p>
             </div>
-          ) : (
-            <p className="riyp-tabular-label text-xs uppercase riyp-track-015 text-muted-foreground">Resume review</p>
-          )}
-        </div>
-
-        <div className={cn(styles.openingCopy, "pt-5")}>
-          <div>
-            <h1 className={styles.openingTitle}>
-              {report.first_impression_takeaway || "Here's where to start."}
-            </h1>
           </div>
-          <p className={cn(styles.body, "mt-4 max-w-[43rem] text-foreground")}>{report.score_comment_short || report.first_impression || report.summary}</p>
-        </div>
+        )}
 
-        <div className={styles.overviewNotes}>
-          <div className={cn(styles.overviewNote, styles.overviewStrength)}>
-            <div className="flex items-center gap-3"><span className={styles.assessmentIcon}><CornersOut className="size-4" weight="bold" aria-hidden="true" /></span><p className="text-xs font-semibold uppercase riyp-track-015 text-foreground">What works</p></div>
-            <p className={cn(styles.body, "mt-2 text-foreground")}>{strengths[0] || "No specific strength was included in this report."}</p>
+        {criticalMiss && (
+          <div className={styles.criticalMiss} data-testid="critical-miss">
+            <p className={styles.criticalLabel}>Critical Miss</p>
+            <p className={styles.criticalTitle}>{criticalMiss.fix || criticalMiss.text}</p>
+            {criticalMiss.why && <p className={cn(styles.body, "mt-2 text-foreground")}>{criticalMiss.why}</p>}
+            <button type="button" className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => {
+              const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            }}>
+              See how to fix it <ArrowRight className="size-4" weight="bold" />
+            </button>
           </div>
-          <div className={cn(styles.overviewNote, styles.overviewContext)}>
-            <div className="flex items-center gap-3"><span className={styles.assessmentIcon}><BracketsAngle className="size-4" weight="bold" aria-hidden="true" /></span><p className="text-xs font-semibold uppercase riyp-track-015 text-foreground">What needs context</p></div>
-            <p className={cn(styles.body, "mt-2 text-foreground")}>{report.gaps?.[0] || report.biggest_gap_example || "No specific gap was included in this report."}</p>
-          </div>
-        </div>
+        )}
 
-        <div className={cn(styles.fixesLink, "mt-2 flex justify-end")}>
-          <button type="button" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => {
-            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-          }}>
-            See the fixes <ArrowRight className="size-4" weight="bold" />
-          </button>
-        </div>
+        {strengths[0] && (
+          <div className={styles.worksNote}>
+            <p className="text-sm font-semibold text-foreground">What already works</p>
+            <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
+          </div>
+        )}
       </section>
 
       <section id="section-fixes" className="scroll-mt-36 border-t border-line pt-6">
@@ -207,31 +205,16 @@ export function ReportStream({
         </section>
       )}
 
-      <details id="section-score" className="ui-disclosure group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="clarity-summary-basis">
+      <details id="section-score" className="ui-disclosure group scroll-mt-36 border-y border-[hsl(var(--paper-line))]" data-testid="score-basis">
         <summary className="focus-ring flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
-            <span className="text-sm font-semibold text-foreground">What goes into your score</span>
-            {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100</span>}
-          </div>
+          <span className="text-sm font-semibold text-foreground">How the score works</span>
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
-        <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
-          <div>
-            <p className="font-display text-4xl font-semibold leading-none text-foreground">{report.score ?? "—"}</p>
-            <p className="mt-2 text-xs leading-5 text-muted-foreground">This score summarizes the four parts of the review shown here; it is not a simple average.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
-            {Object.entries(report.subscores || {}).map(([label, score]) => (
-              <div key={label}><p className="text-xl font-semibold tabular-nums text-foreground">{score}</p><p className="mt-1 text-xs capitalize text-muted-foreground">{label}</p></div>
-            ))}
-          </div>
+        <div className="grid max-w-[43rem] gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-base leading-7 text-foreground/85">
+          <p>The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average.</p>
+          {report.score_plain && <p>{report.score_plain}</p>}
+          {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
         </div>
-        {(report.score_comment_long || report.score_plain) && (
-          <div className="grid gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-sm leading-6 text-foreground/80">
-            {report.score_comment_long && <p>{report.score_comment_long}</p>}
-            {report.score_plain && report.score_plain !== report.score_comment_long && <p>{report.score_plain}</p>}
-          </div>
-        )}
       </details>
 
       <FullRecruiterNotes report={report} hasJobDescription={hasJobDescription} />

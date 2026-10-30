@@ -162,7 +162,7 @@ assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /Clarity summary/);
+assert.match(renderedHtml, /First Impression score/);
 assert.match(renderedHtml, /78<span>\/100<\/span>/);
 assert.doesNotMatch(renderedHtml, /Not a prediction|predict interviews|guarantee interviews/);
 assert.match(renderedHtml, new RegExp(getScoreLabel(sampleReport.score)));

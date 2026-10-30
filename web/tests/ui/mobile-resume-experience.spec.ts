@@ -56,7 +56,7 @@ for (const width of [320, 390]) {
       const openingBounds = await opening.boundingBox();
       expect(openingBounds!.y).toBeLessThan(300);
       expect(openingBounds!.width).toBeGreaterThanOrEqual(width - 36);
-      await expect(page.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
+      await expect(page.getByTestId("first-impression-score")).toContainText("78/100");
 
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
       const buttons = await nav.getByRole("button").all();
