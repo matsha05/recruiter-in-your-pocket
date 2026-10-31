@@ -265,6 +265,15 @@
     font-weight: var(--weight-label);
 }
 
+.keepLabel {
+    margin-bottom: 0.25rem;
+    color: hsl(var(--pen));
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: var(--weight-label);
+}
+
 .firstImpression {
     display: flex;
     max-width: 22.5rem;
@@ -326,20 +335,7 @@
     font-size: 0.8125rem;
 }
 
-.credit {
-    max-width: 40rem;
-    margin-top: 3rem;
-    color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    line-height: 1.6;
-    text-align: center;
-}
 
-.credit a {
-    color: hsl(var(--pen));
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
 
 /* Phone and tablet: one column, notes sit under their lines on the page. */
 @media (max-width: 1100px) {
@@ -350,11 +346,19 @@
     .gutter { display: none; }
     .paper, .paperTop, .paperBottom { border: 0; border-radius: 0; background: none; padding: 0; }
     .firstImpressionCell { order: -1; }
-    .firstImpression { margin-bottom: 1.5rem; padding: 0 0 1.25rem; border-bottom: 1px solid hsl(var(--line)); }
+    .keepLabel {
+    margin-bottom: 0.25rem;
+    color: hsl(var(--pen));
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: var(--weight-label);
+}
+
+.firstImpression { margin-bottom: 1.5rem; padding: 0 0 1.25rem; border-bottom: 1px solid hsl(var(--line)); }
     .paper + .gutter + .noteCell, .row + .row .paper { margin-top: 0.375rem; }
     .verdict { font-size: 1.25rem; }
     .note { padding: 0.25rem 0 0.625rem 0.875rem; font-size: 0.97rem; }
-    .credit { margin-top: 2rem; }
 }
 
 @media (max-width: 700px) {

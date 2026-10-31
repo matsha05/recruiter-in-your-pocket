@@ -19,10 +19,10 @@ interface ResumeLine {
 }
 
 const EXAMPLE_LINES: ResumeLine[] = [
-  { text: "Responsible for managing customer relationships and renewals.", read: "skim", note: "Every CSM could write this. It names the job, not what you did with it." },
-  { text: "Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue.", read: "works", note: "This one works. 32 accounts and $2.4M tell me the size of your book." },
-  { text: "Introduced monthly renewal-risk reviews across the portfolio.", read: "miss", note: "Your best example stops before the result. Did renewals go up?" },
-  { text: "Collaborated cross-functionally with Product and Support.", read: "skim", note: "Easy to skim past. Name one thing you changed together." },
+  { text: "Responsible for managing customer relationships and renewals.", read: "skim", note: "This line has been on a lot of resumes. What did you do that the others didn’t?" },
+  { text: "Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue.", read: "works", note: "32 accounts and $2.4M. Size and stakes in one line." },
+  { text: "Introduced monthly renewal-risk reviews across the portfolio.", read: "miss", note: "Your best example stops right before the good part. Did renewals go up?" },
+  { text: "Collaborated cross-functionally with Product and Support.", read: "skim", note: "Easy to skim past. Name one thing you changed with Product." },
 ];
 
 const NOTE_TRANSITION = { duration: 0.42, ease: EASE };
@@ -75,7 +75,7 @@ export function RecruiterViewHero() {
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.intro}>
         <h1 id="hero-title" className={styles.title}>See what a recruiter sees.</h1>
-        <p className={styles.deck}>You did the work. Find out what comes through on your resume, the one thing a recruiter would miss, and what to fix before you apply.</p>
+        <p className={styles.deck}>What you meant isn&rsquo;t always what they read. See what comes through, what slips past, and what to fix first.</p>
         <div className={styles.actions}>
           <Link href="/workspace" className={styles.primary} data-testid="landing-primary-cta" data-analytics-cta="hero_report">
             Get your free report <ArrowRight weight="bold" aria-hidden="true" />
@@ -149,9 +149,9 @@ export function RecruiterViewHero() {
               </div>
               <div className={styles.noteCell}>
                 <Note show={recruiter} index={index + 1} reduced={reduced} className={styles.inlineNote}>
-                  {line.read === "miss" ? (
+                  {line.read === "miss" || line.read === "works" ? (
                     <div className={styles.note}>
-                      <p className={styles.missLabel}>Critical Miss</p>
+                      <p className={line.read === "miss" ? styles.missLabel : styles.keepLabel}>{line.read === "miss" ? "Critical Miss" : "Don’t touch this one"}</p>
                       <p>{line.note}</p>
                     </div>
                   ) : (
@@ -172,11 +172,6 @@ export function RecruiterViewHero() {
             <div className={styles.noteCell} />
           </div>
         </div>
-
-        <p className={styles.credit}>
-          Review criteria by Matt Shaw, 14 years in recruiting and hiring. AI writes each report; Matt doesn&rsquo;t review it personally.{" "}
-          <Link href="/methodology">How the report works</Link>
-        </p>
       </div>
     </section>
   );

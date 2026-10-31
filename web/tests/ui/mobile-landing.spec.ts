@@ -37,21 +37,14 @@ test("small tablets keep the copy and the example in one readable column", async
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("phone visitors can read additional assessment detail without losing the actionable example", async ({ page }) => {
+test("phone visitors see the Verdict, score, and Critical Miss without opening anything", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
   const preview = page.getByRole("article", { name: "Sample resume report preview", exact: true });
-  const toggle = preview.getByRole("button", { name: "First impression & strengths", exact: true });
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await expect(preview.getByRole("heading", { name: "The first impression", exact: true })).toBeHidden();
-  await expect(preview.getByRole("tabpanel", { name: /Add the result of the launch/ }).locator("blockquote")).toContainText("clear owners and checkpoints");
-  await toggle.focus();
-  await page.keyboard.press("Enter");
-  await expect(toggle).toHaveAttribute("aria-expanded", "true");
-  await expect(preview.getByRole("heading", { name: "The first impression", exact: true })).toBeVisible();
-  await expect(preview.getByRole("heading", { name: "What’s already working", exact: true })).toBeVisible();
-  await toggle.click();
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await expect(preview.getByRole("tab", { name: /Add the result of the launch/ })).toHaveAttribute("aria-selected", "true");
+  await expect(preview.getByText("Verdict", { exact: true })).toBeVisible();
+  await expect(preview.getByText("First Impression score", { exact: true })).toBeVisible();
+  await expect(preview.getByText("Critical Miss", { exact: true })).toBeVisible();
+  await expect(preview.getByRole("button", { expanded: false })).toHaveCount(0);
+  await expect(preview.getByRole("tabpanel").locator("blockquote")).toContainText("Led onboarding work across the company");
 });

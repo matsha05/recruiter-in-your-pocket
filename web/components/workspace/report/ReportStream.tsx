@@ -133,7 +133,7 @@ export function ReportStream({
 
         {strengths[0] && (
           <div className={styles.worksNote}>
-            <p className="text-sm font-semibold text-foreground">Already working</p>
+            <p className="text-sm font-semibold text-foreground">Don&apos;t touch this one</p>
             <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
           </div>
         )}
@@ -169,7 +169,7 @@ export function ReportStream({
         <section id="section-keep" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
             <div>
-              <h2 className={styles.sectionTitle}>Keep these as they are.</h2>
+              <h2 className={styles.sectionTitle}>Leave these alone. They&apos;re working.</h2>
             </div>
             <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
               {strengthsToKeep.map((strength, index) => (

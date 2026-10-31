@@ -45,15 +45,15 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 ## Purchase and pricing
 
-- [ ] One purchase CTA: "Get 5 more reports · $29"; modal "Continue to checkout".
-- [ ] Paywall: price once, one terms line.
-- [ ] Purchase confirmed: "You're all set." No polling counter; no "Open workspace".
-- [ ] Pricing page: say "30 days, no renewal" once in the card and once after checkout; one buy label; free tier names Verdict / score / Critical Miss; drop redundant eyebrows; "In-browser" jargon.
+- [x] One purchase CTA: "Get 5 more reports · $29"; modal "Continue to checkout".
+- [x] Paywall: price once, one terms line.
+- [x] Purchase confirmed: "You're all set." No polling counter; no "Open workspace".
+- [x] Pricing page: say "30 days, no renewal" once in the card and once after checkout; one buy label; free tier names Verdict / score / Critical Miss; drop redundant eyebrows; "In-browser" jargon.
 
 ## Homepage and chrome
 
-- [ ] Four-beat homepage (see decisions). Cut summary card, extra handoff CTA, repeated free promise, homepage "Free report limits".
-- [ ] Founder section: heading contradicts "no personal review" disclosure; one AI disclosure on the page.
+- [x] Four-beat homepage (see decisions). Cut summary card, extra handoff CTA, repeated free promise, homepage "Free report limits".
+- [x] Founder section: heading contradicts "no personal review" disclosure; one AI disclosure on the page.
 - [ ] One header everywhere; "My reports" for signed-in.
 - [ ] Sample report link label: "Read a sample report" everywhere.
 - [ ] Footer copy; "job posting".
