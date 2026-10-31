@@ -120,7 +120,8 @@ const factOnlyEnd = completeReportHtml.indexOf("</article>", factOnlyStart);
 const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd + "</article>".length);
 assert.ok(factOnlyHtml.includes(hubspotSource), "the original evidence must survive when no rewrite is supplied");
 assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].fix));
-assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why));
+assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why), "without a draft, the Critical Miss card keeps the questions to answer");
+assert.ok(completeReportHtml.slice(0, factOnlyStart).includes(completeReport.top_fixes[0].why), "the Critical Miss must carry the why");
 assert.ok(factOnlyHtml.includes('data-testid="fact-only-recommendation"'));
 assert.doesNotMatch(factOnlyHtml, /Suggested wording|View draft template|Why this is stronger/,
   "a fact-only recommendation must not promise or praise an absent rewrite");

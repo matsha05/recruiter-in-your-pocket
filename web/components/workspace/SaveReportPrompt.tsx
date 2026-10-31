@@ -54,15 +54,12 @@ export default function SaveReportPrompt({
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[380px] p-6">
                 <DialogHeader className="mb-5 text-left">
-                    <div className="mb-4 flex items-center gap-3 border-b border-border/70 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
-                        <BookmarkSimple aria-hidden="true" className="size-5" weight="duotone" />
-                        <span>Report history</span>
-                    </div>
+                    <BookmarkSimple aria-hidden="true" className="mb-3 size-6 text-brand" weight="duotone" />
                     <DialogTitle className="font-display text-2xl font-medium leading-tight">
-                        Keep this report
+                        Save this report
                     </DialogTitle>
                     <DialogDescription className="text-sm leading-relaxed">
-                        Sign in to save your feedback and return to it while you revise.
+                        Sign in and it&apos;ll be in My reports when you come back to revise.
                     </DialogDescription>
                 </DialogHeader>
 

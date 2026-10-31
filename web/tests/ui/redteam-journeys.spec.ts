@@ -160,14 +160,14 @@ test.describe("launch red-team journeys", () => {
     await sampleTemplate.locator("summary").focus();
     await sampleTemplate.locator("summary").press("Enter");
     await expect(sampleTemplate).toHaveAttribute("open", "");
-    await expect(sampleTemplate).toContainText("Fill in the brackets with what actually happened");
+    await expect(page.locator("#section-fixes")).toContainText("These are drafts. Keep only what's true, and say it your way.");
     await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeVisible();
     await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
-    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant|Original resume needed/i })).toHaveCount(0);
+    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
-    await expect(terminalCta).toContainText("Let's look at your resume.");
+    await expect(terminalCta).toContainText("Now let's look at yours.");
     await terminalCta.getByRole("button", { name: "Get your free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
@@ -218,28 +218,26 @@ test.describe("launch red-team journeys", () => {
       }
       await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
       await generatedFactInputs.first().fill("Changed but not confirmed");
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeDisabled();
       await firstGeneratedFix.getByRole("button", { name: "Edit original wording" }).click();
       await expect(firstGeneratedFix.getByLabel("Edit suggested line 1")).not.toHaveValue(/Candidate supplied fact|Changed but not confirmed/);
       await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
     } else {
       const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
-      const verifyButton = firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" });
-      if (await copyButton.count()) await expect(copyButton).toBeEnabled();
-      else if (await verifyButton.count()) await expect(verifyButton).toBeDisabled();
+      if (await copyButton.count()) await expect(copyButton).toBeVisible();
       else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation")).toBeVisible();
     }
   });
 
-  test("5. guest save prompt opens only after Keep report and requires verified sign-in", async ({ page }) => {
+  test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
-    const saveDialog = page.getByRole("dialog", { name: /Keep this report/i });
+    const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");
     await expect(keepReport).toBeVisible();
     await page.waitForTimeout(5_500);
     await expect(saveDialog).toHaveCount(0);
     await keepReport.click();
-    await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
+    await expect(saveDialog.getByRole("heading", { name: "Save this report" })).toBeVisible({ timeout: 15_000 });
     await expect(saveDialog.getByText("Saving keeps the report, quoted resume excerpts, a short resume preview, and any job description you added in your account. You can delete the saved report at any time.", { exact: true })).toBeVisible();
     await saveDialog.getByRole("button", { name: /Sign in to save/i }).click();
     const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });

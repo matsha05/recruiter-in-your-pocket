@@ -25,7 +25,7 @@ export function useReportSave({
     const result = await response.json();
     if (!result.ok) throw new Error(result.message || "Failed to save report");
 
-    toast.success("Report saved to your history");
+    toast.success("Saved to My reports.");
     setPendingReportForSave(null);
     setIsSavePromptOpen(false);
   }, [setIsSavePromptOpen, setPendingReportForSave]);

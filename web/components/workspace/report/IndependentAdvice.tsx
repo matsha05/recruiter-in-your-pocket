@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BracketsAngle, Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
+import { Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import {
@@ -35,13 +35,9 @@ function IndependentRewriteCard({
     original: item.rewrite.original,
     draft: item.rewrite.better,
   });
-  const guidance = isReadOnly
-    ? "This example uses only the details in the original line."
-    : policy.reason === "source_unavailable"
-      ? "The original resume is not available in this view, so copying is disabled."
-      : policy.reason === "unsafe"
-        ? "This draft changes or leaves out a detail from your resume, so copying is disabled."
-        : "Check the wording, then make it sound like you.";
+  const guidance = !isReadOnly && policy.reason === "unsafe"
+    ? "This draft changes a detail from your resume. Edit it back to what's true before copying."
+    : "";
 
   useEffect(() => () => { copyRequest.current += 1; }, []);
 
@@ -85,7 +81,6 @@ function IndependentRewriteCard({
               )}
               <details className="mt-4 border-t border-brand/15 pt-2">
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">View draft template</summary>
-                <p className="mt-2 text-xs leading-5 text-muted-foreground">Fill in the brackets with what actually happened, then make it sound like you.</p>
                 <p className="mt-3 text-base leading-7 text-foreground/85">{item.rewrite.better}</p>
               </details>
             </>
@@ -100,10 +95,10 @@ function IndependentRewriteCard({
                     disabled={!policy.copyable}
                     aria-disabled={!policy.copyable || copying}
                     aria-busy={copying || undefined}
-                    title={!policy.copyable ? guidance : undefined}
+                    title={!policy.copyable ? guidance || undefined : undefined}
                     className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-2 text-xs font-semibold text-brand transition-colors duration-fast hover:text-brand/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-busy:cursor-wait disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70 motion-reduce:transition-none"
                   >
-                    {!policy.copyable ? <><BracketsAngle className="size-4" aria-hidden="true" />Not copy-ready</> : (
+                    {!policy.copyable ? <><Copy className="size-4" aria-hidden="true" />Copy</> : (
                       <ActionFeedback state={copying ? "pending" : copied ? "success" : "idle"} states={{
                         idle: { label: "Copy", icon: <Copy className="size-4" /> },
                         pending: { label: "Copying", icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
@@ -115,7 +110,7 @@ function IndependentRewriteCard({
               </div>
               <p className={`${styles.body} mt-3 text-foreground`}>{item.rewrite.better}</p>
               <RewriteEnhancementNote note={item.rewrite.enhancement_note} className="mt-4" />
-              <p className="mt-3 text-xs leading-5 text-muted-foreground">{guidance}</p>
+              {guidance && <p className="mt-3 text-sm leading-5 text-muted-foreground">{guidance}</p>}
               {copyError && <p role="status" className="mt-3 text-base text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </>
           )}

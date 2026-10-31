@@ -9,6 +9,9 @@ import { useReportNavigation } from "./useReportNavigation";
 
 interface ReportTOCProps {
     activeId?: string;
+    /** Sections the current report actually renders; others are left out of the navigation. */
+    hasKeep?: boolean;
+    hasRole?: boolean;
 }
 
 const REPORT_TOC_ITEMS = [
@@ -18,15 +21,21 @@ const REPORT_TOC_ITEMS = [
     { id: "section-role", label: "Role fit", mobileLabel: "Role fit" },
 ] as const;
 
-export function ReportTOC({ activeId }: ReportTOCProps) {
-    const { selectedId, navRef, buttonRefs, handleScroll } = useReportNavigation(REPORT_TOC_ITEMS, activeId);
+const GRID_COLUMNS = ["", "grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4"];
+
+export function ReportTOC({ activeId, hasKeep = true, hasRole = true }: ReportTOCProps) {
+    const items = React.useMemo(
+        () => REPORT_TOC_ITEMS.filter((item) => (item.id !== "section-keep" || hasKeep) && (item.id !== "section-role" || hasRole)),
+        [hasKeep, hasRole],
+    );
+    const { selectedId, navRef, buttonRefs, handleScroll } = useReportNavigation(items, activeId);
     const layoutId = React.useId();
     const reducedMotion = useReducedMotion();
 
     return (
         <LayoutGroup id={layoutId}>
-            <nav ref={navRef} aria-label="Resume report sections" className="mx-auto grid w-full grid-cols-4 gap-x-1 sm:flex sm:items-center sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {REPORT_TOC_ITEMS.map((item) => {
+            <nav ref={navRef} aria-label="Resume report sections" className={cn("mx-auto grid w-full gap-x-1", GRID_COLUMNS[items.length], " sm:flex sm:items-center sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden")}>
+                {items.map((item) => {
                     const active = selectedId === item.id;
                     return (
                         <button

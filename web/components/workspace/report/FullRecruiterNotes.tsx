@@ -118,9 +118,8 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
     >
       <summary className="flex min-h-24 cursor-pointer list-none items-center justify-between gap-6 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4 focus-visible:ring-offset-paper [&::-webkit-details-marker]:hidden">
         <span className="min-w-0">
-          <span className="text-xs riyp-track-017 block font-semibold uppercase text-brand">Complete report</span>
-          <span role="heading" aria-level={2} className={`${styles.sectionTitle} mt-2 block`}>Full recruiter notes</span>
-          <span className="mt-2 block text-base text-muted-foreground">Section feedback, role details, and a plan for your revision.</span>
+          <span role="heading" aria-level={2} className={`${styles.sectionTitle} block`}>Full recruiter notes</span>
+          <span className="mt-2 block text-base text-muted-foreground">Section-by-section notes, role details, and what to do next.</span>
         </span>
         <CaretDown className="size-5 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
       </summary>
@@ -128,12 +127,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">
         {detailedRead.length > 0 && (
           <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
-            <p className="text-xs riyp-track-015 font-semibold uppercase text-brand">Review details</p>
-            <h3 id="full-notes-read-title" className={`${styles.sectionTitle} mt-2`}>The detailed assessment.</h3>
+            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The full read.</h3>
             <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {detailedRead.map(({ label, text }) => (
                 <div key={label} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">
-                  <dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">{label}</dt>
+                  <dt className="text-sm font-semibold text-muted-foreground">{label}</dt>
                   <dd className="text-base text-foreground sm:col-span-2">{text}</dd>
                 </div>
               ))}
@@ -160,8 +158,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
 
         {sectionNotes.length > 0 && (
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-sections-title">
-            <p className="text-xs riyp-track-015 font-semibold uppercase text-brand">Section by section</p>
-            <h3 id="full-notes-sections-title" className={`${styles.sectionTitle} mt-2`}>Notes on each section.</h3>
+            <h3 id="full-notes-sections-title" className={styles.sectionTitle}>Section by section.</h3>
             <div className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {sectionNotes.map(({ name, notes }) => (
                 <article key={name} className="py-6">
@@ -169,7 +166,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
                   <dl className="mt-4 grid gap-4 sm:grid-cols-3 sm:gap-6">
                     {notes.map(({ label, text }) => (
                       <div key={label}>
-                        <dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">{label}</dt>
+                        <dt className="text-sm font-semibold text-muted-foreground">{label}</dt>
                         <dd className="mt-2 text-base text-foreground">{text}</dd>
                       </div>
                     ))}
@@ -182,17 +179,15 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
 
         {nextSteps.length > 0 && (
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-next-title">
-            <p className="text-xs riyp-track-015 font-semibold uppercase text-brand">Revision order</p>
-            <h3 id="full-notes-next-title" className={`${styles.sectionTitle} mt-2`}>What to do next.</h3>
+            <h3 id="full-notes-next-title" className={styles.sectionTitle}>What to do next.</h3>
             <div className="mt-6"><NoteList items={nextSteps} /></div>
           </section>
         )}
 
         {hasRoleDetails && (
           <section className="riyp-border-paper-line border-t py-8 sm:py-10" aria-labelledby="full-notes-role-title">
-            <p className="text-xs riyp-track-015 font-semibold uppercase text-brand">{hasJobDescription ? "Job alignment" : "Role context"}</p>
-            <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
-              <h3 id="full-notes-role-title" className={styles.sectionTitle}>{hasJobDescription ? "How you match the job description." : "More about potential roles."}</h3>
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 id="full-notes-role-title" className={styles.sectionTitle}>{hasJobDescription ? "How you match the job posting." : "More roles to consider."}</h3>
               {hasJobDescription && typeof alignment?.jd_match_score === "number" && (
                 <p className="riyp-tabular-label text-xs text-muted-foreground">Job match: {alignment.jd_match_score}/100</p>
               )}
@@ -202,7 +197,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
               <div className="riyp-border-paper-line mt-7 grid gap-x-10 gap-y-7 border-y py-6 sm:grid-cols-2 lg:grid-cols-3">
                 {alignmentGroups.map(({ label, items }) => (
                   <div key={label}>
-                    <h4 className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">{label}</h4>
+                    <h4 className="text-sm font-semibold text-muted-foreground">{label}</h4>
                     <ul className="mt-3 space-y-2">
                       {items.map((item) => <li key={item} className="text-base text-foreground">{item}</li>)}
                     </ul>
@@ -212,10 +207,10 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
             )}
             {(extraBestFitRoles.length > 0 || stretchRoles.length > 0 || industrySignals.length > 0 || companyStageFit) && (
               <dl className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {extraBestFitRoles.length > 0 && <div><dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">Other roles to consider</dt><dd className="mt-2 text-base text-foreground">{extraBestFitRoles.join(", ")}</dd></div>}
-                {stretchRoles.length > 0 && <div><dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">Stretch roles</dt><dd className="mt-2 text-base text-foreground">{stretchRoles.join(", ")}</dd></div>}
-                {industrySignals.length > 0 && <div><dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">Industry context</dt><dd className="mt-2 text-base text-foreground">{industrySignals.join(", ")}</dd></div>}
-                {companyStageFit && <div><dt className="text-xs riyp-track-013 font-semibold uppercase text-muted-foreground">Company stage</dt><dd className="mt-2 text-base text-foreground">{companyStageFit}</dd></div>}
+                {extraBestFitRoles.length > 0 && <div><dt className="text-sm font-semibold text-muted-foreground">Other roles to consider</dt><dd className="mt-2 text-base text-foreground">{extraBestFitRoles.join(", ")}</dd></div>}
+                {stretchRoles.length > 0 && <div><dt className="text-sm font-semibold text-muted-foreground">Stretch roles</dt><dd className="mt-2 text-base text-foreground">{stretchRoles.join(", ")}</dd></div>}
+                {industrySignals.length > 0 && <div><dt className="text-sm font-semibold text-muted-foreground">Industry context</dt><dd className="mt-2 text-base text-foreground">{industrySignals.join(", ")}</dd></div>}
+                {companyStageFit && <div><dt className="text-sm font-semibold text-muted-foreground">Company stage</dt><dd className="mt-2 text-base text-foreground">{companyStageFit}</dd></div>}
               </dl>
             )}
           </section>

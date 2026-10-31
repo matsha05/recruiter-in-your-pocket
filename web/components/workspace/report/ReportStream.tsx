@@ -4,13 +4,11 @@ import { useEffect, useMemo } from "react";
 import {
   ArrowRight,
   CaretDown,
-  CheckCircle,
   EnvelopeSimple,
-  Target,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
-import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import {
   buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
@@ -135,7 +133,7 @@ export function ReportStream({
 
         {strengths[0] && (
           <div className={styles.worksNote}>
-            <p className="text-sm font-semibold text-foreground">What already works</p>
+            <p className="text-sm font-semibold text-foreground">Already working</p>
             <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
           </div>
         )}
@@ -146,7 +144,7 @@ export function ReportStream({
           <div>
             <h2 className={styles.sectionTitle}>{fixPlanHeadingForCount(fixes.length)}</h2>
           </div>
-          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">Check each suggestion against your experience. Add only details you know are accurate.</p>
+          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">These are drafts. Keep only what&apos;s true, and say it your way.</p>
         </div>
 
         <div>
@@ -171,8 +169,7 @@ export function ReportStream({
         <section id="section-keep" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Keep these</p>
-              <h2 className={cn(styles.sectionTitle, "mt-3")}>Also worth keeping.</h2>
+              <h2 className={styles.sectionTitle}>Keep these as they are.</h2>
             </div>
             <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
               {strengthsToKeep.map((strength, index) => (
@@ -188,14 +185,13 @@ export function ReportStream({
 
       {report.job_alignment && (
         <section id="section-role" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
-          <div className="flex items-center gap-2 text-brand"><Target className="size-5" weight="duotone" /><p className="text-xs font-semibold uppercase riyp-track-017">Role fit</p></div>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
             <div>
               <h2 className={styles.sectionTitle}>{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
               <p className="mt-5 max-w-[42rem] text-base leading-7 text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             </div>
             <div className="border-l-2 border-brand/30 pl-5">
-              <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">Roles to consider</p>
+              <p className="text-sm font-semibold text-muted-foreground">Roles to consider</p>
               <ul className="mt-4 space-y-3">
                 {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role} className="text-sm font-medium leading-6 text-foreground">{role}</li>)}
               </ul>
@@ -223,15 +219,14 @@ export function ReportStream({
         <section className={styles.revisionSection} aria-labelledby="sample-report-next-step-title" data-testid="sample-terminal-cta">
           <div className={styles.revisionPanel}>
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Your turn</p>
-              <h2 id="sample-report-next-step-title" className={styles.revisionTitle}>Let&apos;s look at your resume.</h2>
+              <h2 id="sample-report-next-step-title" className={styles.revisionTitle}>Now let&apos;s look at yours.</h2>
               <p className={styles.revisionCopy}>Upload or paste it to see what comes through clearly, where it leaves questions, and what to change first.</p>
             </div>
             <div className={styles.revisionAction}>
               <Button variant="brand" size="lg" onClick={onStartReport}>
                 Get your free report <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
-              <p className={styles.revisionNote}>{FREE_REPORT_ENTITLEMENT.promise} No account required.</p>
+              <p className={styles.revisionNote}>Your first report is free. No card or account needed.</p>
             </div>
           </div>
         </section>
@@ -241,15 +236,14 @@ export function ReportStream({
         <section className={styles.revisionSection} aria-labelledby="revision-loop-title" data-testid={isExhausted ? "post-report-purchase-decision" : undefined}>
           <div className={styles.revisionPanel}>
             <div>
-              <div className="flex items-center gap-2 text-brand"><CheckCircle className="size-5" weight="duotone" /><p className="text-xs font-semibold uppercase riyp-track-017">After you edit</p></div>
-              <h2 id="revision-loop-title" className={styles.revisionTitle}>See what changed.</h2>
-              <p className={styles.revisionCopy}>{isExhausted ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</> : <>Upload your revision to compare the two reports: what improved, what still needs detail, and what to work on next.</>}</p>
+              <h2 id="revision-loop-title" className={styles.revisionTitle}>{isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}</h2>
+              <p className={styles.revisionCopy}>{isExhausted ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</> : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss is fixed, what got clearer, and what to do next.</>}</p>
             </div>
             <div className={styles.revisionAction}>
               <Button variant={isExhausted ? "premium" : "brand"} size="lg" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
                 {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : "Compare my revision"}<ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
-              <p className={styles.revisionNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison stays in this browser visit."}</p>
+              <p className={styles.revisionNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison lasts for this visit. Save the report to keep it."}</p>
             </div>
           </div>
         </section>
@@ -259,9 +253,8 @@ export function ReportStream({
         <section className={styles.feedbackSection} aria-labelledby="report-feedback-title" data-testid="report-feedback">
           <div className={styles.feedbackContent}>
             <div>
-              <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">Help improve the report</p>
-              <h2 id="report-feedback-title" className={styles.feedbackTitle}>What did we get right? What did we miss?</h2>
-              <p className={styles.feedbackCopy}>Tell us which advice helped or felt wrong. Include an example so we can look into it.</p>
+              <h2 id="report-feedback-title" className={styles.feedbackTitle}>Did we read you right?</h2>
+              <p className={styles.feedbackCopy}>Tell us what helped and what missed. One example is enough for us to dig in.</p>
             </div>
             <div className={styles.feedbackAction}>
               <Button asChild variant="outline" size="lg" className="border-foreground/35 bg-paper hover:border-brand/45 hover:bg-brand/5">
