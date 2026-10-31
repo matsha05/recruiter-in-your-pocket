@@ -10,8 +10,8 @@ test("an unavailable saved theme does not take down the landing page", async ({ 
     });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
-    await expect(page.getByTestId("landing-pile").getByText("Critical Miss", { exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("They called someone back. It wasn’t you.");
+    await expect(page.getByTestId("landing-verdict-art")).toBeVisible();
     await expect(page.getByTestId("landing-primary-cta")).toHaveAttribute("href", "/workspace");
 });
 
@@ -25,29 +25,23 @@ test("a failed font leaves the main action usable from the keyboard", async ({ p
     await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
 });
 
-test("the header sits on the ink opening until the hero scrolls away", async ({ page }) => {
+test("the story reads in order: the hidden verdict, the silence, one read, then what we look for", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const header = page.locator("header.site-header");
-    await expect(header).toHaveAttribute("data-tone", "ink");
-    await expect(page.locator("html")).not.toHaveAttribute("data-header-solid", "true");
-    // Read on until the next section reaches the top, the way a visitor scrolls past the opening.
-    await page.evaluate(() => scrollTo(0, document.querySelector("#how-it-works")!.getBoundingClientRect().top + scrollY));
-    await expect(page.locator("html")).toHaveAttribute("data-header-solid", "true");
-    await page.evaluate(() => scrollTo(0, 0));
-    await expect(page.locator("html")).not.toHaveAttribute("data-header-solid", "true");
-    // Other pages never get the ink header.
-    await page.goto("/pricing");
-    await expect(page.locator("header.site-header")).not.toHaveAttribute("data-tone", "ink");
+    const order = await page.evaluate(() => ["#hero-title", "#silence-title", "#one-sentence-title", "#how-it-works"]
+        .map((selector) => document.querySelector(selector)!.getBoundingClientRect().top + scrollY));
+    expect([...order].sort((a, b) => a - b)).toEqual(order);
+    // The note is meant to be unreadable; its words never reach assistive technology as content.
+    await expect(page.getByTestId("landing-verdict-art")).toHaveAttribute("aria-hidden", "true");
 });
 
-test("reduced motion shows the finished pile without animating it", async ({ browser }) => {
+test("reduced motion shows the note already in place", async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
     await page.goto("/");
-    const marked = page.getByTestId("landing-pile").getByText("Introduced monthly renewal-risk reviews across the portfolio", { exact: true });
-    await expect(marked).toBeVisible();
-    expect(await marked.evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+    const note = page.getByTestId("landing-verdict-art").getByText("Recruiter’s note", { exact: true });
+    await expect(note).toBeVisible();
+    expect(await note.evaluate((element) => getComputedStyle(element.parentElement!).animationName)).toBe("none");
     await context.close();
 });

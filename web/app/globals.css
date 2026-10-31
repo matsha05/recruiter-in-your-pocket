@@ -1025,50 +1025,6 @@
     border-bottom-color: hsl(var(--line));
   }
 
-  /* Homepage: the header sits on the ink opening until the hero scrolls away. */
-  .site-header {
-    transition: background-color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease);
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] {
-    background: hsl(var(--surface-inverted));
-    border-bottom-color: hsl(var(--background) / 0.1);
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] .site-wordmark,
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] a:not(.site-header-cta),
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] button {
-    color: hsl(var(--background) / 0.78);
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] .site-wordmark,
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] a:not(.site-header-cta):hover,
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] a[aria-current="page"] {
-    color: hsl(var(--background));
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] .site-header-cta {
-    background: hsl(var(--background));
-    color: hsl(var(--text-strong));
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] .site-header-cta:hover {
-    background: hsl(var(--card));
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] button[aria-label="Open navigation"] {
-    border-color: hsl(var(--background) / 0.22);
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] button[aria-label="Open navigation"]:hover {
-    background: hsl(var(--background) / 0.08);
-  }
-
-  :root:not([data-header-solid]) .site-header[data-tone="ink"] .focus-ring:focus-visible {
-    --tw-ring-color: hsl(var(--background));
-    --tw-ring-offset-color: hsl(var(--surface-inverted));
-  }
-
   .site-header .app-shell-inner {
     max-width: var(--page-max);
     min-height: var(--marketing-header-height-desktop);

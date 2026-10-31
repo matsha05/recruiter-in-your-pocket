@@ -9,17 +9,17 @@ test.describe("homepage feedback and SEO contract", () => {
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("They called someone back. It wasn’t you.");
     await expect(homepage).toContainText(
-      "Your resume lands in a pile. See what a recruiter will stop on, what they’ll skim past, and the one thing to fix first.",
+      "See what a recruiter sees on your resume, and the one thing to fix first.",
     );
 
-    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Read my resume");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Read mine");
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "See a full example", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "See an example", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
@@ -29,8 +29,11 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).not.toContainText("Trusted by people at");
-    // The pile is decoration for sighted visitors; the claims it illustrates are stated in text below it.
-    await expect(homepage.getByTestId("landing-pile-hero").locator("[aria-hidden='true']").filter({ hasText: "Critical Miss" })).toHaveCount(1);
+    // The blurred note is decoration; the story says the same thing in text.
+    await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
+    await expect(homepage).toContainText("Sometimes it’s one line on your resume. That part you can fix.");
+    await expect(homepage.locator("blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
+    await expect(homepage.getByRole("heading", { level: 2, name: "What would they write about yours?" })).toBeVisible();
     const truths = homepage.locator("#how-it-works");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
     await expect(truths).toContainText("One Critical Miss, not forty tips.");

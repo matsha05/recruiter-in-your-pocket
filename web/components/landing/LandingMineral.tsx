@@ -3,17 +3,21 @@ import Link from "next/link";
 import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { HiringTruths } from "./home/HiringTruths";
-import { PileHero } from "./home/PileHero";
+import { OneSentence } from "./home/OneSentence";
+import { SilenceSection } from "./home/SilenceSection";
+import { VerdictHero } from "./home/VerdictHero";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
 const WORK_HISTORY = ["OpenAI", "Meta", "Google", "X-Team", "Robert Half"];
 
-/** The pile, what we look for, the person behind the criteria, one last ask. */
+/** The verdict you never got, the silence, one real read, what we look for, who wrote the criteria, one last ask. */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
-            <PileHero />
+            <VerdictHero />
+            <SilenceSection />
+            <OneSentence />
             <HiringTruths />
 
             <section id="about" className={styles.founder} aria-labelledby="founder-title">

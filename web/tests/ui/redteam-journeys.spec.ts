@@ -40,11 +40,11 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     // The full example sits one step from the opening, and the way back still leads to a report.
-    await page.getByRole("link", { name: "See a full example", exact: true }).click();
+    await page.getByRole("link", { name: "See an example", exact: true }).click();
     await expect(page).toHaveURL(/\/sample-report$/, { timeout: 45_000 });
     await expect(page.getByText("Critical Miss", { exact: true }).first()).toBeVisible();
     await page.goBack();
-    await expect(page.getByTestId("landing-primary-cta")).toHaveText("Read my resume");
+    await expect(page.getByTestId("landing-primary-cta")).toHaveText("Read mine");
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();
