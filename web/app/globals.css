@@ -89,6 +89,14 @@
     --pen: 160 48.8% 23.7%;
     --pen-strong: 160 40% 32%;
     --pen-tint: 155 25% 92%;
+    /* A recruiter's desk of pens (Oct 31, 2026). Blue ink is the candidate's own work and numbers;
+       the chart steps are the categorical order for comparisons, validated for color-vision deficiency
+       and contrast on the white sheet. Use them in order, never cycled; red stays reserved for problems. */
+    --blue-ink: 223.6 64.7% 40%;
+    --chart-1: 223.9 65.1% 50.6%;
+    --chart-2: 153.1 53.3% 35.3%;
+    --chart-3: 279.8 36% 48.4%;
+    --chart-4: 28 78.6% 47.6%;
     --brass: 47 100% 21%;
     --highlight: 50 100% 65.1%;
     /* The Critical Miss: a highlighter-yellow sheet with deep olive ink. */
@@ -244,6 +252,11 @@
     --border: 145 5% 18%;
     --pen-strong: 153 43% 80%;
     --pen-tint: 155 22% 14%;
+    --blue-ink: 223.8 76.6% 78.2%;
+    --chart-1: 224 73.5% 62.9%;
+    --chart-2: 152.5 45.3% 41.6%;
+    --chart-3: 277.1 40% 58.8%;
+    --chart-4: 28 78.6% 47.6%;
     --brand: var(--pen);
     --brand-strong: var(--pen-strong);
     --brand-tint: var(--pen-tint);

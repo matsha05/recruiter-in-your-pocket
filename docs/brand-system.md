@@ -61,7 +61,7 @@ Avoid:
 
 ## Visual character
 
-Paper on a desk. White sheets sit on a cool-neutral ground (#f4f4f1), with ink #111513 for text and every action, muted #5a605c, inset #e9eae6, and hairline dividers #dfe0dc. The pen #1f5a46 is the one accent: links, focus, and everything the recruiter says. The highlighter #ffe14d is used sparingly, only to mark the line a recruiter would miss; the Critical Miss block sits on #fff6c2 with deep olive #6b5400 ink. Dark pill primary actions, 18px sheets, no drop shadows.
+Paper on a desk. White sheets sit on a cool-neutral ground (#f4f4f1), with ink #111513 for text and every action, muted #5a605c, inset #e9eae6, and hairline dividers #dfe0dc. The green pen #1f5a46 leads: links, focus, and everything the recruiter says. Since October 31, 2026 the desk holds the recruiter's other pens too: blue ink #2448a8 for the candidate's own work and numbers, the red pen only for problems, and a validated chart order (blue, green, plum, orange) so comparisons actually look different. Color always carries a job; it is never decoration. The highlighter #ffe14d is used sparingly, only to mark the line a recruiter would miss; the Critical Miss block sits on #fff6c2 with deep olive #6b5400 ink. Dark pill primary actions, 18px sheets, no drop shadows.
 
 Typography carries the authority:
 

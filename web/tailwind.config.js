@@ -79,6 +79,13 @@ module.exports = {
 					foreground: 'hsl(0 0% 100%)'
 				},
 				citron: 'hsl(var(--citron))',
+				'blue-ink': 'hsl(var(--blue-ink))',
+				chart: {
+					1: 'hsl(var(--chart-1))',
+					2: 'hsl(var(--chart-2))',
+					3: 'hsl(var(--chart-3))',
+					4: 'hsl(var(--chart-4))'
+				},
 				'cyan-bright': 'hsl(var(--cyan-bright))',
 				'error-surface': 'hsl(var(--destructive-surface))',
 				'success-surface': 'hsl(var(--success-surface))',

@@ -106,6 +106,8 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 | Pen | `#1f5a46` | `--pen` (aliased by `--brand`, `--ring`, `--cyan-bright`); link underlines, focus, selected state, the recruiter's notes |
 | Pen hover | `--pen-strong` | `--brand-strong`; hover and pressed emphasis on pen-colored links and controls |
 | Pen tint | `#e6f0eb` | `--pen-tint` (aliased by `--brand-tint`, `--surface-sky`); quiet selected surfaces |
+| Blue ink | `#2448a8` | `--blue-ink`; the candidate's own work and numbers when they need a voice distinct from the recruiter's pen |
+| Chart 1–4 | `#2f5bd3` `#2a8a5f` `#8a4fa8` `#d9731a` | `--chart-1`…`--chart-4` (`bg-chart-1`…); the categorical order for comparisons: blue ink, green pen, plum, orange. Validated with the dataviz palette checker (lightness band, chroma floor, color-vision separation, 3:1 on the sheet) in light and dark, Oct 31, 2026 |
 | Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
 | Miss sheet | `#fff6c2` / `#f2dc6b` | `--miss-surface` / `--miss-line`; the Critical Miss block |
 | Miss ink | `#6b5400` | `--brass` (aliased by `--premium`, `--warning`); text on or beside yellow |
@@ -114,9 +116,9 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 
 Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Older names (`--brand`, `--surface-sky`, `--cyan-bright`, `--teal-bright`, `--accent-apricot`, `--assessment-*`, `--premium`, `--gold`, `--amber`) are aliases into this palette so existing utilities follow it. `--citron` / `--accent-butter` remain compatibility tokens only.
 
-Rules: ink for actions; pen for anything the recruiter says or points at; yellow only for the Critical Miss and highlighted resume lines. Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
+Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green pen for anything the recruiter says or points at; blue ink for the candidate's own work and numbers; red pen (`--destructive`) only for problems and destructive actions, never decoration; yellow only for the Critical Miss and highlighted resume lines. Charts and comparisons use `--chart-1`…`--chart-4` in that fixed order, never cycled; a fifth series folds into "Other" or small multiples. Within one view a color means one thing: in the offer calculator it means the kind of pay (base, equity, bonus, one-time), so offers are told apart by name. Data labels and values stay in text ink, never the series color. Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
 
-Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Avoid gradients, glow, grain, and red-pen correction marks.
+Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Dark mode chart steps are lifted separately (`#5b80e6` `#3a9a6e` `#a06cc0` `#d9731a`) and validated against the dark sheet. Avoid gradients, glow, and grain.
 
 Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 

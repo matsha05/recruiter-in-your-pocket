@@ -38,7 +38,8 @@ test.describe("editorial resources", () => {
 
     const offer = page.locator('section[aria-label="Offer 1 details"]');
     await expect(offer.getByText("$540,000", { exact: true })).toBeVisible();
-    await expect(page.locator('aside[aria-label="Modeled comparison"]')).toContainText("It is not a recommendation");
+    // One offer gets a single answer; the ranking caveat appears only when offers are compared.
+    await expect(page.locator('aside[aria-label="Modeled comparison"]')).toContainText("Modeled four-year total");
     await expect(page.locator("table")).toBeHidden();
     await expect(
       page.locator('section[aria-labelledby="year-breakdown-title"]')
