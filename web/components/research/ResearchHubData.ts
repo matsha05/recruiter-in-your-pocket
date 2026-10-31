@@ -313,3 +313,9 @@ export const evidenceGaps = [
         href: "/research/resume-length-myths",
     },
 ];
+
+/** The pillar an article belongs to, by its href, for labels outside the hub. Pillars are named, not colored:
+ *  the pen colors already mean whose mark something is, so they are not spent on navigation. */
+export function pillarForHref(href: string) {
+    return categories.find((candidate) => candidate.articles.some((article) => article.href === href))?.navLabel ?? null;
+}

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Clock, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Clock } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { pillarForHref } from "@/components/research/ResearchHubData";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
@@ -208,15 +209,16 @@ export default function GuidesPage() {
                         </div>
 
                         <div className="grid gap-4 md:grid-cols-3">
-                            {researchLinks.map((item) => (
+                            {researchLinks.map((item) => {
+                                const pillar = pillarForHref(item.href);
+                                return (
                                 <Link
                                     key={item.title}
                                     href={item.href}
                                     className={`${styles.sheet} focus-ring group p-6 transition-colors hover:border-brand/40 sm:p-8`}
                                 >
-                                    <div className="mb-5 inline-flex size-11 items-center justify-center rounded-full border border-brand/15 bg-accent">
-                                        <ShieldCheck aria-hidden="true" className="size-4 text-brand" weight="duotone" />
-                                    </div>
+                                    {/* Which research pillar this belongs to: real information, where a generic icon was. */}
+                                    {pillar ? <p className="mb-5 text-sm font-medium text-muted-foreground">{pillar}</p> : null}
                                     <h3 className={`${styles.componentTitle} transition-colors group-hover:text-brand`}>
                                         {item.title}
                                     </h3>
@@ -225,7 +227,8 @@ export default function GuidesPage() {
                                         <ArrowRight className="size-4" />
                                     </div>
                                 </Link>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>

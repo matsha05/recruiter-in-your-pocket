@@ -447,7 +447,8 @@ export default function ResearchClient() {
                                 <div className="flex gap-5">
                                     <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                                     <div>
-                                        <h3 className="text-base font-semibold leading-6 text-foreground">{gap.claim}</h3>
+                                        {/* The recruiter's red pen crosses out the myth; the correction below stays plain. */}
+                                        <h3 className="text-base font-semibold leading-6 text-foreground line-through decoration-red-pen/70 decoration-[1.5px]">{gap.claim}</h3>
                                         <p className="mt-3 text-sm leading-6 text-muted-foreground">{gap.correction}</p>
                                         <Link href={gap.href} className="focus-ring group mt-4 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-brand">
                                             See the research <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
