@@ -55,12 +55,6 @@ const HEX_ALLOWLIST = new Set([
 
 const CALIBRATED_ARTWORK_FILES = new Set();
 
-// Retired landing directions kept only for the internal comparison page.
-const LEGACY_LANDING_DIRECTION_FILES = new Set([
-  "components/landing/LandingLiftedLine.tsx",
-  "components/landing/LandingEditorsDesk.tsx",
-]);
-
 const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
@@ -74,7 +68,6 @@ const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [
   "app/sentry-example-page/",
   "app/preview/",
   "components/internal/",
-  "components/landing-showcase/",
 ];
 
 const NON_PRODUCT_PREFIXES = [
@@ -83,7 +76,6 @@ const NON_PRODUCT_PREFIXES = [
   "app/sentry-example-page/",
   "app/preview/",
   "components/internal/",
-  "components/landing-showcase/",
 ];
 
 // Model instructions and evaluation language are product logic, not public UI
@@ -242,7 +234,7 @@ function findViolations(files) {
       : file.endsWith(".module.css")
         ? /text-underline-offset:(?!\s*var\(--link-offset\))|transition:[^;]*\d+m?s\b/
         : null;
-    if (linkOrMotionPattern && !LEGACY_LANDING_DIRECTION_FILES.has(file)) {
+    if (linkOrMotionPattern) {
       const match = source.match(linkOrMotionPattern);
       if (match) violations.adHocLinkOrMotion.push(`${file} -> ${match[0]}`);
     }
