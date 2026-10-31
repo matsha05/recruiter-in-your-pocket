@@ -3,12 +3,6 @@
     --report-muted: hsl(var(--text-muted));
     --report-rule: hsl(var(--line) / 0.8);
     --report-cyan: hsl(var(--brand));
-    --illustration-priority-first: hsl(var(--assessment-priority-coral));
-    --illustration-priority-next: hsl(var(--assessment-priority-gold));
-    --illustration-priority-later: hsl(var(--assessment-priority-gray));
-    --illustration-number-ink: hsl(var(--assessment-number-ink));
-    --illustration-score-fill: hsl(var(--assessment-forest));
-    --illustration-score-track: hsl(var(--assessment-track));
     background: hsl(var(--surface-page));
     color: var(--report-ink);
     padding: clamp(1.4rem, 1.9vw, 2rem) 0 clamp(2rem, 3vw, 3rem);
@@ -172,8 +166,8 @@
     stroke-width: 8;
 }
 
-.scoreTrack { stroke: var(--illustration-score-track); }
-.scoreValue { stroke: var(--illustration-score-fill); }
+.scoreTrack { stroke: hsl(var(--line)); }
+.scoreValue { stroke: hsl(var(--pen)); }
 
 .scoreRing > div {
     position: absolute;
@@ -225,16 +219,16 @@
     height: clamp(1.15rem, 1.4375vw, 1.62rem);
     align-items: center;
     justify-content: center;
-    border: 0;
-    background: var(--illustration-priority-next);
+    border: 1px solid hsl(var(--line));
+    background: transparent;
     border-radius: 50%;
-    color: var(--illustration-number-ink);
+    color: hsl(var(--text-strong));
     font-size: clamp(0.55rem, 0.6875vw, 0.775rem);
     font-weight: 700;
 }
 
-.summaryPriorities li:first-child > span { background: var(--illustration-priority-first); }
-.summaryPriorities li:nth-child(n + 4) > span { background: var(--illustration-priority-later); }
+/* The first priority is the Critical Miss: brass, like the report and the hero. */
+.summaryPriorities li:first-child > span { border-color: hsl(var(--brass)); background: hsl(var(--brass)); color: hsl(var(--card)); }
 
 .summaryPriorities { padding-left: clamp(1rem, 1.25vw, 1.4rem); }
 .summaryPriorities h3 { font-weight: 600; }

@@ -105,13 +105,6 @@
     --assessment-aqua: 188 85% 34%;
     --assessment-green: 156 64% 37%;
     --assessment-amber: 42 94% 58%;
-    /* Reference illustration palette; order does not represent finding severity. */
-    --assessment-priority-coral: 5.652 100% 72.941%;
-    --assessment-priority-gold: 43.537 100% 67.843%;
-    --assessment-priority-gray: 60 2.083% 81.176%;
-    --assessment-number-ink: 225 36.364% 12.941%;
-    --assessment-forest: 152.958 31.839% 43.725%;
-    --assessment-track: 48 8.772% 88.824%;
     /* --destructive already defined above, for errors and <70 scores */
 
     /* One variable sans across marketing and product; serif only for editorial accents. */
