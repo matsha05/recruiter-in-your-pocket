@@ -171,9 +171,11 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 )}
 
-                <Button asChild variant="outline" size="lg">
-                  <Link href={restoreHref}>Restore access</Link>
-                </Button>
+                {accountReady ? null : (
+                  <Button asChild variant="outline" size="lg">
+                    <Link href={restoreHref}>Restore access</Link>
+                  </Button>
+                )}
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/settings/billing">Billing settings</Link>
                 </Button>
@@ -183,11 +185,6 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : null}
               </div>
-              {paymentConfirmed && !checkingAccountAccess && !user ? (
-                <p className="mt-5 rounded-xl bg-brand/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
-                  Sign in with the email used at checkout to use this pass. A passwordless sign-in email may already be in your inbox.
-                </p>
-              ) : null}
               {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
                 <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
                   Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.

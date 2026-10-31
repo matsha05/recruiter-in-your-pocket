@@ -152,7 +152,8 @@ test.describe("saved-report checkout return", () => {
     await confirmPayment(page);
     await page.goto(`${ORIGIN}${CONFIRMED_PATH}`);
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveAttribute("href", REVISION_PATH);
-    await expect(page.getByRole("link", { name: "Restore access", exact: true })).toHaveAttribute("href", RESTORE_PATH);
+    // Access is already active, so recovery is not offered.
+    await expect(page.getByRole("link", { name: "Restore access", exact: true })).toHaveCount(0);
     expect(await page.evaluate(() => sessionStorage.getItem("checkout-harness-refreshes"))).toBe("1");
     await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
     await expect(page.getByText("5 more reports, good for 30 days. Pick up where you left off.", { exact: true })).toBeVisible();

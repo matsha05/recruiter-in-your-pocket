@@ -33,8 +33,10 @@ function formatReportDate(value: string) {
   }).format(date);
 }
 
+// targetRole is the report's best-fit role suggestion, not the person's job,
+// so it stays in the meta line and never becomes the title.
 function reportTitle(report: ReportHistoryItem) {
-  return report.name || report.targetRole || "Saved report";
+  return report.name || "Resume review";
 }
 
 export function ReportHistoryList({ initialReports }: { initialReports: ReportHistoryItem[] }) {
@@ -148,7 +150,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
               <div className="min-w-0">
                 <p className="text-[0.8125rem] text-muted-foreground [overflow-wrap:anywhere]">
                   {formatReportDate(report.createdAt)}
-                  {report.targetRole && report.targetRole !== title ? <> · {report.targetRole}</> : null}
+                  {report.targetRole ? <> · Points toward {report.targetRole}</> : null}
                 </p>
 
                 {isRenaming ? (

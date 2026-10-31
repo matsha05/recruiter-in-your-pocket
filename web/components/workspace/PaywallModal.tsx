@@ -195,15 +195,15 @@ export default function PaywallModal({
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
                     <div>
                         <p className="font-display text-4xl riyp-weight-520 tracking-[-0.03em] text-foreground">$29</p>
-                        <p className="mt-1 text-sm text-muted-foreground">once</p>
+                        <p className="mt-1 text-sm text-muted-foreground">one-time</p>
                     </div>
                     <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
-                        {JOB_SEARCH_PASS_DECISION.terms}
+                        Good for 30 days. No automatic renewal.
                     </div>
                 </div>
 
                 <form
-                    className="mb-3 border border-line bg-background p-4"
+                    className="mb-1"
                     onSubmit={(event) => {
                         event.preventDefault();
                         void handleCheckout();

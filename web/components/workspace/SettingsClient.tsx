@@ -682,7 +682,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <p className="text-lg font-medium text-foreground">{accessLabel}</p>
                                         </div>
                                         <div className="text-sm text-muted-foreground">
-                                            Purchases are tied to <span className="break-all font-medium text-foreground">{user?.email}</span>
+                                            Purchases are tied to <span className="block break-words font-medium text-foreground sm:inline">{user?.email}</span>
                                         </div>
                                         {passTierLabel && (
                                             <div className="text-xs text-muted-foreground space-y-1">

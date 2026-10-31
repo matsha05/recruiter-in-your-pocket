@@ -243,7 +243,7 @@ export default function InputPanel({
                                 <span className="flex items-center gap-2">
                                     {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>
-                            ) : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
+                            ) : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>
 
                         <div className={styles.privacy}>
