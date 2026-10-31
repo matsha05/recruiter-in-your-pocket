@@ -8,7 +8,7 @@ import {
     DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Trash2 } from "lucide-react";
+import { Trash, Warning } from "@phosphor-icons/react";
 
 interface ConfirmModalProps {
     isOpen: boolean;
@@ -45,9 +45,9 @@ export default function ConfirmModal({
                             : "bg-amber-500/10"
                         }`}>
                         {isDestructive ? (
-                            <Trash2 className="size-6 text-destructive" />
+                            <Trash className="size-6 text-destructive" />
                         ) : (
-                            <AlertTriangle className="size-6 text-amber-500" />
+                            <Warning className="size-6 text-amber-500" />
                         )}
                     </div>
 

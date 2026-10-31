@@ -242,7 +242,8 @@ export default function ReportPanel({
                                     </span>
                                     {shareEnabled && shareMode && <span className="text-[0.8125rem] font-semibold text-premium">Share view</span>}
                                 </div>
-                                <div className="flex shrink-0 items-center gap-1">
+                                {/* Below 360px the actions wrap under the label; pull the ghost button's padding back to the column edge. */}
+                                <div className={`flex shrink-0 items-center gap-1${isSample ? "" : " max-[359px]:-ml-3"}`}>
                                     {isSample && onNewReport && (
                                         <Button
                                             data-testid="sample-start-report"

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LogOut, Files } from "lucide-react";
+import { Files, SignOut } from "@phosphor-icons/react";
 import { SettingsIcon } from "@/components/ui/settings";
 import {
     DropdownMenu,
@@ -127,7 +127,7 @@ export function UserNav({
                     onClick={onSignOut}
                     className="text-destructive focus:text-destructive focus:bg-destructive/10"
                 >
-                    <LogOut className="mr-2 size-4" />
+                    <SignOut className="mr-2 size-4" />
                     Sign Out
                 </DropdownMenuItem>
             </DropdownMenuContent>

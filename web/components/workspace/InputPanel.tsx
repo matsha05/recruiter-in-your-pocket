@@ -110,6 +110,7 @@ export default function InputPanel({
             return `${paid} paid report${paid === 1 ? "" : "s"} remaining`;
         }
         if (freeUsesRemaining > 0) return "Your first report is included";
+        if (!user) return "Sign in for your free report, or get a Job Search Pass";
         return "A Job Search Pass is required for another report";
     };
 

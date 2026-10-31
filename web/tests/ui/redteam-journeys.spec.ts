@@ -242,8 +242,10 @@ test.describe("launch red-team journeys", () => {
     await expect(saveDialog.getByRole("heading", { name: "Save this report" })).toBeVisible({ timeout: 15_000 });
     await expect(saveDialog.getByText("Saving keeps the report, quoted resume excerpts, a short resume preview, and any job description you added in your account. You can delete the saved report at any time.", { exact: true })).toBeVisible();
     await saveDialog.getByRole("button", { name: /Sign in to save/i }).click();
-    const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });
+    // The sign-in dialog is named for what the visitor is doing.
+    const authDialog = page.getByRole("dialog").filter({ has: page.locator("#auth-email") });
     await expect(authDialog).toBeVisible();
+    await expect(authDialog).toHaveAccessibleName("Save this report");
     await expect(authDialog).toHaveAccessibleDescription("Use your email to receive a secure one-time sign-in code.");
     await expect(authDialog.locator("#auth-email")).toBeVisible();
     await expect(authDialog.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
@@ -308,7 +310,7 @@ test.describe("launch red-team journeys", () => {
     expect(checkoutJson.message).toMatch(/temporarily unavailable/i);
   });
 
-  test("11. exhausted free report opens paid access before another run", async ({ page }) => {
+  test("11. exhausted free report offers a free account report before paid access", async ({ page }) => {
     await page.route("**/api/free-status", async (route) => {
       await route.fulfill({
         status: 200,
@@ -323,17 +325,27 @@ test.describe("launch red-team journeys", () => {
     });
 
     await openPasteMode(page);
-    await expect(page.getByText("A Job Search Pass is required for another report")).toBeVisible();
+    // The anonymous allowance can be used by someone else on the same network;
+    // every account still has its own free report, so that comes first.
+    await expect(page.getByText("Sign in for your free report, or get a Job Search Pass")).toBeVisible();
     await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
     await page.getByTestId("workspace-role-toggle").click();
     await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
     await page.getByTestId("workspace-run-report").click();
 
-    const paywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
+    const paywall = page.getByRole("dialog", { name: "Your free report needs an account" });
     await expect(paywall).toBeVisible();
     await expect(paywall).not.toContainText("Your existing report stays available");
-    await expect(paywall).toContainText("Your resume is still here when you're ready.");
+    await expect(paywall).toContainText("Each account gets its own, so sign in to get yours.");
     await expect(paywall.getByRole("button", { name: "Back to my resume" })).toBeVisible();
     await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
+
+    await paywall.getByRole("button", { name: "Sign in for your free report" }).click();
+    const signIn = page.getByRole("dialog", { name: "Get your free report" });
+    await expect(signIn).toBeVisible();
+    await expect(signIn.getByLabel("Email address", { exact: true })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(signIn).toHaveCount(0);
+    await expect(page.getByTestId("workspace-resume-text")).toHaveValue(RESUME_TEXT);
   });
 });

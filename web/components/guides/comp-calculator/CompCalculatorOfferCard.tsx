@@ -176,7 +176,7 @@ function AdvancedOptions({ offer, onChange, readOnly }: {
                 disabled={readOnly}
                 aria-describedby={growthHintId}
                 onChange={(event) => onChange({ ...offer, stockGrowth: Number.parseInt(event.target.value, 10) })}
-                className="h-2 w-full cursor-pointer appearance-none rounded-full bg-input accent-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring disabled:cursor-default disabled:opacity-60"
+                className="riyp-range"
               />
               <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
                 <span>-20%</span>

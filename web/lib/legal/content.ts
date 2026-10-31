@@ -53,7 +53,8 @@ export type LegalSection =
   };
 
 export type LegalPageContent = {
-  eyebrow: string;
+  /** Omit when it would only repeat the title. */
+  eyebrow?: string;
   title: string;
   description: string;
   lastUpdated?: string;
@@ -204,7 +205,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   },
   terms: {
     eyebrow: "Terms of service",
-    title: "Terms for using RIYP",
+    title: "Terms for using Recruiter in Your Pocket",
     description: "Terms for product use, billing, and account behavior.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
@@ -317,7 +318,6 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
     ],
   },
   faq: {
-    eyebrow: "FAQ",
     title: "Frequently asked questions",
     description: "Answers to common questions about the product, privacy, and billing.",
     lastUpdated: LEGAL_LAST_UPDATED,
@@ -351,7 +351,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What happens to uploaded resume data?",
-                a: "RIYP does not store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time.",
+                a: "We don't store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time.",
               },
               {
                 q: "Is my data used to train public models?",

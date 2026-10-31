@@ -1,4 +1,4 @@
-export type AuthContext = "default" | "report" | "settings" | "paywall" | "history" | "extension";
+export type AuthContext = "default" | "report" | "settings" | "paywall" | "history" | "extension" | "free_report";
 
 const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   default: {
@@ -24,6 +24,10 @@ const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   extension: {
     headline: "Sync saved jobs across devices",
     subtext: "Sign in to access your saved jobs on other devices."
+  },
+  free_report: {
+    headline: "Get your free report",
+    subtext: "Each account gets one free report. Your resume stays right where you left it."
   }
 };
 

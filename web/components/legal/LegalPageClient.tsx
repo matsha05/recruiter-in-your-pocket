@@ -24,7 +24,10 @@ function renderInline(inline: LegalInline, index: number) {
       href={inline.href}
       className="focus-ring rounded-sm text-foreground riyp-link"
     >
-      {inline.label}
+      {/* Let a long address wrap after "@" instead of mid-domain. */}
+      {inline.href.startsWith("mailto:") && inline.label.includes("@")
+        ? <>{inline.label.split("@")[0]}@<wbr />{inline.label.split("@").slice(1).join("@")}</>
+        : inline.label}
     </Link>
   );
 }

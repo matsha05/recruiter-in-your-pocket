@@ -406,7 +406,11 @@ test.describe("paid decision boundary", () => {
     await fillAnonymousReview(page, "198.51.100.146");
     await page.getByTestId("workspace-run-report").click();
 
-    await expect(page.getByRole("dialog", { name: "Want another read?" })).toBeVisible();
+    // A signed-out visitor without a report is offered their account's free report first.
+    const paywall = page.getByRole("dialog", { name: "Your free report needs an account" });
+    await expect(paywall).toBeVisible();
+    await expect(paywall.getByTestId("paywall-free-sign-in")).toBeVisible();
+    await expect(paywall.getByRole("button", { name: "Continue to checkout" })).toBeVisible();
     await expect(page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" })).toHaveCount(0);
     expect(requests).toBe(2);
   });

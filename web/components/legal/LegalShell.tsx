@@ -7,7 +7,7 @@ import { LegalNav } from "@/components/legal/LegalNav";
 
 type LegalShellProps = {
     pageKey?: string;
-    eyebrow: string;
+    eyebrow?: string;
     title: string;
     description: string;
     lastUpdated?: string;
@@ -33,9 +33,11 @@ export function LegalShell({
                     <div className="mx-auto max-w-report">
                         <LegalNav className="mb-10 md:mb-14" />
                         <div className="mx-auto max-w-form">
-                            <p className="mb-4 text-label text-muted-foreground">
-                                {eyebrow}
-                            </p>
+                            {eyebrow ? (
+                                <p className="mb-4 text-label text-muted-foreground">
+                                    {eyebrow}
+                                </p>
+                            ) : null}
                             <div>
                                 <h1
                                     id={pageKey ? `legal-${pageKey}-title` : undefined}

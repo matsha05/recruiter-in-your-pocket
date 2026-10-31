@@ -84,7 +84,7 @@
 .missLabel {
     margin-top: 0.5rem;
     color: hsl(var(--brass));
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: var(--weight-label);
     letter-spacing: 0.1em;
     text-transform: uppercase;

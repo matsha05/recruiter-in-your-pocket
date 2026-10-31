@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
-import { X, ArrowRight, Download } from "lucide-react";
+import { ArrowRight, DownloadSimple, X } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { InsightSparkleIcon } from "@/components/icons";
 import { UI_TRANSITION } from "@/lib/animation";
@@ -104,7 +104,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                     onClick={onDownloadPdf}
                                     className="text-muted-foreground hover:text-foreground"
                                 >
-                                    <Download className="size-3.5 mr-2" />
+                                    <DownloadSimple className="size-3.5 mr-2" />
                                     Download PDF
                                 </Button>
                             </div>

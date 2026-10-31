@@ -143,21 +143,21 @@ module.exports = {
 				'workspace-title': ['2.5rem', { lineHeight: '2.625rem', letterSpacing: '-0.035em', fontWeight: '700' }],
 				'report-title': ['1.5rem', { lineHeight: '1.875rem', letterSpacing: '-0.02em', fontWeight: '700' }],
 				'verdict': ['1.75rem', { lineHeight: '2.25rem', letterSpacing: '-0.02em', fontWeight: '400' }],
-				'eyebrow': ['0.75rem', { lineHeight: '1.125rem', letterSpacing: '0.1em', fontWeight: '600' }],
+				'eyebrow': ['0.8125rem', { lineHeight: '1.125rem', letterSpacing: '0.1em', fontWeight: '600' }],
 				'control': ['1rem', { lineHeight: '1.25rem', fontWeight: '600' }],
 				'prose': ['1.125rem', { lineHeight: '1.875rem' }],
 				'data': ['0.875rem', { lineHeight: '1.375rem' }],
-				'label': ['0.75rem', { lineHeight: '1.125rem', fontWeight: '600' }],
+				'label': ['0.8125rem', { lineHeight: '1.125rem', fontWeight: '600' }],
 				'2xs': [
-					'0.6875rem',
+					'0.8125rem',
 					{
 						lineHeight: '1rem'
 					}
 				],
 				xs: [
-					'0.75rem',
+					'0.8125rem',
 					{
-						lineHeight: '1rem'
+						lineHeight: '1.125rem'
 					}
 				],
 				sm: [

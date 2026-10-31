@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { m as motion, AnimatePresence } from "motion/react"
-import { Command, Download, Share2, ChevronRight } from "lucide-react"
+import { CaretRight, Command, DownloadSimple, ShareNetwork } from "@phosphor-icons/react";
 
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils"
@@ -140,7 +140,7 @@ export function BottomActionRail({
                         aria-label="Share report"
                         className="h-8 px-2"
                     >
-                        <Share2 className="size-4" />
+                        <ShareNetwork className="size-4" />
                     </Button>
                 )}
                 {onExport && (
@@ -151,7 +151,7 @@ export function BottomActionRail({
                         aria-label="Export report as PDF"
                         className="h-8 px-2"
                     >
-                        <Download className="size-4" />
+                        <DownloadSimple className="size-4" />
                     </Button>
                 )}
                 {onPrimaryAction && (
@@ -166,7 +166,7 @@ export function BottomActionRail({
                         ) : (
                             <>
                                 {primaryActionLabel}
-                                <ChevronRight className="size-4 ml-1" />
+                                <CaretRight className="size-4 ml-1" />
                             </>
                         )}
                     </Button>

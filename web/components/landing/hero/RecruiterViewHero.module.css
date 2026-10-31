@@ -188,7 +188,7 @@
     margin: 1.75rem 0 0.75rem;
     border-bottom: 1px solid hsl(var(--line));
     color: hsl(var(--muted-foreground));
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: var(--weight-label);
     letter-spacing: 0.12em;
     padding-bottom: 0.625rem;
