@@ -1,5 +1,6 @@
 'use client';
 
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import Link from "next/link";
 import React from "react";
 import { AlertCircle, ArrowRight, Check, Copy, Loader2, Plus } from "lucide-react";
@@ -304,7 +305,7 @@ export function LinkedInReportPanel({
                     {isSample && onNewReport ? (
                         <Button variant="brand" size="lg" onClick={onNewReport}>Review my profile <ArrowRight className="ml-2 size-4" /></Button>
                     ) : isExhausted && onUpgrade ? (
-                        <Button variant="premium" onClick={onUpgrade}>See the Job Search Pass <ArrowRight className="ml-2 size-4" /></Button>
+                        <Button variant="premium" onClick={onUpgrade}>{JOB_SEARCH_PASS_DECISION.cta} <ArrowRight className="ml-2 size-4" /></Button>
                     ) : onNewReport ? (
                         <Button variant="brand" onClick={onNewReport}><Plus className="mr-2 size-4" />Review another profile</Button>
                     ) : null}

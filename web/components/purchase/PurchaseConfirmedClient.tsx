@@ -40,11 +40,11 @@ export default function PurchaseConfirmedClient() {
 
   const unlockLabel = useMemo(() => {
     const map: Record<UnlockSection, string> = {
-      evidence_ledger: "Evidence behind the review",
-      bullet_upgrades: "Suggested rewrites",
-      missing_wins: "Details to add",
-      job_alignment: "Fit for the role",
-      export_pdf: "Export",
+      evidence_ledger: "your report",
+      bullet_upgrades: "your report",
+      missing_wins: "your report",
+      job_alignment: "your report",
+      export_pdf: "your report",
     };
     if (!unlock) return null;
     return map[unlock as UnlockSection] || null;
@@ -93,12 +93,12 @@ export default function PurchaseConfirmedClient() {
   const accountReady = paymentConfirmed && !checkingAccountAccess && hasPaidAccess;
   const statusLabel = isWaiting ? "Confirming with Stripe"
     : checkingAccountAccess ? "Checking account access"
-    : accountReady ? "Access confirmed"
+    : accountReady ? "Pass active"
     : paymentConfirmed ? "Payment confirmed"
     : "Needs attention";
   const confirmationMessage = !paymentConfirmed ? state.message
     : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
-    : accountReady ? "Your account has paid access. You can return to your report."
+    : accountReady ? "5 more reports, good for 30 days. Pick up where you left off."
     : user ? "Your payment is confirmed, but this account does not show the pass yet."
     : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
   const nextStepLabel = !paymentConfirmed ? "Next step"
@@ -116,8 +116,7 @@ export default function PurchaseConfirmedClient() {
         <section className="mx-auto max-w-form" aria-labelledby="purchase-confirmed-title">
           <header className="grid gap-6 border-b border-border pb-8">
             <div>
-              <p className="text-eyebrow uppercase text-muted-foreground">Payment</p>
-              <div className="mt-5 flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
+              <div className="flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
                 {isWaiting ? <CircleNotch className="size-5 animate-spin motion-reduce:animate-none text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
@@ -138,15 +137,10 @@ export default function PurchaseConfirmedClient() {
           <div className="grid gap-5 py-8">
             <div className="text-sm leading-6 text-muted-foreground">
               {unlockLabel && state.status !== "missing" ? (
-                <p>
-                  We kept your place in <span className="font-medium text-foreground">{unlockLabel}</span>.
-                </p>
+                <p>Your report is right where you left it.</p>
               ) : null}
-              {state.status !== "missing" ? (
-                <p className="mt-3 text-xs">
-                  Confirmation reference {sessionSuffix || "pending"}
-                  {attempt > 1 ? ` · check ${attempt}` : ""}
-                </p>
+              {isProblem && state.status !== "missing" && sessionSuffix ? (
+                <p className="mt-3 text-sm">Confirmation reference {sessionSuffix}. Include it if you write to us.</p>
               ) : null}
             </div>
 
@@ -161,7 +155,7 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : state.status === "unlocked" && hasPaidAccess ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Open workspace"} <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Back to my report"} <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" && user ? (
                   <Button asChild variant="brand" size="lg">

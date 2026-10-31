@@ -154,8 +154,8 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveAttribute("href", REVISION_PATH);
     await expect(page.getByRole("link", { name: "Restore access", exact: true })).toHaveAttribute("href", RESTORE_PATH);
     expect(await page.evaluate(() => sessionStorage.getItem("checkout-harness-refreshes"))).toBe("1");
-    await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
-    await expect(page.getByText("Your account has paid access. You can return to your report.", { exact: true })).toBeVisible();
+    await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
+    await expect(page.getByText("5 more reports, good for 30 days. Pick up where you left off.", { exact: true })).toBeVisible();
   });
 
   test("confirmed payment waits for the account refresh before claiming access is ready", async ({ page }) => {
@@ -167,11 +167,11 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByText("Your payment is confirmed. We’re checking access for your account.", { exact: true })).toBeVisible();
     await expect(page.getByText("Checking your account", { exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Refreshing access…", exact: true })).toBeDisabled();
-    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Pass active", { exact: true })).toHaveCount(0);
     await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
     await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
     await page.evaluate(() => (window as any).completeCheckoutAccountRefresh());
-    await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+    await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: "Compare my revision", exact: true })).toHaveAttribute("href", REVISION_PATH);
   });
 
@@ -188,7 +188,7 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByText("Payment confirmed", { exact: true })).toBeVisible();
     await expect(page.getByText("Your payment is confirmed. Sign in with your checkout email to use the pass.", { exact: true })).toBeVisible();
     await expect(page.getByText("Sign in to continue", { exact: true })).toBeVisible();
-    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Pass active", { exact: true })).toHaveCount(0);
     await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
     await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
   });
@@ -202,7 +202,7 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByText("Payment confirmed", { exact: true })).toBeVisible();
     await expect(page.getByText("Your payment is confirmed, but this account does not show the pass yet.", { exact: true })).toBeVisible();
     await expect(page.getByText("Verify account access", { exact: true })).toBeVisible();
-    await expect(page.getByText("Access confirmed", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("Pass active", { exact: true })).toHaveCount(0);
     await expect(page.getByText("Ready when you are", { exact: true })).toHaveCount(0);
     await expect(page.getByText(/Your (?:pass is active|account has paid access)/)).toHaveCount(0);
   });

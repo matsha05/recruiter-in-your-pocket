@@ -20,9 +20,9 @@ export const FREE_REPORT_ENTITLEMENT = {
 } as const;
 
 export const JOB_SEARCH_PASS_DECISION = {
-  freeBoundary: "This free report is complete. You do not need to pay to see the rest.",
-  whenToBuy: "The Job Search Pass is there when you have a revision to compare or another application to review.",
-  terms: "One payment. 30 days. No automatic renewal.",
+  freeBoundary: "Everything in your free report is yours. Nothing is held back.",
+  whenToBuy: "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",
+  terms: "5 more reports, good for 30 days. No automatic renewal.",
   cta: "Get 5 more reports · $29",
 } as const;
 
@@ -32,15 +32,15 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Free",
     price: "$0",
     period: "1 report",
-    description: "See the full report on one resume before deciding whether you need more.",
-    buttonText: "Included",
+    description: "The complete report on one resume. Nothing locked.",
+    buttonText: "Get your free report",
     features: [
-      { text: "1 full in-browser resume report", bold: true },
-      { text: "What a recruiter may notice first" },
-      { text: "Evidence behind each recommendation" },
-      { text: "Suggested rewrites using your facts" },
-      { text: "Role comparison when you add a job posting" },
-      { text: "No login or credit card required" }
+      { text: "One complete resume report", bold: true },
+      { text: "Your Verdict and First Impression score" },
+      { text: "The Critical Miss: what a recruiter is most likely to skip past" },
+      { text: "Each suggestion tied to a line on your resume" },
+      { text: "Rewrites that use only your facts" },
+      { text: "No account or card needed" }
     ]
   },
   "30d": {
@@ -48,15 +48,15 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Job Search Pass",
     price: "$29",
     period: "one-time · 30 days",
-    description: "Five additional reports to compare revisions or review your next applications.",
-    buttonText: "Get the Job Search Pass",
-    badge: "Best for an active search",
+    description: "For revising and applying: check each revision, and tailor your resume to each of your applications.",
+    buttonText: "Get 5 more reports · $29",
+    badge: "For an active search",
     features: [
-      { text: "5 additional complete reports", bold: true },
-      { text: "Compare the feedback on your revisions" },
-      { text: "Review your resume against a job posting" },
-      { text: "PDF exports, plus saved history when signed in" },
-      { text: "One payment. Access expires after 30 days." }
+      { text: "5 more complete reports", bold: true },
+      { text: "See whether your Critical Miss is fixed after you revise" },
+      { text: "Check your resume against each job posting" },
+      { text: "PDF exports, and saved reports when signed in" },
+      { text: "$29 once. Good for 30 days. No automatic renewal." }
     ]
   },
 };

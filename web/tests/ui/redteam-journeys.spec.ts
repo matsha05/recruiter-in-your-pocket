@@ -184,12 +184,12 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
 
     const purchaseDecision = page.getByTestId("post-report-purchase-decision");
-    await expect(purchaseDecision).toContainText("This free report is complete. You do not need to pay to see the rest.");
-    await expect(purchaseDecision).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
+    await expect(purchaseDecision).toContainText("Everything in your free report is yours. Nothing is held back.");
+    await expect(purchaseDecision).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
-    await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
+    await expect(purchaseDecision).toContainText("5 more reports, good for 30 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
-    const reportPaywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
+    const reportPaywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");
     await expect(reportPaywall.getByRole("button", { name: "Back to my report" })).toBeVisible();
     await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
@@ -325,7 +325,7 @@ test.describe("launch red-team journeys", () => {
     await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
     await page.getByTestId("workspace-run-report").click();
 
-    const paywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
+    const paywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(paywall).toBeVisible();
     await expect(paywall).not.toContainText("Your existing report stays available");
     await expect(paywall).toContainText("You can return to your resume below");

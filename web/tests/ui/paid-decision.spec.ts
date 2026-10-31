@@ -15,24 +15,24 @@ type UnlockExpectation = Readonly<{
 
 const EXPECTED_UNLOCK_COPY = {
   evidence_ledger: {
-    title: "Review your revised resume",
-    label: "Resume feedback",
+    title: "Check your revised resume",
+    label: "Your revision",
   },
   bullet_upgrades: {
-    title: "Get feedback on your revision",
-    label: "Resume edits",
+    title: "See what your edits changed",
+    label: "Your edits",
   },
   missing_wins: {
     title: "Check the details you add",
     label: "Details to add",
   },
   job_alignment: {
-    title: "Review another role",
-    label: "Fit for the role",
+    title: "Read it against another role",
+    label: "Role fit",
   },
   export_pdf: {
-    title: "Export your report as a PDF",
-    label: "Export",
+    title: "Take your report with you",
+    label: "PDF export",
   },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
 
@@ -313,9 +313,9 @@ test.describe("paid decision boundary", () => {
         await expect(dialog, `${viewport.label}/${section}: unique modal opens`).toBeVisible();
         await expect(dialog.getByRole("heading", { name: expected.title, exact: true })).toBeVisible();
         await expect(dialog.getByTestId("paywall-context-label")).toHaveText(expected.label);
-        await expect(dialog).toContainText("This free report is complete. You do not need to pay to see the rest.");
-        await expect(dialog).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
-        await expect(dialog).toContainText("5 additional reports");
+        await expect(dialog).toContainText("Everything in your free report is yours. Nothing is held back.");
+        await expect(dialog).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
+        await expect(dialog).toContainText("5 more complete reports");
         await expect(dialog).toContainText("$29");
         await expect(dialog).toContainText("30 days");
         await expect(dialog).toContainText("no automatic renewal", { ignoreCase: true });
@@ -334,8 +334,8 @@ test.describe("paid decision boundary", () => {
           });
           expect(scrollState.canScroll, `${section}: mobile dialog scrolls`).toBe(true);
           expect(scrollState.atBottom, `${section}: mobile dialog reaches legal controls`).toBe(true);
-          await expect(dialog.getByRole("button", { name: "Restore purchase or manage billing" })).toBeVisible();
-          await expect(dialog.getByText(/Stripe handles payment/)).toBeVisible();
+          await expect(dialog.getByRole("button", { name: "Already paid? Restore access" })).toBeVisible();
+          await expect(dialog.getByText(/Payment by Stripe/)).toBeVisible();
         }
 
         await page.keyboard.press("Escape");
@@ -406,7 +406,7 @@ test.describe("paid decision boundary", () => {
     await fillAnonymousReview(page, "198.51.100.146");
     await page.getByTestId("workspace-run-report").click();
 
-    await expect(page.getByRole("dialog", { name: "Run another report" })).toBeVisible();
+    await expect(page.getByRole("dialog", { name: "Want another read?" })).toBeVisible();
     await expect(page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" })).toHaveCount(0);
     expect(requests).toBe(2);
   });
@@ -507,16 +507,16 @@ test.describe("paid decision boundary", () => {
       });
 
       await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
-      await expect(page.getByRole("heading", { name: "Purchase confirmed" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "You’re all set." })).toBeVisible();
       await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
       await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
-      await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+      await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
       await expect.poll(() => page.evaluate(() => {
         const stored = localStorage.getItem("riyp_unlock_context");
         return stored ? JSON.parse(stored).section : null;
       })).toBe("job_alignment");
 
-      const openStudio = page.getByRole("link", { name: /Open workspace/i });
+      const openStudio = page.getByRole("link", { name: /Back to my report/i });
       await expect(openStudio).toBeVisible({ timeout: 15_000 });
       await Promise.all([
         page.waitForURL(/\/workspace$/, { timeout: 30_000 }),

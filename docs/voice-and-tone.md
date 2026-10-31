@@ -2,6 +2,25 @@
 
 Recruiter in Your Pocket gives job seekers a clear, recruiter-grounded read of the document in front of them. The product does not impersonate a human recruiter, predict hiring outcomes, or turn uncertainty into certainty.
 
+## Personality (Matt, October 30, 2026)
+
+This section sets the personality. The rest of this guide still applies.
+
+- **Who is talking:** an insider over coffee. Someone who works in hiring and tells you the truth because they are on your side. Candid, specific, a little dry. Rooting for you without cheerleading. The product says "we"; Matt's founder section says "I".
+- **Bluntness:** direct, then kind. Name the problem in the first sentence, then show the way out. No softening words, no harshness.
+- **Where the wit comes from:** hiring truths (knowing observations about resumes and how hiring really works) and a product that is a little self-aware. Never at the person's expense, never wordplay for its own sake.
+- **Rhythm:** talky, mostly short. Contractions. An occasional fragment for punch.
+- **How much play:** light wit by default. The playful register lives in the hero, margin notes, "keep this" labels, and empty states. The report body stays direct. Errors, billing, and privacy stay plain.
+
+Reference lines:
+
+- Hero: "See what a recruiter sees." / "What you meant isn't always what they read. See what comes through, what slips past, and what to fix first."
+- Margin note: "This line has been on a lot of resumes. What did you do that the others didn't?"
+- A strength to leave alone: "Don't touch this one."
+- Homepage close: "Good work deserves a good read."
+- Feedback that is direct, then kind: "This reads like a job description. Tell them what you changed."
+- Hiring truth: "'Results-driven' is on every resume. Show the result instead."
+
 ## The voice
 
 The voice is **plainspoken expertise**: an experienced recruiter with excellent judgment, a generous spirit, and no need to perform cleverness.
