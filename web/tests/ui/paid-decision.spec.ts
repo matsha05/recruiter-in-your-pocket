@@ -367,8 +367,8 @@ test.describe("paid decision boundary", () => {
 
     const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" });
     await expect(failureToast).toHaveCount(1);
-    await expect(failureToast).toContainText("This attempt did not use your free report or a paid report credit.");
-    await expect(failureToast).not.toContainText("could not confirm this attempt's status", { ignoreCase: true });
+    await expect(failureToast).toContainText("This didn't use one of your reports.");
+    await expect(failureToast).not.toContainText("couldn't tell whether this used", { ignoreCase: true });
     expect(handshakeRequests).toBe(2);
   });
 

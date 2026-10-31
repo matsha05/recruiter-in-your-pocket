@@ -108,7 +108,7 @@ test("production-protected internal routes render a stable not-found page", asyn
   expect(response?.status()).toBe(404);
   await waitForAppHydration(page);
 
-  await expect(page.getByRole("heading", { name: "This page is not here." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "We can’t find that page." })).toBeVisible();
   expect(pageErrors).toEqual([]);
 });
 

@@ -40,7 +40,7 @@ export async function handleGenerationStreamFailure(input: {
   const baseMessage = code === "OPENAI_TIMEOUT"
     ? "This is taking longer than usual. Try again in a moment."
     : code === "CLIENT_CANCELED"
-      ? "Analysis stopped before the report was complete."
+      ? "The report stopped before it finished."
       : code === "OPENAI_NETWORK_ERROR"
         ? "Connection hiccup. Try again in a moment."
         : error?.message || "The report could not be completed.";

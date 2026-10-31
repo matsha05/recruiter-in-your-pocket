@@ -7,6 +7,7 @@ import {
 } from "./generationAccess";
 import { logError } from "../observability/logger";
 import { generationDispositionIsUnknown } from "./generation-cancellation";
+import { REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, REPORT_ACCESS_USED, stripAccessOutcome } from "./generationFailureCopy";
 
 export type GenerationFailureDisposition = {
   attemptConsumed: boolean | undefined;
@@ -52,7 +53,7 @@ export async function settleGenerationFailure(input: {
       creditRestored: false,
       anonymousCookieMeta: reservation?.anonymousCookieMeta || null,
       releaseError: null,
-      retryMessage: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
+      retryMessage: REPORT_ACCESS_OUTCOME_UNKNOWN,
     };
   }
   if (input.attemptConsumed) {
@@ -62,7 +63,7 @@ export async function settleGenerationFailure(input: {
       creditRestored: false,
       anonymousCookieMeta: reservation?.anonymousCookieMeta || null,
       releaseError: null,
-      retryMessage: "This report attempt was used because generation had already started.",
+      retryMessage: REPORT_ACCESS_USED,
     };
   }
   if (!reservation) {
@@ -90,7 +91,7 @@ export async function settleGenerationFailure(input: {
         creditRestored: false,
         anonymousCookieMeta: reservation.anonymousCookieMeta,
         releaseError: null,
-        retryMessage: "This report attempt was used because generation had already started.",
+        retryMessage: REPORT_ACCESS_USED,
       };
     }
     if (finality === "unknown") throw new Error("Access release finality is unknown");
@@ -100,7 +101,7 @@ export async function settleGenerationFailure(input: {
       creditRestored: true,
       anonymousCookieMeta: restoredAnonymousCookie(reservation),
       releaseError: null,
-      retryMessage: "Your report credit was restored; please try again.",
+      retryMessage: REPORT_ACCESS_RESTORED,
     };
   } catch (releaseError) {
     return {
@@ -109,14 +110,13 @@ export async function settleGenerationFailure(input: {
       creditRestored: false,
       anonymousCookieMeta: reservation.anonymousCookieMeta,
       releaseError,
-      retryMessage: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
+      retryMessage: REPORT_ACCESS_OUTCOME_UNKNOWN,
     };
   }
 }
 
 export function appendFailureDisposition(message: string, disposition: GenerationFailureDisposition) {
-  const base = message.trim()
-    .replace(/\s*(?:Your report credit was restored; please try again|This report attempt was used because generation had already started|We could not confirm that your report credit was restored\. Check your remaining reports before retrying|We could not confirm this attempt's status\. Check History and your remaining reports before retrying)[.!?]*$/iu, "")
+  const base = stripAccessOutcome(message)
     .replace(/[.!?]+$/u, "");
   return disposition.retryMessage ? `${base}. ${disposition.retryMessage}` : `${base}.`;
 }

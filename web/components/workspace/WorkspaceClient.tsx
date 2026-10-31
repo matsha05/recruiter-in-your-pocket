@@ -199,7 +199,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsStreaming(false);
         setAnalysisStartedAt(null);
         if (!silent) {
-            toast.info("Review stopped");
+            toast.info("Report stopped");
         }
     }, []);
 
@@ -225,7 +225,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const { clearSavedRevision } = savedRevision;
     const revisionBlocked = savedRevision.active && savedRevision.state !== "ready";
 
-    const { handleLinkedInPdfSubmit, handleLinkedInUrlSubmit, handleLinkedInSample } = useLinkedInReview({
+    const { handleLinkedInPdfSubmit, handleLinkedInSample } = useLinkedInReview({
         user,
         freeUsesRemaining,
         refreshFreeStatus,
@@ -295,8 +295,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             setReviewMode('resume');
         } catch (err) {
             console.error("Failed to load sample report:", err);
-            toast.error("Sample report unavailable", {
-                description: "Please try again in a moment or start your free report.",
+            toast.error("The sample report didn't load", {
+                description: "Refresh to try again, or start with your own resume.",
             });
         }
     }, [showSampleReport]);
@@ -309,7 +309,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
         if (analysisMode === "linkedin") {
             if (!lastLinkedInPdf) {
-                toast.message("Retry unavailable", { description: "Please re-upload your LinkedIn PDF." });
+                toast.message("Upload your LinkedIn PDF again to retry.");
                 return;
             }
             handleCancelAnalysis(true);
@@ -501,7 +501,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             isStreaming={isStreaming}
                             freeUsesRemaining={effectiveUsesRemaining}
                             user={user}
-                            onUrlSubmit={handleLinkedInUrlSubmit}
                             onPdfSubmit={handleLinkedInPdfSubmit}
                             onSampleReport={handleLinkedInSample}
                             onNewReport={handleNewReport}

@@ -8,7 +8,6 @@ import { TrustBadges } from '@/components/shared/TrustBadges';
 import { cn } from '@/lib/utils';
 
 interface LinkedInInputPanelProps {
-    onUrlSubmit: (url: string) => void;
     onPdfSubmit: (text: string) => void;
     isLoading: boolean;
     freeUsesRemaining: number;

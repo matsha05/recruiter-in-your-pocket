@@ -33,8 +33,8 @@ export function useSampleReport({
         .catch((err) => {
           if (cancelled) return;
           console.error("Failed to load sample report:", err);
-          toast.error("Sample report unavailable", {
-            description: "Please try again in a moment or start your free report.",
+          toast.error("The sample report didn't load", {
+            description: "Refresh to try again, or start with your own resume.",
           });
         });
       return () => { cancelled = true; };

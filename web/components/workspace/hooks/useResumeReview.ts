@@ -7,7 +7,7 @@ import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
-import { REPORT_ACCESS_NOT_USED } from "@/lib/billing/generationFailureCopy";
+import { REPORT_ACCESS_NOT_USED, REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, hasAccessOutcome } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean };
@@ -150,18 +150,18 @@ export function useResumeReview(input: {
         });
         if (!input.isAnalysisCurrent(controller)) return;
         if (result.attemptConsumed) {
-          toast.warning("Review stopped", {
+          toast.warning("Report stopped", {
             description: refreshed
-              ? "This report attempt was used. Your remaining reports are current."
-              : "This report attempt was used. Check History and your remaining reports before retrying.",
+              ? "This used one of your reports. Your count is up to date."
+              : "This used one of your reports. Check My reports before running it again.",
           });
         } else if (result.creditRestored) {
-          toast.info("Review stopped", {
-            description: "Your report credit was restored. You can run the report again.",
+          toast.info("Report stopped", {
+            description: REPORT_ACCESS_RESTORED,
           });
         } else {
-          toast.info("Review stopped", {
-            description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
+          toast.info("Report stopped", {
+            description: REPORT_ACCESS_OUTCOME_UNKNOWN,
           });
         }
         return;
@@ -209,22 +209,21 @@ export function useResumeReview(input: {
       if (!input.isAnalysisCurrent(controller)) return;
       const attemptCopy = result.attemptConsumed
         ? refreshed
-          ? "This report attempt was used. Your remaining reports are current."
-          : "This report attempt was used. Check History and your remaining reports before retrying."
+          ? "This used one of your reports. Your count is up to date."
+          : "This used one of your reports. Check My reports before running it again."
         : result.attemptConsumed === false || result.accessConsumed === false
-          ? `${REPORT_ACCESS_NOT_USED} You can try again.`
+          ? `${REPORT_ACCESS_NOT_USED} Try again whenever you're ready.`
         : result.creditRestored
-          ? "Your report credit was restored. You can try again."
-          : "We could not confirm this attempt's status. Check History and your remaining reports before retrying.";
-      const hasDisposition = /report attempt was used|counted toward your report allowance|report credit was restored|did not use your free report or a paid report credit|could not confirm (?:whether (?:report access changed|this attempt used a report)|that your report credit was restored|this attempt's status)/iu
-        .test(result.message || "");
-      toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "The connection ended" : "We couldn’t finish your report", {
+          ? REPORT_ACCESS_RESTORED
+          : REPORT_ACCESS_OUTCOME_UNKNOWN;
+      const hasDisposition = hasAccessOutcome(result.message || "");
+      toast.error(result.errorCode === "STREAM_TRANSPORT_ERROR" ? "The connection dropped" : "We couldn’t finish your report", {
         // Generation takes about a minute; keep the outcome visible until the user acts.
         duration: Infinity,
         closeButton: true,
         description: hasDisposition
             ? result.message
-            : `${result.message || "The report did not finish."} · ${attemptCopy}`,
+            : `${result.message || "The report didn’t finish."} ${attemptCopy}`,
       });
     } catch (error) {
       if (!input.isAnalysisCurrent(controller)) return;
@@ -238,7 +237,7 @@ export function useResumeReview(input: {
       toast.error("We couldn’t finish your report", {
         duration: Infinity,
         closeButton: true,
-        description: "We could not confirm this attempt's status. Check History and your remaining reports before retrying.",
+        description: REPORT_ACCESS_OUTCOME_UNKNOWN,
       });
     } finally {
       if (input.endAnalysis(controller)) {

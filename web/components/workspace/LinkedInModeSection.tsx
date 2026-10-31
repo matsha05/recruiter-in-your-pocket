@@ -14,7 +14,6 @@ type LinkedInModeSectionProps = {
   isStreaming: boolean;
   freeUsesRemaining: number;
   user: AuthUser | null;
-  onUrlSubmit: (url: string) => void;
   onPdfSubmit: (pdfText: string) => void;
   onSampleReport: () => void;
   onNewReport: () => void;
@@ -32,7 +31,6 @@ export default function LinkedInModeSection({
   isStreaming,
   freeUsesRemaining,
   user,
-  onUrlSubmit,
   onPdfSubmit,
   onSampleReport,
   onNewReport,
@@ -81,7 +79,6 @@ export default function LinkedInModeSection({
             </div>
 
             <LinkedInInputPanel
-              onUrlSubmit={onUrlSubmit}
               onPdfSubmit={onPdfSubmit}
               isLoading={isLoading}
               freeUsesRemaining={freeUsesRemaining}

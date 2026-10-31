@@ -155,7 +155,7 @@ async function run() {
 
     assert.equal(response.status, 409);
     assert.equal(payload.errorCode, "RECOVERY_STORAGE_REQUIRED");
-    assert.match(payload.message, /browser could not store the recovery reference/iu);
+    assert.match(payload.message, /blocking the storage we use to hold your free report/iu);
     assert.equal(providerCalls, 0, "a marker-less anonymous report must stop before reservation/provider work");
     assert.equal(reservationCalls, 0, "a marker-less anonymous report must not reserve access");
     assert.ok(identityValue, "the pre-reservation rejection must still issue the signed identity cookie");

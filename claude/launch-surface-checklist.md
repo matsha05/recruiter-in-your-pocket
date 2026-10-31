@@ -21,27 +21,27 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 ## Report (web)
 
-- [ ] Critical Miss is said twice: top block and Fix 01 repeat headline and why. Fix 01 becomes "Your Critical Miss" with evidence and rewrite only.
-- [ ] Report TOC lists Keep these / Role fit even when those sections don't render.
-- [ ] One "keep only what's true" line under the fixes heading; remove per-card repeats (FixCanvas, IndependentAdvice).
-- [ ] Copy-disabled notice: keep the page banner only.
-- [ ] Cut eyebrows to Verdict and Critical Miss; sentence-case headings elsewhere (ReportStream, FullRecruiterNotes).
-- [ ] "What already works" vs "Keep these / Also worth keeping": one name.
-- [ ] Sample CTA note renders "No card required. No account required." twice.
-- [ ] Exhausted state heading and body; comparison note copy.
-- [ ] "Fix 1" vs "Fix 01": one format.
-- [ ] Save naming: "Save report" / "Saved to History." / "Exporting…" / "Share report"; share copy needs await + feedback.
-- [ ] Empty state CTA and contrast (ReportPanel).
+- [x] Critical Miss is said twice: top block and Fix 01 repeat headline and why. Fix 01 becomes "Your Critical Miss" with evidence and rewrite only.
+- [x] Report TOC lists Keep these / Role fit even when those sections don't render.
+- [x] One "keep only what's true" line under the fixes heading; remove per-card repeats (FixCanvas, IndependentAdvice).
+- [x] Copy-disabled notice: keep the page banner only.
+- [x] Cut eyebrows to Verdict and Critical Miss; sentence-case headings elsewhere (ReportStream, FullRecruiterNotes).
+- [x] "What already works" vs "Keep these / Also worth keeping": one name.
+- [x] Sample CTA note renders "No card required. No account required." twice.
+- [x] Exhausted state heading and body; comparison note copy.
+- [x] "Fix 1" vs "Fix 01": one format.
+- [x] Save naming: "Save report" / "Saved to History." / "Exporting…" / "Share report"; share copy needs await + feedback.
+- [x] Empty state CTA and contrast (ReportPanel).
 - [ ] "job posting" everywhere; section "Role fit".
 
 ## Analysis, outcomes, errors
 
-- [ ] One outcome-copy module (used / not used / unknown + next step) for generationFailureCopy, useResumeReview, useLinkedInReview, API messages.
-- [ ] AnalysisScanning: one heading, honest time ("one to two minutes"), steps only from real events, retry note.
-- [ ] "Review stopped" → "Report stopped"; drop "Resume review" eyebrows.
-- [ ] Sample report unavailable / retry unavailable toasts.
-- [ ] error.tsx "Return to the studio"; not-found tokens, pills, copy.
-- [ ] Anonymous recovery messages (no "recovery reference").
+- [x] One outcome-copy module (used / not used / unknown + next step) for generationFailureCopy, useResumeReview, useLinkedInReview, API messages.
+- [x] AnalysisScanning: one heading, honest time ("one to two minutes"), steps only from real events, retry note.
+- [x] "Review stopped" → "Report stopped"; drop "Resume review" eyebrows.
+- [x] Sample report unavailable / retry unavailable toasts.
+- [x] error.tsx "Return to the studio"; not-found tokens, pills, copy.
+- [x] Anonymous recovery messages (no "recovery reference").
 
 ## Purchase and pricing
 
@@ -61,6 +61,8 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 ## Methodology and research
 
+- [ ] Read and fix every research article and every diagram (copy, voice, type sizes, tokens, mobile layout), not just the index.
+
 - [ ] Merge /methodology into /research/how-we-score as "How the report works"; redirect; update links.
 - [ ] Methodology copy: hedges, "not X" formulas, compliance-styled limits.
 - [ ] FirstReadModelDiagram: retired "clarity summary"; lead with Verdict.
@@ -75,7 +77,10 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 - [ ] Dashboard: drop "Average Score" and color bands; lead with what keeps coming up.
 - [ ] Jobs: "% match" and bands → counts of posting terms found.
 
-## Settings, auth, small text, icons, dead code
+## Signed-in surfaces, settings, auth, small text, icons, dead code
+
+- [ ] Visual and copy pass on every signed-in surface: My reports/history, dashboard, settings, jobs, LinkedIn, purchase confirmed/restore, auth.
+- [ ] PDF: second visual pass after report changes (fonts, pagination, grayscale).
 
 - [ ] Auth copy ("Please enter…", "Secure sign-in", "Login code").
 - [ ] Settings sentence case, legacy labels, delete dialog copy.

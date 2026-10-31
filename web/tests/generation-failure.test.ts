@@ -36,7 +36,7 @@ async function run() {
   assert.equal(restored.creditRestored, true);
   assert.equal(restored.attemptConsumed, false);
   assert.equal(restored.anonymousCookieMeta?.used, 0);
-  assert.match(restored.retryMessage, /credit was restored/i);
+  assert.match(restored.retryMessage, /gave that report back/i);
 
   const releaseFailed = await settleGenerationFailure({
     reservation: anonymousReservation,
@@ -49,8 +49,8 @@ async function run() {
   assert.equal(releaseFailed.attemptConsumed, undefined);
   assert.equal(releaseFailed.attemptDisposition, "unknown");
   assert.equal(releaseFailed.anonymousCookieMeta?.used, 1);
-  assert.doesNotMatch(releaseFailed.retryMessage, /^Your report credit was restored/iu);
-  assert.match(releaseFailed.retryMessage, /Check History and your remaining reports/i);
+  assert.doesNotMatch(releaseFailed.retryMessage, /gave that report back/iu);
+  assert.match(releaseFailed.retryMessage, /Check My reports before running it again/i);
 
   const consumed = await settleGenerationFailure({
     reservation: anonymousReservation,
@@ -63,7 +63,7 @@ async function run() {
   assert.equal(consumed.creditRestored, false);
   assert.equal(releases, 1, "post-consumption failure must not release the attempt");
   const copy = appendFailureDisposition("Provider response failed. Your report credit was restored; please try again.", consumed);
-  assert.equal((copy.match(/report attempt was used/giu) || []).length, 1);
+  assert.equal((copy.match(/This used one of your reports/giu) || []).length, 1);
   assert.equal((copy.match(/credit was restored/giu) || []).length, 0, "stale restoration copy must be replaced, not duplicated");
 
   assert.deepEqual(
