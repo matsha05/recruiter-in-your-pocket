@@ -161,7 +161,7 @@ export default function PaywallModal({
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
                             {hasCurrentReport
                                 ? "Your existing report stays available. You can return to it below."
-                                : "You can't buy a pass right now. Check back soon, or use a free report if you have one left."}
+                                : "You can't buy a pass right now. Your resume is still here when you're ready."}
                         </DialogDescription>
                     </DialogHeader>
                     <Button className="mt-5 w-full" onClick={onClose}>

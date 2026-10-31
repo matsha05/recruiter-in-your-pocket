@@ -198,7 +198,7 @@ test.describe("launch red-team journeys", () => {
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
     const feedback = page.getByTestId("report-feedback");
-    await expect(feedback).toContainText("Tell us which advice helped or felt wrong. Include an example so we can look into it.");
+    await expect(feedback).toContainText("Tell us what helped and what missed. One example is enough for us to dig in.");
     await expect(feedback).not.toContainText("beta");
     await expect(feedback).toContainText("Your resume is never attached.");
     const feedbackLink = feedback.getByRole("link", { name: "Send feedback", exact: true });
@@ -330,8 +330,8 @@ test.describe("launch red-team journeys", () => {
     const paywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(paywall).toBeVisible();
     await expect(paywall).not.toContainText("Your existing report stays available");
-    await expect(paywall).toContainText("You can return to your resume below");
-    await expect(paywall.getByRole("button", { name: "Back to workspace" })).toBeVisible();
+    await expect(paywall).toContainText("Your resume is still here when you're ready.");
+    await expect(paywall.getByRole("button", { name: "Back to my resume" })).toBeVisible();
     await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
   });
 });
