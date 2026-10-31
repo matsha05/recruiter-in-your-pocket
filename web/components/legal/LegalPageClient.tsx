@@ -85,7 +85,7 @@ function renderSection(section: LegalSection, index: number) {
                     [section.columns[3] || "Control", row.userControl],
                   ].map(([label, value]) => (
                     <div key={label} className="grid gap-1">
-                      <dt className="text-label uppercase tracking-wider text-muted-foreground">{label}</dt>
+                      <dt className="text-label text-muted-foreground">{label}</dt>
                       <dd className="text-sm leading-relaxed text-muted-foreground">{value}</dd>
                     </div>
                   ))}
@@ -95,7 +95,7 @@ function renderSection(section: LegalSection, index: number) {
           </div>
           <table className="hidden w-full table-fixed text-sm leading-relaxed md:table">
             <thead>
-              <tr className="border-b border-border text-left text-label uppercase tracking-wider text-muted-foreground">
+              <tr className="border-b border-border text-left text-label text-muted-foreground">
                 {section.columns.map((col) => (
                   <th key={col} className="py-2 pr-3 font-medium">
                     {col}

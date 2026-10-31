@@ -113,7 +113,7 @@ export function ReportStream({
     <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
       <section id="section-first-impression" className={cn(styles.openingSection, "scroll-mt-36 pb-6 pt-2 sm:pb-8 sm:pt-4")}>
-        <p className={styles.label}>Verdict</p>
+        <p className={cn(styles.label, "riyp-verdict-label")}>Verdict</p>
         <h1 className={cn(styles.openingTitle, "mt-3")}>{verdict}</h1>
         {verdictReason && <p className={cn(styles.body, "mt-4 max-w-[43rem] text-foreground")}>{verdictReason}</p>}
 

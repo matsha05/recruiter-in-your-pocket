@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import SettingsClient from "@/components/workspace/SettingsClient";
 
 export const metadata: Metadata = {
-  title: "Account Settings",
+  title: "Account settings",
   description: "Update your name, download your data, or delete your account."
 };
 

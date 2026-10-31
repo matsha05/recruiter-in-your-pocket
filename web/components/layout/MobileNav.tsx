@@ -90,25 +90,25 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                     <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
                                         {user.membership === "lifetime" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand-tint text-brand">Lifetime</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Lifetime</span>
                                             </span>
                                         )}
                                         {user.membership === "monthly" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-brand-tint text-brand">Monthly</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Monthly</span>
                                                 {typeof user.daysLeft === "number" ? (
                                                     <span className="text-xs text-muted-foreground font-medium">• {user.daysLeft} days left</span>
                                                 ) : null}
                                             </span>
                                         )}
                                         {user.membership === "credit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-success/10 text-success">
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-success/10 text-success">
                                                 {user.paidUsesLeft || 0} Paid Reports
                                             </span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold uppercase tracking-wider bg-muted text-muted-foreground">Free Plan</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-muted text-muted-foreground">Free Plan</span>
                                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
                                                     <span className="text-xs text-success font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Report' : 'Reports'} remaining</span>
                                                 )}

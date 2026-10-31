@@ -253,7 +253,7 @@ export function AuthFlow({
     return "What should we call you?";
   }, [copy.subtext, email, step]);
   const outerClass = variant === "page"
-    ? "min-h-[80vh] bg-background px-4 pb-16 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20 md:px-8 md:pb-24"
+    ? "min-h-[80vh] bg-background px-4 pb-16 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:px-8 md:pb-24 md:pt-36"
     : "";
 
   const panelClass = cn(
@@ -276,9 +276,9 @@ export function AuthFlow({
         {variant === "page" ? (
           <div className="grid gap-8 pt-2 lg:pt-6">
             <div className="grid gap-4">
-              <div className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Secure sign-in</div>
+              <div className="text-[0.8125rem] font-semibold text-[hsl(var(--pen))]">Sign in</div>
               <h1
-                className="max-w-[31rem] text-balance font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title"
+                className="max-w-[31rem] text-balance font-display text-[32px] font-bold leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title"
               >
                 {stepTitle}
               </h1>

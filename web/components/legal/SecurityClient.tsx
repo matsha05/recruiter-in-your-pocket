@@ -32,7 +32,7 @@ export default function SecurityClient() {
                                     ["Processor", row.processor],
                                 ].map(([label, value]) => (
                                     <div key={label} className="grid gap-1">
-                                        <dt className="text-label uppercase tracking-wider text-muted-foreground">{label}</dt>
+                                        <dt className="text-label text-muted-foreground">{label}</dt>
                                         <dd className="text-sm leading-relaxed text-muted-foreground">{value}</dd>
                                     </div>
                                 ))}
@@ -43,11 +43,11 @@ export default function SecurityClient() {
                 <table className="hidden w-full table-fixed text-sm leading-relaxed md:table">
                     <thead>
                         <tr className="border-b border-line text-left">
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Data type</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Purpose</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Retention</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Your control</th>
-                            <th className="py-2 text-label uppercase tracking-wider text-muted-foreground">Processor</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Data type</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Purpose</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Retention</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Your control</th>
+                            <th className="py-2 text-label text-muted-foreground">Processor</th>
                         </tr>
                     </thead>
                     <tbody>

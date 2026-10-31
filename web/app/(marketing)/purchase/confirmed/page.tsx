@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import PurchaseConfirmedClient from "@/components/purchase/PurchaseConfirmedClient";
 
 export const metadata: Metadata = {
-  title: "Purchase Confirmation",
+  title: "Purchase confirmed",
   description: "Confirm and restore Recruiter in Your Pocket purchase access.",
 };
 

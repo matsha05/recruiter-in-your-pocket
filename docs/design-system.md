@@ -210,6 +210,18 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 - **Honesty stays visible.** Every figure carries its source in the caption and a plain footnote for rounding, our own arithmetic, small samples, or what the study didn't test.
 - **Motion:** units reveal in reading order, lines draw in, and the highlighter sweeps, all once and all on the shared tokens. Reduced motion shows the finished figure.
 
+## 8b. System rules set during the signed-in review (October 31, 2026)
+
+- **13px is the floor.** No text below 0.8125rem anywhere: labels, captions, metadata, chips, footnotes.
+- **Uppercase only for Verdict and Critical Miss**, via `.riyp-verdict-label`. Every other label is sentence case at 13px, weight 600. A resume section heading drawn inside an illustration may mimic the resume's own style.
+- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green.
+- **Static cards don't react.** `.app-card` has a hairline border and no shadow or hover state. Only things you can click respond to the pointer.
+- **The score is a number, not a color.** `ScoreBadge` shows the score in ink with "/100". No green, gold or red bands and no band labels; the written Verdict carries the judgment.
+- **Status chips use pen.** "Active" and "Paid" use the pen tint, not success green. Green-for-good is not part of the system.
+- **One date format:** "Oct 25, 2026" (`en-US`, short month). Money is formatted as currency ("$29.00").
+- **Page intros align with their content.** `AppPageIntro` has no side padding of its own; the page container sets the gutter. Skip an eyebrow that just repeats the page title.
+- **Icons are Phosphor** on every surface a customer reaches. Lucide remains only in internal and flagged-off surfaces until they're migrated.
+
 ## 9. Components and composition
 
 Required shared categories:

@@ -7,7 +7,7 @@ import { launchFlags } from "@/lib/launch/flags";
 export function generateMetadata(): Metadata {
   if (!launchFlags.extensionSync) {
     return {
-      title: "Page Not Found",
+      title: "Page not found",
       description: "The requested page is not available.",
       robots: { index: false, follow: false },
     };
@@ -16,7 +16,7 @@ export function generateMetadata(): Metadata {
   const publicListingReady = Boolean(getChromeWebStoreUrl());
 
   return {
-    title: "Chrome Extension",
+    title: "Chrome extension",
     description:
       "Save LinkedIn and Indeed job postings with the RIYP Chrome extension, then check your resume against a saved role.",
     robots: {

@@ -200,9 +200,9 @@ export function FixCanvas({
       <div className={styles.layout}>
         <div className="flex items-baseline gap-3 sm:block">
           {index === 0 ? (
-            <p className="whitespace-nowrap text-xs font-semibold uppercase riyp-track-015 text-[hsl(var(--brass))]">Critical Miss</p>
+            <p className="riyp-verdict-label pt-1.5 text-[hsl(var(--brass))]">Critical Miss</p>
           ) : (
-            <p className="text-sm font-semibold text-brand">Fix {index + 1}</p>
+            <p className="pt-1 text-sm font-semibold text-brand">Fix {index + 1}</p>
           )}
         </div>
 
@@ -220,7 +220,7 @@ export function FixCanvas({
 
           {draftSource && (
             <div className={styles.source}>
-              <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">
+              <p className="text-[0.8125rem] font-semibold text-muted-foreground">
                 {sectionFor(fix) ? `${showSourceExcerpt ? "Excerpt" : "Original"} · ${sectionFor(fix)}` : showSourceExcerpt ? "Excerpt" : "Original"}
               </p>
               <p className={styles.sourceText}>“{visibleSource}”</p>

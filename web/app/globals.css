@@ -2477,12 +2477,10 @@
 
   .app-page-eyebrow {
     font-family: var(--font-body);
-    font-size: 0.6875rem;
-    line-height: 1.125rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--pen));
   }
 
   .app-page-title {
@@ -2759,12 +2757,6 @@
     border: 1px solid hsl(var(--line));
     border-radius: var(--radius-sheet);
     background: hsl(var(--surface-raised));
-    box-shadow: var(--shadow-sheet);
-    transition: border-color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease);
-  }
-
-  .app-card:hover {
-    border-color: hsl(var(--brand) / 0.42);
   }
 
   .app-card-highlight {

@@ -206,12 +206,12 @@ export default function ReportPanel({
                                 </div>
                             )}
                             {!resumeText?.trim() && !isSample && (
-                                <div
+                                <p
                                     role="note"
-                                    className="mb-4 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground"
+                                    className="mb-4 text-[0.8125rem] leading-5 text-muted-foreground"
                                 >
-                                    Copying is off here because this view doesn’t have your original resume. Everything else works the same.
-                                </div>
+                                    Copy buttons are off because this saved report doesn’t include your resume text. Everything else works.
+                                </p>
                             )}
                             {shareEnabled && shareMode && (
                                 <div className="mb-4 flex flex-col gap-3 rounded-xl border border-line bg-proof p-4 md:flex-row md:items-center md:justify-between">
@@ -245,10 +245,10 @@ export default function ReportPanel({
 
                             <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                    <span className="text-[0.8125rem] font-semibold text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}
                                     </span>
-                                    {shareEnabled && shareMode && <span className="text-xs font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
+                                    {shareEnabled && shareMode && <span className="text-[0.8125rem] font-semibold text-premium">Share view</span>}
                                 </div>
                                 <div className="flex shrink-0 items-center gap-1">
                                     {isSample && onNewReport && (

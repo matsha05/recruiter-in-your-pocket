@@ -278,7 +278,7 @@ export default function HistorySidebar({
                             <div className="p-4 gap-y-3">
                                 {/* Summary header with Compare toggle */}
                                 <div className="flex items-center justify-between p-2">
-                                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                                    <span className="text-[0.8125rem] font-medium text-muted-foreground ">
                                         {reports.length} {reports.length === 1 ? "Report" : "Reports"}
                                     </span>
                                     {reports.length > 1 && (

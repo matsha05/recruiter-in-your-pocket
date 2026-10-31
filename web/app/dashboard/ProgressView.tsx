@@ -105,7 +105,7 @@ export function ProgressView({ analytics }: { analytics: ProgressAnalytics }) {
                 <ol className={styles.timeline}>
                     {history.map((point, index) => (
                         <li key={`${point.date}-${index}`} className={cn(styles.point, index === latestIndex && styles.pointLatest)}>
-                            <span className={styles.pointLabel}>{point.name || formatDate(point.date)}</span>
+                            <span className={styles.pointLabel}>{point.name ? <>{point.name}<span className={styles.pointDate}>{formatDate(point.date)}</span></> : formatDate(point.date)}</span>
                             <span className={styles.track} aria-hidden="true"><span style={{ transform: `scaleX(${point.score / 100})` }} /></span>
                             <span className={styles.pointScore}>{point.score}</span>
                         </li>

@@ -150,6 +150,14 @@
     white-space: nowrap;
 }
 
+.pointDate {
+    display: block;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+
 .track {
     overflow: hidden;
     height: 6px;

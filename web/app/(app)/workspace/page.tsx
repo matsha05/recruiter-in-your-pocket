@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Resume Workspace",
+  title: "New report",
   description: "Add your resume to see what a recruiter is likely to notice first, what needs more detail, and what to change before you apply.",
 };
 

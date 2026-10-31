@@ -61,12 +61,12 @@ function IndependentRewriteCard({
 
   return (
     <article className="border-t border-[hsl(var(--paper-line))] py-6 first:border-t-0">
-      <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">
+      <p className="text-[0.8125rem] font-semibold text-muted-foreground">
         {item.rewrite.label || `Rewrite ${String(item.originalIndex + 1).padStart(2, "0")}`}
       </p>
       <div className="mt-4 grid overflow-hidden rounded-xl border border-line md:grid-cols-2">
         <div className="bg-proof/50 px-5 py-5">
-          <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">Original</p>
+          <p className="text-[0.8125rem] font-semibold text-muted-foreground">Original</p>
           <p className="mt-3 text-base text-foreground">{item.rewrite.original}</p>
         </div>
         <div className="border-t border-line bg-surface-sky/50 px-5 py-5 md:border-l md:border-t-0">
@@ -87,7 +87,7 @@ function IndependentRewriteCard({
           ) : (
             <>
               <div className="flex items-start justify-between gap-3">
-                <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
+                <p className="text-[0.8125rem] font-semibold text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
                 {!isReadOnly && (
                   <button
                     type="button"
@@ -137,7 +137,7 @@ export function IndependentAdvice({
     <section id="section-independent-advice" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
       {rewrites.length > 0 && (
         <div>
-          <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">More from your resume</p>
+          <p className="text-[0.8125rem] font-semibold text-brand">More from your resume</p>
           <h2 className={`${styles.sectionTitle} mt-3`}>Other suggested edits.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
             Compare each suggestion with the original before you use it.
@@ -152,7 +152,7 @@ export function IndependentAdvice({
         <div className={rewrites.length > 0 ? "mt-12 border-t border-[hsl(var(--paper-line))] pt-10" : ""}>
           <div className="flex items-center gap-2 text-brand">
             <Question className="size-5" weight="duotone" />
-            <p className="text-xs font-semibold uppercase riyp-track-017">Other experience to consider</p>
+            <p className="text-[0.8125rem] font-semibold ">Other experience to consider</p>
           </div>
           <h2 className={`${styles.sectionTitle} mt-3`}>Questions only you can answer.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">Use these prompts to recall relevant examples. You don&apos;t need an answer to every one.</p>
