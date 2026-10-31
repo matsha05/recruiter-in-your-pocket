@@ -198,7 +198,7 @@ export default function PurchaseConfirmedClient() {
 
           <p className="border-t border-line pt-6 text-sm leading-6 text-muted-foreground">
             Need help? Email{" "}
-            <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:text-brand">
+            <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground riyp-link">
               support@recruiterinyourpocket.com
             </a>{" "}
             from the address used at checkout.

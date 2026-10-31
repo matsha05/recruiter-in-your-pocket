@@ -100,11 +100,13 @@
     font-size: 0.9375rem;
     font-weight: 600;
     text-decoration: underline;
-    text-decoration-color: hsl(var(--line));
-    text-underline-offset: 5px;
+    text-decoration-color: hsl(var(--link-line));
+    text-decoration-thickness: var(--link-thickness);
+    text-underline-offset: var(--link-offset);
+    transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
 }
 
-.founderLinks a:hover { text-decoration-color: currentColor; }
+.founderLinks a:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
 .founderLinks svg { width: 1rem; height: 1rem; }
 
 .close {

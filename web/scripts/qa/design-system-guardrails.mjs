@@ -55,6 +55,12 @@ const HEX_ALLOWLIST = new Set([
 
 const CALIBRATED_ARTWORK_FILES = new Set();
 
+// Retired landing directions kept only for the internal comparison page.
+const LEGACY_LANDING_DIRECTION_FILES = new Set([
+  "components/landing/LandingLiftedLine.tsx",
+  "components/landing/LandingEditorsDesk.tsx",
+]);
+
 const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
@@ -189,6 +195,7 @@ function findViolations(files) {
     legacyFontBranding: [],
     hardcodedHex: [],
     bannedTerms: [],
+    adHocLinkOrMotion: [],
     arbitraryClassCount: 0,
     legacyPaletteClassCount: 0,
     inlineStylePropCount: 0,
@@ -227,6 +234,17 @@ function findViolations(files) {
           violations.bannedTerms.push(`${file} -> "${pattern.label}"`);
         }
       }
+    }
+
+    // Links and motion come from tokens: --link-offset, .riyp-link/.riyp-link-quiet, duration-* and ease-snap.
+    const linkOrMotionPattern = file.endsWith(".tsx")
+      ? /\bunderline-offset-\d|\bdecoration-brand\/\d|\bduration-(?:75|100|150|200|300|500|700|1000)\b|\bease-(?:out|in-out|in|linear)\b/
+      : file.endsWith(".module.css")
+        ? /text-underline-offset:(?!\s*var\(--link-offset\))|transition:[^;]*\d+m?s\b/
+        : null;
+    if (linkOrMotionPattern && !LEGACY_LANDING_DIRECTION_FILES.has(file)) {
+      const match = source.match(linkOrMotionPattern);
+      if (match) violations.adHocLinkOrMotion.push(`${file} -> ${match[0]}`);
     }
 
     if (file.endsWith(".tsx") && !isArbitraryClassExcluded(file)) {
@@ -416,6 +434,10 @@ function main() {
     errors.push("Banned copy terms found in production surfaces.");
   }
 
+  if (violations.adHocLinkOrMotion.length > 0) {
+    errors.push("Hand-tuned link underline or motion timing found. Use .riyp-link / .riyp-link-quiet, --link-offset, and the duration/ease tokens.");
+  }
+
   if (violations.arbitraryClassCount > DESIGN_DEBT_BUDGETS.arbitraryClasses) {
     errors.push(
       `Arbitrary Tailwind class debt increased (${violations.arbitraryClassCount}). Keep <= ${DESIGN_DEBT_BUDGETS.arbitraryClasses} while migrating to semantic recipes.`
@@ -467,6 +489,7 @@ function main() {
   printList("Legacy font references", violations.legacyFontBranding);
   printList("Hardcoded color violations", violations.hardcodedHex);
   printList("Banned copy terms", violations.bannedTerms);
+  printList("Hand-tuned link or motion values", violations.adHocLinkOrMotion);
 
   if (missingDocTokens.length > 0) {
     console.error("\nMissing design-system doc tokens:");

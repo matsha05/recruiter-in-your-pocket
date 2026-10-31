@@ -737,7 +737,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             <section className="rounded-xl bg-muted p-5 text-sm leading-6 text-muted-foreground">
                                 Need help with a payment or invoice? Email{" "}
-                                <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] underline underline-offset-4 hover:text-foreground">
+                                <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] riyp-link-quiet">
                                     support@recruiterinyourpocket.com
                                 </Link>
                             </section>

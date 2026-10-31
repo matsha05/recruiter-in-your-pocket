@@ -152,7 +152,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           </button>
           <Link
             href="/workspace"
-            className="text-xs font-medium text-brand hover:underline underline-offset-4"
+            className="riyp-link text-xs font-medium"
           >
             Start another report
           </Link>

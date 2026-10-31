@@ -85,7 +85,7 @@ export default function SecurityClient() {
                     Responsible disclosure
                 </h2>
                 <p className="text-base text-muted-foreground">
-                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">/.well-known/security.txt</Link>.
+                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring rounded-sm text-foreground riyp-link">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="focus-ring rounded-sm text-foreground riyp-link">/.well-known/security.txt</Link>.
                 </p>
             </section>
         </LegalShell>

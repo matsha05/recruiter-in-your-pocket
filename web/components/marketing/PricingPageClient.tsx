@@ -145,7 +145,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                             </div>
 
                             {returnTo ? (
-                                <Link href={returnTo} className="mt-6 inline-flex text-sm font-semibold text-foreground underline underline-offset-4">Back to my comparison</Link>
+                                <Link href={returnTo} className="mt-6 inline-flex text-sm font-semibold riyp-link">Back to my comparison</Link>
                             ) : null}
 
                             <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -216,7 +216,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                         {returnTo ? (
                             <p className="mt-6 text-sm leading-6 text-muted-foreground">
                                 After checkout, you can return to your saved report and compare a revision.{" "}
-                                <Link href={returnTo} className="font-semibold text-foreground underline underline-offset-4">Back to my comparison</Link>
+                                <Link href={returnTo} className="font-semibold riyp-link">Back to my comparison</Link>
                             </p>
                         ) : null}
 

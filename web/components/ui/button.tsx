@@ -24,7 +24,7 @@ const buttonVariants = cva(
                 ghost:
                     "hover:bg-secondary/80 hover:text-secondary-foreground active:bg-secondary/90",
                 link:
-                    "text-slate-muted underline-offset-4 hover:underline hover:text-foreground",
+                    "riyp-link-quiet text-muted-foreground",
                 // The primary action stays visually consistent with the landing page.
                 brand:
                     "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/82 motion-safe:active:scale-[0.98]",

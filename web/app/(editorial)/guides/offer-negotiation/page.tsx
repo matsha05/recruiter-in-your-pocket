@@ -49,7 +49,7 @@ export default function OfferNegotiationGuidePage() {
                     </div>
                     <div className="border-l border-border pl-5">
                         <p className={styles.readingCopy}>Review the full offer and decide what would change your answer. Then tell the recruiter what you want to negotiate and why.</p>
-                        <Link href="/resources/tech-offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
+                        <Link href="/resources/tech-offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground riyp-link">
                             Reading a tech offer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
                     </div>

@@ -43,7 +43,7 @@ export default function TechOfferNegotiationGuidePage() {
                     </div>
                     <div className="border-l border-border pl-5">
                         <p className={styles.readingCopy}>The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
-                        <Link href="/resources/offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:decoration-brand">
+                        <Link href="/resources/offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground riyp-link">
                             Ready to make a counteroffer? <ArrowRight aria-hidden className="size-4" weight="bold" />
                         </Link>
                     </div>

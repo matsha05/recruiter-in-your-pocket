@@ -492,7 +492,7 @@ export function AuthFlow({
             ) : null}
             {variant === "page" ? (
               <p className="text-xs text-muted-foreground">
-                Questions about privacy or billing? <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link> · <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link> · <Link href="/support" className="underline underline-offset-4 hover:text-foreground">Support</Link>
+                Questions about privacy or billing? <Link href="/privacy" className="riyp-link-quiet">Privacy</Link> · <Link href="/security" className="riyp-link-quiet">Security</Link> · <Link href="/support" className="riyp-link-quiet">Support</Link>
               </p>
             ) : null}
           </div>

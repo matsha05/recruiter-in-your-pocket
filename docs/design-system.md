@@ -103,7 +103,7 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 | Inset | `#e9eae6` | `--secondary` / `--muted`; contained areas, toggles |
 | Ink | `#111513` | `--foreground` / `--text-strong`; text and every primary action |
 | Muted text | `#5a605c` | `--text-muted` / muted foreground |
-| Pen | `#1f5a46` | `--pen` (aliased by `--brand`, `--ring`, `--cyan-bright`); links, focus, selected state, the recruiter's notes |
+| Pen | `#1f5a46` | `--pen` (aliased by `--brand`, `--ring`, `--cyan-bright`); link underlines, focus, selected state, the recruiter's notes |
 | Pen hover | `--pen-strong` | `--brand-strong`; hover and pressed emphasis on pen-colored links and controls |
 | Pen tint | `#e6f0eb` | `--pen-tint` (aliased by `--brand-tint`, `--surface-sky`); quiet selected surfaces |
 | Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
@@ -118,7 +118,7 @@ Rules: ink for actions; pen for anything the recruiter says or points at; yellow
 
 Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Avoid gradients, glow, grain, and red-pen correction marks.
 
-Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
+Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 
 ## 5. Signature evidence grammar
 
@@ -127,8 +127,8 @@ The Lifted Line meanings remain stable while their old color treatment is retire
 | Meaning | User question | Required treatment |
 | --- | --- | --- |
 | Caught attention | What lands quickly? | explicit label and the supporting evidence |
-| Needs context | What is hard to understand? | named missing context; restrained aqua when useful |
-| Evidence present | What supports the claim? | actual proof on a neutral or aqua inset |
+| Needs context | What is hard to understand? | named missing context; pen note when useful |
+| Evidence present | What supports the claim? | actual proof on a neutral or pen-tint inset |
 | Strongest next wording | What should I write instead? | wording connected to the user's facts and next action |
 
 Do not assign errors to missing career evidence or use green/red scores as substitutes for judgment. Charts may have domain-specific encodings, but labels and legends must explain them.
@@ -247,14 +247,29 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ## 11. Motion
 
-Canonical tokens:
+Canonical tokens (CSS in `web/app/globals.css`, mirrored for Motion in `web/lib/animation.ts`; change both together):
 
-- `--duration-fast`: 140ms
-- `--duration-normal`: 180ms
-- `--duration-slow`: 180ms
-- `--ease`: `cubic-bezier(0.22, 1, 0.36, 1)`
+| Token | Value | Use |
+| --- | --- | --- |
+| `--duration-fast` / `DURATION.fast` | 160ms | hover, press, link color, focus, dialog exit |
+| `--duration-normal` / `DURATION.normal` | 200ms | selection, toggles, dialog entry, disclosure |
+| `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift |
+| `--ease` / `EASE` | `cubic-bezier(0.22, 1, 0.36, 1)` | every transition; no `ease-out`, `ease-in-out`, or one-off curves |
 
-Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage example uses Motion: the toggle thumb slides between options, margin notes open in sequence, and leader lines draw from the resume to each note. Reduced motion shows the same states immediately. Do not make report access depend on the example.
+Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage example is the one signature: the toggle thumb slides, the highlighter sweeps across a line, and margin notes write in. Report prose stays still. Reduced motion shows the same end state immediately.
+
+### Links
+
+One underline offset (`--link-offset`, 0.24em) and one thickness (`--link-thickness`, 1px) everywhere. Color says which kind of link it is:
+
+| Kind | Class | Rest | Hover |
+| --- | --- | --- | --- |
+| Inline | `.riyp-link` | ink text, pen underline at 40% (`--link-line`) | pen-strong text, full underline |
+| Quiet | `.riyp-link-quiet` | inherited muted text, ink hairline at 22% (`--link-line-quiet`) | ink text, full underline |
+| Navigation | header, footer, and menu lists | no underline | ink text, underline appears |
+| Prose | `.riyp-prose` container | unclassed links get the inline treatment | same as inline |
+
+Inline links are for links inside sentences and standalone text actions. Quiet links are for sources, legal and support asides, and metadata. Primary actions are buttons, not links. Underlines use the same offset in every CSS module (`text-underline-offset: var(--link-offset)`); never hand-tune `underline-offset-*` or `decoration-brand/NN` per surface. Color transitions use `--duration-fast`. Focus uses the shared `focus-ring` (2px pen outline), never an underline change alone.
 
 ### Shared interaction implementation
 
@@ -264,7 +279,7 @@ The September 13 motion pass uses these shared primitives across the product:
 - `AppProviders` supplies the Motion features required by existing `m` components. `web/hooks/use-reduced-motion.ts` subscribes to preference changes without remounting forms or losing entered text.
 - `ActionFeedback` reserves the space for short idle, pending, and success labels. Only the current state is exposed to assistive technology; hidden sizing copies do not animate. `Button` accepts `loadingLabel` while keeping its idle children stable.
 - Copy, save, parse, and export feedback follows the actual operation. Success appears only after confirmation, failures stay actionable, and repeated actions cancel stale feedback timers.
-- Radix owns dialog, sheet, menu, and popover focus and dismissal. Shared CSS provides 180ms entry and 140ms exit. Native `ui-disclosure` details progressively animate intrinsic size where supported; their readable fallback and keyboard semantics remain intact.
+- Radix owns dialog, sheet, menu, and popover focus and dismissal. Shared CSS provides `--duration-normal` entry and `--duration-fast` exit. Native `ui-disclosure` details progressively animate intrinsic size where supported; their readable fallback and keyboard semantics remain intact.
 - Reduced motion updates immediately, including a preference change while the page is open. Essential content is visible before JavaScript; the interface adds no decorative stagger or artificial waiting period.
 
 The interactive examples in `/internal/system-lab` show these states explicitly. That reference remains protected from public production access.
@@ -278,7 +293,7 @@ The interactive examples in `/internal/system-lab` show these states explicitly.
 3. candidate-supplied fact
 4. resolved wording or action
 
-Aqua identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+Pen identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 

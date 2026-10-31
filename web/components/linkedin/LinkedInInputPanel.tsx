@@ -303,11 +303,11 @@ export function LinkedInInputPanel({
                         {getRunHint()}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                        <Link href="/security" className="underline underline-offset-4 hover:text-foreground">
+                        <Link href="/security" className="riyp-link-quiet">
                             Data handling
                         </Link>
                         {' · '}
-                        <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">
+                        <Link href="/methodology" className="riyp-link-quiet">
                             Scoring methodology
                         </Link>
                     </p>

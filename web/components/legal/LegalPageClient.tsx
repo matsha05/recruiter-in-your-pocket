@@ -22,7 +22,7 @@ function renderInline(inline: LegalInline, index: number) {
     <Link
       key={`link-${index}-${inline.href}-${inline.label}`}
       href={inline.href}
-      className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 transition-colors hover:text-brand"
+      className="focus-ring rounded-sm text-foreground riyp-link"
     >
       {inline.label}
     </Link>

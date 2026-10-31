@@ -36,7 +36,7 @@ export default function GlobalError({
                 <a href="/workspace" className="focus-ring inline-flex min-h-12 items-center justify-center border border-foreground bg-paper px-5 py-3 text-sm font-semibold text-foreground">
                   Open my workspace
                 </a>
-                <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold text-foreground underline underline-offset-4">
+                <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold riyp-link">
                   Contact support
                 </a>
               </div>
