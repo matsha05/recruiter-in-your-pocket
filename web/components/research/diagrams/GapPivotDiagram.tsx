@@ -2,37 +2,31 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { Key, Mark, PenNote, useSeen } from "@/components/research/figures/FigureKit";
 
-// Ghayad (2013), Table A.5: share of fictitious resumes that got an interview request, by time out of work and industry experience.
-const rows = [
-    { status: "Still employed", same: 14.67, different: 5.83 },
-    { status: "Out 1–3 months", same: 16.11, different: 8.33 },
-    { status: "Out 4–6 months", same: 12.22, different: 4.17 },
-    { status: "Out 7+ months", same: 1.94, different: 0.56 },
+// Ghayad (2013), Table A.5: interview-request rate by time out of work and industry experience.
+const points = [
+    { label: "Employed", same: 14.67, different: 5.83 },
+    { label: "Out 1–3 mo", same: 16.11, different: 8.33 },
+    { label: "Out 4–6 mo", same: 12.22, different: 4.17 },
+    { label: "Out 7+ mo", same: 1.94, different: 0.56 },
 ];
-const axisMax = 18;
-const ticks = [0, 5, 10, 15];
 
-function Bar({ value, tone }: { value: number; tone: "same" | "different" }) {
-    return (
-        <span className="flex items-center gap-2.5">
-            <span
-                className={tone === "same" ? "block h-5 min-w-1 rounded-r-md bg-[hsl(var(--pen))]" : "block h-5 min-w-1 rounded-r-md bg-[hsl(var(--text-strong)/0.18)]"}
-                style={{ width: `${(value / axisMax) * 100}%` }}
-                aria-hidden="true"
-            />
-            <span className={tone === "same" ? "whitespace-nowrap text-sm font-bold text-foreground" : "whitespace-nowrap text-sm text-muted-foreground"}>
-                {value < 1 ? value.toFixed(1) : Math.round(value)}%
-            </span>
-        </span>
-    );
-}
+const W = 520;
+const H = 300;
+const pad = { top: 36, right: 28, bottom: 44, left: 44 };
+const yMax = 18;
+const x = (i: number) => pad.left + (i * (W - pad.left - pad.right)) / (points.length - 1);
+const y = (v: number) => pad.top + (1 - v / yMax) * (H - pad.top - pad.bottom);
+const path = (key: "same" | "different") => points.map((p, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${y(p[key]).toFixed(1)}`).join(" ");
 
 export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
+    const { ref, seen } = useSeen<HTMLDivElement>();
+    const draw = { strokeDasharray: 1, strokeDashoffset: seen ? 0 : 1 };
     return (
         <DiagramFigure
-            className="max-w-[46rem]"
-            label="Bar chart of interview requests. With experience in the same industry: 15% while employed, 16% after 1 to 3 months out, 12% after 4 to 6 months, 2% after 7 or more. From a different industry: 6%, 8%, 4%, and under 1%."
+            className="max-w-[54rem]"
+            label="Line chart of interview requests. With experience in the same industry: 15% while employed, 16% after 1 to 3 months out, 12% after 4 to 6 months, 2% after 7 or more. From a different industry: 6%, 8%, 4%, and under 1%."
         >
             <DiagramFrame>
                 <EvidenceHeader
@@ -40,36 +34,46 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                     title="After six months out, even the right experience stopped helping"
                     note="Share of fictitious resumes that got an interview request, by time out of work."
                 />
-                <div className="px-5 pb-6 pt-6 md:px-7 md:pb-8">
-                    <div className="mb-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" aria-hidden="true">
-                        <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[hsl(var(--pen))]" />Experience in the same industry</span>
-                        <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[hsl(var(--text-strong)/0.18)]" />Experience in a different industry</span>
-                    </div>
-                    <dl className="grid gap-5">
-                        {rows.map((row) => (
-                            <div key={row.status} className="grid gap-1.5 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:items-center sm:gap-5">
-                                <dt className="text-sm font-semibold text-foreground">{row.status}</dt>
-                                <dd className="grid gap-1.5">
-                                    <Bar value={row.same} tone="same" />
-                                    <Bar value={row.different} tone="different" />
-                                </dd>
-                            </div>
+                <div ref={ref} className="grid gap-6 px-5 py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,14rem)] md:items-center md:px-7">
+                    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full overflow-visible" role="presentation" aria-hidden="true">
+                        {[0, 5, 10, 15].map((tick) => (
+                            <g key={tick}>
+                                <line x1={pad.left} x2={W - pad.right} y1={y(tick)} y2={y(tick)} stroke="hsl(var(--text-strong) / 0.08)" />
+                                <text x={pad.left - 10} y={y(tick) + 4} textAnchor="end" className="fill-[hsl(var(--muted-foreground))] text-[14px]">{tick}%</text>
+                            </g>
                         ))}
-                    </dl>
-                    <div className="mt-4 hidden grid-cols-[8.5rem_minmax(0,1fr)] gap-5 sm:grid" aria-hidden="true">
-                        <span />
-                        <div className="relative h-5 border-t border-line">
-                            {ticks.map((tick) => (
-                                <span key={tick} className="absolute top-1 -translate-x-1/2 text-xs text-muted-foreground" style={{ left: `${(tick / axisMax) * 100}%` }}>{tick}%</span>
-                            ))}
+                        {points.map((p, i) => (
+                            <text key={p.label} x={x(i)} y={H - 12} textAnchor="middle" className="fill-[hsl(var(--muted-foreground))] text-[14px]">{p.label}</text>
+                        ))}
+                        {/* The six-month line, where the cliff starts. */}
+                        <rect x={(x(2) + x(3)) / 2} y={pad.top - 8} width={x(3) - (x(2) + x(3)) / 2 + 22} height={H - pad.top - pad.bottom + 8} rx={6} fill="hsl(var(--highlight) / 0.22)" />
+                        <text x={(x(2) + x(3)) / 2 + 8} y={pad.top + 8} className="fill-[hsl(var(--brass))] text-[13px] font-semibold">Past six months</text>
+                        <path d={path("different")} pathLength={1} fill="none" stroke="hsl(var(--text-strong) / 0.35)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" style={draw} className="transition-[stroke-dashoffset] duration-[900ms] ease-snap motion-reduce:transition-none" />
+                        <path d={path("same")} pathLength={1} fill="none" stroke="hsl(var(--pen))" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" style={draw} className="transition-[stroke-dashoffset] duration-[900ms] ease-snap motion-reduce:transition-none" />
+                        {points.map((p, i) => (
+                            <g key={`${p.label}-dots`}>
+                                <circle cx={x(i)} cy={y(p.different)} r={4.5} fill="hsl(var(--card))" stroke="hsl(var(--text-strong) / 0.45)" strokeWidth={2} />
+                                <circle cx={x(i)} cy={y(p.same)} r={5} fill="hsl(var(--pen))" stroke="hsl(var(--card))" strokeWidth={2} />
+                            </g>
+                        ))}
+                        <text x={x(1)} y={y(points[1].same) - 14} textAnchor="middle" className="fill-[hsl(var(--foreground))] text-[15px] font-semibold">16%</text>
+                        <text x={x(3) - 14} y={y(points[3].same) - 12} textAnchor="end" className="fill-[hsl(var(--foreground))] text-[15px] font-semibold">2%</text>
+                    </svg>
+                    <div className="grid gap-4">
+                        <div className="grid gap-2">
+                            <Key tone="pen">Experience in the same industry</Key>
+                            <Key tone="quiet">Experience in a different industry</Key>
                         </div>
+                        <PenNote>
+                            A career change roughly halves the response. <Mark seen={seen}>A long current gap nearly erases it.</Mark>
+                        </PenNote>
                     </div>
-                    <p className="mt-6 border-t border-line pt-4 text-sm leading-6 text-muted-foreground">
-                        About 3,360 resumes sent to 600 US job ads. Each bar after &ldquo;Still employed&rdquo; is 360 resumes, so the smallest differences are rough.
-                    </p>
                 </div>
+                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                    About 3,360 resumes sent to 600 US job ads. Each point after &ldquo;Employed&rdquo; is 360 resumes, so small differences are rough.
+                </p>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Ghayad`} title="Switching industries roughly halved the response. A long gap nearly erased it. Unpublished working paper, 2013." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Ghayad`} title="Unpublished working paper, 2013." />
         </DiagramFigure>
     );
 }

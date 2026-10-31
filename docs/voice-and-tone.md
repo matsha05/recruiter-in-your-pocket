@@ -21,6 +21,10 @@ Reference lines:
 - Feedback that is direct, then kind: "This reads like a job description. Tell them what you changed."
 - Hiring truth: "'Results-driven' is on every resume. Show the result instead."
 
+## What the research says matters (October 31, 2026)
+
+Four things decide whether a resume gets the call, and the research library is organized around them: **perception** (how you're read, by people and software), **impact** (what changed because of your work), **referrals** (who brings you in), and **story** (whether a stranger can tell who you are and picture you in the job). Negotiation sits after them, once there is an offer. Tie advice and tie-ins back to one of these, and to the Verdict, the score, or the Critical Miss.
+
 ## The voice
 
 The voice is **plainspoken expertise**: an experienced recruiter with excellent judgment, a generous spirit, and no need to perform cleverness.
@@ -124,7 +128,7 @@ Resource guides should feel like calm backstage knowledge, not generic career co
 - Teach the company-side mechanism the reader needs to understand: the range, level, approval chain, written term, or missing fact.
 - Give the reader a sentence they can actually say, followed by what that sentence makes clear. Do not invent “what the recruiter hears.”
 - Use a specific, supportable claim beside any memorable line. Charm may open the door; the useful fact has to walk through it.
-- Avoid negotiation theater: no chess metaphors as strategy, bluffing, “winning,” “losing leverage,” or pretending every employer follows the same rules.
+- Negotiating is normal and expected: say so plainly. Most offers have some room, and the playbook's job is to help the reader find it. Avoid negotiation theater: no chess metaphors, no bluffing, no “winning,” and no pretending every employer follows the same rules. A competing offer is real leverage only when it's real.
 - Never turn a common practice into a universal rule. Salary law, equity, taxes, deadlines, bands, and benefits need a source, date, jurisdiction, or explicit limit.
 - Make related guides do different jobs. The general offer guide builds the counter. The tech guide makes a complex package legible.
 
@@ -153,6 +157,8 @@ Every research page should make five things easy to find:
 3. What the source supports.
 4. What the user should do with that information.
 5. What the evidence does not establish.
+
+Figures speak in the same voice through one margin note: what a recruiter takes from the chart, in a sentence or two, never more certain than the source. Example: “Fourteen people. Small enough that every one of them gets read.”
 
 Use normal labels such as “What the research found,” “What this means for your resume,” “Sources,” and “Limitations.” Avoid lines that sound coined, self-congratulatory, or cute about evidence.
 

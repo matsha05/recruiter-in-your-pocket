@@ -2,71 +2,63 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { Figure, Key, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
-// Brown, Setren & Topa, Table 3: percent of each stage's pool by how the candidate applied (62,127 applicants, one US firm).
+// Brown, Setren & Topa, Table 3: percent of each stage's pool referred by an employee (62,127 applicants, one US firm).
 const stages = [
-    { stage: "Applied", referred: 6.1, jobBoard: 60.1 },
-    { stage: "Interviewed", referred: 21.4, jobBoard: 40.0 },
-    { stage: "Got an offer", referred: 27.3, jobBoard: 23.6 },
-    { stage: "Hired", referred: 29.1, jobBoard: 23.5 },
+    { stage: "Applied", referred: 6 },
+    { stage: "Interviewed", referred: 21 },
+    { stage: "Got an offer", referred: 27 },
+    { stage: "Hired", referred: 29 },
 ];
-const axisMax = 70;
-const ticks = [0, 10, 20, 30, 40, 50, 60, 70];
-
-function Bar({ value, tone }: { value: number; tone: "referred" | "jobBoard" }) {
-    return (
-        <span className="flex items-center gap-2.5">
-            <span
-                className={tone === "referred" ? "block h-5 rounded-r-md bg-[hsl(var(--pen))]" : "block h-5 rounded-r-md bg-[hsl(var(--text-strong)/0.18)]"}
-                style={{ width: `${(value / axisMax) * 100}%` }}
-                aria-hidden="true"
-            />
-            <span className={tone === "referred" ? "whitespace-nowrap text-sm font-bold tabular-nums text-foreground" : "whitespace-nowrap text-sm tabular-nums text-muted-foreground"}>
-                {Math.round(value)}%
-            </span>
-        </span>
-    );
-}
 
 export function ReferralHiringShareDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
+    const { ref, seen } = useSeen<HTMLDivElement>();
     return (
         <DiagramFigure
-            className="max-w-[46rem]"
-            label="Bar chart: referred candidates were 6% of applicants, 21% of interviewees, 27% of offers, and 29% of hires. Job board applicants were 60% of applicants and 24% of hires."
+            className="max-w-[54rem]"
+            label="Two stacks of 100 resumes. Among applicants, 6 in 100 were referred by an employee. Among hires, 29 in 100 were. In between: 21 in 100 interviewees and 27 in 100 offers."
         >
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
-                    title="Referrals were 6% of applicants and 29% of hires"
-                    note="Share of each stage's candidates, by how they applied."
+                    title="Six in the pile. Twenty-nine at the finish."
+                    note="Every 100 applicants, and every 100 hires, at one large US company. Green sheets were referred by an employee."
                 />
-                <div className="px-5 pb-6 pt-6 md:px-7 md:pb-8">
-                    <div className="mb-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" aria-hidden="true">
-                        <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[hsl(var(--pen))]" />Referred by an employee</span>
-                        <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[hsl(var(--text-strong)/0.18)]" />Applied through a job board</span>
-                    </div>
-                    <dl className="grid gap-5">
-                        {stages.map((item) => (
-                            <div key={item.stage} className="grid gap-1.5 sm:grid-cols-[8rem_minmax(0,1fr)] sm:items-center sm:gap-5">
-                                <dt className="text-sm font-semibold text-foreground">{item.stage}</dt>
-                                <dd className="grid gap-1.5">
-                                    <Bar value={item.referred} tone="referred" />
-                                    <Bar value={item.jobBoard} tone="jobBoard" />
-                                </dd>
-                            </div>
-                        ))}
-                    </dl>
-                    <div className="mt-4 hidden grid-cols-[8rem_minmax(0,1fr)] gap-5 sm:grid" aria-hidden="true">
-                        <span />
-                        <div className="relative h-5 border-t border-line">
-                            {ticks.map((tick) => (
-                                <span key={tick} className="absolute top-1 -translate-x-1/2 text-xs tabular-nums text-muted-foreground" style={{ left: `${(tick / axisMax) * 100}%` }}>{tick}</span>
-                            ))}
+                <div ref={ref} className="grid gap-px bg-line sm:grid-cols-2">
+                    <section className="bg-card px-5 py-6 md:px-7" aria-label="Every 100 applicants">
+                        <div className="mb-4 flex items-baseline justify-between gap-3">
+                            <p className="text-sm font-semibold text-foreground">Every 100 who applied</p>
+                            <Figure value="6" unit="referred" />
                         </div>
-                    </div>
+                        <UnitGrid count={100} columns={10} shape="sheet" seen={seen} toneAt={(i) => (i < 6 ? "pen" : "quiet")} />
+                    </section>
+                    <section className="bg-card px-5 py-6 md:px-7" aria-label="Every 100 hires">
+                        <div className="mb-4 flex items-baseline justify-between gap-3">
+                            <p className="text-sm font-semibold text-foreground">Every 100 who were hired</p>
+                            <Figure value="29" unit="referred" />
+                        </div>
+                        <UnitGrid count={100} columns={10} shape="sheet" seen={seen} toneAt={(i) => (i < 29 ? "pen" : "quiet")} />
+                    </section>
+                </div>
+                <div className="grid gap-5 border-t border-line px-5 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,16rem)] md:items-center md:px-7">
+                    <ol className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-muted-foreground" aria-label="Referred share at each stage">
+                        {stages.map((item, index) => (
+                            <li key={item.stage} className="inline-flex items-baseline gap-1.5">
+                                <span>{item.stage}</span>
+                                <span className="font-semibold text-foreground">{index === stages.length - 1 ? <Mark seen={seen}>{item.referred}%</Mark> : `${item.referred}%`}</span>
+                                {index < stages.length - 1 ? <span aria-hidden="true" className="px-1 text-[hsl(var(--pen))]">→</span> : null}
+                            </li>
+                        ))}
+                    </ol>
+                    <PenNote>Every round of review tilted further toward the people someone vouched for.</PenNote>
+                </div>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-line px-5 py-3 md:px-7">
+                    <Key tone="pen" shape="sheet">Referred by an employee</Key>
+                    <Key tone="faint" shape="sheet">Any other route</Key>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Brown, Setren & Topa`} title="Each step of the process tilted further toward referred candidates. One large US company, 62,127 applicants." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Brown, Setren & Topa`} title="62,127 applicants to one large US company." />
         </DiagramFigure>
     );
 }

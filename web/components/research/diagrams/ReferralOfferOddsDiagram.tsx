@@ -2,56 +2,49 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { Figure, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
-// Ashby, "Are referred candidates more likely to get hired?" (May 2025): offer rates by source, Q3 2021 and Q4 2024.
-// The "1 in N" figures are our arithmetic (100 / offer rate), rounded; Ashby publishes only the percentages.
-const rows = [
-    { source: "Referred", start: 12.1, end: 7.3 },
-    { source: "Applied cold", start: 0.7, end: 0.2 },
-];
-
-function oneIn(rate: number) {
-    const n = 100 / rate;
-    return n >= 100 ? Math.round(n / 10) * 10 : Math.round(n);
-}
+// Ashby, "Are referred candidates more likely to get hired?" (May 2025): offer rates by source, Q4 2024.
+// Referred 7.3% → about 1 offer per 14 applicants; inbound 0.2% → about 1 per 500. "1 in N" is our arithmetic.
 
 export function ReferralOfferOddsDiagram({ figureNumber = 2 }: { figureNumber?: number }) {
+    const { ref, seen } = useSeen<HTMLDivElement>();
     return (
         <DiagramFigure
-            className="max-w-[46rem]"
-            label="Offer odds by source. Referred applicants: about 1 in 8 got an offer in late 2021 and about 1 in 14 in late 2024. Cold applicants: about 1 in 140, then about 1 in 500."
+            className="max-w-[54rem]"
+            label="Dot fields. In late 2024, about 1 in 14 referred applicants got an offer, shown as 14 dots with one highlighted. About 1 in 500 cold applicants did, shown as 500 dots with one highlighted."
         >
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
-                    title="Cold applications lost far more ground"
-                    note="How many applicants it took to produce one offer."
+                    title="One offer. Count the applicants behind it."
+                    note="Each dot is one applicant. The highlighted dot got the offer. Late 2024."
                 />
-                <div className="px-5 pb-6 pt-6 md:px-7 md:pb-8">
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-baseline gap-x-6 gap-y-4 sm:gap-x-10">
-                        <span />
-                        <span className="text-right text-sm text-muted-foreground">Late 2021</span>
-                        <span className="text-right text-sm text-muted-foreground">Late 2024</span>
-                        {rows.map((row) => (
-                            <div key={row.source} className="contents">
-                                <span className="border-t border-line pt-4 text-sm font-semibold text-foreground">{row.source}</span>
-                                <span className="border-t border-line pt-4 text-right">
-                                    <span className="font-display text-2xl font-extrabold tabular-nums tracking-tight text-muted-foreground">1 in {oneIn(row.start)}</span>
-                                    <span className="mt-0.5 block text-xs tabular-nums text-muted-foreground">{row.start}% got offers</span>
-                                </span>
-                                <span className="border-t border-line pt-4 text-right">
-                                    <span className={row.source === "Referred" ? "font-display text-2xl font-extrabold tabular-nums tracking-tight text-[hsl(var(--pen))]" : "font-display text-2xl font-extrabold tabular-nums tracking-tight text-foreground"}>1 in {oneIn(row.end)}</span>
-                                    <span className="mt-0.5 block text-xs tabular-nums text-muted-foreground">{row.end}% got offers</span>
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                    <p className="mt-6 border-t border-line pt-4 text-sm leading-6 text-muted-foreground">
-                        Ashby publishes the percentages. The &ldquo;1 in&rdquo; figures are our arithmetic from them, rounded. The cold-application rates are small and already rounded, so treat those two as approximate.
-                    </p>
+                <div ref={ref} className="grid gap-px bg-line md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]">
+                    <section className="flex flex-col gap-5 bg-card px-5 py-6 md:px-7" aria-label="Referred applicants">
+                        <div>
+                            <p className="text-sm font-semibold text-foreground">Referred</p>
+                            <Figure value="1 in 14" className="mt-1 block" />
+                        </div>
+                        <UnitGrid count={14} columns={7} seen={seen} className="max-w-[9.5rem]" toneAt={(i) => (i === 0 ? "mark" : "pen")} />
+                        <PenNote className="mt-auto">Fourteen people. Small enough that every one of them gets read.</PenNote>
+                    </section>
+                    <section className="flex flex-col gap-5 bg-card px-5 py-6 md:px-7" aria-label="Cold applicants">
+                        <div>
+                            <p className="text-sm font-semibold text-foreground">Applied cold</p>
+                            <Figure value="1 in 500" className="mt-1 block" />
+                        </div>
+                        <UnitGrid count={500} columns={25} seen={seen} toneAt={(i) => (i === 0 ? "mark" : "quiet")} />
+                        <p className="text-sm leading-6 text-muted-foreground">
+                            In late 2021 it was about 1 in 8 referred and 1 in 140 cold. Both got harder. <Mark seen={seen}>Cold got far harder.</Mark>
+                        </p>
+                    </section>
                 </div>
+                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                    Ashby publishes the offer rates (7.3% referred, 0.2% cold). The &ldquo;1 in&rdquo; counts are our arithmetic, rounded; the cold rate is itself rounded, so treat 500 as approximate.
+                </p>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Ashby hiring data`} title="Both got harder. Applying cold got much harder. More than 38 million applications, 2021 to 2024." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Ashby hiring data`} title="More than 38 million applications, 2021 to 2024." />
         </DiagramFigure>
     );
 }

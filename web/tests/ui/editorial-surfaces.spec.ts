@@ -97,9 +97,9 @@ test.describe("multi-figure research articles", () => {
   test("referral figures show the published numbers and fit on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
-    const share = page.getByRole("figure", { name: /referred candidates were 6% of applicants/ });
+    const share = page.getByRole("figure", { name: /6 in 100 were referred by an employee/ });
     await expect(share).toContainText("29%");
-    const odds = page.getByRole("figure", { name: /Offer odds by source/ });
+    const odds = page.getByRole("figure", { name: /about 1 in 14 referred applicants got an offer/ });
     await expect(odds).toContainText("1 in 8");
     await expect(odds).toContainText("1 in 500");
     // Derived figures must say they are our arithmetic.

@@ -197,6 +197,19 @@ Research visuals must teach a concrete idea. Every figure needs:
 
 If removing a diagram loses no understanding, the diagram is decoration and should not ship.
 
+### Figures: the recruiter's desk (October 31, 2026)
+
+Research figures are drawn in the product's own hand, from `web/components/research/figures/FigureKit.tsx`. A generic bar chart is the fallback, not the default.
+
+- **Count things people can picture.** When the number is a rate, show the units: 100 resume sheets, 500 applicants as dots, 136 callbacks. "1 in 500" lands when the reader sees the 500. Use `UnitGrid` (`shape="sheet"` for resumes, dots for people or events).
+- **One pen note per figure.** `PenNote` is the recruiter's margin note: Literata italic in pen, one or two sentences, saying what a recruiter takes from the figure. It follows the voice guide's margin-note register and never claims more than the source.
+- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two.
+- **Pen means the thing that matters; gray is everything else.** Highlighter yellow is reserved for the one takeaway. No other hues.
+- **Draw the artifact when the finding is about the artifact.** A typo study shows a resume line with the typos circled in pen; a story study shows two versions of the same resume.
+- **Lines for change over time.** Use the SVG line pattern in `GapPivotDiagram`: 2.5–3px strokes, direct labels at the points that matter, a soft highlighter band for the region the note is about.
+- **Honesty stays visible.** Every figure carries its source in the caption and a plain footnote for rounding, our own arithmetic, small samples, or what the study didn't test.
+- **Motion:** units reveal in reading order, lines draw in, and the highlighter sweeps, all once and all on the shared tokens. Reduced motion shows the finished figure.
+
 ## 9. Components and composition
 
 Required shared categories:

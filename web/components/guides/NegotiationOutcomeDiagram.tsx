@@ -2,49 +2,45 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { Key, Mark, PenNote, UnitGrid, useSeen, type UnitTone } from "@/components/research/figures/FigureKit";
 
-// Pew Research Center (April 2023): US workers who asked for more than the first offer, by what happened.
-const outcomes = [
-    { name: "Got what they asked for", share: 28, fill: "bg-[hsl(var(--pen))]" },
-    { name: "Got more, but less than they asked", share: 38, fill: "bg-[hsl(var(--pen)/0.45)]" },
-    { name: "Got the first offer", share: 35, fill: "bg-[hsl(var(--text-strong)/0.14)]" },
-];
+// Pew Research Center (April 2023). About 30% of US workers asked for more than the first offer (men 32%, women 28%).
+// Of those who asked: 28% got what they asked for, 38% got more but less than asked, 35% got the first offer.
+// Scaled to 100 workers and rounded: 8 got it all, 11 got more, 11 got the first offer, 70 didn't ask.
+const toneAt = (index: number): UnitTone => (index < 8 ? "mark" : index < 19 ? "pen" : index < 30 ? "quiet" : "faint");
 
 export function NegotiationOutcomeDiagram() {
+    const { ref, seen } = useSeen<HTMLDivElement>();
     return (
         <DiagramFigure
-            className="max-w-[50rem]"
-            label="Of US workers who asked for more than the first offer, 28% got what they asked for, 38% got more but less than they asked, and 35% got the first offer. About 3 in 10 workers asked at all."
+            className="max-w-[54rem]"
+            label="A grid of 100 workers. 70 didn't ask for more than the first offer. Of the 30 who asked, about 8 got what they asked for, 11 got more but less than they asked, and 11 got the first offer."
         >
             <DiagramFrame>
                 <EvidenceHeader
                     index="01"
-                    title="Two in three people who asked got more"
-                    note="US workers who asked for more than the first offer the last time they were hired, by what happened."
+                    title="Seventy never asked. Most who did got more."
+                    note="100 US workers, the last time they were hired. Scaled from a 2023 survey and rounded."
                 />
-                <div className="px-5 pb-6 pt-7 md:px-7 md:pb-8">
-                    <div className="flex h-10 gap-0.5 overflow-hidden rounded-lg" aria-hidden="true">
-                        {outcomes.map((outcome) => (
-                            <span key={outcome.name} className={outcome.fill} style={{ flexGrow: outcome.share, flexBasis: 0 }} />
-                        ))}
+                <div ref={ref} className="grid gap-8 px-5 py-7 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] md:items-center md:px-7">
+                    <UnitGrid count={100} columns={10} seen={seen} toneAt={toneAt} className="max-w-[17rem]" />
+                    <div className="grid gap-5">
+                        <div className="grid gap-2">
+                            <Key tone="mark">8 got what they asked for</Key>
+                            <Key tone="pen">11 got more, but less than they asked</Key>
+                            <Key tone="quiet">11 got the first offer</Key>
+                            <Key tone="faint">70 didn&apos;t ask</Key>
+                        </div>
+                        <PenNote>
+                            Of the 30 who asked, <Mark seen={seen}>19 walked away with more.</Mark> The biggest loss in this picture is the 70 who never asked.
+                        </PenNote>
                     </div>
-                    <dl className="mt-6 grid gap-5 sm:grid-cols-3">
-                        {outcomes.map((outcome) => (
-                            <div key={outcome.name} className="grid content-start gap-1">
-                                <dt className="flex items-start gap-2 text-sm font-semibold text-foreground">
-                                    <span className={`mt-1 h-3 w-3 shrink-0 rounded-sm ${outcome.fill}`} aria-hidden="true" />
-                                    {outcome.name}
-                                </dt>
-                                <dd className="font-display text-2xl font-extrabold tracking-tight text-foreground">{outcome.share}%</dd>
-                            </div>
-                        ))}
-                    </dl>
-                    <p className="mt-6 border-t border-line pt-4 text-sm leading-6 text-muted-foreground">
-                        Only about 3 in 10 workers asked at all. The survey is self-reported and didn&apos;t ask how big the increase was.
-                    </p>
                 </div>
+                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                    Self-reported. The survey didn&apos;t ask how big the increase was, or whether anyone lost an offer by asking.
+                </p>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Pew Research Center" title="Asking rarely got everything. It usually got something. 5,188 US workers, 2023." />
+            <DiagramCaption kicker="Fig. 1 / Pew Research Center" title="5,188 US workers, 2023." />
         </DiagramFigure>
     );
 }

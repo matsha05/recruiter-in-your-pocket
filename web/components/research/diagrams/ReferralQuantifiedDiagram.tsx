@@ -2,6 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { PenNote } from "@/components/research/figures/FigureKit";
 
 // Published differences only (Pallais & Sands, 2016). Base rates are not shown because the figure
 // compares the gap, not the rates themselves.
@@ -37,6 +38,7 @@ export function ReferralQuantifiedDiagram({ figureNumber = 1 }: { figureNumber?:
                             ))}
                         </div>
                     </div>
+                    <PenNote className="mt-6">The person who vouched for them knew something the profile didn&apos;t show.</PenNote>
                 </div>
             </DiagramFrame>
             <DiagramCaption kicker={`Fig. ${figureNumber} / Pallais & Sands`} title="Referred workers also performed better. One online labor market; other settings may differ." />
