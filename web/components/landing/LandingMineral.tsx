@@ -7,7 +7,7 @@ import { ReportPreview } from "./home/ReportPreview";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
-const WORK_HISTORY = ["Robert Half", "Google", "Meta", "X-Team", "OpenAI"];
+const WORK_HISTORY = ["OpenAI", "Meta", "Google", "X-Team", "Robert Half"];
 
 /** Four beats: the promise, the real report, the person behind the criteria, one last ask. */
 export function LandingMineral() {
@@ -22,9 +22,9 @@ export function LandingMineral() {
                     <p>Matt Shaw <span>Founder</span></p>
                 </div>
                 <div className={styles.founderCopy}>
-                    <h2 id="founder-title">Fourteen years of hiring, turned into the criteria.</h2>
+                    <h2 id="founder-title">I&apos;ve hired at OpenAI, Meta, and Google. This is how I read a resume.</h2>
                     <p className={styles.introduction}>
-                        I&apos;m Matt. I&apos;ve spent 14 years in recruiting and hiring. I built this so you can see what a recruiter sees before you hit send.
+                        I&apos;m Matt. I&apos;ve spent 14 years recruiting and leading hiring teams. I built this so you get the honest read most candidates never hear, before you hit send.
                     </p>
                     <p className={styles.historyLabel}>Where I&apos;ve recruited and led hiring teams</p>
                     <ul className={styles.history} aria-label="Matt's work history">

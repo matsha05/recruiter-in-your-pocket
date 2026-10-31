@@ -95,13 +95,13 @@ export function UserNav({
                     {onHistoryClick ? (
                         <DropdownMenuItem onClick={onHistoryClick}>
                             <Files className="mr-2 size-4" />
-                            My Reports
+                            My reports
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
                             <Link href="/reports" className="w-full">
                                 <Files className="mr-2 size-4" />
-                                My Reports
+                                My reports
                             </Link>
                         </DropdownMenuItem>
                     )}

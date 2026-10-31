@@ -28,13 +28,13 @@ export interface NavItem {
 
 const STUDIO_NAV_ITEMS: NavItem[] = [
     {
-        label: "The Studio",
+        label: "New report",
         href: "/workspace",
         icon: FileText,
         description: "Review your resume",
     },
     {
-        label: "Reports",
+        label: "My reports",
         href: "/reports",
         icon: FileClock,
         description: "Saved reports and versions",

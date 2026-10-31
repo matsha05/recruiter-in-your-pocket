@@ -54,10 +54,10 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 - [x] Four-beat homepage (see decisions). Cut summary card, extra handoff CTA, repeated free promise, homepage "Free report limits".
 - [x] Founder section: heading contradicts "no personal review" disclosure; one AI disclosure on the page.
-- [ ] One header everywhere; "My reports" for signed-in.
+- [x] One header everywhere; "My reports" for signed-in.
 - [ ] Sample report link label: "Read a sample report" everywhere.
-- [ ] Footer copy; "job posting".
-- [ ] Metadata, OG image, manifest (indigo theme color, short name).
+- [x] Footer copy; "job posting".
+- [x] Metadata, OG image, manifest (indigo theme color, short name).
 
 ## Methodology and research
 

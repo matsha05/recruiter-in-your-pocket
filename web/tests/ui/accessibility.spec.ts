@@ -61,7 +61,7 @@ test("active navigation exposes the current page across site, app, mobile, and l
   await page.goto("/workspace", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
   const appHeader = page.locator("header.app-shell-header");
-  await expect(appHeader.getByRole("link", { name: "Studio", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(appHeader.getByRole("link", { name: "New report", exact: true })).toHaveAttribute("aria-current", "page");
 
   await page.goto("/privacy", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
@@ -119,7 +119,7 @@ test("open mobile workspace navigation exposes the current page and has no serio
   await page.getByRole("button", { name: "Toggle menu" }).click();
 
   const mobileSheet = page.getByRole("dialog");
-  await expect(mobileSheet.getByRole("link", { name: "The Studio", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(mobileSheet.getByRole("link", { name: "New report", exact: true })).toHaveAttribute("aria-current", "page");
 
   const results = await new AxeBuilder({ page }).analyze();
   const blockingViolations = results.violations.filter((violation) =>
