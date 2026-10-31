@@ -1,162 +1,181 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { ReferralFunnelDiagram } from "@/components/research/diagrams/ReferralFunnelDiagram";
+import { ReferralHiringShareDiagram } from "@/components/research/diagrams/ReferralHiringShareDiagram";
+import { ReferralOfferOddsDiagram } from "@/components/research/diagrams/ReferralOfferOddsDiagram";
 import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/ReferralQuantifiedDiagram";
 
 export const metadata: Metadata = {
     title: "What a referral changes",
-    description: "What a field experiment found about the information referrals carry, and what it did not test about screening.",
+    description: "Referred candidates are a sliver of applicants and a large share of hires. What the studies and hiring data show, and what a referral still can't do for you.",
 };
 
 export default function ReferralAdvantagePage() {
     return (
         <ResearchArticle
             header={{
-                tag: "Job search strategy",
+                tag: "Referrals",
                 title: "What a referral changes",
-                description: "A field experiment found that referrals added information about workers' performance. It did not measure their chance of getting an interview.",
-                lastUpdated: "July 2026",
-                readTime: "5 min read"
+                description: "A referral gets your resume read by someone who is already leaning in. Across studies and hiring data, that shows up as far better odds at every stage.",
+                lastUpdated: "October 2026",
+                readTime: "7 min read"
             }}
             keyFinding={{
-                subtitle: "What the experiments found",
-                stat: "20 points more likely to stay",
+                subtitle: "What the hiring data shows",
+                stat: "40% vs. 3%",
                 statDescription: (
                     <>
-                        In a 1,266-person study spanning referrers, referred workers, and non-referred workers, referred workers were 11 percentage points more likely to submit work on time and 20 points more likely to continue the job.
-                        <Citation id="source-1">1</Citation>
+                        Across more than 38 million applications, 40% of referred candidates reached an interview. Of people who applied on their own, 3% did.
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Pallais & Sands, three field experiments",
-                    href: "https://www.nber.org/papers/w21357"
+                    text: "Ashby hiring data, 2021 to 2024",
+                    href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">What employers learned from a referral</h2>
+                    <h2 className="research-h2">A sliver of applicants, a big share of hires</h2>
                     <p className="research-body mb-6">
-                        In this online labor market, referrals carried information about worker performance and persistence that profiles did not reveal. The study did not measure a universal interview-rate lift.
+                        Economists at the New York Fed followed 62,127 applicants through one large US company&apos;s hiring process. Employee referrals were 6% of the people who applied and 29% of the people who were hired. Job boards went the other way: 60% of applicants, 24% of hires.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <ReferralFunnelDiagram figureNumber={1} />
+                    <ReferralHiringShareDiagram figureNumber={1} />
+                    <p className="research-body mb-6">
+                        After accounting for the job and the applicant pool, referred candidates were 7.3 percentage points more likely to be interviewed than job board applicants. Once interviewed, they were 14 points more likely to get an offer.
+                        <Citation id="source-1">1</Citation>
+                    </p>
                 </>
             }
             productTieIn={{
-                title: "What to include with a referral request",
+                title: "Before you send it to your referrer",
                 items: [
                     {
-                        title: "The role and your relevant experience",
-                        description: "Send the job link and your resume. Explain which part of your experience fits the role."
+                        title: "Read the Verdict first",
+                        description: "A referral buys you a real read. The Verdict is what that reader is likely to conclude, so check it before someone puts their name next to yours."
                     },
                     {
-                        title: "Context the referrer can confirm",
-                        description: "Mention work you did together so they can add a firsthand example, if they are comfortable recommending you."
+                        title: "Fix the Critical Miss",
+                        description: "Your referrer can vouch for you. They can't fix the line that makes a recruiter hesitate. The Critical Miss is that line."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "Sourcing" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "Skills-first hiring: the promise and the practice", href: "/research/skills-first-promise-reality", tag: "Trends" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
+                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "Referrals" }
             ]}
             sources={[
                 {
                     id: "source-1",
+                    title: "Do Informal Referrals Lead to Better Matches? Evidence from a Firm's Employee Referral System",
+                    publisher: "Brown, Setren & Topa. Journal of Labor Economics 34(1); earlier as New York Fed Staff Report 568",
+                    year: "2016",
+                    href: "https://doi.org/10.1086/682338"
+                },
+                {
+                    id: "source-2",
+                    title: "Are referred candidates more likely to get hired?",
+                    publisher: "Ashby Talent Trends Report. 38M+ applications across 93,000 jobs",
+                    year: "2025",
+                    href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals"
+                },
+                {
+                    id: "source-3",
+                    title: "The Value of Hiring through Employee Referrals",
+                    publisher: "Burks, Cowgill, Hoffman & Housman. Quarterly Journal of Economics 130(2)",
+                    year: "2015",
+                    href: "https://doi.org/10.1093/qje/qjv010"
+                },
+                {
+                    id: "source-4",
                     title: "Why the Referential Treatment? Evidence from Field Experiments on Referrals",
-                    publisher: "NBER working paper; later published in the Journal of Political Economy",
-                    year: "2015; published 2016",
+                    publisher: "Pallais & Sands. Journal of Political Economy 124(6); earlier as NBER Working Paper 21357",
+                    year: "2016",
                     href: "https://www.nber.org/papers/w21357"
                 }
             ]}
             faq={[
                 {
-                    question: "Do referrals guarantee an interview?",
-                    answer: "No. Fit, the employer's process, the relationship, and what the referrer can honestly say all matter."
+                    question: "Does a referral guarantee an interview?",
+                    answer: "No. In the hiring data above, most referred candidates still didn't reach an interview. A referral gets you a real look. The resume has to earn the next step."
                 },
                 {
-                    question: "Should I ask for a referral before applying?",
-                    answer: "Ask someone who knows your work whether they are comfortable referring you, and check the employer's process before applying. This study did not test the best timing for a referral request."
+                    question: "Is a referral from someone I barely know worth asking for?",
+                    answer: "It's worth something, because it usually gets you out of the pile. It's worth much more from someone who has seen your work and will say so."
                 },
                 {
-                    question: "What should I send with a referral request?",
-                    answer: "A clear resume and a short, role-specific pitch that makes it easy for the referrer to vouch for you."
+                    question: "What should I send the person referring me?",
+                    answer: "The job link, your resume, and two or three sentences on why you fit the role. Write it so they can paste it straight into the referral form."
                 }
             ]}
         >
-            <h2 className="research-h2">What the experiments actually measured</h2>
+            <h2 className="research-h2">The gap grew as hiring slowed</h2>
             <p className="research-body mb-6">
-                The study did not establish one universal callback multiplier. It found that referrals carried information about performance and persistence that employers could not see in worker profiles alone.
-                <Citation id="source-1">1</Citation>
+                Ashby, a recruiting platform, tracked offer rates by source from late 2021 to late 2024, a stretch when hiring cooled, especially in tech. Both groups&apos; odds fell. Referred candidates went from about 1 offer in 8 to about 1 in 14. Cold applicants went from about 1 in 140 to about 1 in 500.
+                <Citation id="source-2">2</Citation>
             </p>
-            <ReferralQuantifiedDiagram figureNumber={2} />
-
-            <h2 className="research-h2">What referrals added in this study</h2>
+            <ReferralOfferOddsDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                In these experiments, referred workers outperformed comparable non-referred workers and were more likely to stay. The information was strongest when the referrer performed well and had a strong tie to the referred worker.
-                <Citation id="source-1">1</Citation>
+                By our arithmetic from Ashby&apos;s published rates, a referred candidate&apos;s edge grew from about 17 times the cold odds to about 36 times. That matches what recruiters see in a slow market: hundreds of applications per role, and a referral is how you skip the pile.
             </p>
             <p className="research-body mb-6">
-                <strong>Our interpretation:</strong> someone who has worked with you may be able to explain strengths that your resume does not capture. Whether that changes a screening decision depends on the employer and what the referrer can honestly say.
+                The edge isn&apos;t about referred people being stronger on paper. Across nine large firms in call centers, trucking, and high tech, referred candidates were more likely to be hired and to accept offers than non-referred candidates with similar skills.
+                <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="research-h2">Key findings</h2>
+            <h2 className="research-h2">What a referral changes on the recruiter&apos;s desk</h2>
+            <p className="research-body mb-6">
+                <strong>Our take:</strong> this is what happens when a referral lands, from years on the receiving end.
+            </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    title="Better follow-through"
-                    desc={
-                        <>
-                            Referred workers were about 11 percentage points more likely to submit their work and do it on time.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="A person reads it"
+                    desc="A referral gets pulled out of the pile and read by someone. Cold applications don't always get that."
                 />
                 <ArticleInsight
-                    title="Greater persistence"
-                    desc={
-                        <>
-                            Referred workers were 20 percentage points more likely to continue the job.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="Borderline gets a call"
+                    desc="A resume that sits right on the line often gets a screening call when it's referred. Cold, the same resume usually gets a no."
                 />
                 <ArticleInsight
-                    title="Information beyond the profile"
-                    desc={
-                        <>
-                            Performance and continuation differences remained among workers with similar observable profiles.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="Who refers you matters"
+                    desc="“I worked with her, she's excellent” from a trusted teammate carries real weight. A referral click from someone you met once carries much less."
                 />
                 <ArticleInsight
-                    title="The relationship mattered"
-                    desc={
-                        <>
-                            Referrals from high-performing workers and people with stronger ties carried more information about worker quality.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="The resume still decides"
+                    desc="Once it's open, it gets the same first read as everyone else's. A referral gets you a hearing. It doesn't pass the read for you."
                 />
             </div>
 
-            <h2 className="research-h2">How to build referral opportunities</h2>
+            <h2 className="research-h2">Why employers lean on them</h2>
             <p className="research-body mb-6">
-                <strong>Before you need a job:</strong> Build real working relationships. Someone who knows how you work can add more useful context than a stranger responding to a cold ask.
+                Referrals tell employers things a resume can&apos;t. In field experiments on an online job site, referred workers did better work and stayed longer than workers with similar profiles. The effect was strongest when the referrer was a strong performer who knew the person well.
+                <Citation id="source-4">4</Citation>
             </p>
+            <ReferralQuantifiedDiagram figureNumber={3} />
             <p className="research-body mb-6">
-                <strong>When you&apos;re looking:</strong> Be specific about what you want. &quot;I&apos;m looking for
-                a Senior PM role at a growth-stage fintech&quot; helps someone recognize a relevant opening. Add a job link when you have one.
-            </p>
-            <p className="research-body">
-                <strong>Make it easy:</strong> When asking for a referral, include your resume and a
-                short explanation of why the role fits your experience. Give them room to decline.
+                The larger studies agree on staying power. Referred hires were less likely to quit across the nine firms, and they stayed longer at the company the New York Fed studied.
+                <Citation id="source-3">3</Citation>
+                <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="research-h2">What a useful referral adds</h2>
+            <h2 className="research-h2">How to get a referral worth having</h2>
             <p className="research-body mb-6">
-                A useful referral can explain what you did together and how you worked. For example: &quot;We worked on the finance-system migration together. She led the data cleanup, which helped our team shorten the month-end close.&quot; Use only details the referrer can confirm.
+                <strong>Ask people who&apos;ve seen your work.</strong> Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision.
             </p>
+            <p className="research-body mb-6">
+                <strong>Be specific.</strong> &ldquo;I&apos;m looking for a senior PM role at a growth-stage fintech&rdquo; lets someone spot the opening for you. &ldquo;Let me know if you hear of anything&rdquo; doesn&apos;t.
+            </p>
+            <p className="research-body mb-6">
+                <strong>Write the blurb for them.</strong> Send the job link, your resume, and a few sentences they can paste in, like: &ldquo;We worked on the finance-system migration together. She led the data cleanup that shortened our month-end close.&rdquo; Stick to things they saw firsthand, and make it easy for them to say no.
+            </p>
+
+            <h2 className="research-h2">Limitations</h2>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The New York Fed study covers one company. The nine-firm study covers call centers, trucking, and high tech.</li>
+                <li>Ashby&apos;s figures come from companies that use its software, which lean toward tech and startups. They show what happened, not what caused it: people who get referred may differ in other ways.</li>
+                <li>The field experiments ran on an online job site, not in corporate hiring.</li>
+            </ul>
         </ResearchArticle>
     );
 }

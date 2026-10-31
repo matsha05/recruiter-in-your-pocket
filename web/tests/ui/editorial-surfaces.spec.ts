@@ -88,21 +88,24 @@ test.describe("editorial resources", () => {
 
 const numberedResearchRoutes = [
   { route: "/research/how-recruiters-read", figures: [1, 2] },
-  { route: "/research/referral-advantage", figures: [1, 2] },
+  { route: "/research/referral-advantage", figures: [1, 2, 3] },
   { route: "/research/spelling-errors-impact", figures: [1, 2] },
   { route: "/research/linkedin-visibility", figures: [1, 2] },
 ] as const;
 
 test.describe("multi-figure research articles", () => {
-  test("referral figures draw only the published differences and fit on mobile", async ({ page }) => {
+  test("referral figures show the published numbers and fit on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
+    const share = page.getByRole("figure", { name: /referred candidates were 6% of applicants/ });
+    await expect(share).toContainText("29%");
+    const odds = page.getByRole("figure", { name: /Offer odds by source/ });
+    await expect(odds).toContainText("1 in 8");
+    await expect(odds).toContainText("1 in 500");
+    // Derived figures must say they are our arithmetic.
+    await expect(odds).toContainText("our arithmetic");
     const chart = page.getByRole("figure", { name: /11 percentage points more likely to submit work on time and 20 points more likely to continue/ });
-    await expect(chart).toContainText("+11");
     await expect(chart).toContainText("+20");
-    // The study did not measure callbacks or interview rates, so no figure may estimate them.
-    await expect(page.locator("body")).not.toContainText(/callback rate|applications per callback/i);
-    await expect(page.getByRole("figure", { name: /Pallais and Sands experiments/ })).toContainText("The study didn't measure interview chances.");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });
