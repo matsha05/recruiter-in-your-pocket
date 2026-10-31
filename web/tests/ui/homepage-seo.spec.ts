@@ -33,7 +33,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
     await expect(homepage).toContainText("Sometimes it’s one line on your resume. That part you can fix.");
     await expect(homepage.locator("blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
-    await expect(homepage.getByRole("heading", { level: 2, name: "What would they write about yours?" })).toBeVisible();
+    await expect(homepage.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
     const truths = homepage.locator("#how-it-works");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
     await expect(truths).toContainText("One Critical Miss, not forty tips.");
