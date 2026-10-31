@@ -45,16 +45,20 @@ const nextConfig = {
   agentRules: false,
   reactStrictMode: true,
   poweredByHeader: false,
-  webpack(config, { webpack }) {
+  // Defined for both bundlers: production builds use webpack, while the
+  // red-team journeys run Next dev on Turbopack to stay within CI memory.
+  compiler: {
+    define: {
+      __RIYP_GAUNTLET_MANIFEST_JSON__: JSON.stringify(gauntletDefinitionSources.manifest),
+      __RIYP_GAUNTLET_BASELINE_JSON__: JSON.stringify(gauntletDefinitionSources.baseline),
+      __RIYP_GAUNTLET_ITERATION_002_JSON__: JSON.stringify(gauntletDefinitionSources.iteration002),
+    },
+  },
+  webpack(config) {
     config.module.rules.push({
       test: /\.txt$/,
       type: "asset/source",
     });
-    config.plugins.push(new webpack.DefinePlugin({
-      __RIYP_GAUNTLET_MANIFEST_JSON__: JSON.stringify(gauntletDefinitionSources.manifest),
-      __RIYP_GAUNTLET_BASELINE_JSON__: JSON.stringify(gauntletDefinitionSources.baseline),
-      __RIYP_GAUNTLET_ITERATION_002_JSON__: JSON.stringify(gauntletDefinitionSources.iteration002),
-    }));
     return config;
   },
   async headers() {
@@ -107,7 +111,11 @@ const nextConfig = {
   },
   turbopack: {
     // Keep Next's root inside web/ even with a monorepo lockfile.
-    root: fileURLToPath(new URL(".", import.meta.url))
+    root: fileURLToPath(new URL(".", import.meta.url)),
+    // Match webpack's asset/source rule: prompts import as strings.
+    rules: {
+      "*.txt": { type: "text" },
+    },
   },
   images: {
     qualities: [75, 100]
