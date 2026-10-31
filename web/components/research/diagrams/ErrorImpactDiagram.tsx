@@ -10,22 +10,24 @@ const rows = [
     { label: "Five errors", lost: 1.85 },
 ];
 
-/** A ten-point ruler with the points lost marked off at the end. */
+/**
+ * A ten-point ruler with the points lost measured off from zero. The study reports
+ * only the difference, so the ruler shows the size of the loss and never implies
+ * what the error-free resume scored.
+ */
 function Ruler({ lost, seen }: { lost: number; seen: boolean }) {
-    const keptPercent = ((10 - lost) / 10) * 100;
     return (
         <div className="relative" aria-hidden="true">
             <div className="relative h-8 overflow-hidden rounded-md border border-[hsl(var(--text-strong)/0.14)] bg-card">
-                <div className="absolute inset-y-0 left-0 bg-[hsl(var(--pen-tint))]" style={{ width: `${keptPercent}%` }} />
                 <div
-                    className="absolute inset-y-0 right-0 bg-[hsl(var(--highlight))] transition-transform duration-slow ease-snap motion-reduce:transition-none"
-                    style={{ width: `${100 - keptPercent}%`, transform: seen ? "scaleX(1)" : "scaleX(0)", transformOrigin: "right center" }}
+                    className="absolute inset-y-0 left-0 bg-[hsl(var(--highlight))] transition-transform duration-slow ease-snap motion-reduce:transition-none"
+                    style={{ width: `${lost * 10}%`, transform: seen ? "scaleX(1)" : "scaleX(0)", transformOrigin: "left center" }}
                 />
                 {Array.from({ length: 9 }, (_, i) => (
                     <span key={i} className="absolute inset-y-0 w-px bg-[hsl(var(--text-strong)/0.12)]" style={{ left: `${(i + 1) * 10}%` }} />
                 ))}
             </div>
-            <div className="mt-1 flex justify-between text-xs text-muted-foreground"><span>0</span><span>10</span></div>
+            <div className="mt-1 flex justify-between text-xs text-muted-foreground"><span>0</span><span>10 points</span></div>
         </div>
     );
 }
@@ -45,7 +47,7 @@ export function ErrorImpactDiagram({ figureNumber = 1 }: { figureNumber?: number
     return (
         <DiagramFigure
             className="max-w-[54rem]"
-            label="Two ten-point rulers. Compared with the same resume without errors, two spelling errors cost 0.73 points of a 0 to 10 interview rating, and five errors cost 1.85 points."
+            label="Two ten-point rulers. Compared with the same resume without errors, two spelling errors cost 0.73 points on a 0–10 interview rating, and five errors cost 1.85 points."
         >
             <DiagramFrame>
                 <EvidenceHeader

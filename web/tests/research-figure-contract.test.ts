@@ -27,12 +27,12 @@ try {
   // Sterkens et al. (2023), Table 4 (1A), reports -0.730 and -1.850
   // on the 0–10 invitation-rating scale described in Methods 2.3.
   assert.match(ratingFigure, /0–10 interview rating/);
-  assert.match(ratingFigure, /0 errors[\s\S]*Reference group/);
-  assert.match(ratingFigure, /2 errors[\s\S]*−0\.73 points/);
-  assert.match(ratingFigure, /5 errors[\s\S]*−1\.85 points/);
-  assert.match(ratingFigure, /hypothetical interview ratings, not observed callback rates/);
-  assert.match(ratingFigure, /A single error was not tested/);
-  assert.doesNotMatch(ratingFigure, /81\.5|100%|percentage points|<progress/,
+  assert.match(ratingFigure, /against the same resume without errors/);
+  assert.match(ratingFigure, /Two errors[\s\S]*−0\.73[\s\S]*points/);
+  assert.match(ratingFigure, /Five errors[\s\S]*−1\.85[\s\S]*points/);
+  assert.match(ratingFigure, /recruiters rated fictional resumes; nobody was actually called/);
+  assert.match(ratingFigure, /One error on its own wasn(?:'|&#x27;)t tested/);
+  assert.doesNotMatch(ratingFigure, /81\.5|92\.7|100%|percentage points|<progress/,
     "an experimental rating difference must not become an invented baseline or callback rate");
 
   assert.match(perceptionFigure, /Interpersonal skills/);
