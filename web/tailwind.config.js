@@ -80,6 +80,7 @@ module.exports = {
 				},
 				citron: 'hsl(var(--citron))',
 				'blue-ink': 'hsl(var(--blue-ink))',
+				'red-pen': 'hsl(var(--red-pen))',
 				chart: {
 					1: 'hsl(var(--chart-1))',
 					2: 'hsl(var(--chart-2))',

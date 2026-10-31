@@ -95,14 +95,15 @@
 }
 
 .note {
-    border-left: 2px solid hsl(var(--highlight));
+    /* What keeps coming up is the red pen; what keeps working is the green pen. Yellow stays the Critical Miss. */
+    border-left: 2px solid hsl(var(--red-pen) / 0.7);
     padding-left: 0.875rem;
     font-family: var(--font-editorial);
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.noteKeep { border-left-color: hsl(var(--pen) / 0.45); }
+.noteKeep { border-left-color: hsl(var(--pen)); }
 
 .noteMeta {
     margin-top: 0.25rem;
@@ -168,11 +169,12 @@
 .track span {
     display: block;
     height: 100%;
-    background: hsl(var(--text-strong) / 0.25);
+    /* One series, one hue: blue ink for your score, full strength on the latest version. */
+    background: hsl(var(--chart-1) / 0.35);
     transform-origin: left;
 }
 
-.pointLatest .track span { background: hsl(var(--text-strong)); }
+.pointLatest .track span { background: hsl(var(--chart-1)); }
 
 .pointScore {
     font-family: var(--font-display);

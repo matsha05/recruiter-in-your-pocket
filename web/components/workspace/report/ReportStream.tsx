@@ -145,7 +145,7 @@ export function ReportStream({
 
         {strengths[0] && (
           <m.div {...reveal(2)} className={styles.worksNote}>
-            <p className="text-sm font-semibold text-foreground">Don&apos;t touch this one</p>
+            <p className="text-sm font-semibold">Don&apos;t touch this one</p>
             <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
           </m.div>
         )}

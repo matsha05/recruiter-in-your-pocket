@@ -107,12 +107,12 @@ export function ReportPreview() {
                 className={styles.panel}
               >
                 <p className={styles.quoteLabel}>From the resume · {fix.evidence.section}</p>
-                <blockquote className={styles.quote}>&ldquo;{fix.evidence.excerpt}&rdquo;</blockquote>
-                <p className={styles.panelLabel}>What&rsquo;s missing</p>
+                <blockquote className={cn(styles.quote, index === 0 && styles.quoteMiss)}>&ldquo;{fix.evidence.excerpt}&rdquo;</blockquote>
+                <p className={cn(styles.panelLabel, styles.panelLabelMissing)}>What&rsquo;s missing</p>
                 <p className={styles.panelText}>{fix.why}</p>
                 {change && (
                   <>
-                    <p className={styles.panelLabel}>What to change</p>
+                    <p className={cn(styles.panelLabel, styles.panelLabelChange)}>What to change</p>
                     <p className={styles.panelText}>{change}</p>
                   </>
                 )}

@@ -165,7 +165,9 @@
 .criticalMiss { margin-top: 1.5rem; border: 1px solid hsl(var(--miss-line)); border-radius: 0.75rem; background: hsl(var(--miss-surface)); padding: 1.25rem 1.25rem 0.5rem; }
 .criticalLabel { color: hsl(var(--brass)); font-size: 0.75rem; font-weight: var(--weight-label); letter-spacing: 0.1em; text-transform: uppercase; }
 .criticalTitle { margin-top: 0.5rem; color: hsl(var(--text-strong)); font-family: var(--font-display); font-size: 1.25rem; font-weight: var(--weight-heading); letter-spacing: -0.015em; line-height: 1.35; }
-.worksNote { margin-top: 1.25rem; border-left: 2px solid hsl(var(--line)); padding-left: 1rem; }
+/* The recruiter's approval is the green pen. */
+.worksNote { margin-top: 1.25rem; border-left: 2px solid hsl(var(--pen)); padding-left: 1rem; }
+.worksNote > p:first-child { color: hsl(var(--pen)); }
 @media (max-width: 639px) {
     .root section[id] { scroll-margin-top: 3.25rem; }
     .openingTitle { font-size: 1.375rem; line-height: 1.36; }

@@ -166,7 +166,7 @@ export function RecruiterViewHero() {
             <div className={cn(styles.paper, styles.paperBottom)}>
               <p className={cn(styles.role, styles.roleSpaced)}>Account Coordinator, Brightpath Logistics</p>
               <p className={styles.meta}>2018 – 2021</p>
-              <p className={cn(styles.line, recruiter && styles.skim)}><span>Supported account managers with reporting and renewals.</span></p>
+              <p className={cn(styles.line, recruiter && styles.faded)}><span>Supported account managers with reporting and renewals.</span></p>
             </div>
             <div className={styles.gutter} />
             <div className={styles.noteCell} />

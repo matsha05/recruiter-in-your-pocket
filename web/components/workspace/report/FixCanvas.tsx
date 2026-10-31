@@ -220,7 +220,7 @@ export function FixCanvas({
 
           {draftSource && (
             <div className={styles.source}>
-              <p className="text-[0.8125rem] font-semibold text-muted-foreground">
+              <p className={styles.sourceLabel}>
                 {sectionFor(fix) ? `${showSourceExcerpt ? "Excerpt" : "Original"} · ${sectionFor(fix)}` : showSourceExcerpt ? "Excerpt" : "Original"}
               </p>
               <p className={styles.sourceText}>“{visibleSource}”</p>
@@ -234,7 +234,7 @@ export function FixCanvas({
           <div className={`${styles.reasoning} ${hasSuggestedLine ? styles.reasoningColumns : ""}`}>
             {/* The Critical Miss explains why at the top; its card repeats the questions only when there is no draft to fill in. */}
             {(index > 0 || !hasSuggestedLine) && <div className={styles.reasoningItem}>
-              <p className={styles.label}>{index === 0 ? "What to add" : "Why it matters"}</p>
+              <p className={`${styles.label} ${index === 0 ? styles.labelMissing : ""}`}>{index === 0 ? "What to add" : "Why it matters"}</p>
               <p className={styles.body}>{fix.why || "This example needs more detail about what you did and what changed."}</p>
             </div>}
             {hasSuggestedLine && placeholderKeys.length > 0 && <div className={styles.reasoningItem}>

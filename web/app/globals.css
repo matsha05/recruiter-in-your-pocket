@@ -93,6 +93,7 @@
        the chart steps are the categorical order for comparisons, validated for color-vision deficiency
        and contrast on the white sheet. Use them in order, never cycled; red stays reserved for problems. */
     --blue-ink: 223.6 64.7% 40%;
+    --red-pen: var(--destructive);
     --chart-1: 223.9 65.1% 50.6%;
     --chart-2: 153.1 53.3% 35.3%;
     --chart-3: 279.8 36% 48.4%;
@@ -253,6 +254,7 @@
     --pen-strong: 153 43% 80%;
     --pen-tint: 155 22% 14%;
     --blue-ink: 223.8 76.6% 78.2%;
+    --red-pen: var(--destructive);
     --chart-1: 224 73.5% 62.9%;
     --chart-2: 152.5 45.3% 41.6%;
     --chart-3: 277.1 40% 58.8%;

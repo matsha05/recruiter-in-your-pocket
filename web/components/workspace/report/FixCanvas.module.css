@@ -2,7 +2,10 @@
 .root:first-child { border-top: 0; }
 .layout { display: grid; gap: 1rem; }
 .title { max-width: 44ch; color: hsl(var(--text-strong)); font-family: var(--font-body); font-size: 1.5rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; }
-.source { margin-top: 1.5rem; border-left: 2px solid hsl(var(--brand) / 0.45); padding-left: 1rem; }
+/* The candidate's own words wear blue ink; the recruiter's suggestions wear the green pen. */
+.source { margin-top: 1.5rem; border-left: 2px solid hsl(var(--blue-ink)); padding-left: 1rem; }
+.sourceLabel { color: hsl(var(--blue-ink)); font-size: 0.8125rem; font-weight: 600; }
+.labelMissing { color: hsl(var(--red-pen)); }
 .sourceText { margin-top: 0.625rem; color: hsl(var(--text-strong)); font-size: 1rem; line-height: 1.5625; overflow-wrap: anywhere; }
 .reasoning { display: grid; margin-top: 1.5rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-proof) / 0.5); }
 .reasoningItem { min-width: 0; padding: 1.25rem; }

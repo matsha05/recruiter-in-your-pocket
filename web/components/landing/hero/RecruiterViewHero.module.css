@@ -229,7 +229,9 @@
     transition: color var(--duration-normal) var(--ease), text-decoration-color var(--duration-normal) var(--ease), background-size var(--duration-slow) var(--ease) var(--duration-normal);
 }
 
-.skim { color: hsl(var(--muted-foreground) / 0.85); }
+.skim, .faded { color: hsl(var(--muted-foreground) / 0.85); }
+/* The recruiter's red pen: a wavy underline under the lines that slip past. */
+.skim span { text-decoration-style: wavy; text-decoration-color: hsl(var(--red-pen) / 0.7); text-decoration-thickness: 1.25px; text-underline-offset: var(--link-offset); }
 .works span { text-decoration-color: hsl(var(--pen)); }
 .miss span { background-size: 100% 46%; }
 
