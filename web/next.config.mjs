@@ -131,6 +131,13 @@ export default withSentryConfig(nextConfig, {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
+  // Source maps exist only to be uploaded. Without a token Sentry would still have
+  // webpack build them, which roughly doubles server output and pushes a cold build
+  // past a 2 GB heap, so only build them when they can be uploaded.
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-

@@ -275,8 +275,10 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/settings/account");
     await expect(page.getByRole("heading", { name: "Settings", exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { name: /Sign in to open settings/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /^Sign in$/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Back to workspace/i })).toBeVisible();
+    // The header carries its own Sign in link; the gate's action lives in the page body.
+    const gate = page.locator("#main-content");
+    await expect(gate.getByRole("link", { name: /^Sign in$/i })).toHaveAttribute("href", /next=%2Fsettings%2Faccount/);
+    await expect(gate.getByRole("link", { name: /Back to workspace/i })).toBeVisible();
   });
 
   test("10. anonymous attack paths are blocked cleanly by save and checkout APIs", async ({ request }) => {

@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [main, master]
 
-env:
-  # The webpack production build outgrew the runner's default ~2 GB heap.
-  NODE_OPTIONS: "--max-old-space-size=4096"
-
 jobs:
   web:
     runs-on: ubuntu-latest
