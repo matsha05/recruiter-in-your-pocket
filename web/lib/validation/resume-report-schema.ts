@@ -31,7 +31,7 @@ function normalizedKeywordKeys(values: string[]) {
   return values.map(value => value.normalize("NFKC").toLocaleLowerCase().trim().replace(/\s+/g, " "));
 }
 
-const JobKeywordsSchema = z.object({
+export const JobKeywordsSchema = z.object({
   matched: z.array(z.string().trim().min(1)).max(20),
   missing: z.array(z.string().trim().min(1)).max(20),
   match_count: z.number().int().min(0),

@@ -57,7 +57,7 @@ export function UserNav({
                     </div>
 
                     {/* Membership Status Badge */}
-                    <div className="mt-2 text-xs font-medium uppercase tracking-wider flex flex-col gap-1">
+                    <div className="mt-2 text-[0.8125rem] font-medium flex flex-col gap-1">
                         {user.membership === "lifetime" && (
                             <span className="text-brand flex items-center gap-1">
                                 Lifetime Access
@@ -95,13 +95,13 @@ export function UserNav({
                     {onHistoryClick ? (
                         <DropdownMenuItem onClick={onHistoryClick}>
                             <Files className="mr-2 size-4" />
-                            My Reports
+                            My reports
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
                             <Link href="/reports" className="w-full">
                                 <Files className="mr-2 size-4" />
-                                My Reports
+                                My reports
                             </Link>
                         </DropdownMenuItem>
                     )}

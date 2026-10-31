@@ -128,27 +128,20 @@ export default function PurchaseRestoreClient() {
     <>
       <div
         data-visual-anchor="purchase-restore"
-        className="bg-background px-4 pb-20 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20"
+        className="bg-background px-4 pb-20 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:pt-36"
       >
         <section className="mx-auto max-w-form" aria-labelledby="purchase-restore-title">
-          <header className="grid gap-6 border-b border-border pb-8">
-            <div>
-              <p className="text-eyebrow uppercase text-muted-foreground">Billing help</p>
-              <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
-                Use the email address you used at checkout. We’ll check your payment with Stripe and restore any missing pass.
-              </p>
-            </div>
-            <div>
+          <header className="border-b border-border pb-8">
+              <p className="text-[0.8125rem] font-semibold text-[hsl(var(--pen))]">Billing help</p>
               <h1
                 id="purchase-restore-title"
-                className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
+                className="mt-3 max-w-xl text-balance font-display text-3xl font-bold tracking-tight sm:text-workspace-title"
               >
                 {header}
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">
-                Find a missing pass, view receipts, or manage billing through Stripe.
+                Use the email you paid with. We&apos;ll check with Stripe and bring back any pass that&apos;s missing. You can also open your receipts or Stripe&apos;s billing portal here.
               </p>
-            </div>
           </header>
 
           {(billingUpdated || restoreMessage) ? (

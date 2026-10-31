@@ -3,32 +3,69 @@ export type TokenUsage = {
   completion_tokens: number;
   total_tokens?: number;
   cached_prompt_tokens?: number;
+  cache_write_prompt_tokens?: number;
   reasoning_tokens?: number;
 };
 
 type ModelPrice = {
   input_per_million_usd: number;
   cached_input_per_million_usd: number;
+  cache_write_input_per_million_usd?: number;
   output_per_million_usd: number;
+  long_context_threshold_tokens?: number;
 };
 
 const MODEL_PRICING_USD: Record<string, ModelPrice> = {
-  // Standard API pricing per 1M text tokens, verified against OpenAI model
-  // pages on 2026-07-28. Snapshot aliases inherit their family price below.
+  // Standard API pricing per 1M text tokens. GPT-5.6 and GPT-6 prices verified
+  // against https://developers.openai.com/api/docs/models on 2026-10-30.
+  // Chat Completions uses the default 30-minute cache-write price.
+  // Batch/Flex/Fast/regional processing prices are outside this estimate.
   "gpt-5-nano": {
     input_per_million_usd: 0.05,
     cached_input_per_million_usd: 0.005,
     output_per_million_usd: 0.4,
   },
   "gpt-5.6-luna": {
-    input_per_million_usd: 1,
-    cached_input_per_million_usd: 0.1,
-    output_per_million_usd: 6,
+    input_per_million_usd: 0.2,
+    cached_input_per_million_usd: 0.02,
+    cache_write_input_per_million_usd: 0.25,
+    output_per_million_usd: 1.2,
+    long_context_threshold_tokens: 272_000,
   },
   "gpt-5.6-terra": {
-    input_per_million_usd: 2.5,
-    cached_input_per_million_usd: 0.25,
-    output_per_million_usd: 15,
+    input_per_million_usd: 2,
+    cached_input_per_million_usd: 0.2,
+    cache_write_input_per_million_usd: 2.5,
+    output_per_million_usd: 12,
+    long_context_threshold_tokens: 272_000,
+  },
+  "gpt-6.1-terra": {
+    input_per_million_usd: 1,
+    cached_input_per_million_usd: 0.05,
+    cache_write_input_per_million_usd: 1.25,
+    output_per_million_usd: 5,
+    long_context_threshold_tokens: 272_000,
+  },
+  "gpt-6.1-sol": {
+    input_per_million_usd: 2,
+    cached_input_per_million_usd: 0.1,
+    cache_write_input_per_million_usd: 2.5,
+    output_per_million_usd: 10,
+    long_context_threshold_tokens: 272_000,
+  },
+  "gpt-6-astra": {
+    input_per_million_usd: 10,
+    cached_input_per_million_usd: 1,
+    cache_write_input_per_million_usd: 12.5,
+    output_per_million_usd: 50,
+    long_context_threshold_tokens: 272_000,
+  },
+  "gpt-6-luna": {
+    input_per_million_usd: 0.1,
+    cached_input_per_million_usd: 0.01,
+    cache_write_input_per_million_usd: 0.125,
+    output_per_million_usd: 0.5,
+    long_context_threshold_tokens: 272_000,
   },
   "gpt-4o-mini": {
     input_per_million_usd: 0.15,
@@ -43,13 +80,8 @@ const MODEL_PRICING_USD: Record<string, ModelPrice> = {
 };
 
 function pricingKey(model: string) {
-  const normalized = model.trim().toLowerCase();
-  if (/^gpt-5\.6-luna(?:-|$)/.test(normalized)) return "gpt-5.6-luna";
-  if (/^gpt-5\.6-terra(?:-|$)/.test(normalized)) return "gpt-5.6-terra";
-  if (/^gpt-5-nano(?:-|$)/.test(normalized)) return "gpt-5-nano";
-  if (/^gpt-4o-mini(?:-|$)/.test(normalized)) return "gpt-4o-mini";
-  if (/^gpt-4\.1-mini(?:-|$)/.test(normalized)) return "gpt-4.1-mini";
-  return null;
+  const family = model.trim().toLowerCase().replace(/-\d{4}-\d{2}-\d{2}$/, "");
+  return Object.hasOwn(MODEL_PRICING_USD, family) ? family : null;
 }
 
 export function getModelPrice(model: string): ModelPrice | null {
@@ -65,6 +97,7 @@ export function normalizeTokenUsage(data: any): TokenUsage | null {
 
   const totalTokens = Number(usage?.total_tokens);
   const cachedPromptTokens = Number(usage?.prompt_tokens_details?.cached_tokens);
+  const cacheWritePromptTokens = Number(usage?.prompt_tokens_details?.cache_write_tokens);
   const reasoningTokens = Number(usage?.completion_tokens_details?.reasoning_tokens);
 
   return {
@@ -73,6 +106,12 @@ export function normalizeTokenUsage(data: any): TokenUsage | null {
     ...(Number.isFinite(totalTokens) ? { total_tokens: Math.max(0, totalTokens) } : {}),
     ...(Number.isFinite(cachedPromptTokens)
       ? { cached_prompt_tokens: Math.min(Math.max(0, cachedPromptTokens), Math.max(0, promptTokens)) }
+      : {}),
+    ...(Number.isFinite(cacheWritePromptTokens)
+      ? { cache_write_prompt_tokens: Math.min(
+        Math.max(0, cacheWritePromptTokens),
+        Math.max(0, promptTokens - (Number.isFinite(cachedPromptTokens) ? Math.max(0, cachedPromptTokens) : 0)),
+      ) }
       : {}),
     ...(Number.isFinite(reasoningTokens) ? { reasoning_tokens: Math.max(0, reasoningTokens) } : {}),
   };
@@ -87,19 +126,28 @@ export function calculateCostUsd(model: string, usage: TokenUsage | null): numbe
     Math.max(0, usage.cached_prompt_tokens || 0),
     Math.max(0, usage.prompt_tokens),
   );
-  const uncachedInput = Math.max(0, usage.prompt_tokens - cachedInput);
+  const cacheWriteInput = Math.min(
+    Math.max(0, usage.cache_write_prompt_tokens || 0),
+    Math.max(0, usage.prompt_tokens - cachedInput),
+  );
+  const uncachedInput = Math.max(0, usage.prompt_tokens - cachedInput - cacheWriteInput);
   const output = Math.max(0, usage.completion_tokens);
+  const longContext = price.long_context_threshold_tokens !== undefined
+    && usage.prompt_tokens > price.long_context_threshold_tokens;
+  const inputMultiplier = longContext ? 2 : 1;
+  const outputMultiplier = longContext ? 1.5 : 1;
   const total =
-    (uncachedInput / 1_000_000) * price.input_per_million_usd
-    + (cachedInput / 1_000_000) * price.cached_input_per_million_usd
-    + (output / 1_000_000) * price.output_per_million_usd;
+    ((uncachedInput / 1_000_000) * price.input_per_million_usd
+      + (cachedInput / 1_000_000) * price.cached_input_per_million_usd
+      + (cacheWriteInput / 1_000_000) * (price.cache_write_input_per_million_usd ?? price.input_per_million_usd)) * inputMultiplier
+    + (output / 1_000_000) * price.output_per_million_usd * outputMultiplier;
 
   if (!Number.isFinite(total) || total < 0) return null;
   return Math.round(total * 1e8) / 1e8;
 }
 
-export function estimateCostUsd(model: string, usage: TokenUsage | null): number {
-  return calculateCostUsd(model, usage) ?? 0;
+export function estimateCostUsd(model: string, usage: TokenUsage | null): number | null {
+  return calculateCostUsd(model, usage);
 }
 
 export function estimateMaximumCostUsd(
@@ -111,5 +159,7 @@ export function estimateMaximumCostUsd(
     prompt_tokens: Math.max(0, inputTokens),
     completion_tokens: Math.max(0, maxCompletionTokens),
     cached_prompt_tokens: 0,
+    // Budget for a cold cache; realized cost above only counts returned writes.
+    cache_write_prompt_tokens: Math.max(0, inputTokens),
   });
 }

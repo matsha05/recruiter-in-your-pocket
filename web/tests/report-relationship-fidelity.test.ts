@@ -120,7 +120,8 @@ const factOnlyEnd = completeReportHtml.indexOf("</article>", factOnlyStart);
 const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd + "</article>".length);
 assert.ok(factOnlyHtml.includes(hubspotSource), "the original evidence must survive when no rewrite is supplied");
 assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].fix));
-assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why));
+assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why), "without a draft, the Critical Miss card keeps the questions to answer");
+assert.ok(completeReportHtml.slice(0, factOnlyStart).includes(completeReport.top_fixes[0].why), "the Critical Miss must carry the why");
 assert.ok(factOnlyHtml.includes('data-testid="fact-only-recommendation"'));
 assert.doesNotMatch(factOnlyHtml, /Suggested wording|View draft template|Why this is stronger/,
   "a fact-only recommendation must not promise or praise an absent rewrite");
@@ -143,8 +144,10 @@ assert.doesNotMatch(
   /\sopen(?:=|>)/,
   "full recruiter notes must stay collapsed until requested",
 );
+const openingHtml = completeReportHtml.slice(completeReportHtml.indexOf('id="section-first-impression"'), completeReportHtml.indexOf('id="section-fixes"'));
+assert.ok(openingHtml.includes("DETAILED OPENING SENTINEL"), "the recruiter's first impression must lead the report as the Verdict");
+assert.ok(!fullNotesHtml.includes("DETAILED OPENING SENTINEL"), "the Verdict must not repeat inside full recruiter notes");
 for (const expected of [
-  "DETAILED OPENING SENTINEL",
   "DETAILED SUMMARY SENTINEL",
   "DETAILED GAP EXAMPLE SENTINEL",
   "REMAINING STRENGTH SENTINEL",
@@ -167,10 +170,10 @@ for (const expected of [
 ]) {
   assert.ok(fullNotesHtml.includes(expected), `full recruiter notes must render ${expected}`);
 }
+assert.ok(fullNotesHtml.includes("VISIBLE GAP ONE"), "the first gap moves into full notes now that the Critical Miss leads the report");
 for (const alreadyVisible of [
   "PRIMARY SHORT COPY",
   "VISIBLE STRENGTH ONE",
-  "VISIBLE GAP ONE",
   "VISIBLE ROLE POSITIONING",
   "VISIBLE ROLE ONE",
   "VISIBLE SENIORITY",

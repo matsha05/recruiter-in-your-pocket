@@ -5,24 +5,24 @@ import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
 
 export const metadata: Metadata = {
-  title: "AI Resume Feedback Shaped by a Recruiter",
+  title: "See What a Recruiter Sees: Free Resume Report",
   description: homepageDescription,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "You did the work. Let’s dial in your story.",
+    title: "See what a recruiter sees.",
     description: homepageDescription,
     url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
-    images: ["/opengraph-image?v=20260729"],
+    images: ["/opengraph-image?v=20261030"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "You did the work. Let’s dial in your story.",
+    title: "See what a recruiter sees.",
     description: homepageDescription,
-    images: ["/opengraph-image?v=20260729"],
+    images: ["/opengraph-image?v=20261030"],
   },
 };
 

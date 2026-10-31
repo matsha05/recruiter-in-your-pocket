@@ -1,4 +1,5 @@
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { sourceClauseIsNegated } from "./narrative-token-policy";
 
 const contrastMarker = "(?:but|however|yet|although|though|while|whereas)";
 const leadingSubordinateContrast = new RegExp(
@@ -50,6 +51,56 @@ const identityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]
 function identityTokens(value: string) {
   const normalized = canonicalizeUserSourceText(value).replace(/[’‘]/gu, "'").replace(/♯/gu, "#");
   return (normalized.match(identityPattern) || []).map((token) => token.toLocaleLowerCase());
+}
+
+export function isPositiveEvidenceClause(value: string) {
+  return !sourceClauseIsNegated(value)
+    && !/\b(?:lacks?|lacked|lacking|unable|cannot|can['’]t|absent|excludes?|excluded|excluding|avoids?|avoided|avoiding)\b/iu.test(value);
+}
+
+// Narrative sentence splitting can divide a dotted company name, and lexical
+// normalization discards the casing used to recognize a CamelCase name. Check
+// a complete, contiguous source identity before those lossy comparisons.
+export function evidenceContainsExactEntity(value: string, sourceText: string, requirePositiveEvidence = false) {
+  const claim = identityTokens(value);
+  if (claim.length === 0) return false;
+  const protectedSource = canonicalizeUserSourceText(sourceText).replace(identityPattern, (token) =>
+    claim.includes(identityTokens(token)[0]) ? token.replaceAll(".", protectedIdentityDot) : token
+  );
+  return narrativeEvidenceClauses(protectedSource).some((clause) => {
+    if (requirePositiveEvidence && !isPositiveEvidenceClause(clause)) return false;
+    const candidate = identityTokens(clause);
+    return candidate.some((token, start) =>
+      token === claim[0] && claim.every((claimToken, offset) => candidate[start + offset] === claimToken)
+    );
+  });
+}
+
+// Restrict negative presence to the identity's own grammatical phrase. A
+// modifier such as "without supervision" does not negate a preceding tool.
+export function evidenceContainsOnlyNegatedEntity(value: string, sourceText: string) {
+  const claim = identityTokens(value);
+  if (claim.length === 0) return false;
+  const protectedSource = canonicalizeUserSourceText(sourceText).replace(identityPattern, (token) =>
+    claim.includes(identityTokens(token)[0]) ? token.replaceAll(".", protectedIdentityDot) : token
+  );
+  const occurrences: boolean[] = [];
+  for (const clause of narrativeEvidenceClauses(protectedSource)) {
+    const candidate = identityTokens(clause);
+    for (let start = 0; start < candidate.length; start++) {
+      if (!claim.every((token, offset) => candidate[start + offset] === token)) continue;
+      const before = candidate.slice(0, start).join(" ");
+      const after = candidate.slice(start + claim.length).join(" ");
+      const negatedBefore = /\b(?:no|without|lacks?|lacked|lacking|not|never|unable|cannot|can't|don't|doesn't|didn't)(?:\s+(?:any|prior|previous|experience|knowledge|background|skills?|proficiency|expertise|in|with|of|using|uses?|used|to|work|working|have|has|had|been|able|report|reporting))*$/iu.test(before);
+      const negatedAfter = /^(?:(?:experience|knowledge|skills?|proficiency|expertise)\s+)?(?:(?:is|are|was|were|has been|have been)\s+)?(?:absent|excluded|not\s+(?:used|included|part of)|never\s+used)\b/iu.test(after);
+      // "No SQL errors" negates errors, not SQL; require an identity/capability
+      // head after a bare no/without prefix rather than an arbitrary noun.
+      const bareNegativePrefix = /\b(?:no|without)$/iu.test(before);
+      const entityHead = !after || /^(?:experience|knowledge|background|skills?|proficiency|expertise|use|usage|familiarity|for|in|during|since|at|with|and|or)\b/iu.test(after);
+      occurrences.push((negatedBefore && (!bareNegativePrefix || entityHead)) || negatedAfter);
+    }
+  }
+  return occurrences.length > 0 && occurrences.every(Boolean);
 }
 
 export function evidenceContainsIdentityPhrase(value: string, sourceText: string) {

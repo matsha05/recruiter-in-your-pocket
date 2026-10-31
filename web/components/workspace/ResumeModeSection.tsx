@@ -26,6 +26,8 @@ type ResumeModeSectionProps = {
   isSample: boolean;
   onNewReport: () => void;
   onKeepReport?: () => void;
+  isSavingReport?: boolean;
+  reportSaveError?: string | null;
   onUpgrade: () => void;
   justUnlocked: boolean;
   highlightSection?: string | null;
@@ -57,6 +59,8 @@ export default function ResumeModeSection({
   isSample,
   onNewReport,
   onKeepReport,
+  isSavingReport,
+  reportSaveError,
   onUpgrade,
   justUnlocked,
   highlightSection,
@@ -116,6 +120,8 @@ export default function ResumeModeSection({
       isSample={isSample}
       onNewReport={onNewReport}
       onKeepReport={onKeepReport}
+      isSavingReport={isSavingReport}
+      reportSaveError={reportSaveError}
       freeUsesRemaining={freeUsesRemaining}
       onUpgrade={onUpgrade}
       isGated={false}

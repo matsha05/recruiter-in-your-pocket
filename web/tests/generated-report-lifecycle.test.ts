@@ -139,7 +139,7 @@ async function run() {
   assert.equal(unknown.attemptConsumed, undefined);
   assert.equal(unknown.creditRestored, false);
   assert.equal(unknown.attemptDisposition, "unknown");
-  assert.match(unknown.retryMessage, /Check History and your remaining reports before retrying/i);
+  assert.match(unknown.retryMessage, /Check My reports before running it again/i);
   const laterAbort = new AbortController();
   laterAbort.abort();
   const errorAfterLateAbort = laterAbort.signal.aborted && shouldSynthesizeGenerationCancellation(cleanupError)

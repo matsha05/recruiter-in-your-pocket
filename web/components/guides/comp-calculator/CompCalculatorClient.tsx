@@ -119,13 +119,13 @@ export function CompCalculatorClient() {
                 <h2 id="offers-heading" className={styles.componentTitle}>Offer details</h2>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter the terms from each offer. Unknown amounts left at zero are excluded, so the comparison will be incomplete until you confirm them.</p>
               </div>
-              {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground underline decoration-brand/30 underline-offset-4 hover:decoration-brand">See a read-only example</button> : null}
+              {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground riyp-link">See a read-only example</button> : null}
             </div>
 
             {showingSample ? (
               <div className="mb-4 flex flex-col gap-3 rounded-xl border border-brand/20 bg-accent px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm leading-6 text-foreground"><strong>Read-only example.</strong> Exit it to enter your own numbers.</p>
-                <button type="button" onClick={() => setShowingSample(false)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground underline decoration-brand/30 underline-offset-4 hover:decoration-brand">Exit example</button>
+                <button type="button" onClick={() => setShowingSample(false)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground riyp-link">Exit example</button>
               </div>
             ) : null}
 

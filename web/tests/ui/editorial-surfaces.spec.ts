@@ -38,7 +38,8 @@ test.describe("editorial resources", () => {
 
     const offer = page.locator('section[aria-label="Offer 1 details"]');
     await expect(offer.getByText("$540,000", { exact: true })).toBeVisible();
-    await expect(page.locator('aside[aria-label="Modeled comparison"]')).toContainText("It is not a recommendation");
+    // One offer gets a single answer; the ranking caveat appears only when offers are compared.
+    await expect(page.locator('aside[aria-label="Modeled comparison"]')).toContainText("Modeled four-year total");
     await expect(page.locator("table")).toBeHidden();
     await expect(
       page.locator('section[aria-labelledby="year-breakdown-title"]')
@@ -94,22 +95,18 @@ const numberedResearchRoutes = [
 ] as const;
 
 test.describe("multi-figure research articles", () => {
-  test("referral calculator shows added time and zero-rate limits on mobile", async ({ page }) => {
+  test("referral figures show the published numbers and fit on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
-    const calculator = page.getByRole("figure", { name: "Calculator comparing applications per callback with and without a referral" });
-    await calculator.getByLabel("Callback rate without referral").fill("20");
-    await calculator.getByLabel("Callback rate with referral").fill("10");
-    await expect(calculator.getByText("Time added with referral", { exact: true })).toBeVisible();
-    await expect(calculator).toContainText("5 more applications per callback");
-    await expect(calculator.getByText("3.8h", { exact: true })).toBeVisible();
-
-    await calculator.getByLabel("Callback rate without referral").fill("0");
-    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(1);
-    await expect(calculator.getByText("No estimate", { exact: true })).toHaveCount(2);
-    await calculator.getByLabel("Callback rate with referral").fill("0");
-    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(2);
-    await expect(calculator).toContainText("no finite time comparison");
+    const share = page.getByRole("figure", { name: /6 in 100 were referred by an employee/ });
+    await expect(share).toContainText("29%");
+    const odds = page.getByRole("figure", { name: /about 1 in 14 referred applicants got an offer/ });
+    await expect(odds).toContainText("1 in 8");
+    await expect(odds).toContainText("1 in 500");
+    // Derived figures must say they are our arithmetic.
+    await expect(odds).toContainText("our arithmetic");
+    const chart = page.getByRole("figure", { name: /11 percentage points more likely to submit work on time and 20 points more likely to continue/ });
+    await expect(chart).toContainText("+20");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });

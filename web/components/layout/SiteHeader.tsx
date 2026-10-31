@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { ArrowRight, List } from "@phosphor-icons/react";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import alpine from "./AlpineHeader.module.css";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
@@ -24,31 +23,8 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
     const { user, signOut, isLoading: authLoading } = useAuth();
 
     const isMarketingActive = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
-    const isStudioActive = pathname === "/workspace" || pathname?.startsWith("/workspace/") || pathname === "/reports" || pathname?.startsWith("/reports/");
-
-    if (pathname === "/") {
-        return (
-            <header className={`site-header ${alpine.header}`}>
-                <div className={`app-shell-inner ${alpine.inner}`}>
-                    <Link href="/" aria-label="Recruiter in Your Pocket home" className={alpine.wordmark}>
-                        Recruiter<br />in your<br />pocket
-                    </Link>
-                    <nav className={alpine.navigation} aria-label="Main navigation">
-                        <div className={alpine.links}>
-                            <Link href="/#how-it-works">How it works</Link>
-                            <Link href="/sample-report">Sample report</Link>
-                            <Link href="/#about">About</Link>
-                            <Link href="/research">Research</Link>
-                        </div>
-                        <Link href="/workspace" data-analytics-cta="header_report" className={alpine.cta}>
-                            {user ? "Open my workspace" : "Get your free report"}<ArrowRight aria-hidden="true" />
-                        </Link>
-                        <SiteMobileMenu pathname={pathname} user={user} onSignOut={signOut} authLoading={authLoading} showResearchLink={showResearchLink} showResourcesLink={showResourcesLink} />
-                    </nav>
-                </div>
-            </header>
-        );
-    }
+    const isWorkspaceActive = pathname === "/workspace" || pathname?.startsWith("/workspace/");
+    const isReportsActive = pathname === "/reports" || pathname?.startsWith("/reports/");
 
     return (
         <header className="site-header">
@@ -60,6 +36,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                 <nav className="flex shrink-0 items-center gap-2 md:gap-4 xl:gap-6" aria-label="Main navigation">
                     <div className="hidden items-center gap-3 xl:flex">
                         <SiteNavLink href="/#how-it-works">How it works</SiteNavLink>
+                        <SiteNavLink href="/sample-report" active={isMarketingActive("/sample-report")}>Sample report</SiteNavLink>
                         <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
                         {isLaunchFlagEnabled("extensionSync") && (
                             <SiteNavLink href="/extension" active={isMarketingActive("/extension")}>Extension</SiteNavLink>
@@ -79,17 +56,18 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                         </div>
                     ) : user ? (
                         <div className="flex items-center gap-4">
-                            <Link
-                                href="/workspace"
-                                aria-current={isStudioActive ? "page" : undefined}
-                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex xl:hidden"
-                            >
-                                Studio
-                            </Link>
                             <div className="hidden items-center gap-4 xl:flex">
-                                <SiteNavLink href="/workspace" active={isStudioActive}>Studio</SiteNavLink>
+                                <SiteNavLink href="/reports" active={isReportsActive}>My reports</SiteNavLink>
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
+                            <Link
+                                href="/workspace"
+                                aria-current={isWorkspaceActive ? "page" : undefined}
+                                data-analytics-cta="header_new_report"
+                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
+                            >
+                                New report
+                            </Link>
                         </div>
                     ) : (
                         <div className="flex items-center gap-4">
@@ -101,16 +79,17 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                     "text-muted-foreground hover:text-foreground"
                                 )}
                             >
-                                Log in
+                                Sign in
                             </Link>
                             <Link
                                 href="/workspace"
+                                data-analytics-cta="header_report"
                                 className={cn(
                                     "site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center whitespace-nowrap rounded-full px-6 py-2 font-medium transition-colors md:inline-flex",
                                     "bg-primary text-primary-foreground hover:bg-primary/90"
                                 )}
                             >
-                                Get my free report
+                                Get your free report
                             </Link>
                         </div>
                     )}
@@ -219,8 +198,8 @@ function SiteMobileMenu({
                         </p>
                     ) : user ? (
                         <>
-                            <MobileSiteLink href="/workspace" active={isPathActive(pathname, "/workspace")}>Studio</MobileSiteLink>
-                            <MobileSiteLink href="/reports" active={isPathActive(pathname, "/reports")}>Reports</MobileSiteLink>
+                            <MobileSiteLink href="/workspace" active={isPathActive(pathname, "/workspace")}>New report</MobileSiteLink>
+                            <MobileSiteLink href="/reports" active={isPathActive(pathname, "/reports")}>My reports</MobileSiteLink>
                             <MobileSiteLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</MobileSiteLink>
                             <SheetClose asChild>
                                 <button
@@ -234,10 +213,10 @@ function SiteMobileMenu({
                         </>
                     ) : (
                         <>
-                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Log in</MobileSiteLink>
+                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</MobileSiteLink>
                             <SheetClose asChild>
                                 <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                                    Get my free report
+                                    Get your free report
                                 </Link>
                             </SheetClose>
                         </>

@@ -10,7 +10,7 @@ interface JobDetailPageProps {
 export async function generateMetadata({ params }: JobDetailPageProps): Promise<Metadata> {
     const resolvedParams = await params;
     return {
-        title: "Job Details",
+        title: "Job details",
         description: 'Compare your resume with this job and update your application status.',
     };
 }

@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
 export const metadata: Metadata = {
-    title: "How Social Media Cues Changed Candidate Ratings | Hiring Research",
+    title: "How public social cues changed candidate ratings",
     description: "What one screening experiment and a systematic review found about candidate ratings, validity, and fairness.",
 };
 
@@ -44,22 +44,22 @@ export default function SocialScreeningPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "What your report looks at",
                 items: [
                     {
-                        title: "The submitted document only",
-                        description: "The resume report evaluates the document you submit. It does not search or score personal social accounts."
+                        title: "Just the resume",
+                        description: "We read the document you send. We don't look up or score your social accounts."
                     },
                     {
-                        title: "No personality inference",
-                        description: "We do not turn hobbies, politics, or lifestyle cues into a candidate score."
+                        title: "No personality guesses",
+                        description: "Hobbies, politics, and lifestyle don't go into your score."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "What Makes a LinkedIn Profile Easier to Find", href: "/research/linkedin-visibility", tag: "LinkedIn" },
-                { title: "What Hiring Studies Show About Discrimination", href: "/research/hiring-discrimination-meta-analysis", tag: "Bias" },
-                { title: "What a Referral Changes", href: "/research/referral-advantage", tag: "Context" }
+                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "LinkedIn" },
+                { title: "Discrimination in hiring hasn't gone away", href: "/research/hiring-discrimination-meta-analysis", tag: "Bias" },
+                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Context" }
             ]}
             sources={[
                 {
@@ -124,27 +124,27 @@ export default function SocialScreeningPage() {
                 A 2021 systematic review concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.
                 <Citation id="source-2">2</Citation>
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>A public post may be incomplete, old, decontextualized, or unrelated to the job.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Profiles can expose protected characteristics before a structured review.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Different reviewers may interpret the same content differently.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>A public post may be incomplete, old, decontextualized, or unrelated to the job.</li>
+                <li>Profiles can expose protected characteristics before a structured review.</li>
+                <li>Different reviewers may interpret the same content differently.</li>
             </ul>
 
             <h2 className="research-h2">What is worth doing</h2>
             <p className="research-body mb-6">
                 <strong>Our advice:</strong> check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably.
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Reconcile titles, dates, credentials, and public work links.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use privacy settings intentionally on personal accounts.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Keep public work samples current when they are part of your candidacy.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Reconcile titles, dates, credentials, and public work links.</li>
+                <li>Use privacy settings intentionally on personal accounts.</li>
+                <li>Keep public work samples current when they are part of your candidacy.</li>
             </ul>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2024 experiment used one hospitality role and designed profile cues; it is not every hiring market.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The experiment measured candidate ratings, not later performance.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Employer practice varies. This article does not establish legal guidance for any jurisdiction.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The 2024 experiment used one hospitality role and designed profile cues; it is not every hiring market.</li>
+                <li>The experiment measured candidate ratings, not later performance.</li>
+                <li>Employer practice varies. This article does not establish legal guidance for any jurisdiction.</li>
             </ul>
         </ResearchArticle>
     );

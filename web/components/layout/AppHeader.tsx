@@ -11,8 +11,8 @@ import { MobileNav } from "./MobileNav";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const APP_NAV = [
-    { label: "Studio", href: "/workspace" },
-    { label: "Reports", href: "/reports" },
+    { label: "New report", href: "/workspace" },
+    { label: "My reports", href: "/reports" },
     { label: "Jobs", href: "/jobs" },
     { label: "Extension", href: "/extension" },
     { label: "Research", href: "/research" },
@@ -86,7 +86,7 @@ export function AppHeader() {
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
                         ) : (
-                            <Link href="/auth" className="app-nav-link hidden md:inline-flex">Log in</Link>
+                            <Link href="/auth" className="app-nav-link hidden md:inline-flex">Sign in</Link>
                         )}
                         <MobileNav workspaceReportVisible={workspaceReportVisible} />
                     </div>

@@ -36,7 +36,7 @@ export default function SupportPage() {
     >
       <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6 md:py-7">
         <p className="text-label uppercase tracking-wider text-brand">Support inbox</p>
-        <h2 className="mt-3 break-all font-display text-xl font-medium leading-7 tracking-tight text-foreground sm:text-report-title">support@recruiterinyourpocket.com</h2>
+        <h2 className="mt-3 break-all font-display text-xl font-bold leading-7 tracking-tight text-foreground sm:text-report-title">support@recruiterinyourpocket.com</h2>
         <p className="mt-3 text-prose text-muted-foreground">
           A screenshot can help us understand the problem. Remove personal information before sending it.
         </p>

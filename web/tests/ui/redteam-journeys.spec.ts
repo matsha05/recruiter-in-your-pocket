@@ -40,12 +40,13 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     const samplePreview = page.getByRole("article", { name: "Sample resume report preview", exact: true });
+    await samplePreview.getByRole("tab", { name: /Add the result of the launch/i }).click();
     const launchDetail = samplePreview.getByRole("tabpanel", { name: /Add the result of the launch/i });
     await expect(launchDetail.locator("blockquote")).toContainText(
       "Ran a cross-team launch with clear owners and checkpoints.",
     );
     await expect(launchDetail).toContainText("It doesn't tell a recruiter whether the launch met its goal.");
-    await expect(launchDetail.getByRole("heading", { name: "Your next move", exact: true })).toBeVisible();
+    await expect(launchDetail.getByText("What to change", { exact: true })).toBeVisible();
     await expect(launchDetail).toContainText("Add a result you can verify. What was the launch meant to achieve, and what happened?");
 
     const onboardingPriority = samplePreview.getByRole("tab", { name: /Explain how onboarding improved productivity/i });
@@ -56,7 +57,8 @@ test.describe("launch red-team journeys", () => {
       "Led onboarding work across the company, improving productivity.",
     );
     await expect(onboardingDetail).toContainText("How many people did you onboard, on which teams, and over what period?");
-    await expect(onboardingDetail).toContainText("Gather the missing details before editing.");
+    // Onboarding has no rewrite in the sample, so it must not borrow another fix's advice.
+    await expect(onboardingDetail.getByText("What to change", { exact: true })).toHaveCount(0);
     await expect(launchDetail).toBeHidden();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
@@ -112,7 +114,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
 
     const sampleCta = page.getByTestId("sample-start-report");
-    await expect(sampleCta).toHaveText(/Get my free report/i);
+    await expect(sampleCta).toHaveText(/Get your free report/i);
     expect(await sampleCta.evaluate((element) => {
       const rect = element.getBoundingClientRect();
       return rect.top >= 0 && rect.bottom <= window.innerHeight;
@@ -136,14 +138,15 @@ test.describe("launch red-team journeys", () => {
     }
 
     const firstRead = page.locator("#section-first-impression");
-    await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
-    await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
-    await expect(page.getByTestId("clarity-summary-basis")).toContainText(
-      "it is not a simple average",
+    await expect(firstRead.getByTestId("first-impression-score")).toContainText("78/100");
+    await expect(firstRead.getByTestId("critical-miss")).toContainText("Explain how onboarding improved productivity.");
+    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
+    await expect(page.getByTestId("score-basis")).toContainText(
+      "It is not a simple average.",
     );
     await expect(page.getByRole("heading", { name: "Start with these three changes.", exact: true })).toBeVisible();
 
-    const evidenceJump = firstRead.getByRole("button", { name: "See the fixes", exact: true });
+    const evidenceJump = firstRead.getByRole("button", { name: "See how to fix it", exact: true });
     await expect(evidenceJump).toBeVisible();
     await evidenceJump.click();
 
@@ -159,15 +162,15 @@ test.describe("launch red-team journeys", () => {
     await sampleTemplate.locator("summary").focus();
     await sampleTemplate.locator("summary").press("Enter");
     await expect(sampleTemplate).toHaveAttribute("open", "");
-    await expect(sampleTemplate).toContainText("This is unfinished wording.");
+    await expect(page.locator("#section-fixes")).toContainText("These are drafts. Keep only what's true, and say it your way.");
     await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeVisible();
     await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
-    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant|Original resume needed/i })).toHaveCount(0);
+    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
-    await expect(terminalCta).toContainText("Let's look at your resume.");
-    await terminalCta.getByRole("button", { name: "Get my free report", exact: true }).click();
+    await expect(terminalCta).toContainText("Now let's look at yours.");
+    await terminalCta.getByRole("button", { name: "Get your free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
@@ -177,21 +180,25 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Get your free report", exact: true })).toHaveCount(0);
+    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
 
     const purchaseDecision = page.getByTestId("post-report-purchase-decision");
-    await expect(purchaseDecision).toContainText("This free report is complete. You do not need to pay to see the rest.");
-    await expect(purchaseDecision).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
+    await expect(purchaseDecision).toContainText("Everything in your free report is yours. Nothing is held back.");
+    await expect(purchaseDecision).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
-    await expect(purchaseDecision).toContainText("One payment. 30 days. No automatic renewal.");
+    await expect(purchaseDecision).toContainText("5 more reports, good for 30 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
-    const reportPaywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
+    const reportPaywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");
     await expect(reportPaywall.getByRole("button", { name: "Back to my report" })).toBeVisible();
     await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
     const feedback = page.getByTestId("report-feedback");
-    await expect(feedback).toContainText("Tell us which advice helped or felt wrong. Include an example so we can look into it.");
+    await expect(feedback).toContainText("Tell us what helped and what missed. One example is enough for us to dig in.");
     await expect(feedback).not.toContainText("beta");
     await expect(feedback).toContainText("Your resume is never attached.");
     const feedbackLink = feedback.getByRole("link", { name: "Send feedback", exact: true });
@@ -213,28 +220,26 @@ test.describe("launch red-team journeys", () => {
       }
       await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
       await generatedFactInputs.first().fill("Changed but not confirmed");
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeDisabled();
       await firstGeneratedFix.getByRole("button", { name: "Edit original wording" }).click();
       await expect(firstGeneratedFix.getByLabel("Edit suggested line 1")).not.toHaveValue(/Candidate supplied fact|Changed but not confirmed/);
       await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
     } else {
       const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
-      const verifyButton = firstGeneratedFix.getByRole("button", { name: "Verify facts to copy" });
-      if (await copyButton.count()) await expect(copyButton).toBeEnabled();
-      else if (await verifyButton.count()) await expect(verifyButton).toBeDisabled();
+      if (await copyButton.count()) await expect(copyButton).toBeVisible();
       else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation")).toBeVisible();
     }
   });
 
-  test("5. guest save prompt opens only after Keep report and requires verified sign-in", async ({ page }) => {
+  test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
-    const saveDialog = page.getByRole("dialog", { name: /Keep this report/i });
+    const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");
     await expect(keepReport).toBeVisible();
     await page.waitForTimeout(5_500);
     await expect(saveDialog).toHaveCount(0);
     await keepReport.click();
-    await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
+    await expect(saveDialog.getByRole("heading", { name: "Save this report" })).toBeVisible({ timeout: 15_000 });
     await expect(saveDialog.getByText("Saving keeps the report, quoted resume excerpts, a short resume preview, and any job description you added in your account. You can delete the saved report at any time.", { exact: true })).toBeVisible();
     await saveDialog.getByRole("button", { name: /Sign in to save/i }).click();
     const authDialog = page.getByRole("dialog", { name: "Sign in to continue" });
@@ -270,8 +275,10 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/settings/account");
     await expect(page.getByRole("heading", { name: "Settings", exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { name: /Sign in to open settings/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /^Sign in$/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Back to workspace/i })).toBeVisible();
+    // The header carries its own Sign in link; the gate's action lives in the page body.
+    const gate = page.locator("#main-content");
+    await expect(gate.getByRole("link", { name: /^Sign in$/i })).toHaveAttribute("href", /next=%2Fsettings%2Faccount/);
+    await expect(gate.getByRole("link", { name: /Back to workspace/i })).toBeVisible();
   });
 
   test("10. anonymous attack paths are blocked cleanly by save and checkout APIs", async ({ request }) => {
@@ -322,11 +329,11 @@ test.describe("launch red-team journeys", () => {
     await page.getByTestId("workspace-job-description").fill(JOB_DESCRIPTION);
     await page.getByTestId("workspace-run-report").click();
 
-    const paywall = page.getByRole("dialog", { name: /Paid passes are currently unavailable/i });
+    const paywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(paywall).toBeVisible();
     await expect(paywall).not.toContainText("Your existing report stays available");
-    await expect(paywall).toContainText("You can return to your resume below");
-    await expect(paywall.getByRole("button", { name: "Back to workspace" })).toBeVisible();
+    await expect(paywall).toContainText("Your resume is still here when you're ready.");
+    await expect(paywall.getByRole("button", { name: "Back to my resume" })).toBeVisible();
     await expect(paywall.getByRole("button", { name: "Back to my report" })).toHaveCount(0);
   });
 });

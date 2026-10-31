@@ -169,7 +169,7 @@ async function run() {
     assert.equal(ended.ok, false);
     assert.equal(ended.errorCode, "STREAM_TRANSPORT_ERROR");
     assert.equal(ended.attemptConsumed, true, "EOF after consumed metadata must retain attempt state");
-    assert.match(ended.message || "", /connection ended/i);
+    assert.match(ended.message || "", /connection dropped/i);
 
     const pendingEnded = await (async () => {
       globalThis.fetch = async () => responseFor([{ type: "meta", attempt_consumed: false }]);

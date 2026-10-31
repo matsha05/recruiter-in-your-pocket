@@ -42,7 +42,7 @@ export type LogRecord = {
     tokens_in?: number;
     tokens_out?: number;
     latency_ms?: number;
-    cost_estimate_usd?: number;
+    cost_estimate_usd?: number | null;
     cache_hit?: boolean;
     idempotency_key_hash?: string;
   };

@@ -13,7 +13,7 @@ export default function Footer() {
                         <Wordmark />
                     </Link>
                     <p className={styles.description}>
-                        See what recruiters are likely to notice before you apply. Start free, save your report if it helps, and add the job description when you want more specific feedback.
+                        See what a recruiter sees before you apply. Your first report is free.
                     </p>
                     <p className={styles.support}>
                         Support:{" "}

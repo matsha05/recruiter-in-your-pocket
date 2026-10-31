@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 
 export const metadata: Metadata = {
-    title: "What Recruiters Trust and What They Follow | Hiring Research",
+    title: "What recruiters trust and what they follow",
     description: "A resume-screening experiment found a gap between recruiters' stated trust and their response to algorithmic advice.",
 };
 
@@ -51,22 +51,22 @@ export default function HumanVsAlgorithmPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "How to read your score",
                 items: [
                     {
-                        title: "A score you can question",
-                        description: "A number is useful only when you can trace it back to the resume and the criteria. It cannot stand in for an employer's decision."
+                        title: "A number you can trace",
+                        description: "Your First Impression score comes with the Verdict and the lines behind it. If you can't trace it back to the page, question it."
                     },
                     {
-                        title: "Check the recommendation",
-                        description: "We quote the resume behind each recommendation. Compare the advice with what you actually did before accepting it."
+                        title: "Advice you can check",
+                        description: "Every fix points to a line on your resume. Compare it with what you actually did before you take it."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "ATS Myths", href: "/research/ats-myths", tag: "Industry" },
-                { title: "Automation and Bias", href: "/research/automation-and-bias", tag: "Systems" },
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Industry" },
+                { title: "Where automation enters hiring", href: "/research/automation-and-bias", tag: "Systems" },
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
             ]}
             sources={[
                 {
@@ -80,7 +80,7 @@ export default function HumanVsAlgorithmPage() {
             faq={[
                 {
                     question: "Does this mean scores are useless?",
-                    answer: "No. A score is useful only when you can see what drove it and what to change. It is a starting point for the review, not objective truth."
+                    answer: "No. A score is useful only when you can see what drove it and what to change. It's where your report starts, not a verdict on you."
                 },
                 {
                     question: "How should candidates respond?",

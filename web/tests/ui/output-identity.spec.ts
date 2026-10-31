@@ -15,7 +15,7 @@ test("PDF output embeds the approved type and preserves a real report", async ({
   const html = renderReportHtml(report);
   await page.setContent(html);
   await page.evaluate(() => document.fonts.ready);
-  expect(await page.locator("h1").evaluate(el => getComputedStyle(el).fontFamily)).toContain("Source Serif 4");
+  expect(await page.locator("h1").evaluate(el => getComputedStyle(el).fontFamily)).toContain("Literata");
   expect(await page.locator("body").evaluate(el => getComputedStyle(el).fontSize)).toBe("14.6667px");
   expect(await page.locator("body").evaluate(el => getComputedStyle(el).backgroundColor)).toBe("rgb(255, 255, 255)");
   expect(await page.evaluate(() => [...document.fonts].every(font => font.status === "loaded"))).toBe(true);

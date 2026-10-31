@@ -5,7 +5,7 @@ import { HeaderLayout } from '@/components/layout/HeaderLayout';
 import { PRIVATE_ROUTE_ROBOTS } from '@/lib/seo/privateRouteMetadata';
 
 export const metadata: Metadata = {
-    title: { absolute: 'Login | Recruiter in Your Pocket' },
+    title: { absolute: 'Sign in | Recruiter in Your Pocket' },
     description: 'Sign in to access saved reports and role context you choose to keep.',
     robots: PRIVATE_ROUTE_ROBOTS,
 };

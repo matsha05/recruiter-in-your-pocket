@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BracketsAngle, Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
+import { Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import {
@@ -35,13 +35,9 @@ function IndependentRewriteCard({
     original: item.rewrite.original,
     draft: item.rewrite.better,
   });
-  const guidance = isReadOnly
-    ? "This example uses only the details in the original line."
-    : policy.reason === "source_unavailable"
-      ? "The original resume is not available in this view, so copying is disabled."
-      : policy.reason === "unsafe"
-        ? "This draft changes or leaves out a detail from your resume, so copying is disabled."
-        : "Check the wording, then make it sound like you.";
+  const guidance = !isReadOnly && policy.reason === "unsafe"
+    ? "This draft changes a detail from your resume. Edit it back to what's true before copying."
+    : "";
 
   useEffect(() => () => { copyRequest.current += 1; }, []);
 
@@ -65,12 +61,12 @@ function IndependentRewriteCard({
 
   return (
     <article className="border-t border-[hsl(var(--paper-line))] py-6 first:border-t-0">
-      <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">
+      <p className="text-[0.8125rem] font-semibold text-muted-foreground">
         {item.rewrite.label || `Rewrite ${String(item.originalIndex + 1).padStart(2, "0")}`}
       </p>
       <div className="mt-4 grid overflow-hidden rounded-xl border border-line md:grid-cols-2">
         <div className="bg-proof/50 px-5 py-5">
-          <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">Original</p>
+          <p className="text-[0.8125rem] font-semibold text-muted-foreground">Original</p>
           <p className="mt-3 text-base text-foreground">{item.rewrite.original}</p>
         </div>
         <div className="border-t border-line bg-surface-sky/50 px-5 py-5 md:border-l md:border-t-0">
@@ -85,14 +81,13 @@ function IndependentRewriteCard({
               )}
               <details className="mt-4 border-t border-brand/15 pt-2">
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">View draft template</summary>
-                <p className="mt-2 text-xs leading-5 text-muted-foreground">This is unfinished wording. Add the missing facts and edit the sentence before using it.</p>
                 <p className="mt-3 text-base leading-7 text-foreground/85">{item.rewrite.better}</p>
               </details>
             </>
           ) : (
             <>
               <div className="flex items-start justify-between gap-3">
-                <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
+                <p className="text-[0.8125rem] font-semibold text-brand">{isReadOnly ? "Example wording" : "Suggested wording"}</p>
                 {!isReadOnly && (
                   <button
                     type="button"
@@ -100,10 +95,10 @@ function IndependentRewriteCard({
                     disabled={!policy.copyable}
                     aria-disabled={!policy.copyable || copying}
                     aria-busy={copying || undefined}
-                    title={!policy.copyable ? guidance : undefined}
+                    title={!policy.copyable ? guidance || undefined : undefined}
                     className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-2 text-xs font-semibold text-brand transition-colors duration-fast hover:text-brand/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-busy:cursor-wait disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70 motion-reduce:transition-none"
                   >
-                    {!policy.copyable ? <><BracketsAngle className="size-4" aria-hidden="true" />Not copy-ready</> : (
+                    {!policy.copyable ? <><Copy className="size-4" aria-hidden="true" />Copy</> : (
                       <ActionFeedback state={copying ? "pending" : copied ? "success" : "idle"} states={{
                         idle: { label: "Copy", icon: <Copy className="size-4" /> },
                         pending: { label: "Copying", icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
@@ -115,7 +110,7 @@ function IndependentRewriteCard({
               </div>
               <p className={`${styles.body} mt-3 text-foreground`}>{item.rewrite.better}</p>
               <RewriteEnhancementNote note={item.rewrite.enhancement_note} className="mt-4" />
-              <p className="mt-3 text-xs leading-5 text-muted-foreground">{guidance}</p>
+              {guidance && <p className="mt-3 text-sm leading-5 text-muted-foreground">{guidance}</p>}
               {copyError && <p role="status" className="mt-3 text-base text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </>
           )}
@@ -142,7 +137,7 @@ export function IndependentAdvice({
     <section id="section-independent-advice" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
       {rewrites.length > 0 && (
         <div>
-          <p className="text-xs font-semibold uppercase riyp-track-017 text-brand">More from your resume</p>
+          <p className="text-[0.8125rem] font-semibold text-brand">More from your resume</p>
           <h2 className={`${styles.sectionTitle} mt-3`}>Other suggested edits.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
             Compare each suggestion with the original before you use it.
@@ -157,7 +152,7 @@ export function IndependentAdvice({
         <div className={rewrites.length > 0 ? "mt-12 border-t border-[hsl(var(--paper-line))] pt-10" : ""}>
           <div className="flex items-center gap-2 text-brand">
             <Question className="size-5" weight="duotone" />
-            <p className="text-xs font-semibold uppercase riyp-track-017">Other experience to consider</p>
+            <p className="text-[0.8125rem] font-semibold ">Other experience to consider</p>
           </div>
           <h2 className={`${styles.sectionTitle} mt-3`}>Questions only you can answer.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">Use these prompts to recall relevant examples. You don&apos;t need an answer to every one.</p>

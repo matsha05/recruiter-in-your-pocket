@@ -1,0 +1,166 @@
+.page {
+    overflow-x: clip;
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+    font-family: var(--font-body);
+}
+
+.founder {
+    display: grid;
+    max-width: 72rem;
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 4.5rem;
+    margin: 0 auto;
+    border-top: 1px solid hsl(var(--line));
+    padding: 6rem 1rem;
+    scroll-margin-top: 4.5rem;
+}
+
+.portrait img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.1;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    object-position: center 38%;
+}
+
+.portrait > p {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.portrait > p span { color: hsl(var(--muted-foreground)); font-weight: 400; }
+
+.founderCopy h2 {
+    max-width: 20ch;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    font-weight: var(--weight-display);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+}
+
+.introduction {
+    max-width: 34rem;
+    margin-top: 1.5rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 1.125rem;
+    line-height: 1.65;
+}
+
+.historyLabel {
+    margin-top: 2rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+}
+
+/* Company names as quiet wordmarks in our own type, not borrowed logos. */
+.history {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 2rem;
+    margin-top: 0.75rem;
+    color: hsl(var(--text-strong) / 0.55);
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    font-weight: var(--weight-display);
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+}
+
+.disclosure {
+    max-width: 34rem;
+    margin-top: 2rem;
+    border-left: 2px solid hsl(var(--line));
+    padding-left: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.founderLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 2rem;
+    margin-top: 1rem;
+}
+
+.founderLinks a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--link-line));
+    text-decoration-thickness: var(--link-thickness);
+    text-underline-offset: var(--link-offset);
+    transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+}
+
+.founderLinks a:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
+.founderLinks svg { width: 1rem; height: 1rem; }
+
+.close {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background: hsl(var(--surface-inverted));
+    color: hsl(var(--background));
+    padding: 6rem 1rem;
+    text-align: center;
+}
+
+.close h2 {
+    max-width: 16ch;
+    color: hsl(var(--background));
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: var(--weight-display);
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-wrap: balance;
+}
+
+.closeAction {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 999px;
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+    font-size: 1rem;
+    font-weight: var(--weight-control);
+    padding: 0 1.75rem;
+    transition: background-color var(--duration-fast) var(--ease);
+}
+
+.closeAction:hover { background: hsl(var(--card)); }
+.closeAction svg { transition: transform var(--duration-fast) var(--ease); }
+.closeAction:hover svg { transform: translateX(3px); }
+
+.page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
+.close a:focus-visible { outline-color: hsl(var(--background)); }
+
+@media (max-width: 800px) {
+    .founder { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 4rem 1rem; }
+    .portrait { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: center; gap: 1rem; }
+    .portrait img { aspect-ratio: 1; }
+    .portrait > p { flex-direction: column; gap: 0.125rem; padding: 0; font-size: 1rem; }
+    .introduction { font-size: 1rem; }
+    .close { padding: 4.5rem 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .closeAction, .closeAction svg { transition: none; }
+}

@@ -33,7 +33,7 @@ export function LegalShell({
                     <div className="mx-auto max-w-report">
                         <LegalNav className="mb-10 md:mb-14" />
                         <div className="mx-auto max-w-form">
-                            <p className="mb-4 text-label uppercase tracking-wider text-muted-foreground">
+                            <p className="mb-4 text-label text-muted-foreground">
                                 {eyebrow}
                             </p>
                             <div>

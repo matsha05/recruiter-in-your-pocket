@@ -8,7 +8,7 @@ import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUr
 import { isRedisRestConfigured } from "../redis/config";
 import { liveEvalMatchesCandidate, readLiveEvalEvidence } from "./evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "./liveEvalBaseline";
-import { configuredDailyGenerationLimit } from "../operations/generationBudget";
+import { configuredDailyGenerationLimit, isGenerationPaused } from "../operations/generationBudget";
 import { hasConfiguredSupportOperators } from "../support/access";
 import {
   LAUNCH_GATE_DEFINITIONS,
@@ -620,6 +620,10 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     status === "fail" ? "limited" : "configured";
 
   const incidents: string[] = [];
+  const generationPaused = isGenerationPaused();
+  if (generationPaused) {
+    incidents.push("New reports are paused while we fix a problem. Saved reports, receipts, and sign-in still work.");
+  }
   if (gateStatus("quality") === "fail") {
     incidents.push("Report configuration checks need attention. If you cannot generate a report, contact support.");
   }
@@ -639,8 +643,10 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
   const services: PublicStatusSnapshot["services"] = [
     {
       name: "Resume reports",
-      status: toPublicStatus(gateStatus("quality")),
-      message: gateStatus("quality") === "fail"
+      status: generationPaused ? "limited" : toPublicStatus(gateStatus("quality")),
+      message: generationPaused
+        ? "New reports are paused. Saved reports still open."
+        : gateStatus("quality") === "fail"
         ? "Some required report settings or quality checks need attention."
         : "Required report settings and quality checks are in place.",
     },

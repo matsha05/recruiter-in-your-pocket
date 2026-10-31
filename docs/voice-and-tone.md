@@ -2,6 +2,47 @@
 
 Recruiter in Your Pocket gives job seekers a clear, recruiter-grounded read of the document in front of them. The product does not impersonate a human recruiter, predict hiring outcomes, or turn uncertainty into certainty.
 
+## Personality (Matt, October 30, 2026)
+
+This section sets the personality. The rest of this guide still applies.
+
+- **Who is talking:** an insider over coffee. Someone who works in hiring and tells you the truth because they are on your side. Candid, specific, a little dry. Rooting for you without cheerleading. The product says "we"; Matt's founder section says "I".
+- **Bluntness:** direct, then kind. Name the problem in the first sentence, then show the way out. No softening words, no harshness.
+- **Where the wit comes from:** hiring truths (knowing observations about resumes and how hiring really works) and a product that is a little self-aware. Never at the person's expense, never wordplay for its own sake.
+- **Rhythm:** talky, mostly short. Contractions. An occasional fragment for punch.
+- **How much play:** light wit by default. The playful register lives in the hero, margin notes, "keep this" labels, and empty states. The report body stays direct. Errors, billing, and privacy stay plain.
+
+Reference lines:
+
+- Hero: "See what a recruiter sees." / "What you meant isn't always what they read. See what comes through, what slips past, and what to fix first."
+- Margin note: "This line has been on a lot of resumes. What did you do that the others didn't?"
+- A strength to leave alone: "Don't touch this one."
+- Homepage close: "Good work deserves a good read."
+- Feedback that is direct, then kind: "This reads like a job description. Tell them what you changed."
+- Hiring truth: "'Results-driven' is on every resume. Show the result instead."
+
+## Insider asides (Matt, October 31, 2026)
+
+Plain is not blank. "Errors, billing, and privacy stay plain" means no jokes there; it never meant the rest of the product should read like default UI. Every screen should sound like the same insider.
+
+- **One aside per screen, where people pause:** page intros, empty states, confirmations, loading, and emails get one line of hiring truth or quiet self-awareness. Not every line; one.
+- **Literal stays literal:** buttons, navigation, prices, legal terms, and error messages say exactly what happens. The aside sits next to them, never inside them.
+- **Trust surfaces keep the point of view, not the jokes:** a sign-in email can sound like us ("Pop it in and you're back on the other side of the desk") while its security line stays plain ("No one gets in without the code").
+- **No invented hiring stats:** an aside is an observation, never a number we can't source ("recruiters spend 6 seconds" is out unless the research library backs it).
+
+Reference lines:
+
+- Sign-in email: "Your code's here." / "Pop it in and you're back on the other side of the desk."
+- Code not arriving: "Not there? Check spam and Promotions. Recruiters lose good emails there too."
+- My reports: "Every version you've run, read the way a recruiter reads it. Run the next one and see what moved."
+- Purchase confirmed: "You're in. Five more reads." / "Spend them on revisions, or on the jobs you actually want."
+- Progress: "What keeps tripping recruiters up, and what keeps landing."
+- Empty reports: "Nothing here yet." / "Your first read is free."
+
+## What the research says matters (October 31, 2026)
+
+Four things decide whether a resume gets the call, and the research library is organized around them: **perception** (how you're read, by people and software), **impact** (what changed because of your work), **referrals** (who brings you in), and **story** (whether a stranger can tell who you are and picture you in the job). Negotiation sits after them, once there is an offer. Tie advice and tie-ins back to one of these, and to the Verdict, the score, or the Critical Miss.
+
 ## The voice
 
 The voice is **plainspoken expertise**: an experienced recruiter with excellent judgment, a generous spirit, and no need to perform cleverness.
@@ -105,7 +146,7 @@ Resource guides should feel like calm backstage knowledge, not generic career co
 - Teach the company-side mechanism the reader needs to understand: the range, level, approval chain, written term, or missing fact.
 - Give the reader a sentence they can actually say, followed by what that sentence makes clear. Do not invent “what the recruiter hears.”
 - Use a specific, supportable claim beside any memorable line. Charm may open the door; the useful fact has to walk through it.
-- Avoid negotiation theater: no chess metaphors as strategy, bluffing, “winning,” “losing leverage,” or pretending every employer follows the same rules.
+- Negotiating is normal and expected: say so plainly. Most offers have some room, and the playbook's job is to help the reader find it. Avoid negotiation theater: no chess metaphors, no bluffing, no “winning,” and no pretending every employer follows the same rules. A competing offer is real leverage only when it's real.
 - Never turn a common practice into a universal rule. Salary law, equity, taxes, deadlines, bands, and benefits need a source, date, jurisdiction, or explicit limit.
 - Make related guides do different jobs. The general offer guide builds the counter. The tech guide makes a complex package legible.
 
@@ -134,6 +175,8 @@ Every research page should make five things easy to find:
 3. What the source supports.
 4. What the user should do with that information.
 5. What the evidence does not establish.
+
+Figures speak in the same voice through one margin note: what a recruiter takes from the chart, in a sentence or two, never more certain than the source. Example: “Fourteen people. Small enough that every one of them gets read.”
 
 Use normal labels such as “What the research found,” “What this means for your resume,” “Sources,” and “Limitations.” Avoid lines that sound coined, self-congratulatory, or cute about evidence.
 

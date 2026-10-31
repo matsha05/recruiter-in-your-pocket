@@ -1,7 +1,7 @@
 import { isAnonymousRecoveryId } from "./anonymous-report-recovery";
 
 export const ANONYMOUS_REPORT_RECOVERY_STORAGE_REQUIRED_MESSAGE =
-  "This browser could not store the recovery reference required for a free report. Allow site storage, then try again.";
+  "This browser is blocking the storage we use to hold your free report while it finishes. Allow site storage for this site, then try again.";
 
 export function requireAnonymousReportRecoveryId(input: {
   mode: string;

@@ -2,7 +2,7 @@
 
 import { getClientActionError } from "@/lib/client-action-error";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import WorkspaceOverlays from "@/components/workspace/WorkspaceOverlays";
@@ -18,7 +18,7 @@ import ResumeModeSection from "@/components/workspace/ResumeModeSection";
 import LinkedInModeSection from "@/components/workspace/LinkedInModeSection";
 import { useWorkspaceInit } from "@/components/workspace/hooks/useWorkspaceInit";
 import { useJobContextFromExtension, type LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
-import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/hooks/useSampleReport";
+import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
@@ -46,7 +46,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const { push, replace } = useRouter();
     const searchParams = useSearchParams();
     const getSearchParam = searchParams.get.bind(searchParams);
-    const sampleParamEnabled = isSampleParamEnabled(getSearchParam("sample"));
     const savedRevisionRequested = getSearchParam("revision") !== null && getSearchParam("revision") !== "1";
     const { user, refreshUser, isLoading: isAuthLoading } = useAuth();
     const [resumeText, setResumeText] = useState("");
@@ -54,7 +53,15 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isLoading, setIsLoading] = useState(false);
     const [isStreaming, setIsStreaming] = useState(false);
     const [report, setReport] = useState<any>(initialReport);
-    useEffect(() => setReport(initialReport), [initialReport]);
+    const [activeSampleReport, setActiveSampleReport] = useState<ReportData | null>(initialReport);
+    useEffect(() => {
+        setReport(initialReport);
+        setActiveSampleReport(initialReport);
+    }, [initialReport]);
+    const showSampleReport = useCallback((sample: ReportData) => {
+        setReport(sample);
+        setActiveSampleReport(sample);
+    }, []);
     const { announcement, prepareReportCompletion, resetReportCompletion } = useReportCompletion(report);
     const resumePickerRef = useRef<WorkspaceResumePickerHandle>(null);
     const [commandUploadName, setCommandUploadName] = useState<string | null>(null);
@@ -93,8 +100,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const latestAnalysisControllerRef = useRef<AbortController | null>(null);
     const currentReportRef = useRef(report);
     const currentLinkedInReportRef = useRef(linkedInReport);
-    currentReportRef.current = report;
-    currentLinkedInReportRef.current = linkedInReport;
+    useLayoutEffect(() => {
+        currentReportRef.current = report;
+        currentLinkedInReportRef.current = linkedInReport;
+    }, [report, linkedInReport]);
     const captureRecoveryOwner = useCallback(
         () => latestAnalysisControllerRef.current,
         [],
@@ -151,7 +160,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         searchParams,
         report,
         skipSample,
-        setReport
+        setReport: showSampleReport
     });
 
     useCheckoutReportRestoration({ user, allowRestore: !savedRevisionRequested, setResumeText, setJobDescription, setReport, setSkipSample });
@@ -190,7 +199,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsStreaming(false);
         setAnalysisStartedAt(null);
         if (!silent) {
-            toast.info("Review stopped");
+            toast.info("Report stopped");
         }
     }, []);
 
@@ -216,7 +225,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const { clearSavedRevision } = savedRevision;
     const revisionBlocked = savedRevision.active && savedRevision.state !== "ready";
 
-    const { handleLinkedInPdfSubmit, handleLinkedInUrlSubmit, handleLinkedInSample } = useLinkedInReview({
+    const { handleLinkedInPdfSubmit, handleLinkedInSample } = useLinkedInReview({
         user,
         freeUsesRemaining,
         refreshFreeStatus,
@@ -234,7 +243,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     });
 
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
-    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser } = useResumeReview({
+    const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
@@ -244,8 +253,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         isUploadOwnerCurrent: (owner) => latestAnalysisControllerRef.current === owner,
     });
 
-    // Keep ref in sync with latest handleRun
-    handleRunRef.current = handleRun;
+    // Update before auto-run effects and callbacks observe the committed render.
+    useLayoutEffect(() => {
+        handleRunRef.current = handleRun;
+    }, [handleRun]);
 
     const handleNewReport = useCallback(() => {
         resetWorkspaceInput();
@@ -261,26 +272,34 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         replace("/workspace?revision=1", { scroll: false });
     }, [resetWorkspaceInput, clearSavedRevision, replace, report]);
 
-    const handleKeepReport = useCallback(() => {
-        if (!report || user) return;
+    const handleKeepReport = useCallback(async () => {
+        if (!report) return;
+        if (user) {
+            try {
+                await saveReportForCurrentUser(report);
+            } catch {
+                // The report stays visible with its persistent save error and retry.
+            }
+            return;
+        }
         setPendingReportForSave(report);
         Analytics.track("save_prompt_viewed", { score: report?.score || 0 });
         setIsSavePromptOpen(true);
-    }, [report, user]);
+    }, [report, user, saveReportForCurrentUser]);
 
     const handleResumeSample = useCallback(async () => {
         try {
             const data = await fetchSampleReport();
-            setReport(data);
+            showSampleReport(data);
             setJustUnlocked(false);
             setReviewMode('resume');
         } catch (err) {
             console.error("Failed to load sample report:", err);
-            toast.error("Sample report unavailable", {
-                description: "Please try again in a moment or start your free report.",
+            toast.error("The sample report didn't load", {
+                description: "Refresh to try again, or start with your own resume.",
             });
         }
-    }, []);
+    }, [showSampleReport]);
 
     const handleRetryAnalysis = useCallback(() => {
         if (analysisMode === "resume") {
@@ -290,7 +309,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         }
         if (analysisMode === "linkedin") {
             if (!lastLinkedInPdf) {
-                toast.message("Retry unavailable", { description: "Please re-upload your LinkedIn PDF." });
+                toast.message("Upload your LinkedIn PDF again to retry.");
                 return;
             }
             handleCancelAnalysis(true);
@@ -413,7 +432,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         return () => clearTimeout(timer);
     }, [highlightSection]);
 
-    const isSampleReport = sampleParamEnabled || (!skipSample && !resumeText.trim());
+    const isSampleReport = report !== null && report === activeSampleReport;
 
     return (
         <>
@@ -460,7 +479,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             isExporting={isExporting}
                             isSample={isSampleReport}
                             onNewReport={handleNewReport}
-                            onKeepReport={!user && !isSampleReport && !isLaunchFlagEnabled("guestReportSave") ? handleKeepReport : undefined}
+                            onKeepReport={!isSampleReport && (user ? needsReceiptValidatedSave(report) : !isLaunchFlagEnabled("guestReportSave")) ? handleKeepReport : undefined}
+                            isSavingReport={reportSaveState?.report === report && reportSaveState?.status === "saving"}
+                            reportSaveError={reportSaveState?.report === report ? reportSaveState?.message : null}
                             onUpgrade={() => setIsPaywallOpen(true)}
                             justUnlocked={justUnlocked}
                             highlightSection={highlightSection}
@@ -480,7 +501,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             isStreaming={isStreaming}
                             freeUsesRemaining={effectiveUsesRemaining}
                             user={user}
-                            onUrlSubmit={handleLinkedInUrlSubmit}
                             onPdfSubmit={handleLinkedInPdfSubmit}
                             onSampleReport={handleLinkedInSample}
                             onNewReport={handleNewReport}

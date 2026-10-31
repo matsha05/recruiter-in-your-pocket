@@ -1,85 +1,77 @@
 "use client";
 
-import { CheckCircle, Quotes } from "@phosphor-icons/react";
+import sampleReport from "@/public/sample-report.json";
 import { DiagramCaption, DiagramFigure } from "@/components/shared/diagrams/DiagramPrimitives";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 
-const dimensions = [
+// Every line below comes from the public sample report, so the figure shows what a report actually says.
+const criticalMiss = sampleReport.top_fixes[0];
+
+const weighs = [
     {
-        title: "Story",
-        score: 84,
-        question: "Can a reader follow your career and understand what role you want next?",
-        receipt: "The career progression is clear, but the target role is not named at the top.",
+        title: "The results you show",
+        question: "Does each example say what changed because of your work?",
+        finding: sampleReport.gaps[0],
     },
     {
-        title: "Impact",
-        score: 82,
-        question: "Does the resume show what changed because of the work?",
-        receipt: "Two bullets describe improvements without saying how many people or teams were involved.",
+        title: "How clearly each line reads",
+        question: "Can a recruiter tell what you did, and how much you owned, on the first pass?",
+        finding: sampleReport.strengths[0],
     },
     {
-        title: "Clarity",
-        score: 88,
-        question: "Is it clear what you were responsible for?",
-        receipt: "The candidate's decisions and responsibilities are consistently specific.",
+        title: "How your experience fits together",
+        question: "Does the resume point at the role you want next?",
+        finding: sampleReport.gaps[2],
     },
     {
-        title: "Readability",
-        score: 90,
-        question: "Can a reader find your roles, dates, and results quickly?",
-        receipt: "Headings, dates, and recent experience are easy to scan.",
+        title: "How easy the page is to scan",
+        question: "Can someone find your roles, dates, and results quickly?",
+        finding: sampleReport.section_review.Skills.working,
     },
 ];
 
 const reviewPath = [
-    { label: "Evidence", detail: "What the resume actually says" },
-    { label: "Review", detail: "What is clear and what remains open" },
-    { label: "First action", detail: "The most useful place to begin" },
+    { label: "Your lines", detail: "What the resume actually says" },
+    { label: "The read", detail: "What comes through and what slips past" },
+    { label: "Critical Miss", detail: "The one change to make first" },
 ];
 
 export function FirstReadModelDiagram() {
     return (
-        <DiagramFigure className="max-w-[62rem]" label="Worked example showing a clarity summary, four diagnostic scores, and the evidence behind them">
-            <div className="overflow-hidden rounded-2xl border border-line bg-card md:rounded-3xl">
-                <div className="grid lg:grid-cols-[18rem_minmax(0,1fr)]">
-                    <section className="flex flex-col justify-between border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="Worked clarity summary">
+        <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the Verdict, the First Impression score, the Critical Miss, and the four things the score weighs">
+            <div className="overflow-hidden rounded-sheet border border-line bg-card">
+                <div className="grid lg:grid-cols-[20rem_minmax(0,1fr)]">
+                    <section className="flex flex-col justify-between gap-8 border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="How the sample report opens">
                         <div>
-                            <p className="riyp-evidence-label text-brand">Worked example</p>
-                            <p className="mt-6 font-display text-section-title text-foreground">85</p>
-                            <p className="mt-4 text-sm font-semibold text-foreground">Clear and specific</p>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">Your responsibilities are clear. Add how many people or teams were involved in the improvements you describe.</p>
+                            <p className="riyp-verdict-label text-brand">Verdict</p>
+                            <p className="mt-3 font-serif text-lg leading-7 text-foreground">{sampleReport.first_impression}</p>
                         </div>
-                        <div className="mt-8 border-t border-line pt-5">
-                            <div className="flex items-start gap-3">
-                                <Quotes className="mt-0.5 size-5 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
-                                <p className="text-sm leading-6 text-foreground">“Led onboarding across teams” leaves two questions: which teams, and what improved?</p>
-                            </div>
-                            <p className="mt-4 text-data text-muted-foreground">Each recommendation points to the wording that needs attention.</p>
+                        <div className="flex flex-col gap-5">
+                        <div className="flex items-baseline gap-3 border-t border-line pt-5">
+                            <p className="font-display text-4xl font-extrabold tabular-nums tracking-tight text-foreground">{sampleReport.score}<span className="ml-0.5 text-base font-medium text-muted-foreground">/100</span></p>
+                            <p className="text-sm text-muted-foreground">First Impression score</p>
+                        </div>
+                        <div className="rounded-xl border border-[hsl(var(--miss-line))] bg-[hsl(var(--miss-surface))] p-4">
+                            <p className="riyp-verdict-label text-[hsl(var(--brass))]">Critical Miss</p>
+                            <p className="mt-1.5 text-base font-bold leading-6 text-foreground">{criticalMiss.fix}</p>
+                            <p className="mt-1.5 text-sm leading-6 text-foreground/80">{criticalMiss.why}</p>
+                        </div>
                         </div>
                     </section>
 
-                    <section className="p-6 lg:p-8" aria-label="Four score diagnostics">
-                        <div className="flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
-                            <div>
-                                <p className="riyp-evidence-label text-brand">How the score is explained</p>
-                                <h3 className="mt-2 font-display text-report-title tracking-tight text-foreground">Four parts of the review</h3>
-                            </div>
-                            <p className="max-w-[18rem] text-data text-muted-foreground">These scores summarize the feedback. They do not predict interviews or offers.</p>
+                    <section className="p-6 lg:p-8" aria-label="What the score weighs">
+                        <div className="border-b border-line pb-5">
+                            <h3 className="font-display text-report-title tracking-tight text-foreground">What the score weighs</h3>
+                            <p className="mt-2 max-w-[34rem] text-sm leading-6 text-muted-foreground">Four things a recruiter notices. The report explains each one in words; there are no separate sub-scores.</p>
                         </div>
-
                         <ol className="divide-y divide-line">
-                            {dimensions.map((dimension) => (
-                                <li key={dimension.title} className="grid gap-3 py-5 md:grid-cols-[7rem_minmax(0,1fr)_2.5rem] md:items-start md:gap-6">
+                            {weighs.map((item) => (
+                                <li key={item.title} className="grid gap-2 py-5 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-6">
+                                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
                                     <div>
-                                        <p className="text-sm font-semibold text-foreground">{dimension.title}</p>
-                                        <p className="mt-1 text-xs text-muted-foreground">{dimension.score} / 100</p>
+                                        <p className="text-sm leading-6 text-foreground">{item.question}</p>
+                                        <p className="mt-2 border-l-2 border-[hsl(var(--pen)/0.35)] pl-3 font-serif text-[0.95rem] italic leading-6 text-[hsl(var(--pen))]">{item.finding}</p>
                                     </div>
-                                    <div>
-                                        <p className="text-sm font-medium leading-6 text-foreground">{dimension.question}</p>
-                                        <p className="mt-1 text-sm leading-6 text-muted-foreground">{dimension.receipt}</p>
-                                        <progress className="research-progress mt-3" max="100" value={dimension.score}>{dimension.score}%</progress>
-                                    </div>
-                                    <CheckCircle className="size-5 text-brand md:mt-0.5" weight="duotone" aria-hidden="true" />
                                 </li>
                             ))}
                         </ol>
@@ -90,11 +82,11 @@ export function FirstReadModelDiagram() {
                     <LiftedTrace
                         items={reviewPath}
                         progress={100}
-                        ariaLabel="How resume evidence becomes a first action in the report"
+                        ariaLabel="How the lines on your resume become the Critical Miss"
                     />
                 </div>
             </div>
-            <DiagramCaption kicker="Fig. 1 / Illustrative report" title="Use the written feedback to decide what to change first." />
+            <DiagramCaption kicker="Fig. 1 / From the sample report" title="The number summarizes; the written read tells you what to change first." />
         </DiagramFigure>
     );
 }

@@ -5,7 +5,7 @@ import { ClientActionError, getClientActionError } from "@/lib/client-action-err
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { ArrowRight, FileText, Pencil, Trash2, X } from "lucide-react";
+import { ArrowRight, PencilSimple, Trash, X } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { EmptyReportIcon } from "@/components/icons";
@@ -33,8 +33,10 @@ function formatReportDate(value: string) {
   }).format(date);
 }
 
+// targetRole is the report's best-fit role suggestion, not the person's job,
+// so it stays in the meta line and never becomes the title.
 function reportTitle(report: ReportHistoryItem) {
-  return report.name || report.targetRole || "Saved report";
+  return report.name || "Resume review";
 }
 
 export function ReportHistoryList({ initialReports }: { initialReports: ReportHistoryItem[] }) {
@@ -119,16 +121,16 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-2xl bg-brand-tint text-brand">
           <EmptyReportIcon className="size-12" />
         </div>
-        <h2 className="font-display text-report-title text-foreground">No saved reports yet</h2>
+        <h2 className="font-display text-report-title text-foreground">Nothing here yet</h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-          Get a report on your resume, then save it to return to the feedback later.
+          Your first read is free. It&apos;ll wait here, Verdict and all, for whenever you revise.
         </p>
         <Button asChild className="mt-6">
           <Link
             href="/workspace"
           >
             Get your first report
-            <ArrowRight className="size-4" aria-hidden="true" />
+            <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
           </Link>
         </Button>
       </div>
@@ -143,20 +145,16 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
           const isRenaming = renamingId === report.id;
 
           return (
-            <article key={report.id} className="group grid gap-5 p-5 transition-colors hover:bg-muted/40 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <article key={report.id} className="group grid grid-cols-[3.75rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 transition-colors duration-fast ease-snap hover:bg-muted/40 sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
+              <ScoreBadge score={report.score ?? 0} className="pt-0.5" />
               <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <ScoreBadge score={report.score ?? 0} />
-                  <span className="text-xs text-muted-foreground">{formatReportDate(report.createdAt)}</span>
-                  {report.targetRole && report.targetRole !== title ? (
-                    <span className="max-w-full rounded-full bg-brand-tint px-2.5 py-1 text-xs text-brand [overflow-wrap:anywhere]">
-                      {report.targetRole}
-                    </span>
-                  ) : null}
-                </div>
+                <p className="text-[0.8125rem] text-muted-foreground [overflow-wrap:anywhere]">
+                  {formatReportDate(report.createdAt)}
+                  {report.targetRole ? <> · Points toward {report.targetRole}</> : null}
+                </p>
 
                 {isRenaming ? (
-                  <div className="mt-3 flex max-w-xl flex-col gap-2 sm:flex-row">
+                  <div className="mt-2 flex max-w-xl flex-col gap-2 sm:flex-row">
                     <label htmlFor={`report-name-${report.id}`} className="sr-only">Report name</label>
                     <Input
                       id={`report-name-${report.id}`}
@@ -188,37 +186,37 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                         className="text-muted-foreground hover:text-foreground"
                         aria-label="Cancel rename"
                       >
-                        <X className="size-4" aria-hidden="true" />
+                        <X className="size-4" weight="bold" aria-hidden="true" />
                       </Button>
                     </div>
                   </div>
                 ) : (
-                  <Link href={`/reports/${report.id}`} className="focus-ring mt-3 block rounded-lg">
-                    <h2 className="break-words font-display text-xl font-medium leading-7 text-foreground transition-colors group-hover:text-brand">{title}</h2>
+                  <Link href={`/reports/${report.id}`} className="focus-ring mt-1 block rounded-lg">
+                    <h2 className="break-words font-display text-xl font-bold leading-7 text-foreground transition-colors duration-fast ease-snap group-hover:text-brand">{title}</h2>
                     {report.resumePreview ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm leading-6 text-muted-foreground">{report.resumePreview}</p>
                     ) : (
-                      <p className="mt-1 text-sm text-muted-foreground">Open the saved report and its recommended fixes.</p>
+                      <p className="mt-1 text-sm text-muted-foreground">Open the report to see the Verdict and fixes.</p>
                     )}
                   </Link>
                 )}
               </div>
 
               {!isRenaming ? (
-                <div className="flex flex-wrap items-center gap-1 lg:self-start">
+                <div className="col-start-2 -ml-3 flex flex-wrap items-center gap-1 sm:col-start-3 sm:ml-0 sm:self-start">
                   <Link
                     href={`/reports/${report.id}`}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-brand transition-colors hover:bg-brand-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold text-foreground transition-colors duration-fast ease-snap hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                   >
-                    <FileText className="size-4" aria-hidden="true" />
                     Open
+                    <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
                   </Link>
                   <button
                     type="button"
                     onClick={() => beginRename(report)}
                     className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                   >
-                    <Pencil className="size-4" aria-hidden="true" />
+                    <PencilSimple className="size-4" aria-hidden="true" />
                     Rename
                   </button>
                   <button
@@ -227,7 +225,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     className="inline-flex size-11 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
                     aria-label={`Delete ${title}`}
                   >
-                    <Trash2 className="size-4" aria-hidden="true" />
+                    <Trash className="size-4" aria-hidden="true" />
                   </button>
                 </div>
               ) : null}

@@ -79,27 +79,3 @@ export function DiagramCaption({
     </figcaption>
   );
 }
-
-type DiagramBulletListProps = {
-  items: string[];
-  dense?: boolean;
-  className?: string;
-};
-
-export function DiagramBulletList({ items, dense, className }: DiagramBulletListProps) {
-  return (
-    <ul
-      className={cn(
-        "list-disc list-outside pl-5 marker:text-brand",
-        dense ? "space-y-1" : "space-y-1.5",
-        className
-      )}
-    >
-      {items.map((item) => (
-        <li key={item} className="text-data text-muted-foreground">
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}

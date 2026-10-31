@@ -179,7 +179,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {/* User's existing labels - shown first if they have any */}
                                 {userLabels.length > 0 && (
                                     <div className="py-2 border-b border-border">
-                                        <div className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                        <div className="px-4 py-1 text-[0.8125rem] font-semibold text-muted-foreground ">
                                             Your Labels
                                         </div>
                                         {userLabels.map((label) => (
@@ -205,7 +205,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
 
                                 {/* Quick labels - minimal, just to get started */}
                                 <div className="py-2">
-                                    <div className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                    <div className="px-4 py-1 text-[0.8125rem] font-semibold text-muted-foreground ">
                                         Quick Pick
                                     </div>
                                     {QUICK_LABELS.map((label) => (

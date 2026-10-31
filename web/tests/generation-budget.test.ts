@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   configuredDailyGenerationLimit,
+  configuredDailyPaidGenerationLimit,
   DAILY_CAPACITY_EXHAUSTED_MESSAGE,
   reserveDailyGenerationCapacity,
 } from "../lib/operations/generationBudget";
@@ -51,6 +52,33 @@ async function run() {
   assert.equal(blocked.reason, "limit_reached");
   assert.equal(redis.calls[0].keys[0], "ops:generation:daily:2026-07-21");
   assert.equal(redis.calls[0].args[1], 48 * 60 * 60, "daily key self-expires");
+
+  // Free traffic that exhausts its ceiling must not block a paying customer.
+  const shared = new FakeRedis();
+  const paidRedis = {
+    calls: [] as string[],
+    async eval<T>(_script: string, keys: string[], args: Array<string | number>): Promise<T> {
+      this.calls.push(keys[0]);
+      return (keys[0].includes(":paid:") ? [1, 1] : shared.eval(_script, keys, args)) as T;
+    },
+  };
+  const capEnv = { NODE_ENV: "production", RIYP_MAX_DAILY_GENERATIONS: "1" };
+  const day = new Date("2026-10-30T12:00:00Z");
+  await reserveDailyGenerationCapacity({ env: capEnv, redis: paidRedis, now: day });
+  const freeBlocked = await reserveDailyGenerationCapacity({ env: capEnv, redis: paidRedis, now: day });
+  const paidAllowed = await reserveDailyGenerationCapacity({ env: capEnv, redis: paidRedis, now: day, tier: "paid" });
+  assert.equal(freeBlocked.allowed, false, "free ceiling still applies to free traffic");
+  assert.equal(paidAllowed.allowed, true, "pass holders draw from their own ceiling");
+  assert.equal(paidRedis.calls[2], "ops:generation:daily:paid:2026-10-30");
+  assert.equal(configuredDailyPaidGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "250" }), 250);
+  assert.equal(
+    configuredDailyPaidGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "250", RIYP_MAX_DAILY_PAID_GENERATIONS: "500" }),
+    500,
+  );
+  const pausedPaid = await reserveDailyGenerationCapacity({
+    env: { ...capEnv, RIYP_DISABLE_GENERATION: "1" }, redis: paidRedis, tier: "paid",
+  });
+  assert.equal(pausedPaid.reason, "paused", "the kill switch still stops paid generation");
 
   console.log("✅ PASS: generation kill switch and atomic daily spend ceiling fail closed");
 }

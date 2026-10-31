@@ -5,6 +5,7 @@ import type { ReviewMode } from "@/components/workspace/ModeSwitcher";
 import { streamLinkedInFeedback } from "@/lib/api";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
+import { REPORT_ACCESS_NOT_USED } from "@/lib/billing/generationFailureCopy";
 
 type RefreshFreeStatus = (options?: {
   fallbackDecrement?: boolean;
@@ -103,15 +104,15 @@ export function useLinkedInReview({
           });
         } else {
           console.error("Failed to generate LinkedIn report:", result.message);
-          toast.error("Failed to analyze LinkedIn profile", {
-            description: `${result.message || "Unknown error"} · Your free report was not used`
+          toast.error("We couldn't finish your LinkedIn report", {
+            description: `${REPORT_ACCESS_NOT_USED} Try again, or save a fresh PDF from LinkedIn and upload that.`
           });
         }
       } catch (err) {
         if (!isAnalysisCurrent(controller)) return;
         console.error("LinkedIn analysis error:", err);
-        toast.error("LinkedIn analysis error", {
-          description: "Please try again. Your free report was not used."
+        toast.error("We couldn't finish your LinkedIn report", {
+          description: `${REPORT_ACCESS_NOT_USED} Try again in a moment.`
         });
       } finally {
         if (endAnalysis(controller)) {
@@ -137,12 +138,6 @@ export function useLinkedInReview({
     ]
   );
 
-  const handleLinkedInUrlSubmit = useCallback(async (url: string) => {
-    toast.info("URL analysis coming soon", {
-      description: "Please upload your LinkedIn PDF for now."
-    });
-  }, []);
-
   const handleLinkedInSample = useCallback(async () => {
     try {
       const res = await fetch("/sample-linkedin-report.json");
@@ -158,7 +153,6 @@ export function useLinkedInReview({
 
   return {
     handleLinkedInPdfSubmit,
-    handleLinkedInUrlSubmit,
     handleLinkedInSample
   };
 }

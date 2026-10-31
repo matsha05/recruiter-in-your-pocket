@@ -9,12 +9,9 @@ test.describe("homepage feedback and SEO contract", () => {
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      /You did the work\.\s*Let’s dial in\s*your story\./,
-    );
-    await expect(homepage).toContainText("AI feedback. Real recruiting experience.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
     await expect(homepage).toContainText(
-      "Get a thorough, honest, and actionable resume diagnostic, shaped by real recruiting experience.",
+      "What you meant isn’t always what they read. See what comes through, what slips past, and what to fix first.",
     );
 
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
@@ -22,49 +19,31 @@ test.describe("homepage feedback and SEO contract", () => {
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "Explore the sample report", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "See a sample report", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
-    const hero = homepage.locator("section[aria-labelledby='mineral-hero-title']");
-    await expect(hero.getByText("No account required. Your resume is private and secure.", { exact: true })).toBeVisible();
-    const freeLimits = homepage.locator("#how-it-works details").filter({ hasText: "Free report limits" });
-    await expect(freeLimits).not.toHaveAttribute("open", "");
-    await freeLimits.locator("summary").focus();
-    await page.keyboard.press("Enter");
-    await expect(freeLimits).toHaveAttribute("open", "");
-    await expect(freeLimits.locator("p")).toBeVisible();
-    const limitsPosition = await freeLimits.locator("p").evaluate((paragraph) => getComputedStyle(paragraph).position);
-    expect(["absolute", "fixed"]).not.toContain(limitsPosition);
-    await expect(freeLimits).toContainText("Repeat use across browsers or shared networks");
-    await expect(freeLimits).toContainText("Daily capacity limits apply");
+    const hero = homepage.locator("section[aria-labelledby='hero-title']");
+    await expect(hero.getByText("Your first report is free. No account or card needed, and anonymous reports don’t store your resume text.", { exact: true })).toBeVisible();
+    // Free-report limits live on pricing and in the FAQ, not on the homepage.
+    await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
-    const trustRow = homepage.getByRole("region", { name: "Trusted by people at", exact: true });
-    await expect(trustRow).toBeVisible();
-    await expect(trustRow.getByRole("list", { name: "Companies", exact: true })).toBeVisible();
-    for (const company of ["Google", "Meta", "Apple", "Amazon", "Microsoft", "Bain & Company"]) {
-      await expect(trustRow.getByRole("img", { name: company, exact: true })).toBeVisible();
-    }
-    await expect(trustRow).toContainText("And many more");
-    await expect(homepage.getByRole("article", { name: "Example resume assessment", exact: true })).toBeVisible();
-    await expect(homepage).not.toContainText(
-      "Real recruiting judgment, honest feedback, factual rewrites, and no subscription trap.",
-    );
+    await expect(homepage).not.toContainText("Trusted by people at");
+    const preview = homepage.getByRole("article", { name: "Sample resume report preview", exact: true });
+    await expect(preview).toContainText("Verdict");
+    await expect(preview).toContainText("First Impression score");
+    await expect(preview).toContainText("Critical Miss");
 
-    const founder = page.getByRole("heading", { level: 2, name: /A human point of view\.\s*Built into every review\./ });
+    const founder = page.getByRole("heading", { level: 2, name: "I've hired hundreds of people and led hiring globally at OpenAI, Meta, and Google." });
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("After 14 years in recruiting and hiring");
-    await expect(homepage).toContainText("AI generates the feedback using review criteria developed by Matt.");
-    await expect(page.getByText(/Your report does not include a personal review from Matt/i)).toBeVisible();
-    await expect(homepage).toContainText(
-      "No current or former employer sponsors or endorses Recruiter in Your Pocket.",
-    );
-    await expect(homepage).toContainText("Company names identify Matt's work history.");
+    await expect(homepage).toContainText("After 14 years in recruiting, I built this");
+    await expect(homepage).toContainText("Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself.");
     await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/mattrshaw",
     );
+    await expect(page.getByRole("heading", { level: 2, name: "Good work deserves a good read." })).toBeVisible();
 
     const calculator = page.locator("footer").getByRole("link", { name: "Offer calculator", exact: true });
     await expect(calculator).toBeVisible();
@@ -99,7 +78,7 @@ test.describe("homepage feedback and SEO contract", () => {
     ]));
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
       "content",
-      /opengraph-image\?v=20260729/,
+      /opengraph-image\?v=20261030/,
     );
   });
 

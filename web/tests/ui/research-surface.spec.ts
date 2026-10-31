@@ -6,7 +6,7 @@ const articles = [
   "/research/automation-and-bias",
   "/research/hiring-discrimination-meta-analysis",
   "/research/how-recruiters-read",
-  "/research/how-we-score",
+  "/methodology",
   "/research/human-vs-algorithm",
   "/research/linkedin-visibility",
   "/research/quantifying-impact",
@@ -17,11 +17,13 @@ const articles = [
   "/research/social-screening",
   "/research/spelling-errors-impact",
   "/research/star-method",
-  "/research/structured-interviews-why-star",
+  "/research/who-you-are",
+  "/research/gaps-and-pivots",
   "/research/writing-quality-hire-probability",
 ] as const;
 
 const redirects = [
+  ["/research/structured-interviews-why-star", "/research/star-method"],
   ["/research/automation-filter-points", "/research/automation-and-bias"],
   ["/research/bias-limits-optimization", "/research/hiring-discrimination-meta-analysis"],
   ["/research/how-people-scan", "/research/how-recruiters-read"],
@@ -70,8 +72,8 @@ test.describe("research system", () => {
           };
         });
 
-        expect(audit.bodyFont, route).toContain("Instrument Sans");
-        expect(audit.headingFont, route).toContain("Instrument Sans");
+        expect(audit.bodyFont, route).toContain("Schibsted Grotesk");
+        expect(audit.headingFont, route).toContain("Schibsted Grotesk");
         expect(audit.overflow, route).toBeLessThanOrEqual(1);
         expect(audit.unlabeledFigures, route).toBe(0);
         expect(audit.uncaptionedFigures, route).toBe(0);

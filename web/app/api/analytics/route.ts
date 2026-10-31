@@ -79,29 +79,21 @@ export async function GET() {
             if (json?.strengths) allStrengths.push(...json.strengths);
         }
 
-        // Count frequency
-        const gapCounts: Record<string, number> = {};
-        const strengthCounts: Record<string, number> = {};
+        // Group near-identical findings by their opening words, but show the full sentence.
+        const tally = (items: string[]) => {
+            const groups = new Map<string, { text: string; count: number }>();
+            for (const item of items) {
+                if (typeof item !== "string" || !item.trim()) continue;
+                const key = item.trim().toLowerCase().slice(0, 50);
+                const group = groups.get(key);
+                if (group) group.count += 1;
+                else groups.set(key, { text: item.trim(), count: 1 });
+            }
+            return Array.from(groups.values()).sort((a, b) => b.count - a.count).slice(0, 5);
+        };
 
-        for (const gap of allGaps) {
-            const key = gap.slice(0, 50); // Truncate for grouping
-            gapCounts[key] = (gapCounts[key] || 0) + 1;
-        }
-        for (const strength of allStrengths) {
-            const key = strength.slice(0, 50);
-            strengthCounts[key] = (strengthCounts[key] || 0) + 1;
-        }
-
-        // Get top items
-        const commonGaps = Object.entries(gapCounts)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5)
-            .map(([text, count]) => ({ text, count }));
-
-        const topStrengths = Object.entries(strengthCounts)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5)
-            .map(([text, count]) => ({ text, count }));
+        const commonGaps = tally(allGaps);
+        const topStrengths = tally(allStrengths);
 
         return NextResponse.json({
             ok: true,

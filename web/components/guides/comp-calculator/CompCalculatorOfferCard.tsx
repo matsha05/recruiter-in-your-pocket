@@ -213,7 +213,7 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
       <span aria-hidden="true" className={`absolute left-5 top-0 h-1 w-12 rounded-b-full sm:left-6 ${style.bar}`} />
       <div className="mb-5 flex min-h-11 items-center justify-between gap-4">
         <div className={`${styles.label} flex flex-wrap items-center gap-3 text-muted-foreground`}>
-          <span>{offer.isCurrentJob ? "Current job" : `Offer ${String(index + 1).padStart(2, "0")}`}</span>
+          <span>{offer.isCurrentJob ? "Current job" : `Offer ${index + 1}`}</span>
           {readOnly ? <span className="rounded-full bg-accent px-2.5 py-1 text-brand">Example</span> : null}
         </div>
         {canRemove ? (
@@ -223,7 +223,7 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
         ) : null}
       </div>
 
-      <label htmlFor={`${offer.id}-company`} className="sr-only">Company or role label</label>
+      <label htmlFor={`${offer.id}-company`} className="sr-only">Company or role</label>
       <input
         id={`${offer.id}-company`}
         type="text"
@@ -246,7 +246,7 @@ export function CompCalculatorOfferCard({ offer, index, onChange, onRemove, canR
 
       <div className="mt-5 flex flex-col gap-2 border-t border-line pt-4 sm:flex-row sm:items-baseline sm:justify-between">
         <span className={`${styles.label} text-muted-foreground`}>Modeled four-year value</span>
-        <span className={`text-report-title tabular-nums ${style.text}`}>{valid ? formatCurrency(total) : "Fix vesting"}</span>
+        <span className="text-report-title tabular-nums text-foreground">{valid ? formatCurrency(total) : "Fix vesting"}</span>
       </div>
     </section>
   );

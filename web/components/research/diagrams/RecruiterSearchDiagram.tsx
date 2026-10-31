@@ -7,14 +7,14 @@ export function RecruiterSearchDiagram({ figureNumber = 1 }: { figureNumber?: nu
     return (
         <DiagramFigure className="max-w-[46rem]" label="What is publicly known and unknown about recruiter search">
             <DiagramFrame>
-                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What is public" title="LinkedIn does not disclose its full ranking system." note="Published documentation explains some search features. It does not tell us exactly where a profile will appear." />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} title="What LinkedIn says, and what it doesn't." />
                 <ComparisonField
-                    left={{ eyebrow: "Published or observable", title: "What we can support", tone: "insight", items: ["Platform scale and activity", "Recruiter usage surveys", "Skills-first sourcing findings"] }}
-                    right={{ eyebrow: "Not disclosed", title: "What remains unknown", tone: "quiet", items: ["Exact ranking weights", "Search-scoring logic", "The complete visibility model"] }}
-                    verdict={<><strong className="text-foreground">What you can do:</strong> describe your roles and skills accurately, and fill in relevant profile sections. No wording guarantees a search position.</>}
+                    left={{ eyebrow: "In LinkedIn's help pages", title: "What we can support", tone: "insight", items: ["Recruiters can filter by title and skill", "The Skills filter reads your headline, titles, summary, and experience", "Shared resume details can count in some cases"] }}
+                    right={{ eyebrow: "Not disclosed", title: "What remains unknown", tone: "quiet", items: ["How results are ranked", "How much each section counts"] }}
+                    verdict={<><strong className="text-foreground">What you can do:</strong> use the titles and skills a recruiter would search for, wherever they honestly describe your work.</>}
                 />
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / What is public`} title="Platform documentation and usage studies answer different questions about recruiter search." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / LinkedIn Recruiter Help`} title="The words on your profile are searchable. The ranking isn't public." />
         </DiagramFigure>
     );
 }

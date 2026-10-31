@@ -4,7 +4,7 @@ import { ResumeHeatmap } from "@/components/research/diagrams/ResumeHeatmap";
 import { ScanPattern } from "@/components/research/diagrams/ScanPattern";
 
 export const metadata: Metadata = {
-    title: "What Recruiters Notice in the First Pass | Hiring Research",
+    title: "What recruiters notice in the first pass",
     description: "Peer-reviewed eye-tracking research on recruiter attention, resume review, and the limits of the six-second claim.",
 };
 
@@ -24,7 +24,7 @@ export default function HowRecruitersReadPage() {
                 stat: "2,043 resume reviews",
                 statDescription: (
                     <>
-                        In a 2023 eye-tracking study, review time and attention to the Experience section were associated with decisions to move a resume forward. That is an association within one study, not a universal formula.
+                        In a 2023 eye-tracking study, recruiters who spent longer on the Experience section were more likely to move the resume forward.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -43,28 +43,28 @@ export default function HowRecruitersReadPage() {
                 <>
                     <h2 className="research-h2">What the studies measured</h2>
                     <p className="research-body mb-6">
-                        The studies below used different tasks and groups of recruiters. The 2012 company report explains where the six-second claim came from; the peer-reviewed studies offer a fuller view of attention and judgment.
+                        Three studies, three different setups. Together they say more about where attention goes than one famous number does.
                     </p>
                     <ResumeHeatmap figureNumber={1} />
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Details a recruiter may need",
-                        description: "We point out where your resume leaves questions about your role, responsibilities, or results."
+                        title: "The Verdict",
+                        description: "Your Verdict is our version of that first pass: what comes through, and what slips past."
                     },
                     {
-                        title: "Experience in context",
-                        description: "We keep role, scope, ownership, and outcomes together because the full resume changes how individual details are judged."
+                        title: "The Critical Miss",
+                        description: "If a recruiter would be left asking about your role, scope, or results, that question leads your report."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "What Spelling Errors Cost", href: "/research/spelling-errors-impact", tag: "Screening" },
-                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Research" },
-                { title: "How the Report Score Works", href: "/research/how-we-score", tag: "Methodology" }
+                { title: "How spelling errors changed recruiter ratings", href: "/research/spelling-errors-impact", tag: "Screening" },
+                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Research" },
+                { title: "How the report works", href: "/methodology", tag: "Methodology" }
             ]}
             sources={[
                 {
@@ -164,11 +164,11 @@ export default function HowRecruitersReadPage() {
             </div>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2023 study focused on entry-level computer science resumes and a simulated screen.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Eye-tracking associations do not prove that a resume section caused a decision.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2002 study found different judgments for full resumes and simplified profiles; it does not prescribe one layout.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The 2012 vendor report is historical context, not the foundation for our advice.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The 2023 study focused on entry-level computer science resumes and a simulated screen.</li>
+                <li>Eye-tracking associations do not prove that a resume section caused a decision.</li>
+                <li>The 2002 study found different judgments for full resumes and simplified profiles; it does not prescribe one layout.</li>
+                <li>The 2012 vendor report is historical context, not the foundation for our advice.</li>
             </ul>
         </ResearchArticle>
     );

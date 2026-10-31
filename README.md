@@ -32,6 +32,8 @@ Prereqs: Node 24, npm
 - Copy `web/env.example` to `web/.env.local`
 - Copy `.env.example` to `.env` if you run root scripts or tests
 
+The candidate defaults to `gpt-6.1-terra` for resume reports, with medium reasoning, a bounded high-reasoning repair, and an 8,000-token production output ceiling per call. `OPENAI_RESUME_MODEL` overrides the resume model; `OPENAI_MODEL` applies to other modes. A model change requires fresh candidate evaluation before release.
+
 3) Run the web app
 `npm run dev`
 

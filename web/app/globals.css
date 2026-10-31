@@ -2,19 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Highlighter system (Oct 30, 2026): Schibsted Grotesk for headlines and interface, Literata for the recruiter's voice. */
 @font-face {
-  font-family: "Instrument Sans";
-  src: url("/fonts/instrument-sans/InstrumentSans-Variable.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2") format("woff2");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Source Serif 4";
-  src: url("/fonts/source-serif-4/SourceSerif4-Variable.woff2") format("woff2");
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk/SchibstedGrotesk-Italic-Variable.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Literata";
+  src: url("/fonts/literata/Literata-Variable.woff2") format("woff2");
   font-weight: 200 900;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Literata";
+  src: url("/fonts/literata/Literata-Italic-Variable.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -23,59 +40,77 @@
     /* Shared typography from the approved alpine reference. */
 
     /* Approved alpine product palette; HSL channels preserve existing utilities */
-    --background: 34.286 28.000% 95.098%;
-    --foreground: 193.333 20.000% 8.824%;
+    --background: 60 12% 95.1%;
+    --foreground: 150 10.5% 7.5%;
     --surface-page: var(--background);
     --text-strong: var(--foreground);
-    --text-muted: 187.500 4.040% 38.824%;
-    --text-soft: 187.500 4.040% 38.824%;
-    --line: 100.000 4.348% 86.471%;
-    --control-line: 190.000 4.878% 51.765%;
+    --text-muted: 140 3.2% 36.5%;
+    --text-soft: 140 3.2% 36.5%;
+    --line: 75 6% 87.1%;
+    --control-line: 140 4% 52%;
 
-    --card: 40.000 27.273% 97.843%;
-    --card-foreground: 193.333 20.000% 8.824%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 10.5% 7.5%;
 
-    --popover: 40.000 27.273% 97.843%;
-    --popover-foreground: 193.333 20.000% 8.824%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 10.5% 7.5%;
 
-    --primary: 193.333 20.000% 8.824%;
-    --primary-foreground: 40.000 27.273% 97.843%;
+    --primary: 150 10.5% 7.5%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 48.000 14.286% 93.137%;
-    --secondary-foreground: 193.333 20.000% 8.824%;
+    --secondary: 75 8.7% 91%;
+    --secondary-foreground: 150 10.5% 7.5%;
 
-    --muted: 48.000 14.286% 93.137%;
-    --muted-foreground: 187.500 4.040% 38.824%;
+    --muted: 75 8.7% 91%;
+    --muted-foreground: 140 3.2% 36.5%;
     /* Accessible muted text */
 
-    --accent: 48.000 14.286% 93.137%;
-    --accent-foreground: 193.333 20.000% 8.824%;
+    --accent: 75 8.7% 91%;
+    --accent-foreground: 150 10.5% 7.5%;
 
     --destructive: 4.231 76.471% 40.000%;
     --destructive-foreground: 0.000 0.000% 100.000%;
 
     /* Structural borders */
-    --border: 100.000 4.348% 86.471%;
-    --input: 190.000 4.878% 51.765%;
-    --ring: 191.748 100.000% 28.039%;
+    --border: 75 6% 87.1%;
+    --input: 140 4% 52%;
+    --ring: var(--pen);
 
     --radius-sm: 0.625rem;
     --radius: 0.625rem;
     --radius-lg: 0.75rem;
-    --radius-xl: 1.5rem;
+    --radius-xl: 1.125rem;
 
     /* Loading states */
     --skeleton: hsl(var(--muted) / 0.1);
 
-    /* Insight, action, and state colors */
-    --brand: 191.748 100.000% 28.039%;
-    --brand-strong: 191.478 100.000% 22.549%;
-    --brand-tint: 175.385 35.135% 92.745%;
+    /* Highlighter system (Oct 30, 2026): ink for actions, pen for the recruiter's notes and links, highlighter yellow for the Critical Miss. --brass is now the deep olive ink used on yellow.
+       The older aqua names below are aliases so existing utilities pick up the pen. */
+    --pen: 160 48.8% 23.7%;
+    --pen-strong: 160 40% 32%;
+    --pen-tint: 155 25% 92%;
+    /* A recruiter's desk of pens (Oct 31, 2026). Blue ink is the candidate's own work and numbers;
+       the chart steps are the categorical order for comparisons, validated for color-vision deficiency
+       and contrast on the white sheet. Use them in order, never cycled; red stays reserved for problems. */
+    --blue-ink: 223.6 64.7% 40%;
+    --red-pen: var(--destructive);
+    --chart-1: 223.9 65.1% 50.6%;
+    --chart-2: 153.1 53.3% 35.3%;
+    --chart-3: 279.8 36% 48.4%;
+    --chart-4: 28 78.6% 47.6%;
+    --brass: 47 100% 21%;
+    --highlight: 50 100% 65.1%;
+    /* The Critical Miss: a highlighter-yellow sheet with deep olive ink. */
+    --miss-surface: 51 100% 88%;
+    --miss-line: 50 84% 68.4%;
+    --brand: var(--pen);
+    --brand-strong: var(--pen-strong);
+    --brand-tint: var(--pen-tint);
     --citron: 73.548 87.736% 58.431%;
-    --cyan-bright: 191.748 100.000% 28.039%;
-    --surface-sky: 175.385 35.135% 92.745%;
-    --sky-strong: 191.748 100.000% 28.039%;
-    --surface-proof: 48.000 14.286% 93.137%;
+    --cyan-bright: var(--pen);
+    --surface-sky: var(--pen-tint);
+    --sky-strong: var(--pen);
+    --surface-proof: 75 8.7% 91%;
     --accent-apricot: var(--brand);
     --accent-butter: 73.548 87.736% 58.431%;
     --butter-ink: 193.333 20.000% 8.824%;
@@ -86,54 +121,44 @@
     --slate-muted: 187.500 4.040% 38.824%;
 
     /* Inverted Surface (dark sections in light mode) */
-    --surface-inverted: 193.333 20.000% 8.824%;
+    --surface-inverted: 150 10.5% 7.5%;
 
-    /* Premium: Gold (Unlock moments ONLY) */
-    --premium: 29.268 80.392% 30.000%;
-
-    /* Semantic Colors */
-    --gold: 29.268 80.392% 30.000%;
+    /* Brass aliases: one value, one meaning. */
+    --premium: var(--brass);
+    --gold: var(--brass);
     --moss: 155.455 47.826% 27.059%;
-    --amber: 29.268 80.392% 30.000%;
+    --amber: var(--brass);
     --rose: 4.231 76.471% 40.000%;
 
     /* Status semantics */
-    --success: 155.455 47.826% 27.059%;
-    --warning: 29.268 80.392% 30.000%;
-    --warning-foreground: 29.268 80.392% 30.000%;
-    /* Clear assessment graphics; dark semantic colors above remain the text roles. */
-    --assessment-aqua: 188 85% 34%;
-    --assessment-green: 156 64% 37%;
-    --assessment-amber: 42 94% 58%;
-    /* Reference illustration palette; order does not represent finding severity. */
-    --assessment-priority-coral: 5.652 100% 72.941%;
-    --assessment-priority-gold: 43.537 100% 67.843%;
-    --assessment-priority-gray: 60 2.083% 81.176%;
-    --assessment-number-ink: 225 36.364% 12.941%;
-    --assessment-forest: 152.958 31.839% 43.725%;
-    --assessment-track: 48 8.772% 88.824%;
+    --success: 160 48.8% 23.7%;
+    --warning: var(--brass);
+    --warning-foreground: var(--brass);
+    /* Assessment graphics follow the same roles. */
+    --assessment-aqua: var(--pen);
+    --assessment-green: var(--success);
+    --assessment-amber: var(--brass);
     /* --destructive already defined above, for errors and <70 scores */
 
     /* One variable sans across marketing and product; serif only for editorial accents. */
-    --font-brand-sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-    --font-editorial: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-brand-sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --font-editorial: "Literata", Georgia, "Times New Roman", serif;
     --font-display: var(--font-brand-sans);
     --font-body: var(--font-brand-sans);
     --font-mono: var(--font-brand-sans);
-    --weight-display: 700;
-    --weight-heading: 650;
+    --weight-display: 800;
+    --weight-heading: 700;
     --weight-title: 600;
     --weight-body: 400;
     --weight-control: 600;
     --weight-label: 600;
-
 
     /* Accessible state surfaces and shared sheet geometry. */
     --success-surface: 144.000 31.250% 93.725%;
     --warning-surface: 35.172 100.000% 94.314%;
     --destructive-surface: 5.000 85.714% 97.255%;
     --disabled-surface: 80.000 7.692% 92.353%;
-    --radius-sheet: 1.5rem;
+    --radius-sheet: 1.125rem;
     --radius-inset: 0.75rem;
     --shadow-sheet: 0 12px 36px rgb(18 25 27 / 5%);
     --space-48: 3rem;
@@ -142,9 +167,15 @@
 
     /* Motion */
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --duration-fast: 140ms;
-    --duration-normal: 180ms;
-    --duration-slow: 180ms;
+    --duration-fast: 160ms;
+    --duration-normal: 200ms;
+    --duration-slow: 520ms;
+
+    /* Links: one offset and weight everywhere; color says which kind of link it is. */
+    --link-offset: 0.24em;
+    --link-thickness: 1px;
+    --link-line: var(--pen) / 0.4;
+    --link-line-quiet: var(--text-strong) / 0.22;
 
     /* Component spacing */
     --space-card-sm: 1rem;
@@ -173,23 +204,22 @@
     /* Emphasis, active */
 
     /* Compatibility aliases mapped to the same alpine roles */
-    --chrome-line: 100.000 4.348% 86.471%;
-    --surface-quiet: 48.000 14.286% 93.137%;
-    --surface-raised: 40.000 27.273% 97.843%;
+    --chrome-line: 75 6% 87.1%;
+    --surface-quiet: 75 8.7% 91%;
+    --surface-raised: 0 0% 100%;
     --text-subtle: var(--text-muted);
     --paper: var(--surface-page);
     --paper-muted: var(--surface-proof);
     --mineral: var(--surface-page);
     --mineral-strong: var(--surface-proof);
-    --mineral-soft: 48.000 14.286% 93.137%;
+    --mineral-soft: 75 8.7% 91%;
     --ink: var(--text-strong);
-    --ink-deep: 193.333 20.000% 8.824%;
-    --cream: 34.286 28.000% 95.098%;
-    --paper-line: 100.000 4.348% 86.471%;
-    --ink-line: 187.500 4.040% 38.824%;
-    --teal-bright: 191.748 100.000% 28.039%;
+    --ink-deep: 150 10.5% 7.5%;
+    --cream: 60 12% 95.1%;
+    --paper-line: 75 6% 87.1%;
+    --ink-line: 140 3.2% 36.5%;
+    --teal-bright: var(--pen);
     --annotation: var(--accent-apricot);
-    --brass: 29.268 80.392% 30.000%;
     /* Locked shell heights: product 64px; marketing 64px mobile / 72px desktop. */
     --product-header-height: 4rem;
     --marketing-header-height-mobile: 4rem;
@@ -202,48 +232,61 @@
 
   .dark {
     /* The same material and aqua hierarchy at dark-mode contrast. */
-    --background: 180.000 8.000% 9.804%;
-    --foreground: 34.286 28.000% 95.098%;
-    --card: 180.000 7.246% 13.529%;
-    --card-foreground: 34.286 28.000% 95.098%;
-    --popover: 180.000 7.246% 13.529%;
-    --popover-foreground: 34.286 28.000% 95.098%;
-    --primary: 34.286 28.000% 95.098%;
-    --primary-foreground: 180.000 8.000% 9.804%;
-    --secondary: 170.000 6.818% 17.255%;
-    --secondary-foreground: 34.286 28.000% 95.098%;
-    --muted: 170.000 6.818% 17.255%;
-    --muted-foreground: 160.000 6.569% 73.137%;
-    --accent: 170.000 6.818% 17.255%;
-    --accent-foreground: 34.286 28.000% 95.098%;
+    --background: 150 8% 7.5%;
+    --foreground: 150 8% 93%;
+    --card: 150 7% 10.2%;
+    --card-foreground: 150 8% 93%;
+    --popover: 150 7% 10.2%;
+    --popover-foreground: 150 8% 93%;
+    --primary: 150 8% 93%;
+    --primary-foreground: 150 8% 7.5%;
+    --secondary: 145 7% 13%;
+    --secondary-foreground: 150 8% 93%;
+    --muted: 145 7% 13%;
+    --muted-foreground: 148 5% 65%;
+    --accent: 145 7% 13%;
+    --accent-foreground: 150 8% 93%;
     --destructive: 5.000 100.000% 76.471%;
     --destructive-foreground: 180.000 8.000% 9.804%;
-    --input: 190.000 4.878% 51.765%;
-    --ring: 188.718 61.257% 62.549%;
-    --border: 160.000 6.383% 27.647%;
-    --brand: 188.718 61.257% 62.549%;
-    --brand-strong: 186.835 60.305% 74.314%;
-    --brand-tint: 185.581 48.315% 17.451%;
-    --surface-sky: 185.581 48.315% 17.451%;
-    --surface-proof: 170.000 6.818% 17.255%;
-    --text-muted: 160.000 6.569% 73.137%;
-    --text-soft: 160.000 6.569% 73.137%;
-    --line: 160.000 6.383% 27.647%;
-    --control-line: 190.000 4.878% 51.765%;
+    --input: 145 4% 45%;
+    --ring: var(--pen);
+    --border: 145 5% 18%;
+    --pen-strong: 153 43% 80%;
+    --pen-tint: 155 22% 14%;
+    --blue-ink: 223.8 76.6% 78.2%;
+    --red-pen: var(--destructive);
+    --chart-1: 224 73.5% 62.9%;
+    --chart-2: 152.5 45.3% 41.6%;
+    --chart-3: 277.1 40% 58.8%;
+    --chart-4: 28 78.6% 47.6%;
+    --brand: var(--pen);
+    --brand-strong: var(--pen-strong);
+    --brand-tint: var(--pen-tint);
+    --surface-sky: var(--pen-tint);
+    --surface-proof: 145 7% 13%;
+    --text-muted: 148 5% 65%;
+    --text-soft: 148 5% 65%;
+    --line: 145 5% 18%;
+    --control-line: 145 4% 45%;
     --slate: 160.000 6.569% 73.137%;
     --slate-muted: 160.000 6.569% 73.137%;
-    --premium: 32.039 68.212% 70.392%;
-    --surface-inverted: 193.333 20.000% 8.824%;
-    --chrome-line: 160.000 6.383% 27.647%;
-    --surface-quiet: 170.000 6.818% 17.255%;
-    --surface-raised: 180.000 7.246% 13.529%;
+    --brass: 48 100% 75%;
+    --premium: var(--brass);
+    --pen: 153 43% 69%;
+    --highlight: 49 100% 18%;
+    --miss-surface: 51 68% 10%;
+    --miss-line: 49 70% 25%;
+    --surface-inverted: 150 10.5% 4%;
+    --chrome-line: 145 5% 18%;
+    --surface-quiet: 145 7% 13%;
+    --surface-raised: 150 7% 10.2%;
     --text-subtle: 160.000 6.569% 73.137%;
-    --paper: 180.000 8.000% 9.804%;
-    --paper-muted: 170.000 6.818% 17.255%;
-    --success: 144.375 42.105% 70.196%;
+    --paper: 150 8% 7.5%;
+    --paper-muted: 145 7% 13%;
+    --success: 153 43% 69%;
     --success-surface: 147.857 30.435% 18.039%;
-    --warning: 31.765 73.913% 72.941%;
-    --warning-foreground: 31.765 73.913% 72.941%;
+    --warning: var(--brass);
+    --warning-foreground: var(--brass);
     --warning-surface: 27.857 30.435% 18.039%;
     --destructive-surface: 4.000 28.846% 20.392%;
     --disabled-surface: 170.000 6.818% 17.255%;
@@ -2003,9 +2046,9 @@
     background-image: url("/assets/brand/citron-marker-bold-v3.webp");
   }
 
+  /* Schibsted Grotesk's tabular figures also widen punctuation, so text labels keep proportional spacing. */
   .riyp-tabular-label {
     font-family: var(--font-body);
-    font-variant-numeric: tabular-nums;
   }
 
   .workspace-first-read-title {
@@ -2130,10 +2173,11 @@
     font-size: 0.875rem;
   }
 
-  .riyp-weight-520 { font-weight: 520; }
-  .riyp-weight-540 { font-weight: 540; }
-  .riyp-weight-560 { font-weight: 560; }
-  .riyp-weight-620 { font-weight: 620; }
+  /* Legacy display weights, remapped to the Highlighter scale (Schibsted Grotesk headings sit at 700-800). */
+  .riyp-weight-520 { font-weight: 700; }
+  .riyp-weight-540 { font-weight: 700; }
+  .riyp-weight-560 { font-weight: 700; }
+  .riyp-weight-620 { font-weight: 800; }
   .riyp-stretch-86 { font-stretch: 86%; }
   .riyp-stretch-88 { font-stretch: 88%; }
   .riyp-stretch-90 { font-stretch: 90%; }
@@ -2233,11 +2277,11 @@
   }
 
   :root .text-teal-600 {
-    color: rgb(15 118 110) !important;
+    color: hsl(var(--pen)) !important;
   }
 
   :root .bg-teal-600 {
-    background-color: rgb(15 118 110) !important;
+    background-color: hsl(var(--pen)) !important;
   }
 
   :root .text-muted-foreground\/50,
@@ -2251,13 +2295,6 @@
     margin: 2.5rem auto;
   }
 
-  .riyp-figure-frame {
-    border: 1px solid hsl(var(--line));
-    background: hsl(var(--surface-raised));
-    border-radius: var(--radius-sheet);
-    box-shadow: var(--shadow-sheet);
-  }
-
   .riyp-figure figcaption {
     color: hsl(var(--muted-foreground));
     text-align: left;
@@ -2265,40 +2302,21 @@
 
   .riyp-figure-kicker {
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    line-height: 1.125rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
     color: hsl(var(--muted-foreground));
   }
 
   .research-h2 {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: var(--weight-heading);
     line-height: 1.2;
     letter-spacing: -0.01em;
     color: hsl(var(--foreground));
     margin-top: 2rem;
     margin-bottom: 0.75rem;
-  }
-
-  .research-h3 {
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: hsl(var(--foreground));
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .research-lede {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: hsl(var(--muted-foreground));
   }
 
   .research-body {
@@ -2318,8 +2336,8 @@
 
   /* ==========================================================================
      ALPINE TYPOGRAPHY SYSTEM
-     - Instrument Sans: headlines, body, controls, tabular metrics
-     - Source Serif 4: written assessments and editorial verdicts
+     - Schibsted Grotesk: headlines (800), interface, body, controls, tabular metrics
+     - Literata: the recruiter's voice (Verdict, margin notes in italic, quoted lines)
      ========================================================================== */
 
   /* Display: Verdicts (largest, lightest) */
@@ -2474,12 +2492,10 @@
 
   .app-page-eyebrow {
     font-family: var(--font-body);
-    font-size: 0.6875rem;
-    line-height: 1.125rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--pen));
   }
 
   .app-page-title {
@@ -2543,7 +2559,7 @@
   }
 
   .skip-link:focus {
-    @apply translate-y-0 outline-none ring-2 ring-teal-500 ring-offset-2;
+    @apply translate-y-0 outline-none ring-2 ring-[hsl(var(--pen))] ring-offset-2;
   }
 
   /* Post-Unlock Highlight */
@@ -2598,14 +2614,14 @@
 
   .site-header {
     @apply fixed top-0 left-0 right-0 z-50;
-    background: hsl(var(--surface-page) / 0.96);
+    background: hsl(var(--surface-page));
     border-bottom: 1px solid hsl(var(--line));
   }
 
   .site-header-ink,
   .dark .site-header,
   .dark .site-header-ink {
-    background: hsl(var(--surface-page) / 0.96);
+    background: hsl(var(--surface-page));
     border-bottom-color: hsl(var(--line));
   }
 
@@ -2756,12 +2772,6 @@
     border: 1px solid hsl(var(--line));
     border-radius: var(--radius-sheet);
     background: hsl(var(--surface-raised));
-    box-shadow: var(--shadow-sheet);
-    transition: border-color var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease);
-  }
-
-  .app-card:hover {
-    border-color: hsl(var(--brand) / 0.42);
   }
 
   .app-card-highlight {
@@ -3527,9 +3537,17 @@
 
   .riyp-evidence-label {
     font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+  }
+
+  /* Uppercase is reserved for the two named report parts: Verdict and Critical Miss. */
+  .riyp-verdict-label {
+    font-family: var(--font-body);
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
     line-height: 1.125rem;
     text-transform: uppercase;
   }
@@ -3537,7 +3555,7 @@
   .riyp-evidence-title {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: var(--weight-heading);
     font-stretch: normal;
     letter-spacing: -0.02em;
     line-height: 1.875rem;
@@ -4009,7 +4027,6 @@
  * functional, but normalize their visual treatment to the current system:
  * mineral/paper/ink surfaces, crisp rules, and no ambient glow.
  */
-.riyp-figure-frame,
 .studio-glass,
 .landing-frame-hero,
 .landing-frame-mist,
@@ -4026,7 +4043,6 @@
   backdrop-filter: none !important;
 }
 
-.riyp-figure-frame,
 .landing-frame-hero,
 .landing-frame-mist,
 .landing-frame-soft,
@@ -4065,44 +4081,6 @@
 /* RESEARCH / EVIDENCE EXPERIENCE                                             */
 /* ========================================================================== */
 
-.research-source-ledger {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(3rem, 7vw, 6rem);
-  border-block: 1px solid hsl(var(--line));
-}
-
-.research-source-ledger > div {
-  min-width: 0;
-  padding: 1.35rem 1.5rem 1.35rem 0;
-}
-
-.research-source-ledger > div + div {
-  border-left: 1px solid hsl(var(--line));
-  padding-left: 1.5rem;
-}
-
-.research-source-ledger dt {
-  font-size: 0.875rem;
-  line-height: 1.375rem;
-  font-weight: 600;
-  color: hsl(var(--foreground));
-  }
-
-.research-source-ledger dd {
-  margin-top: 0.35rem;
-  font-size: 0.875rem;
-  line-height: 1.375rem;
-  color: hsl(var(--muted-foreground));
-  }
-
-.research-read-map {
-  display: grid;
-  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(3rem, 7vw, 7rem);
-  align-items: start;
-}
-
 .research-read-map-steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4117,17 +4095,6 @@
 
 .research-read-map-step + .research-read-map-step {
   border-left: 1px solid hsl(var(--line));
-}
-
-.research-read-map-icon {
-  display: grid;
-  width: 3.5rem;
-  height: 3.5rem;
-  place-items: center;
-  border: 1px solid hsl(var(--line));
-  background: hsl(var(--surface-page));
-  color: hsl(var(--brand));
-  border-radius: var(--radius-inset);
 }
 
 .research-read-map-arrow {
@@ -4230,40 +4197,6 @@
   background: hsl(var(--surface-proof));
 }
 
-.research-progress {
-  width: 100%;
-  height: 0.48rem;
-  overflow: hidden;
-  border: 0;
-  border-radius: 999px;
-  background: hsl(var(--brand) / 0.14);
-  color: hsl(var(--brand));
-  appearance: none;
-}
-
-.research-progress::-webkit-progress-bar {
-  border-radius: 999px;
-  background: hsl(var(--brand) / 0.14);
-}
-
-.research-progress::-webkit-progress-value {
-  border-radius: 999px;
-  background: hsl(var(--brand));
-}
-
-.research-progress::-moz-progress-bar {
-  border-radius: 999px;
-  background: hsl(var(--brand));
-}
-
-.research-progress-warn::-webkit-progress-value {
-  background: hsl(var(--accent-apricot));
-}
-
-.research-progress-warn::-moz-progress-bar {
-  background: hsl(var(--accent-apricot));
-}
-
 .research-parser-flow {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
@@ -4312,7 +4245,7 @@
   border-color: hsl(var(--brand) / 0.5);
   background: hsl(var(--surface-page));
   color: hsl(var(--brand));
-  box-shadow: inset 0.22rem 0 0 hsl(var(--brand));
+  border-left: 0.22rem solid hsl(var(--brand));
 }
 
 @media (max-width: 1023px) {
@@ -4340,23 +4273,6 @@
 }
 
 @media (max-width: 767px) {
-  .research-source-ledger {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .research-source-ledger > div,
-  .research-source-ledger > div + div {
-    padding: 1rem;
-    border-left: 0;
-  }
-
-  .research-source-ledger > div:nth-child(even) {
-    border-left: 1px solid hsl(var(--line));
-  }
-
-  .research-source-ledger > div:nth-child(n + 3) {
-    border-top: 1px solid hsl(var(--line));
-  }
 
   .research-read-map-steps {
     grid-template-columns: 1fr;
@@ -4524,7 +4440,6 @@
   }
 }
 
-
 /* State continuity: shared layers keep their own origin and Radix lifecycle. */
 .riyp-overlay-motion[data-state="open"] {
   animation: riyp-layer-fade-in var(--duration-normal) var(--ease) both;
@@ -4626,10 +4541,61 @@
   }
 }
 
-
 /* Sonner retains its swipe mechanics; settled notification changes share UI timing. */
 .toaster[data-sonner-toaster],
 .toaster [data-sonner-toast] {
   transition-duration: var(--duration-normal);
   transition-timing-function: var(--ease);
+}
+
+/* Links. Inline links sit in running text: ink words with a pen underline that deepens on hover.
+   Quiet links are for footers, sources, and metadata: muted words with a hairline that turns ink on hover.
+   Prose containers (.riyp-prose) give unclassed links the inline treatment automatically. */
+.riyp-link,
+.riyp-prose a:where(:not([class])) {
+  color: hsl(var(--text-strong));
+  text-decoration-line: underline;
+  text-decoration-color: hsl(var(--link-line));
+  text-decoration-thickness: var(--link-thickness);
+  text-underline-offset: var(--link-offset);
+  text-decoration-skip-ink: auto;
+  transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+}
+
+.riyp-link:hover,
+.riyp-prose a:where(:not([class])):hover {
+  color: hsl(var(--pen-strong));
+  text-decoration-color: currentColor;
+}
+
+.riyp-link-quiet {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: hsl(var(--link-line-quiet));
+  text-decoration-thickness: var(--link-thickness);
+  text-underline-offset: var(--link-offset);
+  text-decoration-skip-ink: auto;
+  transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+}
+
+.riyp-link-quiet:hover {
+  color: hsl(var(--text-strong));
+  text-decoration-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riyp-link,
+  .riyp-link-quiet,
+  .riyp-prose a:where(:not([class])) {
+    transition: none;
+  }
+}
+
+
+/* Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give the comma a full digit width,
+   which printed money as "$1 ,370 ,000". Every `tabular-nums` in the product therefore uses
+   proportional digits; right-aligned columns stay tidy, and commas keep their natural width.
+   Tailwind 3 composes font-variant-numeric from these variables, so this overrides the utility once. */
+.tabular-nums {
+  --tw-numeric-spacing: proportional-nums;
 }

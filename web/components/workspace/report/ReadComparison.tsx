@@ -1,4 +1,5 @@
-import { ArrowRight, CheckCircle, XCircle } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
+import { cn } from "@/lib/utils";
 import type { ReportData } from "./ReportTypes";
 import styles from "./ReadComparison.module.css";
 
@@ -7,74 +8,66 @@ type ReadComparisonProps = {
     current: ReportData;
 };
 
-function firstFix(report: ReportData) {
-    const fix = report.top_fixes?.[0];
-    return fix?.fix || fix?.text || "No first fix was returned.";
+function normalize(value: string) {
+    return value.trim().replace(/\s+/g, " ").toLocaleLowerCase();
 }
 
 function snapshot(report: ReportData) {
+    const miss = report.top_fixes?.[0];
     return {
-        takeaway: report.first_impression_takeaway || report.first_impression || report.summary || "No first impression was returned.",
-        doubt: report.gaps?.[0] || report.biggest_gap_example || "No main concern was returned.",
-        fix: firstFix(report),
+        verdict: report.first_impression || report.first_impression_takeaway || report.summary || "",
+        score: typeof report.score === "number" ? report.score : null,
+        miss: miss?.fix || miss?.text || "",
     };
 }
 
+/**
+ * Compares two reports on the same resume the way a person would: did the Critical Miss change,
+ * and did the score move? A changed Critical Miss means the report now leads with something else;
+ * it does not prove the old gap was fixed, so the copy never claims that.
+ */
 export function ReadComparison({ previous, current }: ReadComparisonProps) {
     const before = snapshot(previous);
     const after = snapshot(current);
-    const changed = before.takeaway !== after.takeaway || before.doubt !== after.doubt || before.fix !== after.fix;
+    const sameMiss = Boolean(before.miss && after.miss) && normalize(before.miss) === normalize(after.miss);
+    const delta = before.score !== null && after.score !== null ? after.score - before.score : null;
+
+    const title = sameMiss ? "Same Critical Miss as last time." : "Your Critical Miss changed.";
+    const intro = sameMiss
+        ? "The revision didn't change what a recruiter would miss first. Start there again."
+        : "Your report now leads with something new. Check that the old gap is really closed, then take on this one.";
 
     return (
-        <section aria-labelledby="read-comparison-title" className={styles.root}>
+        <section aria-labelledby="read-comparison-title" className={styles.root} data-testid="read-comparison">
             <div className={styles.header}>
-                <div>
-                    <p className={styles.kicker}>Revision comparison</p>
-                    <h2 id="read-comparison-title" className={styles.title}>
-                        {changed ? "Here's what changed in your feedback." : "The main feedback hasn't changed."}
-                    </h2>
-                </div>
-                <p className={styles.intro}>
-                    Compare the main finding, missing details, and first suggested edit from each report.
-                </p>
+                <h2 id="read-comparison-title" className={styles.title}>{title}</h2>
+                <p className={styles.intro}>{intro}</p>
             </div>
 
             <div className={styles.grid}>
-                <article className={styles.card}>
-                    <p className={styles.cardLabel}>Previous report</p>
-                    <p className={`${styles.headline} ${styles.previousHeadline}`}>{before.takeaway}</p>
-                    <dl className={styles.details}>
-                        <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>Open question</dt>
-                            <dd className={styles.detailText}>{before.doubt}</dd>
-                        </div>
-                        <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>First suggested edit</dt>
-                            <dd className={styles.detailText}>{before.fix}</dd>
-                        </div>
-                    </dl>
+                <article className={styles.card} aria-label="Last time">
+                    <p className={styles.cardLabel}>Last time</p>
+                    {before.score !== null && <p className={styles.score}>{before.score}<span>/100</span></p>}
+                    <p className={styles.missLabel}>Critical Miss</p>
+                    <p className={cn(styles.miss, !sameMiss && styles.missPast)}>{before.miss}</p>
+                    <p className={styles.verdict}>{before.verdict}</p>
                 </article>
 
-                <div className={styles.arrow} aria-hidden="true">
-                    <ArrowRight weight="bold" />
-                </div>
+                <div className={styles.arrow} aria-hidden="true"><ArrowRight weight="bold" /></div>
 
-                <article className={`${styles.card} ${styles.current}`}>
-                    <div className={styles.currentTag}>
-                        {changed ? <CheckCircle className={styles.changedIcon} weight="fill" /> : <XCircle className={styles.sameIcon} weight="duotone" />}
-                        <p className={`${styles.cardLabel} ${styles.currentLabel}`}>Current report</p>
+                <article className={cn(styles.card, styles.current)} aria-label="Now">
+                    <div className={styles.cardTop}>
+                        <p className={styles.cardLabel}>Now</p>
+                        {delta !== null && delta !== 0 && (
+                            <p className={cn(styles.delta, delta > 0 ? styles.deltaUp : styles.deltaDown)}>
+                                {delta > 0 ? `Up ${delta}` : `Down ${Math.abs(delta)}`}
+                            </p>
+                        )}
                     </div>
-                    <p className={styles.headline}>{after.takeaway}</p>
-                    <dl className={styles.details}>
-                        <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>What still needs context</dt>
-                            <dd className={styles.detailText}>{after.doubt}</dd>
-                        </div>
-                        <div className={styles.detail}>
-                            <dt className={styles.detailLabel}>First suggested edit</dt>
-                            <dd className={styles.detailText}>{after.fix}</dd>
-                        </div>
-                    </dl>
+                    {after.score !== null && <p className={styles.score}>{after.score}<span>/100</span></p>}
+                    <p className={styles.missLabel}>Critical Miss</p>
+                    <p className={styles.miss}><span className={styles.mark}>{after.miss}</span></p>
+                    <p className={styles.verdict}>{after.verdict}</p>
                 </article>
             </div>
         </section>

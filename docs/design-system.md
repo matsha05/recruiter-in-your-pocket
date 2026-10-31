@@ -1,11 +1,11 @@
-# Recruiter in Your Pocket - Alpine Design System
+# Recruiter in Your Pocket - Highlighter Design System
 
-Last updated: 2026-09-12
+Last updated: 2026-10-30
 Owner: Product Design + Engineering
 Status: Approved implementation contract; route and output verification tracked separately
-System version: Alpine 1.0
+System version: Highlighter 1.0
 
-Matt approved the September 5 6 Pro recommendations for the whole product. The September 12 homepage uses the approved editorial instrument in place of the earlier pocket lion and granite artwork. The shared system remains Instrument Sans and Source Serif 4, warm surfaces, restrained aqua, dark pill actions, and softened sheets. Lifted Line evidence meanings, product truth, security, accessibility, and working behavior remain protected. Approval of this contract does not establish that every route or output has passed verification; see `docs/alpine-product-migration.md` for historical migration evidence and the current release record for deployment checks.
+On October 30, 2026 Matt chose the Highlighter direction for every surface: web, report, workspace, signed-in pages, research and diagrams, legal and error pages, emails, the PDF, icons, and the share image. A recruiter's actual tools are the system: a yellow highlighter marks what a recruiter would miss, and a green pen writes the notes. Schibsted Grotesk sets headlines and runs the interface, and Literata carries the recruiter's voice. Product truth, security, accessibility, and working behavior remain protected. It replaces the Alpine system (Instrument Sans, Source Serif 4, aqua), which is retired.
 
 Related authority:
 
@@ -14,6 +14,7 @@ Related authority:
 - [`font-operations.md`](./font-operations.md): local font loading, verification, and separate export pipelines
 
 If documentation and runtime disagree, the disagreement is a release blocker. Update both in the same change.
+
 
 ## 1. System idea
 
@@ -42,7 +43,7 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
-- homepage instrument and calibrated artwork controls: `web/components/landing/instrument/`
+- homepage hero and “Your view / A recruiter's view” example: `web/components/landing/hero/`
 
 Rules:
 
@@ -59,65 +60,70 @@ The system is the floor for consistency, not a page template. Do not repeat one 
 
 | Role | Family | Use |
 | --- | --- | --- |
-| Display and interface | **Instrument Sans** | wordmark, titles, prices, navigation, controls, labels, body, and dense product UI |
-| Technical | **Instrument Sans** with tabular figures | scores, time, indices, and identifiers |
-| Short verdict | **Source Serif 4** | selected brief assessments; never a separate route-wide type system |
+| Headlines and interface | **Schibsted Grotesk** | wordmark, headlines (800), section titles (700), big numbers, navigation, controls, labels, body, tables; tabular figures for data |
+| Recruiter's voice | **Literata** | the Verdict, margin notes (italic), and quoted resume lines; never a route-wide type system |
 
-Both families are self-hosted in `web/app/globals.css` with `font-display: swap`. Instrument Sans is served from `/fonts/instrument-sans/InstrumentSans-Variable.woff2`, normal weights 400-700. Source Serif 4 is served from `/fonts/source-serif-4/SourceSerif4-Variable.woff2`, normal weights 200-900; its short verdict role uses 400. No runtime font CDN is allowed. Retained assets from former systems do not define browser branding.
+Both are self-hosted in `web/app/globals.css` with `font-display: swap`, from `/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2` plus its italic (weights 400-900) and `/fonts/literata/Literata-Variable.woff2` plus `Literata-Italic-Variable.woff2` (200-900). Static `.woff` cuts in the same folders feed renderers that cannot read woff2 (share image, icons). Both are SIL Open Font License; each folder keeps its `OFL.txt`. Neither had been used in RIYP before; Geist and Newsreader (December 2025, July 2026) and Bricolage Grotesque were considered and not chosen. No runtime font CDN is allowed. There is no mono face.
 
 Runtime mapping:
 
-- `--font-brand-sans` -> `"Instrument Sans", "Helvetica Neue", Arial, sans-serif`
-- `--font-display`, `--font-body`, and `--font-mono` -> `var(--font-brand-sans)`
-- `--font-editorial` -> `"Source Serif 4", Georgia, "Times New Roman", serif`
-- `--weight-display` -> `700`; `--weight-heading` -> `650`; `--weight-title` -> `600`
+- `--font-brand-sans`, `--font-display`, `--font-body`, and `--font-mono` -> `"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif`
+- `--font-editorial` -> `"Literata", Georgia, "Times New Roman", serif`
+- `--weight-display` -> `800`; `--weight-heading` -> `700`; `--weight-title` -> `600`
 - `--weight-body` -> `400`
 - `--weight-control` and `--weight-label` -> `600`
 
 ### Type roles
 
+Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give commas a full digit width ("$1 ,370 ,000"), so `tabular-nums` is redefined globally to proportional digits. Right-align money columns for tidy edges; never re-enable `tnum` on anything that contains a comma or period.
+
 | Role | Size / leading | Weight and treatment |
 | --- | --- | --- |
-| Landing hero | `clamp(40px, 4.55vw, 82px)` / 0.98; about 70px / 68.5px at 1536px | 700; preserves the approved three-line instrument headline |
-| Marketing section title | about 40px / 44px | 650 |
-| Workspace title | 40px / 44px | 600; scale down on narrow screens without clipping |
-| Report heading | 24px / 30px | 600 |
-| Short verdict | 28px / 36px | Source Serif 4, 400 |
-| Report and app body | 16px / 25px | Instrument Sans, 400 |
-| Research prose | 18px / 30px | 400; about 66ch measure |
-| Table data | 14px / 22px | 400; label numeric columns and use tabular figures |
-| Controls | 14-16px | 600 |
-| Labels | 12-14px | 600; tracking only for genuine metadata |
+| Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | Schibsted Grotesk 800, -0.045em; one line on desktop: “See what a recruiter sees.” |
+| Marketing section title | 32-48px / 1.05 | Schibsted Grotesk 800 |
+| Workspace and report headings | 24px / 30px | Schibsted Grotesk 700 |
+| Verdict | 22-24px / 1.4 | Literata 400 |
+| Margin notes | 15-17px / 1.45 | Literata italic 400, pen color |
+| Report and app body | 16px / 25px | Schibsted Grotesk 400 |
+| Research prose | 18px / 30px | Schibsted Grotesk 400; about 66ch measure |
+| Table data | 14px / 22px | Schibsted Grotesk 400, tabular figures |
+| Controls | 14-16px | Schibsted Grotesk 600 |
+| Labels | 12-14px | Schibsted Grotesk 600; uppercase tracking only for Verdict and Critical Miss |
 
-Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Avoid a third branded font or separate mono face. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
+Nothing below 12px. Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
 
 ### Separate output pipelines
 
-PDF, Open Graph, icons, and email carry the same brand roles within each renderer's constraints. They do not inherit browser CSS. The September 5 local output migration was rendered and inspected; evidence is recorded in `output/competitive-visuals-20260905/output-identity/README.md`. Future font/layout changes require the same independent checks. Do not infer completion from a global font change. Email must remain readable with fallback fonts and images disabled; PDF must retain selectable text, useful pagination, and grayscale legibility.
+PDF, Open Graph, icons, and email carry the same brand roles within each renderer's constraints. They do not inherit browser CSS. The PDF embeds the three woff2 faces; the share image and icons use the static woff cuts; email uses system fallbacks with the Highlighter palette. Every font or layout change requires an independent render check of each output. Do not infer completion from a global font change. Email must remain readable with fallback fonts and images disabled; PDF must retain selectable text, useful pagination, and grayscale legibility.
 
 ## 4. Color and surface tokens
 
 | Role | Canonical value | Semantic usage |
 | --- | --- | --- |
-| Canvas | `#f6f3ef` | `--background` / `--surface-page` / paper |
-| Sheet | `#fbfaf8` | card and report/form surfaces |
-| Inset | `#f0efeb` | secondary or contained evidence areas |
-| Ink | `#12191b` | `--foreground` / `--text-strong`; primary actions |
-| Muted text | `#5f6667` | `--text-muted` / muted foreground |
-| Aqua | `#00738f` | `--brand`; links, focus, selected state |
-| Aqua surface | `#e6f3f2` | `--brand-tint` / `--surface-sky`; restrained explanatory areas |
-| Divider | `#dcdedb` | `--line`; nonessential grouping rules |
-| Control boundary | `#7e888a` | identifiable input and utility-control boundaries |
+| Ground | `#f4f4f1` | `--background` / `--surface-page`; a cool-neutral desk, not cream |
+| Paper | `#ffffff` | `--card`; sheets, reports, forms |
+| Inset | `#e9eae6` | `--secondary` / `--muted`; contained areas, toggles |
+| Ink | `#111513` | `--foreground` / `--text-strong`; text and every primary action |
+| Muted text | `#5a605c` | `--text-muted` / muted foreground |
+| Pen | `#1f5a46` | `--pen` (aliased by `--brand`, `--ring`, `--cyan-bright`); link underlines, focus, selected state, the recruiter's notes |
+| Pen hover | `--pen-strong` | `--brand-strong`; hover and pressed emphasis on pen-colored links and controls |
+| Pen tint | `#e6f0eb` | `--pen-tint` (aliased by `--brand-tint`, `--surface-sky`); quiet selected surfaces |
+| Blue ink | `#2448a8` | `--blue-ink`; the candidate's own work and numbers when they need a voice distinct from the recruiter's pen |
+| Chart 1–4 | `#2f5bd3` `#2a8a5f` `#8a4fa8` `#d9731a` | `--chart-1`…`--chart-4` (`bg-chart-1`…); the categorical order for comparisons: blue ink, green pen, plum, orange. Validated with the dataviz palette checker (lightness band, chroma floor, color-vision separation, 3:1 on the sheet) in light and dark, Oct 31, 2026 |
+| Red pen | `--destructive` | `--red-pen`; what slips past or is missing (wavy underline on skimmed lines, "What's missing" labels, "What keeps coming up"), plus errors and destructive actions. Never decoration |
+| Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
+| Miss sheet | `#fff6c2` / `#f2dc6b` | `--miss-surface` / `--miss-line`; the Critical Miss block |
+| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`, `--warning`); text on or beside yellow |
+| Divider | `#dfe0dc` | `--line`; nonessential grouping rules |
+| Control boundary | `#808983` | `--control-line` / `--input`; identifiable input boundaries |
 
-Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Update linked aliases together: backgrounds, foregrounds, cards, primary actions, focus, borders, and inverted surfaces. `--brand-strong` is the deliberate darker aqua hover/emphasis role. `--cyan-bright`, `--surface-proof`, and `--accent-apricot` remain compatibility aliases into this palette. The proposal explicitly retains citron `#c8f238` through `--citron` / `--accent-butter` for compatibility; it is not a general CTA, header, or decorative completion treatment.
+Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Older names (`--brand`, `--surface-sky`, `--cyan-bright`, `--teal-bright`, `--accent-apricot`, `--assessment-*`, `--premium`, `--gold`, `--amber`) are aliases into this palette so existing utilities follow it. `--citron` / `--accent-butter` remain compatibility tokens only.
 
-Headers use the quiet warm canvas treatment. Dark ink is for text, primary actions, and intentional inverted regions rather than a mandatory header band. Aqua is a restrained semantic accent. Dividers are deliberately subtle; use the stronger control boundary to identify inputs.
+Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green pen for anything the recruiter says or points at; blue ink for the candidate's own work and numbers; red pen (`--destructive`) only for problems and destructive actions, never decoration; yellow only for the Critical Miss and highlighted resume lines. Charts and comparisons use `--chart-1`…`--chart-4` in that fixed order, never cycled; a fifth series folds into "Other" or small multiples. Within one view a color means one thing: in the offer calculator it means the kind of pay (base, equity, bonus, one-time), so offers are told apart by name. Data labels and values stay in text ink, never the series color. Two hands on one page: anything quoted from the candidate's resume wears a blue-ink rule (the Critical Miss quote keeps the highlighter instead); the recruiter's notes, approvals ("Don't touch this one", "What keeps working"), and suggested wording wear the green pen; what is missing wears the red pen. Single-series charts use `--chart-1`. Meaning is global, so color is spent only on meaning: pen colors mark text and mean the same thing on every page; chart colors live only inside a chart with a legend, which scopes them; a multi-series chart never shares a view with pen marks; and navigation, categories, tags, and pillars are never color-coded (they use position, numbering, and names). The research pillars were tried in chart colors on Oct 31 and rejected for exactly this reason: blue would have meant both "your words" and "Perception". Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
 
-Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Preserve accessible error/recovery surfaces and plain-language next actions. Pair color with labels, icons, position, or wording; never rely on color alone.
+Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Dark mode chart steps are lifted separately (`#5b80e6` `#3a9a6e` `#a06cc0` `#d9731a`) and validated against the dark sheet. Avoid gradients, glow, and grain.
 
-Matt's September 5 bold-granite refinement adds saturated assessment graphics: `--assessment-aqua` (HSL 188 85% 34%), `--assessment-green` (156 64% 37%), and `--assessment-amber` (42 94% 58%). Use these for small labeled graphics, score strokes, and priority markers; keep dark semantic colors for readable text. Matt's subsequent exact-reference correction overrides the homepage's static assessment illustration: coral first marker, golden-yellow second and third markers, neutral-gray later markers, dark number ink, and a thick forest-green score ring on a pale-gray track. Keep these in scoped `--illustration-*` roles; they provide illustrative emphasis, not error or severity classifications. These illustration colors preserve the approved report treatment alongside the current instrument; they do not change real report data, body weight, or the serif verdict.
-
-Dark mode requires its own verified semantic values. Print uses white paper. Avoid atmospheric gradients, startup glow, red-pen cosplay, or decorative grain used to manufacture character.
+Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 
 ## 5. Signature evidence grammar
 
@@ -126,8 +132,8 @@ The Lifted Line meanings remain stable while their old color treatment is retire
 | Meaning | User question | Required treatment |
 | --- | --- | --- |
 | Caught attention | What lands quickly? | explicit label and the supporting evidence |
-| Needs context | What is hard to understand? | named missing context; restrained aqua when useful |
-| Evidence present | What supports the claim? | actual proof on a neutral or aqua inset |
+| Needs context | What is hard to understand? | named missing context; pen note when useful |
+| Evidence present | What supports the claim? | actual proof on a neutral or pen-tint inset |
 | Strongest next wording | What should I write instead? | wording connected to the user's facts and next action |
 
 Do not assign errors to missing career evidence or use green/red scores as substitutes for judgment. Charts may have domain-specific encodings, but labels and legends must explain them.
@@ -148,9 +154,9 @@ Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allow
 
 ### Mobile composition
 
-On phones, place the headline, explanation, and full-width action before the complete instrument so trying the controls never delays starting a report. Use 20-24px copy gutters, a 36-54px headline, and a 52px primary action. Between 701 and 900px, place the instrument beside the copy in a compact two-column composition. Preserve the source-aligned controls and the artwork's original materials and lighting. Blend its warm photographic setting into the page without clipping the case or introducing a rectangular panel edge. “Read at full size” expands the current example below the instrument without creating a second visible set of controls; native fallback controls appear if the renderer fails.
+On phones, place the headline, explanation, and full-width action before the example so trying the toggle never delays starting a report. Below 1100px the example becomes one sheet: the First Impression sits at the top, and each margin note sits directly under its resume line.
 
-Keep the six trusted-company marks in a balanced two-column phone grid, including the Apple mark. The illustrative assessment remains colorful. Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
+Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
 The upload surface uses a compact file picker instead of a desktop-sized drop area. The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public navigation sheets keep their close control visible and scroll their links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
@@ -196,6 +202,31 @@ Research visuals must teach a concrete idea. Every figure needs:
 
 If removing a diagram loses no understanding, the diagram is decoration and should not ship.
 
+### Figures: the recruiter's desk (October 31, 2026)
+
+Research figures are drawn in the product's own hand, from `web/components/research/figures/FigureKit.tsx`. A generic bar chart is the fallback, not the default.
+
+- **Count things people can picture.** When the number is a rate, show the units: 100 resume sheets, 500 applicants as dots, 136 callbacks. "1 in 500" lands when the reader sees the 500. Use `UnitGrid` (`shape="sheet"` for resumes, dots for people or events).
+- **One pen note per figure.** `PenNote` is the recruiter's margin note: Literata italic in pen, one or two sentences, saying what a recruiter takes from the figure. It follows the voice guide's margin-note register and never claims more than the source.
+- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two.
+- **Pen means the thing that matters; gray is everything else.** Highlighter yellow is reserved for the one takeaway. No other hues.
+- **Draw the artifact when the finding is about the artifact.** A typo study shows a resume line with the typos circled in pen; a story study shows two versions of the same resume.
+- **Lines for change over time.** Use the SVG line pattern in `GapPivotDiagram`: 2.5–3px strokes, direct labels at the points that matter, a soft highlighter band for the region the note is about.
+- **Honesty stays visible.** Every figure carries its source in the caption and a plain footnote for rounding, our own arithmetic, small samples, or what the study didn't test.
+- **Motion:** units reveal in reading order, lines draw in, and the highlighter sweeps, all once and all on the shared tokens. Reduced motion shows the finished figure.
+
+## 8b. System rules set during the signed-in review (October 31, 2026)
+
+- **13px is the floor.** No text below 0.8125rem anywhere: labels, captions, metadata, chips, footnotes.
+- **Uppercase only for Verdict and Critical Miss**, via `.riyp-verdict-label`. Every other label is sentence case at 13px, weight 600. A resume section heading drawn inside an illustration may mimic the resume's own style.
+- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green.
+- **Static cards don't react.** `.app-card` has a hairline border and no shadow or hover state. Only things you can click respond to the pointer.
+- **The score is a number, not a color.** `ScoreBadge` shows the score in ink with "/100". No green, gold or red bands and no band labels; the written Verdict carries the judgment.
+- **Status chips use pen.** "Active" and "Paid" use the pen tint, not success green. Green-for-good is not part of the system.
+- **One date format:** "Oct 25, 2026" (`en-US`, short month). Money is formatted as currency ("$29.00").
+- **Page intros align with their content.** `AppPageIntro` has no side padding of its own; the page container sets the gutter. Skip an eyebrow that just repeats the page title.
+- **Icons are Phosphor** on every surface a customer reaches. Lucide remains only in internal and flagged-off surfaces until they're migrated.
+
 ## 9. Components and composition
 
 Required shared categories:
@@ -216,9 +247,9 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Homepage
 
-- Preserve the approved instrument artwork and three-line desktop headline: “You did the work. / Let’s dial in / your story.” Keep the original company marks, primary action, report preview, and founder section within the shared Alpine system.
-- Home is the default with no key selected and a concise, fictional before-and-after example. Story, Impact, and Fit choose a focus; pressing the selected key returns Home. The dial chooses On paper, Recruiter’s read, or Next move. The side switch turns the instrument off and restores its previous state when turned on.
-- Keep the larger example available through “Read at full size.” The controls, optional illustration, and full-size feedback must not gate the report action. Facts behind sample advice remain available, and suggestions must not imply unverified achievements or outcomes.
+- Headline: “See what a recruiter sees.” One dark primary action (“Get your free report”) and one quiet secondary route (“See a sample report”).
+- The example is a fictional resume shown two ways. “Your view” is the page alone. “A recruiter’s view” adds margin notes in the pen color (Literata italic), the First Impression with an example score, and the Critical Miss highlighted in yellow. Notes name what the line does or leaves out; they never invent results.
+- The recruiter's view appears once when the example scrolls into view. A visitor's choice wins after that. The example must not gate the report action.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
@@ -246,14 +277,29 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ## 11. Motion
 
-Canonical tokens:
+Canonical tokens (CSS in `web/app/globals.css`, mirrored for Motion in `web/lib/animation.ts`; change both together):
 
-- `--duration-fast`: 140ms
-- `--duration-normal`: 180ms
-- `--duration-slow`: 180ms
-- `--ease`: `cubic-bezier(0.22, 1, 0.36, 1)`
+| Token | Value | Use |
+| --- | --- | --- |
+| `--duration-fast` / `DURATION.fast` | 160ms | hover, press, link color, focus, dialog exit |
+| `--duration-normal` / `DURATION.normal` | 200ms | selection, toggles, dialog entry, disclosure |
+| `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift |
+| `--ease` / `EASE` | `cubic-bezier(0.22, 1, 0.36, 1)` | every transition; no `ease-out`, `ease-in-out`, or one-off curves |
 
-Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage instrument uses a fixed-camera photograph with live projected controls, preserving the approved case, lighting, and materials. Key caps move inward while held, settle at a shallower latched depth, and release when deselected. The dial moves between three detents with fixed environmental lighting; the side switch controls the display while preserving the selected view. Animate only during interaction, stop once settled and when hidden, and dispose listeners and observers when navigating away. Reduced motion preserves immediate visible state changes without travel animation. Touch and keyboard controls remain functional. If the renderer fails, retain the artwork where available and expose native controls with full-size feedback. Do not make report access depend on initializing or exploring the instrument.
+Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage example is the one signature: the toggle thumb slides, the highlighter sweeps across a line, and margin notes write in. Report prose stays still. Reduced motion shows the same end state immediately.
+
+### Links
+
+One underline offset (`--link-offset`, 0.24em) and one thickness (`--link-thickness`, 1px) everywhere. Color says which kind of link it is:
+
+| Kind | Class | Rest | Hover |
+| --- | --- | --- | --- |
+| Inline | `.riyp-link` | ink text, pen underline at 40% (`--link-line`) | pen-strong text, full underline |
+| Quiet | `.riyp-link-quiet` | inherited muted text, ink hairline at 22% (`--link-line-quiet`) | ink text, full underline |
+| Navigation | header, footer, and menu lists | no underline | ink text, underline appears |
+| Prose | `.riyp-prose` container | unclassed links get the inline treatment | same as inline |
+
+Inline links are for links inside sentences and standalone text actions. Quiet links are for sources, legal and support asides, and metadata. Primary actions are buttons, not links. Underlines use the same offset in every CSS module (`text-underline-offset: var(--link-offset)`); never hand-tune `underline-offset-*` or `decoration-brand/NN` per surface. Color transitions use `--duration-fast`. Focus uses the shared `focus-ring` (2px pen outline), never an underline change alone.
 
 ### Shared interaction implementation
 
@@ -263,7 +309,7 @@ The September 13 motion pass uses these shared primitives across the product:
 - `AppProviders` supplies the Motion features required by existing `m` components. `web/hooks/use-reduced-motion.ts` subscribes to preference changes without remounting forms or losing entered text.
 - `ActionFeedback` reserves the space for short idle, pending, and success labels. Only the current state is exposed to assistive technology; hidden sizing copies do not animate. `Button` accepts `loadingLabel` while keeping its idle children stable.
 - Copy, save, parse, and export feedback follows the actual operation. Success appears only after confirmation, failures stay actionable, and repeated actions cancel stale feedback timers.
-- Radix owns dialog, sheet, menu, and popover focus and dismissal. Shared CSS provides 180ms entry and 140ms exit. Native `ui-disclosure` details progressively animate intrinsic size where supported; their readable fallback and keyboard semantics remain intact.
+- Radix owns dialog, sheet, menu, and popover focus and dismissal. Shared CSS provides `--duration-normal` entry and `--duration-fast` exit. Native `ui-disclosure` details progressively animate intrinsic size where supported; their readable fallback and keyboard semantics remain intact.
 - Reduced motion updates immediately, including a preference change while the page is open. Essential content is visible before JavaScript; the interface adds no decorative stagger or artificial waiting period.
 
 The interactive examples in `/internal/system-lab` show these states explicitly. That reference remains protected from public production access.
@@ -277,7 +323,7 @@ The interactive examples in `/internal/system-lab` show these states explicitly.
 3. candidate-supplied fact
 4. resolved wording or action
 
-Aqua identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+Pen identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 
@@ -321,9 +367,9 @@ Use focused UI tests when the affected surface has interaction. Keep security, p
 
 The guardrail must fail for:
 
-- missing local Instrument Sans or Source Serif 4 loading, family ranges, or shared typography tokens
+- missing local Schibsted Grotesk or Literata loading, family ranges, or shared typography tokens
 - stale canonical font, palette, or geometry claims
-- missing Alpine semantic tokens or compatibility aliases
+- missing Highlighter semantic tokens or compatibility aliases
 - external font imports
 - unauthorized hardcoded colors
 - banned public copy patterns

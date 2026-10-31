@@ -40,6 +40,11 @@ async function run() {
   };
   let subscription: any = modernSubscription;
   let lookupFails = false;
+  let sessionListFails = false;
+  let sessionRetrieveFails = false;
+  let paymentIntentFails = false;
+  let passReadFailsAt = 0;
+  let passReads = 0;
   let passes: any[] = [];
   let mutations = 0;
   let failedEvents = 0;
@@ -59,6 +64,10 @@ async function run() {
       const filters: Array<(row: any) => boolean> = [];
       const execute = () => {
         assert.ok(table === "passes" || table === "billing_entitlement_blocks", `unexpected table ${table}`);
+        if (table === "passes" && operation === "select") {
+          passReads += 1;
+          if (passReads === passReadFailsAt) return { data: [], error: { code: "08006", message: "Database unavailable" } };
+        }
         if (table === "passes" && operation === "update") beforePassUpdate?.();
         const rows = table === "passes" ? passes.filter((row) => filters.every((filter) => filter(row))) : [];
         if (operation === "insert") { mutations += 1; passes.push(values); }
@@ -82,7 +91,11 @@ async function run() {
   const stripe = {
     subscriptions: { retrieve: async () => { if (lookupFails) throw new Error("Stripe unavailable"); return subscription; } },
     customers: { list: async () => ({ data: [{ id: "cus_monthly" }] }), update: async () => ({}) },
-    checkout: { sessions: { list: async () => ({ data: [session] }), retrieve: async () => session } },
+    checkout: { sessions: {
+      list: async () => { if (sessionListFails) throw new Error("Stripe unavailable"); return { data: [session] }; },
+      retrieve: async () => { if (sessionRetrieveFails) throw new Error("Stripe unavailable"); return session; },
+    } },
+    paymentIntents: { retrieve: async () => { if (paymentIntentFails) throw new Error("Stripe unavailable"); return { latest_charge: { refunded: false, disputed: false } }; } },
     webhooks: { constructEvent: () => ({
       id: "evt_monthly", type: eventType,
       data: { object: eventType.startsWith("checkout.") ? session : subscription },
@@ -112,6 +125,11 @@ async function run() {
     session = structuredClone(monthlySession);
     subscription = structuredClone(modernSubscription);
     lookupFails = false;
+    sessionListFails = false;
+    sessionRetrieveFails = false;
+    paymentIntentFails = false;
+    passReadFailsAt = 0;
+    passReads = 0;
     passes = [];
     mutations = 0;
     failedEvents = 0;
@@ -154,7 +172,7 @@ async function run() {
         if (failure === "provider error") lookupFails = true;
         const response = await call();
         assert.equal(mutations, 0, `${route} cannot create access from ${failure}`);
-        assert.equal(response.status, route === "restore" ? 200 : route === "confirm" ? 202 : 500);
+        assert.equal(response.status, route === "restore" ? (failure === "provider error" ? 503 : 200) : route === "confirm" ? 202 : 500);
         if (route === "checkout webhook") assert.equal(failedEvents, 1, "webhook retains failed fulfillment for retry");
       }
 
@@ -168,6 +186,39 @@ async function run() {
       assert.equal((await call()).status, 200, `${route} still fulfills the one-time offer without a subscription lookup`);
       assert.equal(passes[0].expires_at, new Date((nowUnix + 30 * 86_400) * 1000).toISOString());
       assert.equal(passes[0].uses_remaining, 5);
+    }
+
+    for (const failure of ["session list", "session detail", "reversal lookup", "existing pass lookup", "final pass lookup"] as const) {
+      reset();
+      if (failure === "session list") sessionListFails = true;
+      if (failure === "session detail") sessionRetrieveFails = true;
+      if (failure === "reversal lookup") {
+        session.payment_intent = "pi_purchase";
+        paymentIntentFails = true;
+      }
+      if (failure === "existing pass lookup") passReadFailsAt = 2;
+      if (failure === "final pass lookup") passReadFailsAt = 3;
+      const response = await restore();
+      const body = await response.json();
+      assert.ok(response.status >= 500, `${failure} is retryable, not a successful missing-purchase result`);
+      assert.equal(body.ok, false, `${failure} cannot claim recovery is complete`);
+      assert.doesNotMatch(body.message, /no .*purchases|access restored|already active/i);
+    }
+
+    for (const inactive of ["expired", "revoked", "invalid"] as const) {
+      reset();
+      const pass = { ...existingPass(), checkout_session_id: session.id };
+      if (inactive === "expired") pass.expires_at = new Date((nowUnix - 86_400) * 1000).toISOString();
+      if (inactive === "revoked") Object.assign(pass, { revoked_at: new Date(nowUnix * 1000).toISOString() });
+      if (inactive === "invalid") pass.expires_at = "not-a-date";
+      passes = [pass];
+      const response = await confirm(confirmRequest());
+      const body = await response.json();
+      assert.equal(response.status, 409);
+      assert.equal(body.ok, false, `an ${inactive} pass cannot be reported as active`);
+      assert.equal(body.pending, false, `an ${inactive} pass must not trigger fulfillment polling`);
+      assert.equal(body.status, inactive);
+      assert.equal(mutations, 0);
     }
 
     for (const priceId of ["price_monthly", "sub_monthly", null]) {

@@ -24,8 +24,8 @@ assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
 assert.equal(PRICING_PLANS["30d"].price, "$29");
-assert.match(PRICING_PLANS["30d"].description, /Five additional reports/);
-assert.match(PRICING_PLANS["30d"].description, /compare revisions|applications/);
+assert.match(PRICING_PLANS["30d"].description, /check each revision/);
+assert.match(PRICING_PLANS["30d"].description, /applications/);
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /first complete report is free/i);
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /no card required/i);
 assert.match(FREE_REPORT_ENTITLEMENT.boundary, /repeat use across browsers or shared networks/i);
@@ -39,8 +39,8 @@ assert.ok(
   "the public trust checklist must state the bounded free entitlement",
 );
 assert.equal(LEGAL_LAST_UPDATED, "September 4, 2026");
-assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /do not need to pay to see the rest/i);
-assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /revision to compare or another application to review/i);
+assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /nothing is held back/i);
+assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /checking your revision, or tailoring your resume/i);
 assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/i);
 assert.equal(JOB_SEARCH_PASS_DECISION.cta, "Get 5 more reports · $29");
 assert.equal(

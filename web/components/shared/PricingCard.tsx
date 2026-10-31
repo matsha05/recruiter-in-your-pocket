@@ -34,7 +34,7 @@ export function PricingCard({
     const isFree = tier === "free";
     const isFeatured = tier === "30d";
     const disableForFree = isFree && !allowFreeSelect;
-    const buttonLabel = isFree && allowFreeSelect ? "Get the free report" : data.buttonText;
+    const buttonLabel = isFree && allowFreeSelect ? "Get your free report" : data.buttonText;
     const isMarketing = context === "marketing";
 
     if (variant === "compact") {
@@ -52,12 +52,12 @@ export function PricingCard({
                 )}
             >
                 {data.badge && (
-                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-surface-sky px-2 py-1 text-eyebrow uppercase text-brand">
+                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-surface-sky px-2 py-1 text-[0.8125rem] font-medium text-brand">
                         {data.badge}
                     </span>
                 )}
-                <span className="mt-2 font-display text-3xl font-medium text-foreground">{data.price}</span>
-                <span className="mt-1 text-eyebrow uppercase text-muted-foreground">{data.label}</span>
+                <span className="mt-2 font-display text-3xl font-bold text-foreground">{data.price}</span>
+                <span className="mt-1 text-[0.8125rem] font-medium text-muted-foreground">{data.label}</span>
                 <span className="text-xs text-muted-foreground">{data.period}</span>
             </button>
         );
@@ -110,13 +110,13 @@ export function PricingCard({
         <article className={cardClass}>
             <div className="mb-6">
                 <div className={cn(
-                    "mb-3 text-eyebrow uppercase",
+                    "mb-3 text-[0.8125rem] font-medium ",
                     isFeatured ? "text-brand" : "text-muted-foreground"
                 )}>
                     {data.label}
                 </div>
                 <div className="flex items-end gap-2">
-                    <span className="font-display text-5xl font-normal leading-none tracking-tight text-foreground">
+                    <span className="font-display text-5xl font-bold leading-none tracking-tight text-foreground">
                         {data.price}
                     </span>
                     {data.period ? <span className="pb-1 text-base text-muted-foreground">{data.period}</span> : null}

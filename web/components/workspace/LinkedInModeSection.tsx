@@ -1,4 +1,5 @@
 import { Linkedin, Plus, ArrowRight } from "lucide-react";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import type { AuthUser } from "@/components/providers/AuthProvider";
 import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
 import { LinkedInReportPanel } from "@/components/linkedin/LinkedInReportPanel";
@@ -14,7 +15,6 @@ type LinkedInModeSectionProps = {
   isStreaming: boolean;
   freeUsesRemaining: number;
   user: AuthUser | null;
-  onUrlSubmit: (url: string) => void;
   onPdfSubmit: (pdfText: string) => void;
   onSampleReport: () => void;
   onNewReport: () => void;
@@ -32,7 +32,6 @@ export default function LinkedInModeSection({
   isStreaming,
   freeUsesRemaining,
   user,
-  onUrlSubmit,
   onPdfSubmit,
   onSampleReport,
   onNewReport,
@@ -81,7 +80,6 @@ export default function LinkedInModeSection({
             </div>
 
             <LinkedInInputPanel
-              onUrlSubmit={onUrlSubmit}
               onPdfSubmit={onPdfSubmit}
               isLoading={isLoading}
               freeUsesRemaining={freeUsesRemaining}
@@ -126,7 +124,7 @@ export default function LinkedInModeSection({
                   onClick={onUpgrade}
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                 >
-                  <span className="hidden sm:inline">See the Job Search Pass</span>
+                  <span className="hidden sm:inline">{JOB_SEARCH_PASS_DECISION.cta}</span>
                   <span className="sm:hidden">Get pass</span>
                   <ArrowRight className="size-4" />
                 </button>

@@ -1,20 +1,12 @@
 import type { Variants, Transition, TargetAndTransition } from "motion/react";
 
-/** Keep these values in sync with the canonical CSS tokens in globals.css. */
+/** Mirrors --ease and --duration-* in globals.css. Change both together. */
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
 export const DURATION = {
-    press: 0.14,
-    hoverIn: 0.14,
-    hoverOut: 0.14,
-    select: 0.14,
-    swap: 0.18,
-    reveal: 0.18,
-    hero: 0.18,
-    fast: 0.14,
-    normal: 0.18,
-    slow: 0.18,
-    editorial: 0.18,
+    fast: 0.16,
+    normal: 0.2,
+    slow: 0.52,
 } as const;
 
 export const UI_TRANSITION = {

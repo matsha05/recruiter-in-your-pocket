@@ -28,13 +28,13 @@ export interface NavItem {
 
 const STUDIO_NAV_ITEMS: NavItem[] = [
     {
-        label: "The Studio",
+        label: "New report",
         href: "/workspace",
         icon: FileText,
         description: "Review your resume",
     },
     {
-        label: "Reports",
+        label: "My reports",
         href: "/reports",
         icon: FileClock,
         description: "Saved reports and versions",
@@ -93,7 +93,7 @@ const MARKETING_NAV = {
     ],
     research: [
         { label: "How Recruiters Read", href: "/research/how-recruiters-read" },
-        { label: "How We Score", href: "/research/how-we-score" },
+        { label: "How the report works", href: "/methodology" },
         { label: "Research Hub", href: "/research" },
     ],
     resources: [
@@ -104,7 +104,8 @@ const MARKETING_NAV = {
     company: [
         { label: "FAQ", href: "/faq" },
         { label: "Security", href: "/security" },
-        { label: "Methodology", href: "/methodology" },
+        { label: "Status", href: "/status" },
+        { label: "How the report works", href: "/methodology" },
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
     ],
@@ -125,7 +126,7 @@ export const FOOTER_NAV = {
     legalLinks: [
         { label: "FAQ", href: "/faq" },
         { label: "Security", href: "/security" },
-        { label: "Methodology", href: "/methodology" },
+        { label: "How the report works", href: "/methodology" },
         { label: "Terms", href: "/terms" },
         { label: "Privacy", href: "/privacy" },
     ],

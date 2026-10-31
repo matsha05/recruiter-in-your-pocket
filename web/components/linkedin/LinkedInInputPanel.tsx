@@ -8,7 +8,6 @@ import { TrustBadges } from '@/components/shared/TrustBadges';
 import { cn } from '@/lib/utils';
 
 interface LinkedInInputPanelProps {
-    onUrlSubmit: (url: string) => void;
     onPdfSubmit: (text: string) => void;
     isLoading: boolean;
     freeUsesRemaining: number;
@@ -304,11 +303,11 @@ export function LinkedInInputPanel({
                         {getRunHint()}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                        <Link href="/security" className="underline underline-offset-4 hover:text-foreground">
+                        <Link href="/security" className="riyp-link-quiet">
                             Data handling
                         </Link>
                         {' · '}
-                        <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">
+                        <Link href="/methodology" className="riyp-link-quiet">
                             Scoring methodology
                         </Link>
                     </p>

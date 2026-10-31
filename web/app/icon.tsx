@@ -36,13 +36,13 @@ export default async function Icon({ id }: { id: Promise<string> }) {
 
     const resolvedId = await id;
     const { size, iconSize, radius } = sizes[resolvedId] || sizes.small;
-    const instrumentSans = await readFile(join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Semibold.ttf"));
+    const schibsted = await readFile(join(process.cwd(), "public", "fonts", "schibsted-grotesk", "SchibstedGrotesk-ExtraBold.woff"));
 
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#12191b",
+                    background: "#111513",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -59,19 +59,19 @@ export default async function Icon({ id }: { id: Promise<string> }) {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#f6f3ef",
-                        fontFamily: "Instrument Sans",
+                        color: "#f4f4f1",
+                        fontFamily: "Schibsted Grotesk",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: iconSize * 0.68, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#78aeb8" }} />
+                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#ffe14d" }} />
                 </div>
             </div>
         ),
         {
             width: size,
             height: size,
-            fonts: [{ name: "Instrument Sans", data: instrumentSans, style: "normal", weight: 600 }],
+            fonts: [{ name: "Schibsted Grotesk", data: schibsted, style: "normal", weight: 800 }],
         }
     );
 }

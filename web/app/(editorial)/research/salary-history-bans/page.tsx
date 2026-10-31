@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 
 export const metadata: Metadata = {
-    title: "Salary History Bans: What the Evidence Shows | Hiring Research",
+    title: "Should you share your salary history?",
     description: "What salary-history-ban and disclosure studies found, and why there is no universal disclosure script.",
 };
 
@@ -55,9 +55,9 @@ export default function SalaryHistoryPage() {
                 ]
             }}
             relatedArticles={[
-                { title: "Skills-First Hiring: Promise vs Reality", href: "/research/skills-first-promise-reality", tag: "Trends" },
-                { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" },
-                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
+                { title: "Skills-first hiring: the promise and the practice", href: "/research/skills-first-promise-reality", tag: "Trends" },
+                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Strategy" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
             sources={[
                 {
@@ -132,10 +132,10 @@ export default function SalaryHistoryPage() {
             </p>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Legal requirements vary by jurisdiction. This is not legal advice.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The two salary-history studies are NBER working papers, not guarantees about an individual negotiation.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The negotiation experiments tested first offers generally, not salary-history disclosure specifically.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Legal requirements vary by jurisdiction. This is not legal advice.</li>
+                <li>The two salary-history studies are NBER working papers, not guarantees about an individual negotiation.</li>
+                <li>The negotiation experiments tested first offers generally, not salary-history disclosure specifically.</li>
             </ul>
         </ResearchArticle>
     );

@@ -12,7 +12,7 @@ import { pdfReportStyles } from "./pdf-styles";
  * Design principles:
  * 1. Written recruiter verdict before the numeric summary
  * 2. Stable evidence colors instead of traffic-light scoring
- * 3. Source Serif 4 for the verdict and Instrument Sans for explanation
+ * 3. Literata for the recruiter's voice, Schibsted Grotesk for everything else
  * 4. Page-safe sections and printable action checkboxes
  */
 
@@ -24,19 +24,11 @@ function escapeHtml(str: string) {
     .replace(/>/g, "&gt;");
 }
 
-const SOURCE_SERIF_TTF = readFileSync(
-  join(process.cwd(), "public", "fonts", "source-serif-4", "SourceSerif4-Variable.ttf")
-).toString("base64");
-
-const INSTRUMENT_SANS_TTF = readFileSync(
-  join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Variable.ttf")
-).toString("base64");
-
-function getSubscoreBar(value: number | undefined): string {
-  if (value === undefined) return "";
-  const width = Math.min(99, Math.max(0, value));
-  return `<div class="metric-track"><div class="metric-fill" style="width: ${width}%;"></div></div>`;
-}
+const fontBase64 = (...segments: string[]) => readFileSync(join(process.cwd(), "public", "fonts", ...segments)).toString("base64");
+const PDF_FONTS = {
+  voice: fontBase64("literata", "Literata-Variable.woff2"),
+  ui: fontBase64("schibsted-grotesk", "SchibstedGrotesk-Variable.woff2"),
+};
 
 function firstSentence(value: string): string {
   const normalized = String(value || "").trim();
@@ -48,8 +40,10 @@ function firstSentence(value: string): string {
 
 export function renderReportHtml(report: ReportForPdf) {
   const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  const verdict = report.score_comment_short || firstSentence(report.summary);
-  const showSummary = report.summary.trim() !== verdict.trim();
+  // Same order as the web report: Verdict, then why the score landed, then the Critical Miss.
+  const verdict = report.first_impression || report.score_comment_short || firstSentence(report.summary);
+  const verdictReason = report.score_comment_short && report.score_comment_short !== verdict ? report.score_comment_short : "";
+  const criticalMiss = report.top_fixes?.find((fix) => fix?.fix);
 
   // Checkbox action items
   const checkboxListHtml = (items: string[] = []) =>
@@ -101,31 +95,7 @@ export function renderReportHtml(report: ReportForPdf) {
       })
       .join("");
 
-  // Subscores section
-  const subscoresHtml = report.subscores ? `
-    <div class="subscores-grid">
-      <div class="subscore">
-        <div class="subscore-label">Story</div>
-        <div class="subscore-value">${report.subscores.story ?? "Not scored"}</div>
-        ${getSubscoreBar(report.subscores.story)}
-      </div>
-      <div class="subscore">
-        <div class="subscore-label">Impact</div>
-        <div class="subscore-value">${report.subscores.impact ?? "Not scored"}</div>
-        ${getSubscoreBar(report.subscores.impact)}
-      </div>
-      <div class="subscore">
-        <div class="subscore-label">Clarity</div>
-        <div class="subscore-value">${report.subscores.clarity ?? "Not scored"}</div>
-        ${getSubscoreBar(report.subscores.clarity)}
-      </div>
-      <div class="subscore">
-        <div class="subscore-label">Readability</div>
-        <div class="subscore-value">${report.subscores.readability ?? "Not scored"}</div>
-        ${getSubscoreBar(report.subscores.readability)}
-      </div>
-    </div>
-  ` : "";
+
 
   // Job alignment uses a teaching surface, not a separate score palette.
   const jobAlignmentHtml = report.job_alignment ? `
@@ -172,7 +142,7 @@ export function renderReportHtml(report: ReportForPdf) {
 <head>
   <meta charset="utf-8" />
   <title>Resume report | Recruiter in Your Pocket</title>
-  <style>${pdfReportStyles(SOURCE_SERIF_TTF, INSTRUMENT_SANS_TTF)}</style>
+  <style>${pdfReportStyles(PDF_FONTS)}</style>
 </head>
 <body>
   <header>
@@ -186,36 +156,33 @@ export function renderReportHtml(report: ReportForPdf) {
   <section class="hero">
     <div class="hero-grid">
       <div>
-        <div class="section-kicker">Overview</div>
+        <div class="verdict-label">Verdict</div>
         <h1>${escapeHtml(verdict)}</h1>
-        ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
+        ${verdictReason ? `<p class="hero-summary">${escapeHtml(verdictReason)}</p>` : ""}
       </div>
       <div class="score-card">
-        <div class="score-name">Review score</div>
+        <div class="score-name">First Impression score</div>
         <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
-        <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
-        <div class="score-scale">Not a prediction of interviews or offers.</div>
       </div>
     </div>
-    <div class="score-note">
-      <strong>About the score:</strong> it summarizes the feedback on your resume's story, impact, clarity, and readability. It is not an ATS ranking.
-    </div>
+    <div class="score-note">How clearly your resume shows your work today. It doesn't predict interviews or offers.</div>
   </section>
 
-  ${subscoresHtml}
+  ${criticalMiss ? `
+  <section class="critical-miss">
+    <div class="critical-label">Critical Miss</div>
+    <p class="critical-title">${escapeHtml(criticalMiss.fix || "")}</p>
+    ${criticalMiss.why ? `<p class="critical-why">${escapeHtml(criticalMiss.why)}</p>` : ""}
+  </section>
+  ` : ""}
 
-  <div class="two-col">
-    <section class="signal-panel lands">
-      <div class="section-kicker">Keep these</div>
-      <h2>What works well</h2>
-      <ul>${signalListHtml(report.strengths, "lands")}</ul>
-    </section>
-    <section class="signal-panel context">
-      <div class="section-kicker">Details to clarify</div>
-      <h2>What stays unclear</h2>
-      <ul>${signalListHtml(report.gaps, "context")}</ul>
-    </section>
-  </div>
+  ${report.strengths?.length ? `
+  <section class="signal-panel lands keep-section">
+    <div class="section-kicker">Keep these</div>
+    <h2>Leave these alone. They&rsquo;re working.</h2>
+    <ul>${signalListHtml(report.strengths, "lands")}</ul>
+  </section>
+  ` : ""}
 
   ${report.top_fixes?.length ? `
     <section class="section priority-section">

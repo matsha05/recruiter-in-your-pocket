@@ -42,8 +42,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preload" href="/fonts/instrument-sans/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/source-serif-4/SourceSerif4-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/literata/Literata-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>

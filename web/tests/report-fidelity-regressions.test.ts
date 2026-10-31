@@ -8,6 +8,7 @@ import { checkEvidence, checkRewriteGrounding } from "../lib/evals/evidence-chec
 import { containsExactEvidence, isAcceptedAbsenceMarker } from "../lib/llm/grounding";
 import { supportsInferredIndustrySignal } from "../lib/llm/source-industry-signals";
 import { narrativeMeaningIssues } from "../lib/llm/narrative-meaning";
+import { evidenceContainsRequirement } from "../lib/llm/requirement-evidence";
 import {
   auditNarrativeClaim,
   auditReportNarrative,
@@ -351,9 +352,11 @@ for (const [expectedPath, label, mutate] of polarityCases) {
     `${expectedPath} ${label} must exercise a browser-visible report field`,
   );
   if (expectedPath === "gaps[0]") {
+    // Since 6478623 the PDF has no separate gaps list (gaps surface as the Critical Miss and fixes),
+    // so a raw gap must never reach it. The validation boundary below still runs for the PDF.
     assert.ok(
-      renderReportHtml(normalizeReportForPdf(report)!).includes(unsafeValue),
-      `${expectedPath} ${label} must exercise the PDF HTML sink`,
+      !renderReportHtml(normalizeReportForPdf(report)!).includes(unsafeValue),
+      `${expectedPath} ${label} must not reach the PDF as a raw gaps list`,
     );
   }
   assert.ok(
@@ -449,5 +452,147 @@ for (const field of ["enhancement_note", "better"] as const) {
     `factual bracket payload in ${field} must fail closed`,
   );
 }
+
+const brandedResume = "Bright.Lab — Product Manager\nLocalAI — Founder\n- Supported customer projects.";
+const brandedControlResume = [
+  "SUMMARY", "Customer operations profile.", "WORK EXPERIENCE", hubspotSource, brandedResume,
+  "SKILLS", "HubSpot", "EDUCATION", "State University", "Growth-stage company.", "Show HubSpot.",
+].join("\n");
+for (const brand of ["Bright.Lab", "LocalAI"]) {
+  const claim = `Your ${brand} experience is visible.`;
+  assert.deepEqual(auditReportNarrative({ strengths: [claim] }, brandedResume), [],
+    "an exact source brand must survive sentence splitting and case normalization");
+  assert.ok(auditReportNarrative({ strengths: [claim] }, "Bright research lab. Local customer projects.").length > 0,
+    "separate ordinary words must not be assembled into a named employer");
+  assert.ok(auditReportNarrative({ strengths: [claim] }, `Super${brand} — Product Manager`).length > 0,
+    "a source substring must not establish a different named employer");
+  assert.ok(auditReportNarrative({ strengths: [claim] }, `No ${brand} experience.`).length > 0,
+    "an exact brand mention must not override explicit negative source evidence");
+  assert.ok(auditReportNarrative({ strengths: [`Your ${brand} experience produced $9M in revenue.`] }, brandedResume).length > 0,
+    "a valid brand does not ground an invented result");
+  const fullReport = structuredClone(schemaValidReport);
+  fullReport.strengths[2] = claim;
+  assert.doesNotThrow(() => validateResumeModelPayload(fullReport, brandedControlResume, {
+    forceGrounding: true, jobDescription: hubspotJobDescription,
+  }), "a grounded brand must pass the complete report validation boundary");
+}
+const brandedRoleClaim = "Your Bright.Lab Product Manager role is visible.";
+assert.deepEqual(auditReportNarrative({ summary: brandedRoleClaim }, brandedResume), [],
+  "an exact employer-role phrase must survive a dotted employer name");
+for (const unsupportedSource of [
+  "Bright.Lab — Product Analyst\nOther employer — Product Manager",
+  "Bright.Lab. Product Manager",
+  "No Bright.Lab Product Manager experience.",
+  "SuperBright.Lab — Product Manager",
+]) assert.ok(auditReportNarrative({ summary: brandedRoleClaim }, unsupportedSource).length > 0,
+  "an employer-role phrase must not assemble separate clauses, substrings, or negated experience");
+assert.ok(auditReportNarrative({ summary: "Your Bright.Lab Product Manager role produced $9M in revenue." }, brandedResume).length > 0,
+  "an exact employer-role phrase must not establish an invented result");
+assert.ok(auditReportNarrative({ first_impression: "Led customer projects at LocalAI." }, brandedResume).length > 0,
+  "recognizing a source brand must not promote supported work to leadership");
+
+for (const claim of [
+  "In the SQL-reporting bullet, name the usage measures you tracked.",
+  "Describe the SQL-based analysis already shown in the experience section.",
+]) {
+  assert.deepEqual(auditReportNarrative({ next_steps: [claim] }, "Built weekly usage reports in SQL."), [],
+    "ordinary grammatical tool modifiers must retain their sourced identity");
+  assert.ok(auditReportNarrative({ next_steps: [claim] }, "Built weekly usage reports in Excel.").length > 0,
+    "grammatical tool modifiers must not introduce an absent tool");
+  assert.ok(auditReportNarrative({ next_steps: [claim] }, "No SQL experience. Built weekly reports in Excel.").length > 0,
+    "a tool modifier must not use explicitly negated source evidence");
+  for (const unsupportedSource of ["Lacks SQL experience.", "Cannot use SQL.", "Unable to use SQL.", "SQL reporting was excluded from my responsibilities."]) {
+    assert.ok(auditReportNarrative({ next_steps: [claim] }, `${unsupportedSource} Built reports in Excel.`).length > 0,
+      "tool modifiers must respect absence and inability as well as literal no/not");
+  }
+}
+assert.ok(auditReportNarrative({ next_steps: ["Describe the SQL-reporting bullet."] },
+  "Studied SQL and built reporting dashboards in Excel.").length > 0,
+  "reporting and a tool must share a source relationship, not just a sentence");
+
+for (const [keyword, source] of [
+  ["requirements documentation", "Responsibilities include documenting product requirements."],
+  ["engineering and design collaboration", "Worked with engineering and design on an onboarding checklist."],
+  ["communication of priorities", "Presented product priorities to the leadership team."],
+  ["process", "This role documents repeatable processes."],
+  ["SQL reporting", "Used SQL for reporting."],
+  ["SQL reporting", "Used SQL for a report."],
+]) assert.equal(evidenceContainsRequirement(keyword, source), true,
+  `requirement ${keyword} may use a supported grammatical form within the same source clause`);
+const contextualPriorityJob = "Product Manager\nThe role asks for clear communication of priorities.";
+assert.equal(evidenceContainsRequirement("product priorities", contextualPriorityJob, { jobDescription: true }), true,
+  "a JD may refer to its explicitly named role's priorities in a responsibility clause");
+assert.equal(evidenceContainsRequirement("product priorities", contextualPriorityJob), false,
+  "resume keywords must not infer responsibilities from a role heading");
+for (const [keyword, source] of [
+  ["requirements documentation", "Documented customer feedback. Reviewed product requirements."],
+  ["requirements documentation", "No experience documenting product requirements."],
+  ["requirements documentation", "Lacks experience documenting product requirements."],
+  ["requirements documentation", "Unable to document requirements."],
+  ["requirements documentation", "Avoided documenting requirements."],
+  ["requirements documentation", "Documented customer feedback and reviewed product requirements."],
+  ["SQL reporting", "Studied SQL and built reporting dashboards in Excel."],
+  ["SQL reporting", "Cannot report in SQL."],
+  ["SQL reporting", "Reporting in SQL was excluded from my responsibilities."],
+  ["SQL reporting", "Reported to the SQL team about staffing."],
+  ["SQL reporting", "Prepared reports for the SQL team about staffing."],
+  ["engineering collaboration", "Collaborated with sales and filed engineering support tickets."],
+  ["product priorities", "Data Analyst\nThe role asks for clear communication of priorities."],
+  ["product priorities", "Product Manager\nNo responsibility for priorities."],
+  ["maintain Excel trackers", "Replaced an email tracker with an intake spreadsheet.\nSKILLS\nExcel"],
+  ["SQL reporting", "No SQL reporting. Built Excel reports."],
+  ["team management", "Worked with a team that supported management."],
+  ["revenue growth", "Reported revenue. Planned growth."],
+  ["20 customers", "Customer support for 20 countries."],
+  ["Salesforce", "Used SalesforcePlus."],
+  ["C++", "Used C."],
+  ["C#", "Used C."],
+  ["C♯", "Used C."],
+  ["F♯", "Used F."],
+  [".NET", "Built NET tools."],
+]) assert.equal(evidenceContainsRequirement(keyword, source), false,
+  "requirement normalization must preserve provenance, negation, quantity, ownership, and identity boundaries");
+for (const unsupportedJob of [
+  "Product Manager\nPersonal priorities include childcare and exercise.",
+  "Product Manager\nThe role asks for personal communication of priorities.",
+  "Product Manager\nThe role requires reports. Communication of priorities is absent.",
+]) assert.equal(evidenceContainsRequirement("product priorities", unsupportedJob, { jobDescription: true }), false,
+  "JD role context must not qualify unrelated, personal, or disconnected priorities");
+
+const grammaticalKeywordReport: any = structuredClone(schemaValidReport);
+grammaticalKeywordReport.job_alignment.jd_keywords = {
+  matched: ["requirements documentation"], missing: [], match_count: 1, total_count: 1,
+};
+assert.equal(auditReportNarrative(grammaticalKeywordReport,
+  `${brandedControlResume}\nRequirements documentation`, "The role involves documenting product requirements.")
+  .some(({ path }) => path.startsWith("job_alignment.jd_keywords")), false,
+  "requirement forms must work at the complete report narrative boundary");
+
+const requestedExample = "In the summary, describe one recent customer or product problem and your contribution.";
+assert.deepEqual(auditReportNarrative({ section_review: { Summary: { fix: requestedExample } } }, brandedResume), [],
+  "requesting one problem example must not be treated as a historical customer count");
+assert.ok(auditReportNarrative({ section_review: { Summary: { fix: "Add that you managed one recent customer." } } }, brandedResume).length > 0,
+  "a request to assert a customer count still requires evidence");
+assert.ok(auditReportNarrative({ first_impression: "Managed one recent customer or product problem." }, brandedResume).length > 0,
+  "the example exemption must not cover a direct factual assertion");
+for (const claim of [
+  "One recent customer problem demonstrates ownership.",
+  "One recent customer or product problem is visible.",
+  "Your one recent customer problem is clear.",
+  "Add that you managed one recent customer problem.",
+  "Your examples show one recent customer problem.",
+  "Your examples describe one recent customer problem.",
+  "The examples in your resume include one recent customer problem.",
+  "What one recent customer problem demonstrates is ownership.",
+  "How one recent customer problem demonstrates ownership is clear.",
+]) assert.ok(auditReportNarrative({ section_review: { Summary: { fix: claim } } }, brandedResume).length > 0,
+  "an advice field alone must not turn a declarative quantity into a requested example");
+for (const claim of [
+  "Describe one recent customer problem and your contribution.",
+  "Your summary could describe one recent customer problem and your contribution.",
+  "In the summary, describe one recent customer or product problem and your contribution.",
+  "What would one recent customer problem illustrate about your contribution?",
+]) assert.deepEqual(auditReportNarrative({ section_review: { Summary: { fix: claim } } }, brandedResume), [],
+  "explicit editing instructions may request one example without inventing a historical count");
 
 console.log("report fidelity regression tests passed");

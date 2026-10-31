@@ -51,7 +51,7 @@ export default function ConfirmModal({
                         )}
                     </div>
 
-                    <DialogTitle className="font-display text-lg font-medium">
+                    <DialogTitle className="font-display text-lg font-bold">
                         {title}
                     </DialogTitle>
                     <DialogDescription className="text-sm text-muted-foreground">

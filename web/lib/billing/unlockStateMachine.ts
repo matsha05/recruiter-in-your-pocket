@@ -32,7 +32,7 @@ export type UnlockEvent =
 
 const CONFIRM_MESSAGES: Record<UnlockConfirmState, string> = {
   unlocked: "Your pass is active.",
-  fulfillment_pending: "Payment received. Activating your pass...",
+  fulfillment_pending: "Payment received. Turning on your pass…",
   checkout_incomplete: "Checkout is not complete yet.",
   not_paid: "We haven't received payment confirmation yet.",
 };
@@ -40,15 +40,15 @@ const CONFIRM_MESSAGES: Record<UnlockConfirmState, string> = {
 const UI_TITLES: Record<UnlockUiStatus, string> = {
   checking: "Checking your purchase",
   pending: "Checking your purchase",
-  unlocked: "Purchase confirmed",
+  unlocked: "Payment received.",
   error: "We couldn't confirm access",
   missing: "Find your purchase",
 };
 
 const UI_MESSAGES = {
-  checking: "Checking your payment and report access...",
-  pending: "Payment received. Activating your pass...",
-  unlocked: "Your pass is active. You can continue to your report.",
+  checking: "Checking your payment…",
+  pending: "Payment received. Turning on your pass…",
+  unlocked: "5 more reports, good for 30 days.",
   missing: "This link doesn't identify a purchase. Use Restore access with the email you entered at checkout.",
   checkout_incomplete: "Checkout is not complete yet. If you closed Stripe early, restart checkout.",
   not_paid: "We haven't received payment confirmation yet. Check your receipt or use Restore access.",

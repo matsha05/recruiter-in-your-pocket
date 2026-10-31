@@ -1,15 +1,22 @@
 import type { OfferData } from "@/lib/compensation-model";
 
-export const OFFER_STYLES = [
-  { bar: "bg-foreground", wash: "bg-foreground/10", text: "text-foreground" },
-  { bar: "bg-brand", wash: "bg-brand/10", text: "text-brand" },
-  { bar: "bg-premium", wash: "bg-premium/15", text: "text-foreground" },
-  { bar: "bg-brand/50", wash: "bg-brand/5", text: "text-brand-strong" },
-  { bar: "bg-muted-foreground", wash: "bg-muted-foreground/10", text: "text-muted-foreground" },
+// In the calculator, color means the kind of money, everywhere on the page: the validated
+// categorical order from the design system (blue ink, green pen, plum, orange). Offers are
+// told apart by name, so no color ever carries two meanings on one screen.
+export const COMPONENTS = [
+  { key: "base", label: "Base salary", swatch: "bg-chart-1" },
+  { key: "stock", label: "Equity", swatch: "bg-chart-2" },
+  { key: "bonus", label: "Target bonus", swatch: "bg-chart-3" },
+  { key: "oneTime", label: "One-time cash", swatch: "bg-chart-4" },
 ] as const;
 
+export type ComponentKey = (typeof COMPONENTS)[number]["key"];
+
+// Offers wear ink; the current job, the reference point, wears quiet graphite.
 export function offerStyle(offer: OfferData) {
-  return OFFER_STYLES[offer.styleIndex % OFFER_STYLES.length];
+  return offer.isCurrentJob
+    ? { bar: "bg-muted-foreground/55" }
+    : { bar: "bg-foreground" };
 }
 
 export function offerName(offer: OfferData, fallbackIndex: number) {

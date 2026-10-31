@@ -41,6 +41,8 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Repository guidance is maintained explicitly; dev must not rewrite release inputs.
+  agentRules: false,
   reactStrictMode: true,
   poweredByHeader: false,
   webpack(config, { webpack }) {
@@ -61,19 +63,12 @@ const nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
-      ...[
-        "/assets/instrument/clean-plate.v1.webp",
-        "/assets/instrument/key-materials.v1.webp",
-        "/assets/alpine/trust-marks.v1.webp",
-      ].map(source => ({
-        source,
-        // Versioned, lossless art can be reused across visits without refetching.
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      })),
     ];
   },
   async redirects() {
     return [
+      // The methodology article and page were merged into one "How the report works" page.
+      { source: "/research/how-we-score", destination: "/methodology", permanent: true },
       ...(!extensionSyncEnabled ? [{
         source: "/extension",
         destination: "/workspace",
@@ -93,11 +88,13 @@ const nextConfig = {
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   outputFileTracingIncludes: {
     "/*": [
-      "./public/fonts/source-serif-4/SourceSerif4-Variable.ttf",
-      "./public/fonts/source-serif-4/SourceSerif4-Regular.ttf",
-      "./public/fonts/instrument-sans/InstrumentSans-Variable.ttf",
-      "./public/fonts/instrument-sans/InstrumentSans-Regular.ttf",
-      "./public/fonts/instrument-sans/InstrumentSans-Semibold.ttf",
+      "./public/fonts/literata/Literata-Variable.woff2",
+      "./public/fonts/literata/Literata-Regular.woff",
+      "./public/fonts/literata/Literata-Italic.woff",
+      "./public/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2",
+      "./public/fonts/schibsted-grotesk/SchibstedGrotesk-Regular.woff",
+      "./public/fonts/schibsted-grotesk/SchibstedGrotesk-Semibold.woff",
+      "./public/fonts/schibsted-grotesk/SchibstedGrotesk-ExtraBold.woff",
     ],
     // Sparticuz resolves these runtime payloads dynamically, so Next's file
     // tracer cannot discover them from the executablePath() call alone.
@@ -133,6 +130,13 @@ export default withSentryConfig(nextConfig, {
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
+
+  // Source maps exist only to be uploaded. Without a token Sentry would still have
+  // webpack build them, which roughly doubles server output and pushes a cold build
+  // past a 2 GB heap, so only build them when they can be uploaded.
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
 
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.

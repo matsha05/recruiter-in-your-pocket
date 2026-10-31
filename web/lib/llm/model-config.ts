@@ -17,6 +17,9 @@ export type ChatCompletionTuning = {
 };
 
 const GPT_5_REASONING_PATTERN = /^gpt-5(?:\.\d+)?(?:-(?:sol|terra|luna|mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/;
+// Only documented Chat Completions families belong here; this is not a
+// blanket assumption about future GPT-6 model parameters.
+const GPT_6_REASONING_PATTERN = /^gpt-(?:6\.1-(?:terra|sol)|6-(?:astra|luna))(?:-\d{4}-\d{2}-\d{2})?$/;
 
 // Production and release evaluations share this per-call ceiling. The bounded
 // repair may make another call; the request budget accounts for those calls.
@@ -53,6 +56,11 @@ export function defaultReasoningEffortForModel(model: string): ReasoningEffort {
 }
 
 function reasoningEffortForModel(model: string, effort: ReasoningEffort): ReasoningEffort {
+  if (GPT_6_REASONING_PATTERN.test(model.trim().toLowerCase())) {
+    if (effort === "minimal") return "low";
+    if (effort === "none" && /^gpt-(?:6\.1-sol|6-astra)(?:-|$)/i.test(model.trim())) return "low";
+    return effort;
+  }
   if (/^gpt-5(?:-(?:mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/i.test(model.trim())) {
     return ["minimal", "low", "medium", "high"].includes(effort)
       ? effort
@@ -65,7 +73,7 @@ export function resolveOpenAIModel(mode: LlmMode, explicitModel?: string) {
   const explicit = String(explicitModel || "").trim();
   if (explicit) return explicit;
   if (mode === "resume") {
-    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5.6-terra";
+    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-6.1-terra";
   }
   return String(process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
 }
@@ -98,7 +106,7 @@ export function getChatCompletionTuning(
     ? Number(options.maxCompletionTokens)
     : undefined;
 
-  if (isGpt5ReasoningModel(model)) {
+  if (isGpt5ReasoningModel(model) || GPT_6_REASONING_PATTERN.test(model.trim().toLowerCase())) {
     const reasoningEffort = options.reasoningEffort
       || parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
       || defaultReasoningEffortForModel(model);

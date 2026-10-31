@@ -14,9 +14,9 @@ export const ANONYMOUS_REPORT_RECOVERY_POLL_DELAYS_MS = [
   30_000,
 ] as const;
 export const ANONYMOUS_REPORT_RECOVERY_PENDING_MESSAGE =
-  "Your completed report may still be processing. Its recovery reference remains in this browser.";
+  "Your report may still be finishing. Keep this tab open and it will appear here.";
 export const ANONYMOUS_REPORT_RECOVERY_UNAVAILABLE_MESSAGE =
-  "Report recovery is temporarily unavailable. Your recovery reference remains in this browser; please try again shortly.";
+  "We couldn't load your report yet. It's still linked to this browser, so refresh in a minute to try again.";
 
 const UUID_V4_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;

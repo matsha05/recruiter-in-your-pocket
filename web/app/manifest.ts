@@ -3,12 +3,12 @@ import type { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Recruiter in Your Pocket',
-        short_name: 'Pocket',
-        description: 'See what stands out, what raises a question, and what to fix first.',
+        short_name: 'RIYP',
+        description: 'See what a recruiter sees: your Verdict, First Impression score, and the one thing they would miss.',
         start_url: '/',
         display: 'standalone',
         background_color: '#FBFAF7',
-        theme_color: '#4F46E5',
+        theme_color: '#12191b',
         icons: [
             {
                 src: '/icon/small',

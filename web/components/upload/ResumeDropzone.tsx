@@ -193,7 +193,7 @@ export function ResumeDropzone({
                 <div className="rounded border border-border/60 bg-card p-5 gap-y-4" aria-busy={isBusy}>
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
+                            <div className="text-[0.8125rem] text-muted-foreground">
                                 Upload resume
                             </div>
                             <div className="text-xs text-muted-foreground">PDF or DOCX</div>

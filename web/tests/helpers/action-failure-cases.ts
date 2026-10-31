@@ -20,7 +20,7 @@ async function signInHarness(page: Page) {
 export function registerActionFailureCases({ origin, savedReportId, report }: {
   origin: string;
   savedReportId: string;
-  report: { first_impression_takeaway?: string };
+  report: { first_impression?: string; first_impression_takeaway?: string };
 }) {
   for (const failure of FAILURES) {
     test(`history keeps a report name available to retry after ${failure} failure`, async ({ page }) => {
@@ -56,7 +56,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t send a code. Please try again.");
       await expect(page.getByLabel("Email address", { exact: true })).toHaveValue("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-      await expect(page.getByLabel("Login code", { exact: true })).toBeVisible();
+      await expect(page.getByLabel("Sign-in code", { exact: true })).toBeVisible();
       expect(requests).toBe(2);
     });
 
@@ -70,10 +70,10 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await page.goto(`${origin}/auth`);
       await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-      await page.getByLabel("Login code", { exact: true }).fill("12345678");
+      await page.getByLabel("Sign-in code", { exact: true }).fill("12345678");
       await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t verify that code. Please try again.");
-      await expect(page.getByLabel("Login code", { exact: true })).toHaveValue("12345678");
-      await page.getByRole("button", { name: "Verify Code", exact: true }).click();
+      await expect(page.getByLabel("Sign-in code", { exact: true })).toHaveValue("12345678");
+      await page.getByRole("button", { name: "Verify code", exact: true }).click();
       await expect(page.getByLabel("First name", { exact: true })).toBeVisible();
       expect(requests).toBe(2);
     });
@@ -120,7 +120,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       const exportButton = page.getByRole("button", { name: "Export report as PDF", exact: true });
       await exportButton.click();
       await expect(page.getByText(failure === "api" ? API_MESSAGE : "The PDF couldn’t download. Try exporting again.", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(report.first_impression_takeaway || "");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(report.first_impression || report.first_impression_takeaway || "");
       await expect(exportButton).toBeEnabled();
       const download = page.waitForEvent("download");
       await exportButton.click();

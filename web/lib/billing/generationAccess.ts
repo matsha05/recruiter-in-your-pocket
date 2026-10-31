@@ -476,11 +476,19 @@ export async function commitGenerationAccess(
  * The entitlement itself remains pending until validated output is ready.
  */
 export async function markGenerationProviderCallStarted(
-  _reservation: GenerationAccessReservation
+  reservation: GenerationAccessReservation
 ) {
   if (!isMockGenerationProviderEnabled()) {
-    await assertGenerationCapacity();
+    await assertGenerationCapacity(generationCapacityTier(reservation));
   }
+}
+
+/** Pass holders and internal bypass draw from the paid ceiling, never the free one. */
+export function generationCapacityTier(
+  reservation: Pick<GenerationAccessReservation, "entitlementKind"> | null | undefined
+): "free" | "paid" {
+  const kind = reservation?.entitlementKind;
+  return kind === "pass_credit" || kind === "pass_unlimited" || kind === "bypass" ? "paid" : "free";
 }
 
 export async function releaseGenerationAccess(

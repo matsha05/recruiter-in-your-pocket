@@ -76,7 +76,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "What the score tells you",
-            body: "Your resume gets a score out of 100, with an explanation of what affected it. The score does not predict interviews or offers.",
+            body: "Your resume gets a score out of 100, with an explanation of what affected it.",
           },
           {
             icon: LockKey,
@@ -215,7 +215,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice and does not guarantee interviews, offers, or hiring outcomes.",
+              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice. Company names that describe our founder's work history do not mean those companies sponsor, endorse, or are affiliated with RIYP.",
             },
           ],
         ],
@@ -266,7 +266,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "The service is provided as-is. We don't guarantee interviews, offers, or employment outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.",
+              value: "The service is provided as-is. Reports and scores do not predict or guarantee interviews, offers, or hiring outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.",
             },
           ],
         ],

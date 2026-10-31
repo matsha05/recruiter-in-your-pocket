@@ -10,7 +10,7 @@ type GenerationRollbackOutcome = { confirmed: true };
 export function generationCancellationError(attemptConsumed = false): GenerationCancellationError {
   const error = createAppError(
     "CLIENT_CANCELED",
-    "Analysis stopped before the report was complete.",
+    "The report stopped before it finished.",
     499,
   ) as GenerationCancellationError;
   error.attemptConsumed = attemptConsumed;

@@ -1,17 +1,17 @@
 import type { LiveEvalEvidence } from "./evalEvidence";
 
-// The original live outputs and targeted replacements are replayed through this
-// candidate. The source hash binds the assembled cohort and its source receipts.
+// Ten original synthetic outputs replayed on 09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d.
+// The source hash binds the unchanged live run; fresh Operations proof is separate.
 export const BUNDLED_LIVE_EVAL_EVIDENCE: LiveEvalEvidence = Object.freeze({
-  runId: "eval_1788577888513_targeted_cohort_replay",
-  model: "gpt-5.6-terra",
+  runId: "eval_1793463473819_replay",
+  model: "gpt-6.1-terra",
   reasoningEffort: "medium",
   validationMode: "saved_output_replay",
-  sourceRunSha256: "245686e38edf51014b54412f47e4c9d4ff6e3c235739190e4cc8d11413399d35",
-  resumePromptSha256: "67c7257730ac5b53f3465454d7bc6831e83f07d50255435e7cafbc09d1f8fa86",
-  resumeIdeasPromptSha256: "6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7",
-  total: 23,
-  passed: 22,
-  warned: 1,
+  "sourceRunSha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+  "resumePromptSha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "resumeIdeasPromptSha256": "6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7",
+  total: 10,
+  passed: 10,
+  warned: 0,
   failed: 0,
 });

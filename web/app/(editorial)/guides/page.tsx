@@ -1,29 +1,30 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Clock, ShieldCheck, Sparkle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Clock } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { pillarForHref } from "@/components/research/ResearchHubData";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
-    title: "Career Resources",
+    title: "Career resources",
     description: "Recruiter-grounded negotiation guides, compensation tools, and practical career resources.",
     alternates: { canonical: "/resources" },
 };
 
 const playbooks = [
     {
-        title: "Offer Negotiation Playbook",
+        title: "How to negotiate a job offer",
         subtitle: "All industries",
-        readTime: "10 min",
+        readTime: "12 min",
         href: "/resources/offer-negotiation",
         points: [
-            "A step-by-step sequence you can adapt to the employer",
-            "Word-for-word scripts you can actually use",
-            "What to ask for beyond base salary",
+            "What to say when they ask for your number",
+            "How to handle the offer call, the counter, and the close",
+            "Scripts for each step, and the research behind them",
         ],
     },
     {
-        title: "Tech Compensation Playbook",
+        title: "How to read and negotiate a tech offer",
         subtitle: "Engineering and product roles",
         readTime: "12 min",
         href: "/resources/tech-offer-negotiation",
@@ -37,16 +38,16 @@ const playbooks = [
 
 const researchLinks = [
     {
-        title: "The Referral Advantage",
+        title: "What a referral changes",
         href: "/research/referral-advantage",
     },
     {
-        title: "Salary History and Anchoring",
+        title: "Should you share your salary history?",
         href: "/research/salary-history-bans",
     },
     {
-        title: "Why Structured Interviews Are More Reliable",
-        href: "/research/structured-interviews-why-star",
+        title: "Tell the story behind the line",
+        href: "/research/star-method",
     },
 ];
 
@@ -59,10 +60,7 @@ export default function GuidesPage() {
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-marketing">
                         <div className="max-w-4xl">
-                            <div className={`${styles.label} inline-flex items-center gap-2 text-muted-foreground`}>
-                                <Sparkle aria-hidden="true" className="size-3.5 text-brand" weight="fill" />
-                                Practical career advice
-                            </div>
+                            <p className={`${styles.label} text-muted-foreground`}>Negotiation</p>
                             <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                                 Work out what to ask for in your next offer
                             </h1>
@@ -89,7 +87,7 @@ export default function GuidesPage() {
                                 href="/workspace"
                                 className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                             >
-                                Get free report
+                                Get your free report
                                 <ArrowRight className="size-4" />
                             </Link>
                         </div>
@@ -137,7 +135,7 @@ export default function GuidesPage() {
                                         Tool
                                     </p>
                                     <h3 className={`${styles.componentTitle} mt-2`}>
-                                        Compensation Calculator
+                                        Compare two offers side by side
                                     </h3>
                                     <p className={`${styles.readingCopy} mt-3`}>
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
@@ -211,15 +209,16 @@ export default function GuidesPage() {
                         </div>
 
                         <div className="grid gap-4 md:grid-cols-3">
-                            {researchLinks.map((item) => (
+                            {researchLinks.map((item) => {
+                                const pillar = pillarForHref(item.href);
+                                return (
                                 <Link
                                     key={item.title}
                                     href={item.href}
                                     className={`${styles.sheet} focus-ring group p-6 transition-colors hover:border-brand/40 sm:p-8`}
                                 >
-                                    <div className="mb-5 inline-flex size-11 items-center justify-center rounded-full border border-brand/15 bg-accent">
-                                        <ShieldCheck aria-hidden="true" className="size-4 text-brand" weight="duotone" />
-                                    </div>
+                                    {/* Which research pillar this belongs to: real information, where a generic icon was. */}
+                                    {pillar ? <p className="mb-5 text-sm font-medium text-muted-foreground">{pillar}</p> : null}
                                     <h3 className={`${styles.componentTitle} transition-colors group-hover:text-brand`}>
                                         {item.title}
                                     </h3>
@@ -228,7 +227,8 @@ export default function GuidesPage() {
                                         <ArrowRight className="size-4" />
                                     </div>
                                 </Link>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>

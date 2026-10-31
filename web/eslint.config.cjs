@@ -10,7 +10,6 @@ module.exports = [
   },
   {
     ignores: [
-      "components/landing-showcase/**",
       "app/internal/**",
       ".next/**",
       "node_modules/**",

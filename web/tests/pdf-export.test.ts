@@ -155,19 +155,23 @@ assert.deepEqual(canonicalCeiling?.subscores, { story: 99, impact: 99, clarity: 
 const pdfRendererSource = ["pdf.ts", "pdf-styles.ts"]
   .map((fileName) => readFileSync(path.join(process.cwd(), "lib", "backend", fileName), "utf8"))
   .join("\n");
-assert.match(pdfRendererSource, /Instrument Sans/);
-assert.match(pdfRendererSource, /Source Serif 4/);
-assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|Newsreader/);
+assert.match(pdfRendererSource, /Schibsted Grotesk/);
+assert.match(pdfRendererSource, /Literata/);
+assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|Newsreader|Instrument Sans|Source Serif/);
 
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /Review score/);
+assert.match(renderedHtml, /First Impression score/);
 assert.match(renderedHtml, /78<span>\/100<\/span>/);
-assert.match(renderedHtml, /Not a prediction of interviews or offers\./);
-assert.match(renderedHtml, new RegExp(getScoreLabel(sampleReport.score)));
-assert.match(renderedHtml, /What works well/);
-assert.match(renderedHtml, /What stays unclear/);
+assert.match(renderedHtml, /It doesn't predict interviews or offers\./);
+assert.match(renderedHtml, /<div class="verdict-label">Verdict<\/div>/);
+assert.ok(renderedHtml.includes(sampleReport.first_impression), "the PDF must open with the same Verdict as the web report");
+assert.match(renderedHtml, /Critical Miss/);
+assert.ok(renderedHtml.includes(sampleReport.top_fixes[0].fix));
+assert.doesNotMatch(renderedHtml, /subscores-grid|score-band/, "the PDF must use one score system");
+assert.match(renderedHtml, /Leave these alone\. They&rsquo;re working\./);
+assert.doesNotMatch(renderedHtml, /What stays unclear/, "gaps already surface as the Critical Miss and fixes; the PDF must not repeat them");
 assert.match(renderedHtml, /Suggested edits/);
 assert.match(renderedHtml, /Draft template/);
 assert.match(renderedHtml, /Complete the bracketed details with facts from your experience/);
@@ -192,7 +196,7 @@ for (const tag of ["html", "head", "style", "body", "section", "div", "span", "u
 
 const nextConfigSource = readFileSync(path.join(process.cwd(), "next.config.mjs"), "utf8");
 const postbuildSource = readFileSync(path.join(process.cwd(), "scripts", "ensure-next-build-package.cjs"), "utf8");
-for (const font of ["SourceSerif4-Variable.ttf", "InstrumentSans-Variable.ttf"]) {
+for (const font of ["Literata-Variable.woff2", "SchibstedGrotesk-Variable.woff2"]) {
   assert.match(nextConfigSource, new RegExp(font.replace(".", "\\.")), `${font} should be included in output tracing`);
   assert.match(postbuildSource, new RegExp(font.replace(".", "\\.")), `${font} should be asserted after build`);
 }

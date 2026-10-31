@@ -3,7 +3,7 @@ import { ResearchArticle, Citation } from "@/components/research/ResearchArticle
 import { AutomationPipeline } from "@/components/research/diagrams/AutomationPipeline";
 
 export const metadata: Metadata = {
-    title: "Hiring algorithms, equity, and bias | Hiring Research",
+    title: "Where automation enters hiring",
     description: "Where automation enters the hiring funnel and where bias can enter with it.",
 };
 
@@ -11,14 +11,14 @@ export default function AutomationBiasPage() {
     return (
         <ResearchArticle
             header={{
-                tag: "ATS & Automation",
-                title: "Where automation enters the hiring process",
+                tag: "Automation",
+                title: "Where automation enters hiring",
                 description: "Different tools can affect which job ads you see, whether your application is eligible, and how it reaches a reviewer.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
-                subtitle: "The System",
+                subtitle: "The system",
                 stat: "Bias can enter at several stages",
                 statDescription: (
                     <>
@@ -33,7 +33,7 @@ export default function AutomationBiasPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Where automation enters hiring</h2>
+                    <h2 className="research-h2">Four places a filter can act before a person looks</h2>
                     <p className="research-body mb-6">
                         Automated decisions can happen before you apply, including when a platform chooses who will see a job ad.
                         <Citation id="source-1">1</Citation>
@@ -42,22 +42,22 @@ export default function AutomationBiasPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "What your report can and can't see",
                 items: [
                     {
-                        title: "Check the resume text",
-                        description: "We review the text you submit and point out details that are missing or unclear. We cannot inspect the employer's advertising or screening tools."
+                        title: "The page you give us",
+                        description: "We read the resume you submit and flag what's missing or unclear. We can't see an employer's job ads or screening tools."
                     },
                     {
-                        title: "Separate fact from folklore",
-                        description: "We separate what public research documents from what private platforms do not disclose."
+                        title: "Research, not rumor",
+                        description: "When we talk about filters, we stick to what's been published. Private platforms don't share their settings, so we don't guess at them."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "ATS Myths", href: "/research/ats-myths", tag: "Industry" },
-                { title: "Human vs. Algorithm", href: "/research/human-vs-algorithm", tag: "Trust" },
-                { title: "Hiring Discrimination", href: "/research/hiring-discrimination-meta-analysis", tag: "Research" }
+                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Industry" },
+                { title: "What recruiters trust and what they follow", href: "/research/human-vs-algorithm", tag: "Trust" },
+                { title: "Discrimination in hiring hasn't gone away", href: "/research/hiring-discrimination-meta-analysis", tag: "Research" }
             ]}
             sources={[
                 {
@@ -105,6 +105,12 @@ export default function AutomationBiasPage() {
                 A system that decides who sees a job ad or appears in a search can change who receives attention. Candidates left out may still find another route to the employer, but the initial decision can limit their opportunity.
                 <Citation id="source-1">1</Citation>
             </p>
+
+            <h2 className="research-h2">Limitations</h2>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The Upturn report is from 2018. It describes where risk can enter, not how large the effect is.</li>
+                <li>Hiring tools have changed since then, and most vendors don&apos;t publish how theirs work.</li>
+            </ul>
         </ResearchArticle>
     );
 }

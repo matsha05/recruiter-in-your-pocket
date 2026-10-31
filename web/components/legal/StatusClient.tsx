@@ -165,13 +165,13 @@ export default function StatusClient() {
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Support</p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Having trouble with a report, payment, or account? <Link href="/support" className="underline underline-offset-4 hover:text-foreground">Contact support</Link> and tell us what happened.
+              Having trouble with a report, payment, or account? <Link href="/support" className="riyp-link-quiet">Contact support</Link> and tell us what happened.
             </p>
           </div>
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Security and privacy</p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              See <Link href="/security" className="underline underline-offset-4 hover:text-foreground">what data we keep</Link>, how long we keep it, and how to delete it.
+              See <Link href="/security" className="riyp-link-quiet">what data we keep</Link>, how long we keep it, and how to delete it.
             </p>
           </div>
         </div>

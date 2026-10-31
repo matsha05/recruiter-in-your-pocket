@@ -5,6 +5,10 @@
 .actions button { min-height: 46px; padding: 9px 10px; border: 1px solid hsl(var(--input)); border-radius: 100px; font-size: 13px; font-weight: 600; }
 .actions button:hover { background: hsl(var(--surface-inset)); }
 .links { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; font-size: 12px; }
-.links > * { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+.links > * { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; text-decoration-color: hsl(var(--link-line-quiet)); text-decoration-thickness: var(--link-thickness); text-underline-offset: var(--link-offset); transition: text-decoration-color var(--duration-fast) var(--ease); }
+.links > *:hover { text-decoration-color: currentColor; }
+.inlineLink { color: hsl(var(--text-strong)); text-decoration: underline; text-decoration-color: hsl(var(--link-line-quiet)); text-decoration-thickness: var(--link-thickness); text-underline-offset: var(--link-offset); transition: text-decoration-color var(--duration-fast) var(--ease); }
+.inlineLink:hover { text-decoration-color: currentColor; }
 .panel :focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 4px; }
-@media (max-width: 700px) { .panel { left: 12px; width: calc(100vw - 24px); padding: 18px; bottom: max(12px, env(safe-area-inset-bottom)); max-height: calc(100dvh - 24px); overflow-y: auto; } }
+/* Phones: keep the choice clear but short enough not to bury the page's main action. */
+@media (max-width: 700px) { .panel { left: 12px; width: calc(100vw - 24px); padding: 16px; bottom: max(12px, env(safe-area-inset-bottom)); max-height: calc(100dvh - 24px); overflow-y: auto; } .panel h2 { font-size: 15px; } .panel p { margin-top: 6px; font-size: 13px; line-height: 1.5; } .actions { margin-top: 12px; } .actions button { min-height: 44px; } }

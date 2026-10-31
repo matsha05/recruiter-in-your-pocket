@@ -40,11 +40,11 @@ export default function PurchaseConfirmedClient() {
 
   const unlockLabel = useMemo(() => {
     const map: Record<UnlockSection, string> = {
-      evidence_ledger: "Evidence behind the review",
-      bullet_upgrades: "Suggested rewrites",
-      missing_wins: "Details to add",
-      job_alignment: "Fit for the role",
-      export_pdf: "Export",
+      evidence_ledger: "your report",
+      bullet_upgrades: "your report",
+      missing_wins: "your report",
+      job_alignment: "your report",
+      export_pdf: "your report",
     };
     if (!unlock) return null;
     return map[unlock as UnlockSection] || null;
@@ -93,14 +93,17 @@ export default function PurchaseConfirmedClient() {
   const accountReady = paymentConfirmed && !checkingAccountAccess && hasPaidAccess;
   const statusLabel = isWaiting ? "Confirming with Stripe"
     : checkingAccountAccess ? "Checking account access"
-    : accountReady ? "Access confirmed"
+    : accountReady ? "Pass active"
     : paymentConfirmed ? "Payment confirmed"
     : "Needs attention";
   const confirmationMessage = !paymentConfirmed ? state.message
     : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
-    : accountReady ? "Your account has paid access. You can return to your report."
+    : accountReady ? "5 more reports, good for 30 days. Spend them on revisions, or on the jobs you actually want."
     : user ? "Your payment is confirmed, but this account does not show the pass yet."
     : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
+  const pageTitle = !paymentConfirmed || checkingAccountAccess ? state.title
+    : accountReady ? "You’re in. Five more reads."
+    : "Paid. One step left.";
   const nextStepLabel = !paymentConfirmed ? "Next step"
     : checkingAccountAccess ? "Checking your account"
     : accountReady ? "Ready when you are"
@@ -111,13 +114,12 @@ export default function PurchaseConfirmedClient() {
     <>
       <div
         data-visual-anchor="purchase-confirmed"
-        className="bg-background px-4 pb-20 pt-16 text-foreground selection:bg-brand/15 sm:px-6 sm:pt-20"
+        className="bg-background px-4 pb-20 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:pt-36"
       >
         <section className="mx-auto max-w-form" aria-labelledby="purchase-confirmed-title">
           <header className="grid gap-6 border-b border-border pb-8">
             <div>
-              <p className="text-eyebrow uppercase text-muted-foreground">Payment</p>
-              <div className="mt-5 flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
+              <div className="flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
                 {isWaiting ? <CircleNotch className="size-5 animate-spin motion-reduce:animate-none text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
@@ -129,7 +131,7 @@ export default function PurchaseConfirmedClient() {
                 id="purchase-confirmed-title"
                 className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
               >
-                {state.title}
+                {pageTitle}
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">{confirmationMessage}</p>
             </div>
@@ -138,15 +140,10 @@ export default function PurchaseConfirmedClient() {
           <div className="grid gap-5 py-8">
             <div className="text-sm leading-6 text-muted-foreground">
               {unlockLabel && state.status !== "missing" ? (
-                <p>
-                  We kept your place in <span className="font-medium text-foreground">{unlockLabel}</span>.
-                </p>
+                <p>Your report is right where you left it.</p>
               ) : null}
-              {state.status !== "missing" ? (
-                <p className="mt-3 text-xs">
-                  Confirmation reference {sessionSuffix || "pending"}
-                  {attempt > 1 ? ` · check ${attempt}` : ""}
-                </p>
+              {isProblem && state.status !== "missing" && sessionSuffix ? (
+                <p className="mt-3 text-sm">Confirmation reference {sessionSuffix}. Include it if you write to us.</p>
               ) : null}
             </div>
 
@@ -161,7 +158,7 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : state.status === "unlocked" && hasPaidAccess ? (
                   <Button asChild variant="brand" size="lg">
-                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Open workspace"} <ArrowRight className="size-4" weight="bold" /></Link>
+                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Back to my report"} <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" && user ? (
                   <Button asChild variant="brand" size="lg">
@@ -177,9 +174,11 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 )}
 
-                <Button asChild variant="outline" size="lg">
-                  <Link href={restoreHref}>Restore access</Link>
-                </Button>
+                {accountReady ? null : (
+                  <Button asChild variant="outline" size="lg">
+                    <Link href={restoreHref}>Restore access</Link>
+                  </Button>
+                )}
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/settings/billing">Billing settings</Link>
                 </Button>
@@ -189,11 +188,6 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : null}
               </div>
-              {paymentConfirmed && !checkingAccountAccess && !user ? (
-                <p className="mt-5 rounded-xl bg-brand/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
-                  Sign in with the email used at checkout to use this pass. A passwordless sign-in email may already be in your inbox.
-                </p>
-              ) : null}
               {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
                 <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
                   Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
@@ -204,7 +198,7 @@ export default function PurchaseConfirmedClient() {
 
           <p className="border-t border-line pt-6 text-sm leading-6 text-muted-foreground">
             Need help? Email{" "}
-            <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground underline decoration-brand/40 underline-offset-4 hover:text-brand">
+            <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground riyp-link">
               support@recruiterinyourpocket.com
             </a>{" "}
             from the address used at checkout.

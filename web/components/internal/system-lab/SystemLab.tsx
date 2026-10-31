@@ -85,7 +85,7 @@ export default function SystemLab() {
             <span className="hidden items-center gap-2 text-xs font-semibold text-brand sm:flex">
               <Check weight="bold" className="size-3.5" /> Approved direction
             </span>
-            <Link className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-foreground underline decoration-line underline-offset-4 hover:decoration-brand" href="/">
+            <Link className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-foreground riyp-link-quiet" href="/">
               View product <ArrowRight className="size-4" />
             </Link>
           </div>

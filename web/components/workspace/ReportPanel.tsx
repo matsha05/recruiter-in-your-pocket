@@ -3,6 +3,7 @@
 import { ArrowRight, BookmarkSimple, CircleNotch, Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 import { DownloadIcon } from "@/components/ui/download";
 import { EmptyReportIcon } from "@/components/icons";
 import AnalysisScanning from "./AnalysisScanning";
@@ -31,6 +32,8 @@ interface ReportPanelProps {
     isSample?: boolean;
     onNewReport?: () => void;
     onKeepReport?: () => void;
+    isSavingReport?: boolean;
+    reportSaveError?: string | null;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     isGated?: boolean;
@@ -55,6 +58,8 @@ export default function ReportPanel({
     isSample = false,
     onNewReport,
     onKeepReport,
+    isSavingReport = false,
+    reportSaveError = null,
     freeUsesRemaining = 1,
     onUpgrade,
     isGated = false,
@@ -117,12 +122,17 @@ export default function ReportPanel({
         return url.toString();
     };
 
-    const handleShare = () => {
+    const handleShare = async () => {
         if (!shareEnabled || typeof window === "undefined") return;
         const url = buildShareUrl();
-        navigator.clipboard.writeText(url);
         setShareMode(true);
         window.history.replaceState({}, "", url);
+        try {
+            await navigator.clipboard.writeText(url);
+            toast.success("Link copied.");
+        } catch {
+            toast.error("Couldn't copy the link. Copy it from the address bar.");
+        }
     };
 
     const handleExitShare = () => {
@@ -156,17 +166,17 @@ export default function ReportPanel({
 
                     {/* Copy - Question Headline */}
                     <div className="gap-y-3 max-w-md">
-                        <h2 className="font-display text-2xl font-normal leading-tight text-foreground">
-                            Your report will appear here.
+                        <h2 className="font-display text-2xl font-bold leading-tight text-foreground">
+                            Your report will show up here.
                         </h2>
                         <p className="text-muted-foreground">
-                            Add your resume to see what stands out first.
+                            Add your resume and see what a recruiter notices first.
                         </p>
                     </div>
 
                     {/* Trust Signal */}
-                    <p className="text-xs text-muted-foreground/60 font-medium">
-                        First report included · No account required
+                    <p className="text-sm text-muted-foreground">
+                        Your first report is free.
                     </p>
 
                     {/* Divider + Example Link */}
@@ -175,7 +185,7 @@ export default function ReportPanel({
                             onClick={onNewReport}
                             className="min-h-11 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            <span className="text-brand hover:underline">Add your resume →</span>
+                            <span className="text-brand hover:underline">Get your free report →</span>
                         </button>
                     </div>
                 </div>
@@ -183,7 +193,7 @@ export default function ReportPanel({
 
             {/* 3. The working report */}
             {showReport && !isLoading && displayReport && (
-                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} />}>
+                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} hasKeep={(displayReport.strengths || []).length > 1} hasRole={Boolean(displayReport.job_alignment)} />}>
                         <div className="gap-y-6">
                             {isStreaming && (
                                 <div
@@ -192,15 +202,7 @@ export default function ReportPanel({
                                     className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm leading-6 text-muted-foreground"
                                 >
                                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand motion-safe:animate-pulse" aria-hidden="true" />
-                                    <p><span className="font-medium text-foreground">Still building your report.</span> You can start reading now; the remaining sections will fill in as they arrive.</p>
-                                </div>
-                            )}
-                            {!resumeText?.trim() && !isSample && (
-                                <div
-                                    role="note"
-                                    className="mb-4 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground"
-                                >
-                                    Copy is unavailable because this saved report does not include the original resume. You can still read the suggestions.
+                                    <p><span className="font-medium text-foreground">Still writing the rest.</span> Start reading. The other sections fill in as they finish.</p>
                                 </div>
                             )}
                             {shareEnabled && shareMode && (
@@ -235,10 +237,10 @@ export default function ReportPanel({
 
                             <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                    <span className="text-[0.8125rem] font-semibold text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}
                                     </span>
-                                    {shareEnabled && shareMode && <span className="text-xs font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
+                                    {shareEnabled && shareMode && <span className="text-[0.8125rem] font-semibold text-premium">Share view</span>}
                                 </div>
                                 <div className="flex shrink-0 items-center gap-1">
                                     {isSample && onNewReport && (
@@ -250,7 +252,7 @@ export default function ReportPanel({
                                             onClick={onNewReport}
                                             className="min-h-11 shrink-0 px-2 sm:px-4"
                                         >
-                                            Get my free report <ArrowRight className="ml-1 size-4" weight="bold" />
+                                            Get your free report <ArrowRight className="ml-1 size-4" weight="bold" />
                                         </Button>
                                     )}
                                     {!isSample && !isStreaming && !shareMode && onKeepReport && (
@@ -260,10 +262,13 @@ export default function ReportPanel({
                                             variant="ghost"
                                             size="sm"
                                             onClick={onKeepReport}
+                                            disabled={isSavingReport}
+                                            aria-busy={isSavingReport || undefined}
+                                            aria-describedby={reportSaveError ? "report-save-error" : undefined}
                                             className="min-h-11 shrink-0 px-3 text-foreground"
                                         >
                                             <BookmarkSimple className="size-4 text-brand" weight="duotone" />
-                                            Keep report
+                                            {isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save report"}
                                         </Button>
                                     )}
                                     {canExport && !isSample && (
@@ -278,7 +283,7 @@ export default function ReportPanel({
                                                 state={isExporting ? "pending" : "idle"}
                                                 states={{
                                                     idle: { label: <span className="hidden sm:inline">Export PDF</span>, icon: <DownloadIcon size={16} /> },
-                                                    pending: { label: <span className="hidden sm:inline">Exporting...</span>, icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
+                                                    pending: { label: <span className="hidden sm:inline">Exporting…</span>, icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
                                                 }}
                                             />
                                         </button>
@@ -290,11 +295,17 @@ export default function ReportPanel({
                                             className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
                                         >
                                             <LinkIcon className="size-4" />
-                                            <span className="hidden sm:inline">Share Report</span>
+                                            <span className="hidden sm:inline">Share report</span>
                                         </button>
                                     )}
                                 </div>
                             </div>
+
+                            {reportSaveError && !isSample && !shareMode && (
+                                <p id="report-save-error" role="alert" className="mt-3 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground">
+                                    {reportSaveError}
+                                </p>
+                            )}
 
                             {/* Unlock Banner */}
                             {justUnlocked && report && !shareMode && (

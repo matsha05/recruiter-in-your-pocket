@@ -4,7 +4,7 @@ import SettingsClient from "@/components/workspace/SettingsClient";
 import { launchFlags } from "@/lib/launch/flags";
 
 export const metadata: Metadata = {
-  title: "Billing Settings",
+  title: "Billing",
   description: "Check your remaining reports, restore a purchase, or find a receipt."
 };
 

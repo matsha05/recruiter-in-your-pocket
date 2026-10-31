@@ -76,7 +76,7 @@ export function ResearchArticle({
     faq,
     cta = {
         title: "Find out where your resume needs more detail.",
-        buttonText: "Review my resume",
+        buttonText: "Get your free report",
         href: "/workspace",
     },
 }: ResearchArticleProps) {
@@ -141,11 +141,11 @@ export function ResearchArticle({
                                 </p>
                             </div>
 
-                            <aside className="rounded-2xl border border-line bg-card p-5 md:rounded-3xl lg:p-7" aria-label="Best-supported conclusion">
+                            <aside className="rounded-sheet border border-line bg-card p-5 lg:p-7" aria-label="Best-supported conclusion">
                                 <div className="riyp-evidence-label text-brand">
-                                    {keyFinding.label ?? (header.tag === "Methodology" ? "Example score" : "Key finding")}
+                                    {keyFinding.label ?? "Key finding"}
                                 </div>
-                                <p className="mt-3 font-serif text-verdict text-foreground">
+                                <p className="mt-3 text-balance font-display text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-foreground">
                                     {keyFinding.stat}
                                 </p>
                                 <div className="mt-4 text-sm leading-6 text-muted-foreground">
@@ -153,7 +153,7 @@ export function ResearchArticle({
                                 </div>
                                 <p className="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted-foreground">
                                     {keyFinding.source.href ? (
-                                        <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="underline decoration-line underline-offset-4 transition-colors hover:text-foreground">
+                                        <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">
                                             {keyFinding.source.text}
                                         </a>
                                     ) : <span>{keyFinding.source.text}</span>}
@@ -172,19 +172,9 @@ export function ResearchArticle({
                             </section>
                         ) : null}
 
-                        <div className="grid gap-12 pb-20 pt-12 lg:grid-cols-[11rem_minmax(0,1fr)] lg:justify-center lg:gap-14 md:pb-28 md:pt-16">
-                            <aside className="hidden lg:block">
-                                <div className="sticky top-28 border-t border-line pt-4">
-                                    <p className="riyp-evidence-label text-brand">{header.tag === "Methodology" ? "About the method" : "About this research"}</p>
-                                    <dl className="mt-4 divide-y divide-line border-y border-line text-xs leading-5">
-                                        <div className="py-3"><dt className="text-muted-foreground">Topic</dt><dd className="mt-1 font-semibold text-foreground">{header.tag}</dd></div>
-                                        {sources?.length ? <div className="py-3"><dt className="text-muted-foreground">Source record</dt><dd className="mt-1 font-semibold text-foreground">{header.sourceSummary ?? "Direct sources linked below"}</dd></div> : null}
-                                    </dl>
-                                </div>
-                            </aside>
-
-                            <div className="min-w-0">
-                                <article className="prose max-w-reading text-prose prose-headings:font-display prose-headings:font-normal prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl md:prose-h2:text-section-title prose-h3:mt-10 prose-h3:text-report-title prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground prose-a:text-brand prose-a:decoration-brand/30 prose-a:underline-offset-4">
+                        <div className="pb-20 pt-12 md:pb-28 md:pt-16">
+                            <div className="mx-auto min-w-0 max-w-[46rem]">
+                                <article className="prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl md:prose-h2:text-section-title prose-h3:mt-10 prose-h3:text-report-title prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground">
                                     {children}
                                 </article>
 
@@ -194,15 +184,15 @@ export function ResearchArticle({
                                         <div className="divide-y divide-line border-b border-line">
                                             {faq.map((item) => (
                                                 <div key={item.question} className="grid gap-2 py-6 md:grid-cols-[0.8fr_1.2fr] md:gap-8">
-                                                    <h3 className="text-sm font-semibold leading-6 text-foreground">{item.question}</h3>
-                                                    <p className="text-sm leading-7 text-muted-foreground">{item.answer}</p>
+                                                    <h3 className="text-base font-semibold leading-7 text-foreground">{item.question}</h3>
+                                                    <p className="text-base leading-7 text-muted-foreground">{item.answer}</p>
                                                 </div>
                                             ))}
                                         </div>
                                     </section>
                                 ) : null}
 
-                                <section className="mt-16 rounded-2xl border border-line bg-card px-6 py-8 md:rounded-3xl" aria-labelledby="product-translation-title">
+                                <section className="mt-16 rounded-sheet border border-line bg-card px-6 py-8" aria-labelledby="product-translation-title">
                                     <h2 id="product-translation-title" className="font-display text-report-title tracking-tight text-foreground">{productTieIn.title}</h2>
                                     <div className="mt-7 divide-y divide-line border-t border-line">
                                         {productTieIn.items.map((item, index) => (
@@ -231,7 +221,7 @@ export function ResearchArticle({
                                                     return (
                                                         <li key={sourceId} id={sourceId}>
                                                             <span className="mr-2 tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
-                                                            {source.href ? <a href={source.href} target="_blank" rel="noopener noreferrer" className="underline decoration-line underline-offset-4 transition-colors hover:text-foreground">{sourceLabel}</a> : <span>{sourceLabel}</span>}
+                                                            {source.href ? <a href={source.href} target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">{sourceLabel}</a> : <span>{sourceLabel}</span>}
                                                         </li>
                                                     );
                                                 })}
@@ -266,7 +256,7 @@ export function ResearchArticle({
                     <div className="mx-auto flex max-w-[72rem] flex-col gap-8 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
-                            <h2 className="mt-4 max-w-[24ch] font-display text-3xl font-normal text-foreground md:text-section-title">{cta.title}</h2>
+                            <h2 className="mt-4 max-w-[24ch] font-display text-3xl font-bold text-foreground md:text-section-title">{cta.title}</h2>
                         </div>
                         <Link href={cta.href} className="focus-ring inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-control text-background transition-colors hover:bg-foreground/90">
                             {cta.buttonText}
@@ -293,7 +283,7 @@ export function Citation({ id, children }: { id: string; children: ReactNode }) 
     const sourceLabel = typeof children === "string" || typeof children === "number" ? children : "reference";
     return (
         <sup className="relative top-[-0.25em] ml-0.5 inline-flex size-4 align-baseline">
-            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold leading-none tabular-nums text-brand underline decoration-brand/30 underline-offset-2 hover:text-brand-strong">
+            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold leading-none tabular-nums riyp-link">
                 {children}
             </a>
         </sup>

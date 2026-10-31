@@ -5,6 +5,8 @@ import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer"
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
 import { positiveSourceContradictions, removeUnsafeRewrites } from "../llm/source-fidelity";
 import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
+import { isOptionalReportMetadataPath } from "../llm/optional-report-metadata";
+import { logInfo } from "../observability/logger";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -142,7 +144,8 @@ export function validateResumeModelPayload(
   const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
   if (resumeText && shouldGround) {
-    const contradictions = positiveSourceContradictions(obj, resumeText, options.jobDescription);
+    const contradictions = positiveSourceContradictions(obj, resumeText, options.jobDescription)
+      .filter((issue) => !isOptionalReportMetadataPath(issue.path));
     if (contradictions.length > 0) {
       throw createAppError(
         "OPENAI_RESPONSE_SHAPE_INVALID",
@@ -158,7 +161,9 @@ export function validateResumeModelPayload(
         502,
       );
     }
-    const canonical = canonicalizeResumeReportEvidence(obj, resumeText);
+    const canonical = canonicalizeResumeReportEvidence(obj, resumeText, { jobDescription: options.jobDescription });
+    const omittedPaths = canonical.changes.filter((change) => change.endsWith(".omitted_unverified"));
+    if (omittedPaths.length > 0) logInfo({ msg: "llm.response.optional_metadata_omitted", feature: "resume_report", source: omittedPaths.join(";") });
     const sectionIssue = canonical.unresolved.find(issue => issue.startsWith("section_review."));
     if (sectionIssue) {
       throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID",

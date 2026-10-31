@@ -88,7 +88,7 @@ async function run() {
     canceledAfterStart.abort();
     await assert.rejects(
       () => providerRun,
-      (error: any) => error?.code === "CLIENT_CANCELED" && error?.message === "Analysis stopped before the report was complete.",
+      (error: any) => error?.code === "CLIENT_CANCELED" && error?.message === "The report stopped before it finished.",
       "genuine client cancel must not be classified as timeout",
     );
 

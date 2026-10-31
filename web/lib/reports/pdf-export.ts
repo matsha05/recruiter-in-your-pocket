@@ -9,6 +9,7 @@ export type ReportForPdf = {
   next_steps: string[];
   score_label?: string;
   score_comment_short?: string;
+  first_impression?: string;
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
   top_fixes?: Array<{ fix?: string; why?: string }>;
   job_alignment?: {
@@ -139,7 +140,7 @@ function deriveSummary(report: Record<string, unknown>): string | null {
     asTrimmedString(report.score_comment_long) ||
     asTrimmedString(report.score_comment_short) ||
     asTrimmedString(report.score_plain) ||
-    "Saved recruiter report."
+    "Here's where to start."
   );
 }
 
@@ -165,13 +166,14 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
   const top_fixes = asTopFixes(candidate.top_fixes);
   const normalized: ReportForPdf = {
     score,
-    summary: deriveSummary(candidate) || "Saved recruiter report.",
+    summary: deriveSummary(candidate) || "Here's where to start.",
     strengths: asStringArray(candidate.strengths),
     gaps: asStringArray(candidate.gaps),
     rewrites: asRewrites(candidate.rewrites),
     next_steps: deriveNextSteps(candidate, top_fixes),
     score_label: getScoreLabel(score),
     score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
+    first_impression: asTrimmedString(candidate.first_impression) || undefined,
     subscores: asSubscores(candidate.subscores),
     top_fixes,
     job_alignment: asJobAlignment(candidate.job_alignment),

@@ -4,7 +4,7 @@ import SettingsClient from "@/components/workspace/SettingsClient";
 import { launchFlags } from "@/lib/launch/flags";
 
 export const metadata: Metadata = {
-  title: "Matching Settings",
+  title: "Job matching settings",
   description: "Choose the default resume to compare with jobs you save through the extension."
 };
 

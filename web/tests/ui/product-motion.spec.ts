@@ -63,7 +63,7 @@ async function openEditableReport(page: Page) {
   await page.getByTestId("workspace-paste-mode").click();
   await page.getByTestId("workspace-resume-text").fill(RESUME);
   await page.getByTestId("workspace-run-report").click();
-  await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression_takeaway);
+  await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression);
   const fix = page.locator("#section-fix-1");
   await expect(fix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
   await fix.scrollIntoViewIfNeeded();
@@ -221,7 +221,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect.poll(() => busy.evaluate((button) => button.getAnimations({ subtree: true }).filter((animation) => animation.playState === "running" && animation.effect?.getTiming().iterations === Infinity).length), {
       message: "Only the visible pending spinner runs; hidden sizing copies stay inert",
     }).toBe(1);
-    await expect(page.getByLabel("Login code", { exact: true })).toHaveCount(0);
+    await expect(page.getByLabel("Sign-in code", { exact: true })).toHaveCount(0);
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
     expect(requests).toBe(1);
     await pending!.fulfill({ status: 503, json: { ok: false, message: "Email is temporarily unavailable." } });

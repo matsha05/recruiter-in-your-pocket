@@ -35,76 +35,26 @@ interface PaywallModalProps {
 }
 
 const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB_SEARCH_PASS_DECISION.whenToBuy}`;
-const ADDITIONAL_REPORTS_BULLET = "5 additional reports";
+const PASS_BULLETS = [
+    "5 more complete reports",
+    "See whether your Critical Miss is fixed after you revise",
+    "Check your resume against each job posting",
+    "PDF exports for 30 days",
+];
 
 const DEFAULT_UNLOCK_COPY = {
     label: "Job Search Pass",
-    title: "Run another report",
+    title: "Want another read?",
     subtitle: COMPLETE_REPORT_SUBTITLE,
-    bullets: [
-        ADDITIONAL_REPORTS_BULLET,
-        "Reports tailored to a job posting",
-        "Side-by-side revision comparisons",
-        "PDF exports for 30 days"
-    ]
+    bullets: PASS_BULLETS,
 };
 
 const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
-    evidence_ledger: {
-        label: "Resume feedback",
-        title: "Review your revised resume",
-        subtitle: COMPLETE_REPORT_SUBTITLE,
-        bullets: [
-            ADDITIONAL_REPORTS_BULLET,
-            "Feedback on a revised resume or another job posting",
-            "Suggested rewrites tied to that resume",
-            "PDF exports for 30 days"
-        ]
-    },
-    bullet_upgrades: {
-        label: "Suggested rewrites",
-        title: "Get feedback on your revision",
-        subtitle: COMPLETE_REPORT_SUBTITLE,
-        bullets: [
-            ADDITIONAL_REPORTS_BULLET,
-            "New rewrites for each revised resume",
-            "The original beside every suggestion",
-            "Why each change may help"
-        ]
-    },
-    missing_wins: {
-        label: "Details to add",
-        title: "Check the details you add",
-        subtitle: COMPLETE_REPORT_SUBTITLE,
-        bullets: [
-            ADDITIONAL_REPORTS_BULLET,
-            "New questions raised by a revised resume",
-            "Why each new detail matters",
-            "Compare the new feedback with your earlier report"
-        ]
-    },
-    job_alignment: {
-        label: "Fit for the role",
-        title: "Review another role",
-        subtitle: COMPLETE_REPORT_SUBTITLE,
-        bullets: [
-            ADDITIONAL_REPORTS_BULLET,
-            "Compare a resume with specific job postings",
-            "Where your experience fits and what is missing",
-            "Suggestions for explaining your relevant experience"
-        ]
-    },
-    export_pdf: {
-        label: "Export",
-        title: "Export your report as a PDF",
-        subtitle: COMPLETE_REPORT_SUBTITLE,
-        bullets: [
-            ADDITIONAL_REPORTS_BULLET,
-            "PDF export for saved reports",
-            "Export without re-running",
-            "Exports stay available after all five reports are used"
-        ]
-    }
+    evidence_ledger: { ...DEFAULT_UNLOCK_COPY, label: "Your revision", title: "Check your revised resume" },
+    bullet_upgrades: { ...DEFAULT_UNLOCK_COPY, label: "Your edits", title: "See what your edits changed" },
+    missing_wins: { ...DEFAULT_UNLOCK_COPY, label: "Details to add", title: "Check the details you add" },
+    job_alignment: { ...DEFAULT_UNLOCK_COPY, label: "Role fit", title: "Read it against another role" },
+    export_pdf: { ...DEFAULT_UNLOCK_COPY, label: "PDF export", title: "Take your report with you" },
 };
 
 export default function PaywallModal({
@@ -205,18 +155,17 @@ export default function PaywallModal({
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
-                        <p className="mx-auto mb-2 text-xs font-bold uppercase riyp-track-010 text-brand">Another report</p>
-                        <DialogTitle className="font-display text-2xl font-medium">
-                            Paid passes are currently unavailable
+                        <DialogTitle className="font-display text-2xl font-bold">
+                            Passes are paused for now
                         </DialogTitle>
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
                             {hasCurrentReport
                                 ? "Your existing report stays available. You can return to it below."
-                                : "You can return to your resume below. Another report requires available free access or a Job Search Pass."}
+                                : "You can't buy a pass right now. Your resume is still here when you're ready."}
                         </DialogDescription>
                     </DialogHeader>
                     <Button className="mt-5 w-full" onClick={onClose}>
-                        {hasCurrentReport ? "Back to my report" : "Back to workspace"}
+                        {hasCurrentReport ? "Back to my report" : "Back to my resume"}
                     </Button>
                 </DialogContent>
             </Dialog>
@@ -227,7 +176,7 @@ export default function PaywallModal({
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
-                    <DialogTitle className="font-display text-xl font-medium">
+                    <DialogTitle className="font-display text-xl font-bold">
                         {unlockCopy.title}
                     </DialogTitle>
                     <DialogDescription className="text-sm">
@@ -236,8 +185,8 @@ export default function PaywallModal({
                 </DialogHeader>
 
                 <div className="mb-5 gap-y-3 border-y border-line bg-surface-sky/45 px-4 py-4">
-                    <div className="flex items-center justify-between text-xs uppercase tracking-wide text-muted-foreground">
-                        <span>What the pass adds</span>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span className="font-semibold text-foreground">What you get</span>
                         <span data-testid="paywall-context-label" className="text-foreground/80">{unlockCopy.label}</span>
                     </div>
                     <UnlockValueList items={unlockCopy.bullets} dense />
@@ -246,15 +195,15 @@ export default function PaywallModal({
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
                     <div>
                         <p className="font-display text-4xl riyp-weight-520 tracking-[-0.03em] text-foreground">$29</p>
-                        <p className="mt-1 text-xs font-semibold uppercase riyp-track-010 text-brand">One payment</p>
+                        <p className="mt-1 text-sm text-muted-foreground">one-time</p>
                     </div>
                     <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
-                        Five additional reports. {JOB_SEARCH_PASS_DECISION.terms}
+                        Good for 30 days. No automatic renewal.
                     </div>
                 </div>
 
                 <form
-                    className="mb-3 border border-line bg-background p-4"
+                    className="mb-1"
                     onSubmit={(event) => {
                         event.preventDefault();
                         void handleCheckout();
@@ -271,7 +220,7 @@ export default function PaywallModal({
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"
                             >
-                                Continue to Stripe · $29 once
+                                Continue to checkout
                             </Button>
                         </>
                     ) : (
@@ -298,7 +247,7 @@ export default function PaywallModal({
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"
                             >
-                                Continue to Stripe checkout
+                                Continue to checkout
                             </Button>
                         </>
                     )}
@@ -312,7 +261,7 @@ export default function PaywallModal({
                     loadingLabel="Checking access…"
                 >
                     <ArrowClockwise className="mr-2 size-4" weight="bold" />
-                    Restore purchase or manage billing
+                    Already paid? Restore access
                 </Button>
 
                 {error && (
@@ -322,7 +271,7 @@ export default function PaywallModal({
                 )}
 
                 <p id="checkout-terms" className="text-center text-xs leading-5 text-muted-foreground">
-                    Stripe handles payment. No automatic renewal. Unused passes are refundable within 14 days; full details are in the <Link href="/terms" className="underline underline-offset-4 hover:text-foreground">Terms</Link>. By continuing, you also agree to the <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy Policy</Link>. Billing help is available through <Link href="/support" className="underline underline-offset-4 hover:text-foreground">Support</Link>.
+                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/support" className="riyp-link-quiet">Ask us</Link>.
                 </p>
             </DialogContent>
         </Dialog>

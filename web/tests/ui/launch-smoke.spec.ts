@@ -67,8 +67,8 @@ test.describe("launch smoke", () => {
       return { body, heading };
     });
 
-    expect(typography.body).toContain("Instrument Sans");
-    expect(typography.heading).toContain("Instrument Sans");
+    expect(typography.body).toContain("Schibsted Grotesk");
+    expect(typography.heading).toContain("Schibsted Grotesk");
     expect(typography.body).not.toMatch(/Times New Roman|Times/i);
     expect(typography.heading).not.toMatch(/Times New Roman|Times/i);
     expect(typography.heading).not.toMatch(/Times New Roman|Times/i);

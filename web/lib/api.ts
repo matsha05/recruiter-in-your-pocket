@@ -151,7 +151,7 @@ export async function streamResumeFeedback(
       return {
         ok: false,
         errorCode: "STREAM_TRANSPORT_ERROR",
-        message: "The connection ended before the report finished.",
+        message: "The connection dropped before your report finished.",
       };
     }
 
@@ -181,7 +181,7 @@ export async function streamResumeFeedback(
     return {
       ok: false,
       errorCode: "STREAM_TRANSPORT_ERROR",
-      message: "The connection ended before the report finished.",
+      message: "The connection dropped before your report finished.",
     };
   }
 
@@ -232,7 +232,7 @@ export async function streamResumeFeedback(
       return {
         ok: false,
         errorCode: "STREAM_TRANSPORT_ERROR",
-        message: "The connection ended before the report finished.",
+        message: "The connection dropped before your report finished.",
         attemptConsumed,
         attemptDisposition,
         creditRestored,
@@ -358,7 +358,7 @@ export async function streamResumeFeedback(
   return {
     ok: false,
     errorCode: "STREAM_TRANSPORT_ERROR",
-    message: "The connection ended before the report finished.",
+    message: "The connection dropped before your report finished.",
     accessConsumed: attemptConsumed,
     attemptConsumed,
     attemptDisposition,

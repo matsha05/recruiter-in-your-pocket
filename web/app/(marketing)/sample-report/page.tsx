@@ -8,7 +8,7 @@ import sampleReport from "@/public/sample-report.json";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Example Resume Report",
+  title: "Sample report",
   description: "See how a resume report explains what works, quotes the details behind its feedback, and suggests what to change before applying.",
   alternates: {
     canonical: "/sample-report",

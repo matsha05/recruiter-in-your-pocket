@@ -5,19 +5,19 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
     Clock,
-    Chrome,
+    GoogleChromeLogo as Chrome,
     FileText,
-    Loader2,
+    CircleNotch as Loader2,
     User,
     Target,
     Receipt,
-    RefreshCw,
-    ExternalLink,
-    ShieldAlert
-} from "lucide-react";
+    ArrowsClockwise as RefreshCw,
+    ArrowSquareOut as ExternalLink,
+    ShieldWarning as ShieldAlert
+} from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
@@ -95,12 +95,16 @@ function formatDate(input?: string | null) {
     if (!input) return null;
     const date = new Date(input);
     if (Number.isNaN(date.getTime())) return null;
-    return date.toLocaleDateString();
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 function formatAmount(cents: number, currency: string | null) {
-    const amount = (Number(cents || 0) / 100).toFixed(2);
-    return `${(currency || "USD").toUpperCase()} ${amount}`;
+    const code = (currency || "USD").toUpperCase();
+    try {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: code }).format(Number(cents || 0) / 100);
+    } catch {
+        return `${code} ${(Number(cents || 0) / 100).toFixed(2)}`;
+    }
 }
 
 async function fetchPassesRequest(): Promise<PassRecord[]> {
@@ -152,6 +156,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     const guestCheckoutForm = useForm<GuestCheckoutFormValues>({
         defaultValues: { guestEmail: "" }
     });
+    const displayNameValue = useWatch({ control: profileForm.control, name: "displayName" }) || "";
+    const guestEmailValue = useWatch({ control: guestCheckoutForm.control, name: "guestEmail" }) || "";
 
     const {
         data: passes = [],
@@ -412,8 +418,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             : user?.membership === "credit"
                 ? `${user.paidUsesLeft || 0} paid reports`
                 : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
-    const displayNameValue = profileForm.watch("displayName") || "";
-    const guestEmailValue = guestCheckoutForm.watch("guestEmail") || "";
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
     const latestPass = loadingPasses ? null : passes[0];
     const passForStatus = activePass || latestPass || null;
@@ -449,7 +453,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
                     <AppPageIntro
                         anchor="settings-loading"
-                        eyebrow="Settings"
                         title="Opening your settings"
                         description="Your account details will appear here shortly."
                     />
@@ -468,7 +471,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12 space-y-6">
                     <AppPageIntro
                         anchor="settings-page"
-                        eyebrow="Settings"
                         title="Settings"
                         description={billingEnabled
                             ? "Sign in to manage your account and billing."
@@ -508,7 +510,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
                 <AppPageIntro
                     anchor="settings-page"
-                    eyebrow="Settings"
                     title="Settings"
                     description={tabDescriptions[activeTab]}
                     meta={
@@ -538,7 +539,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 href="/security"
                                 className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
                             >
-                                Review data handling
+                                How we handle your data
                             </Link>
                         </div>
                     }
@@ -547,7 +548,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                 <nav
                     aria-label="Settings sections"
-                    className="mb-8 flex w-full items-center gap-1 overflow-x-auto border-b border-border pb-1"
+                    className="mb-8 flex w-full flex-wrap items-center gap-1 border-b border-border pb-1"
                 >
                     {visibleTabs.map(({ id, label, href, icon: Icon }) => (
                         <Link
@@ -581,7 +582,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             className="w-full max-w-auth"
                                             onSubmit={profileForm.handleSubmit(handleSaveProfile)}
                                         >
-                                            <label htmlFor="settings-display-name" className="mb-2 block text-sm font-medium text-foreground">Display Name</label>
+                                            <label htmlFor="settings-display-name" className="mb-2 block text-sm font-medium text-foreground">Display name</label>
                                             <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
                                                 <input
                                                     id="settings-display-name"
@@ -616,7 +617,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
-                                        <p className="text-xs text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
+                                        <p className="text-[0.8125rem] text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
                                     </div>
                                     <button type="button"
                                         onClick={handleExportData}
@@ -629,11 +630,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                             </section>
 
-                            <section className="rounded-xl border border-destructive/25 bg-error-surface p-5">
+                            <section className="rounded-xl border border-line p-5">
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
                                     <div>
-                                        <h3 className="text-sm font-medium text-destructive mb-0.5">Delete Account</h3>
-                                        <p className="text-xs text-destructive">Permanently remove your account, reports, and usage data.</p>
+                                        <h3 className="mb-0.5 text-sm font-medium text-foreground">Delete account</h3>
+                                        <p className="text-[0.8125rem] text-muted-foreground">Permanently removes your account, saved reports, and usage data. This can&apos;t be undone.</p>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <button type="button"
@@ -653,7 +654,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     {activeTab === "matching" && (
                         <div className="space-y-6 ui-state-enter">
                             <div className="mb-2">
-                                <h2 className="text-lg font-medium text-foreground">Job Matching</h2>
+                                <h2 className="text-lg font-medium text-foreground">Job matching</h2>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     Save a resume to compare with jobs in the Chrome extension.
                                 </p>
@@ -670,18 +671,18 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <section className="app-card space-y-4 p-6">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                     <div className="space-y-2">
-                                        <h2 className="text-lg font-medium text-foreground">Billing Status</h2>
+                                        <h2 className="text-lg font-medium text-foreground">Your pass</h2>
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className={cn(
                                                 "rounded-md border px-2.5 py-1 text-xs font-medium",
-                                                (hasPaidMembership || activePass) ? "border-success bg-success/10 text-success" : "border-line bg-paper-muted text-muted-foreground"
+                                                (hasPaidMembership || activePass) ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]" : "border-line bg-paper-muted text-muted-foreground"
                                             )}>
                                                 {(hasPaidMembership || activePass) ? "Active" : "Free"}
                                             </span>
                                             <p className="text-lg font-medium text-foreground">{accessLabel}</p>
                                         </div>
                                         <div className="text-sm text-muted-foreground">
-                                            Purchases are tied to <span className="break-all font-medium text-foreground">{user?.email}</span>
+                                            Purchases are tied to <span className="block break-words font-medium text-foreground sm:inline">{user?.email}</span>
                                         </div>
                                         {passTierLabel && (
                                             <div className="text-xs text-muted-foreground space-y-1">
@@ -702,7 +703,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             aria-busy={isRestoreLoading}
                                             className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input px-4 py-2 text-sm font-medium transition-colors hover:bg-paper-muted disabled:opacity-50"
                                         >
-                                            <ActionFeedback state={isRestoreLoading ? "pending" : "idle"} states={{ idle: { label: "Restore Access", icon: <RefreshCw className="size-4" /> }, pending: { label: "Checking access…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
+                                            <ActionFeedback state={isRestoreLoading ? "pending" : "idle"} states={{ idle: { label: "Restore access", icon: <RefreshCw className="size-4" /> }, pending: { label: "Checking access…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                         </button>
                                         {(user?.membership === "monthly" || user?.membership === "lifetime") && (
                                             <button type="button"
@@ -720,30 +721,44 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 {showRestoreNudge && (
                                     <div className="rounded-xl border border-warning/30 bg-warning/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
                                         We couldn&apos;t find billing records for this email. If you used a different email at checkout,
-                                        sign in with that email and press Restore Access.
+                                        sign in with that email and choose Restore access.
                                     </div>
                                 )}
                             </section>
 
-                            <section>
-                                <h2 className="text-lg font-medium text-foreground mb-1">Job Search Pass</h2>
-                                <p className="text-sm text-muted-foreground mb-5">
-                                    Five more complete reports for 30 days. One payment, no automatic renewal.
-                                </p>
-                                <div className="grid gap-4">
-                                    <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />
-                                </div>
-                            </section>
+                            {activePass || hasPaidMembership ? (
+                                <section className="flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
+                                    <p className="max-w-md text-sm leading-6 text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 30 days.</p>
+                                    <button type="button"
+                                        onClick={() => handleCheckout("30d")}
+                                        disabled={isCheckoutLoading === "30d"}
+                                        aria-busy={isCheckoutLoading === "30d"}
+                                        className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-input bg-card px-5 py-2 text-sm font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
+                                    >
+                                        <ActionFeedback state={isCheckoutLoading === "30d" ? "pending" : "idle"} states={{ idle: { label: "Get 5 more reports · $29" }, pending: { label: "Opening checkout…" } }} />
+                                    </button>
+                                </section>
+                            ) : (
+                                <section>
+                                    <h2 className="text-lg font-medium text-foreground mb-1">Job Search Pass</h2>
+                                    <p className="text-sm text-muted-foreground mb-5">
+                                        Five more complete reports for 30 days. One payment, no automatic renewal.
+                                    </p>
+                                    <div className="grid gap-4">
+                                        <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />
+                                    </div>
+                                </section>
+                            )}
 
                             <section className="rounded-xl bg-muted p-5 text-sm leading-6 text-muted-foreground">
                                 Need help with a payment or invoice? Email{" "}
-                                <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
+                                <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] riyp-link-quiet">
                                     support@recruiterinyourpocket.com
                                 </Link>
                             </section>
 
                             <section>
-                                <h2 className="text-base font-medium text-foreground mb-3">Purchase History</h2>
+                                <h2 className="text-base font-medium text-foreground mb-3">Purchases</h2>
                                 <div className="app-card overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
@@ -760,7 +775,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : passes.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
                                             <Clock className="size-5 mx-auto mb-2 opacity-40" />
-                                            No purchases yet. If you already paid, use Restore Access.
+                                            No purchases yet. If you already paid, choose Restore access above.
                                         </div>
                                     ) : (
                                         <div className="divide-y divide-border">
@@ -776,14 +791,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                                                 return (
                                                     <div key={pass.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                        <div className="flex items-center gap-3 min-w-0">
+                                                        <div className="flex w-full min-w-0 items-center gap-3 sm:flex-1">
                                                             <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
                                                                 <FileText className="size-3.5" />
                                                             </div>
-                                                            <div className="min-w-0">
-                                                                <p className="text-sm font-medium truncate">{getTierLabel(pass.tier)}</p>
-                                                                <p className="text-xs text-muted-foreground truncate">
-                                                                    {new Date(pass.created_at).toLocaleDateString()} · {usesLabel}
+                                                            <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
+                                                                <p className="text-sm font-medium">{getTierLabel(pass.tier)}</p>
+                                                                <p className="text-xs text-muted-foreground">
+                                                                    {formatDate(pass.created_at)} · {usesLabel}
                                                                 </p>
                                                                 {expiryDate && (
                                                                     <p className="text-xs text-muted-foreground/70">
@@ -800,7 +815,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                             className={cn(
                                                                 "rounded-md border px-2.5 py-1 text-xs font-medium",
                                                                 active
-                                                                    ? "border-success bg-success/10 text-success"
+                                                                    ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]"
                                                                     : passStatus === "revoked"
                                                                         ? "border-destructive bg-error text-destructive"
                                                                         : "border-line bg-paper-muted text-muted-foreground"
@@ -818,7 +833,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             <section>
                                 <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-                                    <h2 className="text-base font-medium text-foreground">Receipts & Invoices</h2>
+                                    <h2 className="text-base font-medium text-foreground">Receipts</h2>
                                     <button type="button"
                                         onClick={() => {
                                             void refetchReceipts();
@@ -838,7 +853,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : receiptsError ? (
                                         <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
                                             <p className="font-medium">Receipts could not load.</p>
-                                            <p className="mt-1 text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
+                                            <p className="mt-1 [overflow-wrap:anywhere] text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
                                             <button type="button" onClick={() => void refetchReceipts()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
                                                 Try again
                                             </button>
@@ -851,23 +866,23 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <div className="divide-y divide-border">
                                             {receipts.map((receipt) => (
                                                 <div key={receipt.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                    <div className="min-w-0">
-                                                        <p className="text-sm font-medium truncate">
+                                                    <div className="w-full min-w-0 [overflow-wrap:anywhere] sm:w-auto sm:flex-1">
+                                                        <p className="text-sm font-medium">
                                                             {receipt.number || receipt.id}
                                                         </p>
-                                                        <p className="text-xs text-muted-foreground truncate">
-                                                            {new Date(receipt.created_at).toLocaleDateString()} · {formatAmount(receipt.amount_paid, receipt.currency)}
+                                                        <p className="text-xs text-muted-foreground">
+                                                            {formatDate(receipt.created_at)} · {formatAmount(receipt.amount_paid, receipt.currency)}
                                                         </p>
                                                         {receipt.status && (
                                                             <span className={cn(
                                                                 "mt-1 inline-flex rounded-md border px-2.5 py-1 text-xs font-medium",
-                                                                receipt.status === "paid" ? "border-success bg-success/10 text-success" : "border-line bg-paper-muted text-muted-foreground"
+                                                                receipt.status === "paid" ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]" : "border-line bg-paper-muted text-muted-foreground"
                                                             )}>
-                                                                {receipt.status}
+                                                                {receipt.status.charAt(0).toUpperCase() + receipt.status.slice(1)}
                                                             </span>
                                                         )}
                                                     </div>
-                                                    <div className="flex items-center gap-2 shrink-0">
+                                                    <div className="flex max-w-full shrink-0 flex-wrap items-center gap-2">
                                                         {receipt.hosted_invoice_url && (
                                                             <a
                                                                 href={receipt.hosted_invoice_url}
@@ -899,7 +914,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <section className="rounded-xl bg-muted p-5">
                                 <p className="text-xs text-muted-foreground flex items-start gap-2">
                                     <ShieldAlert className="size-4 mt-0.5 shrink-0" />
-                                    Job Search Passes do not renew. Receipts stay available here. If you paid with a different email, sign in with that email and choose Restore Access.
+                                    Job Search Passes don&apos;t renew. Receipts stay available here. If you paid with a different email, sign in with that email and choose Restore access.
                                 </p>
                             </section>
                         </div>
@@ -946,7 +961,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     onConfirm={handleDeleteAccount}
                     title="Delete your account?"
                     description="This permanently removes your account and user-owned product data from RIYP. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone."
-                    confirmText="Delete Account"
+                    confirmText="Delete account"
                     cancelText="Keep Account"
                     variant="destructive"
                     loading={isDeletingAccount}

@@ -19,7 +19,7 @@ export default function GlobalError({
       <body className="min-h-screen bg-paper text-foreground">
         <main className="flex min-h-screen items-center px-5 py-16 md:px-8">
           <section className="mx-auto w-full max-w-[72rem] border-y border-line py-10 md:py-16" aria-labelledby="global-error-title">
-            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Recruiter in Your Pocket</p>
+            <p className="text-[0.8125rem] font-semibold text-brand">Recruiter in Your Pocket</p>
             <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:items-end">
               <div>
                 <h1 id="global-error-title" className="exception-page-title max-w-[44rem] font-display riyp-weight-620 text-foreground riyp-stretch-91">
@@ -36,7 +36,7 @@ export default function GlobalError({
                 <a href="/workspace" className="focus-ring inline-flex min-h-12 items-center justify-center border border-foreground bg-paper px-5 py-3 text-sm font-semibold text-foreground">
                   Open my workspace
                 </a>
-                <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold text-foreground underline underline-offset-4">
+                <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring inline-flex min-h-12 items-center justify-center px-5 py-3 text-sm font-semibold riyp-link">
                   Contact support
                 </a>
               </div>

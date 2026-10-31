@@ -32,7 +32,7 @@ export default function SecurityClient() {
                                     ["Processor", row.processor],
                                 ].map(([label, value]) => (
                                     <div key={label} className="grid gap-1">
-                                        <dt className="text-label uppercase tracking-wider text-muted-foreground">{label}</dt>
+                                        <dt className="text-label text-muted-foreground">{label}</dt>
                                         <dd className="text-sm leading-relaxed text-muted-foreground">{value}</dd>
                                     </div>
                                 ))}
@@ -43,11 +43,11 @@ export default function SecurityClient() {
                 <table className="hidden w-full table-fixed text-sm leading-relaxed md:table">
                     <thead>
                         <tr className="border-b border-line text-left">
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Data type</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Purpose</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Retention</th>
-                            <th className="py-2 pr-3 text-label uppercase tracking-wider text-muted-foreground">Your control</th>
-                            <th className="py-2 text-label uppercase tracking-wider text-muted-foreground">Processor</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Data type</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Purpose</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Retention</th>
+                            <th className="py-2 pr-3 text-label text-muted-foreground">Your control</th>
+                            <th className="py-2 text-label text-muted-foreground">Processor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@ export default function SecurityClient() {
                     Responsible disclosure
                 </h2>
                 <p className="text-base text-muted-foreground">
-                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="focus-ring rounded-sm text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">/.well-known/security.txt</Link>.
+                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring rounded-sm text-foreground riyp-link">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="focus-ring rounded-sm text-foreground riyp-link">/.well-known/security.txt</Link>.
                 </p>
             </section>
         </LegalShell>

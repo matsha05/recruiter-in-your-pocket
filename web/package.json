@@ -38,7 +38,8 @@
     "test:compensation-model": "node scripts/run-ts-test.cjs tests/compensation-model.test.ts",
     "test:saved-report-revision": "node scripts/run-ts-test.cjs tests/saved-report-revision.test.ts",
     "test:request-body": "node scripts/run-ts-test.cjs tests/request-body.test.ts",
-    "test:generation-access": "node scripts/run-ts-test.cjs tests/generation-access.test.ts && node scripts/run-ts-test.cjs tests/atomic-report-finalization.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation-status.test.ts && node scripts/run-ts-test.cjs tests/anonymous-report-recovery.test.ts && node scripts/run-ts-test.cjs tests/generation-delivery-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/generation-finality.test.ts && node scripts/run-ts-test.cjs tests/generation-route-http.test.ts && node scripts/run-ts-test.cjs tests/generation-failure.test.ts && node scripts/run-ts-test.cjs tests/generation-cancellation.test.ts && node scripts/run-ts-test.cjs tests/generated-report-lifecycle.test.ts",
+    "test:parse-resume": "node scripts/run-ts-test.cjs tests/parse-resume.test.ts",
+    "test:generation-access": "node scripts/run-ts-test.cjs tests/generation-access.test.ts && node scripts/run-ts-test.cjs tests/atomic-report-finalization.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation.test.ts && node scripts/run-ts-test.cjs tests/authenticated-generation-operation-status.test.ts && node scripts/run-ts-test.cjs tests/anonymous-report-recovery.test.ts && node scripts/run-ts-test.cjs tests/recovery-origin.test.ts && node scripts/run-ts-test.cjs tests/generation-delivery-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/generation-finality.test.ts && node scripts/run-ts-test.cjs tests/generation-route-http.test.ts && node scripts/run-ts-test.cjs tests/generation-failure.test.ts && node scripts/run-ts-test.cjs tests/generation-cancellation.test.ts && node scripts/run-ts-test.cjs tests/generated-report-lifecycle.test.ts",
     "test:generation-budget": "node scripts/run-ts-test.cjs tests/generation-budget.test.ts",
     "test:matching-engine": "node scripts/run-ts-test.cjs tests/matching-engine.test.ts",
     "test:critical-coverage": "c8 --all --include='lib/matching/skill-engine.ts' --reporter=text --reporter=json-summary --check-coverage --lines=70 --functions=65 --branches=60 node scripts/run-ts-test.cjs tests/matching-engine.test.ts",
@@ -46,7 +47,7 @@
     "test:supabase-config": "node scripts/run-ts-test.cjs tests/supabase-config.test.ts",
     "test:backend-contracts": "node scripts/run-ts-test.cjs tests/backend-contracts.test.ts && node scripts/run-ts-test.cjs tests/prompt-assets.test.ts",
     "test:llm-contract": "node scripts/run-ts-test.cjs tests/llm-response-contract.test.ts && node scripts/run-ts-test.cjs tests/resume-repair.test.ts",
-    "test:source-fidelity": "node scripts/run-ts-test.cjs tests/report-source-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-narrative-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-role-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-fidelity-regressions.test.ts && node scripts/run-ts-test.cjs tests/report-relationship-fidelity.test.ts",
+    "test:source-fidelity": "node scripts/run-ts-test.cjs tests/report-source-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-narrative-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-role-fidelity.test.ts && node scripts/run-ts-test.cjs tests/report-fidelity-regressions.test.ts && node scripts/run-ts-test.cjs tests/report-relationship-fidelity.test.ts && node scripts/run-ts-test.cjs tests/optional-report-metadata.test.ts && node scripts/run-ts-test.cjs tests/assessment-language.test.ts && node scripts/run-ts-test.cjs tests/differing-inputs.test.ts && node scripts/run-ts-test.cjs tests/personal-action-presuppositions.test.ts",
     "test:stream-contract": "node scripts/run-ts-test.cjs tests/stream-completion-contract.test.ts && node scripts/run-ts-test.cjs tests/client-generation-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/anonymous-report-recovery-client.test.ts && node scripts/run-ts-test.cjs tests/stream-anonymous-recovery.test.ts && npm run test:workspace-context",
     "test:privacy-lifecycle": "node scripts/run-ts-test.cjs tests/account-privacy-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/account-export-job.test.ts",
     "test:vendor-privacy": "node scripts/run-ts-test.cjs tests/vendor-privacy.test.ts",
@@ -56,7 +57,7 @@
     "test:report-storage": "node scripts/run-ts-test.cjs tests/report-storage-security.test.ts && node scripts/run-ts-test.cjs tests/report-delete-finality.test.ts",
     "test:eval-report": "node scripts/run-ts-test.cjs tests/eval-report.test.ts",
     "test:gauntlet": "node scripts/run-ts-test.cjs tests/gauntlet-definition.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-capture-contract.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-progress.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-build-trace.test.ts && node scripts/run-ts-test.cjs tests/launch-test-defaults.test.ts",
-    "test:release-integrity": "npm run test:llm-contract && npm run test:pdf-export && npm run test:eval-report && npm run test:gauntlet",
+    "test:release-integrity": "npm run test:llm-contract && npm run test:parse-resume && npm run test:pdf-export && npm run test:eval-report && npm run test:gauntlet",
     "test:accessibility": "playwright test tests/ui/accessibility.spec.ts --project=chromium",
     "test:security": "npm run test:injection && npm run test:pii && npm run test:extension-cors && npm run test:auth-redirect && npm run test:auth-email && npm run test:support-inbound && npm run test:support-reply && npm run test:billing-access && npm run test:billing-pricing && npm run test:stripe-security && npm run test:stripe-fulfillment && npm run test:request-body && npm run test:generation-access && npm run test:generation-budget && npm run test:report-storage && npm run test:redis-config && npm run test:supabase-config && npm run test:backend-contracts && npm run test:privacy-lifecycle && npm run test:vendor-privacy && npm run test:analytics-privacy",
     "eval": "node scripts/run-ts-script.cjs scripts/run-eval.ts",
@@ -87,7 +88,7 @@
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.4",
-    "@sentry/nextjs": "^10.64.0",
+    "@sentry/nextjs": "^10.75.2",
     "@sparticuz/chromium": "149.0.0",
     "@supabase/ssr": "0.12.0",
     "@supabase/supabase-js": "2.110.1",
@@ -102,11 +103,11 @@
     "mammoth": "^1.11.0",
     "mixpanel-browser": "^2.72.0",
     "motion": "^12.23.26",
-    "next": "^16.3.3",
+    "next": "^16.4.3",
     "next-themes": "^0.4.6",
     "pdf-parse": "^1.1.4",
-    "puppeteer": "25.1.0",
-    "puppeteer-core": "25.1.0",
+    "puppeteer": "25.16.0",
+    "puppeteer-core": "25.16.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-dropzone": "^14.3.8",
@@ -116,8 +117,7 @@
     "stripe": "^22.3.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.185.1",
-    "zod": "^4.2.1"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
@@ -126,11 +126,10 @@
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
-    "@types/three": "^0.185.4",
     "autoprefixer": "10.4.19",
     "c8": "^12.0.0",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^16.3.3",
+    "eslint-config-next": "^16.4.3",
     "postcss": "8.5.25",
     "tailwindcss": "3.4.14",
     "text-to-svg": "^3.1.5",
@@ -138,9 +137,12 @@
   },
   "overrides": {
     "gaxios": "7.3.0",
-    "js-yaml": "4.3.1",
+    "js-yaml": "4.3.2",
     "nanoid": "3.3.18",
     "postcss": "8.5.25",
-    "sharp": "0.35.4"
+    "sharp": "0.35.5",
+    "inngest": {
+      "zod": "$zod"
+    }
   }
 }

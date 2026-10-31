@@ -1,14 +1,19 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { EvalRunOutput } from "../lib/evals/types";
 import {
   liveEvalMatchesCandidate,
   liveEvalMeetsLaunchBar,
   parseLiveEvalEvidence,
+  readLiveEvalEvidence,
 } from "../lib/launch/evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "../lib/launch/liveEvalBaseline";
 import { loadPromptForMode } from "../lib/backend/prompts";
 import { checkScoreRange } from "../lib/evals/contract-checks";
+import { aggregateProviderMetrics } from "../lib/evals/runner";
+import { calculateCostUsd } from "../lib/llm/cost";
+import { resolveOpenAIModel } from "../lib/llm/model-config";
 
 function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
   return {
@@ -129,12 +134,34 @@ assert.equal(
 async function runCandidateBindingTests() {
   const resumePrompt = await loadPromptForMode("resume");
   const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
+  assert.deepEqual(
+    readLiveEvalEvidence(path.resolve(__dirname, "../..")),
+    BUNDLED_LIVE_EVAL_EVIDENCE,
+    "tracked latest-live summary and hosted bundled evidence must identify the same evaluated cohort",
+  );
+  const configuredModel = process.env.OPENAI_RESUME_MODEL;
+  try {
+    delete process.env.OPENAI_RESUME_MODEL;
+    assert.equal(BUNDLED_LIVE_EVAL_EVIDENCE.model, resolveOpenAIModel("resume"),
+      "bundled evidence must approve the actual default launch model");
+  } finally {
+    if (configuredModel === undefined) delete process.env.OPENAI_RESUME_MODEL;
+    else process.env.OPENAI_RESUME_MODEL = configuredModel;
+  }
+  const recordedModel = BUNDLED_LIVE_EVAL_EVIDENCE.model;
+  assert.ok(recordedModel, "bundled evidence must identify the model actually evaluated");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-terra",
+    model: recordedModel,
     reasoningEffort: "medium",
     resumePrompt,
     resumeIdeasPrompt,
   }), true);
+  assert.equal(liveEvalMatchesCandidate({ ...BUNDLED_LIVE_EVAL_EVIDENCE, model: "gpt-5.6-terra" }, {
+    model: "gpt-6.1-terra",
+    reasoningEffort: "medium",
+    resumePrompt,
+    resumeIdeasPrompt,
+  }), false, "a passing historical Terra 5.6 run must not approve the Terra 6.1 candidate");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
     model: "gpt-4o-mini",
     reasoningEffort: "low",
@@ -142,18 +169,39 @@ async function runCandidateBindingTests() {
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-terra",
+    model: recordedModel,
     reasoningEffort: "low",
     resumePrompt,
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5.6-terra",
+    model: recordedModel,
     reasoningEffort: "medium",
     resumePrompt: `${resumePrompt}\nchanged`,
     resumeIdeasPrompt,
   }), false);
 }
+
+const firstUsage = {
+  prompt_tokens: 200_000, completion_tokens: 1_000,
+  cached_prompt_tokens: 40_000, cache_write_prompt_tokens: 150_000,
+};
+const retryUsage = {
+  prompt_tokens: 100_000, completion_tokens: 2_000,
+  cached_prompt_tokens: 80_000, cache_write_prompt_tokens: 10_000,
+};
+const aggregatedCalls = aggregateProviderMetrics([
+  { usage: firstUsage, costUsd: calculateCostUsd("gpt-6.1-terra", firstUsage)!, latencyMs: 200, responseModel: "gpt-6.1-terra" },
+  { usage: retryUsage, costUsd: calculateCostUsd("gpt-6.1-terra", retryUsage)!, latencyMs: 300, responseModel: "gpt-6.1-terra" },
+  { latencyMs: 50 },
+]);
+assert.equal(aggregatedCalls.usage?.cache_write_prompt_tokens, 160_000,
+  "fixture usage must retain writes from every priced attempt, including a retry");
+assert.equal(aggregatedCalls.usage?.cached_prompt_tokens, 120_000);
+assert.equal(aggregatedCalls.provider_calls, 3, "unpriced failed attempts still count toward the call budget");
+assert.equal(aggregatedCalls.latency_ms, 550);
+assert.equal(aggregatedCalls.cost_usd, 0.241,
+  "sum per-call prices; combining short requests must not spuriously trigger long-context repricing");
 
 runCandidateBindingTests()
   .then(() => console.log("eval-report tests passed"))

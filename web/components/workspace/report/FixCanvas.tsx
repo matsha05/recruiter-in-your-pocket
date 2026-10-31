@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  BracketsAngle,
   Check,
   CircleNotch,
   Copy,
@@ -11,6 +10,7 @@ import {
   PencilSimple,
 } from "@phosphor-icons/react";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { Button } from "@/components/ui/button";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Input } from "@/components/ui/input";
@@ -47,16 +47,10 @@ function sectionFor(fix?: Fix) {
 }
 
 function copyGuidance(reason: ReturnType<typeof resolveRewriteCopyPolicy>["reason"]) {
-  if (reason === "source_unavailable") {
-    return "The original resume is not available in this view, so copying is disabled.";
-  }
-  if (reason === "unresolved_placeholders") {
-    return "The brackets mark missing details. Add only what you can verify before copying.";
-  }
-  if (reason === "unsafe") {
-    return "This draft changes or leaves out a detail from your resume. Edit it to preserve the original facts before copying.";
-  }
-  return "Check the wording, then make it sound like you.";
+  // The page banner and the fixes heading already carry the general cautions.
+  if (reason === "unresolved_placeholders") return "Fill in the brackets to copy.";
+  if (reason === "unsafe") return "This draft changes a detail from your resume. Edit it back to what's true before copying.";
+  return "";
 }
 
 export function FixCanvas({
@@ -169,13 +163,13 @@ export function FixCanvas({
     return (
       <article className={styles.locked}>
         <div className="pointer-events-none select-none opacity-20 blur-[3px]">
-          <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">Fix {index + 1}</p>
+          <p className="text-xs font-semibold text-brand">Fix {index + 1}</p>
           <div className="mt-4 h-8 w-4/5 bg-foreground/30" />
           <div className="mt-6 h-24 bg-brand/15" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
           <Button variant="premium" onClick={onUnlock}>
-            <LockKey className="mr-2 size-4" /> See the full edit plan
+            <LockKey className="mr-2 size-4" /> {JOB_SEARCH_PASS_DECISION.cta}
           </Button>
         </div>
       </article>
@@ -189,8 +183,8 @@ export function FixCanvas({
           <div className="flex items-start gap-3">
             <MinusCircle className="mt-0.5 size-5 shrink-0 text-muted-foreground" weight="duotone" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Fix {String(index + 1).padStart(2, "0")} marked not relevant.</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">You can bring this suggestion back at any time.</p>
+              <p className="text-sm font-semibold text-foreground">{index === 0 ? "Critical Miss" : `Fix ${index + 1}`} hidden.</p>
+              <p className="mt-1 text-sm leading-5 text-muted-foreground">Not a fit for your resume? No problem. You can bring it back.</p>
             </div>
           </div>
           <button type="button" onClick={() => setDismissed(false)} className="min-h-11 self-start px-3 text-xs font-semibold text-brand hover:text-brand/75 sm:self-auto">
@@ -205,8 +199,11 @@ export function FixCanvas({
     <article id={`section-fix-${index + 1}`} className={styles.root}>
       <div className={styles.layout}>
         <div className="flex items-baseline gap-3 sm:block">
-          <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">Fix {String(index + 1).padStart(2, "0")}</p>
-          <p className="text-xs leading-5 text-muted-foreground sm:mt-2">{index === 0 ? "Start here" : index === 1 ? "Next" : "Then"}</p>
+          {index === 0 ? (
+            <p className="riyp-verdict-label pt-1.5 text-[hsl(var(--brass))]">Critical Miss</p>
+          ) : (
+            <p className="pt-1 text-sm font-semibold text-brand">Fix {index + 1}</p>
+          )}
         </div>
 
         <div className="min-w-0">
@@ -223,7 +220,7 @@ export function FixCanvas({
 
           {draftSource && (
             <div className={styles.source}>
-              <p className="text-xs font-semibold uppercase riyp-track-015 text-muted-foreground">
+              <p className={styles.sourceLabel}>
                 {sectionFor(fix) ? `${showSourceExcerpt ? "Excerpt" : "Original"} · ${sectionFor(fix)}` : showSourceExcerpt ? "Excerpt" : "Original"}
               </p>
               <p className={styles.sourceText}>“{visibleSource}”</p>
@@ -235,12 +232,13 @@ export function FixCanvas({
           )}
 
           <div className={`${styles.reasoning} ${hasSuggestedLine ? styles.reasoningColumns : ""}`}>
-            <div className={styles.reasoningItem}>
-              <p className={styles.label}>Why it matters</p>
+            {/* The Critical Miss explains why at the top; its card repeats the questions only when there is no draft to fill in. */}
+            {(index > 0 || !hasSuggestedLine) && <div className={styles.reasoningItem}>
+              <p className={`${styles.label} ${index === 0 ? styles.labelMissing : ""}`}>{index === 0 ? "What to add" : "Why it matters"}</p>
               <p className={styles.body}>{fix.why || "This example needs more detail about what you did and what changed."}</p>
-            </div>
-            {hasSuggestedLine && <div className={styles.reasoningItem}>
-              <p className={styles.label}>{placeholderKeys.length > 0 ? "Details to add" : "Before you use this"}</p>
+            </div>}
+            {hasSuggestedLine && placeholderKeys.length > 0 && <div className={styles.reasoningItem}>
+              <p className={styles.label}>Details to add</p>
               {placeholderKeys.length > 0 && rewrite?.enhancement_note && (
                 <p className="mt-3 text-base leading-6 text-foreground">{rewrite.enhancement_note}</p>
               )}
@@ -262,7 +260,7 @@ export function FixCanvas({
                         value={factValues[key] || ""}
                         onChange={(event) => handleFactChange(key, event.target.value)}
                         className={styles.factInput}
-                        placeholder="Add a detail you can verify"
+                        placeholder="What actually happened"
                         aria-label={`Fact for ${key} in fix ${index + 1}`}
                       />
                     </label>
@@ -275,9 +273,7 @@ export function FixCanvas({
                     setEditing(true);
                   }}>Edit original wording</Button>
                 </div>
-              ) : (
-                <p className="text-base mt-3 leading-6 text-foreground">Check that the suggestion still describes the work you did.</p>
-              )}
+              ) : null}
             </div>}
           </div>
 
@@ -287,7 +283,6 @@ export function FixCanvas({
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">
                   View draft template
                 </summary>
-                <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">This is unfinished wording. The brackets mark missing facts; it needs your details and an edit before it belongs on a resume.</p>
                 <p className="my-4 max-w-[42rem] text-base leading-7 text-foreground/85">{suggestedLine}</p>
               </details>
             </div>
@@ -295,8 +290,8 @@ export function FixCanvas({
             <div className={styles.wording}>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase riyp-track-015 text-brand">{isSample ? "Example wording" : editingOriginal ? "Your wording" : "Suggested wording"}</p>
-                  <p className="mt-1 max-w-xl text-xs text-muted-foreground">{isSample ? "This example uses only the details in the original line." : copyGuidance(copyPolicy.reason)}</p>
+                  <p className="text-sm font-semibold text-brand">{isSample ? "Example wording" : editingOriginal ? "Your wording" : "Suggested wording"}</p>
+                  {!isSample && copyGuidance(copyPolicy.reason) && <p className="mt-1 max-w-xl text-sm text-muted-foreground">{copyGuidance(copyPolicy.reason)}</p>}
                 </div>
                 {!isSample && (
                   <div className="flex items-center gap-1">
@@ -312,10 +307,10 @@ export function FixCanvas({
                       disabled={!copyPolicy.copyable}
                       aria-disabled={!copyPolicy.copyable || copying}
                       aria-busy={copying || undefined}
-                      title={!copyPolicy.copyable ? copyGuidance(copyPolicy.reason) : undefined}
+                      title={!copyPolicy.copyable ? copyGuidance(copyPolicy.reason) || undefined : undefined}
                       className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-3 text-xs font-semibold text-brand transition-colors duration-fast hover:text-brand/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-busy:cursor-wait disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-70 motion-reduce:transition-none"
                     >
-                      {!copyPolicy.copyable ? <><BracketsAngle className="size-4" aria-hidden="true" />{copyPolicy.reason === "source_unavailable" ? "Original resume needed" : "Verify facts to copy"}</> : (
+                      {!copyPolicy.copyable ? <><Copy className="size-4" aria-hidden="true" />Copy</> : (
                         <ActionFeedback state={copying ? "pending" : copied ? "success" : "idle"} states={{
                           idle: { label: "Copy", icon: <Copy className="size-4" /> },
                           pending: { label: "Copying", icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },

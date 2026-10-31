@@ -141,6 +141,7 @@ async function installWorkspaceHarness(page: Page) {
     throw new Error(`Unmocked workspace harness request: ${url.pathname}`);
   });
   await page.route("**/api/free-status", (route) => route.fulfill({ json: { ok: true, free_uses_left: 1 } }));
+  await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: false } }));
   await page.route("**/api/reports/recovery?*", (route) => route.fulfill({ status: 202, json: { ok: false, status: "pending" } }));
   await page.route(`**/api/extension/saved-jobs/${JOB.id}`, (route) => route.fulfill({ json: { success: true, data: JOB } }));
 }
@@ -190,6 +191,50 @@ test.describe("workspace command and completion handoffs", () => {
 
   registerActionFailureCases({ origin: ORIGIN, savedReportId: SAVED_REPORT_ID, report: REPORT });
 
+  test("only an actual sample report shows the free-report acquisition actions", async ({ page }) => {
+    await page.route("**/sample-report.json", (route) => route.fulfill({ json: REPORT }));
+    await page.goto(`${ORIGIN}/workspace?sample=true`);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
+    await expect(page.getByTestId("sample-start-report")).toBeVisible();
+    await expect(page.getByTestId("sample-terminal-cta")).toBeVisible();
+    await page.getByTestId("sample-start-report").click();
+    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+    await expect(page.getByTestId("workspace-run-report")).toBeVisible();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+  });
+
+  test("an operator pause is announced before upload and the run stays off", async ({ page }) => {
+    await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: true } }));
+    await page.goto(`${ORIGIN}/workspace`);
+    await expect(page.getByRole("status").filter({ hasText: "New reports are paused for now." })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Check status", exact: true })).toHaveAttribute("href", "/status");
+    await expect(page.getByTestId("workspace-run-report")).toBeDisabled();
+    await expect(page.getByTestId("workspace-run-report")).toContainText("Reports are paused");
+  });
+
+  test("a restored actual report never inherits sample actions or a late sample response", async ({ page }) => {
+    await page.addInitScript((report) => {
+      sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify({
+        report, resumeText: "Restored original resume", jobDescription: "", timestamp: Date.now(),
+      }));
+    }, REPORT);
+    let sampleRequest: Route | undefined;
+    await page.route("**/sample-report.json", (route) => { sampleRequest = route; });
+    await page.goto(`${ORIGIN}/workspace?sample=true`);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
+    await expect(page.getByText("Your resume report", { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => sessionStorage.getItem("riyp_checkout_workspace"))).toBeNull();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
+    await expect.poll(() => Boolean(sampleRequest)).toBe(true);
+    const sampleResponse = page.waitForResponse("**/sample-report.json");
+    await sampleRequest!.fulfill({ json: { ...REPORT, first_impression: "Late sample response.", first_impression_takeaway: "Late sample response" } });
+    await (await sampleResponse).finished();
+    await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
+    await expect(page.getByRole("button", { name: "Get your free report", exact: true })).toHaveCount(0);
+  });
+
   test("long source context is available without hiding the relevant excerpt", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     const excerpt = "Coordinated interviews with hiring managers.";
@@ -222,12 +267,12 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace`);
     await page.route("**/api/resume-feedback-stream", () => new Promise(() => {}));
     await startReport(page);
-    await expect(page.getByRole("heading", { name: "Reviewing your resume." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Reading your resume like a recruiter would." })).toBeVisible();
     await page.clock.fastForward(90_000);
     await expect(page.getByRole("button", { name: "Retry", exact: true })).toHaveCount(0);
     await page.clock.fastForward(31_000);
-    await expect(page.getByRole("complementary", { name: "Review still in progress" })).toBeVisible();
-    await expect(page.getByText(/A retry may use another report/)).toBeVisible();
+    await expect(page.getByRole("complementary", { name: "Report still in progress" })).toBeVisible();
+    await expect(page.getByText(/both count as reports/)).toBeVisible();
   });
 
   test("Upload Resume opens the native picker from paste mode and applies parsed text", async ({ page }) => {
@@ -269,7 +314,7 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace?job=${JOB.id}`);
     await expect(page.getByText(JOB.title, { exact: true })).toBeVisible();
     await startReport(page);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     expect(submissions[0].savedJobId).toBe(JOB.id);
 
     const cancelled = await openUploadCommand(page);
@@ -286,7 +331,7 @@ test.describe("workspace command and completion handoffs", () => {
     await parseRequests[0].fulfill({ json: { ok: false, message: "This PDF did not contain readable text." } });
     await expect(page.getByText("We couldn’t read this resume", { exact: true })).toBeVisible();
     await expect(page.getByRole("status").filter({ hasText: "Reading your resume file." })).toHaveCount(0);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
     await expect(page).toHaveURL(`${ORIGIN}/workspace?job=${JOB.id}`);
 
     const successful = await openUploadCommand(page);
@@ -315,13 +360,15 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace`);
     await startReport(page);
     await expect.poll(() => Boolean(pendingReport)).toBe(true);
-    await expect(page.getByRole("region", { name: "Reviewing your resume." })).toHaveAttribute("aria-busy", "true");
+    await expect(page.getByRole("region", { name: "Reading your resume like a recruiter would." })).toHaveAttribute("aria-busy", "true");
     const stop = page.getByRole("button", { name: "Stop", exact: true });
     await stop.focus();
     await expect(stop).toBeFocused();
     await completeReport(pendingReport!);
     await expect(reportHeading(page)).toBeVisible();
     await expect(reportHeading(page)).toBeFocused();
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await expect(reportHeading(page)).toHaveAttribute("tabindex", "-1");
     const announcement = page.getByRole("status").filter({ hasText: "Your report is ready." });
     await expect(announcement).toHaveCount(1);
@@ -374,6 +421,7 @@ test.describe("workspace command and completion handoffs", () => {
     });
     const revisedReport = ResumeFeedbackResponseSchema.parse({
       ...REPORT,
+      first_impression: "Customer scale now reads clearly.",
       first_impression_takeaway: "Customer scale now reads clearly",
       gaps: ["The time saved still needs context.", ...REPORT.gaps.slice(1)],
       top_fixes: [{ ...REPORT.top_fixes[0], fix: "Add the time saved by the workflow." }],
@@ -385,12 +433,14 @@ test.describe("workspace command and completion handoffs", () => {
     });
 
     await page.goto(`${ORIGIN}/reports/${SAVED_REPORT_ID}`);
-    await expect(reportHeading(page)).toHaveText(REPORT.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(REPORT.first_impression);
+    await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+    await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
     await page.evaluate((oldReport) => {
       sessionStorage.setItem("riyp_checkout_workspace", JSON.stringify({
         report: oldReport, resumeText: "Unrelated old resume", jobDescription: "Unrelated old role", timestamp: Date.now(),
       }));
-    }, { ...REPORT, first_impression_takeaway: "Unrelated old checkout report" });
+    }, { ...REPORT, first_impression: "Unrelated old checkout report.", first_impression_takeaway: "Unrelated old checkout report" });
     await page.getByRole("button", { name: "Compare my revision", exact: true }).click();
     await expect(page).toHaveURL(`${ORIGIN}/workspace?revision=${SAVED_REPORT_ID}`);
     await expect(page.getByRole("heading", { name: "Now let’s see what changed." })).toBeVisible();
@@ -405,17 +455,15 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Compare my revision");
     await page.getByTestId("workspace-run-report").click();
 
-    const comparison = page.getByRole("region", { name: "Here's what changed in your feedback.", exact: true });
+    const comparison = page.getByRole("region", { name: "Your Critical Miss changed.", exact: true });
     await expect(comparison).toBeVisible();
-    const previous = comparison.getByRole("article").filter({ hasText: "Previous report" });
-    const current = comparison.getByRole("article").filter({ hasText: "Current report" });
-    await expect(previous).toContainText(REPORT.first_impression_takeaway);
-    await expect(previous).toContainText(REPORT.gaps[0]);
+    const previous = comparison.getByRole("article", { name: "Last time" });
+    const current = comparison.getByRole("article", { name: "Now" });
+    await expect(previous).toContainText(REPORT.first_impression);
     await expect(previous).toContainText(REPORT.top_fixes[0].fix);
-    await expect(current).toContainText(revisedReport.first_impression_takeaway);
-    await expect(current).toContainText(revisedReport.gaps[0]);
+    await expect(current).toContainText(revisedReport.first_impression);
     await expect(current).toContainText(revisedReport.top_fixes[0].fix);
-    await expect(reportHeading(page)).toHaveText(revisedReport.first_impression_takeaway);
+    await expect(reportHeading(page)).toHaveText(revisedReport.first_impression);
     expect(submission?.text).toBe(UPLOADED_TEXT);
     expect(submission?.savedJobId).toBeUndefined();
     expect(submission?.jobDescription).toBeUndefined();

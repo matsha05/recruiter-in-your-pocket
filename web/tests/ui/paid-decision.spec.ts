@@ -15,24 +15,24 @@ type UnlockExpectation = Readonly<{
 
 const EXPECTED_UNLOCK_COPY = {
   evidence_ledger: {
-    title: "Review your revised resume",
-    label: "Resume feedback",
+    title: "Check your revised resume",
+    label: "Your revision",
   },
   bullet_upgrades: {
-    title: "Get feedback on your revision",
-    label: "Suggested rewrites",
+    title: "See what your edits changed",
+    label: "Your edits",
   },
   missing_wins: {
     title: "Check the details you add",
     label: "Details to add",
   },
   job_alignment: {
-    title: "Review another role",
-    label: "Fit for the role",
+    title: "Read it against another role",
+    label: "Role fit",
   },
   export_pdf: {
-    title: "Export your report as a PDF",
-    label: "Export",
+    title: "Take your report with you",
+    label: "PDF export",
   },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
 
@@ -117,7 +117,7 @@ async function fillAnonymousReview(page: Page, forwardedFor = "198.51.100.144") 
     });
   });
   await page.goto("/workspace");
-  await expect(page.getByRole("link", { name: "Log in", exact: true })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole("link", { name: "Sign in", exact: true })).toBeVisible({ timeout: 30_000 });
   await page.getByTestId("workspace-paste-mode").click();
   await expect(page.getByTestId("workspace-resume-text")).toBeVisible();
   await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
@@ -137,6 +137,7 @@ async function runAnonymousReview(page: Page) {
 }
 
 async function installPaidAuthMocks(page: Page) {
+  const requests = { verifiedUser: 0, passes: 0 };
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!supabaseUrl) {
     throw new Error("NEXT_PUBLIC_SUPABASE_URL is required for the paid-decision UI test");
@@ -152,6 +153,7 @@ async function installPaidAuthMocks(page: Page) {
   }, { name: cookieName, value: cookieValue });
 
   await page.route("**/auth/v1/user", async (route) => {
+    requests.verifiedUser += 1;
     await route.fulfill({
       status: 200,
       contentType: "application/json",
@@ -166,6 +168,7 @@ async function installPaidAuthMocks(page: Page) {
     });
   });
   await page.route("**/api/passes", async (route) => {
+    requests.passes += 1;
     await route.fulfill({
       status: 200,
       contentType: "application/json",
@@ -188,6 +191,7 @@ async function installPaidAuthMocks(page: Page) {
       body: JSON.stringify({ ok: true, free_uses_left: 0, free_uses_remaining: 0 }),
     });
   });
+  return requests;
 }
 
 test.describe("paid decision boundary", () => {
@@ -195,6 +199,14 @@ test.describe("paid decision boundary", () => {
 
   test.beforeAll(() => {
     expect(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK).toBe("true");
+  });
+
+  test.beforeEach(async ({ page }) => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (!supabaseUrl) throw new Error("NEXT_PUBLIC_SUPABASE_URL is required for the paid-decision UI test");
+    // Later endpoint-specific routes fulfill the expected auth calls. Any
+    // unexpected provider request must stay local to this mocked UI contract.
+    await page.route(`${new URL(supabaseUrl).origin}/**`, (route) => route.abort("blockedbyclient"));
   });
 
   test("every retained unlock context renders its unique complete-report decision", async ({ page }) => {
@@ -301,9 +313,9 @@ test.describe("paid decision boundary", () => {
         await expect(dialog, `${viewport.label}/${section}: unique modal opens`).toBeVisible();
         await expect(dialog.getByRole("heading", { name: expected.title, exact: true })).toBeVisible();
         await expect(dialog.getByTestId("paywall-context-label")).toHaveText(expected.label);
-        await expect(dialog).toContainText("This free report is complete. You do not need to pay to see the rest.");
-        await expect(dialog).toContainText("The Job Search Pass is there when you have a revision to compare or another application to review.");
-        await expect(dialog).toContainText("5 additional reports");
+        await expect(dialog).toContainText("Everything in your free report is yours. Nothing is held back.");
+        await expect(dialog).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
+        await expect(dialog).toContainText("5 more complete reports");
         await expect(dialog).toContainText("$29");
         await expect(dialog).toContainText("30 days");
         await expect(dialog).toContainText("no automatic renewal", { ignoreCase: true });
@@ -320,10 +332,10 @@ test.describe("paid decision boundary", () => {
               atBottom: Math.abs(element.scrollHeight - element.clientHeight - element.scrollTop) <= 1,
             };
           });
-          expect(scrollState.canScroll, `${section}: mobile dialog scrolls`).toBe(true);
-          expect(scrollState.atBottom, `${section}: mobile dialog reaches legal controls`).toBe(true);
-          await expect(dialog.getByRole("button", { name: "Restore purchase or manage billing" })).toBeVisible();
-          await expect(dialog.getByText(/Stripe handles payment/)).toBeVisible();
+          // The dialog may fit without scrolling; either way its last controls must be reachable.
+          expect(scrollState.atBottom, `${section}: mobile dialog reaches legal controls (scrolls: ${scrollState.canScroll})`).toBe(true);
+          await expect(dialog.getByRole("button", { name: "Already paid? Restore access" })).toBeVisible();
+          await expect(dialog.getByText(/Payment by Stripe/)).toBeVisible();
         }
 
         await page.keyboard.press("Escape");
@@ -355,8 +367,8 @@ test.describe("paid decision boundary", () => {
 
     const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" });
     await expect(failureToast).toHaveCount(1);
-    await expect(failureToast).toContainText("This attempt did not use your free report or a paid report credit.");
-    await expect(failureToast).not.toContainText("could not confirm this attempt's status", { ignoreCase: true });
+    await expect(failureToast).toContainText("This didn't use one of your reports.");
+    await expect(failureToast).not.toContainText("couldn't tell whether this used", { ignoreCase: true });
     expect(handshakeRequests).toBe(2);
   });
 
@@ -394,7 +406,7 @@ test.describe("paid decision boundary", () => {
     await fillAnonymousReview(page, "198.51.100.146");
     await page.getByTestId("workspace-run-report").click();
 
-    await expect(page.getByRole("dialog", { name: "Run another report" })).toBeVisible();
+    await expect(page.getByRole("dialog", { name: "Want another read?" })).toBeVisible();
     await expect(page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" })).toHaveCount(0);
     expect(requests).toBe(2);
   });
@@ -402,7 +414,7 @@ test.describe("paid decision boundary", () => {
   for (const saveTiming of ["while visible", "after dismissal"] as const) {
     test(`mocked paid confirmation preserves the report and pass notice when receipt save finishes ${saveTiming}`, async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
-      await installPaidAuthMocks(page);
+      const accountRequests = await installPaidAuthMocks(page);
 
       const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
       const existingReport = {
@@ -495,22 +507,26 @@ test.describe("paid decision boundary", () => {
       });
 
       await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
-      await expect(page.getByRole("heading", { name: "Purchase confirmed" })).toBeVisible();
-      await expect(page.getByText("Access confirmed", { exact: true })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "You’re in. Five more reads." })).toBeVisible();
+      await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
+      await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
+      await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
       await expect.poll(() => page.evaluate(() => {
         const stored = localStorage.getItem("riyp_unlock_context");
         return stored ? JSON.parse(stored).section : null;
       })).toBe("job_alignment");
 
-      const openStudio = page.getByRole("link", { name: /Open workspace/i });
+      const openStudio = page.getByRole("link", { name: /Back to my report/i });
       await expect(openStudio).toBeVisible({ timeout: 15_000 });
       await Promise.all([
         page.waitForURL(/\/workspace$/, { timeout: 30_000 }),
         openStudio.click(),
       ]);
       await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
-      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
+      await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+      await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
       await expect(page.locator("#section-fix-1")).toContainText(existingReport.top_fixes[0].fix);
       await expect(page.getByRole("navigation", { name: "Resume report sections" })
         .getByRole("button", { name: "Role fit", exact: true })).toHaveAttribute("aria-current", "location");
@@ -558,8 +574,8 @@ test.describe("paid decision boundary", () => {
       // The completed save must retain a prior dismissal under the real report ID.
       await expect.poll(() => dismissalFor(storedReportId)).toBe(true);
       await expect(bannerShell).toHaveCount(0);
-      await expect(page.getByText("Clarity summary: 73/100", { exact: true })).toBeVisible();
-      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression_takeaway);
+      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
       expect(receiptSaveRequests).toBe(1);
       expect(generationRequests).toBe(0);
     });

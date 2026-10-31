@@ -124,7 +124,7 @@ for (const width of [320, 390]) {
     const sourceQuote = firstFix.locator("p").filter({ hasText: /^“/ });
     await expect(sourceQuote).toHaveCount(1);
     await expectInsideReadingViewport(sourceQuote);
-    await expectInsideReadingViewport(firstFix.getByText("Why it matters", { exact: true }));
+    await expectInsideReadingViewport(firstFix.getByText("What to add", { exact: true }));
     await expectInsideReadingViewport(firstFix.getByText(/^How many people did you onboard, on which teams/));
   });
 }

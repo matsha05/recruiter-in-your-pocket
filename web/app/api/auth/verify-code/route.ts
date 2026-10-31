@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
             }
         });
         res.headers.set("x-request-id", request_id);
-        logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 200, latency_ms: Date.now() - startedAt, outcome: "success", user_id: data.user.id });
+        logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 200, latency_ms: Date.now() - startedAt, outcome: "success", user_id: hashForLogs(data.user.id) });
         return res;
     } catch (error) {
         logError({

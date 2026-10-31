@@ -1,21 +1,47 @@
 "use client";
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
-import { EvidenceHeader, EvidenceTable } from "@/components/shared/diagrams/EvidenceVisuals";
+import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+import { PenNote } from "@/components/research/figures/FigureKit";
+
+// Published differences only (Pallais & Sands, 2016). Base rates are not shown because the figure
+// compares the gap, not the rates themselves.
+const differences = [
+    { label: "Submitted work on time", points: 11 },
+    { label: "Continued the job", points: 20 },
+];
+const axisMax = 25;
+const ticks = [0, 5, 10, 15, 20, 25];
 
 export function ReferralQuantifiedDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
-        <DiagramFigure className="max-w-[46rem]" label="Study-specific comparison of referred and non-referred candidate outcomes">
+        <DiagramFigure className="max-w-[46rem]" label="Bar chart: referred workers were 11 percentage points more likely to submit work on time and 20 points more likely to continue the job">
             <DiagramFrame>
-                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What the experiments found" title="Referrals carried information about performance and persistence." note="Three field experiments in one online labor market; these are observed differences in that setting, not universal hiring rates." />
-                <EvidenceTable columns={["Observed outcome", "Difference", "What it suggests"]} rows={[
-                    { label: "Submitted work on time", values: ["+11 percentage points", "Referrals contained information about follow-through"], emphasis: 0 },
-                    { label: "Continued the job", values: ["+20 percentage points", "Referrals contained information about persistence"], emphasis: 0 },
-                    { label: "Job performance", values: ["Higher", "The signal extended beyond visible worker characteristics"], emphasis: 0 },
-                ]} />
-                <p className="border-t border-line px-5 py-4 text-data text-muted-foreground md:px-7">Pallais &amp; Sands studied 1,266 workers in an online labor market. Role, company, relationship strength, and labor conditions can materially change the effect.</p>
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} title="How much more often referred workers came through" note="Difference from comparable non-referred workers, in percentage points." />
+                <div className="px-5 pb-6 pt-7 md:px-7 md:pb-8">
+                    <dl className="grid gap-6">
+                        {differences.map((item) => (
+                            <div key={item.label} className="grid gap-2 sm:grid-cols-[11rem_minmax(0,1fr)] sm:items-center sm:gap-5">
+                                <dt className="text-sm font-semibold text-foreground">{item.label}</dt>
+                                <dd className="flex items-center gap-3">
+                                    <span className="block h-7 rounded-r-md bg-[hsl(var(--pen))]" style={{ width: `${(item.points / axisMax) * 100}%` }} aria-hidden="true" />
+                                    <span className="whitespace-nowrap font-display text-xl font-extrabold tracking-tight text-foreground">+{item.points}<span className="ml-1 text-sm font-semibold text-muted-foreground">points</span></span>
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                    <div className="mt-4 hidden grid-cols-[11rem_minmax(0,1fr)] gap-5 sm:grid" aria-hidden="true">
+                        <span />
+                        <div className="relative h-5 border-t border-line">
+                            {ticks.map((tick) => (
+                                <span key={tick} className="absolute top-1 -translate-x-1/2 text-xs tabular-nums text-muted-foreground" style={{ left: `${(tick / axisMax) * 100}%` }}>{tick}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <PenNote className="mt-6">The person who vouched for them knew something the profile didn&apos;t show.</PenNote>
+                </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / The observed difference`} title="A useful referral can reveal information a resume does not carry." description="Pallais & Sands, Journal of Political Economy (2016); summary by J-PAL." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Pallais & Sands`} title="Referred workers also performed better. One online labor market; other settings may differ." />
         </DiagramFigure>
     );
 }

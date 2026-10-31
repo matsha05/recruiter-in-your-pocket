@@ -1,5 +1,7 @@
 import { normalizeNarrativeToken } from "./narrative-token-policy";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { evidenceContainsExactEntity, evidenceContainsOnlyNegatedEntity } from "./source-evidence-segmentation";
+import { evidenceContainsRequirement } from "./requirement-evidence";
 
 type NarrativeFact = { key: string; display: string };
 
@@ -62,7 +64,14 @@ export function isDirectFactualAssertion(value: string) {
   return directFactualAssertionPattern.test(value.normalize("NFC"));
 }
 
-export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>) {
+export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>, sourceText = "", requirePositiveEntity = false) {
+  const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|reporting)$/u);
+  if (toolModifier && sourceText) return toolModifier[2] === "based"
+    ? evidenceContainsExactEntity(toolModifier[1], sourceText, true)
+    : evidenceContainsRequirement(`${toolModifier[1]} reporting`, sourceText);
+  // An entity named only in negative evidence cannot establish positive presence.
+  if (requirePositiveEntity && /^(?:entity|symbol):/u.test(fact.key)
+    && evidenceContainsOnlyNegatedEntity(fact.display, sourceText)) return false;
   if (sourceFacts.some((sourceFact) => sourceFact.key.toLocaleLowerCase() === fact.key.toLocaleLowerCase())) return true;
   if (fact.key.startsWith("metric:") || fact.key.startsWith("metric-word:")) {
     const identity = metricIdentity(fact.display);
@@ -73,6 +82,7 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
     ));
   }
   if (fact.key.startsWith("entity:") || fact.key.startsWith("symbol:")) {
+    if (evidenceContainsExactEntity(fact.display, sourceText, requirePositiveEntity)) return true;
     const available = new Set([
       ...Array.from(sourceTokens).flatMap(token => [token, ...entityIdentityTokens(token)]),
       ...sourceFacts.flatMap((sourceFact) => entityIdentityTokens(sourceFact.display)),
@@ -96,7 +106,14 @@ export function unsupportedPresenceDimensions(claim: string, sourceFacts: Narrat
 function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   if (!fact.key.startsWith("metric-word:")) return false;
   const quantity = fact.display.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  if (new RegExp(`\\b${quantity}\\s+(?:problems?|situations?|examples?|artifacts?|decisions?|cases?)\\b`, "iu").test(claim)) return true;
+  const quantityMatch = new RegExp(`\\b${quantity}\\b`, "iu").exec(claim);
+  const prefix = claim.slice(0, quantityMatch?.index ?? 0);
+  const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|choose|describe|explain|give|include|name|replace|revise|rewrite|select|show|use)\b/iu);
+  const requestTail = requestHead ? prefix.slice(requestHead[0].length) : prefix;
+  const questionRequest = /^\s*(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
+  if ((!requestHead && !questionRequest)
+    || /\b(?:that|managed|served|led|owned|delivered|supported|handled)\b/iu.test(requestTail)) return false;
+  if (new RegExp(`\\b${quantity}(?:\\s+or\\s+[\\p{L}-]+){0,2}\\s+(?:problems?|situations?|examples?|artifacts?|decisions?|cases?)\\b`, "iu").test(claim)) return true;
   // Hyphenated project names can otherwise look like a count of customers.
   if (/^one customer$/iu.test(fact.display)
     && /\bone customer-[\p{L}-]+(?:\s+[\p{L}-]+){0,5}\s+project\b/iu.test(claim)
@@ -109,6 +126,7 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
 
 export function assessmentNarrativeIssues(input: {
   claim: string;
+  sourceText: string;
   claimFacts: NarrativeFact[];
   claimTokens: Set<string>;
   sourceCandidates: Array<{ facts: NarrativeFact[]; tokens: Set<string> }>;
@@ -140,7 +158,7 @@ export function assessmentNarrativeIssues(input: {
   const unsupported = [
     ...(input.contradictsNegativeSource ? ["contradicts negative source evidence"] : []),
     ...factsToCheck
-      .filter((fact) => !factSupportedAcrossSource(fact, sourceFacts, sourceTokens))
+      .filter((fact) => !factSupportedAcrossSource(fact, sourceFacts, sourceTokens, assertive ? "" : input.sourceText, input.assertsPresence))
       .map((fact) => fact.display),
     ...unsupportedTokens,
     ...(input.assertsPresence ? unsupportedPresenceDimensions(input.claim, sourceFacts) : []),

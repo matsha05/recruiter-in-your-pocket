@@ -1,33 +1,31 @@
 # Shared Font Operations
 
-Last updated: 2026-09-05
+Last updated: 2026-10-30
 Owner: Design + Frontend
-Scope: Approved Alpine typography across browser and separately rendered outputs
+Scope: Highlighter typography across browser and separately rendered outputs
 
 ## Approved stack
 
-- Shared sans: `Instrument Sans`, normal style, weights 400-700.
-- Short verdict: `Source Serif 4`, regular weight, for selected brief assessments.
-- Data: Instrument Sans with tabular figures.
-- Local browser assets: `/fonts/instrument-sans/InstrumentSans-Variable.woff2` and `/fonts/source-serif-4/SourceSerif4-Variable.woff2`.
-- Source Serif 4's variable file supports 200-900; the verdict role uses 400.
-- Both families are self-hosted; retain their source and applicable license information.
+- Headlines and interface: `Schibsted Grotesk`, normal and italic, variable weights 400-900. Headlines at 800, section titles at 700, body at 400, controls and labels at 600, data with tabular figures.
+- Recruiter's voice: `Literata`, normal and italic, variable weights 200-900, for the Verdict, margin notes, and quoted resume lines.
+- Local browser assets: `/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2`, `/fonts/schibsted-grotesk/SchibstedGrotesk-Italic-Variable.woff2`, `/fonts/literata/Literata-Variable.woff2`, and `/fonts/literata/Literata-Italic-Variable.woff2` (Latin subsets from Fontsource 5.3.0).
+- Static `.woff` cuts (Schibsted Grotesk Regular, Semibold, ExtraBold; Literata Regular and Italic) live beside them for the share image and icons, whose renderer cannot read woff2.
+- Both are SIL Open Font License; each folder keeps `OFL.txt`.
 - Loading uses `@font-face` in `web/app/globals.css` with `font-display: swap`. No runtime font CDN dependency.
-- The intermediate Satoshi/Georgia pairing is retired. Retained assets do not define runtime branding.
+- Instrument Sans, Source Serif 4, Geist, Newsreader, and the earlier Satoshi/Georgia pairing are retired. Retained assets do not define runtime branding.
 
 ## Tokens and reading roles
 
-- `--font-brand-sans`: `"Instrument Sans", "Helvetica Neue", Arial, sans-serif`
-- `--font-display`, `--font-body`, and `--font-mono`: `var(--font-brand-sans)`
-- `--font-editorial`: `"Source Serif 4", Georgia, "Times New Roman", serif`
-- `--weight-display`: `700`
-- `--weight-heading`: `650`
+- `--font-brand-sans`, `--font-display`, `--font-body`, and `--font-mono`: `"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif`
+- `--font-editorial`: `"Literata", Georgia, "Times New Roman", serif`
+- `--weight-display`: `800`
+- `--weight-heading`: `700`
 - `--weight-title`: `600`
 - `--weight-body`: `400`
 - `--weight-control`: `600`
 - `--weight-label`: `600`
 
-Report/app body is 16px/25px. Research prose is 18px/30px at about 66ch. The approved bold-granite refinement uses 700 for the hero, 650 for major marketing headings, and 600 for workspace/report headings. A brief Source Serif 4 verdict is 28px/36px at 400. Do not shrink working report evidence to match a marketing preview. This refinement targets browser typography; the separately rendered outputs retain their previously verified treatment until a dedicated output pass.
+Report/app body is 16px/25px. Research prose is 18px/30px at about 66ch. Headlines are Schibsted Grotesk 800 with tight tracking; report headings are 700. The Verdict is Literata 400; margin notes are Literata italic. Nothing is set below 12px. Do not shrink working report evidence to match a marketing preview.
 
 ## Separate output pipelines
 
@@ -44,7 +42,7 @@ The September 5 local output pass rendered and inspected PDF, Open Graph, icons,
 
 `npm run qa:design-system` checks local font wiring and assets, shared family and weight tokens, canonical documentation, and absence of runtime font CDN imports. Palette, component, public-copy, accessibility, and security obligations remain active.
 
-Existing launch and Research UI checks assert Instrument Sans as computed body and heading family. Family names alone do not prove successful downloads; browser verification must wait for `document.fonts.ready`, inspect loaded faces/local font requests, and check fallback behavior.
+Launch and Research UI checks assert Schibsted Grotesk as the computed body and heading family. Family names alone do not prove the face loaded; check `document.fonts` as well.
 
 ## Verification
 

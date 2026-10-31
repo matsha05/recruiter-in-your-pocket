@@ -135,7 +135,7 @@ export function Sources({ children }: { children: ReactNode }) {
     return (
         <aside className="mt-16 border-t border-border pt-8 text-data text-muted-foreground">
             <div className={`${styles.label} mb-4 text-foreground`}>Sources and limits</div>
-            <div className="max-w-reading space-y-3 [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-brand/40 [&_a]:underline-offset-4 hover:[&_a]:decoration-brand">{children}</div>
+            <div className="max-w-reading space-y-3 riyp-prose [&_a]:font-medium">{children}</div>
         </aside>
     );
 }

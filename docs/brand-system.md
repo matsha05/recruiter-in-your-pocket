@@ -8,11 +8,11 @@ Status: Current brand source of truth
 
 Authority: This document owns brand identity, promise, emotional target, voice posture, and the signature Lifted Line grammar. [`design-system.md`](./design-system.md) owns cross-surface visual application and the production implementation contract. [`voice-and-tone.md`](./voice-and-tone.md) owns the writing voice.
 
-## The direction: Alpine
+## The direction: Highlighter
 
 Recruiter in Your Pocket is the sharp, generous friend who knows hiring from the inside. We show people what their resume already proves, where the proof gets lost, and the smallest honest change that makes it easier to see.
 
-The approved editorial instrument now anchors the homepage: a tactile teal case, warm brass controls, and a useful resume example in a warm ivory setting. Its Story, Impact, and Fit keys choose a focus; the dial moves from the original wording to a recruiter's read and the next move. The craft attracts attention, and the feedback explains the service. Instrument Sans, strong typographic anchors, and dark pill actions extend across the whole product. The Alpine palette remains the shared system; the pocket lion and granite landscape are retained as earlier explorations, not the current homepage direction. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
+The homepage opens on the promise itself: “See what a recruiter sees.” Below it, one example resume can be read two ways. “Your view” shows the page as the candidate wrote it; “A recruiter’s view” adds the margin notes a sharp recruiter would write, the First Impression, and the one Critical Miss. A recruiter's two tools are the visual system: a green pen writes the notes, and a yellow highlighter marks the Critical Miss. Schibsted Grotesk for headlines and interface, Literata for the recruiter's voice, and dark pill actions extend across the whole product. The October 30, 2026 hero replaced the earlier 3D instrument, which is retired along with the pocket lion and granite explorations. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
 
 ## What we promise
 
@@ -43,7 +43,8 @@ Good copy names the real thing quickly, then helps. It can smile, but it must ea
 
 Prefer:
 
-- “You did the work. Let’s dial in your story.”
+- “See what a recruiter sees.”
+- “You did the work.”
 - “The useful part, first.”
 - “Advice with receipts.”
 - “Nothing new was invented. The scope is simply easier to find.”
@@ -60,16 +61,14 @@ Avoid:
 
 ## Visual character
 
-The visual world is warm ivory, light paper surfaces, dark neutral ink, and restrained aqua. Canvas #f6f3ef, sheet #fbfaf8, inset #f0efeb, ink #12191b, muted #5f6667, aqua #00738f, aqua surface #e6f3f2, divider #dcdedb, and control boundary #7e888a form one shared system. Quiet warm headers, dark pill primary actions, 10px fields, and 24px desktop/16px mobile sheets replace the old ink-header, neon-CTA, and rectilinear rules.
-
-A darker aqua supports hover and emphasis. Citron #c8f238 remains an explicitly permitted compatibility token, not a general action or header color.
+Paper on a desk. White sheets sit on a cool-neutral ground (#f4f4f1), with ink #111513 for text and every action, muted #5a605c, inset #e9eae6, and hairline dividers #dfe0dc. The green pen #1f5a46 leads: links, focus, and everything the recruiter says. Since October 31, 2026 the desk holds the recruiter's other pens too: blue ink #2448a8 for the candidate's own work and numbers, the red pen only for problems, and a validated chart order (blue, green, plum, orange) so comparisons actually look different. Color always carries a job; it is never decoration. The highlighter #ffe14d is used sparingly, only to mark the line a recruiter would miss; the Critical Miss block sits on #fff6c2 with deep olive #6b5400 ink. Dark pill primary actions, 18px sheets, no drop shadows.
 
 Typography carries the authority:
 
-- **Instrument Sans** for wordmark, headlines, prices, navigation, controls, labels, metadata, and body copy
-- **Source Serif 4** for selected short verdicts through the shared editorial token
+- **Schibsted Grotesk** for the wordmark, headlines (800), navigation, controls, labels, metadata, and body copy
+- **Literata** for the recruiter's voice: the Verdict, margin notes in italic, and quoted resume lines
 
-Matt approved the September 5 6 Pro recommendations across the product, followed by the bold-granite refinement: Instrument Sans uses 700 for the hero and wordmark, 650 for major marketing headings, 600 for workspace/report headings, controls and labels, and 400 for body. Saturated aqua, green, and amber assessment graphics sharpen the hierarchy while labels retain dark readable text. Source Serif 4 remains 400 for short assessments rather than long reading passages. The intermediate Satoshi/Georgia pairing is retired. PDF, Open Graph, icons, and email have separate rendering pipelines; their September 5 local migration was independently rendered and inspected, with evidence and external-client limits in `output/competitive-visuals-20260905/output-identity/README.md`. The later bold-granite refinement applies to browser surfaces; separate outputs retain that earlier verified treatment.
+Matt chose this Highlighter direction on October 30, 2026, replacing the Alpine system (Instrument Sans, Source Serif 4, aqua). PDF, Open Graph, icons, and email have separate rendering pipelines and were moved to the same fonts and palette in the same change; each needs its own render check after any later change.
 
 The system is a recognizable grammar, not a template. Major surfaces may use bespoke illustration, image-making, motion, or unusual composition when the idea is specific to the product and the execution improves understanding or emotional impact. Custom craft is welcome. Generic decoration is not.
 
@@ -98,7 +97,7 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
-Preserve the approved instrument's original materials, camera, and lighting, the three-line desktop headline, warm environment, dark pill actions, and original company marks. The exact artwork is delivered as a lossless WebP with live controls; it is not a freely rotating 3D model. The initial screen shows a concise before-and-after example. Keys and dial reveal one useful observation at a time, with larger feedback available through “Read at full size.” Interaction remains optional: the primary action, trust row, report preview, and founder introduction explain and support the working product. Animate the physical controls only in response to interaction, respect reduced motion, and provide readable fallback controls if the artwork cannot initialize.
+Lead with “See what a recruiter sees.”, one dark primary action, and a quiet route to the sample report. The “Your view / A recruiter’s view” example is a fictional resume, labeled as an example. The recruiter's view reveals itself once when the example scrolls into view; the visitor's own choice always wins after that. Reduced motion shows the same states without travel. The example never gates the report action.
 
 ### Workspace and reports
 
@@ -121,7 +120,7 @@ Privacy language should be short and factual. No security theater. Never imply w
 - gradients used as atmosphere
 - neon acquisition actions or ornamental completion markers
 - card farms with equal visual weight
-- a third branded font family or a route-specific type system outside the shared Instrument Sans/Source Serif 4 tokens
+- a fourth font family or a route-specific type system outside the shared Schibsted Grotesk / Literata tokens
 - red-pen cosplay
 - “AI magic” language
 - dashboards that hide the most useful judgment behind scores
