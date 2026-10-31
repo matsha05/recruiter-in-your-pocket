@@ -7,6 +7,7 @@ import { ArrowRight, ArrowsClockwise, Info, LockKey, Receipt, ShieldCheck } from
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
@@ -88,6 +89,9 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
     paymentCancelled?: boolean;
 }) {
     const router = useRouter();
+    const { user } = useAuth();
+    const passReportsLeft = user?.paidUsesLeft ?? 0;
+    const passDaysLeft = user?.daysLeft ?? 0;
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
     const returnTo = normalizeCheckoutReturnTo(requestedReturnTo);
@@ -210,6 +214,17 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                             <div role="status" className="mt-8 flex items-start gap-3 rounded-xl border border-line bg-surface-sky px-4 py-3 text-base text-foreground">
                                 <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
                                 <p><span className="font-semibold">Checkout canceled.</span> Nothing was charged.</p>
+                            </div>
+                        ) : null}
+
+                        {passReportsLeft > 0 && !paymentCancelled ? (
+                            <div role="status" data-testid="pricing-active-pass" className="mt-8 flex items-start gap-3 rounded-xl border border-line bg-surface-sky px-4 py-3 text-base text-foreground">
+                                <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
+                                <p>
+                                    <span className="font-semibold">Your pass has {passReportsLeft} {passReportsLeft === 1 ? "report" : "reports"} left{passDaysLeft > 0 ? `, good for ${passDaysLeft} more ${passDaysLeft === 1 ? "day" : "days"}` : ""}.</span>{" "}
+                                    Another pass adds five more.{" "}
+                                    <Link href="/workspace" className="font-semibold riyp-link">Start a report</Link>
+                                </p>
                             </div>
                         ) : null}
 

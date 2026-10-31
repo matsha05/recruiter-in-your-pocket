@@ -1,6 +1,6 @@
+/* The feedback section below draws the divider; a second rule here left an empty band. */
 .revisionSection {
-    border-bottom: 1px solid hsl(var(--paper-line));
-    padding-block: 3rem;
+    padding-top: 3rem;
 }
 
 .revisionPanel {
@@ -79,7 +79,7 @@
 
 @media (min-width: 640px) {
     .revisionSection {
-        padding-block: 4rem;
+        padding-top: 4rem;
     }
 
     .revisionPanel {

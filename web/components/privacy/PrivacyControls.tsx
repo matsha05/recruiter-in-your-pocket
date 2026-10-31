@@ -30,15 +30,14 @@ export function PrivacyControls() {
   return (
     <section className={styles.panel} role="region" aria-labelledby="privacy-choices-title" data-testid="privacy-panel">
       <h2 id="privacy-choices-title" ref={heading} tabIndex={-1}>Your privacy choices</h2>
-      <p>We use essential storage to keep the site working. With your permission, Mixpanel helps us understand which features people use. Your resume text is never included.</p>
+      <p>Essential storage keeps the site working. With your OK, Mixpanel shows us which features people use. Your resume text is never included. <Link href="/privacy" className={styles.inlineLink}>Privacy policy</Link></p>
       {consent === "blocked" ? <p>Your browser asks us not to track. Optional analytics stays off.</p> : <div className={styles.actions}>
         <Button type="button" variant="outline" size="sm" onClick={() => choose("declined")}>Decline analytics</Button>
         <Button type="button" variant="outline" size="sm" onClick={() => choose("accepted")}>Allow analytics</Button>
       </div>}
-      <div className={styles.links}>
-        <Link href="/privacy">Privacy policy</Link>
-        {reopened && <Button type="button" variant="link" size="sm" className="rounded-none p-0 text-inherit font-normal" onClick={close}>Close</Button>}
-      </div>
+      {reopened && <div className={styles.links}>
+        <Button type="button" variant="link" size="sm" className="rounded-none p-0 text-inherit font-normal" onClick={close}>Close</Button>
+      </div>}
     </section>
   );
 }

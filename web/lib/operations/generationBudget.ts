@@ -45,6 +45,11 @@ function isTruthy(value: string | undefined) {
   return TRUE_VALUES.has(String(value || "").trim().toLowerCase());
 }
 
+/** The operator kill switch. Read-only, so pages can warn before anyone uploads. */
+export function isGenerationPaused(env: Record<string, string | undefined> = process.env) {
+  return isTruthy(env.RIYP_DISABLE_GENERATION);
+}
+
 export function configuredDailyGenerationLimit(
   env: Record<string, string | undefined> = process.env
 ): number | null {
@@ -83,7 +88,7 @@ export async function reserveDailyGenerationCapacity(options: {
   const limit = tier === "paid"
     ? configuredDailyPaidGenerationLimit(env)
     : configuredDailyGenerationLimit(env);
-  if (isTruthy(env.RIYP_DISABLE_GENERATION)) {
+  if (isGenerationPaused(env)) {
     return { allowed: false, used: 0, limit, reason: "paused" };
   }
 

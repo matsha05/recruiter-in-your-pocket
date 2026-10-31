@@ -138,8 +138,9 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             <ArrowLeft className="size-4" weight="bold" aria-hidden="true" />
             My reports
           </Link>
-          <Link href="/workspace" className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
-            New report
+          {/* The header already offers "New report"; from a saved report the next step is checking a revision against it. */}
+          <Link href={revisionHref || "/workspace"} className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+            {revisionHref ? "Check a revision" : "New report"}
           </Link>
         </div>
       </div>

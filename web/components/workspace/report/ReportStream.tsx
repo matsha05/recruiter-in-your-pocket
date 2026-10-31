@@ -156,7 +156,11 @@ export function ReportStream({
           <div>
             <h2 className={styles.sectionTitle}>{fixPlanHeadingForCount(fixes.length)}</h2>
           </div>
-          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">These are drafts. Keep only what&apos;s true, and say it your way.</p>
+          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">
+            These are drafts. Keep only what&apos;s true, and say it your way.
+            {/* Saved reports never keep the resume, so drafts can't be checked against it for copying. */}
+            {!isSample && !resumeText?.trim() ? " Saved reports don’t keep your resume, so Copy is off here." : null}
+          </p>
         </div>
 
         <div>

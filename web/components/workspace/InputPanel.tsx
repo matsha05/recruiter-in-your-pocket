@@ -10,6 +10,7 @@ import {
     TextAlignLeft,
     Target,
 } from "@phosphor-icons/react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { cn } from "@/lib/utils";
@@ -57,6 +58,17 @@ export default function InputPanel({
     const [hasRejectedResume, setHasRejectedResume] = useState(false);
     const [isReadingFile, setIsReadingFile] = useState(false);
     const pasteInputRef = useRef<HTMLTextAreaElement>(null);
+    // Learn about an operator pause before anyone uploads, not after a failed run.
+    const [generationPaused, setGenerationPaused] = useState(false);
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetch("/api/generation-status", { cache: "no-store", signal: controller.signal })
+            .then((response) => (response.ok ? response.json() : null))
+            .then((data) => setGenerationPaused(data?.paused === true))
+            .catch(() => { /* Unknown means not paused; the run itself still enforces the pause. */ });
+        return () => controller.abort();
+    }, []);
 
     useEffect(() => {
         if (!commandUploadName) return;
@@ -133,6 +145,19 @@ export default function InputPanel({
                         {loadedJobContext.score != null && loadedJobContext.score > 0 && (
                             <span className="shrink-0 text-xs font-semibold text-brand">{loadedJobContext.score}% match</span>
                         )}
+                    </div>
+                )}
+
+                {generationPaused && (
+                    <div className={styles.pausedNotice} role="status">
+                        <Info className="mt-0.5 size-5 shrink-0 text-foreground" weight="duotone" aria-hidden="true" />
+                        <div>
+                            <p className="font-medium text-foreground">New reports are paused for now.</p>
+                            <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                                We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.{" "}
+                                <Link href="/status" className="riyp-link font-medium text-foreground">Check status</Link>
+                            </p>
+                        </div>
                     </div>
                 )}
 
@@ -235,11 +260,11 @@ export default function InputPanel({
                             size="lg"
                             className={styles.runAction}
                             onClick={onRun}
-                            disabled={!hasContent || isReadingFile}
+                            disabled={!hasContent || isReadingFile || generationPaused}
                             isLoading={isLoading}
                             loadingLabel="Reading your resume…"
                         >
-                            {hasContent ? (
+                            {generationPaused ? "Reports are paused" : hasContent ? (
                                 <span className="flex items-center gap-2">
                                     {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>

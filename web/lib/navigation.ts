@@ -104,6 +104,7 @@ const MARKETING_NAV = {
     company: [
         { label: "FAQ", href: "/faq" },
         { label: "Security", href: "/security" },
+        { label: "Status", href: "/status" },
         { label: "How the report works", href: "/methodology" },
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },

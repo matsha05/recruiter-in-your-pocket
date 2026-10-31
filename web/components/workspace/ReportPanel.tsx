@@ -205,14 +205,6 @@ export default function ReportPanel({
                                     <p><span className="font-medium text-foreground">Still writing the rest.</span> Start reading. The other sections fill in as they finish.</p>
                                 </div>
                             )}
-                            {!resumeText?.trim() && !isSample && (
-                                <p
-                                    role="note"
-                                    className="mb-4 text-[0.8125rem] leading-5 text-muted-foreground"
-                                >
-                                    Copy buttons are off because this saved report doesn’t include your resume text. Everything else works.
-                                </p>
-                            )}
                             {shareEnabled && shareMode && (
                                 <div className="mb-4 flex flex-col gap-3 rounded-xl border border-line bg-proof p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">

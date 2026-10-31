@@ -141,6 +141,7 @@ async function installWorkspaceHarness(page: Page) {
     throw new Error(`Unmocked workspace harness request: ${url.pathname}`);
   });
   await page.route("**/api/free-status", (route) => route.fulfill({ json: { ok: true, free_uses_left: 1 } }));
+  await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: false } }));
   await page.route("**/api/reports/recovery?*", (route) => route.fulfill({ status: 202, json: { ok: false, status: "pending" } }));
   await page.route(`**/api/extension/saved-jobs/${JOB.id}`, (route) => route.fulfill({ json: { success: true, data: JOB } }));
 }
@@ -200,6 +201,15 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page).toHaveURL(`${ORIGIN}/workspace`);
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
     await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
+  });
+
+  test("an operator pause is announced before upload and the run stays off", async ({ page }) => {
+    await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: true } }));
+    await page.goto(`${ORIGIN}/workspace`);
+    await expect(page.getByRole("status").filter({ hasText: "New reports are paused for now." })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Check status", exact: true })).toHaveAttribute("href", "/status");
+    await expect(page.getByTestId("workspace-run-report")).toBeDisabled();
+    await expect(page.getByTestId("workspace-run-report")).toContainText("Reports are paused");
   });
 
   test("a restored actual report never inherits sample actions or a late sample response", async ({ page }) => {
