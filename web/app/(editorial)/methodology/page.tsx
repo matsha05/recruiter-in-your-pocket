@@ -37,7 +37,7 @@ export default function MethodologyPage() {
             relatedArticles={[
                 { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
                 { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Research" },
-                { title: "How to use STAR without forcing the formula", href: "/research/star-method", tag: "Format" },
+                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
             ]}
             sources={[
                 {

@@ -21,7 +21,7 @@ const routes = [
   "/research/social-screening",
   "/research/spelling-errors-impact",
   "/research/star-method",
-  "/research/structured-interviews-why-star",
+  "/research/who-you-are",
   "/research/writing-quality-hire-probability",
   "/resources",
   "/resources/tools/comp-calculator",

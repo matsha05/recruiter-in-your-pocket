@@ -37,16 +37,16 @@ const playbooks = [
 
 const researchLinks = [
     {
-        title: "The Referral Advantage",
+        title: "What a referral changes",
         href: "/research/referral-advantage",
     },
     {
-        title: "Salary History and Anchoring",
+        title: "Should you share your salary history?",
         href: "/research/salary-history-bans",
     },
     {
-        title: "Why Structured Interviews Are More Reliable",
-        href: "/research/structured-interviews-why-star",
+        title: "Tell the story behind the line",
+        href: "/research/star-method",
     },
 ];
 

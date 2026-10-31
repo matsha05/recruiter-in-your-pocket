@@ -3,40 +3,40 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 export const metadata: Metadata = {
-    title: "How to use STAR without forcing the formula",
-    description: "What structured-interview research supports, and where STAR becomes a practical writing heuristic rather than a tested resume rule.",
+    title: "Tell the story behind the line",
+    description: "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
 };
 
 export default function StarMethodPage() {
     return (
         <ResearchArticle
             header={{
-                tag: "Interview prep",
-                title: "How to use STAR without forcing the formula",
-                description: "Situation, task, action, and result can organize an answer. The research supports structured interviews, not a universal STAR formula for resumes.",
-                lastUpdated: "July 2026",
-                readTime: "5 min read"
+                tag: "Story",
+                title: "Tell the story behind the line",
+                description: "A resume line is the headline. The interview asks for the story underneath it. STAR keeps both honest, as long as you don't treat it as a formula.",
+                lastUpdated: "October 2026",
+                readTime: "6 min read"
             }}
             keyFinding={{
                 subtitle: "What the evidence supports",
-                stat: "Interview structure helps reviewers compare answers",
+                stat: "Shared questions, shared scoring",
                 statDescription: (
                     <>
-                        Structured interviews limit interviewer discretion by using job-related questions and common rating standards. Higher structure is associated with stronger validity, rater reliability, and agreement.
+                        Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance. The more structured the interview, the more consistent and predictive the ratings.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Levashina et al. (2014) structured interview review",
+                    text: "Levashina et al., structured interview review",
                     href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">The STAR framework</h2>
+                    <h2 className="research-h2">The four parts of a work story</h2>
                     <p className="research-body mb-6">
-                        STAR is one way to organize a past-behavior answer. Using action and result in a resume can be a useful adaptation, but the cited studies did not test STAR-formatted resume bullets.
+                        STAR is a way to organize an example from your own work: what was going on, what was yours to do, what you did, and what happened. It&apos;s a checklist, not a template.
                     </p>
                     <StarStructureDiagram />
                 </>
@@ -45,25 +45,25 @@ export default function StarMethodPage() {
                 title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Your part and the result",
-                        description: "When a line hides what you did or what happened, your fixes will say so."
+                        title: "The Critical Miss",
+                        description: "When a line hides your part or the result, the Critical Miss usually says so first. Fixing it gives you the headline of a story you can tell."
                     },
                     {
-                        title: "Interview material",
-                        description: "A specific line gives you the facts for a behavioral answer. Save the longer story for the interview."
+                        title: "Your score",
+                        description: "The score weighs whether a recruiter can follow what you did. A line they can follow is one you can expand on in the interview."
                     }
                 ]
             }}
             relatedArticles={[
                 { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Format" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
+                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Referrals" }
             ]}
             sources={[
                 {
                     id: "source-1",
                     title: "The Structured Employment Interview: Narrative and Quantitative Review of the Research Literature",
-                    publisher: "Personnel Psychology",
+                    publisher: "Levashina, Hartwell, Morgeson & Campion. Personnel Psychology",
                     year: "2014",
                     href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download"
                 },
@@ -77,66 +77,79 @@ export default function StarMethodPage() {
             ]}
             faq={[
                 {
-                    question: "Is STAR only for interviews?",
-                    answer: "You can also use it to check whether a resume bullet explains what you did and what changed. The studies cited here did not test STAR-formatted resumes, and you do not need all four parts in every bullet."
+                    question: "Do I need all four parts in every resume line?",
+                    answer: "No. What you did and what changed matter most. The role title and the lines around it usually supply the situation."
                 },
                 {
-                    question: "Do I need all four parts in every bullet?",
-                    answer: "No. Action and outcome are usually the most useful pieces. Situation and task can be implied by the role or surrounding context."
+                    question: "Will every interview question ask about the past?",
+                    answer: "No. Some ask what you would do in a situation. For those, walk through your reasoning and what you'd need to know before deciding."
                 },
                 {
-                    question: "What if the result is small?",
-                    answer: "Use scope or quality improvements when a hard metric is not available."
+                    question: "Should I memorize my answers?",
+                    answer: "Memorize the facts, not the script. You'll need room to answer the question actually asked and to handle follow-ups."
                 }
             ]}
         >
-            <h2 className="research-h2">Why structure matters</h2>
+            <h2 className="research-h2">On the resume: the headline</h2>
             <p className="research-body mb-6">
-                In a structured interview, the employer standardizes job-related questions and scoring. That makes candidates easier to compare and reduces the room for each interviewer to invent a different test.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
-            <p className="research-body mb-6">
-                STAR helps you organize an example from your own experience. It can remind you to explain what you did and what happened, but it does not determine the employer&apos;s questions or scoring.
-            </p>
-
-            <h2 className="research-h2">Breaking down STAR</h2>
-            <div className="grid sm:grid-cols-2 gap-4 not-prose">
-                <ArticleInsight
-                    title="Situation"
-                    desc="The context. What was happening? What was the problem or opportunity? Keep it brief."
-                />
-                <ArticleInsight
-                    title="Task"
-                    desc="Your specific responsibility. What were you asked to do? What was your role?"
-                />
-                <ArticleInsight
-                    title="Action"
-                    desc="What you actually did. Explain your contribution and distinguish it from the team's work."
-                />
-                <ArticleInsight
-                    title="Result"
-                    desc="The outcome. Name what changed, and add a measure when you have one."
-                />
-            </div>
-
-            <h2 className="research-h2">STAR on a resume</h2>
-            <p className="research-body mb-6">
-                Do not force four labeled parts into a bullet. A useful line usually needs a clear action, the context needed to understand it, and an outcome when one is known. Situation and task often live in the role title or surrounding bullets.
+                Don&apos;t force four labeled parts into a bullet. A strong line names what you did, gives just enough context to follow it, and says what changed when you know. The role title usually covers the situation.
             </p>
             <p className="text-sm text-muted-foreground mb-4">
-                These are fictional examples. Only add details like these to your own resume if they are true.
+                Fictional examples. Only use details like these if they&apos;re true for you.
             </p>
+            <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
+                <ArticleInsight
+                    title="Before"
+                    desc="“Worked on the customer support team handling inquiries.”"
+                />
+                <ArticleInsight
+                    title="After"
+                    desc="“Handled billing escalations and wrote the troubleshooting guide the team now uses for repeat issues.”"
+                />
+            </div>
             <p className="research-body mb-6">
-                <strong>Weak:</strong> &quot;Worked on the customer support team handling inquiries.&quot;
-            </p>
-            <p className="research-body mb-6">
-                <strong>With more detail:</strong> &quot;Handled customer escalations and created a troubleshooting guide that helped the support team resolve repeat billing issues.&quot;
-            </p>
-            <p className="research-body">
-                The role supplies the context. The revision explains the action, identifies the problem, and names a useful outcome. A verified measure could add detail, but the sentence does not need an invented number.
+                The second line says what was yours and what it left behind. There&apos;s no invented number, and it doesn&apos;t need one. It&apos;s also the start of an interview answer.
             </p>
 
+            <h2 className="research-h2">In the interview: the story</h2>
+            <p className="research-body mb-6">
+                In a structured interview, the employer picks the skills that matter for the job and sets the questions and rating standards in advance. Every candidate gets the same test.
+                <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
+                {" "}Expect two kinds of questions.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
+                <ArticleInsight
+                    title="What did you do?"
+                    desc="A behavioral question asks about a real example. Pick one that shows the skill they're asking about."
+                />
+                <ArticleInsight
+                    title="What would you do?"
+                    desc="A situational question asks about a hypothetical. Explain your reasoning and what you'd want to know first."
+                />
+            </div>
+            <p className="research-body mb-6">
+                <strong>Our advice:</strong> go through the job description and pick a few examples from your resume that match it. For each, note the problem, what was yours, the choices you made, and what happened. In the room, pick the example that answers the question they actually asked.
+            </p>
+            <div className="not-prose mb-6 rounded-inset border border-line bg-card p-5">
+                <p className="mb-2 text-sm font-semibold text-muted-foreground">Example prep notes</p>
+                <p className="text-foreground">
+                    If you&apos;ll talk about a delayed launch, be ready to say what caused the delay, which call was yours, who you brought in, and what happened after you changed the plan.
+                </p>
+            </div>
+
+            <h2 className="research-h2">Check the story before you tell it</h2>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Can someone tell what you did, apart from what the team did?</li>
+                <li>Have you said why you chose that approach?</li>
+                <li>Can you describe the outcome accurately, including what didn&apos;t work?</li>
+            </ul>
+
+            <h2 className="research-h2">Limitations</h2>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The research is about how employers run interviews. It doesn&apos;t test the STAR acronym itself.</li>
+                <li>No study cited here tests whether STAR-shaped resume lines get more interviews.</li>
+            </ul>
         </ResearchArticle>
     );
 }

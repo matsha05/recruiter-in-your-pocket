@@ -414,7 +414,7 @@ export default function ResearchClient() {
                     </div>
                     <div>
                         <p className="max-w-reading text-base leading-7 text-muted-foreground md:text-prose">
-                            The studies, recruiter experiments, and platform docs behind our advice. We say what each one found, and what it didn&apos;t.
+                            Four things decide whether you get the call: how you&apos;re read, the impact you show, who brings you in, and whether your story comes through. Here are the studies behind each, with what they found and what they didn&apos;t.
                         </p>
                     </div>
                 </div>

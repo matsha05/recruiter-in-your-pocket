@@ -17,11 +17,12 @@ const articles = [
   "/research/social-screening",
   "/research/spelling-errors-impact",
   "/research/star-method",
-  "/research/structured-interviews-why-star",
+  "/research/who-you-are",
   "/research/writing-quality-hire-probability",
 ] as const;
 
 const redirects = [
+  ["/research/structured-interviews-why-star", "/research/star-method"],
   ["/research/automation-filter-points", "/research/automation-and-bias"],
   ["/research/bias-limits-optimization", "/research/hiring-discrimination-meta-analysis"],
   ["/research/how-people-scan", "/research/how-recruiters-read"],

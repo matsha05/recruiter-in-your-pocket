@@ -56,7 +56,7 @@ export default function QuantifyingImpactPage() {
                 ]
             }}
             relatedArticles={[
-                { title: "How to use STAR without forcing the formula", href: "/research/star-method", tag: "Format" },
+                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
                 { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Structure" },
                 { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
             ]}
