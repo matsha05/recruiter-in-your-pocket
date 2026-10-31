@@ -266,7 +266,7 @@ export function ResearchArticle({
                     <div className="mx-auto flex max-w-[72rem] flex-col gap-8 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
-                            <h2 className="mt-4 max-w-[24ch] font-display text-3xl font-normal text-foreground md:text-section-title">{cta.title}</h2>
+                            <h2 className="mt-4 max-w-[24ch] font-display text-3xl font-bold text-foreground md:text-section-title">{cta.title}</h2>
                         </div>
                         <Link href={cta.href} className="focus-ring inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-control text-background transition-colors hover:bg-foreground/90">
                             {cta.buttonText}

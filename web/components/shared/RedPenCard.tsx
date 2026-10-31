@@ -63,7 +63,7 @@ export function RedPenCard({
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-border/10 bg-muted/20 px-4 py-3">
                 <TransformArrowIcon className="size-4 text-brand" />
-                <h3 className="font-display font-medium text-sm text-foreground">{title}</h3>
+                <h3 className="font-display font-bold text-sm text-foreground">{title}</h3>
             </div>
 
             <div className="grid gap-0 md:grid-cols-2">

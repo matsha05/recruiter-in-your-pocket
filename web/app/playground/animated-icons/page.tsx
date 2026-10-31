@@ -90,7 +90,7 @@ export default function AnimatedIconsPlayground() {
 
                 {/* Use Case Demos */}
                 <div className="space-y-8 pt-8 border-t border-border/40">
-                    <h2 className="text-xl font-display font-medium">Proposed Use Cases</h2>
+                    <h2 className="text-xl font-display font-bold">Proposed Use Cases</h2>
 
                     {/* Theme Toggle */}
                     <div className="space-y-4">

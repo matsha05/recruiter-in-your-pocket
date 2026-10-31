@@ -51,11 +51,11 @@ async function main() {
   assert(body.subject === "Your Recruiter in Your Pocket sign-in code", "subject matches the product promise");
   assert(body.text.includes("12345678"), "plain text contains the code");
   assert(body.html.includes("12345678"), "HTML contains the code");
-  assert(body.html.includes("#f6f3ef"), "email uses warm canvas");
-  assert(body.html.includes("#12191b"), "email uses dark ink");
+  assert(body.html.includes("#f4f4f1"), "email uses the ground color");
+  assert(body.html.includes("#111513"), "email uses ink");
   assert(body.html.includes("border-radius:999px"), "email code uses the dark pill treatment");
   assert(body.html.includes("font-family:Georgia"), "email heading has a dependable serif fallback");
-  assert(body.html.includes("#1e3a34"), "email uses the pen color");
+  assert(body.html.includes("#1f5a46"), "email uses the pen color");
   assert(!body.html.toLowerCase().includes("#c8ff2e"), "email does not drift to the old lime");
   assert(!body.text.includes("http"), "plain text does not silently fall back to a link");
   assert(!body.html.includes("ConfirmationURL"), "HTML does not rely on a hosted template token");

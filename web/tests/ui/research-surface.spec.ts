@@ -70,8 +70,8 @@ test.describe("research system", () => {
           };
         });
 
-        expect(audit.bodyFont, route).toContain("Instrument Sans");
-        expect(audit.headingFont, route).toContain("Instrument Sans");
+        expect(audit.bodyFont, route).toContain("Schibsted Grotesk");
+        expect(audit.headingFont, route).toContain("Schibsted Grotesk");
         expect(audit.overflow, route).toBeLessThanOrEqual(1);
         expect(audit.unlabeledFigures, route).toBe(0);
         expect(audit.uncaptionedFigures, route).toBe(0);

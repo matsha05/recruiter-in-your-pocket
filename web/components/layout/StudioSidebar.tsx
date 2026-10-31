@@ -22,7 +22,7 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
             <div className="h-14 flex items-center px-6 border-b border-border bg-background relative z-10">
                 <Link href="/" className="flex items-center gap-2">
                     <PocketMark className="size-5 text-brand" />
-                    <span className="font-display font-medium tracking-tight text-lg text-foreground">
+                    <span className="font-display font-bold tracking-tight text-lg text-foreground">
                         Recruiter in Your Pocket
                     </span>
                 </Link>

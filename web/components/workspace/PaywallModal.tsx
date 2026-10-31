@@ -155,7 +155,7 @@ export default function PaywallModal({
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
-                        <DialogTitle className="font-display text-2xl font-medium">
+                        <DialogTitle className="font-display text-2xl font-bold">
                             Passes are paused for now
                         </DialogTitle>
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
@@ -176,7 +176,7 @@ export default function PaywallModal({
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
-                    <DialogTitle className="font-display text-xl font-medium">
+                    <DialogTitle className="font-display text-xl font-bold">
                         {unlockCopy.title}
                     </DialogTitle>
                     <DialogDescription className="text-sm">

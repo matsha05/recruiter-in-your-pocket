@@ -151,7 +151,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                             <div className="mt-10 grid gap-5 md:grid-cols-2">
                                 <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
                                     <p className="text-base font-semibold text-foreground">First report</p>
-                                    <p className="mt-5 font-display text-5xl font-normal tracking-tight">$0</p>
+                                    <p className="mt-5 font-display text-5xl font-bold tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete report</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         Your Verdict, First Impression score, and Critical Miss, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
@@ -164,7 +164,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 </div>
                                 <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
                                     <p className="text-base font-semibold text-foreground">Job Search Pass</p>
-                                    <p className="mt-5 font-display text-5xl font-normal tracking-tight">$29</p>
+                                    <p className="mt-5 font-display text-5xl font-bold tracking-tight">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">5 more reports, good for 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         Check each revision, or tailor your resume to each job you apply for.

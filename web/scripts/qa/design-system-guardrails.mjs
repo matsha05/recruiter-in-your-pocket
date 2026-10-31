@@ -13,7 +13,7 @@ const PRODUCTION_SCOPE_DIRS = [
   "app", "components", "lib",
 ];
 
-const SYSTEM_NAME = "Alpine 1.0";
+const SYSTEM_NAME = "Highlighter 1.0";
 // Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
 // baselines after the cross-surface launch migration. New work may reduce this
 // debt, but cannot silently increase it.
@@ -211,7 +211,7 @@ function findViolations(files) {
       violations.externalFontImport.push(file);
     }
 
-    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Newsreader|Sentient)/.test(source)) {
+    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Newsreader|Sentient|Bricolage)/.test(source)) {
       violations.legacyFontBranding.push(file);
     }
 
@@ -297,8 +297,8 @@ function validateDocs() {
 
   const requiredStrings = [
     SYSTEM_NAME,
-    "Instrument Sans",
-    "Source Serif 4",
+    "Schibsted Grotesk",
+    "Literata",
     "--font-brand-sans",
     "--font-editorial",
     "--brand-strong",
@@ -311,15 +311,16 @@ function validateDocs() {
     "--font-body",
     "--space-4",
     "--space-72",
-    "#f6f3ef",
-    "#fbfaf8",
-    "#f0efeb",
-    "#12191b",
-    "#5f6667",
-    "#00738f",
-    "#e6f3f2",
-    "#dcdedb",
-    "#7e888a",
+    "#f4f4f1",
+    "#ffffff",
+    "#e9eae6",
+    "#111513",
+    "#5a605c",
+    "#1f5a46",
+    "#e6f0eb",
+    "#ffe14d",
+    "#dfe0dc",
+    "#808983",
     "16px / 25px",
     "18px / 30px",
     "qa:design-system",
@@ -331,8 +332,8 @@ function validateDocs() {
     }
   }
 
-  if (!brandSystemDoc.includes("The direction: Alpine")) {
-    missing.push("brand-system.md -> The direction: Alpine");
+  if (!brandSystemDoc.includes("The direction: Highlighter")) {
+    missing.push("brand-system.md -> The direction: Highlighter");
   }
   if (!voiceAndToneDoc.includes("plainspoken expertise")) {
     missing.push("voice-and-tone.md -> plainspoken expertise");
@@ -347,11 +348,11 @@ function validateDocs() {
       }
     }
   }
-  if (!agentDesignStandards.includes("Alpine is the approved visual direction")) {
-    missing.push(`${routedInstructions ? "docs/agent-design-standards.md" : ".agent/AGENTS.md"} -> Alpine approved direction`);
+  if (!agentDesignStandards.includes("Highlighter is the approved visual direction")) {
+    missing.push(`${routedInstructions ? "docs/agent-design-standards.md" : ".agent/AGENTS.md"} -> Highlighter approved direction`);
   }
   for (const [index, doc] of canonicalDocs.entries()) {
-    for (const family of ["Instrument Sans", "Source Serif 4"]) {
+    for (const family of ["Schibsted Grotesk", "Literata"]) {
       if (!doc.includes(family)) missing.push(`canonical document ${index + 1} -> ${family}`);
     }
   }
@@ -361,7 +362,6 @@ function validateDocs() {
     "Teal should feel precise and fresh",
     "Fonts: Sentient",
     "Fonts: Fraunces",
-    "Newsreader Variable",
     "Browser fonts: Satoshi Variable",
     "Shared sans: `Satoshi Variable`",
     "controls 550",

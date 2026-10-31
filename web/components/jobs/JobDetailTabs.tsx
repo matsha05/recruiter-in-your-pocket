@@ -344,7 +344,7 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | 
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Resume comparison
           </p>
-          <h3 className="mt-1 font-display text-xl font-medium leading-7 tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-xl font-bold leading-7 tracking-tight text-foreground">
             {readinessLabel}
           </h3>
         </div>

@@ -18,7 +18,7 @@ test("an unavailable saved theme does not take down the landing page", async ({ 
 });
 
 test("a failed font leaves the example toggle usable from the keyboard", async ({ page }) => {
-    await page.route("**/fonts/instrument-sans/**", route => route.abort());
+    await page.route("**/fonts/schibsted-grotesk/**", route => route.abort());
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
     const demo = page.getByTestId("recruiter-view-demo");

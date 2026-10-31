@@ -2,19 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Highlighter system (Oct 30, 2026): Schibsted Grotesk for headlines and interface, Literata for the recruiter's voice. */
 @font-face {
-  font-family: "Instrument Sans";
-  src: url("/fonts/instrument-sans/InstrumentSans-Variable.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2") format("woff2");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Source Serif 4";
-  src: url("/fonts/source-serif-4/SourceSerif4-Variable.woff2") format("woff2");
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk/SchibstedGrotesk-Italic-Variable.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Literata";
+  src: url("/fonts/literata/Literata-Variable.woff2") format("woff2");
   font-weight: 200 900;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Literata";
+  src: url("/fonts/literata/Literata-Italic-Variable.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -23,57 +40,60 @@
     /* Shared typography from the approved alpine reference. */
 
     /* Approved alpine product palette; HSL channels preserve existing utilities */
-    --background: 34.286 28.000% 95.098%;
-    --foreground: 193.333 20.000% 8.824%;
+    --background: 60 12% 95.1%;
+    --foreground: 150 10.5% 7.5%;
     --surface-page: var(--background);
     --text-strong: var(--foreground);
-    --text-muted: 187.500 4.040% 38.824%;
-    --text-soft: 187.500 4.040% 38.824%;
-    --line: 100.000 4.348% 86.471%;
-    --control-line: 190.000 4.878% 51.765%;
+    --text-muted: 140 3.2% 36.5%;
+    --text-soft: 140 3.2% 36.5%;
+    --line: 75 6% 87.1%;
+    --control-line: 140 4% 52%;
 
-    --card: 40.000 27.273% 97.843%;
-    --card-foreground: 193.333 20.000% 8.824%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 10.5% 7.5%;
 
-    --popover: 40.000 27.273% 97.843%;
-    --popover-foreground: 193.333 20.000% 8.824%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 10.5% 7.5%;
 
-    --primary: 193.333 20.000% 8.824%;
-    --primary-foreground: 40.000 27.273% 97.843%;
+    --primary: 150 10.5% 7.5%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 48.000 14.286% 93.137%;
-    --secondary-foreground: 193.333 20.000% 8.824%;
+    --secondary: 75 8.7% 91%;
+    --secondary-foreground: 150 10.5% 7.5%;
 
-    --muted: 48.000 14.286% 93.137%;
-    --muted-foreground: 187.500 4.040% 38.824%;
+    --muted: 75 8.7% 91%;
+    --muted-foreground: 140 3.2% 36.5%;
     /* Accessible muted text */
 
-    --accent: 48.000 14.286% 93.137%;
-    --accent-foreground: 193.333 20.000% 8.824%;
+    --accent: 75 8.7% 91%;
+    --accent-foreground: 150 10.5% 7.5%;
 
     --destructive: 4.231 76.471% 40.000%;
     --destructive-foreground: 0.000 0.000% 100.000%;
 
     /* Structural borders */
-    --border: 100.000 4.348% 86.471%;
-    --input: 190.000 4.878% 51.765%;
+    --border: 75 6% 87.1%;
+    --input: 140 4% 52%;
     --ring: var(--pen);
 
     --radius-sm: 0.625rem;
     --radius: 0.625rem;
     --radius-lg: 0.75rem;
-    --radius-xl: 1.5rem;
+    --radius-xl: 1.125rem;
 
     /* Loading states */
     --skeleton: hsl(var(--muted) / 0.1);
 
-    /* Oct 30, 2026 system: ink for actions, pen as the one accent, brass only for the Critical Miss.
+    /* Highlighter system (Oct 30, 2026): ink for actions, pen for the recruiter's notes and links, highlighter yellow for the Critical Miss. --brass is now the deep olive ink used on yellow.
        The older aqua names below are aliases so existing utilities pick up the pen. */
-    --pen: 167 32% 17%;
-    --pen-strong: 167 30% 27%;
-    --pen-tint: 160 16% 91%;
-    --brass: 29.268 80.392% 30.000%;
-    --highlight: 42 70% 82%;
+    --pen: 160 48.8% 23.7%;
+    --pen-strong: 160 40% 32%;
+    --pen-tint: 155 25% 92%;
+    --brass: 47 100% 21%;
+    --highlight: 50 100% 65.1%;
+    /* The Critical Miss: a highlighter-yellow sheet with deep olive ink. */
+    --miss-surface: 51 100% 88%;
+    --miss-line: 50 84% 68.4%;
     --brand: var(--pen);
     --brand-strong: var(--pen-strong);
     --brand-tint: var(--pen-tint);
@@ -81,7 +101,7 @@
     --cyan-bright: var(--pen);
     --surface-sky: var(--pen-tint);
     --sky-strong: var(--pen);
-    --surface-proof: 48.000 14.286% 93.137%;
+    --surface-proof: 75 8.7% 91%;
     --accent-apricot: var(--brand);
     --accent-butter: 73.548 87.736% 58.431%;
     --butter-ink: 193.333 20.000% 8.824%;
@@ -92,7 +112,7 @@
     --slate-muted: 187.500 4.040% 38.824%;
 
     /* Inverted Surface (dark sections in light mode) */
-    --surface-inverted: 193.333 20.000% 8.824%;
+    --surface-inverted: 150 10.5% 7.5%;
 
     /* Brass aliases: one value, one meaning. */
     --premium: var(--brass);
@@ -102,7 +122,7 @@
     --rose: 4.231 76.471% 40.000%;
 
     /* Status semantics */
-    --success: 155.455 47.826% 27.059%;
+    --success: 160 48.8% 23.7%;
     --warning: var(--brass);
     --warning-foreground: var(--brass);
     /* Assessment graphics follow the same roles. */
@@ -112,13 +132,13 @@
     /* --destructive already defined above, for errors and <70 scores */
 
     /* One variable sans across marketing and product; serif only for editorial accents. */
-    --font-brand-sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-    --font-editorial: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-brand-sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --font-editorial: "Literata", Georgia, "Times New Roman", serif;
     --font-display: var(--font-brand-sans);
     --font-body: var(--font-brand-sans);
     --font-mono: var(--font-brand-sans);
-    --weight-display: 500;
-    --weight-heading: 550;
+    --weight-display: 800;
+    --weight-heading: 700;
     --weight-title: 600;
     --weight-body: 400;
     --weight-control: 600;
@@ -130,7 +150,7 @@
     --warning-surface: 35.172 100.000% 94.314%;
     --destructive-surface: 5.000 85.714% 97.255%;
     --disabled-surface: 80.000 7.692% 92.353%;
-    --radius-sheet: 1.5rem;
+    --radius-sheet: 1.125rem;
     --radius-inset: 0.75rem;
     --shadow-sheet: 0 12px 36px rgb(18 25 27 / 5%);
     --space-48: 3rem;
@@ -138,10 +158,10 @@
     --space-96: 6rem;
 
     /* Motion */
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --duration-fast: 140ms;
-    --duration-normal: 180ms;
-    --duration-slow: 180ms;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --duration-fast: 160ms;
+    --duration-normal: 200ms;
+    --duration-slow: 520ms;
 
     /* Component spacing */
     --space-card-sm: 1rem;
@@ -170,20 +190,20 @@
     /* Emphasis, active */
 
     /* Compatibility aliases mapped to the same alpine roles */
-    --chrome-line: 100.000 4.348% 86.471%;
-    --surface-quiet: 48.000 14.286% 93.137%;
-    --surface-raised: 40.000 27.273% 97.843%;
+    --chrome-line: 75 6% 87.1%;
+    --surface-quiet: 75 8.7% 91%;
+    --surface-raised: 0 0% 100%;
     --text-subtle: var(--text-muted);
     --paper: var(--surface-page);
     --paper-muted: var(--surface-proof);
     --mineral: var(--surface-page);
     --mineral-strong: var(--surface-proof);
-    --mineral-soft: 48.000 14.286% 93.137%;
+    --mineral-soft: 75 8.7% 91%;
     --ink: var(--text-strong);
-    --ink-deep: 193.333 20.000% 8.824%;
-    --cream: 34.286 28.000% 95.098%;
-    --paper-line: 100.000 4.348% 86.471%;
-    --ink-line: 187.500 4.040% 38.824%;
+    --ink-deep: 150 10.5% 7.5%;
+    --cream: 60 12% 95.1%;
+    --paper-line: 75 6% 87.1%;
+    --ink-line: 140 3.2% 36.5%;
     --teal-bright: var(--pen);
     --annotation: var(--accent-apricot);
     /* Locked shell heights: product 64px; marketing 64px mobile / 72px desktop. */
@@ -198,50 +218,52 @@
 
   .dark {
     /* The same material and aqua hierarchy at dark-mode contrast. */
-    --background: 180.000 8.000% 9.804%;
-    --foreground: 34.286 28.000% 95.098%;
-    --card: 180.000 7.246% 13.529%;
-    --card-foreground: 34.286 28.000% 95.098%;
-    --popover: 180.000 7.246% 13.529%;
-    --popover-foreground: 34.286 28.000% 95.098%;
-    --primary: 34.286 28.000% 95.098%;
-    --primary-foreground: 180.000 8.000% 9.804%;
-    --secondary: 170.000 6.818% 17.255%;
-    --secondary-foreground: 34.286 28.000% 95.098%;
-    --muted: 170.000 6.818% 17.255%;
-    --muted-foreground: 160.000 6.569% 73.137%;
-    --accent: 170.000 6.818% 17.255%;
-    --accent-foreground: 34.286 28.000% 95.098%;
+    --background: 150 8% 7.5%;
+    --foreground: 150 8% 93%;
+    --card: 150 7% 10.2%;
+    --card-foreground: 150 8% 93%;
+    --popover: 150 7% 10.2%;
+    --popover-foreground: 150 8% 93%;
+    --primary: 150 8% 93%;
+    --primary-foreground: 150 8% 7.5%;
+    --secondary: 145 7% 13%;
+    --secondary-foreground: 150 8% 93%;
+    --muted: 145 7% 13%;
+    --muted-foreground: 148 5% 65%;
+    --accent: 145 7% 13%;
+    --accent-foreground: 150 8% 93%;
     --destructive: 5.000 100.000% 76.471%;
     --destructive-foreground: 180.000 8.000% 9.804%;
-    --input: 190.000 4.878% 51.765%;
+    --input: 145 4% 45%;
     --ring: var(--pen);
-    --border: 160.000 6.383% 27.647%;
-    --pen-strong: 160 34% 80%;
-    --pen-tint: 165 22% 16%;
+    --border: 145 5% 18%;
+    --pen-strong: 153 43% 80%;
+    --pen-tint: 155 22% 14%;
     --brand: var(--pen);
     --brand-strong: var(--pen-strong);
     --brand-tint: var(--pen-tint);
     --surface-sky: var(--pen-tint);
-    --surface-proof: 170.000 6.818% 17.255%;
-    --text-muted: 160.000 6.569% 73.137%;
-    --text-soft: 160.000 6.569% 73.137%;
-    --line: 160.000 6.383% 27.647%;
-    --control-line: 190.000 4.878% 51.765%;
+    --surface-proof: 145 7% 13%;
+    --text-muted: 148 5% 65%;
+    --text-soft: 148 5% 65%;
+    --line: 145 5% 18%;
+    --control-line: 145 4% 45%;
     --slate: 160.000 6.569% 73.137%;
     --slate-muted: 160.000 6.569% 73.137%;
-    --brass: 34 62% 66%;
+    --brass: 48 100% 75%;
     --premium: var(--brass);
-    --pen: 160 34% 72%;
-    --highlight: 38 45% 28%;
-    --surface-inverted: 193.333 20.000% 8.824%;
-    --chrome-line: 160.000 6.383% 27.647%;
-    --surface-quiet: 170.000 6.818% 17.255%;
-    --surface-raised: 180.000 7.246% 13.529%;
+    --pen: 153 43% 69%;
+    --highlight: 49 100% 18%;
+    --miss-surface: 51 68% 10%;
+    --miss-line: 49 70% 25%;
+    --surface-inverted: 150 10.5% 4%;
+    --chrome-line: 145 5% 18%;
+    --surface-quiet: 145 7% 13%;
+    --surface-raised: 150 7% 10.2%;
     --text-subtle: 160.000 6.569% 73.137%;
-    --paper: 180.000 8.000% 9.804%;
-    --paper-muted: 170.000 6.818% 17.255%;
-    --success: 144.375 42.105% 70.196%;
+    --paper: 150 8% 7.5%;
+    --paper-muted: 145 7% 13%;
+    --success: 153 43% 69%;
     --success-surface: 147.857 30.435% 18.039%;
     --warning: var(--brass);
     --warning-foreground: var(--brass);
@@ -2004,9 +2026,9 @@
     background-image: url("/assets/brand/citron-marker-bold-v3.webp");
   }
 
+  /* Schibsted Grotesk's tabular figures also widen punctuation, so text labels keep proportional spacing. */
   .riyp-tabular-label {
     font-family: var(--font-body);
-    font-variant-numeric: tabular-nums;
   }
 
   .workspace-first-read-title {
@@ -2131,10 +2153,11 @@
     font-size: 0.875rem;
   }
 
-  .riyp-weight-520 { font-weight: 520; }
-  .riyp-weight-540 { font-weight: 540; }
-  .riyp-weight-560 { font-weight: 560; }
-  .riyp-weight-620 { font-weight: 620; }
+  /* Legacy display weights, remapped to the Highlighter scale (Schibsted Grotesk headings sit at 700-800). */
+  .riyp-weight-520 { font-weight: 700; }
+  .riyp-weight-540 { font-weight: 700; }
+  .riyp-weight-560 { font-weight: 700; }
+  .riyp-weight-620 { font-weight: 800; }
   .riyp-stretch-86 { font-stretch: 86%; }
   .riyp-stretch-88 { font-stretch: 88%; }
   .riyp-stretch-90 { font-stretch: 90%; }
@@ -2319,8 +2342,8 @@
 
   /* ==========================================================================
      ALPINE TYPOGRAPHY SYSTEM
-     - Instrument Sans: headlines, body, controls, tabular metrics
-     - Source Serif 4: written assessments and editorial verdicts
+     - Schibsted Grotesk: headlines (800), interface, body, controls, tabular metrics
+     - Literata: the recruiter's voice (Verdict, margin notes in italic, quoted lines)
      ========================================================================== */
 
   /* Display: Verdicts (largest, lightest) */

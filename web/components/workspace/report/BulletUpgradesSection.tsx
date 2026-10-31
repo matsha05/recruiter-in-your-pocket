@@ -41,7 +41,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                         <InsightSparkleIcon className="size-5 text-success" />
                     </div>
                     <div>
-                        <h3 className="font-display font-medium text-foreground text-lg mb-1">
+                        <h3 className="font-display font-bold text-foreground text-lg mb-1">
                             No rewrite is needed here
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">

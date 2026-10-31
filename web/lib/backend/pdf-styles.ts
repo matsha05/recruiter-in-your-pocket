@@ -1,40 +1,40 @@
 /** Print-specific Alpine identity. Keep paper white and evidence text readable. */
-export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: string): string {
+export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
   return `
     @font-face {
-      font-family: "Source Serif 4";
-      src: url(data:font/ttf;base64,${sourceSerifTtf}) format("truetype");
+      font-family: "Literata";
+      src: url(data:font/woff2;base64,${fonts.voice}) format("woff2");
       font-style: normal;
       font-weight: 200 900;
       font-display: block;
     }
     @font-face {
-      font-family: "Instrument Sans";
-      src: url(data:font/ttf;base64,${instrumentSansTtf}) format("truetype");
+      font-family: "Schibsted Grotesk";
+      src: url(data:font/woff2;base64,${fonts.ui}) format("woff2");
       font-style: normal;
-      font-weight: 400 700;
-      font-stretch: 75% 100%;
+      font-weight: 400 900;
       font-display: block;
     }
     :root {
       --page: #ffffff;
-      --ink: #12191b;
-      --muted: #5f6667;
-      --line: #dcdedb;
-      --accent: #1e3a34;
-      --tint: #e6ece9;
-      --inset: #f0efeb;
-      --brass: #8a4a0f;
+      --ink: #111513;
+      --muted: #5a605c;
+      --line: #dfe0dc;
+      --accent: #1f5a46;
+      --tint: #e6efeb;
+      --inset: #f4f4f1;
+      --brass: #6b5400;
+      --miss-surface: #fff6c2;
+      --miss-line: #f2dc6b;
     }
     @page { size: A4; margin: 18mm 17mm 16mm; background: var(--page); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: var(--page); }
     body {
-      font-family: "Instrument Sans", Arial, sans-serif;
+      font-family: "Schibsted Grotesk", Arial, sans-serif;
       color: var(--ink);
       font-size: 11pt;
       line-height: 16pt;
-      font-variant-numeric: tabular-nums;
       -webkit-font-smoothing: antialiased;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -47,7 +47,7 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
       margin-bottom: 22px; padding-bottom: 14px;
       border-bottom: 1px solid var(--ink);
     }
-    .brand-wordmark { font-size: 15pt; font-weight: 500; line-height: 20pt; letter-spacing: -0.025em; }
+    .brand-wordmark { font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 15pt; font-weight: 800; line-height: 20pt; letter-spacing: -0.025em; }
     .tagline { margin-top: 4px; font-size: 9pt; color: var(--muted); }
     .date { font-size: 9pt; line-height: 13pt; color: var(--muted); text-align: right; }
     .hero { padding-bottom: 20px; margin-bottom: 20px; break-inside: avoid; }
@@ -57,7 +57,7 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
       letter-spacing: 0.035em; margin-bottom: 6px; break-after: avoid;
     }
     h1 {
-      font-family: "Source Serif 4", Georgia, serif;
+      font-family: "Literata", Georgia, serif;
       font-size: 18pt; font-weight: 400; line-height: 24pt;
       font-optical-sizing: auto; letter-spacing: -0.012em;
     }
@@ -65,13 +65,13 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
     .hero-summary { margin-top: 13px; }
     .score-card { border-left: 1px solid var(--line); padding-left: 18px; }
     .score-name { font-size: 9pt; line-height: 13pt; color: var(--muted); margin-bottom: 9px; }
-    .score-value { font-size: 34pt; font-weight: 400; line-height: 36pt; letter-spacing: -0.04em; }
+    .score-value { font-variant-numeric: tabular-nums; font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 34pt; font-weight: 800; line-height: 36pt; letter-spacing: -0.04em; }
     .score-value span { color: var(--muted); font-size: 11pt; letter-spacing: 0; }
     .score-scale { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 6px; }
     .score-note { border-top: 1px solid var(--line); color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 18px; padding-top: 10px; }
-    .critical-miss { margin: 0 0 26px; border: 1px solid var(--line); border-left: 3px solid var(--brass); border-radius: 6px; background: var(--inset); padding: 14px 16px; break-inside: avoid; }
+    .critical-miss { margin: 0 0 26px; border: 1px solid var(--miss-line); border-radius: 8px; background: var(--miss-surface); padding: 14px 16px; break-inside: avoid; }
     .critical-label { color: var(--brass); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; }
-    .critical-title { margin-top: 6px; font-size: 13pt; font-weight: 600; line-height: 18pt; }
+    .critical-title { margin-top: 6px; font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 13pt; font-weight: 650; line-height: 18pt; }
     .critical-why { margin-top: 4px; color: var(--muted); }
     .section { margin-bottom: 26px; }
     .section-header { margin-bottom: 13px; padding-bottom: 9px; border-bottom: 1px solid var(--line); break-after: avoid; }

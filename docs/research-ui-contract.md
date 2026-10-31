@@ -1,4 +1,4 @@
-# Research UI Contract (v6.0 - Alpine)
+# Research UI Contract (v7.0 - Highlighter)
 
 Applies to: Research hub and all Hiring Research Library articles.
 
@@ -47,30 +47,30 @@ They should not feel like:
 ## 3. Visual Language
 
 ### Typography and Layout
-- Headlines, large findings, body, labels, controls, and data use the shared Instrument Sans family, weights 400-700. Display/body 400, controls 600, labels 600. Selected short verdicts may use Source Serif 4 at 400 through the shared editorial token.
+- Headlines and large findings use Schibsted Grotesk (800). Body, labels, controls, and data use Schibsted Grotesk (body 400, controls and labels 600). Quoted resume lines and recruiter verdicts use Literata through the shared editorial token.
 - Use the exact type roles, weights, tracking, and leading defined in `docs/design-system.md`. Research does not have a separate editorial font system.
 - Favor whitespace, clear sectioning, and tight editorial hierarchy.
 - Use lists and rules to structure reading flow.
 - Prose uses 18px/30px at about 66ch. Tables use 14px/22px with labeled numeric columns. Report excerpts remain readable at 16px/25px rather than marketing-preview scale.
-- Use the approved Alpine materials: warm canvas and paper sheets, quiet headers, restrained aqua, dark pill actions, and softened sheet geometry. The older ink-header, neon-CTA, and rectilinear requirements are retired.
+- Use the Highlighter materials: white paper sheets on a neutral ground, quiet headers, the pen for emphasis, highlighter yellow only to mark a quoted line a recruiter would miss, dark pill actions, 18px sheets.
 
 ### Color Contract
 Primary palette:
 - `--foreground` for text and primary strokes
 - `--text-muted` / muted foreground for supporting text and labels
 - `--line` for subtle dividers; the stronger control boundary identifies inputs
-- `--brand` / `--brand-strong` (aqua) for readable links, focus, active evidence, and key findings
-- `--surface-sky` / `--brand-tint` for restrained aqua explanatory fields
-- `--annotation` for consequential edits or omissions; it maps to readable aqua
-- Cyan-bright and apricot names are compatibility aliases into the approved palette. Citron #c8f238 and its butter alias remain explicitly permitted for compatibility, not general action or header colors.
+- `--pen` (aliased by `--brand`) for readable links, focus, active evidence, and key findings
+- `--pen-tint` (aliased by `--surface-sky` / `--brand-tint`) for quiet explanatory fields
+- `--highlight` for a quoted line a recruiter would miss; `--annotation` maps to the pen
+- Cyan-bright, teal, apricot, and assessment names are compatibility aliases into the Highlighter palette. Citron #c8f238 and its butter alias remain explicitly permitted for compatibility, not general action or header colors.
 
 Allowable accent usage:
-- Aqua for readable emphasis, links, and data focus; the darker aqua role is for hover/emphasis. Pair selection/completion with explicit labels or icons.
-- Ink for dark pill primary actions; neutral surfaces for evidence and restrained aqua when grouping adds meaning.
+- The pen for readable emphasis, links, and data focus; `--pen-strong` for hover. Pair selection/completion with explicit labels or icons.
+- Ink for dark pill primary actions; neutral surfaces for evidence; the pen tint when grouping adds meaning.
 - Heatmaps are allowed only when raw spatial data is available; illustrative attention maps are prohibited.
 - Gradients should not be introduced for atmosphere.
 
-Research uses canvas #f6f3ef, sheet #fbfaf8, inset #f0efeb, ink #12191b, muted #5f6667, aqua #00738f, aqua surface #e6f3f2, divider #dcdedb, and control boundary #7e888a. Use shared semantic tokens rather than route-local values. Keep diagnostic findings distinct from operational errors and preserve success, warning, and error semantics.
+Research uses ground #f4f4f1, paper #ffffff, inset #e9eae6, ink #111513, muted #5a605c, pen #1f5a46, pen tint #e6f0eb, highlighter #ffe14d, divider #dfe0dc, and control boundary #808983. Use shared semantic tokens rather than route-local values. Keep diagnostic findings distinct from operational errors and preserve success, warning, and error semantics.
 
 ---
 
@@ -105,14 +105,14 @@ Figures are the primary place where visual expression is encouraged.
 - Annotations: callout chips, underlines, and highlighter bars are allowed if they map to the insight.
 
 ### Typography in Figures
-- Axis labels: Instrument Sans, normally at least 12px at actual display size, muted foreground, tabular numerics where numbers appear.
-- Data labels: Instrument Sans, 12-14px, foreground, tabular numerics where numbers appear.
-- Figure caption: Instrument Sans, 14px/22px, muted foreground.
-- Key conclusion callout: Instrument Sans, 24px/30px, with readable Instrument Sans supporting detail.
+- Axis labels: Schibsted Grotesk, normally at least 12px at actual display size, muted foreground, tabular numerics where numbers appear.
+- Data labels: Schibsted Grotesk, 12-14px, foreground, tabular numerics where numbers appear.
+- Figure caption: Schibsted Grotesk, 14px/22px, muted foreground.
+- Key conclusion callout: Schibsted Grotesk 700, 24px/30px, with readable supporting detail.
 
 ### Figure Labeling
 Every figure must include:
-- Figure number: "Fig. 1" (Instrument Sans, 12px, weight 600, muted foreground, tabular numerics)
+- Figure number: "Fig. 1" (Schibsted Grotesk, 12px, weight 600, muted foreground, tabular numerics)
 - Caption: one sentence explaining what the figure shows
 
 Captions can live under the figure or inside the figure if the layout demands it.
@@ -157,8 +157,8 @@ Citation content and source quality follow `docs/source-quality.md`. Figure stru
 - Sources and notes
 
 ### Cross-surface fidelity
-- The approved Alpine homepage and shared product contract govern the visual system. Old baseline captures document migration gaps, not competing reference designs.
-- Research shares the warm header, wordmark, Instrument Sans/Source Serif 4 tokens, warm neutral/aqua palette, line weights, softened geometry, dark pill actions, and footer. Reading density varies intentionally.
+- The Highlighter homepage and shared product contract govern the visual system. Old baseline captures document migration gaps, not competing reference designs.
+- Research shares the warm header, wordmark, Schibsted Grotesk / Literata tokens, neutral ground with pen and highlighter, line weights, softened geometry, dark pill actions, and footer. Reading density varies intentionally.
 - The research index and every article must be checked at 390, 1024, and 1440 pixels.
 - Shared article and diagram primitives are the source of truth. Route-level overrides may explain a specific idea, but may not introduce a competing visual system.
 
@@ -207,11 +207,11 @@ Before merge, every research page must pass:
 - Figures are labeled and captioned
 - Motion is purposeful and non-looping
 - All claims are cited
-- No retired font pairing, iris/teal-first/premium color system, atmospheric gradient, or glass treatment; Source Serif 4 is approved only for short verdicts
+- No retired font pairing, iris/teal-first/premium color system, atmospheric gradient, or glass treatment; Literata is approved only for quoted lines, verdicts, and margin notes
 - Any anecdotal callout is labeled and qualitative
 - No legacy palette utility relies on a scoped compatibility override
 - No horizontal overflow at 320 or 390 pixels
-- Header, footer, CTA, and article shell match the approved Alpine system
+- Header, footer, CTA, and article shell match the Highlighter system
 - Visible keyboard focus, labeled controls/errors, 44px targets, sufficient text/graphics contrast, and reduced-motion behavior remain release requirements
 - Check actual display-size figure labels, long titles, 200% zoom, and narrow layouts; screenshots alone do not prove accessibility
 

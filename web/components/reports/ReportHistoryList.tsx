@@ -194,7 +194,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                   </div>
                 ) : (
                   <Link href={`/reports/${report.id}`} className="focus-ring mt-3 block rounded-lg">
-                    <h2 className="break-words font-display text-xl font-medium leading-7 text-foreground transition-colors group-hover:text-brand">{title}</h2>
+                    <h2 className="break-words font-display text-xl font-bold leading-7 text-foreground transition-colors group-hover:text-brand">{title}</h2>
                     {report.resumePreview ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm leading-6 text-muted-foreground">{report.resumePreview}</p>
                     ) : (

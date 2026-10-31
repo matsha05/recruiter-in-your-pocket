@@ -12,24 +12,25 @@ function validateCanonicalPalette(globalsSource) {
   const rootSource = globalsSource.match(/:root\s*\{([\s\S]*?)\n\s*\}/)?.[1] ?? "";
   const tokens = new Map([...rootSource.matchAll(/(--[\w-]+):\s*([^;]+);/g)].map((match) => [match[1], match[2].trim()]));
   const expected = {
-    "--background": "f6f3ef",
-    "--surface-page": "f6f3ef",
-    "--card": "fbfaf8",
-    "--secondary": "f0efeb",
-    "--foreground": "12191b",
-    "--primary": "12191b",
-    "--text-muted": "5f6667",
-    "--muted-foreground": "5f6667",
+    "--background": "f4f4f1",
+    "--surface-page": "f4f4f1",
+    "--card": "ffffff",
+    "--secondary": "e9eae6",
+    "--foreground": "111513",
+    "--primary": "111513",
+    "--text-muted": "5a605c",
+    "--muted-foreground": "5a605c",
     // Oct 30, 2026: aqua retired; the pen is the one accent and brass marks the Critical Miss.
-    "--pen": "1e3a34",
-    "--brand": "1e3a34",
-    "--ring": "1e3a34",
-    "--brand-tint": "e4ece9",
-    "--surface-sky": "e4ece9",
-    "--brass": "8a4a0f",
-    "--line": "dcdedb",
-    "--control-line": "7e888a",
-    "--input": "7e888a",
+    "--pen": "1f5a46",
+    "--brand": "1f5a46",
+    "--ring": "1f5a46",
+    "--brand-tint": "e6f0eb",
+    "--surface-sky": "e6f0eb",
+    "--highlight": "ffe14d",
+    "--brass": "6b5400",
+    "--line": "dfe0dc",
+    "--control-line": "808983",
+    "--input": "808983",
   };
   const errors = [];
 
@@ -70,13 +71,13 @@ export function validateRuntimeSystem() {
   const errors = validateCanonicalPalette(globalsSource);
 
   const requiredTokenDefinitions = [
-    '--font-brand-sans: "Instrument Sans"',
-    '--font-editorial: "Source Serif 4"',
+    '--font-brand-sans: "Schibsted Grotesk"',
+    '--font-editorial: "Literata"',
     "--font-display: var(--font-brand-sans)",
     "--font-body: var(--font-brand-sans)",
     "--font-mono: var(--font-brand-sans)",
-    "--weight-display: 500",
-    "--weight-heading: 550",
+    "--weight-display: 800",
+    "--weight-heading: 700",
     "--weight-title: 600",
     "--weight-body: 400",
     "--weight-control: 600",
@@ -153,8 +154,8 @@ export function validateFontStack() {
 
   const fontFaces = globalsSource.match(/@font-face\s*\{[^}]*\}/g) ?? [];
   const requiredFaces = [
-    { family: "Instrument Sans", href: "/fonts/instrument-sans/InstrumentSans-Variable.woff2", weights: "400 700" },
-    { family: "Source Serif 4", href: "/fonts/source-serif-4/SourceSerif4-Variable.woff2", weights: "200 900" },
+    { family: "Schibsted Grotesk", href: "/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2", weights: "400 900" },
+    { family: "Literata", href: "/fonts/literata/Literata-Variable.woff2", weights: "200 900" },
   ];
   for (const { family, href, weights } of requiredFaces) {
     const fontFace = fontFaces.find((face) => face.includes(`font-family: "${family}"`)) ?? "";

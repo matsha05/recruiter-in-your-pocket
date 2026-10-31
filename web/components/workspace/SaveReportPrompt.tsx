@@ -55,7 +55,7 @@ export default function SaveReportPrompt({
             <DialogContent className="max-w-[380px] p-6">
                 <DialogHeader className="mb-5 text-left">
                     <BookmarkSimple aria-hidden="true" className="mb-3 size-6 text-brand" weight="duotone" />
-                    <DialogTitle className="font-display text-2xl font-medium leading-tight">
+                    <DialogTitle className="font-display text-2xl font-bold leading-tight">
                         Save this report
                     </DialogTitle>
                     <DialogDescription className="text-sm leading-relaxed">

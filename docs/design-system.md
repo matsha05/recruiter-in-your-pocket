@@ -1,11 +1,11 @@
-# Recruiter in Your Pocket - Alpine Design System
+# Recruiter in Your Pocket - Highlighter Design System
 
-Last updated: 2026-09-12
+Last updated: 2026-10-30
 Owner: Product Design + Engineering
 Status: Approved implementation contract; route and output verification tracked separately
-System version: Alpine 1.0
+System version: Highlighter 1.0
 
-Matt approved the September 5 6 Pro recommendations for the whole product. The September 12 homepage uses the approved editorial instrument in place of the earlier pocket lion and granite artwork. The shared system remains Instrument Sans and Source Serif 4, warm surfaces, restrained aqua, dark pill actions, and softened sheets. Lifted Line evidence meanings, product truth, security, accessibility, and working behavior remain protected. Approval of this contract does not establish that every route or output has passed verification; see `docs/alpine-product-migration.md` for historical migration evidence and the current release record for deployment checks.
+On October 30, 2026 Matt chose the Highlighter direction for every surface: web, report, workspace, signed-in pages, research and diagrams, legal and error pages, emails, the PDF, icons, and the share image. A recruiter's actual tools are the system: a yellow highlighter marks what a recruiter would miss, and a green pen writes the notes. Schibsted Grotesk sets headlines and runs the interface, and Literata carries the recruiter's voice. Product truth, security, accessibility, and working behavior remain protected. It replaces the Alpine system (Instrument Sans, Source Serif 4, aqua), which is retired.
 
 Related authority:
 
@@ -15,15 +15,6 @@ Related authority:
 
 If documentation and runtime disagree, the disagreement is a release blocker. Update both in the same change.
 
-
-## October 30, 2026 visual decisions (Matt)
-
-These override older palette, type-weight, and motion guidance below where they conflict.
-
-- **Color:** ink for actions, **pen** (`--pen`, #1E3A34) as the one accent for links, focus, labels, and the recruiter's voice, and **brass** (`--brass`) only for the Critical Miss. Warm paper ground. Aqua is retired; `--brand`, `--surface-sky`, `--cyan-bright`, and `--assessment-aqua` are now aliases of the pen so older utilities follow. `--premium`, `--gold`, `--amber`, and `--warning` are aliases of brass.
-- **Type:** Instrument Sans for headlines and interface, with headlines at a refined 500 (`--weight-display`) and section headings at 550 (`--weight-heading`). Source Serif 4 only when the recruiter is speaking: the Verdict, margin notes, and quoted resume lines. No third face.
-- **Motion:** quiet and functional (140 to 250ms) for controls. One signature move, used consistently: the recruiter's notes drawing in, on the homepage hero and when a report first appears. Reduced motion shows the same states immediately.
-- **Surfaces:** paper on a desk. Warm ground, lighter paper sheets with hairline borders, 16 to 24px radius, no drop shadows.
 
 ## 1. System idea
 
@@ -69,18 +60,16 @@ The system is the floor for consistency, not a page template. Do not repeat one 
 
 | Role | Family | Use |
 | --- | --- | --- |
-| Display and interface | **Instrument Sans** | wordmark, titles, prices, navigation, controls, labels, body, and dense product UI |
-| Technical | **Instrument Sans** with tabular figures | scores, time, indices, and identifiers |
-| Short verdict | **Source Serif 4** | selected brief assessments; never a separate route-wide type system |
+| Headlines and interface | **Schibsted Grotesk** | wordmark, headlines (800), section titles (700), big numbers, navigation, controls, labels, body, tables; tabular figures for data |
+| Recruiter's voice | **Literata** | the Verdict, margin notes (italic), and quoted resume lines; never a route-wide type system |
 
-Both families are self-hosted in `web/app/globals.css` with `font-display: swap`. Instrument Sans is served from `/fonts/instrument-sans/InstrumentSans-Variable.woff2`, normal weights 400-700. Source Serif 4 is served from `/fonts/source-serif-4/SourceSerif4-Variable.woff2`, normal weights 200-900; its short verdict role uses 400. No runtime font CDN is allowed. Retained assets from former systems do not define browser branding.
+Both are self-hosted in `web/app/globals.css` with `font-display: swap`, from `/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2` plus its italic (weights 400-900) and `/fonts/literata/Literata-Variable.woff2` plus `Literata-Italic-Variable.woff2` (200-900). Static `.woff` cuts in the same folders feed renderers that cannot read woff2 (share image, icons). Both are SIL Open Font License; each folder keeps its `OFL.txt`. Neither had been used in RIYP before; Geist and Newsreader (December 2025, July 2026) and Bricolage Grotesque were considered and not chosen. No runtime font CDN is allowed. There is no mono face.
 
 Runtime mapping:
 
-- `--font-brand-sans` -> `"Instrument Sans", "Helvetica Neue", Arial, sans-serif`
-- `--font-display`, `--font-body`, and `--font-mono` -> `var(--font-brand-sans)`
-- `--font-editorial` -> `"Source Serif 4", Georgia, "Times New Roman", serif`
-- `--weight-display` -> `700`; `--weight-heading` -> `650`; `--weight-title` -> `600`
+- `--font-brand-sans`, `--font-display`, `--font-body`, and `--font-mono` -> `"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif`
+- `--font-editorial` -> `"Literata", Georgia, "Times New Roman", serif`
+- `--weight-display` -> `800`; `--weight-heading` -> `700`; `--weight-title` -> `600`
 - `--weight-body` -> `400`
 - `--weight-control` and `--weight-label` -> `600`
 
@@ -88,46 +77,48 @@ Runtime mapping:
 
 | Role | Size / leading | Weight and treatment |
 | --- | --- | --- |
-| Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | 700; one line on desktop: “See what a recruiter sees.” |
-| Marketing section title | about 40px / 44px | 650 |
-| Workspace title | 40px / 44px | 600; scale down on narrow screens without clipping |
-| Report heading | 24px / 30px | 600 |
-| Short verdict | 28px / 36px | Source Serif 4, 400 |
-| Report and app body | 16px / 25px | Instrument Sans, 400 |
-| Research prose | 18px / 30px | 400; about 66ch measure |
-| Table data | 14px / 22px | 400; label numeric columns and use tabular figures |
-| Controls | 14-16px | 600 |
-| Labels | 12-14px | 600; tracking only for genuine metadata |
+| Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | Schibsted Grotesk 800, -0.045em; one line on desktop: “See what a recruiter sees.” |
+| Marketing section title | 32-48px / 1.05 | Schibsted Grotesk 800 |
+| Workspace and report headings | 24px / 30px | Schibsted Grotesk 700 |
+| Verdict | 22-24px / 1.4 | Literata 400 |
+| Margin notes | 15-17px / 1.45 | Literata italic 400, pen color |
+| Report and app body | 16px / 25px | Schibsted Grotesk 400 |
+| Research prose | 18px / 30px | Schibsted Grotesk 400; about 66ch measure |
+| Table data | 14px / 22px | Schibsted Grotesk 400, tabular figures |
+| Controls | 14-16px | Schibsted Grotesk 600 |
+| Labels | 12-14px | Schibsted Grotesk 600; uppercase tracking only for Verdict and Critical Miss |
 
-Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Avoid a third branded font or separate mono face. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
+Nothing below 12px. Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
 
 ### Separate output pipelines
 
-PDF, Open Graph, icons, and email carry the same brand roles within each renderer's constraints. They do not inherit browser CSS. The September 5 local output migration was rendered and inspected; evidence is recorded in `output/competitive-visuals-20260905/output-identity/README.md`. Future font/layout changes require the same independent checks. Do not infer completion from a global font change. Email must remain readable with fallback fonts and images disabled; PDF must retain selectable text, useful pagination, and grayscale legibility.
+PDF, Open Graph, icons, and email carry the same brand roles within each renderer's constraints. They do not inherit browser CSS. The PDF embeds the three woff2 faces; the share image and icons use the static woff cuts; email uses system fallbacks with the Highlighter palette. Every font or layout change requires an independent render check of each output. Do not infer completion from a global font change. Email must remain readable with fallback fonts and images disabled; PDF must retain selectable text, useful pagination, and grayscale legibility.
 
 ## 4. Color and surface tokens
 
 | Role | Canonical value | Semantic usage |
 | --- | --- | --- |
-| Canvas | `#f6f3ef` | `--background` / `--surface-page` / paper |
-| Sheet | `#fbfaf8` | card and report/form surfaces |
-| Inset | `#f0efeb` | secondary or contained evidence areas |
-| Ink | `#12191b` | `--foreground` / `--text-strong`; primary actions |
-| Muted text | `#5f6667` | `--text-muted` / muted foreground |
-| Aqua | `#00738f` | `--brand`; links, focus, selected state |
-| Aqua surface | `#e6f3f2` | `--brand-tint` / `--surface-sky`; restrained explanatory areas |
-| Divider | `#dcdedb` | `--line`; nonessential grouping rules |
-| Control boundary | `#7e888a` | identifiable input and utility-control boundaries |
+| Ground | `#f4f4f1` | `--background` / `--surface-page`; a cool-neutral desk, not cream |
+| Paper | `#ffffff` | `--card`; sheets, reports, forms |
+| Inset | `#e9eae6` | `--secondary` / `--muted`; contained areas, toggles |
+| Ink | `#111513` | `--foreground` / `--text-strong`; text and every primary action |
+| Muted text | `#5a605c` | `--text-muted` / muted foreground |
+| Pen | `#1f5a46` | `--pen` (aliased by `--brand`, `--ring`, `--cyan-bright`); links, focus, selected state, the recruiter's notes |
+| Pen hover | `--pen-strong` | `--brand-strong`; hover and pressed emphasis on pen-colored links and controls |
+| Pen tint | `#e6f0eb` | `--pen-tint` (aliased by `--brand-tint`, `--surface-sky`); quiet selected surfaces |
+| Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
+| Miss sheet | `#fff6c2` / `#f2dc6b` | `--miss-surface` / `--miss-line`; the Critical Miss block |
+| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`, `--warning`); text on or beside yellow |
+| Divider | `#dfe0dc` | `--line`; nonessential grouping rules |
+| Control boundary | `#808983` | `--control-line` / `--input`; identifiable input boundaries |
 
-Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Update linked aliases together: backgrounds, foregrounds, cards, primary actions, focus, borders, and inverted surfaces. `--brand-strong` is the deliberate darker aqua hover/emphasis role. `--cyan-bright`, `--surface-proof`, and `--accent-apricot` remain compatibility aliases into this palette. The proposal explicitly retains citron `#c8f238` through `--citron` / `--accent-butter` for compatibility; it is not a general CTA, header, or decorative completion treatment.
+Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Older names (`--brand`, `--surface-sky`, `--cyan-bright`, `--teal-bright`, `--accent-apricot`, `--assessment-*`, `--premium`, `--gold`, `--amber`) are aliases into this palette so existing utilities follow it. `--citron` / `--accent-butter` remain compatibility tokens only.
 
-Headers use the quiet warm canvas treatment. Dark ink is for text, primary actions, and intentional inverted regions rather than a mandatory header band. Aqua is a restrained semantic accent. Dividers are deliberately subtle; use the stronger control boundary to identify inputs.
+Rules: ink for actions; pen for anything the recruiter says or points at; yellow only for the Critical Miss and highlighted resume lines. Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
 
-Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Preserve accessible error/recovery surfaces and plain-language next actions. Pair color with labels, icons, position, or wording; never rely on color alone.
+Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Avoid gradients, glow, grain, and red-pen correction marks.
 
-Matt's September 5 bold-granite refinement adds saturated assessment graphics: `--assessment-aqua` (HSL 188 85% 34%), `--assessment-green` (156 64% 37%), and `--assessment-amber` (42 94% 58%). Use these for small labeled graphics, score strokes, and priority markers; keep dark semantic colors for readable text. On October 30, 2026 Matt retired the coral, golden-yellow, and forest-green illustration colors. The homepage sample card now uses the same system as the report: the score ring in the pen color (`--pen`), the first priority (the Critical Miss) in brass (`--brass`), and outlined ink markers for the rest. Priority order still does not encode severity.
-
-Dark mode requires its own verified semantic values. Print uses white paper. Avoid atmospheric gradients, startup glow, red-pen cosplay, or decorative grain used to manufacture character.
+Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 
 ## 5. Signature evidence grammar
 
@@ -227,7 +218,7 @@ Shared primitives are the default. A route-specific component is appropriate whe
 ### Homepage
 
 - Headline: “See what a recruiter sees.” One dark primary action (“Get your free report”) and one quiet secondary route (“See a sample report”).
-- The example is a fictional resume shown two ways. “Your view” is the page alone. “A recruiter’s view” adds margin notes in the pen color (Source Serif 4 italic), the First Impression with an example score, and the Critical Miss in brass. Notes name what the line does or leaves out; they never invent results.
+- The example is a fictional resume shown two ways. “Your view” is the page alone. “A recruiter’s view” adds margin notes in the pen color (Literata italic), the First Impression with an example score, and the Critical Miss highlighted in yellow. Notes name what the line does or leaves out; they never invent results.
 - The recruiter's view appears once when the example scrolls into view. A visitor's choice wins after that. The example must not gate the report action.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
@@ -331,9 +322,9 @@ Use focused UI tests when the affected surface has interaction. Keep security, p
 
 The guardrail must fail for:
 
-- missing local Instrument Sans or Source Serif 4 loading, family ranges, or shared typography tokens
+- missing local Schibsted Grotesk or Literata loading, family ranges, or shared typography tokens
 - stale canonical font, palette, or geometry claims
-- missing Alpine semantic tokens or compatibility aliases
+- missing Highlighter semantic tokens or compatibility aliases
 - external font imports
 - unauthorized hardcoded colors
 - banned public copy patterns

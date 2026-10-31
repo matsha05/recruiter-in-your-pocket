@@ -136,7 +136,7 @@ function ResearchLibrary() {
             <div id="research-topic-panel" role="region" aria-labelledby="research-topic-title">
                 <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
                 <p className="riyp-evidence-label text-brand">{activeCategory.descriptor}</p>
-                <h3 id="research-topic-title" className="mt-2 max-w-[28ch] font-display text-2xl font-normal text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
+                <h3 id="research-topic-title" className="mt-2 max-w-[28ch] font-display text-2xl font-bold text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
                 <p className="mt-3 max-w-reading text-base leading-6 text-muted-foreground md:mt-4 md:text-prose">{activeCategory.subtitle}</p>
                 <div className="mt-5 grid gap-3 md:mt-8 md:grid-cols-2 md:gap-4">
                     {activeCategory.articles.map((article, index) => <ResearchArticleCard key={article.id} article={article} index={index} featured={index === 0} />)}
@@ -175,7 +175,7 @@ function FirstReadMap() {
         <figure className="research-read-map" aria-labelledby="research-read-map-title">
             <figcaption className="research-read-map-intro">
                 <p className="riyp-evidence-label text-brand">From file to feedback</p>
-                <h2 id="research-read-map-title" className="mt-4 max-w-[22ch] font-display text-3xl font-normal text-foreground md:text-section-title">
+                <h2 id="research-read-map-title" className="mt-4 max-w-[22ch] font-display text-3xl font-bold text-foreground md:text-section-title">
                     Three things to check in a resume.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
@@ -381,7 +381,7 @@ function ResearchEvidenceTrace() {
             >
                 <div className="research-finding-copy">
                     <p className="riyp-evidence-label text-brand">Finding {activeFinding.index}</p>
-                    <h2 className="mt-5 max-w-[24ch] font-display text-3xl font-normal text-foreground md:text-section-title">{activeFinding.question}</h2>
+                    <h2 className="mt-5 max-w-[24ch] font-display text-3xl font-bold text-foreground md:text-section-title">{activeFinding.question}</h2>
                     <p className="mt-7 max-w-reading text-prose text-muted-foreground">{activeFinding.conclusion}</p>
 
                     <div className="mt-8 border-l-2 border-brand pl-5">
@@ -447,7 +447,7 @@ export default function ResearchClient() {
                 <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
                     <div>
                         <p className="riyp-evidence-label text-brand">Claims under review</p>
-                        <h2 className="mt-4 max-w-[22ch] font-display text-3xl font-normal text-foreground md:text-section-title">Three resume rules that need to go.</h2>
+                        <h2 className="mt-4 max-w-[22ch] font-display text-3xl font-bold text-foreground md:text-section-title">Three resume rules that need to go.</h2>
                         <p className="mt-5 max-w-[34rem] text-base leading-7 text-muted-foreground">Each sounds certain. The research is more specific.</p>
                     </div>
                     <div className="border-b border-line">

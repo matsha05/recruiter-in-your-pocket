@@ -12,14 +12,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// Apple Touch Icon - Alpine mark on ink.
+// Apple Touch Icon: the R with a highlighter stroke, on ink.
 export default async function Icon() {
-    const instrumentSans = await readFile(join(process.cwd(), "public", "fonts", "instrument-sans", "InstrumentSans-Semibold.ttf"));
+    const schibsted = await readFile(join(process.cwd(), "public", "fonts", "schibsted-grotesk", "SchibstedGrotesk-ExtraBold.woff"));
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#12191b",
+                    background: "#111513",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -36,18 +36,18 @@ export default async function Icon() {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#f6f3ef",
-                        fontFamily: "Instrument Sans",
+                        color: "#f4f4f1",
+                        fontFamily: "Schibsted Grotesk",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: 82, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#78aeb8" }} />
+                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#ffe14d" }} />
                 </div>
             </div>
         ),
         {
             ...size,
-            fonts: [{ name: "Instrument Sans", data: instrumentSans, style: "normal", weight: 600 }],
+            fonts: [{ name: "Schibsted Grotesk", data: schibsted, style: "normal", weight: 800 }],
         }
     );
 }

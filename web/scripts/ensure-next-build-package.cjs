@@ -49,11 +49,11 @@ assertTraceIncludes(
 );
 assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
-  "/public/fonts/source-serif-4/SourceSerif4-Variable.ttf"
+  "/public/fonts/literata/Literata-Variable.woff2"
 );
 assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
-  "/public/fonts/instrument-sans/InstrumentSans-Variable.ttf"
+  "/public/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2"
 );
 for (const runtimeAsset of [
   "chromium.br",

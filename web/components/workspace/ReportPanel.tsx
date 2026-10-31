@@ -166,7 +166,7 @@ export default function ReportPanel({
 
                     {/* Copy - Question Headline */}
                     <div className="gap-y-3 max-w-md">
-                        <h2 className="font-display text-2xl font-normal leading-tight text-foreground">
+                        <h2 className="font-display text-2xl font-bold leading-tight text-foreground">
                             Your report will show up here.
                         </h2>
                         <p className="text-muted-foreground">

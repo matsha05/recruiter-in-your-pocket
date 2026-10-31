@@ -17,7 +17,7 @@ export default function NotFound() {
                 <div className="mx-auto max-w-[72rem] border-t border-line pt-7">
                     <div className="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
                         <div>
-                            <p className="font-display text-7xl font-medium leading-none tracking-tight text-muted-foreground" aria-hidden="true">404</p>
+                            <p className="font-display text-7xl font-bold leading-none tracking-tight text-muted-foreground" aria-hidden="true">404</p>
                         </div>
                         <div className="max-w-[46rem]">
                             <h1 className="exception-page-title font-display riyp-weight-620 text-foreground riyp-stretch-91">

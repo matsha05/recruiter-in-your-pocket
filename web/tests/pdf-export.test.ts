@@ -155,9 +155,9 @@ assert.deepEqual(canonicalCeiling?.subscores, { story: 99, impact: 99, clarity: 
 const pdfRendererSource = ["pdf.ts", "pdf-styles.ts"]
   .map((fileName) => readFileSync(path.join(process.cwd(), "lib", "backend", fileName), "utf8"))
   .join("\n");
-assert.match(pdfRendererSource, /Instrument Sans/);
-assert.match(pdfRendererSource, /Source Serif 4/);
-assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|Newsreader/);
+assert.match(pdfRendererSource, /Schibsted Grotesk/);
+assert.match(pdfRendererSource, /Literata/);
+assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|Newsreader|Instrument Sans|Source Serif/);
 
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
@@ -196,7 +196,7 @@ for (const tag of ["html", "head", "style", "body", "section", "div", "span", "u
 
 const nextConfigSource = readFileSync(path.join(process.cwd(), "next.config.mjs"), "utf8");
 const postbuildSource = readFileSync(path.join(process.cwd(), "scripts", "ensure-next-build-package.cjs"), "utf8");
-for (const font of ["SourceSerif4-Variable.ttf", "InstrumentSans-Variable.ttf"]) {
+for (const font of ["Literata-Variable.woff2", "SchibstedGrotesk-Variable.woff2"]) {
   assert.match(nextConfigSource, new RegExp(font.replace(".", "\\.")), `${font} should be included in output tracing`);
   assert.match(postbuildSource, new RegExp(font.replace(".", "\\.")), `${font} should be asserted after build`);
 }

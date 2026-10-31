@@ -48,7 +48,7 @@ export function ProcessRail({ steps, footer }: { steps: ProcessStep[]; footer?: 
                         <li key={`${step.label}-${step.title}`} className="relative border-l border-line py-5 pl-6 first:pt-0 last:pb-0 md:border-l-0 md:border-t md:px-4 md:pb-0 md:pt-7 md:first:pl-0 md:last:pr-0">
                             <span className={cn("absolute -left-[5px] top-6 size-[9px] border-2 bg-paper md:-top-[5px] md:left-4 md:first:left-0", toneClasses[tone])} aria-hidden="true" />
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
-                            <div className="mt-2 font-display text-xl font-medium tracking-tight text-foreground">{step.title}</div>
+                            <div className="mt-2 font-display text-xl font-bold tracking-tight text-foreground">{step.title}</div>
                             <p className="mt-2 text-data text-muted-foreground">{step.detail}</p>
                             {index < steps.length - 1 ? <ArrowRight className="absolute -right-2 -top-[9px] hidden size-4 bg-paper text-muted-foreground md:block" aria-hidden="true" /> : null}
                         </li>
@@ -122,7 +122,7 @@ export function SequenceTrace({ steps, direction = "down" }: { steps: TraceStep[
                         </div>
                         <div className="pb-7 md:pb-8">
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
-                            <div className="mt-1 font-display text-xl font-medium tracking-tight text-foreground">{step.title}</div>
+                            <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground">{step.title}</div>
                         </div>
                         {step.detail ? <p className="col-start-2 -mt-5 pb-7 text-data text-muted-foreground md:col-start-3 md:mt-0 md:pb-8">{step.detail}</p> : null}
                     </li>

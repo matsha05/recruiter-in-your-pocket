@@ -16,9 +16,9 @@
     max-width: 28ch;
     margin-top: 1rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--weight-heading);
     letter-spacing: -0.02em;
     line-height: 1.25;
 }
@@ -54,9 +54,9 @@
     max-width: 32ch;
     margin-top: 0.75rem;
     color: hsl(var(--foreground));
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--weight-heading);
     letter-spacing: -0.02em;
     line-height: 1.25;
 }
@@ -150,9 +150,9 @@
 
 .sectionTitle {
     color: hsl(var(--text-strong));
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--weight-heading);
     line-height: 1.25;
     letter-spacing: -0.02em;
 }
@@ -160,11 +160,11 @@
 .body { font-size: 1rem; line-height: 1.5625; }
 .label { color: hsl(var(--brand)); font-size: 0.75rem; font-weight: var(--weight-label); letter-spacing: 0.1em; text-transform: uppercase; }
 .scoreRow { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.5rem; border-top: 1px solid hsl(var(--paper-line)); padding-top: 1.25rem; }
-.scoreValue { flex-shrink: 0; color: hsl(var(--text-strong)); font-size: 2.5rem; font-weight: 650; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; line-height: 1; }
+.scoreValue { flex-shrink: 0; color: hsl(var(--text-strong)); font-family: var(--font-display); font-size: 2.5rem; font-weight: var(--weight-display); font-variant-numeric: tabular-nums; letter-spacing: -0.03em; line-height: 1; }
 .scoreScale { margin-left: 0.125rem; color: hsl(var(--muted-foreground)); font-size: 1rem; font-weight: 500; letter-spacing: 0; }
-.criticalMiss { margin-top: 1.5rem; border: 1px solid hsl(var(--line)); border-left: 3px solid hsl(var(--brass)); border-radius: 0.75rem; background: hsl(var(--surface-proof) / 0.5); padding: 1.25rem 1.25rem 0.5rem; }
+.criticalMiss { margin-top: 1.5rem; border: 1px solid hsl(var(--miss-line)); border-radius: 0.75rem; background: hsl(var(--miss-surface)); padding: 1.25rem 1.25rem 0.5rem; }
 .criticalLabel { color: hsl(var(--brass)); font-size: 0.75rem; font-weight: var(--weight-label); letter-spacing: 0.1em; text-transform: uppercase; }
-.criticalTitle { margin-top: 0.5rem; color: hsl(var(--text-strong)); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.35; }
+.criticalTitle { margin-top: 0.5rem; color: hsl(var(--text-strong)); font-family: var(--font-display); font-size: 1.25rem; font-weight: var(--weight-heading); letter-spacing: -0.015em; line-height: 1.35; }
 .worksNote { margin-top: 1.25rem; border-left: 2px solid hsl(var(--line)); padding-left: 1rem; }
 @media (max-width: 639px) {
     .root section[id] { scroll-margin-top: 3.25rem; }
