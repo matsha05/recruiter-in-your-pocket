@@ -53,16 +53,7 @@ const HEX_ALLOWLIST = new Set([
   "lib/support/inboundEmail.ts",
 ]);
 
-// These four modules reconstruct the approved photograph's lacquer, brass,
-// shadows and engraved markings. Material samples are image data, not a new UI
-// palette. Keep this exact-file exception out of React UI and CSS modules;
-// validate the live paper text and keyboard focus separately below.
-const CALIBRATED_ARTWORK_FILES = new Set([
-  "components/landing/instrument/runtime/instrument-dial.ts",
-  "components/landing/instrument/runtime/instrument-keys.ts",
-  "components/landing/instrument/runtime/instrument-power.ts",
-  "components/landing/instrument/runtime/reference-instrument.ts",
-]);
+const CALIBRATED_ARTWORK_FILES = new Set();
 
 const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.

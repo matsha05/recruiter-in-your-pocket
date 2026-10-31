@@ -190,6 +190,9 @@
     --teal-bright: 191.748 100.000% 28.039%;
     --annotation: var(--accent-apricot);
     --brass: 29.268 80.392% 30.000%;
+    /* Recruiter's pen: margin notes, score, and focus on the homepage example. */
+    --pen: 167 32% 17%;
+    --highlight: 42 70% 82%;
     /* Locked shell heights: product 64px; marketing 64px mobile / 72px desktop. */
     --product-header-height: 4rem;
     --marketing-header-height-mobile: 4rem;
@@ -233,6 +236,9 @@
     --slate: 160.000 6.569% 73.137%;
     --slate-muted: 160.000 6.569% 73.137%;
     --premium: 32.039 68.212% 70.392%;
+    --brass: 34 62% 66%;
+    --pen: 160 34% 72%;
+    --highlight: 38 45% 28%;
     --surface-inverted: 193.333 20.000% 8.824%;
     --chrome-line: 160.000 6.383% 27.647%;
     --surface-quiet: 170.000 6.818% 17.255%;

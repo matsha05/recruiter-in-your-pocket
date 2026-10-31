@@ -112,7 +112,7 @@ test("withdrawal works when storage is readable but privacy writes fail", async 
 test("mobile CTA appears after the hero, yields to privacy choices, and opens the workspace", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await expect(page.getByTestId("pocket-instrument")).toHaveAttribute("data-status", "ready");
+  await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
   await expect(page.getByTestId("mobile-report-cta")).toHaveCount(0);
   await page.evaluate(() => scrollTo(0, 1100));
   await expect(page.getByTestId("mobile-report-cta")).toBeHidden();
@@ -153,22 +153,4 @@ test("privacy choices remain readable and keyboard-accessible on phone and deskt
   await expect(page.getByRole("heading", { name: "Your privacy choices" })).toBeFocused();
   await page.getByTestId("privacy-panel").getByRole("button", { name: "Close", exact: true }).click();
   await expect(preferences).toBeFocused();
-});
-
-test("compressed artwork stays sharp and the calibrated controls work", async ({ page }) => {
-  await page.addInitScript(key => localStorage.setItem(key, "declined"), consentKey);
-  await page.goto("/");
-  const instrument = page.getByTestId("pocket-instrument");
-  await expect(instrument).toHaveAttribute("data-status", "ready");
-  const plate = page.locator('img[src*="clean-plate.v2.webp"]');
-  expect(await plate.evaluate(image => ({ width: (image as HTMLImageElement).naturalWidth, height: (image as HTMLImageElement).naturalHeight }))).toEqual({ width: 1536, height: 1024 });
-  const response = await page.request.get("/assets/instrument/clean-plate.v2.webp");
-  expect((await response.body()).length).toBeLessThan(120_000);
-  await instrument.locator('[data-instrument-mode="story"]').click();
-  await expect(instrument).toHaveAttribute("data-mode", "story");
-  await instrument.getByRole("slider").focus();
-  await page.keyboard.press("End");
-  await expect(instrument).toHaveAttribute("data-stage", "next");
-  await instrument.getByRole("switch", { name: "Instrument power" }).click();
-  await expect(instrument).toHaveAttribute("data-powered", "false");
 });

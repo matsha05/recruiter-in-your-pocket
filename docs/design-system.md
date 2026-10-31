@@ -42,7 +42,7 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
-- homepage instrument and calibrated artwork controls: `web/components/landing/instrument/`
+- homepage hero and “Your view / A recruiter's view” example: `web/components/landing/hero/`
 
 Rules:
 
@@ -78,7 +78,7 @@ Runtime mapping:
 
 | Role | Size / leading | Weight and treatment |
 | --- | --- | --- |
-| Landing hero | `clamp(40px, 4.55vw, 82px)` / 0.98; about 70px / 68.5px at 1536px | 700; preserves the approved three-line instrument headline |
+| Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | 700; one line on desktop: “See what a recruiter sees.” |
 | Marketing section title | about 40px / 44px | 650 |
 | Workspace title | 40px / 44px | 600; scale down on narrow screens without clipping |
 | Report heading | 24px / 30px | 600 |
@@ -148,9 +148,9 @@ Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allow
 
 ### Mobile composition
 
-On phones, place the headline, explanation, and full-width action before the complete instrument so trying the controls never delays starting a report. Use 20-24px copy gutters, a 36-54px headline, and a 52px primary action. Between 701 and 900px, place the instrument beside the copy in a compact two-column composition. Preserve the source-aligned controls and the artwork's original materials and lighting. Blend its warm photographic setting into the page without clipping the case or introducing a rectangular panel edge. “Read at full size” expands the current example below the instrument without creating a second visible set of controls; native fallback controls appear if the renderer fails.
+On phones, place the headline, explanation, and full-width action before the example so trying the toggle never delays starting a report. Below 1100px the example becomes one sheet: the First Impression sits at the top, and each margin note sits directly under its resume line.
 
-Keep the six trusted-company marks in a balanced two-column phone grid, including the Apple mark. The illustrative assessment remains colorful. Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
+Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
 The upload surface uses a compact file picker instead of a desktop-sized drop area. The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public navigation sheets keep their close control visible and scroll their links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
@@ -216,9 +216,9 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Homepage
 
-- Preserve the approved instrument artwork and three-line desktop headline: “You did the work. / Let’s dial in / your story.” Keep the original company marks, primary action, report preview, and founder section within the shared Alpine system.
-- Home is the default with no key selected and a concise, fictional before-and-after example. Story, Impact, and Fit choose a focus; pressing the selected key returns Home. The dial chooses On paper, Recruiter’s read, or Next move. The side switch turns the instrument off and restores its previous state when turned on.
-- Keep the larger example available through “Read at full size.” The controls, optional illustration, and full-size feedback must not gate the report action. Facts behind sample advice remain available, and suggestions must not imply unverified achievements or outcomes.
+- Headline: “See what a recruiter sees.” One dark primary action (“Get your free report”) and one quiet secondary route (“See a sample report”).
+- The example is a fictional resume shown two ways. “Your view” is the page alone. “A recruiter’s view” adds margin notes in the pen color (Source Serif 4 italic), the First Impression with an example score, and the Critical Miss in brass. Notes name what the line does or leaves out; they never invent results.
+- The recruiter's view appears once when the example scrolls into view. A visitor's choice wins after that. The example must not gate the report action.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
@@ -253,7 +253,7 @@ Canonical tokens:
 - `--duration-slow`: 180ms
 - `--ease`: `cubic-bezier(0.22, 1, 0.36, 1)`
 
-Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage instrument uses a fixed-camera photograph with live projected controls, preserving the approved case, lighting, and materials. Key caps move inward while held, settle at a shallower latched depth, and release when deselected. The dial moves between three detents with fixed environmental lighting; the side switch controls the display while preserving the selected view. Animate only during interaction, stop once settled and when hidden, and dispose listeners and observers when navigating away. Reduced motion preserves immediate visible state changes without travel animation. Touch and keyboard controls remain functional. If the renderer fails, retain the artwork where available and expose native controls with full-size feedback. Do not make report access depend on initializing or exploring the instrument.
+Motion should clarify selection, real progress, or continuity. For interface transitions, animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage example uses Motion: the toggle thumb slides between options, margin notes open in sequence, and leader lines draw from the resume to each note. Reduced motion shows the same states immediately. Do not make report access depend on the example.
 
 ### Shared interaction implementation
 

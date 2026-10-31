@@ -4,12 +4,12 @@ for (const width of [320, 390, 430]) {
   test.describe(`phone landing at ${width}px`, () => {
     test.use({ viewport: { width, height: 844 }, hasTouch: true, isMobile: true });
 
-    test("the main action is reachable before the instrument on a phone", async ({ page }) => {
+    test("the main action is reachable before the example on a phone", async ({ page }) => {
       await page.goto("/");
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
       await page.evaluate(() => document.fonts.ready);
       const title = await page.getByRole("heading", { level: 1 }).boundingBox();
-      const art = await page.getByTestId("instrument-stage").boundingBox();
+      const art = await page.getByTestId("recruiter-view-demo").boundingBox();
       const action = await page.getByTestId("landing-primary-cta").boundingBox();
       expect(title && art && action).toBeTruthy();
       expect(art!.y).toBeGreaterThanOrEqual(title!.y + title!.height);
@@ -17,7 +17,7 @@ for (const width of [320, 390, 430]) {
       expect(art!.x).toBeGreaterThanOrEqual(0);
       expect(art!.x + art!.width).toBeLessThanOrEqual(width);
       expect(action!.y + action!.height).toBeLessThanOrEqual(844);
-      await expect(page.getByTestId("pocket-instrument")).toHaveAttribute("data-status", "ready");
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await page.getByTestId("landing-primary-cta").click();
       await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
     });
@@ -25,16 +25,16 @@ for (const width of [320, 390, 430]) {
   });
 }
 
-test("small tablets see a complete instrument beside the copy", async ({ page }) => {
+test("small tablets keep the copy and the example in one readable column", async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 1024 });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   const title = await page.getByRole("heading", { level: 1 }).boundingBox();
-  const art = await page.getByTestId("instrument-stage").boundingBox();
-  const composition = await page.getByTestId("instrument-hero-composition").boundingBox();
-  expect(art!.x).toBeGreaterThanOrEqual(title!.x + title!.width);
-  expect(art!.y + art!.height).toBeLessThanOrEqual(1024);
-  expect(composition!.height).toBeLessThanOrEqual(700);
+  const demo = await page.getByTestId("recruiter-view-demo").boundingBox();
+  expect(demo!.y).toBeGreaterThan(title!.y + title!.height);
+  expect(demo!.x).toBeGreaterThanOrEqual(0);
+  expect(demo!.x + demo!.width).toBeLessThanOrEqual(768);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("phone visitors can read additional assessment detail without losing the actionable example", async ({ page }) => {

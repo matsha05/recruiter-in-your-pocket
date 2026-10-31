@@ -9,12 +9,9 @@ test.describe("homepage feedback and SEO contract", () => {
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      /You did the work\.\s*Let’s dial in\s*your story\./,
-    );
-    await expect(homepage).toContainText("AI feedback. Real recruiting experience.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
     await expect(homepage).toContainText(
-      "See what a recruiter is likely to notice first, the detail they would miss, and what to fix before you apply.",
+      "You did the work. Find out what comes through on your resume, the one thing a recruiter would miss, and what to fix before you apply.",
     );
 
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
@@ -26,8 +23,8 @@ test.describe("homepage feedback and SEO contract", () => {
       "href",
       "/sample-report",
     );
-    const hero = homepage.locator("section[aria-labelledby='mineral-hero-title']");
-    await expect(hero.getByText("No account needed. Anonymous reports don’t store your resume text.", { exact: true })).toBeVisible();
+    const hero = homepage.locator("section[aria-labelledby='hero-title']");
+    await expect(hero.getByText("Your first report is free. No account or card needed, and anonymous reports don’t store your resume text.", { exact: true })).toBeVisible();
     const freeLimits = homepage.locator("#how-it-works details").filter({ hasText: "Free report limits" });
     await expect(freeLimits).not.toHaveAttribute("open", "");
     await freeLimits.locator("summary").focus();

@@ -10,7 +10,7 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
 
     // overflow-x:clip can hide an oversized child without increasing scrollWidth.
     // Measure the actual copy, controls, and report card rather than the body alone.
-    const hero = page.locator("section[aria-labelledby='mineral-hero-title']");
+    const hero = page.locator("section[aria-labelledby='hero-title']");
     const report = page.getByRole("article", { name: "Sample resume report preview" });
     await expect(hero.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("article", { name: "Example first impression" })).toBeVisible();
@@ -19,9 +19,9 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
 
     const clipped = await page.locator([
       ".site-header a:visible", ".site-header button:visible", ".site-header .site-wordmark:visible",
-      "section[aria-labelledby='mineral-hero-title'] h1", "section[aria-labelledby='mineral-hero-title'] p",
-      "section[aria-labelledby='mineral-hero-title'] a", "section[aria-labelledby='mineral-hero-title'] summary",
-      "section[aria-labelledby='mineral-hero-title'] li", "#how-it-works article",
+      "section[aria-labelledby='hero-title'] h1", "section[aria-labelledby='hero-title'] p",
+      "section[aria-labelledby='hero-title'] a", "section[aria-labelledby='hero-title'] summary",
+      "section[aria-labelledby='hero-title'] li", "#how-it-works article",
       "#how-it-works :is(h2, h3, h4, p, blockquote, button, a, li):visible",
     ].join(", ")).evaluateAll((elements) => {
       const viewportWidth = document.documentElement.clientWidth;

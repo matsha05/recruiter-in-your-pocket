@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
-import { MineralHero } from "./mineral/MineralHero";
+import { RecruiterViewHero } from "./hero/RecruiterViewHero";
 import { WholeReportPreview } from "./mineral/WholeReportPreview";
 import styles from "./mineral/MineralPage.module.css";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
@@ -10,7 +10,7 @@ import { MobileReportCTA } from "./mineral/MobileReportCTA";
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
-            <MineralHero />
+            <RecruiterViewHero />
             <WholeReportPreview />
             <section id="about" className={styles.founder} aria-labelledby="lift-credibility-title">
                 <div className={styles.founderPortrait}>
