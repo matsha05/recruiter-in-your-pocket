@@ -46,6 +46,9 @@ const assessmentWords = normalizedSet([
   "analytics-led", "appropriately", "become", "change", "concise", "contribution", "coverage", "date", "decision", "degree", "direction", "graduation", "headline", "institution", "iteration", "lane", "less", "listed", "often", "other", "range", "rarely", "setting", "specific", "statement", "still", "stop", "story", "strong", "strongest", "technical-to-product", "tenure", "than", "then", "thin", "too", "training", "transition", "which", "year",
   "typo", "make", "slower", "current", "completed", "complete", "school", "location", "core", "job", "organized", "sequence", "straightforward", "included", "presented", "order", "scan", "section", "title", "employer", "figure", "score", "starting", "point",
   "uneven", "unevenly", "unusually", "useful", "utilization", "verified", "volume", "well", "workforce",
+  // Seniority reads, matching the report's own level scale ("Early career" ... "Director-level").
+  // Bare "entry", "junior", and "executive" stay out: they also name duties and job titles.
+  "entry-level", "early-career", "mid-level", "mid-career", "senior-level", "lead-level", "director-level", "level",
 ]);
 
 const sourceNegationPattern = /\b(?:did\s+not|does\s+not|do\s+not|not|never|no|without|didn['’]t|doesn['’]t|don['’]t)\b/iu;

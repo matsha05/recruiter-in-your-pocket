@@ -24,6 +24,10 @@ const positiveCases = [
     { claim: 'The market-share claim would be easier to evaluate if it distinguished relative growth from percentage–point change.', source: 'Expanded market share by 18% in fintech and healthcare.' },
     { claim: 'The reporting details are less clear.', source: 'Prepared weekly reports for the manager.' },
     { claim: 'The reporting details are not as clear.', source: 'Prepared weekly reports for the manager.' },
+    // Live eval eval_1793463459213: a fair seniority read of a recent graduate was rejected, so no report shipped.
+    { claim: 'The resume shows an entry-level operations direction, but gives a reviewer limited detail for comparing your work with an opening.', source: 'Recent business graduate aiming to start a career in operations management. Operations Assistant, Greenfield Logistics. Intern - Operations Department, MetroRetail Inc. Was responsible for assisting with daily operational tasks.' },
+    { claim: 'The page reads as early-career operations work.', source: 'Recent graduate. Operations intern. Coordinated schedules.' },
+    { claim: 'The resume reads at a mid-level for analytics roles.', source: 'Data Analyst, 2019 to 2024. Built weekly dashboards.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -48,6 +52,11 @@ const negativeCases = [
     { claim: 'The percentage-point increase of 18% shows a result.', source: 'Expanded market share by 8%.' },
     { claim: 'Clear ownership of a team of 45 engineers is shown.', source: 'Worked with an engineering team.' },
     { claim: 'The resume shows SQL ownership clearly.', source: 'No SQL experience. Built reports in Excel.' },
+    // Paired controls: seniority words never launder invented scope, duties, or titles.
+    { claim: 'Promoted to entry-level supervisor of a 12-person team.', source: 'Operations intern. Coordinated schedules.' },
+    { claim: 'The resume shows director-level ownership of a $5M budget.', source: 'Operations assistant. Maintained records.' },
+    { claim: 'Handled data entry for 40 clients.', source: 'Maintained records and updated reports.' },
+    { claim: 'The resume shows junior analyst experience.', source: 'Operations assistant. Maintained records.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));

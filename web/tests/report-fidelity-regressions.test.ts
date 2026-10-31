@@ -352,9 +352,11 @@ for (const [expectedPath, label, mutate] of polarityCases) {
     `${expectedPath} ${label} must exercise a browser-visible report field`,
   );
   if (expectedPath === "gaps[0]") {
+    // Since 6478623 the PDF has no separate gaps list (gaps surface as the Critical Miss and fixes),
+    // so a raw gap must never reach it. The validation boundary below still runs for the PDF.
     assert.ok(
-      renderReportHtml(normalizeReportForPdf(report)!).includes(unsafeValue),
-      `${expectedPath} ${label} must exercise the PDF HTML sink`,
+      !renderReportHtml(normalizeReportForPdf(report)!).includes(unsafeValue),
+      `${expectedPath} ${label} must not reach the PDF as a raw gaps list`,
     );
   }
   assert.ok(
