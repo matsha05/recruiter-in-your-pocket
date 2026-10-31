@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Offer Comparison Calculator",
+  title: "Compare two offers side by side",
   description: "Compare base salary, target bonus, modeled equity, vesting, and one-time compensation across job offers.",
   alternates: { canonical: "/resources/tools/comp-calculator" },
 };

@@ -96,8 +96,8 @@ export const categories: ResearchCategory[] = [
             {
                 id: "quantifying-impact",
                 title: "Show what changed and your part in it",
-                description: "How to connect what you did, the scope of the work, and what changed without manufacturing a metric.",
-                readTime: "5 min read",
+                description: "Recruiters judge what you can do by what your resume shows you did. What the research supports, and how to write it.",
+                readTime: "7 min read",
                 href: "/research/quantifying-impact",
                 note: "Start here",
             },
@@ -158,6 +158,13 @@ export const categories: ResearchCategory[] = [
                 note: "Start here",
             },
             {
+                id: "gaps-and-pivots",
+                title: "Gaps, pivots, and short stints",
+                description: "What field experiments found about employment gaps, career changes, and frequent moves, and what helped.",
+                readTime: "7 min read",
+                href: "/research/gaps-and-pivots",
+            },
+            {
                 id: "star-method",
                 title: "Tell the story behind the line",
                 description: "How to use STAR on a resume line and in a structured interview without forcing the formula.",
@@ -183,8 +190,8 @@ export const categories: ResearchCategory[] = [
             {
                 id: "offer-negotiation",
                 title: "How to negotiate a job offer",
-                description: "A step-by-step sequence with scripts you can adapt, and what to ask for beyond base salary.",
-                readTime: "10 min read",
+                description: "Recruiters expect you to ask. The salary question, the offer call, your number, the counter, and the close.",
+                readTime: "12 min read",
                 href: "/resources/offer-negotiation",
                 note: "Playbook",
             },

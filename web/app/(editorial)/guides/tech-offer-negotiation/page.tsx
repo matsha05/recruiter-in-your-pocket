@@ -15,7 +15,7 @@ import {
 } from "@/components/guides/OfferGuidePrimitives";
 
 export const metadata: Metadata = {
-    title: "How to Read and Negotiate a Tech Offer",
+    title: "How to read and negotiate a tech offer",
     description: "A practical guide to comparing base, bonus, equity, vesting, level, and year-one cash in a tech job offer.",
     alternates: { canonical: "/resources/tech-offer-negotiation" },
 };
@@ -134,7 +134,7 @@ export default function TechOfferNegotiationGuidePage() {
                 <Sources>
                     <p>Equity terms vary by company and award. Carta’s explainers cover <a href="https://carta.com/learn/equity/stock-options/strike-price/">strike price</a>, option mechanics, and dilution. Company documents control the actual grant.</p>
                     <p>The IRS explains that stock-based compensation can be taxed differently depending on the award and event. See <a href="https://www.irs.gov/taxtopics/tc427">IRS Topic 427</a> and <a href="https://www.irs.gov/publications/p525">IRS Publication 525</a>. This guide is educational, not tax advice.</p>
-                    <p>Negotiation research supports making a considered counter, not promising that every employer expects one or that every request succeeds. See the <a href="https://www.nber.org/papers/w33903">2025 NBER field experiment with US tech job seekers</a>.</p>
+                    <p>For the research on asking, and the counter itself, see <a href="/resources/offer-negotiation">How to negotiate a job offer</a>. For a 2025 field experiment with US tech job seekers, see <a href="https://www.nber.org/papers/w33903">NBER Working Paper 33903</a>.</p>
                 </Sources>
             </article>
         </div>

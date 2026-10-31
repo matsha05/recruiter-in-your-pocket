@@ -18,6 +18,7 @@ const articles = [
   "/research/spelling-errors-impact",
   "/research/star-method",
   "/research/who-you-are",
+  "/research/gaps-and-pivots",
   "/research/writing-quality-hire-probability",
 ] as const;
 

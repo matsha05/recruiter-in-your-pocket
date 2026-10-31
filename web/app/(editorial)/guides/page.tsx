@@ -1,29 +1,29 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Clock, ShieldCheck, Sparkle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Clock, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
-    title: "Career Resources",
+    title: "Career resources",
     description: "Recruiter-grounded negotiation guides, compensation tools, and practical career resources.",
     alternates: { canonical: "/resources" },
 };
 
 const playbooks = [
     {
-        title: "Offer Negotiation Playbook",
+        title: "How to negotiate a job offer",
         subtitle: "All industries",
-        readTime: "10 min",
+        readTime: "12 min",
         href: "/resources/offer-negotiation",
         points: [
-            "A step-by-step sequence you can adapt to the employer",
-            "Word-for-word scripts you can actually use",
-            "What to ask for beyond base salary",
+            "What to say when they ask for your number",
+            "How to handle the offer call, the counter, and the close",
+            "Scripts for each step, and the research behind them",
         ],
     },
     {
-        title: "Tech Compensation Playbook",
+        title: "How to read and negotiate a tech offer",
         subtitle: "Engineering and product roles",
         readTime: "12 min",
         href: "/resources/tech-offer-negotiation",
@@ -59,10 +59,7 @@ export default function GuidesPage() {
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-marketing">
                         <div className="max-w-4xl">
-                            <div className={`${styles.label} inline-flex items-center gap-2 text-muted-foreground`}>
-                                <Sparkle aria-hidden="true" className="size-3.5 text-brand" weight="fill" />
-                                Practical career advice
-                            </div>
+                            <p className={`${styles.label} text-muted-foreground`}>Negotiation</p>
                             <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                                 Work out what to ask for in your next offer
                             </h1>
@@ -137,7 +134,7 @@ export default function GuidesPage() {
                                         Tool
                                     </p>
                                     <h3 className={`${styles.componentTitle} mt-2`}>
-                                        Compensation Calculator
+                                        Compare two offers side by side
                                     </h3>
                                     <p className={`${styles.readingCopy} mt-3`}>
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
