@@ -11,7 +11,6 @@ const routes = [
   "/research/automation-and-bias",
   "/research/hiring-discrimination-meta-analysis",
   "/research/how-recruiters-read",
-  "/research/how-we-score",
   "/research/human-vs-algorithm",
   "/research/linkedin-visibility",
   "/research/quantifying-impact",

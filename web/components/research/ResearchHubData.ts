@@ -88,10 +88,10 @@ export const categories: ResearchCategory[] = [
             },
             {
                 id: "how-we-score",
-                title: "How We Review Your Resume",
-                description: "What the report looks for, how the score is used, and what it cannot tell you.",
+                title: "How the report works",
+                description: "How the Verdict, score, and Critical Miss are made, and what the score can't tell you.",
                 readTime: "5 min read",
-                href: "/research/how-we-score",
+                href: "/methodology",
                 note: "Methodology",
             },
         ],
@@ -234,7 +234,7 @@ export const featuredFindings: Array<{
         sourceHref: "https://stars.library.ucf.edu/facultybib2000/3203/",
         sourceLabel: "Read the study record",
         reportUse: "The report explains the findings behind your score. It considers your career progression, responsibilities, and results together.",
-        href: "/research/how-we-score",
+        href: "/methodology",
         visual: "artifact",
     },
     {

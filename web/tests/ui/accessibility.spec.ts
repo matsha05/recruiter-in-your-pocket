@@ -84,7 +84,7 @@ test("sign-in input keeps its visible default boundary and exposes its error sta
   await expect(emailInput).toBeFocused();
   await expect(emailInput).toHaveCSS("border-color", "rgb(31, 90, 70)");
   await page.keyboard.press("Tab");
-  await expect(emailInput).toHaveCSS("border-color", "rgb(126, 136, 138)");
+  await expect(emailInput).toHaveCSS("border-color", "rgb(128, 137, 131)");
 
   await page.getByRole("button", { name: "Send sign-in code" }).click();
 

@@ -67,6 +67,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // The methodology article and page were merged into one "How the report works" page.
+      { source: "/research/how-we-score", destination: "/methodology", permanent: true },
       ...(!extensionSyncEnabled ? [{
         source: "/extension",
         destination: "/workspace",

@@ -63,9 +63,9 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 - [ ] Read and fix every research article and every diagram (copy, voice, type sizes, tokens, mobile layout), not just the index.
 
-- [ ] Merge /methodology into /research/how-we-score as "How the report works"; redirect; update links.
-- [ ] Methodology copy: hedges, "not X" formulas, compliance-styled limits.
-- [ ] FirstReadModelDiagram: retired "clarity summary"; lead with Verdict.
+- [x] Merge /methodology into /research/how-we-score as "How the report works"; redirect; update links.
+- [x] Methodology copy: hedges, "not X" formulas, compliance-styled limits.
+- [x] FirstReadModelDiagram: retired "clarity summary"; lead with Verdict.
 - [ ] Guides: Sparkle icon, duplicate eyebrows, guide naming.
 - [ ] Trust card on score (lib/legal/content.ts:78) and FAQ keyword line.
 - [ ] /status page: hide from public.

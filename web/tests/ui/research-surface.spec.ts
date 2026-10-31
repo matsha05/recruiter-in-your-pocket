@@ -6,7 +6,7 @@ const articles = [
   "/research/automation-and-bias",
   "/research/hiring-discrimination-meta-analysis",
   "/research/how-recruiters-read",
-  "/research/how-we-score",
+  "/methodology",
   "/research/human-vs-algorithm",
   "/research/linkedin-visibility",
   "/research/quantifying-impact",

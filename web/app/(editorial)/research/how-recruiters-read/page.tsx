@@ -64,7 +64,7 @@ export default function HowRecruitersReadPage() {
             relatedArticles={[
                 { title: "What Spelling Errors Cost", href: "/research/spelling-errors-impact", tag: "Screening" },
                 { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Research" },
-                { title: "How the Report Score Works", href: "/research/how-we-score", tag: "Methodology" }
+                { title: "How the report works", href: "/methodology", tag: "Methodology" }
             ]}
             sources={[
                 {
