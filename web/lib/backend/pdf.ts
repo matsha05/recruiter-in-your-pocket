@@ -156,7 +156,7 @@ export function renderReportHtml(report: ReportForPdf) {
   <section class="hero">
     <div class="hero-grid">
       <div>
-        <div class="section-kicker">Verdict</div>
+        <div class="verdict-label">Verdict</div>
         <h1>${escapeHtml(verdict)}</h1>
         ${verdictReason ? `<p class="hero-summary">${escapeHtml(verdictReason)}</p>` : ""}
       </div>
@@ -176,18 +176,13 @@ export function renderReportHtml(report: ReportForPdf) {
   </section>
   ` : ""}
 
-  <div class="two-col">
-    <section class="signal-panel lands">
-      <div class="section-kicker">Keep these</div>
-      <h2>What works well</h2>
-      <ul>${signalListHtml(report.strengths, "lands")}</ul>
-    </section>
-    <section class="signal-panel context">
-      <div class="section-kicker">Details to clarify</div>
-      <h2>What stays unclear</h2>
-      <ul>${signalListHtml(report.gaps, "context")}</ul>
-    </section>
-  </div>
+  ${report.strengths?.length ? `
+  <section class="signal-panel lands keep-section">
+    <div class="section-kicker">Keep these</div>
+    <h2>Leave these alone. They&rsquo;re working.</h2>
+    <ul>${signalListHtml(report.strengths, "lands")}</ul>
+  </section>
+  ` : ""}
 
   ${report.top_fixes?.length ? `
     <section class="section priority-section">

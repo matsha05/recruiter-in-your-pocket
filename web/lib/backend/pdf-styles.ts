@@ -70,6 +70,8 @@ export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
     .score-scale { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 6px; }
     .score-note { border-top: 1px solid var(--line); color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 18px; padding-top: 10px; }
     .critical-miss { margin: 0 0 26px; border: 1px solid var(--miss-line); border-radius: 8px; background: var(--miss-surface); padding: 14px 16px; break-inside: avoid; }
+    .verdict-label { color: var(--accent); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; margin-bottom: 8px; }
+    .keep-section { margin-bottom: 26px; }
     .critical-label { color: var(--brass); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; }
     .critical-title { margin-top: 6px; font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 13pt; font-weight: 650; line-height: 18pt; }
     .critical-why { margin-top: 4px; color: var(--muted); }
