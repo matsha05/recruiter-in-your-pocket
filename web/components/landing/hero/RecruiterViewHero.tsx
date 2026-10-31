@@ -51,19 +51,26 @@ export function RecruiterViewHero() {
   const demoRef = useRef<HTMLDivElement>(null);
   const recruiter = view === "recruiter";
 
-  // Show the recruiter's read once when the example comes into view; a choice by the visitor always wins.
+  // Show the recruiter's read once the example has stayed in view; a choice by the visitor always wins.
+  // Leaving first cancels it: the notes grow the hero, which would push a section the visitor jumped to.
   useEffect(() => {
     const node = demoRef.current;
     if (!node || typeof IntersectionObserver === "undefined") return;
+    let timer: number | undefined;
     const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      window.setTimeout(() => {
+      window.clearTimeout(timer);
+      timer = undefined;
+      if (!entries[entries.length - 1].isIntersecting) return;
+      timer = window.setTimeout(() => {
+        observer.disconnect();
         if (!chosen.current) setView("recruiter");
       }, reduced ? 0 : 700);
     }, { threshold: 0.45 });
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
   }, [reduced]);
 
   const choose = (next: View) => {

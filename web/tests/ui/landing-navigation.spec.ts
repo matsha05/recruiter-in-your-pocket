@@ -60,3 +60,17 @@ test("ordinary mobile navigation moves focus into the destination page", async (
     await expect(page.locator("#main-content")).toBeFocused();
     expect(await page.evaluate(() => scrollY)).toBe(0);
 });
+
+test("a section reached before the hero example switches views stays put", async ({ page }) => {
+    // The example's own switch to the recruiter's read grows the hero; it must not
+    // push a section the visitor already jumped to.
+    await page.setViewportSize({ width: 820, height: 844 });
+    await page.goto("/");
+    await expect(page.getByTestId("recruiter-view-demo")).toHaveAttribute("data-view", "you");
+    await page.evaluate(() => document.getElementById("how-it-works")!.scrollIntoView({ block: "start" }));
+    await page.waitForTimeout(1500);
+    const y = (await page.locator("#how-it-works").boundingBox())!.y;
+    expect(y).toBeLessThanOrEqual(100);
+    expect(y).toBeGreaterThanOrEqual(-1);
+    await expect(page.getByTestId("recruiter-view-demo")).toHaveAttribute("data-view", "you");
+});
