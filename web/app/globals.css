@@ -4591,3 +4591,11 @@
   }
 }
 
+
+/* Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give the comma a full digit width,
+   which printed money as "$1 ,370 ,000". Every `tabular-nums` in the product therefore uses
+   proportional digits; right-aligned columns stay tidy, and commas keep their natural width.
+   Tailwind 3 composes font-variant-numeric from these variables, so this overrides the utility once. */
+.tabular-nums {
+  --tw-numeric-spacing: proportional-nums;
+}

@@ -75,6 +75,8 @@ Runtime mapping:
 
 ### Type roles
 
+Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give commas a full digit width ("$1 ,370 ,000"), so `tabular-nums` is redefined globally to proportional digits. Right-align money columns for tidy edges; never re-enable `tnum` on anything that contains a comma or period.
+
 | Role | Size / leading | Weight and treatment |
 | --- | --- | --- |
 | Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | Schibsted Grotesk 800, -0.045em; one line on desktop: “See what a recruiter sees.” |
