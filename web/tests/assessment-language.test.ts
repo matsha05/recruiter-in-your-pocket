@@ -28,6 +28,8 @@ const positiveCases = [
     { claim: 'The resume shows an entry-level operations direction, but gives a reviewer limited detail for comparing your work with an opening.', source: 'Recent business graduate aiming to start a career in operations management. Operations Assistant, Greenfield Logistics. Intern - Operations Department, MetroRetail Inc. Was responsible for assisting with daily operational tasks.' },
     { claim: 'The page reads as early-career operations work.', source: 'Recent graduate. Operations intern. Coordinated schedules.' },
     { claim: 'The resume reads at a mid-level for analytics roles.', source: 'Data Analyst, 2019 to 2024. Built weekly dashboards.' },
+    // Same live run: a sentence-initial "Using" was read as part of the product name "Using Microsoft Office".
+    { claim: 'Using Microsoft Office to create reports and presentations connects a named tool to actual documents.', source: 'Campus Events Office, University of Illinois. Used Microsoft Office tools to create reports and presentations.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -57,6 +59,8 @@ const negativeCases = [
     { claim: 'The resume shows director-level ownership of a $5M budget.', source: 'Operations assistant. Maintained records.' },
     { claim: 'Handled data entry for 40 clients.', source: 'Maintained records and updated reports.' },
     { claim: 'The resume shows junior analyst experience.', source: 'Operations assistant. Maintained records.' },
+    { claim: 'Using Salesforce to track renewals connects a named tool to actual documents.', source: 'Used Microsoft Office tools to create reports and presentations.' },
+    { claim: 'Using Microsoft Dynamics to create reports connects a named tool to actual documents.', source: 'Used Microsoft Office tools to create reports and presentations.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));
