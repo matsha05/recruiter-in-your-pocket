@@ -125,7 +125,7 @@ async function signIn(page: Page) {
   await expect(page.getByTestId("account-header")).toHaveText("Log in");
   await page.getByLabel("Email address", {exact: true}).fill("candidate@example.test");
   await page.getByRole("button", {name: "Send sign-in code", exact: true}).click();
-  await page.getByLabel("Login code", {exact: true}).fill("12345678");
+  await page.getByLabel("Sign-in code", {exact: true}).fill("12345678");
 }
 
 test.describe("page sign-in after server OTP verification", () => {

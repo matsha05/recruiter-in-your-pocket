@@ -48,7 +48,7 @@ async function main() {
 
   const body = JSON.parse(String(requests[0].init?.body));
   assert(body.to[0] === "person+test@example.com", "recipient is normalized");
-  assert(body.subject === "Your Recruiter in Your Pocket sign-in code", "subject matches the product promise");
+  assert(body.subject === "12345678 is your Recruiter in Your Pocket sign-in code", "subject leads with the code");
   assert(body.text.includes("12345678"), "plain text contains the code");
   assert(body.html.includes("12345678"), "HTML contains the code");
   assert(body.html.includes("#f4f4f1"), "email uses the ground color");

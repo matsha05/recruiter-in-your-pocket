@@ -221,7 +221,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect.poll(() => busy.evaluate((button) => button.getAnimations({ subtree: true }).filter((animation) => animation.playState === "running" && animation.effect?.getTiming().iterations === Infinity).length), {
       message: "Only the visible pending spinner runs; hidden sizing copies stay inert",
     }).toBe(1);
-    await expect(page.getByLabel("Login code", { exact: true })).toHaveCount(0);
+    await expect(page.getByLabel("Sign-in code", { exact: true })).toHaveCount(0);
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
     expect(requests).toBe(1);
     await pending!.fulfill({ status: 503, json: { ok: false, message: "Email is temporarily unavailable." } });

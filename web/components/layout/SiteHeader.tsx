@@ -79,7 +79,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                     "text-muted-foreground hover:text-foreground"
                                 )}
                             >
-                                Log in
+                                Sign in
                             </Link>
                             <Link
                                 href="/workspace"
@@ -213,7 +213,7 @@ function SiteMobileMenu({
                         </>
                     ) : (
                         <>
-                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Log in</MobileSiteLink>
+                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</MobileSiteLink>
                             <SheetClose asChild>
                                 <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
                                     Get your free report

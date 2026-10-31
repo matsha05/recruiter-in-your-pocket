@@ -4,7 +4,11 @@ import { createHash } from "node:crypto";
 
 const RESEND_EMAIL_ENDPOINT = "https://api.resend.com/emails";
 const DEFAULT_FROM = "Recruiter in Your Pocket <noreply@recruiterinyourpocket.com>";
-const SUBJECT = "Your Recruiter in Your Pocket sign-in code";
+// The code leads the subject so it shows in phone notifications and inbox
+// previews, and each send starts its own thread instead of hiding under the last.
+function subjectFor(otp: string) {
+  return `${otp} is your Recruiter in Your Pocket sign-in code`;
+}
 
 type GenerateLinkResult = {
   data?: {
@@ -42,9 +46,10 @@ function htmlEmail(otp: string) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${SUBJECT}</title>
+    <title>${subjectFor(otp)}</title>
   </head>
   <body style="margin:0;background:#f4f4f1;color:#111513;font-family:Arial,Helvetica,sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your sign-in code is ${otp}. It works once.</div>
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f4f4f1;">
       <tr>
         <td align="center" style="padding:40px 16px;">
@@ -129,7 +134,7 @@ export async function sendAuthOtpEmail(
       body: JSON.stringify({
         from: options.from ?? process.env.RIYP_AUTH_EMAIL_FROM ?? DEFAULT_FROM,
         to: [normalizedEmail],
-        subject: SUBJECT,
+        subject: subjectFor(otp),
         html: htmlEmail(otp),
         text: textEmail(otp),
       }),

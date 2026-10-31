@@ -86,7 +86,7 @@ export function AppHeader() {
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
                         ) : (
-                            <Link href="/auth" className="app-nav-link hidden md:inline-flex">Log in</Link>
+                            <Link href="/auth" className="app-nav-link hidden md:inline-flex">Sign in</Link>
                         )}
                         <MobileNav workspaceReportVisible={workspaceReportVisible} />
                     </div>

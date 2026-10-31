@@ -26,6 +26,9 @@ interface AuthFlowProps {
   initialError?: string | null;
 }
 
+const EMAIL_REQUIRED = "Please enter your email";
+const EMAIL_INVALID = "Please enter a valid email address";
+
 export function AuthFlow({
   variant = "page",
   context = "default",
@@ -91,15 +94,18 @@ export function AuthFlow({
     return () => clearInterval(timer);
   }, [resendCooldown]);
 
+  // Only problems with what was typed mark the field; delivery failures stay in the alert.
+  const emailFieldError = error === EMAIL_REQUIRED || error === EMAIL_INVALID;
+
   const handleSendCode = useCallback(async () => {
     if (!isOpen || authRequestRef.current.pending) return;
     const normalizedEmail = normalizeAuthEmail(email);
     if (!normalizedEmail) {
-      setError("Please enter your email");
+      setError(EMAIL_REQUIRED);
       return;
     }
     if (!isValidAuthEmail(normalizedEmail)) {
-      setError("Please enter a valid email address");
+      setError(EMAIL_INVALID);
       return;
     }
     const requestId = ++authRequestRef.current.id;
@@ -287,33 +293,23 @@ export function AuthFlow({
               </div>
             </div>
 
-            <div className="hidden max-w-xl gap-5 border-t border-border pt-6 md:grid">
-              {step === "email" ? (
-                <>
-                  <p className="text-base leading-[1.6] text-muted-foreground">
-                    Sign in to save reports and return to them later. Reports you created without signing in are saved to your account only when you choose to keep them.
-                  </p>
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    {[
-                      { label: "Reports", value: "Keep versions in one place." },
-                      { label: "Privacy", value: "Choose which reports to save." },
-                      { label: "Comparisons", value: "See how your revisions compare." },
-                    ].map((item) => (
-                      <div key={item.label} className="pt-2">
-                        <p className="text-sm font-medium text-foreground">{item.label}</p>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.value}</p>
-                      </div>
-                    ))}
+            {step === "email" ? (
+              <div className="hidden max-w-xl gap-6 border-t border-border pt-6 sm:grid-cols-2 md:grid">
+                {[
+                  { label: "Your reports", value: "Every version stays in one place to compare." },
+                  { label: "Your choice", value: "Reports from before you signed in are saved only if you keep them." },
+                ].map((item) => (
+                  <div key={item.label} className="pt-2">
+                    <p className="text-sm font-medium text-foreground">{item.label}</p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.value}</p>
                   </div>
-                </>
-              ) : (
-                <div className="max-w-md pt-2">
-                  <p className="text-base leading-7 text-muted-foreground">
-                    There&apos;s no password to create or remember.
-                  </p>
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            ) : step === "code" ? (
+              <p className="hidden max-w-md border-t border-border pt-6 text-base leading-7 text-muted-foreground md:block">
+                Not there yet? Check spam, or your Updates and Promotions tabs. The code works once.
+              </p>
+            ) : null}
           </div>
         ) : (
           <div className="grid gap-3 text-left">
@@ -330,14 +326,6 @@ export function AuthFlow({
         )}
 
         <div className={cn("grid min-w-0 gap-4", variant === "page" ? "w-full max-w-auth" : "max-w-none")}>
-          {variant === "page" ? (
-            <div>
-              <div className="text-sm font-medium text-foreground">
-                {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : "Finish setup"}
-              </div>
-            </div>
-          ) : null}
-
           <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
             <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="rounded-xl border border-destructive/35 bg-error px-4 py-3 text-left text-sm leading-6 text-destructive outline-none">
@@ -364,11 +352,11 @@ export function AuthFlow({
                     placeholder="you@example.com"
                     value={email}
                     aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
-                    error={Boolean(error)}
+                    error={emailFieldError}
                     onChange={(e) => setEmail(e.target.value)}
                     className={cn(
                       "h-12 pl-10 text-base",
-                      !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
+                      !emailFieldError && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
                     )}
                   />
                 </div>
@@ -386,7 +374,7 @@ export function AuthFlow({
           {step === "code" && (
             <div className="ui-state-enter grid gap-5">
               <div className="grid gap-3">
-                <Label htmlFor="auth-code" className="sr-only">Login code</Label>
+                <Label htmlFor="auth-code" className="sr-only">Sign-in code</Label>
                 <Input
                   ref={codeInputRef}
                   id="auth-code"
@@ -394,7 +382,7 @@ export function AuthFlow({
                   autoComplete="one-time-code"
                   inputMode="numeric"
                   pattern="[0-9]*"
-                  placeholder="00000000"
+                  placeholder="8-digit code"
                   className={cn(
                     "h-14 text-center font-mono text-2xl tracking-wide",
                     !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
@@ -414,7 +402,7 @@ export function AuthFlow({
                 />
               </div>
               <Button type="submit" variant="brand" disabled={code.length !== 8} isLoading={loading} loadingLabel={loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="h-12 w-full text-base font-medium">
-                Verify Code
+                Verify code
                 <Check className="ml-2 size-4" weight="bold" />
               </Button>
               <div className="flex flex-wrap items-center justify-between gap-x-3 text-sm text-muted-foreground">

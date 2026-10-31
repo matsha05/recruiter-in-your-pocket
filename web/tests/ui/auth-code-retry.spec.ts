@@ -86,7 +86,7 @@ async function enterCodeStep(page: Page) {
   await expect(page.getByLabel("Email address", { exact: true })).toHaveAttribute("placeholder", "you@example.com");
   await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
   await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-  await expect(page.getByLabel("Login code", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Sign-in code", { exact: true })).toBeVisible();
 }
 
 test.describe("one-time sign-in code verification", () => {
@@ -106,8 +106,8 @@ test.describe("one-time sign-in code verification", () => {
       return route.fulfill({ status: 400, json: { ok: false, message: "This code has expired." } });
     });
     await enterCodeStep(page);
-    const input = page.getByLabel("Login code", { exact: true });
-    const verify = page.getByRole("button", { name: "Verify Code", exact: true });
+    const input = page.getByLabel("Sign-in code", { exact: true });
+    const verify = page.getByRole("button", { name: "Verify code", exact: true });
     await input.fill(REJECTED_CODE);
     await expect(page.getByRole("alert")).toHaveText("This code has expired.");
     await expect(page.getByRole("alert")).toBeFocused();
@@ -138,10 +138,10 @@ test.describe("one-time sign-in code verification", () => {
     const pending: Route[] = [];
     await page.route("**/api/auth/verify-code", (route) => { pending.push(route); });
     await enterCodeStep(page);
-    await page.getByLabel("Login code", { exact: true }).fill(REJECTED_CODE);
+    await page.getByLabel("Sign-in code", { exact: true }).fill(REJECTED_CODE);
     await expect.poll(() => pending.length).toBe(1);
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
-    await page.getByLabel("Login code", { exact: true }).fill(EDITED_CODE);
+    await page.getByLabel("Sign-in code", { exact: true }).fill(EDITED_CODE);
     const verifying = page.getByRole("button", { name: "Verifying code…", exact: true });
     await expect(verifying).toBeDisabled();
     await expect(verifying).toHaveAttribute("aria-busy", "true");
@@ -155,7 +155,7 @@ test.describe("one-time sign-in code verification", () => {
     await expect(page.getByRole("alert")).toHaveCount(0);
     await pending[1].fulfill({ status: 400, json: { ok: false, message: "Check the new code." } });
     await expect(page.getByRole("alert")).toHaveText("Check the new code.");
-    await expect(page.getByRole("button", { name: "Verify Code", exact: true })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Verify code", exact: true })).toBeEnabled();
     await page.clock.runFor(3_000);
     expect(pending).toHaveLength(2);
   });
@@ -165,9 +165,9 @@ test.describe("one-time sign-in code verification", () => {
     const pending: Route[] = [];
     await page.route("**/api/auth/verify-code", (route) => { pending.push(route); });
     await enterCodeStep(page);
-    await page.getByLabel("Login code", { exact: true }).fill(REJECTED_CODE);
+    await page.getByLabel("Sign-in code", { exact: true }).fill(REJECTED_CODE);
     await expect.poll(() => pending.length).toBe(1);
-    await page.getByLabel("Login code", { exact: true }).fill(EDITED_CODE);
+    await page.getByLabel("Sign-in code", { exact: true }).fill(EDITED_CODE);
     await pending[0].fulfill({ json: { ok: true, user: { firstName: "Candidate" } } });
     await expect(page).toHaveURL(`${ORIGIN}/signin`);
     await page.clock.runFor(3_000);
@@ -193,7 +193,7 @@ test.describe("one-time sign-in code verification", () => {
         : { json: { ok: true, user: {} } });
     });
     await enterCodeStep(page);
-    const input = page.getByLabel("Login code", { exact: true });
+    const input = page.getByLabel("Sign-in code", { exact: true });
     await input.fill(REJECTED_CODE);
     await expect(page.getByRole("alert")).toHaveText("This code has expired.");
     await page.clock.runFor(31_000);
@@ -204,7 +204,7 @@ test.describe("one-time sign-in code verification", () => {
     await page.getByRole("button", { name: "Resend code", exact: true }).click();
     await expect(input).toHaveValue("");
     await expect(page.getByRole("alert")).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Verify Code", exact: true })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Verify code", exact: true })).toBeDisabled();
     await input.fill(REJECTED_CODE);
     await expect(page.getByLabel("First name", { exact: true })).toBeVisible();
     expect(verifyAttempts).toBe(2);
@@ -219,7 +219,7 @@ test.describe("one-time sign-in code verification", () => {
     let pending: Route | undefined;
     await page.route("**/api/auth/verify-code", (route) => { pending = route; });
     await enterCodeStep(page);
-    await page.getByLabel("Login code", { exact: true }).fill(REJECTED_CODE);
+    await page.getByLabel("Sign-in code", { exact: true }).fill(REJECTED_CODE);
     await expect.poll(() => Boolean(pending)).toBe(true);
     await page.evaluate(() => (window as unknown as { __authHarness: { setOpen(value: boolean): void } }).__authHarness.setOpen(false));
     await expect(page.getByLabel("Email address", { exact: true })).toHaveValue("");

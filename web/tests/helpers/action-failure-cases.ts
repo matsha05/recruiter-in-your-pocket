@@ -56,7 +56,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t send a code. Please try again.");
       await expect(page.getByLabel("Email address", { exact: true })).toHaveValue("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-      await expect(page.getByLabel("Login code", { exact: true })).toBeVisible();
+      await expect(page.getByLabel("Sign-in code", { exact: true })).toBeVisible();
       expect(requests).toBe(2);
     });
 
@@ -70,10 +70,10 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await page.goto(`${origin}/auth`);
       await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-      await page.getByLabel("Login code", { exact: true }).fill("12345678");
+      await page.getByLabel("Sign-in code", { exact: true }).fill("12345678");
       await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t verify that code. Please try again.");
-      await expect(page.getByLabel("Login code", { exact: true })).toHaveValue("12345678");
-      await page.getByRole("button", { name: "Verify Code", exact: true }).click();
+      await expect(page.getByLabel("Sign-in code", { exact: true })).toHaveValue("12345678");
+      await page.getByRole("button", { name: "Verify code", exact: true }).click();
       await expect(page.getByLabel("First name", { exact: true })).toBeVisible();
       expect(requests).toBe(2);
     });
