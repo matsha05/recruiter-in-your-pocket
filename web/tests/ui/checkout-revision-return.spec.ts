@@ -156,7 +156,7 @@ test.describe("saved-report checkout return", () => {
     await expect(page.getByRole("link", { name: "Restore access", exact: true })).toHaveCount(0);
     expect(await page.evaluate(() => sessionStorage.getItem("checkout-harness-refreshes"))).toBe("1");
     await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
-    await expect(page.getByText("5 more reports, good for 30 days. Pick up where you left off.", { exact: true })).toBeVisible();
+    await expect(page.getByText("5 more reports, good for 30 days. Spend them on revisions, or on the jobs you actually want.", { exact: true })).toBeVisible();
   });
 
   test("confirmed payment waits for the account refresh before claiming access is ready", async ({ page }) => {

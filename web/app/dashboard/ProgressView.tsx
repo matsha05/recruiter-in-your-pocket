@@ -42,7 +42,7 @@ export function ProgressView({ analytics }: { analytics: ProgressAnalytics }) {
             <header className={styles.header}>
                 <div>
                     <h1 className={styles.title}>Your progress</h1>
-                    <p className={styles.deck}>How your resume has moved across versions, and what keeps coming up.</p>
+                    <p className={styles.deck}>What keeps tripping recruiters up, and what keeps landing.</p>
                 </div>
                 <Link href="/reports" className={styles.textLink}>My reports</Link>
             </header>

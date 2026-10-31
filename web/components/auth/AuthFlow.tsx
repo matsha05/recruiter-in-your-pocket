@@ -307,7 +307,7 @@ export function AuthFlow({
               </div>
             ) : step === "code" ? (
               <p className="hidden max-w-md border-t border-border pt-6 text-base leading-7 text-muted-foreground md:block">
-                Not there yet? Check spam, or your Updates and Promotions tabs. The code works once.
+                Not there? Check spam and Promotions. Recruiters lose good emails there too.
               </p>
             ) : null}
           </div>

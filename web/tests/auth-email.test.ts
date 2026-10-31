@@ -48,9 +48,11 @@ async function main() {
 
   const body = JSON.parse(String(requests[0].init?.body));
   assert(body.to[0] === "person+test@example.com", "recipient is normalized");
-  assert(body.subject === "12345678 is your Recruiter in Your Pocket sign-in code", "subject leads with the code");
+  assert(body.subject === "12345678 is your sign-in code", "subject leads with the code");
   assert(body.text.includes("12345678"), "plain text contains the code");
-  assert(body.html.includes("12345678"), "HTML contains the code");
+  assert(body.html.includes("1234<span"), "HTML groups the code for reading; the input strips the gap on paste");
+  assert(body.reply_to === "support@recruiterinyourpocket.com", "replies reach support, not the no-reply sender");
+  assert(body.html.includes("Sign-in code 12345678"), "HTML labels the whole code for screen readers");
   assert(body.html.includes("#f4f4f1"), "email uses the ground color");
   assert(body.html.includes("#111513"), "email uses ink");
   assert(body.html.includes("border-radius:999px"), "email code uses the dark pill treatment");

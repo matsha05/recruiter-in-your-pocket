@@ -121,9 +121,9 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-2xl bg-brand-tint text-brand">
           <EmptyReportIcon className="size-12" />
         </div>
-        <h2 className="font-display text-report-title text-foreground">No saved reports yet</h2>
+        <h2 className="font-display text-report-title text-foreground">Nothing here yet</h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-          Run a report and save it. It&apos;ll be here, with its Verdict and fixes, whenever you come back.
+          Your first read is free. It&apos;ll wait here, Verdict and all, for whenever you revise.
         </p>
         <Button asChild className="mt-6">
           <Link

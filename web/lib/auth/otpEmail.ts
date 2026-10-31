@@ -1,13 +1,14 @@
 import "server-only";
 
 import { createHash } from "node:crypto";
+import { SUPPORT_EMAIL_ADDRESS } from "../support/inboundEmail";
 
 const RESEND_EMAIL_ENDPOINT = "https://api.resend.com/emails";
 const DEFAULT_FROM = "Recruiter in Your Pocket <noreply@recruiterinyourpocket.com>";
 // The code leads the subject so it shows in phone notifications and inbox
 // previews, and each send starts its own thread instead of hiding under the last.
 function subjectFor(otp: string) {
-  return `${otp} is your Recruiter in Your Pocket sign-in code`;
+  return `${otp} is your sign-in code`;
 }
 
 type GenerateLinkResult = {
@@ -60,18 +61,19 @@ function htmlEmail(otp: string) {
             <tr>
               <td style="padding:32px 32px 12px;">
                 <p style="margin:0;color:#1f5a46;font-size:14px;font-weight:600;letter-spacing:0;">Recruiter in Your Pocket</p>
-                <h1 style="margin:18px 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;">Your sign-in code</h1>
-                <p style="margin:0;color:#5a605c;font-size:16px;line-height:1.55;">Enter this code on the sign-in screen. It expires shortly and can only be used once.</p>
+                <h1 style="margin:18px 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;">Your code&rsquo;s here.</h1>
+                <p style="margin:0;color:#5a605c;font-size:16px;line-height:1.55;">Pop it in and you&rsquo;re back on the other side of the desk.</p>
               </td>
             </tr>
             <tr>
               <td style="padding:18px 32px 24px;">
-                <div aria-label="Sign-in code ${otp}" style="display:inline-block;background:#111513;color:#ffffff;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:600;letter-spacing:5px;line-height:1.2;padding:18px 24px;">${otp}</div>
+                <div aria-label="Sign-in code ${otp}" style="display:inline-block;background:#111513;color:#ffffff;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:600;letter-spacing:5px;line-height:1.2;padding:18px 24px;">${otp.slice(0, 4)}<span style="margin-left:14px;">${otp.slice(4)}</span></div>
+                <p style="margin:14px 0 0;color:#5a605c;font-size:14px;line-height:1.5;">It works once and expires soon.</p>
               </td>
             </tr>
             <tr>
               <td style="padding:0 32px 32px;color:#5a605c;font-size:13px;line-height:1.5;">
-                If you did not request this, you can safely ignore this email. Recruiter in Your Pocket will never ask you to send this code to anyone.
+                Didn&rsquo;t ask for this? Ignore it. No one gets in without the code, and we&rsquo;ll never ask you for it.
               </td>
             </tr>
           </table>
@@ -86,11 +88,11 @@ function textEmail(otp: string) {
   return [
     "Recruiter in Your Pocket",
     "",
-    `Your sign-in code is: ${otp}`,
+    `Your code's here: ${otp}`,
     "",
-    "Enter it on the sign-in screen. It expires shortly and can only be used once.",
-    "If you did not request this, you can safely ignore this email.",
-    "Recruiter in Your Pocket will never ask you to send this code to anyone.",
+    "Pop it in and you're back on the other side of the desk. It works once and expires soon.",
+    "",
+    "Didn't ask for this? Ignore it. No one gets in without the code, and we'll never ask you for it.",
   ].join("\n");
 }
 
@@ -134,6 +136,8 @@ export async function sendAuthOtpEmail(
       body: JSON.stringify({
         from: options.from ?? process.env.RIYP_AUTH_EMAIL_FROM ?? DEFAULT_FROM,
         to: [normalizedEmail],
+        // Replies reach a person instead of the no-reply sender.
+        reply_to: SUPPORT_EMAIL_ADDRESS,
         subject: subjectFor(otp),
         html: htmlEmail(otp),
         text: textEmail(otp),

@@ -507,7 +507,7 @@ test.describe("paid decision boundary", () => {
       });
 
       await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
-      await expect(page.getByRole("heading", { name: "You’re all set." })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "You’re in. Five more reads." })).toBeVisible();
       await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
       await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
       await expect(page.getByText("Pass active", { exact: true })).toBeVisible();

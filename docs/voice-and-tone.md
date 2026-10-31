@@ -21,6 +21,24 @@ Reference lines:
 - Feedback that is direct, then kind: "This reads like a job description. Tell them what you changed."
 - Hiring truth: "'Results-driven' is on every resume. Show the result instead."
 
+## Insider asides (Matt, October 31, 2026)
+
+Plain is not blank. "Errors, billing, and privacy stay plain" means no jokes there; it never meant the rest of the product should read like default UI. Every screen should sound like the same insider.
+
+- **One aside per screen, where people pause:** page intros, empty states, confirmations, loading, and emails get one line of hiring truth or quiet self-awareness. Not every line; one.
+- **Literal stays literal:** buttons, navigation, prices, legal terms, and error messages say exactly what happens. The aside sits next to them, never inside them.
+- **Trust surfaces keep the point of view, not the jokes:** a sign-in email can sound like us ("Pop it in and you're back on the other side of the desk") while its security line stays plain ("No one gets in without the code").
+- **No invented hiring stats:** an aside is an observation, never a number we can't source ("recruiters spend 6 seconds" is out unless the research library backs it).
+
+Reference lines:
+
+- Sign-in email: "Your code's here." / "Pop it in and you're back on the other side of the desk."
+- Code not arriving: "Not there? Check spam and Promotions. Recruiters lose good emails there too."
+- My reports: "Every version you've run, read the way a recruiter reads it. Run the next one and see what moved."
+- Purchase confirmed: "You're in. Five more reads." / "Spend them on revisions, or on the jobs you actually want."
+- Progress: "What keeps tripping recruiters up, and what keeps landing."
+- Empty reports: "Nothing here yet." / "Your first read is free."
+
 ## What the research says matters (October 31, 2026)
 
 Four things decide whether a resume gets the call, and the research library is organized around them: **perception** (how you're read, by people and software), **impact** (what changed because of your work), **referrals** (who brings you in), and **story** (whether a stranger can tell who you are and picture you in the job). Negotiation sits after them, once there is an offer. Tie advice and tie-ins back to one of these, and to the Verdict, the score, or the Critical Miss.

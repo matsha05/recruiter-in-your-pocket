@@ -48,7 +48,7 @@ export default async function ReportsPage() {
       <div className="mx-auto flex box-content w-auto max-w-workspace flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
         <AppPageIntro
           title="Your saved reports"
-          description="Open any report to see its Verdict and fixes again. Run a revised resume to see what changed."
+          description="Every version you’ve run, read the way a recruiter reads it. Run the next one and see what moved."
           meta={items.length > 0 || reportsError
             ? <span className="text-[0.8125rem] font-medium text-muted-foreground">{reportCountLabel}</span>
             : undefined}

@@ -98,9 +98,12 @@ export default function PurchaseConfirmedClient() {
     : "Needs attention";
   const confirmationMessage = !paymentConfirmed ? state.message
     : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
-    : accountReady ? "5 more reports, good for 30 days. Pick up where you left off."
+    : accountReady ? "5 more reports, good for 30 days. Spend them on revisions, or on the jobs you actually want."
     : user ? "Your payment is confirmed, but this account does not show the pass yet."
     : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
+  const pageTitle = !paymentConfirmed || checkingAccountAccess ? state.title
+    : accountReady ? "You’re in. Five more reads."
+    : "Paid. One step left.";
   const nextStepLabel = !paymentConfirmed ? "Next step"
     : checkingAccountAccess ? "Checking your account"
     : accountReady ? "Ready when you are"
@@ -128,7 +131,7 @@ export default function PurchaseConfirmedClient() {
                 id="purchase-confirmed-title"
                 className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
               >
-                {state.title}
+                {pageTitle}
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">{confirmationMessage}</p>
             </div>

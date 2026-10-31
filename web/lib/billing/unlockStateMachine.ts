@@ -40,7 +40,7 @@ const CONFIRM_MESSAGES: Record<UnlockConfirmState, string> = {
 const UI_TITLES: Record<UnlockUiStatus, string> = {
   checking: "Checking your purchase",
   pending: "Checking your purchase",
-  unlocked: "You’re all set.",
+  unlocked: "Payment received.",
   error: "We couldn't confirm access",
   missing: "Find your purchase",
 };
