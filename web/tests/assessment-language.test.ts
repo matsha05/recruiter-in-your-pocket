@@ -24,7 +24,7 @@ const positiveCases = [
     { claim: 'The market-share claim would be easier to evaluate if it distinguished relative growth from percentage–point change.', source: 'Expanded market share by 18% in fintech and healthcare.' },
     { claim: 'The reporting details are less clear.', source: 'Prepared weekly reports for the manager.' },
     { claim: 'The reporting details are not as clear.', source: 'Prepared weekly reports for the manager.' },
-    // Live eval eval_1793463459213: a fair seniority read of a recent graduate was rejected, so no report shipped.
+    // Live eval eval_1793463473819: a fair seniority read of a recent graduate was rejected, so no report shipped.
     { claim: 'The resume shows an entry-level operations direction, but gives a reviewer limited detail for comparing your work with an opening.', source: 'Recent business graduate aiming to start a career in operations management. Operations Assistant, Greenfield Logistics. Intern - Operations Department, MetroRetail Inc. Was responsible for assisting with daily operational tasks.' },
     { claim: 'The page reads as early-career operations work.', source: 'Recent graduate. Operations intern. Coordinated schedules.' },
     { claim: 'The resume reads at a mid-level for analytics roles.', source: 'Data Analyst, 2019 to 2024. Built weekly dashboards.' },

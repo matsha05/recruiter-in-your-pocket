@@ -1,6 +1,6 @@
 # RIYP Production Launch Program
 
-**Last updated:** October 30, 2026
+**Last updated:** October 31, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -80,7 +80,9 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-The October 30 launch uses bounded synthetic model checks within Matt’s approved testing budget. The original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` is replayed, without changing or replacing any model output, through candidate `f9d3903813c2449b205ec39baec9f344650006e5`: **10 PASS, 0 WARN, 0 FAIL**. Source JSON SHA-256 is `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`. The original 9 PASS, 0 WARN, 1 FAIL is retained; the false rejection of the editorial noun “description” was corrected with a one-word lexical addition and paired negative controls. A separate fresh Operations run on the corrected candidate, `eval_1793395105340`, passed.
+October 31 update: the resume prompt changed, so the ten synthetic fixtures were rerun live (`eval_1793463473819`: 9 PASS, 1 FAIL retained). Three validator false rejections were fixed with paired controls, and the unchanged outputs replay as **10 PASS, 0 WARN, 0 FAIL** through `09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d`; two fresh Operations runs on that candidate passed. See `docs/promptops/shipping-gate.md`. The October 30 record below is historical.
+
+The October 30 launch used bounded synthetic model checks within Matt’s approved testing budget. The original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` is replayed, without changing or replacing any model output, through candidate `f9d3903813c2449b205ec39baec9f344650006e5`: **10 PASS, 0 WARN, 0 FAIL**. Source JSON SHA-256 is `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`. The original 9 PASS, 0 WARN, 1 FAIL is retained; the false rejection of the editorial noun “description” was corrected with a one-word lexical addition and paired negative controls. A separate fresh Operations run on the corrected candidate, `eval_1793395105340`, passed.
 
 This proof covers ten synthetic golden fixtures out of 23 stored golden fixtures, chosen to avoid sending customer or real-person resume fixtures to the model. Four separately receipted streaming cases on `92e45a0` also pass offline replay of the same raw outputs on the corrected candidate; they remain separate from both golden and the standard smoke-tier suite. The other 13 golden fixtures were not newly generated, and the strict command is not claimed to have run. Medium reasoning, an 8,000-token ceiling and bounded high-reasoning repair match the launch configuration. Prompts and the existing readiness threshold (at least eight fixtures, at least 90% PASS, zero FAIL) are unchanged.
 

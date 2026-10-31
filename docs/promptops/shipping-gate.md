@@ -91,7 +91,11 @@ Before any live launch decision, and only after model spend is approved:
 2. Confirm the strict gate ran live smoke and golden evals
 3. Treat any prompt FAIL as an automatic no-go
 
-### Current bounded launch proof — October 30
+### Current bounded launch proof — October 31
+
+The resume prompt changed after the October 30 proof, so the same ten synthetic fixtures were regenerated live on `gpt-6.1-terra` (run `eval_1793463473819`, Matt-approved spend, $0.22727880 token-calculated). The original **9 PASS, 0 WARN, 1 FAIL** is retained. The failure exposed three validator false rejections (the seniority read "entry-level", a sentence-initial "Using" read as part of a product name, and the advice modal "would"), each fixed with paired fabrication controls. The unchanged outputs replay as **10 PASS, 0 WARN, 0 FAIL** through candidate `09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d`, bound to source JSON SHA-256 `da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257`. Two fresh Operations runs on that candidate passed; an intermediate fresh run that exposed the third false rejection is recorded as a failure. Details: [current summary](../../tests/fixtures/results/summary_latest_live.md).
+
+### Previous bounded launch proof — October 30 (historical)
 
 The unchanged original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` replays as **10 PASS, 0 WARN, 0 FAIL** through candidate `f9d3903813c2449b205ec39baec9f344650006e5`. Its original **9 PASS, 0 WARN, 1 FAIL** and all provider outputs remain retained; the sole final rejection was corrected by adding the editorial noun “description” to the existing assessment vocabulary with paired fabrication controls. No report prose or selected output was replaced. The replay is bound to source JSON SHA-256 `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`.
 
