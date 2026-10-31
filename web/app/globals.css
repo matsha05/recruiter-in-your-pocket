@@ -57,7 +57,7 @@
     /* Structural borders */
     --border: 100.000 4.348% 86.471%;
     --input: 190.000 4.878% 51.765%;
-    --ring: 191.748 100.000% 28.039%;
+    --ring: var(--pen);
 
     --radius-sm: 0.625rem;
     --radius: 0.625rem;
@@ -67,14 +67,20 @@
     /* Loading states */
     --skeleton: hsl(var(--muted) / 0.1);
 
-    /* Insight, action, and state colors */
-    --brand: 191.748 100.000% 28.039%;
-    --brand-strong: 191.478 100.000% 22.549%;
-    --brand-tint: 175.385 35.135% 92.745%;
+    /* Oct 30, 2026 system: ink for actions, pen as the one accent, brass only for the Critical Miss.
+       The older aqua names below are aliases so existing utilities pick up the pen. */
+    --pen: 167 32% 17%;
+    --pen-strong: 167 30% 27%;
+    --pen-tint: 160 16% 91%;
+    --brass: 29.268 80.392% 30.000%;
+    --highlight: 42 70% 82%;
+    --brand: var(--pen);
+    --brand-strong: var(--pen-strong);
+    --brand-tint: var(--pen-tint);
     --citron: 73.548 87.736% 58.431%;
-    --cyan-bright: 191.748 100.000% 28.039%;
-    --surface-sky: 175.385 35.135% 92.745%;
-    --sky-strong: 191.748 100.000% 28.039%;
+    --cyan-bright: var(--pen);
+    --surface-sky: var(--pen-tint);
+    --sky-strong: var(--pen);
     --surface-proof: 48.000 14.286% 93.137%;
     --accent-apricot: var(--brand);
     --accent-butter: 73.548 87.736% 58.431%;
@@ -88,23 +94,21 @@
     /* Inverted Surface (dark sections in light mode) */
     --surface-inverted: 193.333 20.000% 8.824%;
 
-    /* Premium: Gold (Unlock moments ONLY) */
-    --premium: 29.268 80.392% 30.000%;
-
-    /* Semantic Colors */
-    --gold: 29.268 80.392% 30.000%;
+    /* Brass aliases: one value, one meaning. */
+    --premium: var(--brass);
+    --gold: var(--brass);
     --moss: 155.455 47.826% 27.059%;
-    --amber: 29.268 80.392% 30.000%;
+    --amber: var(--brass);
     --rose: 4.231 76.471% 40.000%;
 
     /* Status semantics */
     --success: 155.455 47.826% 27.059%;
-    --warning: 29.268 80.392% 30.000%;
-    --warning-foreground: 29.268 80.392% 30.000%;
-    /* Clear assessment graphics; dark semantic colors above remain the text roles. */
-    --assessment-aqua: 188 85% 34%;
-    --assessment-green: 156 64% 37%;
-    --assessment-amber: 42 94% 58%;
+    --warning: var(--brass);
+    --warning-foreground: var(--brass);
+    /* Assessment graphics follow the same roles. */
+    --assessment-aqua: var(--pen);
+    --assessment-green: var(--success);
+    --assessment-amber: var(--brass);
     /* --destructive already defined above, for errors and <70 scores */
 
     /* One variable sans across marketing and product; serif only for editorial accents. */
@@ -113,8 +117,8 @@
     --font-display: var(--font-brand-sans);
     --font-body: var(--font-brand-sans);
     --font-mono: var(--font-brand-sans);
-    --weight-display: 700;
-    --weight-heading: 650;
+    --weight-display: 500;
+    --weight-heading: 550;
     --weight-title: 600;
     --weight-body: 400;
     --weight-control: 600;
@@ -180,12 +184,8 @@
     --cream: 34.286 28.000% 95.098%;
     --paper-line: 100.000 4.348% 86.471%;
     --ink-line: 187.500 4.040% 38.824%;
-    --teal-bright: 191.748 100.000% 28.039%;
+    --teal-bright: var(--pen);
     --annotation: var(--accent-apricot);
-    --brass: 29.268 80.392% 30.000%;
-    /* Recruiter's pen: margin notes, score, and focus on the homepage example. */
-    --pen: 167 32% 17%;
-    --highlight: 42 70% 82%;
     /* Locked shell heights: product 64px; marketing 64px mobile / 72px desktop. */
     --product-header-height: 4rem;
     --marketing-header-height-mobile: 4rem;
@@ -215,12 +215,14 @@
     --destructive: 5.000 100.000% 76.471%;
     --destructive-foreground: 180.000 8.000% 9.804%;
     --input: 190.000 4.878% 51.765%;
-    --ring: 188.718 61.257% 62.549%;
+    --ring: var(--pen);
     --border: 160.000 6.383% 27.647%;
-    --brand: 188.718 61.257% 62.549%;
-    --brand-strong: 186.835 60.305% 74.314%;
-    --brand-tint: 185.581 48.315% 17.451%;
-    --surface-sky: 185.581 48.315% 17.451%;
+    --pen-strong: 160 34% 80%;
+    --pen-tint: 165 22% 16%;
+    --brand: var(--pen);
+    --brand-strong: var(--pen-strong);
+    --brand-tint: var(--pen-tint);
+    --surface-sky: var(--pen-tint);
     --surface-proof: 170.000 6.818% 17.255%;
     --text-muted: 160.000 6.569% 73.137%;
     --text-soft: 160.000 6.569% 73.137%;
@@ -228,8 +230,8 @@
     --control-line: 190.000 4.878% 51.765%;
     --slate: 160.000 6.569% 73.137%;
     --slate-muted: 160.000 6.569% 73.137%;
-    --premium: 32.039 68.212% 70.392%;
     --brass: 34 62% 66%;
+    --premium: var(--brass);
     --pen: 160 34% 72%;
     --highlight: 38 45% 28%;
     --surface-inverted: 193.333 20.000% 8.824%;
@@ -241,8 +243,8 @@
     --paper-muted: 170.000 6.818% 17.255%;
     --success: 144.375 42.105% 70.196%;
     --success-surface: 147.857 30.435% 18.039%;
-    --warning: 31.765 73.913% 72.941%;
-    --warning-foreground: 31.765 73.913% 72.941%;
+    --warning: var(--brass);
+    --warning-foreground: var(--brass);
     --warning-surface: 27.857 30.435% 18.039%;
     --destructive-surface: 4.000 28.846% 20.392%;
     --disabled-surface: 170.000 6.818% 17.255%;
@@ -2232,11 +2234,11 @@
   }
 
   :root .text-teal-600 {
-    color: rgb(15 118 110) !important;
+    color: hsl(var(--pen)) !important;
   }
 
   :root .bg-teal-600 {
-    background-color: rgb(15 118 110) !important;
+    background-color: hsl(var(--pen)) !important;
   }
 
   :root .text-muted-foreground\/50,
@@ -2542,7 +2544,7 @@
   }
 
   .skip-link:focus {
-    @apply translate-y-0 outline-none ring-2 ring-teal-500 ring-offset-2;
+    @apply translate-y-0 outline-none ring-2 ring-[hsl(var(--pen))] ring-offset-2;
   }
 
   /* Post-Unlock Highlight */

@@ -200,7 +200,7 @@ export function FixCanvas({
       <div className={styles.layout}>
         <div className="flex items-baseline gap-3 sm:block">
           {index === 0 ? (
-            <p className="text-xs font-semibold uppercase riyp-track-015 text-[hsl(var(--brass))]">Critical Miss</p>
+            <p className="whitespace-nowrap text-xs font-semibold uppercase riyp-track-015 text-[hsl(var(--brass))]">Critical Miss</p>
           ) : (
             <p className="text-sm font-semibold text-brand">Fix {index + 1}</p>
           )}

@@ -54,7 +54,7 @@ function htmlEmail(otp: string) {
             </tr>
             <tr>
               <td style="padding:32px 32px 12px;">
-                <p style="margin:0;color:#00738f;font-size:14px;font-weight:600;letter-spacing:0;">Recruiter in Your Pocket</p>
+                <p style="margin:0;color:#1e3a34;font-size:14px;font-weight:600;letter-spacing:0;">Recruiter in Your Pocket</p>
                 <h1 style="margin:18px 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;">Your sign-in code</h1>
                 <p style="margin:0;color:#5f6667;font-size:16px;line-height:1.55;">Enter this code on the sign-in screen. It expires shortly and can only be used once.</p>
               </td>

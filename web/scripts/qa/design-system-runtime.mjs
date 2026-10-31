@@ -20,10 +20,13 @@ function validateCanonicalPalette(globalsSource) {
     "--primary": "12191b",
     "--text-muted": "5f6667",
     "--muted-foreground": "5f6667",
-    "--brand": "00738f",
-    "--ring": "00738f",
-    "--brand-tint": "e6f3f2",
-    "--surface-sky": "e6f3f2",
+    // Oct 30, 2026: aqua retired; the pen is the one accent and brass marks the Critical Miss.
+    "--pen": "1e3a34",
+    "--brand": "1e3a34",
+    "--ring": "1e3a34",
+    "--brand-tint": "e4ece9",
+    "--surface-sky": "e4ece9",
+    "--brass": "8a4a0f",
     "--line": "dcdedb",
     "--control-line": "7e888a",
     "--input": "7e888a",
@@ -54,7 +57,7 @@ function validateCanonicalPalette(globalsSource) {
     const rgb = sectors[Math.floor(hue) % 6].map((channel) => Math.round((channel + offset) * 255));
     const target = hex.match(/../g).map((channel) => parseInt(channel, 16));
     if (rgb.some((channel, index) => Math.abs(channel - target[index]) > 1)) {
-      errors.push(`${token} must represent the approved Alpine color #${hex}.`);
+      errors.push(`${token} must represent the approved color #${hex}.`);
     }
   }
 
@@ -72,8 +75,8 @@ export function validateRuntimeSystem() {
     "--font-display: var(--font-brand-sans)",
     "--font-body: var(--font-brand-sans)",
     "--font-mono: var(--font-brand-sans)",
-    "--weight-display: 700",
-    "--weight-heading: 650",
+    "--weight-display: 500",
+    "--weight-heading: 550",
     "--weight-title: 600",
     "--weight-body: 400",
     "--weight-control: 600",

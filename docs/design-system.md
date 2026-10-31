@@ -15,6 +15,16 @@ Related authority:
 
 If documentation and runtime disagree, the disagreement is a release blocker. Update both in the same change.
 
+
+## October 30, 2026 visual decisions (Matt)
+
+These override older palette, type-weight, and motion guidance below where they conflict.
+
+- **Color:** ink for actions, **pen** (`--pen`, #1E3A34) as the one accent for links, focus, labels, and the recruiter's voice, and **brass** (`--brass`) only for the Critical Miss. Warm paper ground. Aqua is retired; `--brand`, `--surface-sky`, `--cyan-bright`, and `--assessment-aqua` are now aliases of the pen so older utilities follow. `--premium`, `--gold`, `--amber`, and `--warning` are aliases of brass.
+- **Type:** Instrument Sans for headlines and interface, with headlines at a refined 500 (`--weight-display`) and section headings at 550 (`--weight-heading`). Source Serif 4 only when the recruiter is speaking: the Verdict, margin notes, and quoted resume lines. No third face.
+- **Motion:** quiet and functional (140 to 250ms) for controls. One signature move, used consistently: the recruiter's notes drawing in, on the homepage hero and when a report first appears. Reduced motion shows the same states immediately.
+- **Surfaces:** paper on a desk. Warm ground, lighter paper sheets with hairline borders, 16 to 24px radius, no drop shadows.
+
 ## 1. System idea
 
 **Lifted Line** makes good work easier to see.

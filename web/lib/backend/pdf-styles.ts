@@ -21,8 +21,8 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
       --ink: #12191b;
       --muted: #5f6667;
       --line: #dcdedb;
-      --accent: #00738f;
-      --tint: #e6f3f2;
+      --accent: #1e3a34;
+      --tint: #e6ece9;
       --inset: #f0efeb;
       --brass: #8a4a0f;
     }
