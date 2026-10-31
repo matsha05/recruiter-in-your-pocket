@@ -24,6 +24,7 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
       --accent: #00738f;
       --tint: #e6f3f2;
       --inset: #f0efeb;
+      --brass: #8a4a0f;
     }
     @page { size: A4; margin: 18mm 17mm 16mm; background: var(--page); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,18 +67,12 @@ export function pdfReportStyles(sourceSerifTtf: string, instrumentSansTtf: strin
     .score-name { font-size: 9pt; line-height: 13pt; color: var(--muted); margin-bottom: 9px; }
     .score-value { font-size: 34pt; font-weight: 400; line-height: 36pt; letter-spacing: -0.04em; }
     .score-value span { color: var(--muted); font-size: 11pt; letter-spacing: 0; }
-    .score-band { font-size: 10pt; font-weight: 600; line-height: 14pt; margin-top: 8px; }
     .score-scale { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 6px; }
     .score-note { border-top: 1px solid var(--line); color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 18px; padding-top: 10px; }
-    .score-note strong { color: var(--ink); }
-    .subscores-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 26px; border-block: 1px solid var(--line); break-inside: avoid; }
-    .subscore { padding: 12px 14px; border-right: 1px solid var(--line); }
-    .subscore:first-child { padding-left: 0; }
-    .subscore:last-child { border-right: 0; padding-right: 0; }
-    .subscore-label { font-size: 9pt; line-height: 13pt; color: var(--muted); margin-bottom: 4px; }
-    .subscore-value { font-size: 18pt; font-weight: 400; line-height: 23pt; }
-    .metric-track { height: 2px; background: var(--line); margin-top: 8px; overflow: hidden; }
-    .metric-fill { height: 100%; background: var(--accent); }
+    .critical-miss { margin: 0 0 26px; border: 1px solid var(--line); border-left: 3px solid var(--brass); border-radius: 6px; background: var(--inset); padding: 14px 16px; break-inside: avoid; }
+    .critical-label { color: var(--brass); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; }
+    .critical-title { margin-top: 6px; font-size: 13pt; font-weight: 600; line-height: 18pt; }
+    .critical-why { margin-top: 4px; color: var(--muted); }
     .section { margin-bottom: 26px; }
     .section-header { margin-bottom: 13px; padding-bottom: 9px; border-bottom: 1px solid var(--line); break-after: avoid; }
     ul { list-style: none; margin: 0; padding: 0; }
