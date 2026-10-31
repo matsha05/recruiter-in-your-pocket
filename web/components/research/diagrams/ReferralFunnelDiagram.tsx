@@ -1,43 +1,38 @@
 "use client";
 
-import { ArrowRight } from "@phosphor-icons/react";
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
-const stages = ["Application", "Screen", "Interview"];
-
-function FlowLine({ referred }: { referred?: boolean }) {
-    return (
-        <div className="grid items-start gap-4 sm:grid-cols-[5rem_1fr]">
-            <div className={referred ? "riyp-evidence-label pt-3 text-brand" : "riyp-evidence-label pt-3 text-muted-foreground"}>{referred ? "Referred" : "Cold"}</div>
-            <div>
-                <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
-                    {stages.map((stage, index) => (
-                        <div key={stage} className="contents">
-                            <div className={referred && stage === "Screen" ? "border-t-2 border-brand py-3 text-center text-data font-semibold text-brand" : "border-t border-line py-3 text-center text-data font-medium text-muted-foreground"}>{stage}</div>
-                            {index < stages.length - 1 ? <ArrowRight className="mx-1 size-3 text-muted-foreground" aria-hidden="true" /> : null}
-                        </div>
-                    ))}
-                </div>
-                {referred ? <div className="mt-2 border-l-2 border-brand pl-4 sm:ml-[36%]"><span className="riyp-evidence-label text-brand">What the referrer adds</span><p className="mt-1 text-data text-muted-foreground">Someone who knows your work can describe how you contributed.</p></div> : <p className="mt-2 text-data text-muted-foreground">The reviewer starts with the information in your application.</p>}
-            </div>
-        </div>
-    );
-}
+const outcomes = ["Turned work in on time more often", "Stayed with the job more often", "Performed better"];
 
 export function ReferralFunnelDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
-        <DiagramFigure className="max-w-[48rem]" label="Comparison of cold and referred applications showing where referrer context enters the hiring process">
+        <DiagramFigure className="max-w-[48rem]" label="What employers could see in a worker's profile compared with what a referral revealed in the Pallais and Sands experiments">
             <DiagramFrame>
-                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What a referral can add" title="A colleague can explain what it is like to work with you." note="That context may help the reviewer assess your experience. You still need to meet the role's requirements." />
-                <div className="space-y-8 px-5 py-7 md:px-7 md:py-9">
-                    <FlowLine />
-                    <div className="border-t border-dashed border-line" />
-                    <FlowLine referred />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} title="Same on paper. Different on the job." />
+                <div className="grid md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+                    <section className="border-b border-line px-5 py-6 md:border-b-0 md:border-r md:px-7 md:py-8" aria-label="On paper">
+                        <h4 className="text-sm font-semibold text-muted-foreground">On paper</h4>
+                        <p className="mt-4 text-data text-muted-foreground">Referred and non-referred workers with similar profiles.</p>
+                        <div className="mt-5 grid grid-cols-2 gap-3" aria-hidden="true">
+                            {["Referred", "Not referred"].map((name) => (
+                                <div key={name} className="rounded-inset border border-line bg-card p-3">
+                                    <span className="block h-1.5 w-3/4 rounded-full bg-[hsl(var(--line))]" />
+                                    <span className="mt-2 block h-1.5 w-1/2 rounded-full bg-[hsl(var(--line))]" />
+                                    <span className="mt-3 block text-xs text-muted-foreground">{name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                    <section className="bg-[hsl(var(--pen-tint))] px-5 py-6 md:px-7 md:py-8" aria-label="On the job">
+                        <h4 className="text-sm font-semibold text-[hsl(var(--pen))]">On the job, referred workers</h4>
+                        <ul className="mt-4 grid gap-3">
+                            {outcomes.map((item) => <li key={item} className="border-l-2 border-[hsl(var(--pen))] pl-3 text-base text-foreground">{item}</li>)}
+                        </ul>
+                    </section>
                 </div>
-                <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">A useful referral is specific:</strong> it explains how the person knows your work and why it is relevant to the role.</div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Referral context`} title="A referral can help your application get understood. It cannot guarantee the outcome." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Pallais & Sands`} title="The referral carried information the profile didn't. The study didn't measure interview chances." />
         </DiagramFigure>
     );
 }

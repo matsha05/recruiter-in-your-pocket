@@ -36,8 +36,8 @@ export default function MethodologyPage() {
             }}
             relatedArticles={[
                 { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "Quantifying impact on resumes", href: "/research/quantifying-impact", tag: "Research" },
-                { title: "The STAR method", href: "/research/star-method", tag: "Format" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Research" },
+                { title: "How to use STAR without forcing the formula", href: "/research/star-method", tag: "Format" },
             ]}
             sources={[
                 {
@@ -92,12 +92,12 @@ export default function MethodologyPage() {
 
             <h2 className="research-h2">How the Critical Miss is chosen</h2>
             <p className="research-body mb-6">
-                Of everything that could be clearer, the Critical Miss is the gap most likely to cost you on a first read: usually your strongest example stopping short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what's missing, and lists the questions that would fill it in.
+                Of everything that could be clearer, the Critical Miss is the gap most likely to cost you on a first read: usually your strongest example stopping short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in.
             </p>
 
             <h2 className="research-h2">How suggested edits protect your facts</h2>
             <p className="research-body mb-6">
-                Rewrites use only what's already on your resume. Anything we can't know, like a number or a team size, stays in brackets for you to fill in. You can't copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
+                Rewrites use only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
             </p>
 
             <h2 className="research-h2">What comes from research, and what is ours</h2>

@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { SkillsPromiseRealityDiagram } from "@/components/research/diagrams/SkillsPromiseRealityDiagram";
 
 export const metadata: Metadata = {
-    title: "Skills-First Hiring: Promise vs Reality | Hiring Research",
+    title: "Skills-first hiring: the promise and the practice",
     description: "What skills-first hiring expands, and where adoption still lags.",
 };
 
@@ -12,7 +12,7 @@ export default function SkillsFirstPromiseRealityPage() {
         <ResearchArticle
             header={{
                 tag: "Industry trends",
-                title: "Skills-first hiring: promise vs reality",
+                title: "Skills-first hiring: the promise and the practice",
                 description: "Removing a degree requirement does not always change who gets hired. A 2024 analysis found large differences between employers.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
@@ -33,7 +33,7 @@ export default function SkillsFirstPromiseRealityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Policy vs practice</h2>
+                    <h2 className="research-h2">Most employers that dropped the degree kept hiring the same people</h2>
                     <p className="research-body mb-6">
                         The report compared changes in job requirements with changes in hiring. Some employers hired more workers without degrees; many did not.
                         <Citation id="source-1">1</Citation>
@@ -42,22 +42,22 @@ export default function SkillsFirstPromiseRealityPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Skills shown through experience",
-                        description: "We look for the work behind a listed skill, such as a project, decision, or result."
+                        title: "Skills with proof",
+                        description: "A listed skill is a claim. We look for the project, decision, or result that backs it up."
                     },
                     {
-                        title: "Skills alignment",
-                        description: "We help you use the employer's language where it accurately describes your experience."
+                        title: "Their words, when they're true",
+                        description: "Add a job description and we'll help you use the employer's language where it honestly fits."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "What Applicant Tracking Systems Do", href: "/research/ats-myths", tag: "Systems" },
-                { title: "LinkedIn Visibility", href: "/research/linkedin-visibility", tag: "LinkedIn" },
-                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
+                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Systems" },
+                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "LinkedIn" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
             sources={[
                 {
@@ -118,17 +118,17 @@ export default function SkillsFirstPromiseRealityPage() {
             <p className="research-body mb-6">
                 A skill list tells the reader what you claim to know. An example of using the skill helps them assess that claim. You can add that context whether or not the employer describes its process as skills-first.
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Name the project or responsibility where you used the skill.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Explain your contribution and include a result when you can verify it.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Keep required qualifications visible; do not assume the employer has stopped considering them.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Name the project or responsibility where you used the skill.</li>
+                <li>Explain your contribution and include a result when you can verify it.</li>
+                <li>Keep required qualifications visible; do not assume the employer has stopped considering them.</li>
             </ul>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms with observable hiring before and after degree requirements changed.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>LinkedIn&apos;s findings describe activity on its own platform and are not independent causal evidence.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Adoption varies by employer, occupation, and market; a changed job ad does not guarantee a changed hiring decision.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms with observable hiring before and after degree requirements changed.</li>
+                <li>LinkedIn&apos;s findings describe activity on its own platform and are not independent causal evidence.</li>
+                <li>Adoption varies by employer, occupation, and market; a changed job ad does not guarantee a changed hiring decision.</li>
             </ul>
         </ResearchArticle>
     );

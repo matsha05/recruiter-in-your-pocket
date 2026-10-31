@@ -20,35 +20,43 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 
 ---
 
+## Rules
+
+- One title per article, in sentence case, shared by the hub card, H1, related links and metadata. The root layout adds the site name.
+- Say a limit once in the key finding or Limitations, not in every figure, caption and FAQ.
+- Every product tie-in names the report part it shows up in: the Verdict, the First Impression score or the Critical Miss.
+- Figures carry the number and source in the caption only. Draw published numbers; never invent defaults or example rates.
+- Uppercase labels are reserved for Verdict and Critical Miss (`.riyp-verdict-label`).
+
 ## Required Props
 
 ```tsx
 <ResearchArticle
   header={{
-    tag: "EYE-TRACKING RESEARCH",   // topic — weight 600, pen color
-    title: "How Recruiters Actually Read Resumes",
+    tag: "Eye-tracking",   // topic — weight 600, pen color
+    title: "What recruiters notice in the first pass",   // sentence case; same string in the hub, H1 and metadata
     description: "Eye tracking research on how recruiters review resumes in real time.",
     readTime: "4 min read",
-    lastUpdated: "December 2025",
+    lastUpdated: "July 2026",
   }}
   keyFinding={{
-    subtitle: "The Key Finding",     // NOT rendered visually — kept for data
-    stat: "2,043 resume reviews",    // 2-4 words, the hook
+    subtitle: "The key finding",     // NOT rendered visually — kept for data
+    stat: "2,043 resume reviews",    // 2-4 words, set in the display face
     statDescription: <>Review time and attention to Experience were associated with advancement decisions in this study.</>,
     source: { text: "Pina et al., peer-reviewed eye-tracking study (2023)", href: "..." },
     sampleSize: <>221 recruiters recruited; 24 incomplete sessions removed; 2,043 usable first-round reviews</>,
   }}
   productTieIn={{
-    title: "How this shows up in your report",
+    title: "Where this shows up in your report",
     items: [
-      { title: "First-pass clarity", description: "We flag important experience that may be hard to find quickly." },
+      { title: "The Verdict", description: "Your Verdict is our version of that first pass: what comes through, and what slips past." },
     ],
   }}
   sources={[
     { id: "source-1", title: "Study Title", publisher: "Publisher", year: 2018, href: "..." },
   ]}
   relatedArticles={[
-    { title: "What Recruiters Notice First", href: "/research/how-recruiters-read", tag: "RESEARCH" },
+    { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
   ]}
   faq={[
     { question: "Do recruiters spend six seconds on every resume?", answer: "No. A vendor report popularized that figure, but it is not a universal timer." },

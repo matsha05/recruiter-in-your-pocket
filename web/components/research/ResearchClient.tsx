@@ -9,9 +9,7 @@ import {
     ChartBarHorizontal,
     FileMagnifyingGlass,
     FileText,
-    MagnifyingGlass,
     Robot,
-    Scan,
     TextAa,
     UserFocus,
 } from "@phosphor-icons/react";
@@ -52,7 +50,7 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
         <Link
             href={article.href}
             className={cn(
-                "focus-ring group relative overflow-hidden rounded-2xl border border-line bg-card transition-colors hover:border-brand md:rounded-3xl",
+                "focus-ring group relative overflow-hidden rounded-sheet border border-line bg-card transition-colors hover:border-brand",
                 featured && "grid md:min-h-[21rem] md:grid-cols-[1.2fr_0.8fr] md:items-stretch lg:col-span-2"
             )}
         >
@@ -62,7 +60,7 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
                         <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                         {article.note ? <span className="riyp-evidence-label text-brand">{article.note}</span> : null}
                     </div>
-                    <h4 className={cn("mt-5 font-display text-[1.375rem] leading-7 tracking-tight text-foreground transition-colors group-hover:text-brand md:mt-8 md:text-report-title md:tracking-tight", featured ? "max-w-[26ch]" : "max-w-[24ch]")}>{article.title}</h4>
+                    <h4 className={cn("mt-5 font-display text-[1.375rem] font-bold leading-7 tracking-tight text-foreground transition-colors group-hover:text-brand md:mt-8 md:text-report-title md:tracking-tight", featured ? "max-w-[26ch]" : "max-w-[24ch]")}>{article.title}</h4>
                     <p className={cn("mt-3 max-w-[38rem] text-sm leading-6 text-muted-foreground md:mt-4", featured ? "md:text-base" : "md:text-sm")}>{article.description}</p>
                 </div>
                 <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4 text-xs text-muted-foreground md:mt-8 md:gap-4">
@@ -73,7 +71,7 @@ function ResearchArticleCard({ article, index, featured = false }: { article: Re
             {featured ? (
                 <div className="relative overflow-hidden border-t border-line bg-muted p-5 md:min-h-full md:border-l md:border-t-0 md:p-7">
                     <div className="relative grid grid-cols-[1.75rem_minmax(0,1fr)] items-start gap-x-3 md:flex md:h-full md:flex-col md:items-stretch md:justify-end">
-                        <FileMagnifyingGlass size={52} weight="duotone" className="size-7 text-brand md:size-[52px]" aria-hidden="true" />
+                        <FileMagnifyingGlass size={52} weight="regular" className="size-7 text-brand md:size-[52px]" aria-hidden="true" />
                         <p className="riyp-evidence-label text-brand md:mt-6">Start here</p>
                         <p className="col-start-2 mt-2 text-sm leading-6 text-muted-foreground md:mt-3 md:max-w-[24ch]">Each article includes its sources and explains what the findings can tell you about your resume.</p>
                     </div>
@@ -135,8 +133,7 @@ function ResearchLibrary() {
 
             <div id="research-topic-panel" role="region" aria-labelledby="research-topic-title">
                 <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
-                <p className="riyp-evidence-label text-brand">{activeCategory.descriptor}</p>
-                <h3 id="research-topic-title" className="mt-2 max-w-[28ch] font-display text-2xl font-bold text-foreground md:mt-3 md:text-section-title">{activeCategory.title}</h3>
+                <h3 id="research-topic-title" className="max-w-[28ch] font-display text-2xl font-bold text-foreground md:text-section-title">{activeCategory.title}</h3>
                 <p className="mt-3 max-w-reading text-base leading-6 text-muted-foreground md:mt-4 md:text-prose">{activeCategory.subtitle}</p>
                 <div className="mt-5 grid gap-3 md:mt-8 md:grid-cols-2 md:gap-4">
                     {activeCategory.articles.map((article, index) => <ResearchArticleCard key={article.id} article={article} index={index} featured={index === 0} />)}
@@ -153,30 +150,27 @@ function FirstReadMap() {
             label: "The file",
             title: "Can the text be extracted?",
             detail: "Selectable text and clear sections help software read your resume.",
-            icon: FileMagnifyingGlass,
         },
         {
             index: "02",
             label: "The scan",
             title: "Can a recruiter find what matters?",
             detail: "Make your job titles, dates, responsibilities, and results easy to find.",
-            icon: Scan,
         },
         {
             index: "03",
             label: "The judgment",
             title: "Is the experience relevant?",
             detail: "A recruiter looks for relevant experience, your part in the work, and the results.",
-            icon: UserFocus,
         },
     ];
 
     return (
         <figure className="research-read-map" aria-labelledby="research-read-map-title">
             <figcaption className="research-read-map-intro">
-                <p className="riyp-evidence-label text-brand">From file to feedback</p>
+                <p className="riyp-evidence-label text-brand">Before you read the studies</p>
                 <h2 id="research-read-map-title" className="mt-4 max-w-[22ch] font-display text-3xl font-bold text-foreground md:text-section-title">
-                    Three things to check in a resume.
+                    Three questions every resume has to answer.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
                     A file can be easy for software to read and still leave a recruiter unsure what you did. Check both the formatting and the content.
@@ -185,11 +179,9 @@ function FirstReadMap() {
 
             <ol className="research-read-map-steps">
                 {steps.map((step, index) => {
-                    const Icon = step.icon;
                     return (
                         <li key={step.index} className="research-read-map-step">
-                            <div className="research-read-map-icon" aria-hidden="true"><Icon size={27} weight="duotone" /></div>
-                            <div className="riyp-evidence-label mt-8 flex items-center gap-3 text-muted-foreground">
+                            <div className="riyp-evidence-label flex items-center gap-3 text-muted-foreground">
                                 <span className="text-brand">{step.index}</span>
                                 <span>{step.label}</span>
                             </div>
@@ -202,8 +194,7 @@ function FirstReadMap() {
             </ol>
 
             <div className="research-read-map-note">
-                <MagnifyingGlass size={20} weight="duotone" aria-hidden="true" />
-                <p><strong>Your report helps you revise.</strong> It points out details that are missing or hard to find and suggests what to change first.</p>
+                <p><strong>Your report answers them in order.</strong> The Verdict says what came through, the First Impression score sums it up, and the Critical Miss is the one change to make first.</p>
             </div>
         </figure>
     );
@@ -212,13 +203,13 @@ function FirstReadMap() {
 function FindingVisual({ visual }: { visual: FindingVisual }) {
     if (visual === "spelling") {
         return (
-            <div className="research-finding-visual research-finding-spelling" role="img" aria-label="In a hypothetical hiring experiment, five spelling errors reduced the average invitation rating by 1.85 points on a zero-to-ten scale compared with error-free resumes">
+            <div className="research-finding-visual research-finding-spelling" role="img" aria-label="In a hypothetical hiring experiment, five spelling errors reduced the average interview rating by 1.85 points on a zero-to-ten scale compared with error-free resumes">
                 <div className="flex items-center justify-between gap-5">
                     <div>
                         <p className="riyp-evidence-label text-muted-foreground">Change in invitation rating</p>
                         <p className="mt-3 font-display text-section-title text-foreground md:text-page-title">−1.85<span className="ml-2 text-sm tracking-normal text-brand">points</span></p>
                     </div>
-                    <TextAa size={58} weight="duotone" className="text-brand" aria-hidden="true" />
+                    <TextAa size={58} weight="regular" className="text-brand" aria-hidden="true" />
                 </div>
                 <p className="mt-5 max-w-[33rem] text-base leading-7 text-muted-foreground">Five spelling errors versus error-free resumes, rated on a 0–10 scale.</p>
                 <p className="mt-6 border-t border-line pt-4 text-sm leading-6 text-muted-foreground">These were hypothetical invitation ratings. The study did not measure actual callbacks.</p>
@@ -241,7 +232,7 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
                         return (
                             <div key={step.label} className="contents">
                                 <div className="research-parser-step">
-                                    <Icon size={34} weight="duotone" aria-hidden="true" />
+                                    <Icon size={34} weight="regular" aria-hidden="true" />
                                     <p className="mt-4 font-semibold text-foreground">{step.label}</p>
                                     <p className="mt-1 text-xs text-muted-foreground">{step.detail}</p>
                                 </div>
@@ -264,13 +255,13 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
                 <p className="riyp-evidence-label text-muted-foreground">What the study compared</p>
                 <div className="mt-7 grid gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2">
                     <div className="bg-card p-6">
-                        <ChartBarHorizontal size={34} weight="duotone" className="text-muted-foreground" aria-hidden="true" />
+                        <ChartBarHorizontal size={34} weight="regular" className="text-muted-foreground" aria-hidden="true" />
                         <p className="mt-6 font-display text-report-title text-foreground">Resume profile</p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">A simplified profile made from selected resume details.</p>
                         <p className="riyp-evidence-label mt-7 border-t border-line pt-4 text-muted-foreground">More agreement between raters</p>
                     </div>
-                    <div className="riyp-bg-sky p-6">
-                        <FileText size={34} weight="duotone" className="text-brand" aria-hidden="true" />
+                    <div className="bg-[hsl(var(--pen-tint))] p-6">
+                        <FileText size={34} weight="regular" className="text-brand" aria-hidden="true" />
                         <p className="mt-6 font-display text-report-title text-foreground">Actual resume</p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">The full document, with its original layout and context.</p>
                         <p className="riyp-evidence-label mt-7 border-t border-line pt-4 text-brand">Different cues drove judgment</p>
@@ -285,12 +276,12 @@ function FindingVisual({ visual }: { visual: FindingVisual }) {
             <p className="riyp-evidence-label text-muted-foreground">Recommendation source</p>
             <div className="mt-7 space-y-4">
                 <div className="research-trust-row research-trust-row-strong">
-                    <UserFocus size={34} weight="duotone" aria-hidden="true" />
+                    <UserFocus size={34} weight="regular" aria-hidden="true" />
                     <div><p className="font-semibold text-foreground">Human expert</p><p className="mt-1 text-sm text-muted-foreground">Higher recruiter trust</p></div>
                     <span className="riyp-evidence-label ml-auto text-brand">Trusted more</span>
                 </div>
                 <div className="research-trust-row">
-                    <Robot size={34} weight="duotone" aria-hidden="true" />
+                    <Robot size={34} weight="regular" aria-hidden="true" />
                     <div><p className="font-semibold text-foreground">Algorithmic recommendation</p><p className="mt-1 text-sm text-muted-foreground">Lower recruiter trust</p></div>
                 </div>
             </div>
@@ -418,12 +409,12 @@ export default function ResearchClient() {
             <ResearchSection density="hero" className="!bg-paper !pb-6 !pt-24 md:!pb-12 md:!pt-28" containerClassName="max-w-screen-xl">
                 <div className="grid gap-4 md:gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
                     <div>
-                        <p className="riyp-evidence-label text-brand">Evidence library</p>
-                        <h1 className="mt-4 font-display text-workspace-title text-foreground md:text-page-title">Research</h1>
+                        <p className="riyp-evidence-label text-brand">Research</p>
+                        <h1 className="mt-4 max-w-[16ch] text-balance font-display text-workspace-title text-foreground md:text-page-title">What the hiring research actually says</h1>
                     </div>
                     <div>
                         <p className="max-w-reading text-base leading-7 text-muted-foreground md:text-prose">
-                            What does the evidence actually say? Find the studies, recruiter experiments, and platform documentation behind the advice.
+                            The studies, recruiter experiments, and platform docs behind our advice. We say what each one found, and what it didn&apos;t.
                         </p>
                     </div>
                 </div>
@@ -470,7 +461,7 @@ export default function ResearchClient() {
             </ResearchSection>
 
             <ResearchSection density="tight" className="!bg-paper" divider={false} containerClassName="max-w-[72rem]">
-                <div className="flex flex-col gap-5 rounded-2xl border border-line bg-card p-6 md:flex-row md:items-end md:justify-between md:rounded-3xl md:p-8">
+                <div className="flex flex-col gap-5 rounded-sheet border border-line bg-card p-6 md:flex-row md:items-end md:justify-between md:p-8">
                     <div>
                         <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
                         <p className="mt-2 max-w-[46rem] text-base leading-7 text-muted-foreground">Your report uses the same evidence standards to show what is clear, what needs more context, and what to fix first.</p>

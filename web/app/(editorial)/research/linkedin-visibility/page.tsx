@@ -4,7 +4,7 @@ import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/Linked
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
 export const metadata: Metadata = {
-    title: "LinkedIn Profile Visibility Research | Hiring Research",
+    title: "What makes a LinkedIn profile easier to find",
     description: "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
 };
 
@@ -62,9 +62,9 @@ export default function LinkedInVisibilityPage() {
                 ]
             }}
             relatedArticles={[
-                { title: "How Recruiters Read Resumes", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "What Applicant Tracking Systems Do", href: "/research/ats-myths", tag: "Systems" },
-                { title: "What Recruiters Look For Beyond the Resume", href: "/research/social-screening", tag: "Profiles" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
+                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Systems" },
+                { title: "How public social cues changed candidate ratings", href: "/research/social-screening", tag: "Profiles" }
             ]}
             sources={[
                 {
@@ -147,19 +147,19 @@ export default function LinkedInVisibilityPage() {
             <h2 className="research-h2">What a useful headline looks like</h2>
             <div className="grid md:grid-cols-2 gap-8 not-prose mt-6">
                 <div className="space-y-3">
-                    <div className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Do this</div>
-                    <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
-                        <li className="py-2">Senior product manager · B2B SaaS · onboarding and retention</li>
-                        <li className="py-2">Data scientist · forecasting · Python and SQL · healthcare</li>
-                        <li className="py-2">Engineering manager · platform teams · fintech infrastructure</li>
+                    <div className="text-sm font-semibold text-[hsl(var(--pen))]">Easy to search for</div>
+                    <ul className="divide-y divide-line border-t border-line text-base text-foreground">
+                        <li className="py-2.5">Senior product manager · B2B SaaS · onboarding and retention</li>
+                        <li className="py-2.5">Data scientist · forecasting · Python and SQL · healthcare</li>
+                        <li className="py-2.5">Engineering manager · platform teams · fintech infrastructure</li>
                     </ul>
                 </div>
                 <div className="space-y-3">
-                    <div className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Not this</div>
-                    <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
-                        <li className="py-2 line-through">Product leader building great products</li>
-                        <li className="py-2 line-through">Passionate problem-solver seeking new opportunities</li>
-                        <li className="py-2 line-through">Looking for my next challenge in tech</li>
+                    <div className="text-sm font-semibold text-muted-foreground">Hard to search for</div>
+                    <ul className="divide-y divide-line border-t border-line text-base text-muted-foreground">
+                        <li className="py-2.5">Product leader building great products</li>
+                        <li className="py-2.5">Passionate problem-solver seeking new opportunities</li>
+                        <li className="py-2.5">Looking for my next challenge in tech</li>
                     </ul>
                 </div>
             </div>

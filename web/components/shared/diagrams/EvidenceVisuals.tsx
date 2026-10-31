@@ -5,21 +5,20 @@ import { DiagramHeader } from "@/components/shared/diagrams/DiagramPrimitives";
 
 type EvidenceHeaderProps = {
     index?: string;
-    label: string;
+    label?: string;
     title: string;
     note?: string;
     className?: string;
 };
 
-export function EvidenceHeader({ index = "01", label, title, note, className }: EvidenceHeaderProps) {
+export function EvidenceHeader({ title, note, className }: EvidenceHeaderProps) {
+    // The figure number and source live in the caption, so the header carries only the point.
     return (
-        <DiagramHeader className={cn("items-start max-sm:grid max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-y-0", className)}>
-            <div className="max-sm:contents">
-                <div className="riyp-evidence-label text-brand">{label}</div>
-                <h3 className="riyp-evidence-title mt-3 max-w-[22ch] text-foreground max-sm:col-span-2 max-sm:max-w-none">{title}</h3>
-                {note ? <p className="mt-3 max-w-reading text-data text-muted-foreground max-sm:col-span-2">{note}</p> : null}
+        <DiagramHeader className={cn("items-start", className)}>
+            <div>
+                <h3 className="riyp-evidence-title max-w-[34ch] text-balance text-foreground">{title}</h3>
+                {note ? <p className="mt-2 max-w-reading text-data text-muted-foreground">{note}</p> : null}
             </div>
-            <span className="riyp-evidence-label text-muted-foreground tabular-nums max-sm:col-start-2 max-sm:row-start-1 max-sm:whitespace-nowrap">FIG {index}</span>
         </DiagramHeader>
     );
 }
@@ -107,30 +106,6 @@ export type TraceStep = {
     detail?: string;
     tone?: "context" | "focus" | "risk" | "caution";
 };
-
-export function SequenceTrace({ steps, direction = "down" }: { steps: TraceStep[]; direction?: "down" | "up" }) {
-    const ordered = direction === "up" ? [...steps].reverse() : steps;
-    return (
-        <ol className="px-5 py-7 md:px-7 md:py-9">
-            {ordered.map((step, index) => {
-                const tone = step.tone ?? "context";
-                return (
-                    <li key={`${step.label}-${step.title}`} className="grid grid-cols-[2.5rem_1fr] gap-4 md:grid-cols-[3rem_0.72fr_1.28fr] md:gap-6">
-                        <div className="relative flex justify-center">
-                            {index < ordered.length - 1 ? <span className="absolute bottom-0 top-8 w-px bg-line" aria-hidden="true" /> : null}
-                            <span className={cn("relative z-10 flex size-8 items-center justify-center rounded-lg border bg-paper text-label tabular-nums", toneClasses[tone])}>{String(index + 1).padStart(2, "0")}</span>
-                        </div>
-                        <div className="pb-7 md:pb-8">
-                            <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
-                            <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground">{step.title}</div>
-                        </div>
-                        {step.detail ? <p className="col-start-2 -mt-5 pb-7 text-data text-muted-foreground md:col-start-3 md:mt-0 md:pb-8">{step.detail}</p> : null}
-                    </li>
-                );
-            })}
-        </ol>
-    );
-}
 
 export type FrameworkStep = {
     symbol: string;

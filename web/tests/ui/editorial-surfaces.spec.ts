@@ -88,28 +88,21 @@ test.describe("editorial resources", () => {
 
 const numberedResearchRoutes = [
   { route: "/research/how-recruiters-read", figures: [1, 2] },
-  { route: "/research/referral-advantage", figures: [1, 2, 3] },
+  { route: "/research/referral-advantage", figures: [1, 2] },
   { route: "/research/spelling-errors-impact", figures: [1, 2] },
   { route: "/research/linkedin-visibility", figures: [1, 2] },
 ] as const;
 
 test.describe("multi-figure research articles", () => {
-  test("referral calculator shows added time and zero-rate limits on mobile", async ({ page }) => {
+  test("referral figures draw only the published differences and fit on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
-    const calculator = page.getByRole("figure", { name: "Calculator comparing applications per callback with and without a referral" });
-    await calculator.getByLabel("Callback rate without referral").fill("20");
-    await calculator.getByLabel("Callback rate with referral").fill("10");
-    await expect(calculator.getByText("Time added with referral", { exact: true })).toBeVisible();
-    await expect(calculator).toContainText("5 more applications per callback");
-    await expect(calculator.getByText("3.8h", { exact: true })).toBeVisible();
-
-    await calculator.getByLabel("Callback rate without referral").fill("0");
-    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(1);
-    await expect(calculator.getByText("No estimate", { exact: true })).toHaveCount(2);
-    await calculator.getByLabel("Callback rate with referral").fill("0");
-    await expect(calculator.getByText("No callbacks", { exact: true })).toHaveCount(2);
-    await expect(calculator).toContainText("no finite time comparison");
+    const chart = page.getByRole("figure", { name: /11 percentage points more likely to submit work on time and 20 points more likely to continue/ });
+    await expect(chart).toContainText("+11");
+    await expect(chart).toContainText("+20");
+    // The study did not measure callbacks or interview rates, so no figure may estimate them.
+    await expect(page.locator("body")).not.toContainText(/callback rate|applications per callback/i);
+    await expect(page.getByRole("figure", { name: /Pallais and Sands experiments/ })).toContainText("The study didn't measure interview chances.");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });

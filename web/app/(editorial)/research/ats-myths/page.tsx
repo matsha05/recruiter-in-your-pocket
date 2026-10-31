@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 
 export const metadata: Metadata = {
-    title: "ATS: How Applicant Tracking Systems Actually Work | Hiring Research",
+    title: "What applicant tracking systems actually do",
     description: "What current Greenhouse and Lever documentation shows about resume parsing and what it does not prove.",
 };
 
@@ -12,7 +12,7 @@ export default function ATSMythsPage() {
         <ResearchArticle
             header={{
                 tag: "Platform documentation",
-                title: "What applicant tracking systems do",
+                title: "What applicant tracking systems actually do",
                 description: "What current platform documentation says about parsing, extracted fields, and the formatting that can get lost.",
                 lastUpdated: "July 2026",
                 readTime: "5 min read"
@@ -45,22 +45,22 @@ export default function ATSMythsPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Readable resume text",
-                        description: "We extract text from uploaded files and review its structure. Check that the extracted text includes your sections in the right order."
+                        title: "A recruiter's read, not an ATS score",
+                        description: "Your First Impression score is what a person would likely make of the page. It can't tell you how an employer set up its filters."
                     },
                     {
-                        title: "A resume score, not an ATS score",
-                        description: "Our score summarizes the resume report. It does not reproduce an employer's screening settings or predict whether a filter will accept your application."
+                        title: "Text we can actually read",
+                        description: "We work from the text in your file. If a section comes through out of order in your report, it may come through that way elsewhere too."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "Human vs. Algorithm", href: "/research/human-vs-algorithm", tag: "AI" },
-                { title: "Automation and Bias", href: "/research/automation-and-bias", tag: "Research" },
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+                { title: "What recruiters trust and what they follow", href: "/research/human-vs-algorithm", tag: "AI" },
+                { title: "Where automation enters hiring", href: "/research/automation-and-bias", tag: "Research" },
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
             ]}
             sources={[
                 {
@@ -125,7 +125,7 @@ export default function ATSMythsPage() {
                     }
                 />
                 <ArticleInsight
-                    title="Search & Discovery"
+                    title="Search and discovery"
                     desc={
                         <>
                             Once information is stored, recruiters may search, filter, and review it according to the employer&apos;s workflow.
@@ -150,10 +150,10 @@ export default function ATSMythsPage() {
             </p>
 
             <h2 className="research-h2">Practical takeaways</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use standard section headers so both parsers and humans can navigate quickly.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Write role titles and core skills in plain language, not internal jargon.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Avoid graphics or tables that disrupt parsing and readability.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Use standard section headers so both parsers and humans can navigate quickly.</li>
+                <li>Write role titles and core skills in plain language, not internal jargon.</li>
+                <li>Avoid graphics or tables that disrupt parsing and readability.</li>
             </ul>
         </ResearchArticle>
     );

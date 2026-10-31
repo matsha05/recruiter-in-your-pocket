@@ -12,10 +12,10 @@ export function LinkedInVisibilityDiagram({ figureNumber = 1 }: { figureNumber?:
                     { label: "You control", title: "Role language", detail: "Headline, titles, skills, and experience phrasing.", tone: "focus" },
                     { label: "Platform", title: "Index and match", detail: "The system connects profile fields to a search.", tone: "context" },
                     { label: "Recruiter", title: "Open and assess", detail: "A recruiter may open profiles that appear relevant to the role.", tone: "focus" },
-                    { label: "Possible outcome", title: "Discovery and outreach", detail: "Visibility can improve; no single field guarantees it.", tone: "caution" },
-                ]} footer={<><strong className="text-foreground">Focus on what you can change.</strong> Make your target role and relevant skills easy to recognize. No profile field can guarantee ranking.</>} />
+                    { label: "Possible outcome", title: "Discovery and outreach", detail: "A recruiter finds the profile and decides whether to reach out.", tone: "caution" },
+                ]} footer={<><strong className="text-foreground">Focus on what you can change.</strong> Make your target role and relevant skills easy to recognize.</>} />
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Recruiter search`} title="A clear profile can help recruiters find you. It cannot guarantee where you appear." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Recruiter search`} title="Clear titles and skills give a recruiter's search something to match." />
         </DiagramFigure>
     );
 }

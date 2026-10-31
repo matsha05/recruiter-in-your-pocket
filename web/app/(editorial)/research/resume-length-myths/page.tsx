@@ -3,7 +3,7 @@ import { ResearchArticle, Citation } from "@/components/research/ResearchArticle
 import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
 export const metadata: Metadata = {
-    title: "Resume Length: What Research Says | Hiring Research",
+    title: "There is no universal one-page rule",
     description: "What a peer-reviewed recruiter study does and does not say about one-page and two-page resumes.",
 };
 
@@ -12,7 +12,7 @@ export default function ResumeLengthPage() {
         <ResearchArticle
             header={{
                 tag: "Resume structure",
-                title: "Resume length: there is no universal one-page rule",
+                title: "There is no universal one-page rule",
                 description: "One study favored two-page resumes for entry-level accountants. It does not establish the best length for every role.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read"
@@ -41,22 +41,22 @@ export default function ResumeLengthPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "What your report can judge",
                 items: [
                     {
-                        title: "What the review can judge",
-                        description: "We review relevance, scope, ownership, and results in the text you submit. Page count is not a scoring shortcut."
+                        title: "What's on the page",
+                        description: "We read for relevance, scope, ownership, and results. Page count isn't a shortcut in your score."
                     },
                     {
-                        title: "What it cannot judge",
-                        description: "Text analysis cannot reliably measure the visual density of your exported PDF. Check the final document yourself at 100% zoom."
+                        title: "What it can't",
+                        description: "We read your text, not your PDF's layout. Open the final file at 100% and check the density yourself."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "The STAR Method", href: "/research/star-method", tag: "Format" },
-                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "How to use STAR without forcing the formula", href: "/research/star-method", tag: "Format" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
             sources={[
                 {
@@ -89,15 +89,15 @@ export default function ResumeLengthPage() {
             </p>
 
             <h2 className="research-h2">What it does not settle</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The study covered entry-level accounting candidates, not every role or career stage.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The study was published in 2001, before today&apos;s digital application workflow.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The study covered entry-level accounting candidates, not every role or career stage.</li>
+                <li>Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires.</li>
+                <li>The study was published in 2001, before today&apos;s digital application workflow.</li>
             </ul>
 
             <h2 className="research-h2">A better editing rule</h2>
             <p className="research-body mb-6">
-                <strong>RIYP interpretation:</strong> use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one. Use page two for additional work only when it adds useful scope, depth, or context.
+                <strong>Our take:</strong> use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one. Use page two for additional work only when it adds useful scope, depth, or context.
             </p>
             <p className="research-body">
                 Every line should pass a simpler test: &quot;Does this help a reviewer understand my fit for this role?&quot;
@@ -109,10 +109,10 @@ export default function ResumeLengthPage() {
             </p>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>This is a peer-reviewed study, but its setting is narrow and dated.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The abstract reports that packets went to 570 recruiters; it does not make 570 the completed-response count.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use the finding to reject a rigid one-page rule, not to replace it with a rigid two-page rule.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>This is a peer-reviewed study, but its setting is narrow and dated.</li>
+                <li>Packets went to 570 recruiters. The abstract doesn&apos;t say how many replied.</li>
+                <li>Use the finding to reject a rigid one-page rule, not to replace it with a rigid two-page rule.</li>
             </ul>
         </ResearchArticle>
     );

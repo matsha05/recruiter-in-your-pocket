@@ -26,7 +26,7 @@ const weighs = [
     {
         title: "How easy the page is to scan",
         question: "Can someone find your roles, dates, and results quickly?",
-        finding: sampleReport.score_plain,
+        finding: sampleReport.section_review.Skills.working,
     },
 ];
 
@@ -39,11 +39,11 @@ const reviewPath = [
 export function FirstReadModelDiagram() {
     return (
         <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the Verdict, the First Impression score, the Critical Miss, and the four things the score weighs">
-            <div className="overflow-hidden rounded-2xl border border-line bg-card md:rounded-3xl">
+            <div className="overflow-hidden rounded-sheet border border-line bg-card">
                 <div className="grid lg:grid-cols-[20rem_minmax(0,1fr)]">
                     <section className="flex flex-col justify-between gap-8 border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="How the sample report opens">
                         <div>
-                            <p className="riyp-evidence-label text-brand">Verdict</p>
+                            <p className="riyp-verdict-label text-brand">Verdict</p>
                             <p className="mt-3 font-serif text-lg leading-7 text-foreground">{sampleReport.first_impression}</p>
                         </div>
                         <div className="flex flex-col gap-5">
@@ -52,7 +52,7 @@ export function FirstReadModelDiagram() {
                             <p className="text-sm text-muted-foreground">First Impression score</p>
                         </div>
                         <div className="rounded-xl border border-[hsl(var(--miss-line))] bg-[hsl(var(--miss-surface))] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[hsl(var(--brass))]">Critical Miss</p>
+                            <p className="riyp-verdict-label text-[hsl(var(--brass))]">Critical Miss</p>
                             <p className="mt-1.5 text-base font-bold leading-6 text-foreground">{criticalMiss.fix}</p>
                             <p className="mt-1.5 text-sm leading-6 text-foreground/80">{criticalMiss.why}</p>
                         </div>

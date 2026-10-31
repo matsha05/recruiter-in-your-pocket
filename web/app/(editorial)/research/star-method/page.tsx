@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 export const metadata: Metadata = {
-    title: "The STAR Method: What Research Supports | Hiring Research",
+    title: "How to use STAR without forcing the formula",
     description: "What structured-interview research supports, and where STAR becomes a practical writing heuristic rather than a tested resume rule.",
 };
 
@@ -42,22 +42,22 @@ export default function StarMethodPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Action and outcome",
-                        description: "We point out when the line does not make your part or the result clear."
+                        title: "Your part and the result",
+                        description: "When a line hides what you did or what happened, your fixes will say so."
                     },
                     {
-                        title: "Prepare an interview example",
-                        description: "A specific bullet gives you facts to develop into a behavioral interview answer."
+                        title: "Interview material",
+                        description: "A specific line gives you the facts for a behavioral answer. Save the longer story for the interview."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "Quantifying Your Impact", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Format" }
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Format" }
             ]}
             sources={[
                 {

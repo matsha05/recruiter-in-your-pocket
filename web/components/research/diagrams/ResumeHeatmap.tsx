@@ -88,7 +88,7 @@ export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
             </DiagramFrame>
             <DiagramCaption
                 kicker={`Fig. ${figureNumber} / Evidence summary`}
-                title="Make the important details easy to find. Do not design around a universal six-second rule."
+                title="Where recruiters looked, and what each study can and can't tell you."
                 description="Source details and direct links appear in the evidence record below."
             />
         </DiagramFigure>

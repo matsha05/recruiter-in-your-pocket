@@ -60,7 +60,7 @@ export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
                     </ol>
 
                     <aside className="mt-7 grid gap-4 rounded-xl border border-line bg-proof px-5 py-5 md:grid-cols-[12rem_1fr] md:items-start" aria-label="Claims the cited research does not establish">
-                        <h3 className="text-xs font-semibold uppercase riyp-track-010 text-brand">Not established</h3>
+                        <h3 className="text-sm font-semibold text-brand">Not established</h3>
                         <ul className="grid gap-3 text-sm leading-6 text-muted-foreground sm:grid-cols-3">
                             {notEstablished.map((claim) => <li key={claim}>{claim}</li>)}
                         </ul>

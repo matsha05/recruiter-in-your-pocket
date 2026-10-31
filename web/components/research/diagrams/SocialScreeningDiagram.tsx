@@ -24,7 +24,7 @@ export function SocialScreeningDiagram() {
                     verdict={<><strong className="text-foreground">For your own profile:</strong> check your titles, dates, credentials, and work links. A profile review alone cannot establish whether someone is suitable for a job.</>}
                 />
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Evidence and inference" title="Online screening can change a judgment. That does not make every judgment valid." description="Baker, Grimm & Ofek-Shanny (2024); SIOP Social Media and Selection white paper." />
+            <DiagramCaption kicker="Fig. 1 / Evidence and inference" title="Online screening can change a judgment. That does not make every judgment valid." description="Baker, Grimm & Ofek-Shanny (2024)." />
         </DiagramFigure>
     );
 }

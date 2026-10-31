@@ -61,7 +61,9 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 
 ## Methodology and research
 
-- [ ] Read and fix every research article and every diagram (copy, voice, type sizes, tokens, mobile layout), not just the index.
+- [x] Read and fix every research article and every diagram (copy, voice, type sizes, tokens, mobile layout), not just the index.
+- [ ] Merge star-method and structured-interviews-why-star (near-duplicate sources, finding and figure); redirect one.
+- [ ] Redraw ErrorImpactDiagram, MetaTimeline and SkillsPromiseRealityDiagram as real charts from their published numbers.
 
 - [x] Merge /methodology into /research/how-we-score as "How the report works"; redirect; update links.
 - [x] Methodology copy: hedges, "not X" formulas, compliance-styled limits.

@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { SignalClarityDiagram } from "@/components/research/diagrams/SignalClarityDiagram";
 
 export const metadata: Metadata = {
-    title: "Clear Writing Changes Hiring Outcomes | Hiring Research",
+    title: "Writing help led to more hires in one experiment",
     description: "Why clarity is not cosmetic, and what a large field experiment found.",
 };
 
@@ -12,9 +12,9 @@ export default function WritingQualityHireProbabilityPage() {
         <ResearchArticle
             header={{
                 tag: "Writing quality",
-                title: "Resume writing assistance increased hires in one experiment",
+                title: "Writing help led to more hires in one experiment",
                 description: "A large field experiment found better outcomes when job seekers received writing assistance, even when their underlying experience did not change.",
-                lastUpdated: "December 2025",
+                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
@@ -42,22 +42,22 @@ export default function WritingQualityHireProbabilityPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this shows up in your report",
                 items: [
                     {
-                        title: "Find the main point",
-                        description: "We flag dense bullets that make the main point harder to find."
+                        title: "The point, up front",
+                        description: "We flag dense lines where the main point gets buried."
                     },
                     {
-                        title: "Suggested revisions",
-                        description: "We propose edits that surface outcomes earlier in the line."
+                        title: "Rewrites that lead with the result",
+                        description: "Suggested rewrites move what changed toward the front, using only what you gave us."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "How Recruiters Actually Read Resumes", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" },
-                { title: "What Spelling Errors Cost", href: "/research/spelling-errors-impact", tag: "Writing" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" },
+                { title: "How spelling errors changed recruiter ratings", href: "/research/spelling-errors-impact", tag: "Writing" }
             ]}
             sources={[
                 {
@@ -85,7 +85,7 @@ export default function WritingQualityHireProbabilityPage() {
         >
             <h2 className="research-h2">What the assistance helped employers see</h2>
             <p className="research-body mb-6">
-                The researchers suggest that clearer writing helped employers recognize candidates&apos; ability. That is an explanation of the result, not a finding that every kind of rewrite works equally well.
+                The researchers think clearer writing helped employers see ability that was already there. That&apos;s their best explanation, not something they tested.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -112,9 +112,9 @@ export default function WritingQualityHireProbabilityPage() {
             </p>
 
             <h2 className="research-h2">Limitations</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Writing quality helps, but it cannot replace missing experience.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The experiment took place in one online labor market. The 8% effect should not be treated as a promise for every role, industry, or hiring process.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Writing quality helps, but it cannot replace missing experience.</li>
+                <li>The experiment took place in one online labor market. The 8% effect should not be treated as a promise for every role, industry, or hiring process.</li>
             </ul>
         </ResearchArticle>
     );

@@ -4,7 +4,7 @@ import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDi
 import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
 export const metadata: Metadata = {
-    title: "How Spelling Errors Changed Recruiter Ratings | Hiring Research",
+    title: "How spelling errors changed recruiter ratings",
     description: "What one 2023 experiment with 445 hiring professionals found about spelling errors and hypothetical interview ratings.",
 };
 
@@ -43,22 +43,22 @@ export default function SpellingErrorsPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "Where this fits with your report",
                 items: [
                     {
-                        title: "Run a separate spelling pass",
-                        description: "Your report is not a spell-checker. Use a dedicated spelling and consistency check after the content review."
+                        title: "Spell-check last",
+                        description: "Your report isn't a spell-checker. Run one after you've worked through your fixes."
                     },
                     {
-                        title: "Keep one typo in perspective",
-                        description: "Fix an error when you find it. This study did not test a single typo or show that it automatically causes rejection."
+                        title: "One typo isn't the story",
+                        description: "Fix it when you see it. This study didn't test a single typo."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "Clear Writing Changes How Evidence Is Judged", href: "/research/writing-quality-hire-probability", tag: "Writing" },
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" }
+                { title: "Writing help led to more hires in one experiment", href: "/research/writing-quality-hire-probability", tag: "Writing" },
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Structure" }
             ]}
             sources={[
                 {
@@ -95,7 +95,7 @@ export default function SpellingErrorsPage() {
                     title="What recruiters inferred"
                     desc={
                         <>
-                            Recruiters associated repeated errors with lower communication ability, learning ability, mental ability, and conscientiousness. Those are inferences, not proof about the applicant.
+                            Recruiters rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability. Those are impressions, not proof about the applicant.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
@@ -113,10 +113,10 @@ export default function SpellingErrorsPage() {
             </p>
 
             <h2 className="research-h2">What to fix first</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Spelling and grammar consistency.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Date alignment and spacing.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Repeated tense shifts inside a single role.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Spelling and grammar consistency.</li>
+                <li>Date alignment and spacing.</li>
+                <li>Repeated tense shifts inside a single role.</li>
             </ul>
         </ResearchArticle>
     );

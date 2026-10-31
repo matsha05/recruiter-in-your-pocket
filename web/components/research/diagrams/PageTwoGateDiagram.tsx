@@ -16,7 +16,7 @@ export function PageTwoGateDiagram() {
                         <p className="mt-2 text-sm leading-6 text-muted-foreground">Role fit, recent experience, credible results, and a clear structure.</p>
                     </section>
                     <div className="flex min-h-16 items-center justify-center text-muted-foreground sm:min-h-0" aria-hidden="true">
-                        <div className="flex size-11 items-center justify-center rounded-xl border border-dashed border-line bg-paper"><ArrowRight className="size-4" /></div>
+                        <div className="flex size-11 items-center justify-center rounded-xl border border-line bg-paper"><ArrowRight className="size-4" /></div>
                     </div>
                     <section className="border-t border-line py-5 sm:py-6">
                         <div className="font-display text-section-title tabular-nums text-muted-foreground">02</div>

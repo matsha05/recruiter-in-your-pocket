@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 export const metadata: Metadata = {
-    title: "Why Structured Interviews Are More Reliable | Hiring Research",
+    title: "Why structured interviews are more reliable",
     description: "What interview research explains about consistent questions and scoring, plus the narrower role STAR can play in an answer.",
 };
 
@@ -55,9 +55,9 @@ export default function StructuredInterviewsWhyStarPage() {
                 ]
             }}
             relatedArticles={[
-                { title: "The STAR Method", href: "/research/star-method", tag: "Structure" },
-                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" },
-                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+                { title: "How to use STAR without forcing the formula", href: "/research/star-method", tag: "Structure" },
+                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" },
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
             ]}
             sources={[
                 {
@@ -112,25 +112,25 @@ export default function StructuredInterviewsWhyStarPage() {
             <p className="research-body mb-6">
                 <strong>Our preparation advice:</strong> use the job description to choose relevant examples from your work. For each one, note the problem, your responsibility, the choices you made, and the outcome. During the interview, choose the example that answers the actual question.
             </p>
-            <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
-                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Example preparation notes</div>
+            <div className="not-prose mb-6 rounded-inset border border-line bg-card p-5">
+                <div className="mb-2 text-sm font-semibold text-muted-foreground">Example preparation notes</div>
                 <p className="text-foreground">
                     If you plan to discuss a delayed launch, be ready to explain what caused the delay, which decision was yours, who you involved, and what happened after you changed the plan.
                 </p>
             </div>
 
             <h2 className="research-h2">What this evidence does not prove</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not show that every behavioral answer must use the STAR acronym.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not test whether STAR-formatted resume bullets increase interviews or hires.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not make a vague or invented result more credible.</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>It does not show that every behavioral answer must use the STAR acronym.</li>
+                <li>It does not test whether STAR-formatted resume bullets increase interviews or hires.</li>
+                <li>It does not make a vague or invented result more credible.</li>
             </ul>
 
             <h2 className="research-h2">Check your answer before the interview</h2>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Can someone tell what you did, separate from the team&apos;s work?</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Have you explained why you chose that approach?</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Can you describe the outcome accurately, including what did not work?</li>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Can someone tell what you did, separate from the team&apos;s work?</li>
+                <li>Have you explained why you chose that approach?</li>
+                <li>Can you describe the outcome accurately, including what did not work?</li>
             </ul>
         </ResearchArticle>
     );
