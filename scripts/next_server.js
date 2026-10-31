@@ -271,8 +271,13 @@ async function startNextServer({ ensureBuild = true, dev = false } = {}) {
 
   const nextBin = path.join(webDir, "node_modules", "next", "dist", "bin", "next");
   const command = dev
-    ? [nextBin, "dev", "--webpack", "-p", String(port)]
+    // Turbopack: webpack dev outgrows a CI runner heap across the red-team journeys.
+    ? [nextBin, "dev", "--turbopack", "-p", String(port)]
     : [nextBin, "start", "-p", String(port)];
+  // Next dev points the tracked next-env.d.ts at .next/dev/types; restore the
+  // committed build form on stop so later checks see an unchanged tree.
+  const nextEnvPath = path.join(webDir, "next-env.d.ts");
+  const committedNextEnv = dev && existsSync(nextEnvPath) ? readFileSync(nextEnvPath, "utf8") : null;
   const proc = spawn(process.execPath, command, {
     cwd: webDir,
     env: {
@@ -281,14 +286,21 @@ async function startNextServer({ ensureBuild = true, dev = false } = {}) {
     },
     stdio: ["ignore", "inherit", "inherit"]
   });
+  const exited = new Promise((resolve) => proc.once("exit", resolve));
 
   let stopped = false;
   const stop = async () => {
     if (stopped) return;
     stopped = true;
     proc.kill("SIGTERM");
-    await wait(250);
-    if (!proc.killed) proc.kill("SIGKILL");
+    await Promise.race([exited, wait(5000)]);
+    if (proc.exitCode === null && proc.signalCode === null) {
+      proc.kill("SIGKILL");
+      await exited;
+    }
+    if (committedNextEnv !== null && readFileSync(nextEnvPath, "utf8") !== committedNextEnv) {
+      writeFileSync(nextEnvPath, committedNextEnv, "utf8");
+    }
   };
 
   await waitForHealth(baseUrl);
