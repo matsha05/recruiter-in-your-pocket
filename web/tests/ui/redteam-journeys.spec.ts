@@ -39,27 +39,12 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
-    const samplePreview = page.getByRole("article", { name: "Sample resume report preview", exact: true });
-    await samplePreview.getByRole("tab", { name: /Add the result of the launch/i }).click();
-    const launchDetail = samplePreview.getByRole("tabpanel", { name: /Add the result of the launch/i });
-    await expect(launchDetail.locator("blockquote")).toContainText(
-      "Ran a cross-team launch with clear owners and checkpoints.",
-    );
-    await expect(launchDetail).toContainText("It doesn't tell a recruiter whether the launch met its goal.");
-    await expect(launchDetail.getByText("What to change", { exact: true })).toBeVisible();
-    await expect(launchDetail).toContainText("Add a result you can verify. What was the launch meant to achieve, and what happened?");
-
-    const onboardingPriority = samplePreview.getByRole("tab", { name: /Explain how onboarding improved productivity/i });
-    await onboardingPriority.click();
-    await expect(onboardingPriority).toHaveAttribute("aria-selected", "true");
-    const onboardingDetail = samplePreview.getByRole("tabpanel", { name: /Explain how onboarding improved productivity/i });
-    await expect(onboardingDetail.locator("blockquote")).toContainText(
-      "Led onboarding work across the company, improving productivity.",
-    );
-    await expect(onboardingDetail).toContainText("How many people did you onboard, on which teams, and over what period?");
-    // Onboarding has no rewrite in the sample, so it must not borrow another fix's advice.
-    await expect(onboardingDetail.getByText("What to change", { exact: true })).toHaveCount(0);
-    await expect(launchDetail).toBeHidden();
+    // The full example sits one step from the opening, and the way back still leads to a report.
+    await page.getByRole("link", { name: "See a full example", exact: true }).click();
+    await expect(page).toHaveURL(/\/sample-report$/, { timeout: 45_000 });
+    await expect(page.getByText("Critical Miss", { exact: true }).first()).toBeVisible();
+    await page.goBack();
+    await expect(page.getByTestId("landing-primary-cta")).toHaveText("Read my resume");
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();

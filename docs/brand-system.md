@@ -12,7 +12,7 @@ Authority: This document owns brand identity, promise, emotional target, voice p
 
 Recruiter in Your Pocket is the sharp, generous friend who knows hiring from the inside. We show people what their resume already proves, where the proof gets lost, and the smallest honest change that makes it easier to see.
 
-The homepage opens on the promise itself: “See what a recruiter sees.” Below it, one example resume can be read two ways. “Your view” shows the page as the candidate wrote it; “A recruiter’s view” adds the margin notes a sharp recruiter would write, the First Impression, and the one Critical Miss. A recruiter's two tools are the visual system: a green pen writes the notes, and a yellow highlighter marks the Critical Miss. Schibsted Grotesk for headlines and interface, Literata for the recruiter's voice, and dark pill actions extend across the whole product. The October 30, 2026 hero replaced the earlier 3D instrument, which is retired along with the pocket lion and granite explorations. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
+The homepage opens on the promise itself: “See what a recruiter sees.” Since October 31, 2026 it opens on ink, beside a pile of resumes: the top sheet is a real, ordinary resume, marked up in the margin the way a recruiter marks a printout, with the one Critical Miss under the highlighter. A recruiter's two tools are the visual system: a green pen writes the notes, and a yellow highlighter marks the Critical Miss. Schibsted Grotesk for headlines and interface, Literata for the recruiter's voice, and dark pill actions extend across the whole product. The October 30, 2026 hero replaced the earlier 3D instrument, which is retired along with the pocket lion and granite explorations. The Lifted Line evidence grammar remains useful product logic: vague language becomes specific and hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
 
 ## What we promise
 
@@ -97,7 +97,7 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
-Lead with “See what a recruiter sees.”, one dark primary action, and a quiet route to the sample report. The “Your view / A recruiter’s view” example is a fictional resume, labeled as an example. The recruiter's view reveals itself once when the example scrolls into view; the visitor's own choice always wins after that. Reduced motion shows the same states without travel. The example never gates the report action.
+Lead with “See what a recruiter sees.” on the ink opening, one primary action (“Read my resume”), and a quiet route to the full example. The pile shows a fictional, deliberately ordinary resume as a real printed document; the recruiter's pen works in its margin with short notes, and the highlighter lands on the Critical Miss. The sheets settle and the marks land once, in reading order; reduced motion shows the finished pile. The illustration is decorative for assistive technology, and the claims it shows are stated in text in “What we look for, line by line.” The pile never gates the report action.
 
 ### Workspace and reports
 

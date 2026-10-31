@@ -11,38 +11,43 @@ test("an unavailable saved theme does not take down the landing page", async ({ 
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
-    const demo = page.getByTestId("recruiter-view-demo");
-    await demo.getByRole("button", { name: "A recruiter’s view", exact: true }).click();
-    await expect(demo).toHaveAttribute("data-view", "recruiter");
+    await expect(page.getByTestId("landing-pile").getByText("Critical Miss", { exact: true })).toBeVisible();
     await expect(page.getByTestId("landing-primary-cta")).toHaveAttribute("href", "/workspace");
 });
 
-test("a failed font leaves the example toggle usable from the keyboard", async ({ page }) => {
+test("a failed font leaves the main action usable from the keyboard", async ({ page }) => {
     await page.route("**/fonts/schibsted-grotesk/**", route => route.abort());
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const demo = page.getByTestId("recruiter-view-demo");
-    const recruiter = demo.getByRole("button", { name: "A recruiter’s view", exact: true });
-    const yours = demo.getByRole("button", { name: "Your view", exact: true });
-    await recruiter.focus();
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await page.getByTestId("landing-primary-cta").focus();
     await page.keyboard.press("Enter");
-    await expect(recruiter).toHaveAttribute("aria-pressed", "true");
-    await expect(demo.getByText("Critical Miss", { exact: true })).toBeVisible();
-    await yours.focus();
-    await page.keyboard.press("Enter");
-    await expect(demo).toHaveAttribute("data-view", "you");
-    await expect(demo.getByText("Critical Miss", { exact: true })).toHaveCount(0);
+    await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
 });
 
-test("the example shows the recruiter's read once it scrolls into view, unless the visitor already chose", async ({ page }) => {
+test("the header sits on the ink opening until the hero scrolls away", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const demo = page.getByTestId("recruiter-view-demo");
-    await expect(demo).toHaveAttribute("data-view", "you");
-    await demo.scrollIntoViewIfNeeded();
-    await expect(demo).toHaveAttribute("data-view", "recruiter");
-    await demo.getByRole("button", { name: "Your view", exact: true }).click();
-    await page.waitForTimeout(1000);
-    await expect(demo).toHaveAttribute("data-view", "you");
+    const header = page.locator("header.site-header");
+    await expect(header).toHaveAttribute("data-tone", "ink");
+    await expect(page.locator("html")).not.toHaveAttribute("data-header-solid", "true");
+    // Read on until the next section reaches the top, the way a visitor scrolls past the opening.
+    await page.evaluate(() => scrollTo(0, document.querySelector("#how-it-works")!.getBoundingClientRect().top + scrollY));
+    await expect(page.locator("html")).toHaveAttribute("data-header-solid", "true");
+    await page.evaluate(() => scrollTo(0, 0));
+    await expect(page.locator("html")).not.toHaveAttribute("data-header-solid", "true");
+    // Other pages never get the ink header.
+    await page.goto("/pricing");
+    await expect(page.locator("header.site-header")).not.toHaveAttribute("data-tone", "ink");
+});
+
+test("reduced motion shows the finished pile without animating it", async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
+    const page = await context.newPage();
+    await page.goto("/");
+    const marked = page.getByTestId("landing-pile").getByText("Introduced monthly renewal-risk reviews across the portfolio", { exact: true });
+    await expect(marked).toBeVisible();
+    expect(await marked.evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+    await context.close();
 });

@@ -27,7 +27,8 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
     const isReportsActive = pathname === "/reports" || pathname?.startsWith("/reports/");
 
     return (
-        <header className="site-header">
+        // On the homepage the header starts on the ink opening; the hero marks when it has scrolled past.
+        <header className="site-header" data-tone={pathname === "/" ? "ink" : undefined}>
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-3 rounded-md">
                     <Wordmark className="site-wordmark text-foreground" />
