@@ -2597,14 +2597,14 @@
 
   .site-header {
     @apply fixed top-0 left-0 right-0 z-50;
-    background: hsl(var(--surface-page) / 0.96);
+    background: hsl(var(--surface-page));
     border-bottom: 1px solid hsl(var(--line));
   }
 
   .site-header-ink,
   .dark .site-header,
   .dark .site-header-ink {
-    background: hsl(var(--surface-page) / 0.96);
+    background: hsl(var(--surface-page));
     border-bottom-color: hsl(var(--line));
   }
 

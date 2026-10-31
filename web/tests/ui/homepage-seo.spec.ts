@@ -34,12 +34,11 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(preview).toContainText("First Impression score");
     await expect(preview).toContainText("Critical Miss");
 
-    const founder = page.getByRole("heading", { level: 2, name: "I've hired at OpenAI, Meta, and Google. This is how I read a resume." });
+    const founder = page.getByRole("heading", { level: 2, name: "I've hired hundreds of people and led hiring globally at OpenAI, Meta, and Google." });
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("I've spent 14 years recruiting and leading hiring teams.");
-    await expect(homepage).toContainText("I wrote the review criteria. AI applies them to your resume, so I don't read individual reports.");
-    await expect(homepage).toContainText("The companies above are my work history; none of them sponsor or endorse this product.");
+    await expect(homepage).toContainText("After 14 years in recruiting, I built this");
+    await expect(homepage).toContainText("Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself.");
     await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/mattrshaw",

@@ -22,16 +22,16 @@ export function LandingMineral() {
                     <p>Matt Shaw <span>Founder</span></p>
                 </div>
                 <div className={styles.founderCopy}>
-                    <h2 id="founder-title">I&apos;ve hired at OpenAI, Meta, and Google. This is how I read a resume.</h2>
+                    <h2 id="founder-title">I&apos;ve hired hundreds of people and led hiring globally at OpenAI, Meta, and Google.</h2>
                     <p className={styles.introduction}>
-                        I&apos;m Matt. I&apos;ve spent 14 years recruiting and leading hiring teams. I built this so you get the honest read most candidates never hear, before you hit send.
+                        I&apos;m Matt. After 14 years in recruiting, I built this to give you the read I&apos;d give a friend before they hit send.
                     </p>
                     <p className={styles.historyLabel}>Where I&apos;ve recruited and led hiring teams</p>
                     <ul className={styles.history} aria-label="Matt's work history">
                         {WORK_HISTORY.map((company) => <li key={company}>{company}</li>)}
                     </ul>
                     <p className={styles.disclosure}>
-                        I wrote the review criteria. AI applies them to your resume, so I don&apos;t read individual reports. The companies above are my work history; none of them sponsor or endorse this product.
+                        <strong>Heads up:</strong> I wrote the review criteria, and AI applies them to your resume. I don&apos;t read each report myself.
                     </p>
                     <div className={styles.founderLinks}>
                         <Link href="/methodology">How the report works <ArrowRight aria-hidden="true" /></Link>

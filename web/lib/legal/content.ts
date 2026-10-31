@@ -215,7 +215,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice.",
+              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice. Company names that describe our founder's work history do not mean those companies sponsor, endorse, or are affiliated with RIYP.",
             },
           ],
         ],
