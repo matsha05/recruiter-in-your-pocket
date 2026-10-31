@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import { m } from "motion/react";
 import {
   ArrowRight,
   CaretDown,
@@ -16,6 +17,8 @@ import {
 } from "@/lib/reports/report-presentation";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { EASE } from "@/lib/animation";
 import { FixCanvas } from "./FixCanvas";
 import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
@@ -97,6 +100,15 @@ export function ReportStream({
     onUpgrade();
   };
 
+  // Signature move: the recruiter's read draws in, one beat at a time, when a report first appears.
+  // The server snapshot reports reduced motion, so pages that arrive fully rendered start settled.
+  const reducedMotion = useReducedMotion();
+  const reveal = (step: number) => ({
+    initial: reducedMotion ? false : { opacity: 0, y: 6 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.32, ease: EASE, delay: 0.12 + step * 0.14 },
+  });
+
   return (
     <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
@@ -106,7 +118,7 @@ export function ReportStream({
         {verdictReason && <p className={cn(styles.body, "mt-4 max-w-[43rem] text-foreground")}>{verdictReason}</p>}
 
         {typeof report.score === "number" && (
-          <div className={styles.scoreRow} data-testid="first-impression-score">
+          <m.div {...reveal(0)} className={styles.scoreRow} data-testid="first-impression-score">
             <p className={styles.scoreValue}>
               {report.score}<span className={styles.scoreScale}>/100</span>
             </p>
@@ -114,11 +126,11 @@ export function ReportStream({
               <p className="text-sm font-semibold text-foreground">First Impression score</p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">How clearly your resume shows your work today. It doesn&apos;t predict interviews or offers.</p>
             </div>
-          </div>
+          </m.div>
         )}
 
         {criticalMiss && (
-          <div className={styles.criticalMiss} data-testid="critical-miss">
+          <m.div {...reveal(1)} className={styles.criticalMiss} data-testid="critical-miss">
             <p className={styles.criticalLabel}>Critical Miss</p>
             <p className={styles.criticalTitle}>{criticalMiss.fix || criticalMiss.text}</p>
             {criticalMiss.why && <p className={cn(styles.body, "mt-2 text-foreground")}>{criticalMiss.why}</p>}
@@ -128,14 +140,14 @@ export function ReportStream({
             }}>
               See how to fix it <ArrowRight className="size-4" weight="bold" />
             </button>
-          </div>
+          </m.div>
         )}
 
         {strengths[0] && (
-          <div className={styles.worksNote}>
+          <m.div {...reveal(2)} className={styles.worksNote}>
             <p className="text-sm font-semibold text-foreground">Don&apos;t touch this one</p>
             <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
-          </div>
+          </m.div>
         )}
       </section>
 
