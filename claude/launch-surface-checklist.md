@@ -73,7 +73,7 @@ Working list for the `claude/launch-surface` branch. Source: three read-only aud
 ## Other scoring systems
 
 - [ ] LinkedIn report: band + four subscores → Verdict / one score / Critical Miss.
-- [ ] Version comparison: compare Verdict and whether the Critical Miss was resolved; drop subscores.
+- [x] Version comparison: compare Verdict and whether the Critical Miss was resolved; drop subscores. Progress page rebuilt around recurring misses and strengths.
 - [ ] Dashboard: drop "Average Score" and color bands; lead with what keeps coming up.
 - [ ] Jobs: "% match" and bands → counts of posting terms found.
 

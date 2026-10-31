@@ -445,15 +445,13 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Compare my revision");
     await page.getByTestId("workspace-run-report").click();
 
-    const comparison = page.getByRole("region", { name: "Here's what changed in your feedback.", exact: true });
+    const comparison = page.getByRole("region", { name: "Your Critical Miss changed.", exact: true });
     await expect(comparison).toBeVisible();
-    const previous = comparison.getByRole("article").filter({ hasText: "Previous report" });
-    const current = comparison.getByRole("article").filter({ hasText: "Current report" });
-    await expect(previous).toContainText(REPORT.first_impression_takeaway);
-    await expect(previous).toContainText(REPORT.gaps[0]);
+    const previous = comparison.getByRole("article", { name: "Last time" });
+    const current = comparison.getByRole("article", { name: "Now" });
+    await expect(previous).toContainText(REPORT.first_impression);
     await expect(previous).toContainText(REPORT.top_fixes[0].fix);
-    await expect(current).toContainText(revisedReport.first_impression_takeaway);
-    await expect(current).toContainText(revisedReport.gaps[0]);
+    await expect(current).toContainText(revisedReport.first_impression);
     await expect(current).toContainText(revisedReport.top_fixes[0].fix);
     await expect(reportHeading(page)).toHaveText(revisedReport.first_impression);
     expect(submission?.text).toBe(UPLOADED_TEXT);

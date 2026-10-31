@@ -3,8 +3,8 @@ import { PRIVATE_ROUTE_ROBOTS } from "@/lib/seo/privateRouteMetadata";
 import { AppHeader } from "@/components/layout/AppHeader";
 
 export const metadata: Metadata = {
-  title: "Resume Progress",
-  description: "Compare saved resume versions and revisit the patterns in your reports.",
+  title: "Your progress",
+  description: "How your resume has moved across versions, and what keeps coming up in your reports.",
   robots: PRIVATE_ROUTE_ROBOTS,
 };
 
