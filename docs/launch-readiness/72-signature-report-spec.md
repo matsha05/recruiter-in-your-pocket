@@ -1,8 +1,8 @@
 # The signature report (plan Phase 2, with 1.7, 1.8 and D5)
 
 Date: 2026-11-01
-Status: Built on branch `claude/hopeful-grothendieck-c224df`. Not pushed, merged, or deployed. The copy and band anchors marked "pending" are waiting on Matt.
-Plan items: 2.1 to 2.6 in [70-audit-remediation-plan.md](70-audit-remediation-plan.md), plus 1.7 (recovered reports), 1.8 (hiding a suggestion), D5 (score bands) and D2's "Nothing critical".
+Status: Built on branch `claude/hopeful-grothendieck-c224df`. Not pushed, merged, or deployed. Decided (Nov 1): Matt chose quoted lines only, the band anchors as written, and guarded polish; the coordinator approved the new copy and the motion.
+Plan items: 2.1 to 2.6 in [70-audit-remediation-plan.md](70-audit-remediation-plan.md), plus 1.7 (recovered reports), 1.8 (hiding a suggestion) and D5 (score bands). "Nothing critical" (D2) was dropped on Nov 1: every report names a Critical Miss.
 
 ## The idea
 
@@ -13,10 +13,10 @@ The report becomes a resume a recruiter has marked up. The candidate's own lines
 | # | Decision | Why |
 | --- | --- | --- |
 | 1 | The page shows the lines the report quotes, not the whole resume | Saved reports, recovered reports and the PDF don't have the resume. Quoted lines look the same everywhere (2.4) |
-| 2 | The revised line is the original line plus the answers, word for word, after a colon | It is the only composition the existing guard passes on real outputs (see Evidence). Nothing is paraphrased, so the only words we add are punctuation |
+| 2 | The revised line starts as the original line plus the answers, word for word, after a colon; a guarded polish may replace it | The literal line always passes the guard (see Evidence). Matt chose "Guarded polish now": a model smooths it, and the smoother line shows only if every word traces to the line or the answers (see "Guarded polish") |
 | 3 | Edits may reword freely; a new number, name or claim (for example "led") must come in as an answer first | The guard stops us putting words in the candidate's mouth. Their own rewording is theirs, but an inflated claim needs a deliberate step |
 | 4 | Score bands with anchors on the first report; the number only in revision comparisons (D5) | Thresholds match the validator's `score_label` (85 and 70) |
-| 5 | "Nothing critical" is `top_fixes[0].impact_level === "low"` | The ranking session's prompt marks it that way (D2) |
+| 5 | Always a Critical Miss; the layout is ready for up to three | Matt: "Always name a top fix" and "Up to three Critical Misses" (next prompt). `criticalFixCount` is the one place a v3 marker is read; rows, the highlighter (sweeping only the first), the revised-line flow, its polish and the PDF follow it |
 | 6 | One signature motion: the highlighter sweeps the Critical Miss line once, then the note fades in | Reuses `Mark` and `useSeen` from the research figures. The old staggered reveal of the opening is gone; report prose stays still |
 
 ## Layout
@@ -36,7 +36,7 @@ Type is the shared roles only (verdict, heading, lead in Literata for quoted lin
 - **Each question:** a field, plus "I don't know" (left out for now) and "I didn't do this" (left out; it's not their work). If every answer is "I didn't do this", the line says "Then this one isn't yours to fix" and "Was this right?" opens with the note field.
 - **The line:** builds as they type. Their answers are underlined in blue ink. Edit opens it as text.
 - **States, from `liftState`:** open, partly (some "I don't know"), addressed (every written answer is in the line), unknown, not mine. "Addressed" shows on the Critical Miss label and changes the ending's heading. The step rail (Your line, What's missing, Your answers, Revised line) follows these real states.
-- **Fixes 2 and 3:** "Work on this line" opens the same interaction. "Nothing critical" opens it the same way, since the fix is optional.
+- **Fixes 2 and 3:** "Work on this line" opens the same interaction.
 - **Without the resume:** the quoted excerpt stands in as the source. The note says why, accurately: "This page was reloaded…" for a recovered report, "Saved reports don't keep your resume…" for a saved one. "Paste your resume to work on the whole line" reattaches it in memory only, after checking that it contains the quoted lines (1.7).
 
 ### The copy rule (`revisedLinePolicy`)
@@ -53,17 +53,39 @@ Type is the shared roles only (verdict, heading, lead in Literata for quoted lin
 - An edit from "Helped oversee" to "Led" is blocked (`lead`); an invented "55" and "Google" are blocked; rewording the candidate's own facts is allowed.
 - `tests/revised-line.test.ts` encodes all of the above and runs in `test:report-integrity`.
 
+## Guarded polish (Matt, Nov 1: "Guarded polish now")
+
+**Why.** The literal line is honest but reads like a form ("…using AWS: moved the billing service off the monolith; wrote the migration scripts"). A recruiter skims bullets, and a candidate is more likely to use a line that reads as one. The risk with any model rewrite is invented scope or results, so the model only proposes and a deterministic guard decides.
+
+- **Prompt:** `web/prompts/revise_line_v1.txt`, recorded as `revise_line_v1:<sha8>` in logs and eval output; the build trace asserts it ships with the route. It may reorder, drop filler, and join with and/to/for/of/with/by/in/on/at/the/a/an. It may not add any word, change a word's form (the existing guard folds plurals only, so tense changes fail it), add numbers, names, scope, intensity or outcomes, shrink or grow the candidate's part, or drop an answer.
+- **Model:** `resolveOpenAIModel("revise_line")` (the non-resume path: `OPENAI_MODEL`), production tuning, structured output `{ line }`, 10-second timeout, no retries.
+- **Guard (`checkPolishedLine`, run on the server and again in the browser):**
+  1. Every number and capitalized name comes from the line or the answers.
+  2. Every other word, stemmed, comes from the line or the answers. Joining words are not exempt in production (`POLISH_ALLOWS_JOINERS = false`), so "Every word is from your resume or your answers" stays literally true.
+  3. The existing fabrication guard passes, with the answers as facts. Only its relationship check is waived, and only when the literal line fails it too.
+  4. Nothing is lost: every answer and every number from the line is still there.
+  Anything else falls back to the literal line.
+- **Endpoint:** `POST /api/revise-line`.
+  - Callable only for a fix line from a report the visitor can open: their saved report (signed in), or their anonymous report's recovery (cookie-bound). The line must contain the report's quoted excerpt.
+  - Caps: excerpt 400, line 600, one to three answers of 300 characters each, body 8 KB. Rate limit 30 an hour per identity.
+  - `RIYP_DISABLE_GENERATION` turns it off. Every refusal or failure answers `line: null`, and the counter `riyp.revise.outcome` (polished, fallback, or error, with a closed reason) records it.
+- **UX:**
+  - The literal line shows at once. After the answers settle (1.2 seconds), the browser asks for a polish, re-checks it, and swaps it in.
+  - "Use my exact words" switches back, and "Use the smoothed line" switches again.
+  - Edits re-run the edit rule, and Copy follows it. The sample has no report context, so it keeps the literal line.
+- **Eval:** `scripts/eval-revise-line.ts` runs the 13 saved outputs with realistic answers plus adversarial answers ("we crushed it", vague scope, an inflated role). It reports the strict pass rate, the pass rate with joining words, fallback reasons and a before/after sample, with a $5 cap. Results: `tests/fixtures/results/summary_revise_line_<date>.md`.
+
 ## Hide this suggestion (1.8)
 
 Every row has Hide. The row collapses in place to "Critical Miss hidden. It stays hidden on this device." with "Bring it back". Focus moves to "Bring it back" after Hide, and back to the row after it returns. A fix hidden on an earlier visit never takes focus on load. Hidden rows persist in `localStorage` per report (its id, or a hash of its opening line), wrapped in try/catch. The Critical Miss appears only once, so there is no separate overview to fall out of step.
 
 ## Was this right? (2.6)
 
-On the Critical Miss: "Was this the right thing to fix first?" (for Nothing critical, "Was this right?"). Yes sends at once. No opens an optional "What should it have been?" before Send. Then: "Thanks. Answers like this are how we check the read." It replaces the mailto ending.
+On the first Critical Miss: "Was this the right thing to fix first?". Yes sends at once. No opens an optional "What should it have been?" before Send. Then: "Thanks. Answers like this are how we check the read." It replaces the mailto ending.
 
 `POST /api/report-feedback` (8 KB limit, 20 per hour per user or anonymous identity):
 
-- Always counts `riyp.report.critical_miss_feedback` (answer, has note, nothing critical, viewer) as a PII-free launch signal in Sentry.
+- Always counts `riyp.report.critical_miss_feedback` (answer, has note, viewer) as a PII-free launch signal in Sentry.
 - Stores the answer in `report_feedback` (migration `022_report_feedback.sql`): the model's Critical Miss wording, the answer, the optional note, the report id when saved, and the user id when signed in (deleted with the account). It never stores the resume or its quoted line.
 - If storage fails and there is a note, the request returns 503 and the reader sees "Couldn't send that". A bare yes/no is still counted.
 
@@ -81,13 +103,13 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 
 | Where | Copy |
 | --- | --- |
-| Fix heading | "Fix this first." / "Fix these two first." / "Fix these three first." Nothing critical: "Nothing to fix first." (pending) |
-| Critical Miss label | "Critical Miss" / "The one thing to fix first". Nothing critical: "Nothing critical" / "An optional refinement" (pending) |
-| Bands (pending) | Needs more context: "The jobs are easy to follow. What you did in them mostly isn't." Mostly clear: "Most lines show what you did. A few leave your part or the result unclear." Clear and specific: "Lines say what you did and what changed because of it." |
-| Questions (pending) | "Answer and we'll add it to your line." / "Only what's true. Skip anything you don't know." / "I don't know" / "I didn't do this" |
-| Line (pending) | "Revised line", "Your wording", "Every word is from your resume or your answers. Reword it however you like.", "Addressed" |
-| Feedback (pending) | As above |
-| Ending | "Made your edits? See what changed." / "Compare my revision" (existing). Addressed: "Your line is ready. See how the whole page reads now." (pending). The comparison copy now says the Critical Miss "changed", never "fixed" |
+| Fix heading | "Fix this first." / "Fix these two first." / "Fix these three first." |
+| Critical Miss label | "Critical Miss" / "The one thing to fix first" (the definition only on the first; the copy for several Critical Misses ships with v3) |
+| Bands (approved) | Needs more context: "The jobs are easy to follow. What you did in them mostly isn't." Mostly clear: "Most lines show what you did. A few leave your part or the result unclear." Clear and specific: "Lines say what you did and what changed because of it." |
+| Questions (approved) | "Answer and we'll add it to your line." / "Only what's true. Skip anything you don't know." / "I don't know" / "I didn't do this" |
+| Line (approved) | "Revised line", "Your wording", "Every word is from your resume or your answers. Reword it however you like.", "Addressed" |
+| Feedback (approved) | As above |
+| Ending | "Made your edits? See what changed." / "Compare my revision" (existing). Addressed: "Your line is ready. See how the whole page reads now.". The comparison copy now says the Critical Miss "changed", never "fixed" |
 
 ## Files
 
@@ -96,7 +118,7 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 - Shells: `components/layout/ReportLayout.{tsx,module.css}`, `ReportPanel.tsx`, `ReportDetailClient.tsx`, `WorkspaceClient.tsx` (`data-document`), `app/globals.css`.
 - PDF: `lib/backend/pdf.ts`, `pdf-styles.ts`, `lib/reports/pdf-export.ts`.
 - Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
-- Prototype harness: `/internal/report-lab` (dev or `ALLOW_INTERNAL_PAGES`), with every saved output in fresh, recovered and saved states, the sample, and a constructed Nothing critical case.
+- Prototype harness: `/internal/report-lab` (dev or `ALLOW_INTERNAL_PAGES`), with every saved output in fresh, recovered and saved states and the sample.
 
 ## Verification (local only, production build of this branch, dummy CI environment, mock model)
 
