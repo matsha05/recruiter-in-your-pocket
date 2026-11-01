@@ -18,7 +18,7 @@ export function SkillsPromiseRealityDiagram({ figureNumber = 1 }: { figureNumber
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
-                    title="Dropping the degree rarely changed the hiring"
+                    title="Dropping the degree often didn't change the hiring"
                     note="Every 100 firms that removed a degree requirement, by what happened to their hiring afterward."
                 />
                 <div ref={ref} className="grid gap-8 px-5 py-7 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] md:items-center md:px-7">

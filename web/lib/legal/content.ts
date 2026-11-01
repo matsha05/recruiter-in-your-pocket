@@ -82,7 +82,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: LockKey,
             title: "Clear data handling",
-            body: "Our Security and Privacy pages explain what report and extension data we collect, how long we keep it, and how to delete it.",
+            body: "Our Security and Privacy pages explain what report data we collect, how long we keep it, and how to delete it.",
           },
           {
             icon: Receipt,
@@ -92,13 +92,13 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Trash,
             title: "You control deletion",
-            body: "Delete individual reports from Reports, or delete your account in Settings to remove your reports, saved jobs, default resume, and usage history from our database.",
+            body: "Delete individual reports from Reports, or delete your account in Settings to remove your reports, default resume, and usage history from our database.",
           },
         ],
       },
       {
         type: "checklist",
-        title: "Things you can verify yourself",
+        title: "What we commit to",
         items: TRUST_PROMISES,
         icon: CheckCircle,
         variant: "soft",

@@ -15,7 +15,7 @@ export default function MethodologyPage() {
             header={{
                 tag: "Methodology",
                 title: "How the report works",
-                description: "Every report reads your resume the way a recruiter would: a Verdict, one First Impression score, and the one thing a recruiter is most likely to miss. Here's how each part is made, and what it can't tell you.",
+                description: "Every report applies a recruiter's criteria to your resume: a Verdict, one First Impression score, and the Critical Miss, the one thing to fix first. Here's how each part is made, and what it can't tell you.",
                 lastUpdated: "October 2026",
                 sourceSummary: "2 peer-reviewed studies",
             }}
@@ -29,7 +29,7 @@ export default function MethodologyPage() {
             productTieIn={{
                 title: "What you'll see in your report",
                 items: [
-                    { title: "Verdict", description: "What a recruiter would take away on a first read, in plain words." },
+                    { title: "Verdict", description: "A plain-words read of what your resume says first, judged against a recruiter's criteria." },
                     { title: "First Impression score", description: "One number that summarizes the read. The written findings explain it." },
                     { title: "Critical Miss", description: "The one change to make first, with the line it comes from and the questions to answer." },
                 ],
@@ -58,7 +58,7 @@ export default function MethodologyPage() {
             faq={[
                 {
                     question: "What does the score summarize?",
-                    answer: "How clearly your resume shows your work today: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It's not a simple average, and it doesn't predict interviews or offers.",
+                    answer: "How clearly your resume shows your work today. The main driver is how many of your important recent lines show the scope of the work or what changed. The report also rates four parts, the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow, and keeps the score close to them. It isn't a simple average of the four, which is why they aren't shown as separate numbers. It doesn't predict interviews or offers.",
                 },
                 {
                     question: "Why one score instead of four?",
@@ -75,8 +75,8 @@ export default function MethodologyPage() {
             ]}
             visualization={
                 <>
-                    <h2 className="research-h2">A real report, start to finish</h2>
-                    <p className="research-body mb-6">Everything in this figure comes from the sample report: the Verdict, the score, the Critical Miss, and what the score weighed.</p>
+                    <h2 className="research-h2">The sample report, start to finish</h2>
+                    <p className="research-body mb-6">Everything in this figure comes from our sample report, written for a fictional candidate: the Verdict, the score, the Critical Miss, and what the score weighed.</p>
                     <FirstReadModelDiagram />
                 </>
             }
@@ -86,25 +86,25 @@ export default function MethodologyPage() {
                 A recruiter should be able to tell what kind of work you do, what you owned, how big it was, and what changed because of it. The report looks for those details in your resume. If one is missing, it asks you for it instead of guessing.
             </p>
             <p className="research-body mb-6">
-                It reads the whole document, not a stripped-down summary. In one recruiter study, judgments changed when reviewers saw real resumes instead of simplified candidate profiles, which is why every finding stays tied to the line it came from.
+                It reads the whole document, not a stripped-down summary. In one recruiter study, judgments changed when reviewers saw real resumes instead of simplified candidate profiles. That&apos;s one reason every finding stays tied to the line it came from.
                 <Citation id="source-0">1</Citation>
             </p>
 
             <h2 className="research-h2">How the Critical Miss is chosen</h2>
             <p className="research-body mb-6">
-                Of everything that could be clearer, the Critical Miss is the gap most likely to cost you on a first read: usually your strongest example stopping short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in.
+                Of everything that could be clearer, the report picks one thing to fix first. Often it&apos;s a strong example that stops short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in. The choice applies our criteria; it isn&apos;t a prediction of what a particular recruiter will notice.
             </p>
 
             <h2 className="research-h2">How suggested edits protect your facts</h2>
             <p className="research-body mb-6">
-                Rewrites use only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
+                When the report suggests new wording, it uses only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
             </p>
 
             <h2 className="research-h2">What comes from research, and what is ours</h2>
             <dl className="not-prose mb-12 divide-y divide-border/40 border-y border-border/40">
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-brand">From research</dt>
-                    <dd className="text-sm text-muted-foreground">Real resumes change recruiter judgments, and attention during a first review concentrates on experience.</dd>
+                    <dd className="text-sm text-muted-foreground">In one study, recruiters judged real resumes differently from simplified profiles. In another, longer looks at the Experience section went with moving a resume forward.</dd>
                 </div>
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-foreground">Ours</dt>
@@ -122,6 +122,7 @@ export default function MethodologyPage() {
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
                 <li className="flex gap-2"><span aria-hidden="true">–</span>Whether you&apos;ll get an interview or an offer.</li>
                 <li className="flex gap-2"><span aria-hidden="true">–</span>How a specific employer, team, or hiring process weighs things.</li>
+                <li className="flex gap-2"><span aria-hidden="true">–</span>How your file looks. The report reads the text we pull from it, not the layout, fonts, or columns.</li>
                 <li className="flex gap-2"><span aria-hidden="true">–</span>Anything about referrals, the job market, or bias in hiring.</li>
             </ul>
         </ResearchArticle>

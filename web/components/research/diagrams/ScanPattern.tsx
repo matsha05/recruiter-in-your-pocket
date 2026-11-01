@@ -14,8 +14,8 @@ const transferSteps = [
     {
         index: "02",
         label: "Whole document",
-        title: "Context changes judgment",
-        body: "Recruiters used cues differently when they saw real resumes instead of stripped-down candidate profiles.",
+        title: "Real resumes, different judgments",
+        body: "Recruiters judged real resumes differently from stripped-down profiles. That's a lesson about how to study screening, not a rule for writing.",
     },
     {
         index: "03",

@@ -8,18 +8,18 @@ const studies = [
         source: "Pina et al. / 2023",
         evidence: "Peer-reviewed eye-tracking study",
         observed: "Among 2,043 usable resume reviews, total review time and Experience-section viewing were associated with advancement decisions.",
-        boundary: "Entry-level computer science resumes in a simulated screen; association does not establish causation.",
+        boundary: "Recruiters from one US state judging computer science graduates in a simulated screen; association does not establish causation.",
     },
     {
         source: "Fritzsche & Brannick / 2002",
         evidence: "Peer-reviewed judgment study",
         observed: "Forty recruiters judged 60 actual resumes or corresponding resume profiles; ratings and cue use differed between formats.",
-        boundary: "The format affected recruiter judgments; the study does not prescribe one resume layout or reading order.",
+        boundary: "A methods study: profiles aren't a stand-in for real resumes. It doesn't tell candidates how to write or lay out a resume.",
     },
     {
         source: "TheLadders / 2012",
-        evidence: "Company-sponsored eye-tracking report",
-        observed: "Popularized an average initial screen of roughly six seconds in its small study.",
+        evidence: "Vendor eye-tracking report",
+        observed: "Watched 30 recruiters and popularized an average initial screen of roughly six seconds.",
         boundary: "Historical, directional evidence only; not a population estimate or universal recruiter timer.",
     },
 ];

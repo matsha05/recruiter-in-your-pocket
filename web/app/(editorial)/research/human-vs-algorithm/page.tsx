@@ -4,6 +4,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 export const metadata: Metadata = {
     title: "What recruiters trust and what they follow",
     description: "A resume-screening experiment found a gap between recruiters' stated trust and their response to algorithmic advice.",
+    alternates: { canonical: "/research/human-vs-algorithm" },
 };
 
 export default function HumanVsAlgorithmPage() {
@@ -21,7 +22,7 @@ export default function HumanVsAlgorithmPage() {
                 stat: "Higher trust in humans. More influence from the algorithm.",
                 statDescription: (
                     <>
-                        In an experiment with 694 professionals involved in recruitment, participants rated human recommendations as more trustworthy. Yet an inconsistent algorithmic recommendation still pulled evaluations toward the less-suitable resume.
+                        In an experiment with 694 French professionals involved in recruitment, recruited through an online panel, participants rated human recommendations as more trustworthy. Yet an inconsistent algorithmic recommendation still pulled evaluations toward the less-suitable resume.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -29,7 +30,7 @@ export default function HumanVsAlgorithmPage() {
                     text: "Lacroux & Martin-Lacroux (2022), experiment",
                     href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
                 },
-                sampleSize: "694 professionals involved in recruitment"
+                sampleSize: "694 French recruitment professionals from an online panel"
             }}
             visualization={
                 <>
@@ -54,8 +55,8 @@ export default function HumanVsAlgorithmPage() {
                 title: "How to read your score",
                 items: [
                     {
-                        title: "A number you can trace",
-                        description: "Your First Impression score comes with the Verdict and the lines behind it. If you can't trace it back to the page, question it."
+                        title: "The score is a summary",
+                        description: "Your First Impression score sums up the written findings. Read those first; the number on its own can't tell you what to change."
                     },
                     {
                         title: "Advice you can check",
@@ -115,7 +116,7 @@ export default function HumanVsAlgorithmPage() {
                     title="One simulated hiring task"
                     desc={
                         <>
-                            Participants judged two resume summaries for one HR manager role; this does not establish how every recruiter or production system behaves.
+                            French panel participants judged two resume summaries for one HR manager role; this does not establish how every recruiter or production system behaves.
                             <Citation id="source-1">1</Citation>
                         </>
                     }

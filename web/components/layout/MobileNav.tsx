@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Gear, House, List, SignOut } from "@phosphor-icons/react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Wordmark } from "@/components/icons";
-import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
+import { STUDIO_NAV, navLinkHref, type NavItem } from "@/lib/navigation";
 
 export function MobileNav({ workspaceReportVisible = false }: { workspaceReportVisible?: boolean }) {
     const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                         {STUDIO_NAV.map((item) => (
                             <MobileNavLink
                                 key={item.href}
-                                href={item.href}
+                                href={navLinkHref(item.href)}
                                 icon={item.icon}
                                 label={item.label}
                                 setOpen={setOpen}

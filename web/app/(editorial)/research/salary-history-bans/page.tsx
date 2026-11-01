@@ -5,6 +5,7 @@ import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 export const metadata: Metadata = {
     title: "Should you share your salary history?",
     description: "What salary-history-ban and disclosure studies found, and why there is no universal disclosure script.",
+    alternates: { canonical: "/research/salary-history-bans" },
 };
 
 export default function SalaryHistoryPage() {
@@ -63,21 +64,21 @@ export default function SalaryHistoryPage() {
                 {
                     id: "source-1",
                     title: "Information and the Persistence of the Gender Wage Gap: Early Evidence from California's Salary History Ban",
-                    publisher: "National Bureau of Economic Research",
+                    publisher: "Hansen & McNichols. NBER Working Paper 27054",
                     year: "2020",
                     href: "https://www.nber.org/papers/w27054"
                 },
                 {
                     id: "source-2",
                     title: "Salary History and Employer Demand: Evidence from a Two-Sided Audit",
-                    publisher: "National Bureau of Economic Research",
+                    publisher: "Agan, Cowgill & Gee. NBER Working Paper 29460; published in AEJ: Applied Economics 17(3), 2025",
                     year: "2021; revised 2023",
                     href: "https://www.nber.org/papers/w29460"
                 },
                 {
                     id: "source-3",
                     title: "First offers as anchors: The role of perspective-taking and negotiator focus",
-                    publisher: "Journal of Personality and Social Psychology (via PubMed)",
+                    publisher: "Galinsky & Mussweiler. Journal of Personality and Social Psychology 81(4) (via PubMed)",
                     year: "2001",
                     href: "https://pubmed.ncbi.nlm.nih.gov/11642352/"
                 }
@@ -134,7 +135,7 @@ export default function SalaryHistoryPage() {
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>Legal requirements vary by jurisdiction. This is not legal advice.</li>
-                <li>The two salary-history studies are NBER working papers, not guarantees about an individual negotiation.</li>
+                <li>The ban study is an NBER working paper, and we describe the audit study from its 2023 working-paper version. Neither is a guarantee about an individual negotiation.</li>
                 <li>The negotiation experiments tested first offers generally, not salary-history disclosure specifically.</li>
             </ul>
         </ResearchArticle>

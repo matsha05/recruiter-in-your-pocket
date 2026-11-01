@@ -20,6 +20,7 @@ type ResumeModeSectionProps = {
   freeUsesRemaining: number;
   user: AuthUser | null;
   onSampleReport: () => void;
+  onOpenLastReport?: () => void;
   loadedJobContext: LoadedJobContext | null;
   onExportPdf?: () => void;
   isExporting: boolean;
@@ -53,6 +54,7 @@ export default function ResumeModeSection({
   freeUsesRemaining,
   user,
   onSampleReport,
+  onOpenLastReport,
   loadedJobContext,
   onExportPdf,
   isExporting,
@@ -101,6 +103,7 @@ export default function ResumeModeSection({
           freeUsesRemaining={freeUsesRemaining}
           user={user}
           onSampleReport={onSampleReport}
+          onOpenLastReport={onOpenLastReport}
           loadedJobContext={loadedJobContext}
           isRevision={Boolean(comparisonBaseline)}
         />

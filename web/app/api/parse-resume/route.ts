@@ -86,14 +86,38 @@ export async function POST(request: Request) {
 
     let extractedText = "";
 
+    // A file the parser can't read is a problem with the upload, not the server:
+    // answer 422 and log a warning so a damaged PDF doesn't page anyone.
+    const unreadableFile = (err: any) => {
+      logWarn({
+        msg: "http.request.completed", request_id, route, method, path, status: 422,
+        latency_ms: Date.now() - startedAt, outcome: "validation_error",
+        err: { name: err?.name || "Error", message: err?.message || "Parse error" },
+      });
+      const res = NextResponse.json(
+        { ok: false, errorCode: "UNREADABLE_FILE", message: "Could not read this file. Try uploading a new PDF or DOCX copy." },
+        { status: 422 }
+      );
+      res.headers.set("x-request-id", request_id);
+      return res;
+    };
+
     if (kind === "pdf") {
       // Legacy PDF.js loses pooled Buffer offsets when it creates substreams.
       // Give it a dedicated typed array so valid PDFs retain their byte offsets.
-      const pdfData: any = await (pdfParse as any)(new Uint8Array(buffer));
-      extractedText = pdfData?.text || "";
+      try {
+        const pdfData: any = await (pdfParse as any)(new Uint8Array(buffer));
+        extractedText = pdfData?.text || "";
+      } catch (err) {
+        return unreadableFile(err);
+      }
     } else if (kind === "docx") {
-      const docxResult = await mammoth.extractRawText({ buffer });
-      extractedText = docxResult.value || "";
+      try {
+        const docxResult = await mammoth.extractRawText({ buffer });
+        extractedText = docxResult.value || "";
+      } catch (err) {
+        return unreadableFile(err);
+      }
     } else {
       const res = NextResponse.json(
         {

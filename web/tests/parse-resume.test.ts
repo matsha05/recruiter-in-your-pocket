@@ -62,9 +62,9 @@ async function run() {
       ["truncated.pdf", pdf.subarray(0, 100)],
     ] as const) {
       const { response, body } = await upload(bytes, name, "application/pdf");
-      assert.equal(response.status, 500, `${name}: existing unreadable-file status is preserved`);
+      assert.equal(response.status, 422, `${name}: an unreadable upload is a client error, not a server fault`);
       assert.equal(body.ok, false, name);
-      assert.equal(body.errorCode, "PARSE_ERROR", name);
+      assert.equal(body.errorCode, "UNREADABLE_FILE", name);
       assert.equal(body.text, undefined, `${name}: rejected files must not return extracted text`);
     }
 

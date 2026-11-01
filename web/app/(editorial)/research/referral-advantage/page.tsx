@@ -6,7 +6,8 @@ import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/Referr
 
 export const metadata: Metadata = {
     title: "What a referral changes",
-    description: "Referred candidates are a sliver of applicants and a large share of hires. What the studies and hiring data show, and what a referral still can't do for you.",
+    description: "Referrals are a sliver of applications and a large share of hires. What the studies and hiring data show, and what a referral still can't do for you.",
+    alternates: { canonical: "/research/referral-advantage" },
 };
 
 export default function ReferralAdvantagePage() {
@@ -24,25 +25,25 @@ export default function ReferralAdvantagePage() {
                 stat: "40% vs. 3%",
                 statDescription: (
                     <>
-                        Across more than 38 million applications, 40% of referred candidates reached an interview. Of people who applied on their own, 3% did.
+                        Across more than 38 million applications in one recruiting-software company&apos;s data, 40% of referred applications reached an interview. Of applications sent in cold, 3% did.
                         <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Ashby hiring data, 2021 to 2024",
+                    text: "Ashby (recruiting software vendor), customer data 2021 to 2024",
                     href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">A sliver of applicants, a big share of hires</h2>
+                    <h2 className="research-h2">A sliver of applications, a big share of hires</h2>
                     <p className="research-body mb-6">
-                        Economists at the New York Fed followed 62,127 applicants through one large US company&apos;s hiring process. Employee referrals were 6% of the people who applied and 29% of the people who were hired. Job boards went the other way: 60% of applicants, 24% of hires.
+                        Economists at the New York Fed followed 62,127 applications to jobs posted from 2006 to 2010 at one US financial services company with 2,000 to 5,000 employees. Employee referrals were 6% of the applications and 29% of the hires. Job boards went the other way: 60% of applications, 24% of hires.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <ReferralHiringShareDiagram figureNumber={1} />
                     <p className="research-body mb-6">
-                        After accounting for the job and the applicant pool, referred candidates were 7.3 percentage points more likely to be interviewed than job board applicants. Once interviewed, they were 14 points more likely to get an offer.
+                        After accounting for the job and the applicant pool, referred applications were 7.3 percentage points more likely to lead to an interview than job-board applications. Once interviewed, referred candidates were 14 points more likely to get an offer.
                         <Citation id="source-1">1</Citation>
                     </p>
                 </>
@@ -52,11 +53,11 @@ export default function ReferralAdvantagePage() {
                 items: [
                     {
                         title: "Read the Verdict first",
-                        description: "A referral buys you a real read. The Verdict is what that reader is likely to conclude, so check it before someone puts their name next to yours."
+                        description: "A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours."
                     },
                     {
                         title: "Fix the Critical Miss",
-                        description: "Your referrer can vouch for you. They can't fix the line that makes a recruiter hesitate. The Critical Miss is that line."
+                        description: "Your referrer can vouch for you. They can't fix your resume. The Critical Miss is the one thing to fix first, so fix it before you send it."
                     }
                 ]
             }}
@@ -76,7 +77,7 @@ export default function ReferralAdvantagePage() {
                 {
                     id: "source-2",
                     title: "Are referred candidates more likely to get hired?",
-                    publisher: "Ashby Talent Trends Report. 38M+ applications across 93,000 jobs",
+                    publisher: "Ashby Talent Trends Report (vendor data). 38M+ applications across 93,000 jobs",
                     year: "2025",
                     href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals"
                 },
@@ -112,21 +113,21 @@ export default function ReferralAdvantagePage() {
         >
             <h2 className="research-h2">The gap grew as hiring slowed</h2>
             <p className="research-body mb-6">
-                Ashby, a recruiting platform, tracked offer rates by source from late 2021 to late 2024, a stretch when hiring cooled, especially in tech. Both groups&apos; odds fell. Referred candidates went from about 1 offer in 8 to about 1 in 14. Cold applicants went from about 1 in 140 to about 1 in 500.
+                Ashby, a recruiting software company, tracked offer rates by source from late 2021 to late 2024, a stretch when hiring cooled, especially in tech. Both rates fell. Referred applications went from a 12.1% offer rate to 7.3%, roughly 1 in 8 to 1 in 14. Cold applications went from 0.7% to 0.2%, roughly 1 in 140 to 1 in 500.
                 <Citation id="source-2">2</Citation>
             </p>
             <ReferralOfferOddsDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                By our arithmetic from Ashby&apos;s published rates, a referred candidate&apos;s edge grew from about 17 times the cold odds to about 36 times. That matches what recruiters see in a slow market: hundreds of applications per role, and a referral is how you skip the pile.
+                By our arithmetic from those rates, a referral&apos;s edge grew from about 17 times the cold rate to somewhere around 30 to 50 times. Ashby rounds the late cold rate to 0.2%, so the second figure can&apos;t be pinned down more closely. <strong>Our take:</strong> that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile.
             </p>
             <p className="research-body mb-6">
-                The edge isn&apos;t about referred people being stronger on paper. Across nine large firms in call centers, trucking, and high tech, referred candidates were more likely to be hired and to accept offers than non-referred candidates with similar skills.
+                The edge isn&apos;t only about referred people looking stronger on paper. Across nine large firms in call centers, trucking, and high tech, referred applicants were more likely to be hired and to accept offers, even though the two groups had similar skill characteristics.
                 <Citation id="source-3">3</Citation>
             </p>
 
             <h2 className="research-h2">What a referral changes on the recruiter&apos;s desk</h2>
             <p className="research-body mb-6">
-                <strong>Our take:</strong> this is what happens when a referral lands, from years on the receiving end.
+                <strong>Our take:</strong> this section is Matt Shaw&apos;s experience from years of receiving referrals as a recruiter, not a finding from the studies above.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
@@ -149,12 +150,12 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">Why employers lean on them</h2>
             <p className="research-body mb-6">
-                Referrals tell employers things a resume can&apos;t. In field experiments on an online job site, referred workers did better work and stayed longer than workers with similar profiles. The effect was strongest when the referrer was a strong performer who knew the person well.
+                Referrals tell employers things a resume can&apos;t. In field experiments on an online job site, referred workers did better work and were more likely to want to stay on than workers with similar profiles. The effect was strongest when the referrer was a strong performer who knew the person well.
                 <Citation id="source-4">4</Citation>
             </p>
             <ReferralQuantifiedDiagram figureNumber={3} />
             <p className="research-body mb-6">
-                The larger studies agree on staying power. Referred hires were less likely to quit across the nine firms, and they stayed longer at the company the New York Fed studied.
+                The larger studies agree on staying power. Referred hires were less likely to quit across the nine firms, and somewhat less likely to leave the company the New York Fed studied, though that result was weaker.
                 <Citation id="source-3">3</Citation>
                 <Citation id="source-1">1</Citation>
             </p>
@@ -172,8 +173,8 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The New York Fed study covers one company. The nine-firm study covers call centers, trucking, and high tech.</li>
-                <li>Ashby&apos;s figures come from companies that use its software, which lean toward tech and startups. They show what happened, not what caused it: people who get referred may differ in other ways.</li>
+                <li>The New York Fed study covers one financial services company. The nine-firm study covers call centers, trucking, and high tech.</li>
+                <li>Ashby&apos;s figures are vendor data from companies that use its software, which the report doesn&apos;t describe. They show what happened, not what caused it: people who get referred may differ in other ways.</li>
                 <li>The field experiments ran on an online job site, not in corporate hiring.</li>
             </ul>
         </ResearchArticle>

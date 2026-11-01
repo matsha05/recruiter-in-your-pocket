@@ -28,6 +28,7 @@ interface InputPanelProps {
     freeUsesRemaining: number;
     user?: any | null;
     onSampleReport?: () => void;
+    onOpenLastReport?: () => void;
     loadedJobContext?: {
         id: string;
         title: string;
@@ -48,6 +49,7 @@ export default function InputPanel({
     isLoading,
     freeUsesRemaining,
     user,
+    onOpenLastReport,
     loadedJobContext,
     isRevision = false,
 }: InputPanelProps) {
@@ -134,6 +136,11 @@ export default function InputPanel({
                             ? "Upload your revision to see what improved and what still needs attention."
                             : "Add the resume you’re about to send. We’ll look at the whole document, show you what’s clear, and help you decide what to change first."}
                     </p>
+                    {onOpenLastReport && (
+                        <button type="button" data-testid="workspace-open-last-report" onClick={onOpenLastReport} className="riyp-link mt-3 min-h-11 text-sm font-semibold">
+                            Open your last report
+                        </button>
+                    )}
                 </header>
 
                 {loadedJobContext && (

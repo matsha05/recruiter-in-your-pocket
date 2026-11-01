@@ -78,7 +78,8 @@ function SheetGlyph({ tone }: { tone: "pen" | "quiet" | "mark" }) {
     );
 }
 
-export type UnitTone = "pen" | "quiet" | "mark" | "faint";
+/** `open` is an empty ring: a unit whose answer isn't known (a "don't remember", a missing value). */
+export type UnitTone = "pen" | "quiet" | "mark" | "faint" | "open";
 
 /**
  * A grid of units (resume sheets or dots), one per item. `toneAt(i)` colors each unit.
@@ -104,6 +105,7 @@ export function UnitGrid({
         mark: "bg-[hsl(var(--highlight))] ring-1 ring-inset ring-[hsl(var(--brass)/0.55)]",
         quiet: "bg-[hsl(var(--text-strong)/0.2)]",
         faint: "bg-[hsl(var(--text-strong)/0.08)]",
+        open: "ring-1 ring-inset ring-[hsl(var(--text-strong)/0.3)]",
     };
     return (
         <div
@@ -148,6 +150,7 @@ export function Key({ tone, children, shape = "dot" }: { tone: UnitTone; childre
         mark: "bg-[hsl(var(--highlight))] ring-1 ring-inset ring-[hsl(var(--brass)/0.55)]",
         quiet: "bg-[hsl(var(--text-strong)/0.2)]",
         faint: "bg-[hsl(var(--text-strong)/0.08)]",
+        open: "ring-1 ring-inset ring-[hsl(var(--text-strong)/0.3)]",
     };
     return (
         <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">

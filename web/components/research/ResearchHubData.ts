@@ -33,7 +33,7 @@ export const categories: ResearchCategory[] = [
                 title: "What applicant tracking systems actually do",
                 href: "/research/ats-myths",
                 question: "Is a robot rejecting me?",
-                answer: "Not with one magic score. The software pulls your text into fields, and what it can't read gets lost.",
+                answer: "Not with one magic score. The software pulls your text into fields. If it can't, the file stays attached and someone enters the details by hand.",
                 featured: true,
             },
             {
@@ -86,7 +86,7 @@ export const categories: ResearchCategory[] = [
                 title: "Discrimination in hiring hasn't gone away",
                 href: "/research/hiring-discrimination-meta-analysis",
                 question: "Does bias still decide who gets called?",
-                answer: "Yes. In US hiring experiments, white applicants got 36% more callbacks than equally qualified Black applicants.",
+                answer: "Yes. In US hiring experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants.",
             },
         ],
     },
@@ -107,7 +107,7 @@ export const categories: ResearchCategory[] = [
                 title: "Writing help led to more hires in one experiment",
                 href: "/research/writing-quality-hire-probability",
                 question: "Does better writing get you hired?",
-                answer: "With nearly half a million job seekers, writing help led to 8% more hires.",
+                answer: "It helped in one big experiment: grammar suggestions on short freelance profiles lifted hires from 3.1% to 3.3%.",
             },
             {
                 id: "how-we-score",
@@ -128,7 +128,7 @@ export const categories: ResearchCategory[] = [
                 title: "What a referral changes",
                 href: "/research/referral-advantage",
                 question: "Do referrals really matter?",
-                answer: "A lot. Across 38 million applications, 40% of referred candidates got an interview. Of people who applied on their own, 3% did.",
+                answer: "A lot. In one recruiting platform's data on 38 million applications, 40% of referred applications got an interview. Of cold applications, 3% did.",
                 featured: true,
             },
             {
@@ -185,7 +185,7 @@ export const categories: ResearchCategory[] = [
                 title: "How to negotiate a job offer",
                 href: "/resources/offer-negotiation",
                 question: "Should I negotiate?",
-                answer: "Recruiters expect you to ask. Here's what to say about pay, and when.",
+                answer: "Most people don't ask. In one big survey, most who did came away with more. Here's what to say about pay, and when.",
             },
             {
                 id: "tech-offer-negotiation",
@@ -199,7 +199,7 @@ export const categories: ResearchCategory[] = [
                 title: "Compare two offers side by side",
                 href: "/resources/tools/comp-calculator",
                 question: "Which offer is actually better?",
-                answer: "Put salary, bonus, equity, and benefits on the same footing, and let the calculator do the math.",
+                answer: "Put salary, bonus, equity, and one-time pay on the same footing, and let the calculator do the math. Compare benefits separately.",
                 action: "Compare",
             },
             {

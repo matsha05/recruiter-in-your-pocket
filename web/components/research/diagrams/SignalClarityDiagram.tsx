@@ -6,7 +6,7 @@ import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
 export function SignalClarityDiagram() {
     return (
-        <DiagramFigure className="max-w-[47rem]" label="Explanation of how clear writing can help a recruiter understand a candidate's experience">
+        <DiagramFigure className="max-w-[47rem]" label="Explanation of how clear writing can help an employer understand a candidate's experience">
             <DiagramFrame>
                 <EvidenceHeader index="01" label="How writing can help" title="Make it easier to understand what you did." note="The researchers propose that clearer writing helps employers recognize the experience a candidate already has." />
                 <div className="grid gap-0 px-5 py-7 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center md:px-7 md:py-9">
@@ -19,7 +19,7 @@ export function SignalClarityDiagram() {
                     <div className="border-t-2 border-brand py-5">
                         <div className="riyp-evidence-label text-brand">Your resume</div>
                         <div className="mt-3 font-display text-report-title text-brand">How you explain it</div>
-                        <p className="mt-2 text-data text-muted-foreground">Clear sentences and headings help the reader find those details.</p>
+                        <p className="mt-2 text-data text-muted-foreground">Clear, correct sentences help the reader find those details.</p>
                     </div>
                     <ArrowRight className="mx-4 hidden size-4 text-muted-foreground sm:block" aria-hidden="true" />
                     <div className="border-t-2 border-foreground/60 py-5">
@@ -30,7 +30,7 @@ export function SignalClarityDiagram() {
                 </div>
                 <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">Keep the facts intact.</strong> Improve how you explain your experience without adding responsibilities or results you cannot support.</div>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Proposed explanation" title="The study tested writing assistance, not a guaranteed result from any particular rewrite." />
+            <DiagramCaption kicker="Fig. 1 / Proposed explanation" title="The study tested spelling and grammar suggestions. How they helped is the researchers' explanation." />
         </DiagramFigure>
     );
 }
