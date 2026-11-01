@@ -5,7 +5,7 @@ import { composeRevisedLine, liftSourceLine } from "../lib/reports/revised-line"
 import { checkPolishedLine, POLISH_ALLOWS_JOINERS } from "../lib/reports/revised-line-polish";
 import { resolveOpenAIModel, resolveReasoningEffortForMode } from "../lib/llm/model-config";
 import { REVISE_LINE_PROMPT, REVISE_LINE_PROMPT_SHA256, REVISE_LINE_PROMPT_VERSION, requestPolishedLine } from "../lib/llm/revise-line-model";
-import { polishRevisedLine } from "../lib/reports/revised-line-polish-service";
+import { judgePolishedLine, polishRevisedLine } from "../lib/reports/revised-line-polish-service";
 
 const golden = path.join(process.cwd(), "..", "tests/resumes/golden");
 const resume = (prefix: string) => fs.readFileSync(path.join(golden, fs.readdirSync(golden).find((name) => name.startsWith(prefix))!), "utf8");
@@ -100,6 +100,11 @@ for (const rule of ["Add any number, name", "Change the form of a word", "Never 
   // The same words in the same order, give or take punctuation, is not a polish: the literal line stays.
   const plain = await polishRevisedLine({ line: "Built customer workflows in HubSpot for 120 customers.", answers: ["for the onboarding team"] });
   assert.equal(plain.outcome === "fallback" && plain.reason, "unchanged");
+  // A polish that leaves off the final period gets it back; trailing stray punctuation still fails.
+  const ending = (line: string) => judgePolishedLine({ line: source, answers, literal, proposed: { line, model: "test" } });
+  const unpunctuated = ending(mock.line.replace(/\.$/u, ""));
+  assert.equal(unpunctuated.outcome === "polished" && unpunctuated.line, mock.line);
+  assert.equal(ending(mock.line.replace(/\.$/u, ",")).reason, "form");
   if (previous === undefined) delete process.env.USE_MOCK_OPENAI; else process.env.USE_MOCK_OPENAI = previous;
   console.log("revised line polish tests passed");
 })().catch((error) => { console.error(error); process.exit(1); });

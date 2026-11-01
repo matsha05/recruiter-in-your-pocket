@@ -7,6 +7,8 @@
  *
  *   Mock (no cost):  USE_MOCK_OPENAI=1 node scripts/run-ts-test.cjs scripts/eval-revise-line.ts
  *   Paid (cap $5):   RIYP_ALLOW_PAID_EVALS=true OPENAI_API_KEY=... node scripts/run-ts-test.cjs scripts/eval-revise-line.ts
+ *   Re-score (no cost): RIYP_REVISE_EVAL_RESCORE=<a saved *_run.json> node scripts/run-ts-test.cjs scripts/eval-revise-line.ts
+ *     applies the current guard to a saved run's proposals, so a guard change is measured on the same lines.
  *
  * Writes tests/fixtures/results/summary_revise_line_<date>.md and a raw *_run.json (gitignored).
  */
@@ -18,13 +20,14 @@ import { resolveOpenAIModel } from "../lib/llm/model-config";
 import { REVISE_LINE_PROMPT_SHA256, REVISE_LINE_PROMPT_VERSION } from "../lib/llm/revise-line-model";
 import { reconcileReport } from "../lib/reports/report-integrity";
 import { composeRevisedLine, liftQuestions, liftSourceLine } from "../lib/reports/revised-line";
-import { checkPolishedLine } from "../lib/reports/revised-line-polish";
-import { polishRevisedLine, type PolishOutcome } from "../lib/reports/revised-line-polish-service";
+import { judgePolishedLine, polishRevisedLine, type PolishOutcome } from "../lib/reports/revised-line-polish-service";
 
 const BUDGET_USD = 5;
-const mock = ["1", "true"].includes(String(process.env.USE_MOCK_OPENAI || "").toLowerCase());
+const rescorePath = process.env.RIYP_REVISE_EVAL_RESCORE || "";
+const saved = rescorePath ? JSON.parse(fs.readFileSync(rescorePath, "utf8")) : null;
+const mock = !saved && ["1", "true"].includes(String(process.env.USE_MOCK_OPENAI || "").toLowerCase());
 const paidAllowed = process.env.RIYP_ALLOW_PAID_EVALS === "true" && Boolean(process.env.OPENAI_API_KEY);
-if (!mock && !paidAllowed) {
+if (!saved && !mock && !paidAllowed) {
   console.error("Refusing to call a paid model: set RIYP_ALLOW_PAID_EVALS=true and OPENAI_API_KEY, or USE_MOCK_OPENAI=1.");
   process.exit(1);
 }
@@ -72,7 +75,8 @@ for (const run of outputs.runs) {
   if (count === 1) adversarial.forEach((set, index) => cases.push({ id: `${id}~adv${index + 1}`, kind: "adversarial", source, answers: set.slice(0, Math.max(1, asked)) }));
 }
 
-const model = mock ? "mock" : resolveOpenAIModel("revise_line");
+const model = saved ? String(saved.model) : mock ? "mock" : resolveOpenAIModel("revise_line");
+const savedById = new Map<string, { result: PolishOutcome; ms: number; costUsd: number }>((saved?.results || []).map((entry: { id: string }) => [entry.id, entry]));
 
 (async () => {
   const results: Array<Case & { literal: string; result: PolishOutcome; joinersOk: boolean | null; costUsd: number; ms: number }> = [];
@@ -84,14 +88,22 @@ const model = mock ? "mock" : resolveOpenAIModel("revise_line");
     }
     const literal = composeRevisedLine(item.source, item.answers.map((value) => ({ kind: "answered" as const, value })))!;
     const started = Date.now();
-    const result = await polishRevisedLine({ line: item.source, answers: item.answers, allowJoiners: false });
-    const ms = Date.now() - started;
+    const before = savedById.get(item.id);
+    if (saved && !before) throw new Error(`The saved run has no case ${item.id}`);
+    const savedLine = before && before.result.outcome !== "error" ? (before.result.outcome === "polished" ? before.result.line : before.result.proposed) : null;
+    const result: PolishOutcome = !before
+      ? await polishRevisedLine({ line: item.source, answers: item.answers, allowJoiners: false })
+      : savedLine
+        ? judgePolishedLine({ line: item.source, answers: item.answers, literal, proposed: { line: savedLine, model, usage: "usage" in before.result ? before.result.usage : undefined } })
+        : before.result;
+    const ms = before ? before.ms : Date.now() - started;
     const usage = "usage" in result ? normalizeTokenUsage(result.usage) : null;
-    const costUsd = usage ? calculateCostUsd("model" in result ? result.model : model, usage) ?? 0 : 0;
+    const costUsd = before ? before.costUsd : usage ? calculateCostUsd("model" in result ? result.model : model, usage) ?? 0 : 0;
     spent += costUsd;
     const proposed = result.outcome === "polished" ? result.line : result.outcome === "fallback" ? result.proposed : null;
-    const joiners = proposed ? checkPolishedLine({ sourceLine: item.source, answers: item.answers, literal, polished: proposed }, { allowJoiners: true }) : null;
-    results.push({ ...item, literal, result, joinersOk: joiners ? joiners.ok : null, costUsd, ms });
+    // The same judgment as production, with joining words allowed.
+    const joiners = proposed ? judgePolishedLine({ line: item.source, answers: item.answers, literal, proposed: { line: proposed, model }, allowJoiners: true }) : null;
+    results.push({ ...item, literal, result, joinersOk: joiners ? joiners.outcome === "polished" : null, costUsd, ms });
     process.stdout.write(result.outcome === "polished" ? "P" : result.outcome === "fallback" ? "f" : "E");
   }
   process.stdout.write("\n");
@@ -103,6 +115,7 @@ const model = mock ? "mock" : resolveOpenAIModel("revise_line");
   lines.push(`# Revised-line polish eval (${date})`, "");
   lines.push(`- Prompt: \`${REVISE_LINE_PROMPT_VERSION}\` (SHA-256 \`${REVISE_LINE_PROMPT_SHA256}\`)`);
   lines.push(`- Model: \`${model}\` via \`resolveOpenAIModel("revise_line")\`${mock ? " (mock: no model call)" : ""}`);
+  if (saved) lines.push(`- Re-scored with the current guard from the saved run \`${path.basename(rescorePath)}\` (prompt \`${saved.prompt}\`); no new model calls.`);
   const sortedMs = results.map((entry) => entry.ms).sort((a, b) => a - b);
   const percentile = (p: number) => sortedMs.length ? sortedMs[Math.min(sortedMs.length - 1, Math.floor(p * sortedMs.length))] : 0;
   lines.push(`- Reasoning effort: low. Latency per call: median ${(percentile(0.5) / 1000).toFixed(1)}s, 95th percentile ${(percentile(0.95) / 1000).toFixed(1)}s (timeout 10s).`);
@@ -136,7 +149,8 @@ const model = mock ? "mock" : resolveOpenAIModel("revise_line");
 
   const dir = path.join(process.cwd(), "..", "tests/fixtures/results");
   const stamp = new Date().toISOString().replace(/[:.]/gu, "-");
-  if (!mock) fs.writeFileSync(path.join(dir, `summary_revise_line_${date}.md`), `${lines.join("\n")}\n`);
-  fs.writeFileSync(path.join(dir, `revise_line_${mock ? "mock" : "live"}_${stamp}_run.json`), JSON.stringify({ prompt: REVISE_LINE_PROMPT_VERSION, model, spent, results }, null, 2));
+  const summaryName = saved ? `summary_${path.basename(rescorePath).replace(/_run\.json$/u, "")}_rescored.md` : `summary_revise_line_${date}.md`;
+  if (!mock) fs.writeFileSync(path.join(dir, summaryName), `${lines.join("\n")}\n`);
+  if (!saved) fs.writeFileSync(path.join(dir, `revise_line_${mock ? "mock" : "live"}_${stamp}_run.json`), JSON.stringify({ prompt: REVISE_LINE_PROMPT_VERSION, model, spent, results }, null, 2));
   console.log(lines.join("\n"));
 })().catch((error) => { console.error(error); process.exit(1); });
