@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, Trash2 } from "lucide-react";
+import { ArrowClockwise, Check, CircleNotch, FileText, ShieldCheck, Target, Trash, UploadSimple } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ActionFeedback } from "@/components/ui/action-feedback";
@@ -176,7 +176,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         return (
             <section className={cn("app-card p-6", className)} role="status" aria-live="polite">
                 <div className="flex min-h-20 items-center gap-3 text-muted-foreground">
-                    <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
+                    <CircleNotch className="size-4 animate-spin motion-reduce:animate-none" />
                     <span className="text-sm">Loading…</span>
                 </div>
             </section>
@@ -190,7 +190,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
                 <p className="mt-2 text-sm leading-6 text-destructive/80">Your saved resume has not been changed.</p>
                 <button type="button" onClick={() => void fetchProfile()} className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive">
-                    <RefreshCw className="size-4" />
+                    <ArrowClockwise className="size-4" />
                     Try again
                 </button>
             </section>
@@ -237,14 +237,14 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                                 disabled={isSaving || isRemoving}
                                 className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full border border-input bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                             >
-                                <ActionFeedback state={isSaving ? "pending" : "idle"} states={{ idle: { label: "Change Resume", icon: <RefreshCw className="size-3.5" /> }, pending: { label: isReadingFile ? "Reading…" : "Updating…", icon: <Loader2 className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
+                                <ActionFeedback state={isSaving ? "pending" : "idle"} states={{ idle: { label: "Change Resume", icon: <ArrowClockwise className="size-3.5" /> }, pending: { label: isReadingFile ? "Reading…" : "Updating…", icon: <CircleNotch className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
                             </button>
                             <button type="button"
                                 onClick={removeResume}
                                 disabled={isSaving || isRemoving}
                                 className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-error-surface hover:text-destructive"
                             >
-                                <ActionFeedback state={isRemoving ? "pending" : "idle"} states={{ idle: { label: "Remove", icon: <Trash2 className="size-3.5" /> }, pending: { label: "Removing…", icon: <Loader2 className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
+                                <ActionFeedback state={isRemoving ? "pending" : "idle"} states={{ idle: { label: "Remove", icon: <Trash className="size-3.5" /> }, pending: { label: "Removing…", icon: <CircleNotch className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
                             </button>
                         </div>
                         <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
@@ -303,13 +303,13 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 <div className="flex min-h-40 flex-col items-center justify-center px-4 py-8 text-center">
                     {isSaving ? (
                         <div className="flex flex-col items-center gap-2" role="status" aria-live="polite">
-                            <Loader2 className="size-8 text-brand animate-spin motion-reduce:animate-none" />
+                            <CircleNotch className="size-8 text-brand animate-spin motion-reduce:animate-none" />
                             <p className="text-sm font-medium text-foreground">{isReadingFile ? "Reading your resume…" : "Saving your resume…"}</p>
                             {fileName && <p className="break-all text-sm text-muted-foreground">{fileName}</p>}
                         </div>
                     ) : (
                         <>
-                            <Upload className="size-8 text-muted-foreground/50 mx-auto mb-2" />
+                            <UploadSimple className="size-8 text-muted-foreground/50 mx-auto mb-2" />
                             <p className="text-sm mb-2 text-lg font-medium text-foreground">
                                 Choose a file or drop it here
                             </p>

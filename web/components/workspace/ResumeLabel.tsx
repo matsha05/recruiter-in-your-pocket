@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Tag, X, Lightbulb } from "lucide-react";
+import { Lightbulb, Tag, X } from "@phosphor-icons/react";
 import {
     Popover,
     PopoverContent,

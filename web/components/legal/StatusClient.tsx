@@ -72,7 +72,7 @@ export default function StatusClient() {
       pageKey="status"
       eyebrow="Status"
       title="Configuration checks"
-      description="These checks show whether the settings required to run RIYP are in place. They do not measure uptime or confirm that every feature is working right now."
+      description="These checks show whether the settings required to run Recruiter in Your Pocket are in place. They do not measure uptime or confirm that every feature is working right now."
     >
       <section className="rounded-xl border border-border bg-muted p-5 md:p-6">
         <div className="flex items-start gap-3">
@@ -85,7 +85,7 @@ export default function StatusClient() {
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
               {payload?.generatedAt && !unavailable
-                ? `Last checked ${new Date(payload.generatedAt).toLocaleString()}.`
+                ? `Last checked ${new Date(payload.generatedAt).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}.`
                 : unavailable ? "The latest check is unavailable." : "This may take a moment."}
             </p>
             <p className="text-base text-muted-foreground">

@@ -48,6 +48,11 @@ export default function WorkspaceOverlays(props: {
       onClose={() => props.setIsPaywallOpen(false)}
       creditsRemaining={props.freeUsesRemaining}
       hasCurrentReport={Boolean(props.report)}
+      onSignInForFreeReport={() => {
+        props.setIsPaywallOpen(false);
+        props.setAuthContext("free_report");
+        props.setIsAuthOpen(true);
+      }}
       workspaceState={props.report
         ? { report: props.report, resumeText: props.resumeText, jobDescription: props.jobDescription }
         : null}

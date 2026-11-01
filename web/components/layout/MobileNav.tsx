@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, LogOut, Home, Settings } from "lucide-react";
+import { Gear, House, List, SignOut } from "@phosphor-icons/react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Wordmark } from "@/components/icons";
 import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
@@ -20,7 +20,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="size-11 rounded-[10px] border border-border text-foreground hover:bg-muted hover:text-foreground md:hidden">
-                    <Menu className="size-5" />
+                    <List className="size-5" />
                     <span className="sr-only">Toggle menu</span>
                 </Button>
             </SheetTrigger>
@@ -38,7 +38,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                     <nav className="gap-y-2" aria-label="Mobile navigation">
                         <MobileNavLink
                             href="/"
-                            icon={Home}
+                            icon={House}
                             label="Home"
                             setOpen={setOpen}
                             active={pathname === "/"}
@@ -66,7 +66,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                         {/* Settings - separate from primary nav */}
                         <MobileNavLink
                             href="/settings/account"
-                            icon={Settings}
+                            icon={Gear}
                             label="Settings"
                             setOpen={setOpen}
                             active={pathname === "/settings" || pathname?.startsWith("/settings/")}
@@ -118,7 +118,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                 </div>
                             </div>
                             <Button variant="outline" className="min-h-11 w-full justify-start gap-2" onClick={() => signOut()}>
-                                <LogOut className="size-4" />
+                                <SignOut className="size-4" />
                                 Sign Out
                             </Button>
                         </div>

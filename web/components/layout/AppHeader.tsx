@@ -37,11 +37,10 @@ export function AppHeader() {
     }, [pathname]);
 
     const isActive = (href: string) => {
+        // A report open on /workspace is not the saved-reports page, and the
+        // visitor may not have saved it or even signed in, so neither link is current.
         if (href === "/workspace") {
             return (pathname === "/workspace" || pathname?.startsWith("/workspace/")) && !workspaceReportVisible;
-        }
-        if (href === "/reports") {
-            return workspaceReportVisible || pathname === href || pathname?.startsWith(`${href}/`);
         }
         return pathname === href || pathname?.startsWith(`${href}/`);
     };

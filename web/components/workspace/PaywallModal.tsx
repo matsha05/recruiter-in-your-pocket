@@ -27,6 +27,8 @@ interface PaywallModalProps {
     onClose: () => void;
     creditsRemaining?: number;
     hasCurrentReport?: boolean;
+    /** Opens sign-in for a visitor whose browser or network has used the anonymous free report. */
+    onSignInForFreeReport?: () => void;
     workspaceState?: {
         report: unknown;
         resumeText: string;
@@ -61,6 +63,7 @@ export default function PaywallModal({
     isOpen,
     onClose,
     hasCurrentReport = false,
+    onSignInForFreeReport,
     workspaceState = null,
 }: PaywallModalProps) {
     const router = useRouter();
@@ -73,6 +76,26 @@ export default function PaywallModal({
 
     const isLoggedIn = !!user;
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
+    // The anonymous allowance is shared by a browser and its network, so a visitor
+    // can arrive with it already used. Every account has its own free report, so a
+    // signed-out visitor who hasn't seen a report yet is offered that first.
+    const offerFreeSignIn = !isLoggedIn && !hasCurrentReport && Boolean(onSignInForFreeReport);
+
+    const handleFreeSignIn = () => {
+        Analytics.track("paywall_free_sign_in_clicked", { billing_enabled: billingEnabled });
+        onSignInForFreeReport?.();
+    };
+
+    const freeSignInOffer = offerFreeSignIn ? (
+        <div className="mb-5 text-center" data-testid="paywall-free-sign-in">
+            <Button className="w-full" onClick={handleFreeSignIn}>
+                Sign in for your free report
+            </Button>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                We&apos;ll email you a code. No password, no card.
+            </p>
+        </div>
+    ) : null;
 
     useEffect(() => {
         if (!isOpen) return;
@@ -156,15 +179,18 @@ export default function PaywallModal({
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
                         <DialogTitle className="font-display text-2xl font-bold">
-                            Passes are paused for now
+                            {offerFreeSignIn ? "Your free report needs an account" : "Passes are paused for now"}
                         </DialogTitle>
                         <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
-                            {hasCurrentReport
-                                ? "Your existing report stays available. You can return to it below."
-                                : "You can't buy a pass right now. Your resume is still here when you're ready."}
+                            {offerFreeSignIn
+                                ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours. Passes are paused for now."
+                                : hasCurrentReport
+                                    ? "Your existing report stays available. You can return to it below."
+                                    : "You can't buy a pass right now. Your resume is still here when you're ready."}
                         </DialogDescription>
                     </DialogHeader>
-                    <Button className="mt-5 w-full" onClick={onClose}>
+                    {offerFreeSignIn ? <div className="mt-5">{freeSignInOffer}</div> : null}
+                    <Button className={offerFreeSignIn ? "w-full" : "mt-5 w-full"} variant={offerFreeSignIn ? "outline" : "default"} onClick={onClose}>
                         {hasCurrentReport ? "Back to my report" : "Back to my resume"}
                     </Button>
                 </DialogContent>
@@ -177,12 +203,19 @@ export default function PaywallModal({
             <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
                     <DialogTitle className="font-display text-xl font-bold">
-                        {unlockCopy.title}
+                        {offerFreeSignIn ? "Your free report needs an account" : unlockCopy.title}
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        {hasCurrentReport ? unlockCopy.subtitle : JOB_SEARCH_PASS_DECISION.whenToBuy}
+                        {offerFreeSignIn
+                            ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours."
+                            : hasCurrentReport ? unlockCopy.subtitle : JOB_SEARCH_PASS_DECISION.whenToBuy}
                     </DialogDescription>
                 </DialogHeader>
+
+                {freeSignInOffer}
+                {offerFreeSignIn ? (
+                    <p className="mb-3 text-center text-sm font-semibold text-foreground">Or get more reports with a pass</p>
+                ) : null}
 
                 <div className="mb-5 gap-y-3 border-y border-line bg-surface-sky/45 px-4 py-4">
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
@@ -217,6 +250,7 @@ export default function PaywallModal({
                             <Button
                                 type="submit"
                                 className="w-full"
+                                variant={offerFreeSignIn ? "outline" : "default"}
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"
                             >
@@ -243,6 +277,7 @@ export default function PaywallModal({
                             <Button
                                 type="submit"
                                 className="w-full"
+                                variant={offerFreeSignIn ? "outline" : "default"}
                                 disabled={!email.trim()}
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"

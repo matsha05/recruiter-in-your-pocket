@@ -960,7 +960,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     onClose={() => setIsDeleteConfirmOpen(false)}
                     onConfirm={handleDeleteAccount}
                     title="Delete your account?"
-                    description="This permanently removes your account and user-owned product data from RIYP. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone."
+                    description="This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone."
                     confirmText="Delete account"
                     cancelText="Keep Account"
                     variant="destructive"

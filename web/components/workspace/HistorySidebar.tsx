@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, Pencil, AlertTriangle, Check } from "lucide-react";
+import { Check, Clock, PencilSimple, Trash, TrendUp, Warning } from "@phosphor-icons/react";
 import { EmptyReportIcon } from "@/components/icons";
 import {
     Sheet,
@@ -217,7 +217,7 @@ export default function HistorySidebar({
                             /* Logged out state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
                                 <div className="mb-6 flex size-16 items-center justify-center rounded-sm bg-brand-tint">
-                                    <TrendingUp className="size-8 text-brand" />
+                                    <TrendUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                                     Save reports you want to revisit
@@ -472,7 +472,7 @@ export default function HistorySidebar({
                                                             className="focus-ring relative z-20 inline-flex size-11 items-center justify-center transition-colors duration-fast ease-snap hover:bg-muted motion-reduce:transition-none"
                                                             aria-label={`Rename ${report.name}`}
                                                         >
-                                                            <Pencil className="size-3 text-muted-foreground" />
+                                                            <PencilSimple className="size-3 text-muted-foreground" />
                                                         </button>
                                                     </div>
                                                 ) : (
@@ -507,7 +507,7 @@ export default function HistorySidebar({
                                                         {deletingId === report.id ? (
                                                             <div className="size-4 border-2 border-destructive/30 border-t-destructive rounded-full motion-safe:animate-spin" aria-hidden="true" />
                                                         ) : (
-                                                            <Trash2 className="size-4" />
+                                                            <Trash className="size-4" />
                                                         )}
                                                     </Button>
                                                 </div>
@@ -570,7 +570,7 @@ export default function HistorySidebar({
                     <DialogHeader>
                         <div className="flex items-center gap-3 mb-2">
                             <div className="flex size-10 items-center justify-center rounded-sm bg-destructive/10">
-                                <AlertTriangle className="size-5 text-destructive" />
+                                <Warning className="size-5 text-destructive" />
                             </div>
                             <DialogTitle className="font-display">Delete Report?</DialogTitle>
                         </div>
