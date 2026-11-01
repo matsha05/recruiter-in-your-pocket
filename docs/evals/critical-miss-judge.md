@@ -1,6 +1,6 @@
 # Critical Miss judge: running it and reading the results
 
-The judge is an automated stand-in for Matt's blind pick. It asks the question his pick asks: of two reports on the same resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](critical-miss-rubric.md), which cites a source for every criterion. Its results are reported, not gated (see [shipping-gate.md](../promptops/shipping-gate.md#critical-miss-judge-reported-not-gated)).
+The judge is an automated stand-in for Matt's blind pick. It asks the question his pick asks: of two reports on the same resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](critical-miss-rubric.md), which cites a source for every criterion. Since November 1, 2026 it **gates prompt changes**, in place of Matt's blind pick: see [shipping-gate.md](../promptops/shipping-gate.md#critical-miss-judge-gates-prompt-changes).
 
 Code: `web/lib/evals/judge/` (entry point `index.ts`). CLI: `web/scripts/run-judge.ts`. Calibration data: `tests/fixtures/judge/contrast-pairs.json` and `tests/fixtures/results/blind-pick/`. Results: `tests/fixtures/results/judge/`.
 
@@ -20,7 +20,7 @@ Evidence and tone are already measured without a model, by the production valida
 
 The model is fixed in `lib/evals/judge/client.ts`. `OPENAI_JUDGE_MODEL` is no longer read and was removed from the env examples.
 
-**It is not the gauntlet.** The retired gauntlet (`web/gauntlet/`, ended by Matt on August 10, 2026 because its token and review cost outweighed its usefulness) bound 12 blind A/B cases to receipts, seals, critic verdicts and journey captures. This judge keeps one idea from its blind-judgment template, a blind A, B or tie with a rationale, and nothing else. It is a CLI that compares two runs in about a minute for about $0.12. Keep it that way: an added check should be a criterion in the rubric, not a new evidence chain.
+**It is not the gauntlet.** The retired gauntlet (`web/gauntlet/`, ended by Matt on August 10, 2026 because its token and review cost outweighed its usefulness) bound 12 blind A/B cases to receipts, seals, critic verdicts and journey captures. This judge keeps one idea from its blind-judgment template, a blind A, B or tie with a rationale, and nothing else. It is a CLI that gates two runs in about a minute for about $0.19. Keep it that way: an added check should be a criterion in the rubric, not a new evidence chain.
 
 ## Running it
 
@@ -38,7 +38,7 @@ npm run eval:judge -- score ../tests/fixtures/results/<candidate>_live_run.json
 npm run eval:judge -- calibrate --set all
 ```
 
-- **compare** judges each fixture that has a shown report in both runs. It takes the first non-FAIL report per fixture, in run order, as the blind pick did. Put production as the first file (X) and the candidate second (Y).
+- **compare** is the gate. Put production as the first file (X) and the candidate second (Y). Each synthetic fixture with a shown production report is compared; the first non-FAIL report per fixture is used, in run order, as the blind pick did. Each candidate Critical Miss is also scored alone for the veto. It prints `GATE: PASS` or `GATE: FAIL` and exits nonzero on FAIL. A `--limit` run never passes.
 - **score** gives one Critical Miss per fixture an absolute score with a rationale.
 - **calibrate** reruns the calibration sets. Add `--repeat 2` for test-retest, `--ids bp-05,cp-09` for a subset, or `--mode absolute` to score each side alone.
 - `--max-misses 3` judges up to three Critical Misses per report, for a contract that returns more than one. The default is 1, which is what the production report shows.
@@ -65,9 +65,9 @@ Each fixture is judged twice, once with each report shown first. The combined ve
 
 **What to look at first:**
 
-1. Any **clear** preference for production over the candidate. On calibration, the judge never made a clear pick against Matt; a clear loss is the strongest signal it gives.
-2. Vetoes on the candidate side.
-3. The X/Y tally, with ties counted separately. Matt's own bar for the November 1 prompt was the new side preferred in 8 of 10, with "no difference" counting against it.
+1. The `GATE:` line. To pass, the candidate must be preferred on at least 80% of compared resumes (ties count against), with no veto on a candidate side, across at least 8 fully judged resumes. That is Matt's bar for his own November 1 pick.
+2. Any **clear** preference for production. On calibration, the judge never made a clear pick against Matt; a clear loss is the strongest signal it gives.
+3. Vetoes on the candidate side, in the "Candidate alone" column, and their quoted claims in the JSON.
 
 ## Reading an absolute score
 
@@ -89,7 +89,7 @@ Absolute scores are for spotting bad Critical Misses (vetoes, low stakes, vague 
   - Identical verdicts on every retest, including under a second seed.
   - No side-order flips on Sol.
   - Self-preference +0.00.
-- **In-sample.** The rubric was written from the same ten blind-pick items the judge was calibrated on, and the contrast pairs were written from the rubric. Agreement shows the judge applies Matt's stated rules consistently; it doesn't yet show it predicts his next pick. Prompt v3's blind pick, judged by Matt and by the judge before anyone sees his answers, is the first held-out test.
+- **In-sample.** The rubric was written from the same ten blind-pick items the judge was calibrated on, and the contrast pairs were written from the rubric. Agreement shows the judge applies Matt's stated rules consistently; it doesn't yet show it predicts his next pick. Matt chose to gate on the judge without a further blind pick of his own, so a gate result is the judge's call, not a check against him.
 - **Ten items.** One unexplained disagreement moves agreement by 17 points on the six decisive picks.
 - **Same family.** The judge (`gpt-6.1-sol`) and the generator (`gpt-6.1-terra`) are different models from the same vendor and generation, so shared blind spots are possible. The self-preference probe found Sol no more favorable to its own writing than Astra was, on ten items. A cross-vendor judge would need a key this repository doesn't have.
 - **Changing the judge.** A change to `web/lib/evals/judge/prompt.ts` changes `judge_prompt_sha256` in every result. Rerun `calibrate --set all` and compare it against the recorded calibration before trusting results from the new version.

@@ -5,7 +5,8 @@ import { gradePair, loadBlindPick, loadContrastPairs, unverifiedCitations } from
 import { callJudge, DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, SpendLedger } from "../lib/evals/judge/client";
 import { combineOrders, pairwiseUserMessage, resolveOrder } from "../lib/evals/judge/modes";
 import { PAIRWISE_SYSTEM_PROMPT } from "../lib/evals/judge/prompt";
-import type { CriticalMissView, PairwiseRawVerdict } from "../lib/evals/judge/types";
+import { gateLines, gateVerdict } from "../lib/evals/judge/gate";
+import type { AbsoluteResult, CriticalMissView, PairwiseRawVerdict, PairwiseResult } from "../lib/evals/judge/types";
 import { isJudgeableFixture, renderView, viewFromReport } from "../lib/evals/judge/view";
 import { judgeEvalReport } from "../lib/evals/judge";
 import type { CalibrationData } from "../lib/evals/types";
@@ -84,6 +85,35 @@ function raw(overrides: Partial<PairwiseRawVerdict>): PairwiseRawVerdict {
     second: { targets: "", unsupported_claims: [{ quote: "add your attainment", why: "" }] },
   }), { X: viewA, Y: viewB });
   assert.equal(both.winner, "tie");
+}
+
+// The prompt-change gate: candidate preferred on at least 80% of resumes, ties against, zero candidate vetoes.
+{
+  const pair = (winner: "X" | "Y" | "tie") => ({ winner, strength: winner === "tie" ? "none" : "slight" }) as unknown as PairwiseResult;
+  const alone = (veto = false) => ({ veto }) as unknown as AbsoluteResult;
+  const resumes = (winners: Array<"X" | "Y" | "tie">, vetoAt = -1) =>
+    winners.map((winner, index) => ({ fixture_id: `synth_${index}`, pairwise: pair(winner), candidate_absolute: alone(index === vetoAt) }));
+
+  const pass = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "X"]));
+  assert.equal(pass.pass, true, "8 of 10 meets the bar");
+  assert.equal(pass.share, 0.8);
+  assert.equal(gateLines(pass)[0], "GATE: PASS");
+
+  const ties = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "tie", "tie"]));
+  assert.equal(ties.pass, false, "ties count against the candidate");
+  assert.match(ties.reasons[0], /7 of 10/);
+
+  const vetoed = gateVerdict(resumes(Array(10).fill("Y"), 4));
+  assert.equal(vetoed.pass, false, "one candidate veto fails the gate");
+  assert.deepEqual(vetoed.candidate_vetoes, ["synth_4"]);
+
+  assert.equal(gateVerdict(resumes(Array(7).fill("Y"))).pass, false, "too few resumes to gate");
+  assert.equal(gateVerdict(resumes(Array(10).fill("Y")), { limited: true }).pass, false, "a --limit run is not a gate run");
+
+  const missing = gateVerdict([...resumes(Array(9).fill("Y")), { fixture_id: "synth_9", problem: "no shown candidate report" }]);
+  assert.equal(missing.pass, false, "a resume the candidate didn't report on, or the judge didn't finish, fails the gate");
+  assert.equal(missing.not_judged.length, 1);
+  assert.equal(gateLines(missing)[0], "GATE: FAIL");
 }
 
 // Grading: a clear pick of the rejected side is the failure that must never happen.

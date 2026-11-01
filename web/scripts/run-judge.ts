@@ -5,7 +5,8 @@
  * Usage (from web/):
  *   npm run eval:judge -- calibrate [--set blind-pick|contrast|all] [--ids bp-01,cp-03] [--repeat 2] [--mode pairwise|absolute]
  *   npm run eval:judge -- score <live_run.json> [--limit 5]
- *   npm run eval:judge -- compare <live_run_X.json> <live_run_Y.json> [--limit 5]
+ *   npm run eval:judge -- compare <production_live_run.json> <candidate_live_run.json>
+ *     (prints the prompt-change gate verdict and exits nonzero on FAIL)
  *   npm run eval:judge -- self-preference [--author gpt-6.1-sol] [--judges gpt-6.1-sol,gpt-6-astra]
  *
  * Common flags: --budget-usd <n> (default 1), --model gpt-6.1-sol|gpt-6-astra,
@@ -35,6 +36,7 @@ import {
 import { DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, JUDGE_MODELS, JudgeBudgetError, SpendLedger } from "../lib/evals/judge/client";
 import { judgeAbsolute, judgePairwise } from "../lib/evals/judge/modes";
 import { JUDGE_PROMPT_VERSION, judgePromptSha256 } from "../lib/evals/judge/prompt";
+import { gateLines, gateVerdict, type GateResume } from "../lib/evals/judge/gate";
 import { absoluteMarkdown, calibrationMarkdown, compareMarkdown, type RunMeta } from "../lib/evals/judge/report";
 import type { AbsoluteResult, CriticalMissView, JudgeCase, JudgeConfig, PairwiseResult } from "../lib/evals/judge/types";
 import { authoredShare, writeCriticalMiss } from "../lib/evals/judge/self-preference";
@@ -247,6 +249,12 @@ async function score(file: string, flags: Flags) {
     save("score", flags, { meta: runMeta, source_run: run.metadata.run_id, source_file: path.basename(file), rows, skipped }, markdown);
 }
 
+/**
+ * Production is X (first file), the candidate is Y (second). Every synthetic
+ * fixture with a shown production report is a gate resume; a candidate with no
+ * shown report for it counts against the candidate. Prints the gate verdict and
+ * exits nonzero on FAIL.
+ */
 async function compare(fileX: string, fileY: string, flags: Flags) {
     const cfg = judgeConfig(flags);
     const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
@@ -254,29 +262,44 @@ async function compare(fileX: string, fileY: string, flags: Flags) {
     const x = loadRunCases(fileX, maxMisses);
     const y = loadRunCases(fileY, maxMisses);
     const skipped = [...new Set([...x.skipped, ...y.skipped])];
-    let shared = [...x.cases.keys()].filter((id) => y.cases.has(id));
-    for (const id of new Set([...x.cases.keys(), ...y.cases.keys()])) {
-        if (!shared.includes(id)) skipped.push(`${id}: no shown report in both runs`);
+    for (const id of y.cases.keys()) {
+        if (!x.cases.has(id)) skipped.push(`${id}: no shown production report`);
     }
-    if (flags.limit) shared = shared.slice(0, numberFlag(flags, "limit", shared.length));
+    let ids = [...x.cases.keys()];
+    const limited = Boolean(flags.limit);
+    if (limited) ids = ids.slice(0, numberFlag(flags, "limit", ids.length));
     const names = {
-        X: `${x.run.metadata.run_id} (${path.basename(fileX)})`,
-        Y: `${y.run.metadata.run_id} (${path.basename(fileY)})`,
+        X: `${x.run.metadata.run_id} (${path.basename(fileX)}; ${x.run.metadata.model}, prompt ${String(x.run.metadata.resume_prompt_sha256 || "").slice(0, 8)})`,
+        Y: `${y.run.metadata.run_id} (${path.basename(fileY)}; ${y.run.metadata.model}, prompt ${String(y.run.metadata.resume_prompt_sha256 || "").slice(0, 8)})`,
     };
-    console.log(`Comparing ${shared.length} fixtures: X = ${names.X}, Y = ${names.Y}; ceiling $${ledger.ceilingUsd}`);
-    const results = await pool(shared, numberFlag(flags, "concurrency", 3), async (id) => {
+    console.log(`Comparing ${ids.length} fixtures: X (production) = ${names.X}, Y (candidate) = ${names.Y}; ceiling $${ledger.ceilingUsd}`);
+    const resumes = await pool(ids, numberFlag(flags, "concurrency", 3), async (id): Promise<GateResume> => {
         const caseX = x.cases.get(id)!;
-        const caseY = y.cases.get(id)!;
+        const caseY = y.cases.get(id);
+        if (!caseY) return { fixture_id: id, problem: "no shown candidate report" };
         // Both runs read the same fixture; the later run's date is the review date.
         const input = { ...caseX.input, review_date: [caseX.input.review_date, caseY.input.review_date].sort()[1] };
-        const result: PairwiseResult = await judgePairwise(input, { X: caseX.view, Y: caseY.view }, { config: cfg, ledger });
-        console.log(`   ${id}: ${result.winner}${result.winner === "tie" ? "" : ` ${result.strength}`}`);
-        return { fixture_id: id, result };
+        try {
+            const pairwise = await judgePairwise(input, { X: caseX.view, Y: caseY.view }, { config: cfg, ledger });
+            const candidate_absolute = await judgeAbsolute(input, caseY.view, { config: cfg, ledger });
+            console.log(`   ${id}: ${pairwise.winner}${pairwise.winner === "tie" ? "" : ` ${pairwise.strength}`}${candidate_absolute.veto ? "; candidate veto" : ""}`);
+            return { fixture_id: id, pairwise, candidate_absolute };
+        } catch (error) {
+            return { fixture_id: id, problem: `judge error: ${error instanceof Error ? error.message : String(error)}` };
+        }
     });
-    reportErrors(results.filter((r): r is Error => r instanceof Error));
-    const rows = results.filter((r): r is { fixture_id: string; result: PairwiseResult } => !(r instanceof Error));
-    const runMeta = meta("Critical Miss judge: pairwise comparison", cfg, ledger);
-    save("compare", flags, { meta: runMeta, names, rows, skipped }, compareMarkdown(runMeta, names, rows, skipped));
+    const gateResumes = resumes.map((resume, index) => resume instanceof Error
+        ? { fixture_id: ids[index], problem: `judge error: ${resume.message}` }
+        : resume);
+    const verdict = gateVerdict(gateResumes, { limited });
+    const rows = gateResumes
+        .filter((resume): resume is GateResume & { pairwise: PairwiseResult } => Boolean(resume.pairwise))
+        .map((resume) => ({ fixture_id: resume.fixture_id, result: resume.pairwise, candidate_absolute: resume.candidate_absolute }));
+    const runMeta = meta("Critical Miss judge: pairwise comparison and gate", cfg, ledger);
+    save("compare", flags, { meta: runMeta, names, gate: verdict, resumes: gateResumes, skipped },
+        compareMarkdown(runMeta, names, rows, skipped, gateLines(verdict)));
+    console.log(`\n${gateLines(verdict).join("\n")}`);
+    if (!verdict.pass) process.exitCode = 1;
 }
 
 // ============================================
