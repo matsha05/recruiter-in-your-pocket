@@ -112,3 +112,17 @@ for (const c of positiveCases)
 for (const c of negativeCases)
     assert.ok(auditReportNarrative({ summary: c.claim }, c.source).length > 0, JSON.stringify(c));
 console.log("assessment language fidelity tests passed");
+
+// Discovery questions. Live evals eval_1793553133997 (production prompt) and eval_1793570024387:
+// "What led you to ..." was read as the factual claim "What led", and "one ... client" as a count.
+const asQuestion = (question: string) => ({ ideas: { questions: [{ question, archetype: "TENSION POINT", why: "This asks for a detail the resume leaves out." }] } });
+for (const c of [
+  { claim: 'What led you to build the referral program with the two payroll partners?', source: 'Built a referral program with two payroll partners that sourced 9 deals.' },
+  { claim: 'What led you to decide to integrate GPU-accelerated models into the FinEdge fraud pipeline?', source: 'FinEdge Analytics. I integrated GPU-accelerated deep learning models into the fraud detection pipeline.' },
+  { claim: 'What did you create for one Brightpath client presentation prototype?', source: 'Brightpath Studio. Made prototypes for client presentations.' },
+]) assert.equal(auditReportNarrative(asQuestion(c.claim), c.source).length, 0, JSON.stringify(c));
+for (const c of [
+  { claim: 'What led you to build the Salesforce referral program?', source: 'Built a referral program with two payroll partners.' },
+  { claim: 'What did you create for the 40 Brightpath clients?', source: 'Brightpath Studio. Made prototypes for client presentations.' },
+]) assert.ok(auditReportNarrative(asQuestion(c.claim), c.source).length > 0, JSON.stringify(c));
+console.log("question fidelity tests passed");

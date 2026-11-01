@@ -64,6 +64,8 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
 
 export function isDirectFactualAssertion(value: string) {
   if (/\b(?:can|could|may|might) (?:mean|refer to|describe)\b/iu.test(value)) return false;
+  // A question asserts nothing: "What led you to build ..." is not the claim "What led".
+  if (/\?\s*$/u.test(value) || /^\s*(?:what|which|how|why|when|where|who)\b/iu.test(value)) return false;
   // "less developed" and "well built" describe a quality, not work someone did.
   if (/^\s*(?:less|more|most|least|well|fully|under|over|not\s+(?:yet|as))\s/iu.test(value)) return false;
   return directFactualAssertionPattern.test(value.normalize("NFC"));
@@ -118,6 +120,8 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   const questionRequest = /^\s*(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
   if ((!requestHead && !questionRequest)
     || /\b(?:that|managed|served|led|owned|delivered|supported|handled)\b/iu.test(requestTail)) return false;
+  // "What did you create for one client presentation?" asks for one example; it doesn't count clients.
+  if (questionRequest && /^one\b/iu.test(fact.display)) return true;
   if (new RegExp(`\\b${quantity}(?:\\s+or\\s+[\\p{L}-]+){0,2}\\s+(?:problems?|situations?|examples?|artifacts?|decisions?|cases?)\\b`, "iu").test(claim)) return true;
   // Hyphenated project names can otherwise look like a count of customers.
   if (/^one customer$/iu.test(fact.display)

@@ -224,6 +224,15 @@ for (const instruction of [
 ]) {
   assert.deepEqual(findNonActionableFix(instruction), [], `a short heading that names its subject is actionable: ${instruction}`);
 }
+// eval_1793570024387: a sourcing playbook is recruiting work, and a self-paced module is learning.
+const recruiterSource = "- Built a sourcing playbook for data engineering searches";
+assert.deepEqual(findFixEvidenceMismatch("Add the recruiting result of your data engineering playbook.", recruiterSource, recruiterSource), []);
+const teacherSource = "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas";
+assert.deepEqual(findFixEvidenceMismatch("Add a learning result from the self-paced functions module.", teacherSource, teacherSource), []);
+const procurementSource = "- Built a vendor playbook for procurement";
+assert.deepEqual(findFixEvidenceMismatch("Add the recruiting result of your playbook.", procurementSource, procurementSource), ["cited evidence does not support the recruiting fix"]);
+const salesSource = "- Closed $1.1M in new annual recurring revenue";
+assert.deepEqual(findFixEvidenceMismatch("Add the training program you ran for new hires.", salesSource, salesSource), ["cited evidence does not support the training fix"]);
 for (const instruction of ["Move it higher.", "Define the work better.", "Lead with your strengths."]) {
   assert.notDeepEqual(findNonActionableFix(instruction), [], `a move or define without a subject is still vague: ${instruction}`);
 }

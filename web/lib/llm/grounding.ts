@@ -193,10 +193,11 @@ export function findNonActionableFix(fix: string): string[] {
   return findings;
 }
 
-const FIX_EVIDENCE_TOPICS: Array<{ label: string; pattern: RegExp }> = [
-  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|interviews?|talent acquisition|candidate|requisition|backfill)s?\b/i },
+// `evidence` widens what counts as support in the cited line; it never adds a mismatch.
+const FIX_EVIDENCE_TOPICS: Array<{ label: string; pattern: RegExp; evidence?: RegExp }> = [
+  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|interviews?|talent acquisition|candidate|requisition|backfill)s?\b/i, evidence: /\b(?:sourcing|placements?|searches)\b/i },
   { label: "budget", pattern: /\b(budget|spend|expense|resource allocation)s?\b/i },
-  { label: "training", pattern: /\b(training|learning|development program|upskill|workshop)s?\b/i },
+  { label: "training", pattern: /\b(training|learning|development program|upskill|workshop)s?\b/i, evidence: /\b(?:modules?|courses?|curriculum|lessons?|self-paced|students?)\b/i },
   { label: "mentoring", pattern: /\b(mentor(?:ing|ship|ed)?|mentee|coach(?:ing|ed)?)s?\b/i },
   { label: "compliance", pattern: /\b(compliance|employment law|policy|policies|audit)s?\b/i },
   { label: "launch", pattern: /\b(launch|time[- ]?to[- ]?market|go[- ]?to[- ]?market)s?\b/i },
@@ -231,7 +232,7 @@ export function findFixEvidenceMismatch(
     if (isDatedRoleReference && topic.label === "recruiting") continue;
     // Asking about an internal policy does not assert regulated compliance work.
     if (topic.label === "compliance" && !/\b(?:audit|compliance|law)\b/i.test(fix)) continue;
-    if (topic.pattern.test(fix) && !topic.pattern.test(sourceLine)) {
+    if (topic.pattern.test(fix) && !topic.pattern.test(sourceLine) && !topic.evidence?.test(sourceLine)) {
       findings.push(`cited evidence does not support the ${topic.label} fix`);
     }
   }
