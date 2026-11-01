@@ -2,19 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
-import { RecruiterViewHero } from "./hero/RecruiterViewHero";
-import { ReportPreview } from "./home/ReportPreview";
+import { HiringTruths } from "./home/HiringTruths";
+import { OneSentence } from "./home/OneSentence";
+import { SilenceSection } from "./home/SilenceSection";
+import { VerdictHero } from "./home/VerdictHero";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
 const WORK_HISTORY = ["OpenAI", "Meta", "Google", "X-Team", "Robert Half"];
 
-/** Four beats: the promise, the real report, the person behind the criteria, one last ask. */
+/** The verdict you never got, the silence, one real read, what we look for, who wrote the criteria, one last ask. */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
-            <RecruiterViewHero />
-            <ReportPreview />
+            <VerdictHero />
+            <SilenceSection />
+            <OneSentence />
+            <HiringTruths />
 
             <section id="about" className={styles.founder} aria-labelledby="founder-title">
                 <div className={styles.portrait}>

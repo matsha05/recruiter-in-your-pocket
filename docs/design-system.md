@@ -43,7 +43,7 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
-- homepage hero and “Your view / A recruiter's view” example: `web/components/landing/hero/`
+- homepage story: `web/components/landing/home/VerdictHero.tsx`, `SilenceSection.tsx`, `OneSentence.tsx`, and `HiringTruths.tsx` (the How it works target)
 
 Rules:
 
@@ -154,7 +154,7 @@ Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allow
 
 ### Mobile composition
 
-On phones, place the headline, explanation, and full-width action before the example so trying the toggle never delays starting a report. Below 1100px the example becomes one sheet: the First Impression sits at the top, and each margin note sits directly under its resume line.
+On phones, place the headline, explanation, and full-width action before the resume illustration so it never delays starting a report. Each beat of the story is one screen; the page never scrolls sideways.
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
@@ -247,9 +247,10 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Homepage
 
-- Headline: “See what a recruiter sees.” One dark primary action (“Get your free report”) and one quiet secondary route (“See a sample report”).
-- The example is a fictional resume shown two ways. “Your view” is the page alone. “A recruiter’s view” adds margin notes in the pen color (Literata italic), the First Impression with an example score, and the Critical Miss highlighted in yellow. Notes name what the line does or leaves out; they never invent results.
-- The recruiter's view appears once when the example scrolls into view. A visitor's choice wins after that. The example must not gate the report action.
+- Headline: “They called someone back. It wasn’t you.” One dark primary action (“Read mine”) and one quiet secondary route (“See an example”).
+- The story runs in four light, simple beats: the hidden verdict (hero), the silence (a fading “No response” list), one sentence (a single verdict in Literata with the highlighter on the miss), then “What we look for, line by line.”
+- The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The clipped recruiter's note is blurred on purpose and hidden from assistive technology.
+- The note arrives once; reduced motion shows it in place. The illustration must not gate the report action.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
@@ -286,7 +287,7 @@ Canonical tokens (CSS in `web/app/globals.css`, mirrored for Motion in `web/lib/
 | `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift |
 | `--ease` / `EASE` | `cubic-bezier(0.22, 1, 0.36, 1)` | every transition; no `ease-out`, `ease-in-out`, or one-off curves |
 
-Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage example is the one signature: the toggle thumb slides, the highlighter sweeps across a line, and margin notes write in. Report prose stays still. Reduced motion shows the same end state immediately.
+Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage note arriving on the resume is the one signature, once. The highlighter marks the miss in the one-sentence verdict. Report prose stays still. Report prose stays still. Reduced motion shows the same end state immediately.
 
 ### Links
 

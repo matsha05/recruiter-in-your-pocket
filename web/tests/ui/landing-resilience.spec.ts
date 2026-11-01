@@ -10,39 +10,38 @@ test("an unavailable saved theme does not take down the landing page", async ({ 
     });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
-    const demo = page.getByTestId("recruiter-view-demo");
-    await demo.getByRole("button", { name: "A recruiter’s view", exact: true }).click();
-    await expect(demo).toHaveAttribute("data-view", "recruiter");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("They called someone back. It wasn’t you.");
+    await expect(page.getByTestId("landing-verdict-art")).toBeVisible();
     await expect(page.getByTestId("landing-primary-cta")).toHaveAttribute("href", "/workspace");
 });
 
-test("a failed font leaves the example toggle usable from the keyboard", async ({ page }) => {
+test("a failed font leaves the main action usable from the keyboard", async ({ page }) => {
     await page.route("**/fonts/schibsted-grotesk/**", route => route.abort());
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const demo = page.getByTestId("recruiter-view-demo");
-    const recruiter = demo.getByRole("button", { name: "A recruiter’s view", exact: true });
-    const yours = demo.getByRole("button", { name: "Your view", exact: true });
-    await recruiter.focus();
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await page.getByTestId("landing-primary-cta").focus();
     await page.keyboard.press("Enter");
-    await expect(recruiter).toHaveAttribute("aria-pressed", "true");
-    await expect(demo.getByText("Critical Miss", { exact: true })).toBeVisible();
-    await yours.focus();
-    await page.keyboard.press("Enter");
-    await expect(demo).toHaveAttribute("data-view", "you");
-    await expect(demo.getByText("Critical Miss", { exact: true })).toHaveCount(0);
+    await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
 });
 
-test("the example shows the recruiter's read once it scrolls into view, unless the visitor already chose", async ({ page }) => {
+test("the story reads in order: the hidden verdict, the silence, one read, then what we look for", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const demo = page.getByTestId("recruiter-view-demo");
-    await expect(demo).toHaveAttribute("data-view", "you");
-    await demo.scrollIntoViewIfNeeded();
-    await expect(demo).toHaveAttribute("data-view", "recruiter");
-    await demo.getByRole("button", { name: "Your view", exact: true }).click();
-    await page.waitForTimeout(1000);
-    await expect(demo).toHaveAttribute("data-view", "you");
+    const order = await page.evaluate(() => ["#hero-title", "#silence-title", "#one-sentence-title", "#how-it-works"]
+        .map((selector) => document.querySelector(selector)!.getBoundingClientRect().top + scrollY));
+    expect([...order].sort((a, b) => a - b)).toEqual(order);
+    // The note is meant to be unreadable; its words never reach assistive technology as content.
+    await expect(page.getByTestId("landing-verdict-art")).toHaveAttribute("aria-hidden", "true");
+});
+
+test("reduced motion shows the note already in place", async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
+    const page = await context.newPage();
+    await page.goto("/");
+    const note = page.getByTestId("landing-verdict-art").getByText("Recruiter’s note", { exact: true });
+    await expect(note).toBeVisible();
+    expect(await note.evaluate((element) => getComputedStyle(element.parentElement!).animationName)).toBe("none");
+    await context.close();
 });

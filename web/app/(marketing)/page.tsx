@@ -59,7 +59,7 @@ const structuredData = {
       "@type": "Person",
       "@id": "https://www.recruiterinyourpocket.com/#matt-shaw",
       name: "Matt Shaw",
-      url: "https://www.recruiterinyourpocket.com/#lift-credibility-title",
+      url: "https://www.recruiterinyourpocket.com/#about",
       sameAs: ["https://www.linkedin.com/in/mattrshaw"],
       description: "Founder of Recruiter in Your Pocket with 14 years of recruiting and hiring experience.",
     },

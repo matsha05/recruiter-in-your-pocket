@@ -9,30 +9,35 @@ test.describe("homepage feedback and SEO contract", () => {
 
     const homepage = page.locator("[data-visual-anchor='landing-home']");
     await expect(homepage).toBeVisible();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("See what a recruiter sees.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("They called someone back. It wasn’t you.");
     await expect(homepage).toContainText(
-      "What you meant isn’t always what they read. See what comes through, what slips past, and what to fix first.",
+      "See what a recruiter sees on your resume, and the one thing to fix first.",
     );
 
-    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Read mine");
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "See a sample report", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "See an example", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
     const hero = homepage.locator("section[aria-labelledby='hero-title']");
-    await expect(hero.getByText("Your first report is free. No account or card needed, and anonymous reports don’t store your resume text.", { exact: true })).toBeVisible();
+    await expect(hero.getByText("Your first report is free. No account or card.", { exact: true })).toBeVisible();
     // Free-report limits live on pricing and in the FAQ, not on the homepage.
     await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).not.toContainText("Trusted by people at");
-    const preview = homepage.getByRole("article", { name: "Sample resume report preview", exact: true });
-    await expect(preview).toContainText("Verdict");
-    await expect(preview).toContainText("First Impression score");
-    await expect(preview).toContainText("Critical Miss");
+    // The blurred note is decoration; the story says the same thing in text.
+    await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
+    await expect(homepage).toContainText("Sometimes it’s one line on your resume. That part you can fix.");
+    await expect(homepage.locator("blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
+    await expect(homepage.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
+    const truths = homepage.locator("#how-it-works");
+    await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
+    await expect(truths).toContainText("One Critical Miss, not forty tips.");
+    await expect(truths).toContainText("No ATS score. No interview odds.");
 
     const founder = page.getByRole("heading", { level: 2, name: "I've hired hundreds of people and led hiring globally at OpenAI, Meta, and Google." });
     await expect(founder).toBeVisible();
