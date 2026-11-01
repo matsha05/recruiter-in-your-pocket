@@ -29,7 +29,8 @@ Each of these things has one name everywhere: marketing, the app, the report, th
 
 | Thing | Name | Retired |
 | --- | --- | --- |
-| The button that starts a report, signed out | `Get your free report` | Read mine, Start a report, Get my report, Review my resume |
+| The button that starts a report, signed out (header, hero, section closes, research, sample end, pricing) | `Get your free report` | Read mine, Start a report, Review my resume |
+| The workspace submit button | `Get your free report` while the free report is available; `Get my report` for a pass report; `Compare my revision` for a revision | None |
 | Starting a report from signed-in navigation | `New report` | None |
 | Strengths to leave alone | Keep: `Keep these` (report tab, PDF), `Keep these. They're working.` (section heading), `Keep this one` (label in the opening read) | Leave these alone, Don't touch this one |
 | What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.`; cards `Critical Miss`, `Fix 2`, `Fix 3`; `Fix` in the full notes | Start with these changes, Suggested change |

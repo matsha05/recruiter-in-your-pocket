@@ -273,7 +273,7 @@ export default function InputPanel({
                         >
                             {generationPaused ? "Reports are paused" : hasContent ? (
                                 <span className="flex items-center gap-2">
-                                    {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
+                                    {isRevision ? "Compare my revision" : freeUsesRemaining > 0 ? "Get your free report" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>
                             ) : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>

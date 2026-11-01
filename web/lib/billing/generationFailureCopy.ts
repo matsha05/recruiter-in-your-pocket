@@ -25,7 +25,7 @@ const GUEST_OUTCOMES: Array<[string, string]> = [
   [REPORT_ACCESS_USED_BEFORE_DELIVERY, "Your report finished and used your free report, but the connection dropped before it showed up here."],
   [REPORT_ACCESS_USED, "This used your free report, because it had already started."],
   [REPORT_ACCESS_RESTORED, "We gave your free report back. Try again whenever you're ready."],
-  [REPORT_ACCESS_OUTCOME_UNKNOWN, "We couldn't tell whether this used your free report. The line under Get my report shows what's left."],
+  [REPORT_ACCESS_OUTCOME_UNKNOWN, "We couldn't tell whether this used your free report. The line under the report button shows what's left."],
   [REPORT_ACCESS_USED_COUNT_UPDATED, "This used your free report."],
   [REPORT_ACCESS_USED_CHECK, "This used your free report."],
 ];

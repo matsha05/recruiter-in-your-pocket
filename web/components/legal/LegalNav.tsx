@@ -5,7 +5,6 @@ import { CaretRight } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 interface LegalNavProps {
     className?: string;
@@ -27,16 +26,13 @@ export function LegalNav({ className }: LegalNavProps) {
     const activeRef = useRef<HTMLAnchorElement>(null);
     const [hasMore, setHasMore] = useState(false);
 
+    // Four tabs (plan 4.9). Trust folds into Security and Support into Help; Status and the
+    // methodology stay reachable from the footer and the research library, not from here.
     const tabs = [
-        { name: "Trust", href: "/trust" },
-        { name: "Security & Data", href: "/security" },
-        ...(isLaunchFlagEnabled("extensionSync") ? [{ name: "Extension", href: "/extension" }] : []),
-        { name: "Support", href: "/support" },
-        { name: "Status", href: "/status" },
-        { name: "How the report works", href: "/methodology" },
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Terms of Service", href: "/terms" },
-        { name: "FAQ", href: "/faq" },
+        { name: "Privacy", href: "/privacy", match: ["/privacy"] },
+        { name: "Terms", href: "/terms", match: ["/terms"] },
+        { name: "Security", href: "/security", match: ["/security", "/trust"] },
+        { name: "Help", href: "/faq", match: ["/faq", "/support"] },
     ];
 
     useEffect(() => {
@@ -67,13 +63,13 @@ export function LegalNav({ className }: LegalNavProps) {
                 }}
             >
                 {tabs.map((tab) => {
-                    const isActive = pathname === tab.href;
+                    const isActive = tab.match.includes(pathname);
                     return (
                         <Link
                             ref={isActive ? activeRef : undefined}
                             key={tab.href}
                             href={tab.href}
-                            aria-current={isActive ? "page" : undefined}
+                            aria-current={pathname === tab.href ? "page" : isActive ? "true" : undefined}
                             className={cn(
                                 "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium",
                                 isActive

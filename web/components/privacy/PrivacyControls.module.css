@@ -12,3 +12,6 @@
 .panel :focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 4px; }
 /* Phones: keep the choice clear but short enough not to bury the page's main action. */
 @media (max-width: 700px) { .panel { left: 12px; width: calc(100vw - 24px); padding: 16px; bottom: max(12px, env(safe-area-inset-bottom)); max-height: calc(100dvh - 24px); overflow-y: auto; } .panel p { margin-top: 6px; } .actions { margin-top: 12px; } .actions button { min-height: 44px; } }
+/* Laptops and up: sit bottom right and stay compact, so the panel covers illustration rather than a
+   page's main action (at 1280×720 the bottom-left panel used to cover the homepage's first button). */
+@media (min-width: 1024px) { .panel { left: auto; right: 20px; width: 416px; padding: 16px 18px; } .panel p { margin-top: 4px; } .actions { margin-top: 12px; } .actions button { min-height: 44px; } }

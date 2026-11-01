@@ -1,0 +1,104 @@
+.root {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: 1.125rem;
+    background: hsl(var(--card));
+    padding: 1.25rem;
+}
+
+.title { font: var(--type-body); font-weight: var(--weight-control); }
+
+.compare {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0.75rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: 0.75rem;
+    padding: 0.875rem 1rem;
+}
+
+.current { border-color: hsl(var(--text-strong) / 0.25); }
+
+.cardLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+}
+
+.delta {
+    border-radius: 999px;
+    background: hsl(var(--pen-tint));
+    padding: 0.125rem 0.5rem;
+    color: hsl(var(--pen));
+    font: var(--type-label);
+}
+
+/* Quoted resume lines are set in the recruiter's serif, as on the report. */
+.miss { font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial); }
+.missPast { color: hsl(var(--muted-foreground)); }
+
+.mark {
+    background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) no-repeat 0 88% / 100% 45%;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.arrow { align-self: center; width: 1rem; height: 1rem; color: hsl(var(--muted-foreground)); }
+
+.journey { display: grid; gap: 0.5rem; }
+
+.step {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr) 3rem;
+    align-items: center;
+    gap: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.step > span:last-child { text-align: right; }
+.stepLatest { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+.track {
+    display: block;
+    height: 0.5rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: hsl(var(--secondary));
+}
+
+.track span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: hsl(var(--text-strong));
+    transform-origin: left center;
+}
+
+@media (max-width: 860px) {
+    .root { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 520px) {
+    .compare { grid-template-columns: minmax(0, 1fr); }
+    .arrow { justify-self: center; transform: rotate(90deg); }
+}

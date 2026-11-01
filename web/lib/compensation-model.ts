@@ -60,6 +60,20 @@ export function isComparableOffer(offer: OfferData): boolean {
   return offer.baseSalary > 0 && offerHasValidVesting(offer);
 }
 
+export type RecurringPay = "bonus" | "equity";
+
+/**
+ * Recurring pay this offer leaves at zero while another offer in the comparison has it. A zero there
+ * usually means "not entered yet", so a ranking that counts it as none would be confidently wrong.
+ * One-time pay isn't checked: plenty of real offers have no signing or relocation bonus.
+ */
+export function missingRecurringPay(offer: OfferData, others: OfferData[]): RecurringPay[] {
+  const missing: RecurringPay[] = [];
+  if (offer.bonusPercent <= 0 && others.some((other) => other.bonusPercent > 0)) missing.push("bonus");
+  if (offer.stockTotal <= 0 && others.some((other) => other.stockTotal > 0)) missing.push("equity");
+  return missing;
+}
+
 export function getYearBreakdown(offer: OfferData, year: number): YearBreakdown {
   const yearIndex = Math.max(0, Math.min(3, Math.trunc(year) - 1));
   const base = offer.baseSalary;

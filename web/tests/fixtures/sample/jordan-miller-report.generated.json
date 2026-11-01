@@ -1,0 +1,203 @@
+{
+  "generated_at": "2026-11-01T17:43:55.302Z",
+  "model": "gpt-6.1-terra",
+  "prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "resume_sha256": "12d43ce2321b3708dd49034c1e2d06b4285ea298fc04c0ea17096af67435b023",
+  "repaired": true,
+  "provider_calls": 2,
+  "cost_estimate_usd": 0.0466,
+  "telemetry": [
+    {
+      "request_id": "sample-report-1793554974798",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 7433,
+      "tokens_out": 2107,
+      "latency_ms": 25808,
+      "cost_estimate_usd": 0.0198255,
+      "outcome": "success"
+    },
+    {
+      "request_id": "sample-report-1793554974798",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 10107,
+      "tokens_out": 2833,
+      "latency_ms": 32957,
+      "cost_estimate_usd": 0.026798,
+      "outcome": "success"
+    }
+  ],
+  "payload": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The recent role shows portfolio size and review cadence, but few results.",
+    "score_comment_long": "Your current role names the portfolio, review cadence and customer stakeholders. Several other bullets remain broad duty statements. Explaining the work behind the renewal and business reviews would help most.",
+    "score_plain": "A reviewer can see the size and shape of your customer success work. More detail about how you handle renewals would make your contribution easier to assess.",
+    "first_impression": "Your current role combines customer relationships, renewals and meetings with customer leadership. The objective doesn't tell a reviewer which role you want next.",
+    "biggest_gap_example": "\"- Assisted account managers with various tasks as needed\" leaves a reviewer unsure what support you provided.",
+    "first_impression_takeaway": "Explain your renewal reviews",
+    "summary": "Managing 32 B2B SaaS accounts with $2.4M in annual recurring revenue gives your current customer success role a useful anchor. Your work also includes regular renewal-risk and business reviews. The resume describes manager-level account responsibilities, following an earlier coordinator role in logistics. How you handled renewal risks is not yet clear, so a reviewer has little detail on the work behind the review cadence.",
+    "strengths": [
+      "The B2B SaaS portfolio figure makes the size of your current customer responsibility concrete.",
+      "Quarterly business reviews with customer leadership show that your work includes senior customer contacts.",
+      "Weekly shipment status reports show how you kept client accounts informed in the logistics role."
+    ],
+    "gaps": [
+      "The objective doesn't name a target role, leaving the opening disconnected from your customer success work.",
+      "The business review bullet doesn't say what you presented or recommended to customer leaders.",
+      "The skills section lists broad qualities without connecting them to your account and renewal responsibilities."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the renewal-risk review bullet, explain what you looked for and what you did when an account appeared at risk.",
+        "why": "The monthly cadence is clear, but the review process itself is not.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Introduced monthly renewal-risk reviews across the portfolio",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the quarterly business review bullet, add an example of what you presented or recommended to customer leadership.",
+        "why": "A concrete example would show what you brought to those meetings.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran quarterly business reviews with customer leadership teams",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "Replace the Account Coordinator support bullet with specific tasks you assisted account managers with.",
+        "why": "The current wording doesn't distinguish your contribution from general assistance.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Assisted account managers with various tasks as needed",
+          "section": "Work Experience"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Work Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the Northwind review bullets using examples you can verify.",
+      "Specify your assistance at Brightpath and remove the generic team-player statement if it adds nothing distinct.",
+      "Replace the objective with the role you want and the account experience most relevant to it."
+    ],
+    "subscores": {
+      "impact": 77,
+      "clarity": 81,
+      "story": 79,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The objective makes your intent to seek a role clear.",
+        "missing": "It doesn't identify the kind of customer work you want to pursue.",
+        "fix": "Name your target role and connect it to your B2B SaaS account work."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role includes account count, annual recurring revenue and review cadence.",
+        "missing": "The review bullets don't describe what you examined, presented or recommended.",
+        "fix": "Expand the renewal-risk and business review bullets with examples you can verify."
+      },
+      "Skills": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "Microsoft Office is named explicitly.",
+        "missing": "Communication and leadership are broad labels without the context provided in your experience section.",
+        "fix": "Name relevant account or renewal capabilities you can substantiate."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The entry lists your B.A., Communications, State University and 2018.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "B2B SaaS customer portfolio management",
+        "Customer relationships and renewals",
+        "Renewal-risk reviews",
+        "Business reviews with customer leadership"
+      ],
+      "underplayed": [
+        "How renewal risks were identified and handled",
+        "What you presented in customer leadership reviews",
+        "Specific assistance provided to account managers"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Customer Success Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and direct portfolio responsibilities indicate Customer Success Manager-level work.",
+        "industry_signals": [
+          "B2B SaaS",
+          "Logistics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your customer success role and its 32-account B2B SaaS portfolio. Use the review bullets to show how you work with customers on renewals."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you look for when identifying accounts at risk during the monthly reviews?",
+          "archetype": "TENSION POINT",
+          "why": "The answer can make your review process more concrete."
+        },
+        {
+          "question": "How did you prioritize your work across the accounts you managed?",
+          "archetype": "SCALING",
+          "why": "This could explain how you organized attention across the portfolio."
+        },
+        {
+          "question": "What did you present or recommend to customer leaders during a quarterly business review?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific example can show the substance of those meetings."
+        },
+        {
+          "question": "What prompted you to introduce monthly renewal-risk reviews?",
+          "archetype": "IMPROVEMENT",
+          "why": "The reason for introducing them could explain the problem you were addressing."
+        },
+        {
+          "question": "Which tasks did you assist account managers with at Brightpath?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "Naming the work would make your coordinator contribution easier to understand."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  }
+}
