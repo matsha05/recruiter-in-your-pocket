@@ -18,6 +18,10 @@ import {
   schemaValidReport,
 } from "./helpers/report-fidelity-fixture";
 
+function originalLoadSentry() {
+  return require("@sentry/nextjs") as { metrics: { count: (...args: any[]) => void } };
+}
+
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
 };
@@ -36,6 +40,13 @@ async function run() {
   let providerSucceeds = false;
   let authenticatedUser: { id: string; email: string } | null = null;
   let forcedReservationError: Error | null = null;
+  const signals: Array<{ name: string; attributes: Record<string, string> }> = [];
+  const takeSignals = (name: string) => signals.splice(0).filter((signal) => signal.name === name)
+    .map((signal) => signal.attributes);
+  const sentry = originalLoadSentry();
+  sentry.metrics.count = (name: string, _value: number, options: { attributes: Record<string, string> }) => {
+    signals.push({ name, attributes: options.attributes });
+  };
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
     if (request === "next/headers") {
@@ -197,6 +208,11 @@ async function run() {
     assert.equal(signedStreamConflictEvent.operation_id, null, "stream conflicts must not expose prior operation state");
     assert.equal(providerCalls, 0, "a streaming operation conflict must stop before provider work");
     assert.equal(reservationCalls, 1);
+    const signedStreamReport = { mode: "resume", viewer: "signed_in", has_jd: "no", endpoint: "stream", outcome: "failed" };
+    assert.deepEqual(takeSignals("riyp.report.outcome"), [
+      { ...signedStreamReport, failure: "precondition", error_code: "RECOVERY_STORAGE_REQUIRED" },
+      { ...signedStreamReport, failure: "access", error_code: "GENERATION_OPERATION_CONFLICT" },
+    ], "refusals before reservation are kept apart from access-boundary failures");
     forcedReservationError = null;
     reservationCalls = 0;
     authenticatedUser = null;
@@ -227,6 +243,9 @@ async function run() {
     assert.equal(providerCalls, 0, "the stream identity handshake must precede provider work");
     assert.equal(reservationCalls, 0, "the stream identity handshake must precede reservation work");
     assert.ok(streamHandshakeCookie && parseAnonymousIdentityCookie(streamHandshakeCookie));
+    assert.deepEqual(takeSignals("riyp.free_gate.check"), [{
+      result: "identity_retry", reason: "none", first_attempt: "yes", viewer: "anonymous",
+    }]);
 
     const identityHandshake = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
@@ -309,6 +328,9 @@ async function run() {
       "an anonymous denial must acknowledge the submitted marker so a post-purchase run starts fresh",
     );
     assert.equal(providerCalls, 2, "an anonymous stream denial must not reach the provider");
+    assert.deepEqual(takeSignals("riyp.free_gate.check"), [{
+      result: "blocked", reason: "identity", first_attempt: "yes", viewer: "anonymous",
+    }], "a visitor whose cookie shows no report but whose id already used one is a visible first-attempt block");
 
     const movedRequest = () => new Request("http://localhost/api/resume-feedback", {
       method: "POST",

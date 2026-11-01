@@ -176,6 +176,7 @@ export async function reserveGenerationAccess(input: {
     if (anonymousFreeRemaining <= 0) {
       return {
         access: "preview",
+        freeGate: "cookie",
         accessTier: "preview",
         entitlementKind: null,
         reservationId: null,
@@ -200,9 +201,9 @@ export async function reserveGenerationAccess(input: {
     }
 
     const reservationId = randomUUID();
-    let reserved = false;
+    let ledgerResult: Awaited<ReturnType<typeof anonymousGenerationAccessBackend.reserveWithReason>>;
     try {
-      reserved = await anonymousGenerationAccessBackend.reserve({
+      ledgerResult = await anonymousGenerationAccessBackend.reserveWithReason({
         identityHash: anonymousIdentityHash,
         shadowHash: anonymousShadowHash,
         monthKey: anonymousMonthKey,
@@ -215,9 +216,10 @@ export async function reserveGenerationAccess(input: {
       );
     }
 
-    if (!reserved) {
+    if (!ledgerResult.reserved) {
       return {
         access: "preview",
+        freeGate: ledgerResult.refusal,
         accessTier: "preview",
         entitlementKind: null,
         reservationId: null,
@@ -346,6 +348,7 @@ export async function reserveGenerationAccess(input: {
     }
     return {
       access: "preview",
+      freeGate: "account",
       accessTier: "preview",
       entitlementKind: null,
       reservationId: null,

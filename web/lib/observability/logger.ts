@@ -53,6 +53,8 @@ export type LogRecord = {
     json_injection?: boolean;
   };
 
+  signal?: { metric: string; attributes: Record<string, string> };
+
   err?: { name: string; message: string; code?: string; stack?: string };
 };
 

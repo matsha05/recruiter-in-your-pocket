@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
+import { recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -108,12 +109,26 @@ export async function POST(request: Request) {
     }
 
     if (!isLaunchFlagEnabled("billingUnlock") || areNewPurchasesDisabled()) {
+        // Every refused buyer is counted so a forgotten kill switch shows up in Sentry.
+        recordLaunchSignal("riyp.checkout.step", { step: "purchases_disabled", source: "unknown" });
+        logWarn({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 503,
+            latency_ms: Date.now() - startedAt,
+            outcome: "provider_error",
+            feature: "purchases_disabled"
+        });
         const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
         res.headers.set("x-request-id", request_id);
         return res;
     }
 
     if (!stripe) {
+        recordLaunchSignal("riyp.checkout.step", { step: "checkout_failed", source: "unknown" });
         logError({
             msg: "http.request.completed",
             request_id,
@@ -130,10 +145,11 @@ export async function POST(request: Request) {
         return res;
     }
 
+    let checkoutSource: CheckoutSource = "unknown";
     try {
         const body = await readJsonWithLimit<any>(request, 64 * 1024);
         const requestedTier = normalizeRequestedTier(body?.tier);
-        const checkoutSource = normalizeCheckoutSource(body?.source);
+        checkoutSource = normalizeCheckoutSource(body?.source);
         const returnTo = normalizeCheckoutReturnTo(body?.returnTo);
         if (body?.returnTo != null && !returnTo) {
             const res = NextResponse.json({ ok: false, message: "Could not open checkout from this page. Refresh the page and try again." }, { status: 400 });
@@ -305,6 +321,7 @@ export async function POST(request: Request) {
             ? (await getOrSetCache(dedupeKey, createCheckoutSession, 60 * 15)).value
             : await createCheckoutSession();
 
+        recordLaunchSignal("riyp.checkout.step", { step: "checkout_started", source: checkoutSource });
         logInfo({
             msg: "checkout.session.created",
             request_id,
@@ -342,6 +359,7 @@ export async function POST(request: Request) {
 
     } catch (err: any) {
         const status = err?.httpStatus === 413 ? 413 : err?.httpStatus === 400 ? 400 : 500;
+        if (status === 500) recordLaunchSignal("riyp.checkout.step", { step: "checkout_failed", source: checkoutSource });
         logError({
             msg: "http.request.completed",
             request_id,
