@@ -174,7 +174,7 @@ export function ResearchArticle({
                         ) : null}
 
                         <div className="pb-20 pt-12 md:pb-28 md:pt-16">
-                            <div className="mx-auto min-w-0 max-w-[46rem]">
+                            <div className="min-w-0 max-w-[46rem]">
                                 <article className="prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-title prose-h3:mt-10 prose-h3:text-heading prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground">
                                     {children}
                                 </article>

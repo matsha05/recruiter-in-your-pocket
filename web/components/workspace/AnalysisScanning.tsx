@@ -73,7 +73,7 @@ const LIVE_STEPS: Array<AnalysisStep & { stage: GenerationStage; now: string }> 
     {
         id: "reading",
         stage: "reading",
-        label: "Read it like a recruiter",
+        label: "Read your resume",
         now: "Reading your resume",
         detail: "Roles, dates, results, and what a recruiter would look for",
     },

@@ -540,6 +540,12 @@
     margin: 2.5rem auto;
   }
 
+  /* Research articles keep one left content edge (plan 3.5): the header, the lead figure, and the
+     reading rail all start at the container edge. Figures may run wider than the rail, to the right. */
+  .research-page .riyp-figure {
+    margin-inline-start: 0;
+  }
+
   .riyp-figure figcaption {
     color: hsl(var(--muted-foreground));
     text-align: left;

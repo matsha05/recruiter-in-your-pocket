@@ -239,7 +239,7 @@ export default function InputPanel({
                                     <span className="min-w-0 flex-1">
                                         <span className="block text-sm font-semibold text-foreground">What we read</span>
                                         <span className="mt-0.5 block text-sm text-muted-foreground">
-                                            {wordCount} {wordCount === 1 ? "word" : "words"} from your file. Open it to check nothing is missing.
+                                            {wordCount} {wordCount === 1 ? "word" : "words"} from your file. Check that nothing is missing.
                                         </span>
                                     </span>
                                     <CaretDown data-affordance className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
