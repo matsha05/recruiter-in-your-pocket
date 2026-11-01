@@ -158,6 +158,22 @@ try {
   }
   assert.ok(seen.size >= 25, `expected pageMetadata() on most public pages, found ${seen.size}`);
 
+  // --- Links to research articles take their title from the hub -----------------
+  // A related-reading entry like { title: "…", href: "/research/…" } drifts the moment the article's
+  // question changes. Lists title research links with hubLink(href) instead (ResearchHubData.ts).
+  const sourceRoots = ["app", "components", "lib"].map((dir) => path.join(process.cwd(), dir));
+  const sourceFiles = sourceRoots.flatMap((dir) => walk(dir)).filter((file) => /\.tsx?$/.test(file) && !file.endsWith("ResearchHubData.ts"));
+  for (const file of sourceFiles) {
+    const source = readFileSync(file, "utf8");
+    for (const entry of source.matchAll(/\{[^{}]*href:\s*["'](\/research\/[a-z0-9-]+)["'][^{}]*\}/g)) {
+      assert.ok(!/\btitle:\s*["'`]/.test(entry[0]), `${path.relative(process.cwd(), file)}: title the link to ${entry[1]} with hubLink("${entry[1]}"), not a typed string`);
+    }
+  }
+  const { hubLink } = require("../components/research/ResearchHubData");
+  for (const article of hub.filter((entry: { href: string }) => entry.href.startsWith("/research/"))) {
+    assert.equal(hubLink(article.href).title, article.question, `${article.href}: related links must use the article's question`);
+  }
+
   // --- Structured data -------------------------------------------------------
   const roundTrip = (data: unknown) => JSON.parse(serializeJsonLd(data));
   assert.ok(!serializeJsonLd({ text: "</script><script>" }).includes("<"), "JSON-LD must escape <");

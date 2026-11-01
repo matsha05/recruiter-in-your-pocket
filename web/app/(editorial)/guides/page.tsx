@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Clock } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
-import { pillarForHref } from "@/components/research/ResearchHubData";
+import { hubLink, pillarForHref } from "@/components/research/ResearchHubData";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
@@ -37,20 +37,8 @@ const playbooks = [
     },
 ];
 
-const researchLinks = [
-    {
-        title: "What a referral changes",
-        href: "/research/referral-advantage",
-    },
-    {
-        title: "Should you share your salary history?",
-        href: "/research/salary-history-bans",
-    },
-    {
-        title: "Tell the story behind the line",
-        href: "/research/star-method",
-    },
-];
+// Titled from the Research hub, the same string as each article's H1.
+const researchLinks = ["/research/referral-advantage", "/research/salary-history-bans", "/research/star-method"].map(hubLink);
 
 export default function GuidesPage() {
     return (

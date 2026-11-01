@@ -216,3 +216,11 @@ export function hubEntry(id: string) {
 export function hubEntryForHref(href: string) {
     return allAnswers.find((article) => article.href === href);
 }
+
+/** A link to a hub answer, titled the way its page is: a research article's question, or a guide's own title.
+ *  Every list that links to research titles it through here, so the hub, the H1, and related links can't drift. */
+export function hubLink(href: string) {
+    const entry = hubEntryForHref(href);
+    if (!entry) throw new Error(`${href} isn't on the Research hub (ResearchHubData.ts).`);
+    return { title: entry.title ?? entry.question, href, tag: pillarForHref(href) ?? undefined };
+}
