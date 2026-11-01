@@ -75,7 +75,7 @@ for (const run of outputs.runs) {
 const model = mock ? "mock" : resolveOpenAIModel("revise_line");
 
 (async () => {
-  const results: Array<Case & { literal: string; result: PolishOutcome; joinersOk: boolean | null; costUsd: number }> = [];
+  const results: Array<Case & { literal: string; result: PolishOutcome; joinersOk: boolean | null; costUsd: number; ms: number }> = [];
   let spent = 0;
   for (const item of cases) {
     if (spent >= BUDGET_USD) {
@@ -83,13 +83,15 @@ const model = mock ? "mock" : resolveOpenAIModel("revise_line");
       break;
     }
     const literal = composeRevisedLine(item.source, item.answers.map((value) => ({ kind: "answered" as const, value })))!;
+    const started = Date.now();
     const result = await polishRevisedLine({ line: item.source, answers: item.answers, allowJoiners: false });
+    const ms = Date.now() - started;
     const usage = "usage" in result ? normalizeTokenUsage(result.usage) : null;
     const costUsd = usage ? calculateCostUsd("model" in result ? result.model : model, usage) ?? 0 : 0;
     spent += costUsd;
     const proposed = result.outcome === "polished" ? result.line : result.outcome === "fallback" ? result.proposed : null;
     const joiners = proposed ? checkPolishedLine({ sourceLine: item.source, answers: item.answers, literal, polished: proposed }, { allowJoiners: true }) : null;
-    results.push({ ...item, literal, result, joinersOk: joiners ? joiners.ok : null, costUsd });
+    results.push({ ...item, literal, result, joinersOk: joiners ? joiners.ok : null, costUsd, ms });
     process.stdout.write(result.outcome === "polished" ? "P" : result.outcome === "fallback" ? "f" : "E");
   }
   process.stdout.write("\n");
@@ -101,6 +103,9 @@ const model = mock ? "mock" : resolveOpenAIModel("revise_line");
   lines.push(`# Revised-line polish eval (${date})`, "");
   lines.push(`- Prompt: \`${REVISE_LINE_PROMPT_VERSION}\` (SHA-256 \`${REVISE_LINE_PROMPT_SHA256}\`)`);
   lines.push(`- Model: \`${model}\` via \`resolveOpenAIModel("revise_line")\`${mock ? " (mock: no model call)" : ""}`);
+  const sortedMs = results.map((entry) => entry.ms).sort((a, b) => a - b);
+  const percentile = (p: number) => sortedMs.length ? sortedMs[Math.min(sortedMs.length - 1, Math.floor(p * sortedMs.length))] : 0;
+  lines.push(`- Reasoning effort: low. Latency per call: median ${(percentile(0.5) / 1000).toFixed(1)}s, 95th percentile ${(percentile(0.95) / 1000).toFixed(1)}s (timeout 10s).`);
   lines.push(`- Cases: ${results.length} (${count((entry) => entry.kind === "realistic")} realistic, ${count((entry) => entry.kind === "adversarial")} adversarial). Cost: $${spent.toFixed(4)} (cap $${BUDGET_USD}).`, "");
   lines.push("| | Realistic | Adversarial | All |", "|:--|--:|--:|--:|");
   for (const [label, filter] of [
