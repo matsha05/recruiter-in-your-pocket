@@ -255,8 +255,10 @@ for (const relativePath of [
   "components/workspace/ReportPanel.tsx",
   "components/workspace/ResumeModeSection.tsx",
   "components/workspace/report/ReportStream.tsx",
-  "components/workspace/report/FixCanvas.tsx",
+  "components/workspace/report/markup/LineLift.tsx",
+  "components/workspace/report/markup/MarkedRows.tsx",
   "components/workspace/report/IndependentAdvice.tsx",
+  "lib/reports/revised-line.ts",
   "lib/api.ts",
   "lib/backend/validation.ts",
   "lib/llm/grounding.ts",
@@ -277,7 +279,8 @@ for (const relativePath of [
 }
 
 const productSource = [
-  "components/workspace/report/FixCanvas.tsx",
+  "components/workspace/report/markup/LineLift.tsx",
+  "components/workspace/report/markup/MarkedRows.tsx",
   "components/workspace/report/IndependentAdvice.tsx",
   "components/workspace/report/ReportStream.tsx",
 ].map((relativePath) => fs.readFileSync(path.join(process.cwd(), relativePath), "utf8")).join("\n");

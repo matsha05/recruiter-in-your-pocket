@@ -52,7 +52,7 @@ for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   assert.ok(rewrite, `fix ${index + 1} must retain its useful source-safe draft`);
   assert.equal(rewrite.original, evidence, "the before line must remain the fix's actual quoted source");
   assert.deepEqual(bracketPlaceholderKeys(rewrite.better), requirement.keys,
-    `FixCanvas must show a fact field for every detail requested by fix ${index + 1}`);
+    `the sample keeps a fact field for every detail requested by fix ${index + 1}`);
   for (const explanation of requirement.explanations) {
     assert.match(rewrite.enhancement_note || "", explanation, "generic fact fields must state which missing detail belongs there");
   }

@@ -130,6 +130,7 @@ export function revisedLinePolicy(input: {
   line: string;
   answers: readonly LiftAnswer[];
 }): RevisedLinePolicy {
+  if (!input.line.trim()) return { copyable: false, reason: "unsafe", issues: [], composed: false, newFacts: [] };
   const source = liftSourceLine(input.excerpt, input.resumeText);
   const composed = composeRevisedLine(source.line, input.answers) === input.line;
   const policy = resolveRewriteCopyPolicy({
