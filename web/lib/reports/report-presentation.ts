@@ -37,6 +37,15 @@ export function fixPlanHeadingForCount(count: number, nothingCritical = false) {
   return "Fix these three first.";
 }
 
+/**
+ * Whether the report was read against a job posting. The validator writes the exact "No job description
+ * provided." summary when there was none, so this survives a reload that loses the posting's text (1.7).
+ */
+export function reportHasJobDescription(report: Pick<ReportData, "job_alignment">) {
+  const summary = report.job_alignment?.jd_match_summary?.trim();
+  return Boolean(summary) && summary !== "No job description provided.";
+}
+
 /** The ranking prompt marks "Nothing critical" by making its only Critical Miss low impact (decision D2). */
 export function isNothingCritical(report: Pick<ReportData, "top_fixes">) {
   return report.top_fixes?.[0]?.impact_level === "low";

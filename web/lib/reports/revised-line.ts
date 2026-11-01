@@ -5,7 +5,7 @@
  * word for word. Nothing is paraphrased, so the only words we contribute are
  * punctuation, and the existing fabrication guard (`resolveRewriteCopyPolicy`)
  * still has to pass before Copy turns on. A model-polished line would read
- * better but fails that guard (see docs/launch-readiness/71-signature-report-spec.md).
+ * better but fails that guard (see docs/launch-readiness/72-signature-report-spec.md).
  *
  * Like the integrity pass, this never writes new prose: questions are split or
  * trimmed model text, and the line is the candidate's text.

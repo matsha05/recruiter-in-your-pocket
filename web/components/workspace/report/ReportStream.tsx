@@ -15,6 +15,7 @@ import {
   fixPlanHeadingForCount,
   isNothingCritical,
   questionForPlaceholder,
+  reportHasJobDescription,
 } from "@/lib/reports/report-presentation";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 import { liftQuestions } from "@/lib/reports/revised-line";
@@ -61,7 +62,7 @@ export function ReportStream({
   isSample = false,
   freeUsesRemaining = 1,
   onUpgrade,
-  hasJobDescription = false,
+  hasJobDescription: hasJobDescriptionText = false,
   isGated = false,
   hasPaidAccess = false,
   comparisonBaseline = null,
@@ -88,6 +89,8 @@ export function ReportStream({
   const miss = fixes[0];
   const nothingCritical = isNothingCritical(reconciled);
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
+  // A recovered report has lost the posting's text but not the fact that it was read against one.
+  const hasJobDescription = hasJobDescriptionText || reportHasJobDescription(report);
 
   // The resume this visit can check lines against: the one it ran on, or one pasted back in.
   const [reattached, setReattached] = useState<string | undefined>();

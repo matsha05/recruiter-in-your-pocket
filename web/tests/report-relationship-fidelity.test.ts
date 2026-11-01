@@ -190,8 +190,9 @@ for (const alreadyVisible of [
   assert.equal(fullNotesHtml.includes(alreadyVisible), false, `full recruiter notes must not repeat ${alreadyVisible}`);
 }
 
+// Without a posting, the validator writes the exact "No job description provided." summary.
 const sampleReportHtml = renderToStaticMarkup(createElement(ReportStream, {
-  report: completeReport,
+  report: { ...completeReport, job_alignment: { ...completeReport.job_alignment, jd_match_summary: "No job description provided." } },
   isSample: true,
 }));
 const sampleFullNotesStart = sampleReportHtml.indexOf('<details id="section-full-notes"');
