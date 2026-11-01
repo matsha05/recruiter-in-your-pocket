@@ -204,7 +204,7 @@ export function ReportStream({
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
             <div>
               <h2 className={styles.sectionTitle}>{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
-              <p className="mt-5 max-w-[42rem] text-base text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
+              <p className="mt-5 max-w-reading text-base text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             </div>
             <div className="border-l-2 border-brand/30 pl-5">
               <p className="text-sm font-semibold text-muted-foreground">Roles to consider</p>
@@ -222,7 +222,7 @@ export function ReportStream({
           <span className="text-sm font-semibold text-foreground">How the score works</span>
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
-        <div className="grid max-w-[43rem] gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-base text-foreground/85">
+        <div className="grid max-w-reading gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-base text-foreground/85">
           <p>The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average.</p>
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}

@@ -10,7 +10,8 @@ const require = createRequire(import.meta.url);
 // lower it when debt is paid down; raising one is a design decision recorded in docs/design-system.md.
 export const STYLE_BUDGETS = {
   textRoles: 11,
-  buttonVariants: 4,
+  // primary, secondary, quiet, destructive, and destructiveFinal (filled only on the last irreversible step).
+  buttonVariants: 5,
   buttonSizes: 4,
   handBuiltPills: 0,
   // className on <Button> that restyles its height, padding, label size, or weight.
@@ -153,7 +154,7 @@ function collectGeometry() {
 function countButtonSystem(errors) {
   const source = read("components/ui/button.tsx");
   const block = (name) => source.match(new RegExp(`${name}:\\s*\\{([\\s\\S]*?)\\n\\s{12}\\}`))?.[1] ?? "";
-  const keys = (text) => [...text.matchAll(/^\s{16}(?:\/\/[^\n]*\n\s{16})?([a-z]+):/gm)].map((match) => match[1]);
+  const keys = (text) => [...text.matchAll(/^\s{16}(?:\/\/[^\n]*\n\s{16})?([a-zA-Z]+):/gm)].map((match) => match[1]);
   const variants = keys(block("variant"));
   const sizes = keys(block("size"));
   for (const size of ["sm", "md", "lg"]) if (!sizes.includes(size)) errors.push(`Button is missing the ${size} size`);
@@ -270,8 +271,10 @@ function validateProseMeasure(errors) {
   };
   const rails = { "max-w-reading": reading };
   const globals = read("app/globals.css");
-  const proseRule = cssRules(globals).find(([selector]) => /^\.riyp-prose\s*$/.test(selector));
-  if (proseRule) rails[".riyp-prose"] = declarations(proseRule[1], "max-width")[0] ?? "";
+  for (const rail of [".riyp-prose", ".research-body"]) {
+    const rule = cssRules(globals).find(([selector]) => selector.trim() === rail);
+    if (rule) rails[rail] = declarations(rule[1], "max-width")[0] ?? "none";
+  }
   const measured = {};
   for (const [name, width] of Object.entries(rails)) {
     const characters = Math.round(toCharacters(width));

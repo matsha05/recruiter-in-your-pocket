@@ -9,7 +9,8 @@ import { ActionFeedback } from "./action-feedback"
 
 /**
  * The one Button (Highlighter 1.1). Three sizes (44, 48, 60) and three variants: an ink primary,
- * an outlined secondary, and a quiet text action. Destructive (outlined in the red pen) is only for deleting things.
+ * an outlined secondary, and a quiet text action. Deleting uses the outlined destructive variant, and the final
+ * irreversible confirm uses destructiveFinal, the only filled red button.
  * Every variant shares the press grammar: a fast color change on hover and a 0.98 press.
  * Links that look like buttons use `asChild` so there is one build per size and variant.
  */
@@ -24,9 +25,12 @@ const buttonVariants = cva(
                     "border border-control-line bg-card text-foreground hover:border-foreground active:bg-secondary",
                 quiet:
                     "text-foreground underline decoration-[hsl(var(--link-line-quiet))] decoration-1 underline-offset-[var(--link-offset)] hover:decoration-current active:bg-secondary/60",
-                // The red pen draws a line; it never fills.
+                // The red pen draws a line: every delete control is outlined...
                 destructive:
                     "border border-destructive/50 bg-card text-destructive hover:border-destructive active:bg-destructive/5",
+                // ...except the button that performs the irreversible step itself, in the final confirm (Matt, Nov 1, 2026).
+                destructiveFinal:
+                    "bg-destructive text-destructive-foreground hover:bg-destructive/88 active:bg-destructive/80",
             },
             size: {
                 sm: "min-h-11 px-4 text-sm",

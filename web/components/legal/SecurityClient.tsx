@@ -84,7 +84,7 @@ export default function SecurityClient() {
                     <ShieldCheck className="size-5 text-brand" weight="bold" />
                     Responsible disclosure
                 </h2>
-                <p className="text-base text-muted-foreground">
+                <p className="max-w-reading text-base text-muted-foreground">
                     If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring rounded-sm text-foreground riyp-link">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="focus-ring rounded-sm text-foreground riyp-link">/.well-known/security.txt</Link>.
                 </p>
             </section>

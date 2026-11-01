@@ -70,7 +70,7 @@ export default function ConfirmModal({
                         {cancelText}
                     </Button>
                     <Button
-                        variant={isDestructive ? "destructive" : "primary"}
+                        variant={isDestructive ? "destructiveFinal" : "primary"}
                         className="flex-1"
                         onClick={onConfirm}
                         isLoading={loading}

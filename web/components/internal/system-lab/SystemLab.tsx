@@ -224,6 +224,7 @@ export default function SystemLab() {
                 <Button variant="secondary">Secondary action</Button>
                 <Button variant="quiet">Quiet action</Button>
                 <Button variant="destructive">Delete report</Button>
+                <Button variant="destructiveFinal">Delete permanently</Button>
               </div>
               <div className="mt-6 flex flex-wrap items-end gap-3">
                 <Button size="sm">Small, 44px</Button>

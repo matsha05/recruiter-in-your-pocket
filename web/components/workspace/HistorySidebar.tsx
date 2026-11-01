@@ -588,7 +588,7 @@ export default function HistorySidebar({
                             Cancel
                         </Button>
                         <Button
-                            variant="destructive"
+                            variant="destructiveFinal"
                             className="flex-1"
                             onClick={handleConfirmDelete}
                             disabled={deletingId === deleteConfirmId}

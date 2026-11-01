@@ -237,7 +237,7 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 
 - **13px is the floor.** No text below 0.8125rem anywhere: labels, captions, metadata, chips, footnotes.
 - **Uppercase only for Verdict and Critical Miss**, via `.riyp-verdict-label`. Every other label is sentence case at 13px, weight 600. A resume section heading drawn inside an illustration may mimic the resume's own style.
-- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green. Since Nov 1, 2026 there is one Button with three sizes and three variants (§9).
+- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green. Since Nov 1, 2026 there is one Button: three sizes, three variants, and the two delete treatments (§9).
 - **Static cards don't react.** `.app-card` has a hairline border and no shadow or hover state. Only things you can click respond to the pointer.
 - **The score is a number, not a color.** `ScoreBadge` shows the score in ink with "/100". No green, gold or red bands and no band labels; the written Verdict carries the judgment.
 - **Status chips use pen.** "Active" and "Paid" use the pen tint, not success green. Green-for-good is not part of the system.
@@ -277,7 +277,10 @@ Shared primitives are the default. A route-specific component is appropriate whe
 | `primary` (default) | ink fill, white label | ink at 88% | the one main action in a view |
 | `secondary` | white sheet, control-line outline | outline turns ink | other actions |
 | `quiet` | text with the quiet underline | underline goes solid | a supporting route beside a primary, like "See an example" |
-| `destructive` | white sheet, red-pen outline and label | outline goes solid red | deleting things only; the red pen draws a line, it never fills |
+| `destructive` | white sheet, red-pen outline and label | outline goes solid red | every delete control that opens or leads to a deletion; the red pen draws a line |
+| `destructiveFinal` | red-pen fill, white label | fill at 88% | only the button that performs an irreversible step, inside its final confirm (delete account, delete report, delete job) |
+
+Delete rule (Matt, Nov 1, 2026): outlined red everywhere, filled red only on the last irreversible step. A screen never shows a filled red button outside a confirm dialog.
 
 Don't restyle a Button through `className` (height, padding, size, weight, fill, or border); pick the size and variant. Layout classes such as `w-full`, `mt-*`, `justify-between`, and `hidden md:inline-flex` are fine. An ink band (the homepage close) adds the `dark` class so its tokens, and the Button with them, invert.
 
@@ -427,7 +430,7 @@ The guardrail must fail for:
 - unauthorized hardcoded colors
 - banned public copy patterns
 - increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
-- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 11 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 4 Button variants or sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
+- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 11 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
 
 The rendered check loads 23 public routes at 1440 and 390px and fails on an off-scale or fractional size, a weight outside 400/600/800, more than 40 text styles, more than one build of the primary action per size, or a paragraph inside a reading rail over 75 characters per line. Paragraphs a page lays out outside the rail are listed as warnings:
 

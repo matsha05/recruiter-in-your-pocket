@@ -558,7 +558,10 @@
     margin-bottom: 0.75rem;
   }
 
+  /* Research prose stays on the reading rail (max-w-reading, 52ch) even inside full-width figure sections;
+     the figures themselves still break out. */
   .research-body {
+    max-width: 52ch;
     font-size: var(--type-prose-size);
     line-height: var(--type-prose-leading);
     color: hsl(var(--foreground));
