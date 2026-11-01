@@ -37,10 +37,10 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     features: [
       { text: "One complete resume report", bold: true },
       { text: "Your Verdict and First Impression score" },
-      { text: "The Critical Miss: what a recruiter is most likely to skip past" },
+      { text: "The Critical Miss: the one thing to fix first" },
       { text: "Each suggestion tied to a line on your resume" },
-      { text: "Rewrites that use only your facts" },
-      { text: "No account or card needed" }
+      { text: "Questions that pull out the details you left off" },
+      { text: "No account or card needed (one per browser each month)" }
     ]
   },
   "30d": {
