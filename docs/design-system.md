@@ -43,7 +43,7 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
-- homepage story: `web/components/landing/home/VerdictHero.tsx`, `SilenceSection.tsx`, `OneSentence.tsx`, and `HiringTruths.tsx` (the How it works target)
+- homepage story: `web/components/landing/home/VerdictHero.tsx` (with `NoteReveal.tsx`), `WorkedExample.tsx` (the How it works target), `SilenceSection.tsx`, `HiringTruths.tsx`, and `ProgressBeat.tsx`
 
 Rules:
 
@@ -297,10 +297,12 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 
 ### Homepage
 
-- Headline: “They called someone back. It wasn’t you.” One dark primary action (“Read mine”) and one quiet secondary route (“See an example”).
-- The story runs in four light, simple beats: the hidden verdict (hero), the silence (a fading “No response” list), one sentence (a single verdict in Literata with the highlighter on the miss), then “What we look for, line by line.”
-- The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The reviewer note on the recruiter's screen is blurred on purpose and hidden from assistive technology.
-- The note arrives once; reduced motion shows it in place. The illustration must not gate the report action.
+- Headline: “They called someone back. It wasn’t you.” One dark primary action (“Get your free report”, the one name for starting a report; see `copy-system.md` §1) and one quiet secondary route (“See Jordan’s report”).
+- The story runs in five beats (Matt, Nov 1, 2026): the hidden verdict (hero); the worked example (the note, explained); the silence (a fading “No response” list); “What we look for, line by line”; and the re-check (“Fix it. Then check it again.”). The hero's screen shows the stage (“Not moving forward”) and the note; the rejection email line was cut so the help arrives one beat sooner.
+- The worked example opens with the one-sentence read (Literata, the section's one highlighter on the miss), then the line behind it on a blue-ink rule, the reviewer's note in pen, and Jordan's answer as labeled blanks (“Blank on purpose”). It carries a “Fictional example” tag and ends with “What would they think of yours?” The revised line joins as a fourth step only when the answer-to-line feature ships (plan 2.2); until then the homepage promises no rewrite.
+- The re-check beat is a miniature of the real comparison and Progress views, tagged as a fictional example: the Critical Miss *changed*, never *fixed*, and scores appear only as changes (“Up 6”).
+- The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The reviewer note on the recruiter's screen starts blurred and stays hidden from assistive technology; the worked example carries its words as text.
+- The note arrives once; reduced motion shows it in place. It clears once (blur to none on `--duration-slow`) when the visitor has scrolled past 48px and the card is fully in view: right away on a laptop, once the card scrolls up on a phone. Reduced motion clears it without a transition; without JavaScript it stays blurred. The illustration must not gate the report action.
 - Below 1200px the hero stacks (headline and actions, then the illustration at its desktop size) so the 64 and 72px headline never wraps in a narrow column; below 640px the actions go full width.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.

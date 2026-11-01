@@ -44,7 +44,7 @@ const STUDIO_NAV_ITEMS: NavItem[] = [
         description: "Hiring research hub",
     },
     {
-        label: "Resources",
+        label: "After the offer",
         href: "/resources",
         description: "Negotiation guides & tools",
     },
@@ -89,7 +89,7 @@ const MARKETING_NAV = {
     resources: [
         { label: "Negotiation Guide", href: "/resources/tech-offer-negotiation" },
         { label: "Offer Calculator", href: "/resources/tools/comp-calculator" },
-        { label: "All Resources", href: "/resources" },
+        { label: "All guides and tools", href: "/resources" },
     ],
     company: [
         { label: "FAQ", href: "/faq" },

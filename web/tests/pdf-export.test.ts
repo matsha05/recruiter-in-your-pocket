@@ -29,13 +29,9 @@ assert.equal(normalizedSample?.summary, sampleReport.summary);
 assert.deepEqual(normalizedSample?.next_steps, sampleReport.next_steps);
 assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 
-const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
-assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
-assert.match(sampleReport.rewrites[0].better, /\[verified before-and-after result\]/i);
-assert.match(sampleReport.rewrites[1].better, /\[ownership detail\]/i);
-for (const rewrite of sampleReport.rewrites) {
-  assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
-}
+// Jordan's sample is real output and, like real reports today, carries no rewrites (D3).
+assert.deepEqual(sampleReport.rewrites, [], "the sample must not promise rewrites reports don't deliver");
+assert.equal(normalizedSample?.top_fixes?.length, sampleReport.top_fixes.length, "every fix reaches the PDF");
 assert.doesNotThrow(() => assertSampleReportResponseOk({ ok: true, status: 200 }));
 assert.throws(
   () => assertSampleReportResponseOk({ ok: false, status: 503 }),
@@ -163,7 +159,7 @@ const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
 assert.match(renderedHtml, /First Impression score/);
-assert.match(renderedHtml, /78<span>\/100<\/span>/);
+assert.ok(renderedHtml.includes(`${sampleReport.score}<span>/100</span>`), "the PDF shows the sample's score");
 assert.match(renderedHtml, /It doesn't predict interviews or offers\./);
 assert.match(renderedHtml, /<div class="verdict-label">Verdict<\/div>/);
 assert.ok(renderedHtml.includes(sampleReport.first_impression), "the PDF must open with the same Verdict as the web report");
@@ -172,10 +168,21 @@ assert.ok(renderedHtml.includes(sampleReport.top_fixes[0].fix));
 assert.doesNotMatch(renderedHtml, /subscores-grid|score-band/, "the PDF must use one score system");
 assert.match(renderedHtml, /Leave these alone\. They&rsquo;re working\./);
 assert.doesNotMatch(renderedHtml, /What stays unclear/, "gaps already surface as the Critical Miss and fixes; the PDF must not repeat them");
-assert.match(renderedHtml, /Suggested edits/);
-assert.match(renderedHtml, /Draft template/);
-assert.match(renderedHtml, /Complete the bracketed details with facts from your experience/);
-assert.doesNotMatch(renderedHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
+// The sample has no drafts (D3), so the draft layout is checked on a copy with one source-bound draft.
+const criticalLine = sampleReport.top_fixes[0].evidence.excerpt;
+const draftHtml = renderReportHtml(normalizeReportForPdf({
+  ...sampleReport,
+  rewrites: [{
+    label: "Scope",
+    original: criticalLine,
+    better: `${criticalLine}; [verified before-and-after result].`,
+    enhancement_note: "Add a result you can verify.",
+  }],
+})!);
+assert.match(draftHtml, /Suggested edits/);
+assert.match(draftHtml, /Draft template/);
+assert.match(draftHtml, /Complete the bracketed details with facts from your experience/);
+assert.doesNotMatch(draftHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
 assert.doesNotMatch(renderedHtml, /PocketMark|#0d9488|#22c55e|#d97706|#dc2626/);
 assert.doesNotMatch(renderedHtml, /[\u2010-\u2015\u2212]/, "PDF text should use ASCII hyphens");
 

@@ -25,3 +25,21 @@ export const JORDAN_ROLE_FIT = {
         { label: "Not shown in the resume", text: "Expansion or upsell revenue", missing: true },
     ],
 } as const;
+
+/**
+ * The homepage's worked example and the hero's reviewer note. Placeholder wording, approved by Matt on
+ * Nov 1, until the Critical Miss prompt (plan 1.3) is final; then it quotes Jordan's regenerated report.
+ */
+export const JORDAN_EXAMPLE = {
+    verdict: {
+        lead: "A capable account manager with a real book of business.",
+        miss: "What’s missing is proof Jordan changed the outcome.",
+    },
+    line: "Introduced monthly renewal-risk reviews across the portfolio",
+    note: "Solid book of business, but the best example stops right before the good part. Did renewals go up?",
+    answers: [
+        { label: "Renewal rate before", placeholder: "Jordan’s number" },
+        { label: "Renewal rate after", placeholder: "Jordan’s number" },
+        { label: "Over what period", placeholder: "Jordan’s answer" },
+    ],
+} as const;

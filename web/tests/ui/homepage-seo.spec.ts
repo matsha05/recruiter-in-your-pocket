@@ -15,12 +15,12 @@ test.describe("homepage feedback and SEO contract", () => {
       "See what a recruiter sees on your resume, and the one thing to fix first.",
     );
 
-    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Read mine");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "See an example", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "See Jordan’s report", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
@@ -30,12 +30,23 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).not.toContainText("Trusted by people at");
-    // The blurred note is decoration; the story says the same thing in text.
+    // The blurred note is decoration; the worked example under the hero says the same thing in text.
+    await expect(hero).not.toContainText("What Jordan got");
+    const example = homepage.locator("#how-it-works");
+    await expect(example.getByRole("heading", { level: 2, name: "Here’s the note Jordan never saw." })).toBeVisible();
+    await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
+    await expect(example.locator("figure blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
+    await expect(example).toContainText("Did renewals go up?");
+    await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up numbers for anyone.");
+    await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
+    await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
     await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
     await expect(homepage).toContainText("Sometimes it’s one line on your resume. That part you can fix.");
-    await expect(homepage.locator("blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
-    await expect(homepage.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
-    const truths = homepage.locator("#how-it-works");
+    const progress = homepage.getByTestId("landing-progress-beat");
+    await expect(progress.getByRole("heading", { level: 2, name: "Fix it. Then check it again." })).toBeVisible();
+    await expect(progress).toContainText("Your Critical Miss changed.");
+    await expect(progress).not.toContainText("fixed");
+    const truths = homepage.locator("#what-we-look-for");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
     await expect(truths).toContainText("One Critical Miss, not forty tips.");
     await expect(truths).toContainText("No ATS score. No interview odds.");

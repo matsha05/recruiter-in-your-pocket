@@ -1,5 +1,6 @@
 import { JORDAN_ROLE_FIT } from "@/lib/marketing/jordan-example";
 import { cn } from "@/lib/utils";
+import { FictionalTag } from "./FictionalTag";
 import { RecheckExample } from "./RecheckExample";
 import styles from "./PassExamples.module.css";
 
@@ -15,7 +16,7 @@ export function PassExamples() {
 
                 <div className={styles.uses}>
                     <article className={styles.use} aria-labelledby="pass-use-recheck">
-                        <p className={styles.tag}>Fictional example</p>
+                        <FictionalTag />
                         <h3 id="pass-use-recheck" className={styles.useTitle}>Check your revision</h3>
                         <p className={styles.useBody}>Run the revised resume, and the report puts it beside the last one: whether the Critical Miss changed, and which way the score moved.</p>
                         <RecheckExample className={styles.demo} />
@@ -23,7 +24,7 @@ export function PassExamples() {
                     </article>
 
                     <article className={styles.use} aria-labelledby="pass-use-job">
-                        <p className={styles.tag}>Fictional example</p>
+                        <FictionalTag />
                         <h3 id="pass-use-job" className={styles.useTitle}>Read it against each job</h3>
                         <p className={styles.useBody}>Paste the posting with your resume. The report shows what fits, what needs more detail, and what the posting asks for that your resume doesn&rsquo;t show.</p>
                         <div className={cn(styles.demo, styles.fit)}>

@@ -64,23 +64,20 @@ for (const [left, right] of [
 // Known contradictions from the audit
 // ============================================
 
-// The sample's launch line is both "Don't touch this one" and Fix 2; its roadmap line is both Keep and Fix 3.
+// Jordan's sample (real output): the business-review strength sits on Fix 2's line, so it leaves Keep.
 const sampleIntegrity = reconcileReport(sample);
 assert.deepEqual(
   auditKeepFixCollisions(sample).map(({ strength, line }) => [strength, line]),
-  [["strengths[0]", "fix-1"], ["strengths[1]", "fix-2"]],
+  [["strengths[1]", "fix-1"]],
 );
-assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[0]), "the launch line cannot be both Keep and Fix 2");
-assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[1]), "the roadmap line cannot be both Keep and Fix 3");
-assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2], sample.strengths[3]],
-  "the education strength and a strength about relevance, not one line, stay");
-assert.match(sampleIntegrity.report.strengths![0], /^Education/, "\"Don't touch this one\" is a line the sample doesn't fix");
-assert.equal(sampleIntegrity.report.section_review!.Education.working, "", "Education's \"What works\" is said once, as the strength");
-// The sample's Critical Miss "why" is itself the missing-detail questions: it belongs in What to add, once.
-assert.equal(criticalMissReason(sampleIntegrity), undefined);
+assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[1]), "the business-review line cannot be both Keep and Fix 2");
+assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[0], sample.strengths[2]],
+  "strengths on lines the sample doesn't fix stay, in order");
+// The Critical Miss gives its reason in the opening read and asks the model's own questions about its line.
+assert.equal(criticalMissReason(sampleIntegrity), sample.top_fixes[0].why);
 assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, [
-  "How many people did you onboard, on which teams, and over what period?",
-  "What got easier or faster, and how did you measure it?",
+  "What did you look for when identifying accounts at risk during the monthly reviews?",
+  "What prompted you to introduce monthly renewal-risk reviews?",
 ]);
 assert.equal(sampleIntegrity.structuralGaps[0]?.kind, "target_role");
 
@@ -324,7 +321,7 @@ for (const line of quoted) {
   assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
   assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
 }
-for (const removed of [sample.strengths[0], sample.gaps[0], sample.top_fixes[0].why]) {
+for (const removed of [sample.strengths[1], sample.gaps[1]]) {
   assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
 }
 

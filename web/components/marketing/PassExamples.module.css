@@ -37,15 +37,6 @@
     padding: 1.75rem;
 }
 
-.tag {
-    align-self: flex-start;
-    border-radius: 999px;
-    background: hsl(var(--secondary));
-    padding: 0.25rem 0.625rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
-}
-
 .useTitle {
     margin-top: 1rem;
     font: var(--type-heading);

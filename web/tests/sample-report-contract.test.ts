@@ -1,76 +1,47 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import {
-  bracketPlaceholderKeys,
-  unsupportedBracketPayloads,
-} from "../lib/llm/report-placeholder-policy";
-import { compareSourceBoundRewrite } from "../lib/llm/source-fidelity";
-import { buildReportRewritePresentation, resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
+import { buildReportRewritePresentation } from "../lib/reports/report-presentation";
 import { ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
 
+// The public sample is Jordan's report: real output from the production prompt on a fictional resume
+// (tests/fixtures/sample). It must stay real output, and it must not promise what reports don't deliver.
 const sample = ResumeFeedbackResponseSchema.parse(JSON.parse(readFileSync(
   path.join(process.cwd(), "public/sample-report.json"), "utf8",
 )));
+const resume = readFileSync(path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-resume.txt"), "utf8");
+const generated = JSON.parse(readFileSync(
+  path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-report.generated.json"), "utf8",
+));
+
+assert.deepEqual(JSON.parse(JSON.stringify(sample)), JSON.parse(JSON.stringify(ResumeFeedbackResponseSchema.parse(generated.payload))),
+  "the sample is the generated payload, unedited");
+assert.equal(generated.model, "gpt-6.1-terra", "the sample records the production model it was generated with");
+assert.match(generated.prompt_sha256, /^[0-9a-f]{64}$/, "the sample records the prompt it was generated with");
+
 const presentation = buildReportRewritePresentation(sample.top_fixes, sample.rewrites);
 assert.equal(presentation.fixes.length, 3);
-assert.equal(presentation.independentRewrites.length, 0, "each sample rewrite must attach to the cited fix");
+assert.deepEqual(sample.rewrites, [], "until answer-to-line ships (plan 2.2), the sample shows no rewrites (D3)");
 
 const requirements = [
-  {
-    requests: [/onboarding improved productivity/i],
-    source: "Led onboarding work across the company, improving productivity.",
-    keys: [],
-    explanations: [/how many people did you onboard/i, /which teams/i, /over what period/i, /how did you measure it/i],
-  },
-  {
-    requests: [/result.*launch/i],
-    source: "Ran a cross-team launch with clear owners and checkpoints.",
-    keys: ["verified before-and-after result"],
-    explanations: [/before-and-after measure/i, /launch meant to achieve/i, /result you can verify/i],
-  },
-  {
-    requests: [/your part.*roadmap/i],
-    source: "Managed stakeholder alignment and delivered quarterly roadmap on time.",
-    keys: ["functions", "ownership detail"],
-    explanations: [/teams you coordinated/i, /decision you personally made/i],
-  },
+  { request: /renewal-risk review bullet/i, source: "- Introduced monthly renewal-risk reviews across the portfolio" },
+  { request: /quarterly business review bullet/i, source: "- Ran quarterly business reviews with customer leadership teams" },
+  { request: /Account Coordinator support bullet/i, source: "- Assisted account managers with various tasks as needed" },
 ];
-
 for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
-  const requirement = requirements[index];
-  for (const request of requirement.requests) {
-    assert.match(fix.fix || "", request);
-  }
+  assert.match(fix.fix || "", requirements[index].request);
   const evidence = typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt;
-  assert.equal(evidence, requirement.source, "every recommendation must preserve its actual quoted source");
-  if (requirement.keys.length === 0) {
-    assert.equal(rewrite, undefined, "a useful fact question must not be padded with a synthetic rewrite");
-    for (const explanation of requirement.explanations) assert.match(fix.why || "", explanation);
-    continue;
-  }
-  assert.ok(rewrite, `fix ${index + 1} must retain its useful source-safe draft`);
-  assert.equal(rewrite.original, evidence, "the before line must remain the fix's actual quoted source");
-  assert.deepEqual(bracketPlaceholderKeys(rewrite.better), requirement.keys,
-    `FixCanvas must show a fact field for every detail requested by fix ${index + 1}`);
-  for (const explanation of requirement.explanations) {
-    assert.match(rewrite.enhancement_note || "", explanation, "generic fact fields must state which missing detail belongs there");
-  }
-  assert.deepEqual(unsupportedBracketPayloads(rewrite.better), [], "sample fields must use the same accepted placeholders as real reports");
-  const comparison = compareSourceBoundRewrite({
-    sourceText: rewrite.original,
-    sourceLocator: rewrite.original,
-    candidate: rewrite.better,
-  });
-  assert.equal(comparison.safe, true,
-    `sample fix ${index + 1} must preserve the cited facts without unsupported additions: ${JSON.stringify(comparison.issues)}`);
-  assert.equal(resolveRewriteCopyPolicy({
-    sourceText: rewrite.original, original: rewrite.original, draft: rewrite.better,
-  }).reason, "unresolved_placeholders", "the example must not become copyable while facts are unknown");
+  assert.equal(evidence, requirements[index].source, "every recommendation must preserve its actual quoted source");
+  assert.ok(resume.includes(evidence!), `fix ${index + 1} quotes a line that is on Jordan's resume`);
+  assert.equal(rewrite, undefined, "a fact question must not be padded with a synthetic rewrite");
 }
 
-assert.doesNotMatch(JSON.stringify(sample), /each week|per week|weekly/i,
-  "the sample must not invent an onboarding frequency absent from its source");
-assert.match(sample.next_steps[1], /three examples.*read them together/i,
-  "the closing plan should help apply the priority edits rather than repeat every missing fact");
+// The homepage hero draws Jordan's resume; the lines it shows must be the resume the sample read.
+for (const line of [
+  "Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue",
+  "Introduced monthly renewal-risk reviews across the portfolio",
+  "Ran quarterly business reviews with customer leadership teams",
+  "Assisted account managers with various tasks as needed",
+]) assert.ok(resume.includes(line), `Jordan's resume includes "${line}"`);
+
 console.log("Sample report content contracts passed");

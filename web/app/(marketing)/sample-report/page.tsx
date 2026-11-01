@@ -9,13 +9,13 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sample report",
-  description: "See how a resume report explains what works, quotes the details behind its feedback, and suggests what to change before applying.",
+  description: "A complete resume report on a fictional candidate, Jordan: what works, the lines behind each note, and the one thing to fix first.",
   alternates: {
     canonical: "/sample-report",
   },
   openGraph: {
     title: "Read an Example Resume Report",
-    description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
+    description: "A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first.",
     url: "https://www.recruiterinyourpocket.com/sample-report",
     images: ["/opengraph-image?v=20261031"],
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Read an Example Resume Report",
-    description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
+    description: "A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first.",
     images: ["/opengraph-image?v=20261031"],
   },
 };

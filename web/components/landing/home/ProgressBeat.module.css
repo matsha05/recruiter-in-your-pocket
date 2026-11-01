@@ -1,0 +1,35 @@
+.progress {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 5rem 1.25rem;
+}
+
+.inner { display: flex; flex-direction: column; }
+
+.title {
+    margin-top: 1.25rem;
+    text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+.deck {
+    max-width: 44ch;
+    margin-top: 1rem;
+    color: hsl(var(--muted-foreground));
+    text-wrap: pretty;
+    font: var(--type-lead);
+}
+
+.demo { margin-top: 2.25rem; }
+
+.footnote {
+    max-width: 60rem;
+    margin-top: 1rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+@media (max-width: 760px) {
+    .progress { padding: 4rem 1.25rem; }
+}

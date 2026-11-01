@@ -25,11 +25,11 @@ test("a failed font leaves the main action usable from the keyboard", async ({ p
     await expect(page).toHaveURL(/\/workspace(?:[/?#]|$)/);
 });
 
-test("the story reads in order: the hidden verdict, the silence, one read, then what we look for", async ({ page }) => {
+test("the story reads in order: the hidden verdict, the worked example, the silence, what we look for, then the re-check", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
-    const order = await page.evaluate(() => ["#hero-title", "#silence-title", "#one-sentence-title", "#how-it-works"]
+    const order = await page.evaluate(() => ["#hero-title", "#example-title", "#silence-title", "#what-we-look-for", "#progress-title"]
         .map((selector) => document.querySelector(selector)!.getBoundingClientRect().top + scrollY));
     expect([...order].sort((a, b) => a - b)).toEqual(order);
     // The note is meant to be unreadable; its words never reach assistive technology as content.
@@ -44,4 +44,28 @@ test("reduced motion shows the note already in place", async ({ browser }) => {
     await expect(note).toBeVisible();
     expect(await note.evaluate((element) => getComputedStyle(element.closest("p")!.parentElement!).animationName)).toBe("none");
     await context.close();
+});
+
+test("the reviewer note clears once the visitor scrolls into the story", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
+    const card = page.getByTestId("landing-verdict-art").locator(":scope > div").last();
+    const note = page.getByTestId("landing-verdict-art").getByText("Did renewals go up?", { exact: false });
+    await expect.poll(() => note.evaluate((element) => getComputedStyle(element).filter)).toContain("blur");
+    await page.mouse.move(700, 450);
+    await page.mouse.wheel(0, 160);
+    await expect(card).toHaveAttribute("data-revealed", "true");
+    await expect.poll(() => note.evaluate((element) => getComputedStyle(element).filter)).toBe("none");
+});
+
+test("on a phone the note waits until its card is in view", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
+    const art = page.getByTestId("landing-verdict-art");
+    await expect(art.locator("[data-revealed]")).toHaveCount(0);
+    await art.scrollIntoViewIfNeeded();
+    await page.mouse.wheel(0, 120);
+    await expect(art.locator("[data-revealed='true']")).toHaveCount(1);
 });

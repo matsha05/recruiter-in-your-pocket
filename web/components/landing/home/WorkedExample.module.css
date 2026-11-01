@@ -1,0 +1,163 @@
+.example {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 5rem 1.25rem 6rem;
+    scroll-margin-top: var(--marketing-header-height-desktop);
+}
+
+.inner { display: flex; flex-direction: column; }
+
+.title {
+    max-width: 18ch;
+    margin-top: 1.25rem;
+    text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+.deck {
+    max-width: 44ch;
+    margin-top: 1rem;
+    color: hsl(var(--muted-foreground));
+    text-wrap: pretty;
+    font: var(--type-lead);
+}
+
+/* The one-sentence read keeps its quote and the section's only highlighter. */
+.read { margin: 2.75rem 0 0; }
+.who { color: hsl(var(--muted-foreground)); font: var(--type-small); }
+.who b { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+.verdict {
+    max-width: 27ch;
+    margin: 1rem 0 0;
+    text-wrap: pretty;
+    font: var(--weight-body) var(--type-headline-size) / var(--type-headline-serif-leading) var(--font-editorial);
+    letter-spacing: -0.015em;
+}
+
+.mark {
+    background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) 0 88% / 100% 46% no-repeat;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* The marked-up line: the candidate's words on the left, the reviewer's note in the margin. */
+.sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    margin-top: 2.75rem;
+    overflow: hidden;
+    border: 1px solid hsl(var(--line));
+    border-radius: 1.5rem;
+    background: hsl(var(--card));
+}
+
+.step { position: relative; padding: 2rem 2.25rem 2.25rem; }
+.step:nth-child(2) { border-left: 1px solid hsl(var(--line)); }
+.wide { grid-column: 1 / -1; border-top: 1px solid hsl(var(--line)); }
+
+.stepLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+}
+
+.number {
+    display: inline-grid;
+    width: 1.5rem;
+    height: 1.5rem;
+    place-items: center;
+    border: 1px solid hsl(var(--line));
+    border-radius: 999px;
+    color: hsl(var(--text-strong));
+    font: var(--type-label);
+}
+
+.missLabel {
+    margin-top: 1.25rem;
+    color: hsl(var(--brass));
+    text-transform: uppercase;
+    font: var(--type-label);
+    letter-spacing: 0.1em;
+}
+
+/* Quoted from the candidate: blue-ink rule, the recruiter's serif. */
+.quote {
+    margin: 0.75rem 0 0;
+    border-left: 3px solid hsl(var(--blue-ink));
+    padding-left: 1rem;
+    font: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
+}
+
+.note {
+    margin-top: 1rem;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    font-size: var(--type-lead-size);
+    line-height: var(--type-lead-leading);
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.answer dt { font: var(--type-label); }
+
+.answer dd {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: 0.375rem;
+    border: 1px dashed hsl(var(--control-line));
+    border-radius: 0.625rem;
+    padding: 0 0.75rem;
+    color: hsl(var(--blue-ink));
+    font: var(--type-note);
+}
+
+.aside {
+    margin-top: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.more { align-self: flex-end; margin-top: 1.25rem; font: var(--type-body); font-weight: var(--weight-control); }
+
+.turn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 2rem;
+}
+
+.question { font: var(--type-title); letter-spacing: var(--tracking-title); }
+
+/* Phones: one vertical rail of numbered steps (the Lifted Trace's narrow form). */
+@media (max-width: 760px) {
+    .example { padding: 4rem 1.25rem 4.5rem; scroll-margin-top: var(--marketing-header-height-mobile); }
+    .sheet { grid-template-columns: minmax(0, 1fr); border-radius: 1rem; }
+    .step { padding: 1.5rem 1.25rem 1.5rem 3.25rem; }
+    .step:nth-child(2) { border-left: 0; border-top: 1px solid hsl(var(--line)); }
+    .stepLabel { margin-left: -2.125rem; }
+    .step:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        top: 3.5rem;
+        bottom: 0;
+        left: 1.875rem;
+        width: 1px;
+        background: hsl(var(--line));
+    }
+    .answers { grid-template-columns: minmax(0, 1fr); }
+    .more { align-self: flex-start; }
+    .turn { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 2.5rem; }
+}

@@ -26,7 +26,7 @@ export default function TechOfferNegotiationGuidePage() {
         <div className="bg-background text-foreground selection:bg-brand/15">
             <div className="border-b border-border">
                 <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
-                    <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">Resources</Link>
+                    <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">After the offer</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Tech offer negotiation</span>
                 </nav>
