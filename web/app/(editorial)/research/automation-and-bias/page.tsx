@@ -1,40 +1,34 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
+import { Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { AutomationPipeline } from "@/components/research/diagrams/AutomationPipeline";
 
 const PATH = "/research/automation-and-bias";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Where automation and bias enter the hiring process",
+    title: "Where can software screen me out of a job?",
     description: "Software can shape which job ads you see, whether your application is eligible, and how it reaches a reviewer. Here's where bias can enter along the way.",
     type: "article",
 });
 
 export default function AutomationBiasPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Automation",
-                title: "Where automation enters hiring",
-                description: "Different tools can affect which job ads you see, whether your application is eligible, and how it reaches a reviewer.",
-                readTime: "4 min read"
+            answer={
+                <>
+                    Earlier than you&rsquo;d think: which job ads you see, whether you&rsquo;re eligible, and how you reach a person.
+                    One review of hiring tools found they rarely make the final decision but often automate rejections along the way.
+                </>
+            }
+            answerSource={{
+                text: <>From Upturn&rsquo;s review of hiring tools across sourcing, screening, interviewing, and selection (Bogen &amp; Rieke, 2018).</>,
+                href: "https://www.upturn.org/work/help-wanted/",
+                linkLabel: "Read the report",
             }}
-            keyFinding={{
-                subtitle: "The system",
-                stat: "Bias can enter at several stages",
-                statDescription: (
-                    <>
-                        The cited report maps risks across four stages of hiring: sourcing, screening, interviewing, and selection. A decision made early in the funnel can shape who remains available for later review; the report does not estimate one universal effect size.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Bogen & Rieke (2018), Upturn 'Help Wanted'",
-                    href: "https://www.upturn.org/work/help-wanted/"
-                }
-            }}
+            painNote="You can do everything right and still never reach a person."
+            nextQuestions={["ats-myths", "human-vs-algorithm", "hiring-discrimination-meta-analysis"]}
             visualization={
                 <>
                     <h2 className="research-h2">Four stages where tools can act</h2>
@@ -45,24 +39,6 @@ export default function AutomationBiasPage() {
                     <AutomationPipeline />
                 </>
             }
-            productTieIn={{
-                title: "What your report can and can't see",
-                items: [
-                    {
-                        title: "The page you give us",
-                        description: "We read the resume you submit and flag what's missing or unclear. We can't see an employer's job ads or screening tools."
-                    },
-                    {
-                        title: "Research, not rumor",
-                        description: "When we talk about filters, we stick to what's been published. Private platforms don't share their settings, so we don't guess at them."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Industry" },
-                { title: "What recruiters trust and what they follow", href: "/research/human-vs-algorithm", tag: "Trust" },
-                { title: "Discrimination in hiring hasn't gone away", href: "/research/hiring-discrimination-meta-analysis", tag: "Research" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -93,20 +69,6 @@ export default function AutomationBiasPage() {
                     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11937954/"
                 }
             ]}
-            faq={[
-                {
-                    question: "Where does bias enter the hiring funnel?",
-                    answer: "Bias can enter at ad delivery, eligibility screening, ranking, assessment, and human review. An early decision can change who is available for every later stage."
-                },
-                {
-                    question: "Can a resume fix algorithmic bias?",
-                    answer: "No. Making a resume easier to read does not remove bias from the tools or decisions an employer uses."
-                },
-                {
-                    question: "What should candidates do?",
-                    answer: "Candidates cannot fix systemic bias. They can keep the file readable and make relevant experience explicit so avoidable parsing failures do not become another problem."
-                }
-            ]}
         >
             <h2 className="research-h2">One hiring process, several decision points</h2>
             <p className="research-body mb-6">
@@ -117,6 +79,13 @@ export default function AutomationBiasPage() {
                 Once you have an opportunity to apply, check that your file contains readable text and clear sections. That addresses a possible parsing problem, not the broader risks documented in the report.
                 <Citation id="source-2">2</Citation>
             </p>
+            <p className="research-body mb-6">
+                <strong>Our advice:</strong> make your relevant experience explicit, too. You can&apos;t fix bias in the tools, but you can keep an avoidable parsing problem from becoming another one.
+            </p>
+
+            <ArticleBridge question="What can you control?">
+                Your report reads the resume you submit and flags what&apos;s missing or unclear. It can&apos;t see an employer&apos;s job ads or screening tools, and it doesn&apos;t guess at their settings.
+            </ArticleBridge>
 
             <h2 className="research-h2">When the system changes who gets seen</h2>
             <p className="research-body mb-6">
@@ -140,6 +109,6 @@ export default function AutomationBiasPage() {
                 <li>The newer studies test AI models in simulations. They aren&apos;t audits of a real employer&apos;s hiring tools.</li>
                 <li>Hiring tools have changed since then, and most vendors don&apos;t publish how theirs work.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

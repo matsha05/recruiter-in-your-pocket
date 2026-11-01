@@ -81,7 +81,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 24, borderTop: `1px solid ${line}`, color: muted, fontSize: 18 }}>
-          <span style={{ display: "flex", maxWidth: 760 }}>{article.title}</span>
+          <span style={{ display: "flex", maxWidth: 760 }}>{article.title ?? "Straight answers, and where each one comes from."}</span>
           <span style={{ color: pen, fontWeight: 600 }}>recruiterinyourpocket.com</span>
         </div>
       </div>

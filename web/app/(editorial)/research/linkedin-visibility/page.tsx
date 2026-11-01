@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
@@ -7,36 +8,27 @@ const PATH = "/research/linkedin-visibility";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "How recruiters search LinkedIn, and what you can control",
+    title: "Why can’t recruiters find me on LinkedIn?",
     description: "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
     type: "article",
 });
 
 export default function LinkedInVisibilityPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "LinkedIn discovery",
-                title: "What makes a LinkedIn profile easier to find",
-                description: "LinkedIn explains which profile fields its recruiter tools can search, but does not publish the ranking weights.",
-                readTime: "4 min read",
-                sourceSummary: "2 LinkedIn Recruiter help pages (vendor documentation)"
+            answer={
+                <>
+                    Recruiter search runs on titles, skills, and the words in your profile. LinkedIn says its Skills filter uses the skills you list plus skill evidence from your headline, titles, summary, experience descriptions and, in some cases, a shared resume.
+                    It doesn&rsquo;t publish how it ranks the results.
+                </>
+            }
+            answerSource={{
+                text: <>From LinkedIn&rsquo;s own Recruiter help pages, which describe its product rather than hiring outcomes.</>,
+                href: "https://www.linkedin.com/help/recruiter/answer/a596630",
+                linkLabel: "Read LinkedIn’s page",
             }}
-            keyFinding={{
-                subtitle: "What the platform confirms",
-                stat: "Profile language feeds recruiter search",
-                statDescription: (
-                    <>
-                        LinkedIn says its Skills filter uses explicit skills plus skill evidence drawn from headlines, titles, summaries, experience descriptions, and, in some cases, shared resumes.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "LinkedIn Recruiter Help",
-                    href: "https://www.linkedin.com/help/recruiter/answer/a596630"
-                }
-            }}
+            nextQuestions={["how-recruiters-read", "ats-myths", "social-screening"]}
             visualization={
                 <>
                     <h2 className="research-h2">What affects LinkedIn visibility</h2>
@@ -48,28 +40,6 @@ export default function LinkedInVisibilityPage() {
                     <LinkedInVisibilityDiagram figureNumber={1} />
                 </>
             }
-            productTieIn={{
-                title: "What to change on your profile",
-                items: [
-                    {
-                        title: "Name the role plainly",
-                        description: "Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it."
-                    },
-                    {
-                        title: "Put skills in context",
-                        description: "List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong."
-                    },
-                    {
-                        title: "Explain where you used the skill",
-                        description: "A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Systems" },
-                { title: "How public social cues changed candidate ratings", href: "/research/social-screening", tag: "Profiles" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -84,20 +54,6 @@ export default function LinkedInVisibilityPage() {
                     publisher: "LinkedIn Recruiter Help (checked November 2026)",
                     year: "2026",
                     href: "https://www.linkedin.com/help/recruiter/answer/a408731"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Does LinkedIn publish its ranking algorithm?",
-                    answer: "No. LinkedIn does not disclose exact ranking weights. This page focuses on published behaviors and outcomes."
-                },
-                {
-                    question: "What part of my profile matters most for search?",
-                    answer: "LinkedIn confirms that recruiters can filter by titles and skills, and that skill evidence can come from several profile sections. It does not publish a universal weighting for those fields."
-                },
-                {
-                    question: "Should I repeat the same keyword everywhere?",
-                    answer: "No. Use the correct role and skill language where it naturally belongs, then support it with actual experience. Keyword repetition without evidence is not a credible profile."
                 }
             ]}
         >
@@ -201,6 +157,15 @@ export default function LinkedInVisibilityPage() {
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
-        </ResearchArticle>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li><strong>Name the role plainly.</strong> Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it.</li>
+                <li><strong>Put skills in context.</strong> List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong.</li>
+                <li><strong>Explain where you used the skill.</strong> A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience.</li>
+            </ul>
+
+            <ArticleBridge question="Does your resume name the role plainly?">
+                Your report reads your resume, not your LinkedIn profile. It flags what&apos;s missing or unclear, and the Critical Miss is the one thing to fix first. Fix the resume, then carry the same plain language over to your profile.
+            </ArticleBridge>
+        </AnswerArticle>
     );
 }

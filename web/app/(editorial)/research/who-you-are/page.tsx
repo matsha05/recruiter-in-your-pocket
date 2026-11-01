@@ -1,40 +1,33 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { StoryReadDiagram } from "@/components/research/diagrams/StoryReadDiagram";
 
 const PATH = "/research/who-you-are";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Can a recruiter tell who you are from your resume?",
+    title: "What does my resume say about who I am?",
     description: "Early impressions carry through to offers, coherent careers get hired more, and specifics beat summaries. What the research says about your resume's story.",
     type: "article",
 });
 
 export default function WhoYouArePage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Story",
-                title: "Can a recruiter tell who you are?",
-                description: "The best resumes let a stranger say who you are in one line and picture you doing the job. Research on interviews suggests that first read sticks.",
-                readTime: "6 min read"
+            answer={
+                <>
+                    Whatever a stranger can say about you in one line. In mock structured interviews, first impressions predicted the final ratings and, later, real internship offers.
+                    That study was about interviews, not resumes, but our experience is that the first read of a resume works the same way.
+                </>
+            }
+            answerSource={{
+                text: <>From a study of accounting students&rsquo; mock interviews and later internship offers (Barrick, Swider &amp; Stewart, Journal of Applied Psychology, 2010).</>,
+                href: "https://doi.org/10.1037/a0019918",
             }}
-            keyFinding={{
-                subtitle: "What the research found",
-                stat: "The first read carried through",
-                statDescription: (
-                    <>
-                        In mock structured interviews, first impressions predicted the final ratings and later, real internship offers. Early judgments of competence predicted ratings even from a different interviewer.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Barrick, Swider & Stewart, Journal of Applied Psychology",
-                    href: "https://doi.org/10.1037/a0019918"
-                }
-            }}
+            painNote="A strong career can still read like a list of unrelated jobs."
+            nextQuestions={["star-method", "quantifying-impact", "how-recruiters-read", "gaps-and-pivots"]}
             visualization={
                 <>
                     <h2 className="research-h2">What a recruiter is trying to do</h2>
@@ -44,25 +37,6 @@ export default function WhoYouArePage() {
                     <StoryReadDiagram figureNumber={1} />
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "The Verdict",
-                        description: "The Verdict is a one-line read of who your resume says you are. If it isn't who you are, the resume isn't telling your story yet."
-                    },
-                    {
-                        title: "The Critical Miss",
-                        description: "When your resume doesn't make clear what you'd do next, the Critical Miss says so and points to the fix."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
-                { title: "Gaps, pivots, and short stints", href: "/research/gaps-and-pivots", tag: "Story" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -98,20 +72,6 @@ export default function WhoYouArePage() {
                     publisher: "Kroft, Lange & Notowidigdo. Quarterly Journal of Economics 128(3)",
                     year: "2013",
                     href: "https://www.nber.org/papers/w18387"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Do I need a summary at the top?",
-                    answer: "Only if it says something specific. One line that names who you are and what you're best at helps. A paragraph of adjectives doesn't."
-                },
-                {
-                    question: "What if my career zigzags?",
-                    answer: "Find the thread and lead with it. Most zigzags have one: a problem you kept solving, a kind of team you kept building. Say it, so the reader doesn't have to guess."
-                },
-                {
-                    question: "Should I explain a gap?",
-                    answer: "In the largest test, a line explaining a caregiving gap did no better than leaving it unexplained. Listing years in each job instead of dates helped more. Be ready to explain the gap in a sentence when someone asks."
                 }
             ]}
         >
@@ -174,6 +134,13 @@ export default function WhoYouArePage() {
                     desc="Lead with the experience that makes the role you want look like the obvious next step."
                 />
             </div>
+            <p className="research-body mb-6">
+                A summary at the top helps only if it&apos;s specific: one line that names who you are and what you&apos;re best at. A paragraph of adjectives doesn&apos;t. If your career zigzags, find the thread and lead with it. Most zigzags have one: a problem you kept solving, a kind of team you kept building. Say it, so the reader doesn&apos;t have to guess.
+            </p>
+
+            <ArticleBridge question="Who does your resume say you are?">
+                The Verdict is a one-line read of who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the Critical Miss says so and points to the fix.
+            </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
@@ -181,6 +148,6 @@ export default function WhoYouArePage() {
                 <li>The career-order and evaluation studies come from online freelance marketplaces, not salaried hiring. We read the career-order study&apos;s published summary; the full paper is paywalled.</li>
                 <li>The fit research is qualitative and comes from elite firms. It describes what evaluators do, including where that becomes bias, not what they should do.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

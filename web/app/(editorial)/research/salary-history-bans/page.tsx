@@ -1,40 +1,33 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 
 const PATH = "/research/salary-history-bans";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Should you share your salary history? What studies found",
+    title: "Should I tell a recruiter what I make now?",
     description: "Studies of salary history bans and disclosure found different effects. Why neither supports one script for every pay conversation, and how to prepare.",
     type: "article",
 });
 
 export default function SalaryHistoryPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Negotiation",
-                title: "Should you share your salary history?",
-                description: "Studies of salary history bans and disclosure found different effects. Neither supports one script for every pay conversation.",
-                readTime: "5 min read"
+            answer={
+                <>
+                    There&rsquo;s no one right answer. In a field experiment, employers made negative inferences about candidates who didn&rsquo;t disclose, but for higher-paid candidates, disclosing brought higher salary offers and fewer callbacks.
+                    Know the local rule, ask for the employer&rsquo;s range, and prepare your own number.
+                </>
+            }
+            answerSource={{
+                text: <>From a field experiment with hundreds of recruiters and more than 2,000 fictional applications (Agan, Cowgill &amp; Gee), described from its 2023 working-paper version.</>,
+                href: "https://www.nber.org/papers/w29460",
             }}
-            keyFinding={{
-                subtitle: "What the policy study found",
-                stat: "About a 1% rise in the gender earnings ratio",
-                statDescription: (
-                    <>
-                        Using difference-in-differences and synthetic-control methods, a 2020 working paper found the gender earnings ratio rose about 1% in states with salary history bans. The study measured population outcomes; it did not isolate a single negotiation mechanism.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Hansen & McNichols (2020), NBER working paper",
-                    href: "https://www.nber.org/papers/w27054"
-                }
-            }}
+            painNote="The question sounds like small talk. It isn’t."
+            nextQuestions={["offer-negotiation", "skills-first-promise-reality", "referral-advantage", "quantifying-impact"]}
             visualization={
                 <>
                     <h2 className="research-h2">Choose the reference point you can defend</h2>
@@ -45,25 +38,6 @@ export default function SalaryHistoryPage() {
                     <SalaryLeverage />
                 </>
             }
-            productTieIn={{
-                title: "How to prepare for the conversation",
-                items: [
-                    {
-                        title: "Bring your market evidence",
-                        description: "Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is."
-                    },
-                    {
-                        title: "No universal disclosure rule",
-                        description: "The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "How to negotiate a job offer", href: "/resources/offer-negotiation", tag: "After the offer" },
-                { title: "Skills-first hiring: the promise and the practice", href: "/research/skills-first-promise-reality", tag: "Trends" },
-                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Strategy" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -87,24 +61,10 @@ export default function SalaryHistoryPage() {
                     href: "https://pubmed.ncbi.nlm.nih.gov/11642352/"
                 }
             ]}
-            faq={[
-                {
-                    question: "Do salary history bans help everyone equally?",
-                    answer: "No policy average is a promise for one candidate. Outcomes depend on the market, employer, role, and individual circumstances."
-                },
-                {
-                    question: "Should I disclose salary history if asked?",
-                    answer: "There is no universal answer. Check local law, know your target, and decide with the specific stage and leverage in mind."
-                },
-                {
-                    question: "What should I say instead?",
-                    answer: "A useful redirect is: ‘Could you share the budgeted range for the role? I’m evaluating the scope, level, and total package.’ If you give a target, explain the role and market evidence behind it."
-                }
-            ]}
         >
             <h2 className="research-h2">What salary history bans actually changed</h2>
             <p className="research-body mb-6">
-                Hansen and McNichols studied the early effects of statewide salary history bans. They found the gender earnings ratio increased by about 1% in states with bans, with the gains concentrated in several subgroups. Their design estimates the net policy effect; it does not show that every employer switched cleanly from past pay to market pricing.
+                Hansen and McNichols studied the early effects of statewide salary history bans. Using difference-in-differences and synthetic-control methods, they found the gender earnings ratio increased by about 1% in states with bans, with the gains concentrated in several subgroups. Their design estimates the net policy effect; it does not show that every employer switched cleanly from past pay to market pricing.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -129,6 +89,14 @@ export default function SalaryHistoryPage() {
             <p className="research-body mb-6">
                 Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.
             </p>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li><strong>Bring your market evidence.</strong> Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is.</li>
+                <li><strong>No universal disclosure rule.</strong> The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share.</li>
+            </ul>
+
+            <ArticleBridge question="Is the resume that got you here doing its job?">
+                Your report won&apos;t tell you what to ask for. It reads your resume: the Verdict says what it says first, and the Critical Miss is the one thing to fix first.
+            </ArticleBridge>
 
             <h2 className="research-h2">Why the first number matters</h2>
             <p className="research-body mb-6">
@@ -142,6 +110,6 @@ export default function SalaryHistoryPage() {
                 <li>The ban study is an NBER working paper, and we describe the audit study from its 2023 working-paper version. Neither is a guarantee about an individual negotiation.</li>
                 <li>The negotiation experiments tested first offers generally, not salary-history disclosure specifically.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

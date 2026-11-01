@@ -4,11 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Analytics, watchAnalyticsConsent } from "@/lib/analytics";
 import { getAnalyticsConsent, subscribeAnalyticsConsent } from "@/lib/analyticsConsent";
-
-const surfaces: Record<string, string> = {
-  "/": "home", "/pricing": "pricing", "/workspace": "workspace",
-  "/sample-report": "sample_report", "/research": "research", "/resources": "resources", "/faq": "faq",
-};
+import { ctaClick, PAGE_SURFACES, researchArticleSlug } from "@/lib/analyticsSurfaces";
 
 export function AnalyticsLifecycle() {
   const pathname = usePathname();
@@ -19,20 +15,21 @@ export function AnalyticsLifecycle() {
       if (getAnalyticsConsent() !== "accepted") { recorded = false; return; }
       if (recorded) return;
       recorded = true;
-      if (surfaces[pathname]) Analytics.track("page_viewed", { surface: surfaces[pathname] });
+      if (PAGE_SURFACES[pathname]) Analytics.track("page_viewed", { surface: PAGE_SURFACES[pathname] });
       if (pathname === "/sample-report") Analytics.sampleReportViewed();
+      const slug = researchArticleSlug(pathname);
+      if (slug) Analytics.researchArticleViewed(slug);
     };
     record();
     return subscribeAnalyticsConsent(record);
   }, [pathname]);
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
-      if (pathname !== "/" || !(event.target instanceof Element)) return;
+      if (!(event.target instanceof Element)) return;
       const link = event.target.closest<HTMLAnchorElement>("a[data-analytics-cta]");
       if (!link) return;
-      const destination = new URL(link.href, location.origin).pathname;
-      if (destination !== "/workspace" && destination !== "/sample-report") return;
-      Analytics.track("landing_cta_clicked", { cta: link.dataset.analyticsCta, destination });
+      const click = ctaClick(pathname, link.dataset.analyticsCta, new URL(link.href, location.origin).pathname);
+      if (click) Analytics.track("landing_cta_clicked", click);
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);

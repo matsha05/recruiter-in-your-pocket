@@ -119,7 +119,7 @@ try {
   }
 
   // --- Share cards -----------------------------------------------------------
-  const hub = categories.flatMap((category: { articles: Array<{ id: string; href: string }> }) => category.articles);
+  const hub = categories.flatMap((category: { articles: Array<{ id: string; href: string; question: string }> }) => category.articles);
   for (const page of pages) {
     const answer = hub.find((article: { href: string }) => article.href === page.path);
     if (answer) assert.equal(page.card, answer.id, `${page.path} answers "${answer.id}" on the hub; share that card`);
@@ -147,6 +147,9 @@ try {
       assert.ok(title.length > 0 && title.length <= SEARCH_TITLE_LIMIT, `${route} title is ${title.length} characters: "${title}"`);
       assert.ok(description.length >= 70 && description.length <= 160, `${route} description is ${description.length} characters`);
       assert.ok(!/résumé/i.test(title + description), `${route}: write "resume" without accents`);
+      // A research article's search title, hub question, and H1 are one string (the H1 reads the hub).
+      const hubQuestion = route.startsWith("/research/") ? hub.find((article: { href: string }) => article.href === route)?.question : undefined;
+      if (route.startsWith("/research/")) assert.equal(title, hubQuestion, `${route}: the search title must be the hub question`);
       assert.ok(!seen.has(title), `${route} and ${seen.get(title)} share the title "${title}"`);
       assert.ok(!seenDescriptions.has(description), `${route} and ${seenDescriptions.get(description)} share a description`);
       seen.set(title, route);
@@ -154,6 +157,22 @@ try {
     }
   }
   assert.ok(seen.size >= 25, `expected pageMetadata() on most public pages, found ${seen.size}`);
+
+  // --- Links to research articles take their title from the hub -----------------
+  // A related-reading entry like { title: "…", href: "/research/…" } drifts the moment the article's
+  // question changes. Lists title research links with hubLink(href) instead (ResearchHubData.ts).
+  const sourceRoots = ["app", "components", "lib"].map((dir) => path.join(process.cwd(), dir));
+  const sourceFiles = sourceRoots.flatMap((dir) => walk(dir)).filter((file) => /\.tsx?$/.test(file) && !file.endsWith("ResearchHubData.ts"));
+  for (const file of sourceFiles) {
+    const source = readFileSync(file, "utf8");
+    for (const entry of source.matchAll(/\{[^{}]*href:\s*["'](\/research\/[a-z0-9-]+)["'][^{}]*\}/g)) {
+      assert.ok(!/\btitle:\s*["'`]/.test(entry[0]), `${path.relative(process.cwd(), file)}: title the link to ${entry[1]} with hubLink("${entry[1]}"), not a typed string`);
+    }
+  }
+  const { hubLink } = require("../components/research/ResearchHubData");
+  for (const article of hub.filter((entry: { href: string }) => entry.href.startsWith("/research/"))) {
+    assert.equal(hubLink(article.href).title, article.question, `${article.href}: related links must use the article's question`);
+  }
 
   // --- Structured data -------------------------------------------------------
   const roundTrip = (data: unknown) => JSON.parse(serializeJsonLd(data));

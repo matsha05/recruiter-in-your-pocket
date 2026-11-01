@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ReferralHiringShareDiagram } from "@/components/research/diagrams/ReferralHiringShareDiagram";
 import { ReferralOfferOddsDiagram } from "@/components/research/diagrams/ReferralOfferOddsDiagram";
 import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/ReferralQuantifiedDiagram";
@@ -8,35 +9,28 @@ const PATH = "/research/referral-advantage";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Do job referrals really help? What hiring data shows",
+    title: "How much does a referral really help?",
     description: "Referrals are a sliver of applications and a large share of hires. What the studies and hiring data show, and what a referral still can't do for you.",
     type: "article",
 });
 
 export default function ReferralAdvantagePage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Referrals",
-                title: "What a referral changes",
-                description: "A referral gets your resume read by someone who is already leaning in. Across studies and hiring data, that shows up as far better odds at every stage.",
-                readTime: "7 min read"
+            answer={
+                <>
+                    A lot, at every stage. Across more than 38 million applications in one recruiting-software company&rsquo;s data, 40% of referred applications reached an interview.
+                    Of applications sent in cold, 3% did.
+                </>
+            }
+            answerSource={{
+                text: <>From Ashby, a recruiting software vendor, on its customers&rsquo; data from 2021 to 2024.</>,
+                href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals",
+                linkLabel: "Read the report",
             }}
-            keyFinding={{
-                subtitle: "What the hiring data shows",
-                stat: "40% vs. 3%",
-                statDescription: (
-                    <>
-                        Across more than 38 million applications in one recruiting-software company&apos;s data, 40% of referred applications reached an interview. Of applications sent in cold, 3% did.
-                        <Citation id="source-2">2</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Ashby (recruiting software vendor), customer data 2021 to 2024",
-                    href: "https://www.ashbyhq.com/talent-trends-report/reports/referrals"
-                }
-            }}
+            painNote="Same resume, different door."
+            nextQuestions={["how-recruiters-read", "quantifying-impact", "linkedin-visibility"]}
             visualization={
                 <>
                     <h2 className="research-h2">A sliver of applications, a big share of hires</h2>
@@ -51,24 +45,6 @@ export default function ReferralAdvantagePage() {
                     </p>
                 </>
             }
-            productTieIn={{
-                title: "Before you send it to your referrer",
-                items: [
-                    {
-                        title: "Read the Verdict first",
-                        description: "A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours."
-                    },
-                    {
-                        title: "Fix the Critical Miss",
-                        description: "Your referrer can vouch for you. They can't fix your resume. The Critical Miss is the one thing to fix first, so fix it before you send it."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "Referrals" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -97,20 +73,6 @@ export default function ReferralAdvantagePage() {
                     publisher: "Pallais & Sands. Journal of Political Economy 124(6); earlier as NBER Working Paper 21357",
                     year: "2016",
                     href: "https://www.nber.org/papers/w21357"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Does a referral guarantee an interview?",
-                    answer: "No. In the hiring data above, most referred candidates still didn't reach an interview. A referral gets you a real look. The resume has to earn the next step."
-                },
-                {
-                    question: "Is a referral from someone I barely know worth asking for?",
-                    answer: "It's worth something, because it usually gets you out of the pile. It's worth much more from someone who has seen your work and will say so."
-                },
-                {
-                    question: "What should I send the person referring me?",
-                    answer: "The job link, your resume, and two or three sentences on why you fit the role. Write it so they can paste it straight into the referral form."
                 }
             ]}
         >
@@ -174,12 +136,16 @@ export default function ReferralAdvantagePage() {
                 <strong>Write the blurb for them.</strong> Send the job link, your resume, and a few sentences they can paste in, like: &ldquo;We worked on the finance-system migration together. She led the data cleanup that shortened our month-end close.&rdquo; Stick to things they saw firsthand, and make it easy for them to say no.
             </p>
 
+            <ArticleBridge question="Is it ready for a real read?">
+                A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. The Critical Miss is the one thing to fix first.
+            </ArticleBridge>
+
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>The New York Fed study covers one financial services company. The nine-firm study covers call centers, trucking, and high tech.</li>
                 <li>Ashby&apos;s figures are vendor data from companies that use its software, which the report doesn&apos;t describe. They show what happened, not what caused it: people who get referred may differ in other ways.</li>
                 <li>The field experiments ran on an online job site, not in corporate hiring.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

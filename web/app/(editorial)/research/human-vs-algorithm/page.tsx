@@ -1,40 +1,31 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 
 const PATH = "/research/human-vs-algorithm";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Do recruiters follow AI advice when screening resumes?",
+    title: "When AI weighs in on my resume, do recruiters listen?",
     description: "In a resume-screening experiment, recruiters said they trusted human advice more, but the algorithm's advice influenced their choices more.",
     type: "article",
 });
 
 export default function HumanVsAlgorithmPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Human + algorithmic judgment",
-                title: "What recruiters trust and what they follow",
-                description: "In a resume-screening experiment, recruiters said they trusted human advice more. Their choices told a more complicated story.",
-                readTime: "4 min read"
+            answer={
+                <>
+                    More than they say. Recruiters in one experiment rated human advice as more trustworthy, yet an algorithm&rsquo;s recommendation for the less-suitable resume still pulled their evaluations toward it.
+                    The same kind of advice from a human expert didn&rsquo;t.
+                </>
+            }
+            answerSource={{
+                text: <>From an experiment with 694 French recruitment professionals recruited through an online panel (Lacroux &amp; Martin-Lacroux, Frontiers in Psychology, 2022).</>,
+                href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full",
             }}
-            keyFinding={{
-                subtitle: "The uncomfortable finding",
-                stat: "Higher trust in humans. More influence from the algorithm.",
-                statDescription: (
-                    <>
-                        In an experiment with 694 French professionals involved in recruitment, recruited through an online panel, participants rated human recommendations as more trustworthy. Yet an inconsistent algorithmic recommendation still pulled evaluations toward the less-suitable resume.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Lacroux & Martin-Lacroux (2022), experiment",
-                    href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
-                },
-                sampleSize: "694 French recruitment professionals from an online panel"
-            }}
+            nextQuestions={["ats-myths", "automation-and-bias", "how-recruiters-read"]}
             visualization={
                 <>
                     <h2 className="research-h2">What people said versus what they did</h2>
@@ -54,24 +45,6 @@ export default function HumanVsAlgorithmPage() {
                     </div>
                 </>
             }
-            productTieIn={{
-                title: "How to read your score",
-                items: [
-                    {
-                        title: "The score is a summary",
-                        description: "Your First Impression score sums up the written findings. Read those first; the number on its own can't tell you what to change."
-                    },
-                    {
-                        title: "Advice you can check",
-                        description: "Every fix points to a line on your resume. Compare it with what you actually did before you take it."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Industry" },
-                { title: "Where automation enters hiring", href: "/research/automation-and-bias", tag: "Systems" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -79,16 +52,6 @@ export default function HumanVsAlgorithmPage() {
                     publisher: "Frontiers in Psychology",
                     year: "2022",
                     href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Does this mean scores are useless?",
-                    answer: "No. A score is useful only when you can see what drove it and what to change. It's where your report starts, not a verdict on you."
-                },
-                {
-                    question: "How should candidates respond?",
-                    answer: "Make your evidence easy to inspect: clear role context, specific ownership, supportable outcomes, and no claims you cannot defend."
                 }
             ]}
         >
@@ -130,6 +93,13 @@ export default function HumanVsAlgorithmPage() {
             <p className="research-body mb-6">
                 <strong>Our advice:</strong> compare a suggested change with the original resume and the job you want. Keep it only if it makes your experience clearer without adding facts or overstating your contribution.
             </p>
-        </ResearchArticle>
+            <p className="research-body mb-6">
+                Make your evidence easy to inspect, too: clear role context, specific ownership, supportable outcomes, and no claims you can&apos;t defend.
+            </p>
+
+            <ArticleBridge question="Can you check the advice you’re given?">
+                Your First Impression score sums up the written findings. Read those first: the number on its own can&apos;t tell you what to change. Every fix points to a line on your resume, so you can compare it with what you actually did before you take it.
+            </ArticleBridge>
+        </AnswerArticle>
     );
 }

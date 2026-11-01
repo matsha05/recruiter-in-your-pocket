@@ -1,42 +1,34 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 
 const PATH = "/research/ats-myths";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Does an ATS reject your resume? What parsing really does",
+    title: "Is an ATS rejecting my resume before anyone reads it?",
     description: "What Greenhouse and Lever documentation says about resume parsing: the fields it extracts, the formatting that can get lost, and what it doesn't prove.",
     type: "article",
 });
 
 export default function ATSMythsPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Platform documentation",
-                title: "What applicant tracking systems actually do",
-                description: "What current platform documentation says about parsing, extracted fields, and the formatting that can get lost.",
-                readTime: "5 min read"
+            answer={
+                <>
+                    Not with one magic score. The software pulls your text into fields, and if it can&rsquo;t, the file stays attached and someone enters the details by hand.
+                    Automatic rejection does exist, but in Greenhouse and Lever&rsquo;s documentation it runs on your answers to application questions, not on your resume&rsquo;s formatting.
+                </>
+            }
+            answerSource={{
+                text: <>From Greenhouse and Lever&rsquo;s own documentation on resume parsing.</>,
+                href: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse",
+                linkLabel: "Read the documentation",
             }}
-            keyFinding={{
-                subtitle: "The useful distinction",
-                label: "What the documentation says",
-                stat: "Parsing extracts information from your resume",
-                statDescription: (
-                    <>
-                        Greenhouse and Lever document resume parsing as the extraction of readable information into candidate fields. When a parse fails, the resume stays attached and the details are entered by hand. Parsing trouble is not proof of one universal rejection score.
-                        <Citation id="source-1">1</Citation>
-                        <Citation id="source-2">2</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Greenhouse and Lever parser documentation",
-                    href: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
-                }
-            }}
+            painNote="The robot story is popular because silence needs a villain."
+            nextQuestions={["human-vs-algorithm", "automation-and-bias", "how-recruiters-read"]}
             visualization={
                 <>
                     <h2 className="research-h2">From a file to a recruiter record</h2>
@@ -48,24 +40,6 @@ export default function ATSMythsPage() {
                     <ATSFunnel />
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "A recruiter's read, not an ATS score",
-                        description: "Your First Impression score sums up our read of the page against a recruiter's criteria. It can't tell you how an employer set up its filters."
-                    },
-                    {
-                        title: "Text we can actually read",
-                        description: "We work from the text we pull from your file. That isn't an ATS parser, so it can't tell you how a particular employer's software will read it."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What recruiters trust and what they follow", href: "/research/human-vs-algorithm", tag: "AI" },
-                { title: "Where automation enters hiring", href: "/research/automation-and-bias", tag: "Research" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -108,20 +82,6 @@ export default function ATSMythsPage() {
                     publisher: "Lever Help Center",
                     year: "2026",
                     href: "https://help.lever.co/s/article/Operating-the-Archive"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Do ATS systems automatically reject resumes?",
-                    answer: "Some can, but from your answers to application questions, not from how your resume is formatted. Greenhouse and Lever both let employers reject or archive applicants automatically on answers like \"Do you have a commercial driver's license?\" The parser itself is only the extraction step."
-                },
-                {
-                    question: "Is keyword stuffing useful?",
-                    answer: "No. Use the language of the role where it truthfully describes your experience, but do not stuff hidden or repetitive keyword blocks into the file."
-                },
-                {
-                    question: "What is the best ATS-safe format?",
-                    answer: "A single-column layout with clear headings, consistent dates, and standard section names is the safest baseline."
                 }
             ]}
         >
@@ -169,6 +129,9 @@ export default function ATSMythsPage() {
                 <Citation id="source-4">4</Citation>
                 <Citation id="source-5">5</Citation>
                 <Citation id="source-6">6</Citation>
+                {" "}Both let employers reject or archive applicants automatically on an answer like &ldquo;Do you have a commercial driver&apos;s license?&rdquo; The parser itself is only the extraction step.
+                <Citation id="source-5">5</Citation>
+                <Citation id="source-6">6</Citation>
                 {" "}EEOC guidance on employment tests and selection procedures, issued in 2007 and not specific to software, says a screen that disproportionately excludes people by race, sex, or another protected trait has to be job-related and consistent with business necessity.
                 <Citation id="source-3">3</Citation>
             </p>
@@ -178,7 +141,13 @@ export default function ATSMythsPage() {
                 <li>Use standard section headers so both parsers and humans can navigate quickly.</li>
                 <li>Write role titles and core skills in plain language, not internal jargon.</li>
                 <li>Avoid graphics or tables that disrupt parsing and readability.</li>
+                <li>A single column with clear headings, consistent dates, and standard section names is the safest baseline.</li>
+                <li>Use the role&apos;s language where it truthfully describes your experience. Don&apos;t stuff hidden or repeated keyword blocks into the file.</li>
             </ul>
-        </ResearchArticle>
+
+            <ArticleBridge question="What does a person see once they open it?">
+                Your report is a recruiter&apos;s read of the page, not an ATS score. It works from the text we pull from your file, so it can&apos;t tell you how a particular employer&apos;s software or filters will treat it.
+            </ArticleBridge>
+        </AnswerArticle>
     );
 }

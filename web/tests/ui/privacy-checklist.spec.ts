@@ -60,6 +60,23 @@ test("analytics needs consent, tracks the real funnel, and stops after withdrawa
   expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("mp_") || key.startsWith("__mpq_")))).toEqual([]);
 });
 
+test("research records the article read and the report click, only with consent", async ({ page }) => {
+  test.skip(process.env.RIYP_ANALYTICS_TEST_ENABLED !== "1", "Use the analytics-enabled test build.");
+  const events = await interceptAnalytics(page);
+  await page.goto("/research/how-recruiters-read");
+  await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+  await page.getByRole("complementary", { name: "Apply this to your resume" }).getByRole("link", { name: /Get your free report/ }).click();
+  await expect(page).toHaveURL(/\/workspace$/);
+  await page.waitForTimeout(700);
+  expect(events).toHaveLength(0);
+  await page.evaluate(key => localStorage.setItem(key, "accepted"), consentKey);
+  await page.goto("/research/how-recruiters-read");
+  await expect.poll(() => events.find(item => item.event === "research_article_viewed")?.properties.slug, { timeout: 15_000 }).toBe("how-recruiters-read");
+  await page.getByRole("complementary", { name: "Apply this to your resume" }).getByRole("link", { name: /Get your free report/ }).click();
+  await expect.poll(() => events.find(item => item.event === "landing_cta_clicked")?.properties.cta, { timeout: 15_000 }).toBe("research_bridge");
+  expect(events.every(item => !("$current_url" in item.properties))).toBe(true);
+});
+
 test("consented analytics excludes search terms from the referring page", async ({ page }) => {
   test.skip(process.env.RIYP_ANALYTICS_TEST_ENABLED !== "1", "Use the analytics-enabled test build.");
   const events = await interceptAnalytics(page);

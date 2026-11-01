@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { FirstReadModelDiagram } from "@/components/research/diagrams/FirstReadModelDiagram";
+import { hubLink } from "@/components/research/ResearchHubData";
 import sampleReport from "@/public/sample-report.json";
 
 const PATH = "/methodology";
@@ -37,11 +38,7 @@ export default function MethodologyPage() {
                     { title: "Critical Miss", description: "The one change to make first, with the line it comes from and the questions to answer." },
                 ],
             }}
-            relatedArticles={[
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Research" },
-                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
-            ]}
+            relatedArticles={["/research/how-recruiters-read", "/research/quantifying-impact", "/research/star-method"].map(hubLink)}
             sources={[
                 {
                     id: "source-0",

@@ -4,8 +4,9 @@
 
 export type ResearchArticle = {
     id: string;
-    /** The article's own title, for screen-reader link text. */
-    title: string;
+    /** The page's own headline, only where it isn't the question (guides, tools, the methodology).
+     *  A research article's headline is its question: the same string on the hub, the H1, and the search title. */
+    title?: string;
     href: string;
     question: string;
     answer: string;
@@ -30,62 +31,54 @@ export const categories: ResearchCategory[] = [
         articles: [
             {
                 id: "ats-myths",
-                title: "What applicant tracking systems actually do",
                 href: "/research/ats-myths",
-                question: "Is a robot rejecting me?",
+                question: "Is an ATS rejecting my resume before anyone reads it?",
                 answer: "Not with one magic score. The software pulls your text into fields. If it can't, the file stays attached and someone enters the details by hand.",
                 featured: true,
             },
             {
                 id: "spelling-errors-impact",
-                title: "How spelling errors changed recruiter ratings",
                 href: "/research/spelling-errors-impact",
-                question: "Does one typo sink me?",
+                question: "Will one typo on my resume cost me the interview?",
                 answer: "Don't panic over one. Five cost 1.85 points out of 10 in an experiment with 445 recruiters.",
                 featured: true,
             },
             {
                 id: "resume-length-myths",
-                title: "There is no universal one-page rule",
                 href: "/research/resume-length-myths",
-                question: "Does it have to fit on one page?",
+                question: "Does my resume really have to fit on one page?",
                 answer: "No. Use a second page when it adds experience that matters for the role.",
                 featured: true,
             },
             {
                 id: "how-recruiters-read",
-                title: "What recruiters notice in the first pass",
                 href: "/research/how-recruiters-read",
-                question: "Do recruiters really give it six seconds?",
+                question: "Do recruiters only spend six seconds on a resume?",
                 answer: "No study shows one fixed timer. Recruiters who spent longer on Experience were more likely to move a resume forward.",
                 featured: true,
             },
             {
                 id: "social-screening",
-                title: "How public social cues changed candidate ratings",
                 href: "/research/social-screening",
-                question: "Do recruiters judge my social media?",
+                question: "Will employers judge me by my social media?",
                 answer: "In one experiment, posts changed candidate ratings. Nobody showed those ratings predict how you'd do the job.",
             },
             {
                 id: "automation-and-bias",
-                title: "Where automation enters hiring",
                 href: "/research/automation-and-bias",
-                question: "Where can software screen me out?",
+                question: "Where can software screen me out of a job?",
                 answer: "Earlier than you'd think: which ads you see, whether you're eligible, and how you reach a person.",
             },
             {
                 id: "human-vs-algorithm",
-                title: "What recruiters trust and what they follow",
                 href: "/research/human-vs-algorithm",
-                question: "Do recruiters trust AI advice?",
-                answer: "Less than human advice. A misleading algorithm still swayed their ratings.",
+                question: "When AI weighs in on my resume, do recruiters listen?",
+                answer: "They say they trust it less than a person. A misleading algorithm still swayed their ratings.",
             },
             {
                 id: "hiring-discrimination-meta-analysis",
-                title: "Discrimination in hiring hasn't gone away",
                 href: "/research/hiring-discrimination-meta-analysis",
-                question: "Does bias still decide who gets called?",
+                question: "Does racial bias still decide who gets a callback?",
                 answer: "Yes. In US hiring experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants.",
             },
         ],
@@ -97,16 +90,14 @@ export const categories: ResearchCategory[] = [
         articles: [
             {
                 id: "quantifying-impact",
-                title: "Show what changed and your part in it",
                 href: "/research/quantifying-impact",
-                question: "What makes a bullet point land?",
+                question: "How do I write resume bullets that show results?",
                 answer: "The result, how you measured it, and what you did to get there.",
             },
             {
                 id: "writing-quality-hire-probability",
-                title: "Writing help led to more hires in one experiment",
                 href: "/research/writing-quality-hire-probability",
-                question: "Does better writing get you hired?",
+                question: "Can better writing actually get me hired?",
                 answer: "It helped in one big experiment: grammar suggestions on short freelance profiles lifted hires from 3.1% to 3.3%.",
             },
             {
@@ -125,17 +116,15 @@ export const categories: ResearchCategory[] = [
         articles: [
             {
                 id: "referral-advantage",
-                title: "What a referral changes",
                 href: "/research/referral-advantage",
-                question: "Do referrals really matter?",
+                question: "How much does a referral really help?",
                 answer: "A lot. In one recruiting platform's data on 38 million applications, 40% of referred applications got an interview. Of cold applications, 3% did.",
                 featured: true,
             },
             {
                 id: "linkedin-visibility",
-                title: "What makes a LinkedIn profile easier to find",
                 href: "/research/linkedin-visibility",
-                question: "Can recruiters find me on LinkedIn?",
+                question: "Why can’t recruiters find me on LinkedIn?",
                 answer: "They search the skills in your headline, titles, summary, and experience. LinkedIn doesn't publish how it ranks them.",
             },
         ],
@@ -147,30 +136,26 @@ export const categories: ResearchCategory[] = [
         articles: [
             {
                 id: "gaps-and-pivots",
-                title: "Gaps, pivots, and short stints",
                 href: "/research/gaps-and-pivots",
-                question: "Should I explain a gap?",
+                question: "Should I explain the gap on my resume?",
                 answer: "In one UK experiment, explaining a caregiving gap didn't help. Listing years in each job instead of dates did.",
             },
             {
                 id: "who-you-are",
-                title: "Can a recruiter tell who you are?",
                 href: "/research/who-you-are",
-                question: "Does the first impression stick?",
-                answer: "In one interview study, the early read of a candidate predicted the final ratings and the offers.",
+                question: "What does my resume say about who I am?",
+                answer: "Whatever a stranger can say about you in one line. In one interview study, that early read predicted the final ratings and the offers.",
             },
             {
                 id: "star-method",
-                title: "Tell the story behind the line",
                 href: "/research/star-method",
-                question: "Should I use the STAR method?",
+                question: "Is the STAR method worth using on a resume?",
                 answer: "For the story behind a line, yes. Just don't force every bullet into the formula.",
             },
             {
                 id: "skills-first-promise-reality",
-                title: "Skills-first hiring: the promise and the practice",
                 href: "/research/skills-first-promise-reality",
-                question: "Do “no degree required” jobs mean it?",
+                question: "Do “no degree required” jobs actually mean it?",
                 answer: "Not often. By one 2024 estimate, dropping the requirement opened up fewer than 1 in 700 hires.",
             },
         ],
@@ -204,9 +189,8 @@ export const categories: ResearchCategory[] = [
             },
             {
                 id: "salary-history-bans",
-                title: "Should you share your salary history?",
                 href: "/research/salary-history-bans",
-                question: "Should I share my salary history?",
+                question: "Should I tell a recruiter what I make now?",
                 answer: "The studies found different effects. No one script fits every pay conversation.",
             },
         ],
@@ -219,4 +203,24 @@ export const featuredArticles = categories.flatMap((category) => category.articl
  *  the pen colors already mean whose mark something is, so they are not spent on navigation. */
 export function pillarForHref(href: string) {
     return categories.find((candidate) => candidate.articles.some((article) => article.href === href))?.navLabel ?? null;
+}
+
+const allAnswers = categories.flatMap((category) => category.articles);
+
+/** A hub answer by its id. */
+export function hubEntry(id: string) {
+    return allAnswers.find((article) => article.id === id);
+}
+
+/** The hub answer for a page, by its path. */
+export function hubEntryForHref(href: string) {
+    return allAnswers.find((article) => article.href === href);
+}
+
+/** A link to a hub answer, titled the way its page is: a research article's question, or a guide's own title.
+ *  Every list that links to research titles it through here, so the hub, the H1, and related links can't drift. */
+export function hubLink(href: string) {
+    const entry = hubEntryForHref(href);
+    if (!entry) throw new Error(`${href} isn't on the Research hub (ResearchHubData.ts).`);
+    return { title: entry.title ?? entry.question, href, tag: pillarForHref(href) ?? undefined };
 }

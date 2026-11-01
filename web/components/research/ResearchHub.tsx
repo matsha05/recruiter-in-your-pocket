@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { categories, featuredArticles, type ResearchArticle } from "@/components/research/ResearchHubData";
 import styles from "./ResearchHub.module.css";
 
-function Answer({ article, size }: { article: ResearchArticle; size: "lead" | "list" }) {
-    const Heading = size === "lead" ? "h2" : "h4";
+/** A question, its one-line answer, and the way in. Articles reuse it for their next questions. */
+export function ResearchAnswerRow({ article, size, heading }: { article: ResearchArticle; size: "lead" | "list"; heading?: "h2" | "h3" | "h4" }) {
+    const Heading = heading ?? (size === "lead" ? "h2" : "h4");
     return (
         <article className={size === "lead" ? styles.lead : styles.row}>
             {/* The question is the link; its hit area stretches over the whole row. */}
@@ -33,7 +34,7 @@ export default function ResearchHub() {
                 <p className={styles.deck}>Straight answers, and where each one comes from.</p>
 
                 <section className={styles.leads} aria-label="The questions people ask most">
-                    {featuredArticles.map((article) => <Answer key={article.id} article={article} size="lead" />)}
+                    {featuredArticles.map((article) => <ResearchAnswerRow key={article.id} article={article} size="lead" />)}
                 </section>
 
                 <section className={styles.library} aria-labelledby="research-library-title">
@@ -44,7 +45,7 @@ export default function ResearchHub() {
                         return (
                             <section key={category.id} className={styles.group} aria-labelledby={`research-${category.id}`}>
                                 <h3 id={`research-${category.id}`} className={styles.groupTitle}>{category.title}</h3>
-                                <div>{rest.map((article) => <Answer key={article.id} article={article} size="list" />)}</div>
+                                <div>{rest.map((article) => <ResearchAnswerRow key={article.id} article={article} size="list" />)}</div>
                             </section>
                         );
                     })}
