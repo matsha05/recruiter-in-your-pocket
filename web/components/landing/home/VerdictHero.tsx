@@ -4,7 +4,7 @@ import styles from "./VerdictHero.module.css";
 
 /**
  * The opening: somebody got the call, and it wasn't you. Beside it, an ordinary
- * resume with a recruiter's note clipped to it that nobody will ever send you.
+ * resume with a recruiter's sticky note on it that nobody will ever send you.
  */
 export function VerdictHero() {
     return (
@@ -48,7 +48,6 @@ export function VerdictHero() {
                     </div>
                     {/* The verdict exists. You just can't read it. */}
                     <div className={styles.note}>
-                        <span className={styles.clip} />
                         <p className={styles.noteLabel}>Recruiter&rsquo;s note</p>
                         <p className={styles.verdict}>Solid book of business, but the best example stops right before the good part. Did renewals go up?</p>
                     </div>

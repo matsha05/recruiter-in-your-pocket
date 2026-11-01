@@ -101,28 +101,26 @@
 .page .bullet { position: relative; padding-left: 0.875rem; }
 .page .bullet::before { content: "•"; position: absolute; left: 0.125rem; }
 
+/* A sticky note, pressed onto the page: square, no border, a little darker
+   along the glued strip, and lifted at the bottom where it isn't stuck down. */
 .note {
     position: absolute;
-    top: 14.5rem;
+    top: 13.5rem;
     right: 0;
-    width: 20.5rem;
-    border: 1px solid hsl(var(--miss-line) / 0.7);
-    border-radius: 0.25rem;
-    background: linear-gradient(hsl(var(--miss-surface) / 0.4), hsl(var(--miss-surface) / 0.4)), hsl(var(--card));
-    padding: 1.375rem 1.5rem 1.25rem;
+    width: 17.5rem;
+    min-height: 16rem;
+    border-radius: 0.125rem;
+    background:
+        linear-gradient(hsl(var(--text-strong) / 0.035), transparent 2.25rem),
+        linear-gradient(165deg, transparent 72%, hsl(var(--text-strong) / 0.035)),
+        linear-gradient(hsl(var(--highlight) / 0.45), hsl(var(--highlight) / 0.45)),
+        hsl(var(--card));
+    padding: 1.625rem 1.625rem 1.5rem;
+    box-shadow:
+        0 1px 1px hsl(var(--text-strong) / 0.06),
+        0 1.25rem 1.5rem -1rem hsl(var(--text-strong) / 0.3);
     transform: rotate(2.4deg);
     animation: arrive var(--duration-slow) var(--ease) 240ms both;
-}
-
-.clip {
-    position: absolute;
-    top: -0.875rem;
-    right: 2.5rem;
-    width: 1.125rem;
-    height: 2.875rem;
-    border: 2.5px solid hsl(var(--text-muted) / 0.6);
-    border-bottom-color: transparent;
-    border-radius: 0.5625rem;
 }
 
 .noteLabel {
@@ -145,7 +143,7 @@
     user-select: none;
 }
 
-@keyframes arrive { from { opacity: 0; transform: translate(0.75rem, -0.5rem) rotate(6deg); } }
+@keyframes arrive { from { opacity: 0; transform: translate(0.5rem, -0.75rem) rotate(5deg) scale(1.04); } }
 @media (prefers-reduced-motion: reduce) { .note { animation: none; } }
 
 @media (max-width: 960px) {
@@ -158,6 +156,6 @@
     .stage { height: 27.5rem; }
     /* On a phone the page runs on past the frame; fade it rather than cut a line in half. */
     .page { inset: 0 1.125rem 0 0; padding: 1.625rem 1.375rem; font-size: 0.8125rem; mask-image: linear-gradient(to bottom, black 78%, transparent); }
-    .note { top: 10.5rem; width: 15.5rem; padding: 1rem 1.125rem; }
+    .note { top: 10rem; width: 14rem; min-height: 13rem; padding: 1.25rem 1.25rem 1rem; }
     .verdict { font-size: 1.0625rem; filter: blur(4px); }
 }
