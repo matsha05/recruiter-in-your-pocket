@@ -20,7 +20,9 @@ const ownershipPatterns: Array<[string, RegExp]> = [
   ["agency:manage", /\b(?:manage|manages|managed|managing)\b/giu],
   ["agency:direct", /\b(?:direct|directs|directed|directing|spearhead|spearheaded|head|headed)\b/giu],
   ["agency:build", /\b(?:build|builds|built|building|architect|architected|design|designed|implement|implemented|create|created)\b/giu],
-  ["agency:support", /\b(?:support|supports|supported|supporting|assist|assisted|assisting|help|helped|helping|contribute|contributed|contributing|participate|participated|participating|collaborate|collaborated|collaborating|coordinate|coordinated|coordinating|partner|partnered|partnering)\b/giu],
+  // Each support verb is one fact family, so the -ing forms stay untracked: otherwise "Helped
+  // oversee ..., contributing to ..." polished to "Oversee ..., contributing to ..." would hide the dropped "Helped".
+  ["agency:support", /\b(?:support|supports|supported|supporting|assist|assisted|help|helped|contribute|contributed|participate|participated|collaborate|collaborated|coordinate|coordinated|partner|partnered)\b/giu],
 ];
 
 const outcomePatterns: Array<[string, RegExp]> = [
