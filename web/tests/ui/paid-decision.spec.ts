@@ -367,7 +367,9 @@ test.describe("paid decision boundary", () => {
 
     const failureToast = page.locator("[data-sonner-toast]").filter({ hasText: "We couldn’t finish your report" });
     await expect(failureToast).toHaveCount(1);
-    await expect(failureToast).toContainText("This didn't use one of your reports.");
+    // A signed-out visitor only has the free report, and hears the outcome once.
+    await expect(failureToast).toContainText("This didn't use your free report.");
+    expect((await failureToast.innerText()).split("didn't use").length - 1).toBe(1);
     await expect(failureToast).not.toContainText("couldn't tell whether this used", { ignoreCase: true });
     expect(handshakeRequests).toBe(2);
   });

@@ -1,7 +1,8 @@
 .root { display: flex; min-height: 100%; align-items: start; padding: 2rem 1rem 3rem; background: hsl(var(--surface-page)); font-family: var(--font-body); }
 .content { width: 100%; max-width: 60rem; margin-inline: auto; }
 .intro { display: grid; gap: 1rem; }
-.title { margin-top: 0.875rem; font-family: var(--font-body); font-size: 2.5rem; font-weight: var(--weight-display); line-height: 1.1; letter-spacing: -0.035em; color: hsl(var(--text-strong)); }
+.title { margin-top: 0.875rem; font-family: var(--font-body); font-size: 2.5rem; font-weight: var(--weight-display); line-height: 1.1; letter-spacing: -0.035em; color: hsl(var(--text-strong)); scroll-margin-top: 5rem; }
+.title:focus { outline: none; }
 .sheet { margin-top: 1.75rem; overflow: hidden; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
 .sheetHeader { display: grid; min-height: 4rem; align-items: center; gap: 0.5rem; border-bottom: 1px solid hsl(var(--line)); padding: 1rem 1.25rem; }
 .reviewRow { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); align-items: center; gap: 0.5rem 1rem; border-bottom: 1px solid hsl(var(--line)); padding-block: 1.25rem; }

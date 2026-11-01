@@ -7,7 +7,7 @@ import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
-import { REPORT_ACCESS_NOT_USED, REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, hasAccessOutcome } from "@/lib/billing/generationFailureCopy";
+import { REPORT_ACCESS_NOT_USED, REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, REPORT_ACCESS_USED_CHECK, REPORT_ACCESS_USED_COUNT_UPDATED, forVisitor, hasAccessOutcome } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
 export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean };
@@ -124,6 +124,7 @@ export function useResumeReview(input: {
       return;
     }
 
+    const signedIn = Boolean(input.user);
     input.setIsLoading(true);
     input.setIsStreaming(true);
     input.setReport(null);
@@ -151,17 +152,15 @@ export function useResumeReview(input: {
         if (!input.isAnalysisCurrent(controller)) return;
         if (result.attemptConsumed) {
           toast.warning("Report stopped", {
-            description: refreshed
-              ? "This used one of your reports. Your count is up to date."
-              : "This used one of your reports. Check My reports before running it again.",
+            description: forVisitor(refreshed ? REPORT_ACCESS_USED_COUNT_UPDATED : REPORT_ACCESS_USED_CHECK, signedIn),
           });
         } else if (result.creditRestored) {
           toast.info("Report stopped", {
-            description: REPORT_ACCESS_RESTORED,
+            description: forVisitor(REPORT_ACCESS_RESTORED, signedIn),
           });
         } else {
           toast.info("Report stopped", {
-            description: REPORT_ACCESS_OUTCOME_UNKNOWN,
+            description: forVisitor(REPORT_ACCESS_OUTCOME_UNKNOWN, signedIn),
           });
         }
         return;
@@ -209,8 +208,8 @@ export function useResumeReview(input: {
       if (!input.isAnalysisCurrent(controller)) return;
       const attemptCopy = result.attemptConsumed
         ? refreshed
-          ? "This used one of your reports. Your count is up to date."
-          : "This used one of your reports. Check My reports before running it again."
+          ? REPORT_ACCESS_USED_COUNT_UPDATED
+          : REPORT_ACCESS_USED_CHECK
         : result.attemptConsumed === false || result.accessConsumed === false
           ? `${REPORT_ACCESS_NOT_USED} Try again whenever you're ready.`
         : result.creditRestored
@@ -221,9 +220,9 @@ export function useResumeReview(input: {
         // Generation takes about a minute; keep the outcome visible until the user acts.
         duration: Infinity,
         closeButton: true,
-        description: hasDisposition
+        description: forVisitor(hasDisposition && result.message
             ? result.message
-            : `${result.message || "The report didn’t finish."} ${attemptCopy}`,
+            : `${result.message || "The report didn’t finish."} ${attemptCopy}`, signedIn),
       });
     } catch (error) {
       if (!input.isAnalysisCurrent(controller)) return;
@@ -237,7 +236,7 @@ export function useResumeReview(input: {
       toast.error("We couldn’t finish your report", {
         duration: Infinity,
         closeButton: true,
-        description: REPORT_ACCESS_OUTCOME_UNKNOWN,
+        description: forVisitor(REPORT_ACCESS_OUTCOME_UNKNOWN, signedIn),
       });
     } finally {
       if (input.endAnalysis(controller)) {

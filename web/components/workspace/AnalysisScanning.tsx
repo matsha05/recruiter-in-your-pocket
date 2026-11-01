@@ -79,7 +79,15 @@ export default function AnalysisScanning({
     className,
 }: AnalysisScanningProps) {
     const startRef = useRef<number>(0);
+    const titleRef = useRef<HTMLHeadingElement>(null);
     const [elapsedMs, setElapsedMs] = useState(0);
+
+    // The run starts from wherever the visitor scrolled to on the form, which on a
+    // phone is near the button. Open at the heading so the wait, and Stop, are in view.
+    useEffect(() => {
+        titleRef.current?.scrollIntoView({ block: "start" });
+        titleRef.current?.focus({ preventScroll: true });
+    }, []);
 
     useEffect(() => {
         if (startRef.current === 0) {
@@ -110,13 +118,30 @@ export default function AnalysisScanning({
                         : `Reading your ${subject}. This usually takes one to two minutes.`}
                 </p>
                 <header className={styles.intro}>
-                    <h2 id="analysis-title" className={styles.title}>
+                    <h2 id="analysis-title" ref={titleRef} tabIndex={-1} className={styles.title}>
                         Reading your {subject} like a recruiter would.
                     </h2>
                     <p className="max-w-2xl text-base text-muted-foreground">
                         This usually takes one to two minutes. Keep this tab open; your report replaces this screen when it&apos;s ready.
                     </p>
                 </header>
+                {!isSlow && onCancel ? (
+                    <div className="mt-6">
+                        <Button variant="outline" size="sm" onClick={onCancel} className="min-w-36 border-foreground bg-transparent text-foreground">Stop</Button>
+                    </div>
+                ) : null}
+                {isSlow ? (
+                    <aside className="mt-7 rounded-xl border border-warning/35 bg-warning/10 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Report still in progress">
+                        <div>
+                            <p className="font-medium text-foreground">Still going. Longer resumes can take a little more time.</p>
+                            <p className="mt-1 text-sm leading-5 text-muted-foreground">If you retry and this one also finishes, both count as reports. Waiting is usually the better bet.</p>
+                        </div>
+                        <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">
+                            {onRetry ? <Button variant="outline" size="sm" onClick={onRetry}>Retry</Button> : null}
+                            {onCancel ? <Button variant="ghost" size="sm" onClick={onCancel}>Stop</Button> : null}
+                        </div>
+                    </aside>
+                ) : null}
                 <div className={styles.sheet}>
                     <div className={styles.sheetHeader}>
                         <p className="inline-flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -141,23 +166,6 @@ export default function AnalysisScanning({
                         ))}
                     </ol>
                 </div>
-                {!isSlow && onCancel ? (
-                    <div className="mt-6">
-                        <Button variant="outline" size="sm" onClick={onCancel} className="min-w-36 border-foreground bg-transparent text-foreground">Stop</Button>
-                    </div>
-                ) : null}
-                {isSlow ? (
-                    <aside className="mt-7 rounded-xl border border-warning/35 bg-warning/10 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Report still in progress">
-                        <div>
-                            <p className="font-medium text-foreground">Still going. Longer resumes can take a little more time.</p>
-                            <p className="mt-1 text-sm leading-5 text-muted-foreground">If you retry and this one also finishes, both count as reports. Waiting is usually the better bet.</p>
-                        </div>
-                        <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">
-                            {onRetry ? <Button variant="outline" size="sm" onClick={onRetry}>Retry</Button> : null}
-                            {onCancel ? <Button variant="ghost" size="sm" onClick={onCancel}>Stop</Button> : null}
-                        </div>
-                    </aside>
-                ) : null}
             </section>
         </div>
     );
