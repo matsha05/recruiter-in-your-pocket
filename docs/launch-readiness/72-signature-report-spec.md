@@ -98,6 +98,16 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 - Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
 - Prototype harness: `/internal/report-lab` (dev or `ALLOW_INTERNAL_PAGES`), with every saved output in fresh, recovered and saved states, the sample, and a constructed Nothing critical case.
 
+## Verification (local only, production build of this branch, dummy CI environment, mock model)
+
+- Node suites: `test:report-integrity` (including `revised-line`), `test:source-fidelity`, `test:pdf-export`, launch signals, and analytics privacy. `qa:design-system` and lint pass on the changed files; `npm run build` passes.
+- **Phone first screen, 390×844:** the Critical Miss appears once, and its first answer field is on screen for the sample and the five longest real outputs. The worst case is the 277-character Verdict, about 2px inside the fold.
+- **Every width:** no horizontal overflow and no inner scrollers at 390, 1024 and 1440.
+- **UI specs on the build:** report navigation, mobile resume experience, red-team journeys, product motion, paid decision, workspace handoffs, accessibility. Seven failures are environmental here and none of them reach report code:
+  - Red-team 4, 5, 10 and 11 need the anonymous-access backend.
+  - Paid decision's two confirmation cases stop at the purchase page.
+  - The internal-route 404 check fails because this build allows internal pages for the lab.
+
 ## Not done here
 
 - A model-polished revised line. It would need a new prompt, a paid eval, and a looser guard (decision 2).
