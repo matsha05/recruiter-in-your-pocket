@@ -27,7 +27,9 @@ export async function polishRevisedLine(input: {
     return { outcome: "error", line: null, reason: code === "OPENAI_TIMEOUT" ? "timeout" : "provider", detail: code || "unknown" };
   }
   const polished = proposed.line.trim();
-  if (polished === literal.trim()) {
+  // The same words in the same order, give or take punctuation, is not a polish.
+  const bare = (value: string) => value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  if (bare(polished) === bare(literal)) {
     return { outcome: "fallback", line: null, reason: "unchanged", detail: "same as the literal line", proposed: polished, model: proposed.model, usage: proposed.usage };
   }
   const check = checkPolishedLine(
