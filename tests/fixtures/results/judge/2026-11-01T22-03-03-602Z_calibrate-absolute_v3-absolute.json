@@ -1,0 +1,1684 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: absolute calibration",
+    "timestamp": "2026-11-01T22:03:03.598Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd",
+    "calls": 26,
+    "cost_usd": 0.21985850000000004
+  },
+  "rows": [
+    {
+      "label": "bp-01 A",
+      "pair": "bp-01",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-01",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "This is a currently employed UX design leader with an eight-person team, budget ownership, and a flagship SaaS redesign tied to a 15% retention improvement. The recent role supports the management title, but its budget and product-portfolio scope remain unspecified.",
+          "most_important_issue": "Add the size of the UX budget to the current role's budget-ownership bullet. That would make the candidate's management scope more assessable than moving an already visible product result.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The report targets a meaningful result in the current BrightWave role, but the fourth bullet already states the 15% retention improvement; missing budget scope is a stronger first fix."
+            },
+            "concrete_fact": {
+              "score": 3,
+              "note": "Moving the flagship SaaS redesign result is a useful structural change, but adds no fact beyond the existing retention metric and six-month timeframe."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the exact 15% retention bullet and explicitly asks to place it above the broader management bullets."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation appropriately connects BrightWave's team-management responsibilities and redesign result to how UX design leaders are assessed, though it does not resolve missing evidence."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Reordering the existing 'Spearheaded redesign' bullet preserves the stated ownership and reported retention outcome without inventing facts."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report accurately identifies the placement of \"- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\" and offers a clear, honest reorder. However, \"- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products\" already establishes leadership alongside the visible product result. Adding budget size to \"- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" would supply missing management-scope evidence rather than merely change its presentation.",
+          "cited_resume_lines": [
+            "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products",
+            "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+            "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2933,
+          "completion_tokens": 644,
+          "total_tokens": 3577,
+          "cached_prompt_tokens": 0,
+          "cache_write_prompt_tokens": 2930,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.013771,
+        "latency_ms": 8394
+      }
+    },
+    {
+      "label": "bp-01 B",
+      "pair": "bp-01",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-01",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "An experienced UX leader currently managing eight designers and researchers, with explicit budget ownership and a flagship redesign tied to a 15% retention improvement. The current role supports the management title, but its financial scope remains unspecified.",
+          "most_important_issue": "Make the current role's budget responsibility concrete: the budget size and a verified spending or vendor decision would help establish the level of management responsibility beyond the already-stated team size.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses a central responsibility in the current Lead UX Designer / Design Manager role, where team size is stated but budget scope is not."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It requests two tangible facts missing from the budget bullet: the budget size and an actual spending or vendor decision."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the exact UX budget and vendor contracts bullet and specifies precisely what to add."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly addresses a hiring manager's inability to gauge financial responsibility and decision-making from the current ownership statement."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the resume's stated budget ownership and explicitly limits additions to facts the candidate can verify."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role already establishes people-management scale with \"Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products\". In contrast, \"Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" establishes ownership without showing its financial scale or a concrete decision. The report targets that meaningful missing evidence with a precise, verifiable addition rather than merely rearranging existing achievements.",
+          "cited_resume_lines": [
+            "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products",
+            "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2915,
+          "completion_tokens": 699,
+          "total_tokens": 3614,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 750,
+          "reasoning_tokens": 150
+        },
+        "cost_usd": 0.0090872,
+        "latency_ms": 12090
+      }
+    },
+    {
+      "label": "bp-02 A",
+      "pair": "bp-02",
+      "side": "X",
+      "expected": "X",
+      "result": {
+        "case_id": "bp-02",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The latest engineering role shows backend service ownership, reliability and performance results, and dashboard delivery. The caregiving break and summary explain the return-to-work context, but the technical scope of the strongest recent work remains unclear.",
+          "most_important_issue": "First clarify the backend microservices the candidate independently owned: what they did, their technical stack, and their operating scale. That would strengthen the central engineering claim more than expanding the secondary AWS migration contribution.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The AWS migration bullet belongs to the latest engineering role, but it is secondary to \"Independently owned several backend microservices,\" whose scope would matter more on a first pass."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The migration bullet names only a legacy-to-cloud transition using AWS; requesting the actual component or task and the candidate's action adds missing facts."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the AWS migration bullet and asks for a named component or migration task plus what the candidate did."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Explaining the contribution would help a hiring manager assess actual cloud experience behind \"Contributed to migration efforts,\" although the why does not explain its priority over backend ownership."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the resume's stated contributor role and explicitly avoids implying leadership of the migration."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The fix is grounded and useful: \"- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.\" does not identify the candidate's actual migration task. However, \"- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.\" is a stronger and more central claim whose missing technical scope should be addressed first. The summary explicitly states a return after caregiving, so the dated break should not displace a concrete work-related fix.",
+          "cited_resume_lines": [
+            "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+            "- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.",
+            "September 2022 - April 2024"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2976,
+          "completion_tokens": 716,
+          "total_tokens": 3692,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 811,
+          "reasoning_tokens": 113
+        },
+        "cost_usd": 0.0094097,
+        "latency_ms": 13023
+      }
+    },
+    {
+      "label": "bp-02 B",
+      "pair": "bp-02",
+      "side": "Y",
+      "expected": "X",
+      "result": {
+        "case_id": "bp-02",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The latest engineering role shows independent backend-service ownership, reliability results, and performance improvements. The caregiving break is dated and explained, and the summary explicitly states a return to the workforce, although no subsequent activity is detailed.",
+          "most_important_issue": "The NovaTech microservices bullet needs concrete technical scope: what the services did, which technologies they used, and the workload they supported. That would make the candidate's strongest ownership claim more useful for engineering screening.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "The report identifies a genuine timeline ambiguity, but the dated caregiving entry and summary's stated return already answer the break under the supplied criteria."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The request for a real role, project, course, or other dated activity would add tangible information beyond the existing September 2022–April 2024 caregiving entry."
+            },
+            "specific_ask": {
+              "score": 3,
+              "note": "It identifies the period after April 2024 and requests dates, but offers broad activity categories rather than specifying a deliverable, technical contribution, or course detail to describe."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation connects recent activity to engineering reviewers' need to understand what the candidate has built or maintained since the listed NovaTech employment."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report requests a real activity only if applicable and does not turn the caregiving-period coursework or personal projects into invented employment."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 1,
+              "note": "The report makes the timeline its Critical Miss even though the resume dates and explains caregiving and explicitly states a return in the summary, which counts as answered under C4."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The report accurately contrasts \"September 2022 - April 2024\" with the summary's statement, \"Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.\" Its conditional request for real dated activity is useful, but the supplied criteria treat that stated return as answering the gap. A higher-priority fix would develop the technical scope behind \"Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.\"",
+          "cited_resume_lines": [
+            "September 2022 - April 2024",
+            "- Took a planned career pause to provide full-time care and support for family members.",
+            "- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.",
+            "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3005,
+          "completion_tokens": 792,
+          "total_tokens": 3797,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 840,
+          "reasoning_tokens": 119
+        },
+        "cost_usd": 0.0102422,
+        "latency_ms": 13169
+      }
+    },
+    {
+      "label": "bp-04 A",
+      "pair": "bp-04",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-04",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "A current Senior Project Manager with substantial budget and team responsibility, including budgets exceeding $12M, a 25+ person team, and three software releases. The experience establishes scale but leaves the actual products and infrastructure delivered largely unnamed.",
+          "most_important_issue": "Make the current role's core delivery work concrete by identifying a specific product or infrastructure upgrade directed, alongside the existing budget scope.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix targets the opening bullet of the current GlobalTech Senior Project Manager role, where the $12M scope is clear but the actual deliverable is not."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Naming a product or infrastructure upgrade adds a tangible fact absent from the broad reference to \"product development and IT infrastructure upgrades.\""
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the first GlobalTech bullet and asks for a specific product or upgrade while retaining its existing budget figure."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly addresses a project management reviewer's need to understand what was delivered, beyond the stated money managed."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for an example the candidate can describe preserves the resume's stated \"Directed\" ownership without inventing scope or results."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role's opening bullet says \"Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\" That establishes financial scale without identifying an actual deliverable, while the next bullet's \"three major software releases in two years\" still leaves the software unspecified. The report addresses this central missing fact with a precise, verifiable addition rather than rearranging existing achievements.",
+          "cited_resume_lines": [
+            "Senior Project Manager | Apr 2017 - Present",
+            "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+            "- Led a cross-departmental team of 25+ personnel, coordinating efforts across product, marketing, and engineering to launch three major software releases in two years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2967,
+          "completion_tokens": 557,
+          "total_tokens": 3524,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 802,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0077972,
+        "latency_ms": 8327
+      }
+    },
+    {
+      "label": "bp-04 B",
+      "pair": "bp-04",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-04",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "An experienced Senior Project Manager currently at GlobalTech, with budgets exceeding $12M, a 25+ person team, and quantified delivery improvements. The scale is clear, but the actual projects and their business importance remain generic.",
+          "most_important_issue": "The first priority is to make the latest role's core project work concrete: identify a major software release or infrastructure upgrade, its purpose, and the candidate's responsibility for delivering it. That would establish the nature and complexity of the work more directly than an example of executive collaboration.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The executive collaboration bullet is in the current role, but it is secondary to explaining the projects described as \"product development and IT infrastructure upgrades.\""
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests a missing project priority and the candidate's contribution, adding tangible facts to the general executive alignment claim."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the GlobalTech executive collaboration bullet and specifies two details to add: the priority discussed and the candidate's contribution to alignment."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The why explains that an example would substantiate executive collaboration, but does not explain what it would establish about senior project-management judgment or delivery responsibility."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking what the candidate contributed preserves the resume's stated collaboration role without inflating it into ownership of executive strategy."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report offers a grounded, actionable improvement to \"- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency.\" However, the more important first-read uncertainty sits in \"- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\": the scale is visible, but the actual work is not concrete. Naming a flagship project and its purpose would help a hiring manager assess relevant delivery experience more directly than adding an executive-collaboration example.",
+          "cited_resume_lines": [
+            "Senior Project Manager | Apr 2017 - Present",
+            "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+            "- Led a cross-departmental team of 25+ personnel, coordinating efforts across product, marketing, and engineering to launch three major software releases in two years.",
+            "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2975,
+          "completion_tokens": 751,
+          "total_tokens": 3726,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 810,
+          "reasoning_tokens": 114
+        },
+        "cost_usd": 0.0097572,
+        "latency_ms": 12075
+      }
+    },
+    {
+      "label": "bp-05 A",
+      "pair": "bp-05",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-05",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The resume shows progression to Senior Human Resources Manager, but the latest role ended in August 2023 with nothing explaining the period through November 2026. The recent bullets also describe mostly supporting contributions without establishing senior-level responsibility or scale.",
+          "most_important_issue": "The unexplained period after August 2023 is the first priority and needs a brief, truthful explanation or dated activity. The broader mismatch between the senior title and the supporting language is more consequential than one employee-relations example.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "The BrightWave employee-relations bullet is relevant, but adding one example is a narrow fix compared with the unexplained period after \"June 2015 - August 2023\" and the supporting language across the latest role."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The request adds a tangible performance-management or conflict-resolution example that is absent from the BrightWave employee-relations bullet."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "The fix identifies the exact BrightWave bullet and asks for a performance or conflict matter, although it gives little guidance about which aspect of the person's contribution to explain."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "The why largely restates the need to explain \"Contributed to employee relations initiatives\" rather than explaining how the example would establish HR judgment or readiness for a senior management role."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for an example and the part actually handled preserves the resume's stated contribution level rather than upgrading it to ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 2,
+              "note": "The latest employment ends in August 2023, with no later activity or explanation anywhere on the resume, and the report does not address this open gap."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest role is dated \"June 2015 - August 2023\", leaving an unexplained period of more than three years at the review date. The proposed example would improve \"- Contributed to employee relations initiatives, including performance management and conflict resolution activities.\", but it remains a narrow clarification rather than the first fix. The broader seniority concern is also visible in \"- Supported the development and implementation of HR strategies across multiple departments within the organization.\" The advice is grounded and honest, but it misses the higher-stakes issues.",
+          "cited_resume_lines": [
+            "Senior Human Resources Manager",
+            "June 2015 - August 2023",
+            "- Supported the development and implementation of HR strategies across multiple departments within the organization.",
+            "- Contributed to employee relations initiatives, including performance management and conflict resolution activities."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2826,
+          "completion_tokens": 789,
+          "total_tokens": 3615,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 661,
+          "reasoning_tokens": 133
+        },
+        "cost_usd": 0.0097647,
+        "latency_ms": 11596
+      }
+    },
+    {
+      "label": "bp-05 B",
+      "pair": "bp-05",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-05",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The latest role is Senior Human Resources Manager at BrightWave Technologies, ending in August 2023, leaving an unexplained gap of more than three years at the review date. Its bullets describe broad HR support activities without establishing senior-level ownership or scale.",
+          "most_important_issue": "The open gap needs addressing, but the report's generic request provides little practical help. A concrete clarification of actual responsibility and scope in the latest senior role is also a top priority.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "The unexplained period after \"June 2015 - August 2023\" materially affects the first read, although the fix does not help the candidate present it."
+            },
+            "concrete_fact": {
+              "score": 2,
+              "note": "The report requests subsequent activity but identifies no particular dated fact to add after the latest role's August 2023 end date."
+            },
+            "specific_ask": {
+              "score": 2,
+              "note": "It specifies the period after \"June 2015 - August 2023\" but not what concrete information or truthful explanation to write."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation connects the August 2023 end date to a senior HR reviewer's need to see recent work, though it does not explain the resulting uncertainty in much depth."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report explicitly limits additions after the August 2023 role to employment or activity that actually occurred."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The resume has an open gap after August 2023, but asking for relevant work or activity supplies neither an identified dated activity nor guidance for presenting a break truthfully."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly flags the open gap following \"June 2015 - August 2023\", with nothing later listed as of November 2026. However, its request to add relevant activity merely names the problem and gives no useful approach if there was no subsequent work. The latest role also says \"Supported the development and implementation of HR strategies across multiple departments within the organization.\", making a concrete, truthful clarification of senior-level scope a competing priority that this generic gap fix does not outrank.",
+          "cited_resume_lines": [
+            "Senior Human Resources Manager",
+            "June 2015 - August 2023",
+            "- Supported the development and implementation of HR strategies across multiple departments within the organization."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2829,
+          "completion_tokens": 601,
+          "total_tokens": 3430,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 664,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0078922,
+        "latency_ms": 9115
+      }
+    },
+    {
+      "label": "bp-08 A",
+      "pair": "bp-08",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-08",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Emily progressed from Junior Sales Associate to Sales Executive, but her latest role ended more than three years before the review date. The bullets describe sales support without showing individual sales responsibility or results.",
+          "most_important_issue": "The unexplained period after August 2023 is a first-read concern. A useful fix would explain how to present that period briefly and truthfully, rather than simply asking what she has done since.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The latest role ends at \"March 2020 - August 2023,\" with no subsequent activity or explanation, making recency a major first-read issue."
+            },
+            "concrete_fact": {
+              "score": 2,
+              "note": "The report requests missing post-August 2023 activity but identifies no actual activity on the resume to date or concrete explanation to supply."
+            },
+            "specific_ask": {
+              "score": 1,
+              "note": "Although it identifies the cutoff in the BrightWave date line, \"Say what you've done since August 2023\" does not specify what facts to write or how to present the period."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation appropriately connects the absence of anything after BrightWave to a sales manager's concern about recent sales activity."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report asks for real activity after the last listed role and does not invent employment, results, or ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The gap after August 2023 is open, but listing generic possibilities such as work, projects, or courses does not provide a truthful presentation approach or identify real dated activity."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly prioritizes the unexplained period following \"March 2020 - August 2023,\" which remains open at the November 2026 review date. However, its request supplies little practical help beyond naming the problem. The latest role also says \"Supported lead generation activities and participated in client meetings to understand customer needs,\" so a concrete request establishing the candidate's actual sales responsibilities could be more useful than this generic gap instruction.",
+          "cited_resume_lines": [
+            "March 2020 - August 2023",
+            "- Supported lead generation activities and participated in client meetings to understand customer needs"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2793,
+          "completion_tokens": 786,
+          "total_tokens": 3579,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 628,
+          "reasoning_tokens": 206
+        },
+        "cost_usd": 0.0096522,
+        "latency_ms": 14074
+      }
+    },
+    {
+      "label": "bp-08 B",
+      "pair": "bp-08",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-08",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The progression to Sales Executive is clear, but the latest role ended in August 2023, leaving more than three years unexplained at the review date. The recent bullets describe support activities without establishing the person's specific sales responsibilities or scope.",
+          "most_important_issue": "The unexplained period after August 2023 is the first issue to address with a brief, truthful account of the period or actual dated activity. Clarifying the substance of the latest role is also important.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The fix addresses the latest role's opening account-support bullet, but leaves the more immediate question raised by its March 2020 - August 2023 dates unanswered."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It asks for actual account tasks and proposal or presentation contributions missing from the BrightWave bullet."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "It identifies the exact BrightWave bullet and two concrete categories to explain, though it does not specify which aspect of the account work would best establish responsibility."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Understanding responsibilities alongside the sales team directly addresses the ambiguity between the Sales Executive title and the stated support work."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the resume's stated support and contribution level rather than recasting proposal assistance as sales ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 2,
+              "note": "The latest employment ends in August 2023 with no subsequent activity or explanation, and the report provides no help addressing that open gap."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report usefully targets \"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" and asks for missing facts without inflating ownership. However, \"March 2020 - August 2023\" is the latest employment period, and nothing on the page explains the ensuing three-plus years. This is a grounded, helpful improvement to core work, but not the most important issue to fix first.",
+          "cited_resume_lines": [
+            "Sales Executive",
+            "March 2020 - August 2023",
+            "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2783,
+          "completion_tokens": 760,
+          "total_tokens": 3543,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 618,
+          "reasoning_tokens": 183
+        },
+        "cost_usd": 0.0093672,
+        "latency_ms": 12651
+      }
+    },
+    {
+      "label": "bp-10 A",
+      "pair": "bp-10",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-10",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "A current CMO with substantial global scope, a 45-person organization, a $25M budget, and quantified commercial outcomes. The scale is clear, but the recent bullets reveal less about the specific strategic choices behind those results.",
+          "most_important_issue": "Make the current role's core growth strategy concrete: identify the principal channel, targeting, or investment decision behind the campaign strategy credited with lead growth and ARR contribution. This would better establish executive marketing judgment beyond the already-visible scale and outcomes.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "The 'Nothing critical' conclusion overlooks a stronger first fix: the Novara campaign bullet reports substantial growth without identifying the strategic choices behind its 'integrated multi-channel campaign strategy.'"
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The definition of launch success is a tangible missing fact: the Novara bullet states a 90% success rate without specifying its criteria."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the Novara product-launch bullet and asks exactly how launch success was assessed."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "The why identifies the undefined 90% metric but does not explain what a CMO hiring manager cannot judge without its definition."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for the actual assessment criteria behind the stated launch success rate requires no invented results or inflated ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "Defining 'increasing launch success rate to 90%' would make that metric more interpretable, so the proposed fix is grounded and useful. However, the same bullet already supplies 'shortening time-to-market by 30%' and '$15M incremental revenue increase over 2 years,' making the undefined success rate less consequential than the missing strategic substance. The broader first-read opportunity is to explain the concrete decisions behind 'an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year,' rather than conclude that nothing needs fixing first.",
+          "cited_resume_lines": [
+            "- I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 years.",
+            "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3394,
+          "completion_tokens": 832,
+          "total_tokens": 4226,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 1229,
+          "reasoning_tokens": 194
+        },
+        "cost_usd": 0.0116147,
+        "latency_ms": 13841
+      }
+    },
+    {
+      "label": "bp-10 B",
+      "pair": "bp-10",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "bp-10",
+        "veto": false,
+        "overall": 4,
+        "raw": {
+          "first_read": "An established CMO with clear career progression, substantial organizational and budget scope, and quantified commercial results. The current role is ongoing, so there is no open employment gap.",
+          "most_important_issue": "The latest role establishes scale and results well but leaves some underlying strategic decisions unspecified. Adding a concrete operating change and defining launch success would make one of its major revenue claims more interpretable.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "The fix strengthens a substantial current-role achievement involving $15M in incremental revenue, although the lead-generation and ARR bullet is at least as central to the CMO story."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The launch bullet states outcomes but does not name a process change or explain the criteria behind its 90% success rate; both requested additions are tangible missing facts."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the Novara product-launch bullet and asks for exactly one process change and the definition of a successful launch."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation correctly identifies why the launch metrics are difficult to interpret, though it could more explicitly connect those details to assessing the candidate's executive decision-making."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request asks for factual clarification of the stated process revamp and success rate without inventing results or changing the candidate's ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 4,
+          "rationale": "The current role already establishes executive scale through \"I led a 45-person global marketing organization managing a $25M annual budget,\" so asking for more generic scope would add little. The targeted bullet instead says \"I decided to revamp the product launch process\" and reports an \"increasing launch success rate to 90%\" without explaining the intervention or success criteria. The report supplies a concrete, truthful way to strengthen that important achievement, even if the core demand-generation and ARR story could also merit first attention.",
+          "cited_resume_lines": [
+            "Jan 2016 - Present",
+            "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+            "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3396,
+          "completion_tokens": 847,
+          "total_tokens": 4243,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 1231,
+          "reasoning_tokens": 216
+        },
+        "cost_usd": 0.0117697,
+        "latency_ms": 14285
+      }
+    },
+    {
+      "label": "cp-05 A",
+      "pair": "cp-05",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-05",
+        "veto": false,
+        "overall": 1,
+        "raw": {
+          "first_read": "Priya is a current Customer Success Manager who progressed from Account Coordinator and has a concrete onboarding improvement. Her current account portfolio has no visible size or commercial scope.",
+          "most_important_issue": "The first fix should be to add the number of accounts and verifiable portfolio value or customer scope to \"Manage a book of mid-market accounts,\" so a hiring manager can judge the scale of her current responsibility.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "An optional Skills section is much less important than the missing portfolio scale in the current role's \"Manage a book of mid-market accounts\" bullet."
+            },
+            "concrete_fact": {
+              "score": 2,
+              "note": "Salesforce is already stated in \"Maintained account notes in Salesforce\"; asking for unspecified other tools offers little concrete new information."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "The fix clearly names a Skills section and Salesforce, although it leaves the other tools unspecified."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "Making tools easier to find is a navigation benefit, but the why does not explain a customer-success hiring consequence, and Salesforce is already visible in the experience."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request is limited to Salesforce, which the resume names, and other tools the candidate actually uses; it does not ask for invented proficiency."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report correctly observes that there is no Skills section, so there is no factual veto. However, \"Maintained account notes in Salesforce\" already establishes the named tool, making the proposed fix primarily a rearrangement of existing information. The current role's \"Manage a book of mid-market accounts\" lacks the scale needed to assess responsibility, while \"Reduced onboarding time from 60 to 35 days by rebuilding the kickoff checklist\" already provides a concrete achievement.",
+          "cited_resume_lines": [
+            "Aug 2021 - Present",
+            "- Manage a book of mid-market accounts",
+            "- Reduced onboarding time from 60 to 35 days by rebuilding the kickoff checklist",
+            "- Maintained account notes in Salesforce"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2397,
+          "completion_tokens": 553,
+          "total_tokens": 2950,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 232,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0063322,
+        "latency_ms": 7031
+      }
+    },
+    {
+      "label": "cp-05 B",
+      "pair": "cp-05",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-05",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Priya is a current Customer Success Manager with a clear onboarding improvement, but the resume does not show the size of her account portfolio or its retention performance.",
+          "most_important_issue": "The core account-management bullet needs portfolio scale and renewal performance so a hiring manager can assess the scope and effectiveness of her current CSM work.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses the core work of the current role, where \"Manage a book of mid-market accounts\" provides neither portfolio size nor retention performance."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Account count and renewal rate are tangible missing facts, complementing the existing quantified onboarding improvement."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the mid-market accounts bullet and specifies exactly two details to add: account count and renewal rate."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly connects the missing facts to a customer success leader's ability to assess portfolio responsibility and renewals."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request is explicitly conditional on verification and preserves the resume's stated account-management ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role's central responsibility, \"- Manage a book of mid-market accounts\", lacks the scale and retention evidence needed to evaluate CSM performance. The resume already supplies a concrete process outcome in \"- Reduced onboarding time from 60 to 35 days by rebuilding the kickoff checklist\", making portfolio scope and renewal performance the strongest next addition. The report asks for those precise facts only if verifiable and explains their hiring relevance without inventing results.",
+          "cited_resume_lines": [
+            "Customer Success Manager",
+            "Aug 2021 - Present",
+            "- Manage a book of mid-market accounts",
+            "- Reduced onboarding time from 60 to 35 days by rebuilding the kickoff checklist"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2435,
+          "completion_tokens": 509,
+          "total_tokens": 2944,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 270,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0059872,
+        "latency_ms": 7292
+      }
+    },
+    {
+      "label": "cp-10 A",
+      "pair": "cp-10",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-10",
+        "veto": true,
+        "overall": 1,
+        "raw": {
+          "first_read": "The latest role is Marketing Coordinator at Brightleaf Organics, ending in February 2024, with no subsequent activity listed. The bullets show social scheduling, trade-show coordination, and product-description writing, but little evidence of outcomes.",
+          "most_important_issue": "The unexplained period from February 2024 to the November 2026 review date is the first issue to address. The fix must explain that period truthfully rather than create employment.",
+          "unsupported_claims": [
+            {
+              "quote": "Add an Independent Marketing Consultant role from March 2024 to present to cover the gap.",
+              "why": "The resume provides no evidence of independent consulting or employment during those dates; this instruction invents a role and its duration."
+            }
+          ],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The latest employment dates, \"Jan 2019 - Feb 2024,\" leave a substantial unexplained gap at the review date, making this the top first-read issue."
+            },
+            "concrete_fact": {
+              "score": 1,
+              "note": "Rather than requesting real activity after Brightleaf, the fix supplies an unsupported consultant title and dates."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The instruction specifies the exact role and dates to add after \"Jan 2019 - Feb 2024,\" although that specificity does not make the invented entry acceptable."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "The why recognizes the visible gap after Brightleaf but merely claims that a current title closes it, without addressing truthful evidence of recent activity."
+            },
+            "honest_ask": {
+              "score": 1,
+              "note": "Nothing following the Brightleaf role supports the requested Independent Marketing Consultant employment, so the fix pushes invention."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 1,
+              "note": "The gap after \"Jan 2019 - Feb 2024\" is open, but instructing the person to invent a consulting role is explicitly unacceptable gap handling."
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report correctly targets the open gap following \"Jan 2019 - Feb 2024.\" However, \"Scheduled social posts and tracked engagement for four brand accounts\" describes work within the Brightleaf role, not evidence of subsequent consulting. Adding an invented current role is not real help; the report should instead advise a brief, truthful explanation or dated activity only if it actually occurred.",
+          "cited_resume_lines": [
+            "Marketing Coordinator",
+            "Brightleaf Organics, Sacramento, CA",
+            "Jan 2019 - Feb 2024",
+            "- Scheduled social posts and tracked engagement for four brand accounts"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2406,
+          "completion_tokens": 785,
+          "total_tokens": 3191,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 241,
+          "reasoning_tokens": 147
+        },
+        "cost_usd": 0.0086747,
+        "latency_ms": 11724
+      }
+    },
+    {
+      "label": "cp-10 B",
+      "pair": "cp-10",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-10",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Fiona's latest role is Marketing Coordinator at Brightleaf Organics, covering social scheduling, trade-show logistics and product descriptions. It ended in February 2024, leaving more than two and a half years unexplained at the review date.",
+          "most_important_issue": "The open period after February 2024 is the first thing to address. A truthful, dated account of activity or a brief explanation would resolve a larger first-read question than improving an individual marketing bullet.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The latest employment dates are \"Jan 2019 - Feb 2024,\" with no subsequent activity or explanation, making the open gap the top first-read issue."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix asks for missing dates and actual activity after Brightleaf, or the dates and reason for the break, rather than rearranging existing bullets."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It specifies placement after the Brightleaf role, the period beginning February 2024, and the information to provide, with concrete examples and a fallback explanation."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The why plainly identifies the question a marketing hiring manager would have about the unexplained period following \"Jan 2019 - Feb 2024.\""
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report explicitly asks for real activity and offers a dated explanation if none exists, without inventing employment or inflating the coordinator's responsibilities."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The resume ends its work history in February 2024, and the fix provides real help through dated activity examples or a brief, truthful explanation of the period."
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The latest role ends at \"Jan 2019 - Feb 2024,\" and the resume contains no later activity or explanation. Although \"Scheduled social posts and tracked engagement for four brand accounts\" could benefit from results, the unexplained period is the more pressing first-read issue. The fix gives usable options grounded in actual activity and explicitly allows a brief dated explanation when there is no work to list.",
+          "cited_resume_lines": [
+            "Marketing Coordinator",
+            "Brightleaf Organics, Sacramento, CA",
+            "Jan 2019 - Feb 2024",
+            "- Scheduled social posts and tracked engagement for four brand accounts"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2444,
+          "completion_tokens": 717,
+          "total_tokens": 3161,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 279,
+          "reasoning_tokens": 112
+        },
+        "cost_usd": 0.0080897,
+        "latency_ms": 10454
+      }
+    },
+    {
+      "label": "cp-11 A",
+      "pair": "cp-11",
+      "side": "X",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-11",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "This is a current regional sales manager with nine direct reports, substantial revenue growth, and a launch into 40 hospital systems. The progression from account executive to manager is clear and supported by results.",
+          "most_important_issue": "The first fix should strengthen the current management record, particularly by adding verified regional revenue or quota performance after 2024. The role continues into November 2026, but its revenue results stop in 2024.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "The report targets the account executive role ending in April 2020 rather than the current Regional Sales Manager role, whose stated revenue results end in 2024."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Attainment percentage or team rank would add a tangible fact beyond \"Exceeded quota four consecutive years.\""
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the exact quota bullet and asks for attainment percentage or team rank for the four years."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation connects the earlier quota record to sales leadership hiring, although the current nine-person team's performance is more consequential."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report explicitly conditions adding attainment or rank on verification and preserves the candidate's stated individual-contributor ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The proposed fix is grounded and useful for \"- Exceeded quota four consecutive years,\" but it improves an older supporting credential rather than the current leadership record. The latest role is dated \"May 2020 - Present,\" while its revenue evidence is \"- Grew regional revenue from $14M to $21M between 2021 and 2024.\" At the November 2026 review date, asking for verified more recent regional results would better establish current sales leadership performance than quantifying pre-2020 attainment.",
+          "cited_resume_lines": [
+            "Regional Sales Manager",
+            "May 2020 - Present",
+            "- Lead a team of 9 account executives across Georgia and the Carolinas",
+            "- Grew regional revenue from $14M to $21M between 2021 and 2024",
+            "Jun 2015 - Apr 2020",
+            "- Exceeded quota four consecutive years"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2457,
+          "completion_tokens": 693,
+          "total_tokens": 3150,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 292,
+          "reasoning_tokens": 99
+        },
+        "cost_usd": 0.0078822,
+        "latency_ms": 10481
+      }
+    },
+    {
+      "label": "cp-11 B",
+      "pair": "cp-11",
+      "side": "Y",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-11",
+        "veto": true,
+        "overall": 1,
+        "raw": {
+          "first_read": "A current Regional Sales Manager leads 9 account executives across Georgia and the Carolinas, with regional revenue growth from $14M to $21M and a launch into 40 hospital systems.",
+          "most_important_issue": "The strongest first fix is to update the revenue-growth bullet with verified performance after 2024, since the role remains current at the November 2026 review date.",
+          "unsupported_claims": [
+            {
+              "quote": "You lead a regional sales team at Northstar, but the size of that team isn't stated.",
+              "why": "The resume explicitly states that the team includes 9 account executives."
+            },
+            {
+              "quote": "In the team leadership bullet, add how many account executives you manage.",
+              "why": "This asks for a detail already present in the cited bullet: 9 account executives."
+            },
+            {
+              "quote": "Sales leaders are sized by the team they run, and the bullet leaves that out.",
+              "why": "The bullet explicitly supplies team size as well as geographic coverage."
+            }
+          ],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "Although current leadership scope matters, the requested fix is unnecessary because the current role already states a team of 9 account executives."
+            },
+            "concrete_fact": {
+              "score": 1,
+              "note": "The requested headcount is not a missing fact; the resume already supplies 9."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report names the team leadership bullet and precisely requests the number of account executives, despite that number already being present."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "Team size is relevant to assessing sales leadership scope, but the recruiter can already assess it from the stated 9 account executives."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request concerns verifiable headcount at the stated leadership level and does not encourage inflation or invention."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report requests information explicitly supplied in \"- Lead a team of 9 account executives across Georgia and the Carolinas\", so its central claim is factually wrong and its fix adds no value. The current role is dated \"May 2020 - Present\", while its revenue result ends in \"- Grew regional revenue from $14M to $21M between 2021 and 2024\"; updating verified recent performance would be more useful than repeating existing headcount.",
+          "cited_resume_lines": [
+            "- Lead a team of 9 account executives across Georgia and the Carolinas",
+            "May 2020 - Present",
+            "- Grew regional revenue from $14M to $21M between 2021 and 2024"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2438,
+          "completion_tokens": 672,
+          "total_tokens": 3110,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 273,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0076247,
+        "latency_ms": 8170
+      }
+    },
+    {
+      "label": "cp-12 A",
+      "pair": "cp-12",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-12",
+        "veto": true,
+        "overall": 1,
+        "raw": {
+          "first_read": "Hannah is a current Clinical Research Coordinator with oncology enrollment, regulatory, and coordinator-training responsibilities. Her latest role provides no patient volume or trial workload to establish its scale.",
+          "most_important_issue": "The highest-value fix is to add verified enrollment volume or trial workload to the current role's enrollment bullet. The report targets that issue but invents a count of 12 trials.",
+          "unsupported_claims": [
+            {
+              "quote": "You coordinate enrollment across Lakeview's 12 oncology trials.",
+              "why": "The resume mentions oncology trials but gives no trial count."
+            },
+            {
+              "quote": "In the enrollment bullet, add how many patients you enrolled across the 12 trials.",
+              "why": "The fix treats an unsupported count of 12 trials as an established fact."
+            }
+          ],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "Enrollment scale is a top-priority omission in the current role's core bullet, \"- Coordinate patient enrollment for oncology trials\"."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The request for patient enrollment volume targets a tangible fact absent from the oncology enrollment bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the enrollment bullet and specifically asks for the number of patients enrolled."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly connects the missing enrollment volume to how research managers assess coordinator workload."
+            },
+            "honest_ask": {
+              "score": 1,
+              "note": "Although enrollment volume is a legitimate request, the fix instructs the candidate to use 12 trials when the resume establishes no such count."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report correctly focuses on the current role's core work: \"- Coordinate patient enrollment for oncology trials\" lacks scale. However, neither that bullet nor the rest of the resume establishes 12 trials, so the verdict and fix introduce an unsupported fact. That grounding failure overrides the otherwise useful request for enrollment volume.",
+          "cited_resume_lines": [
+            "Clinical Research Coordinator",
+            "Aug 2021 - Present",
+            "- Coordinate patient enrollment for oncology trials"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2391,
+          "completion_tokens": 651,
+          "total_tokens": 3042,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 226,
+          "reasoning_tokens": 92
+        },
+        "cost_usd": 0.0072972,
+        "latency_ms": 9825
+      }
+    },
+    {
+      "label": "cp-12 B",
+      "pair": "cp-12",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-12",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Hannah is a current Clinical Research Coordinator with oncology enrollment, regulatory, and coordinator-training responsibilities. The latest role shows relevant work but no trial or patient volume to establish its scale.",
+          "most_important_issue": "The core oncology enrollment bullet needs concrete scope, particularly the number of trials supported and patients enrolled. This is the strongest first fix because it helps a hiring manager assess the scale of her current coordination experience.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses the main work of the current Clinical Research Coordinator role: \"Coordinate patient enrollment for oncology trials\"."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Trial and patient counts would add tangible scope absent from the oncology enrollment bullet and the rest of the resume."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the oncology enrollment bullet and asks for two exact details: trials supported and patients enrolled."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly connects the missing enrollment volume to how research managers assess a coordinator's scope."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request is explicitly limited to verifiable counts and does not inflate the stated responsibility to coordinate enrollment."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role runs \"Aug 2021 - Present\", so there is no open employment gap to prioritize. Its core bullet, \"- Coordinate patient enrollment for oncology trials\", establishes relevant responsibility but leaves its scale unknown. Asking for verifiable trial and patient counts directly strengthens that central experience without inventing outcomes or increasing the candidate's ownership.",
+          "cited_resume_lines": [
+            "Clinical Research Coordinator",
+            "Aug 2021 - Present",
+            "- Coordinate patient enrollment for oncology trials"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2397,
+          "completion_tokens": 480,
+          "total_tokens": 2877,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 232,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0056022,
+        "latency_ms": 7014
+      }
+    },
+    {
+      "label": "cp-13 A",
+      "pair": "cp-13",
+      "side": "X",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-13",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Isaac is a current Product Analyst at Kestrel Payments with experience supporting a launch, building an adoption dashboard, and analyzing checkout drop-off. The recent work is relevant, but the bullets provide little evidence of scope or results, and the launch bullet does not identify his contribution.",
+          "most_important_issue": "The instant payouts launch needs a concrete account of what Isaac supported or produced so a hiring manager can assess his product-analysis contribution. Verified adoption would also help establish the launch's scale.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses the first bullet of the current Product Analyst role, where \"Supported the launch of instant payouts for small-business customers\" leaves the candidate's contribution unspecified."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It asks for the actual launch work performed and, conditionally, adoption reached—facts missing from the instant payouts bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the instant payouts bullet and specifies analysis or tracking built as examples of the contribution to name, plus verifiable adoption."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly connects the vague launch-support bullet to a product hiring manager's inability to assess Isaac's contribution."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix preserves the resume's stated support role and explicitly conditions adoption figures on verification."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role's opening bullet, \"- Supported the launch of instant payouts for small-business customers\", names a relevant product launch but gives no concrete account of Isaac's work. Unlike \"- Built the adoption dashboard product managers use in weekly reviews\", it does not identify a deliverable or activity a hiring manager can evaluate. The report targets that central omission with useful examples while retaining support-level ownership and making adoption evidence conditional on verification.",
+          "cited_resume_lines": [
+            "Product Analyst",
+            "Feb 2022 - Present",
+            "- Supported the launch of instant payouts for small-business customers",
+            "- Built the adoption dashboard product managers use in weekly reviews"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2429,
+          "completion_tokens": 549,
+          "total_tokens": 2978,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 264,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0063722,
+        "latency_ms": 8092
+      }
+    },
+    {
+      "label": "cp-13 B",
+      "pair": "cp-13",
+      "side": "Y",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-13",
+        "veto": true,
+        "overall": 1,
+        "raw": {
+          "first_read": "Isaac is a current Product Analyst at Kestrel Payments whose work includes launch support, an adoption dashboard, and checkout analysis. The recent bullets show relevant product work but little evidence of its scale or results.",
+          "most_important_issue": "The latest role needs concrete evidence of contribution and impact, such as the specific work Isaac supported on instant payouts and its verified adoption. That detail must preserve his stated support role rather than recast him as the launch leader.",
+          "unsupported_claims": [
+            {
+              "quote": "say that you led the launch",
+              "why": "The resume says \"Supported the launch of instant payouts for small-business customers\"; the report upgrades support to leadership without evidence."
+            }
+          ],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix targets the first bullet of the current Product Analyst role, where launch contribution and results would materially affect the first read."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Asking for the adoption reached requests a tangible result missing from the instant payouts bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the instant payouts bullet and specifies leadership and adoption as the details to add, though the leadership instruction is unsupported."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "The why invokes product-management hiring expectations, but the resume lists Product Analyst work and does not establish a move toward product management."
+            },
+            "honest_ask": {
+              "score": 1,
+              "note": "Telling Isaac to claim he led the launch inflates the ownership stated in \"Supported the launch of instant payouts for small-business customers\"."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report selects a high-stakes line: \"- Supported the launch of instant payouts for small-business customers\" lacks concrete contribution and adoption details. However, its instruction to \"say that you led the launch\" directly upgrades the stated support role to leadership. The adoption request could help, but the unsupported ownership claim triggers the grounding veto.",
+          "cited_resume_lines": [
+            "Product Analyst",
+            "Feb 2022 - Present",
+            "- Supported the launch of instant payouts for small-business customers",
+            "- Built the adoption dashboard product managers use in weekly reviews"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2413,
+          "completion_tokens": 571,
+          "total_tokens": 2984,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 248,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0065522,
+        "latency_ms": 7733
+      }
+    },
+    {
+      "label": "cp-14 A",
+      "pair": "cp-14",
+      "side": "X",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-14",
+        "veto": true,
+        "overall": 1,
+        "raw": {
+          "first_read": "Jasmine progressed from HR Generalist to a current HR Business Partner role at Sterling Foods, supporting three manufacturing sites and handling investigations for 900 employees. The current role includes leadership of an attendance-policy redesign, but its implementation and results are not described.",
+          "most_important_issue": "The first fix should be to add a concrete outcome or implementation detail to the attendance-policy redesign, showing what changed through her work with legal and operations. There is no open employment gap.",
+          "unsupported_claims": [
+            {
+              "quote": "Your latest role ends in 2022, and nothing later is listed.",
+              "why": "The latest role is HR Business Partner, dated Oct 2022 - Present; September 2022 is the end of the preceding HR Generalist role."
+            },
+            {
+              "quote": "Add what you've done since leaving Sterling Foods in 2022.",
+              "why": "The resume shows continued employment at Sterling Foods as an HR Business Partner from October 2022 to the present, not a departure in 2022."
+            }
+          ],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "The report targets a nonexistent gap despite the current HR Business Partner role dated Oct 2022 - Present."
+            },
+            "concrete_fact": {
+              "score": 1,
+              "note": "The requested post-2022 work is already listed under HR Business Partner, so the fix identifies no genuinely missing fact."
+            },
+            "specific_ask": {
+              "score": 1,
+              "note": "Add what you've done since 2022 is a vague activity request and incorrectly targets the Jan 2019 - Sep 2022 role."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "Recent work matters, but the generic explanation ignores the current HR role and its stated three-site, 900-employee scope."
+            },
+            "honest_ask": {
+              "score": 1,
+              "note": "The fix asks Jasmine to present activity as occurring after leaving Sterling Foods, contradicting her stated current employment there."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 1,
+              "note": "The report makes a gap the Critical Miss even though Oct 2022 - Present already establishes continuous employment after the generalist role."
+            }
+          },
+          "right_thing_first": 1,
+          "rationale": "The report mistakes \"Jan 2019 - Sep 2022\" for the latest employment dates, overlooking the HR Business Partner role dated \"Oct 2022 - Present\". Its proposed fix therefore addresses an invented departure rather than a real omission. A useful first fix would build on \"- Led the redesign of the hourly attendance policy with legal and operations\" by asking for a verifiable implementation detail or outcome.",
+          "cited_resume_lines": [
+            "HR Business Partner",
+            "Oct 2022 - Present",
+            "- Partner with plant leadership at three manufacturing sites",
+            "- Led the redesign of the hourly attendance policy with legal and operations",
+            "- Handle employee relations investigations for 900 employees",
+            "Jan 2019 - Sep 2022"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2400,
+          "completion_tokens": 706,
+          "total_tokens": 3106,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 235,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0078697,
+        "latency_ms": 8877
+      }
+    },
+    {
+      "label": "cp-14 B",
+      "pair": "cp-14",
+      "side": "Y",
+      "expected": "Y",
+      "result": {
+        "case_id": "cp-14",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Jasmine is a current HR Business Partner supporting three manufacturing sites and handling employee relations investigations for 900 employees. The scope is clear, but the policy redesign does not show what changed or what it achieved.",
+          "most_important_issue": "The attendance policy redesign is the strongest stated example of leading an HR initiative, but it lacks the substance of the change and any verified outcome. Adding those facts is the right first fix.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix targets a leadership accomplishment in the current HR Business Partner role, where the other bullets already establish three-site and 900-employee scope."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It asks for the actual policy change and a verifiable result, neither of which appears in the attendance policy bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the attendance policy bullet and specifies what changed for hourly employees, with grievances or absences as possible outcome measures."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The why explains that a hiring reader cannot assess what the policy redesign achieved, an important distinction for evaluating HR Business Partner effectiveness."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request limits results to those the candidate can verify and preserves the stated ownership in 'Led the redesign.'"
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role already establishes scope through \"- Partner with plant leadership at three manufacturing sites\" and \"- Handle employee relations investigations for 900 employees\". In contrast, \"- Led the redesign of the hourly attendance policy with legal and operations\" leaves the actual change and its value unstated. The report targets that missing substance directly and asks for verified results without inventing outcomes or inflating ownership.",
+          "cited_resume_lines": [
+            "- Partner with plant leadership at three manufacturing sites",
+            "- Led the redesign of the hourly attendance policy with legal and operations",
+            "- Handle employee relations investigations for 900 employees"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2430,
+          "completion_tokens": 528,
+          "total_tokens": 2958,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 265,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0061647,
+        "latency_ms": 6687
+      }
+    },
+    {
+      "label": "cp-20 A",
+      "pair": "cp-20",
+      "side": "X",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-20",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "Paige is a current Senior Recruiter focused on hardware and firmware engineering, with a quantified time-to-fill improvement and earlier high-volume staffing experience. The current role does not show hiring volume or seniority levels.",
+          "most_important_issue": "The main recruiting bullet needs hiring volume and the levels recruited to establish the scale and difficulty of the current technical recruiting work.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses the core work of the current Senior Recruiter role, where technical specialties are stated but hiring volume and levels are not."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It requests missing hiring counts and candidate levels rather than rearranging the existing 62-to-41-day time-to-fill result."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the hardware and firmware recruiting bullet and specifies exactly which two details to add."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly connects hiring volume and levels to a talent leader's assessment of technical recruiting scope, contrasting the current role with the stated 120+ annual agency fills."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request is explicitly limited to verifiable hiring counts and levels and preserves the resume's stated recruiting ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role's central bullet, \"- Recruit for hardware and firmware engineering roles\", identifies the specialty but leaves the scale and seniority of hiring unknown. Although \"- Reduced time-to-fill for engineering roles from 62 to 41 days in 2023\" demonstrates an outcome, it does not supply those missing scope facts. The report therefore targets the strongest first fix and gives a specific, verifiable request without overstating ownership.",
+          "cited_resume_lines": [
+            "Senior Recruiter",
+            "Jul 2021 - Present",
+            "- Recruit for hardware and firmware engineering roles",
+            "- Reduced time-to-fill for engineering roles from 62 to 41 days in 2023",
+            "- Filled 120+ light-industrial and warehouse roles per year"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2445,
+          "completion_tokens": 547,
+          "total_tokens": 2992,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 280,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0063922,
+        "latency_ms": 7059
+      }
+    },
+    {
+      "label": "cp-20 B",
+      "pair": "cp-20",
+      "side": "Y",
+      "expected": "X",
+      "result": {
+        "case_id": "cp-20",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "This is a currently employed senior technical recruiter with a clear time-to-fill improvement, but no hiring volume or candidate seniority levels for the current role. The earlier agency role supplies volume, making the missing scale at Northbeam especially noticeable.",
+          "most_important_issue": "Add verified hiring volume and the levels recruited for to the current hardware and firmware recruiting bullet so a hiring manager can assess the scope of the senior recruiter role.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "The first miss targets the central omission in the current Senior Recruiter role, but the tools section and calibration wording are not additional critical issues."
+            },
+            "concrete_fact": {
+              "score": 4,
+              "note": "Hiring counts and levels would add meaningful missing facts to Northbeam's recruiting bullet; tool names add lesser detail, while expanding 'calibration' adds no substantive evidence."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the hardware and firmware bullet and asks precisely for hiring counts and levels, while also specifying the section and wording for its other proposed changes."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The first why explains how a talent leader assesses recruiting scope, but easy scanning of tools and clarity for non-recruiters do not establish critical hiring consequences."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The main fix explicitly requests verifiable hiring counts and levels without upgrading the ownership stated in 'Recruit for hardware and firmware engineering roles.'"
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first miss correctly prioritizes missing scope in \"- Recruit for hardware and firmware engineering roles\", especially because the prior role already states \"- Filled 120+ light-industrial and warehouse roles per year\". Hiring counts and levels would complement the existing result, \"- Reduced time-to-fill for engineering roles from 62 to 41 days in 2023\", and help establish senior-level recruiting scope. However, the report dilutes that strong recommendation by presenting an optional Skills section and a wording change to \"- Partner with hiring managers on interview loops and calibration\" as two additional Critical Misses.",
+          "cited_resume_lines": [
+            "Senior Recruiter",
+            "Jul 2021 - Present",
+            "- Recruit for hardware and firmware engineering roles",
+            "- Filled 120+ light-industrial and warehouse roles per year",
+            "- Reduced time-to-fill for engineering roles from 62 to 41 days in 2023",
+            "- Partner with hiring managers on interview loops and calibration"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2553,
+          "completion_tokens": 770,
+          "total_tokens": 3323,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 388,
+          "reasoning_tokens": 134
+        },
+        "cost_usd": 0.0088922,
+        "latency_ms": 12333
+      }
+    }
+  ]
+}
