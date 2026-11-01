@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { AutomationPipeline } from "@/components/research/diagrams/AutomationPipeline";
 
-export const metadata: Metadata = {
-    title: "Where automation enters hiring",
-    description: "Where automation enters the hiring funnel and where bias can enter with it.",
-    alternates: { canonical: "/research/automation-and-bias" },
-};
+const PATH = "/research/automation-and-bias";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Where automation and bias enter the hiring process",
+    description: "Software can shape which job ads you see, whether your application is eligible, and how it reaches a reviewer. Here's where bias can enter along the way.",
+    type: "article",
+});
 
 export default function AutomationBiasPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Automation",
                 title: "Where automation enters hiring",
                 description: "Different tools can affect which job ads you see, whether your application is eligible, and how it reaches a reviewer.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

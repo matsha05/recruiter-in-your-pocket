@@ -79,6 +79,11 @@ const nextConfig = {
         destination: "/workspace",
         permanent: true,
       }] : []),
+      // One hop each. "/guides/:path*" alone sends /guides to /resources/ and then
+      // to /resources, and the calculator's short URLs to a 404.
+      { source: "/guides", destination: "/resources", permanent: true },
+      { source: "/guides/comp-calculator", destination: "/resources/tools/comp-calculator", permanent: true },
+      { source: "/resources/comp-calculator", destination: "/resources/tools/comp-calculator", permanent: true },
       {
         source: "/guides/:path*",
         destination: "/resources/:path*",

@@ -5,6 +5,10 @@ import type { MouseEvent, ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import Footer from "@/components/landing/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { publicPage } from "@/lib/seo/public-pages";
+import { SECTION_NAMES } from "@/lib/seo/site";
+import { articleStructuredData, formatMonth } from "@/lib/seo/structured-data";
 
 interface ResearchSource {
     id?: string;
@@ -15,11 +19,12 @@ interface ResearchSource {
 }
 
 interface ResearchArticleProps {
+    /** The page's own path. Its published and updated dates live in PUBLIC_PAGES. */
+    path: string;
     header: {
         tag: string;
         title: string;
         description: string;
-        lastUpdated?: string;
         readTime?: string;
         sourceSummary?: string;
     };
@@ -60,13 +65,8 @@ interface ResearchArticleProps {
     };
 }
 
-function dateToIso(date?: string): string | undefined {
-    if (!date) return undefined;
-    const parsed = new Date(date);
-    return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
-}
-
 export function ResearchArticle({
+    path,
     header,
     keyFinding,
     visualization,
@@ -81,37 +81,32 @@ export function ResearchArticle({
         href: "/workspace",
     },
 }: ResearchArticleProps) {
-    const publishedDate = dateToIso(header.lastUpdated);
+    const { updated } = publicPage(path);
+    const trail = path.startsWith("/research/")
+        ? [{ name: SECTION_NAMES["/research"], path: "/research" }, { name: header.title, path }]
+        : [{ name: header.title, path }];
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Article",
-                        headline: header.title,
-                        description: header.description,
-                        author: { "@type": "Organization", name: "Recruiter in Your Pocket" },
-                        publisher: { "@type": "Organization", name: "Recruiter in Your Pocket" },
-                        datePublished: publishedDate,
-                        dateModified: publishedDate,
-                    }),
-                }}
+            <JsonLd
+                data={articleStructuredData({
+                    path,
+                    headline: header.title,
+                    description: header.description,
+                    trail,
+                    citations: sources,
+                })}
             />
+            {/* Mirrors the visible "Common questions" section below. */}
             {faq && faq.length > 0 ? (
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "FAQPage",
-                            mainEntity: faq.map((item) => ({
-                                "@type": "Question",
-                                name: item.question,
-                                acceptedAnswer: { "@type": "Answer", text: item.answer },
-                            })),
-                        }),
+                <JsonLd
+                    data={{
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: faq.map((item) => ({
+                            "@type": "Question",
+                            name: item.question,
+                            acceptedAnswer: { "@type": "Answer", text: item.answer },
+                        })),
                     }}
                 />
             ) : null}
@@ -139,6 +134,10 @@ export function ResearchArticle({
                                 </h1>
                                 <p className="mt-6 max-w-reading text-prose text-muted-foreground">
                                     {header.description}
+                                </p>
+                                {/* Same date as the sitemap and the Article data (PUBLIC_PAGES). */}
+                                <p className="mt-4 text-xs font-medium text-muted-foreground">
+                                    Last updated <time dateTime={updated}>{formatMonth(updated)}</time>
                                 </p>
                             </div>
 

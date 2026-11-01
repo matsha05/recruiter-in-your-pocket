@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormulaDiagram";
 import { ResumeQualityDiagram } from "@/components/research/diagrams/ResumeQualityDiagram";
 
-export const metadata: Metadata = {
-    title: "Show what changed and your part in it",
+const PATH = "/research/quantifying-impact";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How to write resume bullets that show results",
     description: "Recruiters judge what you can do from what your resume shows you did. What the research supports about showing results, and a practical way to write them.",
-    alternates: { canonical: "/research/quantifying-impact" },
-};
+    type: "article",
+});
 
 export default function QuantifyingImpactPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Resume writing",
                 title: "Show what changed and your part in it",
                 description: "Recruiters judge what you can do by what your resume shows you did. Here's what the research supports, and a practical way to write it.",
-                lastUpdated: "October 2026",
                 readTime: "7 min read"
             }}
             keyFinding={{

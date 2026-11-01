@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
-export const metadata: Metadata = {
-    title: "What makes a LinkedIn profile easier to find",
+const PATH = "/research/linkedin-visibility";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How recruiters search LinkedIn, and what you can control",
     description: "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
-    alternates: { canonical: "/research/linkedin-visibility" },
-};
+    type: "article",
+});
 
 export default function LinkedInVisibilityPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "LinkedIn discovery",
                 title: "What makes a LinkedIn profile easier to find",
                 description: "LinkedIn explains which profile fields its recruiter tools can search, but does not publish the ranking weights.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read",
                 sourceSummary: "2 LinkedIn Recruiter help pages (vendor documentation)"
             }}

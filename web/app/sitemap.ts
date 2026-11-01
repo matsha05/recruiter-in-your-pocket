@@ -1,46 +1,12 @@
 import type { MetadataRoute } from "next";
-import { launchFlags } from "@/lib/launch/flags";
+import { PUBLIC_PAGES } from "@/lib/seo/public-pages";
+import { absoluteUrl } from "@/lib/seo/site";
 
-const routes = [
-  "",
-  "/sample-report",
-  "/pricing",
-  ...(launchFlags.extensionSync ? ["/extension"] : []),
-  "/research",
-  "/research/ats-myths",
-  "/research/automation-and-bias",
-  "/research/hiring-discrimination-meta-analysis",
-  "/research/how-recruiters-read",
-  "/research/human-vs-algorithm",
-  "/research/linkedin-visibility",
-  "/research/quantifying-impact",
-  "/research/referral-advantage",
-  "/research/resume-length-myths",
-  "/research/salary-history-bans",
-  "/research/skills-first-promise-reality",
-  "/research/social-screening",
-  "/research/spelling-errors-impact",
-  "/research/star-method",
-  "/research/who-you-are",
-  "/research/gaps-and-pivots",
-  "/research/writing-quality-hire-probability",
-  "/resources",
-  "/resources/offer-negotiation",
-  "/resources/tech-offer-negotiation",
-  "/resources/tools/comp-calculator",
-  "/trust",
-  "/security",
-  "/privacy",
-  "/terms",
-  "/methodology",
-  "/support",
-  "/faq",
-];
-
+// lastmod is the date the page's content last changed, recorded in PUBLIC_PAGES.
+// Never the build date: a sitemap that says everything changed today gets ignored.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
-    url: `https://www.recruiterinyourpocket.com${route}`,
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/sample-report" || route === "/research" || route === "/resources/tools/comp-calculator" ? 0.8 : 0.6,
+  return PUBLIC_PAGES.map((page) => ({
+    url: absoluteUrl(page.path),
+    lastModified: page.updated,
   }));
 }

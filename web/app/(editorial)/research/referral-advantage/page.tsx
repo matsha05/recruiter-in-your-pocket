@@ -1,23 +1,26 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ReferralHiringShareDiagram } from "@/components/research/diagrams/ReferralHiringShareDiagram";
 import { ReferralOfferOddsDiagram } from "@/components/research/diagrams/ReferralOfferOddsDiagram";
 import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/ReferralQuantifiedDiagram";
 
-export const metadata: Metadata = {
-    title: "What a referral changes",
+const PATH = "/research/referral-advantage";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Do job referrals really help? What hiring data shows",
     description: "Referrals are a sliver of applications and a large share of hires. What the studies and hiring data show, and what a referral still can't do for you.",
-    alternates: { canonical: "/research/referral-advantage" },
-};
+    type: "article",
+});
 
 export default function ReferralAdvantagePage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Referrals",
                 title: "What a referral changes",
                 description: "A referral gets your resume read by someone who is already leaning in. Across studies and hiring data, that shows up as far better odds at every stage.",
-                lastUpdated: "October 2026",
                 readTime: "7 min read"
             }}
             keyFinding={{

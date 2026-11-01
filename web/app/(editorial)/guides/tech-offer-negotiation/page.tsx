@@ -37,7 +37,7 @@ export default function TechOfferNegotiationGuidePage() {
                     <div>
                         <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
                         <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
-                            Compare your tech offer
+                            Compare your tech offer{" "}
                             <span className="mt-2 block">year by year.</span>
                         </h1>
                     </div>
