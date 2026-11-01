@@ -468,6 +468,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 aria-label="Workspace"
                 data-visual-anchor="workspace-shell"
                 data-workspace-mode={reviewMode}
+                data-document={report && !isLoading && (!linkedInReviewEnabled || reviewMode === "resume") ? "" : undefined}
                 className="workspace-product-shell flex flex-col overflow-hidden bg-body"
             >
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">

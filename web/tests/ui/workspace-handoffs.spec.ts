@@ -235,7 +235,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByRole("button", { name: "Get your free report", exact: true })).toHaveCount(0);
   });
 
-  test("long source context is available without hiding the relevant excerpt", async ({ page }) => {
+  test("a long source line is quoted by its excerpt and rebuilt whole in the revised line", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     const excerpt = "Coordinated interviews with hiring managers.";
     const fullSource = `Managed recruiting programs across the organization, including candidate communication, interview scheduling, and follow-up with regional teams. ${excerpt} Maintained the shared interview guide and worked with operations to resolve scheduling conflicts and document feedback for the next hiring round.`;
@@ -248,13 +248,19 @@ test.describe("workspace command and completion handoffs", () => {
     await page.getByTestId("workspace-paste-mode").click();
     await page.getByTestId("workspace-resume-text").fill(`Alex Rivera\nWork Experience\n${fullSource}`);
     await page.getByTestId("workspace-run-report").click();
+    // The page quotes the excerpt the report cites, the same before and after a reload (1.7). The whole
+    // resume line appears once the candidate works on it, since the revised line builds on all of it.
     const fix = page.locator("#section-fix-1");
     await expect(fix).toBeVisible();
-    await expect(fix.getByText(`“${excerpt}”`, { exact: true })).toBeVisible();
-    const fullText = fix.getByText(fullSource, { exact: true });
-    await expect(fullText).toBeHidden();
-    await fix.getByText("Show full original text", { exact: true }).click();
-    await expect(fullText).toBeVisible();
+    await expect(fix.locator("blockquote")).toHaveText(excerpt);
+    await expect(fix.getByText(fullSource, { exact: true })).toHaveCount(0);
+    const questions = fix.getByTestId("lift-question");
+    await questions.first().locator("input").fill("the interview guide for 4 hiring groups");
+    for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
+      await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
+    }
+    await expect(fix.getByTestId("revised-line")).toHaveText(`${fullSource.replace(/\.$/, "")}: the interview guide for 4 hiring groups.`);
+    await expect(fix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
   });
 
   test("a normal review wait does not encourage another paid generation", async ({ page }) => {

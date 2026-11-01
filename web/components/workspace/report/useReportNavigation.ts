@@ -13,9 +13,24 @@ function getScrollContainer(element: HTMLElement) {
     return (document.scrollingElement || document.documentElement) as HTMLElement;
 }
 
+/**
+ * Where the section tabs end once they are stuck. Before the page scrolls, sticky tabs sit lower in the
+ * flow, so measuring them then would aim every jump short of where the tabs end up.
+ */
+function getNavigationBottom(nav: HTMLElement | null, containerTop: number) {
+    const aside = nav?.closest("aside");
+    if (!aside) return containerTop;
+    const style = getComputedStyle(aside);
+    if (style.position === "sticky" || style.position === "fixed") {
+        const stuckTop = (style.position === "fixed" ? 0 : containerTop) + (Number.parseFloat(style.top) || 0);
+        return stuckTop + aside.getBoundingClientRect().height;
+    }
+    return aside.getBoundingClientRect().bottom;
+}
+
 function getReadingLine(section: HTMLElement, nav: HTMLElement | null, container: HTMLElement) {
     const containerTop = container === document.scrollingElement ? 0 : container.getBoundingClientRect().top;
-    const navigationBottom = nav?.closest("aside")?.getBoundingClientRect().bottom || containerTop;
+    const navigationBottom = getNavigationBottom(nav, containerTop);
     const sectionMargin = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
     return Math.max(navigationBottom, containerTop + sectionMargin);
 }
@@ -35,6 +50,9 @@ export function useReportNavigation(items: readonly ReportSection[], refreshKey?
     const [selectedId, setSelectedId] = React.useState(items[0]?.id || "");
     const navRef = React.useRef<HTMLElement | null>(null);
     const buttonRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
+    // The section the reader last jumped to. At the end of the page the last sections can't scroll up to
+    // the reading line, so the jump target (or the last section in view) is current there.
+    const jumpTarget = React.useRef<string | null>(null);
 
     React.useEffect(() => {
         const sections = items
@@ -52,6 +70,15 @@ export function useReportNavigation(items: readonly ReportSection[], refreshKey?
                 if (section.getBoundingClientRect().top <= getReadingLine(section, navRef.current, container) + 1) {
                     current = section;
                 }
+            }
+            const viewportBottom = container === document.scrollingElement ? window.innerHeight : container.getBoundingClientRect().bottom;
+            const atEnd = container.scrollTop + container.clientHeight >= container.scrollHeight - 2 && container.scrollTop > 0;
+            if (atEnd) {
+                const inView = sections.filter((section) => section.getBoundingClientRect().top < viewportBottom - 24);
+                const target = inView.find((section) => section.id === jumpTarget.current);
+                current = target || inView.at(-1) || current;
+            } else {
+                jumpTarget.current = null;
             }
             setSelectedId(current.id);
         };
@@ -85,6 +112,7 @@ export function useReportNavigation(items: readonly ReportSection[], refreshKey?
     }, [selectedId]);
 
     const handleScroll = (id: string) => {
+        jumpTarget.current = id;
         scrollToReportSection(id, navRef.current);
     };
 

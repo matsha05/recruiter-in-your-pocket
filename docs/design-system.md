@@ -176,7 +176,7 @@ On phones, place the headline, explanation, and full-width action before the res
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
-The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. On phones the section row stays out of the first screen, so the Verdict, the Critical Miss and its first question come first; it slides in under the header once the opening read has scrolled away (Nov 1, 2026, plan item 2.5). Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
 ### Spacing scale
 
@@ -248,7 +248,7 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 - **Uppercase only for Verdict and Critical Miss**, via `.riyp-verdict-label`. Every other label is sentence case at 13px, weight 600. A resume section heading drawn inside an illustration may mimic the resume's own style.
 - **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green. Since Nov 1, 2026 there is one Button: three sizes, three variants, and the two delete treatments (§9).
 - **Static cards don't react.** `.app-card` has a hairline border and no shadow or hover state. Only things you can click respond to the pointer.
-- **The score is a number, not a color.** `ScoreBadge` shows the score in ink with "/100". No green, gold or red bands and no band labels; the written Verdict carries the judgment.
+- **The score is a band, not a color (D5, Nov 1, 2026).** A first report shows the score as one of three bands, named and anchored in words ("Needs more context", "Mostly clear", "Clear and specific"; thresholds 70 and 85, matching the validator's `score_label`), with an ink bar marking the current band (`markup/ScoreBand.tsx`, `lib/reports/score-band.ts`). The number appears only when two reads are compared. No green, gold or red; the written Verdict carries the judgment.
 - **Status chips use pen.** "Active" and "Paid" use the pen tint, not success green. Green-for-good is not part of the system.
 - **One date format:** "Oct 25, 2026" (`en-US`, short month). Money is formatted as currency ("$29.00").
 - **Page intros align with their content.** `AppPageIntro` has no side padding of its own; the page container sets the gutter. Skip an eyebrow that just repeats the page title.
@@ -309,6 +309,7 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 
 ### Workspace and report
 
+- The report is a marked-up resume (Nov 1, 2026; [spec](launch-readiness/72-signature-report-spec.md)): the Verdict and score band, then the candidate's quoted lines in Literata on the left (blue-ink rule; the Critical Miss line carries the highlighter), with the recruiter's pen notes in a right margin from 960px and beneath each line below it. Under the Critical Miss the candidate answers one to three questions and the revised line is their line plus their answers, word for word; Copy waits for the facts to check out. One component and one document scroll serve the sample, a fresh, recovered or saved report, and the PDF follows the same order.
 - Put the likely takeaway, exact evidence, and next useful action first.
 - Use a quiet shared header, regular-weight introduction, warm form/report sheet, and dark primary action. Report body is 16px/25px.
 - Preserve file/paste modes, optional job context, generation, missing-fact entry, comparison, history, save, and export behavior.
@@ -342,7 +343,7 @@ Canonical tokens (CSS in `web/app/globals.css`, mirrored for Motion in `web/lib/
 | `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift |
 | `--ease` / `EASE` | `cubic-bezier(0.22, 1, 0.36, 1)` | every transition; no `ease-out`, `ease-in-out`, or one-off curves |
 
-Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage note arriving on the resume is the one signature, once. The highlighter marks the miss in the one-sentence verdict. Report prose stays still. Report prose stays still. Reduced motion shows the same end state immediately.
+Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage note arriving on the resume is the one signature, once. The highlighter marks the miss in the one-sentence verdict. In the report, the highlighter sweeps the Critical Miss line once as it comes into view and the pen note fades in after it (`Mark` and `useSeen` from the figure kit); nothing else in the report moves, and report prose stays still. Reduced motion shows the same end state immediately.
 
 ### Links
 

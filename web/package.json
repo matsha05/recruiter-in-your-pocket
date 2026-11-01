@@ -59,7 +59,7 @@
     "test:pdf-export": "node scripts/run-ts-test.cjs tests/pdf-export.test.ts && node scripts/run-ts-test.cjs tests/pdf-export-access.test.ts && node scripts/run-ts-test.cjs tests/client-report-save.test.ts",
     "test:report-storage": "node scripts/run-ts-test.cjs tests/report-storage-security.test.ts && node scripts/run-ts-test.cjs tests/report-delete-finality.test.ts",
     "test:eval-report": "node scripts/run-ts-test.cjs tests/eval-report.test.ts",
-    "test:report-integrity": "node scripts/run-ts-test.cjs tests/report-integrity.test.ts",
+    "test:report-integrity": "node scripts/run-ts-test.cjs tests/report-integrity.test.ts && node scripts/run-ts-test.cjs tests/revised-line.test.ts && node scripts/run-ts-test.cjs tests/revised-line-polish.test.ts",
     "test:client-bundle": "node scripts/run-ts-test.cjs tests/client-bundle-contract.test.ts",
     "test:gauntlet": "node scripts/run-ts-test.cjs tests/gauntlet-definition.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-capture-contract.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-progress.test.ts && node scripts/run-ts-test.cjs tests/gauntlet-build-trace.test.ts && node scripts/run-ts-test.cjs tests/launch-test-defaults.test.ts",
     "test:release-integrity": "npm run test:llm-contract && npm run test:parse-resume && npm run test:pdf-export && npm run test:eval-report && npm run test:report-integrity && npm run test:client-bundle && npm run test:gauntlet",
