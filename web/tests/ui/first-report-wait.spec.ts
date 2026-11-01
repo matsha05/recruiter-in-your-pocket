@@ -49,3 +49,43 @@ test("stopping a signed-out run points to the free report, not My reports", asyn
   await expect(toast).not.toContainText("My reports");
   await expect(page.getByText("Your first report is included")).toBeVisible();
 });
+
+test("the wait shows the stage the stream reports and the time elapsed, never a timed step", async ({ page }) => {
+  await page.addInitScript(() => {
+    const realFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => {
+      const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+      if (!url.includes("/api/resume-feedback-stream")) return realFetch(input, init);
+      const encoder = new TextEncoder();
+      const body = new ReadableStream({
+        start(controller) {
+          (window as unknown as { pushStage: (stage: string) => void }).pushStage = (stage) =>
+            controller.enqueue(encoder.encode(`${JSON.stringify({ type: "stage", stage })}\n`));
+          controller.enqueue(encoder.encode(`${JSON.stringify({ type: "meta", attempt_consumed: false })}\n`));
+        },
+      });
+      return Promise.resolve(new Response(body, { status: 200, headers: { "content-type": "text/event-stream" } }));
+    };
+  });
+  await openWorkspaceAsGuest(page);
+  await page.unroute("**/api/resume-feedback-stream");
+  await page.getByTestId("workspace-run-report").click();
+
+  const stages = page.getByTestId("analysis-stages");
+  const current = stages.locator("[aria-current='step']");
+  await expect(current).toContainText("Send your resume");
+  await page.waitForTimeout(1500);
+  // Time alone never advances a step.
+  await expect(current).toContainText("Send your resume");
+  await expect(page.getByTestId("analysis-elapsed")).toContainText(/0:0[1-9] elapsed/);
+
+  const push = (stage: string) => page.evaluate((s) => (window as unknown as { pushStage: (stage: string) => void }).pushStage(s), stage);
+  await push("reading");
+  await expect(current).toContainText("Read your resume");
+  await push("writing");
+  await expect(current).toContainText("Write your report");
+  await expect(stages.locator("li[data-state='done']")).toHaveCount(2);
+  await expect(page.getByRole("status").filter({ hasText: "Writing your report." })).toBeAttached();
+  await push("checking");
+  await expect(current).toContainText("Check every quote");
+});

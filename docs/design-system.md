@@ -176,7 +176,7 @@ On phones, place the headline, explanation, and full-width action before the res
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
-The upload surface uses a compact file picker instead of a desktop-sized drop area. The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public navigation sheets keep their close control visible and scroll their links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
 ### Spacing scale
 
@@ -235,7 +235,7 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 
 - **Count things people can picture.** When the number is a rate, show the units: 100 resume sheets, 500 applicants as dots, 136 callbacks. "1 in 500" lands when the reader sees the 500. Use `UnitGrid` (`shape="sheet"` for resumes, dots for people or events).
 - **One pen note per figure.** `PenNote` is the recruiter's margin note: Literata italic in pen, one or two sentences, saying what a recruiter takes from the figure. It follows the voice guide's margin-note register and never claims more than the source.
-- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two.
+- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two. When the data carries the highlight (a highlighted unit, bar, or band), the pen note stays pen with no `Mark` in it. The guardrail fails a figure that uses the highlighter two ways (Nov 1, 2026; the spelling figure had yellow bars and a yellow note).
 - **Pen means the thing that matters; gray is everything else.** Highlighter yellow is reserved for the one takeaway. No other hues.
 - **Draw the artifact when the finding is about the artifact.** A typo study shows a resume line with the typos circled in pen; a story study shows two versions of the same resume.
 - **Lines for change over time.** Use the SVG line pattern in `GapPivotDiagram`: 2.5–3px strokes, direct labels at the points that matter, a soft highlighter band for the region the note is about.
@@ -266,7 +266,7 @@ Required shared categories:
 - diagrams: frame, title, legend, caption, source, takeaway
 - feedback: empty, loading, success, warning, error, paywall
 
-Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion.
+Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion. The report wait screen shows elapsed time and the stage the stream reports (`stage` events: sending, reading, writing, checking, or a retry); a step is done only when the stream moves past it (Nov 1, 2026).
 
 Shared primitives are the default. A route-specific component is appropriate when its semantics are route-specific, not because recreating a button or card was faster.
 
@@ -316,6 +316,8 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 ### Research
 
 - Research is the trust layer, not a blog. Prose uses 18px/30px on the 52ch reading rail (about 69 characters per line), with readable figures and labeled tables.
+- One left content edge (Nov 1, 2026): the header, the lead figure, and the reading rail start at the container edge; figures may run wider than the rail, to the right.
+- A citation jump lands below the fixed header (`.riyp-jump-target`), marks the source in pen tint, and moves focus there.
 - Start with a concrete recruiter or hiring claim.
 - Show what the evidence supports, what remains uncertain, and what the reader can do with it.
 - Prefer diagrams, comparisons, annotated processes, and source-backed teaching surfaces when they materially improve understanding.
