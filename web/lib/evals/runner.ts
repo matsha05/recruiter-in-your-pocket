@@ -18,6 +18,7 @@ import type {
     Status
 } from "./types";
 import { runAllChecks } from "./checks";
+import { evaluateReportIntegrity } from "./integrity-checks";
 import { generateMarkdownReport, printSummary } from "./report";
 import { runJudge, type JudgeResult } from "./judge";
 import { RESUME_REPORT_RESPONSE_FORMAT } from "../llm/response-format";
@@ -134,6 +135,17 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
             throw new Error("--limit must be a positive integer.");
         }
         fixtures = fixtures.slice(0, options.limit);
+    }
+
+    // Repeating a fixture measures score test-retest. The budget and call guards
+    // below count every repeat, so this cannot exceed the approved spend.
+    const repeat = options.repeat ?? 1;
+    if (!Number.isInteger(repeat) || repeat < 1) {
+        throw new Error("--repeat must be a positive integer.");
+    }
+    if (repeat > 1) {
+        fixtures = fixtures.flatMap((fixture) => Array.from({ length: repeat }, () => fixture));
+        console.log(`   Repeating each fixture ${repeat} times for score test-retest`);
     }
 
     console.log(`   Running ${fixtures.length} fixtures for tier "${options.tier}"`);
@@ -567,6 +579,7 @@ async function processFixture(
         model_output: modelOutput,
         normalization_changes: canonicalizeResumeReportEvidence(modelOutput, resumeText).changes,
         initial_validation_error: initialValidationError,
+        integrity: evaluateReportIntegrity(output),
     };
 
     // Run LLM-as-Judge if requested

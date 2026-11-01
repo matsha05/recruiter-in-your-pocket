@@ -113,7 +113,8 @@ test.describe("launch red-team journeys", () => {
     const headerBottom = await page.locator("header.site-header").evaluate((header) => (
       Math.round(header.getBoundingClientRect().bottom)
     ));
-    expect(navigationBoxes).toHaveLength(4);
+    // Overview, Fixes and Role fit: the sample's other strengths sit on lines it fixes, so it has no Keep section.
+    expect(navigationBoxes).toHaveLength(3);
     expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(1);
     for (const box of navigationBoxes) {
       expect(box.left).toBeGreaterThanOrEqual(0);

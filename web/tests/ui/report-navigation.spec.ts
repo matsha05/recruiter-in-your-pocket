@@ -1,9 +1,10 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
+// The sample has no separate Keep section: the strengths it lists after the
+// opening one sit on lines it also fixes, so the integrity pass removes them.
 const SECTIONS = [
   { id: "section-first-impression", label: "Overview" },
   { id: "section-fixes", label: "Fix these first" },
-  { id: "section-keep", label: "Keep these" },
   { id: "section-role", label: "Role fit" },
 ] as const;
 
@@ -72,7 +73,7 @@ for (const viewport of [
 
     // Visit non-adjacent targets in both directions so intermediate scroll events
     // cannot leave the previous observer entry selected after a smooth jump.
-    for (const index of [3, 0, 2, 1]) {
+    for (const index of [2, 0, 1]) {
       const section = SECTIONS[index];
       await navigation.getByRole("button", { name: section.label, exact: true }).click();
       await expectSectionBelowNavigation(page, section.id);
@@ -90,8 +91,6 @@ for (const viewport of [
     expect(fixesHeight).toBeGreaterThan(viewport.height);
     await scrollInsideSection(page, "section-fixes", 0.7);
     await expectCurrent(page, "Fix these first");
-    await scrollInsideSection(page, "section-keep", 0.3);
-    await expectCurrent(page, "Keep these");
     await scrollInsideSection(page, "section-role", 0.3);
     await expectCurrent(page, "Role fit");
     await scrollInsideSection(page, "section-fixes", 0.3);

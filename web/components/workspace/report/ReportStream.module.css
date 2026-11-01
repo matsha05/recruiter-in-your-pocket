@@ -168,6 +168,9 @@
 /* The recruiter's approval is the green pen. */
 .worksNote { margin-top: 1.25rem; border-left: 2px solid hsl(var(--pen)); padding-left: 1rem; }
 .worksNote > p:first-child { color: hsl(var(--pen)); }
+/* What a recruiter will notice is missing wears the red pen. */
+.gapNote { margin-top: 1.25rem; border-left: 2px solid hsl(var(--red-pen)); padding-left: 1rem; }
+.gapNote > p:first-child { color: hsl(var(--red-pen)); }
 @media (max-width: 639px) {
     .root section[id] { scroll-margin-top: 3.25rem; }
     .openingTitle { font-size: 1.375rem; line-height: 1.36; }

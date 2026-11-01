@@ -52,16 +52,20 @@ export function renderReportHtml(report: ReportForPdf) {
   const signalListHtml = (items: string[] = [], tone: "lands" | "context") =>
     items.map((item) => `<li><span class="signal-marker ${tone}" aria-hidden="true"></span><span>${escapeHtml(item)}</span></li>`).join("");
 
-  // Top fixes carry the action and the reason together.
+  // Top fixes carry the action, the reason and the details to add, as the web report's fix cards do.
+  // The Critical Miss already gave its reason above, so its entry only lists what to add.
   const topFixesHtml = (fixes: ReportForPdf["top_fixes"] = []) =>
     fixes.map((fix, index) => {
       const action = fix?.fix;
       if (!action) return "";
+      const reason = fix === criticalMiss ? "" : fix.why;
+      const questions = fix.questions || [];
       return `<li class="priority-item">
         <span class="priority-number">${String(index + 1).padStart(2, "0")}</span>
         <span class="priority-copy">
           <strong>${escapeHtml(action)}</strong>
-          ${fix.why ? `<span>${escapeHtml(fix.why)}</span>` : ""}
+          ${reason ? `<span>${escapeHtml(reason)}</span>` : ""}
+          ${questions.length ? `<span class="priority-questions"><span class="priority-questions-label">What to add</span>${questions.map((question) => `<span class="priority-question">${escapeHtml(question)}</span>`).join("")}</span>` : ""}
         </span>
       </li>`;
     }).join("");
@@ -173,6 +177,13 @@ export function renderReportHtml(report: ReportForPdf) {
     <div class="critical-label">Critical Miss</div>
     <p class="critical-title">${escapeHtml(criticalMiss.fix || "")}</p>
     ${criticalMiss.why ? `<p class="critical-why">${escapeHtml(criticalMiss.why)}</p>` : ""}
+  </section>
+  ` : ""}
+
+  ${report.structural_gaps?.length ? `
+  <section class="gap-note">
+    <div class="gap-label">${criticalMiss ? "They&rsquo;ll also notice" : "They&rsquo;ll notice"}</div>
+    ${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}
   </section>
   ` : ""}
 
