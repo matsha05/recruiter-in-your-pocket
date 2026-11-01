@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
-export const metadata: Metadata = {
-    title: "How public social cues changed candidate ratings",
-    description: "What one screening experiment and a literature review found about candidate ratings, validity, and fairness.",
-    alternates: { canonical: "/research/social-screening" },
-};
+const PATH = "/research/social-screening";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Does your social media affect hiring? What one study found",
+    description: "Social media content changed candidate ratings in one experiment. What the study didn't test, and why a review questions the fairness of social screening.",
+    type: "article",
+});
 
 export default function SocialScreeningPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Social screening",
                 title: "How public social cues changed candidate ratings",
                 description: "Social-media content affected ratings in one hiring experiment. That does not mean the ratings predicted job performance.",
-                lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
             keyFinding={{

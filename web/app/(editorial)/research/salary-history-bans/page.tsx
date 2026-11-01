@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 
-export const metadata: Metadata = {
-    title: "Should you share your salary history?",
-    description: "What salary-history-ban and disclosure studies found, and why there is no universal disclosure script.",
-    alternates: { canonical: "/research/salary-history-bans" },
-};
+const PATH = "/research/salary-history-bans";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Should you share your salary history? What studies found",
+    description: "Studies of salary history bans and disclosure found different effects. Why neither supports one script for every pay conversation, and how to prepare.",
+    type: "article",
+});
 
 export default function SalaryHistoryPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Negotiation",
                 title: "Should you share your salary history?",
                 description: "Studies of salary history bans and disclosure found different effects. Neither supports one script for every pay conversation.",
-                lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
             keyFinding={{
@@ -56,6 +59,7 @@ export default function SalaryHistoryPage() {
                 ]
             }}
             relatedArticles={[
+                { title: "How to negotiate a job offer", href: "/resources/offer-negotiation", tag: "After the offer" },
                 { title: "Skills-first hiring: the promise and the practice", href: "/research/skills-first-promise-reality", tag: "Trends" },
                 { title: "What a referral changes", href: "/research/referral-advantage", tag: "Strategy" },
                 { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }

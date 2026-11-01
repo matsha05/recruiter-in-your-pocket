@@ -1,20 +1,23 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 
-export const metadata: Metadata = {
-    title: "What recruiters trust and what they follow",
-    description: "A resume-screening experiment found a gap between recruiters' stated trust and their response to algorithmic advice.",
-    alternates: { canonical: "/research/human-vs-algorithm" },
-};
+const PATH = "/research/human-vs-algorithm";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Do recruiters follow AI advice when screening resumes?",
+    description: "In a resume-screening experiment, recruiters said they trusted human advice more, but the algorithm's advice influenced their choices more.",
+    type: "article",
+});
 
 export default function HumanVsAlgorithmPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Human + algorithmic judgment",
                 title: "What recruiters trust and what they follow",
                 description: "In a resume-screening experiment, recruiters said they trusted human advice more. Their choices told a more complicated story.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/button";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalShell } from "@/components/legal/LegalShell";
 
-export const metadata: Metadata = {
-  title: "Support",
-  description: "Help with reports, sign-in, billing, privacy, and account controls.",
-};
+export const metadata = pageMetadata({
+  path: "/support",
+  title: "Get help with a report, sign-in, or billing",
+  description: "Help with reports, sign-in, billing, privacy, and account controls. Email support@recruiterinyourpocket.com. We'll never ask for your password.",
+});
 
 const supportTopics = [
   {
