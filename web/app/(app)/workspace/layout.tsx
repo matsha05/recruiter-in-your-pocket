@@ -8,8 +8,10 @@ export default function WorkspaceLayout({
 }: {
     children: React.ReactNode;
 }) {
+    // overflow-clip, not overflow-hidden: hidden would make this a scroll container, and a report scrolls
+    // with the page (plan item 2.4), so its sticky section tabs need the viewport as their scroller.
     return (
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-clip">
             {children}
         </div>
     );
