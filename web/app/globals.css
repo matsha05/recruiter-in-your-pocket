@@ -540,6 +540,12 @@
     margin: 2.5rem auto;
   }
 
+  /* Research articles keep one left content edge (plan 3.5): the header, the lead figure, and the
+     reading rail all start at the container edge. Figures may run wider than the rail, to the right. */
+  .research-page .riyp-figure {
+    margin-inline-start: 0;
+  }
+
   .riyp-figure figcaption {
     color: hsl(var(--muted-foreground));
     text-align: left;
@@ -684,6 +690,27 @@
   [id^="section-"] {
     scroll-margin-top: 5rem;
     /* Offset for header height */
+  }
+
+  /* A citation jump lands below the fixed site header, and the source it lands on is marked
+     in pen tint so the eye finds it. Focus moves there too (ResearchArticle's Citation). */
+  .riyp-jump-target {
+    scroll-margin-top: calc(var(--marketing-header-height-desktop) + var(--space-24));
+    border-radius: 0.625rem;
+    transition: background-color var(--duration-normal) var(--ease);
+  }
+
+  .riyp-jump-target:target {
+    background: hsl(var(--pen-tint));
+  }
+
+  .riyp-jump-target:focus {
+    outline: none;
+  }
+
+  .riyp-jump-target:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
   }
 
   /* ==========================================================================

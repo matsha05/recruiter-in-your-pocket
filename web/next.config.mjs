@@ -1,4 +1,5 @@
-import { withSentryConfig } from "@sentry/nextjs";
+import bundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "url";
 
@@ -88,6 +89,12 @@ const nextConfig = {
   env: {
     BROWSERSLIST_IGNORE_OLD_DATA: "true",
     BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA: "true",
+    // Always defined, so the client bundle can drop Sentry Replay at build time
+    // when the replay flag is off. An unset NEXT_PUBLIC_* stays a runtime lookup.
+    // Parsed like lib/launch/flags.ts, so "false" or "0" means off.
+    RIYP_BUNDLE_ERROR_REPLAY: ["1", "true", "yes", "on"].includes(
+      (process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY ?? "").trim().toLowerCase()
+    ) ? "1" : "0",
   },
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   outputFileTracingIncludes: {
@@ -122,7 +129,10 @@ const nextConfig = {
   }
 };
 
-export default withSentryConfig(nextConfig, {
+// `npm run analyze` writes per-route bundle treemaps to .next/analyze.
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true", openAnalyzer: false });
+
+export default withSentryConfig(withBundleAnalyzer(nextConfig), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

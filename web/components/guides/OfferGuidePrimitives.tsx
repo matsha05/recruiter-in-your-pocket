@@ -16,7 +16,7 @@ export function GuideSection({ number, title, intro, children, id }: {
     return (
         <section id={id} className="scroll-mt-28 border-t border-border py-12 sm:py-16">
             <div className="grid gap-5 lg:grid-cols-[8rem_minmax(0,1fr)] lg:gap-12">
-                <div className={`${styles.label} pt-2 tabular-nums text-brand`}>{number}</div>
+                <div className={`${styles.label} pt-2 tabular-nums text-muted-foreground`}>{number}</div>
                 <div className="min-w-0">
                     <h2 className={`${styles.sectionTitle} max-w-3xl`}>{title}</h2>
                     {intro ? <p className={`${styles.readingCopy} mt-5`}>{intro}</p> : null}
@@ -54,9 +54,9 @@ export function HandoffDiagram() {
         <div className={`${styles.sheet} relative overflow-hidden px-5 py-7 text-foreground sm:px-8 sm:py-9`}>
             <div className="relative grid gap-5 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center">
                 <HandoffNode label="The ask" text="The exact term you want changed" />
-                <ArrowRight aria-hidden className="hidden size-5 text-brand sm:block" weight="bold" />
+                <ArrowRight aria-hidden className="hidden size-5 text-muted-foreground sm:block" weight="bold" />
                 <HandoffNode label="The basis" text="The scope, range, or evidence behind it" />
-                <ArrowRight aria-hidden className="hidden size-5 text-brand sm:block" weight="bold" />
+                <ArrowRight aria-hidden className="hidden size-5 text-muted-foreground sm:block" weight="bold" />
                 <HandoffNode label="The decision" text="Whether the change would help you accept" />
             </div>
         </div>
@@ -65,13 +65,14 @@ export function HandoffDiagram() {
 
 function HandoffNode({ label, text }: { label: string; text: string }) {
     return (
-        <div className="border-l-2 border-brand/40 pl-4">
-            <div className={`${styles.label} text-brand`}>{label}</div>
+        <div className="border-l-2 border-line pl-4">
+            <div className={`${styles.label} text-foreground`}>{label}</div>
             <p className="mt-2 text-sm text-muted-foreground">{text}</p>
         </div>
     );
 }
 
+// Suggested wording is the one thing in a guide that wears the recruiter's pen (docs/design-system.md, section 4).
 export function Script({ children, label = "What you can say" }: { children: ReactNode; label?: string }) {
     return (
         <div className="rounded-xl border border-brand/20 bg-accent px-5 py-5 sm:px-6 sm:py-6">
@@ -84,7 +85,7 @@ export function Script({ children, label = "What you can say" }: { children: Rea
 export function WhatItGives({ children }: { children: ReactNode }) {
     return (
         <div className={`${styles.readingCopy} mt-4 flex gap-3`}>
-            <PaperPlaneTilt aria-hidden className="mt-1 size-4 shrink-0 text-brand" weight="fill" />
+            <PaperPlaneTilt aria-hidden className="mt-1 size-4 shrink-0 text-foreground" weight="fill" />
             <p><strong className="font-semibold text-foreground">What this makes clear:</strong> {children}</p>
         </div>
     );
@@ -95,7 +96,7 @@ export function Checklist({ items }: { items: ReactNode[] }) {
         <ul className="grid gap-3 sm:grid-cols-2">
             {items.map((item, index) => (
                 <li key={index} className={`${styles.readingCopy} flex gap-3 border-t border-border pt-4`}>
-                    <Check aria-hidden className="mt-1 size-4 shrink-0 text-brand" weight="bold" />
+                    <Check aria-hidden className="mt-1 size-4 shrink-0 text-foreground" weight="bold" />
                     <span>{item}</span>
                 </li>
             ))}
@@ -114,15 +115,15 @@ export function TechOfferStack() {
         <div className={`${styles.sheet} p-5 text-foreground sm:p-8`}>
             <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                    <div className={`${styles.label} text-brand`}>The pay breakdown</div>
+                    <div className={`${styles.label} text-muted-foreground`}>The pay breakdown</div>
                     <div className={`${styles.componentTitle} mt-2`}>What you receive, and what depends on conditions</div>
                 </div>
-                <Info aria-hidden className="size-6 shrink-0 text-brand" weight="fill" />
+                <Info aria-hidden className="size-6 shrink-0 text-muted-foreground" weight="fill" />
             </div>
             <div className="divide-y divide-border border-y border-border">
                 {rows.map(([label, text], index) => (
                     <div key={label} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 py-4">
-                        <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                        <div className={`${styles.label} tabular-nums text-muted-foreground`}>0{index + 1}</div>
                         <div><strong className="text-sm font-medium text-foreground">{label}</strong><p className="mt-1 text-sm text-muted-foreground">{text}</p></div>
                     </div>
                 ))}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Toaster } from "@/components/ui/sonner";
-import { CommandPalette } from "@/components/CommandPalette";
+import { CommandPaletteLauncher } from "@/components/CommandPaletteLauncher";
 import { AnalyticsLifecycle } from "@/components/privacy/AnalyticsLifecycle";
 import { PageStatistics } from "@/components/privacy/PageStatistics";
 import { PrivacyControls } from "@/components/privacy/PrivacyControls";
@@ -53,7 +53,7 @@ export default function RootLayout({
         <AppProviders>
           <AnalyticsLifecycle />
           {children}
-          <CommandPalette />
+          <CommandPaletteLauncher />
           <Toaster />
           <PrivacyControls />
           {/* Only the live site reports page statistics; previews, local runs, and tests stay quiet. */}

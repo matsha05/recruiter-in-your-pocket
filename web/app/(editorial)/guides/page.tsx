@@ -115,7 +115,7 @@ export default function GuidesPage() {
                                     <ul className="mt-4 space-y-2.5">
                                         {guide.points.map((point) => (
                                             <li key={point} className={`${styles.readingCopy} flex items-start gap-2.5`}>
-                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-brand/50" />
+                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-line" />
                                                 {point}
                                             </li>
                                         ))}
@@ -157,7 +157,7 @@ export default function GuidesPage() {
                 <section className="border-y border-border bg-muted px-6 py-14 text-foreground md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-marketing items-start gap-10 lg:grid-cols-2">
                         <div>
-                            <p className={`${styles.label} text-brand`}>
+                            <p className={`${styles.label} text-muted-foreground`}>
                                 The philosophy
                             </p>
                             <h2 className={`${styles.sectionTitle} mt-3 max-w-3xl`}>

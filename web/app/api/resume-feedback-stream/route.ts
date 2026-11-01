@@ -22,9 +22,11 @@ import {
 import { prepareResumeStreamPrompt } from "@/lib/llm/resumeStreamPrompt";
 import { validateResumeStreamOutput } from "@/lib/llm/validateResumeStreamOutput";
 import { validateResumeFeedbackRequest } from "@/lib/backend/validation";
+import type { GenerationStage } from "@/lib/generation-stage";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
+import { classifyReportFailure, recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -131,6 +133,14 @@ export async function POST(request: Request) {
     }
     const { text, mode, jobDescription } = validation.value;
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
+    const reportSignal = (viewerSignedIn: boolean) => ({
+        mode,
+        viewer: viewerSignedIn ? "signed_in" as const : "anonymous" as const,
+        has_jd: effectiveJobDescription.hasValue ? "yes" as const : "no" as const,
+        endpoint: "stream" as const,
+    });
+    // A first attempt is one whose signed cookie records no free report this month.
+    let firstAttempt: "yes" | "no" | "unknown" = "unknown";
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     const requestedOperationId = typeof body?.operation_id === "string" ? body.operation_id : null;
     let authenticatedOperationId: string | null = null;
@@ -170,10 +180,14 @@ export async function POST(request: Request) {
         };
 
         bypass = isDevelopmentPaywallBypassEnabled();
+        if (!user) firstAttempt = freeMeta.used === 0 ? "yes" : "no";
         requestedRecoveryId = requireAnonymousReportRecoveryId({
             mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
         });
         if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
+            recordLaunchSignal("riyp.free_gate.check", {
+                result: "identity_retry", reason: "none", first_attempt: firstAttempt, viewer: "anonymous",
+            });
             return respond(singleGenerationStreamEvent(request_id, {
                 type: "error",
                 errorCode: "ANONYMOUS_IDENTITY_REQUIRED",
@@ -203,6 +217,12 @@ export async function POST(request: Request) {
         });
 
         if (accessReservation.access === "preview") {
+            recordLaunchSignal("riyp.free_gate.check", {
+                result: "blocked",
+                reason: accessReservation.freeGate ?? "unknown",
+                first_attempt: firstAttempt,
+                viewer: user ? "signed_in" : "anonymous",
+            });
             logInfo({
                 msg: "http.request.completed",
                 request_id,
@@ -226,6 +246,15 @@ export async function POST(request: Request) {
         }
     } catch (err: any) {
         const code = err?.code || "ACCESS_DEPENDENCY_UNAVAILABLE";
+        // A pending operation is a retry still in flight, not an outcome.
+        if (code !== "GENERATION_OPERATION_PENDING") {
+            recordLaunchSignal("riyp.report.outcome", {
+                ...reportSignal(Boolean(user)),
+                outcome: "failed",
+                failure: classifyReportFailure({ code, name: err?.name }),
+                error_code: String(code),
+            });
+        }
         const message = withGenerationAccessOutcome(
             err?.message || "Report access is temporarily unavailable. Please try again in a moment.",
             false,
@@ -262,6 +291,11 @@ export async function POST(request: Request) {
     }
 
     const grantedReservation = accessReservation;
+    if (!bypass) {
+        recordLaunchSignal("riyp.free_gate.check", {
+            result: "allowed", reason: "none", first_attempt: firstAttempt, viewer: user ? "signed_in" : "anonymous",
+        });
+    }
     const access = grantedReservation.access;
     const accessTier = grantedReservation.accessTier;
     const activePass = grantedReservation.activePass;
@@ -321,6 +355,12 @@ export async function POST(request: Request) {
 
     const stream = new ReadableStream({
         async start(controller) {
+            // Progress is informational; a closed stream must not fail the report.
+            const sendStage = (stage: GenerationStage) => {
+                try {
+                    controller.enqueue(encoder.encode(JSON.stringify({ type: "stage", stage }) + "\n"));
+                } catch { /* the client is gone; cancellation is handled below */ }
+            };
             try {
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
@@ -344,8 +384,10 @@ export async function POST(request: Request) {
                     userIdForLogs: user_id,
                 });
                 await markGenerationProviderCallStarted(grantedReservation);
+                sendStage("reading");
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
+                    let writing = false;
                     try {
                         for await (const ev of streamJson({
                             ctx: { request_id, user_id, route },
@@ -363,6 +405,10 @@ export async function POST(request: Request) {
                             throwIfClientDisconnected();
                             if (ev.type === "chunk") {
                                 accumulatedJson += ev.content;
+                                if (!writing) {
+                                    writing = true;
+                                    sendStage("writing");
+                                }
                             }
                         }
                         break;
@@ -371,6 +417,7 @@ export async function POST(request: Request) {
                             throw streamError;
                         }
                         accumulatedJson = "";
+                        sendStage("retrying");
                         logWarn({
                             msg: "llm.stream.incomplete_retry",
                             request_id,
@@ -382,6 +429,7 @@ export async function POST(request: Request) {
                 }
                 throwIfClientDisconnected();
 
+                sendStage("checking");
                 const validated = await validateResumeStreamOutput({
                     raw: accumulatedJson,
                     text: canonicalResumeText,
@@ -454,6 +502,10 @@ export async function POST(request: Request) {
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
 
+                // Recorded before close so the flush is scheduled while the request is still open.
+                recordLaunchSignal("riyp.report.outcome", {
+                    ...reportSignal(Boolean(user)), outcome: "completed", failure: "none",
+                });
                 controller.close();
                 logInfo({
                     msg: "http.request.completed",
@@ -493,6 +545,12 @@ export async function POST(request: Request) {
                     }
                 }
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
+                recordLaunchSignal("riyp.report.outcome", {
+                    ...reportSignal(Boolean(user)),
+                    outcome: "failed",
+                    failure: classifyReportFailure(err),
+                    error_code: String(code),
+                });
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
                     captureOperationalError(err, {
                         operation: "generation.resume_feedback_stream",

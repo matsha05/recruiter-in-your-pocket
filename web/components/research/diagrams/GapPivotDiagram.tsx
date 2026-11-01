@@ -2,7 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
-import { Key, Mark, PenNote, useSeen } from "@/components/research/figures/FigureKit";
+import { Key, PenNote, useSeen } from "@/components/research/figures/FigureKit";
 
 // Ghayad (2013), Table A.5: interview-request rate by time out of work and industry experience.
 const points = [
@@ -65,7 +65,7 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                             <Key tone="quiet">Experience in a different industry</Key>
                         </div>
                         <PenNote>
-                            A career change roughly halves the response. <Mark seen={seen}>A long current gap nearly erases it.</Mark>
+                            A career change roughly halves the response. A long current gap nearly erases it.
                         </PenNote>
                     </div>
                 </div>

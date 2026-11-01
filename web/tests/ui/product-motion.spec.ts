@@ -4,7 +4,7 @@ import { ResumeFeedbackResponseSchema } from "../../lib/validation/resume-report
 
 const SOURCE = "Built customer workflows in HubSpot for 120 customers.";
 const REWRITE = "Built HubSpot customer workflows for 120 customers.";
-const RESUME = `Alex Rivera\nCustomer Operations\nExperience\n${SOURCE}\nDocumented the workflow and trained the support team on customer onboarding.`;
+const RESUME = `Alex Rivera\nCustomer Operations\nExperience\n${SOURCE}\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current.`;
 const REPORT = ResumeFeedbackResponseSchema.parse({
   ...schemaValidReport,
   top_fixes: [{

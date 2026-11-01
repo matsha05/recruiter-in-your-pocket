@@ -41,6 +41,22 @@ async function run() {
       (_text, partial) => partials.push(partial),
     ), schemaValidReport.score);
     assert.equal(canonical.report?.score_label, "Mostly clear", "the client must return canonical schema output");
+
+    // The wait screen shows only phases the server reports, in order; unknown ones are ignored.
+    globalThis.fetch = async () => responseFor([
+      { type: "meta", attempt_consumed: false },
+      { type: "stage", stage: "reading" },
+      { type: "stage", stage: "writing" },
+      { type: "stage", stage: "almost-done" },
+      { type: "stage", stage: "checking" },
+      { type: "complete", ok: true, data: structuredClone(schemaValidReport) },
+    ]);
+    const stages: string[] = [];
+    const staged = await streamResumeFeedback("Resume source", undefined, () => undefined, "resume", {
+      onStage: (stage) => stages.push(stage),
+    });
+    assert.ok(staged.ok, "stage events must not interfere with completion");
+    assert.deepEqual(stages, ["sending", "reading", "writing", "checking"]);
     assert.equal(
       (canonical.report as unknown as Record<string, unknown>).unknown_terminal_field,
       undefined,

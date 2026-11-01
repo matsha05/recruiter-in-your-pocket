@@ -280,6 +280,36 @@ function validateResearchSystem() {
     }
   }
 
+  // One highlighter per figure (docs/design-system.md, "Figures"): a Mark, or a highlighted
+  // unit, bar, or band, never both. The pen note stays pen when the data carries the highlight.
+  for (const dir of ["components/research/diagrams", "components/guides"]) {
+    for (const file of walk(path.join(ROOT, dir))) {
+      if (!file.endsWith(".tsx")) continue;
+      const source = fs.readFileSync(file, "utf8");
+      const marks = countMatches(source, /<Mark\b/g);
+      const highlightedData = /var\(--highlight\)|"mark"/.test(source) ? 1 : 0;
+      if (marks + highlightedData > 1) {
+        errors.push(`${path.relative(ROOT, file)} uses the highlighter ${marks + highlightedData} ways; keep one per figure`);
+      }
+    }
+  }
+
+  // Guides wear the pen only for suggested wording (the Script box) and figure pen notes, never on
+  // headlines, rules, numbers, or labels. Focus rings and text selection are pen everywhere.
+  const guideFiles = [
+    ...walk(path.join(ROOT, "app", "(editorial)", "guides")).filter((file) => file.endsWith("page.tsx")),
+    ...fs.readdirSync(path.join(ROOT, "components", "guides")).filter((name) => name.endsWith(".tsx")).map((name) => path.join(ROOT, "components", "guides", name)),
+  ];
+  for (const file of guideFiles) {
+    const source = fs.readFileSync(file, "utf8")
+      .replace(/export function Script\([\s\S]*?\n}\n/, "")
+      .replace(/<PenNote[\s\S]*?<\/PenNote>/g, "");
+    const penUses = source.match(/(?<![\w:-])(?:text|border|bg|decoration)-(?:brand|pen)\b|var\(--pen\)|var\(--brand\)/g) || [];
+    if (penUses.length > 0) {
+      errors.push(`${path.relative(ROOT, file)} uses the pen outside suggested wording (${penUses.join(", ")})`);
+    }
+  }
+
   return errors;
 }
 
@@ -515,6 +545,7 @@ function main() {
   printList("Banned copy terms", violations.bannedTerms);
   printList("Hand-tuned link or motion values", violations.adHocLinkOrMotion);
   printList("Style budget violations", styleBudgets.errors);
+  printList("Research system issues", researchSystemErrors);
 
   if (missingDocTokens.length > 0) {
     console.error("\nMissing design-system doc tokens:");
