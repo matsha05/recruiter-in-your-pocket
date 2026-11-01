@@ -158,7 +158,7 @@ I picked `how-recruiters-read` because it answers the most-repeated hiring myth,
 - **Evidence and close.** Each source once, with what it found, how it was done, what it can't tell you, and a link to the study. Then four "Next questions" pulled live from `ResearchHubData.ts`, the "How we write these" note (without a corrections promise, per D3), and the hub's closing pattern.
 - **Height.** About 5,400px at 1440, down from about 6,900px.
 
-Screenshots (390 and 1440, full page and first screen, plus the live article for comparison) are in the session notes folder under `research-library/`.
+Screenshots are in the session notes folder: `research-library/` holds the pre-wave live article for comparison, and `research-library/wave/` holds the shipped template at 320, 390, 1024 and 1440, at 200% zoom, and in dark mode.
 
 Checked locally on a dev server: no horizontal overflow at 320, 390, 1024 and 1440; `npm run qa:design-system` passes (radii stay at 7); lint on the new components; `tsc --noEmit`; `test:search-foundation`; `test:research-figures`. Every link and button shows the shared focus ring; standalone controls are 44px or taller. Not checked: 200% zoom, a screen reader, dark mode, a production build.
 

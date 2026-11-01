@@ -131,7 +131,7 @@
 }
 
 .methodBody {
-    max-width: 68ch;
+    max-width: 54ch;
     margin: 0.375rem 0 0;
     color: hsl(var(--text-muted));
     font: var(--type-small);
