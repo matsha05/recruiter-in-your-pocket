@@ -317,7 +317,7 @@ export function reconcileReport(input: ReportData): ReportIntegrity {
   const fixWhyIsReason = fixes.map((fix) => isCopy(fix?.why) && questionsInWhy(fix.why).length === 0);
 
   // 1. Fix outranks keep: a strength on a line the report asks you to change is not "working".
-  const keptStrengths: Array<{ text: string; tokens: Set<string> }> = [];
+  const keptStrengths: Array<{ text: string; tokens: Set<string>; path: string }> = [];
   list(input.strengths).forEach((strength, index) => {
     if (!isCopy(strength)) return;
     const tokens = observationTokens(strength);
@@ -326,7 +326,7 @@ export function reconcileReport(input: ReportData): ReportIntegrity {
       decisions.push({ kind: "keep_dropped", path: `strengths[${index}]`, line: line.anchor.id, criticalMiss: line.anchor.fixIndex === 0 });
       return;
     }
-    keptStrengths.push({ text: strength, tokens });
+    keptStrengths.push({ text: strength, tokens, path: `strengths[${index}]` });
   });
   report.strengths = keptStrengths.map(({ text }) => text);
 
@@ -403,6 +403,14 @@ export function reconcileReport(input: ReportData): ReportIntegrity {
     for (const [name, review] of Object.entries(input.section_review)) {
       if (!review) continue;
       const next = { ...review };
+      // A section's "What works" that repeats a strength we already show is said once, as the strength.
+      const keptAs = isCopy(next.working)
+        ? keptStrengths.find((kept) => nearDuplicate(observationTokens(next.working), kept.tokens))?.path
+        : undefined;
+      if (keptAs) {
+        decisions.push({ kind: "repeat_dropped", path: `section_review.${name}.working`, of: keptAs });
+        next.working = "";
+      }
       for (const field of ["missing", "fix"] as const) {
         if (isCopy(next[field]) && !keepNote(`section_review.${name}.${field}`, next[field], "section")) next[field] = "";
       }
@@ -477,7 +485,15 @@ export function auditRepeats(report: ReportData, integrity?: Pick<ReportIntegrit
   list(report.ideas?.questions).forEach((question, index) => check(`ideas.questions[${index}]`, questionText(question), "question"));
   check("biggest_gap_example", report.biggest_gap_example);
   list(report.gaps).forEach((gap, index) => check(`gaps[${index}]`, gap));
+  const strengths = list(report.strengths).flatMap((strength, index) => (
+    isCopy(strength) ? [{ path: `strengths[${index}]`, tokens: observationTokens(strength) }] : []
+  ));
   for (const [name, review] of Object.entries(report.section_review || {})) {
+    if (isCopy(review?.working)) {
+      const tokens = observationTokens(review.working);
+      const of = strengths.find((strength) => nearDuplicate(tokens, strength.tokens))?.path;
+      if (of) repeats.push({ path: `section_review.${name}.working`, of });
+    }
     for (const field of ["missing", "fix"] as const) check(`section_review.${name}.${field}`, review?.[field], "section");
   }
   list(report.next_steps).forEach((step, index) => check(`next_steps[${index}]`, step, "plan"));

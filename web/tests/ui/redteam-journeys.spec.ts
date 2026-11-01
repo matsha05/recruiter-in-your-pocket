@@ -113,8 +113,7 @@ test.describe("launch red-team journeys", () => {
     const headerBottom = await page.locator("header.site-header").evaluate((header) => (
       Math.round(header.getBoundingClientRect().bottom)
     ));
-    // Overview, Fixes and Role fit: the sample's other strengths sit on lines it fixes, so it has no Keep section.
-    expect(navigationBoxes).toHaveLength(3);
+    expect(navigationBoxes).toHaveLength(4);
     expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(1);
     for (const box of navigationBoxes) {
       expect(box.left).toBeGreaterThanOrEqual(0);
@@ -213,7 +212,9 @@ test.describe("launch red-team journeys", () => {
     } else {
       const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
       if (await copyButton.count()) await expect(copyButton).toBeVisible();
-      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation")).toBeVisible();
+      // Without a draft, the card points at "What to add" only when it has questions to show.
+      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation"))
+        .toHaveCount(await firstGeneratedFix.getByText("What to add", { exact: true }).count());
     }
   });
 

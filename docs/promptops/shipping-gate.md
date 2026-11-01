@@ -51,7 +51,7 @@ Baseline for resume prompt `83b2a2d1`, from a zero-cost replay of the four saved
 
 - 0 rewrites in 13 reports.
 - 7 keep/fix collisions, 0 after the pass.
-- 69 repeated observations, 0 after the pass.
+- 71 repeated observations, 0 after the pass.
 - Every Critical Miss is a single-line edit; 7 reports flag a structural issue the Critical Miss skips.
 - The Verdict and Critical Miss disagree in 6 reports.
 - The operations fixture scored 60, 58, 60, 58 across retests.

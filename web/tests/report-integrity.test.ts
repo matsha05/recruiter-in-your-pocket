@@ -72,7 +72,10 @@ assert.deepEqual(
 );
 assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[0]), "the launch line cannot be both Keep and Fix 2");
 assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[1]), "the roadmap line cannot be both Keep and Fix 3");
-assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2]], "a strength about relevance, not one line, stays");
+assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2], sample.strengths[3]],
+  "the education strength and a strength about relevance, not one line, stay");
+assert.match(sampleIntegrity.report.strengths![0], /^Education/, "\"Don't touch this one\" is a line the sample doesn't fix");
+assert.equal(sampleIntegrity.report.section_review!.Education.working, "", "Education's \"What works\" is said once, as the strength");
 // The sample's Critical Miss "why" is itself the missing-detail questions: it belongs in What to add, once.
 assert.equal(criticalMissReason(sampleIntegrity), undefined);
 assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, [
@@ -291,7 +294,12 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(pdf, question), 1, `${label}: and once in the PDF`);
   }
   if (integrity.fixQuestions[0].length > 0) assert.ok(firstCard.includes("What to add"), `${label}: the Critical Miss asks what to add`);
-  else assert.ok(!firstCard.includes("What to add"), `${label}: no label without questions`);
+  else assert.ok(!firstCard.includes("What to add") && !firstCard.includes("Start with the original sentence"),
+    `${label}: no label, and no hint pointing at it, without questions`);
+  if (integrity.structuralGaps.length > 0) {
+    assert.ok(opening.includes("Before the bullets"), `${label}: the opening labels the structural gap`);
+    assert.ok(pdf.includes("Before the bullets"), `${label}: and so does the PDF`);
+  }
   for (const { text } of integrity.structuralGaps) {
     assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read`);
     assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);

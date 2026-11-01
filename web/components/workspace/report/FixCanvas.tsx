@@ -350,13 +350,11 @@ export function FixCanvas({
               {placeholderKeys.length === 0 && <RewriteEnhancementNote note={rewrite?.enhancement_note} className="mt-5" />}
               {copyError && <p role="status" className="mt-3 text-sm leading-6 text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </div>
-          ) : (
+          ) : questionsToAsk.length > 0 ? (
             <p data-testid="fact-only-recommendation" className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
-              {questionsToAsk.length > 0
-                ? "Start with the original sentence and add the details above."
-                : "Start with the original sentence and make the change above."}
+              Start with the original sentence and add the details above.
             </p>
-          )}
+          ) : null}
         </div>
       </div>
     </article>

@@ -182,7 +182,7 @@ export function renderReportHtml(report: ReportForPdf) {
 
   ${report.structural_gaps?.length ? `
   <section class="gap-note">
-    <div class="gap-label">${criticalMiss ? "They&rsquo;ll also notice" : "They&rsquo;ll notice"}</div>
+    <div class="gap-label">Before the bullets</div>
     ${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}
   </section>
   ` : ""}

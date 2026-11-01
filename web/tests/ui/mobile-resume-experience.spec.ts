@@ -61,8 +61,7 @@ for (const width of [320, 390]) {
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
       const buttons = await nav.getByRole("button").all();
       const bounds = await Promise.all(buttons.map((button) => button.boundingBox()));
-      // The sample has no Keep section: its other strengths sit on lines it also fixes.
-      expect(bounds).toHaveLength(3);
+      expect(bounds).toHaveLength(4);
       for (const box of bounds) {
         expect(box!.height).toBeGreaterThanOrEqual(44);
         expect(box!.width).toBeGreaterThanOrEqual(44);

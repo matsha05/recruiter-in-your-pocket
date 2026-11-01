@@ -286,7 +286,7 @@ test.describe("product motion contracts on real app routes", () => {
   test("the resume selection follows the last interrupted keyboard jump without moving report text", async ({ page }) => {
     await hydrate(page, "/sample-report");
     const navigation = page.getByRole("navigation", { name: "Resume report sections", exact: true });
-    for (const name of ["Role fit", "Overview", "Fix these first"]) {
+    for (const name of ["Role fit", "Overview", "Keep these", "Fix these first"]) {
       await navigation.getByRole("button", { name, exact: true }).focus();
       await page.keyboard.press("Enter");
     }

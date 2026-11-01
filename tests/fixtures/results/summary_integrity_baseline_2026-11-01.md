@@ -12,7 +12,7 @@
 **Resume ideas prompt SHA-256:** 6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7
 **Incomplete-response retry:** high reasoning
 **Validation Mode:** Saved output replay through current candidate
-**Validation Timestamp:** 2026-11-01T15:51:52.696Z
+**Validation Timestamp:** 2026-11-01T16:02:59.981Z
 **Source runs:** eval_1793463473819 (SHA-256 da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257), eval_1793469152573 (SHA-256 f1c6c1ad8144ee2611ad7d981e1638686e1bf47e97158d0a21b665cb4a027853), eval_1793469297246 (SHA-256 be86bfdaae612cd53400d0bf14a3c4f807f605988ee7bedf12859e1e24c2433b), eval_1793469354166 (SHA-256 39b07d7a64503453e4fc3e2f3b1eb574cb91d89cb7883c8f1323651f3337f246)
 
 ## Summary
@@ -46,7 +46,7 @@ What a customer reads, measured on each validated report. These checks are repor
 | Reports with a rewrite | 0 of 13 (0 rewrites) | same |
 | Keep/fix collisions on one line | 7 in 7 reports | 0 |
 | Critical Miss line also in Keep | 1 report | 0 reports |
-| Repeated observations | 69 | 0 |
+| Repeated observations | 71 | 0 |
 | Field-slot mapping issues | 0 | 0 |
 | Critical Miss is a line edit / structural | 13 / 0 | same |
 | Structural issue flagged, Critical Miss is a line edit | 7 reports | same |
@@ -61,13 +61,13 @@ What a customer reads, measured on each validated report. These checks are repor
 | synth_ux_designer_director_strong_1 | 83 | 0 | 1 → 0 | 7 → 0 | 0 → 0 | line edit | no concern |
 | synth_sales_executive_mid_foundation_1 | 59 | 0 | 1 → 0 (Critical Miss in Keep) | 3 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | agree |
 | synth_hr_manager_director_foundation_1 | 60 | 0 | 0 → 0 | 5 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | no concern |
-| synth_finance_analyst_senior_weak_1 | 60 | 0 | 0 → 0 | 4 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | mismatch |
+| synth_finance_analyst_senior_weak_1 | 60 | 0 | 0 → 0 | 5 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | mismatch |
 | synth_operations_manager_entry_weak_1 | 60 | 0 | 1 → 0 | 5 → 0 | 0 → 0 | line edit | mismatch |
 | synth_project_manager_vp_strong_1 | 84 | 0 | 0 → 0 | 5 → 0 | 0 → 0 | line edit | no concern |
 | synth_product_manager_entry_elite_1 | 86 | 0 | 1 → 0 | 8 → 0 | 0 → 0 | line edit; flagged: employment gap, positioning (outranked) | mismatch |
 | synth_operations_manager_entry_weak_1 | 58 | 0 | 0 → 0 | 4 → 0 | 0 → 0 | line edit | agree |
 | synth_operations_manager_entry_weak_1 | 60 | 0 | 1 → 0 | 6 → 0 | 0 → 0 | line edit | mismatch |
-| synth_operations_manager_entry_weak_1 | 58 | 0 | 1 → 0 | 3 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | agree |
+| synth_operations_manager_entry_weak_1 | 58 | 0 | 1 → 0 | 4 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | agree |
 
 <details>
 <summary>Integrity details</summary>

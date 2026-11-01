@@ -151,7 +151,7 @@ export function ReportStream({
 
         {structuralGaps.length > 0 && (
           <m.div {...reveal(2)} className={styles.gapNote} data-testid="structural-gaps">
-            <p className="text-sm font-semibold">{criticalMiss ? "They’ll also notice" : "They’ll notice"}</p>
+            <p className="text-sm font-semibold">Before the bullets</p>
             {structuralGaps.map((gap) => <p key={gap.text} className={cn(styles.body, "mt-1 text-foreground")}>{gap.text}</p>)}
           </m.div>
         )}
