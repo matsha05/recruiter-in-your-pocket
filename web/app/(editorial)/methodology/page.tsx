@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { FirstReadModelDiagram } from "@/components/research/diagrams/FirstReadModelDiagram";
 import sampleReport from "@/public/sample-report.json";
 
-export const metadata: Metadata = {
-    title: "How the Report Works",
+const PATH = "/methodology";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How the resume report works: score, Verdict, Critical Miss",
     description: "How your report reaches its Verdict, First Impression score, and Critical Miss, what the score can't tell you, and how suggested edits protect your facts.",
-    alternates: { canonical: "/methodology" },
-};
+    type: "article",
+});
 
 export default function MethodologyPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Methodology",
                 title: "How the report works",
                 description: "Every report applies a recruiter's criteria to your resume: a Verdict, one First Impression score, and the Critical Miss, the one thing to fix first. Here's how each part is made, and what it can't tell you.",
-                lastUpdated: "October 2026",
                 sourceSummary: "2 peer-reviewed studies",
             }}
             keyFinding={{

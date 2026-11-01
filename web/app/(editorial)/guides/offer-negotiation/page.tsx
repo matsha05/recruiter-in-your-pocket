@@ -44,7 +44,7 @@ export default function OfferNegotiationGuidePage() {
                     <div>
                         <GuideEyebrow>Offer negotiation · 12 minute guide</GuideEyebrow>
                         <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
-                            Most offers have some room.
+                            Most offers have some room.{" "}
                             <span className="mt-2 block">Here&apos;s how to find it.</span>
                         </h1>
                     </div>
@@ -84,7 +84,7 @@ export default function OfferNegotiationGuidePage() {
                         </Disclosure>
                         <Disclosure title="They ask what you make now" eyebrow="Price the new role">
                             <Script>I&apos;d rather focus on what this role is worth. What range has the team set for it?</Script>
-                            <WhatItGives>A redirect to the job in front of you. Many US states and cities restrict salary-history questions, and the rules differ by location, so check yours.</WhatItGives>
+                            <WhatItGives>A redirect to the job in front of you. Many US states and cities restrict salary-history questions, and the rules differ by location, so check yours. <Link href="/research/salary-history-bans" className="riyp-link">What the salary-history studies found</Link>.</WhatItGives>
                         </Disclosure>
                     </div>
                 </GuideSection>

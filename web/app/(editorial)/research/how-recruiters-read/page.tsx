@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ResumeHeatmap } from "@/components/research/diagrams/ResumeHeatmap";
 import { ScanPattern } from "@/components/research/diagrams/ScanPattern";
 
-export const metadata: Metadata = {
-    title: "What recruiters notice in the first pass",
-    description: "Peer-reviewed eye-tracking research on recruiter attention, resume review, and the limits of the six-second claim.",
-    alternates: { canonical: "/research/how-recruiters-read" },
-};
+const PATH = "/research/how-recruiters-read";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Do recruiters only spend six seconds on a resume?",
+    description: "What peer-reviewed eye-tracking studies found about where recruiters look on a resume, and why the six-second figure isn't a rule.",
+    type: "article",
+});
 
 export default function HowRecruitersReadPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Recruiter attention",
                 title: "What recruiters notice in the first pass",
                 description: "Eye-tracking studies show where recruiters spent time. They do not establish a six-second deadline for every resume.",
-                lastUpdated: "July 2026",
                 readTime: "5 min read",
                 sourceSummary: "2 peer-reviewed studies and 1 historical vendor report"
             }}

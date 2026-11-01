@@ -196,7 +196,7 @@ export const categories: ResearchCategory[] = [
             },
             {
                 id: "comp-calculator",
-                title: "Compare two offers side by side",
+                title: "Compare job offers side by side",
                 href: "/resources/tools/comp-calculator",
                 question: "Which offer is actually better?",
                 answer: "Put salary, bonus, equity, and one-time pay on the same footing, and let the calculator do the math. Compare benefits separately.",

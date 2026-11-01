@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
-export const metadata: Metadata = {
-    title: "Tell the story behind the line",
+const PATH = "/research/star-method";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How to use the STAR method on your resume and in interviews",
     description: "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
-    alternates: { canonical: "/research/star-method" },
-};
+    type: "article",
+});
 
 export default function StarMethodPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Story",
                 title: "Tell the story behind the line",
                 description: "A resume line is the headline. The interview asks for the story underneath it. STAR keeps both honest, as long as you don't treat it as a formula.",
-                lastUpdated: "October 2026",
                 readTime: "6 min read"
             }}
             keyFinding={{
@@ -58,7 +61,8 @@ export default function StarMethodPage() {
             relatedArticles={[
                 { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
                 { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
-                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Referrals" }
+                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Referrals" },
+                { title: "Can a recruiter tell who you are?", href: "/research/who-you-are", tag: "Story" }
             ]}
             sources={[
                 {

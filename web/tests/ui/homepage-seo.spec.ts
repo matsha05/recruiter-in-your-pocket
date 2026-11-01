@@ -79,8 +79,10 @@ test.describe("homepage feedback and SEO contract", () => {
     // A shared link leads with the hero's story; search keeps the plain description.
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", shareDescription);
     await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute("content", shareDescription);
+    // The layout adds the site's Organization and WebSite; this is the homepage's own graph.
     const structuredData = JSON.parse(
-      await page.locator('script[type="application/ld+json"]').textContent() || "{}",
+      (await page.locator('script[type="application/ld+json"]').allTextContents())
+        .find((text) => text.includes("SoftwareApplication")) || "{}",
     );
     const graph = structuredData["@graph"] as Array<Record<string, unknown>>;
     const founderData = graph.find((entry) => entry["@type"] === "Person");
@@ -142,7 +144,7 @@ test.describe("homepage feedback and SEO contract", () => {
     }
   });
 
-  test("the sitemap publishes the calculator, omits the workspace, and avoids synthetic timestamps", async ({ request }) => {
+  test("the sitemap publishes the calculator, omits the workspace, and dates pages by their content", async ({ request }) => {
     const response = await request.get("/sitemap.xml");
     expect(response.status()).toBe(200);
 
@@ -154,6 +156,10 @@ test.describe("homepage feedback and SEO contract", () => {
       "<loc>https://www.recruiterinyourpocket.com/sample-report</loc>",
     );
     expect(xml).not.toContain("<loc>https://www.recruiterinyourpocket.com/workspace</loc>");
-    expect(xml).not.toContain("<lastmod>");
+    // lastmod comes from PUBLIC_PAGES, never the build date.
+    const today = new Date().toISOString().slice(0, 10);
+    const lastmods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
+    expect(lastmods.length).toBe((xml.match(/<url>/g) ?? []).length);
+    expect(lastmods.every((value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && value <= today)).toBe(true);
   });
 });

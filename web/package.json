@@ -36,6 +36,7 @@
     "test:saved-jobs-pagination": "node scripts/run-ts-test.cjs tests/saved-jobs-pagination.test.ts",
     "test:sample-report": "node scripts/run-ts-test.cjs tests/sample-report-contract.test.ts",
     "test:research-figures": "node scripts/run-ts-test.cjs tests/research-figure-contract.test.ts",
+    "test:search-foundation": "node scripts/run-ts-test.cjs tests/search-foundation.test.ts",
     "test:compensation-model": "node scripts/run-ts-test.cjs tests/compensation-model.test.ts",
     "test:saved-report-revision": "node scripts/run-ts-test.cjs tests/saved-report-revision.test.ts",
     "test:request-body": "node scripts/run-ts-test.cjs tests/request-body.test.ts",
