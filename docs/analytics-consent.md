@@ -10,6 +10,10 @@ Only explicit, allowlisted events are recorded. Homepage links use `data-analyti
 
 The repeat sweep also excludes the SDK's automatically attached campaign parameters, advertising click IDs, and search keywords. Failed preference writes override stale stored acceptance for the current page and remove the old stored choice when possible. Logout cancels pending account-specific operations without dropping public page views when initial authentication resolves to signed out.
 
+## Basic page statistics (Vercel Web Analytics)
+
+Separate from the optional product analytics above, the production site counts page views with Vercel Web Analytics (`web/components/privacy/PageStatistics.tsx`, mounted only when `VERCEL_ENV` is `production`). It sets no cookies; Vercel identifies a visit by a request hash it discards after 24 hours. It counts by default, because it records no personal identifiers, and stops whenever the visitor declines analytics or the browser sends Do Not Track or Global Privacy Control; the choice is re-read on every event, so a withdrawal applies immediately. Before anything is sent, `web/lib/pageStatistics.ts` keeps only the page path and campaign tags (`utm_*`, `ref`), replacing id-like path segments with `[id]`. The privacy policy and the vendor table describe the same behavior. Turning on Web Analytics in the Vercel project is a separate dashboard step.
+
 ## Verification
 
 From `web/`:
