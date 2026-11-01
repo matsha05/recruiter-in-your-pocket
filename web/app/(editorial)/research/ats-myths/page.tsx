@@ -5,6 +5,7 @@ import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 export const metadata: Metadata = {
     title: "What applicant tracking systems actually do",
     description: "What current Greenhouse and Lever documentation shows about resume parsing and what it does not prove.",
+    alternates: { canonical: "/research/ats-myths" },
 };
 
 export default function ATSMythsPage() {
@@ -23,7 +24,7 @@ export default function ATSMythsPage() {
                 stat: "Parsing extracts information from your resume",
                 statDescription: (
                     <>
-                        Greenhouse and Lever document resume parsing as the extraction of readable information into candidate fields. Parsing trouble can lose or scramble information; it is not proof of one universal rejection score.
+                        Greenhouse and Lever document resume parsing as the extraction of readable information into candidate fields. When a parse fails, the resume stays attached and the details are entered by hand. Parsing trouble is not proof of one universal rejection score.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </>
@@ -49,11 +50,11 @@ export default function ATSMythsPage() {
                 items: [
                     {
                         title: "A recruiter's read, not an ATS score",
-                        description: "Your First Impression score is what a person would likely make of the page. It can't tell you how an employer set up its filters."
+                        description: "Your First Impression score sums up our read of the page against a recruiter's criteria. It can't tell you how an employer set up its filters."
                     },
                     {
                         title: "Text we can actually read",
-                        description: "We work from the text in your file. If a section comes through out of order in your report, it may come through that way elsewhere too."
+                        description: "We work from the text we pull from your file. That isn't an ATS parser, so it can't tell you how a particular employer's software will read it."
                     }
                 ]
             }}
@@ -74,8 +75,8 @@ export default function ATSMythsPage() {
                     id: "source-2",
                     title: "Understanding Resume Parsing",
                     publisher: "Lever Help Center",
-                    year: "2025",
-                    href: "https://help.lever.co/hc/en-us/articles/20087345054749-Understanding-resume-parsing"
+                    year: "2026",
+                    href: "https://help.lever.co/s/article/Understanding-Resume-Parsing"
                 },
                 {
                     id: "source-3",
@@ -90,12 +91,26 @@ export default function ATSMythsPage() {
                     publisher: "Greenhouse Support",
                     year: "2026",
                     href: "https://support.greenhouse.io/hc/en-us/articles/360043184152-Candidate-and-prospect-filters"
+                },
+                {
+                    id: "source-5",
+                    title: "Auto-reject",
+                    publisher: "Greenhouse Support",
+                    year: "2026",
+                    href: "https://support.greenhouse.io/hc/en-us/articles/360000653472-Auto-reject"
+                },
+                {
+                    id: "source-6",
+                    title: "Operating the Archive",
+                    publisher: "Lever Help Center",
+                    year: "2026",
+                    href: "https://help.lever.co/s/article/Operating-the-Archive"
                 }
             ]}
             faq={[
                 {
                     question: "Do ATS systems automatically reject resumes?",
-                    answer: "Some employer workflows can filter or reject based on configured rules. The parser itself is the extraction step, and there is no single behavior shared by every ATS and employer."
+                    answer: "Some can, but from your answers to application questions, not from how your resume is formatted. Greenhouse and Lever both let employers reject or archive applicants automatically on answers like \"Do you have a commercial driver's license?\" The parser itself is only the extraction step."
                 },
                 {
                     question: "Is keyword stuffing useful?",
@@ -140,12 +155,18 @@ export default function ATSMythsPage() {
                 Greenhouse lists image-based resumes, graphics, word art, complex tables, headers, footers, text boxes, and columned layouts among formatting patterns that can produce unsuccessful or partial parsing. Lever notes that image files are not parseable and recommends checking whether the document text can be highlighted.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
+                {" "}A failed parse doesn&apos;t make the resume disappear. Greenhouse attaches the file to the candidate and asks the recruiter to enter the details by hand, and Lever describes the same fix.
+                <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
 
             <h2 className="research-h2">Parsing is not the whole selection process</h2>
             <p className="research-body mb-6">
-                ATS products can also expose search and filter tools, and employer workflows differ by configuration. When software influences employment decisions, EEOC guidance says employers still need to consider job-relatedness and adverse impact.
+                ATS products can also expose search and filter tools, and employer workflows differ by configuration. Automatic rejection does exist, but in Greenhouse and Lever&apos;s documentation it runs on answers to application questions, often called knockout questions, not on resume formatting.
                 <Citation id="source-4">4</Citation>
+                <Citation id="source-5">5</Citation>
+                <Citation id="source-6">6</Citation>
+                {" "}EEOC guidance on employment tests and selection procedures, issued in 2007 and not specific to software, says a screen that disproportionately excludes people by race, sex, or another protected trait has to be job-related and consistent with business necessity.
                 <Citation id="source-3">3</Citation>
             </p>
 

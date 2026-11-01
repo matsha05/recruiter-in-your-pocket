@@ -5,6 +5,7 @@ import { MetaTimeline } from "@/components/research/diagrams/MetaTimeline";
 export const metadata: Metadata = {
     title: "Discrimination in hiring hasn't gone away",
     description: "A long-view synthesis of hiring discrimination research and what resumes can and cannot control.",
+    alternates: { canonical: "/research/hiring-discrimination-meta-analysis" },
 };
 
 export default function DiscriminationMetaPage() {
@@ -22,7 +23,7 @@ export default function DiscriminationMetaPage() {
                 stat: "36% more callbacks",
                 statDescription: (
                     <>
-                        In US field experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants, with no significant decline over that time. The gap for Latino applicants was 24%, with modest evidence of decline.
+                        In 24 US field experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants, with no significant decline over that time. The gap for Latino applicants was 24%, with modest evidence of decline.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -35,7 +36,7 @@ export default function DiscriminationMetaPage() {
                 <>
                     <h2 className="research-h2">What a better resume cannot fix</h2>
                     <p className="research-body mb-6">
-                        These experiments sent comparable resumes. The gap came from how applicants were treated, not from what their resumes said. Our read: a better resume can&apos;t close it.
+                        These experiments sent comparable resumes, or trained testers matched to apply in person. The gap came from how applicants were treated, not from what their applications said. Our read: a better resume can&apos;t close it.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <MetaTimeline />
@@ -50,7 +51,7 @@ export default function DiscriminationMetaPage() {
                     },
                     {
                         title: "It can clear up avoidable doubt",
-                        description: "Your Critical Miss points at the gap a recruiter is most likely to stumble on. Fixing it won't close a gap that lives in the hiring process itself."
+                        description: "Your Critical Miss is the one thing to fix first on the page. Fixing it won't close a gap that lives in the hiring process itself."
                     }
                 ]
             }}
@@ -73,6 +74,20 @@ export default function DiscriminationMetaPage() {
                     publisher: "Upturn",
                     year: "2018",
                     href: "https://www.upturn.org/work/help-wanted/"
+                },
+                {
+                    id: "source-3",
+                    title: "Systemic Discrimination Among Large U.S. Employers",
+                    publisher: "Kline, Rose & Walters. Quarterly Journal of Economics 137(4)",
+                    year: "2022",
+                    href: "https://doi.org/10.1093/qje/qjac024"
+                },
+                {
+                    id: "source-4",
+                    title: "Trends in racial and ethnic discrimination in hiring in six Western countries",
+                    publisher: "Quillian & Lee. Proceedings of the National Academy of Sciences 120(6)",
+                    year: "2023",
+                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9963383/"
                 }
             ]}
             faq={[
@@ -103,6 +118,16 @@ export default function DiscriminationMetaPage() {
                 <Citation id="source-2">2</Citation>
             </p>
 
+            <h2 className="research-h2">What newer studies found</h2>
+            <p className="research-body mb-6">
+                The meta-analysis stops in 2015. Between 2019 and 2021, economists sent 83,643 fictitious applications to entry-level jobs at 108 of the largest US employers. Applications with distinctively Black names were 2.1 percentage points less likely to hear back within 30 days, 23.0% against 25.1%. That study measured any contact from the employer, not callbacks, so its gap isn&apos;t directly comparable to the 36%.
+                <Citation id="source-3">3</Citation>
+            </p>
+            <p className="research-body mb-6">
+                A 2023 update of the meta-analysis, adding US studies through 2019, again found little change in the United States.
+                <Citation id="source-4">4</Citation>
+            </p>
+
             <h2 className="research-h2">Focus on what you can change</h2>
             <p className="research-body mb-6">
                 You can improve how clearly your resume shows your experience. You cannot remove bias from the hiring process. Good advice should help with the first without pretending it solves the second.
@@ -117,8 +142,8 @@ export default function DiscriminationMetaPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>These are US field experiments. Most measured callbacks, the first response, not who got hired.</li>
-                <li>The meta-analysis ends in 2015. Later studies aren&apos;t included.</li>
+                <li>These are US field experiments, pooling resume audits with in-person audits. Most measured callbacks, the first response, not who got hired.</li>
+                <li>The meta-analysis ends in 2015. The newer studies above use different measures, so their numbers don&apos;t line up exactly with it.</li>
                 <li>Callback gaps for other groups and other countries need their own evidence.</li>
             </ul>
         </ResearchArticle>

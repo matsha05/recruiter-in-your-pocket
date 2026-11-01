@@ -4,7 +4,8 @@ import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 import { Figure, Key, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
-// Brown, Setren & Topa, Table 3: percent of each stage's pool referred by an employee (62,127 applicants, one US firm).
+// Brown, Setren & Topa (NY Fed Staff Report 568), Table 3: percent of each stage's pool referred by an employee.
+// 62,127 applications to 315 postings, 2006–2010, at one US financial services firm with 2,000–5,000 employees.
 const stages = [
     { stage: "Applied", referred: 6 },
     { stage: "Interviewed", referred: 21 },
@@ -17,18 +18,18 @@ export function ReferralHiringShareDiagram({ figureNumber = 1 }: { figureNumber?
     return (
         <DiagramFigure
             className="max-w-[54rem]"
-            label="Two stacks of 100 resumes. Among applicants, 6 in 100 were referred by an employee. Among hires, 29 in 100 were. In between: 21 in 100 interviewees and 27 in 100 offers."
+            label="Two stacks of 100 resumes. Among applications, 6 in 100 were referred by an employee. Among hires, 29 in 100 were. In between: 21 in 100 interviewees and 27 in 100 offers."
         >
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
                     title="Six in the pile. Twenty-nine at the finish."
-                    note="Every 100 applicants, and every 100 hires, at one large US company. Green sheets were referred by an employee."
+                    note="Every 100 applications, and every 100 hires, at one US financial services company. Green sheets were referred by an employee."
                 />
                 <div ref={ref} className="grid gap-px bg-line sm:grid-cols-2">
-                    <section className="bg-card px-5 py-6 md:px-7" aria-label="Every 100 applicants">
+                    <section className="bg-card px-5 py-6 md:px-7" aria-label="Every 100 applications">
                         <div className="mb-4 flex items-baseline justify-between gap-3">
-                            <p className="text-sm font-semibold text-foreground">Every 100 who applied</p>
+                            <p className="text-sm font-semibold text-foreground">Every 100 applications</p>
                             <Figure value="6" unit="referred" />
                         </div>
                         <UnitGrid count={100} columns={10} shape="sheet" seen={seen} toneAt={(i) => (i < 6 ? "pen" : "quiet")} />
@@ -58,7 +59,7 @@ export function ReferralHiringShareDiagram({ figureNumber = 1 }: { figureNumber?
                     <Key tone="faint" shape="sheet">Any other route</Key>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Brown, Setren & Topa`} title="62,127 applicants to one large US company." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Brown, Setren & Topa`} title="62,127 applications to one US financial services company, 2006–2010." />
         </DiagramFigure>
     );
 }

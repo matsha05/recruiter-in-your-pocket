@@ -100,7 +100,7 @@ test.describe("multi-figure research articles", () => {
     await page.goto("/research/referral-advantage", { waitUntil: "domcontentloaded" });
     const share = page.getByRole("figure", { name: /6 in 100 were referred by an employee/ });
     await expect(share).toContainText("29%");
-    const odds = page.getByRole("figure", { name: /about 1 in 14 referred applicants got an offer/ });
+    const odds = page.getByRole("figure", { name: /about 1 in 14 referred applications got an offer/ });
     await expect(odds).toContainText("1 in 8");
     await expect(odds).toContainText("1 in 500");
     // Derived figures must say they are our arithmetic.

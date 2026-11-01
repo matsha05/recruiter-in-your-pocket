@@ -5,6 +5,7 @@ import { StoryReadDiagram } from "@/components/research/diagrams/StoryReadDiagra
 export const metadata: Metadata = {
     title: "Can a recruiter tell who you are?",
     description: "Early impressions carry through to offers, coherent careers get hired more, and specifics beat summaries. What the research says about the story your resume tells.",
+    alternates: { canonical: "/research/who-you-are" },
 };
 
 export default function WhoYouArePage() {
@@ -13,7 +14,7 @@ export default function WhoYouArePage() {
             header={{
                 tag: "Story",
                 title: "Can a recruiter tell who you are?",
-                description: "The best resumes let a stranger say who you are in one line and picture you doing the job. The research says that early read matters more than most people think.",
+                description: "The best resumes let a stranger say who you are in one line and picture you doing the job. Research on interviews suggests that first read sticks.",
                 lastUpdated: "October 2026",
                 readTime: "6 min read"
             }}
@@ -22,7 +23,7 @@ export default function WhoYouArePage() {
                 stat: "The first read carried through",
                 statDescription: (
                     <>
-                        In structured internship interviews, early judgments of a candidate&apos;s competence predicted the final ratings and the offers, including ratings from a different interviewer.
+                        In mock structured interviews, first impressions predicted the final ratings and later, real internship offers. Early judgments of competence predicted ratings even from a different interviewer.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -45,11 +46,11 @@ export default function WhoYouArePage() {
                 items: [
                     {
                         title: "The Verdict",
-                        description: "The Verdict is the one-line read a recruiter forms about you. If it isn't who you are, the resume isn't telling your story yet."
+                        description: "The Verdict is a one-line read of who your resume says you are. If it isn't who you are, the resume isn't telling your story yet."
                     },
                     {
                         title: "The Critical Miss",
-                        description: "When the thing holding you back is that a recruiter can't tell what you'd do next, the Critical Miss says so and points to the fix."
+                        description: "When your resume doesn't make clear what you'd do next, the Critical Miss says so and points to the fix."
                     }
                 ]
             }}
@@ -106,13 +107,13 @@ export default function WhoYouArePage() {
                 },
                 {
                     question: "Should I explain a gap?",
-                    answer: "A short, plain line is usually enough. Readers tend to assume the worst about a gap they can't explain."
+                    answer: "In the largest test, a line explaining a caregiving gap did no better than leaving it unexplained. Listing years in each job instead of dates helped more. Be ready to explain the gap in a sentence when someone asks."
                 }
             ]}
         >
             <h2 className="research-h2">The first read sticks</h2>
             <p className="research-body mb-6">
-                In one study of structured interviews for internships, interviewers rated candidates during the first few minutes of small talk, before the formal questions began. Candidates who made a better first impression got higher final ratings and more internship offers. The links were moderate (correlations of .42 and .22), not destiny. Early judgments of competence predicted later ratings even from a different interviewer.
+                In one study, accounting students had mock structured interviews before applying for real internships. Interviewers rated them during the first few minutes of small talk, before the formal questions began. Candidates who made a better first impression got higher final ratings from the same interviewer (a correlation of .42) and more real internship offers (.22). Those are moderate links, not destiny. Early judgments of competence also predicted ratings from different interviewers, more weakly.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
@@ -130,19 +131,19 @@ export default function WhoYouArePage() {
 
             <h2 className="research-h2">Specifics let them picture it</h2>
             <p className="research-body mb-6">
-                In a field experiment on an online job site, an economist hired 952 new workers and randomly gave some a detailed public evaluation of their work instead of a bare rating. Afterward, workers with detailed evaluations earned more and asked for higher wages. The detail helped strong performers and hurt weak ones.
+                In a field experiment on an online job site, an economist hired 952 workers for short data-entry jobs and randomly gave some a detailed public evaluation of their work instead of a bare rating. The detail helped the workers who had done well and hurt the ones who hadn&apos;t.
                 <Citation id="source-3">3</Citation>
-                {" "}Specifics didn&apos;t flatter anyone. They let employers see who was good.
+                {" "}Those evaluations were written by an employer, not by the worker, so the lesson carries over to a resume only by analogy. <strong>Our take:</strong> specifics don&apos;t flatter anyone. They let a reader see who is good.
             </p>
             <p className="research-body mb-6">
-                Missing detail costs you too. In an audit study that sent roughly 12,000 fictitious resumes to job openings in 100 US cities, callbacks were about 45% lower for people out of work eight months than for those out one month, roughly 4% against 7%. The authors read this as employers treating the gap as a sign of something they couldn&apos;t see.
+                Employers also read meaning into what a resume doesn&apos;t show. In an audit study that sent roughly 12,000 fictitious resumes to job openings in 100 US cities, callbacks were about 45% lower for people out of work eight months than for those out one month, roughly 4% against 7%. The authors read this as employers treating the time out as a sign of something they couldn&apos;t see.
                 <Citation id="source-5">5</Citation>
-                {" "}When the resume doesn&apos;t say, the reader fills it in, and rarely in your favor.
+                {" "}That study changed how long people had been out of work, not how much their resumes explained. <strong>Our take:</strong> the same instinct applies whenever a resume leaves a question open. The reader fills it in, and rarely in your favor.
             </p>
 
             <h2 className="research-h2">Being relatable is part of the read</h2>
             <p className="research-body mb-6">
-                In 120 interviews with evaluators at elite banks, law firms, and consulting firms, more than half said &ldquo;fit&rdquo; was their most important criterion at the interview stage, ahead of analytical thinking and communication. One lawyer opened every interview the same way: &ldquo;I want to hear your life story.&rdquo;
+                In 120 interviews with evaluators at elite banks, law firms, and consulting firms, more than half said &ldquo;fit&rdquo; was their most important criterion at the interview stage, ahead of analytical thinking and communication. One lawyer described usually opening with &ldquo;Tell me about yourself,&rdquo; and explained: &ldquo;I want to hear your life story.&rdquo;
                 <Citation id="source-4">4</Citation>
                 {" "}That can slide into bias toward people like the evaluator. The useful lesson is narrower: a reader who can see how you think and what you care about has something to connect with. A list of duties gives them nothing.
             </p>
@@ -172,7 +173,7 @@ export default function WhoYouArePage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The first-impression study measured interviews, not resume screening.</li>
+                <li>The first-impression study measured mock interviews, not resume screening. Only the internship offers were real.</li>
                 <li>The career-order and evaluation studies come from online freelance marketplaces, not salaried hiring. We read the career-order study&apos;s published summary; the full paper is paywalled.</li>
                 <li>The fit research is qualitative and comes from elite firms. It describes what evaluators do, including where that becomes bias, not what they should do.</li>
             </ul>
