@@ -116,7 +116,7 @@ test("open mobile workspace navigation exposes the current page and has no serio
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/workspace", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
-  await page.getByRole("button", { name: "Toggle menu" }).click();
+  await page.getByRole("button", { name: "Open navigation", exact: true }).click();
 
   const mobileSheet = page.getByRole("dialog");
   await expect(mobileSheet.getByRole("link", { name: "New report", exact: true })).toHaveAttribute("aria-current", "page");
@@ -135,7 +135,7 @@ test("keyboard resume upload announces success and moves focus to the file actio
       contentType: "application/json",
       body: JSON.stringify({
         ok: true,
-        text: "Senior product manager who led onboarding improvements across product, sales, and support.",
+        text: "Senior product manager who led onboarding improvements across product, sales, and support. Ran the weekly launch review, wrote the onboarding playbook, and trained new account managers on the customer handoff.",
       }),
     });
   });

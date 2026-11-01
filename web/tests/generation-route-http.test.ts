@@ -113,7 +113,7 @@ async function run() {
     const signedWithoutOperation = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     assert.equal(signedWithoutOperation.status, 409);
     assert.equal((await signedWithoutOperation.json()).errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -136,7 +136,7 @@ async function run() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         mode: "resume",
-        text: "A".repeat(120),
+        text: "A".repeat(240),
         operation_id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
       }),
     }));
@@ -158,7 +158,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "203.0.113.42",
       },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const payload = await response.json();
     const setCookie = response.headers.get("set-cookie") || "";
@@ -179,7 +179,7 @@ async function run() {
     const signedStreamWithoutOperation = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const signedStreamBlockedEvent = JSON.parse((await signedStreamWithoutOperation.text()).trim());
     assert.equal(signedStreamBlockedEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -198,7 +198,7 @@ async function run() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         mode: "resume",
-        text: "A".repeat(120),
+        text: "A".repeat(240),
         operation_id: "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
       }),
     }));
@@ -220,7 +220,7 @@ async function run() {
     const blockedStream = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const blockedStreamEvent = JSON.parse((await blockedStream.text()).trim());
     assert.equal(blockedStreamEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -232,7 +232,7 @@ async function run() {
     const streamIdentityHandshake = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     const streamHandshakePayload = JSON.parse((await streamIdentityHandshake.text()).trim());
     const streamHandshakeCookie = (streamIdentityHandshake.headers.get("set-cookie") || "")
@@ -250,7 +250,7 @@ async function run() {
     const identityHandshake = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     const handshakePayload = await identityHandshake.json();
     const handshakeCookie = (identityHandshake.headers.get("set-cookie") || "")
@@ -266,7 +266,7 @@ async function run() {
     const providerFailure = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     assert.equal((await providerFailure.json()).errorCode, "OPENAI_NETWORK_ERROR");
     assert.equal(providerCalls, 1, "a persisted recovery ID may proceed to the provider");
@@ -281,7 +281,7 @@ async function run() {
       },
       body: JSON.stringify({
         mode: "resume",
-        text: `${hubspotSource} ${hubspotSource} ${hubspotSource}`,
+        text: Array.from({ length: 6 }, () => hubspotSource).join(" "),
         jobDescription: hubspotJobDescription,
         recovery_id: recoveryId,
       }),
@@ -315,7 +315,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "198.51.100.11",
       },
-      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(240), recovery_id: recoveryId }),
     }));
     const movedStreamPayload = JSON.parse((await movedStreamResponse.text()).trim());
     assert.equal(movedStreamResponse.status, 402);
@@ -338,7 +338,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "198.51.100.11",
       },
-      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(240), recovery_id: recoveryId }),
     });
     const movedResponse = await POST(movedRequest());
     const movedPayload = await movedResponse.json();

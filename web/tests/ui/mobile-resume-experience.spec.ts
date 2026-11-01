@@ -45,6 +45,41 @@ for (const width of [320, 390]) {
       await expect(resume).toHaveValue(draft);
     });
 
+    test("a fragment can't start a report, and an upload shows what was read before the run", async ({ page }) => {
+      const parsed = ["Alex Morgan", "Experience", "Led onboarding and documented the launch process for three regional teams.",
+        "Ran the weekly launch review with product and support, and kept the checklist current.",
+        "Trained new account managers on the customer handoff."].join("\n");
+      await page.route("**/api/parse-resume", (route) => route.fulfill({ json: { ok: true, text: parsed } }));
+      await page.goto("/workspace", { waitUntil: "domcontentloaded" });
+      await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
+      await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+
+      const run = page.getByTestId("workspace-run-report");
+      await page.getByTestId("workspace-paste-mode").click();
+      const resume = page.getByTestId("workspace-resume-text");
+      await resume.fill("Alex Morgan\nProgram Manager\nLed launches.");
+      await expect(run).toBeDisabled();
+      await expect(run).toHaveAccessibleName("Add more of your resume to begin");
+      await expect(page.getByTestId("workspace-resume-too-short")).toContainText("We need at least 200");
+      await expect(resume).toHaveAttribute("aria-describedby", "workspace-resume-length");
+      await resume.fill(parsed);
+      await expect(run).toBeEnabled();
+      await expect(page.getByTestId("workspace-resume-too-short")).toHaveCount(0);
+
+      await page.getByTestId("workspace-upload-mode").click();
+      await page.getByLabel("Upload resume file (PDF or DOCX)", { exact: true }).setInputFiles({ name: "alex-morgan.pdf", mimeType: "application/pdf", buffer: Buffer.from("%PDF-1.4 mocked") });
+      const preview = page.getByTestId("workspace-read-preview");
+      await expect(preview).toContainText("What we read");
+      await expect(preview).toContainText(`${parsed.split(/\s+/).length} words from your file`);
+      await preview.locator("summary").click();
+      await expect(preview.getByLabel("Text we read from your file")).toContainText("Ran the weekly launch review");
+      await expect(page.getByTestId("workspace-privacy-line")).toContainText("We don’t store the resume or opt it into model training.");
+      await expect(page.getByTestId("workspace-privacy-line").getByRole("link", { name: "How we handle your data" })).toHaveAttribute("href", "/privacy");
+
+      await page.getByTestId("workspace-edit-read-text").click();
+      await expect(resume).toHaveValue(parsed);
+    });
+
     test("advice appears early and section jumps stay below the compact navigation", async ({ page }) => {
       await page.goto("/sample-report", { waitUntil: "domcontentloaded" });
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });

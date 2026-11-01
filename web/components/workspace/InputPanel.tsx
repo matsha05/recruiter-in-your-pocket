@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
+import { MIN_RESUME_CHARS, SHORT_RESUME_CHARS } from "@/lib/resume-input";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -104,6 +105,12 @@ export default function InputPanel({
         onResumeTextChange("");
     };
 
+    // The extracted text becomes ordinary pasted text the visitor can correct.
+    const handleEditReadText = () => {
+        setFileName(null);
+        setShowPaste(true);
+    };
+
     const getRunHint = () => {
         const membership = user?.membership;
         if (membership === "monthly" || membership === "lifetime") return "Paid access active";
@@ -116,9 +123,12 @@ export default function InputPanel({
         return "A Job Search Pass is required for another report";
     };
 
-    const charCount = resumeText.length;
-    const isShortResume = charCount > 0 && charCount < 1500;
+    const charCount = resumeText.trim().length;
+    const isTooShort = charCount > 0 && charCount < MIN_RESUME_CHARS;
+    const isShortResume = charCount >= MIN_RESUME_CHARS && charCount < SHORT_RESUME_CHARS;
     const hasContent = Boolean(fileName || resumeText.length > 0);
+    const wordCount = charCount > 0 ? resumeText.trim().split(/\s+/).length : 0;
+    const showReadPreview = Boolean(fileName && !showPaste && charCount > 0);
 
     return (
         <div
@@ -178,6 +188,7 @@ export default function InputPanel({
                                 fileName={fileName}
                                 onRemoveFile={handleRemoveFile}
                                 onValidationStateChange={setHasRejectedResume}
+                                readyLabel={isTooShort ? "Too short to review" : undefined}
                             />
                         ) : (
                             <div className="ui-state-enter">
@@ -203,8 +214,16 @@ export default function InputPanel({
                                     value={resumeText}
                                     onChange={(event) => onResumeTextChange(event.target.value)}
                                     placeholder="Paste your resume here…"
+                                    aria-describedby={isTooShort ? "workspace-resume-length" : undefined}
+                                    aria-invalid={isTooShort || undefined}
                                     className={cn(styles.field, styles.resumeField)}
                                 />
+                                {isTooShort && (
+                                    <p id="workspace-resume-length" data-testid="workspace-resume-too-short" className={styles.lengthGuard}>
+                                        <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                                        <span>That&apos;s {charCount} characters. We need at least {MIN_RESUME_CHARS} to review it, so add the whole resume, including your experience.</span>
+                                    </p>
+                                )}
                                 {isShortResume && (
                                     <div className="mt-3 flex items-start gap-2 border-l-2 border-warning px-3 py-1 text-xs text-muted-foreground">
                                         <Info className="mt-0.5 size-4 shrink-0 text-warning" />
@@ -212,6 +231,31 @@ export default function InputPanel({
                                     </div>
                                 )}
                             </div>
+                        )}
+
+                        {showReadPreview && (
+                            <details className={cn("ui-disclosure group", styles.readPreview)} open={isTooShort || undefined} data-testid="workspace-read-preview">
+                                <summary className={cn(styles.readSummary, "focus-ring riyp-surface-link")}>
+                                    <span className="min-w-0 flex-1">
+                                        <span className="block text-sm font-semibold text-foreground">What we read</span>
+                                        <span className="mt-0.5 block text-sm text-muted-foreground">
+                                            {wordCount} {wordCount === 1 ? "word" : "words"} from your file. Check that nothing is missing.
+                                        </span>
+                                    </span>
+                                    <CaretDown data-affordance className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+                                </summary>
+                                {isTooShort && (
+                                    <p id="workspace-resume-length" data-testid="workspace-resume-too-short" className={styles.lengthGuard}>
+                                        <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                                        <span>We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.</span>
+                                    </p>
+                                )}
+                                <pre className={styles.readText} tabIndex={0} aria-label="Text we read from your file">{resumeText.trim()}</pre>
+                                <button type="button" data-testid="workspace-edit-read-text" onClick={handleEditReadText} className={styles.textAction}>
+                                    <TextAlignLeft className="size-4" aria-hidden="true" />
+                                    {isTooShort ? "Paste the text instead" : "Fix the text"}
+                                </button>
+                            </details>
                         )}
 
                         {!fileName && !showPaste && (
@@ -267,11 +311,11 @@ export default function InputPanel({
                             variant="primary"
                             className={styles.runAction}
                             onClick={onRun}
-                            disabled={!hasContent || isReadingFile || generationPaused}
+                            disabled={!hasContent || isTooShort || isReadingFile || generationPaused}
                             isLoading={isLoading}
                             loadingLabel="Reading your resume…"
                         >
-                            {generationPaused ? "Reports are paused" : hasContent ? (
+                            {generationPaused ? "Reports are paused" : isTooShort ? "Add more of your resume to begin" : hasContent ? (
                                 <span className="flex items-center gap-2">
                                     {isRevision ? "Compare my revision" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
                                 </span>
@@ -279,10 +323,16 @@ export default function InputPanel({
                         </Button>
 
                         <div className={styles.privacy}>
-                            <div className="flex items-start justify-center gap-2">
-                                <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="duotone" />
-                                <span>Private by default · {getRunHint()}</span>
-                            </div>
+                            <p className={styles.runHint}>{getRunHint()}</p>
+                            <p className="mt-2 flex items-start justify-center gap-2" data-testid="workspace-privacy-line">
+                                <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
+                                <span>
+                                    {user
+                                        ? "OpenAI writes the report from your resume, and we don’t opt it into model training. Saved reports keep a short preview and the lines they quote."
+                                        : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
+                                    <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </section>

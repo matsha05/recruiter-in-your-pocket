@@ -280,6 +280,20 @@ function validateResearchSystem() {
     }
   }
 
+  // One highlighter per figure (docs/design-system.md, "Figures"): a Mark, or a highlighted
+  // unit, bar, or band, never both. The pen note stays pen when the data carries the highlight.
+  for (const dir of ["components/research/diagrams", "components/guides"]) {
+    for (const file of walk(path.join(ROOT, dir))) {
+      if (!file.endsWith(".tsx")) continue;
+      const source = fs.readFileSync(file, "utf8");
+      const marks = countMatches(source, /<Mark\b/g);
+      const highlightedData = /var\(--highlight\)|"mark"/.test(source) ? 1 : 0;
+      if (marks + highlightedData > 1) {
+        errors.push(`${path.relative(ROOT, file)} uses the highlighter ${marks + highlightedData} ways; keep one per figure`);
+      }
+    }
+  }
+
   return errors;
 }
 
@@ -515,6 +529,7 @@ function main() {
   printList("Banned copy terms", violations.bannedTerms);
   printList("Hand-tuned link or motion values", violations.adHocLinkOrMotion);
   printList("Style budget violations", styleBudgets.errors);
+  printList("Research system issues", researchSystemErrors);
 
   if (missingDocTokens.length > 0) {
     console.error("\nMissing design-system doc tokens:");
