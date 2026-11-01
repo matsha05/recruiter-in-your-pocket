@@ -214,6 +214,19 @@ for (const instruction of [
   assert.deepEqual(findNonActionableFix(instruction), [], "specific qualitative details are actionable without invented metrics");
 }
 assert.notDeepEqual(findNonActionableFix("Explain your value more clearly."), [], "general encouragement is not a concrete fact request");
+// Live eval eval_1793560808592: short Critical Miss headings were dropped, so a weaker fix
+// became the Critical Miss. Moving a named result and defining a measure are concrete edits.
+for (const instruction of [
+  "Move the Kubernetes repair-time result above the infrastructure bullets.",
+  "Move the small-group expansion closer to the top.",
+  "Define how you assessed product launch success rates.",
+  "Move the flagship redesign's retention result above strategy responsibilities.",
+]) {
+  assert.deepEqual(findNonActionableFix(instruction), [], `a short heading that names its subject is actionable: ${instruction}`);
+}
+for (const instruction of ["Move it higher.", "Define the work better.", "Lead with your strengths."]) {
+  assert.notDeepEqual(findNonActionableFix(instruction), [], `a move or define without a subject is still vague: ${instruction}`);
+}
 const qualitativeInstruction = "In the customer-complaint bullet, name the problems you handled and the decisions you could make without a manager.";
 const qualitativeSource = "- Resolved customer complaints and processed returns.";
 const qualitativeReport = canonicalizeResumeReportEvidence({ top_fixes: [{
