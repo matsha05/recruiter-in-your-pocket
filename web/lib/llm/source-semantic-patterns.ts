@@ -6,7 +6,9 @@ const commonCapitalizedWords = new Set([
   "On", "Operational", "Operations", "Organized", "Partnership", "Position", "Principal", "Product", "Quantified", "Ran", "Recent",
   "Recorded", "Recruiter", "Reducing", "Register", "Relevant", "Reorder", "Replace", "Resume", "Retail", "Revise", "Rewrite", "Role", "Sales", "Scaled", "Section", "Separate",
   "SaaS-focused", "Senior", "Sharpen", "Show", "Skills", "Specific", "Split", "State", "Strong", "Summary", "Supported", "That", "The", "This", "To",
-  "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
+  "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We",
+  // Sentence-initial gerunds the report uses to introduce a fact ("Naming Microsoft Office ...").
+  "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [

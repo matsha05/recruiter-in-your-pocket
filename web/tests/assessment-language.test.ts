@@ -32,6 +32,15 @@ const positiveCases = [
     { claim: 'Using Microsoft Office to create reports and presentations connects a named tool to actual documents.', source: 'Campus Events Office, University of Illinois. Used Microsoft Office tools to create reports and presentations.' },
     // Fresh confirmation run, same fixture: "would" was missing from the advice modals ("could help show" passed).
     { claim: 'A reviewer can see your interest in operations but may have trouble comparing your work with a particular opening. More specific descriptions would help show what you handled.', source: 'Recent business graduate aiming to start a career in operations management. Operations Assistant. Was responsible for assisting with daily operational tasks.' },
+    // Live evals eval_1793553133997 to eval_1793560274286: grounded reports withheld after repair.
+    // Removing the tracked "lead" from "team-lead" left an unmatched "team-".
+    { claim: 'The mix of delivery and mentoring fits the senior and team-lead titles shown.', source: 'Senior Data Scientist & Team Lead. I mentored 5 junior data scientists.' },
+    // "Naming", like "Using", was read as part of the product name "Naming Microsoft Office".
+    { claim: 'Naming Microsoft Office for reports and presentations tells a reviewer which tool you used for those tasks.', source: 'Campus Events Office, University of Illinois. Used Microsoft Office tools to create reports and presentations.' },
+    // The report's audience is not a resume fact.
+    { claim: 'The resume gives a reader a starting point, but leaves substantial questions about your recent activity and day-to-day work.', source: 'Operations Assistant, Greenfield Logistics. Duties included maintaining records and updating reports.' },
+    // A degree abbreviation names the degree the resume spells out.
+    { claim: 'The MBA lists the University of Washington and a project management focus; the BS lists Virginia Military Institute.', source: 'Master of Business Administration (MBA), Project Management Focus. University of Washington. Bachelor of Science, Business Administration. Virginia Military Institute.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -65,6 +74,16 @@ const negativeCases = [
     { claim: 'Using Microsoft Dynamics to create reports connects a named tool to actual documents.', source: 'Used Microsoft Office tools to create reports and presentations.' },
     { claim: 'Your migration would have saved $2M in annual costs.', source: 'Supported a system migration. Updated reports.' },
     { claim: 'Leading the 12-person Salesforce rollout would help show what you handled.', source: 'Supported a system migration. Updated reports.' },
+    // Paired controls for the live fixes above: the new allowances never admit an unsourced fact.
+    { claim: 'The mix of delivery and mentoring fits the senior and team-lead titles shown.', source: 'Data Analyst. Built weekly dashboards.' },
+    { claim: 'Naming Salesforce for reports and presentations tells a reviewer which tool you used for those tasks.', source: 'Used Microsoft Office tools to create reports and presentations.' },
+    { claim: 'Naming Microsoft Dynamics for reports tells a reviewer which tool you used.', source: 'Used Microsoft Office tools to create reports and presentations.' },
+    { claim: 'The resume gives a reader 40 hires to compare.', source: 'Operations Assistant. Duties included maintaining records and updating reports.' },
+    { claim: 'You coached 30 readers in a literacy program.', source: 'Operations Assistant. Duties included maintaining records and updating reports.' },
+    { claim: 'The result is worth keeping because it shows $4M in savings.', source: 'Operations Assistant. Duties included maintaining records and updating reports.' },
+    { claim: 'The BA lists Virginia Military Institute.', source: 'Bachelor of Science, Business Administration. Virginia Military Institute.' },
+    { claim: 'The MBA lists the University of Washington.', source: 'Bachelor of Science, Business Administration. University of Washington.' },
+    { claim: 'The PhD lists Virginia Military Institute.', source: 'Bachelor of Science, Business Administration. Virginia Military Institute.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));

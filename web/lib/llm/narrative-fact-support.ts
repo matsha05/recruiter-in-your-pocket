@@ -38,6 +38,9 @@ function entityIdentityTokens(value: string) {
   const roleAliases: Record<string, string[]> = {
     "annual-recurring-revenue": ["annual", "recurring", "revenue"],
     bba: ["bachelor", "business", "administration"],
+    ba: ["bachelor", "arts"], bs: ["bachelor", "science"], bsc: ["bachelor", "science"],
+    ms: ["master", "science"], msc: ["master", "science"], mba: ["master", "business", "administration"],
+    phd: ["doctor", "philosophy"],
     bsba: ["bachelor", "science", "business", "administration"],
     ceo: ["chief", "executive", "officer"], cfo: ["chief", "financial", "officer"],
     cio: ["chief", "information", "officer"], cmo: ["chief", "marketing", "officer"],
