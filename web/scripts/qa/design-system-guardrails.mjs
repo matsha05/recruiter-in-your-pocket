@@ -294,6 +294,22 @@ function validateResearchSystem() {
     }
   }
 
+  // Guides wear the pen only for suggested wording (the Script box) and figure pen notes, never on
+  // headlines, rules, numbers, or labels. Focus rings and text selection are pen everywhere.
+  const guideFiles = [
+    ...walk(path.join(ROOT, "app", "(editorial)", "guides")).filter((file) => file.endsWith("page.tsx")),
+    ...fs.readdirSync(path.join(ROOT, "components", "guides")).filter((name) => name.endsWith(".tsx")).map((name) => path.join(ROOT, "components", "guides", name)),
+  ];
+  for (const file of guideFiles) {
+    const source = fs.readFileSync(file, "utf8")
+      .replace(/export function Script\([\s\S]*?\n}\n/, "")
+      .replace(/<PenNote[\s\S]*?<\/PenNote>/g, "");
+    const penUses = source.match(/(?<![\w:-])(?:text|border|bg|decoration)-(?:brand|pen)\b|var\(--pen\)|var\(--brand\)/g) || [];
+    if (penUses.length > 0) {
+      errors.push(`${path.relative(ROOT, file)} uses the pen outside suggested wording (${penUses.join(", ")})`);
+    }
+  }
+
   return errors;
 }
 
