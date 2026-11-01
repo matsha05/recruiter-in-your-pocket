@@ -92,7 +92,7 @@
 
 .page {
     border-top: 1px solid hsl(var(--line));
-    padding-top: 0.75rem;
+    padding-top: 0.625rem;
 }
 
 .sectionTitle {
@@ -333,7 +333,7 @@
     gap: 0.75rem;
     border-radius: var(--radius-inset);
     background: hsl(var(--surface-proof) / 0.55);
-    padding: 0.875rem 1rem 1rem;
+    padding: 0.75rem 1rem 1rem;
 }
 
 /* The phone keeps the first question on the first screen, so the step rail starts at 640px. */

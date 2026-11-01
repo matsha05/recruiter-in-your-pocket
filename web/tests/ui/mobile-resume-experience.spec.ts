@@ -125,7 +125,10 @@ for (const width of [320, 390]) {
         const button = nav.getByRole("button", { name: label, exact: true });
         await button.click();
         await expect(button).toHaveAttribute("aria-current", "location");
-        const heading = page.locator(`#${section}`).getByRole("heading").first();
+        // On phones the fix section's heading is for screen readers; its first visible line is the Critical Miss.
+        const heading = section === "section-fixes"
+          ? page.locator("#section-fix-1 blockquote")
+          : page.locator(`#${section}`).getByRole("heading").first();
         await expect(heading).toBeInViewport();
         // The selected section changes before the mobile scroll has settled.
         await expect.poll(async () => {

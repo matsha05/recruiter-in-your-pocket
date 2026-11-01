@@ -10,7 +10,8 @@ const SECTIONS = [
 async function expectCurrent(page: Page, label: string) {
   const navigation = page.locator('nav[aria-label="Resume report sections"]');
   await expect(navigation.locator('[aria-current="location"]')).toHaveCount(1);
-  await expect(navigation.getByRole("button", { name: label, exact: true })).toHaveAttribute("aria-current", "location");
+  // By attribute, so the check also reads the phone tabs while they wait off screen.
+  await expect(navigation.locator(`button[aria-label="${label}"]`)).toHaveAttribute("aria-current", "location");
 }
 
 async function expectSectionBelowNavigation(page: Page, id: string) {

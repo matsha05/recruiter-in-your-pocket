@@ -13,9 +13,24 @@ function getScrollContainer(element: HTMLElement) {
     return (document.scrollingElement || document.documentElement) as HTMLElement;
 }
 
+/**
+ * Where the section tabs end once they are stuck. Before the page scrolls, sticky tabs sit lower in the
+ * flow, so measuring them then would aim every jump short of where the tabs end up.
+ */
+function getNavigationBottom(nav: HTMLElement | null, containerTop: number) {
+    const aside = nav?.closest("aside");
+    if (!aside) return containerTop;
+    const style = getComputedStyle(aside);
+    if (style.position === "sticky" || style.position === "fixed") {
+        const stuckTop = (style.position === "fixed" ? 0 : containerTop) + (Number.parseFloat(style.top) || 0);
+        return stuckTop + aside.getBoundingClientRect().height;
+    }
+    return aside.getBoundingClientRect().bottom;
+}
+
 function getReadingLine(section: HTMLElement, nav: HTMLElement | null, container: HTMLElement) {
     const containerTop = container === document.scrollingElement ? 0 : container.getBoundingClientRect().top;
-    const navigationBottom = nav?.closest("aside")?.getBoundingClientRect().bottom || containerTop;
+    const navigationBottom = getNavigationBottom(nav, containerTop);
     const sectionMargin = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
     return Math.max(navigationBottom, containerTop + sectionMargin);
 }
