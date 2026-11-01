@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: pairwise calibration",
+    "timestamp": "2026-11-01T22:13:00.317Z",
+    "model": "gpt-6-astra",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd",
+    "calls": 4,
+    "cost_usd": 0.16979799999999998
+  },
+  "judge_prompt_version": "critical-miss-judge-v3",
+  "records": [
+    {
+      "pair": {
+        "set": "blind-pick",
+        "id": "bp-04",
+        "rule": "matt_decisive",
+        "expected": "Y",
+        "note": "Both are good though",
+        "production_side": "Y",
+        "resume_chars": 3639
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "bp-04",
+        "winner": "X",
+        "strength": "slight",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Senior Project Manager role shows substantial budget responsibility, a 25+ person team, software releases, and measurable delivery improvements. The employment history is continuous, but the opening description of current project work leaves the actual products and infrastructure upgrades unidentified.",
+              "most_important_issue": "Identify a specific product or infrastructure upgrade in the current role's opening bullet so the recruiter can understand what the candidate delivered at the stated budget scale.",
+              "first": {
+                "targets": "Add a specific product or infrastructure upgrade to the opening GlobalTech bullet while retaining the budget figure.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add a specific project priority and the candidate's contribution to executive alignment in the GlobalTech collaboration bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask"
+              ],
+              "rationale": "Both reports make grounded, specific requests for missing facts. The first has greater first-read stakes under C1_first_read_stakes: \"- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\" establishes the current role's core work and scale without identifying a concrete deliverable. Naming that deliverable would help a recruiter assess the relevance of the candidate's project experience. The second usefully strengthens \"- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency.\", but that is a supporting stakeholder-management bullet rather than the main account of what the candidate directed. Both satisfy C3_specific_ask, so the preference is slight and rests on the importance of the targeted work.",
+              "cited_resume_lines": [
+                "Senior Project Manager | Apr 2017 - Present",
+                "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+                "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3069,
+              "completion_tokens": 456,
+              "total_tokens": 3525,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 940,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.036706,
+            "latency_ms": 6849
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Senior Project Manager role at GlobalTech shows substantial budget and team responsibility, software deliveries, and measurable improvements. The opening description of the work remains broad despite that visible scale.",
+              "most_important_issue": "Name a specific product or infrastructure upgrade in the current role so a recruiter can understand what the candidate directed, not just the budget managed.",
+              "first": {
+                "targets": "Adds a project priority and the candidate's contribution to the executive-alignment bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Identifies a specific product or infrastructure upgrade in the current role's opening bullet while retaining the budget figure.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports offer grounded, specific requests for missing facts. The second addresses the core work described in \"- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\" Naming a product or upgrade would make the current role's delivery experience more concrete on the first pass (C1_first_read_stakes). The first usefully strengthens \"- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency.\", but that is a secondary collaboration claim rather than the main description of the projects directed. Both asks are actionable (C3_specific_ask); the second also more directly explains what project management reviewers need to assess: what was delivered alongside the money managed (C6_recruiter_consequence).",
+              "cited_resume_lines": [
+                "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+                "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3069,
+              "completion_tokens": 439,
+              "total_tokens": 3508,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 940,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.035856,
+            "latency_ms": 6500
+          }
+        ],
+        "cost_usd": 0.072562
+      },
+      "grade": "wrong_slight"
+    },
+    {
+      "pair": {
+        "set": "blind-pick",
+        "id": "bp-08",
+        "rule": "matt_decisive",
+        "expected": "Y",
+        "production_side": "Y",
+        "resume_chars": 2776
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "bp-08",
+        "winner": "Y",
+        "strength": "slight",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The resume shows progression from Junior Sales Associate to Sales Executive, but the latest role's bullets describe broadly defined support work. BrightWave ends in August 2023, leaving an unexplained gap of more than three years at the review date.",
+              "most_important_issue": "The open gap is critical, but the latest role also needs concrete account and proposal responsibilities so a hiring manager can understand the candidate's actual sales experience.",
+              "first": {
+                "targets": "The unexplained period since August 2023, asking generally what the candidate has done since then.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The latest role's core account-support work, asking for the specific account tasks handled and contributions to proposals or presentations.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C1_first_read_stakes",
+                "C3_specific_ask"
+              ],
+              "rationale": "Both reports are grounded. \"March 2020 - August 2023\" establishes a genuine open gap, but the first report's generic request and list of possible activities do not identify real dated activity or explain how to present the break truthfully. The second addresses core work in the latest role: \"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\". It names concrete missing details—account tasks and proposal or presentation contributions—without inflating ownership. Under C4_gap_handling, a gap fix offering no specific help loses slightly to a concrete fix on the latest role's core work; C1_first_read_stakes and C3_specific_ask support that preference.",
+              "cited_resume_lines": [
+                "March 2020 - August 2023",
+                "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2872,
+              "completion_tokens": 498,
+              "total_tokens": 3370,
+              "cached_prompt_tokens": 0,
+              "cache_write_prompt_tokens": 2869,
+              "reasoning_tokens": 51
+            },
+            "cost_usd": 0.0607925,
+            "latency_ms": 7532
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The latest role is Sales Executive at BrightWave Solutions, ending in August 2023, with an unexplained gap of more than three years at review. The bullets describe support activities without establishing the candidate's specific sales responsibilities.",
+              "most_important_issue": "The open gap is critical, but the latest role also needs concrete account and proposal responsibilities so a recruiter can assess what the Sales Executive title represents.",
+              "first": {
+                "targets": "Specify the account tasks handled and the contributions to proposals or presentations in the latest role's core account-support bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Explain activity since the latest role ended in August 2023.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C3_specific_ask",
+                "C1_first_read_stakes"
+              ],
+              "rationale": "The date line \"March 2020 - August 2023\" establishes a genuine open gap. However, the second report's request to say what happened since then, even with generic activity categories in its why, identifies no real dated activity and gives no guidance for briefly and truthfully presenting a break. Under C4_gap_handling, that weak gap fix loses slightly to a concrete fix on the latest role's core work. The first report targets \"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" and asks for the actual account tasks and proposal contributions. This is specific under C3_specific_ask and consequential under C1_first_read_stakes because it helps establish the responsibilities behind the Sales Executive title without inflating ownership.",
+              "cited_resume_lines": [
+                "March 2020 - August 2023",
+                "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2872,
+              "completion_tokens": 500,
+              "total_tokens": 3372,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 743,
+              "reasoning_tokens": 54
+            },
+            "cost_usd": 0.0364435,
+            "latency_ms": 7443
+          }
+        ],
+        "cost_usd": 0.09723599999999999
+      },
+      "grade": "right"
+    }
+  ]
+}

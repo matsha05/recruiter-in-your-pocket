@@ -3,10 +3,11 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { gradePair, loadBlindPick, loadContrastPairs, unverifiedCitations } from "../lib/evals/judge/calibration";
 import { callJudge, DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, SpendLedger } from "../lib/evals/judge/client";
-import { combineOrders, pairwiseUserMessage, resolveOrder } from "../lib/evals/judge/judge";
+import { combineOrders, pairwiseUserMessage, resolveOrder } from "../lib/evals/judge/modes";
 import { PAIRWISE_SYSTEM_PROMPT } from "../lib/evals/judge/prompt";
 import type { CriticalMissView, PairwiseRawVerdict } from "../lib/evals/judge/types";
 import { isJudgeableFixture, renderView, viewFromReport } from "../lib/evals/judge/view";
+import { judgeEvalReport } from "../lib/evals/judge";
 import type { CalibrationData } from "../lib/evals/types";
 
 const viewA: CriticalMissView = {
@@ -176,6 +177,39 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
   await assert.rejects(callJudge("s", "u", {}, DEFAULT_JUDGE_CONFIG, ledger, fakeFetch), /ceiling/);
   await assert.rejects(callJudge("s", "u", {}, { ...DEFAULT_JUDGE_CONFIG, model: GENERATOR_MODEL }, new SpendLedger(1), fakeFetch), /generator/);
   assert.equal(calls, 1);
+
+  // The eval runner's hook judges synthetic, shown reports only; real-person fixtures never reach a model.
+  const originalFetch = globalThis.fetch;
+  let hookCalls = 0;
+  globalThis.fetch = (async () => {
+    hookCalls++;
+    const content = JSON.stringify({
+      first_read: "r", most_important_issue: "i", unsupported_claims: [],
+      criteria: {
+        first_read_stakes: { score: 4, note: "n" }, concrete_fact: { score: 5, note: "n" },
+        specific_ask: { score: 5, note: "n" }, recruiter_consequence: { score: 4, note: "n" },
+        honest_ask: { score: 5, note: "n" }, gap_handling: { applies: false, score: 3, note: "Not applicable" },
+      },
+      right_thing_first: 4, rationale: "why", cited_resume_lines: [],
+    });
+    return { ok: true, json: async () => ({ model: "gpt-6.1-sol", usage: { prompt_tokens: 1000, completion_tokens: 100 }, choices: [{ finish_reason: "stop", message: { content } }] }) };
+  }) as unknown as typeof fetch;
+  try {
+    const report = { first_impression: "Verdict.", top_fixes: [{ fix: "Add the budget size.", why: "Scale.", impact_level: "high", evidence: { excerpt: "- Own the budget" } }] };
+    const synthetic = { id: "synth_example_1", tags: ["synthetic"], path: "golden/synth_example_1.txt" };
+    const realPerson = { id: "golden_finance_controller_strong_foundation_1", tags: ["finance", "golden"], path: "smoke/finance_controller_strong_foundation_suzanne_allman_1.txt" };
+    const hookLedger = new SpendLedger(1);
+    assert.equal(await judgeEvalReport({ fixture: realPerson, resumeText: "x", status: "PASS", report, ledger: hookLedger }), null);
+    assert.equal(await judgeEvalReport({ fixture: synthetic, resumeText: "x", status: "FAIL", report, ledger: hookLedger }), null);
+    assert.equal(hookCalls, 0);
+    const judged = await judgeEvalReport({ fixture: synthetic, resumeText: "- Own the budget", status: "PASS", report, ledger: hookLedger, reviewDate: "2026-11-01" });
+    assert.equal(hookCalls, 1);
+    assert.equal(judged?.overall, 4);
+    assert.equal(judged?.veto, false);
+    assert.equal(judged?.model, "gpt-6.1-sol");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
   if (previousKey === undefined) delete process.env.OPENAI_API_KEY;
   else process.env.OPENAI_API_KEY = previousKey;
   console.log("critical-miss-judge tests passed");

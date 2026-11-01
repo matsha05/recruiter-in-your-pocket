@@ -133,12 +133,22 @@ export interface FixtureResult {
     initial_validation_error?: string;
     /** Report-integrity measurements on the validated output; reported, not gated. */
     integrity?: ReportIntegrityMetrics;
+    /** Critical Miss judge (lib/evals/judge), synthetic fixtures only; reported, not gated. */
     judge_result?: {
-        evidence_score: number;
-        actionability_score: number;
-        tone_score: number;
-        methodology_score: number;
-        final_score: number;
+        judge: string;
+        model: string;
+        /** The Critical Miss makes a claim the resume doesn't support. */
+        veto: boolean;
+        /** Is this the right thing to fix first? 1-5, forced to 1 on a veto. */
+        overall: number;
+        first_read_stakes: number;
+        concrete_fact: number;
+        specific_ask: number;
+        recruiter_consequence: number;
+        honest_ask: number;
+        unsupported_claims: string[];
+        rationale: string;
+        cost_usd: number;
     };
 }
 
