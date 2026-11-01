@@ -256,6 +256,7 @@ runtimeModule._load = function loadReportStream(request, parent, isMain) {
   return originalLoad(request, parent, isMain);
 };
 const { ReportStream } = require("../components/workspace/report/ReportStream.tsx") as { ReportStream: (props: any) => any };
+const { FirstReadModelDiagram } = require("../components/research/diagrams/FirstReadModelDiagram.tsx") as { FirstReadModelDiagram: () => any };
 runtimeModule._load = originalLoad;
 
 const decode = (html: string) => html
@@ -308,6 +309,23 @@ for (const [label, report] of outputs) {
   for (const note of [...(integrity.report.gaps || []), ...(integrity.report.ideas?.questions || []).map(({ question }) => question)]) {
     assert.equal(occurrences(web, note), 1, `${label}: "${note.slice(0, 40)}" renders once`);
   }
+}
+
+// The methodology figure quotes the sample report, so it may only quote lines the report still shows.
+const sampleWeb = decode(renderToStaticMarkup(createElement(ReportStream, { report: sample, isSample: true })));
+const figure = decode(renderToStaticMarkup(createElement(FirstReadModelDiagram)));
+const quoted = [
+  fixCardSlots(sampleIntegrity, 1).why!,
+  fixCardSlots(sampleIntegrity, 2).why!,
+  sampleIntegrity.structuralGaps[0].text,
+  sampleIntegrity.report.strengths![0],
+];
+for (const line of quoted) {
+  assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
+  assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
+}
+for (const removed of [sample.strengths[0], sample.gaps[0], sample.top_fixes[0].why]) {
+  assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
 }
 
 console.log("report-integrity tests passed");
