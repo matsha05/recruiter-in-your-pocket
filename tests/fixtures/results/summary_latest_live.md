@@ -1,140 +1,99 @@
 # PromptOps Live Eval Report
 
-**Run ID:** eval_1793560808592_replay
-**Timestamp:** 2026-11-01T19:27:24.729Z
+**Run ID:** eval_1793463473819_replay
+**Timestamp:** 2026-10-31T16:21:29.561Z
 **Tier:** golden
 **Prompt Version:** v1
 **Contract Version:** v2
 **Execution Mode:** Live model evaluation
 **Model:** gpt-6.1-terra
 **Reasoning effort:** medium
-**Resume prompt SHA-256:** 55bee48bf96439b3171f1ccac5a8ca79cf1bdb6a003a3ef5f769e2c54f2b45c4
+**Resume prompt SHA-256:** 83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107
 **Resume ideas prompt SHA-256:** 6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7
 **Incomplete-response retry:** high reasoning
 **Validation Mode:** Saved output replay through current candidate
-**Validation Timestamp:** 2026-11-01T20:11:26.633Z
-**Source run SHA-256:** d72a2dbe77a0bff34afc7c44a3dc9ae10cd6df98f479c135e5035fe8bdbd7069
+**Validation Timestamp:** 2026-10-31T17:56:36.243Z
+**Source run SHA-256:** da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257
 
-**Validation candidate:** 0766adc18e3dca9781feeb8b8970ab909644d7a2 (validator commits 11a7a021 and 64b12217, eval harness 0766adc1)
-**Original generation candidate:** 1ddcc7b5ceac7023b2d21333af5de189b06e7260 (clean tree; the in-run result was 20 PASS, 1 WARN, 2 FAIL, both failures validator false rejections fixed in 64b12217 with paired controls)
+**Validation candidate:** 09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d
+**Original generation candidate:** 12570ee809a37d18cce2edf5506cc97c673c392a (uncommitted working-tree edits at the time were UI-only; prompts and report logic matched this commit)
 
 ## Summary
 
 | Metric | Value |
 |:-------|:------|
-| Total Fixtures | 23 |
-| ✅ Passed | 22 |
-| ⚠️ Warned | 1 |
+| Total Fixtures | 10 |
+| ✅ Passed | 10 |
+| ⚠️ Warned | 0 |
 | ❌ Failed | 0 |
-| Pass Rate | 95.7% |
+| Pass Rate | 100.0% |
 
 ## Cost
 
 | Metric | Value |
 |:-------|:------|
-| API Calls | 30 |
-| Token-calculated API Cost | $0.452260 |
-| Input Tokens | 294,721 |
-| Cached Input Tokens | 237,795 |
-| Output Tokens | 73,847 |
-| Reasoning Tokens | 20,297 |
-| Budget | $4.00 |
-
-## ⚠️ Warnings (Review Recommended)
-
-### golden_sales_strong_foundation_mark_sherrod_1
-
-**Status:** WARN
-**Score:** 82 (expected: 80–88)
-
-**Warnings:**
-- `W_SUMMARY_STRUCTURE`: Summary has 6 sentences (expected 3-5)
-
-## Report Integrity
-
-What a customer reads, measured on each validated report. These checks are reported, not gated; the status counts above are unchanged. **Model** is the report as generated. **Shown** is the report after the deterministic post-generation pass that the web report and PDF both apply.
-
-| Check | Model | Shown |
-|:------|:------|:------|
-| Reports with a rewrite | 0 of 23 (0 rewrites) | same |
-| Keep/fix collisions on one line | 8 in 8 reports | 0 |
-| Critical Miss line also in Keep | 1 report | 0 reports |
-| Repeated observations | 156 | 0 |
-| Field-slot mapping issues | 0 | 0 |
-| Critical Miss is a line edit / structural | 12 / 11 (buried evidence 4, employment gap 6, positioning 1) | same |
-| Nothing critical (Critical Miss marked low impact) | 5 reports | same |
-| Model's first fix dropped by validation | 2 reports | same |
-| Structural issue flagged, Critical Miss is a line edit | 1 report | same |
-| Verdict and Critical Miss disagree | 1 report | same |
-| Verdict raises no concern | 2 reports | same |
-| Fix headings over 12 words | 0 of 56 (longest 10 words) | same |
-| Fix headings that open with a location / carry a condition | 0 / 0 | same |
-
-| Fixture | Score | Rewrites | Keep/fix | Repeats | Slot issues | Critical Miss | Verdict and Critical Miss |
-|:--------|:------|:---------|:---------|:--------|:------------|:--------------|:--------------------------|
-| golden_talent_leader_high_bar_matt_shaw_current_1 | 86 | 0 | 0 → 0 | 4 → 0 | 0 → 0 | structural (buried evidence); flagged: buried evidence | agree |
-| golden_finance_controller_strong_foundation_1 | 68 | 0 | 0 → 0 | 10 → 0 | 0 → 0 | line edit | agree |
-| golden_sales_strong_foundation_mark_sherrod_1 | 82 | 0 | 0 → 0 | 9 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap | agree |
-| anchor_elite_ml_staff_1 | 91 | 0 | 0 → 0 | 7 → 0 | 0 → 0 | line edit, nothing critical | agree |
-| anchor_elite_pm_ai_1 | 92 | 0 | 0 → 0 | 6 → 0 | 0 → 0 | line edit, nothing critical | agree |
-| anchor_elite_vp_talent_1 | 94 | 0 | 0 → 0 | 7 → 0 | 0 → 0 | structural (positioning), nothing critical | agree |
-| recruiter_palantir_strong_foundation_1 | 82 | 0 | 0 → 0 | 7 → 0 | 0 → 0 | line edit | agree |
-| devops_senior_high_bar_1 | 75 | 0 | 0 → 0 | 7 → 0 | 0 → 0 | structural (buried evidence); flagged: buried evidence | agree |
-| law_inhouse_thin_signal_1 | 78 | 0 | 1 → 0 | 6 → 0 | 0 → 0 | line edit | agree |
-| finance_not_ready_sam_helmuth_1 | 55 | 0 | 0 → 0 | 3 → 0 | 0 → 0 | line edit | no concern |
-| synth_data_scientist_senior_elite_1 | 95 | 0 | 0 → 0 | 4 → 0 | 0 → 0 | line edit, nothing critical | agree |
-| synth_marketing_manager_vp_elite_1 | 92 | 0 | 1 → 0 | 6 → 0 | 0 → 0 | line edit, nothing critical | agree |
-| synth_software_engineer_mid_strong_1 | 83 | 0 | 0 → 0 | 11 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap | agree |
-| synth_ux_designer_director_strong_1 | 82 | 0 | 0 → 0 | 6 → 0 | 0 → 0 | structural (buried evidence) | no concern |
-| synth_sales_executive_mid_foundation_1 | 58 | 0 | 1 → 0 | 8 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap | agree |
-| synth_hr_manager_director_foundation_1 | 59 | 0 | 0 → 0 | 4 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap, level | agree |
-| synth_finance_analyst_senior_weak_1 | 58 | 0 | 1 → 0 | 4 → 0 | 0 → 0 | line edit; flagged: employment gap (outranked) | mismatch |
-| synth_operations_manager_entry_weak_1 | 57 | 0 | 1 → 0 | 8 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap | agree |
-| synth_project_manager_vp_strong_1 | 84 | 0 | 1 → 0 | 8 → 0 | 0 → 0 | line edit | agree |
-| synth_product_manager_entry_elite_1 | 85 | 0 | 0 → 0 | 8 → 0 | 0 → 0 | structural (employment gap); flagged: employment gap | agree |
-| career_path_elementary_educator_1 | 78 | 0 | 1 → 0 (Critical Miss in Keep) | 7 → 0 | 0 → 0 | line edit | agree |
-| career_path_ministry_leader_1 | 84 | 0 | 0 → 0 | 8 → 0 | 0 → 0 | structural (buried evidence) | agree |
-| frontline_retail_entry_1 | 83 | 0 | 1 → 0 | 8 → 0 | 0 → 0 | line edit | agree |
-
-<details>
-<summary>Integrity details</summary>
-
-- **finance_not_ready_sam_helmuth_1**: The Verdict raises no concern, yet the report still names a Critical Miss.
-- **synth_ux_designer_director_strong_1**: The Verdict raises no concern, yet the report still names a Critical Miss.
-- **synth_finance_analyst_senior_weak_1**: The Verdict's concern is employment gap, but the Critical Miss is a single-line edit.
-</details>
-
-## Score Test-Retest
-
-Each fixture was generated once, so test-retest was not measured. Use `--repeat <n>`, or replay several saved runs of the same fixtures together.
+| API Calls | 14 |
+| Token-calculated API Cost | $0.227279 |
+| Input Tokens | 126,170 |
+| Cached Input Tokens | 81,636 |
+| Output Tokens | 33,508 |
+| Reasoning Tokens | 7,621 |
+| Budget | $2.00 |
 
 ## ✅ Passed
 
-22 fixtures passed all checks.
+10 fixtures passed all checks.
 
 <details>
 <summary>Expand to see fixture IDs</summary>
 
-- golden_talent_leader_high_bar_matt_shaw_current_1 (score: 86)
-- golden_finance_controller_strong_foundation_1 (score: 68)
-- anchor_elite_ml_staff_1 (score: 91)
-- anchor_elite_pm_ai_1 (score: 92)
-- anchor_elite_vp_talent_1 (score: 94)
-- recruiter_palantir_strong_foundation_1 (score: 82)
-- devops_senior_high_bar_1 (score: 75)
-- law_inhouse_thin_signal_1 (score: 78)
-- finance_not_ready_sam_helmuth_1 (score: 55)
-- synth_data_scientist_senior_elite_1 (score: 95)
-- synth_marketing_manager_vp_elite_1 (score: 92)
+- synth_data_scientist_senior_elite_1 (score: 92)
+- synth_marketing_manager_vp_elite_1 (score: 90)
 - synth_software_engineer_mid_strong_1 (score: 83)
-- synth_ux_designer_director_strong_1 (score: 82)
-- synth_sales_executive_mid_foundation_1 (score: 58)
-- synth_hr_manager_director_foundation_1 (score: 59)
-- synth_finance_analyst_senior_weak_1 (score: 58)
-- synth_operations_manager_entry_weak_1 (score: 57)
+- synth_ux_designer_director_strong_1 (score: 83)
+- synth_sales_executive_mid_foundation_1 (score: 59)
+- synth_hr_manager_director_foundation_1 (score: 60)
+- synth_finance_analyst_senior_weak_1 (score: 60)
+- synth_operations_manager_entry_weak_1 (score: 60)
 - synth_project_manager_vp_strong_1 (score: 84)
-- synth_product_manager_entry_elite_1 (score: 85)
-- career_path_elementary_educator_1 (score: 78)
-- career_path_ministry_leader_1 (score: 84)
-- frontline_retail_entry_1 (score: 83)
+- synth_product_manager_entry_elite_1 (score: 86)
 </details>
+
+## Scope and decision
+
+This evidence covers the same ten synthetic golden fixtures as the October 30 proof, regenerated live on October 31 because the resume prompt changed after that proof (resume prompt SHA-256 `67c72577…` to `83b2a2d1…`). Synthetic resumes only; no customer or real-person resumes were sent to the model. Matt approved the spend. The readiness bar is unchanged: at least eight fixtures, at least 90% PASS and zero FAIL.
+
+The live run returned **9 PASS, 0 WARN and 1 FAIL**. The Operations fixture's final report was withheld by the grounding check, and in production that person would have received no report. Investigation found three false rejections in the validator, each fixed with paired negative controls and verified to fail without the fix:
+
+1. `3f2ea55`: the seniority read "entry-level" was not in the assessment vocabulary although "senior" was. Level-read forms matching the report's own scale were added; bare "entry", "junior" and "executive" were not, because they also name duties and titles.
+2. `6136e75`: a sentence-initial "Using" was read as part of the product name "Using Microsoft Office" (the resume says "Used Microsoft Office tools…").
+3. `09f0b89`: "would" was missing from the advice modals, so "More specific descriptions would help show what you handled" was audited as a factual claim while the same sentence with "could" passed.
+
+This replay validates the same ten unedited original model outputs through candidate `09f0b89` and returns **10 PASS, 0 WARN and 0 FAIL**. It is saved-output replay, not a fresh ten-fixture generation on that candidate. No result was replaced and no report prose was edited. These bounded checks do not establish universal accuracy, hosted customer-journey completion or production readiness.
+
+## Separate fresh Operations confirmations
+
+All three single-fixture runs of `synth_operations_manager_entry_weak_1` are recorded, including the failure. None is substituted into the ten-fixture replay or its denominator.
+
+| Run | Candidate | Result | Score | Calls | Token-calculated cost |
+|:--|:--|:--|:--|:--|:--|
+| `eval_1793469152573` | `6136e75` | **FAIL** (exposed fix 3, "would") | 58 | 2 | $0.05048975 |
+| `eval_1793469297246` | `09f0b89` | **PASS** | 60 | 2 | $0.02894605 |
+| `eval_1793469354166` | `09f0b89` | **PASS** | 58 | 1 | $0.01079665 |
+
+Three attempts stopped before any provider call and made no model calls: one with paid evals disabled, one with `--max-calls 30` (below the 40 a ten-fixture run with repair may need), and one single-fixture attempt under a $0.25 budget guard.
+
+## Immutable receipt references
+
+Raw model outputs are retained locally, outside the committed summary. Hashes bind the exact bytes.
+
+| Evidence | File | SHA-256 |
+|:--|:--|:--|
+| Original ten-fixture live run | `2026-10-31T16-21-29-561Z_live_run.json` | `da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257` |
+| Operations confirmation (FAIL) | `2026-10-31T17-53-36-916Z_live_run.json` | `f1c6c1ad8144ee2611ad7d981e1638686e1bf47e97158d0a21b665cb4a027853` |
+| Operations confirmation (PASS) | `2026-10-31T17-55-53-554Z_live_run.json` | `be86bfdaae612cd53400d0bf14a3c4f807f605988ee7bedf12859e1e24c2433b` |
+| Operations confirmation (PASS) | `2026-10-31T17-56-19-326Z_live_run.json` | `39b07d7a64503453e4fc3e2f3b1eb574cb91d89cb7883c8f1323651f3337f246` |
+
+The ten-fixture run used 14 provider calls and **$0.22727880** in token-calculated standard-rate cost. Replay made no model calls. October 31 returned-token cost across all four live runs is **$0.31750740**; it is not an invoice.
+
+The [October 30 evidence](summary_historical_2026-10-30.md) and [September 4 Terra 5.6 evidence](summary_historical_2026-09-04.md) remain historical and do not approve the current prompt.
