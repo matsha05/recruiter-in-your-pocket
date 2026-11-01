@@ -137,7 +137,7 @@ for (const width of [320, 390]) {
     const firstFix = page.locator("#section-fix-1");
     await expect(firstFix.getByRole("list", { name: "From your line to a revised line", exact: true })).toBeHidden();
     await expectInsideReadingViewport(firstFix.locator("blockquote"));
-    await expectInsideReadingViewport(firstFix.getByText(/^How many people did you onboard, on which teams/));
+    await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("label"));
     await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("input"));
   });
 }
