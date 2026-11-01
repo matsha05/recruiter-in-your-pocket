@@ -30,13 +30,13 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     dataType: "Answers you add under a Critical Miss",
     purpose: "Build a revised line from your own answers, so you can copy it into your resume.",
     retention: "Sent to OpenAI with the resume line you're improving, to smooth the wording. RIYP does not store your answers. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
-    userControl: "Every question is optional. Questions you skip are not sent.",
+    userControl: "Every question is optional. Only answers you type are sent.",
     processor: "OpenAI"
   },
   {
     dataType: "Feedback on the Critical Miss",
     purpose: "Check whether the report picked the right thing to fix first, and improve future reports.",
-    retention: "We store the Critical Miss wording, your yes or no, and any note you write. Never your resume. Feedback is kept for 12 months to check report quality, then deleted. Feedback from a signed-in account is also deleted when you delete the account.",
+    retention: "We store your yes or no, any note you write, and the Critical Miss wording, which can name an employer or project from your resume. We don't store the resume itself. Feedback is kept for 12 months to check report quality, then deleted. Feedback from a signed-in account is also deleted when you delete the account.",
     userControl: "Feedback is optional. Delete your account in Settings to remove feedback you sent while signed in.",
     processor: "Supabase"
   },
