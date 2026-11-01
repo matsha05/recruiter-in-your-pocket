@@ -145,16 +145,18 @@ export function absoluteMarkdown(meta: RunMeta, rows: Array<{ label: string; res
 export function compareMarkdown(
     meta: RunMeta,
     names: { X: string; Y: string },
-    rows: Array<{ fixture_id: string; result: PairwiseResult }>,
+    rows: Array<{ fixture_id: string; result: PairwiseResult; candidate_absolute?: AbsoluteResult | null }>,
     skipped: string[],
+    gate: string[] = [],
 ): string {
     const lines = header(meta);
+    if (gate.length) lines.push(`## ${gate[0]}`, "", ...gate.slice(1), "");
     const xWins = rows.filter((row) => row.result.winner === "X");
     const yWins = rows.filter((row) => row.result.winner === "Y");
     const ties = rows.filter((row) => row.result.winner === "tie");
     lines.push("## Summary", "");
-    lines.push(`- X = ${names.X}`);
-    lines.push(`- Y = ${names.Y}`);
+    lines.push(`- X (production) = ${names.X}`);
+    lines.push(`- Y (candidate) = ${names.Y}`);
     lines.push(`- Fixtures compared: ${rows.length}`);
     lines.push(`- X preferred: ${xWins.length} (${xWins.filter((row) => row.result.strength === "clear").length} clear)`);
     lines.push(`- Y preferred: ${yWins.length} (${yWins.filter((row) => row.result.strength === "clear").length} clear)`);
@@ -162,10 +164,11 @@ export function compareMarkdown(
     lines.push(`- Vetoes: X ${rows.filter((row) => row.result.veto.X).length}, Y ${rows.filter((row) => row.result.veto.Y).length}`);
     if (skipped.length) lines.push(`- Skipped: ${skipped.join("; ")}`);
     lines.push("");
-    lines.push("| Fixture | Judge | Orders (XY / YX) | Vetoes | Rationale (first order) |");
-    lines.push("| --- | --- | --- | --- | --- |");
+    lines.push("| Fixture | Judge | Orders (XY / YX) | Pairwise vetoes | Candidate alone (1-5) | Rationale (first order) |");
+    lines.push("| --- | --- | --- | --- | --- | --- |");
     for (const row of rows) {
-        lines.push(`| ${row.fixture_id} | ${outcomeLabel(row.result, { X: "X", Y: "Y" })} | ${orderNote(row.result)} | ${vetoNote(row.result)} | ${row.result.orders[0]?.raw.rationale.replace(/\|/g, "/").replace(/\n/g, " ") || ""} |`);
+        const alone = row.candidate_absolute ? `${row.candidate_absolute.overall}${row.candidate_absolute.veto ? " (veto)" : ""}` : "";
+        lines.push(`| ${row.fixture_id} | ${outcomeLabel(row.result, { X: "X", Y: "Y" })} | ${orderNote(row.result)} | ${vetoNote(row.result)} | ${alone} | ${row.result.orders[0]?.raw.rationale.replace(/\|/g, "/").replace(/\n/g, " ") || ""} |`);
     }
     lines.push("");
     return lines.join("\n");

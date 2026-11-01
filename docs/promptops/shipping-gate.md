@@ -24,6 +24,7 @@ Before any prompt modification can be merged or deployed:
 | Smoke tier | `npm run eval:smoke` | 0 FAILs |
 | Golden tier | `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json` | 0 FAILs |
 | Schema validation | Automatic | All outputs must pass Zod schema |
+| Critical Miss judge | `npm run eval:judge -- compare <production run> <candidate run>` | `GATE: PASS`: candidate preferred on at least 80% of resumes (ties count against), 0 candidate vetoes ([details](#critical-miss-judge-gates-prompt-changes)) |
 
 ### Should Monitor
 
@@ -32,7 +33,6 @@ Before any prompt modification can be merged or deployed:
 | WARN count | < 30% of fixtures | Investigate, document decision |
 | Score drift | ±5 points from baseline | Review and justify |
 | Judge score (retired whole-report judge; historical only) | n/a | Replaced by the Critical Miss judge below |
-| Critical Miss judge (`npm run eval:judge -- compare`) | Reported, not gated (see below) | Read every clear production preference and every veto |
 
 ### Report integrity (reported, not gated)
 
@@ -69,27 +69,31 @@ Critical Miss prompt `55bee48b` (items 1.3 and 1.9, **not shipped**), measured a
 - Fix headings over 12 words: 81 of 81 before, 0 of 79 after.
 - The widest score retest range is 3 points, down from 4.
 
-These counts improved, but Matt's blind pick did not. Details are under "Critical Miss prompt attempt" below. Measure the next attempt against his pick as well as these counts.
+These counts improved, but Matt's blind pick did not. Details are under "Critical Miss prompt attempt" below. The next attempt is gated by the Critical Miss judge (below), which takes the place of his pick; these counts are still reported.
 
-### Critical Miss judge (reported, not gated)
+### Critical Miss judge (gates prompt changes)
+
+Matt decided on November 1, 2026 that the Critical Miss judge gates prompt changes, in place of his own blind pick. The bar matches the one he set for that pick.
 
 An automated judge (`npm run eval:judge`, `web/lib/evals/judge/`) asks the question Matt's blind pick asks: of two reports on the same synthetic resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](../evals/critical-miss-rubric.md) on `gpt-6.1-sol`, a different model from the `gpt-6.1-terra` generator. It runs each comparison in both side orders and counts disagreement as a tie. It sends only synthetic fixtures. It replaces the earlier whole-report judge, whose 9.1/10 was uncalibrated and near the ceiling. How to run and read it: [critical-miss-judge.md](../evals/critical-miss-judge.md).
 
-For a prompt or model change, run `compare` with production as the first run file and the candidate second, and report:
+**The bar.** Run `compare` with production as the first live_run file and the candidate second, both from fresh runs on the same golden fixtures. Without `--limit`, it prints `GATE: PASS` or `GATE: FAIL` and exits nonzero on FAIL. To pass:
 
-- the candidate preferred / production preferred / no real difference, with how many of each are clear;
-- every **clear** production preference, with its rationale;
-- vetoes on either side (a claim the resume doesn't support).
+- the candidate is preferred, clear or slight, on **at least 80%** of compared resumes, with ties and production preferences counting against it;
+- the absolute-mode veto fires on **zero** candidate sides;
+- at least 8 synthetic resumes are compared (the launch bar's minimum fixture count), and every one is fully judged. A resume where the candidate has no shown report, or the judge errored, fails the gate.
+
+The 0-FAIL smoke and golden gate above still applies.
 
 Calibration of judge `critical-miss-judge-v3` ([summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md)):
 
 - Matt's blind pick: 5 of his 6 decisive picks reproduced, and none clearly reversed. The one miss is a slight preference on the item he marked "Both are good though".
 - 29 of 30 fictional contrast pairs right as written, each isolating one rubric rule. The miss (identical fixes with different whys) was resolved in the rubric following Matt's "Same critical miss" note.
-- Same verdicts on every retest, including under a different seed; 0 of 104 pair-runs changed with side order.
+- Same verdicts on every calibration retest, including under a different seed; 0 of 104 pair-runs changed with side order. In a repeat `compare` of the same live runs, 8 of 9 verdicts repeated, and one borderline resume became a tie. A result within one resume of the bar is worth a second run.
 - `gpt-6-astra` calibrated the same (39 of 40 pairs identical) at about 5.6 times the cost. Self-preference was +0.00.
-- On the two live runs behind the blind pick, it preferred production 6 to 2 with 1 tie, the same direction as Matt's 5 to 1.
+- On the two live runs behind the blind pick, it preferred production 6 to 2 with 1 tie, the same direction as Matt's 5 to 1. Under this bar, that candidate (`55bee48b`) prints `GATE: FAIL` (2 of 10 preferred), as it failed Matt's pick.
 
-These numbers are in-sample: the rubric was refined on the same ten items. The judge does not change PASS/WARN/FAIL. Whether it gates, and at what bar, is Matt's decision. Prompt v3's blind pick is the first held-out check: record the judge's verdicts before his picks are revealed.
+These numbers are in-sample: the rubric was refined on the same ten items Matt picked. A change to the judge prompt changes `judge_prompt_sha256` and needs a fresh `calibrate --set all` before its verdicts count.
 
 ---
 
@@ -106,6 +110,7 @@ These numbers are in-sample: the rubric was refined on the same ten items. The j
 2. Compare to baseline
 3. If FAILs introduced → **DO NOT SHIP**
 4. If WARNs increase significantly → document justification
+5. Run `npm run eval:judge -- compare <production run> <candidate run>` from `web/`. If it prints `GATE: FAIL` → **DO NOT SHIP**
 
 ### Documenting Exceptions
 

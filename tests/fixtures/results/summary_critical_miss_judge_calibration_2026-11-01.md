@@ -92,6 +92,11 @@ Self-preference = 0.20 − 0.20 = **+0.00**. The two judges reached the same ver
 - Production was preferred in 6 (4 clear), the candidate in 2 (1 clear), and 1 was a tie: the same direction as Matt's 5 to 1.
 - `score --limit 3` on the production run: no vetoes; mean right-thing-first 3.67.
 
+**As the gate** (after Matt made `compare` the prompt-change gate), on the same two files: **`GATE: FAIL`**, exit code 1.
+- The candidate was preferred on 2 of 10 resumes against the 80% bar, with 0 candidate vetoes.
+- The finance analyst had no shown candidate report, which counts against the candidate.
+- Against the earlier `compare` of the same files, 8 of 9 combined verdicts repeated exactly. The operations assistant (bp-09, Matt's "no difference") went from a slight production preference to a tie, because one side order flipped. The both-orders rule absorbed it, but a candidate close to the 80% bar can pass or fail on one borderline resume.
+
 ## What changed between versions, and why
 
 | Version | Blind pick, decisive | Contrast | Change that followed |
@@ -110,7 +115,7 @@ Self-preference = 0.20 − 0.20 = **+0.00**. The two judges reached the same ver
 
 ## Spend
 
-Token-calculated at published standard rates. Total **$6.07** of the $8.00 cap:
+Token-calculated at published standard rates. Total **$6.26** of the $8.00 cap:
 
 | Run | Calls | Model | Spend |
 | --- | --- | --- | --- |
@@ -128,11 +133,12 @@ Token-calculated at published standard rates. Total **$6.07** of the $8.00 cap:
 | v3, all 40 pairs | 80 | Astra | $2.4946 |
 | Self-preference: 10 written, 40 judged | 50 | Sol and Astra | $1.0534 |
 | v3, 5 new pairs, seed 7 | 10 | Sol | $0.0476 |
+| Gate run of `compare` on the two live runs | 27 | Sol | $0.1849 |
 
-A Sol `compare` of two 10-fixture golden runs costs about $0.12 and takes about a minute.
+A Sol gate run (`compare`, with the candidate veto check) on two 10-fixture golden runs costs about $0.19 and takes about a minute.
 
 ## Limits
 
-- **In-sample.** The gap sub-rules were refined after v1 missed bp-02 and bp-08, so 5 of 6 is a training-set number. The contrast pairs were written from the same rubric. The first held-out test is prompt v3's blind pick: have the judge record its verdicts before Matt's picks are revealed.
+- **In-sample.** The gap sub-rules were refined after v1 missed bp-02 and bp-08, so 5 of 6 is a training-set number. Matt confirmed both sub-rules on November 1, 2026. The contrast pairs were written from the same rubric. Matt has since made the judge the prompt-change gate without a further blind pick of his own, so no held-out human check is scheduled.
 - **Thin reasoning.** At medium effort, Sol used no reasoning tokens in 128 of 208 v3 calls (mean 25), and Astra in 60 of 80. The results held anyway. High effort is untested.
 - **One vendor.** Both judges and the generator are OpenAI GPT-6 models, and no cross-vendor key was available. The self-preference probe found no own-model bias, on ten items.
