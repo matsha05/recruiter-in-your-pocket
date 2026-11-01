@@ -1,4 +1,6 @@
 import { expect, test } from "@playwright/test";
+import sampleReport from "../../public/sample-report.json";
+import { scoreBandFor } from "../../lib/reports/score-band";
 
 for (const width of [320, 390]) {
   test.describe(`resume experience at ${width}px`, () => {
@@ -91,7 +93,7 @@ for (const width of [320, 390]) {
       const openingBounds = await opening.boundingBox();
       expect(openingBounds!.y).toBeLessThan(300);
       expect(openingBounds!.width).toBeGreaterThanOrEqual(width - 36);
-      await expect(page.getByTestId("score-band")).toContainText("Mostly clear");
+      await expect(page.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
       await expect(page.getByTestId("score-band")).not.toContainText("/100");
 
       // The first screen holds the Verdict, the Critical Miss once, and its first question (plan item 2.5).

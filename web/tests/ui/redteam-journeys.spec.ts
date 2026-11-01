@@ -1,4 +1,16 @@
 import { expect, test, type Page } from "@playwright/test";
+import sampleReport from "../../public/sample-report.json";
+import type { ReportData } from "../../components/workspace/report/ReportTypes";
+import { reconcileReport } from "../../lib/reports/report-integrity";
+import { liftQuestions, marginNoteFromFix } from "../../lib/reports/revised-line";
+import { scoreBandFor } from "../../lib/reports/score-band";
+
+// The sample's Critical Miss, read the way the report reads it, so these checks follow the sample's content.
+const sampleMiss = reconcileReport(sampleReport as ReportData);
+const sampleMissFix = sampleMiss.report.top_fixes![0];
+const sampleMissLine = (typeof sampleMissFix.evidence === "string" ? sampleMissFix.evidence : sampleMissFix.evidence!.excerpt!)
+  .trim().replace(/^[-•*]\s+/u, "").replace(/[.;,:\s]+$/u, "");
+const sampleFirstQuestion = liftQuestions(sampleMiss.fixQuestions[0])[0] || "What would you add to this line?";
 
 const RESUME_TEXT = `MATT SHAW
 Senior Program Manager
@@ -107,11 +119,11 @@ test.describe("launch red-team journeys", () => {
 
     // The first screen: the Verdict, the score band, and the Critical Miss once with its first question (2.5).
     const firstRead = page.locator("#section-first-impression");
-    await expect(firstRead.getByTestId("score-band")).toContainText("Mostly clear");
+    await expect(firstRead.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
     await expect(firstRead).not.toContainText("/100");
     await expect(firstRead).not.toContainText("Critical Miss");
     const miss = page.getByTestId("critical-miss");
-    await expect(miss).toContainText("Explain how onboarding improved productivity.");
+    await expect(miss).toContainText(marginNoteFromFix(sampleMissFix.fix!));
     await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
     await expect(page.getByTestId("score-basis")).toContainText("It is not a simple average.");
@@ -142,18 +154,18 @@ test.describe("launch red-team journeys", () => {
 
     // The sample's Critical Miss works like a real one: answers build the line, word for word.
     const questions = miss.getByTestId("lift-question");
-    await expect(miss).toContainText("over what period");
+    await expect(questions.first()).toContainText(sampleFirstQuestion);
     await questions.first().locator("input").fill("42 new hires on the support and sales teams");
     for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
       await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
     }
-    await expect(miss.getByTestId("revised-line")).toHaveText("Led onboarding work across the company, improving productivity: 42 new hires on the support and sales teams.");
+    await expect(miss.getByTestId("revised-line")).toHaveText(`${sampleMissLine}: 42 new hires on the support and sales teams.`);
     await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
     await expect(miss).toContainText("This example only has the part of the line it quotes.");
     await expect(miss.getByTestId("miss-feedback")).toHaveCount(0);
 
     // Bracketed drafts are never presented as writing; the other fixes ask for the details instead.
-    await expect(page.getByText(/\[verified before-and-after result\]/)).toHaveCount(0);
+    await expect(page.locator("#section-fixes").getByText(/\[[^\]]+\]/)).toHaveCount(0);
     await expect(page.locator("#section-fixes")).not.toContainText("These are drafts.");
     await expect(page.locator('[id^="section-fix-"]').getByRole("button", { name: /Use these details|Not relevant/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
