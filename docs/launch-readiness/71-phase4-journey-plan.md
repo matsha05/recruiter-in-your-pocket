@@ -1,7 +1,12 @@
 # Phase 4 plan: journey and homepage
 
 Date: 2026-11-01
-Status: Phase A (plan, mockups, word list, Jordan's resume and the sample generator). No UI files are changed. Phase B starts after PR #37 (design-system foundation) merges, because #37 rewrites nearly every file listed here.
+Status: Phase B implemented on `claude/friendly-herschel-134cdb` (merged with #37 and `claude/wave-2`), Nov 1, 2026. Not pushed.
+- **Still open:** the founder section (4.3) waits for the coordinator's wording, and the Jordan quotes on the homepage are placeholders until the 1.3 prompt is final.
+- **Changed from this plan during the build:**
+  - The worked example ends at Jordan's answer. 2.2 isn't in this wave (Q5).
+  - The privacy panel became a compact bottom bar from 1024px rather than a bottom-right card, so it doesn't cover the reviewer note.
+  - The workspace submit button also says "Get your free report" while the free report is available.
 Items: 4.1, 4.2, 4.3, 4.4, 4.7, 4.8, 4.9, 4.10, 4.11, 4.12, 4.13 from [70-audit-remediation-plan.md](70-audit-remediation-plan.md). Matt's decisions D4 and D7 apply.
 
 Mockups (static HTML, real fonts and tokens, for review only): [phase4-mockups/home.html](phase4-mockups/home.html), [pricing.html](phase4-mockups/pricing.html), [details.html](phase4-mockups/details.html). Orange dashed boxes are reviewer notes, not product UI.
