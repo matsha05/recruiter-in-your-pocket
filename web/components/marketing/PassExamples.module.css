@@ -57,9 +57,6 @@
     padding: 1rem;
 }
 
-/* The re-check demo stacks its two panels inside a card this narrow. */
-.demo > * { grid-template-columns: minmax(0, 1fr); }
-
 .fit { display: flex; flex-direction: column; gap: 0.875rem; }
 
 .posting {

@@ -19,7 +19,7 @@ export function PassExamples() {
                         <FictionalTag />
                         <h3 id="pass-use-recheck" className={styles.useTitle}>Check your revision</h3>
                         <p className={styles.useBody}>Run the revised resume, and the report puts it beside the last one: whether the Critical Miss changed, and which way the score moved.</p>
-                        <RecheckExample className={styles.demo} />
+                        <RecheckExample className={styles.demo} stacked />
                         <p className={styles.footnote}>Signed in, Progress keeps every version. Scores compare versions of your own resume. They don&rsquo;t predict interviews.</p>
                     </article>
 

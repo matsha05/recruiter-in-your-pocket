@@ -8,13 +8,13 @@ import styles from "./RecheckExample.module.css";
  * fictional resume. Like the product, it says the Critical Miss changed, never that it was fixed,
  * and it prints score changes only.
  */
-export function RecheckExample({ className }: { className?: string }) {
+export function RecheckExample({ className, stacked = false }: { className?: string; stacked?: boolean }) {
     const { before, after, change, versions } = JORDAN_RECHECK;
     const first = versions[0].score;
     const latest = versions[versions.length - 1].score;
 
     return (
-        <div className={cn(styles.root, className)}>
+        <div className={cn(styles.root, stacked && styles.stacked, className)}>
             <div className={styles.panel}>
                 <p className={styles.title}>Your Critical Miss changed.</p>
                 <div className={styles.compare}>

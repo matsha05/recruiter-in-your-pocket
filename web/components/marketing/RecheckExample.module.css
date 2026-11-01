@@ -4,6 +4,9 @@
     gap: 1rem;
 }
 
+/* Inside a narrow card (pricing) the two panels stack. */
+.stacked { grid-template-columns: minmax(0, 1fr); }
+
 .panel {
     display: flex;
     flex-direction: column;
