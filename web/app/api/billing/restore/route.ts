@@ -14,6 +14,7 @@ import {
 } from "@/lib/billing/checkoutFulfillment";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
+import { recordCheckoutResponse, restoreStepFor } from "@/lib/observability/launchSignals";
 import { createStripeClient } from "@/lib/billing/stripeClient";
 import { getSubscriptionPeriodEndUnix } from "@/lib/billing/subscriptionPeriod";
 import {
@@ -28,7 +29,7 @@ const stripe = createStripeClient();
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function POST() {
+async function restorePurchases() {
   try {
     if (!isLaunchFlagEnabled("billingUnlock")) {
       return NextResponse.json(
@@ -338,4 +339,10 @@ export async function POST() {
       { status: 500 }
     );
   }
+}
+
+export async function POST() {
+  const res = await restorePurchases();
+  await recordCheckoutResponse(res, restoreStepFor);
+  return res;
 }

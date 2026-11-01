@@ -4,16 +4,22 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { launchFlags } from "@/lib/launch/flags";
+import { getAnalyticsConsent } from "@/lib/analyticsConsent";
+import { browserTraceSampleRate } from "@/lib/observability/browserTracesSampler";
 import {
   areSentryLogsEnabled,
   getSentryDsn,
   getSentryEnvironment,
+  getSentryKeyRouteTracesSampleRate,
   getSentryRelease,
   getSentryTracesSampleRate,
   isSentryEnabled,
   scrubSentryBreadcrumb,
   scrubSentryEvent,
 } from "@/lib/observability/sentryConfig";
+
+const baseTracesSampleRate = getSentryTracesSampleRate();
+const keyRouteTracesSampleRate = getSentryKeyRouteTracesSampleRate();
 
 Sentry.init({
   dsn: getSentryDsn(),
@@ -24,7 +30,18 @@ Sentry.init({
   // Add optional integrations for additional features
   integrations: isSentryEnabled() && launchFlags.errorReplay ? [Sentry.replayIntegration()] : [],
 
-  tracesSampleRate: getSentryTracesSampleRate(),
+  tracesSampler: ({ name, attributes, parentSampled }) => {
+    const op = attributes?.["sentry.op"];
+    return browserTraceSampleRate({
+      op: typeof op === "string" ? op : undefined,
+      name,
+      currentPathname: window.location.pathname,
+      consent: getAnalyticsConsent(),
+      baseRate: baseTracesSampleRate,
+      keyRouteRate: keyRouteTracesSampleRate,
+      parentSampled,
+    });
+  },
   enableLogs: areSentryLogsEnabled(),
 
   // Define how likely Replay events are sampled.

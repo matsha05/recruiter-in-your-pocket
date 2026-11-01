@@ -20,6 +20,11 @@ async function run() {
   Object.assign(process.env, testEnv);
   const runtimeModule = Module as RuntimeModule;
   const originalLoad = runtimeModule._load;
+  const checkoutSteps: string[] = [];
+  const sentry = require("@sentry/nextjs") as { metrics: { count: (...args: any[]) => void } };
+  sentry.metrics.count = (name: string, _value: number, options: { attributes: Record<string, string> }) => {
+    if (name === "riyp.checkout.step") checkoutSteps.push(options.attributes.step);
+  };
   const nowUnix = Math.floor(Date.now() / 1000);
   const periodEnd = nowUnix + 14 * 86_400;
   const expectedExpiry = new Date(periodEnd * 1000).toISOString();
@@ -160,7 +165,13 @@ async function run() {
       };
       reset();
       session.subscription = { id: "sub_monthly" }; // Expanded session references also work.
+      checkoutSteps.splice(0);
       assert.equal((await call()).status, 200, `${route} accepts modern subscription data`);
+      assert.deepEqual(checkoutSteps.splice(0), {
+        restore: ["restore_restored"],
+        confirm: ["confirm_unlocked"],
+        "checkout webhook": ["payment_settled", "entitlement_granted"],
+      }[route], `${route} records its funnel step`);
       assert.equal(passes.length, 1);
       assert.equal(passes[0].expires_at, expectedExpiry, `${route} uses the approved item's exact period`);
       assert.equal(passes[0].stripe_subscription_id, "sub_monthly");
@@ -170,7 +181,13 @@ async function run() {
         if (failure === "missing") subscription.items.data = [];
         if (failure === "ambiguous") subscription.items.data = [approvedItem, { ...approvedItem, id: "si_duplicate" }];
         if (failure === "provider error") lookupFails = true;
+        checkoutSteps.splice(0);
         const response = await call();
+        assert.deepEqual(checkoutSteps.splice(0), {
+          restore: [failure === "provider error" ? "restore_failed" : "restore_none"],
+          confirm: [],
+          "checkout webhook": ["payment_settled", "fulfillment_failed"],
+        }[route], `${route} records ${failure} without counting a pending poll`);
         assert.equal(mutations, 0, `${route} cannot create access from ${failure}`);
         assert.equal(response.status, route === "restore" ? (failure === "provider error" ? 503 : 200) : route === "confirm" ? 202 : 500);
         if (route === "checkout webhook") assert.equal(failedEvents, 1, "webhook retains failed fulfillment for retry");

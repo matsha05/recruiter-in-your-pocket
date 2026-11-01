@@ -21,8 +21,18 @@ export type AnonymousFreeCookieMeta = {
   reset_month: string;
 };
 
+/**
+ * Why the free-report gate refused a request. "cookie": this browser's signed
+ * cookie already records a free report. "identity": the ledger records one for
+ * this browser's anonymous id. "network": another browser on the same network
+ * used the allowance. "hold": a generation on this id or network is still in
+ * flight. "account": a signed-in account without a free report or pass.
+ */
+export type FreeGateReason = "cookie" | "identity" | "network" | "hold" | "account" | "unknown";
+
 export type GenerationAccessReservation = {
   access: "full" | "preview";
+  freeGate?: FreeGateReason;
   accessTier: GenerationAccessTier;
   entitlementKind: GenerationEntitlementKind | null;
   reservationId: string | null;

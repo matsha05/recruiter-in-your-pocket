@@ -18,6 +18,9 @@ const HOLD_TTL_SECONDS = 10 * 60;
 const COMMITTED_TTL_SECONDS = 40 * 24 * 60 * 60;
 const IDENTITY_PATTERN = /^[0-9a-f]{64}$/i;
 
+// Returns 1 when reserved. Every other value is a refusal, and names its cause
+// for monitoring only: 2 = this anonymous id already used its report,
+// 3 = another browser on this network did, 4 = a generation is still in flight.
 const RESERVE_SCRIPT = `
 local primary = redis.call("GET", KEYS[1])
 local shadow = redis.call("GET", KEYS[2])
@@ -26,22 +29,30 @@ if primary and string.sub(primary, 1, 10) == "committed:" and not shadow then
   if ttl < 0 then ttl = ARGV[3] end
   if ttl == 0 then ttl = 1 end
   redis.call("SET", KEYS[2], primary, "PX", ttl, "NX")
-  return 0
+  return 2
 end
 if shadow and string.sub(shadow, 1, 10) == "committed:" and not primary then
   local ttl = redis.call("PTTL", KEYS[2])
   if ttl < 0 then ttl = ARGV[3] end
   if ttl == 0 then ttl = 1 end
   redis.call("SET", KEYS[1], shadow, "PX", ttl, "NX")
-  return 0
+  return 3
 end
 if primary or shadow then
-  return 0
+  if primary and string.sub(primary, 1, 10) == "committed:" then return 2 end
+  if shadow and string.sub(shadow, 1, 10) == "committed:" then return 3 end
+  return 4
 end
 redis.call("SET", KEYS[1], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
 redis.call("SET", KEYS[2], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
 return 1
 `;
+
+const RESERVE_REFUSAL_REASONS: Record<number, AnonymousReserveRefusal> = {
+  2: "identity",
+  3: "network",
+  4: "hold",
+};
 
 const COMMIT_SCRIPT = `
 local primary = redis.call("GET", KEYS[1])
@@ -120,6 +131,12 @@ export class AnonymousGenerationAccessError extends Error {
   }
 }
 
+export type AnonymousReserveRefusal = "identity" | "network" | "hold" | "unknown";
+
+export type AnonymousReserveResult =
+  | { reserved: true }
+  | { reserved: false; refusal: AnonymousReserveRefusal };
+
 export type AnonymousGenerationAccessBackend = {
   reserve(input: {
     identityHash: string;
@@ -127,6 +144,13 @@ export type AnonymousGenerationAccessBackend = {
     monthKey: string;
     reservationId: string;
   }): Promise<boolean>;
+  /** Same decision and writes as reserve, plus the cause of a refusal. */
+  reserveWithReason(input: {
+    identityHash: string;
+    shadowHash: string;
+    monthKey: string;
+    reservationId: string;
+  }): Promise<AnonymousReserveResult>;
   commit(input: {
     identityHash: string;
     shadowHash: string;
@@ -225,57 +249,74 @@ function unavailable(cause?: unknown): never {
  * network addresses are never stored, and shared networks can affect access.
  * Hosted environments fail closed if shared state is unavailable.
  */
+async function reserveWithReason({
+  identityHash, shadowHash, monthKey, reservationId,
+}: {
+  identityHash: string;
+  shadowHash: string;
+  monthKey: string;
+  reservationId: string;
+}): Promise<AnonymousReserveResult> {
+  const keys = ledgerKeys(identityHash, shadowHash, monthKey);
+  const redis = getRedisClient();
+
+  if (redis) {
+    try {
+      const result = Number(await redis.eval(
+        RESERVE_SCRIPT,
+        keys,
+        [
+          reservationId,
+          String(HOLD_TTL_SECONDS),
+          String(COMMITTED_TTL_SECONDS * 1000),
+        ]
+      ));
+      return result === 1
+        ? { reserved: true }
+        : { reserved: false, refusal: RESERVE_REFUSAL_REASONS[result] ?? "unknown" };
+    } catch (error) {
+      if (
+        process.env.NODE_ENV === "production"
+        && !allowsExplicitLocalAnonymousAccessFallback()
+      ) unavailable(error);
+    }
+  } else if (
+    process.env.NODE_ENV === "production"
+    && !allowsExplicitLocalAnonymousAccessFallback()
+  ) {
+    unavailable();
+  }
+
+  const entries = keys.map((key) => readLocalAnonymousEntry(key));
+  const primary = entries[0];
+  const shadow = entries[1];
+  if (primary?.value.startsWith("committed:") && !shadow) {
+    writeLocalAnonymousEntry(
+      keys[1], primary.value, Math.max(1, Math.ceil((primary.expiresAtMs - Date.now()) / 1000))
+    );
+    return { reserved: false, refusal: "identity" };
+  }
+  if (shadow?.value.startsWith("committed:") && !primary) {
+    writeLocalAnonymousEntry(
+      keys[0], shadow.value, Math.max(1, Math.ceil((shadow.expiresAtMs - Date.now()) / 1000))
+    );
+    return { reserved: false, refusal: "network" };
+  }
+  if (primary?.value.startsWith("committed:")) return { reserved: false, refusal: "identity" };
+  if (shadow?.value.startsWith("committed:")) return { reserved: false, refusal: "network" };
+  if (entries.some(Boolean)) return { reserved: false, refusal: "hold" };
+  for (const key of keys) {
+    writeLocalAnonymousEntry(key, `reserved:${reservationId}`, HOLD_TTL_SECONDS);
+  }
+  return { reserved: true };
+}
+
 export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend = {
-  async reserve({ identityHash, shadowHash, monthKey, reservationId }) {
-    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
-    const redis = getRedisClient();
-
-    if (redis) {
-      try {
-        const result = await redis.eval(
-          RESERVE_SCRIPT,
-          keys,
-          [
-            reservationId,
-            String(HOLD_TTL_SECONDS),
-            String(COMMITTED_TTL_SECONDS * 1000),
-          ]
-        );
-        return Number(result) === 1;
-      } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
-      }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
-    }
-
-    const entries = keys.map((key) => readLocalAnonymousEntry(key));
-    const primary = entries[0];
-    const shadow = entries[1];
-    if (primary?.value.startsWith("committed:") && !shadow) {
-      writeLocalAnonymousEntry(
-        keys[1], primary.value, Math.max(1, Math.ceil((primary.expiresAtMs - Date.now()) / 1000))
-      );
-      return false;
-    }
-    if (shadow?.value.startsWith("committed:") && !primary) {
-      writeLocalAnonymousEntry(
-        keys[0], shadow.value, Math.max(1, Math.ceil((shadow.expiresAtMs - Date.now()) / 1000))
-      );
-      return false;
-    }
-    if (entries.some(Boolean)) return false;
-    for (const key of keys) {
-      writeLocalAnonymousEntry(key, `reserved:${reservationId}`, HOLD_TTL_SECONDS);
-    }
-    return true;
+  async reserve(input) {
+    return (await reserveWithReason(input)).reserved;
   },
+
+  reserveWithReason,
 
   async commit({ identityHash, shadowHash, monthKey, reservationId }) {
     const keys = ledgerKeys(identityHash, shadowHash, monthKey);

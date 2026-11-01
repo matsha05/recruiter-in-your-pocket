@@ -24,6 +24,7 @@ import {
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { hashForLogs, logError } from "@/lib/observability/logger";
+import { recordCheckoutResponse, confirmStepFor } from "@/lib/observability/launchSignals";
 
 const stripe = createStripeClient();
 
@@ -145,7 +146,7 @@ async function ensurePassForCheckoutSession(
   };
 }
 
-export async function POST(req: NextRequest) {
+async function confirmCheckout(req: NextRequest) {
   if (!isLaunchFlagEnabled("billingUnlock")) {
     return response(
       buildConfirmResponse({
@@ -391,4 +392,10 @@ export async function POST(req: NextRequest) {
       202
     );
   }
+}
+
+export async function POST(req: NextRequest) {
+  const res = await confirmCheckout(req);
+  await recordCheckoutResponse(res, confirmStepFor);
+  return res;
 }

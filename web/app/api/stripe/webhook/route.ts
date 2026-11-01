@@ -4,6 +4,7 @@ import { sendAuthOtpEmail } from "@/lib/auth/otpEmail";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { captureOperationalError } from "@/lib/observability/operations";
+import { recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { readTextWithLimit } from "@/lib/security/requestBody";
 import {
@@ -724,6 +725,7 @@ export async function POST(request: NextRequest) {
             }
 
             if (!isCheckoutPaymentSettled(session.payment_status)) {
+                recordLaunchSignal("riyp.checkout.step", { step: "payment_pending", source: "unknown" });
                 logInfo({
                     msg: "stripe.webhook.checkout_not_paid",
                     request_id,
@@ -734,6 +736,7 @@ export async function POST(request: NextRequest) {
                     stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
                 });
             } else {
+                recordLaunchSignal("riyp.checkout.step", { step: "payment_settled", source: "unknown" });
                 const email = getEmailFromCheckoutSession(session);
 
                 if (!email) {
@@ -774,6 +777,7 @@ export async function POST(request: NextRequest) {
                         leaseToken,
                         `entitlement_blocked:${error.reason}`
                     );
+                    recordLaunchSignal("riyp.checkout.step", { step: "entitlement_blocked", source: "unknown" });
                     logWarn({
                         msg: "stripe.webhook.checkout_entitlement_blocked",
                         request_id,
@@ -789,6 +793,7 @@ export async function POST(request: NextRequest) {
                         { headers: { "x-request-id": request_id } }
                     );
                 }
+                recordLaunchSignal("riyp.checkout.step", { step: "entitlement_granted", source: "unknown" });
                 await linkStripeCustomerToUser(session, userId, context);
 
                 // Invoice events can arrive before checkout.session.completed.
@@ -868,6 +873,9 @@ export async function POST(request: NextRequest) {
             stripe: { event_id: event.id, event_type: event.type }
         });
     } catch (err: any) {
+        if (event.type.startsWith("checkout.session.")) {
+            recordLaunchSignal("riyp.checkout.step", { step: "fulfillment_failed", source: "unknown" });
+        }
         captureOperationalError(err, {
             operation: "stripe.webhook.fulfillment",
             tags: { event_type: event.type }
