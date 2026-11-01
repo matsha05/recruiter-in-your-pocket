@@ -47,6 +47,12 @@ const positiveCases = [
     { claim: 'Your mentoring and rotation responsibilities are visible but less developed.', source: 'Mentor 3 engineers and run the payments on-call rotation. Designed and led the migration of card authorization.' },
     // Same run: "beyond one team" compares with the resume's own count of five teams.
     { claim: 'The Dovetail repository used by 5 product teams shows that your work reached beyond one team.', source: 'Built a research repository in Dovetail used by 5 product teams.' },
+    // eval_1793569149611: a sentence-initial "Connect" was read as part of "Connect Storyline".
+    { claim: 'Connect Storyline or Camtasia to a real piece of work elsewhere in the resume, if applicable.', source: 'Articulate Storyline 360 workshop, 2025. Canvas, Articulate Storyline, Camtasia, Google Classroom.' },
+    // Same run: a clause about the reader is not a resume fact.
+    { claim: 'You supported HR at a 400-employee plant across three shifts, which helps a reader picture the workforce.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
+    // Same run: "tasks" is a generic word for duties.
+    { claim: 'Relevant support tasks are visible, but most lack detail about the work.', source: 'IT Help Desk Intern. Answered help desk tickets from teachers and staff. IT support specialist with help desk experience.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -96,6 +102,10 @@ const negativeCases = [
     { claim: 'Your work reached beyond one team of 12 engineers.', source: 'Built a research repository in Dovetail used by 5 product teams.' },
     { claim: 'Less experienced engineers relied on the Rust compiler you built.', source: 'Mentor 3 engineers. Built the invoicing API in Kotlin.' },
     { claim: 'Developed a Rust compiler for the payments team.', source: 'Mentor 3 engineers and run the payments on-call rotation.' },
+    { claim: 'Connect Salesforce or Camtasia to a real piece of work elsewhere in the resume.', source: 'Canvas, Articulate Storyline, Camtasia, Google Classroom.' },
+    { claim: 'You supported HR at a 900-employee plant across three shifts, which helps a reader picture the workforce.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
+    { claim: 'You led the HR migration, which helps a reader see the $2M you saved.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
+    { claim: 'Relevant SQL tasks are visible.', source: 'IT Help Desk Intern. Answered help desk tickets from teachers and staff.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));
