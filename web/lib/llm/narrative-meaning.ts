@@ -205,7 +205,9 @@ export function narrativeMeaningIssues(claim: string, source: string): string[] 
     }
     return false;
   });
-  if (conflict.test(claim) && !checksWhetherConflictOccurred && !educationDateDiscrepancy
+  // "Without assuming a conflict occurred" disclaims the conflict instead of asserting it.
+  const disclaimsConflict = /\b(?:without|not|never|rather than)\s+(?:assuming|presuming|implying|suggesting)\b[^.!?;]{0,60}\b(?:conflict|differ)/iu.test(claim);
+  if (conflict.test(claim) && !checksWhetherConflictOccurred && !educationDateDiscrepancy && !disclaimsConflict
     && !sourceEstablishesConflict) {
     issues.push("the source does not establish conflicting inputs; ask whether there was a conflict first");
   }

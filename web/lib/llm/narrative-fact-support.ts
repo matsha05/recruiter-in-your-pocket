@@ -127,6 +127,11 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
     && /\b(?:name|describe|choose|include|give)\b|^\s*(?:what|which|how)\b/iu.test(claim);
 }
 
+function presenceStem(token: string) {
+  const stem = token.replace(/(?:ing|ed|e)$/u, "");
+  return stem.length >= 4 ? stem : token;
+}
+
 export function assessmentNarrativeIssues(input: {
   claim: string;
   sourceText: string;
@@ -142,6 +147,8 @@ export function assessmentNarrativeIssues(input: {
 }) {
   const sourceFacts = input.sourceCandidates.flatMap((candidate) => candidate.facts);
   const sourceTokens = new Set(input.sourceCandidates.flatMap((candidate) => Array.from(candidate.tokens)));
+  // The presence anchor needs one shared word; "practice" anchors to "Practicing".
+  const sourceStems = new Set(Array.from(sourceTokens, presenceStem));
   const assertive = input.directFactualAssertion;
   const peopleManagementAssessment = /\b(?:people|staff|team) (?:oversight|management)\b/iu.test(input.claim)
     && input.sourceCandidates.some(candidate => candidate.facts.some(fact => fact.key === "agency:manage")
@@ -155,7 +162,7 @@ export function assessmentNarrativeIssues(input: {
     ? Array.from(input.claimTokens).filter((token) => !sourceTokens.has(token))
     : input.requirePresenceAnchor && input.assertsPresence && input.claimTokens.size > 0 && !peopleManagementAssessment
       && !/\b(?:count|impact|metric|number|outcome|result|scale|scope|size)s?\b/iu.test(input.claim)
-      && !Array.from(input.claimTokens).some((token) => sourceTokens.has(token))
+      && !Array.from(input.claimTokens).some((token) => sourceTokens.has(token) || sourceStems.has(presenceStem(token)))
       ? Array.from(input.claimTokens)
     : [];
   const unsupported = [
