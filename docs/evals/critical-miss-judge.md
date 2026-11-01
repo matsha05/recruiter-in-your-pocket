@@ -2,11 +2,29 @@
 
 The judge is an automated stand-in for Matt's blind pick. It asks the question his pick asks: of two reports on the same resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](critical-miss-rubric.md), which cites a source for every criterion. Its results are reported, not gated (see [shipping-gate.md](../promptops/shipping-gate.md#critical-miss-judge-reported-not-gated)).
 
-Code: `web/lib/evals/judge/`. CLI: `web/scripts/run-judge.ts`. Calibration data: `tests/fixtures/judge/contrast-pairs.json` and `tests/fixtures/results/blind-pick/`. Results: `tests/fixtures/results/judge/`.
+Code: `web/lib/evals/judge/` (entry point `index.ts`). CLI: `web/scripts/run-judge.ts`. Calibration data: `tests/fixtures/judge/contrast-pairs.json` and `tests/fixtures/results/blind-pick/`. Results: `tests/fixtures/results/judge/`.
+
+## What it replaced, and what it deliberately isn't
+
+**The old whole-report judge is retired.** `web/lib/evals/judge.ts` scored whole reports on evidence, actionability, tone and "methodology" with `gpt-4o-mini`. Its code is now this module, and its rubric is gone, for four reasons:
+
+1. It wasn't calibrated to Matt's judgment.
+2. Its scores sat near the ceiling (9.1/10 on its last bulk run), so it couldn't separate a good prompt from a worse one.
+3. Its methodology dimension scored against the 7.4-second reading model, which the research library now treats as vendor data, not a rule.
+4. It sent every fixture to the judge model, including real people's resumes, and its spend wasn't counted in the run budget.
+
+Evidence and tone are already measured without a model, by the production validator and the report-integrity checks. Its two callers now use the Critical Miss judge:
+
+- `npm run eval -- --with-judge` records an absolute Critical Miss score in each fixture's `judge_result`, for synthetic fixtures and shown (non-FAIL) reports only. The judge's spend counts toward the run's `--budget-usd`.
+- `npm run eval:bulk-analyze` scores Critical Misses only for `--source synthetic`. For HuggingFace and other sources, the judge is off.
+
+The model is fixed in `lib/evals/judge/client.ts`. `OPENAI_JUDGE_MODEL` is no longer read and was removed from the env examples.
+
+**It is not the gauntlet.** The retired gauntlet (`web/gauntlet/`, ended by Matt on August 10, 2026 because its token and review cost outweighed its usefulness) bound 12 blind A/B cases to receipts, seals, critic verdicts and journey captures. This judge keeps one idea from its blind-judgment template, a blind A, B or tie with a rationale, and nothing else. It is a CLI that compares two runs in about a minute for about $0.12. Keep it that way: an added check should be a criterion in the rubric, not a new evidence chain.
 
 ## Running it
 
-Every command is a paid call to `gpt-6.1-sol` and needs `OPENAI_API_KEY`. Each command stops at its spend ceiling (`--budget-usd`, default $1). Run from `web/`.
+Every command makes paid calls (to `gpt-6.1-sol` by default) and needs `OPENAI_API_KEY`. Each command stops at its spend ceiling (`--budget-usd`, default $1). Run from `web/`; from the repository root, `npm run eval:judge -- …` routes to `web/`, and file paths are relative to `web/`.
 
 ```bash
 npm run eval:judge -- compare ../tests/fixtures/results/<production>_live_run.json ../tests/fixtures/results/<candidate>_live_run.json
@@ -24,7 +42,10 @@ npm run eval:judge -- calibrate --set all
 - **score** gives one Critical Miss per fixture an absolute score with a rationale.
 - **calibrate** reruns the calibration sets. Add `--repeat 2` for test-retest, `--ids bp-05,cp-09` for a subset, or `--mode absolute` to score each side alone.
 - `--max-misses 3` judges up to three Critical Misses per report, for a contract that returns more than one. The default is 1, which is what the production report shows.
-- `--effort low|medium|high` changes the judge's reasoning effort. Calibration ran at medium, so treat any other setting as uncalibrated.
+- **self-preference** measures whether a judge favors Critical Misses written by its own model (`--author`, `--judges`).
+- `--model gpt-6-astra` runs the stronger, pricier judge. It calibrated the same as Sol (39 of 40 pairs identical) at about 5.6 times the cost, so Sol is the default. The generator's model is refused.
+- `--effort low|medium|high` changes the judge's reasoning effort, and `--seed` its sampling seed. Calibration ran at medium, so treat any other effort as uncalibrated.
+- `compare` works on any two live_run files, whatever prompt or model produced them, since the judge sees only the reports.
 
 **Only synthetic resumes are sent.** A run file's fixtures are filtered to those tagged `synthetic` with a `synth_` ID and path, and every other fixture is listed as skipped. Real-person smoke and golden fixtures never reach the judge. The guard is code (`isJudgeableFixture`), not a flag, and `npm run test:judge` checks it.
 
@@ -62,8 +83,13 @@ Absolute scores are for spotting bad Critical Misses (vetoes, low stakes, vague 
 
 ## How far to trust it
 
-- Calibration of `critical-miss-judge-v3`: [summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md), with raw outputs in `tests/fixtures/results/judge/`. In short: 5 of Matt's 6 decisive blind picks reproduced and none clearly reversed; 25 of 25 contrast pairs right; identical verdicts on every retest and under a second seed; no side-order flips.
+- Calibration of `critical-miss-judge-v3`: [summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md), with raw outputs in `tests/fixtures/results/judge/`. In short:
+  - 5 of Matt's 6 decisive blind picks reproduced, and none clearly reversed, on both Sol and Astra.
+  - 29 of the 30 contrast pairs right as written. The miss led to a rubric clarification.
+  - Identical verdicts on every retest, including under a second seed.
+  - No side-order flips on Sol.
+  - Self-preference +0.00.
 - **In-sample.** The rubric was written from the same ten blind-pick items the judge was calibrated on, and the contrast pairs were written from the rubric. Agreement shows the judge applies Matt's stated rules consistently; it doesn't yet show it predicts his next pick. Prompt v3's blind pick, judged by Matt and by the judge before anyone sees his answers, is the first held-out test.
 - **Ten items.** One unexplained disagreement moves agreement by 17 points on the six decisive picks.
-- **Same family.** The judge (`gpt-6.1-sol`) and the generator (`gpt-6.1-terra`) are different models from the same vendor and generation, so shared blind spots are possible. A cross-vendor judge would need a key this repository doesn't have.
+- **Same family.** The judge (`gpt-6.1-sol`) and the generator (`gpt-6.1-terra`) are different models from the same vendor and generation, so shared blind spots are possible. The self-preference probe found Sol no more favorable to its own writing than Astra was, on ten items. A cross-vendor judge would need a key this repository doesn't have.
 - **Changing the judge.** A change to `web/lib/evals/judge/prompt.ts` changes `judge_prompt_sha256` in every result. Rerun `calibrate --set all` and compare it against the recorded calibration before trusting results from the new version.

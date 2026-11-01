@@ -1,9 +1,11 @@
 #!/usr/bin/env npx tsx
 /**
- * Bulk Analysis with LLM-as-Judge
+ * Bulk Analysis with the Critical Miss judge
  * 
- * Runs a batch of resumes through the eval pipeline with judge scoring
- * and generates a findings summary for prompt improvement.
+ * Runs a batch of resumes through the eval pipeline and generates a findings
+ * summary for prompt improvement. The Critical Miss judge (lib/evals/judge)
+ * scores synthetic sources only; resumes from other sources (for example
+ * huggingface) are never sent to the judge model.
  * 
  * Usage:
  *   npm run eval:bulk-analyze -- --count 20 --source huggingface
@@ -15,7 +17,7 @@ config({ path: ".env.local" });
 import * as fs from "fs/promises";
 import { existsSync } from "fs";
 import * as path from "path";
-import { runJudge, formatJudgeSummary, type JudgeResult } from "../lib/evals/judge";
+import { DEFAULT_JUDGE_CONFIG, judgeAbsolute, SpendLedger, viewFromReport, type AbsoluteResult } from "../lib/evals/judge";
 import { getChatCompletionTuning, resolveOpenAIModel } from "../lib/llm/model-config";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -24,7 +26,7 @@ const OPENAI_MODEL = resolveOpenAIModel("resume");
 interface AnalysisResult {
     resumeId: string;
     score: number;
-    judgeResult?: JudgeResult;
+    judgeResult?: AbsoluteResult;
     errors: string[];
     warnings: string[];
     topFixTitles: string[];
@@ -92,9 +94,10 @@ async function main() {
             i++;
         } else if (args[i] === "--help") {
             console.log(`
-Bulk Analysis with LLM-as-Judge
+Bulk Analysis with the Critical Miss judge
 
-Runs resumes through eval+judge and generates improvement findings.
+Runs resumes through eval and generates improvement findings. The judge scores
+synthetic sources only.
 
 Usage:
   npm run eval:bulk-analyze -- [options]
@@ -120,13 +123,18 @@ Options:
     const manifest = JSON.parse(await fs.readFile(manifestPath, "utf-8"));
     const resumes = manifest.slice(0, count);
 
-    console.log(`\n🔬 Bulk Analysis with LLM-as-Judge`);
+    // Only synthetic resumes may reach the judge model.
+    const judgeable = source === "synthetic";
+    const judgeLedger = new SpendLedger(Math.max(0.5, resumes.length * 0.02));
+
+    console.log(`\n🔬 Bulk Analysis`);
     console.log(`   Source: ${source}`);
+    console.log(`   Critical Miss judge: ${judgeable ? DEFAULT_JUDGE_CONFIG.model : "off (not a synthetic source)"}`);
     console.log(`   Resumes: ${resumes.length}`);
     console.log(`   Estimated cost: ~$${(resumes.length * 0.05).toFixed(2)}\n`);
 
     const results: AnalysisResult[] = [];
-    const judgeResults: JudgeResult[] = [];
+    const judgeResults: AbsoluteResult[] = [];
     const allIssues: Array<{ type: string; detail: string; resumeId: string }> = [];
     let totalCost = 0;
 
@@ -143,15 +151,27 @@ Options:
             const output = await callAnalysisAPI(resumeText);
             totalCost += 0.025;
 
-            // Run judge
-            const judgeResult = await runJudge({ resumeText, feedbackOutput: output });
-            totalCost += 0.025;
-
-            judgeResults.push(judgeResult);
-
-            // Collect issues
-            for (const issue of judgeResult.issues) {
-                allIssues.push({ ...issue, resumeId: resume.id });
+            // Score the Critical Miss (synthetic sources only)
+            const view = judgeable ? viewFromReport(output) : null;
+            const judgeResult = view
+                ? await judgeAbsolute(
+                    { id: resume.id, resume_text: resumeText, review_date: new Date().toISOString().slice(0, 10) },
+                    view,
+                    { ledger: judgeLedger },
+                )
+                : undefined;
+            if (judgeResult) {
+                totalCost += judgeResult.cost_usd;
+                judgeResults.push(judgeResult);
+                for (const claim of judgeResult.raw.unsupported_claims) {
+                    allIssues.push({ type: "unsupported_claim", detail: claim.quote, resumeId: resume.id });
+                }
+                if (judgeResult.raw.criteria.first_read_stakes.score <= 2) {
+                    allIssues.push({ type: "low_stakes_critical_miss", detail: judgeResult.raw.rationale, resumeId: resume.id });
+                }
+                if (judgeResult.raw.criteria.specific_ask.score <= 2) {
+                    allIssues.push({ type: "vague_critical_miss", detail: judgeResult.raw.criteria.specific_ask.note, resumeId: resume.id });
+                }
             }
 
             results.push({
@@ -184,7 +204,12 @@ Options:
     console.log("=".repeat(60) + "\n");
 
     // Judge summary
-    console.log(formatJudgeSummary(judgeResults));
+    if (judgeResults.length > 0) {
+        const mean = judgeResults.reduce((sum, result) => sum + result.overall, 0) / judgeResults.length;
+        console.log(`## Critical Miss judge (${judgeResults.length} reports)\n`);
+        console.log(`- Right thing to fix first (1-5, veto = 1): ${mean.toFixed(2)} average`);
+        console.log(`- Vetoes (a claim the resume doesn't support): ${judgeResults.filter((result) => result.veto).length}`);
+    }
 
     // Issue analysis
     console.log("\n### Issue Breakdown by Type\n");
@@ -220,19 +245,14 @@ Options:
 
     // Judge score distribution
     if (judgeResults.length > 0) {
-        const avgJudge = judgeResults.reduce((a, b) => a + b.final_score, 0) / judgeResults.length;
-        console.log(`\n### Judge Scores\n`);
-        console.log(`- Average Judge Score: ${avgJudge.toFixed(1)}/10`);
-
-        const lowScores = judgeResults.filter(j => j.final_score < 7);
-        if (lowScores.length > 0) {
-            console.log(`- Low scores (<7): ${lowScores.length} resumes need attention`);
-        }
+        const lowScores = judgeResults.filter((result) => result.overall <= 2);
+        console.log(`\n### Critical Miss judge scores\n`);
+        console.log(`- Scored 1-2 (not the right thing to fix first, or vetoed): ${lowScores.length} of ${judgeResults.length}`);
     }
 
     // Cost summary
     console.log(`\n### Cost Summary\n`);
-    console.log(`- API calls: ${results.length * 2}`);
+    console.log(`- API calls: ${results.length} generation + ${judgeLedger.calls} judge`);
     console.log(`- Estimated cost: $${totalCost.toFixed(2)}`);
 
     // Save results

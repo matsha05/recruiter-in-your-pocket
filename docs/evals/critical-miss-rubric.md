@@ -142,7 +142,7 @@ Sources:
 - S: 40-spec §2.4 requires evidence, the gap, and why it matters to recruiters.
 - E: voice-and-tone line 69: use the candidate's subject matter, not a stock vocabulary about writing.
 
-This criterion breaks ties; it rarely outweighs C1–C4.
+This criterion breaks ties between different fixes of similar stakes; it rarely outweighs C1–C4. It doesn't separate two reports that ask for the same fix on the same line: that is no real difference, however the why is worded (M, finance analyst: "Same critical miss it looks like", where the two whys differed).
 
 ### C7. An honest ask
 
@@ -174,7 +174,7 @@ An unclear professional identity or direction can be a structural Critical Miss,
 
 1. Check both reports against the resume (V). A vetoed report loses clearly. If both are vetoed, there is no real difference.
 2. A report that names a real grounded issue beats "Nothing critical" (C5).
-3. Find what each report asks the person to fix. If both target the same issue or line with comparably useful asks, the result is **no real difference** (M: "Same critical miss it looks like", "Same issue").
+3. Find what each report asks the person to fix. If both target the same issue or line with comparably useful asks, the result is **no real difference** (M: "Same critical miss it looks like", "Same issue"). A better-worded why doesn't change that.
 4. If they target different issues, decide which issue matters more on a first read for this role (C1), applying C2 (fact over move) and C4 (gaps) as the tests of "matters more".
 5. Then compare how well each fix helps (C3, C7), and finally the stated consequence (C6). With several Critical Misses, compare the sets (C8).
 6. Strength: **clear** when a named rule decides it (a veto, fact over move, vague against specific, an open gap with no recent work against a minor line). **Slight** when both are reasonable first fixes and the preference is a judgment call (M: "Both are good though"). Otherwise, no real difference.
@@ -191,10 +191,11 @@ An unclear professional identity or direction can be a structural Critical Miss,
 | 6 | The 40-spec rubric ties readability to "Scannable in 7.4 seconds". The research library treats reading-time figures as vendor data, not a rule. | R wins over an old spec line that isn't Matt's recorded judgment: no Critical Miss rests on a reading-time deadline (C1). |
 | 7 | M's sales executive and HR manager items look alike: the latest role ends in August 2023 with nothing later, the bullets are support work, and a gap fix that gives no help faces a line edit on the recent role. Matt picked the line edit in one and the gap in the other, with no note on the difference. | Inferred, not confirmed. C4's "no help" sub-rule fits both picks: the sales line edit asks for the core of the role on its lead bullet, while the HR line edit asks for one example on a secondary bullet. Judge v1 lacked the sub-rule and missed the sales item clearly. A question for Matt. |
 | 8 | Kristal 2023 (an explanation line did no better than none) suggests an explained break still costs callbacks. M's software engineer pick treats a dated, explained caregiving break as answered on the page. | M wins (C4, "answered on the page"). Inferred from one pick with no note. |
+| 9 | P asks every why to state the recruiter consequence, so a better why could seem to break a tie. M called two reports with the same fix and different whys "Same critical miss". | M wins: identical fixes are no real difference (C6). Contrast pair cp-26 was written the other way and relabeled after both judges disagreed with it; see the calibration summary. |
 
 ## Known limits
 
 - **In-sample.** The rubric was written from the same ten blind-pick items the judge is calibrated on. Agreement there shows the judge can apply Matt's stated rules, not that it predicts his next pick. The next blind pick (prompt v3 against production) is the first held-out test.
 - **One expert, ten items.** Four items have no note. Several rules rest on one or two picks.
 - **The research is mostly about callbacks and attention, not about which fix to make first.** It supports C1 and C4 directly and C2 only weakly. Honesty rules (V, C7) are policy.
-- **Same model family.** The judge runs on `gpt-6.1-sol`; production reports come from `gpt-6.1-terra`. A different model, but the same family and vendor.
+- **Same model family.** The judge runs on `gpt-6.1-sol`; production reports come from `gpt-6.1-terra`: a different model, but the same family and vendor. Measured self-preference was +0.00: Sol favored Critical Misses it wrote itself exactly as often as `gpt-6-astra` did. In normal use both sides come from the same generator, so a family preference can't favor one prompt over the other.

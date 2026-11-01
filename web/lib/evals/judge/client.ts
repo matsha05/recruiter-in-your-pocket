@@ -20,6 +20,9 @@ export const DEFAULT_JUDGE_CONFIG: JudgeConfig = {
 
 export const GENERATOR_MODEL = "gpt-6.1-terra";
 
+/** Judge models with verified pricing in lib/llm/cost.ts. Calibrated results name the model they ran on. */
+export const JUDGE_MODELS = ["gpt-6.1-sol", "gpt-6-astra"];
+
 export class JudgeBudgetError extends Error {}
 
 /** Shared spend tracker: refuses a call once the ceiling is reached. */

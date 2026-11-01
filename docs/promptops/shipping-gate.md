@@ -31,7 +31,7 @@ Before any prompt modification can be merged or deployed:
 |-------|-----------|-------------------|
 | WARN count | < 30% of fixtures | Investigate, document decision |
 | Score drift | ±5 points from baseline | Review and justify |
-| Judge score (the older general judge, `lib/evals/judge.ts`) | > 8.5/10 average | Investigate regressions |
+| Judge score (retired whole-report judge; historical only) | n/a | Replaced by the Critical Miss judge below |
 | Critical Miss judge (`npm run eval:judge -- compare`) | Reported, not gated (see below) | Read every clear production preference and every veto |
 
 ### Report integrity (reported, not gated)
@@ -73,7 +73,7 @@ These counts improved, but Matt's blind pick did not. Details are under "Critica
 
 ### Critical Miss judge (reported, not gated)
 
-An automated judge (`npm run eval:judge`, `web/lib/evals/judge/`) asks the question Matt's blind pick asks: of two reports on the same synthetic resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](../evals/critical-miss-rubric.md) on `gpt-6.1-sol`, a different model from the `gpt-6.1-terra` generator. It runs each comparison in both side orders and counts disagreement as a tie. It sends only synthetic fixtures. How to run and read it: [critical-miss-judge.md](../evals/critical-miss-judge.md).
+An automated judge (`npm run eval:judge`, `web/lib/evals/judge/`) asks the question Matt's blind pick asks: of two reports on the same synthetic resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](../evals/critical-miss-rubric.md) on `gpt-6.1-sol`, a different model from the `gpt-6.1-terra` generator. It runs each comparison in both side orders and counts disagreement as a tie. It sends only synthetic fixtures. It replaces the earlier whole-report judge, whose 9.1/10 was uncalibrated and near the ceiling. How to run and read it: [critical-miss-judge.md](../evals/critical-miss-judge.md).
 
 For a prompt or model change, run `compare` with production as the first run file and the candidate second, and report:
 
@@ -84,8 +84,9 @@ For a prompt or model change, run `compare` with production as the first run fil
 Calibration of judge `critical-miss-judge-v3` ([summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md)):
 
 - Matt's blind pick: 5 of his 6 decisive picks reproduced, and none clearly reversed. The one miss is a slight preference on the item he marked "Both are good though".
-- 25 of 25 fictional contrast pairs right, each isolating one rubric rule.
-- Same verdicts on every retest, including under a different seed; 0 of 89 pair-runs changed with side order.
+- 29 of 30 fictional contrast pairs right as written, each isolating one rubric rule. The miss (identical fixes with different whys) was resolved in the rubric following Matt's "Same critical miss" note.
+- Same verdicts on every retest, including under a different seed; 0 of 104 pair-runs changed with side order.
+- `gpt-6-astra` calibrated the same (39 of 40 pairs identical) at about 5.6 times the cost. Self-preference was +0.00.
 - On the two live runs behind the blind pick, it preferred production 6 to 2 with 1 tie, the same direction as Matt's 5 to 1.
 
 These numbers are in-sample: the rubric was refined on the same ten items. The judge does not change PASS/WARN/FAIL. Whether it gates, and at what bar, is Matt's decision. Prompt v3's blind pick is the first held-out check: record the judge's verdicts before his picks are revealed.
@@ -132,7 +133,7 @@ If shipping with known WARNs, add a comment to the PR:
 | Historical PASS | 1 |
 | Historical WARN | 15 |
 | Historical FAIL | 1 (E_BANNED_PHRASE) |
-| Historical judge score | 9.1/10 (50-sample bulk run) |
+| Historical judge score (retired whole-report judge) | 9.1/10 (50-sample bulk run) |
 
 Baseline files:
 - `tests/fixtures/baselines/v2_baseline.json`

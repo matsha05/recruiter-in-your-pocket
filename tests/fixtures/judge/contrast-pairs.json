@@ -854,6 +854,177 @@
           }
         ]
       }
+    },
+    {
+      "id": "cp-26",
+      "rule": "tie_control",
+      "expected": "tie",
+      "added": "v3",
+      "note": "The same fix on the same line; only the why differs. Identical fixes are no real difference (rubric C6 and Deciding step 3; Matt, bp-06: \"Same critical miss it looks like\").",
+      "resume_text": "Wendell Park\nSeattle, WA\n\nExperience\n\nSecurity Engineer\nCascade Payments, Seattle, WA\nApr 2021 - Present\n- Run the vulnerability management program for the payments platform\n- Built detection rules for suspicious login activity in the SIEM\n- Partner with engineering teams on threat modeling for new services\n\nIT Support Specialist\nEvergreen Credit Union, Tacoma, WA\nJun 2017 - Mar 2021\n- Resolved help desk tickets for 300 employees\n- Managed laptop imaging and access requests\n\nEducation\nBS Information Technology, Western Washington University\n\nCertifications\nCISSP (2023)",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from IT support into security engineering at Cascade. The vulnerability program bullet doesn't say how big it is or what it changed.",
+        "misses": [
+          {
+            "fix": "In the vulnerability management bullet, add how many systems the program covers and how fast critical findings get fixed, if you can verify them.",
+            "why": "Adding these details would make the bullet more specific.",
+            "resume_lines": [
+              "- Run the vulnerability management program for the payments platform"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You moved from IT support into security engineering at Cascade. The vulnerability program bullet doesn't say how big it is or what it changed.",
+        "misses": [
+          {
+            "fix": "In the vulnerability management bullet, add how many systems the program covers and how fast critical findings get fixed, if you can verify them.",
+            "why": "A security hiring manager wants to know whether you ran a program for a few servers or a whole payments platform, and whether critical issues actually close; without that, the program reads as a title rather than results.",
+            "resume_lines": [
+              "- Run the vulnerability management program for the payments platform"
+            ]
+          }
+        ]
+      },
+      "relabeled": "Written to test C6 as a tie-breaker with expected B. Both judges, on every run, said no real difference because the fix is identical. Relabeled to a tie after the v3 runs, when the rubric was clarified to match Matt's bp-06; the v3 calibration counts it as a miss under the original label."
+    },
+    {
+      "id": "cp-27",
+      "rule": "C7_honest_ask",
+      "expected": "A",
+      "added": "v3",
+      "note": "Same line; asking for verifiable figures beats telling the person to estimate a number if they don't know it.",
+      "resume_text": "Ximena Duarte\nSan Antonio, TX\n\nExperience\n\nEvent Marketing Manager\nAlamo Conference Center, San Antonio, TX\nMar 2020 - Present\n- Plan and market the center's annual trade show season\n- Manage sponsor packages and exhibitor sales with the sales team\n- Run email and social promotion for each event\n\nEvents Coordinator\nRiverwalk Hotels Group, San Antonio, TX\nJul 2016 - Feb 2020\n- Coordinated weddings and corporate events for two hotels\n\nEducation\nBA Marketing, University of Texas at San Antonio",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You run marketing for the center's trade show season. The sponsor bullet doesn't say what the packages brought in.",
+        "misses": [
+          {
+            "fix": "In the sponsor packages bullet, add the sponsorship revenue or the number of sponsors you signed, using figures you can verify from your records.",
+            "why": "An events director sizes this role by the revenue and exhibitors it brings in; the bullet shows the work but not its scale.",
+            "resume_lines": [
+              "- Manage sponsor packages and exhibitor sales with the sales team"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You run marketing for the center's trade show season. The sponsor bullet doesn't say what the packages brought in.",
+        "misses": [
+          {
+            "fix": "In the sponsor packages bullet, add the sponsorship revenue; if you don't know it, estimate a round number that sounds right.",
+            "why": "An events director sizes this role by the revenue it brings in, and any number reads better than none.",
+            "resume_lines": [
+              "- Manage sponsor packages and exhibitor sales with the sales team"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-28",
+      "rule": "not_a_critical_miss",
+      "expected": "B",
+      "added": "v3",
+      "note": "'Add keywords so the ATS doesn't reject you' is not a Critical Miss; a concrete gap in current work is.",
+      "resume_text": "Yusuf Haddad\nDetroit, MI\n\nExperience\n\nQuality Engineer\nGreatLakes Axle Co., Detroit, MI\nJan 2021 - Present\n- Lead root-cause investigations for customer quality complaints\n- Introduced a layered process audit on the gear machining line\n- Maintain control plans and PFMEAs for two product families\n\nQuality Technician\nGreatLakes Axle Co., Detroit, MI\nAug 2017 - Dec 2020\n- Performed CMM inspections and first-article reports\n\nEducation\nBS Mechanical Engineering, Wayne State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You've moved from technician to quality engineer at GreatLakes. The resume doesn't repeat common quality keywords.",
+        "misses": [
+          {
+            "fix": "Add keywords such as Six Sigma, 8D and APQP throughout the resume so applicant tracking systems don't reject it.",
+            "why": "Applicant tracking systems filter out resumes that are missing the right keywords.",
+            "resume_lines": [
+              "- Lead root-cause investigations for customer quality complaints"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You've moved from technician to quality engineer at GreatLakes. The layered process audit bullet doesn't say what it changed.",
+        "misses": [
+          {
+            "fix": "In the layered process audit bullet, add what changed on the gear machining line after you introduced it, such as scrap, defects or complaints, if you can verify it.",
+            "why": "A quality manager hires for problems you've actually reduced; the audit shows initiative but not whether quality improved.",
+            "resume_lines": [
+              "- Introduced a layered process audit on the gear machining line"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-29",
+      "rule": "not_a_critical_miss",
+      "expected": "A",
+      "added": "v3",
+      "note": "A single typo is not the thing to fix first when the current role's main responsibility has no scale.",
+      "resume_text": "Zara Whitfield\nRaleigh, NC\n\nExperience\n\nProcurement Manager\nTriangle BioPharma, Raleigh, NC\nMay 2020 - Present\n- Manage indirect procurement for lab supplies and facilities services\n- Negotiated a three-year lab supply agreement that consolidated four vendors into one\n- Run the quarterly supplier performance reveiw\n\nBuyer\nTriangle BioPharma, Raleigh, NC\nJun 2016 - Apr 2020\n- Placed purchase orders for lab consumables\n\nEducation\nBS Business Administration, NC State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You consolidated four lab suppliers into one agreement at Triangle. The procurement you manage has no size.",
+        "misses": [
+          {
+            "fix": "In the indirect procurement bullet, add the annual spend you manage and the number of suppliers, if you can verify them.",
+            "why": "A procurement director sizes a manager by the spend under management; without it, the vendor consolidation is hard to weigh.",
+            "resume_lines": [
+              "- Manage indirect procurement for lab supplies and facilities services"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You consolidated four lab suppliers into one agreement at Triangle. One bullet has a spelling error.",
+        "misses": [
+          {
+            "fix": "Correct 'reveiw' to 'review' in the supplier performance bullet.",
+            "why": "Spelling errors can make a reader doubt your attention to detail.",
+            "resume_lines": [
+              "- Run the quarterly supplier performance reveiw"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-30",
+      "rule": "C1_first_read_stakes",
+      "expected": "B",
+      "added": "v3",
+      "note": "A pattern across the latest role (a director title over bullets that all read as support) outranks adding a detail to the one strong bullet.",
+      "resume_text": "Abel Okonkwo\nColumbus, OH\n\nExperience\n\nDirector of Customer Support\nBrightpath Insurance, Columbus, OH\nFeb 2021 - Present\n- Helped with support team scheduling and coverage\n- Assisted in rolling out the new ticketing system\n- Supported escalations from policyholders\n- Contributed to raising customer satisfaction from 82% to 90% in 2023\n\nSupport Team Lead\nBrightpath Insurance, Columbus, OH\nMay 2016 - Jan 2021\n- Led a team of 12 phone support agents\n- Wrote the call-handling guide used for new hires\n\nEducation\nBA Communication, Ohio State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You've led support at Brightpath since 2016, and customer satisfaction rose from 82% to 90% in 2023. That bullet doesn't say what you did to raise it.",
+        "misses": [
+          {
+            "fix": "In the customer satisfaction bullet, name the change you made that contributed to the rise, if you can verify it.",
+            "why": "A hiring manager wants to know your part in the result.",
+            "resume_lines": [
+              "- Contributed to raising customer satisfaction from 82% to 90% in 2023"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your title is Director of Customer Support, but every bullet in that role says helped, assisted, supported or contributed, so a reader can't tell what you ran.",
+        "misses": [
+          {
+            "fix": "In the director role, name what you own: the size of the support organization, the budget if you hold one, and which programs, such as the ticketing rollout, you led yourself, if you can verify them.",
+            "why": "A support leader is hired to run an organization; under a director title, support verbs throughout make the role read like a team lead's, and your earlier role shows a team of 12 that the director role never sizes.",
+            "resume_lines": [
+              "Director of Customer Support"
+            ]
+          }
+        ]
+      }
     }
   ]
 }
