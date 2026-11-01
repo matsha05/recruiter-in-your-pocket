@@ -16,30 +16,27 @@
 }
 
 .title {
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 5vw, 3rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.04em;
-    line-height: 1;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
 }
 
 .deck {
     margin-top: 0.75rem;
     color: hsl(var(--muted-foreground));
-    font-size: 1.0625rem;
+    font: var(--type-body);
 }
 
 .textLink {
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
-    font-size: 0.9375rem;
-    font-weight: 600;
     text-decoration: underline;
     text-decoration-color: hsl(var(--link-line));
     text-decoration-thickness: var(--link-thickness);
     text-underline-offset: var(--link-offset);
     transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .textLink:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
@@ -58,10 +55,10 @@
     min-height: 2.5rem;
     border-radius: 999px;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    font-weight: 600;
     padding: 0 1rem;
     transition: background-color var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .filter:hover { color: hsl(var(--text-strong)); }
@@ -82,10 +79,8 @@
 }
 
 .sheetTitle {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: var(--weight-heading);
-    letter-spacing: -0.02em;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
 }
 
 .notes {
@@ -95,12 +90,11 @@
 }
 
 .note {
-    /* What keeps coming up is the red pen; what keeps working is the green pen. Yellow stays the Critical Miss. */
+    /* What keeps coming up is the red pen;
+    what keeps working is the green pen. Yellow stays the Critical Miss. */
     border-left: 2px solid hsl(var(--red-pen) / 0.7);
     padding-left: 0.875rem;
-    font-family: var(--font-editorial);
-    font-size: 1rem;
-    line-height: 1.5;
+    font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
 }
 
 .noteKeep { border-left-color: hsl(var(--pen)); }
@@ -109,13 +103,14 @@
     margin-top: 0.25rem;
     padding-left: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.8125rem;
+    font: var(--type-label);
+    font-weight: var(--weight-body);
 }
 
 .empty {
     margin-top: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.9375rem;
+    font: var(--type-small);
 }
 
 .scoresHeader {
@@ -126,7 +121,7 @@
     gap: 0.5rem 1.5rem;
 }
 
-.movement { color: hsl(var(--text-strong)); font-size: 0.9375rem; font-weight: 600; }
+.movement { color: hsl(var(--text-strong)); font: var(--type-small); font-weight: var(--weight-control); }
 
 .timeline {
     display: grid;
@@ -140,7 +135,7 @@
     align-items: center;
     gap: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
+    font: var(--type-small);
 }
 
 .pointLatest { color: hsl(var(--text-strong)); font-weight: 600; }
@@ -154,10 +149,9 @@
 .pointDate {
     display: block;
     color: hsl(var(--muted-foreground));
-    font-size: 0.8125rem;
-    font-weight: 400;
+    font: var(--type-label);
+    font-weight: var(--weight-body);
 }
-
 
 .track {
     overflow: hidden;
@@ -177,17 +171,17 @@
 .pointLatest .track span { background: hsl(var(--chart-1)); }
 
 .pointScore {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-variant-numeric: tabular-nums;
-    font-weight: 700;
     text-align: right;
+    font: var(--type-body);
+    font-weight: var(--weight-display);
+    font-variant-numeric: tabular-nums;
 }
 
 .footnote {
     margin-top: 1.25rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.8125rem;
+    font: var(--type-label);
+    font-weight: var(--weight-body);
 }
 
 .state {
@@ -198,18 +192,14 @@
 }
 
 .stateTitle {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.04em;
-    line-height: 1.05;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
 }
 
 .stateBody {
     margin-top: 1rem;
     color: hsl(var(--muted-foreground));
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font: var(--type-body);
 }
 
 .stateActions {
@@ -222,7 +212,7 @@
 
 .skeletonTitle,
 .skeletonLine {
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     background: hsl(var(--secondary));
 }
 

@@ -147,9 +147,9 @@ export function LinkedInInputPanel({
             <div className="flex items-center justify-between gap-5 border-b border-[hsl(var(--paper-line))] bg-paper-muted px-6 py-4 md:px-8">
                 <div className="flex items-center gap-3">
                     <span className="flex size-7 items-center justify-center border border-ink font-display text-sm text-ink">in</span>
-                    <span className="text-[10px] font-semibold uppercase riyp-track-010 text-ink">Profile source</span>
+                    <span className="text-xs font-semibold uppercase riyp-track-010 text-ink">Profile source</span>
                 </div>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-brand">LinkedIn / 01</span>
+                <span className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-brand">LinkedIn / 01</span>
             </div>
             <div className="grid min-h-[20rem] content-start gap-y-6 p-6 md:gap-y-7 md:p-8">
                 <input
@@ -174,12 +174,12 @@ export function LinkedInInputPanel({
                             </div>
                             <Button
                                 ref={chooseButtonRef}
-                                variant="brand"
+                                variant="primary"
                                 size="sm"
                                 onClick={openFileDialog}
                                 disabled={isLoading}
-                                className="min-h-11 min-w-[6.5rem] px-4"
-                            >
+                                className="min-w-[6.5rem]"
+                           >
                                 Select file
                             </Button>
                         </div>
@@ -241,12 +241,12 @@ export function LinkedInInputPanel({
                         </span>
                         <Button
                             ref={removeButtonRef}
-                            variant="ghost"
+                            variant="quiet"
                             size="sm"
-                            className="min-h-11 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                            className="text-muted-foreground hover:text-destructive"
                             onClick={handleRemoveFile}
                             disabled={isLoading}
-                        >
+                       >
                             Remove
                         </Button>
                     </div>
@@ -284,14 +284,13 @@ export function LinkedInInputPanel({
 
             <div className="border-t border-[hsl(var(--paper-line))] bg-paper-muted p-6 md:p-8">
                 <Button
-                    variant="brand"
-                    size="lg"
-                    className="h-12 w-full text-base font-medium disabled:opacity-75"
+                    variant="primary"
+                    className="w-full"
                     onClick={handlePdfRun}
                     disabled={!canSubmitPdf}
                     isLoading={isLoading}
                     loadingLabel="Creating your report…"
-                >
+               >
                     <span className="flex items-center gap-2">
                         Get my report <ArrowRight className="size-4" />
                     </span>

@@ -34,7 +34,7 @@ export function SkillsPromiseRealityDiagram({ figureNumber = 1 }: { figureNumber
                         </PenNote>
                     </div>
                 </div>
-                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
                     The report rounds these shares, so the grid shows them to the nearest firm.
                 </p>
             </DiagramFrame>

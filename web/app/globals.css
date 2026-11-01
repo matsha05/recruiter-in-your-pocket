@@ -146,12 +146,57 @@
     --font-display: var(--font-brand-sans);
     --font-body: var(--font-brand-sans);
     --font-mono: var(--font-brand-sans);
+    /* Three weights only: 800 for headlines, 600 for headings and controls, 400 for reading. */
     --weight-display: 800;
-    --weight-heading: 700;
+    --weight-heading: 800;
     --weight-title: 600;
     --weight-body: 400;
     --weight-control: 600;
     --weight-label: 600;
+
+    /* Type roles (Highlighter 1.1, Nov 1, 2026). Every size on the site is one of these, in whole pixels.
+       Headline tiers: marketing 72 (display), content 48 (headline), app 32 (title). Phone steps are set
+       below; Tailwind's text-* keys in tailwind.config.js all resolve to these variables. */
+    --type-display-size: 2.75rem;
+    --type-display-leading: 2.75rem;
+    --type-headline-size: 2.25rem;
+    --type-headline-leading: 2.5rem;
+    /* Literata's tall ascenders need more room when a headline is set in the recruiter's voice. */
+    --type-headline-serif-leading: 2.75rem;
+    --type-title-size: 1.75rem;
+    --type-title-leading: 2.125rem;
+    --type-heading-size: 1.5rem;
+    --type-heading-leading: 1.875rem;
+    --type-lead-size: 1.125rem;
+    --type-lead-leading: 1.875rem;
+    --type-prose-size: 1.125rem;
+    --type-prose-leading: 1.875rem;
+    --type-body-size: 1rem;
+    --type-body-leading: 1.5625rem;
+    --type-small-size: 0.875rem;
+    --type-small-leading: 1.375rem;
+    --type-label-size: 0.8125rem;
+    --type-label-leading: 1.125rem;
+    --type-verdict-size: 1.25rem;
+    --type-verdict-leading: 1.875rem;
+    --type-note-size: 1rem;
+    --type-note-leading: 1.5625rem;
+    /* Shorthands for CSS modules: `font: var(--type-body)`. Add letter-spacing from the role table. */
+    --type-display: var(--weight-display) var(--type-display-size) / var(--type-display-leading) var(--font-display);
+    --type-headline: var(--weight-display) var(--type-headline-size) / var(--type-headline-leading) var(--font-display);
+    --type-title: var(--weight-display) var(--type-title-size) / var(--type-title-leading) var(--font-display);
+    --type-heading: var(--weight-title) var(--type-heading-size) / var(--type-heading-leading) var(--font-display);
+    --type-lead: var(--weight-body) var(--type-lead-size) / var(--type-lead-leading) var(--font-body);
+    --type-prose: var(--weight-body) var(--type-prose-size) / var(--type-prose-leading) var(--font-body);
+    --type-body: var(--weight-body) var(--type-body-size) / var(--type-body-leading) var(--font-body);
+    --type-small: var(--weight-body) var(--type-small-size) / var(--type-small-leading) var(--font-body);
+    --type-label: var(--weight-label) var(--type-label-size) / var(--type-label-leading) var(--font-body);
+    --type-verdict: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
+    --type-note: italic var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
+    --tracking-display: -0.045em;
+    --tracking-headline: -0.04em;
+    --tracking-title: -0.03em;
+    --tracking-heading: -0.02em;
 
     /* Accessible state surfaces and shared sheet geometry. */
     --success-surface: 144.000 31.250% 93.725%;
@@ -291,6 +336,30 @@
     --destructive-surface: 4.000 28.846% 20.392%;
     --disabled-surface: 170.000 6.818% 17.255%;
   }
+
+  /* Type role steps: phones first, then tablets and up. Display gets a third step at 1280px, where the
+     homepage hero has room for it beside the illustration. */
+  @media (min-width: 768px) {
+    :root {
+      --type-display-size: 4rem;
+      --type-display-leading: 4rem;
+      --type-headline-size: 3rem;
+      --type-headline-leading: 3.25rem;
+      --type-headline-serif-leading: 3.625rem;
+      --type-title-size: 2rem;
+      --type-title-leading: 2.375rem;
+      --type-lead-size: 1.25rem;
+      --type-verdict-size: 1.5rem;
+      --type-verdict-leading: 2.125rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --type-display-size: 4.5rem;
+      --type-display-leading: 4.5rem;
+    }
+  }
 }
 
 /* ==========================================================================
@@ -303,19 +372,6 @@
   overflow-x: clip;
   background: hsl(var(--surface-page));
   color: hsl(var(--text-strong));
-}
-
-.landing-page .text-teal-800,
-.landing-page .text-teal-900 {
-  color: hsl(var(--brand)) !important;
-}
-
-.landing-page .border-teal-800 {
-  border-color: hsl(var(--brand)) !important;
-}
-
-.landing-page .bg-teal-800 {
-  background-color: hsl(var(--brand)) !important;
 }
 
 @layer base {
@@ -360,63 +416,43 @@
     @apply tracking-tight text-foreground;
   }
 
-  h1 {
-    font-weight: 400;
+  /* Bold inside running text and table headers is the 600 heading weight, not the browser's 700. */
+  strong,
+  b,
+  th {
+    font-weight: var(--weight-title);
   }
 
+  /* Unstyled headings default to the heading weight; type roles set their own. */
+  h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 500;
+    font-weight: var(--weight-title);
   }
 }
 
 @layer utilities {
 
+  /* The recruiter's voice: the two Literata roles carry their family (and the note its italic). */
+  .text-verdict {
+    font-family: var(--font-editorial);
+  }
+
+  .text-note {
+    font-family: var(--font-editorial);
+    font-style: italic;
+  }
+
   .font-display {
     font-feature-settings: normal;
-  }
-
-  .riyp-marker {
-    position: relative;
-    z-index: 0;
-    display: inline-block;
-    isolation: isolate;
-  }
-
-  .riyp-marker::after {
-    position: absolute;
-    right: -0.06em;
-    bottom: 0.015em;
-    left: -0.06em;
-    z-index: -1;
-    height: 0.36em;
-    background-image: url("/assets/brand/citron-marker-shallow-v3.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    content: "";
-    pointer-events: none;
-  }
-
-  .riyp-marker-block::after {
-    right: -0.19em;
-    bottom: -0.045em;
-    left: -0.24em;
-    height: 1.08em;
-    background-image: url("/assets/brand/citron-marker-bold-v3.webp");
   }
 
   /* Schibsted Grotesk's tabular figures also widen punctuation, so text labels keep proportional spacing. */
   .riyp-tabular-label {
     font-family: var(--font-body);
-  }
-
-  .workspace-first-read-title {
-    font-size: clamp(2.65rem, 6vw, 4.45rem);
-    line-height: 0.98;
   }
 
   .workspace-product-shell {
@@ -443,186 +479,38 @@
     }
   }
 
-  .workspace-first-read-panel {
-    max-width: 49rem;
-  }
-
-  .workspace-upload-drop {
-    min-height: 16rem;
-  }
-
   .workspace-role-toggle {
     min-height: 4.5rem;
   }
 
-  .workspace-error-file {
-    max-width: 30rem;
-  }
-
-  .workspace-error-action {
-    min-height: 3.25rem;
-    padding-inline: 2rem;
-    font-size: 1rem;
-  }
-
-  .exception-page-title {
-    max-width: 12ch;
-    font-size: clamp(3.25rem, 7vw, 6.4rem);
-    line-height: 0.93;
-    letter-spacing: -0.055em;
-  }
-
-  .launch-command-title {
-    max-width: 14ch;
-    font-size: clamp(2.75rem, 6vw, 5rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-  }
-
-  .analysis-shell {
-    max-width: 59.75rem;
-  }
-
-  .analysis-title {
-    max-width: 12ch;
-    font-size: clamp(2.7rem, 6vw, 4rem);
-    line-height: 0.94;
-  }
-
-  .analysis-review-row {
-    min-height: 4.875rem;
-  }
-
-  .report-layout-shell {
-    max-width: 82rem;
-  }
-
-  .report-opening-title {
-    max-width: 15ch;
-    font-size: clamp(2.75rem, 6.5vw, 5.2rem);
-    line-height: 0.94;
-  }
-
-  .report-evidence-tile {
-    min-height: 12.5rem;
-  }
-
-  .pricing-beta-page {
-    padding-top: 9.5rem;
-  }
-
-  .pricing-rail {
-    max-width: 70rem;
-  }
-
-  .pricing-hero-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pricing-price {
-    font-size: 3.5rem;
-    line-height: 1;
-  }
-
-  .pricing-primary-cta {
-    min-height: 3.25rem;
-    padding-inline: 1.5rem;
-    font-size: 1rem;
-  }
-
-  .pricing-disabled-cta {
-    min-height: 3.25rem;
-    padding-inline: 1.5rem;
-    font-size: 0.875rem;
-  }
-
-  /* Legacy display weights, remapped to the Highlighter scale (Schibsted Grotesk headings sit at 700-800). */
-  .riyp-weight-520 { font-weight: 700; }
-  .riyp-weight-540 { font-weight: 700; }
-  .riyp-weight-560 { font-weight: 700; }
-  .riyp-weight-620 { font-weight: 800; }
-  .riyp-stretch-86 { font-stretch: 86%; }
-  .riyp-stretch-88 { font-stretch: 88%; }
-  .riyp-stretch-90 { font-stretch: 90%; }
-  .riyp-stretch-91 { font-stretch: 91%; }
-  .riyp-stretch-92 { font-stretch: 92%; }
-  .riyp-stretch-94 { font-stretch: 94%; }
-  .riyp-stretch-96 { font-stretch: 96%; }
-  .riyp-stretch-98 { font-stretch: 98%; }
+  /* Deprecated (Highlighter 1.1): legacy type utilities kept only for the LinkedIn panel and internal launch pages.
+     Each resolves to a role; the guardrail keeps their use from growing. Schibsted has no width axis, so the old
+     stretch classes are gone. */
+  .riyp-weight-520,
+  .riyp-weight-560 { font-weight: var(--weight-title); }
 
   /* Editorial type and evidence tokens shared by landing, research, and reports. */
   .riyp-border-paper-line { border-color: hsl(var(--paper-line)); }
   .riyp-divide-paper-line > :not([hidden]) ~ :not([hidden]) { border-color: hsl(var(--paper-line)); }
-  .riyp-border-ink-line { border-color: hsl(var(--ink-line)); }
-  .riyp-border-cream { border-color: hsl(var(--cream)); }
-  .riyp-border-brass { border-color: hsl(var(--brass)); }
-  .riyp-bg-annotation { background-color: hsl(var(--annotation)); }
-  .riyp-bg-sky { background-color: hsl(var(--sky)); }
-  .riyp-bg-cream { background-color: hsl(var(--cream)); }
-  .riyp-bg-brass { background-color: hsl(var(--brass)); }
-  .riyp-bg-paper-muted { background-color: hsl(var(--paper-muted)); }
   .riyp-text-annotation { color: hsl(var(--annotation)); }
-  .riyp-text-cream { color: hsl(var(--cream)); }
-  .riyp-text-teal-bright { color: hsl(var(--teal-bright)); }
-  .riyp-text-brass { color: hsl(var(--brass)); }
-  .riyp-type-0625 { font-size: 0.75rem; }
-  .riyp-type-095 { font-size: 0.95rem; }
-  .riyp-type-102 { font-size: 1.02rem; }
-  .riyp-type-105 { font-size: 1.05rem; }
-  .riyp-type-108 { font-size: 1.08rem; }
-  .riyp-type-135 { font-size: 1.35rem; }
-  .riyp-type-165 { font-size: 1.65rem; }
-  .riyp-type-200 { font-size: 2rem; }
-  .riyp-type-10px { font-size: 10px; }
-  .riyp-type-11px { font-size: 11px; }
-  .riyp-type-15px { font-size: 15px; }
+  .riyp-type-0625,
+  .riyp-type-10px,
+  .riyp-type-11px { font-size: var(--type-label-size); line-height: var(--type-label-leading); }
 
-  .riyp-track-003 { letter-spacing: 0.03em; }
-  .riyp-track-008 { letter-spacing: 0.08em; }
   .riyp-track-010 { letter-spacing: 0.1em; }
   .riyp-track-012 { letter-spacing: 0.12em; }
   .riyp-track-014 { letter-spacing: 0.14em; }
   .riyp-track-015 { letter-spacing: 0.15em; }
   .riyp-track-016 { letter-spacing: 0.16em; }
   .riyp-track-017 { letter-spacing: 0.17em; }
-  .riyp-track-018 { letter-spacing: 0.18em; }
-  .riyp-track-020 { letter-spacing: 0.2em; }
   .riyp-track-n025 { letter-spacing: -0.025em; }
   .riyp-track-n03 { letter-spacing: -0.03em; }
-  .riyp-track-n035 { letter-spacing: -0.035em; }
   .riyp-track-n04 { letter-spacing: -0.04em; }
-  .riyp-track-n045 { letter-spacing: -0.045em; }
-  .riyp-track-n048 { letter-spacing: -0.048em; }
-  .riyp-track-n05 { letter-spacing: -0.05em; }
-  .riyp-track-n055 { letter-spacing: -0.055em; }
-  .riyp-leading-094 { line-height: 0.94; }
 
-  .riyp-leading-089 { line-height: 0.89; }
-  .riyp-leading-091 { line-height: 0.91; }
-  .riyp-leading-094 { line-height: 0.94; }
-  .riyp-leading-095 { line-height: 0.95; }
-  .riyp-leading-096 { line-height: 0.96; }
-  .riyp-leading-098 { line-height: 0.98; }
-  .riyp-leading-101 { line-height: 1.01; }
-  .riyp-leading-102 { line-height: 1.02; }
-  .riyp-leading-104 { line-height: 1.04; }
-  .riyp-leading-108 { line-height: 1.08; }
-  .riyp-leading-112 { line-height: 1.12; }
 
-  .riyp-display-hero-landing { font-size: clamp(3.7rem, 8vw, 7.5rem); }
-  .riyp-display-hero-research { font-size: clamp(3rem, 7.6vw, 7.6rem); }
-  .riyp-display-article { font-size: clamp(3.2rem, 7vw, 6.7rem); }
-  .riyp-display-section-xl { font-size: clamp(3rem, 6.6vw, 6.2rem); }
-  .riyp-display-section-lg { font-size: clamp(2.7rem, 5vw, 4.8rem); }
-  .riyp-display-section { font-size: clamp(2.3rem, 5vw, 4.6rem); }
-  .riyp-display-section-md { font-size: clamp(2.25rem, 4vw, 3.5rem); }
-  .riyp-display-card { font-size: clamp(2.2rem, 4vw, 3.6rem); }
-  .riyp-display-rewrite { font-size: clamp(2rem, 4vw, 3.5rem); }
-  .riyp-display-report { font-size: clamp(2.4rem, 5vw, 4.8rem); }
-  .riyp-display-report-section { font-size: clamp(1.9rem, 3.6vw, 3.25rem); }
-  .riyp-display-report-quote { font-size: clamp(1.8rem, 3vw, 2.6rem); }
-
-  .riyp-ml-rail { margin-left: 7rem; }
+  .riyp-display-report { font-size: var(--type-headline-size); line-height: var(--type-headline-leading); }
+  .riyp-display-report-section { font-size: var(--type-title-size); line-height: var(--type-title-leading); }
+  .riyp-display-report-quote { font-size: var(--type-heading-size); line-height: var(--type-heading-leading); }
 
   /* Accessibility: raise contrast on heavily used utility colors in light mode. */
   :root .text-slate-400 {
@@ -658,111 +546,22 @@
   }
 
   .riyp-figure-kicker {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    line-height: 1.25rem;
-    font-weight: 600;
+    font: var(--type-label);
     color: hsl(var(--muted-foreground));
   }
 
   .research-h2 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: var(--weight-heading);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
     color: hsl(var(--foreground));
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
 
   .research-body {
-    font-size: 1.125rem;
-    line-height: 1.875rem;
+    font-size: var(--type-prose-size);
+    line-height: var(--type-prose-leading);
     color: hsl(var(--foreground));
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* ==========================================================================
-     ALPINE TYPOGRAPHY SYSTEM
-     - Schibsted Grotesk: headlines (800), interface, body, controls, tabular metrics
-     - Literata: the recruiter's voice (Verdict, margin notes in italic, quoted lines)
-     ========================================================================== */
-
-  /* Display: Verdicts (largest, lightest) */
-  .text-verdict {
-    font-family: var(--font-editorial);
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 2.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  /* Display: Hero (landing pages) */
-  .text-hero {
-    font-family: var(--font-display);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-  }
-
-  /* Display: Headlines */
-  .text-headline {
-    font-family: var(--font-display);
-    font-weight: var(--weight-heading);
-    font-size: 2rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  /* Display: Section Titles */
-  .text-title {
-    font-family: var(--font-display);
-    font-weight: var(--weight-title);
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-
-  /* Interface: Body Copy */
-  .text-body {
-    @apply font-sans text-base;
-  }
-
-  /* Interface: Memo (slightly larger body) */
-  .text-memo {
-    @apply font-sans text-base text-foreground;
-  }
-
-  /* Interface: Caption */
-  .text-caption {
-    @apply font-sans text-[0.8125rem] font-medium leading-normal;
-  }
-
-  /* Interface: UI Labels (uppercase) */
-  .text-label {
-    @apply font-sans text-xs font-semibold leading-[18px];
-  }
-
-  /* Data: Large Metrics (scores) */
-  .text-metric {
-    font-family: var(--font-mono);
-    font-weight: 500;
-    font-size: 2.5rem;
-    line-height: 1;
-    font-feature-settings: "tnum";
-  }
-
-  /* Data: Code/Mono */
-  .text-code {
-    @apply font-mono text-[0.8125rem] leading-normal;
   }
 
   /* ==========================================================================
@@ -782,58 +581,13 @@
     background-color: hsl(var(--paper-muted));
   }
 
-  .bg-ink {
-    background-color: hsl(var(--surface-inverted));
-  }
-
   .text-brand-strong {
     color: hsl(var(--brand));
   }
 
   .editorial-kicker {
-    font-size: 0.8125rem;
-    line-height: 1.125rem;
-    font-weight: 600;
+    font: var(--type-label);
     color: hsl(var(--muted-foreground));
-  }
-
-  .editorial-kicker-strong {
-    color: hsl(var(--brand));
-  }
-
-  .editorial-kicker-inverted {
-    color: rgb(203 213 225);
-  }
-
-  .editorial-copy {
-    font-size: 1rem;
-    line-height: 1.5625rem;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .editorial-copy-lg {
-    font-size: 1.125rem;
-    line-height: 1.875rem;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .editorial-card {
-    background-color: hsl(var(--card));
-    border-radius: 1.5rem;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 20px 46px -34px rgb(15 23 42 / 0.24);
-  }
-
-  .editorial-card-soft {
-    background-color: hsl(var(--card) / 0.92);
-    border: 1px solid hsl(var(--border) / 0.55);
-    border-radius: 1.5rem;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.03), 0 20px 45px -38px rgb(15 23 42 / 0.28);
-  }
-
-  .editorial-card-subtle {
-    background-color: hsl(var(--card));
-    border-radius: 1.25rem;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 12px 28px -24px rgb(15 23 42 / 0.22);
   }
 
   .app-page-intro {
@@ -841,59 +595,20 @@
   }
 
   .app-page-eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    line-height: 1.25rem;
-    font-weight: 600;
+    font: var(--type-label);
     color: hsl(var(--pen));
   }
 
   .app-page-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: var(--weight-title);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
     color: hsl(var(--foreground));
   }
 
   .app-page-description {
     max-width: 42rem;
-    font-size: 1rem;
-    line-height: 1.5625rem;
+    font: var(--type-body);
     color: hsl(var(--muted-foreground));
-  }
-
-  .studio-panel {
-    @apply bg-card border border-border/10;
-    border-radius: var(--radius);
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  }
-
-  .studio-glass {
-    @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10;
-  }
-
-  /* ==========================================================================
-     V2 ANIMATION UTILITIES
-     ========================================================================== */
-
-  /* Snappy transitions (default for most UI) */
-  .animate-snap {
-    transition-timing-function: var(--ease);
-    transition-duration: var(--duration-normal);
-  }
-
-  /* Reveal transitions (for entrances, score dials) */
-  .animate-reveal {
-    transition-timing-function: var(--ease);
-    transition-duration: var(--duration-slow);
-  }
-
-  /* Entrance animation (page/modal) */
-  .animate-entrance {
-    transition-timing-function: var(--ease);
-    transition-duration: var(--duration-normal);
   }
 
   /* ==========================================================================
@@ -955,55 +670,17 @@
   }
 
   .skip-link {
-    @apply fixed left-4 top-3 z-[60] -translate-y-20 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-transform;
+    @apply fixed left-4 top-3 z-[60] -translate-y-20 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform;
   }
 
   .skip-link:focus {
     @apply translate-y-0 outline-none ring-2 ring-[hsl(var(--pen))] ring-offset-2;
   }
 
-  /* Post-Unlock Highlight */
-  .unlock-highlight {
-    animation: unlock-pulse 1200ms ease-out forwards;
-  }
-
   /* Scroll offset for sticky header */
   [id^="section-"] {
     scroll-margin-top: 5rem;
     /* Offset for header height */
-  }
-
-  @keyframes unlock-pulse {
-    0% {
-      background-color: hsl(var(--premium) / 0.15);
-    }
-
-    50% {
-      background-color: hsl(var(--premium) / 0.1);
-    }
-
-    100% {
-      background-color: transparent;
-    }
-  }
-
-  /* ==========================================================================
-     V2.2 MODERN EDITORIAL UTILITIES
-     ========================================================================== */
-
-  /* Marketing card: rounded-xl with soft shadow (light mode only) */
-  .card-marketing {
-    @apply rounded-[var(--radius-xl)] border border-border bg-card;
-    box-shadow: 0 10px 25px -5px rgb(148 163 184 / 0.1), 0 4px 6px -2px rgb(148 163 184 / 0.05);
-  }
-
-  .dark .card-marketing {
-    box-shadow: none;
-  }
-
-  /* Label mono: uppercase tracking-widest pattern */
-  .text-label-mono {
-    @apply font-mono text-xs uppercase tracking-widest text-muted-foreground;
   }
 
   /* ==========================================================================
@@ -1018,9 +695,7 @@
     border-bottom: 1px solid hsl(var(--line));
   }
 
-  .site-header-ink,
-  .dark .site-header,
-  .dark .site-header-ink {
+  .dark .site-header {
     background: hsl(var(--surface-page));
     border-bottom-color: hsl(var(--line));
   }
@@ -1031,34 +706,20 @@
     padding-inline: clamp(1.25rem, 3.2vw, 3rem);
   }
 
-  @media (min-width: 1024px) {
-    .pricing-hero-grid {
-      grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.7fr);
-    }
-
-    .analysis-stage {
-      padding-block: 3rem;
-    }
-  }
-
   .site-header .site-nav-link::after {
     background: hsl(var(--brand));
   }
 
   .site-nav-link {
-    @apply relative inline-flex items-center whitespace-nowrap rounded-md text-base font-medium;
-    font-size: 0.9375rem;
+    @apply relative inline-flex items-center whitespace-nowrap rounded-md;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
     min-height: 2.75rem;
     padding-inline: 0.72rem;
     color: hsl(var(--muted-foreground));
     transition:
       color var(--duration-normal) var(--ease),
       background-color var(--duration-normal) var(--ease);
-  }
-
-  .site-header-cta {
-    padding-inline: 1.5rem;
-    font-size: 0.9375rem;
   }
 
   .site-nav-link::after {
@@ -1127,7 +788,9 @@
   }
 
   .app-nav-link {
-    @apply relative inline-flex items-center rounded-md text-sm font-medium;
+    @apply relative inline-flex items-center rounded-md;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
     min-height: 2.75rem;
     padding-inline: 0.72rem;
     color: hsl(var(--text-muted));
@@ -1174,11 +837,6 @@
     background: hsl(var(--surface-raised));
   }
 
-  .app-card-highlight {
-    border-color: hsl(var(--brand) / 0.36);
-    background: hsl(var(--brand) / 0.06);
-  }
-
   .dark .app-shell-header {
     border-color: hsl(var(--chrome-line) / 0.75);
     background: hsl(var(--background));
@@ -1214,11 +872,6 @@
     border-color: hsl(var(--chrome-line) / 0.72);
   }
 
-  .dark .app-card-highlight {
-    border-color: hsl(var(--brand) / 0.48);
-    background: hsl(var(--brand) / 0.12);
-  }
-
   @media (min-width: 768px) {
     .app-shell-inner {
       min-height: var(--header-height-desktop);
@@ -1236,638 +889,10 @@
       padding-inline: 1.1rem;
     }
 
-    .site-header .site-header-cta {
-      min-height: 2.75rem;
-      padding-inline: 1rem;
-    }
-
     .site-header button[aria-label="Open navigation"] {
       width: 2.75rem;
       height: 2.75rem;
     }
-  }
-
-  /* ==========================================================================
-     LANDING SYSTEM TOKENS
-     - Route-scoped rhythm and surface primitives
-     - Replaces ad-hoc section spacing on marketing landing
-     ========================================================================== */
-
-  .landing-page {
-    --landing-pad-x: clamp(1.1rem, 2.4vw, 2.85rem);
-    --landing-rail-max: 77rem;
-    --landing-section-y: clamp(5.35rem, 7vw, 7.2rem);
-    --landing-section-y-tight: clamp(4.5rem, 6vw, 5.85rem);
-    --landing-section-y-relaxed: clamp(5.75rem, 7.5vw, 7.6rem);
-    --landing-hero-top: clamp(2.65rem, 4vw, 3.7rem);
-    --landing-hero-bottom: clamp(3.4rem, 5vw, 4.7rem);
-    --landing-split-gap: clamp(2.8rem, 4.2vw, 3.6rem);
-    --landing-card-pad: clamp(1.2rem, 1.7vw, 1.75rem);
-    --landing-card-pad-lg: clamp(1.5rem, 2.1vw, 2.2rem);
-    --landing-grid-gap: clamp(1.75rem, 2.5vw, 2.8rem);
-    --landing-border-soft: rgb(148 163 184 / 0.24);
-    --landing-border-default: rgb(100 116 139 / 0.34);
-    --landing-border-strong: rgb(71 85 105 / 0.46);
-    --landing-frame-line: var(--landing-border-soft);
-    --landing-motion-fast: var(--duration-fast);
-    --landing-motion-base: var(--duration-normal);
-    --landing-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    @apply relative min-h-screen overflow-x-clip text-slate-900 dark:text-slate-100;
-    background: hsl(var(--mineral));
-  }
-
-  .landing-section-pad {
-    padding-inline: var(--landing-pad-x);
-  }
-
-  .landing-rail {
-    margin-inline: auto;
-    max-width: var(--landing-rail-max);
-  }
-
-  .landing-section {
-    padding-block: var(--landing-section-y);
-  }
-
-  .landing-section-tight {
-    padding-block: var(--landing-section-y-tight);
-  }
-
-  .landing-section-relaxed {
-    padding-block: var(--landing-section-y-relaxed);
-  }
-
-  .landing-section-hero {
-    padding-top: var(--landing-hero-top);
-    padding-bottom: var(--landing-hero-bottom);
-  }
-
-  .landing-frame {
-    @apply relative;
-    isolation: isolate;
-  }
-
-  .landing-frame>.landing-rail {
-    @apply relative;
-    z-index: 1;
-  }
-
-  .landing-frame::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-  }
-
-  .landing-frame-hero {
-    background:
-      linear-gradient(180deg, rgb(245 249 250 / 0.98), rgb(255 255 255 / 0.98));
-  }
-
-  .landing-frame-hero::before {
-    opacity: 1;
-    background:
-      radial-gradient(90% 62% at 80% 0%, rgb(13 148 136 / 0.11), transparent 68%),
-      radial-gradient(55% 40% at 12% 0%, rgb(100 116 139 / 0.1), transparent 72%);
-  }
-
-  .landing-frame-mist {
-    background:
-      linear-gradient(180deg, rgb(241 247 248 / 0.96), rgb(255 255 255 / 0.98));
-  }
-
-  .landing-frame-mist::before {
-    opacity: 1;
-    background:
-      radial-gradient(78% 54% at 100% 0%, rgb(13 148 136 / 0.1), transparent 66%);
-  }
-
-  .landing-frame-paper {
-    background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(252 248 241 / 0.96));
-  }
-
-  .landing-frame-soft {
-    background:
-      linear-gradient(180deg, rgb(244 248 249 / 0.95), rgb(251 252 253 / 0.92));
-  }
-
-  .landing-frame-soft::before {
-    opacity: 1;
-    background:
-      radial-gradient(92% 64% at 8% 0%, rgb(13 148 136 / 0.08), transparent 70%);
-  }
-
-  .landing-frame-ink {
-    @apply overflow-hidden;
-    background-image:
-      radial-gradient(920px 360px at 14% -8%, rgb(13 148 136 / 0.2), transparent 70%),
-      radial-gradient(760px 320px at 88% 10%, rgb(245 158 11 / 0.14), transparent 72%),
-      linear-gradient(180deg, #071a2b 0%, #051224 52%, #040b16 100%);
-  }
-
-  .landing-frame-divider-top {
-    border-top: 1px solid var(--landing-frame-line);
-  }
-
-  .landing-frame-divider-bottom {
-    border-bottom: 1px solid var(--landing-frame-line);
-  }
-
-  .landing-section-divider {
-    border-bottom: 1px solid var(--landing-frame-line);
-  }
-
-  .landing-section-split {
-    border-top: 1px solid var(--landing-frame-line);
-    margin-top: var(--landing-split-gap);
-    padding-top: var(--landing-split-gap);
-  }
-
-  .landing-break {
-    @apply flex items-center gap-3;
-    margin-top: var(--landing-split-gap);
-    padding-top: var(--landing-split-gap);
-  }
-
-  .landing-break::before,
-  .landing-break::after {
-    content: "";
-    height: 1px;
-    flex: 1 1 auto;
-    background: linear-gradient(90deg, rgb(148 163 184 / 0.12), rgb(100 116 139 / 0.62), rgb(148 163 184 / 0.12));
-  }
-
-  .landing-break-label {
-    @apply rounded-full border px-3 py-1 text-label-mono text-muted-foreground;
-    border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(255 251 245 / 0.94));
-  }
-
-  .landing-section-tag {
-    @apply inline-flex items-center gap-2 rounded-full border px-2.5 py-1;
-    width: fit-content;
-    border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.96), rgb(244 248 249 / 0.92));
-    box-shadow: 0 8px 20px -18px rgb(2 6 23 / 0.5);
-  }
-
-  .landing-section-tag-index {
-    @apply font-mono text-xs font-semibold tracking-wide text-brand;
-  }
-
-  .landing-section-tag-label {
-    @apply text-xs font-semibold uppercase tracking-wide text-slate-600;
-  }
-
-  .landing-flow-lg>*+* {
-    margin-top: clamp(1.7rem, 2.45vw, 2.55rem);
-  }
-
-  .landing-flow-md>*+* {
-    margin-top: clamp(1.25rem, 1.9vw, 1.85rem);
-  }
-
-  .landing-flow-sm>*+* {
-    margin-top: clamp(0.85rem, 1.3vw, 1.2rem);
-  }
-
-  .landing-grid-gap {
-    gap: var(--landing-grid-gap);
-  }
-
-  .landing-section-head {
-    @apply flex flex-wrap items-end justify-between;
-    column-gap: 1rem;
-    row-gap: 1rem;
-    margin-bottom: clamp(1.3rem, 2.1vw, 1.95rem);
-  }
-
-  .landing-kicker {
-    @apply mb-2 text-label-mono text-muted-foreground;
-    letter-spacing: 0.18em;
-  }
-
-  .landing-title-xl {
-    @apply font-display text-4xl leading-[0.95] tracking-tight md:text-[52px];
-  }
-
-  .landing-title-lg {
-    @apply font-display text-3xl leading-[0.97] tracking-tight md:text-[42px];
-  }
-
-  .landing-title-md {
-    @apply font-display text-[24px] leading-[1.04] tracking-tight md:text-[31px];
-  }
-
-  .landing-title-card {
-    font-family: var(--font-display);
-    font-size: clamp(1.22rem, 2vw, 1.44rem);
-    line-height: 1.08;
-    letter-spacing: -0.012em;
-    font-weight: 500;
-    color: rgb(15 23 42);
-  }
-
-  .landing-headline {
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5.8vw, 4.5rem);
-    line-height: 0.94;
-    letter-spacing: -0.026em;
-    font-weight: 400;
-  }
-
-  .landing-subhead {
-    font-size: clamp(1.02rem, 1.5vw, 1.15rem);
-    line-height: 1.68;
-    color: rgb(51 65 85);
-  }
-
-  .landing-footnote {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: rgb(100 116 139);
-  }
-
-  .landing-btn-primary {
-    @apply inline-flex min-h-11 items-center gap-2 rounded-md px-6 py-3 font-medium text-white;
-    background: hsl(var(--brand));
-    transition:
-      background-color var(--landing-motion-fast) var(--landing-motion-ease),
-      transform var(--landing-motion-fast) var(--landing-motion-ease),
-      box-shadow var(--landing-motion-fast) var(--landing-motion-ease);
-    box-shadow: 0 16px 32px -24px rgb(15 118 110 / 0.65);
-  }
-
-  .landing-btn-primary:hover {
-    background: hsl(var(--brand) / 0.92);
-    transform: translateY(-1px);
-    box-shadow: 0 22px 34px -24px rgb(15 118 110 / 0.72);
-  }
-
-  .landing-btn-primary:active {
-    transform: translateY(0.5px);
-    box-shadow: 0 8px 16px -14px rgb(15 118 110 / 0.55);
-  }
-
-  .landing-btn-primary:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px hsl(var(--background)),
-      0 0 0 4px hsl(var(--brand) / 0.5),
-      0 16px 32px -24px rgb(15 118 110 / 0.65);
-  }
-
-  .landing-btn-secondary {
-    @apply inline-flex min-h-11 items-center gap-1 px-1 text-sm;
-    color: rgb(71 85 105);
-    transition: color var(--landing-motion-fast) var(--landing-motion-ease);
-  }
-
-  .landing-btn-secondary:hover {
-    color: hsl(var(--brand));
-  }
-
-  .landing-link-inline {
-    @apply inline-flex min-h-11 items-center gap-2 text-sm;
-    color: hsl(var(--brand));
-    transition:
-      color var(--landing-motion-fast) var(--landing-motion-ease),
-      transform var(--landing-motion-fast) var(--landing-motion-ease);
-  }
-
-  .landing-link-inline:hover {
-    color: hsl(var(--brand) / 0.86);
-    transform: translateX(1px);
-  }
-
-  .landing-btn-quiet {
-    @apply inline-flex min-h-11 items-center gap-2 rounded-md border px-3.5 py-2 text-sm;
-    border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(241 247 248 / 0.78));
-    color: hsl(var(--brand));
-    transition:
-      border-color var(--landing-motion-fast) var(--landing-motion-ease),
-      background-color var(--landing-motion-fast) var(--landing-motion-ease),
-      transform var(--landing-motion-fast) var(--landing-motion-ease);
-  }
-
-  .landing-btn-quiet:hover {
-    border-color: hsl(var(--brand) / 0.42);
-    transform: translateY(-1px);
-  }
-
-  .landing-btn-quiet:active {
-    transform: translateY(0.5px);
-  }
-
-  .landing-btn-quiet:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px hsl(var(--background)),
-      0 0 0 4px hsl(var(--brand) / 0.4);
-  }
-
-  .landing-card {
-    @apply relative overflow-hidden rounded-2xl border bg-white/95 dark:bg-slate-900/80;
-    border-color: var(--landing-border-default);
-    box-shadow:
-      0 1px 0 rgb(15 23 42 / 0.05),
-      0 26px 52px -44px rgb(2 6 23 / 0.48);
-  }
-
-  .landing-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(95% 55% at 0% 0%, rgb(13 148 136 / 0.06), transparent 62%),
-      radial-gradient(85% 55% at 100% 0%, rgb(51 65 85 / 0.06), transparent 62%);
-  }
-
-  .landing-card>* {
-    position: relative;
-    z-index: 1;
-  }
-
-  .landing-card-soft {
-    @apply rounded-2xl border;
-    border-color: rgb(148 163 184 / 0.3);
-    background:
-      linear-gradient(180deg, rgb(247 250 251 / 0.88), rgb(255 255 255 / 0.92));
-  }
-
-  .landing-card-pad {
-    padding: var(--landing-card-pad-lg);
-  }
-
-  .landing-card-pad-compact {
-    padding: var(--landing-card-pad);
-  }
-
-  .landing-eyebrow {
-    @apply text-label-mono text-muted-foreground;
-  }
-
-  .card-interactive {
-    transition:
-      border-color var(--landing-motion-fast) var(--landing-motion-ease),
-      transform var(--landing-motion-fast) var(--landing-motion-ease),
-      box-shadow var(--landing-motion-base) var(--landing-motion-ease);
-    will-change: transform;
-  }
-
-  .card-interactive:hover {
-    border-color: rgb(13 148 136 / 0.38);
-    transform: translateY(-2px);
-    box-shadow:
-      0 34px 56px -42px rgb(2 6 23 / 0.52),
-      0 14px 30px -24px rgb(2 6 23 / 0.36);
-  }
-
-  .landing-deep-ink {
-    @apply relative overflow-hidden;
-    background-image:
-      radial-gradient(920px 360px at 14% -8%, rgb(13 148 136 / 0.2), transparent 70%),
-      radial-gradient(760px 320px at 88% 10%, rgb(140 113 67 / 0.14), transparent 72%),
-      linear-gradient(180deg, #071a2b 0%, #051224 52%, #040b16 100%);
-  }
-
-  .landing-trust-quote {
-    @apply rounded-2xl border p-6 backdrop-blur-sm;
-    border-color: rgb(148 163 184 / 0.24);
-    background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(244 248 249 / 0.88));
-  }
-
-  .landing-copy {
-    @apply text-[16px] leading-[1.6] text-slate-700 dark:text-slate-300;
-  }
-
-  .landing-copy-muted {
-    @apply text-[15px] leading-[1.6] text-slate-600 dark:text-slate-400;
-  }
-
-  .landing-copy-inverted {
-    @apply text-[15px] leading-relaxed text-slate-300;
-  }
-
-  .landing-proof-strip {
-    @apply flex flex-col gap-3 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center sm:justify-between;
-    border-color: var(--landing-border-default);
-    background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(241 247 248 / 0.86));
-    box-shadow: 0 20px 40px -34px rgb(2 6 23 / 0.22);
-  }
-
-  .landing-proof-strip-items {
-    @apply flex flex-wrap items-center gap-x-3 gap-y-1.5;
-  }
-
-  .landing-proof-strip-item {
-    @apply inline-flex items-center text-label-mono text-muted-foreground;
-    position: relative;
-  }
-
-  .landing-proof-strip-item:not(:last-child)::after {
-    content: "•";
-    margin-left: 0.75rem;
-    color: rgb(13 148 136 / 0.5);
-  }
-
-  .landing-hero-glimpse-shell {
-    @apply relative flex justify-end;
-  }
-
-  .landing-hero-glimpse-shell::before {
-    content: "";
-    position: absolute;
-    right: -4%;
-    top: 1rem;
-    width: 88%;
-    height: 88%;
-    border-radius: 1.5rem;
-    background:
-      radial-gradient(60% 55% at 78% 10%, rgb(13 148 136 / 0.12), transparent 72%),
-      linear-gradient(180deg, rgb(226 232 240 / 0.4), rgb(255 255 255 / 0));
-    filter: blur(4px);
-    pointer-events: none;
-  }
-
-  .landing-hero-glimpse {
-    @apply relative overflow-hidden rounded-[1.4rem];
-    max-width: 34rem;
-    max-height: 35rem;
-    width: 100%;
-    mask-image: linear-gradient(180deg, black 0%, black 84%, transparent 100%);
-  }
-
-  .landing-metric-tile {
-    @apply rounded-2xl border px-4 py-3 text-right;
-    border-color: var(--landing-border-default);
-    background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(241 247 248 / 0.85));
-    min-width: 10.5rem;
-  }
-
-  .landing-metric-value {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.4vw, 2.85rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: hsl(var(--foreground));
-  }
-
-  .landing-transformation-block {
-    @apply rounded-2xl border px-4 py-4 md:px-5;
-    border-color: var(--landing-border-default);
-  }
-
-  .landing-transformation-block-before {
-    background:
-      linear-gradient(180deg, rgb(255 249 236 / 0.9), rgb(255 255 255 / 0.96));
-  }
-
-  .landing-transformation-block-after {
-    background:
-      linear-gradient(180deg, rgb(236 248 246 / 0.95), rgb(255 255 255 / 0.98));
-    box-shadow: 0 20px 38px -34px rgb(15 118 110 / 0.3);
-  }
-
-  .landing-transformation-arrow {
-    @apply hidden items-center justify-center text-3xl text-brand lg:flex;
-  }
-
-  .landing-transformation-line {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-    line-height: 1.65;
-  }
-
-  .landing-diagnosis-band {
-    @apply rounded-2xl border px-4 py-3 md:px-5;
-    border-color: rgb(148 163 184 / 0.28);
-    background:
-      linear-gradient(180deg, rgb(244 248 249 / 0.86), rgb(255 255 255 / 0.95));
-  }
-
-  .dark .landing-page {
-    --landing-border-soft: rgb(71 85 105 / 0.72);
-    --landing-border-default: rgb(100 116 139 / 0.56);
-    --landing-border-strong: rgb(148 163 184 / 0.6);
-    --landing-frame-line: var(--landing-border-soft);
-    background:
-      radial-gradient(1150px 460px at 84% -10%, rgb(45 212 191 / 0.12), transparent 60%),
-      radial-gradient(900px 420px at -8% -10%, rgb(180 83 9 / 0.18), transparent 56%),
-      linear-gradient(180deg, #020617 0%, #020617 46%, #030712 100%);
-  }
-
-  .dark .landing-frame-hero,
-  .dark .landing-frame-mist,
-  .dark .landing-frame-paper,
-  .dark .landing-frame-soft {
-    background: linear-gradient(180deg, rgb(2 6 23 / 0.9), rgb(2 6 23 / 0.85));
-  }
-
-  .dark .landing-frame-hero::before,
-  .dark .landing-frame-mist::before,
-  .dark .landing-frame-soft::before {
-    opacity: 1;
-    background:
-      radial-gradient(84% 56% at 100% 0%, rgb(45 212 191 / 0.14), transparent 65%),
-      radial-gradient(70% 50% at 0% 0%, rgb(30 41 59 / 0.5), transparent 62%);
-  }
-
-  .dark .landing-break::before,
-  .dark .landing-break::after {
-    background: linear-gradient(90deg, rgb(71 85 105 / 0.22), rgb(148 163 184 / 0.65), rgb(71 85 105 / 0.22));
-  }
-
-  .dark .landing-break-label {
-    border-color: var(--landing-border-default);
-    background: rgb(15 23 42 / 0.82);
-    color: rgb(148 163 184);
-  }
-
-  .dark .landing-section-tag {
-    border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(15 23 42 / 0.88), rgb(2 6 23 / 0.76));
-  }
-
-  .dark .landing-section-tag-label {
-    color: rgb(203 213 225);
-  }
-
-  .dark .landing-card {
-    border-color: var(--landing-border-default);
-    box-shadow:
-      0 1px 0 rgb(0 0 0 / 0.5),
-      0 20px 44px -34px rgb(0 0 0 / 0.68);
-  }
-
-  .dark .landing-card::before {
-    background:
-      radial-gradient(95% 55% at 0% 0%, rgb(45 212 191 / 0.11), transparent 62%);
-  }
-
-  .dark .landing-card-soft {
-    border-color: var(--landing-border-default);
-    background:
-      linear-gradient(180deg, rgb(15 23 42 / 0.72), rgb(2 6 23 / 0.86));
-  }
-
-  .dark .landing-proof-strip,
-  .dark .landing-metric-tile,
-  .dark .landing-diagnosis-band,
-  .dark .landing-trust-quote {
-    background: rgb(15 23 42 / 0.82);
-  }
-
-  .dark .landing-transformation-block-before {
-    background:
-      linear-gradient(180deg, rgb(56 43 18 / 0.52), rgb(15 23 42 / 0.9));
-  }
-
-  .dark .landing-transformation-block-after {
-    background:
-      linear-gradient(180deg, rgb(13 148 136 / 0.16), rgb(15 23 42 / 0.9));
-  }
-
-  .dark .landing-subhead {
-    color: rgb(148 163 184);
-  }
-
-  .dark .landing-title-card {
-    color: rgb(226 232 240);
-  }
-
-  .dark .landing-label {
-    color: rgb(148 163 184);
-  }
-
-  .dark .landing-footnote,
-  .dark .landing-stat-label {
-    color: rgb(148 163 184);
-  }
-
-  .dark .landing-stat-sublabel {
-    color: rgb(100 116 139);
-  }
-
-  .legal-shell-content {
-    @apply mx-auto max-w-[64rem];
-  }
-
-  .legal-flow>*+* {
-    margin-top: clamp(1.05rem, 1.5vw, 1.4rem);
-  }
-
-  .legal-section-title {
-    @apply mb-2.5 font-display text-[25px] leading-[1.05] tracking-tight text-foreground;
   }
 
   .riyp-diagram-shell {
@@ -1902,41 +927,20 @@
     background: hsl(var(--surface-sky));
   }
 
-  .riyp-diagram-ink {
-    border-color: hsl(var(--ink-line));
-    background: hsl(var(--ink));
-    color: hsl(var(--cream));
-  }
-
-  .riyp-diagram-ink .riyp-diagram-head {
-    border-color: hsl(var(--ink-line));
-    background: hsl(var(--ink-deep));
-  }
-
   .riyp-evidence-label {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    line-height: 1.25rem;
+    font: var(--type-label);
   }
 
   /* Uppercase is reserved for the two named report parts: Verdict and Critical Miss. */
   .riyp-verdict-label {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    font-weight: 600;
+    font: var(--type-label);
     letter-spacing: 0.1em;
-    line-height: 1.125rem;
     text-transform: uppercase;
   }
 
   .riyp-evidence-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: var(--weight-heading);
-    font-stretch: normal;
-    letter-spacing: -0.02em;
-    line-height: 1.875rem;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
   }
 
   @media (max-width: 640px) {
@@ -1983,369 +987,10 @@
     .riyp-evidence-table td::before {
       content: attr(data-label);
       color: hsl(var(--text-muted));
-      font-size: 0.8125rem;
-      font-weight: 600;
-      line-height: 1.125rem;
-  }
-  }
-
-  .riyp-evidence-rule {
-    border-color: hsl(var(--line));
-  }
-
-  .riyp-evidence-annotation {
-    color: hsl(var(--annotation));
-  }
-
-  .riyp-research-resume {
-    transform-origin: 50% 62%;
-  }
-
-  @media (max-width: 640px) {
-    .riyp-research-resume {
-      transform: none;
+      font: var(--type-label);
     }
   }
 
-  @media (max-width: 1024px) {
-    .landing-page {
-      --landing-section-y: clamp(5rem, 10vw, 6.1rem);
-      --landing-section-y-tight: clamp(4.25rem, 8.6vw, 5.2rem);
-      --landing-section-y-relaxed: clamp(5.4rem, 11vw, 6.5rem);
-      --landing-split-gap: clamp(2.45rem, 6.8vw, 3rem);
-      --landing-grid-gap: clamp(1.35rem, 4.2vw, 2rem);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .landing-page {
-      --landing-pad-x: clamp(1rem, 4.2vw, 1.25rem);
-      --landing-section-y: clamp(5.25rem, 13.6vw, 6.35rem);
-      --landing-section-y-tight: clamp(4.45rem, 11.8vw, 5.35rem);
-      --landing-section-y-relaxed: clamp(5.7rem, 14.8vw, 6.7rem);
-      --landing-hero-top: clamp(2.3rem, 7.2vw, 2.9rem);
-      --landing-hero-bottom: clamp(3.35rem, 10.2vw, 4.1rem);
-      --landing-split-gap: clamp(2.5rem, 9.2vw, 3.1rem);
-      --landing-grid-gap: clamp(1.35rem, 5.4vw, 1.9rem);
-    }
-
-    .landing-section-head {
-      @apply items-start;
-      margin-bottom: clamp(1.25rem, 4.8vw, 1.6rem);
-    }
-
-    .landing-title-xl {
-      font-size: clamp(2rem, 9.5vw, 2.6rem);
-      line-height: 0.96;
-    }
-
-    .landing-title-lg {
-      font-size: clamp(1.72rem, 7.8vw, 2.2rem);
-      line-height: 0.99;
-    }
-
-    .landing-headline {
-      font-size: clamp(2.35rem, 11vw, 3.15rem);
-      line-height: 0.99;
-    }
-
-    .landing-subhead {
-      font-size: 15.5px;
-      line-height: 1.65;
-    }
-
-    .landing-copy {
-      font-size: 15px;
-      line-height: 1.62;
-    }
-
-    .landing-copy-muted {
-      font-size: 14px;
-      line-height: 1.58;
-    }
-
-    .landing-break {
-      gap: 0.7rem;
-    }
-
-    .landing-flow-lg>*+* {
-      margin-top: clamp(1.6rem, 6.8vw, 2.2rem);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-
-    .landing-btn-primary,
-    .landing-btn-secondary,
-    .landing-btn-quiet,
-    .landing-link-inline,
-    .card-interactive {
-      transition: none !important;
-      transform: none !important;
-    }
-  }
-
-  /* Editor's Desk homepage — typography, surfaces, and depth. */
-  .editors-hero-title {
-    font-size: clamp(3.35rem, 7.5vw, 6.5rem);
-    font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: -0.04em;
-    text-wrap: balance;
-  }
-
-  .editors-hero-copy {
-    font-size: clamp(1.05rem, 2vw, 1.2rem);
-    line-height: 1.72;
-    text-wrap: pretty;
-  }
-
-  .editors-section-title {
-    font-size: clamp(2.25rem, 4.4vw, 3.7rem);
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
-  }
-
-  .editors-briefing-card {
-    box-shadow: 0 2px 0 rgb(15 23 42 / 0.08);
-  }
-
-  .editors-report-card {
-    box-shadow: 0 2px 0 rgb(15 23 42 / 0.08);
-  }
-
-  .editors-control-section {
-    background: hsl(var(--mineral-strong));
-  }
-
-  .editors-research-section {
-    background: hsl(var(--paper-muted));
-  }
-
-  .editors-research-quote {
-    font-size: clamp(1.5rem, 3vw, 2.15rem);
-    font-weight: 400;
-    line-height: 1.42;
-    letter-spacing: -0.015em;
-    text-wrap: pretty;
-  }
-
-  .editors-close-title {
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
-    font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: -0.04em;
-    text-wrap: balance;
-  }
-
-  .editors-close-cta {
-    box-shadow: none;
-  }
-
-  .riyp-hero-dossier {
-    background: hsl(var(--paper));
-    border-color: hsl(var(--paper-line));
-    box-shadow: 0 2.25rem 6rem rgb(2 8 18 / 0.46);
-  }
-
-  .riyp-first-read-shell {
-    box-shadow: 0 2rem 5rem -3.25rem rgb(6 21 32 / 0.28);
-    animation: riyp-first-read-arrive 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .riyp-border-annotation { border-color: hsl(var(--annotation)); }
-  .riyp-track-011 { letter-spacing: 0.11em; }
-  .riyp-track-012 { letter-spacing: 0.12em; }
-  .riyp-track-013 { letter-spacing: 0.13em; }
-
-  .riyp-product-hero-title {
-    font-size: clamp(3.5rem, 7.1vw, 7rem);
-    line-height: 0.92;
-    letter-spacing: -0.055em;
-  }
-
-  .riyp-demo-resume-line {
-    font-size: clamp(1.7rem, 3vw, 2.65rem);
-    line-height: 1.14;
-    letter-spacing: -0.03em;
-  }
-
-  .riyp-demo-insight {
-    font-size: clamp(2rem, 3.4vw, 3.55rem);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-  }
-
-  .riyp-research-title {
-    font-size: clamp(3.75rem, 7.2vw, 7.4rem);
-    line-height: 0.9;
-    letter-spacing: -0.055em;
-  }
-
-  .riyp-research-deck {
-    font-size: clamp(1.45rem, 2.4vw, 2rem);
-    line-height: 1.26;
-    letter-spacing: -0.02em;
-  }
-
-  .riyp-trace-question {
-    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
-    line-height: 1.03;
-    letter-spacing: -0.035em;
-  }
-
-  .riyp-trace-answer {
-    font-size: clamp(1.65rem, 2.7vw, 2.4rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-  }
-
-  .riyp-report-verdict {
-    font-size: clamp(1.95rem, 3vw, 2.9rem);
-    line-height: 1.08;
-    letter-spacing: -0.032em;
-  }
-
-  .riyp-first-read-enter,
-  .riyp-evidence-trace-enter {
-    animation: riyp-first-read-swap 180ms ease-out both;
-  }
-
-  .riyp-first-read-emphasis {
-    text-decoration-line: underline;
-    text-decoration-color: hsl(var(--annotation));
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.22em;
-  }
-
-  @keyframes riyp-first-read-arrive {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes riyp-first-read-swap {
-    from {
-      opacity: 0;
-      transform: translateY(5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .riyp-first-read-shell,
-    .riyp-first-read-enter,
-    .riyp-evidence-trace-enter {
-      animation: none;
-    }
-  }
-
-  .riyp-hero-title-directed {
-    font-size: clamp(3.7rem, 6.2vw, 6.8rem);
-    text-wrap: balance;
-  }
-
-  .riyp-hero-artifact-stage {
-    padding: 1.5rem 0.5rem 0.5rem 0;
-  }
-
-  .riyp-hero-artifact-back {
-    transform: translate(1.5rem, -0.75rem) rotate(2.2deg);
-    box-shadow: 0 1.5rem 4rem rgb(2 8 18 / 0.3);
-  }
-
-  .riyp-hero-artifact-card {
-    min-height: 34rem;
-    transform: rotate(-0.7deg);
-    box-shadow: 0 2.75rem 7rem rgb(2 8 18 / 0.52);
-  }
-
-  .riyp-research-hero-title {
-    font-size: clamp(3.8rem, 6vw, 6.75rem);
-    text-wrap: balance;
-  }
-
-  .riyp-research-evidence-card {
-    transform: rotate(0.55deg);
-    box-shadow: 0 2.5rem 7rem rgb(2 8 18 / 0.44);
-  }
-
-  @media (max-width: 639px) {
-    .riyp-hero-title-directed {
-      font-size: clamp(3.25rem, 15vw, 4.6rem);
-    }
-
-    .riyp-hero-artifact-stage {
-      padding-top: 0.75rem;
-    }
-
-    .riyp-hero-artifact-back {
-      transform: translate(0.75rem, -0.35rem) rotate(1.4deg);
-    }
-
-    .riyp-hero-artifact-card {
-      min-height: 0;
-      transform: none;
-    }
-
-    .riyp-research-hero-title {
-      font-size: clamp(3.15rem, 14vw, 4.5rem);
-    }
-
-    .riyp-research-evidence-card {
-      transform: none;
-    }
-  }
-
-  .riyp-hero-resume {
-    background: hsl(var(--paper-muted));
-    border-color: hsl(var(--paper-line));
-    box-shadow: 0 1.75rem 4rem rgb(2 8 18 / 0.34);
-  }
-
-  .riyp-annotation-line {
-    display: block;
-    height: 2px;
-    width: min(11rem, 74%);
-    margin-top: 0.75rem;
-    transform: rotate(-0.8deg);
-    background: hsl(var(--annotation));
-  }
-
-  .riyp-report-paper {
-    background: hsl(var(--paper));
-    border: 1px solid hsl(var(--paper-line) / 0.72);
-    box-shadow: none;
-  }
-
-  .riyp-report-rule {
-    border-color: hsl(var(--paper-line) / 0.78);
-  }
-
-  /* Hero responsive: landing page headline */
-  .text-hero-responsive {
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    @apply text-5xl md:text-6xl lg:text-7xl;
-  }
-
-  /* Inverted section background */
-  .bg-surface-inverted {
-    background-color: hsl(var(--surface-inverted));
-    color: hsl(0 0% 93%);
-  }
 }
 
 /* V2.1 REDUCED MOTION */
@@ -2363,92 +1008,10 @@
   }
 }
 
-/* MARQUEE ANIMATION */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    /* Move by exactly half (one full set of cards) for seamless loop */
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 60s linear infinite;
-}
-
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
   }
-}
-
-/* Hide scrollbar but keep functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/*
- * Composed briefing surfaces
- *
- * Older routes still share the original landing primitives. Keep them
- * functional, but normalize their visual treatment to the current system:
- * mineral/paper/ink surfaces, crisp rules, and no ambient glow.
- */
-.studio-glass,
-.landing-frame-hero,
-.landing-frame-mist,
-.landing-frame-paper,
-.landing-frame-soft,
-.landing-card,
-.landing-card-soft,
-.landing-trust-quote,
-.landing-proof-strip,
-.landing-metric-tile,
-.landing-transformation-block,
-.landing-diagnosis-band {
-  background-image: none !important;
-  backdrop-filter: none !important;
-}
-
-.landing-frame-hero,
-.landing-frame-mist,
-.landing-frame-soft,
-.landing-card,
-.landing-card-soft,
-.landing-proof-strip,
-.landing-metric-tile,
-.landing-diagnosis-band {
-  background-color: hsl(var(--surface-raised));
-}
-
-.landing-frame-paper,
-.landing-trust-quote {
-  background-color: hsl(var(--paper-muted));
-}
-
-.landing-frame-ink,
-.landing-deep-ink {
-  background-color: hsl(var(--ink));
-  background-image: none !important;
-}
-
-.landing-frame::before,
-.landing-frame-hero::before,
-.landing-frame-mist::before,
-.landing-frame-soft::before,
-.landing-card::before,
-.landing-hero-glimpse-shell::before,
-.landing-break::before,
-.landing-break::after {
-  display: none !important;
 }
 
 /* PRINT STYLES */
@@ -2456,22 +1019,17 @@
 
   /* Hide UI chrome */
   header:not(.report-header),
-  nav,
-  .navbar,
-  .sidebar,
-  .history-sidebar,
-  .toast,
-  [data-sonner-toaster],
-  button:not(.print-show),
-  .action-buttons,
-  .modal,
-  .dialog,
-  footer:not(.report-footer),
-  .sticky,
-  .fixed,
-  [role="dialog"],
-  .noise-texture,
-  .bg-noise {
+nav,
+.sidebar,
+.toast,
+[data-sonner-toaster],
+button:not(.print-show),
+.modal,
+.dialog,
+footer:not(.report-footer),
+.sticky,
+.fixed,
+[role="dialog"] {
     display: none !important;
   }
 
@@ -2486,11 +1044,7 @@
   }
 
   /* Remove shadows and borders that don't print well */
-  .shadow-sm,
-  .shadow-md,
-  .shadow-lg,
-  .shadow-xl,
-  .shadow-2xl {
+  .shadow-sm {
     box-shadow: none !important;
   }
 
@@ -2502,18 +1056,15 @@
   }
 
   /* Restore specific colors for semantic elements */
-  .text-success,
-  .text-moss {
+  .text-success {
     color: #22c55e !important;
   }
 
-  .text-destructive,
-  .text-rose {
+  .text-destructive {
     color: #e11d48 !important;
   }
 
-  .text-premium,
-  .text-gold {
+  .text-premium {
     color: #d97706 !important;
   }
 
@@ -2542,9 +1093,8 @@
 
   /* Avoid page breaks inside cards */
   .card,
-  .studio-panel,
-  .rewrite-card,
-  section {
+.rewrite-card,
+section {
     page-break-inside: avoid;
   }
 
@@ -2667,6 +1217,39 @@
 .toaster [data-sonner-toast] {
   transition-duration: var(--duration-normal);
   transition-timing-function: var(--ease);
+}
+
+/* Interaction grammar (Highlighter 1.1). Everything you can click answers the same way, on --duration-fast:
+   - Buttons (components/ui/button.tsx): fills shift, outlines darken to ink, quiet underlines go solid; press is 0.98.
+   - Links (.riyp-link, .riyp-link-quiet, nav): color deepens and the underline goes solid. No press.
+   - Rows and cards you can open (.riyp-surface-link): an inset wash on hover, a deeper wash on press,
+     and the row's arrow or caret turns ink. Static cards (.app-card) never react. */
+.riyp-surface-link {
+  transition: background-color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+
+.riyp-surface-link:hover {
+  background-color: hsl(var(--secondary) / 0.55);
+}
+
+.riyp-surface-link:active {
+  background-color: hsl(var(--secondary));
+}
+
+.riyp-surface-link :where(svg[data-affordance]) {
+  color: hsl(var(--text-muted));
+  transition: color var(--duration-fast) var(--ease), transform var(--duration-fast) var(--ease);
+}
+
+.riyp-surface-link:hover :where(svg[data-affordance]) {
+  color: hsl(var(--text-strong));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riyp-surface-link,
+  .riyp-surface-link :where(svg[data-affordance]) {
+    transition: none;
+  }
 }
 
 /* Links. Inline links sit in running text: ink words with a pen underline that deepens on hover.

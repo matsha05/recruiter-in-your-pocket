@@ -36,7 +36,7 @@ export function NegotiationOutcomeDiagram() {
                         </PenNote>
                     </div>
                 </div>
-                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
                     Self-reported. The survey didn&apos;t ask how big the increase was, or whether anyone lost an offer by asking.
                 </p>
             </DiagramFrame>

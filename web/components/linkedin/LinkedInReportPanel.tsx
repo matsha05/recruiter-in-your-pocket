@@ -74,11 +74,11 @@ export function LinkedInReportPanel({
                 <div className="grid md:grid-cols-[minmax(0,1fr)_12rem]">
                     <div className="px-5 py-8 sm:px-7 md:border-r md:riyp-border-paper-line md:px-9 md:py-10">
                         <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-brand">What comes through first</p>
-                        <h2 id="linkedin-report-verdict" className="mt-5 max-w-[18ch] font-display riyp-display-report riyp-weight-520 riyp-leading-098 riyp-track-n04 text-ink riyp-stretch-88">
+                        <h2 id="linkedin-report-verdict" className="mt-5 max-w-[18ch] font-display riyp-display-report riyp-weight-520 riyp-track-n04 text-ink">
                             {report.first_impression?.profile_card_verdict || report.score_comment_short || "Your profile feedback"}
                         </h2>
                         {(report.score_comment_long || report.score_comment_short) && (
-                            <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">
+                            <p className="mt-6 max-w-2xl text-base text-muted-foreground">
                                 {report.score_comment_long || report.score_comment_short}
                             </p>
                         )}
@@ -87,11 +87,11 @@ export function LinkedInReportPanel({
                     <div className="flex items-center justify-between gap-5 border-t riyp-border-paper-line bg-paper-muted px-5 py-6 md:block md:border-t-0 md:px-6 md:py-10 md:text-center">
                         <div>
                             <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Review score</p>
-                            <p className="mt-3 font-display text-4xl riyp-weight-560 leading-none tabular-nums riyp-track-n04 text-ink">{score}<span className="ml-1 text-lg text-muted-foreground">/100</span></p>
+                            <p className="mt-3 font-display text-title tabular-nums text-ink">{score}<span className="ml-1 text-lg text-muted-foreground">/100</span></p>
                         </div>
                         <div className="md:mt-5">
                             <p className="text-sm font-semibold text-brand">{report.score_label || "Needs work"}</p>
-                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Summarizes the feedback below.</p>
+                            <p className="mt-2 max-w-[11rem] text-xs text-muted-foreground">Summarizes the feedback below.</p>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ export function LinkedInReportPanel({
                 <div className="grid grid-cols-2 border-t riyp-border-paper-line md:grid-cols-4 md:divide-x md:divide-[hsl(var(--paper-line))]">
                     {subscores.map((item) => (
                         <div key={item.key} className="border-b riyp-border-paper-line px-4 py-4 odd:border-r md:border-b-0 md:border-r-0">
-                            <p className="font-display text-2xl riyp-weight-560 tabular-nums text-ink">{item.score ?? "—"}</p>
+                            <p className="font-display text-heading tabular-nums text-ink">{item.score ?? "—"}</p>
                             <p className="mt-1 riyp-type-10px font-semibold uppercase riyp-track-014 text-muted-foreground">{item.label}</p>
                         </div>
                     ))}
@@ -116,7 +116,7 @@ export function LinkedInReportPanel({
 
                 <div className="mt-7 space-y-7">
                     {report.first_impression?.profile_card_verdict && (
-                        <p className="max-w-[34ch] font-display riyp-display-report-quote riyp-weight-520 riyp-leading-112 riyp-track-n025 text-ink riyp-stretch-96">
+                        <p className="max-w-[34ch] font-display riyp-display-report-quote riyp-weight-520 riyp-track-n025 text-ink">
                             “{report.first_impression.profile_card_verdict}”
                         </p>
                     )}
@@ -130,7 +130,7 @@ export function LinkedInReportPanel({
                     {report.first_impression?.visibility_estimate && (
                         <div className="border-l-2 border-brand pl-5">
                             <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Visibility note</p>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{report.first_impression.visibility_estimate}</p>
+                            <p className="mt-2 text-sm text-muted-foreground">{report.first_impression.visibility_estimate}</p>
                         </div>
                     )}
                 </div>
@@ -147,15 +147,15 @@ export function LinkedInReportPanel({
                 <div className="mt-7 space-y-7">
                     <div className="border-y riyp-border-paper-line bg-paper-muted px-5 py-5">
                         <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Current</p>
-                        <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{report.headline_analysis?.current || "No headline was available in the upload."}</p>
+                        <p className="mt-3 font-display text-heading text-ink">{report.headline_analysis?.current || "No headline was available in the upload."}</p>
                     </div>
 
-                    {report.headline_analysis?.verdict && <p className="max-w-2xl text-sm leading-6 text-foreground">{report.headline_analysis.verdict}</p>}
+                    {report.headline_analysis?.verdict && <p className="max-w-2xl text-sm text-foreground">{report.headline_analysis.verdict}</p>}
 
                     {report.headline_analysis?.issues?.length > 0 && (
                         <ul className="divide-y divide-[hsl(var(--paper-line))] border-y riyp-border-paper-line">
                             {report.headline_analysis.issues.map((issue, index) => (
-                                <li key={`${issue}-${index}`} className="grid grid-cols-[2rem_1fr] gap-3 py-3 text-sm leading-6 text-muted-foreground">
+                                <li key={`${issue}-${index}`} className="grid grid-cols-[2rem_1fr] gap-3 py-3 text-sm text-muted-foreground">
                                     <span className="font-mono riyp-type-10px font-semibold riyp-text-annotation">{String(index + 1).padStart(2, "0")}</span>
                                     <span>{issue}</span>
                                 </li>
@@ -182,8 +182,8 @@ export function LinkedInReportPanel({
                         <span className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Opening strength</span>
                         <HookStrengthBadge strength={report.about_analysis?.hook_strength || "missing"} />
                     </div>
-                    {report.about_analysis?.hook_verdict && <p className="max-w-2xl text-sm leading-6 text-foreground">{report.about_analysis.hook_verdict}</p>}
-                    {report.about_analysis?.full_verdict && <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{report.about_analysis.full_verdict}</p>}
+                    {report.about_analysis?.hook_verdict && <p className="max-w-2xl text-sm text-foreground">{report.about_analysis.hook_verdict}</p>}
+                    {report.about_analysis?.full_verdict && <p className="max-w-2xl text-sm text-muted-foreground">{report.about_analysis.full_verdict}</p>}
                     {report.about_analysis?.rewrite_suggestion && <CopyableSuggestionCard label="Suggested opening" content={report.about_analysis.rewrite_suggestion} />}
                 </div>
             </section>
@@ -202,9 +202,9 @@ export function LinkedInReportPanel({
                         <KeywordLedger label="Worth considering" keywords={report.search_visibility?.keywords_missing || []} tone="missing" />
                     </div>
                     {report.search_visibility?.recommendation && (
-                        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{report.search_visibility.recommendation}</p>
+                        <p className="max-w-2xl text-sm text-muted-foreground">{report.search_visibility.recommendation}</p>
                     )}
-                    <p className="text-xs leading-5 text-muted-foreground">Add keywords only when they truthfully describe your work. Search behavior varies by recruiter, query, and platform changes.</p>
+                    <p className="text-xs text-muted-foreground">Add keywords only when they truthfully describe your work. Search behavior varies by recruiter, query, and platform changes.</p>
                 </div>
             </section>
 
@@ -228,10 +228,10 @@ export function LinkedInReportPanel({
                     </div>
                     <div className="space-y-6">
                         {report.role_fit?.current_positioning && (
-                            <div><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Experience described</p><p className="mt-3 text-sm leading-6 text-foreground">{report.role_fit.current_positioning}</p></div>
+                            <div><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Experience described</p><p className="mt-3 text-sm text-foreground">{report.role_fit.current_positioning}</p></div>
                         )}
                         {report.role_fit?.positioning_suggestion && (
-                            <div className="border-l-2 border-brand pl-5"><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">What to clarify</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{report.role_fit.positioning_suggestion}</p></div>
+                            <div className="border-l-2 border-brand pl-5"><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">What to clarify</p><p className="mt-2 text-sm text-muted-foreground">{report.role_fit.positioning_suggestion}</p></div>
                         )}
                     </div>
                 </div>
@@ -250,7 +250,7 @@ export function LinkedInReportPanel({
                         <div key={`${fix.fix}-${index}`} className="grid gap-3 border-b riyp-border-paper-line py-5 last:border-b-0 sm:grid-cols-[2.25rem_minmax(0,0.8fr)_minmax(0,1.2fr)_6rem] sm:items-start">
                             <span className="font-mono riyp-type-10px font-semibold riyp-text-annotation">{String(index + 1).padStart(2, "0")}</span>
                             <p className="text-sm font-semibold text-ink">{fix.fix}</p>
-                            <p className="text-sm leading-6 text-muted-foreground">{fix.why}</p>
+                            <p className="text-sm text-muted-foreground">{fix.why}</p>
                             <p className="riyp-type-10px font-semibold uppercase riyp-track-012 text-brand">{fix.effort}</p>
                         </div>
                     ))}
@@ -271,15 +271,15 @@ export function LinkedInReportPanel({
                         {report.experience_rewrites.map((rewrite, index) => (
                             <div key={`${rewrite.company}-${rewrite.original}-${index}`} className="border-b riyp-border-paper-line pb-8 last:border-b-0 last:pb-0">
                                 <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">{rewrite.company}</p>
-                                <p className="mt-4 text-sm leading-6 text-muted-foreground line-through decoration-[hsl(var(--annotation))] decoration-2">{rewrite.original}</p>
+                                <p className="mt-4 text-sm text-muted-foreground line-through decoration-[hsl(var(--annotation))] decoration-2">{rewrite.original}</p>
                                 <div className="mt-5 border-l-2 border-brand pl-5">
                                     <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Suggested wording</p>
-                                    <p className="mt-2 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{rewrite.better}</p>
+                                    <p className="mt-2 font-display text-heading text-ink">{rewrite.better}</p>
                                 </div>
-                                {rewrite.enhancement_note && <p className="mt-4 text-xs leading-5 text-muted-foreground">{rewrite.enhancement_note}</p>}
+                                {rewrite.enhancement_note && <p className="mt-4 text-xs text-muted-foreground">{rewrite.enhancement_note}</p>}
                             </div>
                         ))}
-                        <p className="text-xs leading-5 text-muted-foreground">Use suggested language only when every detail is factually accurate.</p>
+                        <p className="text-xs text-muted-foreground">Use suggested language only when every detail is factually accurate.</p>
                     </div>
                 </section>
             )}
@@ -288,7 +288,7 @@ export function LinkedInReportPanel({
                 <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
                     <div>
                         <p className="riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">Next step</p>
-                        <h3 className="mt-3 max-w-[22ch] font-display text-3xl leading-tight text-ink">
+                        <h3 className="mt-3 max-w-[22ch] font-display text-title text-ink">
                             {isSample ? "Get feedback on your own profile." : "Update your profile, then review it again when you are ready."}
                         </h3>
                         {!isSample && !isExhausted && (
@@ -303,11 +303,11 @@ export function LinkedInReportPanel({
                     </div>
 
                     {isSample && onNewReport ? (
-                        <Button variant="brand" size="lg" onClick={onNewReport}>Review my profile <ArrowRight className="ml-2 size-4" /></Button>
+                        <Button variant="primary" onClick={onNewReport}>Review my profile <ArrowRight className="ml-2 size-4" /></Button>
                     ) : isExhausted && onUpgrade ? (
-                        <Button variant="premium" onClick={onUpgrade}>{JOB_SEARCH_PASS_DECISION.cta} <ArrowRight className="ml-2 size-4" /></Button>
+                        <Button variant="primary" onClick={onUpgrade}>{JOB_SEARCH_PASS_DECISION.cta} <ArrowRight className="ml-2 size-4" /></Button>
                     ) : onNewReport ? (
-                        <Button variant="brand" onClick={onNewReport}><Plus className="mr-2 size-4" />Review another profile</Button>
+                        <Button variant="primary" onClick={onNewReport}><Plus className="mr-2 size-4" />Review another profile</Button>
                     ) : null}
                 </div>
             </footer>
@@ -321,7 +321,7 @@ function ReportSectionHeader({ icon, number, title, subtitle }: { icon: React.Re
             <span className="pt-1 font-mono riyp-type-10px font-semibold riyp-text-annotation">{number}</span>
             <div>
                 <p className="flex items-center gap-2 riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">{icon}{title}</p>
-                <h2 className="mt-3 max-w-[29ch] font-display riyp-display-report-section riyp-weight-560 riyp-leading-104 riyp-track-n03 text-ink riyp-stretch-94">{subtitle}</h2>
+                <h2 className="mt-3 max-w-[29ch] font-display riyp-display-report-section riyp-weight-560 riyp-track-n03 text-ink">{subtitle}</h2>
             </div>
         </div>
     );
@@ -332,7 +332,7 @@ function ProfileSignal({ label, status, note }: { label: string; status: string;
         <div className="border-b riyp-border-paper-line px-4 py-5 last:border-b-0 md:border-b-0 md:px-5">
             <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">{label}</p>
             <div className="mt-3"><StatusBadge status={status} /></div>
-            {note && <p className="mt-3 text-xs leading-5 text-muted-foreground">{note}</p>}
+            {note && <p className="mt-3 text-xs text-muted-foreground">{note}</p>}
         </div>
     );
 }
@@ -421,9 +421,9 @@ function CopyableSuggestionCard({ label, content, note }: { label: string; conte
                     />
                 </button>
             </div>
-            <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{content}</p>
-            {note && <p className="mt-3 text-xs leading-5 text-muted-foreground">{note}</p>}
-            <p className="mt-3 text-xs leading-5 text-muted-foreground">Check that every detail describes your experience before using this wording.</p>
+            <p className="mt-3 font-display text-heading text-ink">{content}</p>
+            {note && <p className="mt-3 text-xs text-muted-foreground">{note}</p>}
+            <p className="mt-3 text-xs text-muted-foreground">Check that every detail describes your experience before using this wording.</p>
         </div>
     );
 }

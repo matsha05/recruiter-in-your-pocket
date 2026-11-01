@@ -124,7 +124,7 @@ export function ReportStream({
             </p>
             <div>
               <p className="text-sm font-semibold text-foreground">First Impression score</p>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">How clearly your resume shows your work today. It doesn&apos;t predict interviews or offers.</p>
+              <p className="mt-1 text-sm text-muted-foreground">How clearly your resume shows your work today. It doesn&apos;t predict interviews or offers.</p>
             </div>
           </m.div>
         )}
@@ -156,7 +156,7 @@ export function ReportStream({
           <div>
             <h2 className={styles.sectionTitle}>{fixPlanHeadingForCount(fixes.length)}</h2>
           </div>
-          <p className="max-w-[20rem] text-sm leading-6 text-muted-foreground">
+          <p className="max-w-[20rem] text-sm text-muted-foreground">
             These are drafts. Keep only what&apos;s true, and say it your way.
             {/* Saved reports never keep the resume, so drafts can't be checked against it for copying. */}
             {!isSample && !resumeText?.trim() ? " Saved reports don’t keep your resume, so Copy is off here." : null}
@@ -191,7 +191,7 @@ export function ReportStream({
               {strengthsToKeep.map((strength, index) => (
                 <li key={strength} className="grid grid-cols-[2rem_1fr] gap-3 py-5">
                   <span className="riyp-tabular-label text-xs font-semibold text-brand">0{index + 1}</span>
-                  <p className="text-base leading-7 text-foreground/85">{strength}</p>
+                  <p className="text-base text-foreground/85">{strength}</p>
                 </li>
               ))}
             </ol>
@@ -204,14 +204,14 @@ export function ReportStream({
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(15rem,0.65fr)] lg:gap-12">
             <div>
               <h2 className={styles.sectionTitle}>{hasJobDescription ? "How your experience fits this role." : "Roles your experience points toward."}</h2>
-              <p className="mt-5 max-w-[42rem] text-base leading-7 text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
+              <p className="mt-5 max-w-[42rem] text-base text-foreground/80">{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             </div>
             <div className="border-l-2 border-brand/30 pl-5">
               <p className="text-sm font-semibold text-muted-foreground">Roles to consider</p>
               <ul className="mt-4 space-y-3">
-                {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role} className="text-sm font-medium leading-6 text-foreground">{role}</li>)}
+                {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role} className="text-sm font-medium text-foreground">{role}</li>)}
               </ul>
-              {roleFit?.seniority_read && <p className="mt-5 text-xs leading-5 text-muted-foreground">Level suggested by the resume: {roleFit.seniority_read}</p>}
+              {roleFit?.seniority_read && <p className="mt-5 text-xs text-muted-foreground">Level suggested by the resume: {roleFit.seniority_read}</p>}
             </div>
           </div>
         </section>
@@ -222,7 +222,7 @@ export function ReportStream({
           <span className="text-sm font-semibold text-foreground">How the score works</span>
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
-        <div className="grid max-w-[43rem] gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-base leading-7 text-foreground/85">
+        <div className="grid max-w-[43rem] gap-3 border-t border-[hsl(var(--paper-line))] pb-6 pt-5 text-base text-foreground/85">
           <p>The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average.</p>
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
@@ -239,7 +239,7 @@ export function ReportStream({
               <p className={styles.revisionCopy}>Upload or paste it to see what comes through clearly, where it leaves questions, and what to change first.</p>
             </div>
             <div className={styles.revisionAction}>
-              <Button variant="brand" size="lg" onClick={onStartReport}>
+              <Button variant="primary" onClick={onStartReport}>
                 Get your free report <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
               <p className={styles.revisionNote}>Your first report is free. No card or account needed.</p>
@@ -256,7 +256,7 @@ export function ReportStream({
               <p className={styles.revisionCopy}>{isExhausted ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</> : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss is fixed, what got clearer, and what to do next.</>}</p>
             </div>
             <div className={styles.revisionAction}>
-              <Button variant={isExhausted ? "premium" : "brand"} size="lg" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
+              <Button variant={isExhausted ? "primary" : "primary"} onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
                 {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : "Compare my revision"}<ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
               <p className={styles.revisionNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison lasts for this visit. Save the report to keep it."}</p>
@@ -273,7 +273,7 @@ export function ReportStream({
               <p className={styles.feedbackCopy}>Tell us what helped and what missed. One example is enough for us to dig in.</p>
             </div>
             <div className={styles.feedbackAction}>
-              <Button asChild variant="outline" size="lg" className="border-foreground/35 bg-paper hover:border-brand/45 hover:bg-brand/5">
+              <Button asChild variant="secondary">
                 <a href={REPORT_FEEDBACK_HREF}>Send feedback<EnvelopeSimple className="ml-1 size-4 text-brand" weight="bold" /></a>
               </Button>
               <p className={styles.feedbackNote}>Opens your email with a few questions. Your resume is never attached.</p>

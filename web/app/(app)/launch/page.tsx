@@ -45,10 +45,10 @@ export default async function LaunchPage() {
         <header className="grid gap-6 border-t border-line pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div>
             <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Launch command center</p>
-            <h1 className="launch-command-title mt-3 font-display riyp-weight-620 text-foreground riyp-stretch-91">
+            <h1 className="mt-3 max-w-[14ch] font-display text-headline text-foreground">
               Go or no-go, with receipts.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
+            <p className="mt-5 max-w-2xl text-base text-muted-foreground">
               Runtime readiness, launch gates, rollback controls, vendor review, ownership, and the final rehearsal in one place.
             </p>
             <p className="mt-3 text-xs text-muted-foreground">Generated {new Date(snapshot.generatedAt).toLocaleString()}.</p>
@@ -67,7 +67,7 @@ export default async function LaunchPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-foreground">{gate.label}</p>
-                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{gate.description}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{gate.description}</p>
                     </div>
                     <span className={`riyp-type-0625 riyp-track-012 shrink-0 border px-2 py-1 font-semibold uppercase ${badgeClass(gate.status)}`}>
                       {gate.status}
@@ -80,13 +80,13 @@ export default async function LaunchPage() {
 
           <LaunchPanel icon={<Siren className="size-4" />} title="Current blockers">
             {snapshot.blockers.length === 0 ? (
-              <p className="border-l-2 border-success bg-success/10 p-4 text-sm leading-6 text-success">No launch blockers are reported by the runtime readiness system.</p>
+              <p className="border-l-2 border-success bg-success/10 p-4 text-sm text-success">No launch blockers are reported by the runtime readiness system.</p>
             ) : (
               <div>
                 {snapshot.blockers.map((blocker) => (
                   <div key={`${blocker.gateId}-${blocker.check}`} className={`${rowClass} border-l-2 border-l-destructive bg-error-surface px-4`}>
                     <p className="text-sm font-semibold text-destructive">{blocker.gateLabel}</p>
-                    <p className="mt-1 text-sm leading-6 text-destructive">{blocker.message}</p>
+                    <p className="mt-1 text-sm text-destructive">{blocker.message}</p>
                     <p className="riyp-type-0625 riyp-track-012 mt-2 uppercase text-destructive/75">{blocker.check.replace(/_/g, " ")}</p>
                   </div>
                 ))}
@@ -102,7 +102,7 @@ export default async function LaunchPage() {
                     <p className="text-sm font-semibold text-foreground">{control.surface}</p>
                     <code className="border border-line bg-paper-muted px-2 py-1 text-xs text-muted-foreground">{control.envVar}</code>
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{control.reason}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{control.reason}</p>
                   <p className="riyp-type-0625 riyp-track-012 mt-2 uppercase text-muted-foreground">Default {control.defaultState}</p>
                 </div>
               ))}
@@ -132,9 +132,9 @@ export default async function LaunchPage() {
                       {item.launchDecision}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.purpose}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.purpose}</p>
                   <p className="mt-2 text-sm text-foreground">Data: {item.dataClasses}</p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.reviewNotes}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.reviewNotes}</p>
                 </div>
               ))}
             </div>
@@ -146,7 +146,7 @@ export default async function LaunchPage() {
                 <div key={step.id} className={rowClass}>
                   <p className="riyp-type-0625 riyp-track-012 font-semibold uppercase text-brand">Step {index + 1} · {step.surface}</p>
                   <p className="mt-1 text-sm font-semibold text-foreground">{step.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.evidence}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{step.evidence}</p>
                 </div>
               ))}
             </div>

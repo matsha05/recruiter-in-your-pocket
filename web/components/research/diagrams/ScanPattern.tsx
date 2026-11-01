@@ -51,8 +51,8 @@ export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
                                         <span className="text-xs tabular-nums text-muted-foreground">{step.index}</span>
                                         <span className="riyp-evidence-label text-brand">{step.label}</span>
                                     </div>
-                                    <h3 className="mt-5 font-display text-report-title tracking-tight text-foreground">{step.title}</h3>
-                                    <p className="mt-3 text-data text-muted-foreground">{step.body}</p>
+                                    <h3 className="mt-5 font-display text-heading text-foreground">{step.title}</h3>
+                                    <p className="mt-3 text-sm text-muted-foreground">{step.body}</p>
                                 </div>
                                 {index < transferSteps.length - 1 ? <ArrowRight className="mx-2 hidden size-4 self-center text-muted-foreground lg:block" aria-hidden="true" /> : null}
                             </li>
@@ -61,7 +61,7 @@ export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
 
                     <aside className="mt-7 grid gap-4 rounded-xl border border-line bg-proof px-5 py-5 md:grid-cols-[12rem_1fr] md:items-start" aria-label="Claims the cited research does not establish">
                         <h3 className="text-sm font-semibold text-brand">Not established</h3>
-                        <ul className="grid gap-3 text-sm leading-6 text-muted-foreground sm:grid-cols-3">
+                        <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
                             {notEstablished.map((claim) => <li key={claim}>{claim}</li>)}
                         </ul>
                     </aside>

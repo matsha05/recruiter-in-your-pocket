@@ -32,7 +32,7 @@ export function MetaTimeline({ figureNumber = 1 }: { figureNumber?: number }) {
                                 <UnitGrid count={100} columns={20} seen={seen} toneAt={() => "quiet"} />
                             </div>
                             <div className="grid gap-1.5">
-                                <div className="flex items-baseline justify-between text-sm text-muted-foreground"><span>White applicants</span><Figure value={item.white} className="text-2xl md:text-2xl" /></div>
+                                <div className="flex items-baseline justify-between text-sm text-muted-foreground"><span>White applicants</span><Figure value={item.white} className="text-heading" /></div>
                                 <UnitGrid count={item.white} columns={20} seen={seen} toneAt={(i) => (i < 100 ? "pen" : "mark")} />
                             </div>
                             <p className="mt-auto border-t border-line pt-3 text-sm text-muted-foreground">{item.trend}</p>

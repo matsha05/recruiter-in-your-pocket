@@ -62,7 +62,7 @@ export default function ConfirmModal({
                 {/* Actions */}
                 <div className="flex gap-3 mt-4">
                     <Button
-                        variant="outline"
+                        variant="secondary"
                         className="flex-1"
                         onClick={onClose}
                         disabled={loading}
@@ -70,7 +70,7 @@ export default function ConfirmModal({
                         {cancelText}
                     </Button>
                     <Button
-                        variant={isDestructive ? "destructive" : "default"}
+                        variant={isDestructive ? "destructive" : "primary"}
                         className="flex-1"
                         onClick={onConfirm}
                         isLoading={loading}

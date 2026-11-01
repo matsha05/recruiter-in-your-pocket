@@ -322,7 +322,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                     Active
                                 </span>
                             </div>
-                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-muted-foreground">
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                                 <span className="flex items-center gap-1">
                                     <Target className="size-3" />
                                     {profile.skillsCount} skills identified

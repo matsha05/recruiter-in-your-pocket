@@ -9,6 +9,7 @@ import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { ArrowRight, List } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 interface SiteHeaderProps {
@@ -60,14 +61,15 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                 <SiteNavLink href="/reports" active={isReportsActive}>My reports</SiteNavLink>
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
-                            <Link
-                                href="/workspace"
-                                aria-current={isWorkspaceActive ? "page" : undefined}
-                                data-analytics-cta="header_new_report"
-                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
-                            >
-                                New report
-                            </Link>
+                            <Button asChild className="hidden md:inline-flex">
+                                <Link
+                                    href="/workspace"
+                                    aria-current={isWorkspaceActive ? "page" : undefined}
+                                    data-analytics-cta="header_new_report"
+                                >
+                                    New report
+                                </Link>
+                            </Button>
                         </div>
                     ) : (
                         <div className="flex items-center gap-4">
@@ -81,16 +83,11 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             >
                                 Sign in
                             </Link>
-                            <Link
-                                href="/workspace"
-                                data-analytics-cta="header_report"
-                                className={cn(
-                                    "site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center whitespace-nowrap rounded-full px-6 py-2 font-medium transition-colors md:inline-flex",
-                                    "bg-primary text-primary-foreground hover:bg-primary/90"
-                                )}
-                            >
-                                Get your free report
-                            </Link>
+                            <Button asChild className="hidden md:inline-flex">
+                                <Link href="/workspace" data-analytics-cta="header_report">
+                                    Get your free report
+                                </Link>
+                            </Button>
                         </div>
                     )}
                     <SiteMobileMenu
@@ -157,9 +154,9 @@ function SiteMobileMenu({
             }
         }}>
             <SheetTrigger asChild>
-                <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-[10px] border border-border text-foreground transition-colors hover:bg-muted xl:hidden">
+                <Button type="button" variant="secondary" size="icon" aria-label="Open navigation" className="xl:hidden">
                     <List className="size-5" weight="bold" />
-                </button>
+                </Button>
             </SheetTrigger>
             <SheetContent side="right" className="flex w-[min(88vw,22rem)] flex-col gap-0 overflow-hidden bg-background"
                 onCloseAutoFocus={event => {
@@ -205,7 +202,7 @@ function SiteMobileMenu({
                                 <button
                                     type="button"
                                     onClick={() => onSignOut()}
-                                    className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                    className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground riyp-surface-link hover:text-foreground"
                                 >
                                     Sign out
                                 </button>
@@ -215,9 +212,11 @@ function SiteMobileMenu({
                         <>
                             <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</MobileSiteLink>
                             <SheetClose asChild>
-                                <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                                    Get your free report
-                                </Link>
+                                <Button asChild className="mt-4">
+                                    <Link href="/workspace" data-analytics-cta="mobile_menu_report">
+                                        Get your free report
+                                    </Link>
+                                </Button>
                             </SheetClose>
                         </>
                     )}
@@ -238,7 +237,7 @@ function MobileSiteLink({ href, children, active = false }: { href: string; chil
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                    "focus-ring min-h-12 rounded-[10px] px-3 py-3 text-base font-medium transition-colors hover:bg-muted hover:text-foreground",
+                    "focus-ring min-h-12 rounded-[10px] px-3 py-3 text-base font-medium riyp-surface-link hover:text-foreground",
                     active ? "bg-secondary text-foreground" : "text-muted-foreground"
                 )}
             >

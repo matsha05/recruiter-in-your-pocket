@@ -16,14 +16,14 @@ export default function SecurityClient() {
             contentClassName="max-w-5xl"
         >
             <section className="rounded-xl border border-border bg-muted p-4 sm:p-5 md:p-6" aria-labelledby="security-data-table-title">
-                <h2 className="mb-5 flex items-center gap-2 font-display text-report-title text-foreground">
+                <h2 className="mb-5 flex items-center gap-2 font-display text-heading text-foreground">
                     <LockKey className="size-5 text-brand" weight="bold" />
                     <span id="security-data-table-title">What we store and why</span>
                 </h2>
                 <div className="divide-y divide-line md:hidden">
                     {DATA_HANDLING_ROWS.map((row) => (
                         <article key={row.dataType} className="py-5 first:pt-1 last:pb-1">
-                            <h3 className="text-base font-medium leading-6 text-foreground">{row.dataType}</h3>
+                            <h3 className="text-base font-medium text-foreground">{row.dataType}</h3>
                             <dl className="mt-4 grid gap-4">
                                 {[
                                     ["Purpose", row.purpose],
@@ -33,14 +33,14 @@ export default function SecurityClient() {
                                 ].map(([label, value]) => (
                                     <div key={label} className="grid gap-1">
                                         <dt className="text-label text-muted-foreground">{label}</dt>
-                                        <dd className="text-sm leading-relaxed text-muted-foreground">{value}</dd>
+                                        <dd className="text-sm text-muted-foreground">{value}</dd>
                                     </div>
                                 ))}
                             </dl>
                         </article>
                     ))}
                 </div>
-                <table className="hidden w-full table-fixed text-sm leading-relaxed md:table">
+                <table className="hidden w-full table-fixed text-sm md:table">
                     <thead>
                         <tr className="border-b border-line text-left">
                             <th className="py-2 pr-3 text-label text-muted-foreground">Data type</th>
@@ -54,10 +54,10 @@ export default function SecurityClient() {
                         {DATA_HANDLING_ROWS.map((row) => (
                             <tr key={row.dataType} className="border-b border-line/70 align-top">
                                 <td className="py-4 pr-3 font-medium text-foreground">{row.dataType}</td>
-                                <td className="py-4 pr-3 text-sm leading-6 text-muted-foreground">{row.purpose}</td>
-                                <td className="py-4 pr-3 text-sm leading-6 text-muted-foreground">{row.retention}</td>
-                                <td className="py-4 pr-3 text-sm leading-6 text-muted-foreground">{row.userControl}</td>
-                                <td className="py-4 text-sm leading-6 text-muted-foreground">{row.processor}</td>
+                                <td className="py-4 pr-3 text-sm text-muted-foreground">{row.purpose}</td>
+                                <td className="py-4 pr-3 text-sm text-muted-foreground">{row.retention}</td>
+                                <td className="py-4 pr-3 text-sm text-muted-foreground">{row.userControl}</td>
+                                <td className="py-4 text-sm text-muted-foreground">{row.processor}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -65,7 +65,7 @@ export default function SecurityClient() {
             </section>
 
             <section className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9">
-                <h2 className="mb-4 flex items-center gap-2 font-display text-report-title text-foreground">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-heading text-foreground">
                     <ShieldCheck className="size-5 text-brand" weight="bold" />
                     What we commit to
                 </h2>
@@ -80,7 +80,7 @@ export default function SecurityClient() {
             </section>
 
             <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6">
-                <h2 className="mb-3 flex items-center gap-2 font-display text-report-title text-foreground">
+                <h2 className="mb-3 flex items-center gap-2 font-display text-heading text-foreground">
                     <ShieldCheck className="size-5 text-brand" weight="bold" />
                     Responsible disclosure
                 </h2>

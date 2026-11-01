@@ -19,7 +19,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="size-11 rounded-[10px] border border-border text-foreground hover:bg-muted hover:text-foreground md:hidden">
+                <Button variant="secondary" size="icon" className="md:hidden">
                     <List className="size-5" />
                     <span className="sr-only">Toggle menu</span>
                 </Button>
@@ -90,25 +90,25 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                     <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
                                         {user.membership === "lifetime" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Lifetime</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold bg-brand-tint text-brand">Lifetime</span>
                                             </span>
                                         )}
                                         {user.membership === "monthly" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Monthly</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold bg-brand-tint text-brand">Monthly</span>
                                                 {typeof user.daysLeft === "number" ? (
                                                     <span className="text-xs text-muted-foreground font-medium">• {user.daysLeft} days left</span>
                                                 ) : null}
                                             </span>
                                         )}
                                         {user.membership === "credit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-success/10 text-success">
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold bg-success/10 text-success">
                                                 {user.paidUsesLeft || 0} Paid Reports
                                             </span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-muted text-muted-foreground">Free Plan</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-xs font-bold bg-muted text-muted-foreground">Free Plan</span>
                                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
                                                     <span className="text-xs text-success font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Report' : 'Reports'} remaining</span>
                                                 )}
@@ -117,14 +117,14 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                     </p>
                                 </div>
                             </div>
-                            <Button variant="outline" className="min-h-11 w-full justify-start gap-2" onClick={() => signOut()}>
+                            <Button size="sm" variant="secondary" className="w-full justify-start" onClick={() => signOut()}>
                                 <SignOut className="size-4" />
                                 Sign Out
                             </Button>
                         </div>
                     ) : (
                         <div className="gap-y-2">
-                            <Button asChild className="min-h-11 w-full" variant="default">
+                            <Button size="sm" asChild className="w-full" variant="primary">
                                 <Link href="/auth" onClick={() => setOpen(false)}>Sign in</Link>
                             </Button>
                         </div>
@@ -157,7 +157,7 @@ function MobileNavLink({
                 "focus-ring flex min-h-12 items-center gap-3 rounded-[10px] px-4 py-3 text-sm font-medium transition-colors",
                 active
                     ? "bg-brand/5 text-brand"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    : "text-muted-foreground riyp-surface-link hover:text-foreground"
             )}
         >
             <Icon className={cn("size-5", active ? "text-brand" : "text-muted-foreground")} />

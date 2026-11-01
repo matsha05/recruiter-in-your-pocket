@@ -14,11 +14,11 @@
     border-bottom: 1px solid hsl(var(--line));
     padding: 0.9375rem 0.25rem;
     color: hsl(var(--text-strong));
-    font-size: 1rem;
+    font: var(--type-body);
 }
 
 .list b { color: hsl(var(--text-strong)); font-weight: 600; }
-.status { flex: none; font-size: 0.9375rem; }
+.status { flex: none; font: var(--type-small); }
 
 /* Older applications fade, the way they do in an inbox you've stopped checking.
    The rows are ink, so even the faintest stays above 4.5:1. */
@@ -30,29 +30,23 @@
 
 .title {
     margin: 3.5rem 0 0;
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.045em;
-    line-height: 1;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
 }
 
 .body {
     max-width: 34ch;
     margin: 1.25rem auto 0;
     color: hsl(var(--text-muted));
-    font-size: 1.25rem;
-    line-height: 1.55;
     text-wrap: pretty;
+    font: var(--type-lead);
 }
 
 .body strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 @media (max-width: 640px) {
     .silence { padding: 1.5rem 1.25rem 4rem; }
-    .list li { font-size: 0.9375rem; padding: 0.75rem 0.125rem; }
+    .list li { padding: 0.75rem 0.125rem; }
     .list li > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .status { font-size: 0.8125rem; }
     .title { margin-top: 2.5rem; }
-    .body { font-size: 1.125rem; }
 }

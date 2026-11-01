@@ -285,7 +285,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 }
                 actions={(
                     <div className="flex flex-wrap items-center gap-2">
-                        <Button asChild variant="outline">
+                        <Button asChild variant="secondary">
                           <Link
                               href="/extension"
                           >
@@ -353,7 +353,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 </p>
             )}
 
-            <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
+            <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm text-muted-foreground">
                 Save jobs with the browser extension. Return here to compare each job with your resume and update your application status.
             </div>
 
@@ -395,7 +395,7 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                         {pageError && <p role="alert" className="mb-3 text-sm text-destructive">{pageError}</p>}
                         <Button
                             type="button"
-                            variant="outline"
+                            variant="secondary"
                             onClick={() => void handleLoadMore()}
                             disabled={loadingMore}
                             className="disabled:cursor-wait"
@@ -455,7 +455,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                 {/* Job Info */}
                 <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="min-w-0 break-words text-base font-medium leading-6 text-foreground">
+                        <h3 className="min-w-0 break-words text-base font-medium text-foreground">
                             {job.title}
                         </h3>
                         <span className={cn(
@@ -578,8 +578,8 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
                 <div className="space-y-3">
-                    <h3 className="font-display text-report-title text-foreground">Sign in to see saved jobs</h3>
-                    <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
+                    <h3 className="font-display text-heading text-foreground">Sign in to see saved jobs</h3>
+                    <p className="mx-auto max-w-md text-sm text-muted-foreground">
                         Sign in with the same email you use in the extension to see your saved jobs and resume.
                     </p>
                 </div>
@@ -591,14 +591,14 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                           Sign In
                       </Link>
                     </Button>
-                    <Button asChild variant="outline">
+                    <Button asChild variant="secondary">
                       <Link
                           href="/workspace"
                       >
                           Open Workspace
                       </Link>
                     </Button>
-                    <Button asChild variant="outline">
+                    <Button asChild variant="secondary">
                       <Link
                           href="/extension"
                       >
@@ -620,8 +620,8 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                 </div>
             </div>
             <div className="space-y-3">
-                <h3 className="font-display text-report-title text-foreground">No saved jobs yet</h3>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+                <h3 className="font-display text-heading text-foreground">No saved jobs yet</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
                     Use the RIYP extension to save a job from LinkedIn or Indeed. Add your default resume to compare it with the job description.
                 </p>
             </div>
@@ -633,7 +633,7 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                       Install extension
                   </Link>
                 </Button>
-                <Button asChild variant="outline">
+                <Button asChild variant="secondary">
                   <Link
                       href="/workspace"
                   >

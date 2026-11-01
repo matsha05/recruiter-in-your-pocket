@@ -47,9 +47,9 @@ function Answer({ named }: { named: NamedOffer[] }) {
     return (
       <section aria-labelledby="four-year-answer">
         <h3 id="four-year-answer" className={`${styles.label} text-muted-foreground`}>Modeled four-year total</h3>
-        <p className="mt-2 font-display text-[2.5rem] font-bold leading-none tracking-[-0.03em] tabular-nums text-foreground">{formatCurrency(total)}</p>
-        <p className="mt-2 text-data text-muted-foreground">About {formatCompactCurrency(total / 4)} a year, before tax.</p>
-        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-data">
+        <p className="mt-2 font-display text-title tabular-nums text-foreground">{formatCurrency(total)}</p>
+        <p className="mt-2 text-sm text-muted-foreground">About {formatCompactCurrency(total / 4)} a year, before tax.</p>
+        <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
           {COMPONENTS.map((component) => (
             <div key={component.key}>
               <dt className="flex items-center gap-2 text-muted-foreground"><span aria-hidden="true" className={`size-2.5 rounded-full ${component.swatch}`} />{component.label}</dt>
@@ -74,7 +74,7 @@ function Answer({ named }: { named: NamedOffer[] }) {
             <li key={offer.id} className="flex items-baseline justify-between gap-4 py-3">
               <div className="min-w-0">
                 <p className="truncate font-semibold text-foreground">{name}</p>
-                <p className="mt-0.5 text-data text-muted-foreground">
+                <p className="mt-0.5 text-sm text-muted-foreground">
                   {index === 0 ? "Highest modeled value" : `${formatCompactCurrency(gap)} less over four years`}
                 </p>
               </div>
@@ -83,7 +83,7 @@ function Answer({ named }: { named: NamedOffer[] }) {
           );
         })}
       </ol>
-      <p className="mt-2 text-data text-muted-foreground">Ranked by modeled value only. It is not a recommendation.</p>
+      <p className="mt-2 text-sm text-muted-foreground">Ranked by modeled value only. It is not a recommendation.</p>
     </section>
   );
 }
@@ -100,7 +100,7 @@ function YearChart({ named }: { named: NamedOffer[] }) {
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
         <figcaption id="year-chart-title" className={`${styles.label} text-muted-foreground`}>Each year, by kind of pay</figcaption>
         {present.length > 1 ? (
-          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-data text-muted-foreground" aria-label="Legend">
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground" aria-label="Legend">
             {present.map((component) => (
               <li key={component.key} className="flex items-center gap-1.5"><span aria-hidden="true" className={`size-2.5 rounded-full ${component.swatch}`} />{component.label}</li>
             ))}
@@ -111,14 +111,14 @@ function YearChart({ named }: { named: NamedOffer[] }) {
       <div aria-hidden="true" className="mt-4 space-y-6">
         {named.map(({ offer, name }) => (
           <div key={offer.id}>
-            {named.length > 1 ? <p className="mb-2 truncate text-data font-medium text-foreground">{name}</p> : null}
+            {named.length > 1 ? <p className="mb-2 truncate text-sm font-medium text-foreground">{name}</p> : null}
             <div className="grid grid-cols-4 gap-3 border-b border-line">
               {YEARS.map((year) => {
                 const parts = yearParts(offer, year);
                 const share = parts.total / maxYear;
                 return (
                   <div key={year} className="group relative flex h-36 flex-col items-center justify-end">
-                    <span className="mb-1.5 text-data tabular-nums text-foreground">{formatCompactCurrency(parts.total)}</span>
+                    <span className="mb-1.5 text-sm tabular-nums text-foreground">{formatCompactCurrency(parts.total)}</span>
                     <div
                       className={`flex w-full max-w-11 flex-col-reverse gap-[2px] overflow-hidden rounded-t-[4px] ${motionStyles.yearBar}`}
                       style={{ height: `calc((100% - 1.75rem) * ${share})` }}
@@ -142,7 +142,7 @@ function YearChart({ named }: { named: NamedOffer[] }) {
                 );
               })}
             </div>
-            <div className="mt-2 grid grid-cols-4 gap-3 text-center text-data text-muted-foreground">
+            <div className="mt-2 grid grid-cols-4 gap-3 text-center text-sm text-muted-foreground">
               {YEARS.map((year) => <span key={year}>Year {year}</span>)}
             </div>
           </div>
@@ -165,7 +165,7 @@ function YearTable({ named }: { named: NamedOffer[] }) {
             <dt className="text-data text-muted-foreground">Year {year}</dt>
             <dd className="mt-1 space-y-0.5">
               {named.map(({ offer, name }) => (
-                <p key={offer.id} className="flex justify-between gap-3 text-data">
+                <p key={offer.id} className="flex justify-between gap-3 text-sm">
                   {single ? null : <span className="truncate text-muted-foreground">{name}</span>}
                   <span className="font-medium tabular-nums text-foreground">{formatCurrency(yearParts(offer, year).total)}</span>
                 </p>
@@ -214,7 +214,7 @@ function ModelNotes() {
   return (
     <section aria-labelledby="model-notes-title" className="border-t border-line pt-5">
       <h3 id="model-notes-title" className="text-sm font-semibold text-foreground">How this is modeled</h3>
-      <ul className="mt-3 space-y-2 text-data text-muted-foreground">
+      <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
         <li>Base salary holds steady for four full years. Raises, unpaid leave, and leaving early aren&apos;t modeled.</li>
         <li>Bonus is shown at 100% of target every year.</li>
         <li>Equity uses the grant value, vesting schedule, and growth rate you enter. Exercise costs, liquidity, and taxes aren&apos;t modeled.</li>
@@ -232,14 +232,14 @@ export function CompCalculatorResults({ offers, hasInvalidVesting }: { offers: O
 
   return (
     <div className={`${styles.sheet} space-y-7 p-5 sm:p-6`}>
-      {hasInvalidVesting ? <div role="alert" className="rounded-xl border border-warning/40 bg-warning/10 px-3 py-3 text-data text-warning-foreground">Fix each equity vesting schedule so its four years total 100%. Offers with invalid schedules are left out of the comparison.</div> : null}
+      {hasInvalidVesting ? <div role="alert" className="rounded-xl border border-warning/40 bg-warning/10 px-3 py-3 text-sm text-warning-foreground">Fix each equity vesting schedule so its four years total 100%. Offers with invalid schedules are left out of the comparison.</div> : null}
       {named.length > 0 ? (
         <>
           <Answer named={named} />
           <YearChart named={named} />
           <YearTable named={named} />
         </>
-      ) : <p className="text-sm leading-6 text-muted-foreground">Results will appear after at least one offer has a base salary and, when equity is included, a valid vesting schedule.</p>}
+      ) : <p className="text-sm text-muted-foreground">Results will appear after at least one offer has a base salary and, when equity is included, a valid vesting schedule.</p>}
       <ModelNotes />
     </div>
   );

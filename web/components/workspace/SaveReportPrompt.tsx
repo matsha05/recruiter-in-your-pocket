@@ -55,10 +55,10 @@ export default function SaveReportPrompt({
             <DialogContent className="max-w-[380px] p-6">
                 <DialogHeader className="mb-5 text-left">
                     <BookmarkSimple aria-hidden="true" className="mb-3 size-6 text-brand" weight="duotone" />
-                    <DialogTitle className="font-display text-2xl font-bold leading-tight">
+                    <DialogTitle className="font-display text-heading">
                         Save this report
                     </DialogTitle>
-                    <DialogDescription className="text-sm leading-relaxed">
+                    <DialogDescription className="text-sm">
                         Sign in and it&apos;ll be in My reports when you come back to revise.
                     </DialogDescription>
                 </DialogHeader>
@@ -83,7 +83,7 @@ export default function SaveReportPrompt({
                     </Button>
 
                     <Button type="button"
-                        variant="ghost"
+                        variant="quiet"
                         onClick={() => {
                             Analytics.track('save_prompt_dismissed', { score });
                             onClose();

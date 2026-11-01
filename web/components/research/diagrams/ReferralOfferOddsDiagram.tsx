@@ -35,12 +35,12 @@ export function ReferralOfferOddsDiagram({ figureNumber = 2 }: { figureNumber?: 
                             <Figure value="1 in 500" className="mt-1 block" />
                         </div>
                         <UnitGrid count={500} columns={25} seen={seen} toneAt={(i) => (i === 0 ? "mark" : "quiet")} />
-                        <p className="text-sm leading-6 text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                             In late 2021 it was about 1 in 8 referred and 1 in 140 cold. Both got harder. <Mark seen={seen}>Cold got far harder.</Mark>
                         </p>
                     </section>
                 </div>
-                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
                     Ashby publishes the offer rates (7.3% referred, 0.2% cold). The &ldquo;1 in&rdquo; counts are our arithmetic, rounded; the cold rate is itself rounded, so treat 500 as approximate.
                 </p>
             </DiagramFrame>

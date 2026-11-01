@@ -16,6 +16,7 @@ export function Wordmark({ className = "", compact = false }: WordmarkProps) {
         <span
             className={`${styles.wordmark} ${compact ? styles.compact : ""} ${className}`}
             aria-label="Recruiter in Your Pocket"
+            data-wordmark=""
         >
             Recruiter<br />in your<br />pocket
         </span>

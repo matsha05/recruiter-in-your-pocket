@@ -54,7 +54,7 @@ export function PenNote({ children, className, leader = "left" }: { children: Re
     return (
         <p
             className={cn(
-                "max-w-[30ch] font-serif text-[1.03rem] italic leading-[1.42] text-[hsl(var(--pen))]",
+                "max-w-[30ch] text-note text-[hsl(var(--pen))]",
                 leader === "left" && "border-l border-[hsl(var(--pen))] pl-3",
                 leader === "top" && "border-t border-[hsl(var(--pen))] pt-2",
                 className,
@@ -134,7 +134,7 @@ export function UnitGrid({
 /** A big number with a small unit, in the display face. */
 export function Figure({ value, unit, className }: { value: ReactNode; unit?: ReactNode; className?: string }) {
     return (
-        <span className={cn("font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl", className)}>
+        <span className={cn("font-display text-title text-foreground", className)}>
             {value}
             {unit ? <span className="ml-1 text-sm font-semibold tracking-normal text-muted-foreground">{unit}</span> : null}
         </span>

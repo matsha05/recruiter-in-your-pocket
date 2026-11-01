@@ -7,44 +7,43 @@ import { cn } from "@/lib/utils"
 import { CircleNotch } from "@phosphor-icons/react"
 import { ActionFeedback } from "./action-feedback"
 
-/** Shared alpine controls: ink primary actions, quiet utility actions, visible focus. */
+/**
+ * The one Button (Highlighter 1.1). Three sizes (44, 48, 60) and three variants: an ink primary,
+ * an outlined secondary, and a quiet text action. Destructive (outlined in the red pen) is only for deleting things.
+ * Every variant shares the press grammar: a fast color change on hover and a 0.98 press.
+ * Links that look like buttons use `asChild` so there is one build per size and variant.
+ */
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 rounded-full text-base font-semibold leading-5 transition-[background-color,border-color,color,box-shadow,transform] duration-normal ease-snap motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-[3px] focus-visible:ring-offset-background disabled:pointer-events-none disabled:bg-disabled-surface disabled:text-muted-foreground disabled:shadow-none",
+    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[background-color,border-color,color,text-decoration-color,transform] duration-fast ease-snap motion-safe:active:scale-[0.98] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-[3px] focus-visible:ring-offset-background disabled:pointer-events-none disabled:bg-disabled-surface disabled:text-muted-foreground [&_svg]:shrink-0",
     {
         variants: {
             variant: {
-                default:
-                    "rounded-full bg-primary text-primary-foreground hover:bg-primary/92 motion-safe:active:scale-[0.98] active:bg-primary/82",
-                destructive:
-                    "bg-destructive text-destructive-foreground hover:bg-destructive/90 motion-safe:active:scale-[0.98]",
-                outline:
-                    "border border-control-line bg-card hover:bg-secondary hover:border-foreground/40 active:bg-secondary/90 motion-safe:active:scale-[0.98]",
+                primary:
+                    "bg-primary text-primary-foreground hover:bg-primary/88 active:bg-primary/80",
                 secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70 motion-safe:active:scale-[0.98]",
-                ghost:
-                    "hover:bg-secondary/80 hover:text-secondary-foreground active:bg-secondary/90",
-                link:
-                    "riyp-link-quiet text-muted-foreground",
-                // The primary action stays visually consistent with the landing page.
-                brand:
-                    "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/82 motion-safe:active:scale-[0.98]",
-                // Compatibility variant: paid actions use the same primary action hierarchy.
-                premium:
-                    "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/82 motion-safe:active:scale-[0.98]",
-                studio:
-                    "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/82 motion-safe:active:scale-[0.98]",
+                    "border border-control-line bg-card text-foreground hover:border-foreground active:bg-secondary",
+                quiet:
+                    "text-foreground underline decoration-[hsl(var(--link-line-quiet))] decoration-1 underline-offset-[var(--link-offset)] hover:decoration-current active:bg-secondary/60",
+                // The red pen draws a line; it never fills.
+                destructive:
+                    "border border-destructive/50 bg-card text-destructive hover:border-destructive active:bg-destructive/5",
             },
             size: {
-                default: "min-h-12 px-6 py-3",
-                sm: "min-h-11 px-4 py-2 text-sm",
-                lg: "min-h-12 px-6 py-3",
-                xl: "min-h-[60px] px-8 py-4",
+                sm: "min-h-11 px-4 text-sm",
+                md: "min-h-12 px-6 text-base",
+                lg: "min-h-[3.75rem] px-8 text-lg",
                 icon: "size-11",
             },
         },
+        compoundVariants: [
+            // A quiet action is text: keep its edge on the text, not on padding.
+            { variant: "quiet", size: ["sm", "md", "lg"], class: "px-2" },
+            // An icon has no underline to deepen, so a quiet icon button takes the surface wash instead.
+            { variant: "quiet", size: "icon", class: "no-underline hover:bg-secondary/55" },
+        ],
         defaultVariants: {
-            variant: "default",
-            size: "default",
+            variant: "primary",
+            size: "md",
         },
     }
 )
@@ -97,4 +96,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button }
+export { Button, buttonVariants }
