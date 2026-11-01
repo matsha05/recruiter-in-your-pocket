@@ -101,10 +101,17 @@ function addRecentCommand(command: RecentCommand) {
     }
 }
 
-export function CommandPalette() {
-    const [open, setOpen] = React.useState(false)
+export interface CommandPaletteProps {
+    /** Open on mount: the launcher loaded the palette in response to Cmd+K. */
+    defaultOpen?: boolean
+    /** Report visibility the launcher observed before the palette loaded. */
+    defaultReportVisible?: boolean
+}
+
+export function CommandPalette({ defaultOpen = false, defaultReportVisible = false }: CommandPaletteProps = {}) {
+    const [open, setOpen] = React.useState(defaultOpen)
     const [recentCommands, setRecentCommands] = React.useState<RecentCommand[]>([])
-    const [workspaceReportVisible, setWorkspaceReportVisible] = React.useState(false)
+    const [workspaceReportVisible, setWorkspaceReportVisible] = React.useState(defaultReportVisible)
     const { push } = useRouter()
     const pathname = usePathname()
 

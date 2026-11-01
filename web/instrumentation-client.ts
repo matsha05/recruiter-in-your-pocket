@@ -21,8 +21,13 @@ Sentry.init({
   environment: getSentryEnvironment(),
   release: getSentryRelease(),
 
-  // Add optional integrations for additional features
-  integrations: isSentryEnabled() && launchFlags.errorReplay ? [Sentry.replayIntegration()] : [],
+  // next.config.mjs inlines RIYP_BUNDLE_ERROR_REPLAY at build time. It must stay
+  // in this condition, not in a variable, so webpack sees the constant and drops
+  // the Replay recorder from every page when the replay flag is unset. The runtime
+  // flag still decides whether a build that includes Replay records anything.
+  integrations: process.env.RIYP_BUNDLE_ERROR_REPLAY === "1" && isSentryEnabled() && launchFlags.errorReplay
+    ? [Sentry.replayIntegration()]
+    : [],
 
   tracesSampleRate: getSentryTracesSampleRate(),
   enableLogs: areSentryLogsEnabled(),

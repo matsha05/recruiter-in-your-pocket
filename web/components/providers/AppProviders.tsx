@@ -2,10 +2,12 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { LazyMotion, MotionConfig, domMax } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { INSTANT_TRANSITION, UI_TRANSITION } from "@/lib/animation";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+
+const loadMotionFeatures = () => import("@/lib/motionFeatures").then((module) => module.default);
 
 type AppProvidersProps = {
   children: ReactNode;
@@ -45,7 +47,7 @@ export function AppProviders({ children }: AppProvidersProps) {
   }, []);
 
   return (
-    <LazyMotion features={domMax}>
+    <LazyMotion features={loadMotionFeatures}>
       <MotionConfig
         reducedMotion="user"
         transition={prefersReducedMotion ? INSTANT_TRANSITION : UI_TRANSITION}

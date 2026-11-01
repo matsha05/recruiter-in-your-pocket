@@ -1,7 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, ReactNode } from "react";
-import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
 import { identifyUser, resetAnalytics } from "@/lib/analytics";
 import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
@@ -31,6 +30,23 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const AUTH_RESOLUTION_TIMEOUT_MS = 6_500;
 const ACCOUNT_STATUS_TIMEOUT_MS = 8_000;
 
+type BrowserClient = ReturnType<typeof import("@/lib/supabase/browserClient")["createSupabaseBrowserClient"]>;
+let browserClient: Promise<BrowserClient> | null = null;
+
+// The Supabase client is the largest library every page would otherwise load
+// before first paint. Loading it after hydration keeps it off the critical path;
+// one client serves the page, and a failed load can be retried.
+function loadSupabase(): Promise<BrowserClient> {
+    browserClient ??= import("@/lib/supabase/browserClient").then(
+        ({ createSupabaseBrowserClient }) => createSupabaseBrowserClient(),
+        (error: unknown) => {
+            browserClient = null;
+            throw error;
+        }
+    );
+    return browserClient;
+}
+
 function settleWithin<T>(task: PromiseLike<T>, timeoutMs: number, message: string): Promise<T> {
     return new Promise((resolve, reject) => {
         const timer = window.setTimeout(() => reject(new Error(message)), timeoutMs);
@@ -57,9 +73,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const refreshAbortRef = useRef<AbortController | null>(null);
     const deferredRefreshRef = useRef<number | null>(null);
     const signingOutRef = useRef(false);
-
-    // Create the browser client once (stable instance)
-    const supabase = useMemo(() => createSupabaseBrowserClient(), []);
 
     const invalidateRefresh = useCallback(() => {
         revisionRef.current += 1;
@@ -90,7 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             && revisionRef.current === revision && !signingOutRef.current;
         try {
             const { data: { user: supabaseUser }, error } = await settleWithin(
-                supabase.auth.getUser(),
+                loadSupabase().then((supabase) => supabase.auth.getUser()),
                 AUTH_RESOLUTION_TIMEOUT_MS,
                 "Account check timed out"
             );
@@ -175,7 +188,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 setIsLoading(false);
             }
         }
-    }, [invalidateRefresh, mapUser, supabase]);
+    }, [invalidateRefresh, mapUser]);
 
     const signOut = useCallback(async () => {
         if (!mountedRef.current || signingOutRef.current) return;
@@ -232,36 +245,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             }, 0);
         };
 
-        // Keep the callback synchronous: Supabase awaits subscribers, and a
-        // nested token refresh can wait on the event currently being delivered.
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            (_event, session) => {
-                if (!mountedRef.current) return;
-                invalidateRefresh();
-                const nextUser = mapUser(session?.user ?? null);
-                if (accountIdRef.current !== (nextUser?.id ?? null)) resetAnalytics();
-                accountIdRef.current = nextUser?.id ?? null;
-                setUser((previous) => previous?.id === nextUser?.id && nextUser
-                    ? { ...previous, ...nextUser }
-                    : nextUser);
-                if (!session?.user) {
-                    resetAnalytics();
-                    setIsLoading(false);
-                    return;
+        let disposed = false;
+        let subscription: { unsubscribe: () => void } | null = null;
+        void loadSupabase().then((supabase) => {
+            if (disposed) return;
+            // Keep the callback synchronous: Supabase awaits subscribers, and a
+            // nested token refresh can wait on the event currently being delivered.
+            const { data } = supabase.auth.onAuthStateChange(
+                (_event, session) => {
+                    if (!mountedRef.current) return;
+                    invalidateRefresh();
+                    const nextUser = mapUser(session?.user ?? null);
+                    if (accountIdRef.current !== (nextUser?.id ?? null)) resetAnalytics();
+                    accountIdRef.current = nextUser?.id ?? null;
+                    setUser((previous) => previous?.id === nextUser?.id && nextUser
+                        ? { ...previous, ...nextUser }
+                        : nextUser);
+                    if (!session?.user) {
+                        resetAnalytics();
+                        setIsLoading(false);
+                        return;
+                    }
+                    deferRefresh();
                 }
-                deferRefresh();
-            }
-        );
-        // Subscribe before resolving the initial identity so an event can
-        // invalidate even the first pending getUser or account-status request.
-        if (deferredRefreshRef.current === null) deferRefresh();
+            );
+            subscription = data.subscription;
+        }, () => {
+            // The initial refresh below retries the load and ends the loading state.
+        }).finally(() => {
+            // Subscribe before resolving the initial identity so an event can
+            // invalidate even the first pending getUser or account-status request.
+            if (!disposed && deferredRefreshRef.current === null) deferRefresh();
+        });
 
         return () => {
+            disposed = true;
             mountedRef.current = false;
             invalidateRefresh();
-            subscription.unsubscribe();
+            subscription?.unsubscribe();
         };
-    }, [invalidateRefresh, mapUser, refreshUser, supabase]);
+    }, [invalidateRefresh, mapUser, refreshUser]);
 
     return (
         <AuthContext.Provider value={{ user, isLoading, signOut, refreshUser }}>

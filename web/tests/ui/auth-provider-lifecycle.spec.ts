@@ -123,6 +123,8 @@ async function buildProviderHarness() {
     stdin: {
       contents: `import React, {useEffect, useState} from "react";
         import {createRoot} from "react-dom/client";
+        // The provider loads Supabase lazily; load the mock first so the harness exists before render.
+        import "@/lib/supabase/browserClient";
         import {AuthProvider, useAuth} from "@/components/providers/AuthProvider";
         function AccountProbe() {
           const {user, isLoading, refreshUser, signOut} = useAuth();
