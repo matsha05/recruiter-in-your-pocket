@@ -6,6 +6,7 @@ import { ResumeQualityDiagram } from "@/components/research/diagrams/ResumeQuali
 export const metadata: Metadata = {
     title: "Show what changed and your part in it",
     description: "Recruiters judge what you can do from what your resume shows you did. What the research supports about showing results, and a practical way to write them.",
+    alternates: { canonical: "/research/quantifying-impact" },
 };
 
 export default function QuantifyingImpactPage() {
@@ -72,9 +73,9 @@ export default function QuantifyingImpactPage() {
                 {
                     id: "source-2",
                     title: "Algorithmic Writing Assistance on Jobseekers' Resumes Increases Hires",
-                    publisher: "van Inwegen, Munyikwa & Horton. NBER Working Paper 30886",
-                    year: "2023",
-                    href: "https://www.nber.org/papers/w30886"
+                    publisher: "Wiles, Munyikwa & Horton. Management Science 71(12); earlier as NBER Working Paper 30886",
+                    year: "2025",
+                    href: "https://doi.org/10.1287/mnsc.2024.04528"
                 },
                 {
                     id: "source-3",
@@ -93,9 +94,9 @@ export default function QuantifyingImpactPage() {
                 {
                     id: "source-5",
                     title: "Are Emily and Greg More Employable than Lakisha and Jamal?",
-                    publisher: "Bertrand & Mullainathan. American Economic Review 94(4)",
+                    publisher: "Bertrand & Mullainathan. American Economic Review 94(4); fieldwork 2001–02",
                     year: "2004",
-                    href: "https://www.nber.org/papers/w9873"
+                    href: "https://doi.org/10.1257/0002828042002561"
                 }
             ]}
             faq={[
@@ -118,23 +119,23 @@ export default function QuantifyingImpactPage() {
                 No study we know of isolates a quantified bullet against a duty-style one. What the research does show is how recruiters use what&apos;s on the page.
             </p>
             <p className="research-body mb-6">
-                <strong>They infer what you can do from what you did.</strong> In a study of 216 recruiters at campus hiring events, ratings of work experience, which included &ldquo;demonstrated personal accomplishments,&rdquo; predicted hiring recommendations. They worked mostly through how well recruiters thought the person fit the job.
+                <strong>They infer what you can do from what you did.</strong> In a study of more than 200 recruiters at campus hiring events in Taiwan, ratings of work experience, which included &ldquo;demonstrated personal accomplishments,&rdquo; predicted hiring recommendations. They worked through how well recruiters thought the person fit both the job and the company.
                 <Citation id="source-3">3</Citation>
             </p>
             <p className="research-body mb-6">
-                <strong>They guess at your character, and the guesses count.</strong> When 244 recruiters screened real resumes, their sense of how conscientious each applicant was became the strongest predictor of employability ratings, even though those guesses barely matched the applicants&apos; measured personality.
+                <strong>They guess at your character, and the guesses count.</strong> When 244 recruiters screened real resumes, their sense of how conscientious each applicant was carried the most weight of any trait in their employability ratings, even though those guesses didn&apos;t match the applicants&apos; measured conscientiousness.
                 <Citation id="source-4">4</Citation>
-                {" "}Concrete evidence of finished work is the best way to give that guess something real to go on.
+                {" "}<strong>Our take:</strong> concrete evidence of finished work gives that guess something real to go on.
             </p>
             <p className="research-body mb-6">
-                <strong>Substance moved callbacks in the field.</strong> In a classic audit study, resumes with more experience, skills, and honors got more callbacks than weaker ones. But only for applicants with white-sounding names.
+                <strong>Substance moved callbacks in the field.</strong> In a classic audit study, resumes with more experience, skills, and honors got more callbacks than weaker ones when the name sounded white: 10.8% against 8.5%. For Black-sounding names the gain was small and not statistically significant: 6.7% against 6.2%.
                 <Citation id="source-5">5</Citation>
             </p>
             <ResumeQualityDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                <strong>Clearer writing led to more hires.</strong> In a randomized experiment with 194,700 jobseekers on an online work platform, writing assistance raised the hire rate from about 3.1% to 3.3%, roughly 8% more hires.
+                <strong>Clearer writing led to more hires.</strong> In a randomized experiment on a freelance platform, spelling and grammar suggestions on new jobseekers&apos; profiles raised the hire rate from about 3.1% to 3.3%, roughly 8% more hires. Of the 480,948 people randomized, the analysis covers the 194,700 whose profiles were approved and not empty.
                 <Citation id="source-2">2</Citation>
-                {" "}That tested grammar and style help, not adding results, but it shows that how clearly a resume reads changes outcomes.
+                {" "}It tested help with wording on short profiles, not adding results, but it shows that how clearly a profile reads can change outcomes.
             </p>
 
             <h2 className="research-h2">Why numbers work</h2>

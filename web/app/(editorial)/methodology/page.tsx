@@ -58,7 +58,7 @@ export default function MethodologyPage() {
             faq={[
                 {
                     question: "What does the score summarize?",
-                    answer: "How clearly your resume shows your work today: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It's not a simple average, and it doesn't predict interviews or offers.",
+                    answer: "How clearly your resume shows your work today. The main driver is how many of your important recent lines show the scope of the work or what changed. The report also rates four parts, the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow, and keeps the score close to them. It isn't a simple average of the four, which is why they aren't shown as separate numbers. It doesn't predict interviews or offers.",
                 },
                 {
                     question: "Why one score instead of four?",
@@ -86,7 +86,7 @@ export default function MethodologyPage() {
                 A recruiter should be able to tell what kind of work you do, what you owned, how big it was, and what changed because of it. The report looks for those details in your resume. If one is missing, it asks you for it instead of guessing.
             </p>
             <p className="research-body mb-6">
-                It reads the whole document, not a stripped-down summary. In one recruiter study, judgments changed when reviewers saw real resumes instead of simplified candidate profiles, which is why every finding stays tied to the line it came from.
+                It reads the whole document, not a stripped-down summary. In one recruiter study, judgments changed when reviewers saw real resumes instead of simplified candidate profiles. That&apos;s one reason every finding stays tied to the line it came from.
                 <Citation id="source-0">1</Citation>
             </p>
 
@@ -104,7 +104,7 @@ export default function MethodologyPage() {
             <dl className="not-prose mb-12 divide-y divide-border/40 border-y border-border/40">
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-brand">From research</dt>
-                    <dd className="text-sm leading-7 text-muted-foreground">Real resumes change recruiter judgments, and attention during a first review concentrates on experience.</dd>
+                    <dd className="text-sm leading-7 text-muted-foreground">In one study, recruiters judged real resumes differently from simplified profiles. In another, longer looks at the Experience section went with moving a resume forward.</dd>
                 </div>
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-foreground">Ours</dt>
@@ -122,6 +122,7 @@ export default function MethodologyPage() {
             <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
                 <li className="flex gap-2"><span aria-hidden="true">–</span>Whether you&apos;ll get an interview or an offer.</li>
                 <li className="flex gap-2"><span aria-hidden="true">–</span>How a specific employer, team, or hiring process weighs things.</li>
+                <li className="flex gap-2"><span aria-hidden="true">–</span>How your file looks. The report reads the text we pull from it, not the layout, fonts, or columns.</li>
                 <li className="flex gap-2"><span aria-hidden="true">–</span>Anything about referrals, the job market, or bias in hiring.</li>
             </ul>
         </ResearchArticle>

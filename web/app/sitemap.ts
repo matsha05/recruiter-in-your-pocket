@@ -25,6 +25,8 @@ const routes = [
   "/research/gaps-and-pivots",
   "/research/writing-quality-hire-probability",
   "/resources",
+  "/resources/offer-negotiation",
+  "/resources/tech-offer-negotiation",
   "/resources/tools/comp-calculator",
   "/trust",
   "/security",

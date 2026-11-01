@@ -3,15 +3,16 @@
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
-// A fictional candidate, written two ways. Same jobs, same dates; only the telling changes.
+// A fictional candidate, written two ways. Both versions hold the same facts: the self-serve funnel and
+// hiring a team of four at Northwind, paid search and weekly reporting at Contoso. Only the telling changes.
 const versions = [
     {
         label: "The resume lists jobs",
         lines: [
             "Marketing Manager, Northwind · 2022–now",
-            "Responsible for campaigns, content, and analytics",
+            "Responsible for the self-serve funnel, campaigns, and hiring for a team of four",
             "Marketing Associate, Contoso · 2019–2022",
-            "Supported marketing initiatives across channels",
+            "Responsible for paid search and weekly reporting",
         ],
         read: "Marketing person. Not sure at what level, or what they'd do here.",
         tone: "muted" as const,
@@ -19,12 +20,11 @@ const versions = [
     {
         label: "The resume tells the story",
         lines: [
-            "Growth marketer who builds the team as the product grows",
-            "Northwind · Hired and led a team of four after launch",
-            "Took the self-serve funnel from launch to the first paying enterprise customers",
-            "Contoso · Ran paid search; built the reporting the team still uses",
+            "Growth marketer: paid search first, now a self-serve funnel and a team of four",
+            "Northwind, 2022–now · Took on the self-serve funnel and hired a team of four",
+            "Contoso, 2019–2022 · Ran paid search and the weekly reporting",
         ],
-        read: "Growth marketer, ready to lead. I can see her running our launch.",
+        read: "Growth marketer who's built a team. I can picture her running ours.",
         tone: "pen" as const,
     },
 ];
@@ -33,13 +33,13 @@ export function StoryReadDiagram({ figureNumber = 1 }: { figureNumber?: number }
     return (
         <DiagramFigure
             className="max-w-[54rem]"
-            label="Two versions of the same fictional resume. Listed as job duties, the recruiter can't say who the person is. Told as a story, the recruiter can name them in one line and picture them in the role."
+            label="Two versions of the same fictional resume, with the same facts. Listed as job duties, the recruiter can't say who the person is. Told as a story, the recruiter can name them in one line and picture them in the role."
         >
             <DiagramFrame>
                 <EvidenceHeader
                     index={String(figureNumber).padStart(2, "0")}
                     title="Same career, two first reads"
-                    note="A fictional candidate. Same jobs and dates; only the telling changes."
+                    note="A fictional candidate. Same jobs, dates, and facts; only the telling changes."
                 />
                 <div className="grid gap-px bg-line md:grid-cols-2">
                     {versions.map((version) => (
@@ -64,7 +64,7 @@ export function StoryReadDiagram({ figureNumber = 1 }: { figureNumber?: number }
                     ))}
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Worked example`} title="The facts didn't change. What changed is whether a stranger can put themselves in your shoes." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Worked example`} title="Nothing was added. The second version puts the same facts in an order a stranger can follow." />
         </DiagramFigure>
     );
 }

@@ -5,6 +5,7 @@ import { StarStructureDiagram } from "@/components/research/diagrams/StarStructu
 export const metadata: Metadata = {
     title: "Tell the story behind the line",
     description: "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
+    alternates: { canonical: "/research/star-method" },
 };
 
 export default function StarMethodPage() {
@@ -22,7 +23,7 @@ export default function StarMethodPage() {
                 stat: "Shared questions, shared scoring",
                 statDescription: (
                     <>
-                        Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance. The more structured the interview, the more consistent and predictive the ratings.
+                        Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance. Across many studies, structured interviews have proved more reliable and more predictive of job performance than unstructured ones.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </>

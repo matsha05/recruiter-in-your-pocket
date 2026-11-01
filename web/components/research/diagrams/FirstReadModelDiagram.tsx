@@ -24,8 +24,8 @@ const weighs = [
         finding: sampleReport.gaps[2],
     },
     {
-        title: "How easy the page is to scan",
-        question: "Can someone find your roles, dates, and results quickly?",
+        title: "How easy the text is to follow",
+        question: "Reading the text alone, can someone find your roles, dates, and results quickly?",
         finding: sampleReport.section_review.Skills.working,
     },
 ];

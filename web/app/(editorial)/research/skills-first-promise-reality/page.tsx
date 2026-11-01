@@ -5,6 +5,7 @@ import { SkillsPromiseRealityDiagram } from "@/components/research/diagrams/Skil
 export const metadata: Metadata = {
     title: "Skills-first hiring: the promise and the practice",
     description: "What skills-first hiring expands, and where adoption still lags.",
+    alternates: { canonical: "/research/skills-first-promise-reality" },
 };
 
 export default function SkillsFirstPromiseRealityPage() {
@@ -22,7 +23,7 @@ export default function SkillsFirstPromiseRealityPage() {
                 stat: "Fewer than 1 in 700 hires",
                 statDescription: (
                     <>
-                        A 2024 Harvard Business School and Burning Glass Institute analysis estimated that removing degree requirements created incremental opportunity for fewer than one in 700 annual hires.
+                        A 2024 Harvard Business School and Burning Glass Institute analysis estimated that, in 2023, removing degree requirements opened up new opportunity in fewer than one in 700 hires.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -33,9 +34,9 @@ export default function SkillsFirstPromiseRealityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Most employers that dropped the degree kept hiring the same people</h2>
+                    <h2 className="research-h2">Many employers that dropped the degree didn&apos;t change who they hired</h2>
                     <p className="research-body mb-6">
-                        The report compared changes in job requirements with changes in hiring. Some employers hired more workers without degrees; many did not.
+                        The report compared changes in job requirements with changes in hiring. A minority of employers hired meaningfully more workers without degrees. Many changed the job ad and little else, and some gains faded.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <SkillsPromiseRealityDiagram />
@@ -69,8 +70,8 @@ export default function SkillsFirstPromiseRealityPage() {
                 },
                 {
                     id: "source-2",
-                    title: "Skills-Based Hiring: The Big Picture",
-                    publisher: "LinkedIn Economic Graph",
+                    title: "Skills-Based Hiring: Increasing Access to Opportunity",
+                    publisher: "Lara. LinkedIn Economic Graph Research Institute (vendor research)",
                     year: "2025",
                     href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
                 }
@@ -92,9 +93,9 @@ export default function SkillsFirstPromiseRealityPage() {
         >
             <h2 className="research-h2">What this means for candidates</h2>
             <p className="research-body mb-6">
-                Skills-first does not remove competition or old filters. LinkedIn documents growing use of skills language on its platform, while the HBS analysis shows that changed postings have not consistently translated into changed hires.
-                <Citation id="source-1">1</Citation>
+                Skills-first does not remove competition or old filters. A 2025 LinkedIn report modeled how much bigger talent pools would be if employers hired on skills instead of past job titles, a median of 6.1 times bigger. That&apos;s a simulation of who could qualify, not a count of who was hired. The HBS analysis looked at actual hiring and found that changed postings have not consistently translated into changed hires.
                 <Citation id="source-2">2</Citation>
+                <Citation id="source-1">1</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -126,8 +127,8 @@ export default function SkillsFirstPromiseRealityPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms with observable hiring before and after degree requirements changed.</li>
-                <li>LinkedIn&apos;s findings describe activity on its own platform and are not independent causal evidence.</li>
+                <li>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms that dropped degree requirements between 2014 and 2023, with hiring observed before and after the change.</li>
+                <li>LinkedIn&apos;s report is a model built on its own members&apos; data. It estimates who could qualify for a role, not who was hired, and it isn&apos;t independent research.</li>
                 <li>Adoption varies by employer, occupation, and market; a changed job ad does not guarantee a changed hiring decision.</li>
             </ul>
         </ResearchArticle>

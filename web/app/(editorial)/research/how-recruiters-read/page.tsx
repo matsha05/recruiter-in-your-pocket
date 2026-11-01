@@ -6,6 +6,7 @@ import { ScanPattern } from "@/components/research/diagrams/ScanPattern";
 export const metadata: Metadata = {
     title: "What recruiters notice in the first pass",
     description: "Peer-reviewed eye-tracking research on recruiter attention, resume review, and the limits of the six-second claim.",
+    alternates: { canonical: "/research/how-recruiters-read" },
 };
 
 export default function HowRecruitersReadPage() {
@@ -21,10 +22,10 @@ export default function HowRecruitersReadPage() {
             }}
             keyFinding={{
                 subtitle: "Strongest direct evidence",
-                stat: "2,043 resume reviews",
+                stat: "Longer looks at Experience",
                 statDescription: (
                     <>
-                        In a 2023 eye-tracking study, recruiters who spent longer on the Experience section were more likely to move the resume forward.
+                        In a 2023 eye-tracking study, recruiters who spent longer on a resume&apos;s Experience section were more likely to move it forward.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -34,7 +35,7 @@ export default function HowRecruitersReadPage() {
                 },
                 sampleSize: (
                     <>
-                        221 recruiters recruited; 24 incomplete sessions removed; 2,043 usable first-round reviews
+                        221 recruiters from one southwestern US state; 24 with incomplete data removed; 2,043 usable resume reviews
                         <Citation id="source-1">1</Citation>
                     </>
                 )
@@ -53,7 +54,7 @@ export default function HowRecruitersReadPage() {
                 items: [
                     {
                         title: "The Verdict",
-                        description: "Your Verdict is our version of that first pass: what comes through, and what slips past."
+                        description: "A plain-words summary of what your resume says first. It isn't an eye-tracking measure, and it can't tell you how long anyone will look."
                     },
                     {
                         title: "The Critical Miss",
@@ -96,7 +97,7 @@ export default function HowRecruitersReadPage() {
                 },
                 {
                     question: "What did the strongest eye-tracking study measure?",
-                    answer: "The 2023 study recruited 221 people who hired computer science graduates. The researchers removed 24 incomplete sessions and analyzed 2,043 usable first-round resume reviews."
+                    answer: "The 2023 study recruited 221 people who hired computer science graduates, at career fairs and businesses in one southwestern US state. The researchers removed 24 participants whose data was incomplete and analyzed 2,043 usable resume reviews."
                 },
                 {
                     question: "Does more viewing time cause a resume to move forward?",
@@ -106,7 +107,7 @@ export default function HowRecruitersReadPage() {
         >
             <h2 className="research-h2">Where the six-second claim came from</h2>
             <p className="research-body mb-6">
-                The memorable number comes from a small, company-sponsored eye-tracking report published in 2012. It is useful as category history, but it cannot support a universal claim about how every recruiter reads.
+                The memorable number comes from a 2012 eye-tracking report by TheLadders, a job site, about its own product. It watched 30 recruiters. It is useful as category history, but it cannot support a universal claim about how every recruiter reads.
                 <Citation id="source-3">3</Citation>
             </p>
             <p className="research-body mb-6">
@@ -116,11 +117,11 @@ export default function HowRecruitersReadPage() {
 
             <h2 className="research-h2">What the larger eye-tracking study found</h2>
             <p className="research-body mb-6">
-                Pina and colleagues recruited 221 people who hired computer science graduates. Each reviewed entry-level resumes in a simulated first-round screen with no time limit. After incomplete sessions and resumes were removed, the paper analyzed 2,043 reviews.
+                Pina and colleagues recruited 221 people who hired computer science graduates, all from one southwestern US state. Each decided whether to move resumes forward in a simulated screen with no time limit and no specific job named. After incomplete data was removed, the paper analyzed 2,043 reviews.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                The clearest section-level result involved Experience: longer viewing there was correlated with resumes moving forward. Education also appeared among the more informative areas. The study found no comparable result for Skills, Projects, Introduction, or Address, which does not mean those sections never matter.
+                The clearest section-level result involved Experience: longer viewing there was correlated with resumes moving forward. Education mattered to a lesser extent. The study found no comparable result for Skills, Projects, Introduction, or Address, which does not mean those sections never matter.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -141,12 +142,7 @@ export default function HowRecruitersReadPage() {
                 />
                 <ArticleInsight
                     title="How the details fit together"
-                    desc={
-                        <>
-                            Keep useful context beside the achievement. Recruiters used information differently when they judged full resumes instead of simplified profiles.
-                            <Citation id="source-2">2</Citation>
-                        </>
-                    }
+                    desc="Keep useful context beside the achievement: the team, the scale, and what changed."
                 />
                 <ArticleInsight
                     title="Where the reader should look next"
@@ -165,9 +161,9 @@ export default function HowRecruitersReadPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The 2023 study focused on entry-level computer science resumes and a simulated screen.</li>
+                <li>The 2023 study used recruiters from one US state, computer science graduates&apos; resumes, and a simulated screen with no specific job.</li>
                 <li>Eye-tracking associations do not prove that a resume section caused a decision.</li>
-                <li>The 2002 study found different judgments for full resumes and simplified profiles; it does not prescribe one layout.</li>
+                <li>The 2002 study is about how to study screening: recruiters judged real resumes differently from simplified profiles. It isn&apos;t writing advice, and we read only its abstract.</li>
                 <li>The 2012 vendor report is historical context, not the foundation for our advice.</li>
             </ul>
         </ResearchArticle>

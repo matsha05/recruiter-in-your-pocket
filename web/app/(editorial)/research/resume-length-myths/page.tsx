@@ -5,6 +5,7 @@ import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDi
 export const metadata: Metadata = {
     title: "There is no universal one-page rule",
     description: "What a peer-reviewed recruiter study does and does not say about one-page and two-page resumes.",
+    alternates: { canonical: "/research/resume-length-myths" },
 };
 
 export default function ResumeLengthPage() {
@@ -92,7 +93,7 @@ export default function ResumeLengthPage() {
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>The study covered entry-level accounting candidates, not every role or career stage.</li>
                 <li>Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires.</li>
-                <li>The study was published in 2001, before today&apos;s digital application workflow.</li>
+                <li>The study was published in 2001, 25 years ago, when the firms were still the &ldquo;Big Six&rdquo; and before today&apos;s digital application workflow.</li>
             </ul>
 
             <h2 className="research-h2">A better editing rule</h2>
@@ -111,7 +112,7 @@ export default function ResumeLengthPage() {
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>This is a peer-reviewed study, but its setting is narrow and dated.</li>
-                <li>Packets went to 570 recruiters. The abstract doesn&apos;t say how many replied.</li>
+                <li>Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled.</li>
                 <li>Use the finding to reject a rigid one-page rule, not to replace it with a rigid two-page rule.</li>
             </ul>
         </ResearchArticle>

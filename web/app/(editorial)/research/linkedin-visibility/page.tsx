@@ -6,6 +6,7 @@ import { RecruiterSearchDiagram } from "@/components/research/diagrams/Recruiter
 export const metadata: Metadata = {
     title: "What makes a LinkedIn profile easier to find",
     description: "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
+    alternates: { canonical: "/research/linkedin-visibility" },
 };
 
 export default function LinkedInVisibilityPage() {
@@ -17,7 +18,7 @@ export default function LinkedInVisibilityPage() {
                 description: "LinkedIn explains which profile fields its recruiter tools can search, but does not publish the ranking weights.",
                 lastUpdated: "July 2026",
                 readTime: "4 min read",
-                sourceSummary: "2 current LinkedIn Recruiter help records"
+                sourceSummary: "2 LinkedIn Recruiter help pages (vendor documentation)"
             }}
             keyFinding={{
                 subtitle: "What the platform confirms",
@@ -70,14 +71,14 @@ export default function LinkedInVisibilityPage() {
                 {
                     id: "source-1",
                     title: "Skills filter in Recruiter and Recruiter Lite",
-                    publisher: "LinkedIn Recruiter Help",
-                    year: "2025",
+                    publisher: "LinkedIn Recruiter Help (last updated about 2024; checked November 2026)",
+                    year: "2024",
                     href: "https://www.linkedin.com/help/recruiter/answer/a596630"
                 },
                 {
                     id: "source-2",
                     title: "Recruiter and Recruiter Lite search filters and definitions",
-                    publisher: "LinkedIn Recruiter Help",
+                    publisher: "LinkedIn Recruiter Help (checked November 2026)",
                     year: "2026",
                     href: "https://www.linkedin.com/help/recruiter/answer/a408731"
                 }

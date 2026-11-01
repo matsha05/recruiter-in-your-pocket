@@ -5,6 +5,7 @@ import { GapPivotDiagram } from "@/components/research/diagrams/GapPivotDiagram"
 export const metadata: Metadata = {
     title: "Gaps, pivots, and short stints",
     description: "What field experiments found about employment gaps, career changes, and frequent moves, and what actually helped the resumes that had them.",
+    alternates: { canonical: "/research/gaps-and-pivots" },
 };
 
 export default function GapsAndPivotsPage() {
@@ -133,7 +134,7 @@ export default function GapsAndPivotsPage() {
             <p className="research-body mb-6">
                 In a Swedish experiment with 8,466 applications, a year out of work between two past jobs made no measurable difference to callbacks. Current time out of work mattered more, mainly for lower-skilled jobs.
                 <Citation id="source-4">4</Citation>
-                {" "}Once later work has closed a gap, it mostly stops counting against you.
+                {" "}In that study, a gap that later work had closed didn&apos;t count against the applicant.
             </p>
 
             <h2 className="research-h2">Show the experience, not the calendar</h2>
@@ -154,7 +155,7 @@ export default function GapsAndPivotsPage() {
                 <Citation id="source-6">6</Citation>
             </p>
             <p className="research-body mb-6">
-                A 2025 US study with 3,878 applications found no penalty overall for four employers in eight years: 9.7% against 10.5% for a stable history. The penalty showed up in non-tech jobs. Software employers didn&apos;t mind the moves.
+                A 2025 US study sent 3,878 applications for five mid-level jobs. Overall, four employers in eight years got callbacks 9.7% of the time against 10.5% for one employer, not a significant difference. That average hides a split. In HR, financial reporting, marketing, and IT jobs, frequent movers got about a third fewer callbacks than stable ones. The exception was software testing, where the stable history was the one that lost out. Tech companies as a group didn&apos;t favor movers; if anything, they leaned toward stable histories.
                 <Citation id="source-7">7</Citation>
             </p>
 

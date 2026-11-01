@@ -3,7 +3,8 @@ import PrivacyClient from "@/components/legal/PrivacyClient";
 
 export const metadata: Metadata = {
     title: "Privacy policy",
-    description: "Privacy Policy for Recruiter in Your Pocket - how we handle your resume data and protect your privacy."
+    description: "Privacy Policy for Recruiter in Your Pocket - how we handle your resume data and protect your privacy.",
+    alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
