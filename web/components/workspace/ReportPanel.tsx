@@ -46,6 +46,8 @@ interface ReportPanelProps {
     onRetryAnalysis?: () => void;
     comparisonBaseline?: ReportData | null;
     onStartRevision?: () => void;
+    /** A report opened from My reports. Saved reports never keep the resume. */
+    isSavedReport?: boolean;
 }
 
 export default function ReportPanel({
@@ -72,6 +74,7 @@ export default function ReportPanel({
     onRetryAnalysis,
     comparisonBaseline = null,
     onStartRevision,
+    isSavedReport = false,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -150,7 +153,8 @@ export default function ReportPanel({
     };
 
     return (
-        <div className="group relative flex h-full flex-col overflow-y-auto bg-mineral">
+        // A report is one document that scrolls with the page; loading and empty states keep the panel.
+        <div className={showReport && !isLoading ? "group relative flex flex-col bg-mineral" : "group relative flex h-full flex-col overflow-y-auto bg-mineral"}>
 
             {/* Loading preserves the report-generation controls. */}
             {isLoading && (
@@ -341,6 +345,7 @@ export default function ReportPanel({
                                 onStartRevision={onStartRevision}
                                 onStartReport={onNewReport}
                                 resumeText={resumeText}
+                                resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>

@@ -1,5 +1,6 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
+import { isNothingCritical } from "./report-presentation";
 import { reconcileReport } from "./report-integrity";
 
 export type ReportForPdf = {
@@ -13,8 +14,13 @@ export type ReportForPdf = {
   score_comment_short?: string;
   first_impression?: string;
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
-  /** `why` is present only when it is a reason; `questions` are the details to add, as on the web report. */
-  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[] }>;
+  /**
+   * `why` is present only when it is a reason; `questions` are the details to add, as on the web report.
+   * `line` is the quoted resume line the fix marks, and `section` where it sits.
+   */
+  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string }>;
+  /** The Critical Miss is an optional refinement (decision D2). */
+  nothing_critical?: boolean;
   /** Structural gaps shown in the opening read. */
   structural_gaps?: string[];
   job_alignment?: {
@@ -76,6 +82,7 @@ function asSourceFixes(value: unknown): SourceFix[] {
 
     const fix = asTrimmedString((item as { fix?: unknown }).fix) || undefined;
     const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
+    const impact_level = asTrimmedString((item as { impact_level?: unknown }).impact_level) || undefined;
     if (!fix && !why) return [];
 
     const rawEvidence = (item as { evidence?: unknown }).evidence;
@@ -87,7 +94,7 @@ function asSourceFixes(value: unknown): SourceFix[] {
           section: asTrimmedString((rawEvidence as { section?: unknown }).section) || undefined,
         }
         : undefined;
-    return [{ fix, why, evidence }];
+    return [{ fix, why, evidence, impact_level }];
   });
 }
 
@@ -209,11 +216,16 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     ideas: { questions: asQuestions(candidate.ideas) },
     next_steps: asStringArray(candidate.next_steps),
   });
-  const top_fixes = sourceFixes.map((fix, index) => ({
-    fix: fix.fix,
-    why: integrity.fixWhyIsReason[index] ? fix.why : undefined,
-    questions: integrity.fixQuestions[index].length > 0 ? integrity.fixQuestions[index] : undefined,
-  }));
+  const top_fixes = sourceFixes.map((fix, index) => {
+    const excerpt = typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt;
+    return {
+      fix: fix.fix,
+      why: integrity.fixWhyIsReason[index] ? fix.why : undefined,
+      questions: integrity.fixQuestions[index].length > 0 ? integrity.fixQuestions[index] : undefined,
+      line: excerpt?.replace(/^[-•*]\s+/u, "") || undefined,
+      section: (typeof fix.evidence === "object" ? fix.evidence?.section : undefined) || fix.section_ref || undefined,
+    };
+  });
   const normalized: ReportForPdf = {
     score,
     summary: deriveSummary(candidate) || "Here's where to start.",
@@ -226,6 +238,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     first_impression: asTrimmedString(candidate.first_impression) || undefined,
     subscores: asSubscores(candidate.subscores),
     top_fixes,
+    nothing_critical: isNothingCritical({ top_fixes: sourceFixes }) || undefined,
     structural_gaps: integrity.structuralGaps.length > 0 ? integrity.structuralGaps.map(({ text }) => text) : undefined,
     job_alignment: asJobAlignment(candidate.job_alignment),
   };

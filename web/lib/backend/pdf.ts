@@ -4,14 +4,17 @@ import puppeteerCore from "puppeteer-core";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { ReportForPdf } from "../reports/pdf-export";
+import { fixPlanHeadingForCount } from "../reports/report-presentation";
+import { marginNoteFromFix } from "../reports/revised-line";
+import { SCORE_BANDS, scoreBandIndex } from "../reports/score-band";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
  * Alpine report PDF generator
  * 
  * Design principles:
- * 1. Written recruiter verdict before the numeric summary
- * 2. Stable evidence colors instead of traffic-light scoring
+ * 1. The same document as the web report: Verdict and score band, then the marked lines
+ * 2. Stable evidence colors instead of traffic-light scoring; the number appears only in comparisons
  * 3. Literata for the recruiter's voice, Schibsted Grotesk for everything else
  * 4. Page-safe sections and printable action checkboxes
  */
@@ -42,10 +45,13 @@ function firstSentence(value: string): string {
 
 export function renderReportHtml(report: ReportForPdf) {
   const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  // Same order as the web report: Verdict, then why the score landed, then the Critical Miss.
+  // Same order as the web report: the Verdict and score band, then the marked lines, Critical Miss first.
   const verdict = report.first_impression || report.score_comment_short || firstSentence(report.summary);
   const verdictReason = report.score_comment_short && report.score_comment_short !== verdict ? report.score_comment_short : "";
-  const criticalMiss = report.top_fixes?.find((fix) => fix?.fix);
+  const fixes = (report.top_fixes || []).filter((fix) => fix?.fix).slice(0, 3);
+  const bandIndex = Math.max(0, scoreBandIndex(report.score));
+  const band = SCORE_BANDS[bandIndex];
+  const [keepFirst, ...keepRest] = report.strengths || [];
 
   // Checkbox action items
   const checkboxListHtml = (items: string[] = []) =>
@@ -54,23 +60,26 @@ export function renderReportHtml(report: ReportForPdf) {
   const signalListHtml = (items: string[] = [], tone: "lands" | "context") =>
     items.map((item) => `<li><span class="signal-marker ${tone}" aria-hidden="true"></span><span>${escapeHtml(item)}</span></li>`).join("");
 
-  // Top fixes carry the action, the reason and the details to add, as the web report's fix cards do.
-  // The Critical Miss already gave its reason above, so its entry only lists what to add.
-  const topFixesHtml = (fixes: ReportForPdf["top_fixes"] = []) =>
-    fixes.map((fix, index) => {
-      const action = fix?.fix;
-      if (!action) return "";
-      const reason = fix === criticalMiss ? "" : fix.why;
-      const questions = fix.questions || [];
-      return `<li class="priority-item">
-        <span class="priority-number">${String(index + 1).padStart(2, "0")}</span>
-        <span class="priority-copy">
-          <strong>${escapeHtml(action)}</strong>
-          ${reason ? `<span>${escapeHtml(reason)}</span>` : ""}
-          ${questions.length ? `<span class="priority-questions"><span class="priority-questions-label">What to add</span>${questions.map((question) => `<span class="priority-question">${escapeHtml(question)}</span>`).join("")}</span>` : ""}
-        </span>
-      </li>`;
-    }).join("");
+  // Each marked line: the candidate's words on the left, the recruiter's note in the margin, as on the web.
+  const markedRowHtml = (fix: NonNullable<ReportForPdf["top_fixes"]>[number], index: number) => {
+    const miss = index === 0;
+    const label = miss ? (report.nothing_critical ? "Nothing critical" : "Critical Miss") : `Fix ${index + 1}`;
+    const questions = fix.questions || [];
+    const line = escapeHtml(fix.line || "");
+    return `<div class="marked-row">
+        <div>
+          ${fix.section ? `<div class="marked-section">${escapeHtml(fix.section)}</div>` : ""}
+          ${miss && !report.nothing_critical ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
+        </div>
+        <div>
+          <div class="marked-label${miss ? " miss" : ""}">${label}</div>
+          ${miss ? `<div class="marked-definition">${report.nothing_critical ? "An optional refinement" : "The one thing to fix first"}</div>` : ""}
+          <div class="pen-note">${escapeHtml(marginNoteFromFix(fix.fix || ""))}</div>
+          ${fix.why ? `<div class="marked-why">${escapeHtml(fix.why)}</div>` : ""}
+          ${questions.length ? `<div class="marked-questions"><div class="marked-questions-label">What to add</div>${questions.map((question) => `<div class="marked-question">${escapeHtml(question)}</div>`).join("")}</div>` : ""}
+        </div>
+      </div>`;
+  };
 
   // Rewrites with page-break protection
   const rewriteHtml = (rewrites: ReportForPdf["rewrites"] = []) =>
@@ -160,49 +169,34 @@ export function renderReportHtml(report: ReportForPdf) {
   </header>
 
   <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <div class="verdict-label">Verdict</div>
-        <h1>${escapeHtml(verdict)}</h1>
-        ${verdictReason ? `<p class="hero-summary">${escapeHtml(verdictReason)}</p>` : ""}
-      </div>
-      <div class="score-card">
-        <div class="score-name">First Impression score</div>
-        <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
-      </div>
+    <div class="verdict-label">Verdict</div>
+    <h1>${escapeHtml(verdict)}</h1>
+    ${verdictReason ? `<p class="hero-summary">${escapeHtml(verdictReason)}</p>` : ""}
+    <div class="band">
+      <div class="band-name">${escapeHtml(band.name)}</div>
+      <div class="band-scale">${SCORE_BANDS.map((_, index) => `<span class="band-bar${index === bandIndex ? " current" : ""}"></span>`).join("")}</div>
+      <div class="band-anchor">${escapeHtml(band.anchor)}</div>
     </div>
     <div class="score-note">How clearly your resume shows your work today. It doesn't predict interviews or offers.</div>
   </section>
 
-  ${criticalMiss ? `
-  <section class="critical-miss">
-    <div class="critical-label">Critical Miss</div>
-    <p class="critical-title">${escapeHtml(criticalMiss.fix || "")}</p>
-    ${criticalMiss.why ? `<p class="critical-why">${escapeHtml(criticalMiss.why)}</p>` : ""}
-  </section>
-  ` : ""}
-
-  ${report.structural_gaps?.length ? `
-  <section class="gap-note">
-    <div class="gap-label">Before the bullets</div>
-    ${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}
-  </section>
-  ` : ""}
-
-  ${report.strengths?.length ? `
-  <section class="signal-panel lands keep-section">
-    <div class="section-kicker">Keep these</div>
-    <h2>Leave these alone. They&rsquo;re working.</h2>
-    <ul>${signalListHtml(report.strengths, "lands")}</ul>
-  </section>
-  ` : ""}
-
-  ${report.top_fixes?.length ? `
+  ${fixes.length ? `
     <section class="section priority-section">
       <div class="section-kicker">Fix these first</div>
-      <div class="section-header"><h2>Start here</h2></div>
-      <ul class="priority-list">${topFixesHtml(report.top_fixes)}</ul>
+      <div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length, report.nothing_critical))}</h2></div>
+      ${markedRowHtml(fixes[0], 0)}
+      ${report.structural_gaps?.length ? `<div class="page-note gap"><div class="page-note-label">Before the bullets</div>${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}</div>` : ""}
+      ${keepFirst ? `<div class="page-note"><div class="page-note-label">Keep this one</div><p>${escapeHtml(keepFirst)}</p></div>` : ""}
+      ${fixes.slice(1).map((fix, offset) => markedRowHtml(fix, offset + 1)).join("")}
     </section>
+  ` : ""}
+
+  ${keepRest.length || (!fixes.length && keepFirst) ? `
+  <section class="signal-panel lands keep-section">
+    <div class="section-kicker">Keep these</div>
+    <h2>Keep these. They&rsquo;re working.</h2>
+    <ul>${signalListHtml(fixes.length ? keepRest : report.strengths, "lands")}</ul>
+  </section>
   ` : ""}
 
   ${report.rewrites.length ? `

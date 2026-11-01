@@ -132,7 +132,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
 
   return (
-    <div data-visual-anchor="report-detail-page" className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
+    <div data-visual-anchor="report-detail-page" className="flex flex-1 flex-col bg-body">
       <div className="border-b border-border/40 bg-background px-4 md:px-6">
         <div className="mx-auto flex min-h-14 w-full max-w-6xl items-center justify-between gap-3">
           <Link href="/reports" className="riyp-link-nav inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
@@ -219,9 +219,10 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       )}
 
       {state === "ready" && report && (
-        <div className="min-h-0 flex-1 overflow-y-auto">
+        <div className="flex-1">
           <div className="h-4 md:h-6" aria-hidden="true" />
           <ReportPanel
+            isSavedReport
             report={report}
             isLoading={false}
             hasJobDescription={hasJobDescription}
