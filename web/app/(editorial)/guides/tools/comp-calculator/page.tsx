@@ -3,7 +3,7 @@ import Footer from "@/components/landing/Footer";
 import { CompCalculatorClient } from "@/components/guides/comp-calculator/CompCalculatorClient";
 
 export const metadata: Metadata = {
-  title: "Compare two offers side by side",
+  title: "Compare job offers side by side",
   description: "Compare base salary, target bonus, modeled equity, vesting, and one-time compensation across job offers.",
   alternates: { canonical: "/resources/tools/comp-calculator" },
 };

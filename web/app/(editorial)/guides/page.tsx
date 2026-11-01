@@ -124,7 +124,7 @@ export default function GuidesPage() {
                                         Tool
                                     </p>
                                     <h3 className={`${styles.componentTitle} mt-2`}>
-                                        Compare two offers side by side
+                                        Compare job offers side by side
                                     </h3>
                                     <p className={`${styles.readingCopy} mt-3`}>
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
