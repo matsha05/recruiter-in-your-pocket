@@ -249,7 +249,7 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 - Headline: “They called someone back. It wasn’t you.” One dark primary action (“Read mine”) and one quiet secondary route (“See an example”).
 - The story runs in four light, simple beats: the hidden verdict (hero), the silence (a fading “No response” list), one sentence (a single verdict in Literata with the highlighter on the miss), then “What we look for, line by line.”
-- The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The clipped recruiter's note is blurred on purpose and hidden from assistive technology.
+- The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The reviewer note on the recruiter's screen is blurred on purpose and hidden from assistive technology.
 - The note arrives once; reduced motion shows it in place. The illustration must not gate the report action.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.

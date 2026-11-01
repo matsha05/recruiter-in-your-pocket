@@ -40,7 +40,7 @@ test("phone visitors read the whole story without opening anything", async ({ pa
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
-  await expect(page.getByTestId("landing-verdict-art").getByText("Recruiter’s note", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("landing-verdict-art").getByText("Not moving forward", { exact: true })).toBeVisible();
   const silence = page.getByRole("heading", { level: 2, name: "Not even a reply." });
   await silence.scrollIntoViewIfNeeded();
   await expect(silence).toBeVisible();

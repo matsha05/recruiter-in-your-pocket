@@ -49,7 +49,7 @@
 .body strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 @media (max-width: 640px) {
-    .silence { padding: 4.5rem 1.25rem 4rem; }
+    .silence { padding: 1.5rem 1.25rem 4rem; }
     .list li { font-size: 0.9375rem; padding: 0.75rem 0.125rem; }
     .list li > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .status { font-size: 0.8125rem; }

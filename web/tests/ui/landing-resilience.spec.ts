@@ -40,8 +40,8 @@ test("reduced motion shows the note already in place", async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
     const page = await context.newPage();
     await page.goto("/");
-    const note = page.getByTestId("landing-verdict-art").getByText("Recruiter’s note", { exact: true });
+    const note = page.getByTestId("landing-verdict-art").getByText("Not moving forward", { exact: true });
     await expect(note).toBeVisible();
-    expect(await note.evaluate((element) => getComputedStyle(element.parentElement!).animationName)).toBe("none");
+    expect(await note.evaluate((element) => getComputedStyle(element.closest("p")!.parentElement!).animationName)).toBe("none");
     await context.close();
 });
