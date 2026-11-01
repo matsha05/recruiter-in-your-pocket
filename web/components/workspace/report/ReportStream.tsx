@@ -241,7 +241,7 @@ export function ReportStream({
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className={styles.disclosureBody}>
-          <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average, and it doesn&apos;t predict interviews or offers. Re-check a revision and you&apos;ll see the number move.</p>
+          <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
           {report.score_comment_short && report.score_comment_short !== verdict && <p>{report.score_comment_short}</p>}
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}

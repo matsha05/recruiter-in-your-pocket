@@ -8,7 +8,7 @@ const SECTIONS = [
 ] as const;
 
 async function expectCurrent(page: Page, label: string) {
-  const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
   await expect(navigation.locator('[aria-current="location"]')).toHaveCount(1);
   await expect(navigation.getByRole("button", { name: label, exact: true })).toHaveAttribute("aria-current", "location");
 }
@@ -24,7 +24,7 @@ async function expectSectionBelowNavigation(page: Page, id: string) {
 
 /** On phones the tabs wait until the opening read has scrolled away (plan item 2.5). */
 async function revealNavigation(page: Page) {
-  const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
   if (await navigation.isVisible()) return navigation;
   await page.locator("#section-fixes").evaluate((section) => {
     window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
@@ -78,7 +78,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/sample-report");
     await page.evaluate(() => document.fonts.ready);
-    const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+    const navigation = page.locator('nav[aria-label="Resume report sections"]');
     await expectCurrent(page, "Overview");
 
     // Visit non-adjacent targets in both directions so intermediate scroll events
@@ -142,7 +142,7 @@ test("workspace report navigation supports keyboard jumps with reduced motion", 
   await page.setViewportSize({ width: 1024, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/workspace?sample=1");
-  const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
 
   for (const section of [...SECTIONS].reverse()) {
     const button = navigation.getByRole("button", { name: section.label, exact: true });

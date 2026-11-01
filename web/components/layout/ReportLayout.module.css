@@ -1,6 +1,8 @@
 .shell { position: relative; width: 100%; max-width: 75rem; margin-inline: auto; padding: 0 1rem 3rem; font-family: var(--font-body); }
 /* The report scrolls with the page, so the tabs stick below whichever header the route shows. */
 .navigation { position: sticky; top: var(--report-sticky-top, var(--product-header-height)); z-index: 40; padding-block: 0.5rem; background: hsl(var(--surface-page)); border-bottom: 1px solid hsl(var(--line)); }
+/* While the privacy panel is open it covers the bottom of the viewport; the page's last action can scroll above it. */
+:global(html[data-privacy-panel-open="true"]) .shell { padding-bottom: 16rem; }
 .paper { min-width: 0; margin-top: 1.25rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: 1.25rem; box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
 @media (max-width: 639px) {
     .mobileReading .navigation {

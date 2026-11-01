@@ -13,31 +13,44 @@ interface ReportLayoutProps {
  * On phones the section tabs stay out of the first screen, so the Verdict and the Critical Miss come first
  * (plan item 2.5). They slide in under the header once the opening read has scrolled away.
  */
-function useTabsRevealed(enabled: boolean) {
+function useTabsRevealed(enabled: boolean, tabsRef: React.RefObject<HTMLElement | null>) {
     const [revealed, setRevealed] = React.useState(false)
     React.useEffect(() => {
         if (!enabled) return
         const opening = document.getElementById("section-first-impression")
-        if (!opening || typeof IntersectionObserver === "undefined") {
+        if (!opening) {
             setRevealed(true)
             return
         }
-        const observer = new IntersectionObserver(([entry]) => {
-            setRevealed(!entry.isIntersecting && entry.boundingClientRect.top < 0)
-        })
-        observer.observe(opening)
-        return () => observer.disconnect()
-    }, [enabled])
+        let frame = 0
+        const update = () => {
+            frame = 0
+            // The tabs sit at the header's bottom edge; they appear once the opening has passed under it.
+            const line = tabsRef.current ? Number.parseFloat(getComputedStyle(tabsRef.current).top) || 0 : 0
+            setRevealed(opening.getBoundingClientRect().bottom <= line + 1)
+        }
+        const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
+        window.addEventListener("scroll", schedule, { capture: true, passive: true })
+        window.addEventListener("resize", schedule)
+        update()
+        return () => {
+            cancelAnimationFrame(frame)
+            window.removeEventListener("scroll", schedule, true)
+            window.removeEventListener("resize", schedule)
+        }
+    }, [enabled, tabsRef])
     return revealed
 }
 
 export function ReportLayout({ children, toc, mobileReading = false }: ReportLayoutProps) {
-    const revealed = useTabsRevealed(Boolean(toc && mobileReading))
+    const tabsRef = React.useRef<HTMLElement>(null)
+    const revealed = useTabsRevealed(Boolean(toc && mobileReading), tabsRef)
 
     return (
         <div className={`${styles.shell} ${mobileReading ? styles.mobileReading : ""}`}>
             {toc && (
                 <aside
+                    ref={tabsRef}
                     aria-label="Report navigation"
                     className={styles.navigation}
                     data-revealed={revealed || undefined}
