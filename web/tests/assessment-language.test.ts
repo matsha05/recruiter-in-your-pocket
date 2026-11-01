@@ -56,6 +56,9 @@ const positiveCases = [
     // eval_1793570741684 (final v3 golden): a connective, a ", though" clause, and an outcome noun.
     { claim: 'You managed 17 Recruiters and Sourcers at Meta and contributed to an initiative tied to 1,000+ ML Gen hires.', source: 'Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires.' },
     { claim: 'Recent work includes clear reach and growth, though some leadership details remain unstated.', source: 'Expanded small-group ministry from six to eighteen active groups.' },
+    // eval_1793571168922 (final v3 blind-pick run), and a regression the ", though" split briefly caused.
+    { claim: 'You come across as a data analyst working across sales, inventory and store operations. The weekly Tableau dashboards are a useful anchor, though their reach isn\'t clear.', source: 'Data Analyst, Lakeshore Grocers. Build weekly sales and inventory dashboards in Tableau for regional managers. Work with store operations on labor planning data.' },
+    { claim: 'The titles and duties point to a generalist-level background.', source: 'HR Generalist, Northstar Plastics. HR Assistant, Northstar Plastics.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -112,6 +115,8 @@ const negativeCases = [
     { claim: 'You managed 17 Recruiters at Meta and contributed to an initiative tied to 5,000+ ML Gen hires.', source: 'Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires.' },
     { claim: 'Recent work includes clear growth, though some leadership details remain unstated.', source: 'Led weekly small-group ministry meetings for active groups.' },
     { claim: 'The resume shows clear revenue growth, though the team size is unstated.', source: 'Expanded small-group ministry from six to eighteen active groups.' },
+    { claim: 'The titles and duties point to an aerospace background.', source: 'HR Generalist, Northstar Plastics. HR Assistant, Northstar Plastics.' },
+    { claim: 'You managed one team of 40 engineers.', source: 'HR Generalist, Northstar Plastics.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));
@@ -132,3 +137,13 @@ for (const c of [
   { claim: 'What did you create for the 40 Brightpath clients?', source: 'Brightpath Studio. Made prototypes for client presentations.' },
 ]) assert.ok(auditReportNarrative(asQuestion(c.claim), c.source).length > 0, JSON.stringify(c));
 console.log("question fidelity tests passed");
+
+// Possessives, examples and calendar conflicts (eval_1793571168922).
+const fromPath = (report: any, source: string) => auditReportNarrative(report, source);
+assert.equal(fromPath({ job_alignment: { underplayed: ['Activities led in the math department learning community'] } }, "Lead the math department's professional learning community").length, 0, "department's is the word department");
+assert.ok(fromPath({ job_alignment: { underplayed: ['Activities led in the science department learning community'] } }, "Lead the math department's professional learning community").length > 0, "a different department is still unsupported");
+assert.equal(fromPath({ top_fixes: [{ fix: 'Name one type of employee concern you handled.', why: 'The Northstar employee relations bullet says you handled questions but not which kinds.' }] }, 'HR Generalist, Northstar Plastics. Handled employee relations questions and investigations with the HR manager.').length, 0, "one example is not a count");
+assert.equal(fromPath(asQuestion('During open enrollment, what was one employee question or problem you helped resolve, if any?'), 'Coordinated open enrollment for medical and dental benefits.').length, 0, "a question picking one example");
+assert.equal(fromPath({ top_fixes: [{ fix: 'Add how much time your calendar support saved each founder.', why: 'The first freelance bullet lists the support but gives no change in scheduling time or conflicts.' }] }, 'Support three founders at early-stage companies with calendar, travel, and inbox management.').length, 0, "scheduling conflicts are calendar clashes");
+assert.ok(fromPath({ top_fixes: [{ fix: 'Name the founders you supported.', why: 'This shows how you handled conflicts between the two founders.' }] }, 'Support three founders at early-stage companies with calendar, travel, and inbox management.').length > 0, "a conflict between people still needs source support");
+console.log("possessive, example and calendar-conflict tests passed");

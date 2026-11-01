@@ -117,11 +117,11 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   const prefix = claim.slice(0, quantityMatch?.index ?? 0);
   const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|choose|describe|explain|give|include|name|replace|revise|rewrite|select|show|use)\b/iu);
   const requestTail = requestHead ? prefix.slice(requestHead[0].length) : prefix;
-  const questionRequest = /^\s*(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
+  const questionRequest = /\b(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
   if ((!requestHead && !questionRequest)
     || /\b(?:that|managed|served|led|owned|delivered|supported|handled)\b/iu.test(requestTail)) return false;
-  // "What did you create for one client presentation?" asks for one example; it doesn't count clients.
-  if (questionRequest && /^one\b/iu.test(fact.display)) return true;
+  // In a request or question, "one X" picks an example ("Name one type of employee concern"); it doesn't count Xs.
+  if (/^one\b/iu.test(fact.display)) return true;
   if (new RegExp(`\\b${quantity}(?:\\s+or\\s+[\\p{L}-]+){0,2}\\s+(?:problems?|situations?|examples?|artifacts?|decisions?|cases?)\\b`, "iu").test(claim)) return true;
   // Hyphenated project names can otherwise look like a count of customers.
   if (/^one customer$/iu.test(fact.display)

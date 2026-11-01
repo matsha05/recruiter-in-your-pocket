@@ -187,9 +187,9 @@ function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
     pattern.lastIndex = 0;
   }
   return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
-    .map((token) => normalizeNarrativeToken(token.replace(/[-'’]+$/u, "")))
+    .map((token) => normalizeNarrativeToken(token.replace(/(?:['’]s|[-'’]+)$/u, "")))
     .map((token) => semanticTokenAliases.get(token) || token)
-    .filter((token) => token.length > 1 && !ignoredTokens.has(token)));
+    .filter((token) => token.length > 1 && !ignoredTokens.has(token) && !/-level$/u.test(token)));
 }
 
 export function compareSourceBoundRewrite(input: {
@@ -270,7 +270,7 @@ export function compareSourceBoundRewrite(input: {
 
 function claimSegments(value: string) {
   return value
-    .split(/;\s*|,?\s+but\s+|,\s+(?:though|although)\s+|,\s+(?=which\s+(?:helps|lets|gives|allows)\s+(?:a|the)\s+(?:reader|reviewer|recruiter|hiring manager)\b)|,\s+(?=placing you at\b)|\s+(?=makes?\b[^.!?]{1,80}\bvisible\b[^.!?]{0,50}\b(?:resume|work history|page)\b)|(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
+    .split(/;\s*|,?\s+but\s+|,\s+(?=which\s+(?:helps|lets|gives|allows)\s+(?:a|the)\s+(?:reader|reviewer|recruiter|hiring manager)\b)|,\s+(?=placing you at\b)|\s+(?=makes?\b[^.!?]{1,80}\bvisible\b[^.!?]{0,50}\b(?:resume|work history|page)\b)|(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z“"\[])/u)
     .map((segment) => segment.trim())
     .filter(Boolean);
 }

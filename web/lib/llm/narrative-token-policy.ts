@@ -22,10 +22,11 @@ export const baseNarrativeStopWords = normalizedSet([
   "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "of",
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "but", "only", "while", "yet", "using", "via",
+  "though", "although",
 ]);
 
 const styleWords = normalizedSet([
-  "appear", "blurry", "clear", "clearly", "context", "explicit", "focus", "missing", "need",
+  "appear", "blurry", "clear", "clearly", "context", "explicit", "focus", "missing", "need", "unstated",
   "not", "page", "present", "read", "readable", "strong", "unclear", "visible", "work",
 ]);
 const actionWords = normalizedSet([
@@ -36,7 +37,7 @@ const assessmentDimensionWords = normalizedSet([
   "count", "detail", "fact", "impact", "metric", "outcome", "result", "scale", "scope", "size",
 ]);
 const assessmentWords = normalizedSet([
-  "about", "activity", "afterward", "all", "annual", "area", "base", "breadth", "broad", "broader", "career",
+  "about", "activity", "afterward", "all", "annual", "area", "background", "base", "breadth", "broad", "broader", "career", "some",
   "contain", "contracting", "conversion", "credible", "concrete", "deal", "delivery", "dense", "describe", "description",
   "development", "duty", "earlier", "effect", "evidence", "experience", "experienced", "exposure", "few", "finance", "first",
   "foundation", "general", "give", "history", "individual", "leadership", "learning", "like", "limited", "limiting",
