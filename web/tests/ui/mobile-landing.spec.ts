@@ -46,6 +46,6 @@ test("phone visitors read the whole story without opening anything", async ({ pa
   await expect(silence).toBeVisible();
   const verdict = page.locator("#how-it-works figure blockquote");
   await verdict.scrollIntoViewIfNeeded();
-  await expect(verdict).toContainText("the objective could apply to almost any role.");
+  await expect(verdict).toContainText("results remain unclear.");
   await expect(page.locator("#main-content").getByRole("button", { expanded: false })).toHaveCount(0);
 });

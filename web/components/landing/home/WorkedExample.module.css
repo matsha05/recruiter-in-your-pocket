@@ -105,16 +105,16 @@
     font: var(--type-body);
 }
 
-.asks q { color: hsl(var(--pen)); font: var(--type-note); font-size: var(--type-lead-size); quotes: "\201C" "\201D"; }
-
 .answers {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     margin-top: 1rem;
 }
 
-.answer dt { font: var(--type-label); }
+/* The report's questions, in the recruiter's pen, each over the blank only Jordan can fill. */
+.answer { display: flex; flex-direction: column; justify-content: space-between; }
+.answer dt { color: hsl(var(--pen)); font: var(--type-note); }
 
 .answer dd {
     display: flex;

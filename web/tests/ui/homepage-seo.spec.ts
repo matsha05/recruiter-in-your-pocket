@@ -35,10 +35,9 @@ test.describe("homepage feedback and SEO contract", () => {
     const example = homepage.locator("#how-it-works");
     await expect(example.getByRole("heading", { level: 2, name: "Here’s the note Jordan never saw." })).toBeVisible();
     await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
-    await expect(example.locator("figure blockquote")).toContainText("Your current title points to customer success, but the objective could apply to almost any role.");
-    await expect(example).toContainText("Is Jordan after another customer success role?");
-    // The quote marks come from CSS on <q>, so the text has none.
-    await expect(example).toContainText("The report asks: Are you pursuing another customer success role?");
+    await expect(example.locator("figure blockquote")).toContainText("Your account portfolio and review cadence are specific, but results remain unclear.");
+    await expect(example).toContainText("What did Jordan look for, and what changed?");
+    await expect(example).toContainText("What factors did you review when identifying renewal risk across the portfolio?");
     await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up answers for anyone.");
     await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
     await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
@@ -100,10 +99,10 @@ test.describe("homepage feedback and SEO contract", () => {
         description: expect.stringContaining("over 30 days"),
       }),
     ]));
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
-    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101-2/);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101-2/);
     await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
-    const card = await page.request.get("/og/home?v=20261101");
+    const card = await page.request.get("/og/home?v=20261101-2");
     expect(card.status()).toBe(200);
     expect(card.headers()["content-type"]).toBe("image/png");
   });
@@ -135,11 +134,11 @@ test.describe("homepage feedback and SEO contract", () => {
       );
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261031/,
+        /opengraph-image\?v=20261101/,
       );
       await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261031/,
+        /opengraph-image\?v=20261101/,
       );
     }
   });

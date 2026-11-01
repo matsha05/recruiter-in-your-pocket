@@ -64,18 +64,21 @@ for (const [left, right] of [
 // Known contradictions from the audit
 // ============================================
 
-// Jordan's sample (real output, prompt after plan 1.3): two strengths sit on lines the report fixes.
+// Jordan's sample (real output, production prompt 83b2a2d1): the business-review strength sits on Fix 2's line.
 const sampleIntegrity = reconcileReport(sample);
 assert.deepEqual(
   auditKeepFixCollisions(sample).map(({ strength, line }) => [strength, line]),
-  [["strengths[0]", "fix-1"], ["strengths[1]", "fix-2"]],
+  [["strengths[1]", "fix-1"]],
 );
-assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2]],
-  "only the strength on a line the sample doesn't fix stays");
-// The Critical Miss gives its reason in the opening read; the Verdict already names the target-role gap.
+assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[0], sample.strengths[2]],
+  "strengths on lines the sample doesn't fix stay, in order");
+// The Critical Miss gives its reason in the opening read and asks the model's own questions about its line.
 assert.equal(criticalMissReason(sampleIntegrity), sample.top_fixes[0].why);
-assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, []);
-assert.deepEqual(sampleIntegrity.structuralGaps, [], "the Verdict already says it, so it is not repeated before the bullets");
+assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, [
+  "What factors did you review when identifying renewal risk across the portfolio?",
+  "What changed in your renewal workflow after you introduced the monthly risk reviews?",
+]);
+assert.deepEqual(sampleIntegrity.structuralGaps, [], "the Verdict already mentions the objective, so it is not repeated before the bullets");
 
 // Sales: the BrightWave proposal bullet is Keep #3 and the Critical Miss.
 const salesIntegrity = reconcileReport(sales);
@@ -119,7 +122,7 @@ for (const index of [0, 1]) {
 }
 assert.ok(!reconcileReport(ux).report.strengths!.includes(ux.strengths[2]), "\"Own the UX budget\" is Fix 3's line");
 assert.equal(structuralGapKind('The CAPM entry says "Learner level," but it is unclear whether that describes a credential.'), undefined);
-assert.deepEqual(reconcileReport(sample).report.next_steps, sample.next_steps.slice(0, 2), "a next step that restates Fix 3 is dropped; the others stay");
+assert.deepEqual(reconcileReport(sample).report.next_steps, [sample.next_steps[0], sample.next_steps[2]], "a next step that restates Fix 3 is dropped; the others stay");
 
 // Streaming and stored reports can be partial or malformed; the pass must not throw on them.
 for (const partial of [
@@ -361,7 +364,7 @@ for (const line of quoted) {
   assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
   assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
 }
-for (const removed of [sample.strengths[0], sample.strengths[1], sample.gaps[1]]) {
+for (const removed of [sample.strengths[1], sample.gaps[1], sample.gaps[2]]) {
   assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
 }
 

@@ -2,7 +2,9 @@
 
 Date: 2026-11-01
 Status: Phase B implemented on `claude/friendly-herschel-134cdb` (merged with #37 and `claude/wave-2`), Nov 1, 2026. Not pushed.
-- **Jordan's sample, regenerated on the final 1.3 prompt** (prompt sha256 `55bee48b…`, gpt-6.1-terra, one call, no repair, $0.021). The Verdict and the Critical Miss now agree: both are about the Objective line. The homepage quotes this run word for word, and the hero note asks what the report asks.
+- **Jordan's sample, on the production prompt.** Matt's blind pick rejected the 1.3 prompt, so the sample was regenerated on production `83b2a2d1` (gpt-6.1-terra, one call, no repair, $0.020).
+  - The Critical Miss is the renewal-risk reviews line.
+  - The homepage quotes the run word for word: the read is the sentence the report prints under its Verdict ("…but results remain unclear."), because the Verdict's second sentence is about the objective (the known 1.3 split). The questions are the Critical Miss's "What to add", and the hero note asks what they ask.
 - **Changed from this plan during the build:**
   - The worked example ends at Jordan's answer. 2.2 isn't in this wave (Q5).
   - The privacy panel became a compact bottom bar from 1024px rather than a bottom-right card, so it doesn't cover the reviewer note.
