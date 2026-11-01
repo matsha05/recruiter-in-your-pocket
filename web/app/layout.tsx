@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     template: "%s | Recruiter in Your Pocket"
   },
   description: "Get a free recruiter report on your resume. See what stands out first, what gets missed, and what to fix next.",
+  // Example resumes print a placeholder address; iOS would otherwise turn it into a link.
+  formatDetection: { email: false, address: false, telephone: false },
   robots: {
     index: true,
     follow: true,
