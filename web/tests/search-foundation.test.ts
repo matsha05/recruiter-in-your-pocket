@@ -119,7 +119,7 @@ try {
   }
 
   // --- Share cards -----------------------------------------------------------
-  const hub = categories.flatMap((category: { articles: Array<{ id: string; href: string }> }) => category.articles);
+  const hub = categories.flatMap((category: { articles: Array<{ id: string; href: string; question: string }> }) => category.articles);
   for (const page of pages) {
     const answer = hub.find((article: { href: string }) => article.href === page.path);
     if (answer) assert.equal(page.card, answer.id, `${page.path} answers "${answer.id}" on the hub; share that card`);
@@ -147,6 +147,9 @@ try {
       assert.ok(title.length > 0 && title.length <= SEARCH_TITLE_LIMIT, `${route} title is ${title.length} characters: "${title}"`);
       assert.ok(description.length >= 70 && description.length <= 160, `${route} description is ${description.length} characters`);
       assert.ok(!/résumé/i.test(title + description), `${route}: write "resume" without accents`);
+      // A research article's search title, hub question, and H1 are one string (the H1 reads the hub).
+      const hubQuestion = route.startsWith("/research/") ? hub.find((article: { href: string }) => article.href === route)?.question : undefined;
+      if (route.startsWith("/research/")) assert.equal(title, hubQuestion, `${route}: the search title must be the hub question`);
       assert.ok(!seen.has(title), `${route} and ${seen.get(title)} share the title "${title}"`);
       assert.ok(!seenDescriptions.has(description), `${route} and ${seenDescriptions.get(description)} share a description`);
       seen.set(title, route);

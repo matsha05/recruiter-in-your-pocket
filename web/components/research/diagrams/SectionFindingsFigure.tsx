@@ -18,7 +18,6 @@ export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: num
     const { ref, seen } = useSeen<HTMLElement>();
     return (
         <figure ref={ref} className={styles.figure} aria-labelledby="section-findings-title">
-            <p className={styles.kicker}>Fig. {figureNumber}</p>
             <h2 id="section-findings-title" className={styles.title}>What the 2023 study found, section by section</h2>
 
             <div className={styles.rows} role="list" aria-label="Resume sections and what the study found for each">
@@ -42,7 +41,7 @@ export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: num
             <PenNote className={styles.note}>Time here went with moving forward. Make it the easiest section to judge.</PenNote>
 
             <figcaption className={styles.caption}>
-                Source: Pina et al. (2023); the study&rsquo;s details are below. Drawn by us: the section names are the study&rsquo;s, and the order and lines are illustration.
+                Fig. {figureNumber} / Pina et al. (2023); the study&rsquo;s details are below. Drawn by us: the section names are the study&rsquo;s, and the order and lines are illustration.
                 &ldquo;No comparable result&rdquo; doesn&rsquo;t mean a section never matters.
             </figcaption>
         </figure>

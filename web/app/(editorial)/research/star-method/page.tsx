@@ -1,41 +1,34 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 const PATH = "/research/star-method";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "How to use the STAR method on your resume and in interviews",
+    title: "Is the STAR method worth using on a resume?",
     description: "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
     type: "article",
 });
 
 export default function StarMethodPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Story",
-                title: "Tell the story behind the line",
-                description: "A resume line is the headline. The interview asks for the story underneath it. STAR keeps both honest, as long as you don't treat it as a formula.",
-                readTime: "6 min read"
+            answer={
+                <>
+                    For the story behind a line, yes. Just don&rsquo;t force every bullet into the formula.
+                    Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance, and across many studies they&rsquo;ve proved more reliable and more predictive of job performance than unstructured ones.
+                </>
+            }
+            answerSource={{
+                text: <>From a review of the structured interview research (Levashina, Hartwell, Morgeson &amp; Campion, Personnel Psychology, 2014). It doesn&rsquo;t test the STAR acronym itself.</>,
+                href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download",
+                linkLabel: "Read the review",
             }}
-            keyFinding={{
-                subtitle: "What the evidence supports",
-                stat: "Shared questions, shared scoring",
-                statDescription: (
-                    <>
-                        Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance. Across many studies, structured interviews have proved more reliable and more predictive of job performance than unstructured ones.
-                        <Citation id="source-1">1</Citation>
-                        <Citation id="source-2">2</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Levashina et al., structured interview review",
-                    href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download"
-                }
-            }}
+            painNote="Every line you write is a story you may be asked to tell."
+            nextQuestions={["quantifying-impact", "how-recruiters-read", "referral-advantage", "who-you-are"]}
             visualization={
                 <>
                     <h2 className="research-h2">The four parts of a work story</h2>
@@ -45,25 +38,6 @@ export default function StarMethodPage() {
                     <StarStructureDiagram />
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "The Critical Miss",
-                        description: "When a line hides your part or the result, the Critical Miss usually says so first. Fixing it gives you the headline of a story you can tell."
-                    },
-                    {
-                        title: "Your score",
-                        description: "The score weighs how easy it is to follow what you did. A line that's easy to follow is one you can expand on in the interview."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
-                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Referrals" },
-                { title: "Can a recruiter tell who you are?", href: "/research/who-you-are", tag: "Story" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -78,20 +52,6 @@ export default function StarMethodPage() {
                     publisher: "U.S. Office of Personnel Management",
                     year: "Current guidance",
                     href: "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/structured-interviews/"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Do I need all four parts in every resume line?",
-                    answer: "No. What you did and what changed matter most. The role title and the lines around it usually supply the situation."
-                },
-                {
-                    question: "Will every interview question ask about the past?",
-                    answer: "No. Some ask what you would do in a situation. For those, walk through your reasoning and what you'd need to know before deciding."
-                },
-                {
-                    question: "Should I memorize my answers?",
-                    answer: "Memorize the facts, not the script. You'll need room to answer the question actually asked and to handle follow-ups."
                 }
             ]}
         >
@@ -134,7 +94,7 @@ export default function StarMethodPage() {
                 />
             </div>
             <p className="research-body mb-6">
-                <strong>Our advice:</strong> go through the job description and pick a few examples from your resume that match it. For each, note the problem, what was yours, the choices you made, and what happened. In the room, pick the example that answers the question they actually asked.
+                <strong>Our advice:</strong> go through the job description and pick a few examples from your resume that match it. For each, note the problem, what was yours, the choices you made, and what happened. In the room, pick the example that answers the question they actually asked. Memorize the facts, not a script, so you have room for follow-ups.
             </p>
             <div className="not-prose mb-6 rounded-inset border border-line bg-card p-5">
                 <p className="mb-2 text-sm font-semibold text-muted-foreground">Example prep notes</p>
@@ -150,11 +110,15 @@ export default function StarMethodPage() {
                 <li>Can you describe the outcome accurately, including what didn&apos;t work?</li>
             </ul>
 
+            <ArticleBridge question="Does each line show what was yours?">
+                When a line hides your part or the result, the Critical Miss usually says so first. Fixing it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.
+            </ArticleBridge>
+
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>The research is about how employers run interviews. It doesn&apos;t test the STAR acronym itself.</li>
                 <li>No study cited here tests whether STAR-shaped resume lines get more interviews.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

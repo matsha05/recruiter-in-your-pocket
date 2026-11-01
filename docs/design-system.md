@@ -318,6 +318,7 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 ### Research
 
 - Research is the trust layer, not a blog. Prose uses 18px/30px on the 52ch reading rail (about 69 characters per line), with readable figures and labeled tables.
+- Articles open the way their hub row does (Nov 1, 2026): the reader's question as the H1 (the same string as the hub and the search title), the answer in Literata and pen with its study linked, and an optional margin note. One bridge to the report sits where the advice is; there is no FAQ block or key-finding card. `web/components/research/AnswerArticle.tsx`, documented in `web/app/(editorial)/research/article-standard.md`.
 - One left content edge (Nov 1, 2026): the header, the lead figure, and the reading rail start at the container edge; figures may run wider than the rail, to the right.
 - A citation jump lands below the fixed header (`.riyp-jump-target`), marks the source in pen tint, and moves focus there.
 - Start with a concrete recruiter or hiring claim.

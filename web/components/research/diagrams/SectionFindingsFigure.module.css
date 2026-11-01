@@ -4,17 +4,9 @@
     margin: 0;
 }
 
-.kicker {
-    margin: 0;
-    border-top: 1px solid hsl(var(--text-strong));
-    padding-top: 1.5rem;
-    color: hsl(var(--text-muted));
-    font: var(--type-label);
-}
-
 .title {
     max-width: 30ch;
-    margin: 0.5rem 0 0;
+    margin: 0;
     text-wrap: balance;
     font: var(--type-heading);
     letter-spacing: var(--tracking-heading);

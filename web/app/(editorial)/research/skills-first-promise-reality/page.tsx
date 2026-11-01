@@ -1,40 +1,34 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { SkillsPromiseRealityDiagram } from "@/components/research/diagrams/SkillsPromiseRealityDiagram";
 
 const PATH = "/research/skills-first-promise-reality";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Skills-based hiring: do degree cuts change who gets hired?",
+    title: "Do “no degree required” jobs actually mean it?",
     description: "Removing a degree requirement doesn't always change who gets hired. What a 2024 analysis found across employers, and where skills-first hiring still lags.",
     type: "article",
 });
 
 export default function SkillsFirstPromiseRealityPage() {
     return (
-        <ResearchArticle
+        <AnswerArticle
             path={PATH}
-            header={{
-                tag: "Industry trends",
-                title: "Skills-first hiring: the promise and the practice",
-                description: "Removing a degree requirement does not always change who gets hired. A 2024 analysis found large differences between employers.",
-                readTime: "4 min read"
+            answer={
+                <>
+                    Often not in practice. One analysis estimated that, in 2023, removing degree requirements opened up new opportunity in fewer than one in 700 hires.
+                    Many employers changed the job ad and little else.
+                </>
+            }
+            answerSource={{
+                text: <>From a Harvard Business School and Burning Glass Institute analysis of large US firms that dropped degree requirements (2024).</>,
+                href: "https://www.hbs.edu/ris/Publication%2520Files/Skills-Based%2520Hiring_80b90afa-f6b5-4de9-b7f8-5d8232ce20e2.pdf",
+                linkLabel: "Read the report",
             }}
-            keyFinding={{
-                subtitle: "Policy versus practice",
-                stat: "Fewer than 1 in 700 hires",
-                statDescription: (
-                    <>
-                        A 2024 Harvard Business School and Burning Glass Institute analysis estimated that, in 2023, removing degree requirements opened up new opportunity in fewer than one in 700 hires.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "HBS + Burning Glass Institute (2024)",
-                    href: "https://www.hbs.edu/ris/Publication%2520Files/Skills-Based%2520Hiring_80b90afa-f6b5-4de9-b7f8-5d8232ce20e2.pdf"
-                }
-            }}
+            painNote={"“No degree required” can still mean “degree preferred.”"}
+            nextQuestions={["ats-myths", "linkedin-visibility", "quantifying-impact"]}
             visualization={
                 <>
                     <h2 className="research-h2">Many employers that dropped the degree didn&apos;t change who they hired</h2>
@@ -45,24 +39,6 @@ export default function SkillsFirstPromiseRealityPage() {
                     <SkillsPromiseRealityDiagram />
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "Skills with proof",
-                        description: "A listed skill is a claim. We look for the project, decision, or result that backs it up."
-                    },
-                    {
-                        title: "Their words, when they're true",
-                        description: "Add a job description and we'll help you use the employer's language where it honestly fits."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What applicant tracking systems actually do", href: "/research/ats-myths", tag: "Systems" },
-                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "LinkedIn" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -77,20 +53,6 @@ export default function SkillsFirstPromiseRealityPage() {
                     publisher: "Lara. LinkedIn Economic Graph Research Institute (vendor research)",
                     year: "2025",
                     href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Is skills-first hiring a guarantee?",
-                    answer: "No. Removing a degree requirement can make more people eligible, but this report found that many employers did not meaningfully change who they hired."
-                },
-                {
-                    question: "How should I write for skills-first hiring?",
-                    answer: "Use the job post's skill language when it accurately describes your experience, then connect it to real work."
-                },
-                {
-                    question: "What is the risk of over-optimizing?",
-                    answer: "If the resume reads like a skill list without evidence, it can look generic."
                 }
             ]}
         >
@@ -128,12 +90,16 @@ export default function SkillsFirstPromiseRealityPage() {
                 <li>Keep required qualifications visible; do not assume the employer has stopped considering them.</li>
             </ul>
 
+            <ArticleBridge question="Does each skill have a line that backs it up?">
+                A listed skill is a claim. Your report looks for the project, decision, or result that backs it up. Add a job description and it&apos;ll help you use the employer&apos;s language where it honestly fits.
+            </ArticleBridge>
+
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms that dropped degree requirements between 2014 and 2023, with hiring observed before and after the change.</li>
                 <li>LinkedIn&apos;s report is a model built on its own members&apos; data. It estimates who could qualify for a role, not who was hired, and it isn&apos;t independent research.</li>
                 <li>Adoption varies by employer, occupation, and market; a changed job ad does not guarantee a changed hiring decision.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

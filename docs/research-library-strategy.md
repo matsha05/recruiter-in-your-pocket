@@ -1,8 +1,16 @@
 # Research library strategy
 
-November 1, 2026. Branch `claude/research-library-strategy`, from `claude/wave-2`. A proposal: nothing here is approved, merged, or live. Four decisions need Matt; they're at the end, each with a recommendation.
+November 1, 2026. Branch `claude/research-library-strategy`, from `claude/wave-2`. Local only: not pushed, merged, or live.
 
-Prototype: `/internal/research-prototype/how-recruiters-read` (new files only; the live article is untouched). It 404s in production, like System Lab.
+## Status (Nov 1, later the same day)
+
+Matt's decisions: **D1 yes** (question headlines), **D2 yes** (remove repeated FAQs), **D3 no** (no corrections promise), **D4 yes** (pain lines, high craft only). The second commit on this branch builds them:
+
+- All 17 articles use the answer-first template (`web/components/research/AnswerArticle.tsx`). The hub question, the H1, and the search title are one string, and a test holds them together. The answer sits under the H1 with its study linked. There's one bridge to the report where the advice is. Repeated FAQs and their FAQPage markup are gone, and genuinely new FAQ answers moved into the body.
+- 14 of 17 articles carry a pain line; three were cut as not good enough.
+- `research_article_viewed` and the research report clicks are recorded, consent-gated, with tests.
+- The prototype route is gone: `/research/how-recruiters-read` is now the full answer-first version.
+- Held until the signature report merges: rec 3 (report to research through the score parts) and rec 4 ("How we write research" on `/methodology`).
 
 ## The short version
 
@@ -139,7 +147,7 @@ Items 1, 5, 6 and 7 are one template change in `ResearchArticle` plus 17 content
 
 ## The prototype
 
-`/internal/research-prototype/how-recruiters-read`, built from new files: `web/components/research/prototype/AnswerArticle.tsx` (the template), `SectionFindingsFigure.tsx` (the figure), and the page under `web/app/internal/research-prototype/`. Like System Lab, it 404s in production, is noindex, and sits under `/internal/`, which robots.txt blocks.
+First built at `/internal/research-prototype/how-recruiters-read`. Since D1 it *is* `/research/how-recruiters-read`: the template is `web/components/research/AnswerArticle.tsx` and the figure is `web/components/research/diagrams/SectionFindingsFigure.tsx`.
 
 I picked `how-recruiters-read` because it answers the most-repeated hiring myth, the results for it are weak, and its subject is the product's own promise: what a recruiter sees first.
 
@@ -147,7 +155,7 @@ I picked `how-recruiters-read` because it answers the most-repeated hiring myth,
 - **Opening.** The H1 is the searched question. The answer sits in Literata in pen, the hub's answer voice, with its study linked underneath. D4's pain line sits in the margin, where the report puts its pen notes.
 - **Middle.** Three numbered moves and one "what the studies don't support", then the bridge: "What does your Experience section say first?", using the existing tie-in wording and a secondary "Get your free report".
 - **Figure.** It draws the finding: a resume sheet with the study's sections, a highlighter on Experience, and what the study found beside each section. It replaces both the evidence table and the process figure.
-- **Evidence and close.** Each source once, with what it found, how it was done, what it can't tell you, and a link to the study. Then four "Next questions" pulled live from `ResearchHubData.ts`, the "How we write these" note (with D3's corrections line), and the hub's closing pattern.
+- **Evidence and close.** Each source once, with what it found, how it was done, what it can't tell you, and a link to the study. Then four "Next questions" pulled live from `ResearchHubData.ts`, the "How we write these" note (without a corrections promise, per D3), and the hub's closing pattern.
 - **Height.** About 5,400px at 1440, down from about 6,900px.
 
 Screenshots (390 and 1440, full page and first screen, plus the live article for comparison) are in the session notes folder under `research-library/`.
