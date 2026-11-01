@@ -58,13 +58,14 @@ Type is the shared roles only (verdict, heading, lead in Literata for quoted lin
 **Why.** The literal line is honest but reads like a form ("…using AWS: moved the billing service off the monolith; wrote the migration scripts"). A recruiter skims bullets, and a candidate is more likely to use a line that reads as one. The risk with any model rewrite is invented scope or results, so the model only proposes and a deterministic guard decides.
 
 - **Prompt:** `web/prompts/revise_line_v1.txt`, recorded as `revise_line_v1:<sha8>` in logs and eval output; the build trace asserts it ships with the route. It may reorder, drop filler, and join with and/to/for/of/with/by/in/on/at/the/a/an. It may not add any word, change a word's form (the existing guard folds plurals only, so tense changes fail it), add numbers, names, scope, intensity or outcomes, shrink or grow the candidate's part, or drop an answer.
-- **Model:** `resolveOpenAIModel("revise_line")` (the non-resume path: `OPENAI_MODEL`), production tuning, structured output `{ line }`, 10-second timeout, no retries.
+- **Model:** `resolveOpenAIModel("revise_line")` resolves to the resume model (`OPENAI_RESUME_MODEL`, default `gpt-6.1-terra`), never `OPENAI_MODEL`, at low reasoning effort. Production tuning, structured output `{ line }`, 10-second timeout, no retries.
 - **Guard (`checkPolishedLine`, run on the server and again in the browser):**
   1. Every number and capitalized name comes from the line or the answers.
   2. Every other word, stemmed, comes from the line or the answers. Joining words are not exempt in production (`POLISH_ALLOWS_JOINERS = false`), so "Every word is from your resume or your answers" stays literally true.
   3. The existing fabrication guard passes, with the answers as facts. Only its relationship check is waived, and only when the literal line fails it too.
-  4. Nothing is lost: every answer and every number from the line is still there.
-  Anything else falls back to the literal line.
+  4. Nothing is lost: every answer and every number from the line is still there. Only filler may be dropped from the line (`POLISH_FILLER`: duties, included, responsible, efforts, various, processes, and the like). Dropping any other word fails, because the eval showed a polish that dropped "decided to revamp the product launch process" and moved its 30%, 90% and $15M results onto the candidate's answer.
+  5. It reads as a bullet: it starts in capitals when the line does, with no stray punctuation such as ".:".
+  The server also refuses a polish that changes only punctuation ("unchanged"), and restores a final period the model left off. Anything else falls back to the literal line.
 - **Endpoint:** `POST /api/revise-line`.
   - Callable only for a fix line from a report the visitor can open: their saved report (signed in), or their anonymous report's recovery (cookie-bound). The line must contain the report's quoted excerpt.
   - Caps: excerpt 400, line 600, one to three answers of 300 characters each, body 8 KB. Rate limit 30 an hour per identity.
@@ -73,7 +74,18 @@ Type is the shared roles only (verdict, heading, lead in Literata for quoted lin
   - The literal line shows at once. After the answers settle (1.2 seconds), the browser asks for a polish, re-checks it, and swaps it in.
   - "Use my exact words" switches back, and "Use the smoothed line" switches again.
   - Edits re-run the edit rule, and Copy follows it. The sample has no report context, so it keeps the literal line.
-- **Eval:** `scripts/eval-revise-line.ts` runs the 13 saved outputs with realistic answers plus adversarial answers ("we crushed it", vague scope, an inflated role). It reports the strict pass rate, the pass rate with joining words, fallback reasons and a before/after sample, with a $5 cap. Results: `tests/fixtures/results/summary_revise_line_<date>.md`.
+- **Eval:** `scripts/eval-revise-line.ts` runs the 13 saved outputs with realistic answers plus adversarial answers ("we crushed it", vague scope, an inflated role). It reports the strict pass rate, the pass rate with joining words, fallback reasons and a before/after sample, with a $5 cap. `RIYP_REVISE_EVAL_RESCORE` re-applies the current guard to a saved run without new calls.
+- **Results (Nov 1, `gpt-6.1-terra`, prompt `revise_line_v1:d2ba2419`, two live runs, $0.09 in all):** `tests/fixtures/results/summary_revise_line_live_2026-11-01T*_rescored.md`.
+
+  | | Run 1 | Run 2 |
+  | --- | --: | --: |
+  | Polished, realistic answers | 54% | 46% |
+  | Polished, adversarial answers | 40% | 35% |
+  | Would pass with joining words (all) | 73% | 79% |
+  | Errors or timeouts | 0 | 0 |
+  | Latency, median / 95th percentile | 2.6s / 5.2s | 2.5s / 4.3s |
+
+  Most fallbacks are an added joining word ("with", "for"). They stay off: the joined lines often bind the wrong things ("reduced critical project delays by 15%, with a vendor delay on the payments integration"). Adversarial answers that pass keep the candidate's own words ("…, and we crushed it."). The guard checks provenance, not whether an answer is good.
 
 ## Hide this suggestion (1.8)
 
@@ -89,15 +101,13 @@ On the first Critical Miss: "Was this the right thing to fix first?". Yes sends 
 - Stores the answer in `report_feedback` (migration `022_report_feedback.sql`): the model's Critical Miss wording, the answer, the optional note, the report id when saved, and the user id when signed in (deleted with the account). It never stores the resume or its quoted line.
 - If storage fails and there is a note, the request returns 503 and the reader sees "Couldn't send that". A bare yes/no is still counted.
 
-**Before deploy:**
+Retention and accounts: a daily `pg_cron` job (`riyp-expire-report-feedback`, migration `023_report_feedback_retention.sql`, the same pattern as the account-export expiry in 015) deletes rows older than 12 months. The account export includes the reader's `report_feedback` rows, and account deletion removes them before the auth user goes (the foreign key also cascades).
 
-- Apply migration 022 in production. This needs Matt's OK.
-- Add one line to the privacy page about Critical Miss answers.
-- Include a signed-in reader's `report_feedback` rows in the account export (`lib/backend/accountExport.ts`). Deletion already cascades with the account.
+**Production:** migration 022 (the table) was applied on Nov 1 with Matt's OK. Migration 023 (retention) needs Matt's OK before it is applied.
 
 ## PDF
 
-The same order: Verdict, band (name, bar, anchor; no number), "Fix these three first." with each marked line (the line on the left, the label and pen note in the margin, the Critical Miss line highlighted), "Before the bullets", "Keep this one", then "Keep these. They're working.", suggested edits, role fit, next steps. `normalizeReportForPdf` now carries each fix's quoted line, its section, and `nothing_critical`.
+The same order: Verdict, band (name, bar, anchor; no number), "Fix these three first." with each marked line (the line on the left, the label and pen note in the margin, the Critical Miss line highlighted), "Before the bullets", "Keep this one", then "Keep these. They're working.", suggested edits, role fit, next steps. `normalizeReportForPdf` now carries each fix's quoted line, its section, and the Critical Miss count.
 
 ## Copy (follows the approved word list; new strings pending Matt)
 
@@ -114,24 +124,24 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 ## Files
 
 - Report: `components/workspace/report/ReportStream.tsx`, `markup/{MarkedRows,LineLift,MissFeedback,ScoreBand}.tsx`, `markup/useHiddenFixes.ts`, `markup/MarkedReport.module.css`. `FixCanvas` is retired.
-- Rules: `lib/reports/revised-line.ts`, `lib/reports/score-band.ts`, `lib/reports/report-feedback.ts`, `fixPlanHeadingForCount` and `isNothingCritical` in `lib/reports/report-presentation.ts`.
+- Rules: `lib/reports/revised-line.ts`, `lib/reports/score-band.ts`, `lib/reports/report-feedback.ts`, `fixPlanHeadingForCount` and `criticalFixCount` in `lib/reports/report-presentation.ts`.
+- Polish: `lib/reports/revised-line-polish.ts` (guard and client), `lib/reports/revised-line-polish-service.ts`, `lib/llm/revise-line-model.ts`, `prompts/revise_line_v1.txt`, `app/api/revise-line/route.ts`, `scripts/eval-revise-line.ts`.
 - Shells: `components/layout/ReportLayout.{tsx,module.css}`, `ReportPanel.tsx`, `ReportDetailClient.tsx`, `WorkspaceClient.tsx` (`data-document`), `app/globals.css`.
 - PDF: `lib/backend/pdf.ts`, `pdf-styles.ts`, `lib/reports/pdf-export.ts`.
-- Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
+- Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `023_report_feedback_retention.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
 - Prototype harness: `/internal/report-lab` (dev or `ALLOW_INTERNAL_PAGES`), with every saved output in fresh, recovered and saved states and the sample.
 
 ## Verification (local only, production build of this branch, dummy CI environment, mock model)
 
-- Node suites: `test:report-integrity` (including `revised-line`), `test:source-fidelity`, `test:pdf-export`, launch signals, and analytics privacy. `qa:design-system` and lint pass on the changed files; `npm run build` passes.
+- Node suites: `test:report-integrity` (including `revised-line` and `revised-line-polish`), `test:source-fidelity`, `test:pdf-export`, launch signals, and analytics privacy. `qa:design-system` and lint pass on the changed files; `npm run build` passes, including the check that the polish prompt ships with its route.
 - **Phone first screen, 390×844:** the Critical Miss appears once, and its first answer field is on screen for the sample and the five longest real outputs. The worst case is the 277-character Verdict, about 2px inside the fold.
 - **Every width:** no horizontal overflow and no inner scrollers at 390, 1024 and 1440.
-- **UI specs on the build:** report navigation, mobile resume experience, red-team journeys, product motion, paid decision, workspace handoffs, accessibility. Seven failures are environmental here and none of them reach report code:
+- **UI specs on the build (2be28f6f: 91 passed):** revised-line polish, report navigation, mobile resume experience, red-team journeys, product motion, paid decision, workspace handoffs, accessibility. Seven failures are environmental here and none of them reach report code:
   - Red-team 4, 5, 10 and 11 need the anonymous-access backend.
   - Paid decision's two confirmation cases stop at the purchase page.
   - The internal-route 404 check fails because this build allows internal pages for the lab.
 
 ## Not done here
 
-- A model-polished revised line. It would need a new prompt, a paid eval, and a looser guard (decision 2).
 - The revised line in the PDF. The export rebuilds the report from the server's validated copy, so session edits don't reach it.
 - Usability sessions (6.2) for "most participants produce a line they'd use".

@@ -1,5 +1,6 @@
 export type ReasoningEffort = "none" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
-// "revise_line" is the guarded polish of a revised resume line; it resolves like every non-resume mode.
+// "revise_line" is the guarded polish of a revised resume line. It writes a resume bullet, so it runs on the
+// resume model (Matt, Nov 1), never on OPENAI_MODEL.
 export type LlmMode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin" | "revise_line";
 
 type ChatCompletionTuningOptions = {
@@ -73,7 +74,7 @@ function reasoningEffortForModel(model: string, effort: ReasoningEffort): Reason
 export function resolveOpenAIModel(mode: LlmMode, explicitModel?: string) {
   const explicit = String(explicitModel || "").trim();
   if (explicit) return explicit;
-  if (mode === "resume") {
+  if (mode === "resume" || mode === "revise_line") {
     return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-6.1-terra";
   }
   return String(process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
@@ -85,6 +86,8 @@ export function resolveReasoningEffortForMode(
   explicitEffort?: ReasoningEffort,
 ) {
   if (explicitEffort) return explicitEffort;
+  // One short rewrite under a strict guard, with the literal line already on screen: low effort keeps it quick.
+  if (mode === "revise_line") return "low";
   const modeEffort = mode === "resume"
     ? parseReasoningEffort(process.env.OPENAI_RESUME_REASONING_EFFORT)
     : undefined;

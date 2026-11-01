@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import reviseLinePrompt from "../../prompts/revise_line_v1.txt";
 import { createOpenAIAbortScope, normalizeOpenAITransportError } from "../backend/openai-transport";
 import { getProductionChatCompletionTuning, resolveOpenAIModel, resolveReasoningEffortForMode } from "./model-config";
+import { POLISH_FILLER } from "../reports/revised-line-polish";
 
 /**
  * The guarded polish of a revised line (prompts/revise_line_v1.txt). The model only proposes; the
@@ -42,9 +43,11 @@ export function reviseLineMessages(line: string, answers: readonly string[]) {
   ];
 }
 
-/** USE_MOCK_OPENAI: the literal line joined with commas, which the guard passes like a real polish. */
+/** USE_MOCK_OPENAI: the literal line without its filler words, joined with commas, which the guard passes like a real polish. */
 function mockPolish(line: string, answers: readonly string[]) {
-  return `${line.trim().replace(/[.;,:\s]+$/u, "")}, ${answers.join(", ")}.`;
+  const kept = line.trim().replace(/[.;,:\s]+$/u, "").split(/\s+/u)
+    .filter((word) => !POLISH_FILLER.has(word.toLocaleLowerCase().replace(/[^\p{L}]/gu, "")));
+  return `${kept.join(" ")}, ${answers.join(", ")}.`;
 }
 
 export interface PolishedLineResult {

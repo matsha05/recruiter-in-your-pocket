@@ -26,8 +26,24 @@ export async function polishRevisedLine(input: {
     const code = (error as { code?: string } | null)?.code || "";
     return { outcome: "error", line: null, reason: code === "OPENAI_TIMEOUT" ? "timeout" : "provider", detail: code || "unknown" };
   }
-  const polished = proposed.line.trim();
-  if (polished === literal.trim()) {
+  return judgePolishedLine({ ...input, literal, proposed });
+}
+
+/** Decides whether a proposed line replaces the literal one. The eval re-scores saved proposals with it. */
+export function judgePolishedLine(input: {
+  line: string;
+  answers: readonly string[];
+  literal: string;
+  proposed: PolishedLineResult;
+  allowJoiners?: boolean;
+}): Exclude<PolishOutcome, { outcome: "error" }> {
+  const { literal, proposed } = input;
+  // A bullet ends the way the literal line does: a polish that leaves off the period gets it back.
+  const trimmed = proposed.line.trim();
+  const polished = literal.endsWith(".") && trimmed && !/[.!?]$/u.test(trimmed) ? `${trimmed}.` : trimmed;
+  // The same words in the same order, give or take punctuation, is not a polish.
+  const bare = (value: string) => value.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  if (bare(polished) === bare(literal)) {
     return { outcome: "fallback", line: null, reason: "unchanged", detail: "same as the literal line", proposed: polished, model: proposed.model, usage: proposed.usage };
   }
   const check = checkPolishedLine(
