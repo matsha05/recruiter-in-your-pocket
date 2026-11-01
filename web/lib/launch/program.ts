@@ -123,8 +123,8 @@ export const VENDOR_REVIEW_ITEMS: VendorReviewItem[] = [
   },
   {
     vendor: "Sentry",
-    purpose: "Error monitoring and launch-day issue triage.",
-    dataClasses: "Error metadata, route context, scrubbed diagnostic breadcrumbs.",
+    purpose: "Error and performance monitoring, and launch-day issue triage.",
+    dataClasses: "Error metadata, route context, scrubbed diagnostic breadcrumbs, page-load and interaction timings, and aggregate operational counts.",
     launchDecision: "Approved with strict scrubbing",
     reviewNotes: "Default PII is disabled. Replay should remain off until a separate approval exists.",
   },
