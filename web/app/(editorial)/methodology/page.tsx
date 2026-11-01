@@ -15,7 +15,7 @@ export default function MethodologyPage() {
             header={{
                 tag: "Methodology",
                 title: "How the report works",
-                description: "Every report reads your resume the way a recruiter would: a Verdict, one First Impression score, and the one thing a recruiter is most likely to miss. Here's how each part is made, and what it can't tell you.",
+                description: "Every report applies a recruiter's criteria to your resume: a Verdict, one First Impression score, and the Critical Miss, the one thing to fix first. Here's how each part is made, and what it can't tell you.",
                 lastUpdated: "October 2026",
                 sourceSummary: "2 peer-reviewed studies",
             }}
@@ -29,7 +29,7 @@ export default function MethodologyPage() {
             productTieIn={{
                 title: "What you'll see in your report",
                 items: [
-                    { title: "Verdict", description: "What a recruiter would take away on a first read, in plain words." },
+                    { title: "Verdict", description: "A plain-words read of what your resume says first, judged against a recruiter's criteria." },
                     { title: "First Impression score", description: "One number that summarizes the read. The written findings explain it." },
                     { title: "Critical Miss", description: "The one change to make first, with the line it comes from and the questions to answer." },
                 ],
@@ -75,8 +75,8 @@ export default function MethodologyPage() {
             ]}
             visualization={
                 <>
-                    <h2 className="research-h2">A real report, start to finish</h2>
-                    <p className="research-body mb-6">Everything in this figure comes from the sample report: the Verdict, the score, the Critical Miss, and what the score weighed.</p>
+                    <h2 className="research-h2">The sample report, start to finish</h2>
+                    <p className="research-body mb-6">Everything in this figure comes from our sample report, written for a fictional candidate: the Verdict, the score, the Critical Miss, and what the score weighed.</p>
                     <FirstReadModelDiagram />
                 </>
             }
@@ -92,12 +92,12 @@ export default function MethodologyPage() {
 
             <h2 className="research-h2">How the Critical Miss is chosen</h2>
             <p className="research-body mb-6">
-                Of everything that could be clearer, the Critical Miss is the gap most likely to cost you on a first read: usually your strongest example stopping short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in.
+                Of everything that could be clearer, the report picks one thing to fix first. Often it&apos;s a strong example that stops short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in. The choice applies our criteria; it isn&apos;t a prediction of what a particular recruiter will notice.
             </p>
 
             <h2 className="research-h2">How suggested edits protect your facts</h2>
             <p className="research-body mb-6">
-                Rewrites use only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
+                When the report suggests new wording, it uses only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
             </p>
 
             <h2 className="research-h2">What comes from research, and what is ours</h2>

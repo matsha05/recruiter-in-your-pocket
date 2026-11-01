@@ -58,7 +58,7 @@ export default function HowRecruitersReadPage() {
                     },
                     {
                         title: "The Critical Miss",
-                        description: "If a recruiter would be left asking about your role, scope, or results, that question leads your report."
+                        description: "If your resume leaves your role, scope, or results unclear, the report leads with that as the one thing to fix first."
                     }
                 ]
             }}

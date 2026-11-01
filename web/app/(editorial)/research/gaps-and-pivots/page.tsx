@@ -51,11 +51,11 @@ export default function GapsAndPivotsPage() {
                 items: [
                     {
                         title: "The Verdict",
-                        description: "If a gap or a pivot is the first thing a recruiter wonders about, the Verdict will say so in plain words."
+                        description: "If a gap or a pivot is the question your resume leaves open, the Verdict says so in plain words."
                     },
                     {
                         title: "The Critical Miss",
-                        description: "When the open question is costing you more than any single line, it becomes the Critical Miss, with a fix that keeps your facts intact."
+                        description: "If that open question is the one thing to fix first, it becomes the Critical Miss, with a fix that keeps your facts intact."
                     }
                 ]
             }}

@@ -46,11 +46,11 @@ export default function WhoYouArePage() {
                 items: [
                     {
                         title: "The Verdict",
-                        description: "The Verdict is the one-line read a recruiter forms about you. If it isn't who you are, the resume isn't telling your story yet."
+                        description: "The Verdict is a one-line read of who your resume says you are. If it isn't who you are, the resume isn't telling your story yet."
                     },
                     {
                         title: "The Critical Miss",
-                        description: "When the thing holding you back is that a recruiter can't tell what you'd do next, the Critical Miss says so and points to the fix."
+                        description: "When your resume doesn't make clear what you'd do next, the Critical Miss says so and points to the fix."
                     }
                 ]
             }}

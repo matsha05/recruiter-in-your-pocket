@@ -53,11 +53,11 @@ export default function ReferralAdvantagePage() {
                 items: [
                     {
                         title: "Read the Verdict first",
-                        description: "A referral buys you a real read. The Verdict is what that reader is likely to conclude, so check it before someone puts their name next to yours."
+                        description: "A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours."
                     },
                     {
                         title: "Fix the Critical Miss",
-                        description: "Your referrer can vouch for you. They can't fix the line that makes a recruiter hesitate. The Critical Miss is that line."
+                        description: "Your referrer can vouch for you. They can't fix your resume. The Critical Miss is the one thing to fix first, so fix it before you send it."
                     }
                 ]
             }}

@@ -51,7 +51,7 @@ export default function StarMethodPage() {
                     },
                     {
                         title: "Your score",
-                        description: "The score weighs whether a recruiter can follow what you did. A line they can follow is one you can expand on in the interview."
+                        description: "The score weighs how easy it is to follow what you did. A line that's easy to follow is one you can expand on in the interview."
                     }
                 ]
             }}

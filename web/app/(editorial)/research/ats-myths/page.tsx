@@ -50,7 +50,7 @@ export default function ATSMythsPage() {
                 items: [
                     {
                         title: "A recruiter's read, not an ATS score",
-                        description: "Your First Impression score is what a person would likely make of the page. It can't tell you how an employer set up its filters."
+                        description: "Your First Impression score sums up our read of the page against a recruiter's criteria. It can't tell you how an employer set up its filters."
                     },
                     {
                         title: "Text we can actually read",

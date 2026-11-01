@@ -51,7 +51,7 @@ export default function DiscriminationMetaPage() {
                     },
                     {
                         title: "It can clear up avoidable doubt",
-                        description: "Your Critical Miss points at the gap a recruiter is most likely to stumble on. Fixing it won't close a gap that lives in the hiring process itself."
+                        description: "Your Critical Miss is the one thing to fix first on the page. Fixing it won't close a gap that lives in the hiring process itself."
                     }
                 ]
             }}
