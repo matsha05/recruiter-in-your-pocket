@@ -54,7 +54,7 @@ const positiveCases = [
     // Same run: "tasks" is a generic word for duties.
     { claim: 'Relevant support tasks are visible, but most lack detail about the work.', source: 'IT Help Desk Intern. Answered help desk tickets from teachers and staff. IT support specialist with help desk experience.' },
     // eval_1793570741684 (final v3 golden): a connective, a ", though" clause, and an outcome noun.
-    { claim: 'You managed 17 Recruiters and Sourcers at Meta and contributed to an initiative tied to 1,000+ ML Gen hires.', source: 'Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires.' },
+    { claim: 'You managed 17 Recruiters and Sourcers at Meta and contributed to an initiative tied to 1,000+ ML Gen hires.', source: "Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires. Implemented strategic talent identification and alignment processes to support the organization's mission and growth." },
     { claim: 'Recent work includes clear reach and growth, though some leadership details remain unstated.', source: 'Expanded small-group ministry from six to eighteen active groups.' },
     // eval_1793571168922 (final v3 blind-pick run), and a regression the ", though" split briefly caused.
     { claim: 'You come across as a data analyst working across sales, inventory and store operations. The weekly Tableau dashboards are a useful anchor, though their reach isn\'t clear.', source: 'Data Analyst, Lakeshore Grocers. Build weekly sales and inventory dashboards in Tableau for regional managers. Work with store operations on labor planning data.' },
@@ -147,3 +147,16 @@ assert.equal(fromPath(asQuestion('During open enrollment, what was one employee 
 assert.equal(fromPath({ top_fixes: [{ fix: 'Add how much time your calendar support saved each founder.', why: 'The first freelance bullet lists the support but gives no change in scheduling time or conflicts.' }] }, 'Support three founders at early-stage companies with calendar, travel, and inbox management.').length, 0, "scheduling conflicts are calendar clashes");
 assert.ok(fromPath({ top_fixes: [{ fix: 'Name the founders you supported.', why: 'This shows how you handled conflicts between the two founders.' }] }, 'Support three founders at early-stage companies with calendar, travel, and inbox management.').length > 0, "a conflict between people still needs source support");
 console.log("possessive, example and calendar-conflict tests passed");
+
+// eval_1793553133997 (production prompt): "multidisciplinary" didn't match the resume's "multi-disciplinary".
+const pmSource = 'Coordinated multi-disciplinary teams of up to 50 members, effectively translating military operational requirements into actionable civilian business processes.';
+for (const c of [
+  { claim: 'You coordinated multidisciplinary teams of up to 50 members while translating military operational requirements into civilian business processes.', source: pmSource },
+  { claim: 'You coordinated multi-disciplinary teams of up to 50 members.', source: 'Coordinated multidisciplinary teams of up to 50 members.' },
+]) assert.equal(auditReportNarrative({ strengths: [c.claim] }, c.source).length, 0, JSON.stringify(c));
+for (const c of [
+  { claim: 'You coordinated multidisciplinary teams of up to 90 members.', source: pmSource },
+  { claim: 'You coordinated multinational teams of up to 50 members.', source: pmSource },
+  { claim: 'You coordinated multi-disciplinary vendors across military procurement.', source: pmSource },
+]) assert.ok(auditReportNarrative({ strengths: [c.claim] }, c.source).length > 0, JSON.stringify(c));
+console.log("hyphenated spelling tests passed");

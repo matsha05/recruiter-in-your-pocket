@@ -36,3 +36,19 @@ To stop withholding these two reports, the validator needs three more fixes:
 The third can't be done by word matching without letting invented claims through.
 
 Paired fabrication controls for every fix pass: `npm run test:source-fidelity`, `npm run test:llm-contract`, `npm run test:release-integrity`.
+
+## Update: wave-2 fixes and joined spellings
+
+Same 43 outputs, three validators, no model calls:
+
+| Validator | Pass | Fail | Narrative-audit issues |
+|:--|:--|:--|:--|
+| Production `446fd41` | 41 of 43 | 2 | 5 |
+| `claude/wave-2` `6c3f6924` (cherry-picked validator fixes) | 42 of 43 | 1 | 2 |
+| `claude/validator-hyphenation` (+ joined spellings) | 42 of 43 | 1 | 1 |
+
+- **No regression:** nothing that passed an earlier validator fails a later one.
+- **`synth_data_scientist_senior_elite_1` now passes.** The question-binding fix ("What led you to decide to integrate ...?" is not a direct assertion) and the "team-" fix are both in wave-2.
+- **`synth_project_manager_vp_strong_1` is down to one issue.** "multidisciplinary" now matches the resume's "multi-disciplinary". It still fails on the summary sentence "That detail is worth keeping because it shows which groups you brought together.", which refers back to the previous sentence. That case is left open: word matching can't check it without letting invented claims through.
+
+The production prompt's run on the 20 fictional blind-pick resumes (`eval_1793567853525`, plus one rerun after a network failure) lost 2 reports to false rejections on the old validator. Replayed through the wave-2 validator, all 20 pass.

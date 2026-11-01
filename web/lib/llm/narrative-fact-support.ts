@@ -52,6 +52,21 @@ function entityIdentityTokens(value: string) {
   return tokens.flatMap(token => roleAliases[token] || [token]);
 }
 
+/**
+ * "multi-disciplinary" and "multidisciplinary" are one word. Resume tokens keep the
+ * hyphenated form and add the joined one; claim tokens are compared joined. A claim
+ * that matched before still matches.
+ */
+export function withJoinedSpellings(tokens: Set<string>) {
+  const joined = new Set(tokens);
+  for (const token of tokens) if (token.includes("-")) joined.add(token.replace(/-/gu, ""));
+  return joined;
+}
+
+export function joinedSpellings(tokens: Set<string>) {
+  return new Set(Array.from(tokens, (token) => token.replace(/-/gu, "")));
+}
+
 export function auditableNarrativeValue(path: string, value: string, sourceText = "", reportScore?: number) {
   // A report's displayed score is metadata, but any other number still needs support.
   if (path === "score_plain" && Number.isFinite(reportScore)) {

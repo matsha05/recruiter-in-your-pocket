@@ -6,7 +6,7 @@ import { assertsNegativePresence, negativePresenceSubject } from "./report-polar
 import { semanticMissingDisposition } from "./semantic-missing-policy";
 import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-semantic-patterns";
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
-import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion } from "./narrative-fact-support";
+import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion, joinedSpellings, withJoinedSpellings } from "./narrative-fact-support";
 import { supportsIndustrySignal } from "./source-industry-signals";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
@@ -289,7 +289,7 @@ export function auditNarrativeClaim(
 ) {
   const candidates = narrativeSourceClauses(sourceText).map((line) => ({
     facts: protectedFacts(line),
-    tokens: materialTokens(line),
+    tokens: withJoinedSpellings(materialTokens(line)),
     negated: sourceClauseIsNegated(line),
   }));
   return claimSegments(value).flatMap((claim) => {
@@ -305,7 +305,7 @@ export function auditNarrativeClaim(
     const relationshipIssues = relationshipBindingIssues(claim, sourceText)
       .filter((issue) => directFactualAssertion || !issue.startsWith("unresolved relationship binding:"));
     if (relationshipIssues.length > 0) return [{ claim, unsupportedFacts: relationshipIssues }];
-    const claimTokens = materialTokens(claim, policy.ignoredTokens);
+    const claimTokens = joinedSpellings(materialTokens(claim, policy.ignoredTokens));
     const eligibleCandidates = candidates.filter(({ negated }) =>
       policy.sourcePolarity === "any" || negated === (policy.sourcePolarity === "negative")
     );
