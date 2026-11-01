@@ -36,6 +36,13 @@ export const LAUNCH_SIGNALS = {
     first_attempt: ["yes", "no", "unknown"],
     viewer: ["anonymous", "signed_in"],
   },
+  // "Was this the right thing to fix first?" on the Critical Miss (plan item 2.6).
+  "riyp.report.critical_miss_feedback": {
+    answer: ["right", "wrong"],
+    note: ["yes", "no"],
+    nothing_critical: ["yes", "no"],
+    viewer: ["anonymous", "signed_in"],
+  },
   "riyp.checkout.step": {
     step: [
       "checkout_started",

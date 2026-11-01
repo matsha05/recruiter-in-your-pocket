@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { ReportLayout } from "@/components/layout/ReportLayout";
-import { MarkedUpReport, type ReportVariant } from "@/components/workspace/report/markup/MarkedUpReport";
+import { ReportStream } from "@/components/workspace/report/ReportStream";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+
+type ReportVariant = "fresh" | "recovered" | "saved" | "sample";
 
 export interface LabFixture {
   id: string;
@@ -15,13 +17,14 @@ export interface LabFixture {
 
 const variants: Array<{ id: ReportVariant; label: string }> = [
   { id: "fresh", label: "Fresh (resume in this visit)" },
+  { id: "recovered", label: "Recovered (page reloaded)" },
   { id: "saved", label: "Saved (no resume kept)" },
 ];
 
 /** Prototype harness for the signature report (spec 71). Internal only. */
 export default function ReportLab({ fixtures, initialId, initialAs }: { fixtures: LabFixture[]; initialId?: string; initialAs?: string }) {
   const [id, setId] = useState(initialId && fixtures.some((item) => item.id === initialId) ? initialId : fixtures[0].id);
-  const [as, setAs] = useState<ReportVariant>(initialAs === "saved" ? "saved" : "fresh");
+  const [as, setAs] = useState<ReportVariant>(initialAs === "saved" || initialAs === "recovered" ? initialAs : "fresh");
   const fixture = fixtures.find((item) => item.id === id) || fixtures[0];
   const variant: ReportVariant = fixture.sample ? "sample" : as;
 
@@ -47,12 +50,14 @@ export default function ReportLab({ fixtures, initialId, initialAs }: { fixtures
         </div>
       </div>
       <ReportLayout mobileReading>
-        <MarkedUpReport
+        <ReportStream
           key={`${fixture.id}-${variant}`}
           report={fixture.report}
           resumeText={variant === "fresh" ? fixture.resumeText : undefined}
-          variant={variant}
-          onFeedback={(value) => console.info("[report-lab] Critical Miss feedback", value)}
+          resumeSource={variant === "fresh" ? "attached" : variant}
+          isSample={variant === "sample"}
+          onStartReport={() => undefined}
+          onStartRevision={() => undefined}
         />
       </ReportLayout>
     </div>

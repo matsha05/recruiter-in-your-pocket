@@ -1,5 +1,5 @@
 import { SCORE_BANDS, scoreBandIndex } from "@/lib/reports/score-band";
-import styles from "./MarkedUpReport.module.css";
+import styles from "./MarkedReport.module.css";
 
 /** The first read shows where the resume sits, in words. The number is kept for comparing revisions. */
 export function ScoreBand({ score }: { score: number }) {

@@ -45,6 +45,8 @@ export const ANALYTICS_EVENT_PROPERTIES = {
   landing_cta_clicked: ["cta", "destination"],
   sm1_fixes_rendered: ["count"],
   sm1_fix_copied: [],
+  // The Critical Miss's revised line now carries the fact it asked for (plan item 2.3).
+  critical_miss_addressed: ["sample"],
 } as const satisfies Record<string, readonly string[]>;
 
 export type ApprovedAnalyticsEvent = keyof typeof ANALYTICS_EVENT_PROPERTIES;

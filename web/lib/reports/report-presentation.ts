@@ -28,11 +28,18 @@ export interface IndependentQuestion {
   originalIndex: number;
 }
 
-export function fixPlanHeadingForCount(count: number) {
+// The fix section's heading, in the approved word list (docs/copy-system.md §1).
+export function fixPlanHeadingForCount(count: number, nothingCritical = false) {
+  if (nothingCritical) return "Nothing to fix first.";
   if (count === 0) return "Review the suggestions below.";
-  if (count === 1) return "Start with this change.";
-  if (count === 2) return "Start with these two changes.";
-  return "Start with these three changes.";
+  if (count === 1) return "Fix this first.";
+  if (count === 2) return "Fix these two first.";
+  return "Fix these three first.";
+}
+
+/** The ranking prompt marks "Nothing critical" by making its only Critical Miss low impact (decision D2). */
+export function isNothingCritical(report: Pick<ReportData, "top_fixes">) {
+  return report.top_fixes?.[0]?.impact_level === "low";
 }
 
 export function questionForPlaceholder(key: string) {
