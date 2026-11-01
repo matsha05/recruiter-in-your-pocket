@@ -15,23 +15,24 @@ export default function Footer() {
                     <p className={styles.description}>
                         See what a recruiter sees before you apply. Your first report is free.
                     </p>
-                    <p className={styles.support}>
-                        Support:{" "}
-                        <a href="mailto:support@recruiterinyourpocket.com" className={`focus-ring ${styles.link}`}>support@recruiterinyourpocket.com</a>
-                    </p>
+                    <a href="mailto:support@recruiterinyourpocket.com" className={`focus-ring ${styles.link} ${styles.mail}`}>support@recruiterinyourpocket.com</a>
                 </div>
-                <nav className={styles.navigation} aria-label="Footer navigation">
-                    {FOOTER_NAV.pillLinks.map((link) => (
-                        <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
-                    ))}
-                    <FooterLink href="/trust">Trust</FooterLink>
-                    {FOOTER_NAV.legalLinks.map((link) => (
-                        <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
-                    ))}
-                    <PrivacyPreferencesButton className={`focus-ring ${styles.link}`} />
-                </nav>
+                {FOOTER_NAV.map((group) => (
+                    <nav key={group.id} className={styles.column} aria-labelledby={`footer-${group.id}`}>
+                        <h2 id={`footer-${group.id}`} className={styles.label}>{group.label}</h2>
+                        <ul>
+                            {group.links.map((link) => (
+                                <li key={link.href}><FooterLink href={link.href}>{link.label}</FooterLink></li>
+                            ))}
+                            {group.id === "help" ? <li><PrivacyPreferencesButton className={`focus-ring ${styles.link}`} /></li> : null}
+                        </ul>
+                    </nav>
+                ))}
             </div>
-            <p className={styles.copyright}>© 2026 Recruiter in Your Pocket</p>
+            <div className={styles.legal}>
+                <p>© 2026 Recruiter in Your Pocket</p>
+                <Link href="/purchase/restore" className={`focus-ring ${styles.link}`}>Already paid? Restore access</Link>
+            </div>
         </footer>
     );
 }

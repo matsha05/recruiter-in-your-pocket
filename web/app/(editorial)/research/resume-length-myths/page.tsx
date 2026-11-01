@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
-export const metadata: Metadata = {
-    title: "There is no universal one-page rule",
-    description: "What a peer-reviewed recruiter study does and does not say about one-page and two-page resumes.",
-    alternates: { canonical: "/research/resume-length-myths" },
-};
+const PATH = "/research/resume-length-myths";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Should a resume be one page? What the research says",
+    description: "One study favored two-page resumes for entry-level accountants. It doesn't settle the best length for every role. What it does and doesn't say.",
+    type: "article",
+});
 
 export default function ResumeLengthPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Resume structure",
                 title: "There is no universal one-page rule",
                 description: "One study favored two-page resumes for entry-level accountants. It does not establish the best length for every role.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

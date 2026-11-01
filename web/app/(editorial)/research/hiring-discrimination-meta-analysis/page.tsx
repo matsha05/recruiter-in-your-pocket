@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { MetaTimeline } from "@/components/research/diagrams/MetaTimeline";
 
-export const metadata: Metadata = {
-    title: "Discrimination in hiring hasn't gone away",
-    description: "A long-view synthesis of hiring discrimination research and what resumes can and cannot control.",
-    alternates: { canonical: "/research/hiring-discrimination-meta-analysis" },
-};
+const PATH = "/research/hiring-discrimination-meta-analysis";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Racial discrimination in hiring: what field experiments show",
+    description: "A review of US hiring experiments found persistent racial discrimination against applicants with comparable qualifications. What a resume can and can't control.",
+    type: "article",
+});
 
 export default function DiscriminationMetaPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Industry analysis",
                 title: "Discrimination in hiring hasn't gone away",
                 description: "A review of US hiring experiments found persistent racial discrimination, even when applicants had comparable qualifications.",
-                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{

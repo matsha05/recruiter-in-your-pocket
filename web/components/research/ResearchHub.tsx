@@ -9,11 +9,14 @@ function Answer({ article, size }: { article: ResearchArticle; size: "lead" | "l
     const Heading = size === "lead" ? "h2" : "h4";
     return (
         <article className={size === "lead" ? styles.lead : styles.row}>
-            <Heading className={styles.question}>{article.question}</Heading>
+            {/* The question is the link; its hit area stretches over the whole row. */}
+            <Heading className={styles.question}>
+                <Link href={article.href} className={styles.link}>{article.question}</Link>
+            </Heading>
             <p className={styles.answer}>{article.answer}</p>
-            <Link href={article.href} className={styles.read}>
-                {article.action ?? "Read"}<span className="sr-only">: {article.title}</span> <ArrowRight weight="bold" aria-hidden="true" />
-            </Link>
+            <span className={styles.read} aria-hidden="true">
+                {article.action ?? "Read"} <ArrowRight weight="bold" data-affordance />
+            </span>
         </article>
     );
 }
@@ -51,7 +54,7 @@ export default function ResearchHub() {
                     <h2 id="research-close-title" className={styles.closeTitle}>What would they think of yours?</h2>
                     <Button asChild size="lg" className="flex-none">
                         <Link href="/workspace" data-analytics-cta="research_report">
-                            Read mine <ArrowRight weight="bold" aria-hidden="true" />
+                            Get your free report <ArrowRight weight="bold" aria-hidden="true" />
                         </Link>
                     </Button>
                 </section>

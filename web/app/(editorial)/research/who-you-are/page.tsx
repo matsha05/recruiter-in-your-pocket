@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { StoryReadDiagram } from "@/components/research/diagrams/StoryReadDiagram";
 
-export const metadata: Metadata = {
-    title: "Can a recruiter tell who you are?",
-    description: "Early impressions carry through to offers, coherent careers get hired more, and specifics beat summaries. What the research says about the story your resume tells.",
-    alternates: { canonical: "/research/who-you-are" },
-};
+const PATH = "/research/who-you-are";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Can a recruiter tell who you are from your resume?",
+    description: "Early impressions carry through to offers, coherent careers get hired more, and specifics beat summaries. What the research says about your resume's story.",
+    type: "article",
+});
 
 export default function WhoYouArePage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Story",
                 title: "Can a recruiter tell who you are?",
                 description: "The best resumes let a stranger say who you are in one line and picture you doing the job. Research on interviews suggests that first read sticks.",
-                lastUpdated: "October 2026",
                 readTime: "6 min read"
             }}
             keyFinding={{
@@ -57,7 +60,8 @@ export default function WhoYouArePage() {
             relatedArticles={[
                 { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
                 { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" }
+                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Perception" },
+                { title: "Gaps, pivots, and short stints", href: "/research/gaps-and-pivots", tag: "Story" }
             ]}
             sources={[
                 {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Career resources",
-  description: "Recruiter-grounded negotiation guides, compensation tools, and practical career resources.",
+  title: "After the offer",
+  description: "Recruiter-grounded negotiation guides and an offer calculator, for when the offer arrives.",
   alternates: { canonical: "/resources" },
 };
 

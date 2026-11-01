@@ -79,7 +79,7 @@ test("active navigation exposes the current page across site, app, mobile, and l
   await page.goto("/privacy", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
   const legalNav = page.getByRole("navigation", { name: "Trust and legal pages" });
-  await expect(legalNav.getByRole("link", { name: "Privacy Policy", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(legalNav.getByRole("link", { name: "Privacy", exact: true })).toHaveAttribute("aria-current", "page");
 });
 
 test("sign-in input keeps its visible default boundary and exposes its error state", async ({ page }) => {

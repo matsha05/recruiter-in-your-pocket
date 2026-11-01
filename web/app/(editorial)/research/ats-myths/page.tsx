@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 
-export const metadata: Metadata = {
-    title: "What applicant tracking systems actually do",
-    description: "What current Greenhouse and Lever documentation shows about resume parsing and what it does not prove.",
-    alternates: { canonical: "/research/ats-myths" },
-};
+const PATH = "/research/ats-myths";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Does an ATS reject your resume? What parsing really does",
+    description: "What Greenhouse and Lever documentation says about resume parsing: the fields it extracts, the formatting that can get lost, and what it doesn't prove.",
+    type: "article",
+});
 
 export default function ATSMythsPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Platform documentation",
                 title: "What applicant tracking systems actually do",
                 description: "What current platform documentation says about parsing, extracted fields, and the formatting that can get lost.",
-                lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
             keyFinding={{

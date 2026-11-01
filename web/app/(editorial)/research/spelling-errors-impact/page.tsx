@@ -1,22 +1,25 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
 import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
-export const metadata: Metadata = {
-    title: "How spelling errors changed recruiter ratings",
-    description: "What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings.",
-    alternates: { canonical: "/research/spelling-errors-impact" },
-};
+const PATH = "/research/spelling-errors-impact";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Do resume typos matter? An experiment with 445 recruiters",
+    description: "What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings, and why one typo isn't a reason to panic.",
+    type: "article",
+});
 
 export default function SpellingErrorsPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Screening heuristics",
                 title: "How spelling errors changed recruiter ratings",
                 description: "A recruiter experiment gives us a useful answer and a reason not to panic over one typo.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

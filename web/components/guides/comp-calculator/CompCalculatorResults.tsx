@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { Info } from "@phosphor-icons/react";
+
 import type { OfferData } from "@/lib/compensation-model";
 import {
   formatCompactCurrency,
@@ -8,6 +11,8 @@ import {
   getFourYearTotal,
   getYearBreakdown,
   isComparableOffer,
+  missingRecurringPay,
+  type RecurringPay,
 } from "@/lib/compensation-model";
 import { COMPONENTS, type ComponentKey, offerName } from "./presentation";
 import styles from "../GuidePresentation";
@@ -61,24 +66,61 @@ function Answer({ named }: { named: NamedOffer[] }) {
     );
   }
 
+  return <Ranking named={named} />;
+}
+
+const missingLabel = (kinds: RecurringPay[]) => kinds.join(" or ");
+
+/** Offers ranked by modeled value, with any offer missing recurring pay flagged instead of ranked as complete. */
+function Ranking({ named }: { named: NamedOffer[] }) {
+  // "It has none" confirms a zero for this session only; it is never stored.
+  const [confirmedNone, setConfirmedNone] = useState<Set<string>>(() => new Set());
   const ranked = [...named].sort((left, right) => getFourYearTotal(right.offer) - getFourYearTotal(left.offer));
   const highest = getFourYearTotal(ranked[0].offer);
+  const flags = new Map(ranked.map(({ offer }) => [
+    offer.id,
+    confirmedNone.has(offer.id) ? [] : missingRecurringPay(offer, named.filter((other) => other.offer.id !== offer.id).map((other) => other.offer)),
+  ]));
+  const incomplete = ranked.filter(({ offer }) => (flags.get(offer.id) ?? []).length > 0);
+
   return (
     <section aria-labelledby="four-year-answer">
       <h3 id="four-year-answer" className={`${styles.label} text-muted-foreground`}>Modeled four-year totals</h3>
+      {incomplete.length > 0 ? (
+        <p role="status" className="mt-3 flex gap-2.5 rounded-lg bg-secondary px-4 py-3 text-sm text-foreground" data-testid="comp-incomplete-notice">
+          <Info className="mt-0.5 size-4 shrink-0" weight="bold" aria-hidden="true" />
+          <span>
+            {incomplete.length === 1
+              ? <><b className="font-semibold">{incomplete[0].name}</b> has no {missingLabel(flags.get(incomplete[0].offer.id) ?? [])} entered, so this isn&rsquo;t a fair comparison yet. Add {(flags.get(incomplete[0].offer.id) ?? []).length > 1 ? "them" : "it"} if the offer has {(flags.get(incomplete[0].offer.id) ?? []).length > 1 ? "them" : "it"}.</>
+              : <>Some offers are missing pay another offer has, so this isn&rsquo;t a fair comparison yet. Add it if those offers have it.</>}
+          </span>
+        </p>
+      ) : null}
       <ol className="mt-3 divide-y divide-line border-y border-line">
         {ranked.map(({ offer, name }, index) => {
           const total = getFourYearTotal(offer);
           const gap = highest - total;
+          const missing = flags.get(offer.id) ?? [];
           return (
             <li key={offer.id} className="flex items-baseline justify-between gap-4 py-3">
               <div className="min-w-0">
                 <p className="truncate font-semibold text-foreground">{name}</p>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  {index === 0 ? "Highest modeled value" : `${formatCompactCurrency(gap)} less over four years`}
+                  {missing.length > 0 ? (
+                    <>
+                      <span className="text-foreground">No {missingLabel(missing)} entered.</span>{" "}
+                      <button
+                        type="button"
+                        className="focus-ring riyp-link-quiet inline-flex min-h-11 items-center font-semibold text-foreground"
+                        onClick={() => setConfirmedNone((current) => new Set(current).add(offer.id))}
+                      >
+                        It has none<span className="sr-only">: {name}</span>
+                      </button>
+                    </>
+                  ) : index === 0 ? (incomplete.length > 0 ? "Highest of what\u2019s entered" : "Highest modeled value") : `${formatCompactCurrency(gap)} less over four years`}
                 </p>
               </div>
-              <p className={`shrink-0 tabular-nums text-foreground ${index === 0 ? "text-report-title" : "text-lg font-medium"}`}>{formatCurrency(total)}</p>
+              <p className={`shrink-0 tabular-nums text-foreground ${index === 0 ? "text-heading" : "text-lg font-medium"}`}>{formatCurrency(total)}</p>
             </li>
           );
         })}

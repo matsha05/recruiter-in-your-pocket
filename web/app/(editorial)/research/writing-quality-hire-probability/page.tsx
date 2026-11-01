@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { SignalClarityDiagram } from "@/components/research/diagrams/SignalClarityDiagram";
 
-export const metadata: Metadata = {
-    title: "Writing help led to more hires in one experiment",
+const PATH = "/research/writing-quality-hire-probability";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Does better writing get you hired? One field experiment",
     description: "What a large field experiment found when freelancers got spelling and grammar suggestions on their profiles, and what it can't tell you about a resume.",
-    alternates: { canonical: "/research/writing-quality-hire-probability" },
-};
+    type: "article",
+});
 
 // Figures: Wiles, Munyikwa & Horton, NBER w30886 (revised October 2023), Table 1 (sample flow,
 // 70-word mean profile, 18.3% from the US, UK, Canada or Australia), Table 4 (control hire rate
@@ -15,11 +18,11 @@ export const metadata: Metadata = {
 export default function WritingQualityHireProbabilityPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Writing quality",
                 title: "Writing help led to more hires in one experiment",
                 description: "Freelancers who got spelling and grammar suggestions on their profiles were hired a little more often, with no change to their experience.",
-                lastUpdated: "November 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

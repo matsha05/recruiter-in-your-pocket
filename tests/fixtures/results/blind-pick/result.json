@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "judge": "Matt",
+  "date": "2026-11-01",
+  "threshold": "Pass if the new Critical Miss is preferred in at least 8 of 10 items (\"no difference\" counts against), with a veto for any new pick that cites an unsupported fact. Set by Matt before seeing the items.",
+  "tally": {
+    "new": 1,
+    "old": 5,
+    "no_difference": 4,
+    "vetoes": 0
+  },
+  "outcome": "fail",
+  "notes_source": "Matt, verbatim, as relayed by the coordinating session",
+  "items": {
+    "bp-01": {
+      "fixture_id": "synth_ux_designer_director_strong_1",
+      "preferred": "old",
+      "picked_side": "B",
+      "note": "Budget size is a tangible thing to grasp onto, it helps the recruiter understand the scale."
+    },
+    "bp-02": {
+      "fixture_id": "synth_software_engineer_mid_strong_1",
+      "preferred": "old",
+      "picked_side": "A"
+    },
+    "bp-03": {
+      "fixture_id": "synth_data_scientist_senior_elite_1",
+      "preferred": "no difference",
+      "picked_side": null
+    },
+    "bp-04": {
+      "fixture_id": "synth_project_manager_vp_strong_1",
+      "preferred": "old",
+      "picked_side": "B",
+      "note": "Both are good though"
+    },
+    "bp-05": {
+      "fixture_id": "synth_hr_manager_director_foundation_1",
+      "preferred": "new",
+      "picked_side": "B",
+      "note": "It's critical for sure if there is no more relevant work. This may be be a missing part of the product brain where if there isn't recent work we really need to give them advice abotu how to talk about that, or how to fill in worthy projects there. look into that."
+    },
+    "bp-06": {
+      "fixture_id": "synth_finance_analyst_senior_weak_1",
+      "preferred": "no difference",
+      "picked_side": null,
+      "note": "Same critical miss it looks like. Both are critical. Vague stuff"
+    },
+    "bp-07": {
+      "fixture_id": "synth_product_manager_entry_elite_1",
+      "preferred": "no difference",
+      "picked_side": null,
+      "note": "Same issue"
+    },
+    "bp-08": {
+      "fixture_id": "synth_sales_executive_mid_foundation_1",
+      "preferred": "old",
+      "picked_side": "B"
+    },
+    "bp-09": {
+      "fixture_id": "synth_operations_manager_entry_weak_1",
+      "preferred": "no difference",
+      "picked_side": null
+    },
+    "bp-10": {
+      "fixture_id": "synth_marketing_manager_vp_elite_1",
+      "preferred": "old",
+      "picked_side": "B",
+      "note": "Both critical and missing details. I think we should have multiple critical misses if they exist...."
+    }
+  }
+}

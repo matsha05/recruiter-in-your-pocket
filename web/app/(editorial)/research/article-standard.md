@@ -22,7 +22,9 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 
 ## Rules
 
-- One title per article, in sentence case, shared by the hub card, H1, related links and metadata. The root layout adds the site name.
+- One headline per article, in sentence case, shared by the hub card, H1, related links, and the Article structured data.
+- The search title is different on purpose: the question the article answers, the way people search for it, in 60 characters or fewer ("Should a resume be one page? What the research says"). Set it with `pageMetadata()` in the page file; it adds the site name only when the whole title still fits. The description says what the article found and its limit, from the article's own text, in 70 to 160 characters.
+- Every article is listed in `web/lib/seo/public-pages.ts` with its published and updated dates. Bump `updated` when the content changes (a corrected claim, a new section), never for styling. The sitemap, the Article data, and the "Last updated" line all read it.
 - Say a limit once in the key finding or Limitations, not in every figure, caption and FAQ.
 - Every product tie-in names the report part it shows up in: the Verdict, the First Impression score or the Critical Miss.
 - Figures carry the number and source in the caption only. Draw published numbers; never invent defaults or example rates.
@@ -31,13 +33,22 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 ## Required Props
 
 ```tsx
+const PATH = "/research/how-recruiters-read";
+
+export const metadata = pageMetadata({
+  path: PATH,
+  title: "Do recruiters only spend six seconds on a resume?",   // the searched question, ≤ 60 characters
+  description: "What peer-reviewed eye-tracking studies found about where recruiters look on a resume, and why the six-second figure isn't a rule.",
+  type: "article",
+});
+
 <ResearchArticle
+  path={PATH}   // dates come from PUBLIC_PAGES
   header={{
     tag: "Eye-tracking",   // topic — weight 600, pen color
     title: "What recruiters notice in the first pass",   // sentence case; same string in the hub, H1 and metadata
     description: "Eye tracking research on how recruiters review resumes in real time.",
     readTime: "4 min read",
-    lastUpdated: "July 2026",
   }}
   keyFinding={{
     subtitle: "The key finding",     // NOT rendered visually — kept for data
@@ -77,13 +88,13 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 | `description` | 1 sentence |
 | `tag` | 1–3 words, uppercase |
 | `readTime` | e.g. "4 min read" |
-| `lastUpdated` | "Month Year" format |
+| `path` | The article's URL; its dates live in `web/lib/seo/public-pages.ts` |
 
 ---
 
 ## Don'ts
 
-- **Don't** add labels before values ("READ TIME", "UPDATED") — the values are self-explanatory
+- **Don't** add labels before values in the meta row ("READ TIME"); the values are self-explanatory. The date sits on its own line under the description as "Last updated Month Year", like the legal pages.
 - **Don't** make the key finding compete with the title — it's a supporting callout, not a headline
 - **Don't** use generic subtitle text like "The Pattern" or "The Mechanism" — the stat speaks for itself
 - **Don't** separate Related Research and Sources into two sections — use "Further reading"

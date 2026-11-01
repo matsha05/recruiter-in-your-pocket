@@ -52,11 +52,11 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     // The full example sits one step from the opening, and the way back still leads to a report.
-    await page.getByRole("link", { name: "See an example", exact: true }).click();
+    await page.getByRole("link", { name: "See Jordan’s report", exact: true }).click();
     await expect(page).toHaveURL(/\/sample-report$/, { timeout: 45_000 });
     await expect(page.getByText("Critical Miss", { exact: true }).first()).toBeVisible();
     await page.goBack();
-    await expect(page.getByTestId("landing-primary-cta")).toHaveText("Read mine");
+    await expect(page.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();
@@ -107,7 +107,7 @@ test.describe("launch red-team journeys", () => {
       "https://www.recruiterinyourpocket.com/sample-report",
     );
     await expect(page.locator("[data-visual-anchor='workspace-resume-empty']")).toHaveCount(0);
-    await expect(page.getByText("Example report", { exact: true })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByText("Sample report · Jordan is fictional", { exact: true })).toBeVisible({ timeout: 15_000 });
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
 
     const sampleCta = page.getByTestId("sample-start-report");

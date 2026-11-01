@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { SkillsPromiseRealityDiagram } from "@/components/research/diagrams/SkillsPromiseRealityDiagram";
 
-export const metadata: Metadata = {
-    title: "Skills-first hiring: the promise and the practice",
-    description: "What skills-first hiring expands, and where adoption still lags.",
-    alternates: { canonical: "/research/skills-first-promise-reality" },
-};
+const PATH = "/research/skills-first-promise-reality";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Skills-based hiring: do degree cuts change who gets hired?",
+    description: "Removing a degree requirement doesn't always change who gets hired. What a 2024 analysis found across employers, and where skills-first hiring still lags.",
+    type: "article",
+});
 
 export default function SkillsFirstPromiseRealityPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Industry trends",
                 title: "Skills-first hiring: the promise and the practice",
                 description: "Removing a degree requirement does not always change who gets hired. A 2024 analysis found large differences between employers.",
-                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{

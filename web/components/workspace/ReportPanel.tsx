@@ -248,7 +248,7 @@ export default function ReportPanel({
                             <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-2 sm:min-h-12 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-xs font-semibold text-muted-foreground">
-                                        {isSample ? "Example report" : "Your resume report"}
+                                        {isSample ? "Sample report · Jordan is fictional" : "Your resume report"}
                                     </span>
                                     {shareEnabled && shareMode && <span className="text-xs font-semibold text-premium">Share view</span>}
                                 </div>

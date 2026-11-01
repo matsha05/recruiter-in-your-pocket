@@ -39,32 +39,31 @@ for (const width of [320, 390]) {
 test.describe("legal navigation pointer activation", () => {
   test.use({ isMobile: true, hasTouch: true });
 
+  // Four tabs (plan 4.9) fit a 320px phone: every label is whole, and each opens with mouse or touch.
   for (const width of [320, 390]) {
     for (const pointer of ["mouse", "touch"] as const) {
-      test(`${pointer} can activate a partly visible legal link at ${width}px`, async ({ page }) => {
+      test(`${pointer} can activate a fully visible legal link at ${width}px`, async ({ page }) => {
         await page.setViewportSize({ width, height: 667 });
         await page.goto("/security");
         await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
         await page.evaluate(() => document.fonts.ready);
 
         const nav = page.getByRole("navigation", { name: "Trust and legal pages" });
-        const support = nav.getByRole("link", { name: "Support", exact: true });
-        const linkBox = await support.boundingBox();
-        const navBox = await nav.boundingBox();
-        expect(linkBox).not.toBeNull();
-        expect(navBox).not.toBeNull();
-        const x = linkBox!.x + linkBox!.width / 2;
-        const y = linkBox!.y + linkBox!.height / 2;
-        expect(x).toBeGreaterThan(navBox!.x);
-        expect(x).toBeLessThan(navBox!.x + navBox!.width);
+        await expect(nav.getByRole("link")).toHaveText(["Privacy", "Terms", "Security", "Help"]);
+        expect(await nav.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
+        const help = nav.getByRole("link", { name: "Help", exact: true });
+        const linkBox = (await help.boundingBox())!;
+        const navBox = (await nav.boundingBox())!;
+        expect(linkBox.x).toBeGreaterThanOrEqual(navBox.x - 1);
+        expect(linkBox.x + linkBox.width).toBeLessThanOrEqual(navBox.x + navBox.width + 1);
 
-        // Activate the visible area directly: locator.click() would first scroll
-        // the link into view and conceal a focus handler moving it mid-gesture.
+        const x = linkBox.x + linkBox.width / 2;
+        const y = linkBox.y + linkBox.height / 2;
         if (pointer === "touch") await page.touchscreen.tap(x, y);
         else await page.mouse.click(x, y);
 
-        await expect(page).toHaveURL(/\/support$/);
-        await expect(page.getByRole("heading", { name: "Help with your report or account", exact: true })).toBeVisible();
+        await expect(page).toHaveURL(/\/faq$/);
+        await expect(nav.getByRole("link", { name: "Help", exact: true })).toHaveAttribute("aria-current", "page");
       });
     }
   }

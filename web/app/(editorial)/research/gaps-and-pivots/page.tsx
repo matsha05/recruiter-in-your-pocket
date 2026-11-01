@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { GapPivotDiagram } from "@/components/research/diagrams/GapPivotDiagram";
 
-export const metadata: Metadata = {
-    title: "Gaps, pivots, and short stints",
+const PATH = "/research/gaps-and-pivots";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Should you explain a resume gap? What experiments found",
     description: "What field experiments found about employment gaps, career changes, and frequent moves, and what actually helped the resumes that had them.",
-    alternates: { canonical: "/research/gaps-and-pivots" },
-};
+    type: "article",
+});
 
 export default function GapsAndPivotsPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Story",
                 title: "Gaps, pivots, and short stints",
                 description: "When a resume leaves a question open, recruiters tend to answer it themselves. The research shows which questions cost the most, and what helped.",
-                lastUpdated: "October 2026",
                 readTime: "7 min read"
             }}
             keyFinding={{
