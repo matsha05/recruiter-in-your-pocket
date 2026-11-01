@@ -60,11 +60,12 @@ const DATES = new RegExp([
     String.raw`\b(?:nothing|no (?:role|work|activity|entry))(?: (?:is|on the page|on the resume|appears|listed))* (?:later|after|since|newer|current)\b`,
     String.raw`\b(?:done|doing|been up to)\b[^.]{0,20}\b(?:since|after) (?:${MONTH}\.? )?(?:19|20)\d{2}\b`,
     String.raw`\b(?:ends?|ended) in (?:${MONTH}\.? )?(?:19|20)\d{2}\b`,
+    String.raw`\b(?:work|activity|activities|role|done|doing)\b[^.]{0,20}\b(?:since|after) (?:${MONTH}\.? )?(?:19|20)\d{2}\b`,
 ].join("|"), "i");
 const DATE_RANGE = new RegExp(String.raw`^\s*(?:${MONTH}\.?\s+)?(?:19|20)\d{2}\s*[-–—]\s*(?:(?:${MONTH}\.?\s+)?(?:19|20)\d{2}|present|current)\s*$`, "i");
 const LEVEL = /\btitles?\b[^.]{0,100}\b(?:helped|supported|assisted|contributed)\b|\b(?:helped|supported|assisted|contributed)\b[^.]{0,100}\btitles?\b|\b(?:decisions|calls) you (?:made|owned) as\b|\breads? (?:more )?junior\b/i;
 const MOVES_EVIDENCE = /^(?:move|lead with|surface|bring)\b/i;
-const LOW_ON_PAGE = /\b(?:buried|(?:older|earlier|previous) (?:\w+ )?(?:role|job|position)|last bullet|first bullet|bottom|further down|below|above|in (?:your )?skills|to the top|near the top|up front|top of|sits (?:second|third|fourth|fifth|last)|(?:second|third|fourth|fifth) bullet)\b/i;
+const LOW_ON_PAGE = /\b(?:buried|(?:older|earlier|previous) (?:\w+ )?(?:role|job|position)|last bullet|first bullet|bottom|further down|below|above|ahead of|in (?:your )?skills|to the top|near the top|up front|top of|sits (?:second|third|fourth|fifth|last)|(?:second|third|fourth|fifth) bullet)\b/i;
 // A strong result placed where a first pass misses it, as the Verdict or a gap describes it.
 const BURIED = /\b(?:appears|sits|is listed|comes)\b[^.]{0,40}\b(?:below|fourth|third|fifth|last|low on the page|further down)\b|\b(?:may|could|might) (?:not reach|miss) it\b|\bbe missed\b|\bburied\b/i;
 const LOCATION = /^\s*(?:in|on|under|for) (?:the|your)\b/i;
