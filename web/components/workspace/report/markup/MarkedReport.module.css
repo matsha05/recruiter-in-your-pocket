@@ -1,0 +1,790 @@
+/*
+ * The marked-up resume (plan items 2.1-2.6). The candidate's lines sit on the left in their own words,
+ * the recruiter's pen notes in the right margin, and the Critical Miss line carries the one highlighter.
+ * Below 960px each line becomes a card with its note beneath. Prose sits on the shared 52ch reading rail
+ * (about 69 characters a line). Type is the shared roles only; colors are
+ * the Highlighter tokens only. See docs/launch-readiness/72-signature-report-spec.md.
+ */
+
+.root {
+    --margin-width: 16rem;
+    --margin-gap: 2.5rem;
+    max-width: 66rem;
+    margin-inline: auto;
+    padding-bottom: 2rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+}
+
+/* ---------- Opening read ---------- */
+
+.opening {
+    padding-bottom: 0.625rem;
+}
+
+/* Phones set the Verdict a step down (18px Literata) so the Critical Miss and its first question fit the first screen. */
+.verdict {
+    max-width: 44ch;
+    margin-top: 0.5rem;
+    font: var(--type-lead);
+    font-family: var(--font-editorial);
+    text-wrap: pretty;
+}
+
+/* Phones: the band name and its bar share one row. */
+.band {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.25rem 1rem;
+    max-width: 34rem;
+    margin-top: 1rem;
+}
+
+.bandName {
+    font: var(--type-body);
+    font-weight: var(--weight-label);
+}
+
+.bandScale {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bandStep {
+    display: grid;
+    gap: 0.375rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.bandBar {
+    height: 0.375rem;
+    border-radius: 999px;
+    background: hsl(var(--line));
+}
+
+.bandStep[data-current] .bandBar {
+    background: hsl(var(--text-strong));
+}
+
+/* Only the current band is named on phones; the bar shows where it sits. */
+.bandLabel {
+    display: none;
+    font: var(--type-label);
+    font-weight: var(--weight-body);
+}
+
+.bandStep[data-current] .bandLabel {
+    color: hsl(var(--text-strong));
+    font-weight: var(--weight-label);
+}
+
+.bandAnchor {
+    grid-column: 1 / -1;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* ---------- The marked page ---------- */
+
+.page {
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 0.625rem;
+}
+
+.sectionTitle {
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+/* The phone shows the Critical Miss label first; the heading stays for screen readers until 640px. */
+.pageTitle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.lines {
+    position: relative;
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Phones: one column in reading order. The note's parts slot around the line and the questions. */
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid hsl(var(--line));
+    scroll-margin-top: 9rem;
+}
+
+.row:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
+}
+
+.lineCell,
+.liftCell,
+.feedbackCell {
+    min-width: 0;
+}
+
+.noteCell {
+    display: contents;
+}
+
+.noteHead { order: 1; }
+.lineCell { order: 2; }
+.penNote { order: 3; }
+.liftCell { order: 4; }
+.penWhy,
+.toAdd { order: 5; }
+.rowTools { order: 6; }
+.feedbackCell { order: 7; }
+
+.lineSection {
+    margin-bottom: 0.375rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+}
+
+/* The Critical Miss line is the first thing on a phone; its section name waits for wider screens. */
+.row[data-kind="miss"] .lineSection {
+    display: none;
+}
+
+/* The candidate's words: Literata, with the blue-ink rule of a quoted line. */
+.inkLine,
+.missLine {
+    margin: 0;
+    font: var(--type-lead);
+    font-family: var(--font-editorial);
+    text-wrap: pretty;
+}
+
+.inkLine {
+    border-left: 2px solid hsl(var(--blue-ink));
+    padding-left: 0.875rem;
+}
+
+.noteHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.125rem 0.75rem;
+}
+
+.missLabel {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--brass));
+}
+
+.addressed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 999px;
+    background: hsl(var(--pen-tint));
+    padding: 0.125rem 0.5rem;
+    color: hsl(var(--pen));
+    font: var(--type-label);
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.missDefinition {
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.fixLabel {
+    color: hsl(var(--pen));
+    font: var(--type-label);
+}
+
+/* The recruiter's voice: Literata italic in pen. */
+.penNote {
+    max-width: 52ch;
+    margin: 0;
+    border-left: 1px solid hsl(var(--pen));
+    padding-left: 0.75rem;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+/* On the first critical line, the note writes in after the highlighter has swept it. */
+.row[data-kind="miss"] .penNote {
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease) var(--duration-slow);
+}
+
+.row[data-kind="miss"] .penNoteIn {
+    opacity: 1;
+}
+
+.penWhy {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.toAdd {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.toAddLabel {
+    color: hsl(var(--red-pen));
+    font: var(--type-label);
+}
+
+.toAddList {
+    max-width: 52ch;
+    display: grid;
+    gap: 0.375rem;
+    padding-left: 1rem;
+    list-style: disc;
+    font: var(--type-small);
+}
+
+.rowTools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    margin-left: -0.5rem;
+}
+
+/* A hidden suggestion keeps its place, so "Bring it back" lands where the reader was. */
+.hiddenRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* Structural gaps: the red-pen note a recruiter writes across the top of the page. */
+.gapRow {
+    display: grid;
+    gap: 0.375rem;
+    margin-block: 0.25rem 1rem;
+    border-left: 2px solid hsl(var(--red-pen));
+    padding: 0.125rem 0 0.125rem 0.875rem;
+}
+
+.gapLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: hsl(var(--red-pen));
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.gapText {
+    max-width: 52ch;
+}
+
+/* "Keep this one": the pen's check beside the work that already reads well. */
+.keepNote {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+    margin-block: 0.25rem 1rem;
+}
+
+.keepTick {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.25rem;
+    color: hsl(var(--pen));
+}
+
+.keepLabel {
+    color: hsl(var(--pen));
+    font: var(--type-label);
+}
+
+.keepText {
+    max-width: 52ch;
+}
+
+/* ---------- The lift: answers to a revised line ---------- */
+
+.lift {
+    display: grid;
+    gap: 0.75rem;
+    border-radius: var(--radius-inset);
+    background: hsl(var(--surface-proof) / 0.55);
+    padding: 0.75rem 1rem 1rem;
+}
+
+/* The phone keeps the first question on the first screen, so the step rail starts at 640px. */
+.liftTrace {
+    display: none;
+}
+
+/* Completed steps are the recruiter's pen; yellow stays on the one highlighted line. */
+.liftTrace li[data-state="complete"] > span:first-child,
+.liftTrace li[data-state="active"] > span:first-child {
+    background: hsl(var(--pen));
+}
+
+.liftLead {
+    max-width: 52ch;
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.liftLeadQuiet {
+    display: none;
+    color: hsl(var(--muted-foreground));
+    font-weight: var(--weight-body);
+}
+
+.liftQuestions {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.liftQuestion {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.liftQuestionText {
+    max-width: 52ch;
+    font: var(--type-body);
+    font-weight: var(--weight-label);
+}
+
+.liftQuestion[data-skipped] .liftQuestionText {
+    color: hsl(var(--muted-foreground));
+}
+
+.liftInput,
+.revisedInput,
+.feedbackInput,
+.reattachInput {
+    width: 100%;
+    border: 1px solid hsl(var(--control-line));
+    border-radius: var(--radius);
+    background: hsl(var(--card));
+    padding: 0.625rem 0.875rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    transition: border-color var(--duration-fast) var(--ease);
+}
+
+.liftInput {
+    min-height: 3rem;
+}
+
+.liftInput:focus-visible,
+.revisedInput:focus-visible,
+.feedbackInput:focus-visible,
+.reattachInput:focus-visible {
+    border-color: hsl(var(--pen));
+    outline: 2px solid hsl(var(--pen));
+    outline-offset: 2px;
+}
+
+.liftSkips,
+.liftSkipped {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1rem;
+    margin-left: -0.5rem;
+}
+
+.liftSkipped {
+    margin-left: 0;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.revised {
+    display: grid;
+    gap: 0.5rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1rem;
+}
+
+.revisedHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+}
+
+.revisedLabel {
+    color: hsl(var(--pen));
+    font: var(--type-label);
+}
+
+.revisedActions {
+    display: flex;
+    gap: 0.25rem;
+    margin-right: -0.5rem;
+}
+
+.revisedText {
+    border-left: 2px solid hsl(var(--blue-ink));
+    padding-left: 0.875rem;
+    font: var(--type-lead);
+    font-family: var(--font-editorial);
+    text-wrap: pretty;
+}
+
+.revisedInput {
+    min-height: 7rem;
+    resize: vertical;
+    font-family: var(--font-editorial);
+}
+
+/* What the candidate added, in their own ink. */
+.yours {
+    color: hsl(var(--blue-ink));
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--blue-ink) / 0.45);
+    text-decoration-thickness: var(--link-thickness);
+    text-underline-offset: var(--link-offset);
+}
+
+.revisedEmpty,
+.revisedNote {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.reattach {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.reattachInput {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+.reattachError {
+    color: hsl(var(--red-pen));
+    font: var(--type-small);
+}
+
+/* ---------- Was this right? ---------- */
+
+.feedback {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.feedbackQuestion {
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.feedbackChoices {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.feedbackMore {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.feedbackLabel {
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.optional {
+    color: hsl(var(--muted-foreground));
+    font-weight: var(--weight-body);
+}
+
+.feedbackDone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* ---------- After the page ---------- */
+
+.keep,
+.role {
+    border-top: 1px solid hsl(var(--line));
+    padding-block: 2rem;
+}
+
+.keepList {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.roleGrid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.bodyText {
+    max-width: 52ch;
+    color: hsl(var(--text-strong) / 0.85);
+}
+
+.roleList ul {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.roleMeta {
+    margin-top: 1rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.disclosure {
+    border-block: 1px solid hsl(var(--line));
+}
+
+.disclosureSummary {
+    display: flex;
+    min-height: 4rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    list-style: none;
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.disclosureSummary::-webkit-details-marker {
+    display: none;
+}
+
+.disclosureBody {
+    display: grid;
+    max-width: 52ch;
+    gap: 0.75rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-block: 1.25rem 1.5rem;
+    color: hsl(var(--text-strong) / 0.85);
+}
+
+.ending {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 2rem;
+}
+
+.endingCopy {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+}
+
+.endingNote {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+    font-weight: var(--weight-body);
+}
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 640px) {
+    .opening {
+        padding-bottom: 1rem;
+    }
+
+    .verdict {
+        font: var(--type-verdict);
+    }
+
+    .page {
+        padding-top: 1rem;
+    }
+
+    .pageTitle {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        clip-path: none;
+        white-space: normal;
+        margin-bottom: 1rem;
+    }
+
+    .band {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+    }
+
+    .bandName {
+        display: none;
+    }
+
+    .bandLabel {
+        display: block;
+    }
+
+    .liftLeadQuiet {
+        display: block;
+    }
+
+    .liftLead {
+        font: var(--type-body);
+        font-weight: var(--weight-label);
+    }
+
+    .lift {
+        gap: 1rem;
+        padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .liftTrace {
+        display: grid;
+        margin-inline: -1.5rem;
+        margin-top: -1.25rem;
+        border-top: 0;
+        border-bottom: 1px solid hsl(var(--line));
+    }
+
+    .row[data-kind="miss"] .lineSection {
+        display: block;
+    }
+}
+
+@media (min-width: 960px) {
+    .row {
+        display: grid;
+        grid-template-areas:
+            "line note"
+            "lift note"
+            "lift feedback";
+        grid-template-columns: minmax(0, 1fr) var(--margin-width);
+        grid-template-rows: auto auto 1fr;
+        column-gap: var(--margin-gap);
+        row-gap: 1.25rem;
+        padding-block: 2rem;
+        border-top: 0;
+    }
+
+    /* Before "Work on this line" opens, the margin holds the note and (on the Critical Miss) the feedback. */
+    .row:not(:has(.liftCell)) {
+        grid-template-areas:
+            "line note"
+            ". feedback";
+        grid-template-rows: auto 1fr;
+    }
+
+    .lineCell { grid-area: line; }
+    .liftCell { grid-area: lift; }
+    .feedbackCell { grid-area: feedback; }
+
+    .noteCell {
+        display: grid;
+        grid-area: note;
+        align-content: start;
+        gap: 0.5rem;
+        min-width: 0;
+    }
+
+    .noteHead {
+        display: grid;
+        gap: 0.125rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .penWhy,
+    .toAdd {
+        padding-left: 0.8125rem;
+    }
+
+    .rowTools {
+        margin-top: 0.25rem;
+    }
+
+    /* Rows are divided along the text column; the margin keeps one continuous rule. */
+    .row + .row .lineCell,
+    .gapRow + .row .lineCell,
+    .keepNote + .row .lineCell {
+        margin-top: -2rem;
+        border-top: 1px solid hsl(var(--line));
+        padding-top: 2rem;
+    }
+
+    /* The page's margin rule, running beside every line. */
+    .lines::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: calc(var(--margin-width) + var(--margin-gap) / 2);
+        width: 1px;
+        background: hsl(var(--pen) / 0.22);
+        content: "";
+    }
+
+    .feedbackCell {
+        align-self: start;
+    }
+
+    .gapRow,
+    .keepNote {
+        margin-right: calc(var(--margin-width) + var(--margin-gap));
+        margin-block: 0 0.5rem;
+    }
+
+    .roleGrid {
+        grid-template-columns: minmax(0, 1fr) var(--margin-width);
+        column-gap: var(--margin-gap);
+    }
+}
+
+@media (min-width: 1280px) {
+    .root {
+        --margin-width: 19rem;
+        --margin-gap: 3.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .row[data-kind="miss"] .penNote {
+        opacity: 1;
+        transition: none;
+    }
+}

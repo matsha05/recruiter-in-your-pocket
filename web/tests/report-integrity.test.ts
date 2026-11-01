@@ -22,6 +22,7 @@ import {
   structuralGapKind,
 } from "../lib/reports/report-integrity";
 import { stemWord } from "../lib/reports/observation-tokens";
+import { liftQuestions, marginNoteFromFix } from "../lib/reports/revised-line";
 
 // Saved production-prompt outputs (resume prompt 83b2a2d1), validated by the current
 // production validator. No model calls are made by this test.
@@ -307,12 +308,22 @@ const decode = (html: string) => html
 const plain = (text: string) => text.replace(/[‐-―−]/g, "-").replace(/\s+/g, " ");
 const occurrences = (haystack: string, needle: string) => haystack.split(plain(needle)).length - 1;
 
+// The marked page: a row for each fix, the Critical Miss first, then any page notes and the other fixes.
+const rowOf = (html: string, start: string) => {
+  const from = html.indexOf(start);
+  if (from < 0) return "";
+  const ends = ['data-testid="structural-gaps"', 'data-testid="keep-note"', 'id="section-fix-2"', 'id="section-fix-3"', 'id="section-keep"', '<details']
+    .map((marker) => html.indexOf(marker, from + start.length)).filter((at) => at > from);
+  return html.slice(from, ends.length ? Math.min(...ends) : undefined);
+};
+
 for (const [label, report] of outputs) {
   const integrity = reconcileReport(report);
   const webHtml = renderToStaticMarkup(createElement(ReportStream, { report, isSample: label === "sample" }));
   const web = decode(webHtml);
   const opening = decode(webHtml.slice(webHtml.indexOf('id="section-first-impression"'), webHtml.indexOf('id="section-fixes"')));
-  const firstCard = decode(webHtml.slice(webHtml.indexOf('id="section-fix-1"'), webHtml.indexOf("</article>", webHtml.indexOf('id="section-fix-1"'))));
+  const missRow = decode(rowOf(webHtml, 'id="section-fix-1"'));
+  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-full-notes"')));
   const fullNotes = decode(webHtml.slice(webHtml.indexOf('id="section-full-notes"')));
   const pdfReport = normalizeReportForPdf(report);
   assert.ok(pdfReport, `${label}: PDF normalizes`);
@@ -323,25 +334,34 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(web, strength), kept ? 1 : 0, `${label}: web Keep renders "${strength.slice(0, 40)}" ${kept ? "once" : "never"}`);
     assert.equal(occurrences(pdf, strength), kept ? 1 : 0, `${label}: PDF Keep matches the web report`);
   }
+  // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
+  assert.ok(missRow.includes("Critical Miss"), `${label}: the first marked line is the Critical Miss`);
+  assert.ok(!opening.includes("Critical Miss"), `${label}: the opening read doesn't repeat the Critical Miss`);
+  const missNote = marginNoteFromFix(integrity.report.top_fixes![0].fix!);
+  assert.ok(missRow.includes(plain(missNote)), `${label}: the margin note gives the fix, without the locator`);
   const reason = criticalMissReason(integrity);
   if (reason) {
-    assert.ok(opening.includes(plain(reason)), `${label}: the opening gives the Critical Miss reason`);
-    assert.ok(!firstCard.includes(plain(reason)), `${label}: the Critical Miss card does not repeat it`);
+    assert.ok(missRow.includes(plain(reason)), `${label}: the Critical Miss row gives its reason`);
+    assert.equal(occurrences(web, reason), 1, `${label}: once on the web`);
     assert.equal(occurrences(pdf, reason), 1, `${label}: the PDF gives it once`);
   }
-  for (const question of integrity.fixQuestions.flat()) {
+  // The Critical Miss asks its questions as answer fields, one question per field.
+  const asked = liftQuestions(integrity.fixQuestions[0]);
+  for (const question of asked) assert.equal(occurrences(missRow, question), 1, `${label}: the lift asks "${question.slice(0, 40)}" once`);
+  if (asked.length === 0) assert.ok(missRow.includes("What would you add to this line?"), `${label}: without questions, one open question stands in`);
+  assert.ok(!missRow.includes("What to add"), `${label}: the lift replaces the "What to add" list on the Critical Miss`);
+  for (const question of integrity.fixQuestions.slice(1).flat()) {
     assert.equal(occurrences(web, question), 1, `${label}: "${question.slice(0, 40)}" renders once on the web`);
-    assert.equal(occurrences(pdf, question), 1, `${label}: and once in the PDF`);
   }
-  if (integrity.fixQuestions[0].length > 0) assert.ok(firstCard.includes("What to add"), `${label}: the Critical Miss asks what to add`);
-  else assert.ok(!firstCard.includes("What to add") && !firstCard.includes("Start with the original sentence"),
-    `${label}: no label, and no hint pointing at it, without questions`);
+  for (const question of integrity.fixQuestions.flat()) {
+    assert.equal(occurrences(pdf, question), 1, `${label}: "${question.slice(0, 40)}" once in the PDF`);
+  }
   if (integrity.structuralGaps.length > 0) {
-    assert.ok(opening.includes("Before the bullets"), `${label}: the opening labels the structural gap`);
+    assert.ok(page.includes("Before the bullets"), `${label}: the page labels the structural gap`);
     assert.ok(pdf.includes("Before the bullets"), `${label}: and so does the PDF`);
   }
   for (const { text } of integrity.structuralGaps) {
-    assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read`);
+    assert.ok(page.includes(plain(text)), `${label}: the structural gap is on the page, without expanding anything`);
     assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);
     assert.equal(occurrences(pdf, text), 1, `${label}: the PDF shows it once`);
   }

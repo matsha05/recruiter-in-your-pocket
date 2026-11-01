@@ -48,6 +48,10 @@ assertTraceIncludes(
   "/prompts/resume_v2.txt"
 );
 assertTraceIncludes(
+  path.join(nextDir, "server", "app", "api", "revise-line", "route.js.nft.json"),
+  "/prompts/revise_line_v1.txt"
+);
+assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
   "/public/fonts/literata/Literata-Variable.woff2"
 );

@@ -1,5 +1,6 @@
 export type ReasoningEffort = "none" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
-export type LlmMode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
+// "revise_line" is the guarded polish of a revised resume line; it resolves like every non-resume mode.
+export type LlmMode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin" | "revise_line";
 
 type ChatCompletionTuningOptions = {
   temperature?: number;

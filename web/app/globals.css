@@ -456,6 +456,7 @@
   }
 
   .workspace-product-shell {
+    --report-sticky-top: var(--product-header-height);
     height: calc(100dvh - var(--product-header-height));
   }
 
@@ -475,8 +476,26 @@
     }
 
     .sample-report-page-shell > .workspace-product-shell {
+      --report-sticky-top: var(--marketing-header-height-desktop);
       height: calc(100dvh - var(--marketing-header-height-desktop));
     }
+  }
+
+  .sample-report-page-shell > .workspace-product-shell {
+    --report-sticky-top: var(--marketing-header-height-mobile);
+  }
+
+  /* A report is one document (plan item 2.4): the page scrolls, not a panel inside it, on the sample,
+     a fresh or recovered read, and a saved report alike. The input and wait screens keep the fixed shell. */
+  .workspace-product-shell[data-document],
+  .sample-report-page-shell > .workspace-product-shell[data-document] {
+    height: auto;
+    min-height: calc(100dvh - var(--product-header-height));
+    overflow: visible;
+  }
+
+  .workspace-product-shell[data-document] > div {
+    overflow: visible;
   }
 
   .workspace-role-toggle {

@@ -27,6 +27,7 @@
     "eval:dry-run": "npm run eval:dry-run --prefix web",
     "eval:smoke": "npm run eval:smoke --prefix web",
     "eval:golden": "npm run eval:golden --prefix web",
+    "eval:judge": "npm run eval:judge --prefix web --",
     "calibrate": "node scripts/calibrate_score.js",
     "migrate": "node scripts/migrate.js",
     "migrate:check": "node scripts/migrate.js --check",

@@ -6,6 +6,8 @@ import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } fr
 import { reconcileReport } from "../lib/reports/report-integrity";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
+import { scoreBandFor } from "../lib/reports/score-band";
+import { marginNoteFromFix } from "../lib/reports/revised-line";
 import {
   makeValidatedReportReceipt,
   RECEIPT_TTL_MS,
@@ -160,15 +162,20 @@ assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /First Impression score/);
-assert.ok(renderedHtml.includes(`${sampleReport.score}<span>/100</span>`), "the PDF shows the sample's score");
+// D5: the first report shows the band and its anchor; the number is only for comparing revisions.
+assert.ok(renderedHtml.includes(`<div class="band-name">${scoreBandFor(sampleReport.score).name}</div>`), "the PDF names the sample's band");
+assert.ok(renderedHtml.includes(scoreBandFor(sampleReport.score).anchor), "and gives its anchor");
+assert.doesNotMatch(renderedHtml, /\/100|score-value/, "the PDF must not show the number on a first report");
 assert.match(renderedHtml, /It doesn't predict interviews or offers\./);
 assert.match(renderedHtml, /<div class="verdict-label">Verdict<\/div>/);
 assert.ok(renderedHtml.includes(sampleReport.first_impression), "the PDF must open with the same Verdict as the web report");
 assert.match(renderedHtml, /Critical Miss/);
-assert.ok(renderedHtml.includes(sampleReport.top_fixes[0].fix));
-assert.doesNotMatch(renderedHtml, /subscores-grid|score-band/, "the PDF must use one score system");
-assert.match(renderedHtml, /Leave these alone\. They&rsquo;re working\./);
+assert.ok(renderedHtml.includes(marginNoteFromFix(sampleReport.top_fixes[0].fix)), "the fix is the Critical Miss line's margin note, as on the web");
+assert.ok(renderedHtml.includes(`<span class="miss-mark">${sampleReport.top_fixes[0].evidence.excerpt.replace(/^[-•*]\s+/u, "")}</span>`), "the Critical Miss line carries the highlighter, as on the web");
+assert.match(renderedHtml, /Fix these three first\./);
+assert.doesNotMatch(renderedHtml, /subscores-grid/, "the PDF must use one score system");
+assert.match(renderedHtml, /Keep this one/);
+assert.doesNotMatch(renderedHtml, /Leave these alone|Start here/, "retired names stay retired");
 assert.doesNotMatch(renderedHtml, /What stays unclear/, "gaps already surface as the Critical Miss and fixes; the PDF must not repeat them");
 // The sample has no drafts (D3), so the draft layout is checked on a copy with one source-bound draft.
 const criticalLine = sampleReport.top_fixes[0].evidence.excerpt;

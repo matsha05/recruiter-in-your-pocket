@@ -36,6 +36,21 @@ export const LAUNCH_SIGNALS = {
     first_attempt: ["yes", "no", "unknown"],
     viewer: ["anonymous", "signed_in"],
   },
+  // "Was this the right thing to fix first?" on the Critical Miss (plan item 2.6).
+  "riyp.report.critical_miss_feedback": {
+    answer: ["right", "wrong"],
+    note: ["yes", "no"],
+    viewer: ["anonymous", "signed_in"],
+  },
+  // The guarded polish of a revised line: the polished line shown, a fallback to the literal line, or an error.
+  "riyp.revise.outcome": {
+    outcome: ["polished", "fallback", "error"],
+    reason: [
+      "polished", "unchanged", "empty", "too_long", "new_number", "new_name", "new_word", "dropped_fact",
+      "dropped_answer", "guard", "timeout", "provider", "disabled", "rate_limited", "no_context", "invalid",
+    ],
+    viewer: ["anonymous", "signed_in"],
+  },
   "riyp.checkout.step": {
     step: [
       "checkout_started",

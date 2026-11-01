@@ -28,11 +28,30 @@ export interface IndependentQuestion {
   originalIndex: number;
 }
 
+// The fix section's heading, in the approved word list (docs/copy-system.md §1).
 export function fixPlanHeadingForCount(count: number) {
   if (count === 0) return "Review the suggestions below.";
-  if (count === 1) return "Start with this change.";
-  if (count === 2) return "Start with these two changes.";
-  return "Start with these three changes.";
+  if (count === 1) return "Fix this first.";
+  if (count === 2) return "Fix these two first.";
+  return "Fix these three first.";
+}
+
+/**
+ * Whether the report was read against a job posting. The validator writes the exact "No job description
+ * provided." summary when there was none, so this survives a reload that loses the posting's text (1.7).
+ */
+export function reportHasJobDescription(report: Pick<ReportData, "job_alignment">) {
+  const summary = report.job_alignment?.jd_match_summary?.trim();
+  return Boolean(summary) && summary !== "No job description provided.";
+}
+
+/**
+ * How many of the report's fixes are critical. The production prompt always names one Critical Miss, the
+ * first fix (Matt, Nov 1: "Always name a top fix"). The next prompt may mark up to three; read its marker
+ * here and the report, the PDF and the revised-line flow follow without other changes.
+ */
+export function criticalFixCount(report: Pick<ReportData, "top_fixes">) {
+  return Math.min(report.top_fixes?.length ?? 0, 1);
 }
 
 export function questionForPlaceholder(key: string) {

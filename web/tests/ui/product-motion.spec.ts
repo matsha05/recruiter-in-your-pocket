@@ -4,6 +4,9 @@ import { ResumeFeedbackResponseSchema } from "../../lib/validation/resume-report
 
 const SOURCE = "Built customer workflows in HubSpot for 120 customers.";
 const REWRITE = "Built HubSpot customer workflows for 120 customers.";
+// The Critical Miss's revised line is the candidate's line plus their answer, word for word (plan item 2.2).
+const ANSWER = "for the onboarding team";
+const REVISED = `${SOURCE.replace(/\.$/, "")}: ${ANSWER}.`;
 const RESUME = `Alex Rivera\nCustomer Operations\nExperience\n${SOURCE}\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current.`;
 const REPORT = ResumeFeedbackResponseSchema.parse({
   ...schemaValidReport,
@@ -65,8 +68,14 @@ async function openEditableReport(page: Page) {
   await page.getByTestId("workspace-run-report").click();
   await expect(page.locator("#section-first-impression h1")).toHaveText(REPORT.first_impression);
   const fix = page.locator("#section-fix-1");
+  const questions = fix.getByTestId("lift-question");
+  await questions.first().locator("input").fill(ANSWER);
+  for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
+    await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
+  }
+  await expect(fix.getByTestId("revised-line")).toHaveText(REVISED);
   await expect(fix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
-  await fix.scrollIntoViewIfNeeded();
+  await fix.getByRole("button", { name: "Copy", exact: true }).scrollIntoViewIfNeeded();
   return fix;
 }
 
@@ -109,7 +118,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect(pending).toBeDisabled();
     await expect(fix.getByRole("button", { name: "Copied", exact: true })).toHaveCount(0);
     await expectStableSize(pending, original);
-    expect(await page.evaluate(() => (window as unknown as { __motionClipboard: ClipboardProbe }).__motionClipboard.calls)).toEqual([REWRITE]);
+    expect(await page.evaluate(() => (window as unknown as { __motionClipboard: ClipboardProbe }).__motionClipboard.calls)).toEqual([REVISED]);
     await page.evaluate(() => (window as unknown as { __motionClipboard: ClipboardProbe }).__motionClipboard.resolve[0]());
     const success = fix.getByRole("button", { name: "Copied", exact: true });
     await expect(success).toBeEnabled();
@@ -144,7 +153,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect(fix.getByRole("button", { name: "Copied", exact: true })).toBeVisible();
     await page.clock.runFor(1000);
     await expect(fix.getByRole("button", { name: "Copy", exact: true })).toBeVisible();
-    expect(await page.evaluate(() => (window as unknown as { __motionClipboard: ClipboardProbe }).__motionClipboard.calls)).toEqual([REWRITE, REWRITE]);
+    expect(await page.evaluate(() => (window as unknown as { __motionClipboard: ClipboardProbe }).__motionClipboard.calls)).toEqual([REVISED, REVISED]);
   });
 
   test("mobile reduced-motion copy feedback is readable without animation or a layout jump", async ({ page }) => {
@@ -298,7 +307,7 @@ test.describe("product motion contracts on real app routes", () => {
       const navBottom = document.querySelector('nav[aria-label="Resume report sections"]')!.closest("aside")!.getBoundingClientRect().bottom;
       return section.getBoundingClientRect().top - navBottom;
     })).toBeGreaterThanOrEqual(-1);
-    await expect(page.locator("#section-fix-1 h3")).toHaveCSS("transform", "none");
+    await expect(page.locator("#section-fix-1 blockquote")).toHaveCSS("transform", "none");
   });
 
   test("LinkedIn section navigation tracks actual selection and keeps its mobile keyboard target visible", async ({ page }) => {

@@ -36,8 +36,8 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Feedback on the Critical Miss",
     purpose: "Check whether the report picked the right thing to fix first, and improve future reports.",
-    retention: "Your answer and any note you write are stored until you delete your account.",
-    userControl: "Feedback is optional. Delete your account in Settings to remove it.",
+    retention: "We store the Critical Miss wording, your yes or no, and any note you write. Never your resume. Feedback is kept for 12 months to check report quality, then deleted. Feedback from a signed-in account is also deleted when you delete the account.",
+    userControl: "Feedback is optional. Delete your account in Settings to remove feedback you sent while signed in.",
     processor: "Supabase"
   },
   {
