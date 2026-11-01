@@ -254,6 +254,16 @@ async function run() {
       deleteRouteSource.indexOf("admin.auth.admin.deleteUser(userId)"),
     "cached billing receipts are removed even when the final auth deletion remains pending"
   );
+  assert.match(
+    deleteRouteSource,
+    /from\("report_feedback"\)[\s\S]*?\.delete\(\{ count: "exact" \}\)[\s\S]*?\.eq\("user_id", userId\)/,
+    "account deletion explicitly removes the reader's Critical Miss feedback",
+  );
+  assert.ok(
+    deleteRouteSource.indexOf('.from("report_feedback")') <
+      deleteRouteSource.indexOf("admin.auth.admin.deleteUser(userId)"),
+    "feedback is removed even when the final auth deletion remains pending",
+  );
   assert.match(deleteRouteSource, /\.map\(\(pass: any\) => pass\.stripe_subscription_id\)/);
   assert.doesNotMatch(deleteRouteSource, /stripe\.customers\.list/);
   assert.doesNotMatch(deleteRouteSource, /pass\.stripe_subscription_id \|\| pass\.price_id/);

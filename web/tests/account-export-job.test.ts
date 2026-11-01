@@ -17,7 +17,7 @@ class ReadQuery {
   range(from: number, to: number) {
     this.admin.rangeCalls[this.table] = (this.admin.rangeCalls[this.table] || 0) + 1;
     if (this.admin.failReadTable === this.table) {
-      return Promise.resolve({ data: null, error: { message: "synthetic read failure" } });
+      return Promise.resolve({ data: null, error: { message: this.admin.failMessage || "synthetic read failure" } });
     }
     return Promise.resolve({
       data: (this.admin.rows[this.table] || []).slice(from, to + 1),
@@ -57,6 +57,7 @@ class FakeExportAdmin {
   readonly rangeCalls: Record<string, number> = {};
   readonly job: Row = { id: "job-1", user_id: "user-1", status: "pending" };
   failReadTable?: string;
+  failMessage?: string;
   failTransitionTo?: string;
 
   constructor(readonly rows: Record<string, Row[]>) {}
@@ -75,9 +76,25 @@ const emptyTables = {
   user_profiles: [],
   saved_jobs: [],
   billing_receipts: [],
+  report_feedback: [],
 };
 
 async function run() {
+  // Critical Miss feedback is part of the export, and exports keep working before migration 022 is applied.
+  const feedbackRows = [{ id: "feedback-1", user_id: "user-1", critical_miss: "Name the records.", answer: "wrong", note: "The gap mattered more." }];
+  const feedbackAdmin = new FakeExportAdmin({ reports: [], ...emptyTables, report_feedback: feedbackRows });
+  const feedbackPayload = await buildAccountExportPayload(feedbackAdmin, { id: "user-1" });
+  assert.deepEqual(feedbackPayload.data.report_feedback, feedbackRows, "the export includes the reader's Critical Miss feedback");
+  const missingTableAdmin = new FakeExportAdmin({ reports: [], ...emptyTables });
+  missingTableAdmin.failReadTable = "report_feedback";
+  missingTableAdmin.failMessage = 'relation "public.report_feedback" does not exist';
+  assert.deepEqual((await buildAccountExportPayload(missingTableAdmin, { id: "user-1" })).data.report_feedback, [],
+    "before the migration is applied, feedback exports as empty");
+  const brokenFeedbackAdmin = new FakeExportAdmin({ reports: [], ...emptyTables });
+  brokenFeedbackAdmin.failReadTable = "report_feedback";
+  await assert.rejects(buildAccountExportPayload(brokenFeedbackAdmin, { id: "user-1" }), /Account export read failed for report_feedback/,
+    "any other read failure still fails the export");
+
   const reports = Array.from({ length: 501 }, (_, index) => ({ id: `report-${index}` }));
   const paginatedAdmin = new FakeExportAdmin({ reports, ...emptyTables });
   const payload = await buildAccountExportPayload(paginatedAdmin as any, {
