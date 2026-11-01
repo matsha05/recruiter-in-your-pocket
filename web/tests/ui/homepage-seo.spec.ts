@@ -83,10 +83,10 @@ test.describe("homepage feedback and SEO contract", () => {
         description: expect.stringContaining("over 30 days"),
       }),
     ]));
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261031/);
-    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261031/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
     await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
-    const card = await page.request.get("/og/home?v=20261031");
+    const card = await page.request.get("/og/home?v=20261101");
     expect(card.status()).toBe(200);
     expect(card.headers()["content-type"]).toBe("image/png");
   });

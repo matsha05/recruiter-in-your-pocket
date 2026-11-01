@@ -9,18 +9,21 @@ const ink = "#111513";
 const muted = "#5a605c";
 const line = "#dfe0dc";
 const pen = "#1f5a46";
+const redPen = "#b4261d";
 
 const font = (...path: string[]) => readFile(join(process.cwd(), "public", "fonts", ...path));
 
 /**
  * The homepage's share card tells the same story as its hero: someone got the
- * call, and beside it sits an ordinary resume with a note you can't quite read.
+ * call, and over an ordinary resume sits the recruiter's screen: the decision,
+ * and a note you can't read.
  */
 export async function GET() {
-  const [literataItalic, sourceSerif, schibstedRegular, schibstedExtraBold] = await Promise.all([
+  const [literataItalic, sourceSerif, schibstedRegular, schibstedSemibold, schibstedExtraBold] = await Promise.all([
     font("literata", "Literata-Italic.woff"),
     font("source-serif-4", "SourceSerif4-Regular.ttf"),
     font("schibsted-grotesk", "SchibstedGrotesk-Regular.woff"),
+    font("schibsted-grotesk", "SchibstedGrotesk-Semibold.woff"),
     font("schibsted-grotesk", "SchibstedGrotesk-ExtraBold.woff"),
   ]);
 
@@ -86,27 +89,38 @@ export async function GET() {
             {bullet("Team player with excellent communication skills")}
           </div>
 
-          {/* The verdict exists. You just can't read it. */}
+          {/* The other side of the screen: the decision, and the note only the hiring team can read. */}
           <div
             style={{
               position: "absolute",
-              top: 296,
-              left: 150,
-              width: 320,
+              top: 150,
+              left: 104,
+              width: 416,
               display: "flex",
               flexDirection: "column",
-              border: "1px solid #f2dc6b",
-              borderRadius: 4,
-              background: "#fffbe6",
-              padding: "22px 24px 24px",
-              transform: "rotate(2.4deg)",
-              boxShadow: "0 12px 28px rgba(17, 21, 19, 0.10)",
+              border: `1px solid ${line}`,
+              borderRadius: 16,
+              background: "#ffffff",
+              padding: "20px 24px 18px",
+              fontSize: 17,
+              transform: "rotate(1.4deg)",
+              boxShadow: "0 28px 48px -20px rgba(17, 21, 19, 0.32)",
             }}
           >
-            <div style={{ position: "absolute", top: -14, left: 38, width: 18, height: 46, border: "3px solid rgba(90, 96, 92, 0.6)", borderBottomColor: "transparent", borderRadius: 9 }} />
-            <div style={{ display: "flex", color: pen, fontFamily: "Literata", fontStyle: "italic", fontSize: 19 }}>Recruiter&rsquo;s note</div>
-            <div style={{ display: "flex", marginTop: 8, color: "transparent", fontFamily: "Literata", fontStyle: "italic", fontSize: 24, lineHeight: 1.4, textShadow: `0 0 11px ${pen}` }}>
+            <div style={{ display: "flex", color: muted }}>Customer Success Manager · Req 4471</div>
+            <div style={{ display: "flex", marginTop: 12, fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em" }}>Jordan A. Miller</div>
+            <div style={{ display: "flex", color: muted }}>Applied 9 days ago</div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16, padding: "12px 0", borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, color: muted }}>
+              <span>Stage</span>
+              <span style={{ display: "flex", borderRadius: 999, background: "rgba(180, 38, 29, 0.08)", padding: "5px 14px", color: redPen, fontWeight: 600 }}>Not moving forward</span>
+            </div>
+            <div style={{ display: "flex", marginTop: 16, color: muted }}>Reviewer note · hiring team only</div>
+            <div style={{ display: "flex", marginTop: 6, color: "transparent", fontFamily: "Literata", fontStyle: "italic", fontSize: 21, lineHeight: 1.4, textShadow: `0 0 13px ${pen}` }}>
               Solid book of business, but the best example stops right before the good part.
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", marginTop: 16, paddingTop: 14, borderTop: `1px dashed ${line}`, color: muted, lineHeight: 1.4 }}>
+              <span>What Jordan got:&nbsp;</span>
+              <span style={{ color: ink, fontWeight: 600 }}>&ldquo;We&rsquo;ve decided to move forward with other candidates.&rdquo;</span>
             </div>
           </div>
         </div>
@@ -119,6 +133,7 @@ export async function GET() {
         { name: "Literata", data: literataItalic, style: "italic", weight: 400 },
         { name: "Source Serif", data: sourceSerif, style: "normal", weight: 400 },
         { name: "Schibsted Grotesk", data: schibstedRegular, style: "normal", weight: 400 },
+        { name: "Schibsted Grotesk", data: schibstedSemibold, style: "normal", weight: 600 },
         { name: "Schibsted Grotesk", data: schibstedExtraBold, style: "normal", weight: 800 },
       ],
     },
