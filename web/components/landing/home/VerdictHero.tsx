@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, LockSimple } from "@phosphor-icons/react/dist/ssr";
 import styles from "./VerdictHero.module.css";
 
 /**
  * The opening: somebody got the call, and it wasn't you. Beside it, an ordinary
- * resume with a recruiter's sticky note on it that nobody will ever send you.
+ * resume beside the recruiter's screen: the decision, and a note nobody will ever send you.
  */
 export function VerdictHero() {
     return (
@@ -46,10 +46,15 @@ export function VerdictHero() {
                         <p className={styles.head}>Education</p>
                         <p><b>B.A., Communications</b>, State University</p>
                     </div>
-                    {/* The verdict exists. You just can't read it. */}
+                    {/* The other side of the screen: the decision, and the note only the hiring team can read. */}
                     <div className={styles.note}>
-                        <p className={styles.noteLabel}>Recruiter&rsquo;s note</p>
+                        <p className={styles.req}>Customer Success Manager · Req 4471</p>
+                        <p className={styles.candidate}>Jordan A. Miller</p>
+                        <p className={styles.applied}>Applied 9 days ago</p>
+                        <p className={styles.stageRow}>Stage <span className={styles.status}>Not moving forward</span></p>
+                        <p className={styles.noteLabel}><LockSimple weight="bold" aria-hidden="true" /> Reviewer note · hiring team only</p>
                         <p className={styles.verdict}>Solid book of business, but the best example stops right before the good part. Did renewals go up?</p>
+                        <p className={styles.sent}>What Jordan got: <b>&ldquo;We&rsquo;ve decided to move forward with other candidates.&rdquo;</b></p>
                     </div>
                 </div>
             </div>
