@@ -18,7 +18,7 @@ Each item has a gate: **C** = before charging customers, **I** = important impro
 
 ## Guardrails for whoever executes this
 
-- Work in this worktree on `claude/launch-surface`. Do not touch the main checkout. No merge or deploy without Matt.
+- Cut each change as its own branch from `origin/main` (`claude/<topic>`) and open a PR to `main`. Do not use `claude/launch-surface`: it is an older Oct 31 line that differs from production in 89 files. Do not touch the main checkout. No merge or deploy without Matt.
 - Prompt changes need explicit product reasoning and an eval run (`docs/promptops/shipping-gate.md`). Paid evals need Matt's OK first (the last 10-fixture golden run cost $0.23).
 - Never create test accounts in production Supabase. Use the fake Supabase or the dev Supabase and Stripe **test** keys (`.review-harness/`).
 - Review UI at 320, 390, 768, 1024 and 1440 px against `docs/design-system.md` (origin/main is the Highlighter system; the main checkout's copy is stale).
