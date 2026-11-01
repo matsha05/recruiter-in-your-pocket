@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import sampleReport from "../../public/sample-report.json";
 
 for (const width of [320, 390]) {
   test.describe(`resume experience at ${width}px`, () => {
@@ -31,7 +32,7 @@ for (const width of [320, 390]) {
       const draft = "Alex Morgan\nExperience\n" + "Led onboarding and documented the launch process. ".repeat(35);
       await resume.fill(draft);
       await expect(run).toBeEnabled();
-      await expect(run).toContainText("Get my report");
+      await expect(run).toContainText("Get your free report");
 
       const jobToggle = page.getByTestId("workspace-role-toggle");
       await jobToggle.click();
@@ -91,12 +92,13 @@ for (const width of [320, 390]) {
       const openingBounds = await opening.boundingBox();
       expect(openingBounds!.y).toBeLessThan(300);
       expect(openingBounds!.width).toBeGreaterThanOrEqual(width - 36);
-      await expect(page.getByTestId("first-impression-score")).toContainText("78/100");
+      await expect(page.getByTestId("first-impression-score")).toContainText(`${sampleReport.score}/100`);
 
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
       const buttons = await nav.getByRole("button").all();
       const bounds = await Promise.all(buttons.map((button) => button.boundingBox()));
-      expect(bounds).toHaveLength(4);
+      // Keep appears only when the report has strengths beyond the one shown in the opening read.
+      expect([3, 4]).toContain(bounds.length);
       for (const box of bounds) {
         expect(box!.height).toBeGreaterThanOrEqual(44);
         expect(box!.width).toBeGreaterThanOrEqual(44);

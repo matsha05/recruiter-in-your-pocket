@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowsClockwise, Info, LockKey, Receipt, ShieldCheck } from "@phosphor-icons/react";
+import { ArrowRight, ArrowsClockwise, ArrowUUpLeft, Info, LockKey, Receipt, ShieldCheck, Stack } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
+import { PassExamples } from "@/components/marketing/PassExamples";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
@@ -14,7 +15,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
-const billingPoints = [
+const billingPoints: { icon: typeof ShieldCheck; title: string; body: React.ReactNode }[] = [
     {
         icon: ShieldCheck,
         title: "Stripe checkout",
@@ -29,6 +30,16 @@ const billingPoints = [
         icon: Receipt,
         title: "Immediate access",
         body: "Your pass starts after checkout. If you need to restore it, sign in with the email you used to pay.",
+    },
+    {
+        icon: Stack,
+        title: "Used all five",
+        body: "Your saved reports stay open, and PDF exports keep working until the pass ends. Another report needs a new pass.",
+    },
+    {
+        icon: ArrowUUpLeft,
+        title: "Refunds",
+        body: <>Haven&rsquo;t used a paid report yet? You can get a full refund within 14 days. Write to support from your checkout email. <Link href="/terms" className="riyp-link">Terms</Link> has the details.</>,
     },
 ];
 
@@ -174,7 +185,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     <p className="mt-5 font-display text-headline">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">5 more reports, good for 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-                                        Check each revision, or tailor your resume to each job you apply for.
+                                        Check each revision, or read your resume against each job you apply for.
                                     </p>
                                     <p role="status" className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-border bg-muted/35 px-5 py-3 text-center text-sm font-medium text-muted-foreground">
                                         Passes are paused for now
@@ -209,7 +220,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 />
                             </div>
                             <p className="max-w-xl text-pretty text-prose text-muted-foreground">
-                                Use the pass to check a revision, or to tailor your resume to a specific job.
+                                Use the pass to check a revision, or to read your resume against a specific job.
                             </p>
                         </div>
 
@@ -226,7 +237,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 <p>
                                     <span className="font-semibold">Your pass has {passReportsLeft} {passReportsLeft === 1 ? "report" : "reports"} left{passDaysLeft > 0 ? `, good for ${passDaysLeft} more ${passDaysLeft === 1 ? "day" : "days"}` : ""}.</span>{" "}
                                     Another pass adds five more.{" "}
-                                    <Link href="/workspace" className="font-semibold riyp-link">Start a report</Link>
+                                    <Link href="/workspace?new=1" className="font-semibold riyp-link">New report</Link>
                                 </p>
                             </div>
                         ) : null}
@@ -261,6 +272,8 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                         </p>
                     </div>
                 </section>
+
+                <PassExamples />
 
                 <section className="border-y border-line bg-muted/45 px-6 py-14 md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-marketing gap-10 lg:grid-cols-[0.65fr_1.35fr]">

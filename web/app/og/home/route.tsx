@@ -121,11 +121,7 @@ export async function GET() {
             </div>
             <div style={{ display: "flex", marginTop: 16, color: muted }}>Reviewer note · hiring team only</div>
             <div style={{ display: "flex", marginTop: 6, color: "transparent", fontFamily: "Literata", fontStyle: "italic", fontSize: 21, lineHeight: 1.4, textShadow: `0 0 13px ${pen}` }}>
-              Solid book of business, but the best example stops right before the good part.
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", marginTop: 16, paddingTop: 14, borderTop: `1px dashed ${line}`, color: muted, lineHeight: 1.4 }}>
-              <span>What Jordan got:&nbsp;</span>
-              <span style={{ color: ink, fontWeight: 600 }}>&ldquo;We&rsquo;ve decided to move forward with other candidates.&rdquo;</span>
+              Solid book of business, but the renewal-risk reviews stop right before the good part.
             </div>
           </div>
         </div>

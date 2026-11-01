@@ -50,24 +50,6 @@
     font: var(--type-prose);
 }
 
-.historyLabel {
-    margin-top: 2rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
-}
-
-/* Company names as quiet wordmarks in our own type, not borrowed logos. */
-.history {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem 2rem;
-    margin-top: 0.75rem;
-    color: hsl(var(--text-strong) / 0.55);
-    font: var(--type-title);
-    letter-spacing: var(--tracking-title);
-}
-
 .disclosure {
     max-width: 34rem;
     margin-top: 2rem;

@@ -7,8 +7,8 @@ import { pillarForHref } from "@/components/research/ResearchHubData";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
-    title: "Career resources",
-    description: "Recruiter-grounded negotiation guides, compensation tools, and practical career resources.",
+    title: "After the offer",
+    description: "Recruiter-grounded negotiation guides and an offer calculator, for when the offer arrives.",
     alternates: { canonical: "/resources" },
 };
 
@@ -61,7 +61,7 @@ export default function GuidesPage() {
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-marketing">
                         <div className="max-w-4xl">
-                            <p className={`${styles.label} text-muted-foreground`}>Negotiation</p>
+                            <p className={`${styles.label} text-muted-foreground`}>After the offer</p>
                             <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                                 Work out what to ask for in your next offer
                             </h1>

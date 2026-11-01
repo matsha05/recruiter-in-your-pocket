@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 4 mockup: pricing</title>
+<link rel="stylesheet" href="mockup.css">
+<style>
+  .top { padding: 5rem 0 4rem; }
+  .intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.7fr); align-items: end; gap: 3.5rem; border-bottom: 1px solid var(--line); padding-bottom: 2.5rem; }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); padding: 2rem; }
+  .card.pass { border-color: rgb(31 90 70 / 0.3); }
+  .card .price { display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.75rem; }
+  .card .price b { font: 800 3rem/1 var(--sans); letter-spacing: -0.03em; }
+  .card .desc { margin-top: 1rem; font: var(--lead); color: var(--muted); }
+  .card ul { flex: 1; display: grid; gap: 0.75rem; margin: 1.5rem 0 1.75rem; }
+  .card li { display: flex; gap: 0.75rem; color: var(--muted); }
+  .card li::before { content: "✓"; color: var(--muted); font-weight: 700; }
+  .card.pass li::before { color: var(--pen); }
+  .card li b { color: var(--ink); font-weight: 600; }
+  .card .btn { width: 100%; }
+  .card .lbl { font: var(--label); color: var(--muted); }
+  .card.pass .lbl { color: var(--pen); }
+  .tax { margin-top: 1.25rem; font: var(--small); color: var(--muted); }
+
+  .uses { padding: 4.5rem 0; border-top: 1px solid var(--line); }
+  .uses .head { display: grid; grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr); gap: 3rem; }
+  .uses .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .use { border: 1px solid var(--line); border-radius: 24px; background: var(--paper); padding: 1.75rem; }
+  .use .tag { display: inline-flex; min-height: 1.625rem; align-items: center; border-radius: 999px; background: var(--inset); padding: 0 0.625rem; font: var(--label); color: var(--muted); }
+  .use h3 { margin-top: 1rem; }
+  .use > p.body { margin-top: 0.5rem; color: var(--muted); max-width: 46ch; }
+  .demo { margin-top: 1.5rem; border: 1px solid var(--line); border-radius: 14px; background: var(--ground); padding: 1.25rem; }
+  .demo .t { font: 600 1.0625rem/1.35 var(--sans); }
+  .cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.875rem; }
+  .cmp > div { border: 1px solid var(--line); border-radius: 12px; background: var(--paper); padding: 0.875rem 1rem; }
+  .cmp .k { font: var(--label); color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  .cmp q { display: block; margin-top: 0.5rem; font: 400 0.9375rem/1.45 var(--serif); quotes: "\201C" "\201D"; }
+  .cmp .was q { color: var(--muted); text-decoration: line-through; text-decoration-color: rgb(90 96 92 / 0.5); }
+  .delta { border-radius: 999px; background: var(--pen-tint); padding: 0.25rem 0.5rem; color: var(--pen); font: 600 0.8125rem/1 var(--sans); }
+  .journey { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 0.875rem; }
+  .journey ol { display: grid; gap: 0.375rem; }
+  .journey li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 3.25rem; align-items: center; gap: 0.75rem; font: var(--small); color: var(--muted); }
+  .journey .bar { height: 0.5rem; border-radius: 999px; background: var(--inset); overflow: hidden; }
+  .journey .bar span { display: block; height: 100%; border-radius: inherit; background: var(--ink); }
+  .journey li:last-child { color: var(--ink); font-weight: 600; }
+  .journey p { margin-top: 0.625rem; font: 600 0.9375rem/1.4 var(--sans); }
+  .posting { display: inline-flex; gap: 0.5rem; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); padding: 0.375rem 0.75rem; font: var(--small); }
+  .fit { margin-top: 0.875rem; display: grid; gap: 0.625rem; }
+  .fit div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 0.75rem; border-top: 1px solid var(--line); padding-top: 0.625rem; }
+  .fit dt { font: var(--label); color: var(--muted); }
+  .fit dd { font: var(--small); color: var(--ink); }
+  .fit .miss dt { color: var(--red-pen); }
+  .footnote { margin-top: 1rem; font: var(--small); color: var(--muted); }
+
+  .after { border-block: 1px solid var(--line); background: rgb(233 234 230 / 0.45); padding: 4.5rem 0; }
+  .after .g { display: grid; grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr); gap: 2.5rem; }
+  .after dl { border-top: 1px solid var(--line); }
+  .after dl div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+  .after dt { font: 600 1rem/1.5 var(--sans); }
+  .after dd { font: var(--lead); color: var(--muted); }
+  .after .new dt::after { content: "new"; margin-left: 0.5rem; border-radius: 6px; background: #ffe8c2; padding: 0.125rem 0.375rem; font: 600 0.75rem/1 var(--sans); color: #6b3a00; vertical-align: 2px; }
+  .after a { color: var(--ink); text-decoration: underline; text-decoration-color: rgb(31 90 70 / 0.4); text-underline-offset: 0.24em; }
+  .paid { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding-block: 3rem; }
+
+  @media (max-width: 960px) {
+    .intro, .uses .head, .after .g { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .cards, .uses .grid2 { grid-template-columns: minmax(0, 1fr); }
+    .card { padding: 1.5rem; border-radius: 16px; }
+    .use { padding: 1.25rem; border-radius: 16px; }
+    .cmp { grid-template-columns: minmax(0, 1fr); }
+    .fit div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
+    .after dl div { grid-template-columns: minmax(0, 1fr); gap: 0.375rem; }
+    .paid { flex-direction: column; align-items: flex-start; }
+    .journey li { grid-template-columns: 6.5rem minmax(0, 1fr) 3rem; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <span class="wordmark">Recruiter <i>in</i> Your Pocket</span>
+  <nav class="nav"><span class="links"><a>How it works</a><a>Sample report</a><a style="color:var(--ink)">Pricing</a><a>Research</a><a>After the offer</a></span>
+    <a class="signin">Sign in</a><a class="btn btn-primary">Get your free report</a><span class="menu" aria-hidden="true"></span></nav>
+</div></header>
+
+<section class="top"><div class="wrap">
+  <div class="intro">
+    <h1 class="headline">Your first report is free. Five more are $29.</h1>
+    <p class="lead">Use the pass to check a revision, or to read your resume against a specific job.</p>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <p class="lbl">Free</p>
+      <p class="price"><b>$0</b><span class="small">1 report</span></p>
+      <p class="desc">The complete report on one resume. Nothing locked.</p>
+      <ul>
+        <li><b>One complete resume report</b></li>
+        <li>Your Verdict and First Impression score</li>
+        <li>The Critical Miss: the one thing to fix first</li>
+        <li>Each suggestion tied to a line on your resume</li>
+        <li>Questions that pull out the details you left off</li>
+        <li>No account or card needed (one per browser each month)</li>
+      </ul>
+      <a class="btn btn-lg btn-secondary">Get your free report</a>
+    </article>
+    <article class="card pass">
+      <p class="lbl">Job Search Pass</p>
+      <p class="price"><b>$29</b><span class="small">one-time · 30 days</span></p>
+      <p class="desc">For revising and applying: check each revision, and read your resume against each job you want.</p>
+      <ul>
+        <li><b>5 more complete reports</b></li>
+        <li>Re-check a revision and see whether your Critical Miss changed</li>
+        <li>Read your resume against each job posting</li>
+        <li>PDF exports, and saved reports when signed in</li>
+        <li>$29 once. Good for 30 days. No automatic renewal.</li>
+      </ul>
+      <a class="btn btn-lg btn-primary">Get 5 more reports · $29</a>
+    </article>
+  </div>
+  <p class="tax">Taxes may apply at checkout.</p>
+</div></section>
+
+<section class="uses"><div class="wrap">
+  <div class="head">
+    <h2 class="title">What five more reports are for.</h2>
+    <p class="lead">Most people use them two ways. Here’s each one on Jordan’s resume.</p>
+  </div>
+  <div class="grid2">
+    <article class="use">
+      <span class="tag">Fictional example</span>
+      <h3 class="heading">Check your revision</h3>
+      <p class="body">Run the revised resume, and the report puts it beside the last one: whether the Critical Miss changed, and which way the score moved.</p>
+      <div class="demo">
+        <p class="t">Your Critical Miss changed.</p>
+        <div class="cmp">
+          <div class="was"><p class="k">Last time</p><q>Introduced monthly renewal-risk reviews across the portfolio</q></div>
+          <div><p class="k">Now <span class="delta">Up 6</span></p><q>Results-driven, detail-oriented professional seeking a challenging role…</q></div>
+        </div>
+        <div class="journey">
+          <ol aria-label="Jordan's reports">
+            <li><span>First report</span><span class="bar"><span style="width:58%"></span></span><span></span></li>
+            <li><span>Revision 1</span><span class="bar"><span style="width:64%"></span></span><span>Up 6</span></li>
+            <li><span>Revision 2</span><span class="bar"><span style="width:69%"></span></span><span>Up 5</span></li>
+          </ol>
+          <p>Up 11 since your first report.</p>
+        </div>
+      </div>
+      <p class="footnote">Signed in, Progress keeps every version. Scores compare versions of your own resume. They don’t predict interviews.</p>
+    </article>
+    <article class="use">
+      <span class="tag">Fictional example</span>
+      <h3 class="heading">Read it against each job</h3>
+      <p class="body">Paste the posting with your resume. The report shows what fits, what needs more detail, and what the posting asks for that your resume doesn’t show.</p>
+      <div class="demo">
+        <span class="posting">Job posting · Senior Customer Success Manager, Fabrikam</span>
+        <dl class="fit">
+          <div><dt>Relevant experience</dt><dd>32 B2B SaaS accounts with $2.4M in annual recurring revenue</dd></div>
+          <div><dt>Needs more detail</dt><dd>What the monthly renewal-risk reviews changed</dd></div>
+          <div class="miss"><dt>Not shown in the resume</dt><dd>Expansion or upsell revenue</dd></div>
+        </dl>
+      </div>
+      <p class="footnote">Any report can include a posting, including your free one. The pass gives you a report for each job you’re serious about.</p>
+    </article>
+  </div>
+</div></section>
+
+<section class="after"><div class="wrap g">
+  <div>
+    <h2 class="title">What happens after checkout.</h2>
+    <p class="lead" style="margin-top:1rem">Your pass starts right away and lasts 30 days. We never charge your card again.</p>
+  </div>
+  <dl>
+    <div><dt>Stripe checkout</dt><dd>Stripe handles your card details. We never see or store the card number.</dd></div>
+    <div><dt>No renewal</dt><dd>The Job Search Pass is one payment. It ends after 30 days and never auto-renews.</dd></div>
+    <div><dt>Immediate access</dt><dd>Your pass starts after checkout. If you need to restore it, sign in with the email you used to pay.</dd></div>
+    <div class="new"><dt>Used all five</dt><dd>Your saved reports stay open, and PDF exports keep working until the pass ends. Another report needs a new pass.</dd></div>
+    <div class="new"><dt>Refunds</dt><dd>Haven’t used a paid report yet? You can get a full refund within 14 days. Write to support from your checkout email. <a>Terms</a> has the details.</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap paid">
+  <div><h2 class="heading">Already paid?</h2><p class="lead" style="margin-top:0.5rem">Use the email from checkout to find your pass and receipts.</p></div>
+  <a class="btn btn-secondary">Restore access →</a>
+</div></section>
+<div class="annot-wrap"><p class="annot"><b>Notes.</b> Rows marked “new” are the 4.4 additions; the wording comes from the Terms and the FAQ. The pass feature “See whether your Critical Miss is fixed” becomes “changed” because the comparison never claims a fix. Job fit is labeled honestly as something any report can do. Scores appear only as changes (“Up 6”), never as an absolute number (D5). The examples use the current Phosphor icons and the PricingCard layout; only the copy and the two new sections are new.</p></div>
+</body>
+</html>

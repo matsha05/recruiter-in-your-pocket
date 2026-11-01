@@ -48,13 +48,13 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Job Search Pass",
     price: "$29",
     period: "one-time · 30 days",
-    description: "For revising and applying: check each revision, and tailor your resume to each of your applications.",
+    description: "For revising and applying: check each revision, and read your resume against each job you want.",
     buttonText: "Get 5 more reports · $29",
     badge: "For an active search",
     features: [
       { text: "5 more complete reports", bold: true },
-      { text: "See whether your Critical Miss is fixed after you revise" },
-      { text: "Check your resume against each job posting" },
+      { text: "Re-check a revision and see whether your Critical Miss changed" },
+      { text: "Read your resume against each job posting" },
       { text: "PDF exports, and saved reports when signed in" },
       { text: "$29 once. Good for 30 days. No automatic renewal." }
     ]

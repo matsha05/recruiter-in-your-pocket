@@ -39,8 +39,8 @@ interface PaywallModalProps {
 const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB_SEARCH_PASS_DECISION.whenToBuy}`;
 const PASS_BULLETS = [
     "5 more complete reports",
-    "See whether your Critical Miss is fixed after you revise",
-    "Check your resume against each job posting",
+    "Re-check a revision and see whether your Critical Miss changed",
+    "Read your resume against each job posting",
     "PDF exports for 30 days",
 ];
 
