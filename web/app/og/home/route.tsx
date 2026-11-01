@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { JORDAN_EXAMPLE } from "@/lib/marketing/jordan-example";
 
 export const runtime = "nodejs";
 export const dynamic = "force-static";
@@ -121,7 +122,7 @@ export async function GET() {
             </div>
             <div style={{ display: "flex", marginTop: 16, color: muted }}>Reviewer note · hiring team only</div>
             <div style={{ display: "flex", marginTop: 6, color: "transparent", fontFamily: "Literata", fontStyle: "italic", fontSize: 21, lineHeight: 1.4, textShadow: `0 0 13px ${pen}` }}>
-              Solid book of business, but the renewal-risk reviews stop right before the good part.
+              {JORDAN_EXAMPLE.note}
             </div>
           </div>
         </div>
