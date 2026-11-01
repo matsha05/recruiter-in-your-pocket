@@ -1,0 +1,322 @@
+/* Shares the hub's container and left edge, so the hub row and the article it opens line up. */
+
+.page {
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+}
+
+.inner {
+    max-width: 79.25rem;
+    margin: 0 auto;
+    padding: calc(var(--marketing-header-height-desktop) + 2.5rem) clamp(1.25rem, 5vw, 5.375rem) 5rem;
+}
+
+/* The question, and the straight answer in the recruiter's voice */
+
+.opening {
+    margin-top: 2.5rem;
+}
+
+.question {
+    max-width: 20ch;
+    margin: 0;
+    text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+.answerGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 40rem) minmax(0, 17rem);
+    align-items: start;
+    gap: 4rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.75rem;
+}
+
+.answer {
+    margin: 0;
+    color: hsl(var(--pen));
+    text-wrap: pretty;
+    font: var(--type-verdict);
+}
+
+.answerSource {
+    max-width: 52ch;
+    margin: 1.25rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+.painNote {
+    margin-top: 0.375rem;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 2rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-label);
+}
+
+/* Sections */
+
+.section {
+    margin-top: 5.5rem;
+}
+
+.sectionTitle {
+    margin: 0;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.5rem;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+.label {
+    margin: 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-label);
+}
+
+.sectionTitle + .label {
+    margin-top: 0.75rem;
+}
+
+.prose {
+    max-width: 52ch;
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-muted));
+    text-wrap: pretty;
+    font: var(--type-prose);
+}
+
+/* What this means for your resume */
+
+.advice {
+    max-width: 46rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.advice li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.5rem;
+    border-top: 1px solid hsl(var(--line));
+    padding: 1.25rem 0;
+}
+
+.number {
+    color: hsl(var(--text-muted));
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.adviceLead {
+    margin: 0;
+    font: var(--type-prose);
+    font-weight: var(--weight-control);
+}
+
+.notSupported {
+    max-width: 46rem;
+    border-top: 1px solid hsl(var(--line));
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 1.25rem 0 1.25rem 2.75rem;
+}
+
+.bridge {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    max-width: 46rem;
+    margin-top: 2.5rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-sheet);
+    background: hsl(var(--card));
+    padding: 1.75rem 2rem;
+}
+
+.bridgeTitle {
+    margin: 0;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.bridgeBody {
+    max-width: 44ch;
+    margin: 0.5rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-body);
+}
+
+/* The figure runs wider than the reading rail, from the same left edge. */
+
+.figure {
+    margin-top: 5.5rem;
+}
+
+/* What the evidence says: one entry per source */
+
+.sources {
+    margin-top: 0.5rem;
+}
+
+.source {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 2rem 0;
+}
+
+.sourceName {
+    margin: 0;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.sourceKind {
+    margin: 0.375rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+.sourceCitation {
+    margin: 0.75rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-label);
+    font-weight: var(--weight-body);
+}
+
+.sourceLink {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.sourceBody {
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+}
+
+.sourceBody dd {
+    margin-left: 0;
+}
+
+/* Next questions: the hub's own rows */
+
+.next {
+    margin-top: 0.5rem;
+}
+
+.nextRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 7.5rem;
+    align-items: baseline;
+    gap: 2.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 1.25rem 0;
+}
+
+.nextQuestion {
+    margin: 0;
+    text-wrap: balance;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.nextAnswer {
+    margin: 0;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    font-style: italic;
+    text-wrap: pretty;
+}
+
+.read {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-self: end;
+    gap: 0.375rem;
+    color: hsl(var(--pen));
+    white-space: nowrap;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.read svg { transition: transform var(--duration-fast) var(--ease); }
+.read:hover svg { transform: translateX(2px); }
+.read:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 3px; border-radius: var(--radius); }
+
+/* How we write these */
+
+.method {
+    max-width: 46rem;
+    margin-top: 4rem;
+    border-radius: var(--radius-inset);
+    background: hsl(var(--secondary));
+    padding: 1.25rem 1.5rem;
+}
+
+.methodTitle {
+    margin: 0;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.methodBody {
+    margin: 0.375rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+/* The turn back to your own resume (the hub's close) */
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 5.5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 2rem;
+}
+
+.closeTitle {
+    margin: 0;
+    max-width: 22ch;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+@media (max-width: 960px) {
+    .answerGrid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .source { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .nextRow { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+    .read { justify-self: start; }
+}
+
+@media (max-width: 640px) {
+    .inner { padding: calc(var(--marketing-header-height-mobile) + 1.5rem) 1.25rem 4rem; }
+    .opening { margin-top: 1.5rem; }
+    .answerGrid { margin-top: 1.75rem; padding-top: 1.25rem; }
+    .section, .figure { margin-top: 4rem; }
+    .advice li { grid-template-columns: 1.75rem minmax(0, 1fr); }
+    .notSupported { padding-left: 2.25rem; }
+    .bridge { flex-direction: column; align-items: stretch; gap: 1.25rem; padding: 1.25rem; }
+    .source { padding: 1.5rem 0; }
+    .close { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 4rem; }
+}
