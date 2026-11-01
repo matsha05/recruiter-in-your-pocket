@@ -291,7 +291,7 @@ export function LineLift({
           </p>
         )}
         {edited === null && polishedLine && (
-          <div>
+          <div className={styles.liftSkips}>
             <Button type="button" variant="quiet" size="sm" onClick={() => { setUseExact(!useExact); copied.reset(); }} aria-pressed={useExact}>
               {showPolished ? "Use my exact words" : "Use the smoothed line"}
             </Button>
