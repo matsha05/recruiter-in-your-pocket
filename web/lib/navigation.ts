@@ -5,14 +5,6 @@
  * Edit here to update sidebar, mobile nav, footer, and headers.
  */
 
-import {
-    FileText,
-    Briefcase,
-    Library,
-    Chrome,
-    BookOpen,
-    FileClock,
-} from "lucide-react";
 import { launchFlags } from "@/lib/launch/flags";
 
 // ============================================================================
@@ -22,7 +14,6 @@ import { launchFlags } from "@/lib/launch/flags";
 export interface NavItem {
     label: string;
     href: string;
-    icon: React.ComponentType<{ className?: string }>;
     description?: string;
 }
 
@@ -30,37 +21,31 @@ const STUDIO_NAV_ITEMS: NavItem[] = [
     {
         label: "New report",
         href: "/workspace",
-        icon: FileText,
         description: "Review your resume",
     },
     {
         label: "My reports",
         href: "/reports",
-        icon: FileClock,
         description: "Saved reports and versions",
     },
     {
         label: "Jobs",
         href: "/jobs",
-        icon: Briefcase,
         description: "Saved jobs and matching",
     },
     {
         label: "Extension",
         href: "/extension",
-        icon: Chrome,
         description: "Install and use the Chrome extension",
     },
     {
         label: "Research",
         href: "/research",
-        icon: Library,
         description: "Hiring research hub",
     },
     {
         label: "Resources",
         href: "/resources",
-        icon: BookOpen,
         description: "Negotiation guides & tools",
     },
     // Settings is now accessed via UserNav dropdown (premium pattern)

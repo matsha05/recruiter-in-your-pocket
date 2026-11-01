@@ -22,6 +22,7 @@ import {
 import { prepareResumeStreamPrompt } from "@/lib/llm/resumeStreamPrompt";
 import { validateResumeStreamOutput } from "@/lib/llm/validateResumeStreamOutput";
 import { validateResumeFeedbackRequest } from "@/lib/backend/validation";
+import type { GenerationStage } from "@/lib/generation-stage";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
@@ -321,6 +322,12 @@ export async function POST(request: Request) {
 
     const stream = new ReadableStream({
         async start(controller) {
+            // Progress is informational; a closed stream must not fail the report.
+            const sendStage = (stage: GenerationStage) => {
+                try {
+                    controller.enqueue(encoder.encode(JSON.stringify({ type: "stage", stage }) + "\n"));
+                } catch { /* the client is gone; cancellation is handled below */ }
+            };
             try {
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
@@ -344,8 +351,10 @@ export async function POST(request: Request) {
                     userIdForLogs: user_id,
                 });
                 await markGenerationProviderCallStarted(grantedReservation);
+                sendStage("reading");
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
+                    let writing = false;
                     try {
                         for await (const ev of streamJson({
                             ctx: { request_id, user_id, route },
@@ -363,6 +372,10 @@ export async function POST(request: Request) {
                             throwIfClientDisconnected();
                             if (ev.type === "chunk") {
                                 accumulatedJson += ev.content;
+                                if (!writing) {
+                                    writing = true;
+                                    sendStage("writing");
+                                }
                             }
                         }
                         break;
@@ -371,6 +384,7 @@ export async function POST(request: Request) {
                             throw streamError;
                         }
                         accumulatedJson = "";
+                        sendStage("retrying");
                         logWarn({
                             msg: "llm.stream.incomplete_retry",
                             request_id,
@@ -382,6 +396,7 @@ export async function POST(request: Request) {
                 }
                 throwIfClientDisconnected();
 
+                sendStage("checking");
                 const validated = await validateResumeStreamOutput({
                     raw: accumulatedJson,
                     text: canonicalResumeText,

@@ -3,14 +3,14 @@
 import * as React from "react"
 import { useRouter, usePathname } from "next/navigation"
 import {
-    FileText,
-    Home,
-    Upload,
     BookOpen,
-    Download,
-    Keyboard,
     Clock,
-} from "lucide-react"
+    DownloadSimple,
+    FileText,
+    House,
+    Keyboard,
+    UploadSimple,
+} from "@phosphor-icons/react"
 
 import {
     CommandDialog,
@@ -205,7 +205,7 @@ export function CommandPalette() {
                                     { id: "upload", label: "Upload Resume", icon: "Upload" }
                                 )}
                             >
-                                <Upload className="mr-2 size-4" />
+                                <UploadSimple className="mr-2 size-4" />
                                 <span>Upload Resume</span>
                             </CommandItem>
                             {workspaceReportVisible && (
@@ -216,7 +216,7 @@ export function CommandPalette() {
                                             { id: "export-pdf", label: "Export PDF", icon: "Download" }
                                         )}
                                     >
-                                        <Download className="mr-2 size-4" />
+                                        <DownloadSimple className="mr-2 size-4" />
                                         <span>Export PDF</span>
                                     </CommandItem>
                                 </>
@@ -234,7 +234,7 @@ export function CommandPalette() {
                             { id: "nav:/", label: "Go to Home", icon: "Home" }
                         )}
                     >
-                        <Home className="mr-2 size-4" />
+                        <House className="mr-2 size-4" />
                         <span>Go to Home</span>
                     </CommandItem>
                     <CommandItem

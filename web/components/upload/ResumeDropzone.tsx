@@ -24,6 +24,8 @@ interface ResumeDropzoneProps {
     onRemoveFile?: () => void;
     /** Reports whether the current file selection is invalid. */
     onValidationStateChange?: (hasError: boolean) => void;
+    /** For compact variant: replaces "Ready to review" when the file was read but can't be reviewed. */
+    readyLabel?: string;
 }
 
 const MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -38,6 +40,7 @@ export function ResumeDropzone({
     className,
     variant = "hero",
     fileName,
+    readyLabel = "Ready to review",
     onRemoveFile,
     onValidationStateChange,
 }: ResumeDropzoneProps) {
@@ -253,7 +256,7 @@ export function ResumeDropzone({
                         </span>
                         <span className="min-w-0">
                             <span className="block truncate text-base font-medium text-foreground">{readingFileName || displayFileName}</span>
-                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : "Ready to review"}</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : readyLabel}</span>
                         </span>
                     </span>
                     <Button

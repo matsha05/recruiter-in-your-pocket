@@ -4,6 +4,7 @@ import path from "node:path";
 import { freeCookieOptions } from "../lib/backend/freeCookie";
 import { getScoreLabel } from "../lib/score-utils";
 import { validateResumeFeedbackRequest } from "../lib/backend/validation";
+import { MIN_RESUME_CHARS, RESUME_TOO_SHORT_MESSAGE } from "../lib/resume-input";
 import { isResumeIdeasApiEnabled } from "../lib/launch/serverFlags";
 import { resolveEffectiveJobDescription } from "../lib/security/effectiveJobDescription";
 import {
@@ -164,18 +165,18 @@ for (const relativePath of REQUIRED_PUBLIC_TRUST_FILES) {
 }
 
 const validResumeRequest = validateResumeFeedbackRequest({
-  text: "A".repeat(100),
+  text: "A".repeat(240),
   mode: "resume",
 });
 assert.equal(validResumeRequest.ok, true);
 assert.equal(
-  validateResumeFeedbackRequest({ text: "A".repeat(100), mode: "linkedin" }).ok,
+  validateResumeFeedbackRequest({ text: "A".repeat(240), mode: "linkedin" }).ok,
   false,
   "the public resume endpoints must reject internal product modes",
 );
 for (const hiddenMode of ["resume_ideas", "case_resume", "case_interview", "case_negotiation"] as const) {
   assert.equal(
-    validateResumeFeedbackRequest({ text: "A".repeat(100), mode: hiddenMode }).ok,
+    validateResumeFeedbackRequest({ text: "A".repeat(240), mode: hiddenMode }).ok,
     false,
     `the public resume endpoints must reject hidden mode ${hiddenMode}`,
   );
@@ -191,6 +192,12 @@ assert.equal(
   false,
   "resume text must stay inside the 30,000 character contract",
 );
+{
+  const fragment = validateResumeFeedbackRequest({ text: `  ${"A".repeat(MIN_RESUME_CHARS - 1)}  `, mode: "resume" });
+  assert.equal(fragment.ok, false, "a fragment shorter than the minimum must be rejected before access is reserved");
+  assert.equal(fragment.message, RESUME_TOO_SHORT_MESSAGE, "the rejection says why, so a client can show it");
+  assert.equal(validateResumeFeedbackRequest({ text: "A".repeat(MIN_RESUME_CHARS), mode: "resume" }).ok, true);
+}
 
 for (const length of [0, 1, 50, 51]) {
   const source = "J".repeat(length);
