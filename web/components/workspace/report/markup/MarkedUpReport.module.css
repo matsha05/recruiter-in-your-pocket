@@ -1,0 +1,881 @@
+/*
+ * The marked-up resume (plan item 2.1). The candidate's lines sit on the left in
+ * their own words, the recruiter's pen notes in the right margin, and the
+ * Critical Miss line carries the one highlighter. Below 960px each line becomes a
+ * card with its note beneath. Colors are the Highlighter tokens only.
+ */
+
+.root {
+    --margin-width: 16rem;
+    --margin-gap: 2.5rem;
+    max-width: 66rem;
+    margin-inline: auto;
+    padding-bottom: 2rem;
+    color: hsl(var(--text-strong));
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5625;
+}
+
+/* ---------- Opening read ---------- */
+
+.opening {
+    padding-bottom: 1rem;
+}
+
+.verdict {
+    max-width: 44ch;
+    margin-top: 0.5rem;
+    font-family: var(--font-editorial);
+    font-size: 1.1875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+}
+
+/* Phones: the band name and its bar share one row. */
+.band {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.25rem 1rem;
+    max-width: 34rem;
+    margin-top: 1rem;
+}
+
+.bandName {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+}
+
+.bandScale {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bandStep {
+    display: grid;
+    gap: 0.375rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.bandBar {
+    height: 0.375rem;
+    border-radius: 999px;
+    background: hsl(var(--line));
+}
+
+.bandStep[data-current] .bandBar {
+    background: hsl(var(--text-strong));
+}
+
+.bandLabel {
+    /* Only the current band is named on phones; the bar shows the rest. */
+    display: none;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+}
+
+.bandStep[data-current] .bandLabel {
+    color: hsl(var(--text-strong));
+    font-weight: 600;
+}
+
+.bandAnchor {
+    grid-column: 1 / -1;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+}
+
+/* ---------- The marked page ---------- */
+
+.page {
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1rem;
+}
+
+/* The Critical Miss line is the first thing on a phone; its section name waits for wider screens. */
+.row[data-kind="miss"] .lineSection {
+    display: none;
+}
+
+/* The phone shows the Critical Miss label instead; the heading stays for screen readers. */
+.pageTitle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.phoneOnly {
+    display: block;
+}
+
+.marginOnly {
+    display: none;
+}
+
+.pageTitle,
+.sectionTitle {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: var(--weight-heading);
+    line-height: 1.75rem;
+    letter-spacing: -0.015em;
+}
+
+.lines {
+    position: relative;
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.row:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
+}
+
+.lineCell,
+.noteCell,
+.liftCell,
+.feedbackCell {
+    min-width: 0;
+}
+
+/* Phones: one row, "CRITICAL MISS  The one thing to fix first". */
+.missHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.125rem 0.75rem;
+}
+
+.missHead .missDefinition {
+    margin-top: 0;
+}
+
+.missHead.marginOnly {
+    display: none;
+}
+
+.liftCell > .penWhy {
+    margin-top: 0.75rem;
+    padding-left: 0;
+}
+
+.lineSection {
+    margin-bottom: 0.375rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+/* The candidate's words: Literata, the blue-ink rule of a quoted line. */
+.inkLine,
+.missLine {
+    margin: 0;
+    font-family: var(--font-editorial);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.inkLine {
+    border-left: 2px solid hsl(var(--blue-ink));
+    padding-left: 0.875rem;
+}
+
+/* The Critical Miss quote keeps the highlighter instead of the rule. */
+.missLine {
+    font-size: 1.125rem;
+}
+
+.missLabel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    color: hsl(var(--brass));
+}
+
+.addressed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 999px;
+    background: hsl(var(--pen-tint));
+    padding: 0.125rem 0.5rem;
+    color: hsl(var(--pen));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+.missDefinition {
+    margin-top: 0.125rem;
+    color: hsl(var(--text-strong));
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+}
+
+.fixLabel {
+    margin-bottom: 0.375rem;
+    color: hsl(var(--pen));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+/* The recruiter's voice: Literata italic in pen. */
+.penNote {
+    margin-top: 0;
+    border-left: 1px solid hsl(var(--pen));
+    padding-left: 0.75rem;
+    color: hsl(var(--pen));
+    font-family: var(--font-editorial);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.45;
+    text-wrap: pretty;
+}
+
+/* The note writes in after the highlighter has swept the line. */
+.row[data-kind="miss"] .penNote {
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease) var(--duration-slow);
+}
+
+.row[data-kind="miss"] .penNoteIn {
+    opacity: 1;
+}
+
+.penWhy {
+    margin-top: 0.5rem;
+    padding-left: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9375rem;
+    line-height: 1.4375rem;
+}
+
+.toAdd {
+    margin-top: 0.75rem;
+    padding-left: 0.8125rem;
+}
+
+.toAddLabel {
+    color: hsl(var(--red-pen));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+.toAddList {
+    display: grid;
+    gap: 0.375rem;
+    margin-top: 0.375rem;
+    padding-left: 1rem;
+    list-style: disc;
+    font-size: 0.9375rem;
+    line-height: 1.4375rem;
+}
+
+/* Structural gaps: the red-pen note a recruiter writes at the top of the page. */
+.gapRow {
+    display: grid;
+    gap: 0.375rem;
+    margin-block: 0.25rem 1rem;
+    border-left: 2px solid hsl(var(--red-pen));
+    padding: 0.125rem 0 0.125rem 0.875rem;
+}
+
+.gapLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: hsl(var(--red-pen));
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+}
+
+.gapText {
+    max-width: 62ch;
+    font-size: 1rem;
+    line-height: 1.5625rem;
+}
+
+/* ---------- The lift: answers to a revised line ---------- */
+
+.lift {
+    display: grid;
+    gap: 1rem;
+    border-radius: 0.75rem;
+    background: hsl(var(--surface-proof) / 0.55);
+    padding: 1rem;
+}
+
+/* The phone keeps the first question on the first screen, so the step rail starts at 640px. */
+.liftTrace {
+    display: none;
+}
+
+/* Completed steps are the recruiter's pen; yellow stays on the one highlighted line. */
+.liftTrace li[data-state="complete"] > span:first-child,
+.liftTrace li[data-state="active"] > span:first-child {
+    background: hsl(var(--pen));
+}
+
+.liftLead {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.375rem;
+}
+
+.liftLeadQuiet {
+    display: none;
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+}
+
+.liftQuestions {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.liftQuestion {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.liftQuestionText {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.liftQuestion[data-skipped] .liftQuestionText {
+    color: hsl(var(--muted-foreground));
+}
+
+.liftInput {
+    min-height: 3rem;
+    width: 100%;
+    border: 1px solid hsl(var(--control-line));
+    border-radius: 0.625rem;
+    background: hsl(var(--card));
+    padding: 0.625rem 0.875rem;
+    color: hsl(var(--text-strong));
+    font: inherit;
+    transition: border-color var(--duration-fast) var(--ease);
+}
+
+.liftInput:focus-visible,
+.revisedInput:focus-visible,
+.feedbackInput:focus-visible {
+    border-color: hsl(var(--pen));
+    outline: 2px solid hsl(var(--pen));
+    outline-offset: 2px;
+}
+
+.liftSkips,
+.liftSkipped {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+.liftSkipped {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+}
+
+.textButton {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--text-strong) / 0.22);
+    text-decoration-thickness: var(--link-thickness, 1px);
+    text-underline-offset: var(--link-offset);
+    transition: color var(--duration-fast) var(--ease);
+}
+
+.textButton:hover {
+    color: hsl(var(--text-strong));
+    text-decoration-color: currentColor;
+}
+
+.revised {
+    display: grid;
+    gap: 0.5rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1rem;
+}
+
+.revisedHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+}
+
+.revisedLabel {
+    color: hsl(var(--pen));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+.revisedActions {
+    display: flex;
+    gap: 0.25rem;
+    margin-right: -0.75rem;
+}
+
+.iconText {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 999px;
+    padding-inline: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+}
+
+.iconText:hover:not(:disabled) {
+    background: hsl(var(--text-strong) / 0.05);
+    color: hsl(var(--text-strong));
+}
+
+.iconText[data-primary] {
+    color: hsl(var(--pen));
+}
+
+.iconText:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.revisedText,
+.revisedInput {
+    border-left: 2px solid hsl(var(--blue-ink));
+    padding-left: 0.875rem;
+    font-family: var(--font-editorial);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.revisedInput {
+    width: 100%;
+    min-height: 7rem;
+    resize: vertical;
+    border-top: 1px solid hsl(var(--control-line));
+    border-right: 1px solid hsl(var(--control-line));
+    border-bottom: 1px solid hsl(var(--control-line));
+    border-radius: 0 0.625rem 0.625rem 0;
+    background: hsl(var(--card));
+    padding-block: 0.625rem;
+    color: hsl(var(--text-strong));
+}
+
+/* What the candidate added, in their own ink. */
+.yours {
+    color: hsl(var(--blue-ink));
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--blue-ink) / 0.45);
+    text-decoration-thickness: 1px;
+    text-underline-offset: var(--link-offset);
+}
+
+.revisedEmpty {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9375rem;
+    line-height: 1.4375rem;
+}
+
+.revisedNote {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+}
+
+/* ---------- Was this right? ---------- */
+
+.feedback {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.feedbackQuestion {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.375rem;
+}
+
+.feedbackChoices {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.choice {
+    min-height: 2.75rem;
+    min-width: 4.5rem;
+    border: 1px solid hsl(var(--control-line));
+    border-radius: 999px;
+    background: hsl(var(--card));
+    padding-inline: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+}
+
+.choice:hover {
+    border-color: hsl(var(--text-strong) / 0.6);
+}
+
+.choice[aria-pressed="true"] {
+    border-color: hsl(var(--pen));
+    background: hsl(var(--pen-tint));
+    color: hsl(var(--pen));
+}
+
+.feedbackMore {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.feedbackLabel {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+}
+
+.optional {
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+}
+
+.feedbackInput {
+    width: 100%;
+    border: 1px solid hsl(var(--control-line));
+    border-radius: 0.625rem;
+    background: hsl(var(--card));
+    padding: 0.625rem 0.875rem;
+    font: inherit;
+}
+
+.feedbackDone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+}
+
+/* ---------- After the page ---------- */
+
+.keep,
+.role,
+.ending {
+    border-top: 1px solid hsl(var(--line));
+    padding-block: 2rem;
+}
+
+.keepList {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.keepItem {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+}
+
+.keepTick {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.25rem;
+    color: hsl(var(--pen));
+}
+
+.keepLabel {
+    color: hsl(var(--pen));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.125rem;
+}
+
+.keepText {
+    max-width: 62ch;
+    font-size: 1rem;
+    line-height: 1.5625rem;
+}
+
+.roleGrid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.bodyText {
+    max-width: 62ch;
+    color: hsl(var(--text-strong) / 0.85);
+}
+
+.roleList ul {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.disclosure {
+    border-block: 1px solid hsl(var(--line));
+}
+
+.disclosureSummary {
+    display: flex;
+    min-height: 4rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    list-style: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.disclosureSummary::-webkit-details-marker {
+    display: none;
+}
+
+.disclosureBody {
+    display: grid;
+    max-width: 62ch;
+    gap: 0.75rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-block: 1.25rem 1.5rem;
+    color: hsl(var(--text-strong) / 0.85);
+}
+
+.ending {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-bottom: 0;
+}
+
+.endingCopy {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+}
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 640px) {
+    .pageTitle {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        clip-path: none;
+        white-space: normal;
+        margin-bottom: 1rem;
+    }
+
+    .band {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+    }
+
+    .liftLead {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .liftLeadQuiet {
+        display: block;
+    }
+
+    .row[data-kind="miss"] .lineSection {
+        display: block;
+    }
+
+    .verdict {
+        font-size: 1.5rem;
+        line-height: 1.4;
+    }
+
+    .bandLabel {
+        display: block;
+    }
+
+    .bandStep:not([data-current]) .bandLabel {
+        opacity: 0.85;
+    }
+
+    .bandName {
+        display: none;
+    }
+
+    .pageTitle,
+    .sectionTitle {
+        font-size: 1.5rem;
+        line-height: 1.875rem;
+    }
+
+    .lift {
+        padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .liftTrace {
+        display: grid;
+        margin-inline: -1.5rem;
+        margin-top: -1.25rem;
+        border-top: 0;
+        border-bottom: 1px solid hsl(var(--line));
+    }
+
+    .inkLine,
+    .revisedText,
+    .revisedInput {
+        font-size: 1.125rem;
+    }
+
+    .missLine {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 960px) {
+    .lineCell { grid-area: line; }
+    .noteCell { grid-area: note; }
+    .liftCell { grid-area: lift; }
+    .feedbackCell { grid-area: feedback; }
+
+    .phoneOnly,
+    .missHead.phoneOnly {
+        display: none;
+    }
+
+    .marginOnly {
+        display: block;
+    }
+
+    .missHead.marginOnly {
+        display: grid;
+        gap: 0.125rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .row {
+        grid-template-areas:
+            "line note"
+            "lift note"
+            "lift feedback";
+        grid-template-columns: minmax(0, 1fr) var(--margin-width);
+        grid-template-rows: auto auto 1fr;
+        column-gap: var(--margin-gap);
+        row-gap: 1.25rem;
+        padding-block: 2rem;
+        border-top: 0;
+    }
+
+    .row + .row .lineCell,
+    .gapRow + .row .lineCell {
+        border-top: 1px solid hsl(var(--line));
+        padding-top: 2rem;
+        margin-top: -2rem;
+    }
+
+    .row + .row .noteCell,
+    .gapRow + .row .noteCell {
+        padding-top: 0;
+    }
+
+    /* The page's margin rule, running beside every line. */
+    .lines::before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: calc(var(--margin-width) + var(--margin-gap) / 2);
+        width: 1px;
+        background: hsl(var(--pen) / 0.22);
+        content: "";
+    }
+
+    .noteCell {
+        align-self: start;
+    }
+
+    .feedback {
+        margin-top: 0;
+        align-self: start;
+    }
+
+    .gapRow {
+        margin-right: calc(var(--margin-width) + var(--margin-gap));
+        margin-block: 0 0.5rem;
+    }
+
+    .roleGrid {
+        grid-template-columns: minmax(0, 1fr) var(--margin-width);
+        column-gap: var(--margin-gap);
+    }
+}
+
+@media (min-width: 1280px) {
+    .root {
+        --margin-width: 19rem;
+        --margin-gap: 3.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .row[data-kind="miss"] .penNote {
+        opacity: 1;
+        transition: none;
+    }
+}
