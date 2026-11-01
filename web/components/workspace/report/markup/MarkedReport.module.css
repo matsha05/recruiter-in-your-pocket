@@ -18,13 +18,15 @@
 /* ---------- Opening read ---------- */
 
 .opening {
-    padding-bottom: 1rem;
+    padding-bottom: 0.75rem;
 }
 
+/* Phones set the Verdict a step down (18px Literata) so the Critical Miss and its first question fit the first screen. */
 .verdict {
     max-width: 44ch;
     margin-top: 0.5rem;
-    font: var(--type-verdict);
+    font: var(--type-lead);
+    font-family: var(--font-editorial);
     text-wrap: pretty;
 }
 
@@ -90,7 +92,7 @@
 
 .page {
     border-top: 1px solid hsl(var(--line));
-    padding-top: 1rem;
+    padding-top: 0.75rem;
 }
 
 .sectionTitle {
@@ -328,10 +330,10 @@
 
 .lift {
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
     border-radius: var(--radius-inset);
     background: hsl(var(--surface-proof) / 0.55);
-    padding: 1rem;
+    padding: 0.875rem 1rem 1rem;
 }
 
 /* The phone keeps the first question on the first screen, so the step rail starts at 640px. */
@@ -621,6 +623,18 @@
 /* ---------- Wider screens ---------- */
 
 @media (min-width: 640px) {
+    .opening {
+        padding-bottom: 1rem;
+    }
+
+    .verdict {
+        font: var(--type-verdict);
+    }
+
+    .page {
+        padding-top: 1rem;
+    }
+
     .pageTitle {
         position: static;
         width: auto;
@@ -655,6 +669,7 @@
     }
 
     .lift {
+        gap: 1rem;
         padding: 1.25rem 1.5rem 1.5rem;
     }
 

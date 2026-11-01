@@ -183,7 +183,7 @@ export function LineLift({
                 {editing ? <Check className="size-4" aria-hidden="true" /> : <PencilSimple className="size-4" aria-hidden="true" />}
                 {editing ? "Done" : "Edit"}
               </Button>
-              <Button type="button" variant="quiet" size="sm" onClick={handleCopy} disabled={!copyableLine} aria-busy={copying || undefined}>
+              <Button type="button" variant="quiet" size="sm" onClick={handleCopy} disabled={!copyableLine} aria-disabled={!copyableLine || copying} aria-busy={copying || undefined}>
                 {!copyableLine ? <><Copy className="size-4" aria-hidden="true" />Copy</> : (
                   <ActionFeedback state={copying ? "pending" : copied.active ? "success" : "idle"} states={{
                     idle: { label: "Copy", icon: <Copy className="size-4" /> },

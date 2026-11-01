@@ -529,7 +529,7 @@ test.describe("paid decision boundary", () => {
         openStudio.click(),
       ]);
       await expect(page.getByText("Your report is back", { exact: true })).toBeVisible();
-      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.getByTestId("score-band")).toContainText("Mostly clear");
       await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
       await expect(page.getByTestId("sample-start-report")).toHaveCount(0);
       await expect(page.getByTestId("sample-terminal-cta")).toHaveCount(0);
@@ -580,7 +580,7 @@ test.describe("paid decision boundary", () => {
       // The completed save must retain a prior dismissal under the real report ID.
       await expect.poll(() => dismissalFor(storedReportId)).toBe(true);
       await expect(bannerShell).toHaveCount(0);
-      await expect(page.getByTestId("first-impression-score")).toContainText("73/100");
+      await expect(page.getByTestId("score-band")).toContainText("Mostly clear");
       await expect(page.locator("#section-first-impression h1")).toHaveText(existingReport.first_impression);
       expect(receiptSaveRequests).toBe(1);
       expect(generationRequests).toBe(0);

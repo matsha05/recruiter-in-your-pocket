@@ -245,7 +245,7 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
+                            <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-2 sm:min-h-12 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-xs font-semibold text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}

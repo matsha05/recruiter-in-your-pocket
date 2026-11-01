@@ -105,7 +105,25 @@ test.describe("launch red-team journeys", () => {
       return rect.top >= 0 && rect.bottom <= window.innerHeight;
     })).toBe(true);
 
+    // The first screen: the Verdict, the score band, and the Critical Miss once with its first question (2.5).
+    const firstRead = page.locator("#section-first-impression");
+    await expect(firstRead.getByTestId("score-band")).toContainText("Mostly clear");
+    await expect(firstRead).not.toContainText("/100");
+    await expect(firstRead).not.toContainText("Critical Miss");
+    const miss = page.getByTestId("critical-miss");
+    await expect(miss).toContainText("Explain how onboarding improved productivity.");
+    await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
+    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
+    await expect(page.getByTestId("score-basis")).toContainText("It is not a simple average.");
+    await expect(page.getByRole("heading", { name: "Fix these three first.", exact: true })).toHaveCount(1);
+
+    // The section tabs wait until the opening has scrolled away, then sit under the header.
     const reportNavigation = page.getByRole("navigation", { name: "Resume report sections" });
+    await expect(reportNavigation).toBeHidden();
+    await page.locator("#section-fixes").evaluate((section) => {
+      window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
+    });
+    await expect(reportNavigation).toBeVisible();
     const navigationBoxes = await reportNavigation.getByRole("button").evaluateAll((buttons) => buttons.map((button) => {
       const rect = button.getBoundingClientRect();
       return { left: rect.left, right: rect.right, top: Math.round(rect.top), height: rect.height };
@@ -122,35 +140,22 @@ test.describe("launch red-team journeys", () => {
       expect(box.height).toBeGreaterThanOrEqual(44);
     }
 
-    const firstRead = page.locator("#section-first-impression");
-    await expect(firstRead.getByTestId("first-impression-score")).toContainText("78/100");
-    await expect(firstRead.getByTestId("critical-miss")).toContainText("Explain how onboarding improved productivity.");
-    await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
-    await expect(page.getByTestId("score-basis")).toContainText(
-      "It is not a simple average.",
-    );
-    await expect(page.getByRole("heading", { name: "Start with these three changes.", exact: true })).toBeVisible();
+    // The sample's Critical Miss works like a real one: answers build the line, word for word.
+    const questions = miss.getByTestId("lift-question");
+    await expect(miss).toContainText("over what period");
+    await questions.first().locator("input").fill("42 new hires on the support and sales teams");
+    for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
+      await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
+    }
+    await expect(miss.getByTestId("revised-line")).toHaveText("Led onboarding work across the company, improving productivity: 42 new hires on the support and sales teams.");
+    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
+    await expect(miss).toContainText("This example only has the part of the line it quotes.");
+    await expect(miss.getByTestId("miss-feedback")).toHaveCount(0);
 
-    const evidenceJump = firstRead.getByRole("button", { name: "See how to fix it", exact: true });
-    await expect(evidenceJump).toBeVisible();
-    await evidenceJump.click();
-
-    const sampleFixes = page.locator('[id^="section-fix-"]');
-    const firstFix = sampleFixes.first();
-    await expect(firstFix.getByTestId("fact-only-recommendation")).toBeVisible();
-    await expect(firstFix).toContainText("over what period");
-    await expect(firstFix.locator("details")).toHaveCount(0);
-    await expect(firstFix.getByText("Suggested wording", { exact: true })).toHaveCount(0);
-    const sampleTemplate = sampleFixes.nth(1).locator("details");
-    await expect(sampleTemplate).not.toHaveAttribute("open", "");
-    await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeHidden();
-    await sampleTemplate.locator("summary").focus();
-    await sampleTemplate.locator("summary").press("Enter");
-    await expect(sampleTemplate).toHaveAttribute("open", "");
-    await expect(page.locator("#section-fixes")).toContainText("These are drafts. Keep only what's true, and say it your way.");
-    await expect(sampleTemplate.getByText(/Ran a cross-team launch.*\[verified before-and-after result\]/)).toBeVisible();
-    await expect(sampleFixes.locator("input, textarea")).toHaveCount(0);
-    await expect(sampleFixes.getByRole("button", { name: /Edit|Copy|Use these details|Not relevant/i })).toHaveCount(0);
+    // Bracketed drafts are never presented as writing; the other fixes ask for the details instead.
+    await expect(page.getByText(/\[verified before-and-after result\]/)).toHaveCount(0);
+    await expect(page.locator("#section-fixes")).not.toContainText("These are drafts.");
+    await expect(page.locator('[id^="section-fix-"]').getByRole("button", { name: /Use these details|Not relevant/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
@@ -182,40 +187,34 @@ test.describe("launch red-team journeys", () => {
     await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
-    const feedback = page.getByTestId("report-feedback");
-    await expect(feedback).toContainText("Tell us what helped and what missed. One example is enough for us to dig in.");
-    await expect(feedback).not.toContainText("beta");
-    await expect(feedback).toContainText("Your resume is never attached.");
-    const feedbackLink = feedback.getByRole("link", { name: "Send feedback", exact: true });
-    await expect(feedbackLink).toHaveAttribute("href", /subject=Report%20feedback/);
-
-    const firstGeneratedFix = page.locator("#section-fix-1");
-    const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
-    const generatedFactCount = await generatedFactInputs.count();
-    if (generatedFactCount > 0) {
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
-      await expect(firstGeneratedFix.getByRole("button", { name: "Use these details" })).toBeDisabled();
-      for (let index = 0; index < generatedFactCount; index += 1) {
-        await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
-      }
-      await firstGeneratedFix.getByRole("button", { name: "Use these details" }).click();
-      const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
-      for (let index = 0; index < generatedFactCount; index += 1) {
-        await expect(generatedDraft).toHaveValue(new RegExp(`Candidate supplied fact ${index + 1}`));
-      }
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
-      await generatedFactInputs.first().fill("Changed but not confirmed");
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeDisabled();
-      await firstGeneratedFix.getByRole("button", { name: "Edit original wording" }).click();
-      await expect(firstGeneratedFix.getByLabel("Edit suggested line 1")).not.toHaveValue(/Candidate supplied fact|Changed but not confirmed/);
-      await expect(firstGeneratedFix.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
-    } else {
-      const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
-      if (await copyButton.count()) await expect(copyButton).toBeVisible();
-      // Without a draft, the card points at "What to add" only when it has questions to show.
-      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation"))
-        .toHaveCount(await firstGeneratedFix.getByText("What to add", { exact: true }).count());
+    // The answer to revised line on a generated report: the candidate's line plus their answers only.
+    const miss = page.getByTestId("critical-miss");
+    const questions = miss.getByTestId("lift-question");
+    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
+    await questions.first().locator("input").fill("for 3 launch teams");
+    for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
+      await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
     }
+    const revised = miss.getByTestId("revised-line");
+    await expect(revised).toContainText("for 3 launch teams");
+    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
+    await expect(miss).toContainText("Every word is from your resume or your answers.");
+    // A number the candidate never gave can't be copied as theirs.
+    await miss.getByRole("button", { name: "Edit", exact: true }).click();
+    const edit = miss.getByLabel("Edit your revised line");
+    await edit.fill(`${await edit.inputValue()} Saved 999 hours.`);
+    await miss.getByRole("button", { name: "Done", exact: true }).click();
+    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeDisabled();
+    await expect(miss).toContainText("isn't in your line or your answers");
+
+    // "Was this right?" is answered in the report, not by email (2.6).
+    await expect(page.getByRole("link", { name: "Send feedback", exact: true })).toHaveCount(0);
+    const feedback = miss.getByTestId("miss-feedback");
+    await expect(feedback).toContainText("Was this the right thing to fix first?");
+    const feedbackSent = page.waitForResponse((response) => response.url().endsWith("/api/report-feedback"));
+    await feedback.getByRole("button", { name: "Yes", exact: true }).click();
+    expect((await feedbackSent).status()).toBe(200);
+    await expect(miss.getByText("Thanks. Answers like this are how we check the read.")).toBeVisible();
   });
 
   test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
