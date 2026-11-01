@@ -113,6 +113,7 @@ async function installSaveHarness(page: Page) {
     throw new Error(`Unmocked save test request: ${url.pathname}`);
   });
   await page.route("**/api/free-status", (route) => route.fulfill({ json: { ok: true, free_uses_left: 0 } }));
+  await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: false } }));
   await page.route("**/api/reports/recovery?*", (route) => route.fulfill({ json: { ok: true, recovery_id: RECOVERY_ID, report: REPORT } }));
 }
 

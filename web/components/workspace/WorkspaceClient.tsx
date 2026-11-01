@@ -25,6 +25,7 @@ import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
 import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
 import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
 import { useAnonymousReportRecovery } from "@/components/workspace/hooks/useAnonymousReportRecovery";
+import { readAnonymousReportRecoveryMarker } from "@/lib/reports/anonymous-report-recovery-client";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
@@ -53,6 +54,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isLoading, setIsLoading] = useState(false);
     const [isStreaming, setIsStreaming] = useState(false);
     const [report, setReport] = useState<any>(initialReport);
+    // "New report" means a fresh input: don't reopen the last anonymous report on top of it.
+    const newReportRequested = searchParams.get("new") === "1";
+    const [recoveryDismissed, setRecoveryDismissed] = useState(newReportRequested);
+    const [hasRecoverableReport, setHasRecoverableReport] = useState(false);
     const [activeSampleReport, setActiveSampleReport] = useState<ReportData | null>(initialReport);
     useEffect(() => {
         setReport(initialReport);
@@ -118,7 +123,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     );
 
     useAnonymousReportRecovery({
-        enabled: !isLoading && !isStreaming && report === null && linkedInReport === null && !savedRevisionRequested,
+        enabled: !isLoading && !isStreaming && report === null && linkedInReport === null && !recoveryDismissed && !savedRevisionRequested,
         setReport, setSkipSample, setReviewMode,
         captureRestoreOwner: captureRecoveryOwner,
         isRestoreCurrent: isRecoveryOwnerCurrent,
@@ -259,10 +264,26 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     }, [handleRun]);
 
     const handleNewReport = useCallback(() => {
+        setRecoveryDismissed(true);
         resetWorkspaceInput();
         clearSavedRevision();
         replace("/workspace", { scroll: false });
     }, [resetWorkspaceInput, clearSavedRevision, replace]);
+
+    // The header's "New report" link lands here with ?new=1, including while a report is open.
+    useEffect(() => {
+        if (!newReportRequested) return;
+        if (report || linkedInReport) {
+            handleNewReport();
+        } else {
+            setRecoveryDismissed(true);
+            replace("/workspace", { scroll: false });
+        }
+    }, [newReportRequested, report, linkedInReport, handleNewReport, replace]);
+
+    useEffect(() => {
+        setHasRecoverableReport(recoveryDismissed && !user && readAnonymousReportRecoveryMarker() !== null);
+    }, [recoveryDismissed, user, report]);
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
@@ -474,6 +495,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             freeUsesRemaining={effectiveUsesRemaining}
                             user={user}
                             onSampleReport={handleResumeSample}
+                            onOpenLastReport={hasRecoverableReport ? () => setRecoveryDismissed(false) : undefined}
                             loadedJobContext={loadedJobContext}
                             onExportPdf={canExportPdf ? handleExportPdf : undefined}
                             isExporting={isExporting}

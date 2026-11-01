@@ -9,6 +9,7 @@ import { isRedisRestConfigured } from "../redis/config";
 import { liveEvalMatchesCandidate, readLiveEvalEvidence } from "./evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "./liveEvalBaseline";
 import { configuredDailyGenerationLimit, isGenerationPaused } from "../operations/generationBudget";
+import { areNewPurchasesDisabled } from "./serverFlags";
 import { hasConfiguredSupportOperators } from "../support/access";
 import {
   LAUNCH_GATE_DEFINITIONS,
@@ -624,6 +625,11 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
   if (generationPaused) {
     incidents.push("New reports are paused while we fix a problem. Saved reports, receipts, and sign-in still work.");
   }
+  // The billing kill switch must show here; otherwise Status reads "configured" while checkout refuses every purchase.
+  const purchasesPaused = areNewPurchasesDisabled();
+  if (purchasesPaused) {
+    incidents.push("New purchases are paused while we fix a problem. Existing passes, receipts, and restore still work.");
+  }
   if (gateStatus("quality") === "fail") {
     incidents.push("Report configuration checks need attention. If you cannot generate a report, contact support.");
   }
@@ -659,8 +665,10 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     },
     {
       name: "Payments and purchase restoration",
-      status: toPublicStatus(gateStatus("billing")),
-      message: gateStatus("billing") === "fail"
+      status: purchasesPaused ? "limited" : toPublicStatus(gateStatus("billing")),
+      message: purchasesPaused
+        ? "New purchases are paused. Existing passes, receipts, and restore still work."
+        : gateStatus("billing") === "fail"
         ? "Some required payment or purchase restoration settings need attention."
         : "Required payment and purchase restoration settings are in place.",
     },

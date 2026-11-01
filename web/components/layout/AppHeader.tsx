@@ -9,6 +9,7 @@ import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "./MobileNav";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { navLinkHref } from "@/lib/navigation";
 
 const APP_NAV = [
     { label: "New report", href: "/workspace" },
@@ -59,7 +60,7 @@ export function AppHeader() {
                             return (
                                 <Link
                                     key={item.href}
-                                    href={item.href}
+                                    href={navLinkHref(item.href)}
                                     aria-current={active ? "page" : undefined}
                                     className={cn("app-nav-link hidden md:inline-flex", active && "app-nav-link-active")}
                                 >

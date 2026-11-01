@@ -66,6 +66,11 @@ const STUDIO_NAV_ITEMS: NavItem[] = [
     // Settings is now accessed via UserNav dropdown (premium pattern)
 ];
 
+// "New report" always opens a fresh input, even when the workspace would otherwise
+// reopen the visitor's last anonymous report. Active-state checks still use "/workspace".
+export const NEW_REPORT_HREF = "/workspace?new=1";
+export const navLinkHref = (href: string) => (href === "/workspace" ? NEW_REPORT_HREF : href);
+
 export const STUDIO_NAV: NavItem[] = STUDIO_NAV_ITEMS.filter(
     (item) => launchFlags.extensionSync || (item.href !== "/extension" && item.href !== "/jobs")
 );
