@@ -24,7 +24,7 @@
 .demo { margin-top: 2.25rem; }
 
 .footnote {
-    max-width: 60ch;
+    max-width: 54ch;
     margin-top: 1rem;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);

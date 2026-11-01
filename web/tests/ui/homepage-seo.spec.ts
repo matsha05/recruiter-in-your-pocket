@@ -37,7 +37,8 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
     await expect(example.locator("figure blockquote")).toContainText("Your current title points to customer success, but the objective could apply to almost any role.");
     await expect(example).toContainText("Is Jordan after another customer success role?");
-    await expect(example).toContainText("The report asks: “Are you pursuing another customer success role?”");
+    // The quote marks come from CSS on <q>, so the text has none.
+    await expect(example).toContainText("The report asks: Are you pursuing another customer success role?");
     await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up answers for anyone.");
     await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
     await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();

@@ -12,7 +12,7 @@ interface HarnessPlugin {
   onResolve(options: { filter: RegExp }, callback: (args: { path: string }) => { path: string; namespace: string } | undefined): void;
   onLoad(options: { filter: RegExp; namespace: string }, callback: (args: { path: string }) => { contents: string; loader: string; resolveDir: string }): void;
 }
-const ORIGIN = "http://127.0.0.1:3100";
+const ORIGIN = process.env.PLAYWRIGHT_TEST_BASE_URL || "http://127.0.0.1:3100";
 const RESUME_TEXT = "Alex Rivera\nProgram Manager\nLed cross-functional launches with product, operations, and support teams. Built review cadences and improved launch checklists. Coordinated stakeholder updates and clarified ownership across teams.";
 const UPLOADED_TEXT = `${RESUME_TEXT}\nBuilt customer workflows in HubSpot for 120 customers.`;
 const REPORT = ResumeFeedbackResponseSchema.parse(schemaValidReport);

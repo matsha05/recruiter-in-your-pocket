@@ -97,7 +97,8 @@ for (const width of [320, 390]) {
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
       const buttons = await nav.getByRole("button").all();
       const bounds = await Promise.all(buttons.map((button) => button.boundingBox()));
-      expect(bounds).toHaveLength(4);
+      // Keep appears only when the report has strengths beyond the one shown in the opening read.
+      expect([3, 4]).toContain(bounds.length);
       for (const box of bounds) {
         expect(box!.height).toBeGreaterThanOrEqual(44);
         expect(box!.width).toBeGreaterThanOrEqual(44);
