@@ -49,7 +49,7 @@ function renderSection(section: LegalSection, index: number) {
           key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9"
         >
-          <h2 className="mb-4 font-display text-report-title text-foreground">{section.title}</h2>
+          <h2 className="mb-4 font-display text-heading text-foreground">{section.title}</h2>
           <div className="space-y-3">
             {section.paragraphs.map(renderParagraph)}
           </div>
@@ -61,7 +61,7 @@ function renderSection(section: LegalSection, index: number) {
           key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9"
         >
-          <h2 className="mb-4 font-display text-report-title text-foreground">{section.title}</h2>
+          <h2 className="mb-4 font-display text-heading text-foreground">{section.title}</h2>
           <ul className="list-disc space-y-2 pl-5 text-prose text-muted-foreground marker:text-muted-foreground">
             {section.items.map((item, itemIndex) => (
               <li key={`${itemIndex}-${item}`}>{item}</li>
@@ -76,11 +76,11 @@ function renderSection(section: LegalSection, index: number) {
           className="rounded-xl border border-border bg-muted px-4 py-6 md:px-6 md:py-8"
           aria-labelledby={`legal-table-${index}`}
         >
-          <h2 id={`legal-table-${index}`} className="mb-4 font-display text-report-title text-foreground">{section.title}</h2>
+          <h2 id={`legal-table-${index}`} className="mb-4 font-display text-heading text-foreground">{section.title}</h2>
           <div className="divide-y divide-line md:hidden">
             {section.rows.map((row, rowIndex) => (
               <article key={`${rowIndex}-${row.dataType}`} className="py-5 first:pt-2 last:pb-1">
-                <h3 className="text-base font-medium leading-6 text-foreground">{row.dataType}</h3>
+                <h3 className="text-base font-medium text-foreground">{row.dataType}</h3>
                 <dl className="mt-4 grid gap-4">
                   {[
                     [section.columns[1] || "Purpose", row.purpose],
@@ -89,14 +89,14 @@ function renderSection(section: LegalSection, index: number) {
                   ].map(([label, value]) => (
                     <div key={label} className="grid gap-1">
                       <dt className="text-label text-muted-foreground">{label}</dt>
-                      <dd className="text-sm leading-relaxed text-muted-foreground">{value}</dd>
+                      <dd className="text-sm text-muted-foreground">{value}</dd>
                     </div>
                   ))}
                 </dl>
               </article>
             ))}
           </div>
-          <table className="hidden w-full table-fixed text-sm leading-relaxed md:table">
+          <table className="hidden w-full table-fixed text-sm md:table">
             <thead>
               <tr className="border-b border-border text-left text-label text-muted-foreground">
                 {section.columns.map((col) => (
@@ -136,7 +136,7 @@ function renderSection(section: LegalSection, index: number) {
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
                   <item.icon className="size-4" weight="bold" />
                 </span>
-                <h2 className="text-base font-medium leading-6 text-foreground">{item.title}</h2>
+                <h2 className="text-base font-medium text-foreground">{item.title}</h2>
               </div>
               <p className="text-base text-muted-foreground">{item.body}</p>
             </div>
@@ -150,7 +150,7 @@ function renderSection(section: LegalSection, index: number) {
           key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9"
         >
-          <h2 className="mb-4 font-display text-report-title text-foreground">{section.title}</h2>
+          <h2 className="mb-4 font-display text-heading text-foreground">{section.title}</h2>
           <ul className="grid gap-x-8 gap-y-3 text-base text-muted-foreground md:grid-cols-2">
             {section.items.map((line, lineIndex) => (
               <li key={`${lineIndex}-${line}`} className="flex items-start gap-2">
@@ -182,18 +182,18 @@ function renderSection(section: LegalSection, index: number) {
               key={`${categoryIndex}-${category.category}`}
               className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9"
             >
-              <h2 className="mb-4 font-display text-report-title text-foreground">{category.category}</h2>
+              <h2 className="mb-4 font-display text-heading text-foreground">{category.category}</h2>
               <Accordion type="single" collapsible className="space-y-2">
                 {category.questions.map((item, idx) => (
                   <AccordionItem
                     key={`${idx}-${item.q}`}
                     value={`${category.category}-${idx}`}
-                    className="rounded-xl border border-border bg-background/50 px-4"
+                    className="overflow-hidden rounded-xl border border-border bg-background/50"
                   >
-                    <AccordionTrigger className="min-h-12 py-4 text-left text-base font-medium leading-6 text-foreground hover:no-underline">
+                    <AccordionTrigger className="min-h-12 px-4 py-4 text-left text-base font-medium text-foreground">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="pb-4 text-base text-muted-foreground">
+                    <AccordionContent className="px-4 pb-4 text-base text-muted-foreground">
                       {item.a}
                     </AccordionContent>
                   </AccordionItem>

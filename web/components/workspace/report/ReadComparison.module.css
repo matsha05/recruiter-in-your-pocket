@@ -7,18 +7,14 @@
 .header { max-width: 40rem; }
 
 .title {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: var(--weight-display);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
 }
 
 .intro {
     margin-top: 0.625rem;
     color: hsl(var(--muted-foreground));
-    font-size: 1rem;
-    line-height: 1.55;
+    font: var(--type-body);
 }
 
 .grid {
@@ -50,32 +46,26 @@
 
 .cardLabel {
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    font-weight: var(--weight-label);
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .score {
-    font-family: var(--font-display);
-    font-size: 2rem;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
     font-variant-numeric: tabular-nums;
-    font-weight: var(--weight-display);
-    letter-spacing: -0.03em;
-    line-height: 1;
 }
 
 .score span {
     margin-left: 0.125rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0;
+    font: var(--type-small);
 }
 
 .delta {
     border-radius: 999px;
-    font-size: 0.8125rem;
-    font-weight: var(--weight-label);
     padding: 0.125rem 0.625rem;
+    font: var(--type-label);
 }
 
 .deltaUp { background: hsl(var(--pen-tint)); color: hsl(var(--pen)); }
@@ -84,16 +74,14 @@
 .missLabel {
     margin-top: 0.5rem;
     color: hsl(var(--brass));
-    font-size: 0.8125rem;
-    font-weight: var(--weight-label);
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    font: var(--type-label);
+    letter-spacing: 0.1em;
 }
 
 .miss {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.4;
+    font: var(--type-body);
+    font-weight: var(--weight-control);
 }
 
 /* The current miss is marked like a line on the page; last time's, once replaced, is set down. */
@@ -111,9 +99,7 @@
     border-top: 1px solid hsl(var(--line));
     padding-top: 0.75rem;
     color: hsl(var(--text-strong) / 0.85);
-    font-family: var(--font-editorial);
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
 }
 
 .arrow {

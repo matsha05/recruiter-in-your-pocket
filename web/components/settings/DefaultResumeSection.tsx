@@ -187,8 +187,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         return (
             <section className={cn("rounded-2xl border border-destructive/25 bg-error-surface p-6 sm:rounded-3xl", className)} role="alert">
                 <h3 className="font-medium text-destructive">Default resume could not load</h3>
-                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
-                <p className="mt-2 text-sm leading-6 text-destructive/80">Your saved resume has not been changed.</p>
+                <p className="mt-2 text-sm text-destructive/80">{loadError}</p>
+                <p className="mt-2 text-sm text-destructive/80">Your saved resume has not been changed.</p>
                 <button type="button" onClick={() => void fetchProfile()} className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive">
                     <ArrowClockwise className="size-4" />
                     Try again
@@ -215,7 +215,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             </span>
                         </div>
 
-                        <p className="mb-4 text-base leading-6 text-muted-foreground">
+                        <p className="mb-4 text-base text-muted-foreground">
                             Save a job through the extension to compare it with this resume.
                         </p>
 
@@ -247,7 +247,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                                 <ActionFeedback state={isRemoving ? "pending" : "idle"} states={{ idle: { label: "Remove", icon: <Trash className="size-3.5" /> }, pending: { label: "Removing…", icon: <CircleNotch className="size-3.5 animate-spin motion-reduce:animate-none" /> } }} />
                             </button>
                         </div>
-                        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                        <p className="mt-3 text-xs text-muted-foreground">
                             Stored until you replace or remove it. We keep raw resume text for matching, plus derived skills, seniority signals, and a short preview.
                         </p>
                     </div>
@@ -278,7 +278,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 </div>
                 <div>
                     <h3 className="mb-2 text-lg font-medium text-foreground">Upload Your Resume</h3>
-                    <p className="text-base leading-6 text-muted-foreground">
+                    <p className="text-base text-muted-foreground">
                         Compare this resume with jobs you save through the extension. This does not use a report credit.
                     </p>
                 </div>
@@ -322,7 +322,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             </button>
 
             {/* Privacy note */}
-            <div className="mt-4 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+            <div className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
                 <ShieldCheck className="mt-1 size-4 shrink-0" />
                 <span>Saved as your default resume for matching until you replace or remove it.</span>
             </div>

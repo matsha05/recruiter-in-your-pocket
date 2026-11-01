@@ -226,7 +226,7 @@ export default function HistorySidebar({
                                     Sign in to save reports and compare feedback on different resume versions.
                                 </p>
                                 <Button
-                                    variant="brand"
+                                    variant="primary"
                                     className="w-full max-w-[200px]"
                                     onClick={onSignIn}
                                 >
@@ -255,8 +255,8 @@ export default function HistorySidebar({
                         ) : loadError ? (
                             <div className="m-4 border-l-2 border-destructive bg-error-surface p-5" role="alert">
                                 <h3 className="font-display text-lg font-semibold text-destructive">Saved reports could not load</h3>
-                                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}</p>
-                                <Button type="button" variant="outline" className="mt-4" onClick={() => void fetchReports()}>
+                                <p className="mt-2 text-sm text-destructive/80">{loadError}</p>
+                                <Button type="button" variant="secondary" className="mt-4" onClick={() => void fetchReports()}>
                                     Try again
                                 </Button>
                             </div>
@@ -278,7 +278,7 @@ export default function HistorySidebar({
                             <div className="p-4 gap-y-3">
                                 {/* Summary header with Compare toggle */}
                                 <div className="flex items-center justify-between p-2">
-                                    <span className="text-[0.8125rem] font-medium text-muted-foreground ">
+                                    <span className="text-xs font-medium text-muted-foreground">
                                         {reports.length} {reports.length === 1 ? "Report" : "Reports"}
                                     </span>
                                     {reports.length > 1 && (
@@ -390,7 +390,7 @@ export default function HistorySidebar({
                                                 }}
                                                 isLoading={loadingComparison}
                                                 loadingLabel="Loading..."
-                                                className="min-h-11 bg-foreground px-3 py-2 text-xs font-medium text-background hover:bg-foreground/90 disabled:opacity-50"
+                                                size="sm"
                                             >
                                                 Compare →
                                             </Button>
@@ -497,13 +497,13 @@ export default function HistorySidebar({
 
                                                     {/* Actions remain discoverable on touch and keyboard. */}
                                                     <Button
-                                                        variant="ghost"
+                                                        variant="quiet"
                                                         size="sm"
                                                         onClick={(e) => handleDeleteClick(e, report.id)}
                                                         disabled={deletingId === report.id}
-                                                        className="relative z-20 hover:bg-destructive/10 hover:text-destructive"
+                                                        className="relative z-20 hover:text-destructive"
                                                         aria-label="Delete report"
-                                                    >
+                                                   >
                                                         {deletingId === report.id ? (
                                                             <div className="size-4 border-2 border-destructive/30 border-t-destructive rounded-full motion-safe:animate-spin" aria-hidden="true" />
                                                         ) : (
@@ -531,7 +531,7 @@ export default function HistorySidebar({
 
                                                 {/* Resume snippet */}
                                                 {report.resumeSnippet && (
-                                                    <p className="text-sm text-foreground/80 leading-relaxed line-clamp-2 mb-3">
+                                                    <p className="text-sm text-foreground/80 line-clamp-2 mb-3">
                                                         {report.resumeSnippet}
                                                     </p>
                                                 )}
@@ -581,14 +581,14 @@ export default function HistorySidebar({
                     </DialogHeader>
                     <div className="flex gap-3 mt-4">
                         <Button
-                            variant="ghost"
+                            variant="quiet"
                             className="flex-1"
                             onClick={() => setDeleteConfirmId(null)}
                         >
                             Cancel
                         </Button>
                         <Button
-                            variant="destructive"
+                            variant="destructiveFinal"
                             className="flex-1"
                             onClick={handleConfirmDelete}
                             disabled={deletingId === deleteConfirmId}

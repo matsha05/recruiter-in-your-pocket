@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
@@ -133,7 +134,7 @@ export function ResearchArticle({
                                     {header.readTime ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.readTime}</span></> : null}
                                     {sources?.length ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.sourceSummary ?? "Direct sources linked"}</span></> : null}
                                 </div>
-                                <h1 className="mt-5 max-w-[20ch] text-balance font-display text-workspace-title text-foreground md:text-page-title">
+                                <h1 className="mt-5 max-w-[20ch] text-balance font-display text-headline text-foreground">
                                     {header.title}
                                 </h1>
                                 <p className="mt-6 max-w-reading text-prose text-muted-foreground">
@@ -145,13 +146,13 @@ export function ResearchArticle({
                                 <div className="riyp-evidence-label text-brand">
                                     {keyFinding.label ?? "Key finding"}
                                 </div>
-                                <p className="mt-3 text-balance font-display text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-foreground">
+                                <p className="mt-3 text-balance font-display text-title text-foreground">
                                     {keyFinding.stat}
                                 </p>
-                                <div className="mt-4 text-sm leading-6 text-muted-foreground">
+                                <div className="mt-4 text-sm text-muted-foreground">
                                     {keyFinding.statDescription}
                                 </div>
-                                <p className="mt-5 border-t border-line pt-4 text-xs leading-5 text-muted-foreground">
+                                <p className="mt-5 border-t border-line pt-4 text-xs text-muted-foreground">
                                     {keyFinding.source.href ? (
                                         <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">
                                             {keyFinding.source.text}
@@ -174,18 +175,18 @@ export function ResearchArticle({
 
                         <div className="pb-20 pt-12 md:pb-28 md:pt-16">
                             <div className="mx-auto min-w-0 max-w-[46rem]">
-                                <article className="prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl md:prose-h2:text-section-title prose-h3:mt-10 prose-h3:text-report-title prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground">
+                                <article className="prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-title prose-h3:mt-10 prose-h3:text-heading prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground">
                                     {children}
                                 </article>
 
                                 {faq && faq.length > 0 ? (
                                     <section className="mt-16 border-t border-line" aria-labelledby="faq-title">
-                                        <h2 id="faq-title" className="py-6 font-display text-report-title tracking-tight text-foreground">Common questions</h2>
+                                        <h2 id="faq-title" className="py-6 font-display text-heading text-foreground">Common questions</h2>
                                         <div className="divide-y divide-line border-b border-line">
                                             {faq.map((item) => (
                                                 <div key={item.question} className="grid gap-2 py-6 md:grid-cols-[0.8fr_1.2fr] md:gap-8">
-                                                    <h3 className="text-base font-semibold leading-7 text-foreground">{item.question}</h3>
-                                                    <p className="text-base leading-7 text-muted-foreground">{item.answer}</p>
+                                                    <h3 className="text-base font-semibold text-foreground">{item.question}</h3>
+                                                    <p className="text-base text-muted-foreground">{item.answer}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -193,13 +194,13 @@ export function ResearchArticle({
                                 ) : null}
 
                                 <section className="mt-16 rounded-sheet border border-line bg-card px-6 py-8" aria-labelledby="product-translation-title">
-                                    <h2 id="product-translation-title" className="font-display text-report-title tracking-tight text-foreground">{productTieIn.title}</h2>
+                                    <h2 id="product-translation-title" className="font-display text-heading text-foreground">{productTieIn.title}</h2>
                                     <div className="mt-7 divide-y divide-line border-t border-line">
                                         {productTieIn.items.map((item, index) => (
                                             <div key={item.title} className="grid gap-2 py-5 md:grid-cols-[2.25rem_0.8fr_1.35fr] md:items-baseline md:gap-5">
                                                 <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                                                 <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                                                <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
+                                                <p className="text-sm text-muted-foreground">{item.description}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -208,13 +209,13 @@ export function ResearchArticle({
                                 {(relatedArticles?.length || sources?.length) ? (
                                     <section className="mt-16" aria-labelledby="evidence-notes-title">
                                         <div className="flex items-baseline justify-between border-b border-line pb-4">
-                                            <h2 id="evidence-notes-title" className="font-display text-report-title tracking-tight text-foreground">Sources and related research</h2>
+                                            <h2 id="evidence-notes-title" className="font-display text-heading text-foreground">Sources and related research</h2>
                                         </div>
 
                                         {sources && sources.length > 0 ? (
                                             <div className="py-7">
                                                 <h3 className="riyp-evidence-label text-brand">Sources</h3>
-                                                <ol className="mt-5 space-y-3 border-l border-line pl-6 text-sm leading-6 text-muted-foreground">
+                                                <ol className="mt-5 space-y-3 border-l border-line pl-6 text-sm text-muted-foreground">
                                                 {sources.map((source, index) => {
                                                     const sourceId = source.id ?? `source-${index + 1}`;
                                                     const sourceLabel = [source.title, source.publisher ? `— ${source.publisher}` : null, source.year ? `(${source.year})` : null].filter(Boolean).join(" ").trim().concat(".");
@@ -234,11 +235,11 @@ export function ResearchArticle({
                                                 <h3 className="riyp-evidence-label text-muted-foreground">Related research</h3>
                                                 <div className="mt-3 divide-y divide-line border-b border-line">
                                                     {relatedArticles.map((article, index) => (
-                                                        <Link key={article.href ?? `related-${index}`} href={article.href} className="focus-ring group grid min-h-14 gap-2 rounded-sm py-4 transition-colors hover:text-brand md:grid-cols-[1fr_auto] md:items-center">
+                                                        <Link key={article.href ?? `related-${index}`} href={article.href} className="focus-ring riyp-surface-link -mx-3 grid min-h-14 gap-2 rounded-lg px-3 py-4 md:grid-cols-[1fr_auto] md:items-center">
                                                             <span className="text-sm font-medium">{article.title}</span>
                                                             <span className="riyp-evidence-label flex items-center gap-3 text-muted-foreground">
                                                                 {article.tag || "Read next"}
-                                                                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                                                                <ArrowRight data-affordance className="size-4" />
                                                             </span>
                                                         </Link>
                                                     ))}
@@ -256,12 +257,14 @@ export function ResearchArticle({
                     <div className="mx-auto flex max-w-[72rem] flex-col gap-8 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
-                            <h2 className="mt-4 max-w-[24ch] font-display text-3xl font-bold text-foreground md:text-section-title">{cta.title}</h2>
+                            <h2 className="mt-4 max-w-[24ch] font-display text-headline text-foreground">{cta.title}</h2>
                         </div>
-                        <Link href={cta.href} className="focus-ring inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-control text-background transition-colors hover:bg-foreground/90">
-                            {cta.buttonText}
-                            <ArrowRight className="size-4" weight="bold" />
-                        </Link>
+                        <Button asChild className="shrink-0">
+                            <Link href={cta.href}>
+                                {cta.buttonText}
+                                <ArrowRight className="size-4" weight="bold" />
+                            </Link>
+                        </Button>
                     </div>
                 </section>
             </div>
@@ -283,7 +286,7 @@ export function Citation({ id, children }: { id: string; children: ReactNode }) 
     const sourceLabel = typeof children === "string" || typeof children === "number" ? children : "reference";
     return (
         <sup className="relative top-[-0.25em] ml-0.5 inline-flex size-4 align-baseline">
-            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold leading-none tabular-nums riyp-link">
+            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold tabular-nums riyp-link">
                 {children}
             </a>
         </sup>

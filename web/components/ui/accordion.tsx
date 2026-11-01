@@ -28,13 +28,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "focus-ring flex min-h-11 flex-1 items-center justify-between py-4 text-sm font-medium transition-colors duration-fast ease-snap hover:underline text-left [&[data-state=open]>svg]:rotate-180",
+        "focus-ring riyp-surface-link flex min-h-11 flex-1 items-center justify-between py-4 text-sm font-medium text-left [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
     >
       {children}
-      <CaretDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-normal ease-snap motion-reduce:transition-none" />
+      <CaretDown data-affordance className="size-4 shrink-0 transition-transform duration-normal ease-snap motion-reduce:transition-none" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

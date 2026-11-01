@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -479,25 +480,25 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                     <section className="app-card p-6 text-left sm:p-8">
                         <ShieldAlert className="size-8 text-brand" />
-                        <h2 className="mt-5 font-sans text-2xl font-normal leading-8 tracking-tight text-foreground">
+                        <h2 className="mt-5 font-sans text-heading text-foreground">
                             Sign in to open settings
                         </h2>
-                        <p className="mt-3 max-w-lg text-base leading-7 text-muted-foreground">
+                        <p className="mt-3 max-w-lg text-base text-muted-foreground">
                             Update your name, download your account data, or delete your account after signing in.
                         </p>
                         <div className="mt-6 flex flex-wrap items-center gap-3">
-                            <Link
-                                href={`/auth?from=settings&next=${encodeURIComponent(pathname || `/settings/${activeTab}`)}`}
-                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-                            >
-                                Sign in
-                            </Link>
-                            <Link
-                                href="/workspace"
-                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-                            >
-                                Back to workspace
-                            </Link>
+                            <Button asChild>
+                                <Link href={`/auth?from=settings&next=${encodeURIComponent(pathname || `/settings/${activeTab}`)}`}>
+                                    Sign in
+                                </Link>
+                            </Button>
+                            <Button asChild variant="secondary">
+                                <Link
+                                    href="/workspace"
+                                >
+                                    Back to workspace
+                                </Link>
+                            </Button>
                         </div>
                     </section>
                 </div>
@@ -527,20 +528,22 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     actions={
                         <div className="flex flex-wrap items-center gap-2">
                             {isLaunchFlagEnabled("extensionSync") ? (
-                                <Link
-                                    href="/extension"
-                                    className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-                                >
-                                    <Chrome className="size-4" />
-                                    Extension
-                                </Link>
+                                <Button asChild variant="secondary">
+                                    <Link
+                                        href="/extension"
+                                    >
+                                        <Chrome className="size-4" />
+                                        Extension
+                                    </Link>
+                                </Button>
                             ) : null}
-                            <Link
-                                href="/security"
-                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
-                            >
-                                How we handle your data
-                            </Link>
+                            <Button asChild variant="secondary">
+                                <Link
+                                    href="/security"
+                                >
+                                    How we handle your data
+                                </Link>
+                            </Button>
                         </div>
                     }
                     className="mb-8"
@@ -591,7 +594,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                     {...profileForm.register("displayName")}
                                                     className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-card px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
                                                 />
-                                                <button
+                                                <Button
                                                     type="submit"
                                                     aria-busy={profileForm.formState.isSubmitting}
                                                     disabled={
@@ -599,10 +602,10 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         !displayNameValue.trim() ||
                                                         displayNameValue === (user?.firstName || "")
                                                     }
-                                                    className="focus-ring flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-40"
+                                                    className="flex"
                                                 >
                                                     <ActionFeedback state={profileForm.formState.isSubmitting ? "pending" : "idle"} states={{ idle: { label: "Save" }, pending: { label: "Saving…", icon: <Loader2 className="size-3 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
-                                                </button>
+                                                </Button>
                                             </div>
                                         </form>
                                         <div className="w-full max-w-auth">
@@ -617,16 +620,16 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
-                                        <p className="text-[0.8125rem] text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
+                                        <p className="text-xs text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
                                     </div>
-                                    <button type="button"
+                                    <Button type="button"
                                         onClick={handleExportData}
                                         disabled={isExportingData}
                                         aria-busy={isExportingData}
-                                        className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-input bg-card px-5 py-2 text-sm font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
+                                        variant="secondary" size="sm" className="shrink-0"
                                     >
                                         <ActionFeedback state={isExportingData ? "pending" : "idle"} states={{ idle: { label: "Export data" }, pending: { label: "Preparing export…" } }} />
-                                    </button>
+                                    </Button>
                                 </div>
                             </section>
 
@@ -634,17 +637,17 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Delete account</h3>
-                                        <p className="text-[0.8125rem] text-muted-foreground">Permanently removes your account, saved reports, and usage data. This can&apos;t be undone.</p>
+                                        <p className="text-xs text-muted-foreground">Permanently removes your account, saved reports, and usage data. This can&apos;t be undone.</p>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <button type="button"
+                                        <Button type="button"
                                             onClick={() => setIsDeleteConfirmOpen(true)}
                                             disabled={isDeletingAccount}
                                             aria-busy={isDeletingAccount}
-                                            className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 disabled:opacity-50"
+                                            variant="destructive" size="sm" className="shrink-0"
                                         >
                                             <ActionFeedback state={isDeletingAccount ? "pending" : "idle"} states={{ idle: { label: "Delete" }, pending: { label: "Deleting…" } }} />
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             </section>
@@ -659,7 +662,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     Save a resume to compare with jobs in the Chrome extension.
                                 </p>
                             </div>
-                            <div className="rounded-xl bg-brand/5 px-5 py-4 text-sm leading-6 text-muted-foreground">
+                            <div className="rounded-xl bg-brand/5 px-5 py-4 text-sm text-muted-foreground">
                                 The extension reads a supported job page when you choose to save the job. It compares the description with the resume you save here.
                             </div>
                             <DefaultResumeSection />
@@ -697,29 +700,28 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     </div>
 
                                     <div className="flex flex-wrap gap-2">
-                                        <button type="button"
+                                        <Button type="button"
                                             onClick={handleRestoreAccess}
                                             disabled={isRestoreLoading}
                                             aria-busy={isRestoreLoading}
-                                            className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full border border-input px-4 py-2 text-sm font-medium transition-colors hover:bg-paper-muted disabled:opacity-50"
+                                            variant="secondary"
                                         >
                                             <ActionFeedback state={isRestoreLoading ? "pending" : "idle"} states={{ idle: { label: "Restore access", icon: <RefreshCw className="size-4" /> }, pending: { label: "Checking access…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
-                                        </button>
+                                        </Button>
                                         {(user?.membership === "monthly" || user?.membership === "lifetime") && (
-                                            <button type="button"
+                                            <Button type="button"
                                                 onClick={handleOpenBillingPortal}
                                                 disabled={isPortalLoading}
                                                 aria-busy={isPortalLoading}
-                                                className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
                                             >
                                                 <ActionFeedback state={isPortalLoading ? "pending" : "idle"} states={{ idle: { label: "Manage legacy plan", icon: <ExternalLink className="size-4" /> }, pending: { label: "Opening billing…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
-                                            </button>
+                                            </Button>
                                         )}
                                     </div>
                                 </div>
 
                                 {showRestoreNudge && (
-                                    <div className="rounded-xl border border-warning/30 bg-warning/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
+                                    <div className="rounded-xl border border-warning/30 bg-warning/5 px-4 py-3 text-sm text-muted-foreground">
                                         We couldn&apos;t find billing records for this email. If you used a different email at checkout,
                                         sign in with that email and choose Restore access.
                                     </div>
@@ -728,15 +730,15 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             {activePass || hasPaidMembership ? (
                                 <section className="flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
-                                    <p className="max-w-md text-sm leading-6 text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 30 days.</p>
-                                    <button type="button"
+                                    <p className="max-w-md text-sm text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 30 days.</p>
+                                    <Button type="button"
                                         onClick={() => handleCheckout("30d")}
                                         disabled={isCheckoutLoading === "30d"}
                                         aria-busy={isCheckoutLoading === "30d"}
-                                        className="focus-ring inline-flex min-h-11 shrink-0 items-center rounded-full border border-input bg-card px-5 py-2 text-sm font-medium text-foreground hover:bg-paper-muted disabled:opacity-50"
+                                        variant="secondary" size="sm" className="shrink-0"
                                     >
                                         <ActionFeedback state={isCheckoutLoading === "30d" ? "pending" : "idle"} states={{ idle: { label: "Get 5 more reports · $29" }, pending: { label: "Opening checkout…" } }} />
-                                    </button>
+                                    </Button>
                                 </section>
                             ) : (
                                 <section>
@@ -750,7 +752,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </section>
                             )}
 
-                            <section className="rounded-xl bg-muted p-5 text-sm leading-6 text-muted-foreground">
+                            <section className="rounded-xl bg-muted p-5 text-sm text-muted-foreground">
                                 Need help with a payment or invoice? Email{" "}
                                 <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] riyp-link-quiet">
                                     support@recruiterinyourpocket.com
@@ -765,12 +767,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
                                         </div>
                                     ) : passesError ? (
-                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
+                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm text-destructive">
                                             <p className="font-medium">Purchase history could not load.</p>
                                             <p className="mt-1 text-destructive/80">We couldn&apos;t retrieve your purchases. Try again to see the list.</p>
-                                            <button type="button" onClick={() => void refetchPasses()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
+                                            <Button variant="destructive" size="sm" className="mt-4" type="button" onClick={() => void refetchPasses()}>
                                                 Try again
-                                            </button>
+                                            </Button>
                                         </div>
                                     ) : passes.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
@@ -851,12 +853,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
                                         </div>
                                     ) : receiptsError ? (
-                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm leading-6 text-destructive">
+                                        <div role="alert" className="rounded-xl bg-error-surface p-6 text-sm text-destructive">
                                             <p className="font-medium">Receipts could not load.</p>
                                             <p className="mt-1 [overflow-wrap:anywhere] text-destructive/80">Try again. If you need an invoice now, email support@recruiterinyourpocket.com.</p>
-                                            <button type="button" onClick={() => void refetchReceipts()} className="mt-4 focus-ring inline-flex min-h-11 items-center rounded-full border border-destructive/50 bg-card px-5 py-2 font-medium">
+                                            <Button variant="destructive" size="sm" className="mt-4" type="button" onClick={() => void refetchReceipts()}>
                                                 Try again
-                                            </button>
+                                            </Button>
                                         </div>
                                     ) : receipts.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
@@ -884,24 +886,26 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                     </div>
                                                     <div className="flex max-w-full shrink-0 flex-wrap items-center gap-2">
                                                         {receipt.hosted_invoice_url && (
-                                                            <a
-                                                                href={receipt.hosted_invoice_url}
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                className="focus-ring inline-flex min-h-11 items-center rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted"
-                                                            >
-                                                                Invoice
-                                                            </a>
+                                                            <Button asChild variant="secondary" size="sm">
+                                                                <a
+                                                                    href={receipt.hosted_invoice_url}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                >
+                                                                    Invoice
+                                                                </a>
+                                                            </Button>
                                                         )}
                                                         {receipt.invoice_pdf && (
-                                                            <a
-                                                                href={receipt.invoice_pdf}
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                className="focus-ring inline-flex min-h-11 items-center rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted"
-                                                            >
-                                                                PDF
-                                                            </a>
+                                                            <Button asChild variant="secondary" size="sm">
+                                                                <a
+                                                                    href={receipt.invoice_pdf}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                >
+                                                                    PDF
+                                                                </a>
+                                                            </Button>
                                                         )}
                                                     </div>
                                                 </div>
@@ -924,7 +928,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <Dialog open={Boolean(showEmailInput)} onOpenChange={(open) => { if (!open) setShowEmailInput(null); }}>
                     <DialogContent className="max-w-auth gap-y-4 p-6 sm:p-8">
                         <DialogHeader className="text-center">
-                            <DialogTitle className="font-sans text-2xl font-normal leading-8 tracking-tight">Where should we send your receipt?</DialogTitle>
+                            <DialogTitle className="font-sans text-heading">Where should we send your receipt?</DialogTitle>
                             <DialogDescription>We will link access to this email.</DialogDescription>
                         </DialogHeader>
                             <form onSubmit={handleGuestSubmit} className="space-y-3">
@@ -940,14 +944,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     className="min-h-12 w-full rounded-md border border-input bg-card px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
                                     autoFocus
                                 />
-                                <button
+                                <Button
                                     type="submit"
                                     disabled={!guestEmailValue.trim() || !!isCheckoutLoading}
                                     aria-busy={!!isCheckoutLoading}
-                                    className="focus-ring flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
+                                    className="w-full flex"
                                 >
                                     <ActionFeedback state={isCheckoutLoading ? "pending" : "idle"} states={{ idle: { label: "Continue to Checkout" }, pending: { label: "Opening checkout…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
-                                </button>
+                                </Button>
                             </form>
                             <button type="button" onClick={() => setShowEmailInput(null)} className="focus-ring min-h-11 w-full rounded-full text-sm text-muted-foreground hover:text-foreground">
                                 Cancel

@@ -75,10 +75,10 @@ export function LegalNav({ className }: LegalNavProps) {
                             href={tab.href}
                             aria-current={isActive ? "page" : undefined}
                             className={cn(
-                                "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-fast ease-snap motion-reduce:transition-none",
+                                "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium",
                                 isActive
                                     ? "border-brand/20 bg-brand-tint text-brand"
-                                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    : "border-transparent text-muted-foreground riyp-surface-link hover:text-foreground"
                             )}
                         >
                             {tab.name}

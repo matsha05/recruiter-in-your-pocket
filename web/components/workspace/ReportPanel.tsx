@@ -172,7 +172,7 @@ export default function ReportPanel({
 
                     {/* Copy - Question Headline */}
                     <div className="gap-y-3 max-w-md">
-                        <h2 className="font-display text-2xl font-bold leading-tight text-foreground">
+                        <h2 className="font-display text-heading text-foreground">
                             Your report will show up here.
                         </h2>
                         <p className="text-muted-foreground">
@@ -205,7 +205,7 @@ export default function ReportPanel({
                                 <div
                                     role="status"
                                     aria-live="polite"
-                                    className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm leading-6 text-muted-foreground"
+                                    className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm text-muted-foreground"
                                 >
                                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand motion-safe:animate-pulse" aria-hidden="true" />
                                     <p><span className="font-medium text-foreground">Still writing the rest.</span> Start reading. The other sections fill in as they finish.</p>
@@ -243,10 +243,10 @@ export default function ReportPanel({
 
                             <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-[0.8125rem] font-semibold text-muted-foreground">
+                                    <span className="text-xs font-semibold text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume report"}
                                     </span>
-                                    {shareEnabled && shareMode && <span className="text-[0.8125rem] font-semibold text-premium">Share view</span>}
+                                    {shareEnabled && shareMode && <span className="text-xs font-semibold text-premium">Share view</span>}
                                 </div>
                                 {/* Below 360px the actions wrap under the label; pull the ghost button's padding back to the column edge. */}
                                 <div className={`flex shrink-0 items-center gap-1${isSample ? "" : " max-[359px]:-ml-3"}`}>
@@ -254,11 +254,11 @@ export default function ReportPanel({
                                         <Button
                                             data-testid="sample-start-report"
                                             type="button"
-                                            variant="brand"
+                                            variant="primary"
                                             size="sm"
                                             onClick={onNewReport}
-                                            className="min-h-11 shrink-0 px-2 sm:px-4"
-                                        >
+                                            className="shrink-0 sm:px-4"
+                                       >
                                             Get your free report <ArrowRight className="ml-1 size-4" weight="bold" />
                                         </Button>
                                     )}
@@ -266,14 +266,14 @@ export default function ReportPanel({
                                         <Button
                                             data-testid="workspace-keep-report"
                                             type="button"
-                                            variant="ghost"
+                                            variant="quiet"
                                             size="sm"
                                             onClick={onKeepReport}
                                             disabled={isSavingReport}
                                             aria-busy={isSavingReport || undefined}
                                             aria-describedby={reportSaveError ? "report-save-error" : undefined}
-                                            className="min-h-11 shrink-0 px-3 text-foreground"
-                                        >
+                                            className="shrink-0 text-foreground"
+                                       >
                                             <BookmarkSimple className="size-4 text-brand" weight="duotone" />
                                             {isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save report"}
                                         </Button>
@@ -309,7 +309,7 @@ export default function ReportPanel({
                             </div>
 
                             {reportSaveError && !isSample && !shareMode && (
-                                <p id="report-save-error" role="alert" className="mt-3 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm leading-6 text-foreground">
+                                <p id="report-save-error" role="alert" className="mt-3 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm text-foreground">
                                     {reportSaveError}
                                 </p>
                             )}

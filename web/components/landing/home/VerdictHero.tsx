@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, LockSimple } from "@phosphor-icons/react/dist/ssr";
+import { Button } from "@/components/ui/button";
 import styles from "./VerdictHero.module.css";
 
 /**
@@ -16,12 +17,16 @@ export function VerdictHero() {
                         See what a recruiter sees on your resume, and the one thing to fix first.
                     </p>
                     <div className={styles.actions}>
-                        <Link href="/workspace" className={styles.primary} data-testid="landing-primary-cta" data-analytics-cta="hero_report">
-                            Read mine <ArrowRight weight="bold" aria-hidden="true" />
-                        </Link>
-                        <Link href="/sample-report" className={styles.secondary} data-analytics-cta="hero_sample">
-                            See an example
-                        </Link>
+                        <Button asChild size="lg">
+                            <Link href="/workspace" data-testid="landing-primary-cta" data-analytics-cta="hero_report">
+                                Read mine <ArrowRight weight="bold" aria-hidden="true" />
+                            </Link>
+                        </Button>
+                        <Button asChild variant="quiet">
+                            <Link href="/sample-report" data-analytics-cta="hero_sample">
+                                See an example
+                            </Link>
+                        </Button>
                     </div>
                     <p className={styles.fine}>Your first report is free. No account or card.</p>
                 </div>

@@ -132,14 +132,14 @@ export default function PurchaseRestoreClient() {
       >
         <section className="mx-auto max-w-form" aria-labelledby="purchase-restore-title">
           <header className="border-b border-border pb-8">
-              <p className="text-[0.8125rem] font-semibold text-[hsl(var(--pen))]">Billing help</p>
+              <p className="text-xs font-semibold text-[hsl(var(--pen))]">Billing help</p>
               <h1
                 id="purchase-restore-title"
-                className="mt-3 max-w-xl text-balance font-display text-3xl font-bold tracking-tight sm:text-workspace-title"
+                className="mt-3 max-w-xl text-balance font-display text-title"
               >
                 {header}
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">
+              <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground">
                 Use the email you paid with. We&apos;ll check with Stripe and bring back any pass that&apos;s missing. You can also open your receipts or Stripe&apos;s billing portal here.
               </p>
           </header>
@@ -147,14 +147,14 @@ export default function PurchaseRestoreClient() {
           {(billingUpdated || restoreMessage) ? (
             <div
               role={restoreError ? "alert" : "status"}
-              className={`mt-7 rounded-xl border px-5 py-4 text-sm leading-6 ${restoreError ? "border-destructive bg-error-surface text-destructive" : "border-brand/20 bg-brand/5 text-foreground"}`}
+              className={`mt-7 rounded-xl border px-5 py-4 text-sm ${restoreError ? "border-destructive bg-error-surface text-destructive" : "border-brand/20 bg-brand/5 text-foreground"}`}
             >
               {restoreMessage || "Billing settings updated."}
             </div>
           ) : null}
 
           <div className="grid gap-5 py-8">
-            <div className="text-sm leading-6 text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
               {authLoading ? (
                 <p role="status">Checking which account you’re signed in to.</p>
               ) : signedIn ? (
@@ -168,33 +168,33 @@ export default function PurchaseRestoreClient() {
               <p className="text-sm font-medium text-foreground">Choose what you need</p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {authLoading ? (
-                  <Button type="button" variant="brand" size="lg" disabled isLoading>
+                  <Button type="button" variant="primary" disabled isLoading>
                     Checking account…
                   </Button>
                 ) : !signedIn ? (
                   <>
-                    <Button asChild variant="brand" size="lg">
+                    <Button asChild variant="primary">
                       <Link href={signInHref}>Sign in <ArrowRight className="size-4" weight="bold" /></Link>
                     </Button>
-                    <Button asChild variant="outline" size="lg">
+                    <Button asChild variant="secondary">
                       <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to workspace"}</Link>
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Button type="button" variant="brand" size="lg" onClick={handleRestore} isLoading={isRestoring} loadingLabel="Checking access…">
+                    <Button type="button" variant="primary" onClick={handleRestore} isLoading={isRestoring} loadingLabel="Checking access…">
                       <ArrowClockwise className="size-4" weight="bold" />
                       Restore access
                     </Button>
-                    <Button type="button" variant="outline" size="lg" onClick={handleOpenPortal} isLoading={isPortalLoading} loadingLabel="Opening billing…">
+                    <Button type="button" variant="secondary" onClick={handleOpenPortal} isLoading={isPortalLoading} loadingLabel="Opening billing…">
                       <ArrowSquareOut className="size-4" weight="bold" />
                       Billing portal
                     </Button>
-                    <Button type="button" variant="outline" size="lg" onClick={handleLoadReceipts} isLoading={isReceiptsLoading} loadingLabel="Loading receipts…">
+                    <Button type="button" variant="secondary" onClick={handleLoadReceipts} isLoading={isReceiptsLoading} loadingLabel="Loading receipts…">
                       <Receipt className="size-4" weight="duotone" />
                       View receipts
                     </Button>
-                    <Button asChild variant="ghost" size="lg">
+                    <Button asChild variant="quiet">
                       <Link href={workspaceHref}>{returnTo ? "Back to my comparison" : "Back to workspace"}</Link>
                     </Button>
                   </>
@@ -204,10 +204,10 @@ export default function PurchaseRestoreClient() {
           </div>
 
           {receiptsState === "error" ? (
-            <div role="alert" className="rounded-xl border border-destructive bg-error-surface px-5 py-4 text-sm leading-6 text-destructive">
+            <div role="alert" className="rounded-xl border border-destructive bg-error-surface px-5 py-4 text-sm text-destructive">
               <p className="font-semibold">Receipts could not load.</p>
               <p className="mt-1">{receiptsMessage}</p>
-              <Button type="button" variant="outline" size="sm" className="mt-4" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
+              <Button type="button" variant="secondary" size="sm" className="mt-4" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
                 Try again
               </Button>
             </div>
@@ -216,11 +216,11 @@ export default function PurchaseRestoreClient() {
               <div className="grid gap-6">
                 <div>
                   <p className="text-sm font-medium text-foreground">Receipts</p>
-                  <h2 id="receipt-list-title" className="mt-3 font-sans text-report-title">Your payment record</h2>
+                  <h2 id="receipt-list-title" className="mt-3 font-sans text-heading">Your payment record</h2>
                 </div>
                 <div className="divide-y divide-line border-y border-line">
                   {receipts.length === 0 ? (
-                    <p role="status" className="py-5 text-sm leading-6 text-muted-foreground">{receiptsMessage}</p>
+                    <p role="status" className="py-5 text-sm text-muted-foreground">{receiptsMessage}</p>
                   ) : receipts.map((item) => (
                     <article key={item.id} className="grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
                       <div>
@@ -231,12 +231,12 @@ export default function PurchaseRestoreClient() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {item.hosted_invoice_url ? (
-                          <Button asChild variant="outline" size="sm">
+                          <Button asChild variant="secondary" size="sm">
                             <a href={item.hosted_invoice_url} target="_blank" rel="noreferrer">View receipt <ArrowSquareOut className="size-4" /></a>
                           </Button>
                         ) : null}
                         {item.invoice_pdf ? (
-                          <Button asChild variant="ghost" size="sm">
+                          <Button asChild variant="quiet" size="sm">
                             <a href={item.invoice_pdf} target="_blank" rel="noreferrer">PDF</a>
                           </Button>
                         ) : null}

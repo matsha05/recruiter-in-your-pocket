@@ -17,7 +17,7 @@ export function EvidenceHeader({ title, note, className }: EvidenceHeaderProps) 
         <DiagramHeader className={cn("items-start", className)}>
             <div>
                 <h3 className="riyp-evidence-title max-w-[34ch] text-balance text-foreground">{title}</h3>
-                {note ? <p className="mt-2 max-w-reading text-data text-muted-foreground">{note}</p> : null}
+                {note ? <p className="mt-2 max-w-reading text-sm text-muted-foreground">{note}</p> : null}
             </div>
         </DiagramHeader>
     );
@@ -48,13 +48,13 @@ export function ProcessRail({ steps, footer }: { steps: ProcessStep[]; footer?: 
                             <span className={cn("absolute -left-[5px] top-6 size-[9px] border-2 bg-paper md:-top-[5px] md:left-4 md:first:left-0", toneClasses[tone])} aria-hidden="true" />
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
                             <div className="mt-2 font-display text-xl font-bold tracking-tight text-foreground">{step.title}</div>
-                            <p className="mt-2 text-data text-muted-foreground">{step.detail}</p>
+                            <p className="mt-2 text-sm text-muted-foreground">{step.detail}</p>
                             {index < steps.length - 1 ? <ArrowRight className="absolute -right-2 -top-[9px] hidden size-4 bg-paper text-muted-foreground md:block" aria-hidden="true" /> : null}
                         </li>
                     );
                 })}
             </ol>
-            {footer ? <div className="mt-8 border-t border-line pt-5 text-sm leading-6 text-muted-foreground">{footer}</div> : null}
+            {footer ? <div className="mt-8 border-t border-line pt-5 text-sm text-muted-foreground">{footer}</div> : null}
         </div>
     );
 }
@@ -82,10 +82,10 @@ export function ComparisonField({ left, right, verdict }: { left: ComparisonSide
                     return (
                         <section key={side.eyebrow} className={cn("min-h-full px-5 py-7 md:px-7 md:py-9", index === 0 && "border-b border-line md:border-b-0 md:border-r", comparisonTone[tone])}>
                             <div className={cn("riyp-evidence-label", tone === "insight" ? "text-brand" : "text-muted-foreground")}>{side.eyebrow}</div>
-                            <h4 className="mt-3 font-display text-report-title tracking-tight text-foreground">{side.title}</h4>
+                            <h4 className="mt-3 font-display text-heading text-foreground">{side.title}</h4>
                             <ul className="mt-6 divide-y divide-line">
                                 {side.items.map((item) => (
-                                    <li key={item} className="flex gap-3 py-3 text-data text-muted-foreground">
+                                    <li key={item} className="flex gap-3 py-3 text-sm text-muted-foreground">
                                         <span className={cn("mt-2.5 h-0.5 w-4 shrink-0", tone === "quiet" ? "bg-muted-foreground/50" : "bg-brand")} aria-hidden="true" />
                                         {item}
                                     </li>
@@ -95,7 +95,7 @@ export function ComparisonField({ left, right, verdict }: { left: ComparisonSide
                     );
                 })}
             </div>
-            {verdict ? <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">{verdict}</div> : null}
+            {verdict ? <div className="border-t border-line bg-proof px-5 py-4 text-sm text-muted-foreground md:px-7">{verdict}</div> : null}
         </div>
     );
 }
@@ -120,14 +120,14 @@ export function FrameworkStrip({ steps, connector = "+", example }: { steps: Fra
             <div className="grid gap-4 sm:grid-cols-[repeat(var(--framework-count),minmax(0,1fr))]" style={{ "--framework-count": steps.length } as React.CSSProperties}>
                 {steps.map((step, index) => (
                     <div key={step.symbol} className="relative border-t border-line pt-4">
-                        <div className={cn("font-display text-section-title", step.focus ? "text-brand" : "text-foreground")}>{step.symbol}</div>
+                        <div className={cn("font-display text-headline", step.focus ? "text-brand" : "text-foreground")}>{step.symbol}</div>
                         <div className={cn("riyp-evidence-label mt-4", step.focus ? "text-brand" : "text-muted-foreground")}>{step.label}</div>
-                        <p className="mt-2 text-data text-muted-foreground">{step.detail}</p>
-                        {index < steps.length - 1 ? <span className="absolute -right-3 top-4 hidden font-display text-2xl text-line sm:block" aria-hidden="true">{connector}</span> : null}
+                        <p className="mt-2 text-sm text-muted-foreground">{step.detail}</p>
+                        {index < steps.length - 1 ? <span className="absolute -right-3 top-4 hidden font-display text-heading text-line sm:block" aria-hidden="true">{connector}</span> : null}
                     </div>
                 ))}
             </div>
-            {example ? <div className="mt-8 rounded-xl border border-line bg-proof px-5 py-4 text-data text-muted-foreground">{example}</div> : null}
+            {example ? <div className="mt-8 rounded-xl border border-line bg-proof px-5 py-4 text-sm text-muted-foreground">{example}</div> : null}
         </div>
     );
 }
@@ -146,8 +146,8 @@ export function EvidenceTable({ columns, rows }: { columns: string[]; rows: Evid
                 <tbody className="divide-y divide-line">
                     {rows.map((row) => (
                         <tr key={row.label}>
-                            <th scope="row" className="py-4 pr-5 text-data font-medium text-foreground">{row.label}</th>
-                            {row.values.map((value, index) => <td key={`${row.label}-${index}`} data-label={columns[index + 1]} className={cn("py-4 pr-5 text-data tabular-nums", row.emphasis === index ? "font-semibold text-brand" : "text-muted-foreground")}>{value}</td>)}
+                            <th scope="row" className="py-4 pr-5 text-sm font-medium text-foreground">{row.label}</th>
+                            {row.values.map((value, index) => <td key={`${row.label}-${index}`} data-label={columns[index + 1]} className={cn("py-4 pr-5 text-sm tabular-nums", row.emphasis === index ? "font-semibold text-brand" : "text-muted-foreground")}>{value}</td>)}
                         </tr>
                     ))}
                 </tbody>

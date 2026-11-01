@@ -12,12 +12,12 @@ export function RewriteEnhancementNote({ note, className, label = "Before you us
     },
     createElement(
       "p",
-      { className: "text-[11px] font-semibold uppercase riyp-track-015 text-brand" },
+      { className: "text-xs font-semibold uppercase riyp-track-015 text-brand" },
       label,
     ),
     createElement(
       "p",
-      { className: "mt-2 text-sm leading-6 text-foreground/75" },
+      { className: "mt-2 text-sm text-foreground/75" },
       normalized,
     ),
   );

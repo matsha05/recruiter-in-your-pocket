@@ -161,7 +161,7 @@ export default function InputPanel({
                         <Info className="mt-0.5 size-5 shrink-0 text-foreground" weight="duotone" aria-hidden="true" />
                         <div>
                             <p className="font-medium text-foreground">New reports are paused for now.</p>
-                            <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                            <p className="mt-1 text-sm text-muted-foreground">
                                 We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.{" "}
                                 <Link href="/status" className="riyp-link font-medium text-foreground">Check status</Link>
                             </p>
@@ -184,7 +184,7 @@ export default function InputPanel({
                                 <div className={styles.pasteHeader}>
                                     <div>
                                         <p className="text-base font-semibold text-foreground">Paste your resume</p>
-                                        <p className="mt-1 text-sm leading-5 text-muted-foreground">Formatting can be rough. We only need the words.</p>
+                                        <p className="mt-1 text-sm text-muted-foreground">Formatting can be rough. We only need the words.</p>
                                     </div>
                                     <button
                                         type="button"
@@ -206,7 +206,7 @@ export default function InputPanel({
                                     className={cn(styles.field, styles.resumeField)}
                                 />
                                 {isShortResume && (
-                                    <div className="mt-3 flex items-start gap-2 border-l-2 border-warning px-3 py-1 text-xs leading-5 text-muted-foreground">
+                                    <div className="mt-3 flex items-start gap-2 border-l-2 border-warning px-3 py-1 text-xs text-muted-foreground">
                                         <Info className="mt-0.5 size-4 shrink-0 text-warning" />
                                         This is a short resume ({charCount} characters), so the review may have less to work with.
                                     </div>
@@ -264,8 +264,7 @@ export default function InputPanel({
 
                         <Button
                             data-testid="workspace-run-report"
-                            variant="brand"
-                            size="lg"
+                            variant="primary"
                             className={styles.runAction}
                             onClick={onRun}
                             disabled={!hasContent || isReadingFile || generationPaused}

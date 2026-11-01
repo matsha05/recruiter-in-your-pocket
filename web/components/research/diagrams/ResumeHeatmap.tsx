@@ -51,7 +51,7 @@ export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
                                     <tr key={study.source} className="border-b border-line align-top">
                                         <th scope="row" className="w-[12rem] py-5 pr-5">
                                             <span className="block font-semibold text-brand">{study.source}</span>
-                                            <span className="mt-1 block text-data font-normal text-muted-foreground">{study.evidence}</span>
+                                            <span className="mt-1 block text-sm font-normal text-muted-foreground">{study.evidence}</span>
                                         </th>
                                         <td className="py-5 pr-6 text-foreground/80">{study.observed}</td>
                                         <td className="py-5 text-muted-foreground">{study.boundary}</td>
@@ -68,17 +68,17 @@ export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
                                     <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                                     <div>
                                         <h3 className="text-sm font-semibold text-brand">{study.source}</h3>
-                                        <p className="mt-1 text-data text-muted-foreground">{study.evidence}</p>
+                                        <p className="mt-1 text-sm text-muted-foreground">{study.evidence}</p>
                                     </div>
                                 </div>
                                 <dl className="mt-4 space-y-4 sm:pl-8">
                                     <div>
                                         <dt className="riyp-evidence-label text-muted-foreground">Observed</dt>
-                                        <dd className="mt-1 text-data text-foreground/80">{study.observed}</dd>
+                                        <dd className="mt-1 text-sm text-foreground/80">{study.observed}</dd>
                                     </div>
                                     <div>
                                         <dt className="riyp-evidence-label text-muted-foreground">Limit</dt>
-                                        <dd className="mt-1 text-data text-muted-foreground">{study.boundary}</dd>
+                                        <dd className="mt-1 text-sm text-muted-foreground">{study.boundary}</dd>
                                     </div>
                                 </dl>
                             </li>

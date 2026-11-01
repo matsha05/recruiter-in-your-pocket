@@ -65,7 +65,7 @@ export default function DashboardPage() {
     if (!user) {
         return (
             <StatePage title="Sign in to see your progress." body="Your saved reports and how they've moved live in your account.">
-                <Button asChild variant="brand" size="lg"><Link href="/auth?from=dashboard&next=/dashboard">Sign in</Link></Button>
+                <Button asChild variant="primary"><Link href="/auth?from=dashboard&next=/dashboard">Sign in</Link></Button>
                 <Link href="/workspace" className={styles.textLink}>Get your free report</Link>
             </StatePage>
         );
@@ -74,7 +74,7 @@ export default function DashboardPage() {
     if (error || !analytics) {
         return (
             <StatePage title="We couldn't load your progress." body="Your reports are safe. This is on our end; try again in a moment.">
-                <Button type="button" variant="brand" size="lg" onClick={() => void fetchAnalytics()}>Try again</Button>
+                <Button type="button" variant="primary" onClick={() => void fetchAnalytics()}>Try again</Button>
             </StatePage>
         );
     }
@@ -82,7 +82,7 @@ export default function DashboardPage() {
     if (analytics.totalReviews === 0) {
         return (
             <StatePage title="Nothing to compare yet." body="Run a report and save it. Your next version will have something honest to measure against.">
-                <Button asChild variant="brand" size="lg"><Link href="/workspace">New report <ArrowRight className="ml-1 size-4" weight="bold" /></Link></Button>
+                <Button asChild variant="primary"><Link href="/workspace">New report <ArrowRight className="ml-1 size-4" weight="bold" /></Link></Button>
             </StatePage>
         );
     }

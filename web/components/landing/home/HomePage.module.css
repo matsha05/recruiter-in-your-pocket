@@ -31,33 +31,29 @@
     justify-content: space-between;
     gap: 1rem;
     padding-top: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .portrait > p span { color: hsl(var(--muted-foreground)); font-weight: 400; }
 
 .founderCopy h2 {
     max-width: 20ch;
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.4vw, 2.75rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.04em;
-    line-height: 1.08;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
 }
 
 .introduction {
     max-width: 34rem;
     margin-top: 1.5rem;
     color: hsl(var(--muted-foreground));
-    font-size: 1.125rem;
-    line-height: 1.65;
+    font: var(--type-prose);
 }
 
 .historyLabel {
     margin-top: 2rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
+    font: var(--type-small);
 }
 
 /* Company names as quiet wordmarks in our own type, not borrowed logos. */
@@ -68,11 +64,8 @@
     gap: 0.5rem 2rem;
     margin-top: 0.75rem;
     color: hsl(var(--text-strong) / 0.55);
-    font-family: var(--font-display);
-    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.04em;
-    line-height: 1.2;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
 }
 
 .disclosure {
@@ -81,8 +74,7 @@
     border-left: 2px solid hsl(var(--line));
     padding-left: 0.875rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font: var(--type-small);
 }
 
 .founderLinks {
@@ -97,13 +89,13 @@
     min-height: 2.75rem;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
     text-decoration: underline;
     text-decoration-color: hsl(var(--link-line));
     text-decoration-thickness: var(--link-thickness);
     text-underline-offset: var(--link-offset);
     transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .founderLinks a:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
@@ -114,53 +106,26 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    background: hsl(var(--surface-inverted));
-    color: hsl(var(--background));
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
     padding: 6rem 1rem;
     text-align: center;
 }
 
 .close h2 {
     max-width: 16ch;
-    color: hsl(var(--background));
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: var(--weight-display);
-    letter-spacing: -0.045em;
-    line-height: 1;
+    color: hsl(var(--foreground));
     text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
 }
-
-.closeAction {
-    display: inline-flex;
-    min-height: 3.25rem;
-    align-items: center;
-    gap: 0.75rem;
-    border-radius: 999px;
-    background: hsl(var(--background));
-    color: hsl(var(--text-strong));
-    font-size: 1rem;
-    font-weight: var(--weight-control);
-    padding: 0 1.75rem;
-    transition: background-color var(--duration-fast) var(--ease);
-}
-
-.closeAction:hover { background: hsl(var(--card)); }
-.closeAction svg { transition: transform var(--duration-fast) var(--ease); }
-.closeAction:hover svg { transform: translateX(3px); }
 
 .page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
-.close a:focus-visible { outline-color: hsl(var(--background)); }
 
 @media (max-width: 800px) {
     .founder { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 4rem 1rem; }
     .portrait { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: center; gap: 1rem; }
     .portrait img { aspect-ratio: 1; }
-    .portrait > p { flex-direction: column; gap: 0.125rem; padding: 0; font-size: 1rem; }
-    .introduction { font-size: 1rem; }
+    .portrait > p { flex-direction: column; gap: 0.125rem; padding: 0; }
     .close { padding: 4.5rem 1rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .closeAction, .closeAction svg { transition: none; }
 }
