@@ -162,8 +162,14 @@ function humanKind(kind: string | undefined) {
 function criticalMissLabel(metrics: ReportIntegrityMetrics) {
     const { critical_miss: miss } = metrics;
     const base = miss.category === "bullet_edit" ? "line edit" : miss.category === "structural" ? `structural (${humanKind(miss.kind)})` : "none";
+    const optional = miss.nothing_critical ? ", nothing critical" : "";
     const flagged = miss.structural_flagged.length > 0 ? `; flagged: ${miss.structural_flagged.map(humanKind).join(", ")}` : "";
-    return `${base}${flagged}${miss.outranked ? " (outranked)" : ""}`;
+    return `${base}${optional}${flagged}${miss.outranked ? " (outranked)" : ""}`;
+}
+
+/** Validation removed the model's first fix, so another fix became the Critical Miss. */
+function criticalMissDropped(result: FixtureResult) {
+    return (result.normalization_changes || []).some((change) => /^top_fixes\[0\]\.dropped_/.test(change));
 }
 
 export function integritySummary(run: EvalRunOutput) {
@@ -184,9 +190,20 @@ export function integritySummary(run: EvalRunOutput) {
         slots: { model: sum((metrics) => metrics.slot_mapping.model.length), shown: sum((metrics) => metrics.slot_mapping.shown.length) },
         lineEdits: count((metrics) => metrics.critical_miss.category === "bullet_edit"),
         structural: count((metrics) => metrics.critical_miss.category === "structural"),
+        structuralKinds: [...new Set(results.map((metrics) => metrics.critical_miss.kind).filter((kind): kind is NonNullable<typeof kind> => Boolean(kind)))]
+            .map((kind) => `${humanKind(kind)} ${count((metrics) => metrics.critical_miss.kind === kind)}`),
+        nothingCritical: count((metrics) => metrics.critical_miss.nothing_critical),
+        criticalMissDropped: measured(run).filter(criticalMissDropped).length,
         outranked: count((metrics) => metrics.critical_miss.outranked),
         mismatches: count((metrics) => metrics.verdict_critical_miss.agreement === "mismatch"),
         noConcern: count((metrics) => metrics.verdict_critical_miss.agreement === "no_concern"),
+        headings: {
+            total: sum((metrics) => metrics.fix_headings?.count ?? 0),
+            maxWords: results.reduce((max, metrics) => Math.max(max, metrics.fix_headings?.max_words ?? 0), 0),
+            over12: sum((metrics) => metrics.fix_headings?.over_12_words ?? 0),
+            withLocation: sum((metrics) => metrics.fix_headings?.with_location ?? 0),
+            withCondition: sum((metrics) => metrics.fix_headings?.with_condition ?? 0),
+        },
     };
 }
 
@@ -206,10 +223,14 @@ function integritySection(run: EvalRunOutput): string[] {
     lines.push(`| Critical Miss line also in Keep | ${reports(summary.criticalMissInKeep.model)} | ${reports(summary.criticalMissInKeep.shown)} |`);
     lines.push(`| Repeated observations | ${summary.repeats.model} | ${summary.repeats.shown} |`);
     lines.push(`| Field-slot mapping issues | ${summary.slots.model} | ${summary.slots.shown} |`);
-    lines.push(`| Critical Miss is a line edit / structural | ${summary.lineEdits} / ${summary.structural} | same |`);
+    lines.push(`| Critical Miss is a line edit / structural | ${summary.lineEdits} / ${summary.structural}${summary.structuralKinds.length > 0 ? ` (${summary.structuralKinds.join(", ")})` : ""} | same |`);
+    lines.push(`| Nothing critical (Critical Miss marked low impact) | ${reports(summary.nothingCritical)} | same |`);
+    lines.push(`| Model's first fix dropped by validation | ${reports(summary.criticalMissDropped)} | same |`);
     lines.push(`| Structural issue flagged, Critical Miss is a line edit | ${reports(summary.outranked)} | same |`);
     lines.push(`| Verdict and Critical Miss disagree | ${reports(summary.mismatches)} | same |`);
     lines.push(`| Verdict raises no concern | ${reports(summary.noConcern)} | same |`);
+    lines.push(`| Fix headings over 12 words | ${summary.headings.over12} of ${summary.headings.total} (longest ${summary.headings.maxWords} words) | same |`);
+    lines.push(`| Fix headings that open with a location / carry a condition | ${summary.headings.withLocation} / ${summary.headings.withCondition} | same |`);
     lines.push("");
     lines.push("| Fixture | Score | Rewrites | Keep/fix | Repeats | Slot issues | Critical Miss | Verdict and Critical Miss |");
     lines.push("|:--------|:------|:---------|:---------|:--------|:------------|:--------------|:--------------------------|");
@@ -427,8 +448,9 @@ export function printSummary(run: EvalRunOutput): void {
         console.log(`  Keep/fix collisions: ${summary.collisions.model} → ${summary.collisions.shown} (Critical Miss in Keep: ${summary.criticalMissInKeep.model} → ${summary.criticalMissInKeep.shown})`);
         console.log(`  Repeated observations: ${summary.repeats.model} → ${summary.repeats.shown}`);
         console.log(`  Field-slot mapping issues: ${summary.slots.model} → ${summary.slots.shown}`);
-        console.log(`  Critical Miss: ${summary.lineEdits} line edits, ${summary.structural} structural; ${summary.outranked} reports flag a structural issue the Critical Miss skips`);
-        console.log(`  Verdict and Critical Miss: ${summary.mismatches} disagree, ${summary.noConcern} Verdicts raise no concern`);
+        console.log(`  Critical Miss: ${summary.lineEdits} line edits, ${summary.structural} structural${summary.structuralKinds.length > 0 ? ` (${summary.structuralKinds.join(", ")})` : ""}; ${summary.outranked} reports flag a structural issue the Critical Miss skips`);
+        console.log(`  Verdict and Critical Miss: ${summary.mismatches} disagree, ${summary.noConcern} Verdicts raise no concern; ${summary.nothingCritical} reports say nothing is critical; validation dropped the model's first fix in ${summary.criticalMissDropped}`);
+        console.log(`  Fix headings: ${summary.headings.over12}/${summary.headings.total} over 12 words (longest ${summary.headings.maxWords}); ${summary.headings.withLocation} open with a location, ${summary.headings.withCondition} carry a condition`);
         const retest = scoreTestRetest(run.results);
         console.log(retest.length > 0
             ? `  Score test-retest: ${retest.map((item) => `${item.fixture_id} ${item.scores.join("/")} (range ${item.range})`).join("; ")}`

@@ -206,6 +206,49 @@ assert.equal(evaluateReportIntegrity({
   top_fixes: [{ ...sales.top_fixes[0], fix: "Explain what you have been doing since your BrightWave role ended in August 2023." }],
 }).critical_miss.category, "structural");
 
+// The Critical Miss kinds a first read turns on, however the model words them.
+const withMiss = (fix: Record<string, unknown>, extra: Record<string, unknown> = {}) => evaluateReportIntegrity({
+  ...sales,
+  ...extra,
+  top_fixes: [{ ...sales.top_fixes[0], ...fix }, ...sales.top_fixes.slice(1)],
+});
+assert.deepEqual(pickMiss(withMiss({ fix: "Say what you've done since Jul 2023.", why: "Your Greenfield role ends in Jul 2023 and nothing later is listed." })),
+  { category: "structural", kind: "employment_gap" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Add a dated line for your current activity.", evidence: { excerpt: "March 2020 - August 2023", section: "Work Experience" } })),
+  { category: "structural", kind: "employment_gap" }, "citing the last date range is a dates Critical Miss");
+assert.deepEqual(pickMiss(withMiss({ fix: "Name the decisions you made as Sales Executive.", why: "Your Sales Executive title sits over bullets that only say you helped or supported." })),
+  { category: "structural", kind: "level" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Lead with the 30% renewal result.", why: "It sits in your older Glenmark role, below generic BrightWave bullets." })),
+  { category: "structural", kind: "buried_evidence" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Name the proposal sections you drafted.", why: "The BrightWave proposal bullet says you supported the team." })),
+  { category: "bullet_edit" }, "an ordinary line edit stays a line edit");
+
+// "Nothing critical": a low-impact Critical Miss under a Verdict with no concern is one story.
+const polished = evaluateReportIntegrity({ ...marketing, top_fixes: [{ ...marketing.top_fixes[0], impact_level: "low" }] });
+assert.equal(polished.critical_miss.nothing_critical, true);
+assert.equal(polished.verdict_critical_miss.agreement, "agree");
+assert.deepEqual(polished.verdict_critical_miss.notes, []);
+assert.equal(evaluateReportIntegrity(marketing).critical_miss.nothing_critical, false);
+assert.equal(withMiss({ impact_level: "low" }, {
+  first_impression: "Your path moves into sales. The last listed role ends in August 2023, and no later activity is shown.",
+}).verdict_critical_miss.agreement, "mismatch", "a structural concern can't sit over an optional Critical Miss");
+assert.equal(withMiss({ fix: "Say what you've done since August 2023.", why: "Your BrightWave role ends in August 2023." }, {
+  first_impression: "Your path moves into sales. Your summary doesn't say which role you want next.",
+}).verdict_critical_miss.agreement, "mismatch", "a direction concern over a dates Critical Miss is two stories");
+
+// 1.9: fix headings scan as one short instruction.
+const dataScientistHeadings = evaluateReportIntegrity(dataScientist).fix_headings;
+assert.equal(dataScientistHeadings.with_location, 2, "the saved headings open with \"In the ... bullet\"");
+assert.equal(dataScientistHeadings.with_condition, 2);
+assert.ok(dataScientistHeadings.over_12_words >= 1);
+assert.deepEqual(withMiss({ fix: "Name the proposal sections you drafted." }).fix_headings.with_location, 2,
+  "only the two saved headings still open with a location");
+
+function pickMiss(metrics: ReturnType<typeof evaluateReportIntegrity>) {
+  const { category, kind } = metrics.critical_miss;
+  return kind ? { category, kind } : { category };
+}
+
 assert.deepEqual(scoreTestRetest([
   { fixture_id: "a", actual_score: 60, status: "PASS" },
   { fixture_id: "a", actual_score: 58, status: "FAIL" },
