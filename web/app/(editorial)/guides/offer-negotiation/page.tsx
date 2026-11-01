@@ -45,7 +45,7 @@ export default function OfferNegotiationGuidePage() {
                         <GuideEyebrow>Offer negotiation · 12 minute guide</GuideEyebrow>
                         <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                             Most offers have some room.
-                            <span className="mt-2 block text-brand">Here&apos;s how to find it.</span>
+                            <span className="mt-2 block">Here&apos;s how to find it.</span>
                         </h1>
                     </div>
                     <div className="border-l border-border pl-5">
@@ -59,7 +59,7 @@ export default function OfferNegotiationGuidePage() {
                 <div className={`${styles.sheet} my-14 grid px-5 sm:grid-cols-3 sm:px-6`}>
                     {quickStart.map(([title, body], index) => (
                         <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
-                            <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                            <div className={`${styles.label} tabular-nums text-muted-foreground`}>0{index + 1}</div>
                             <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
                             <p className={`${styles.readingCopy} mt-2`}>{body}</p>
                         </div>
@@ -113,7 +113,7 @@ export default function OfferNegotiationGuidePage() {
                             ["Only ask for what you'd sign at", "If they meet your number, you should be ready to say yes. If you still have doubts about the job, sort those out first."],
                         ].map(([title, body], index) => (
                             <div key={title} className="grid gap-2 py-6 md:grid-cols-[2rem_13rem_minmax(0,1fr)] md:gap-5">
-                                <span className={`${styles.label} tabular-nums text-brand`}>{index + 1}</span>
+                                <span className={`${styles.label} tabular-nums text-muted-foreground`}>{index + 1}</span>
                                 <h3 className="font-semibold text-foreground">{title}</h3>
                                 <p className={styles.readingCopy}>{body}</p>
                             </div>
