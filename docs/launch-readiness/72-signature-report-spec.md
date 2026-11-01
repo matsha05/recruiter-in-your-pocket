@@ -67,7 +67,11 @@ On the Critical Miss: "Was this the right thing to fix first?" (for Nothing crit
 - Stores the answer in `report_feedback` (migration `022_report_feedback.sql`): the model's Critical Miss wording, the answer, the optional note, the report id when saved, and the user id when signed in (deleted with the account). It never stores the resume or its quoted line.
 - If storage fails and there is a note, the request returns 503 and the reader sees "Couldn't send that". A bare yes/no is still counted.
 
-**Before deploy:** apply migration 022 in production (needs Matt's OK), and add one line to the privacy page about Critical Miss answers.
+**Before deploy:**
+
+- Apply migration 022 in production. This needs Matt's OK.
+- Add one line to the privacy page about Critical Miss answers.
+- Include a signed-in reader's `report_feedback` rows in the account export (`lib/backend/accountExport.ts`). Deletion already cascades with the account.
 
 ## PDF
 
