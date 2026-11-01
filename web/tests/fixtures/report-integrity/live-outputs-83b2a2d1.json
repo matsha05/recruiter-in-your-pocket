@@ -1,0 +1,2356 @@
+{
+ "description": "Saved production-prompt eval outputs extracted from the gitignored tests/fixtures/results/*_live_run.json files of runs eval_1793463473819, eval_1793469152573, eval_1793469297246 and eval_1793469354166 (synthetic golden fixtures only). 'report' is the output after the current production validator (saved-output replay, no model calls), which is what a customer would see. 'generation_status' is the status recorded when the run happened; two operations outputs failed the validator of that time and pass the current one.",
+ "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+ "runs": [
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_data_scientist_senior_elite_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 92,
+   "report": {
+    "contract_version": "v2",
+    "score": 92,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent roles connect technical leadership to specific model and business results.",
+    "score_comment_long": "The OptiMed and FinEdge roles show team leadership alongside detailed technical work and quantified results. A few important claims would benefit from more context about validation and your decisions. Add that detail selectively without displacing the existing results.",
+    "score_plain": "Your resume gives a reviewer substantial detail to assess both technical work and leadership. A targeted version can help them connect that work to a particular role.",
+    "first_impression": "You come across as a hands-on data science lead with experience in healthcare, fraud, retail, and industrial analytics. The headline is broad, so the intended next role is less obvious than the work you've done.",
+    "biggest_gap_example": "\"reducing patient readmissions by 15%\" gives a clear result but doesn't explain how the change was assessed, which may prompt questions about attribution.",
+    "first_impression_takeaway": "Explain the readmissions result",
+    "summary": "At OptiMed, you led a cross-functional team of 8 on a readmissions platform and report a 15% reduction in patient readmissions. That result is worth keeping because it connects your team's work to a concrete healthcare problem. Across your recent roles, you also describe hands-on model deployment and mentoring, consistent with a senior technical lead. What isn't yet clear is how you set technical direction within the current team, which would help distinguish your leadership from your individual model work.",
+    "strengths": [
+     "The OptiMed deployment bullet names Python, scikit-learn, TensorFlow, Spark, and AWS alongside a 40% improvement in model training time.",
+     "Your fraud work reports both an 18% drop in false positives and a maintained 98% detection rate, making the tradeoff easier to assess.",
+     "Mentoring 5 junior data scientists is linked to a 22% decrease in model errors across projects within the first year."
+    ],
+    "gaps": [
+     "The readmissions claim doesn't describe the comparison used to assess the reduction, leaving its attribution difficult to evaluate.",
+     "The fraud model's detection rate lacks a description of how it was validated, so its operating conditions remain unclear.",
+     "The current team-lead role doesn't spell out which technical direction decisions you made, making the boundaries of your leadership less visible."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the OptiMed readmissions bullet, add the comparison or evaluation method used to assess the 15% reduction, if you can verify it.",
+      "why": "A reviewer can better understand what the reported patient result represents.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the FinEdge deep-learning bullet, add how the false-positive and detection rates were evaluated, if that information is available.",
+      "why": "The numbers are useful together; the evaluation method would help a technical reviewer interpret them.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "cutting false positives by 18% while maintaining a 98% detection rate.",
+       "section": "Experience"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Review the OptiMed platform and FinEdge fraud bullets for evaluation details you can accurately include.",
+     "Add a specific technical direction decision to the current leadership entry if you can verify it.",
+     "Adjust the headline to match the role you're pursuing while retaining the relevant technical and leadership terms."
+    ],
+    "subscores": {
+     "impact": 94,
+     "clarity": 91,
+     "story": 91,
+     "readability": 92
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No summary section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Work Experience": {
+      "grade": "A",
+      "priority": "Medium",
+      "working": "The entries connect specific methods, team leadership, and reported results across several industries.",
+      "missing": "The readmissions and fraud figures don't explain their evaluation methods.",
+      "fix": "Add concise evaluation context where you can verify it, preserving the existing figures."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No education section present",
+      "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Leading data science and engineering teams",
+      "Machine learning model development and deployment",
+      "Fraud detection and healthcare predictive analytics",
+      "Mentoring junior data scientists"
+     ],
+     "underplayed": [
+      "Technical direction decisions within the current team",
+      "Evaluation methods behind reported model and patient results"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Senior Data Scientist & Team Lead",
+       "Lead Data Scientist"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Recent titles and team leadership indicate a senior data scientist and team-lead level.",
+      "industry_signals": [
+       "Industrial IoT"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "For a technical lead role, put the OptiMed team and deployed-model work at the center of your headline and opening experience bullets. For a fraud-focused role, bring the FinEdge detection and false-positive results forward."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "What technical tradeoff did you navigate while developing the hospital readmissions platform?",
+       "archetype": "TENSION POINT",
+       "why": "A concrete choice would show how you guided platform development."
+      },
+      {
+       "question": "How did the OptiMed team support real-time decision support for 150K patients monthly?",
+       "archetype": "SCALING",
+       "why": "The existing patient figure makes the deployment architecture worth explaining."
+      },
+      {
+       "question": "How were the FinEdge fraud model's false-positive and detection rates evaluated?",
+       "archetype": "QUALITY UNDER PRESSURE",
+       "why": "The evaluation method would help readers interpret the reported rates."
+      },
+      {
+       "question": "Which preprocessing or validation practice did you introduce when mentoring junior data scientists?",
+       "archetype": "IMPROVEMENT",
+       "why": "A concrete practice would explain the work behind the decrease in model errors."
+      },
+      {
+       "question": "How did marketing and sales leadership use the A/B testing framework to guide product strategy?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "An example would make your collaboration with those leaders more tangible."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_marketing_manager_vp_elite_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 90,
+   "report": {
+    "contract_version": "v2",
+    "score": 90,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Most recent bullets pair executive responsibilities with specific commercial results.",
+    "score_comment_long": "The Novara role connects marketing leadership to lead growth, launches, acquisition costs and brand results. A few claims need definitions or more detail about how the work was done. Clarifying the launch process and P&L responsibilities would make the account easier to assess.",
+    "score_plain": "The resume gives a reviewer substantial detail about your marketing leadership and results. A few targeted edits can make the largest claims easier to discuss.",
+    "first_impression": "Your current role presents a global marketing organization, a $25M annual budget and results across demand generation and product launches. The 70% year-over-year growth in qualified lead flow is worth keeping because it connects campaign work to a concrete commercial measure.",
+    "biggest_gap_example": "\u201cincreasing launch success rate to 90%\u201d does not define a successful launch, so a reviewer cannot tell what that figure measures.",
+    "first_impression_takeaway": "Define launch success",
+    "summary": "As Chief Marketing Officer, you connect brand and demand generation work to commercial measures across a SaaS business. The earlier roles show a progression through marketing strategy, global marketing and executive leadership, with results ranging from customer retention to acquisition costs. The account-based marketing program's $50M annual pipeline contribution is particularly useful because it separates pipeline from closed revenue. More detail on the decisions behind the largest changes would help a reviewer understand how you operate at the executive level.",
+    "strengths": [
+     "The Novara role names a 45-person global organization and a $25M annual budget, giving the executive responsibilities context.",
+     "The Viridian customer advocacy program links a 12% retention increase and $4M in upsell revenue to work you led.",
+     "The Maven win/loss analysis connects competitive research with product roadmap and messaging work, showing how you worked beyond the marketing team."
+    ],
+    "gaps": [
+     "The launch bullet doesn't explain which part of the process changed, leaving your approach to the time-to-market reduction unclear.",
+     "The multi-channel campaign doesn't name its channels or allocation choices, making the lead-growth strategy difficult to picture.",
+     "P&L management appears in Skills, but the experience entries describe marketing budgets rather than P&L responsibilities."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Novara product-launch bullet, name the process change you decided on and define how launch success was assessed.",
+      "why": "The time-to-market and revenue figures are substantial, but the current wording doesn't explain what changed or what the 90% rate represents.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "I decided to revamp the product launch process",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the Novara campaign bullet, name the principal channels and the campaign choice that shaped the approach, if you can verify them.",
+      "why": "This would show how you built the strategy behind the reported lead growth without changing the stated contribution to ARR.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "I built an integrated multi-channel campaign strategy",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In Skills, verify the P&L claim and add your specific P&L responsibilities to the relevant experience entry, or narrow the skill to budget management.",
+      "why": "Managing a marketing budget and managing a P&L can describe different responsibilities, so the distinction matters for executive roles.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Budget & P&L Management ($25M+)",
+       "section": "Skills"
+      },
+      "impact_level": "medium",
+      "effort": "quick",
+      "section_ref": "Skills"
+     }
+    ],
+    "next_steps": [
+     "Revise the Novara launch and campaign bullets with the process and channel details you can verify.",
+     "Check the Skills claims against your actual P&L responsibilities and reporting structure, then adjust the wording where needed.",
+     "Review the largest percentage claims and define their measures where a reader might mistake a rate change for a percentage-point change."
+    ],
+    "subscores": {
+     "impact": 91,
+     "clarity": 89,
+     "story": 92,
+     "readability": 88
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No summary section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Work Experience": {
+      "grade": "A",
+      "priority": "Medium",
+      "working": "The roles show progression and include commercial results alongside team and budget responsibilities.",
+      "missing": "Some large reported changes, including launch success and market share, lack definitions or details about the work behind them.",
+      "fix": "Add a concise process example and define the measures where those details can be verified."
+     },
+     "Skills": {
+      "grade": "B",
+      "priority": "Medium",
+      "working": "The list covers relevant marketing functions and names Marketo, HubSpot and Salesforce.",
+      "missing": "The P&L claim is not explained in the experience entries, and the reporting relationship behind up to 45 direct reports could be clearer.",
+      "fix": "Verify those leadership claims and describe the relevant responsibilities in Experience."
+     },
+     "Education": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No education section present",
+      "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Global marketing leadership",
+      "Demand generation and integrated campaigns",
+      "Brand positioning and product launches",
+      "Account-based marketing",
+      "Cross-functional work with sales and product"
+     ],
+     "underplayed": [
+      "The specific channels and choices behind the Novara campaign strategy",
+      "The process changes behind faster product launches",
+      "The extent of P&L responsibility"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Chief Marketing Officer",
+       "Vice President, Global Marketing"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Executive marketing leader, based on the current Chief Marketing Officer title and the stated organization and budget.",
+      "industry_signals": [
+       "SaaS",
+       "B2B cloud data analytics",
+       "Digital advertising technology",
+       "Enterprise software"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with the Chief Marketing Officer work across demand generation, brand and product launches. Keep pipeline contribution distinct from ARR and add enough detail about the underlying choices to make the results easier to assess."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "What changed in the Novara launch process, and how was launch success defined?",
+       "archetype": "IMPROVEMENT",
+       "why": "The answer could explain both the intervention and the reported success rate."
+      },
+      {
+       "question": "Which channels and allocation choices shaped the campaign that grew qualified lead flow?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "It would make your campaign-building approach more concrete."
+      },
+      {
+       "question": "How did you and sales and product leadership resolve competing priorities in the go-to-market work?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "A specific example would show how the partnership worked."
+      },
+      {
+       "question": "What did you change about the customer advocacy program to support retention and upsell?",
+       "archetype": "DOMAIN LIFT",
+       "why": "The program has clear results, but its design is not described."
+      },
+      {
+       "question": "How was the 18% market share expansion measured across the named verticals?",
+       "archetype": "HIGH STAKES",
+       "why": "The definition would help readers interpret a consequential commercial claim."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_software_engineer_mid_strong_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 83,
+   "report": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent engineering work includes several specific results, though some contributions need explanation.",
+    "score_comment_long": "The NovaTech role connects backend ownership and feature work to concrete results. The migration and mentoring bullets leave more of your contribution to the reader's imagination. Adding a specific example to each would make those responsibilities easier to understand.",
+    "score_plain": "Your recent engineering work gives a reviewer several concrete reasons to consider your experience. The return-to-work timeline and selected technical contributions would benefit from more detail.",
+    "first_impression": "Backend ownership stands out quickly, particularly the 99.9% uptime and approximately 20% improvement in API response times. The caregiving break is clearly dated, but the summary's return-to-work statement has no corresponding later role or dated activity.",
+    "biggest_gap_example": "\"Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS\" doesn't explain which part you handled, making your contribution difficult to assess.",
+    "first_impression_takeaway": "Clarify your AWS migration contribution",
+    "summary": "At NovaTech, you owned backend microservices and led a customer analytics dashboard through development and deployment. The dashboard's contribution to a 10% increase in client retention is worth keeping because it connects engineering work to a client result without claiming sole credit. Together with the earlier Java and Spring Boot work, that history supports positioning you as a software engineer with independent component ownership and cross-functional experience. A reviewer may still wonder what your return to work involved, since the latest dated entry ends with the caregiving break.",
+    "strengths": [
+     "The feature collaboration bullet names frontend developers and product managers and reports a 30% reduction in manual data entry.",
+     "Your BrightWave testing bullet retains both your assisted role and the roughly 15% increase in test coverage.",
+     "The skills section groups languages, frameworks, databases and practices, making the technical stack easy to scan."
+    ],
+    "gaps": [
+     "The return-to-work statement is not accompanied by a later dated role or activity, so the period after the caregiving break is difficult to follow.",
+     "The mentoring and code review bullet reports fewer production bugs but doesn't show an example of how you helped change coding practices.",
+     "The career-break entry names learning activity but not a specific recent project or artifact."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the NovaTech AWS migration bullet, name the component or migration task you contributed to and what you personally did.",
+      "why": "That detail would distinguish your contribution from the broader move away from the monolith.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the NovaTech mentoring bullet, add one example of a coding practice you taught or addressed in review.",
+      "why": "Readers can see the stated reduction in production bugs, but an example would explain your part in changing standards.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Conducted code reviews and mentored junior developers, elevating team coding standards and reducing bugs in production releases.",
+       "section": "Experience"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the caregiving break entry, identify one actual course or personal project and what you built or studied; add a date if known.",
+      "why": "A concrete example would show what maintaining your technical skills involved and help readers place the activity in time.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the AWS migration and mentoring bullets using examples you can verify.",
+     "Add a concrete course or project to the caregiving entry, then check whether the summary accurately describes your activity since April 2024.",
+     "Tailor the opening and skills order to a specific software engineering role once you have a job description."
+    ],
+    "subscores": {
+     "impact": 84,
+     "clarity": 82,
+     "story": 80,
+     "readability": 84
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "B",
+      "priority": "Medium",
+      "working": "It establishes software engineering, independent component work and cross-functional collaboration.",
+      "missing": "The statement that you recently returned to the workforce is not accompanied by a later dated role or activity.",
+      "fix": "Describe your current status accurately and lead with your backend work rather than general claims about problem-solving."
+     },
+     "Work Experience": {
+      "grade": "A-",
+      "priority": "High",
+      "working": "NovaTech includes retention, uptime, response-time and manual-entry results alongside your responsibilities.",
+      "missing": "The AWS migration contribution and a concrete example of mentoring are not described.",
+      "fix": "Add the migration task you handled and an example of the coding practice you helped improve."
+     },
+     "Skills": {
+      "grade": "B+",
+      "priority": "Low",
+      "working": "Java, Spring Boot, AWS and the other technologies are grouped by category.",
+      "missing": "The list doesn't distinguish tools used in employment from those used elsewhere.",
+      "fix": "Where accurate, connect important tools to the relevant experience or project entry."
+     },
+     "Education": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No education section present",
+      "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Backend microservice ownership",
+      "Java and Spring Boot development",
+      "RESTful API and database query implementation",
+      "Cross-functional feature development",
+      "Customer analytics dashboard development and deployment"
+     ],
+     "underplayed": [
+      "Specific contribution to the AWS migration",
+      "Examples of mentoring and code review",
+      "Coursework and personal projects during the caregiving break"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Software Engineer",
+       "Software Developer"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "The most recent title is Software Engineer, with independent ownership of backend components and mentoring of junior developers.",
+      "industry_signals": [
+       "Customer analytics"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with backend ownership and the customer-facing results at NovaTech. For a specific opening, select the most relevant technologies and connect them to the work where you used them."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which part of the AWS migration did you contribute to, and what did that work involve?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "The migration entry names the destination but not your specific task."
+      },
+      {
+       "question": "What coding practice did you address through mentoring or reviews at NovaTech?",
+       "archetype": "IMPROVEMENT",
+       "why": "An example would explain how you helped raise coding standards."
+      },
+      {
+       "question": "How did you and the product managers decide which dashboard features to implement?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "It could make the collaboration behind feature work more concrete."
+      },
+      {
+       "question": "What did one caregiving-break project do, and which parts did you build?",
+       "archetype": "DOMAIN LIFT",
+       "why": "A named project could show how you kept technical skills active."
+      },
+      {
+       "question": "What kind of client problem did you help troubleshoot with customer support at BrightWave?",
+       "archetype": "TENSION POINT",
+       "why": "A specific issue would give the production-support bullet a clearer subject."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_ux_designer_director_strong_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 83,
+   "report": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The resume pairs design leadership with results, though some current responsibilities need detail.",
+    "score_comment_long": "The SaaS redesign and healthcare portal work give a reviewer concrete results to consider. The current role also names team and budget responsibility, but several bullets stop at broad activities. Explaining a few decisions behind that work would make the management story more useful.",
+    "score_plain": "Your resume gives reviewers a basis for considering both senior design and design management work. More detail about your current decisions would help them distinguish those two paths.",
+    "first_impression": "You present as a design manager who still leads product work. The 15% retention improvement gives the SaaS redesign a result worth keeping near the top.",
+    "biggest_gap_example": "\"Led cross-team workshops to establish company-wide design standards and accessibility guidelines\" doesn't say what the workshops produced or how teams used the standards afterward.",
+    "first_impression_takeaway": "Explain the design standards",
+    "summary": "Managing eight designers and researchers alongside a flagship SaaS redesign puts both team leadership and product design at the center of your recent work. Earlier healthcare projects connect usability research to fewer support calls and faster prototyping. The progression fits a lead or design manager level, with experience across web and mobile products. What remains less clear is how you set priorities across the team, which matters when comparing management-focused roles.",
+    "strengths": [
+     "The patient-facing and clinician portals served over 200,000 monthly users, giving the healthcare work a clear sense of reach.",
+     "Usability studies and heuristic evaluations are connected to interface improvements and approximately 12% fewer support calls.",
+     "Owning the UX budget and vendor contracts shows responsibility beyond individual design delivery."
+    ],
+    "gaps": [
+     "The current role doesn't explain how you choose between competing product or research priorities, leaving your resource allocation approach unclear.",
+     "The accessibility workshops name company-wide standards but not the guidance produced or its use by product teams.",
+     "The opening summary emphasizes broad qualities rather than the specific SaaS, healthcare, and team-management work that distinguishes your background."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the design standards workshop bullet, name a standard or accessibility guideline the group established and how product teams used it, if known.",
+      "why": "A concrete example would show what came out of the workshops beyond the fact that they took place.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Led cross-team workshops to establish company-wide design standards and accessibility guidelines",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     },
+     {
+      "fix": "In the team management bullet, add an example of how you allocated designers or researchers when product priorities competed.",
+      "why": "The team size is already clear; a staffing choice would help a reviewer understand how you manage the work.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Manage a team of 8 UX designers and researchers",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     },
+     {
+      "fix": "In the UX budget and vendor contracts bullet, describe a spending or vendor decision you made to support research or tool acquisition.",
+      "why": "That example would make the budget ownership more concrete without assuming a savings figure.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Own the UX budget and vendor contracts",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     }
+    ],
+    "next_steps": [
+     "Revise the BrightWave management bullets using examples you can verify from staffing, budget, and standards work.",
+     "Replace broad phrases in the opening summary with the management and product details most relevant to your target role.",
+     "Review the skills list against the revised experience and connect any priority skills to a concrete example already on the resume."
+    ],
+    "subscores": {
+     "impact": 84,
+     "clarity": 81,
+     "story": 84,
+     "readability": 85
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "B",
+      "priority": "Medium",
+      "working": "It identifies your senior UX focus and management background immediately.",
+      "missing": "The wording doesn't distinguish your work from other senior UX summaries.",
+      "fix": "Replace broad claims with a brief reference to your design team and SaaS product work."
+     },
+     "Work Experience": {
+      "grade": "B+",
+      "priority": "High",
+      "working": "The BrightWave and Veridian entries combine leadership responsibilities with concrete product results.",
+      "missing": "Several current management bullets don't show the choices or artifacts behind the responsibilities.",
+      "fix": "Add a specific staffing decision and an example of the standards established through the workshops."
+     },
+     "Skills": {
+      "grade": "B",
+      "priority": "Low",
+      "working": "The list covers research, leadership, accessibility, and named prototyping tools.",
+      "missing": "Some broad skills, such as Agile Methodologies, aren't illustrated in the experience bullets.",
+      "fix": "Keep the skills relevant to your target role and connect them to experience where you can verify an example."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The graphic design degree, university, and dates are easy to find.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "UX team management and resource allocation",
+      "SaaS platform redesign informed by user testing",
+      "Healthcare portal design and usability research",
+      "UX budget and vendor contract ownership"
+     ],
+     "underplayed": [
+      "How competing product priorities shape team assignments",
+      "The content and use of company-wide accessibility guidelines",
+      "Examples of budget or vendor decisions"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Lead UX Designer / Design Manager",
+       "Senior UX Designer"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Lead and design manager level, based on the current title and responsibility for a team of 8.",
+      "industry_signals": [
+       "SaaS",
+       "Healthcare",
+       "Finance",
+       "Retail"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "For management-focused roles, bring the team, budget, and cross-team standards work forward. For senior individual-contributor roles, give the SaaS redesign and healthcare research more prominence."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "How did you allocate designers and researchers when client-facing product priorities competed?",
+       "archetype": "TENSION POINT",
+       "why": "A staffing example would show how you handled competing work across products."
+      },
+      {
+       "question": "Which accessibility guideline came out of the cross-team workshops, and how did product teams use it?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "The answer could make the company-wide standards work tangible."
+      },
+      {
+       "question": "What spending or vendor decision did you make to support a research initiative or tool acquisition?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "A concrete choice would explain what budget ownership involved."
+      },
+      {
+       "question": "Which friction point did the Veridian usability studies uncover, and what interface change addressed it?",
+       "archetype": "IMPROVEMENT",
+       "why": "The support-call result is already stated; an example would explain the design work behind it."
+      },
+      {
+       "question": "What did you learn about clinician or patient needs that changed a portal design?",
+       "archetype": "DOMAIN LIFT",
+       "why": "A healthcare-specific example could distinguish the portal work from a general UX project."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_sales_executive_mid_foundation_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 59,
+   "report": {
+    "contract_version": "v2",
+    "score": 59,
+    "score_label": "Needs more context",
+    "score_comment_short": "The sales work is visible, but most bullets describe duties without concrete examples.",
+    "score_comment_long": "The resume shows client support, proposal work and coordination between sales and marketing. Most entries leave the actual contribution within those activities unclear. Adding examples to the BrightWave role would make the fastest difference.",
+    "score_plain": "A reviewer can identify your sales background, but may struggle to compare your contributions with a specific role's requirements.",
+    "first_impression": "Your path moves from Junior Sales Associate to Sales Executive, with client-facing work throughout. The most recent role lists several activities but gives little detail about what you contributed to them.",
+    "biggest_gap_example": "\"Supported lead generation activities and participated in client meetings to understand customer needs\" does not explain which lead-generation tasks you handled or what you brought back from the meetings.",
+    "first_impression_takeaway": "Explain your proposal contributions",
+    "summary": "Proposal preparation, client meetings and sales-marketing coordination are the recurring threads in your BrightWave role. Naming both client inquiries and internal sales support is useful because it shows work on each side of the relationship. Your recent Sales Executive title points to an established sales role, while the bullets describe mostly supporting contributions rather than independent account ownership. The summary mentions revenue growth, but the work history does not explain your contribution to it, leaving a reviewer without a concrete example.",
+    "strengths": [
+     "The progression from Junior Sales Associate to Sales Representative to Sales Executive gives the sales career a clear sequence.",
+     "Glenmark research on market trends and competitors shows how you contributed information to team discussions.",
+     "The BrightWave account, proposal and presentation work identifies tangible parts of the sales process."
+    ],
+    "gaps": [
+     "The resume does not identify the products or types of customers you worked with, making the commercial context difficult to assess.",
+     "The last listed role ends in August 2023, and no later activity is shown; a reviewer may wonder what you have been doing since.",
+     "The sales tracking bullet does not describe which records you updated or how they were used, so your contribution to the process is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the BrightWave account and proposal bullet, specify the parts of a proposal or presentation you helped prepare.",
+      "why": "That would distinguish your contribution from the sales team's broader work.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "provided ongoing support to the sales team in developing proposals and presentations",
+       "section": "Work Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     },
+     {
+      "fix": "In the BrightWave lead-generation bullet, name the activities you supported and one way you used information from a client meeting.",
+      "why": "A concrete example would show how you participated before and during customer conversations.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Supported lead generation activities and participated in client meetings to understand customer needs",
+       "section": "Work Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     },
+     {
+      "fix": "In the BrightWave marketing and sales coordination bullet, describe the outreach work you helped coordinate between the departments.",
+      "why": "The current wording names both teams but not the handoff or task you handled.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Assisted in coordinating efforts between marketing and sales departments to align outreach initiatives",
+       "section": "Work Experience"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the BrightWave bullets first using examples you can verify from proposals, lead generation and outreach.",
+     "Revisit the summary and explain your contribution to revenue growth if you can substantiate it; otherwise, replace the claim with documented work.",
+     "Review the period after August 2023 and include any relevant actual activity you want a reviewer to see."
+    ],
+    "subscores": {
+     "impact": 49,
+     "clarity": 62,
+     "story": 63,
+     "readability": 65
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "High",
+      "working": "It identifies sales and client relationship work and states over 4 years of experience.",
+      "missing": "The revenue growth claim is not explained with a contribution or example in the work history.",
+      "fix": "Replace broad descriptions with the specific sales work you can substantiate in the experience section."
+     },
+     "Work Experience": {
+      "grade": "D",
+      "priority": "High",
+      "working": "Roles, employers and dates are easy to follow, and the bullets cover client contact and internal coordination.",
+      "missing": "Most bullets do not show the particular tasks, customer context or results behind the broad activities.",
+      "fix": "Add concrete examples to the recent role before shortening or consolidating repetitive earlier duties."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The degree, university and dates are stated.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Client inquiries and account support",
+      "Sales proposal and presentation support",
+      "Market and competitor research",
+      "Coordination between marketing and sales"
+     ],
+     "underplayed": [
+      "Specific contributions to lead generation",
+      "Use of customer requirements in sales work",
+      "Contribution to the revenue growth mentioned in the summary"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Sales Executive",
+       "Sales Representative"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "The most recent title is Sales Executive; the described work emphasizes support rather than independent sales ownership.",
+      "industry_signals": [],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Position yourself around the client-facing and sales-support work you can describe in detail. Use the target role to decide which proposal, research and outreach examples to bring forward."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "What did you personally prepare for a BrightWave proposal or presentation?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "The proposal bullet currently groups your work with the sales team's support needs."
+      },
+      {
+       "question": "What outreach task did you help coordinate between marketing and sales?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "A specific handoff would explain your part in aligning the departments."
+      },
+      {
+       "question": "What customer feedback did you share with project teams for a sales campaign?",
+       "archetype": "TENSION POINT",
+       "why": "An example would make the Glenmark feedback and requirements work more concrete."
+      },
+      {
+       "question": "What customer engagement project did you contribute to at BrightWave, and what was your contribution?",
+       "archetype": "IMPROVEMENT",
+       "why": "The current bullet states the project's aim but not the work you did."
+      },
+      {
+       "question": "What product questions did BrightWave customers commonly ask, and how did you respond?",
+       "archetype": "DOMAIN LIFT",
+       "why": "This could show the product knowledge used in customer conversations."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_hr_manager_director_foundation_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 60,
+   "report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "Your HR responsibilities are broad, but the descriptions rarely show specifics.",
+    "score_comment_long": "The resume covers a wide range of HR functions. Most bullets describe general duties without a concrete example or quantified result. A focused revision of the BrightWave entries would make the work easier to assess.",
+    "score_plain": "A reviewer can see your HR background, but may have trouble comparing your contributions with a particular role. More detail about what you did would help.",
+    "first_impression": "Your path moves from HR coordination to a senior manager title. Keep the detail about working with finance and operations on the HR budget: it shows where your work connected with other functions.",
+    "biggest_gap_example": "\"Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.\" does not show which hiring tasks you handled, making your contribution difficult to assess.",
+    "first_impression_takeaway": "Detail your recruitment contribution",
+    "summary": "At BrightWave, your work spanned recruitment, budgeting, employee relations, training, and compliance. The most recent title is Senior Human Resources Manager, but many bullets describe support without explaining the work behind it. A reviewer may wonder what you personally handled in that position and how it compares with the responsibility implied by the title.",
+    "strengths": [
+     "At Pioneer, you managed HR functions for several project teams, which gives the management role a clear organizational context.",
+     "Your experience includes employee relations as well as records and payroll coordination, showing a range of HR work.",
+     "The progression from Human Resources Coordinator to Senior Human Resources Manager makes your career direction easy to follow."
+    ],
+    "gaps": [
+     "The BrightWave training bullet names its intended purpose but not a particular program or its result, leaving the work abstract.",
+     "The resume mentions HRIS platforms without naming them, so your systems background is difficult to assess.",
+     "The most recent listed role ends in August 2023, and no later activity is described, leaving your current status unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the BrightWave recruitment bullet, specify the hiring and onboarding tasks you handled for the teams.",
+      "why": "That would distinguish your contribution from the broader recruiting effort without overstating your authority.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the BrightWave budget bullet, describe what you prepared or reviewed with finance and operations.",
+      "why": "The collaborators are named, but the budget work itself remains unclear.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the BrightWave employee relations bullet, add an example of a performance management or conflict resolution issue you contributed to.",
+      "why": "An example would show the kind of situation you worked on while preserving your stated supporting role.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Contributed to employee relations initiatives, including performance management and conflict resolution activities.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the BrightWave recruitment, budget, and employee relations bullets with details you can verify.",
+     "Review the training bullet for a program example and any documented feedback or result.",
+     "Name the HRIS platforms you used in Additional Information, and add relevant activity since August 2023 if applicable."
+    ],
+    "subscores": {
+     "impact": 56,
+     "clarity": 62,
+     "story": 61,
+     "readability": 65
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No summary section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Work Experience": {
+      "grade": "C",
+      "priority": "High",
+      "working": "Titles, employers, dates, and HR functions are straightforward to follow.",
+      "missing": "Most entries do not describe a specific case, deliverable, or result.",
+      "fix": "Expand selected BrightWave bullets with examples of the work you performed."
+     },
+     "Skills": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "Additional Information identifies HRIS use, employment law familiarity, and cross-functional collaboration.",
+      "missing": "The HRIS platforms and how you used them are not specified.",
+      "fix": "Name the platforms you used and give a brief example of their use if relevant."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The degree, university, and graduation year are clearly listed.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "HR management for project teams",
+      "Recruitment and onboarding support",
+      "Employee relations and performance management",
+      "Training coordination and compliance"
+     ],
+     "underplayed": [
+      "Specific hiring tasks handled at BrightWave",
+      "The work contributed to HR budgeting",
+      "The HRIS platforms used for administrative and strategic tasks"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Senior Human Resources Manager",
+       "Human Resources Manager",
+       "HR Business Partner"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "The most recent title is Senior Human Resources Manager; its bullets describe a mix of support, coordination, and compliance responsibilities.",
+      "industry_signals": [
+       "Consulting",
+       "Financial services",
+       "Manufacturing"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Position your background around HR work across departments and project teams. For a specific application, select examples that show how your contributions relate to that role's requirements."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "What hiring or onboarding tasks did you handle while helping oversee recruitment at BrightWave?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "The recruitment bullet names the process but not your tasks within it."
+      },
+      {
+       "question": "What budget information did you contribute when collaborating with finance and operations at BrightWave?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "This could show how you contributed to resource allocation."
+      },
+      {
+       "question": "What kind of workplace issue did you contribute to addressing through BrightWave's employee relations work?",
+       "archetype": "TENSION POINT",
+       "why": "An example would make the conflict resolution work more concrete."
+      },
+      {
+       "question": "Which training program did you coordinate at BrightWave, and was any participant feedback or result documented?",
+       "archetype": "IMPROVEMENT",
+       "why": "The stated aim does not establish whether the program changed skills or engagement."
+      },
+      {
+       "question": "What did you do to maintain compliance with employment laws at BrightWave?",
+       "archetype": "HIGH STAKES",
+       "why": "Specific practices would explain how you applied the compliance responsibility."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_finance_analyst_senior_weak_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 60,
+   "report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "Finance responsibilities are visible, but most bullets lack concrete work examples.",
+    "score_comment_long": "Reporting, forecasting and project work are easy to find. Most bullets name duties without identifying the reports, analyses or deliverables involved. Start with the recent Linton role.",
+    "score_plain": "A reviewer can identify your finance background but may have difficulty comparing your work with a particular opening. More specific examples would make that comparison easier.",
+    "first_impression": "The progression from Junior Finance Analyst to Senior Finance Analyst is easy to follow. The recent role covers several areas of finance, though the bullets give few details about the work itself.",
+    "biggest_gap_example": "\u201cManaged project deliverables related to finance processes\u201d does not identify a deliverable, leaving a reviewer unsure what you managed.",
+    "first_impression_takeaway": "Name the finance deliverables",
+    "summary": "Your Senior Finance Analyst role combines financial reporting, budget analysis, project deliverables and mentorship. Those responsibilities fit the senior analyst title, but the summary also mentions technical leadership without explaining what it involved. A concrete example would help a reviewer understand that claim.",
+    "strengths": [
+     "Your Hartley closing support adds month-end and year-end work to the finance history.",
+     "Mentoring team members and new hires shows a people-development responsibility in the Linton role.",
+     "MS Excel is named alongside financial reporting and analysis, giving readers a recognizable tool to look for."
+    ],
+    "gaps": [
+     "The reports and statements are not identified by type or audience, so their use is difficult to judge.",
+     "The mentorship bullet does not explain what you helped colleagues learn or do.",
+     "The latest listed position ends in August 2023, and the resume does not describe any activity after that date."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Linton reporting bullet, name the financial reports or statements you prepared and who used them.",
+      "why": "That would show what information you produced and where it went.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Was responsible for preparing financial reports and statements",
+       "section": "Work Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     },
+     {
+      "fix": "In the finance-process project bullet, identify a deliverable you managed and what managing it involved.",
+      "why": "A specific work product would make the project responsibility easier to understand.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Managed project deliverables related to finance processes",
+       "section": "Work Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     },
+     {
+      "fix": "In the Linton budget and forecasting bullet, add an example of the analysis you performed and how it was used, if known.",
+      "why": "The example would show what sat behind the broad description of forecasting trends.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Duties included analyzing budget data and forecasting trends",
+       "section": "Work Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the Linton bullets using the report, project and forecasting details you can verify.",
+     "Review the Hartley closing and process-improvement bullets for contributions you can describe specifically.",
+     "Update the summary to reflect the revised experience, and include any relevant activity after August 2023 if you choose to."
+    ],
+    "subscores": {
+     "impact": 54,
+     "clarity": 61,
+     "story": 64,
+     "readability": 66
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "It identifies finance analysis, mentorship and over 7 years of experience.",
+      "missing": "Technical leadership is mentioned without an example, while general descriptions such as team player do little to distinguish your work.",
+      "fix": "Replace general descriptors with a specific responsibility supported by the experience section."
+     },
+     "Work Experience": {
+      "grade": "C",
+      "priority": "High",
+      "working": "Titles, employers and dates make the finance career progression straightforward to follow.",
+      "missing": "Most bullets describe duties rather than the reports, analyses or project deliverables you handled.",
+      "fix": "Start with the Linton role and name the work products and their users where you can verify them."
+     },
+     "Skills": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "Financial reporting, forecasting and MS Excel are easy to find.",
+      "missing": "The section does not show how you used Excel in your finance work.",
+      "fix": "If accurate, connect Excel to a particular analysis or report in an experience bullet."
+     },
+     "Education": {
+      "grade": "B",
+      "priority": "Low",
+      "working": "The finance degree, school and graduation date are clearly listed.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Financial reporting and analysis",
+      "Budget analysis and forecasting",
+      "Mentorship of team members and new hires",
+      "Month-end and year-end closing support"
+     ],
+     "underplayed": [
+      "Finance-process project deliverables",
+      "Uses of financial reports",
+      "Contributions to process improvements"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Senior Finance Analyst",
+       "Finance Analyst"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "The most recent listed title is Senior Finance Analyst; the bullets describe analyst work and mentorship but give limited detail about technical leadership.",
+      "industry_signals": [
+       "Financial services"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Position yourself around financial reporting and budget analysis, with mentorship as an additional responsibility. Use a specific Linton project or report to explain the work behind the senior title."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which Linton report or statement did you prepare, and who used it?",
+       "archetype": "DOMAIN LIFT",
+       "why": "Naming the report and its audience would make the reporting work more concrete."
+      },
+      {
+       "question": "What was one finance-process project deliverable you managed, and what did managing it involve?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "The answer could describe the project responsibility already attributed to you."
+      },
+      {
+       "question": "What did you help a new hire or team member learn through your mentorship?",
+       "archetype": "SCALING",
+       "why": "An example would show how you supported colleagues' development."
+      },
+      {
+       "question": "What did you contribute to a process improvement at Hartley, and what happened afterward?",
+       "archetype": "IMPROVEMENT",
+       "why": "The current bullet names participation but not your contribution."
+      },
+      {
+       "question": "Which departments did you assist in coordinating with, and what financial matter did you help them address?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "This could make the coordination work specific without overstating your role."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_operations_manager_entry_weak_1",
+   "generation_status": "FAIL",
+   "replay_status": "PASS",
+   "score": 60,
+   "report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "Relevant operations duties are listed, but most lack detail about the work.",
+    "score_comment_long": "The campus events role names volunteer scheduling and expense recording. Many bullets in the more recent operations roles remain general, with no stated results. Describing the reports, inventory records, and handoffs you worked on would make those roles easier to assess.",
+    "score_plain": "The resume shows an entry-level operations direction, but gives a reviewer limited detail for comparing your work with an opening.",
+    "first_impression": "Your roles connect logistics, retail operations, and campus events. The job titles are easy to follow, but many bullets leave the day-to-day work unclear.",
+    "biggest_gap_example": "\"Supported coordination between departments.\" doesn't name the departments or explain your contribution, so a reviewer cannot tell what the coordination involved.",
+    "first_impression_takeaway": "Describe the departmental handoffs",
+    "summary": "Your Operations Assistant role anchors your move toward operations management, with the internship adding retail inventory work. Managing volunteer schedules for campus events is worth keeping because it shows a concrete coordination responsibility. The work described fits an entry-level operations profile. Your latest listed job ends in 2023, leaving a reviewer without a view of any more recent activity.",
+    "strengths": [
+     "Recording event expenses connects your campus work to budgeting support.",
+     "Tracking inventory with the MetroRetail team gives you a relevant retail operations example.",
+     "Using Microsoft Office to create reports and presentations connects a named tool to actual documents."
+    ],
+    "gaps": [
+     "The Greenfield reports aren't described by subject or audience, so their operational use is unclear.",
+     "The internship mentions assigned projects without naming one, making your contribution difficult to picture.",
+     "The objective names operations management as a goal but doesn't connect that goal to your experience."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Greenfield records and reports bullet, name the information you maintained and who used the reports.",
+      "why": "Those details would show how your recordkeeping connected to daily operations.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Duties included maintaining records and updating reports.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the Greenfield departmental coordination bullet, identify the departments and describe one handoff you supported.",
+      "why": "A specific handoff would explain your part in work between teams.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Supported coordination between departments.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the MetroRetail inventory bullet, describe what information you tracked and how you assisted the team.",
+      "why": "That would make the inventory work concrete without overstating your responsibility.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Assisted in tracking inventory with team members.",
+       "section": "Experience"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the Greenfield bullets with the reporting and coordination details you can verify.",
+     "Expand the MetroRetail inventory bullet and name an assigned project if you can describe your contribution.",
+     "Update the objective, add any relevant activity since your last listed role, and check that the CAPM wording reflects your status."
+    ],
+    "subscores": {
+     "impact": 50,
+     "clarity": 61,
+     "story": 62,
+     "readability": 67
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "The objective names operations management as your intended direction.",
+      "missing": "It relies on general traits rather than the operations work listed below.",
+      "fix": "Replace the general traits with a brief description of your relevant coordination or reporting work."
+     },
+     "Work Experience": {
+      "grade": "D",
+      "priority": "High",
+      "working": "Roles and dates are easy to follow, and the campus position names scheduling and expense work.",
+      "missing": "Many duties don't specify the information, projects, or handoffs involved, and no work results are stated.",
+      "fix": "Develop the Greenfield reporting and coordination bullets first, then add a concrete example from the internship."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "B",
+      "priority": "Low",
+      "working": "The degree, university, location, and graduation date are clearly stated.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Operations assistance in a logistics setting",
+      "Inventory tracking with a retail operations team",
+      "Volunteer scheduling and event logistics",
+      "Expense recording and report preparation"
+     ],
+     "underplayed": [
+      "The information maintained in Greenfield reports",
+      "The departmental coordination supported at Greenfield",
+      "The projects completed with colleagues at MetroRetail"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Operations Assistant",
+       "Intern - Operations Department",
+       "Team Coordinator"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Early career",
+      "industry_signals": [
+       "Logistics",
+       "Campus events"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with the operations assistant and internship work, using specific examples of the records and inventory information you handled. Keep the campus scheduling and expense work as supporting coordination experience."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which departments did you coordinate between at Greenfield, and what information did you pass along?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "A named handoff could explain how you helped departments work together."
+      },
+      {
+       "question": "What kinds of records and reports did you update at Greenfield, and who used them?",
+       "archetype": "DOMAIN LIFT",
+       "why": "The subject and audience would connect the recordkeeping to the operation."
+      },
+      {
+       "question": "What inventory information did you help track at MetroRetail, and what part did you handle?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "Your part can be described without implying you managed inventory alone."
+      },
+      {
+       "question": "What did you learn in the process improvement training, and did you apply any of it?",
+       "archetype": "IMPROVEMENT",
+       "why": "A specific practice could make the training entry more useful."
+      },
+      {
+       "question": "Did volunteer schedules ever need last-minute changes, and how did you handle them if so?",
+       "archetype": "TENSION POINT",
+       "why": "If changes occurred, an example could show how you approached them."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_project_manager_vp_strong_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 84,
+   "report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent project work includes team size, budgets, releases, and measured improvements.",
+    "score_comment_long": "The GlobalTech role gives a reviewer several ways to understand your work, from software releases to reduced delays. Some bullets leave the methods behind those results unclear. Explaining one risk mitigation and one reporting practice would make the experience more concrete.",
+    "score_plain": "Your resume gives a reviewer substantial project management detail to discuss. More specific examples of how you work would help distinguish your approach from other senior project managers.",
+    "first_impression": "The first pass shows a Senior Project Manager working across product and IT, with budgets exceeding $12M. The move from Army operations into defense programs and software delivery is easy to follow.",
+    "biggest_gap_example": "\"Oversaw risk management and mitigation plans that reduced critical project delays by 15%.\" gives the result but not the risks or actions behind it, leaving a reviewer to guess how you handled them.",
+    "first_impression_takeaway": "Explain the risk mitigation",
+    "summary": "Leading a team of 25+ across product, marketing, and engineering for three software releases in two years is a useful anchor for your current role. Your earlier defense work connects military requirements with civilian business processes, while vendor negotiations show responsibility beyond delivery planning. The recent title and work place you at senior project manager level. A reviewer may still wonder which project risks you addressed and how, making that part of your approach less visible.",
+    "strengths": [
+     "The 20% improvement in delivery speed connects Agile workflow changes to a stated result.",
+     "Aegis vendor negotiations and contract management resulted in 10% cost savings over three years, showing a commercial dimension to your program work.",
+     "The Army role identifies operational planning for units of 100+ personnel, making the scale of your earlier responsibilities clear."
+    ],
+    "gaps": [
+     "The mentoring bullet doesn't describe how you developed junior project managers, so your approach to building capability remains unclear.",
+     "The Aegis reporting bullet doesn't identify what stakeholders received, making the communication improvement difficult to picture.",
+     "The opening summary uses broad descriptions rather than the software, infrastructure, and defense work that distinguish your background."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the GlobalTech risk-management bullet, name a critical risk and the mitigation action you oversaw.",
+      "why": "The 15% reduction is already stated; an example would show what your risk management involved.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Oversaw risk management and mitigation plans that reduced critical project delays by 15%.",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     },
+     {
+      "fix": "In the Aegis program-controls bullet, identify a report or control you implemented and who used it.",
+      "why": "That would give the stated improvement in stakeholder communication a concrete setting.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Implemented program controls and reporting mechanisms that improved stakeholder communication and transparency.",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     },
+     {
+      "fix": "In the GlobalTech mentoring bullet, describe a specific way you helped a junior project manager build leadership capacity.",
+      "why": "A concrete example would help a reviewer understand how you develop other project managers.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Mentored junior project managers and team members to build leadership capacity within the organization.",
+       "section": "PROFESSIONAL EXPERIENCE"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "PROFESSIONAL EXPERIENCE"
+     }
+    ],
+    "next_steps": [
+     "Revise the risk, reporting, and mentoring bullets using examples you can verify.",
+     "Replace broad phrases in the opening summary with your software delivery, infrastructure, and defense program background.",
+     "Read the revised experience section for repetition and keep the figures and qualifiers exactly as documented."
+    ],
+    "subscores": {
+     "impact": 84,
+     "clarity": 82,
+     "story": 85,
+     "readability": 84
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "B",
+      "priority": "Medium",
+      "working": "It establishes project management leadership and the military connection.",
+      "missing": "It doesn't name the types of projects that make your background distinctive.",
+      "fix": "Use the space to introduce software releases, infrastructure upgrades, and defense programs."
+     },
+     "Work Experience": {
+      "grade": "B+",
+      "priority": "High",
+      "working": "The current role includes budget, team, release, delivery-speed, and delay figures.",
+      "missing": "Several management bullets don't explain the practices behind their stated improvements.",
+      "fix": "Add a specific risk mitigation and a concrete example of program reporting."
+     },
+     "Skills": {
+      "grade": "B",
+      "priority": "Low",
+      "working": "The list covers methods, risk, contracts, and military operations relevant to the roles described.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "Both degrees, institutions, and graduation dates are easy to find.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Cross-departmental software release coordination",
+      "Project budget and risk management",
+      "Defense technology deployment and systems modernization",
+      "Vendor negotiations and contract management"
+     ],
+     "underplayed": [
+      "The specific mitigation practices behind the reduction in project delays",
+      "The reporting mechanisms used to communicate with stakeholders",
+      "How you mentored junior project managers"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Senior Project Manager",
+       "Program Manager"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Senior project manager, based on your current title and cross-departmental project responsibilities.",
+      "industry_signals": [
+       "Defense",
+       "Software",
+       "Military operations"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with the software and infrastructure work in your current role, then use the defense programs to show the range of projects you've managed. Keep the Army experience as the foundation for your operations and coordination background."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which risk did a mitigation plan address, and what action did you oversee?",
+       "archetype": "HIGH STAKES",
+       "why": "This could explain the work behind the stated reduction in critical delays."
+      },
+      {
+       "question": "What changed in the Agile workflow that contributed to faster delivery?",
+       "archetype": "IMPROVEMENT",
+       "why": "A specific workflow change would make the 20% result more informative."
+      },
+      {
+       "question": "How did product, marketing, and engineering resolve competing priorities during the software releases?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "This could show how you coordinated the departments named in the release bullet."
+      },
+      {
+       "question": "Which military requirement did you translate into a civilian business process at Aegis?",
+       "archetype": "DOMAIN LIFT",
+       "why": "An example would make the transition between military and civilian work more tangible."
+      },
+      {
+       "question": "What did you do to help a junior project manager develop leadership skills?",
+       "archetype": "SCALING",
+       "why": "This could give the mentoring bullet a practical example."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+   }
+  },
+  {
+   "run_id": "eval_1793463473819",
+   "source_file": "2026-10-31T16-21-29-561Z_live_run.json",
+   "source_sha256": "da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257",
+   "fixture_id": "synth_product_manager_entry_elite_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 86,
+   "report": {
+    "contract_version": "v2",
+    "score": 86,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent product work combines clear responsibilities with specific adoption and activation results.",
+    "score_comment_long": "The BrightLeaf release and NovaSense onboarding work show product ownership alongside specific results. A few bullets would benefit from explaining what you contributed or changed. Adding those details and updating the summary would make the story easier to follow.",
+    "score_plain": "Your resume gives a reviewer concrete product work to discuss. Targeted edits would help explain how you approached that work and what happened after your last listed role.",
+    "first_impression": "Your Associate Product Manager role includes release-cycle ownership for a feature used by 10,000+ customers. The opening summary gives that responsibility less attention than your transition from a technical background.",
+    "biggest_gap_example": "\"Worked alongside a customer insights team to conduct user interviews\" does not identify a finding that informed the backlog, so your contribution to prioritization is less clear.",
+    "first_impression_takeaway": "Update the transition summary",
+    "summary": "The NovaSense onboarding feature resulted in a 25% increase in user activation within the first month of launch, a useful result to keep prominent. Your work combines roadmap prioritization with release coordination across SaaS products. The Associate Product Manager role and later internship point to early-career product management with responsibility for releases and feature planning. The latest role listed ends in August 2023, leaving subsequent activity unclear.",
+    "strengths": [
+     "At NovaSense, you used feedback and analytics from over 150 beta users to inform weekly onboarding iterations.",
+     "The BrightLeaf task delegation work connects user stories and acceptance criteria to a 40% increase in feature adoption.",
+     "The $150K usability research budget at Pivotal Edge gives context to the budget-management support you provided."
+    ],
+    "gaps": [
+     "The summary mentions a technical background without explaining it, leaving that part of your positioning vague.",
+     "The onboarding messaging bullet reports shorter onboarding time but doesn't describe the messages or where users encountered them.",
+     "The resume lists no activity after August 2023, so a reviewer cannot tell what you have done since the internship."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the BrightLeaf interview bullet, add a specific interview finding and the backlog priority it informed, if you can verify both.",
+      "why": "That detail would show how the research fed into a product choice.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Worked alongside a customer insights team to conduct user interviews",
+       "section": "Associate Product Manager"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Associate Product Manager"
+     },
+     {
+      "fix": "In the NovaSense messaging bullet, describe what changed in the onboarding messages or where users encountered them.",
+      "why": "The reported decrease in onboarding time is substantial, but the change behind it isn't apparent.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Collaborated with marketing and customer success teams to craft messaging that decreased onboarding time by 30%",
+       "section": "Product Manager Intern"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Product Manager Intern"
+     },
+     {
+      "fix": "In the Pivotal Edge usability research budget bullet, specify the budget-management tasks you supported.",
+      "why": "That would distinguish your contribution from the product team's broader responsibility.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "Supported the product team in managing a $150K budget",
+       "section": "Product Management Intern"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Product Management Intern"
+     }
+    ],
+    "next_steps": [
+     "Revise the interview, messaging, and budget bullets with details you can verify.",
+     "Replace the transition language in the summary with the product responsibilities you want to emphasize.",
+     "Review the period after August 2023 and include any relevant work, course, project, or current activity you can accurately describe."
+    ],
+    "subscores": {
+     "impact": 88,
+     "clarity": 84,
+     "story": 81,
+     "readability": 87
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "B",
+      "priority": "Medium",
+      "working": "It identifies product management and SaaS as the intended direction.",
+      "missing": "The technical background and timing of the transition are not explained.",
+      "fix": "Replace the transition claim with a concise description of your product work and target role."
+     },
+     "Work Experience": {
+      "grade": "A-",
+      "priority": "High",
+      "working": "The roles connect roadmap ownership, releases, research, and user-facing results.",
+      "missing": "Some bullets leave the specific research finding or product change unstated.",
+      "fix": "Add a concrete example to the interview and onboarding messaging bullets."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The degree, university, dates, honors, and product-related capstone are clear.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Product roadmap and release-cycle ownership",
+      "User research and backlog prioritization",
+      "Cross-functional product delivery",
+      "Feature adoption and activation work",
+      "A/B testing and tracking product performance indicators"
+     ],
+     "underplayed": [
+      "How interview findings informed backlog priorities",
+      "The content and placement of onboarding messages",
+      "Your budget-management tasks for usability research"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Associate Product Manager"
+      ],
+      "stretch_roles": [
+       "Product Manager"
+      ],
+      "seniority_read": "The most recent listed role is a product management internship, preceded by an Associate Product Manager position with release-cycle ownership.",
+      "industry_signals": [
+       "Cloud analytics",
+       "Project management SaaS"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with BrightLeaf release-cycle ownership and NovaSense onboarding work rather than the general transition statement. Tailor the emphasis between research, delivery, and activation once you have a target job description."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which interview finding informed a BrightLeaf backlog priority, and what did you contribute?",
+       "archetype": "IMPROVEMENT",
+       "why": "An example would make your use of qualitative research easier to understand."
+      },
+      {
+       "question": "What changed in the onboarding messages, and where did users see them?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "This would explain the work shared with marketing and customer success."
+      },
+      {
+       "question": "Which competitor finding did your Pivotal Edge report bring to roadmap prioritization?",
+       "archetype": "DOMAIN LIFT",
+       "why": "A specific finding would make the opportunity report more concrete."
+      },
+      {
+       "question": "Which tasks did you support in managing the $150K usability research budget?",
+       "archetype": "HIGH STAKES",
+       "why": "The answer would show your part in the budget work without overstating ownership."
+      },
+      {
+       "question": "Which cross-team dependency needed coordination for the BrightLeaf resource management module?",
+       "archetype": "SCALING",
+       "why": "An example would add detail to your release-cycle responsibility for a feature used by 10,000+ customers."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+   }
+  },
+  {
+   "run_id": "eval_1793469152573",
+   "source_file": "2026-10-31T17-53-36-916Z_live_run.json",
+   "source_sha256": "f1c6c1ad8144ee2611ad7d981e1638686e1bf47e97158d0a21b665cb4a027853",
+   "fixture_id": "synth_operations_manager_entry_weak_1",
+   "generation_status": "FAIL",
+   "replay_status": "PASS",
+   "score": 58,
+   "report": {
+    "contract_version": "v2",
+    "score": 58,
+    "score_label": "Needs more context",
+    "score_comment_short": "Most bullets describe duties without explaining the work or its results.",
+    "score_comment_long": "The campus role names event logistics and volunteer scheduling. The operations entries mostly describe broad duties without examples or results. Adding detail to the reporting and inventory bullets would make your contributions easier to understand.",
+    "score_plain": "A reviewer can see your interest in operations but may have trouble comparing your work with a particular opening. More specific descriptions would help show what you handled.",
+    "first_impression": "Your experience points toward entry-level operations work in logistics and retail. The recent entries name reporting and inventory tasks, but give little detail about the work itself.",
+    "biggest_gap_example": "\"- Duties included maintaining records and updating reports.\" does not name the records or reports, so a reviewer cannot tell what information you handled.",
+    "first_impression_takeaway": "Name the reports you updated",
+    "summary": "Organizing student event logistics and managing volunteer schedules give your operations interest a practical starting point. Those duties are worth keeping because they show coordination work alongside your assistant and intern roles. Your titles and responsibilities point to an entry-level operations background, while the Objective aims toward operations management. It does not say which parts of that work you want to build on, leaving your direction broad.",
+    "strengths": [
+     "The Greenfield role includes project-status follow-up and coordination between departments, giving a reviewer relevant operations duties to consider.",
+     "The MetroRetail internship names inventory tracking and supply chain processes, connecting your retail experience to your stated direction.",
+     "Recording expenses and creating Microsoft Office reports and presentations add budgeting and documentation work to the campus role."
+    ],
+    "gaps": [
+     "The Objective relies on general motivation instead of naming the operations work you want to continue, so your direction is broad.",
+     "The work entries do not describe a specific result from a task or project, making the results-driven claim difficult to assess.",
+     "The CAPM entry says \"Learner level,\" but does not make clear whether the certification has been awarded or is being studied."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Greenfield reporting bullet, name the records you maintained and the reports you updated.",
+      "why": "A reviewer could then see what information was part of your daily work.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Duties included maintaining records and updating reports.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the MetroRetail inventory bullet, describe what inventory you tracked and the part you assisted with.",
+      "why": "That would distinguish your contribution from the team's work without overstating your role.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Assisted in tracking inventory with team members.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the campus event logistics bullet, name the arrangements you organized for student events.",
+      "why": "A concrete example would show what organizing the events involved beyond scheduling volunteers.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Was responsible for organizing student event logistics.",
+       "section": "Experience"
+      },
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the Greenfield and MetroRetail bullets using details about the records, reports, and inventory you can verify.",
+     "Describe the event arrangements you handled, and add a specific project result if you can substantiate one.",
+     "Update the Objective to reflect your operations interests and clarify your CAPM status in the Certifications entry."
+    ],
+    "subscores": {
+     "impact": 54,
+     "clarity": 59,
+     "story": 58,
+     "readability": 64
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "The Objective identifies operations management as your direction.",
+      "missing": "It does not connect that goal to your reporting, inventory, or coordination work.",
+      "fix": "Replace the general motivation language with a brief description of the work you want to build on."
+     },
+     "Work Experience": {
+      "grade": "D",
+      "priority": "High",
+      "working": "The roles and dates are organized consistently, and the campus entry names distinct duties.",
+      "missing": "Many recent bullets do not identify the materials or activities behind the duties.",
+      "fix": "Expand the reporting and inventory bullets with the specific work you performed."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The degree, university, and graduation date are easy to find.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Operations assistance in a logistics setting",
+      "Inventory tracking with retail team members",
+      "Student event logistics and volunteer scheduling",
+      "Expense recording and Microsoft Office reporting"
+     ],
+     "underplayed": [
+      "The contents of the Greenfield records and reports",
+      "Your specific contribution to inventory tracking",
+      "The arrangements you organized for student events"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Operations Assistant",
+       "Intern - Operations Department",
+       "Team Coordinator"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Early career",
+      "industry_signals": [
+       "Logistics",
+       "Campus events"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with the operations assistance and inventory work, then use campus event coordination to show scheduling and expense-recording responsibilities. Replace general claims about being results-driven with specific work or results you can substantiate."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "What inventory did you help track at MetroRetail, and what part of the process did you handle?",
+       "archetype": "DOMAIN LIFT",
+       "why": "The answer could make your contribution to retail operations more specific."
+      },
+      {
+       "question": "Which departments did you support coordination between at Greenfield, and what did your support involve?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "An example would explain what the departmental coordination involved."
+      },
+      {
+       "question": "What arrangements did you organize for student events, and which parts did you handle?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "The answer could show the boundaries of your event work."
+      },
+      {
+       "question": "Which process improvement did a Greenfield training session cover, and did you apply anything from it?",
+       "archetype": "IMPROVEMENT",
+       "why": "A concrete example could make the training entry more useful without assuming a result."
+      },
+      {
+       "question": "How did you organize volunteer schedules for student events?",
+       "archetype": "SCALING",
+       "why": "Your approach could add detail to the scheduling responsibility."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58
+   }
+  },
+  {
+   "run_id": "eval_1793469297246",
+   "source_file": "2026-10-31T17-55-53-554Z_live_run.json",
+   "source_sha256": "be86bfdaae612cd53400d0bf14a3c4f807f605988ee7bedf12859e1e24c2433b",
+   "fixture_id": "synth_operations_manager_entry_weak_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 60,
+   "report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "The resume names relevant operations work but gives few details beyond duties.",
+    "score_comment_long": "The logistics and retail roles connect directly to your operations goal. Most bullets stop at broad tasks, so the work itself is difficult to picture. Naming the reports, inventory tasks, and coordination work would make the experience more concrete.",
+    "score_plain": "A reviewer can identify your target area, but may have trouble comparing your work with an operations opening. More detail about what you handled would make that comparison easier.",
+    "first_impression": "Your Operations Assistant role and operations internship point toward entry-level operations work. Reporting, scheduling, and inventory appear across the resume, but the assignments themselves are described in general terms.",
+    "biggest_gap_example": "\"Supported coordination between departments.\" does not identify the departments or what you helped coordinate, making your contribution difficult to picture.",
+    "first_impression_takeaway": "Describe the department coordination",
+    "summary": "Managing volunteer schedules at the Campus Events Office gives your operations goal a practical anchor. Your more recent logistics and retail roles add assistant-level operations experience. The resume describes responsibilities rather than completed work or results, so a reviewer has little basis for judging what you accomplished in those roles. Your latest listed position ends in July 2023, and any subsequent activity is not shown.",
+    "strengths": [
+     "Inventory tracking at MetroRetail connects your internship to a recognizable operations task.",
+     "Organizing student event logistics gives the campus role a clear connection to coordination work.",
+     "Creating reports and presentations with Microsoft Office shows how you contributed to the events office."
+    ],
+    "gaps": [
+     "The reports at Greenfield are unnamed, so their purpose and audience are unclear.",
+     "The objective emphasizes a desire to learn but does not introduce the operations work already listed below.",
+     "The CAPM entry says \"Learner level,\" but it is unclear whether that describes a credential or learning status."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Greenfield records and reports bullet, name the records you maintained and the reports you updated.",
+      "why": "Those details would show what information you handled rather than just the administrative activity.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Duties included maintaining records and updating reports.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "quick",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the Greenfield department coordination bullet, identify the departments and describe an example of what you helped coordinate.",
+      "why": "An example would help a reviewer understand your contribution to work between departments.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Supported coordination between departments.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the MetroRetail inventory bullet, describe what you tracked and what you did with the inventory information.",
+      "why": "The current wording identifies the topic but leaves your contribution alongside the team unclear.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Assisted in tracking inventory with team members.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the Greenfield and MetroRetail bullets using details you can verify about the reports, coordination, and inventory work.",
+     "Replace the generic objective wording with the operations responsibilities you want to emphasize, and update the reference to being a recent graduate.",
+     "Review the CAPM wording for accuracy and add any relevant work, course, or project since your last listed role if applicable."
+    ],
+    "subscores": {
+     "impact": 55,
+     "clarity": 61,
+     "story": 62,
+     "readability": 65
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "The Objective states an interest in operations management.",
+      "missing": "It does not introduce the logistics, inventory, or scheduling work already listed below.",
+      "fix": "Replace broad descriptions with a brief account of your relevant operations work and update the graduation reference."
+     },
+     "Work Experience": {
+      "grade": "D",
+      "priority": "High",
+      "working": "Job titles, employers, and dates make the sequence of roles easy to follow.",
+      "missing": "Most bullets give broad duties without examples of the work completed or its results.",
+      "fix": "Describe particular reports, inventory tasks, and coordination work where you can verify the details."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "B",
+      "priority": "Low",
+      "working": "The degree, university, and graduation date are stated.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Operations assistance in logistics",
+      "Inventory tracking in retail operations",
+      "Volunteer scheduling and event logistics",
+      "Reports and presentations using Microsoft Office"
+     ],
+     "underplayed": [
+      "The purpose of the records and reports at Greenfield",
+      "Your contribution to coordination between departments",
+      "The inventory information handled at MetroRetail"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Operations Assistant",
+       "Intern - Operations Department",
+       "Team Coordinator"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Early career",
+      "industry_signals": [
+       "Logistics",
+       "Campus events"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with the operations work at Greenfield and MetroRetail, then use the campus role to show scheduling and event coordination. Describe the actual records and coordination work before making broader claims about results."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which departments did you coordinate with at Greenfield, and what did you help them coordinate?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "An example would make your support role easier to picture."
+      },
+      {
+       "question": "What inventory information did you help track at MetroRetail, and how did the team use it?",
+       "archetype": "DOMAIN LIFT",
+       "why": "That detail would show how your internship connected to retail operations."
+      },
+      {
+       "question": "Did you use any checks when updating Greenfield records, and if so, what were they?",
+       "archetype": "QUALITY UNDER PRESSURE",
+       "why": "This could identify any checking work you performed without assuming it was part of the job."
+      },
+      {
+       "question": "What process improvement did a Greenfield training session address, and did you apply anything from it afterward?",
+       "archetype": "IMPROVEMENT",
+       "why": "A concrete example would explain the training without assuming it changed a process."
+      },
+      {
+       "question": "Did volunteer availability ever conflict when you managed schedules, and if so, how did you handle it?",
+       "archetype": "TENSION POINT",
+       "why": "If scheduling conflicts occurred, an example could show how you handled them."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+   }
+  },
+  {
+   "run_id": "eval_1793469354166",
+   "source_file": "2026-10-31T17-56-19-326Z_live_run.json",
+   "source_sha256": "39b07d7a64503453e4fc3e2f3b1eb574cb91d89cb7883c8f1323651f3337f246",
+   "fixture_id": "synth_operations_manager_entry_weak_1",
+   "generation_status": "PASS",
+   "replay_status": "PASS",
+   "score": 58,
+   "report": {
+    "contract_version": "v2",
+    "score": 58,
+    "score_label": "Needs more context",
+    "score_comment_short": "The roles fit an operations path, but most bullets describe general duties.",
+    "score_comment_long": "The campus event role gives the clearest picture of coordination work. The logistics and retail operations entries leave many tasks unnamed and give no results. Adding concrete examples to those entries would make the experience easier to assess.",
+    "score_plain": "A reviewer can see your interest in operations, but may struggle to distinguish your contributions from general assistant duties. More detail about the work you handled would help them assess your fit.",
+    "first_impression": "Your experience runs from campus event logistics to retail and logistics operations. The recent entries are brief duty lists, so the work itself is difficult to picture.",
+    "biggest_gap_example": "\"Supported coordination between departments\" does not name the departments or what you helped coordinate, leaving your contribution unclear.",
+    "first_impression_takeaway": "Name the operations work",
+    "summary": "Organizing student event logistics and managing volunteer schedules gives your operations interest a practical foundation worth keeping. Your later assistant and internship roles add exposure to reporting and inventory tracking. The resume points toward entry-level operations work, though the descriptions rarely show what the reports, inventory tasks, or projects involved. That makes it difficult to tell which parts of an operations role you could take on next.",
+    "strengths": [
+     "Managing volunteer schedules adds a concrete coordination responsibility to the campus role.",
+     "Inventory tracking at MetroRetail connects your internship to a specific operations task.",
+     "The business administration degree is clearly listed with its school and graduation date."
+    ],
+    "gaps": [
+     "The Greenfield reports and records are not identified by type, so their use is unclear.",
+     "The resume lists no activity after July 2023, leaving a reviewer without a current picture of your work or learning.",
+     "The CAPM entry says \"Learner level,\" but does not explain whether it is a completed credential or learning in progress."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+     {
+      "fix": "In the Greenfield records and reports bullet, name the records you maintained and the reports you updated.",
+      "why": "A reviewer could then understand what information you worked with rather than seeing reporting as a generic duty.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Duties included maintaining records and updating reports.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "quick",
+      "section_ref": "Experience"
+     },
+     {
+      "fix": "In the MetroRetail inventory bullet, explain what you tracked and how you assisted the team.",
+      "why": "That detail would make your inventory work more useful to compare with an operations opening.",
+      "confidence": "high",
+      "evidence": {
+       "excerpt": "- Assisted in tracking inventory with team members.",
+       "section": "Experience"
+      },
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Experience"
+     }
+    ],
+    "next_steps": [
+     "Revise the Greenfield and MetroRetail bullets with the task details you can verify.",
+     "Add a concrete event example to the campus role, then remove any bullets that repeat a more specific point.",
+     "Check the CAPM wording against your actual status and add any real recent work, course, project, or current activity that belongs on the resume."
+    ],
+    "subscores": {
+     "impact": 48,
+     "clarity": 61,
+     "story": 61,
+     "readability": 67
+    },
+    "section_review": {
+     "Summary": {
+      "grade": "C",
+      "priority": "Medium",
+      "working": "The Objective names operations management as your goal.",
+      "missing": "It relies on general qualities rather than the operations work listed below.",
+      "fix": "Replace the generic qualities with a brief description of your reporting, inventory, or event coordination experience."
+     },
+     "Work Experience": {
+      "grade": "D",
+      "priority": "High",
+      "working": "Titles, employers, and dates make the sequence of roles easy to follow.",
+      "missing": "Most bullets do not identify the particular records, projects, or events involved, and none state a result.",
+      "fix": "Use specific examples from the roles and include results only where you can verify them."
+     },
+     "Skills": {
+      "grade": "N/A",
+      "priority": "Low",
+      "working": "",
+      "missing": "No skills section present",
+      "fix": "Add this section if it helps explain why your experience fits the job."
+     },
+     "Education": {
+      "grade": "A",
+      "priority": "Low",
+      "working": "The degree, university, and graduation date are easy to find.",
+      "missing": "Nothing important is missing from this section.",
+      "fix": "Keep this section as it is unless the job asks for something different."
+     }
+    },
+    "job_alignment": {
+     "jd_match_score": 0,
+     "jd_match_summary": "No job description provided.",
+     "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+     },
+     "strongly_aligned": [
+      "Operations assistance in a logistics setting",
+      "Inventory tracking with a retail operations team",
+      "Student event logistics and volunteer scheduling",
+      "Records maintenance and report updates"
+     ],
+     "underplayed": [
+      "The contents and recipients of the Greenfield reports",
+      "Your contribution to cross-department coordination",
+      "The specific logistics handled for campus events"
+     ],
+     "missing": [
+      "No target-role requirements were provided for comparison"
+     ],
+     "role_fit": {
+      "best_fit_roles": [
+       "Operations Assistant",
+       "Intern - Operations Department",
+       "Team Coordinator"
+      ],
+      "stretch_roles": [],
+      "seniority_read": "Early career",
+      "industry_signals": [
+       "Logistics",
+       "Campus events"
+      ],
+      "company_stage_fit": "Not clear from the resume alone"
+     },
+     "positioning_suggestion": "Lead with your operations assistant and internship work, using concrete descriptions of the tasks you performed. Keep the campus coordination role visible because it shows event logistics and scheduling responsibilities."
+    },
+    "ideas": {
+     "questions": [
+      {
+       "question": "Which departments did you support at Greenfield, and what did you help them coordinate?",
+       "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+       "why": "This could make the department coordination bullet more specific without overstating your role."
+      },
+      {
+       "question": "What inventory information did you help track at MetroRetail, and how was it used?",
+       "archetype": "DOMAIN LIFT",
+       "why": "The answer could show how your internship exposed you to inventory work."
+      },
+      {
+       "question": "What event logistics did you organize, from initial planning through the event itself?",
+       "archetype": "END-TO-END OWNERSHIP",
+       "why": "This could define the parts of event organization you handled."
+      },
+      {
+       "question": "What did you learn in the process improvement training, and did you apply it to any task?",
+       "archetype": "IMPROVEMENT",
+       "why": "A concrete application would make the training entry more informative."
+      },
+      {
+       "question": "When volunteer schedules changed, what did you do to keep an event covered?",
+       "archetype": "QUALITY UNDER PRESSURE",
+       "why": "An example could show how you handled a scheduling problem, if one occurred."
+      }
+     ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58
+   }
+  }
+ ]
+}

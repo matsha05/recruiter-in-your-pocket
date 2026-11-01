@@ -15,6 +15,7 @@ import {
   buildReportRewritePresentation,
   fixPlanHeadingForCount,
 } from "@/lib/reports/report-presentation";
+import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
@@ -71,22 +72,27 @@ export function ReportStream({
   onStartReport,
   resumeText,
 }: ReportStreamProps) {
-  const fixes = useMemo(() => (report.top_fixes || []).slice(0, 3), [report.top_fixes]);
-  const rewrites = useMemo(() => report.rewrites || [], [report.rewrites]);
+  // One disposition per resume line and each observation once, shared with the PDF.
+  const integrity = useMemo(() => reconcileReport(report), [report]);
+  const reconciled = integrity.report;
+  const fixes = useMemo(() => (reconciled.top_fixes || []).slice(0, 3), [reconciled.top_fixes]);
+  const rewrites = useMemo(() => reconciled.rewrites || [], [reconciled.rewrites]);
   const presentation = useMemo(
     () => buildReportRewritePresentation(fixes, rewrites),
     [fixes, rewrites],
   );
   const questions = useMemo(
-    () => buildIndependentQuestionPresentation(report.ideas?.questions || []),
-    [report.ideas?.questions],
+    () => buildIndependentQuestionPresentation(reconciled.ideas?.questions || []),
+    [reconciled.ideas?.questions],
   );
-  const strengths = (report.strengths || []).slice(0, 3);
+  const strengths = (reconciled.strengths || []).slice(0, 3);
   const strengthsToKeep = strengths.slice(1);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
   const verdictReason = report.score_comment_short !== verdict ? report.score_comment_short : undefined;
   const criticalMiss = fixes[0];
+  const criticalMissWhy = criticalMissReason(integrity);
+  const structuralGaps = integrity.structuralGaps;
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
   useEffect(() => {
@@ -133,7 +139,7 @@ export function ReportStream({
           <m.div {...reveal(1)} className={styles.criticalMiss} data-testid="critical-miss">
             <p className={styles.criticalLabel}>Critical Miss</p>
             <p className={styles.criticalTitle}>{criticalMiss.fix || criticalMiss.text}</p>
-            {criticalMiss.why && <p className={cn(styles.body, "mt-2 text-foreground")}>{criticalMiss.why}</p>}
+            {criticalMissWhy && <p className={cn(styles.body, "mt-2 text-foreground")}>{criticalMissWhy}</p>}
             <button type="button" className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => {
               const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
               document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
@@ -143,8 +149,15 @@ export function ReportStream({
           </m.div>
         )}
 
+        {structuralGaps.length > 0 && (
+          <m.div {...reveal(2)} className={styles.gapNote} data-testid="structural-gaps">
+            <p className="text-sm font-semibold">Before the bullets</p>
+            {structuralGaps.map((gap) => <p key={gap.text} className={cn(styles.body, "mt-1 text-foreground")}>{gap.text}</p>)}
+          </m.div>
+        )}
+
         {strengths[0] && (
-          <m.div {...reveal(2)} className={styles.worksNote}>
+          <m.div {...reveal(structuralGaps.length > 0 ? 3 : 2)} className={styles.worksNote}>
             <p className="text-sm font-semibold">Don&apos;t touch this one</p>
             <p className={cn(styles.body, "mt-1 text-foreground")}>{strengths[0]}</p>
           </m.div>
@@ -170,6 +183,7 @@ export function ReportStream({
               fix={fix}
               rewrite={rewrite}
               index={index}
+              {...fixCardSlots(integrity, index)}
               locked={isGated && index > 0}
               onUnlock={handleUnlock}
               resumeText={resumeText}
@@ -229,7 +243,7 @@ export function ReportStream({
         </div>
       </details>
 
-      <FullRecruiterNotes report={report} hasJobDescription={hasJobDescription} />
+      <FullRecruiterNotes report={reconciled} hasJobDescription={hasJobDescription} />
 
       {isSample && onStartReport && (
         <section className={styles.revisionSection} aria-labelledby="sample-report-next-step-title" data-testid="sample-terminal-cta">

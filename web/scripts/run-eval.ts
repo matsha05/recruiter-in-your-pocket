@@ -125,6 +125,13 @@ function parseArgs(): EvalOptions {
                 options.withJudge = true;
                 break;
 
+            case "--repeat":
+                if (next) {
+                    options.repeat = parseInt(next, 10);
+                    i++;
+                }
+                break;
+
             case "--output-label":
                 if (next) {
                     options.outputLabel = next;
@@ -162,6 +169,7 @@ Options:
   --prompt-version <v>    Override prompt version hash
   --filter <term>         Filter fixtures by ID or tag
   --limit <n>             Run only the first n fixtures after filtering
+  --repeat <n>            Generate each fixture n times to measure score test-retest (multiplies cost)
   --output-label <slug>   Preserve a named summary instead of overwriting summary_latest_live.md
   --help, -h              Show this help
 
@@ -170,6 +178,7 @@ Examples:
   npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
   npm run eval:bulk -- --budget-usd 10
   npm run eval:golden -- --filter synthetic --limit 8
+  npm run eval:golden -- --filter synth_sales --repeat 3
   npm run eval -- --dry-run
 `);
 }

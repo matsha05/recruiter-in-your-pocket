@@ -66,10 +66,11 @@ completeReport.strengths = [
   "VISIBLE STRENGTH THREE",
   "REMAINING STRENGTH SENTINEL",
 ];
+// Distinct wording: notes that share most of their words read as one repeated observation and render once.
 completeReport.gaps = [
   "VISIBLE GAP ONE",
   "REMAINING GAP TWO SENTINEL",
-  "REMAINING GAP THREE SENTINEL",
+  "THIRD OPEN GAP MARKER",
 ];
 completeReport.section_review.Summary = {
   grade: "A",
@@ -120,8 +121,10 @@ const factOnlyEnd = completeReportHtml.indexOf("</article>", factOnlyStart);
 const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd + "</article>".length);
 assert.ok(factOnlyHtml.includes(hubspotSource), "the original evidence must survive when no rewrite is supplied");
 assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].fix));
-assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why), "without a draft, the Critical Miss card keeps the questions to answer");
+// The Critical Miss gives its reason once, in the opening read; its card asks what to add.
+assert.equal(factOnlyHtml.includes(completeReport.top_fixes[0].why), false, "the Critical Miss card must not repeat its reason");
 assert.ok(completeReportHtml.slice(0, factOnlyStart).includes(completeReport.top_fixes[0].why), "the Critical Miss must carry the why");
+assert.match(factOnlyHtml, /What to add[\s\S]*What customer count can you verify\?/, "the card asks the question written for its line");
 assert.ok(factOnlyHtml.includes('data-testid="fact-only-recommendation"'));
 assert.doesNotMatch(factOnlyHtml, /Suggested wording|View draft template|Why this is stronger/,
   "a fact-only recommendation must not promise or praise an absent rewrite");
@@ -152,7 +155,7 @@ for (const expected of [
   "DETAILED GAP EXAMPLE SENTINEL",
   "REMAINING STRENGTH SENTINEL",
   "REMAINING GAP TWO SENTINEL",
-  "REMAINING GAP THREE SENTINEL",
+  "THIRD OPEN GAP MARKER",
   "SECTION WORKING SENTINEL",
   "SECTION MISSING SENTINEL",
   "SECTION FIX SENTINEL",

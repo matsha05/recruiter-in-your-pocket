@@ -212,7 +212,9 @@ test.describe("launch red-team journeys", () => {
     } else {
       const copyButton = firstGeneratedFix.getByRole("button", { name: "Copy", exact: true });
       if (await copyButton.count()) await expect(copyButton).toBeVisible();
-      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation")).toBeVisible();
+      // Without a draft, the card points at "What to add" only when it has questions to show.
+      else await expect(firstGeneratedFix.getByTestId("fact-only-recommendation"))
+        .toHaveCount(await firstGeneratedFix.getByText("What to add", { exact: true }).count());
     }
   });
 

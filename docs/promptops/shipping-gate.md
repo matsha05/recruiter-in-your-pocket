@@ -33,6 +33,31 @@ Before any prompt modification can be merged or deployed:
 | Score drift | ±5 points from baseline | Review and justify |
 | Judge score | > 8.5/10 average | Investigate regressions |
 
+### Report integrity (reported, not gated)
+
+Grounding and schema checks can pass while a report contradicts itself. Every eval and saved-output replay therefore also measures the validated report the way a customer reads it, both as generated and after the deterministic post-generation pass (`web/lib/reports/report-integrity.ts`) that the web report and the PDF share:
+
+- rewrites;
+- keep/fix collisions on one resume line;
+- repeated observations;
+- field-slot mapping (for example, "What to add" must hold questions, not the reason);
+- Critical Miss category (single-line edit or structural);
+- Verdict/Critical Miss agreement;
+- score test-retest, when a fixture ran more than once (`--repeat <n>`, or `scripts/replay-live-eval.ts` with several saved runs).
+
+These numbers do not change PASS/WARN/FAIL.
+
+Baseline for resume prompt `83b2a2d1`, from a zero-cost replay of the four saved runs: [summary_integrity_baseline_2026-11-01.md](../../tests/fixtures/results/summary_integrity_baseline_2026-11-01.md).
+
+- 0 rewrites in 13 reports.
+- 7 keep/fix collisions, 0 after the pass.
+- 71 repeated observations, 0 after the pass.
+- Every Critical Miss is a single-line edit; 7 reports flag a structural issue the Critical Miss skips.
+- The Verdict and Critical Miss disagree in 6 reports.
+- The operations fixture scored 60, 58, 60, 58 across retests.
+
+Matching is lexical (stemmed, distinctive shared words), so these counts are the pass's own view. A strength that names two lines with little shared wording can slip through; there is one known case in the operations reruns. Judge prompt item 1.3 on these numbers together with Matt's blind read.
+
 ---
 
 ## Workflow

@@ -4,6 +4,7 @@ import path from "node:path";
 import { validateResumeModelPayload } from "../lib/backend/validation";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
 import { runAllChecks } from "../lib/evals/checks";
+import { evaluateReportIntegrity } from "../lib/evals/integrity-checks";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { ErrorCode, EvalRunOutput, FixtureResult, WarningCode } from "../lib/evals/types";
 import { resumeTextFromFixture } from "../lib/evals/fixture-input";
@@ -14,20 +15,26 @@ function argumentValue(name: string) {
 }
 
 async function main() {
-  const inputArg = process.argv.slice(2).find((value) => !value.startsWith("--") && value !== argumentValue("--write-summary") && value !== argumentValue("--write-json"));
-  if (!inputArg) throw new Error("Usage: replay-live-eval.ts <saved-run.json> [--write-summary <summary.md>] [--write-json <replay.json>]");
+  // Several saved runs of the same fixtures replay together so score test-retest can be measured.
+  const inputArgs = process.argv.slice(2).filter((value) => !value.startsWith("--") && value !== argumentValue("--write-summary") && value !== argumentValue("--write-json"));
+  if (inputArgs.length === 0) throw new Error("Usage: replay-live-eval.ts <saved-run.json> [more-runs.json ...] [--write-summary <summary.md>] [--write-json <replay.json>]");
 
-  const runPath = path.resolve(process.cwd(), inputArg);
-  const runBytes = await readFile(runPath);
-  const run = JSON.parse(runBytes.toString("utf8")) as EvalRunOutput;
-  if (run.metadata.execution_mode !== "live") throw new Error("Only saved live eval runs can be replayed");
+  const sources = await Promise.all(inputArgs.map(async (inputArg) => {
+    const bytes = await readFile(path.resolve(process.cwd(), inputArg));
+    const run = JSON.parse(bytes.toString("utf8")) as EvalRunOutput;
+    if (run.metadata.execution_mode !== "live") throw new Error(`Only saved live eval runs can be replayed: ${inputArg}`);
+    return { run, sha256: createHash("sha256").update(bytes).digest("hex") };
+  }));
+  const run = sources[0].run;
+  const promptHashes = new Set(sources.map((source) => source.run.metadata.resume_prompt_sha256));
+  if (promptHashes.size > 1) throw new Error("Saved runs replayed together must share one resume prompt");
 
   const calibration = JSON.parse(
     await readFile(path.resolve(process.cwd(), "../tests/fixtures/calibration.json"), "utf8"),
   );
   const results: FixtureResult[] = [];
 
-  for (const original of run.results) {
+  for (const original of sources.flatMap((source) => source.run.results)) {
     const fixture = calibration.fixtures.find((item: any) => item.id === original.fixture_id);
     if (!fixture) throw new Error(`Missing fixture definition: ${original.fixture_id}`);
     const resumeText = resumeTextFromFixture(await readFile(
@@ -64,6 +71,7 @@ async function main() {
         actual_score: output.score,
         expected_range: [fixture.expected_score.min, fixture.expected_score.max],
         raw_output: output,
+        integrity: evaluateReportIntegrity(output),
       });
     } catch (error) {
       results.push({
@@ -87,11 +95,16 @@ async function main() {
   const replay: EvalRunOutput = {
     metadata: {
       ...run.metadata,
-      run_id: `${run.metadata.run_id}_replay`,
+      run_id: `${sources.map((source) => source.run.metadata.run_id).join("+")}_replay`,
       validation_mode: "saved_output_replay",
       validation_input: "model_output_when_available",
       validation_timestamp: new Date().toISOString(),
-      source_run_sha256: createHash("sha256").update(runBytes).digest("hex"),
+      source_run_sha256: sources[0].sha256,
+      ...(sources.length > 1 ? {
+        source_runs: sources.map((source) => ({ run_id: source.run.metadata.run_id, sha256: source.sha256 })),
+        calls_made: sources.reduce((total, source) => total + source.run.metadata.calls_made, 0),
+        actual_cost_usd: Math.round(sources.reduce((total, source) => total + source.run.metadata.actual_cost_usd, 0) * 1e8) / 1e8,
+      } : {}),
     },
     summary,
     results,

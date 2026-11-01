@@ -147,7 +147,7 @@ for (const candidate of [reportWithUnknownModelFields, strippedUnknownSchema.dat
   const html = renderReportHtml(normalized!);
   assert.equal(html.includes(unmodeledPdfClaim), false, "unmodeled copy must never reach PDF HTML");
   assert.equal(html.includes("January 1, 1900"), false, "the PDF date must be derived server-side");
-  assert.ok(html.includes(schemaValidReport.next_steps[0]), "supported next steps must remain printable");
+  assert.ok(html.includes(schemaValidReport.next_steps[1]), "supported next steps must remain printable (the first repeats the fix)");
 }
 
 const noJobDescriptionPayload = structuredClone(schemaValidReport);

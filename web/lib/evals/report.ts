@@ -9,6 +9,7 @@ import type {
     ErrorCode,
     WarningCode
 } from "./types";
+import { scoreTestRetest, type ReportIntegrityMetrics } from "./integrity-checks";
 
 // ============================================
 // MARKDOWN REPORT GENERATION
@@ -47,7 +48,9 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
         if (run.metadata.validation_timestamp) {
             lines.push(`**Validation Timestamp:** ${run.metadata.validation_timestamp}`);
         }
-        if (run.metadata.source_run_sha256) {
+        if (run.metadata.source_runs && run.metadata.source_runs.length > 1) {
+            lines.push(`**Source runs:** ${run.metadata.source_runs.map((source) => `${source.run_id} (SHA-256 ${source.sha256})`).join(", ")}`);
+        } else if (run.metadata.source_run_sha256) {
             lines.push(`**Source run SHA-256:** ${run.metadata.source_run_sha256}`);
         }
     }
@@ -109,6 +112,9 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
         }
     }
 
+    lines.push(...integritySection(run));
+    lines.push(...retestSection(run));
+
     // Passed (summary only)
     const passed = run.results.filter(r => r.status === "PASS");
     if (passed.length > 0) {
@@ -135,6 +141,124 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     }
 
     return lines.join("\n");
+}
+
+// ============================================
+// REPORT INTEGRITY
+// ============================================
+
+function measured(run: EvalRunOutput) {
+    return run.results.filter((result): result is FixtureResult & { integrity: ReportIntegrityMetrics } => Boolean(result.integrity));
+}
+
+function reports(count: number) {
+    return `${count} ${count === 1 ? "report" : "reports"}`;
+}
+
+function humanKind(kind: string | undefined) {
+    return kind ? kind.replace(/_/g, " ") : "";
+}
+
+function criticalMissLabel(metrics: ReportIntegrityMetrics) {
+    const { critical_miss: miss } = metrics;
+    const base = miss.category === "bullet_edit" ? "line edit" : miss.category === "structural" ? `structural (${humanKind(miss.kind)})` : "none";
+    const flagged = miss.structural_flagged.length > 0 ? `; flagged: ${miss.structural_flagged.map(humanKind).join(", ")}` : "";
+    return `${base}${flagged}${miss.outranked ? " (outranked)" : ""}`;
+}
+
+export function integritySummary(run: EvalRunOutput) {
+    const results = measured(run).map((result) => result.integrity);
+    const sum = (pick: (metrics: ReportIntegrityMetrics) => number) => results.reduce((total, metrics) => total + pick(metrics), 0);
+    const count = (test: (metrics: ReportIntegrityMetrics) => boolean) => results.filter(test).length;
+    return {
+        reports: results.length,
+        withRewrites: count((metrics) => metrics.rewrites > 0),
+        rewrites: sum((metrics) => metrics.rewrites),
+        collisions: { model: sum((metrics) => metrics.keep_fix_collisions.model), shown: sum((metrics) => metrics.keep_fix_collisions.shown) },
+        collisionReports: count((metrics) => metrics.keep_fix_collisions.model > 0),
+        criticalMissInKeep: {
+            model: count((metrics) => metrics.keep_fix_collisions.critical_miss_in_keep.model),
+            shown: count((metrics) => metrics.keep_fix_collisions.critical_miss_in_keep.shown),
+        },
+        repeats: { model: sum((metrics) => metrics.repeated_observations.model), shown: sum((metrics) => metrics.repeated_observations.shown) },
+        slots: { model: sum((metrics) => metrics.slot_mapping.model.length), shown: sum((metrics) => metrics.slot_mapping.shown.length) },
+        lineEdits: count((metrics) => metrics.critical_miss.category === "bullet_edit"),
+        structural: count((metrics) => metrics.critical_miss.category === "structural"),
+        outranked: count((metrics) => metrics.critical_miss.outranked),
+        mismatches: count((metrics) => metrics.verdict_critical_miss.agreement === "mismatch"),
+        noConcern: count((metrics) => metrics.verdict_critical_miss.agreement === "no_concern"),
+    };
+}
+
+function integritySection(run: EvalRunOutput): string[] {
+    const results = measured(run);
+    if (results.length === 0) return [];
+    const summary = integritySummary(run);
+    const lines: string[] = [];
+    lines.push("## Report Integrity");
+    lines.push("");
+    lines.push("What a customer reads, measured on each validated report. These checks are reported, not gated; the status counts above are unchanged. **Model** is the report as generated. **Shown** is the report after the deterministic post-generation pass that the web report and PDF both apply.");
+    lines.push("");
+    lines.push("| Check | Model | Shown |");
+    lines.push("|:------|:------|:------|");
+    lines.push(`| Reports with a rewrite | ${summary.withRewrites} of ${summary.reports} (${summary.rewrites} rewrites) | same |`);
+    lines.push(`| Keep/fix collisions on one line | ${summary.collisions.model} in ${reports(summary.collisionReports)} | ${summary.collisions.shown} |`);
+    lines.push(`| Critical Miss line also in Keep | ${reports(summary.criticalMissInKeep.model)} | ${reports(summary.criticalMissInKeep.shown)} |`);
+    lines.push(`| Repeated observations | ${summary.repeats.model} | ${summary.repeats.shown} |`);
+    lines.push(`| Field-slot mapping issues | ${summary.slots.model} | ${summary.slots.shown} |`);
+    lines.push(`| Critical Miss is a line edit / structural | ${summary.lineEdits} / ${summary.structural} | same |`);
+    lines.push(`| Structural issue flagged, Critical Miss is a line edit | ${reports(summary.outranked)} | same |`);
+    lines.push(`| Verdict and Critical Miss disagree | ${reports(summary.mismatches)} | same |`);
+    lines.push(`| Verdict raises no concern | ${reports(summary.noConcern)} | same |`);
+    lines.push("");
+    lines.push("| Fixture | Score | Rewrites | Keep/fix | Repeats | Slot issues | Critical Miss | Verdict and Critical Miss |");
+    lines.push("|:--------|:------|:---------|:---------|:--------|:------------|:--------------|:--------------------------|");
+    for (const result of results) {
+        const metrics = result.integrity;
+        const collisions = `${metrics.keep_fix_collisions.model} → ${metrics.keep_fix_collisions.shown}${metrics.keep_fix_collisions.critical_miss_in_keep.model ? " (Critical Miss in Keep)" : ""}`;
+        lines.push(`| ${result.fixture_id} | ${result.actual_score} | ${metrics.rewrites} | ${collisions} | ${metrics.repeated_observations.model} → ${metrics.repeated_observations.shown} | ${metrics.slot_mapping.model.length} → ${metrics.slot_mapping.shown.length} | ${criticalMissLabel(metrics)} | ${metrics.verdict_critical_miss.agreement.replace("_", " ")} |`);
+    }
+    lines.push("");
+
+    const details = results.flatMap((result) => {
+        const metrics = result.integrity;
+        const items = [
+            ...metrics.verdict_critical_miss.reasons,
+            ...metrics.verdict_critical_miss.notes,
+            ...metrics.slot_mapping.model.map((issue) => `Model slot: ${issue}`),
+            ...metrics.slot_mapping.shown.map((issue) => `Shown slot: ${issue}`),
+            ...(metrics.repeated_observations.shown > 0 ? metrics.repeated_observations.examples.map((example) => `Shown repeat: ${example}`) : []),
+        ];
+        return items.length > 0 ? [`- **${result.fixture_id}**: ${items.join(" ")}`] : [];
+    });
+    if (details.length > 0) {
+        lines.push("<details>");
+        lines.push("<summary>Integrity details</summary>");
+        lines.push("");
+        lines.push(...details);
+        lines.push("</details>");
+        lines.push("");
+    }
+    return lines;
+}
+
+function retestSection(run: EvalRunOutput): string[] {
+    if (run.metadata.execution_mode === "dry_run") return [];
+    const retest = scoreTestRetest(run.results);
+    const lines: string[] = ["## Score Test-Retest", ""];
+    if (retest.length === 0) {
+        lines.push("Each fixture was generated once, so test-retest was not measured. Use `--repeat <n>`, or replay several saved runs of the same fixtures together.");
+        lines.push("");
+        return lines;
+    }
+    lines.push("| Fixture | Scores | Range | Mean | SD |");
+    lines.push("|:--------|:-------|:------|:-----|:---|");
+    for (const item of retest) {
+        const note = item.unvalidated > 0 ? ` (${item.unvalidated} from reports that failed validation)` : "";
+        lines.push(`| ${item.fixture_id} | ${item.scores.join(", ")}${note} | ${item.range} | ${item.mean} | ${item.sd} |`);
+    }
+    lines.push("");
+    return lines;
 }
 
 function formatFixtureResult(result: FixtureResult, focus: "FAIL" | "WARN"): string {
@@ -293,6 +417,22 @@ export function printSummary(run: EvalRunOutput): void {
         for (const r of run.results.filter(r => r.status === "WARN")) {
             console.log(`  ${r.fixture_id}: ${r.warnings.map(w => w.code).join(", ")}`);
         }
+        console.log("");
+    }
+
+    if (measured(run).length > 0) {
+        const summary = integritySummary(run);
+        console.log("REPORT INTEGRITY (reported, not gated; model → shown after the post-generation pass):");
+        console.log(`  Rewrites: ${summary.rewrites} across ${summary.withRewrites}/${summary.reports} reports`);
+        console.log(`  Keep/fix collisions: ${summary.collisions.model} → ${summary.collisions.shown} (Critical Miss in Keep: ${summary.criticalMissInKeep.model} → ${summary.criticalMissInKeep.shown})`);
+        console.log(`  Repeated observations: ${summary.repeats.model} → ${summary.repeats.shown}`);
+        console.log(`  Field-slot mapping issues: ${summary.slots.model} → ${summary.slots.shown}`);
+        console.log(`  Critical Miss: ${summary.lineEdits} line edits, ${summary.structural} structural; ${summary.outranked} reports flag a structural issue the Critical Miss skips`);
+        console.log(`  Verdict and Critical Miss: ${summary.mismatches} disagree, ${summary.noConcern} Verdicts raise no concern`);
+        const retest = scoreTestRetest(run.results);
+        console.log(retest.length > 0
+            ? `  Score test-retest: ${retest.map((item) => `${item.fixture_id} ${item.scores.join("/")} (range ${item.range})`).join("; ")}`
+            : "  Score test-retest: not measured (each fixture ran once)");
         console.log("");
     }
 
