@@ -1,4 +1,6 @@
+import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
+import { reconcileReport } from "./report-integrity";
 
 export type ReportForPdf = {
   score: number;
@@ -11,7 +13,10 @@ export type ReportForPdf = {
   score_comment_short?: string;
   first_impression?: string;
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
-  top_fixes?: Array<{ fix?: string; why?: string }>;
+  /** `why` is present only when it is a reason; `questions` are the details to add, as on the web report. */
+  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[] }>;
+  /** Structural gaps shown in the opening read. */
+  structural_gaps?: string[];
   job_alignment?: {
     positioning_suggestion?: string;
     role_fit?: {
@@ -60,7 +65,10 @@ function asRewrites(value: unknown): ReportForPdf["rewrites"] {
   });
 }
 
-function asTopFixes(value: unknown): NonNullable<ReportForPdf["top_fixes"]> {
+type SourceFix = NonNullable<ReportData["top_fixes"]>[number];
+
+/** Fixes with the evidence the integrity pass needs to tell resume lines apart. */
+function asSourceFixes(value: unknown): SourceFix[] {
   if (!Array.isArray(value)) return [];
 
   return value.flatMap((item) => {
@@ -68,9 +76,29 @@ function asTopFixes(value: unknown): NonNullable<ReportForPdf["top_fixes"]> {
 
     const fix = asTrimmedString((item as { fix?: unknown }).fix) || undefined;
     const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
-
     if (!fix && !why) return [];
-    return [{ fix, why }];
+
+    const rawEvidence = (item as { evidence?: unknown }).evidence;
+    const evidence = typeof rawEvidence === "string"
+      ? asTrimmedString(rawEvidence) || undefined
+      : rawEvidence && typeof rawEvidence === "object"
+        ? {
+          excerpt: asTrimmedString((rawEvidence as { excerpt?: unknown }).excerpt) || undefined,
+          section: asTrimmedString((rawEvidence as { section?: unknown }).section) || undefined,
+        }
+        : undefined;
+    return [{ fix, why, evidence }];
+  });
+}
+
+function asQuestions(value: unknown): NonNullable<NonNullable<ReportData["ideas"]>["questions"]> {
+  const questions = value && typeof value === "object" ? (value as { questions?: unknown }).questions : undefined;
+  if (!Array.isArray(questions)) return [];
+  return questions.flatMap((item) => {
+    const question = item && typeof item === "object" ? asTrimmedString((item as { question?: unknown }).question) : null;
+    if (!question) return [];
+    const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
+    return [{ question, why }];
   });
 }
 
@@ -144,9 +172,13 @@ function deriveSummary(report: Record<string, unknown>): string | null {
   );
 }
 
-function deriveNextSteps(report: Record<string, unknown>, topFixes: NonNullable<ReportForPdf["top_fixes"]>) {
-  const explicitNextSteps = asStringArray(report.next_steps);
-  if (explicitNextSteps.length > 0) return explicitNextSteps;
+function deriveNextSteps(
+  report: Record<string, unknown>,
+  topFixes: NonNullable<ReportForPdf["top_fixes"]>,
+  reconciledNextSteps: string[],
+) {
+  // A next step that only repeated a fix was removed by the integrity pass; don't refill the list with fixes.
+  if (asStringArray(report.next_steps).length > 0) return reconciledNextSteps;
 
   const fromTopFixes = topFixes
     .map((fix) => fix.fix)
@@ -163,19 +195,38 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
   const score = clampScore(candidate.score);
   if (score === null) return null;
 
-  const top_fixes = asTopFixes(candidate.top_fixes);
+  // The same post-generation pass as the web report, so Keep, fixes and notes agree.
+  const sourceFixes = asSourceFixes(candidate.top_fixes);
+  const rewrites = asRewrites(candidate.rewrites);
+  const integrity = reconcileReport({
+    first_impression: asTrimmedString(candidate.first_impression) || undefined,
+    score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
+    biggest_gap_example: asTrimmedString(candidate.biggest_gap_example) || undefined,
+    strengths: asStringArray(candidate.strengths),
+    gaps: asStringArray(candidate.gaps),
+    top_fixes: sourceFixes,
+    rewrites,
+    ideas: { questions: asQuestions(candidate.ideas) },
+    next_steps: asStringArray(candidate.next_steps),
+  });
+  const top_fixes = sourceFixes.map((fix, index) => ({
+    fix: fix.fix,
+    why: integrity.fixWhyIsReason[index] ? fix.why : undefined,
+    questions: integrity.fixQuestions[index].length > 0 ? integrity.fixQuestions[index] : undefined,
+  }));
   const normalized: ReportForPdf = {
     score,
     summary: deriveSummary(candidate) || "Here's where to start.",
-    strengths: asStringArray(candidate.strengths),
-    gaps: asStringArray(candidate.gaps),
-    rewrites: asRewrites(candidate.rewrites),
-    next_steps: deriveNextSteps(candidate, top_fixes),
+    strengths: integrity.report.strengths || [],
+    gaps: integrity.report.gaps || [],
+    rewrites,
+    next_steps: deriveNextSteps(candidate, top_fixes, integrity.report.next_steps || []),
     score_label: getScoreLabel(score),
     score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
     first_impression: asTrimmedString(candidate.first_impression) || undefined,
     subscores: asSubscores(candidate.subscores),
     top_fixes,
+    structural_gaps: integrity.structuralGaps.length > 0 ? integrity.structuralGaps.map(({ text }) => text) : undefined,
     job_alignment: asJobAlignment(candidate.job_alignment),
   };
 

@@ -3,32 +3,37 @@
 import sampleReport from "@/public/sample-report.json";
 import { DiagramCaption, DiagramFigure } from "@/components/shared/diagrams/DiagramPrimitives";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
+import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 
-// Every line below comes from the public sample report, so the figure shows what a report actually says.
-const criticalMiss = sampleReport.top_fixes[0];
+// Every line below is one the sample report shows after its integrity pass, so the
+// figure quotes what a reader of the report actually sees.
+const sample = reconcileReport(sampleReport as ReportData);
+const criticalMiss = sample.report.top_fixes?.[0];
+const criticalMissWhy = criticalMissReason(sample);
 
 const weighs = [
     {
         title: "The results you show",
         question: "Does each example say what changed because of your work?",
-        finding: sampleReport.gaps[0],
+        finding: fixCardSlots(sample, 1).why,
     },
     {
         title: "How clearly each line reads",
         question: "Can a recruiter tell what you did, and how much you owned, on the first pass?",
-        finding: sampleReport.strengths[0],
+        finding: fixCardSlots(sample, 2).why,
     },
     {
         title: "How your experience fits together",
         question: "Does the resume point at the role you want next?",
-        finding: sampleReport.gaps[2],
+        finding: sample.structuralGaps[0]?.text,
     },
     {
         title: "How easy the text is to follow",
         question: "Reading the text alone, can someone find your roles, dates, and results quickly?",
-        finding: sampleReport.section_review.Skills.working,
+        finding: sample.report.strengths?.[0],
     },
-];
+].filter((item): item is typeof item & { finding: string } => Boolean(item.finding));
 
 const reviewPath = [
     { label: "Your lines", detail: "What the resume actually says" },
@@ -53,8 +58,8 @@ export function FirstReadModelDiagram() {
                         </div>
                         <div className="rounded-xl border border-[hsl(var(--miss-line))] bg-[hsl(var(--miss-surface))] p-4">
                             <p className="riyp-verdict-label text-[hsl(var(--brass))]">Critical Miss</p>
-                            <p className="mt-1.5 text-base font-bold leading-6 text-foreground">{criticalMiss.fix}</p>
-                            <p className="mt-1.5 text-sm leading-6 text-foreground/80">{criticalMiss.why}</p>
+                            <p className="mt-1.5 text-base font-bold leading-6 text-foreground">{criticalMiss?.fix}</p>
+                            {criticalMissWhy && <p className="mt-1.5 text-sm leading-6 text-foreground/80">{criticalMissWhy}</p>}
                         </div>
                         </div>
                     </section>

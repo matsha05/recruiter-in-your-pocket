@@ -19,6 +19,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { Button } from "@/components/ui/button";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { reconcileReport } from "@/lib/reports/report-integrity";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -90,6 +91,11 @@ export default function ReportPanel({
         if (!report) return null;
         return shareMode ? redactReport(report) : report;
     }, [report, shareMode]);
+    // The Keep section lists the strengths after the opening one, once lines the report also fixes are removed.
+    const hasKeepSection = useMemo(
+        () => Boolean(displayReport && (reconcileReport(displayReport).report.strengths || []).length > 1),
+        [displayReport],
+    );
 
     const tocActiveId = highlightSection
         ? ({
@@ -193,7 +199,7 @@ export default function ReportPanel({
 
             {/* 3. The working report */}
             {showReport && !isLoading && displayReport && (
-                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} hasKeep={(displayReport.strengths || []).length > 1} hasRole={Boolean(displayReport.job_alignment)} />}>
+                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={Boolean(displayReport.job_alignment)} />}>
                         <div className="gap-y-6">
                             {isStreaming && (
                                 <div

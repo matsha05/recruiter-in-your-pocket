@@ -3,6 +3,7 @@
  */
 
 import type { TokenUsage } from "../llm/cost";
+import type { ReportIntegrityMetrics } from "./integrity-checks";
 import type { ReasoningEffort } from "../llm/model-config";
 
 // ============================================
@@ -130,6 +131,8 @@ export interface FixtureResult {
     normalization_changes?: string[];
     generation_normalization_changes?: string[];
     initial_validation_error?: string;
+    /** Report-integrity measurements on the validated output; reported, not gated. */
+    integrity?: ReportIntegrityMetrics;
     judge_result?: {
         evidence_score: number;
         actionability_score: number;
@@ -171,6 +174,8 @@ export interface EvalRunMetadata {
     validation_input?: "model_output_when_available";
     validation_timestamp?: string;
     source_run_sha256?: string;
+    /** Every saved run in a combined replay, in input order. */
+    source_runs?: Array<{ run_id: string; sha256: string }>;
 }
 
 // ============================================
@@ -207,6 +212,8 @@ export interface EvalOptions {
     limit?: number;
     withJudge?: boolean;
     outputLabel?: string;
+    /** Generate each fixture this many times to measure score test-retest. Multiplies cost. */
+    repeat?: number;
 }
 
 // ============================================

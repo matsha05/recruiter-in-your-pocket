@@ -26,6 +26,7 @@ export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
       --brass: #6b5400;
       --miss-surface: #fff6c2;
       --miss-line: #f2dc6b;
+      --red-pen: #b42318;
     }
     @page { size: A4; margin: 18mm 17mm 16mm; background: var(--page); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,6 +76,8 @@ export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
     .critical-label { color: var(--brass); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; }
     .critical-title { margin-top: 6px; font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 13pt; font-weight: 650; line-height: 18pt; }
     .critical-why { margin-top: 4px; color: var(--muted); }
+    .gap-note { margin: -8px 0 26px; padding-left: 14px; border-left: 2px solid var(--red-pen); break-inside: avoid; }
+    .gap-label { color: var(--red-pen); font-size: 9pt; font-weight: 600; line-height: 13pt; margin-bottom: 3px; }
     .section { margin-bottom: 26px; }
     .section-header { margin-bottom: 13px; padding-bottom: 9px; border-bottom: 1px solid var(--line); break-after: avoid; }
     ul { list-style: none; margin: 0; padding: 0; }
@@ -93,6 +96,9 @@ export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
     .priority-number { color: var(--accent); font-size: 10pt; line-height: 16pt; flex: 0 0 24px; }
     .priority-copy { display: flex; flex-direction: column; gap: 4px; }
     .priority-copy span { color: var(--muted); }
+    .priority-questions { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+    .priority-copy .priority-questions-label { color: var(--red-pen); font-size: 9pt; font-weight: 600; line-height: 13pt; }
+    .priority-copy .priority-question { color: var(--ink); }
     .rewrite-card { border: 1px solid var(--line); margin-bottom: 16px; break-inside: avoid; }
     .rewrite-heading { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 9pt; line-height: 13pt; padding: 10px 13px; border-bottom: 1px solid var(--line); }
     .rewrite-grid { display: grid; grid-template-columns: 1fr 1fr; }

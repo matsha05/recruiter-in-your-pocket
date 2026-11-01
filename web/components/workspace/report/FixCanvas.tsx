@@ -57,6 +57,8 @@ export function FixCanvas({
   fix,
   rewrite,
   index,
+  why,
+  whatToAdd = [],
   locked,
   onUnlock,
   resumeText,
@@ -65,6 +67,10 @@ export function FixCanvas({
   fix: Fix;
   rewrite?: Rewrite;
   index: number;
+  /** The reason to show on the card; the Critical Miss gives its reason in the opening read instead. */
+  why?: string;
+  /** Missing-detail questions for this line. */
+  whatToAdd?: string[];
   locked?: boolean;
   onUnlock?: () => void;
   resumeText?: string;
@@ -112,6 +118,15 @@ export function FixCanvas({
   }), [draft, factsApplied, resumeText, sourceLocator, verifiedFacts]);
   const traceProgress = copyPolicy.copyable ? 100 : factsApplied ? 82 : allRequiredFactsProvided ? 68 : 50;
   const copied = copiedFeedback.active && copiedDraft === draft;
+  const hasDetailFields = hasSuggestedLine && placeholderKeys.length > 0;
+  // The Critical Miss gives its reason in the opening read. Other fixes fall back to a
+  // stock reason only when they have neither a reason nor questions of their own.
+  const reason = index === 0
+    ? undefined
+    : why || (whatToAdd.length === 0 ? "This example needs more detail about what you did and what changed." : undefined);
+  // The draft's own fields ask for the details when there are brackets to fill in.
+  const questionsToAsk = hasDetailFields ? [] : whatToAdd;
+  const reasoningCount = (reason ? 1 : 0) + (questionsToAsk.length > 0 ? 1 : 0) + (hasDetailFields ? 1 : 0);
 
   useEffect(() => () => { copyRequest.current += 1; }, []);
 
@@ -231,13 +246,19 @@ export function FixCanvas({
             </div>
           )}
 
-          <div className={`${styles.reasoning} ${hasSuggestedLine ? styles.reasoningColumns : ""}`}>
-            {/* The Critical Miss explains why at the top; its card repeats the questions only when there is no draft to fill in. */}
-            {(index > 0 || !hasSuggestedLine) && <div className={styles.reasoningItem}>
-              <p className={`${styles.label} ${index === 0 ? styles.labelMissing : ""}`}>{index === 0 ? "What to add" : "Why it matters"}</p>
-              <p className={styles.body}>{fix.why || "This example needs more detail about what you did and what changed."}</p>
+          {reasoningCount > 0 && <div className={`${styles.reasoning} ${reasoningCount > 1 ? styles.reasoningColumns : ""}`}>
+            {/* The Critical Miss explains why at the top, so its card only asks for what's missing. */}
+            {reason && <div className={styles.reasoningItem}>
+              <p className={styles.label}>Why it matters</p>
+              <p className={styles.body}>{reason}</p>
             </div>}
-            {hasSuggestedLine && placeholderKeys.length > 0 && <div className={styles.reasoningItem}>
+            {questionsToAsk.length > 0 && <div className={styles.reasoningItem}>
+              <p className={`${styles.label} ${styles.labelMissing}`}>What to add</p>
+              <ul className={styles.questions}>
+                {questionsToAsk.map((question) => <li key={question}>{question}</li>)}
+              </ul>
+            </div>}
+            {hasDetailFields && <div className={styles.reasoningItem}>
               <p className={styles.label}>Details to add</p>
               {placeholderKeys.length > 0 && rewrite?.enhancement_note && (
                 <p className="mt-3 text-base leading-6 text-foreground">{rewrite.enhancement_note}</p>
@@ -275,7 +296,7 @@ export function FixCanvas({
                 </div>
               ) : null}
             </div>}
-          </div>
+          </div>}
 
           {hasSuggestedLine && awaitingFacts ? (
             <div className={styles.wording}>
@@ -329,11 +350,11 @@ export function FixCanvas({
               {placeholderKeys.length === 0 && <RewriteEnhancementNote note={rewrite?.enhancement_note} className="mt-5" />}
               {copyError && <p role="status" className="mt-3 text-sm leading-6 text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </div>
-          ) : (
+          ) : questionsToAsk.length > 0 ? (
             <p data-testid="fact-only-recommendation" className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
               Start with the original sentence and add the details above.
             </p>
-          )}
+          ) : null}
         </div>
       </div>
     </article>
