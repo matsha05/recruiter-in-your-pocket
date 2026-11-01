@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ResearchClient from "@/components/research/ResearchClient";
+import ResearchHub from "@/components/research/ResearchHub";
 
 export const metadata: Metadata = {
     title: "Hiring research",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ResearchPage() {
-    return <ResearchClient />;
+    return <ResearchHub />;
 }

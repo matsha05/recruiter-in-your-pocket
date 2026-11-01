@@ -26,7 +26,7 @@ const DESIGN_DEBT_BUDGETS = {
 };
 
 const RESEARCH_SYSTEM_FILES = [
-  "components/research/ResearchClient.tsx", "components/research/ResearchArticle.tsx",
+  "components/research/ResearchHub.tsx", "components/research/ResearchArticle.tsx",
   "components/shared/diagrams/DiagramPrimitives.tsx", "components/shared/diagrams/EvidenceVisuals.tsx",
 ];
 
