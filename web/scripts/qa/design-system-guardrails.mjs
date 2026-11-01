@@ -40,6 +40,7 @@ const HEX_ALLOWLIST = new Set([
   // Next ImageResponse requires inline, literal styles and cannot consume the
   // runtime CSS token sheet. Values here must mirror the canonical palette.
   "app/opengraph-image.tsx",
+  "app/og/home/route.tsx",
   "app/(editorial)/guides/tools/comp-calculator/page.tsx",
   "components/research/diagrams/LinkedInResumeFlow.tsx",
   "lib/backend/pdf.ts",
@@ -58,6 +59,7 @@ const CALIBRATED_ARTWORK_FILES = new Set();
 const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
+  "app/og/home/route.tsx",
   "app/icon.tsx",
   "app/apple-icon.tsx",
 ]);

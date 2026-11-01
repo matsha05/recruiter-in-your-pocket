@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     title: "Read an Example Resume Report",
     description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
     url: "https://www.recruiterinyourpocket.com/sample-report",
-    images: ["/opengraph-image?v=20260730"],
+    images: ["/opengraph-image?v=20261031"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Read an Example Resume Report",
     description: "See the feedback, original resume quotes, and suggested changes in a complete example report.",
-    images: ["/opengraph-image?v=20260730"],
+    images: ["/opengraph-image?v=20261031"],
   },
 };
 
