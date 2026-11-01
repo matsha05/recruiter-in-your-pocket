@@ -54,7 +54,7 @@ export function LegalNav({ className }: LegalNavProps) {
         <div className={cn("relative min-w-0", className)}>
             <nav
                 ref={navRef}
-                className="flex w-full snap-x items-center gap-1 overflow-x-auto py-1 pr-9 [scrollbar-width:none] md:pr-0 [&::-webkit-scrollbar]:hidden"
+                className="flex w-full snap-x items-center gap-0 overflow-x-auto py-1 [scrollbar-width:none] sm:gap-1 [&::-webkit-scrollbar]:hidden"
                 aria-label="Trust and legal pages"
                 onFocusCapture={(event) => {
                     const link = event.target;
@@ -71,7 +71,7 @@ export function LegalNav({ className }: LegalNavProps) {
                             href={tab.href}
                             aria-current={pathname === tab.href ? "page" : isActive ? "true" : undefined}
                             className={cn(
-                                "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium",
+                                "focus-ring inline-flex min-h-11 snap-start items-center whitespace-nowrap rounded-full border px-2.5 py-2 text-sm font-medium sm:px-4",
                                 isActive
                                     ? "border-brand/20 bg-brand-tint text-brand"
                                     : "border-transparent text-muted-foreground riyp-surface-link hover:text-foreground"

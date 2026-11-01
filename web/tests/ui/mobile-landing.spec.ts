@@ -44,7 +44,7 @@ test("phone visitors read the whole story without opening anything", async ({ pa
   const silence = page.getByRole("heading", { level: 2, name: "Not even a reply." });
   await silence.scrollIntoViewIfNeeded();
   await expect(silence).toBeVisible();
-  const verdict = page.locator("blockquote");
+  const verdict = page.locator("#how-it-works figure blockquote");
   await verdict.scrollIntoViewIfNeeded();
   await expect(verdict).toContainText("What’s missing is proof Jordan changed the outcome.");
   await expect(page.locator("#main-content").getByRole("button", { expanded: false })).toHaveCount(0);
