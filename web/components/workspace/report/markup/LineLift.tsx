@@ -16,6 +16,12 @@ import {
   type LiftAnswer,
   type LiftState,
 } from "@/lib/reports/revised-line";
+import {
+  checkPolishedLine,
+  fetchPolishedLine,
+  POLISH_ALLOWS_JOINERS,
+  type RevisedLinePolishRequest,
+} from "@/lib/reports/revised-line-polish";
 import styles from "./MarkedReport.module.css";
 
 const traceItems = [
@@ -52,6 +58,7 @@ export function LineLift({
   questions,
   onChange,
   onReattach,
+  polishContext,
 }: {
   excerpt: string;
   /** The resume, when this visit has it (or the candidate pasted it back). */
@@ -62,6 +69,8 @@ export function LineLift({
   onChange?: (change: LiftChange) => void;
   /** Paste the resume back in to work on the whole line. Returns an error to show, if any. */
   onReattach?: (text: string) => string | null;
+  /** The report this line belongs to, so the server can offer a smoother line. Absent on the sample. */
+  polishContext?: RevisedLinePolishRequest["context"];
 }) {
   const asked = questions.length > 0 ? questions : ["What would you add to this line?"];
   // Answers are kept by question, so a report still streaming in can add questions without losing any.
@@ -84,12 +93,48 @@ export function LineLift({
 
   const sourceLine = useMemo(() => liftSourceLine(excerpt, resumeText), [excerpt, resumeText]);
   const composed = useMemo(() => composeRevisedLine(sourceLine.line, answers), [answers, sourceLine.line]);
-  const line = edited ?? composed;
-  const policy = useMemo(
-    () => (line ? revisedLinePolicy({ resumeText, excerpt, line, answers }) : undefined),
-    [answers, excerpt, line, resumeText],
-  );
   const resolved = answers.map((answer) => (answer.kind === "answered" ? answer.value.trim().length > 0 : answer.kind !== "open"));
+  const allResolved = resolved.every(Boolean);
+
+  // Guarded polish: the literal line shows at once; a smoother one replaces it only if it passes the guard.
+  const [polished, setPolished] = useState<{ literal: string; line: string } | null>(null);
+  const [useExact, setUseExact] = useState(false);
+  const reportId = polishContext?.reportId;
+  const recoveryId = polishContext?.recoveryId;
+  useEffect(() => {
+    if ((!reportId && !recoveryId) || !composed || edited !== null || !allResolved) return;
+    if (polished?.literal === composed) return;
+    const values = answeredValues(answers);
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      const proposal = await fetchPolishedLine({ context: { reportId, recoveryId }, excerpt, line: sourceLine.line, answers: values }, controller.signal);
+      if (!proposal || controller.signal.aborted) return;
+      const check = checkPolishedLine(
+        { sourceLine: sourceLine.line, answers: values, literal: composed, polished: proposal },
+        { allowJoiners: POLISH_ALLOWS_JOINERS },
+      );
+      if (check.ok) setPolished({ literal: composed, line: proposal.trim() });
+    }, 1200);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [allResolved, answers, composed, edited, excerpt, polished?.literal, recoveryId, reportId, sourceLine.line]);
+  const polishedLine = polished && polished.literal === composed ? polished.line : null;
+  const showPolished = edited === null && Boolean(polishedLine) && !useExact;
+
+  const line = edited ?? (showPolished ? polishedLine! : composed);
+  const policy = useMemo(() => {
+    if (!line) return undefined;
+    if (showPolished && composed) {
+      const check = checkPolishedLine(
+        { sourceLine: sourceLine.line, answers: answeredValues(answers), literal: composed, polished: line },
+        { allowJoiners: POLISH_ALLOWS_JOINERS },
+      );
+      return { copyable: check.ok, newFacts: [] as string[] };
+    }
+    return revisedLinePolicy({ resumeText, excerpt, line, answers });
+  }, [answers, composed, excerpt, line, resumeText, showPolished, sourceLine.line]);
   const state = liftState(
     answers.map((answer, index) => (answer.kind === "answered" && !resolved[index] ? { kind: "open" } : answer)),
     policy?.copyable ? line : undefined,
@@ -221,7 +266,7 @@ export function LineLift({
           />
         ) : (
           <p className={styles.revisedText} data-testid="revised-line">
-            {edited === null && composed ? (
+            {edited === null && composed && !showPolished ? (
               <>
                 {sourceLine.line.replace(/[.;,:\s]+$/u, "")}:{" "}
                 {written.map((value, index) => (
@@ -238,12 +283,19 @@ export function LineLift({
           <p className={styles.revisedNote} aria-live="polite">
             {copyableLine
               ? edited === null
-                ? "Every word is from your resume or your answers. Reword it however you like."
+                ? showPolished ? "Every word is from your resume or your answers." : "Every word is from your resume or your answers. Reword it however you like."
                 : "Your wording. The facts all come from your line or your answers."
               : policy?.newFacts.length
                 ? `“${policy.newFacts.join("”, “")}” isn't in your line or your answers. If it's true, add it as an answer first.`
                 : "This changes a detail from your resume. Edit it back to what's true to copy it."}
           </p>
+        )}
+        {edited === null && polishedLine && (
+          <div>
+            <Button type="button" variant="quiet" size="sm" onClick={() => { setUseExact(!useExact); copied.reset(); }} aria-pressed={useExact}>
+              {showPolished ? "Use my exact words" : "Use the smoothed line"}
+            </Button>
+          </div>
         )}
         {copyError && <p role="status" className={styles.revisedNote}>Couldn&apos;t copy. Select the text and copy it manually.</p>}
 

@@ -7,6 +7,7 @@ import { Analytics } from "@/lib/analytics";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { bracketPlaceholderKeys } from "@/lib/llm/report-placeholder-policy";
 import { resolveUniqueSourceLine } from "@/lib/llm/source-fidelity";
+import { readAnonymousReportRecoveryMarker } from "@/lib/reports/anonymous-report-recovery-client";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
@@ -129,7 +130,17 @@ export function ReportStream({
     onUpgrade();
   };
 
-  const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach };
+  // The report the server can check a polish request against: a saved report's id, or this browser's
+  // anonymous report recovery. The sample has neither, so it keeps the literal line.
+  const reportId = buildPdfExportRequest(report)?.report_id;
+  const [recoveryId, setRecoveryId] = useState<string | undefined>();
+  useEffect(() => {
+    if (isSample || reportId) return;
+    setRecoveryId(readAnonymousReportRecoveryMarker()?.recoveryId);
+  }, [isSample, reportId, report]);
+  const polishContext = isSample ? undefined : reportId ? { reportId } : recoveryId ? { recoveryId } : undefined;
+
+  const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach, polishContext };
 
   return (
     <div className={cn(styles.root, className)}>

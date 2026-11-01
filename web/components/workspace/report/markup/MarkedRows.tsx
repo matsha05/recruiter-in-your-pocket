@@ -6,6 +6,7 @@ import { Mark, useSeen } from "@/components/research/figures/FigureKit";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { marginNoteFromFix } from "@/lib/reports/revised-line";
+import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish";
 import { cn } from "@/lib/utils";
 import type { ReportData } from "../ReportTypes";
 import { LineLift, type LiftChange, type ResumeSource } from "./LineLift";
@@ -34,6 +35,7 @@ interface LiftProps {
   source: ResumeSource;
   questions: string[];
   onReattach?: (text: string) => string | null;
+  polishContext?: RevisedLinePolishRequest["context"];
 }
 
 /** A hidden suggestion keeps its place in the page; after Hide, focus lands on "Bring it back". */
