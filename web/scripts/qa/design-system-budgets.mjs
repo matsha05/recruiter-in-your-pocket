@@ -29,11 +29,10 @@ export const STYLE_BUDGETS = {
 
 const WEIGHTS = new Set(["400", "600", "800"]);
 
-// Illustrations may mimic the document they draw (design-system.md §10), and the stacked wordmark is
-// waiting on the D6 logotype. Separate pipelines (PDF, email, Open Graph) carry their own literals.
+// Illustrations may mimic the document they draw (design-system.md §10). Separate pipelines (PDF, email,
+// Open Graph) carry their own literals.
 const RAW_SIZE_EXEMPT = new Set([
   "components/landing/home/VerdictHero.module.css",
-  "components/icons/Wordmark.module.css",
 ]);
 // Drawings of paper, screens, and chart bars keep the geometry of the thing they draw.
 const ILLUSTRATIONS = new Set([

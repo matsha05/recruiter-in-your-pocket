@@ -50,7 +50,7 @@ export function AppHeader() {
         <header className="app-shell-header">
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-2.5 rounded-md">
-                    <Wordmark compact className="site-wordmark text-foreground" />
+                    <Wordmark compact stackOnPhones className="site-wordmark text-foreground" />
                 </Link>
 
                 <nav className="flex items-center gap-1 md:gap-2" aria-label="Main navigation">

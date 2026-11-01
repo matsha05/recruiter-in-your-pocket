@@ -29,8 +29,11 @@ export default async function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 24, borderBottom: "1px solid #dfe0dc" }}>
-          <div style={{ display: "flex", fontFamily: "Schibsted Grotesk", fontSize: 28, fontWeight: 800, letterSpacing: "-0.04em" }}>
-            Recruiter in Your Pocket
+          {/* The Two Voices wordmark: Schibsted for the name, the recruiter's Literata italic for "in". */}
+          <div style={{ display: "flex", alignItems: "baseline", fontFamily: "Schibsted Grotesk", fontSize: 28, fontWeight: 800, letterSpacing: "-0.015em" }}>
+            <span>Recruiter</span>
+            <span style={{ margin: "0 0.2em", fontFamily: "Literata", fontStyle: "italic", fontWeight: 400, letterSpacing: 0, color: "#1f5a46" }}>in</span>
+            <span>Your Pocket</span>
           </div>
           <div style={{ display: "flex", color: "#5a605c", fontSize: 18 }}>
             Your resume, through a recruiter&apos;s eyes

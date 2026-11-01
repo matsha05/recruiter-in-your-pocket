@@ -27,6 +27,8 @@ function escapeHtml(str: string) {
 const fontBase64 = (...segments: string[]) => readFileSync(join(process.cwd(), "public", "fonts", ...segments)).toString("base64");
 const PDF_FONTS = {
   voice: fontBase64("literata", "Literata-Variable.woff2"),
+  // The wordmark's italic "in" (direction C, Two Voices): a real italic, not a synthesized slant.
+  voiceItalic: fontBase64("literata", "Literata-Italic.woff"),
   ui: fontBase64("schibsted-grotesk", "SchibstedGrotesk-Variable.woff2"),
 };
 
@@ -147,7 +149,7 @@ export function renderReportHtml(report: ReportForPdf) {
 <body>
   <header>
     <div class="brand-block">
-      <div class="brand-wordmark">Recruiter in Your Pocket</div>
+      <div class="brand-wordmark">Recruiter <span class="brand-in">in</span> Your Pocket</div>
       <div class="tagline">Resume report</div>
     </div>
     <div class="date">${escapeHtml(generatedOn)}</div>

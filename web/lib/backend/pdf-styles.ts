@@ -1,11 +1,18 @@
 /** Print-specific Alpine identity. Keep paper white and evidence text readable. */
-export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
+export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui: string }): string {
   return `
     @font-face {
       font-family: "Literata";
       src: url(data:font/woff2;base64,${fonts.voice}) format("woff2");
       font-style: normal;
       font-weight: 200 900;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Literata";
+      src: url(data:font/woff;base64,${fonts.voiceItalic}) format("woff");
+      font-style: italic;
+      font-weight: 400;
       font-display: block;
     }
     @font-face {
@@ -47,7 +54,8 @@ export function pdfReportStyles(fonts: { voice: string; ui: string }): string {
       margin-bottom: 22px; padding-bottom: 14px;
       border-bottom: 1px solid var(--ink);
     }
-    .brand-wordmark { font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 15pt; font-weight: 800; line-height: 20pt; letter-spacing: -0.025em; }
+    .brand-wordmark { font-family: "Schibsted Grotesk", Arial, sans-serif; font-size: 15pt; font-weight: 800; line-height: 20pt; letter-spacing: -0.015em; }
+    .brand-in { font-family: "Literata", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--accent); }
     .tagline { margin-top: 4px; font-size: 9pt; color: var(--muted); }
     .date { font-size: 9pt; line-height: 13pt; color: var(--muted); text-align: right; }
     .hero { padding-bottom: 20px; margin-bottom: 20px; break-inside: avoid; }

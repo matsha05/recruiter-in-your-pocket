@@ -37,8 +37,6 @@ const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divi
 const HEX_ALLOWLIST = new Set([
   "app/globals.css",
   "app/manifest.ts",
-  "app/icon.tsx",
-  "app/apple-icon.tsx",
   // Next ImageResponse requires inline, literal styles and cannot consume the
   // runtime CSS token sheet. Values here must mirror the canonical palette.
   "app/opengraph-image.tsx",
@@ -62,8 +60,6 @@ const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
   "app/og/home/route.tsx",
-  "app/icon.tsx",
-  "app/apple-icon.tsx",
 ]);
 
 const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [

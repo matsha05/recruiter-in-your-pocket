@@ -27,8 +27,8 @@ function collect() {
     const style = getComputedStyle(el);
     return style.visibility !== "hidden" && style.display !== "none";
   };
-  // Illustrations are hidden from assistive technology and may draw their own document type; the stacked
-  // wordmark waits on the D6 logotype.
+  // Illustrations are hidden from assistive technology and may draw their own document type; the wordmark
+  // is outlined SVG, not text.
   const exempt = (el) => el.closest("[aria-hidden='true'], svg, script, style, noscript, template, .site-wordmark, [data-wordmark]");
   const canvas = document.createElement("canvas").getContext("2d");
   const styles = [];

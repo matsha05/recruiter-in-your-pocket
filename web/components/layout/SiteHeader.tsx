@@ -31,7 +31,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
         <header className="site-header">
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-3 rounded-md">
-                    <Wordmark className="site-wordmark text-foreground" />
+                    <Wordmark stackOnPhones className="site-wordmark text-foreground" />
                 </Link>
 
                 <nav className="flex shrink-0 items-center gap-2 md:gap-4 xl:gap-6" aria-label="Main navigation">

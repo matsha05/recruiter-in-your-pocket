@@ -201,6 +201,15 @@ Open layouts are preferred to card farms. Use a container when grouping changes 
 
 Primary actions are pills; fields, tables, tabs, and utility controls are not all pills. Secondary actions use restrained borders and clear focus. Compact appearance does not reduce the target below 44px. Shadows indicate real elevation and remain subtle. Marketing and app navigation share warm materials and type while spacing follows context. The old ink-header, citron-CTA, and mostly rectilinear requirements are retired.
 
+### Wordmark and app icons (D6, Nov 1, 2026)
+
+Matt chose direction C, "Two Voices": the name in Schibsted Grotesk ExtraBold in ink, and "in" in Literata Italic in the pen green (mint on dark), the same two voices as the report. The favicon is C2, "The Noted R": a Schibsted R underlined once in pen. No yellow appears in the mark.
+
+- `web/components/icons/Wordmark.tsx` draws outlined paths (`wordmark-paths.ts`), so it never waits on a web font. Ink follows the text color and "in" follows `--pen`. It sits on one line at about 20px type in the site header and footer and about 18px in the app header, and stacks on two lines below 640px in the headers.
+- `app/icon.svg` follows the browser theme (paper tile, or ink tile in dark mode). `app/favicon.ico` carries the 16px drawing redrawn on whole pixels plus the 32px drawing. `app/apple-icon.png` and the manifest icons in `public/brand/` use the ink tile, and are safe as maskable icons.
+- The share cards set the name in Satori spans with the Literata italic "in". The PDF embeds the static Literata Italic cut for it, and the sign-in email uses HTML text with a Georgia italic fallback, so it reads with images off.
+- Sources are in `web/public/brand/` (from `docs/design-explorations/wordmark-2026-11/`). Run `node scripts/brand-assets.mjs` from `web/` after changing them.
+
 ## 8. Icons and diagrams
 
 - Use **Phosphor** for new branded and public-facing icon work.
