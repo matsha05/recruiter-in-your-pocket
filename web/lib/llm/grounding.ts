@@ -160,7 +160,7 @@ const QUALITATIVE_FIX_TARGET_PATTERN = /\b(?:decisions? (?:you|made|about)|probl
 // A concrete request can name a qualitative detail without matching a metric vocabulary.
 export function namesConcreteEditDetail(fix: string) {
   // The attached evidence locates the edit; prose need not repeat the word bullet.
-  const request = fix.match(/\b(?:add|align|name|say|turn|state|identify|describe|explain|specify|clarify|compare|expand|revise|replace|rewrite)\b(.*)/i)?.[1];
+  const request = fix.match(/\b(?:add|align|name|say|turn|state|identify|describe|explain|specify|clarify|compare|expand|revise|replace|rewrite|define|move|lead|surface)\b(.*)/i)?.[1];
   if (!request) return false;
   const generic = new Set(["the", "this", "that", "your", "you", "each", "every", "one", "more", "better", "stronger", "detail", "details", "bullet", "entry", "line", "section", "statement", "resume", "experience", "show", "scope", "impact", "outcome", "outcomes", "result", "results", "specific", "concrete", "clear", "clearly", "improve", "potential"]);
   return contentTokens(request).filter(token => !generic.has(token)).length >= 4;
@@ -173,7 +173,7 @@ export function findNonActionableFix(fix: string): string[] {
     findings.push("does not name the detail to add");
   }
   const isLabelWithoutDirection = /^\s*(?:bullet|line|section)\s+to\s+(?:rewrite|replace|change|shorten|combine)\b/i.test(fix);
-  if (!/\b(add|align|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten|describe|explain|clarify|include|expand|connect|correct|separate|state|identify|compare|revise|say|turn)\b/i.test(fix)) {
+  if (!/\b(add|align|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten|describe|explain|clarify|include|expand|connect|correct|separate|state|identify|compare|revise|say|turn|define)\b/i.test(fix)) {
     findings.push("missing a concrete edit action");
   }
   const namesBulletAndDetail = /\b(?:bullet|section|statement)\b/i.test(fix)

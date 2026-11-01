@@ -187,7 +187,7 @@ function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
     pattern.lastIndex = 0;
   }
   return new Set((untracked.match(/[\p{L}\p{M}][\p{L}\p{M}\d'’-]*/gu) || [])
-    .map(normalizeNarrativeToken)
+    .map((token) => normalizeNarrativeToken(token.replace(/[-'’]+$/u, "")))
     .map((token) => semanticTokenAliases.get(token) || token)
     .filter((token) => token.length > 1 && !ignoredTokens.has(token)));
 }
