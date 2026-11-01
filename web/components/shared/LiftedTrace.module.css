@@ -54,46 +54,30 @@
 
 .index {
   color: hsl(var(--brand));
-  font-family: var(--font-body);
-  font-size: 0.92rem;
+  font: var(--type-small);
+  font-weight: var(--weight-control);
   font-variant-numeric: tabular-nums;
-  font-weight: 520;
-  letter-spacing: -0.02em;
 }
 
 .label {
   color: currentColor;
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  font-weight: 720;
-  line-height: 1.3;
+  font: var(--type-label);
 }
 
 .detail {
   max-width: 28ch;
   margin-top: 0.5rem;
   color: currentColor;
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font: var(--type-label);
+  font-weight: var(--weight-body);
 }
 
 .compact .item {
   padding: 0.925rem 0.9rem 0.875rem;
 }
 
-.compact .index {
-  font-size: 0.86rem;
-}
-
-.compact .label {
-  font-size: 0.8125rem;
-}
-
 .compact .detail {
   margin-top: 0.35rem;
-  font-size: 0.8125rem;
-  line-height: 1.4;
 }
 
 @media (max-width: 639px) {

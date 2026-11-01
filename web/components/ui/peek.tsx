@@ -54,13 +54,13 @@ export function Peek({
                     aria-label={title}
                     className={cn(
                         "riyp-floating-motion z-50 w-full max-w-[420px] border border-border bg-background p-4",
-                        "origin-[--radix-popover-content-transform-origin] shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+                        "origin-[--radix-popover-content-transform-origin] shadow-sm",
                         className
                     )}
                 >
                     {showClose && (
                         <PopoverPrimitive.Close
-                            className="absolute right-0.5 top-0.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity duration-fast ease-snap hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                            className="absolute right-0.5 top-0.5 inline-flex size-11 items-center justify-center rounded-full text-muted-foreground ring-offset-background riyp-surface-link hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                             aria-label="Close"
                         >
                             <X className="size-5" />
@@ -102,7 +102,7 @@ export function PeekTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
     return (
         <h3
-            className={cn("font-medium leading-none tracking-tight", className)}
+            className={cn("font-medium tracking-tight", className)}
             {...props}
         />
     )

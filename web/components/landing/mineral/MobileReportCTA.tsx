@@ -4,6 +4,7 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 import styles from "./MobileReportCTA.module.css";
 
 export function MobileReportCTA() {
@@ -29,7 +30,9 @@ export function MobileReportCTA() {
   // A portal keeps the fixed action outside animated page containers.
   return createPortal(
     <nav className={styles.rail} aria-label="Get your report" data-testid="mobile-report-cta">
-      <Link href="/workspace" data-analytics-cta="mobile_sticky_report">Get your free report <ArrowRight aria-hidden="true" /></Link>
+      <Button asChild className="w-full">
+        <Link href="/workspace" data-analytics-cta="mobile_sticky_report">Get your free report <ArrowRight aria-hidden="true" /></Link>
+      </Button>
     </nav>, document.body,
   );
 }

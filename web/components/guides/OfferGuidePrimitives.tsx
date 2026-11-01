@@ -67,7 +67,7 @@ function HandoffNode({ label, text }: { label: string; text: string }) {
     return (
         <div className="border-l-2 border-brand/40 pl-4">
             <div className={`${styles.label} text-brand`}>{label}</div>
-            <p className="mt-2 text-data text-muted-foreground">{text}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{text}</p>
         </div>
     );
 }
@@ -123,7 +123,7 @@ export function TechOfferStack() {
                 {rows.map(([label, text], index) => (
                     <div key={label} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 py-4">
                         <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
-                        <div><strong className="text-sm font-medium text-foreground">{label}</strong><p className="mt-1 text-data text-muted-foreground">{text}</p></div>
+                        <div><strong className="text-sm font-medium text-foreground">{label}</strong><p className="mt-1 text-sm text-muted-foreground">{text}</p></div>
                     </div>
                 ))}
             </div>
@@ -133,7 +133,7 @@ export function TechOfferStack() {
 
 export function Sources({ children }: { children: ReactNode }) {
     return (
-        <aside className="mt-16 border-t border-border pt-8 text-data text-muted-foreground">
+        <aside className="mt-16 border-t border-border pt-8 text-sm text-muted-foreground">
             <div className={`${styles.label} mb-4 text-foreground`}>Sources and limits</div>
             <div className="max-w-reading space-y-3 riyp-prose [&_a]:font-medium">{children}</div>
         </aside>

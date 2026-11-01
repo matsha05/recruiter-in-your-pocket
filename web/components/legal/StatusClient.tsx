@@ -80,10 +80,10 @@ export default function StatusClient() {
             {!payload ? <Pulse className="size-5" weight="bold" /> : summary?.status === "configured" ? <CheckCircle className="size-5" weight="fill" /> : <WarningCircle className="size-5" weight="fill" />}
           </div>
           <div className="min-w-0 space-y-2">
-            <h2 className="font-display text-report-title text-foreground">
+            <h2 className="font-display text-heading text-foreground">
               {summary?.title || "Checking configuration..."}
             </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {payload?.generatedAt && !unavailable
                 ? `Last checked ${new Date(payload.generatedAt).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}.`
                 : unavailable ? "The latest check is unavailable." : "This may take a moment."}
@@ -95,23 +95,31 @@ export default function StatusClient() {
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-2">
           {unavailable ? (
-            <Button type="button" variant="default" onClick={() => window.location.reload()} className="min-h-12 rounded-full font-medium">
+            <Button type="button" variant="primary" onClick={() => window.location.reload()}>
               Try again
             </Button>
           ) : null}
-          <Link href="/support" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-input px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-background">
-            Get help
-          </Link>
-          <Link href="/trust" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-input px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-background">
-            Trust overview
-          </Link>
-          <Link href="/security" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-input px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-background">
-            Security details
-          </Link>
+          <Button asChild variant="secondary">
+              <Link href="/support">
+                Get help
+              </Link>
+          </Button>
+          <Button asChild variant="secondary">
+              <Link href="/trust">
+                Trust overview
+              </Link>
+          </Button>
+          <Button asChild variant="secondary">
+              <Link href="/security">
+                Security details
+              </Link>
+          </Button>
           {isLaunchFlagEnabled("extensionSync") && (
-            <Link href="/extension" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-input px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-background">
-              Chrome extension
-            </Link>
+            <Button asChild variant="secondary">
+                <Link href="/extension">
+                  Chrome extension
+                </Link>
+            </Button>
           )}
         </div>
       </section>
@@ -119,7 +127,7 @@ export default function StatusClient() {
       <section className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9">
         <div className="mb-4 flex items-center gap-2">
           <CheckCircle className="size-5 text-brand" weight="bold" />
-          <h2 className="font-display text-report-title text-foreground">Checks by feature</h2>
+          <h2 className="font-display text-heading text-foreground">Checks by feature</h2>
         </div>
         <div className="border-y border-line">
           {services.map((service) => (
@@ -134,43 +142,43 @@ export default function StatusClient() {
                   {service.status === "configured" ? "Configured" : "Needs attention"}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">{service.message}</p>
+              <p className="text-sm text-muted-foreground">{service.message}</p>
             </div>
           ))}
-          {services.length === 0 ? <p className="py-5 text-sm leading-relaxed text-muted-foreground">{payload ? "We could not load the feature checks." : "Loading feature checks..."}</p> : null}
+          {services.length === 0 ? <p className="py-5 text-sm text-muted-foreground">{payload ? "We could not load the feature checks." : "Loading feature checks..."}</p> : null}
         </div>
       </section>
 
       <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6">
         <div className="mb-4 flex items-center gap-2">
           <WarningCircle className="size-5 shrink-0 text-warning-foreground" weight="fill" />
-          <h2 className="font-display text-report-title text-foreground">What needs attention</h2>
+          <h2 className="font-display text-heading text-foreground">What needs attention</h2>
         </div>
         <div className="space-y-3">
           {incidents.map((incident) => (
             <div key={incident} className="border-l-2 border-warning/40 pl-4">
-              <p className="text-sm leading-relaxed text-foreground/85">{incident}</p>
+              <p className="text-sm text-foreground/85">{incident}</p>
             </div>
           ))}
-          {incidents.length === 0 ? <p className="text-sm leading-relaxed text-muted-foreground">{!payload ? "Waiting for the checks to finish." : unavailable ? "We cannot tell which settings need attention until the check succeeds." : payload.ok ? "The required configuration checks passed. If a feature is not working for you, please contact support." : "Some configuration checks need attention. See the feature checks above."}</p> : null}
+          {incidents.length === 0 ? <p className="text-sm text-muted-foreground">{!payload ? "Waiting for the checks to finish." : unavailable ? "We cannot tell which settings need attention until the check succeeds." : payload.ok ? "The required configuration checks passed. If a feature is not working for you, please contact support." : "Some configuration checks need attention. See the feature checks above."}</p> : null}
         </div>
       </section>
 
       <section className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9">
         <div className="mb-4 flex items-center gap-2">
           <Pulse className="size-5 text-brand" weight="bold" />
-          <h2 className="font-display text-report-title text-foreground">Support and trust</h2>
+          <h2 className="font-display text-heading text-foreground">Support and trust</h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Support</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               Having trouble with a report, payment, or account? <Link href="/support" className="riyp-link-quiet">Contact support</Link> and tell us what happened.
             </p>
           </div>
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Security and privacy</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               See <Link href="/security" className="riyp-link-quiet">what data we keep</Link>, how long we keep it, and how to delete it.
             </p>
           </div>

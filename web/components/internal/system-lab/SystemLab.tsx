@@ -105,8 +105,8 @@ export default function SystemLab() {
               Alpine gives marketing, Research, reports, and the workspace one shared visual system. Warm surfaces, strong titles, dark pill actions, and restrained aqua support different reading and task densities.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Button variant="brand" size="lg">Run free report <ArrowRight weight="bold" className="size-4" /></Button>
-              <Button variant="outline" size="lg">See sample</Button>
+              <Button variant="primary">Run free report <ArrowRight weight="bold" className="size-4" /></Button>
+              <Button variant="secondary">See sample</Button>
             </div>
           </div>
         </section>
@@ -220,13 +220,20 @@ export default function SystemLab() {
             <div className="py-8 lg:pl-10">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">Reference controls</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Button variant="brand">Primary action</Button>
-                <Button variant="outline">Secondary action</Button>
-                <Button variant="ghost" size="sm">Quiet action</Button>
+                <Button variant="primary">Primary action</Button>
+                <Button variant="secondary">Secondary action</Button>
+                <Button variant="quiet">Quiet action</Button>
+                <Button variant="destructive">Delete report</Button>
+                <Button variant="destructiveFinal">Delete permanently</Button>
+              </div>
+              <div className="mt-6 flex flex-wrap items-end gap-3">
+                <Button size="sm">Small, 44px</Button>
+                <Button>Medium, 48px</Button>
+                <Button size="lg">Large, 60px</Button>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Button variant="brand" isLoading>Loading example</Button>
-                <Button variant="outline" disabled>Disabled action</Button>
+                <Button variant="primary" isLoading>Loading example</Button>
+                <Button variant="secondary" disabled>Disabled action</Button>
               </div>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">Tab through these controls to inspect actual focus. Loading and disabled examples cannot be activated.</p>
               <p className="mt-7 max-w-xl text-sm leading-6 text-muted-foreground">On small screens, wide data tables become labeled disclosure rows. Auth and purchase entry points use real forms, visible focus, and browser-supported autocomplete.</p>
@@ -237,8 +244,8 @@ export default function SystemLab() {
             <article className="rounded-2xl border border-line bg-card p-6 md:rounded-[24px]">
               <h3 className="text-2xl font-medium leading-[30px]">Selection and disabled input</h3>
               <div className="mt-5 flex flex-wrap gap-3" role="group" aria-label="Example input mode">
-                <Button variant={selectedMode === "upload" ? "brand" : "outline"} aria-pressed={selectedMode === "upload"} onClick={() => setSelectedMode("upload")}>Upload file</Button>
-                <Button variant={selectedMode === "paste" ? "brand" : "outline"} aria-pressed={selectedMode === "paste"} onClick={() => setSelectedMode("paste")}>Paste text</Button>
+                <Button variant={selectedMode === "upload" ? "primary" : "secondary"} aria-pressed={selectedMode === "upload"} onClick={() => setSelectedMode("upload")}>Upload file</Button>
+                <Button variant={selectedMode === "paste" ? "primary" : "secondary"} aria-pressed={selectedMode === "paste"} onClick={() => setSelectedMode("paste")}>Paste text</Button>
               </div>
               <p className="mt-4 text-sm text-muted-foreground" aria-live="polite">Selected example: {selectedMode === "upload" ? "Upload file" : "Paste text"}.</p>
               <div className="mt-6 space-y-2">
@@ -268,7 +275,7 @@ export default function SystemLab() {
           <p className="mt-3 text-sm text-muted-foreground" role="status">Motion preference: {reducedMotion ? "reduced" : "standard"}.</p>
           <div className="mt-6 flex flex-wrap gap-3" role="group" aria-label="Preview feedback state">
             {[["idle", "Idle"], ["pending", "Working"], ["success", "Complete"]].map(([state, label]) => (
-              <Button key={state} variant="outline" aria-pressed={feedbackState === state} onClick={() => setFeedbackState(state)}>{label}</Button>
+              <Button key={state} variant="secondary" aria-pressed={feedbackState === state} onClick={() => setFeedbackState(state)}>{label}</Button>
             ))}
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-6">
@@ -281,7 +288,7 @@ export default function SystemLab() {
             </span>
             <Button isLoading={feedbackState === "pending"} loadingLabel="Saving…">Save example</Button>
             <Dialog>
-              <DialogTrigger asChild><Button variant="outline">Open example dialog</Button></DialogTrigger>
+              <DialogTrigger asChild><Button variant="secondary">Open example dialog</Button></DialogTrigger>
               <DialogContent>
                 <DialogTitle>One shared opening and closing treatment.</DialogTitle>
                 <DialogDescription>Close with Escape or the close button. Keyboard focus returns to the control that opened this dialog.</DialogDescription>
@@ -293,17 +300,44 @@ export default function SystemLab() {
             <p className="max-w-2xl py-4 leading-7 text-muted-foreground">The content remains a native disclosure. Opening and closing preserve keyboard behavior, and reduced motion shows the final state immediately.</p>
           </details>
         </Section>
+        <Section eyebrow="06 / Type roles" title="Eleven roles, whole pixels.">
+          <div className="divide-y divide-line border-y border-line">
+            {TYPE_ROLES.map(([role, sample]) => (
+              <div key={role} className="grid gap-2 py-5 md:grid-cols-[10rem_minmax(0,1fr)] md:items-baseline">
+                <p className="text-xs font-semibold text-muted-foreground">text-{role}</p>
+                <p className={`text-${role} text-foreground`}>{sample}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
       </main>
     </div>
   );
 }
+
+// Literal class names so Tailwind generates each role; see docs/design-system.md §3.
+const TYPE_ROLES = [
+  ["display", "They called someone back."],
+  ["headline", "What recruiters notice first"],
+  ["title", "Start with your resume."],
+  ["heading", "Start with these three changes"],
+  ["lead", "See what a recruiter sees on your resume, and the one thing to fix first."],
+  ["prose", "Research prose sits on the 52ch reading rail at 18px with 30px leading."],
+  ["body", "Report and app body is 16px with 25px leading."],
+  ["small", "Tables, navigation, and metadata use 14px."],
+  ["label", "Labels and captions use 13px, the floor."],
+  ["verdict", "A capable account manager with a real book of business."],
+  ["note", "Did renewals go up? Say what changed after you introduced them."],
+] as const;
+// text-display text-headline text-title text-heading text-lead text-prose text-body text-small text-label text-verdict text-note
 
 function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
   return (
     <section className="border-b border-line py-16 md:py-24">
       <div className="mb-10 grid gap-5 lg:grid-cols-[0.65fr_1.35fr] lg:items-end">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">{eyebrow}</p>
-        <h2 className="max-w-[20ch] text-balance font-display text-4xl font-normal leading-[1.1] tracking-[-0.035em] md:text-[40px]">{title}</h2>
+        <h2 className="max-w-[20ch] text-balance font-display text-title">{title}</h2>
       </div>
       {children}
     </section>

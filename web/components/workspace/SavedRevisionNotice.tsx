@@ -23,11 +23,11 @@ export default function SavedRevisionNotice({ loading, error, signedOut, signInH
           <p className="mt-1 text-sm text-muted-foreground">{loading ? "Your next report will be compared with this saved report." : error}</p>
           <div className="mt-3 flex flex-wrap items-center gap-3">
               {error && (signedOut && signInHref ? (
-                <Link href={signInHref} className="inline-flex min-h-11 items-center rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90">Sign in</Link>
+                <Button asChild size="sm"><Link href={signInHref}>Sign in</Link></Button>
               ) : (
-                <Button type="button" variant="outline" onClick={onRetry} className="min-h-11 border-foreground px-4">Try again</Button>
+                <Button type="button" variant="secondary" size="sm" onClick={onRetry}>Try again</Button>
               ))}
-            <Button type="button" variant="outline" onClick={onNewReport} className="min-h-11 border-foreground px-4">Start a new report</Button>
+            <Button type="button" variant="secondary" size="sm" onClick={onNewReport}>Start a new report</Button>
           </div>
         </div>
       </div>

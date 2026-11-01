@@ -43,7 +43,12 @@ export async function GET() {
     (
       <div style={{ width: "100%", height: "100%", display: "flex", background: "#f4f4f1", color: ink, fontFamily: "Schibsted Grotesk", overflow: "hidden" }}>
         <div style={{ width: 640, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "52px 0 46px 64px" }}>
-          <div style={{ display: "flex", fontSize: 28, fontWeight: 800, letterSpacing: "-0.04em" }}>Recruiter in Your Pocket</div>
+          {/* The Two Voices wordmark: Schibsted for the name, the recruiter's Literata italic for "in". */}
+          <div style={{ display: "flex", alignItems: "baseline", fontSize: 28, fontWeight: 800, letterSpacing: "-0.015em" }}>
+            <span>Recruiter</span>
+            <span style={{ margin: "0 0.2em", fontFamily: "Literata", fontStyle: "italic", fontWeight: 400, letterSpacing: 0, color: pen }}>in</span>
+            <span>Your Pocket</span>
+          </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: 76, fontWeight: 800, lineHeight: 1, letterSpacing: "-0.045em" }}>They called</div>
             <div style={{ display: "flex", marginTop: 4, fontSize: 76, fontWeight: 800, lineHeight: 1, letterSpacing: "-0.045em" }}>someone back.</div>

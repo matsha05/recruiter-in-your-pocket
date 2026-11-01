@@ -57,7 +57,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           Saved role
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <h2 className="font-display text-report-title tracking-tight text-foreground">
+          <h2 className="font-display text-heading text-foreground">
             Application status
           </h2>
           <DropdownMenu>

@@ -115,7 +115,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
         {activeTab === "job-description" && (
           <div id="job-panel-job-description" role="tabpanel" aria-labelledby="job-tab-job-description" tabIndex={0} className="overflow-hidden rounded-2xl border border-border bg-card outline-none focus-visible:ring-2 focus-visible:ring-brand sm:rounded-3xl">
             <div className="border-b border-border bg-muted/50 px-5 py-5 sm:px-6">
-              <h3 className="text-lg font-medium leading-7 text-foreground">Full Job Description</h3>
+              <h3 className="text-lg font-medium text-foreground">Full Job Description</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 {job.company} • {job.location || "Location not specified"}
               </p>
@@ -144,7 +144,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
           <div id="job-panel-analysis" role="tabpanel" aria-labelledby="job-tab-analysis" tabIndex={0} className="space-y-6 outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
-                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Skills found in your resume</h3>
+                <h3 className="text-lg font-medium text-foreground mb-4">Skills found in your resume</h3>
                 {job.matchedSkills.length > 0 ? (
                   <div className="space-y-3">
                     {job.matchedSkills.slice(0, 12).map((skill) => (
@@ -162,7 +162,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               </div>
 
               <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
-                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Skills not found in your resume</h3>
+                <h3 className="text-lg font-medium text-foreground mb-4">Skills not found in your resume</h3>
                 {job.missingSkills.length > 0 ? (
                   <div className="space-y-3">
                     {job.missingSkills.slice(0, 12).map((skill) => (
@@ -182,7 +182,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
 
             {job.topGaps.length > 0 && (
               <div className="rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
-                <h3 className="text-lg font-medium leading-7 text-foreground mb-4">Details to check before applying</h3>
+                <h3 className="text-lg font-medium text-foreground mb-4">Details to check before applying</h3>
                 <ul className="space-y-3">
                   {job.topGaps.map((gap, i) => (
                     <li key={gap} className="flex items-start gap-3">
@@ -233,7 +233,7 @@ function RecruiterFitSummary({
     <div className="space-y-6 rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h3 className="text-lg font-medium leading-7 text-foreground">Resume match</h3>
+          <h3 className="text-lg font-medium text-foreground">Resume match</h3>
           <p className="text-sm text-muted-foreground">
             How your resume compares with the job description
           </p>
@@ -244,7 +244,7 @@ function RecruiterFitSummary({
             scoreColors[scoreClass]
           )}
         >
-          <span className="text-2xl font-medium tabular-nums">{score != null ? score : " - "}</span>
+          <span className="text-heading tabular-nums">{score != null ? score : " - "}</span>
         </div>
       </div>
 
@@ -344,7 +344,7 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | 
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Resume comparison
           </p>
-          <h3 className="mt-1 font-display text-xl font-bold leading-7 tracking-tight text-foreground">
+          <h3 className="mt-1 font-display text-xl font-bold tracking-tight text-foreground">
             {readinessLabel}
           </h3>
         </div>
@@ -387,7 +387,7 @@ function ReadinessRow({ complete, label }: { complete: boolean; label: string })
 function NextBestActions({ jobId, onReviewJobDescription }: { jobId: string; onReviewJobDescription: () => void }) {
   return (
     <div className="space-y-4 rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-6">
-      <h3 className="text-lg font-medium leading-7 text-foreground">What to do next</h3>
+      <h3 className="text-lg font-medium text-foreground">What to do next</h3>
 
       <div className="space-y-2">
         <ActionButton

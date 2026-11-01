@@ -108,7 +108,7 @@ export function CompCalculatorClient() {
           </h1>
           <div>
             <p className={styles.readingCopy}>See how base salary, bonus, equity, and one-time payments add up each year. Amounts are in US dollars, before tax.</p>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">No account required. This page does not save the numbers you enter.</p>
+            <p className="mt-4 text-sm text-muted-foreground">No account required. This page does not save the numbers you enter.</p>
           </div>
         </header>
 
@@ -117,14 +117,14 @@ export function CompCalculatorClient() {
             <div className="mb-5 flex flex-col gap-3 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 id="offers-heading" className={styles.componentTitle}>Offer details</h2>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter the terms from each offer. Unknown amounts left at zero are excluded, so the comparison will be incomplete until you confirm them.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Enter the terms from each offer. Unknown amounts left at zero are excluded, so the comparison will be incomplete until you confirm them.</p>
               </div>
               {!showingSample && !hasData ? <button type="button" onClick={() => setShowingSample(true)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground riyp-link">See a read-only example</button> : null}
             </div>
 
             {showingSample ? (
               <div className="mb-4 flex flex-col gap-3 rounded-xl border border-brand/20 bg-accent px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm leading-6 text-foreground"><strong>Read-only example.</strong> Exit it to enter your own numbers.</p>
+                <p className="text-sm text-foreground"><strong>Read-only example.</strong> Exit it to enter your own numbers.</p>
                 <button type="button" onClick={() => setShowingSample(false)} className="focus-ring min-h-12 shrink-0 rounded-md px-2 text-sm font-medium text-foreground riyp-link">Exit example</button>
               </div>
             ) : null}
@@ -170,15 +170,15 @@ export function CompCalculatorClient() {
                   <TrendUp aria-hidden="true" className="size-5 text-brand" weight="duotone" />
                 </div>
                 <h2 className={styles.componentTitle}>Your comparison starts here</h2>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">Enter a base salary to see a modeled four-year breakdown.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Enter a base salary to see a modeled four-year breakdown.</p>
               </div>
             )}
           </aside>
         </div>
 
         <nav aria-label="Related offer guides" className="mt-14 flex flex-wrap gap-3 border-t border-line pt-8">
-          <Button asChild variant="outline"><Link href="/resources/tech-offer-negotiation">Read the tech offer guide</Link></Button>
-          <Button asChild variant="outline"><Link href="/resources/offer-negotiation">Build a counter</Link></Button>
+          <Button asChild variant="secondary"><Link href="/resources/tech-offer-negotiation">Read the tech offer guide</Link></Button>
+          <Button asChild variant="secondary"><Link href="/resources/offer-negotiation">Build a counter</Link></Button>
         </nav>
       </div>
     </div>

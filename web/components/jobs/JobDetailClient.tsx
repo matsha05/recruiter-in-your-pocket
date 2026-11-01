@@ -119,7 +119,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
               <Link href={`/auth?from=jobs&next=${encodeURIComponent(`/jobs/${jobId}`)}`}>Sign in</Link>
             </Button>
           ) : (
-            <Button type="button" onClick={() => void fetchJob()} variant="outline" className="mt-4">Retry</Button>
+            <Button type="button" onClick={() => void fetchJob()} variant="secondary" className="mt-4">Retry</Button>
           )}
         </div>
       </div>

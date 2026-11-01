@@ -41,7 +41,7 @@ export function LegalShell({
                             <div>
                                 <h1
                                     id={pageKey ? `legal-${pageKey}-title` : undefined}
-                                    className="max-w-xl text-balance font-display text-workspace-title text-foreground md:text-page-title"
+                                    className="max-w-xl text-balance font-display text-headline text-foreground"
                                 >
                                     {title}
                                 </h1>
