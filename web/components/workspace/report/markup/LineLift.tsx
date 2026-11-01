@@ -64,7 +64,13 @@ export function LineLift({
   onReattach?: (text: string) => string | null;
 }) {
   const asked = questions.length > 0 ? questions : ["What would you add to this line?"];
-  const [answers, setAnswers] = useState<LiftAnswer[]>(() => asked.map(() => ({ kind: "open" })));
+  // Answers are kept by question, so a report still streaming in can add questions without losing any.
+  const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>({});
+  const askedKey = asked.join("\n");
+  const answers = useMemo<LiftAnswer[]>(
+    () => askedKey.split("\n").map((question) => byQuestion[question] ?? { kind: "open" }),
+    [byQuestion, askedKey],
+  );
   const [edited, setEdited] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [copying, setCopying] = useState(false);
@@ -94,7 +100,7 @@ export function LineLift({
   useEffect(() => { if (editing) editRef.current?.focus(); }, [editing]);
 
   const setAnswer = (index: number, next: LiftAnswer) => {
-    setAnswers((current) => current.map((answer, at) => (at === index ? next : answer)));
+    setByQuestion((current) => ({ ...current, [asked[index]]: next }));
     // A new answer rebuilds the line from the resume and the answers.
     setEdited(null);
     setEditing(false);
