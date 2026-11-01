@@ -24,9 +24,9 @@ assert.equal(presentation.fixes.length, 3);
 assert.deepEqual(sample.rewrites, [], "until answer-to-line ships (plan 2.2), the sample shows no rewrites (D3)");
 
 const requirements = [
-  { request: /renewal-risk review bullet/i, source: "- Introduced monthly renewal-risk reviews across the portfolio" },
-  { request: /quarterly business review bullet/i, source: "- Ran quarterly business reviews with customer leadership teams" },
-  { request: /Account Coordinator support bullet/i, source: "- Assisted account managers with various tasks as needed" },
+  { request: /Name the customer success role/i, source: "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills." },
+  { request: /32-account portfolio detail/i, source: "- Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue" },
+  { request: /renewal-risk reviews/i, source: "- Introduced monthly renewal-risk reviews across the portfolio" },
 ];
 for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
   assert.match(fix.fix || "", requirements[index].request);
@@ -43,5 +43,21 @@ for (const line of [
   "Ran quarterly business reviews with customer leadership teams",
   "Assisted account managers with various tasks as needed",
 ]) assert.ok(resume.includes(line), `Jordan's resume includes "${line}"`);
+
+// After plan 1.3 the Verdict and the Critical Miss tell one story: both are about the objective.
+assert.match(sample.first_impression, /objective/i, "the Verdict names the Critical Miss's problem");
+assert.equal(sample.top_fixes[0].evidence.section, "OBJECTIVE");
+
+// The homepage quotes this report word for word.
+const homepage = readFileSync(path.join(process.cwd(), "lib/marketing/jordan-example.ts"), "utf8");
+for (const quote of [
+  "Your current title points to customer success, but",
+  "the objective could apply to almost any role.",
+  sample.top_fixes[0].evidence.excerpt,
+  "Are you pursuing another customer success role?",
+]) {
+  assert.ok(JSON.stringify(sample).includes(quote.replace(/"/g, '\\"')), `the sample report says "${quote}"`);
+  assert.ok(homepage.includes(quote), `the homepage example quotes "${quote}"`);
+}
 
 console.log("Sample report content contracts passed");

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { reconcileReport } from "../lib/reports/report-integrity";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
 import {
@@ -26,7 +27,8 @@ const normalizedSample = normalizeReportForPdf(sampleReport);
 assert.ok(normalizedSample, "sample report should normalize");
 assert.equal(normalizedSample?.score, sampleReport.score);
 assert.equal(normalizedSample?.summary, sampleReport.summary);
-assert.deepEqual(normalizedSample?.next_steps, sampleReport.next_steps);
+// The PDF applies the same integrity pass as the web report, so it shows the reconciled plan.
+assert.deepEqual(normalizedSample?.next_steps, reconcileReport(sampleReport).report.next_steps);
 assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 
 // Jordan's sample is real output and, like real reports today, carries no rewrites (D3).

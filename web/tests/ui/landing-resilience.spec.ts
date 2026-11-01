@@ -51,7 +51,7 @@ test("the reviewer note clears once the visitor scrolls into the story", async (
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
     const card = page.getByTestId("landing-verdict-art").locator(":scope > div").last();
-    const note = page.getByTestId("landing-verdict-art").getByText("Did renewals go up?", { exact: false });
+    const note = page.getByTestId("landing-verdict-art").getByText("Is Jordan after another customer success role?", { exact: false });
     await expect.poll(() => note.evaluate((element) => getComputedStyle(element).filter)).toContain("blur");
     await page.mouse.move(700, 450);
     await page.mouse.wheel(0, 160);

@@ -1,30 +1,20 @@
 {
-  "generated_at": "2026-11-01T17:43:55.302Z",
+  "generated_at": "2026-11-01T21:01:03.491Z",
   "model": "gpt-6.1-terra",
-  "prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "prompt_sha256": "55bee48bf96439b3171f1ccac5a8ca79cf1bdb6a003a3ef5f769e2c54f2b45c4",
   "resume_sha256": "12d43ce2321b3708dd49034c1e2d06b4285ea298fc04c0ea17096af67435b023",
-  "repaired": true,
-  "provider_calls": 2,
-  "cost_estimate_usd": 0.0466,
+  "repaired": false,
+  "provider_calls": 1,
+  "cost_estimate_usd": 0.0208,
   "telemetry": [
     {
-      "request_id": "sample-report-1793554974798",
+      "request_id": "sample-report-1793566837951",
       "task": "resume_feedback",
       "model": "gpt-6.1-terra",
-      "tokens_in": 7433,
-      "tokens_out": 2107,
-      "latency_ms": 25808,
-      "cost_estimate_usd": 0.0198255,
-      "outcome": "success"
-    },
-    {
-      "request_id": "sample-report-1793554974798",
-      "task": "resume_feedback",
-      "model": "gpt-6.1-terra",
-      "tokens_in": 10107,
-      "tokens_out": 2833,
-      "latency_ms": 32957,
-      "cost_estimate_usd": 0.026798,
+      "tokens_in": 8335,
+      "tokens_out": 2080,
+      "latency_ms": 25193,
+      "cost_estimate_usd": 0.020818,
       "outcome": "success"
     }
   ],
@@ -32,99 +22,99 @@
     "contract_version": "v2",
     "score": 80,
     "score_label": "Mostly clear",
-    "score_comment_short": "The recent role shows portfolio size and review cadence, but few results.",
-    "score_comment_long": "Your current role names the portfolio, review cadence and customer stakeholders. Several other bullets remain broad duty statements. Explaining the work behind the renewal and business reviews would help most.",
-    "score_plain": "A reviewer can see the size and shape of your customer success work. More detail about how you handle renewals would make your contribution easier to assess.",
-    "first_impression": "Your current role combines customer relationships, renewals and meetings with customer leadership. The objective doesn't tell a reviewer which role you want next.",
-    "biggest_gap_example": "\"- Assisted account managers with various tasks as needed\" leaves a reviewer unsure what support you provided.",
-    "first_impression_takeaway": "Explain your renewal reviews",
-    "summary": "Managing 32 B2B SaaS accounts with $2.4M in annual recurring revenue gives your current customer success role a useful anchor. Your work also includes regular renewal-risk and business reviews. The resume describes manager-level account responsibilities, following an earlier coordinator role in logistics. How you handled renewal risks is not yet clear, so a reviewer has little detail on the work behind the review cadence.",
+    "score_comment_short": "The customer portfolio and review routines are specific, while renewal results remain unstated.",
+    "score_comment_long": "The Northwind role names 32 B2B SaaS accounts and $2.4M in annual recurring revenue. The objective is broad, and the resume doesn't say what changed after the renewal-risk reviews. Naming your target role and bringing the portfolio detail forward would make the story easier to follow.",
+    "score_plain": "The resume gives a reviewer useful customer success details to work with. A more specific objective would help them understand which role you're pursuing.",
+    "first_impression": "Your current title points to customer success, but the objective could apply to almost any role. A customer success manager is often read for portfolio ownership and renewals, so a more specific target would help frame the rest of the page.",
+    "biggest_gap_example": "\"Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.\" doesn't name a target role, leaving a reviewer to infer it from your experience.",
+    "first_impression_takeaway": "Name your target role",
+    "summary": "Managing 32 B2B SaaS accounts with $2.4M in annual recurring revenue gives a reviewer a useful picture of your customer portfolio. Your current work combines renewal-risk reviews with conversations involving customer leadership teams, supporting a customer success manager read. The earlier logistics role adds client reporting and customer contact. Are you pursuing another customer success role? The broad objective leaves that direction to the reader.",
     "strengths": [
-      "The B2B SaaS portfolio figure makes the size of your current customer responsibility concrete.",
-      "Quarterly business reviews with customer leadership show that your work includes senior customer contacts.",
-      "Weekly shipment status reports show how you kept client accounts informed in the logistics role."
+      "The account count and annual recurring revenue figure make the Northwind portfolio tangible.",
+      "Monthly renewal-risk reviews show a recurring process across the portfolio.",
+      "Quarterly business reviews with customer leadership teams identify the audience for an important part of your work."
     ],
     "gaps": [
-      "The objective doesn't name a target role, leaving the opening disconnected from your customer success work.",
-      "The business review bullet doesn't say what you presented or recommended to customer leaders.",
-      "The skills section lists broad qualities without connecting them to your account and renewal responsibilities."
+      "The objective doesn't specify the role you want, so it doesn't connect your experience to a clear next step.",
+      "The renewal-risk reviews don't explain how you identified or addressed risks, or what happened afterward.",
+      "The business-review bullet doesn't say which customer priorities or account decisions you discussed."
     ],
     "rewrites": [],
     "top_fixes": [
       {
-        "fix": "In the renewal-risk review bullet, explain what you looked for and what you did when an account appeared at risk.",
-        "why": "The monthly cadence is clear, but the review process itself is not.",
+        "fix": "Name the customer success role you are pursuing.",
+        "why": "In the objective, replace the generic description with your actual target if customer success is the direction you want. A reviewer looking for renewal and portfolio responsibility can then place the Northwind experience immediately.",
         "confidence": "high",
         "evidence": {
-          "excerpt": "- Introduced monthly renewal-risk reviews across the portfolio",
-          "section": "Work Experience"
+          "excerpt": "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.",
+          "section": "OBJECTIVE"
         },
         "impact_level": "high",
-        "effort": "moderate",
-        "section_ref": "Work Experience"
+        "effort": "quick",
+        "section_ref": "OBJECTIVE"
       },
       {
-        "fix": "In the quarterly business review bullet, add an example of what you presented or recommended to customer leadership.",
-        "why": "A concrete example would show what you brought to those meetings.",
+        "fix": "Move the 32-account portfolio detail above the generic responsibility.",
+        "why": "At Northwind, the account count and annual recurring revenue currently sit below a general relationship-management statement. Leading with them gives the reader a concrete picture of the portfolio sooner.",
         "confidence": "high",
         "evidence": {
-          "excerpt": "- Ran quarterly business reviews with customer leadership teams",
-          "section": "Work Experience"
-        },
-        "impact_level": "high",
-        "effort": "moderate",
-        "section_ref": "Work Experience"
-      },
-      {
-        "fix": "Replace the Account Coordinator support bullet with specific tasks you assisted account managers with.",
-        "why": "The current wording doesn't distinguish your contribution from general assistance.",
-        "confidence": "high",
-        "evidence": {
-          "excerpt": "- Assisted account managers with various tasks as needed",
-          "section": "Work Experience"
+          "excerpt": "- Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue",
+          "section": "EXPERIENCE"
         },
         "impact_level": "medium",
         "effort": "quick",
-        "section_ref": "Work Experience"
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Describe how you conducted the renewal-risk reviews.",
+        "why": "The Northwind review bullet names the cadence and portfolio but not how you identified or followed up on risks. Add a concrete example and any verified result if available.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Introduced monthly renewal-risk reviews across the portfolio",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
       }
     ],
     "next_steps": [
-      "Revise the Northwind review bullets using examples you can verify.",
-      "Specify your assistance at Brightpath and remove the generic team-player statement if it adds nothing distinct.",
-      "Replace the objective with the role you want and the account experience most relevant to it."
+      "Replace the objective with the role you actually want to pursue.",
+      "Reorder the Northwind bullets so the account portfolio appears first.",
+      "Add a verified example of a renewal risk you reviewed and what followed."
     ],
     "subscores": {
-      "impact": 77,
+      "impact": 76,
       "clarity": 81,
-      "story": 79,
+      "story": 80,
       "readability": 84
     },
     "section_review": {
       "Summary": {
         "grade": "C",
-        "priority": "Medium",
-        "working": "The objective makes your intent to seek a role clear.",
-        "missing": "It doesn't identify the kind of customer work you want to pursue.",
-        "fix": "Name your target role and connect it to your B2B SaaS account work."
+        "priority": "High",
+        "working": "The objective appears at the top, where a target role would be easy to find.",
+        "missing": "It doesn't name a function or connect to the customer success experience below.",
+        "fix": "State your target role and anchor it in your customer portfolio or renewal work."
       },
       "Work Experience": {
         "grade": "B",
         "priority": "High",
-        "working": "The current role includes account count, annual recurring revenue and review cadence.",
-        "missing": "The review bullets don't describe what you examined, presented or recommended.",
-        "fix": "Expand the renewal-risk and business review bullets with examples you can verify."
+        "working": "Northwind includes a defined account portfolio and recurring customer review activities.",
+        "missing": "The review bullets don't explain the risks addressed or the results of the renewal work.",
+        "fix": "Put the portfolio bullet first and add a concrete example to the renewal-risk bullet."
       },
       "Skills": {
         "grade": "C",
-        "priority": "Medium",
+        "priority": "Low",
         "working": "Microsoft Office is named explicitly.",
-        "missing": "Communication and leadership are broad labels without the context provided in your experience section.",
-        "fix": "Name relevant account or renewal capabilities you can substantiate."
+        "missing": "Communication and leadership are broad labels without additional context in this section.",
+        "fix": "Keep skills that are relevant to your target role and supported by your experience."
       },
       "Education": {
         "grade": "B",
         "priority": "Low",
-        "working": "The entry lists your B.A., Communications, State University and 2018.",
+        "working": "The degree, field, institution, and year are listed.",
         "missing": "Nothing important is missing from this section.",
         "fix": "Keep this section as it is unless the job asks for something different."
       }
@@ -139,15 +129,15 @@
         "total_count": 0
       },
       "strongly_aligned": [
-        "B2B SaaS customer portfolio management",
+        "B2B SaaS account management",
         "Customer relationships and renewals",
         "Renewal-risk reviews",
-        "Business reviews with customer leadership"
+        "Quarterly business reviews with customer leadership"
       ],
       "underplayed": [
-        "How renewal risks were identified and handled",
-        "What you presented in customer leadership reviews",
-        "Specific assistance provided to account managers"
+        "How renewal risks were identified and followed up",
+        "Topics and decisions discussed in business reviews",
+        "The portfolio's account count and annual recurring revenue appear below a generic first bullet"
       ],
       "missing": [
         "No target-role requirements were provided for comparison"
@@ -157,41 +147,41 @@
           "Customer Success Manager"
         ],
         "stretch_roles": [],
-        "seniority_read": "Your current title and direct portfolio responsibilities indicate Customer Success Manager-level work.",
+        "seniority_read": "The current Customer Success Manager title indicates manager-level account responsibility; the resume doesn't describe direct reports.",
         "industry_signals": [
           "B2B SaaS",
           "Logistics"
         ],
         "company_stage_fit": "Not clear from the resume alone"
       },
-      "positioning_suggestion": "Lead with your customer success role and its 32-account B2B SaaS portfolio. Use the review bullets to show how you work with customers on renewals."
+      "positioning_suggestion": "If you want another Customer Success Manager role, say so in the objective. Lead the Northwind entry with the account portfolio, then explain how you worked through renewal risks."
     },
     "ideas": {
       "questions": [
         {
-          "question": "What did you look for when identifying accounts at risk during the monthly reviews?",
-          "archetype": "TENSION POINT",
-          "why": "The answer can make your review process more concrete."
-        },
-        {
-          "question": "How did you prioritize your work across the accounts you managed?",
-          "archetype": "SCALING",
-          "why": "This could explain how you organized attention across the portfolio."
-        },
-        {
-          "question": "What did you present or recommend to customer leaders during a quarterly business review?",
-          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
-          "why": "A specific example can show the substance of those meetings."
-        },
-        {
-          "question": "What prompted you to introduce monthly renewal-risk reviews?",
+          "question": "What prompted you to introduce the monthly renewal-risk reviews?",
           "archetype": "IMPROVEMENT",
-          "why": "The reason for introducing them could explain the problem you were addressing."
+          "why": "The reason for starting the reviews could help explain the problem you addressed."
         },
         {
-          "question": "Which tasks did you assist account managers with at Brightpath?",
+          "question": "What did you look for when identifying renewal risks across the portfolio?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete risk indicator would make the review process more specific."
+        },
+        {
+          "question": "What was a difficult customer renewal situation, and how did you handle it?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could show how you worked through a consequential customer issue."
+        },
+        {
+          "question": "What customer priorities or account decisions came up in the quarterly business reviews?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would explain what you discussed with customer leadership beyond the meeting cadence."
+        },
+        {
+          "question": "Which account manager tasks did you assist with at Brightpath?",
           "archetype": "END-TO-END OWNERSHIP",
-          "why": "Naming the work would make your coordinator contribution easier to understand."
+          "why": "A specific contribution would make the earlier support role easier to understand without overstating ownership."
         }
       ]
     },

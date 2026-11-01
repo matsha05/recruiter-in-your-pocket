@@ -7,12 +7,12 @@ import styles from "./WorkedExample.module.css";
 
 /**
  * Under the hero: the note the hero blurs, worked through on Jordan's fictional resume. The one-sentence
- * read, the line behind it, the reviewer's question, and the facts only Jordan can add. The revised line
- * joins as a fourth step when the answer-to-line feature ships (plan 2.2); until then nothing here
- * promises a rewrite.
+ * read, the line behind it, the reviewer's note, and the report's own question with the answer only
+ * Jordan can give. The revised line joins as a fourth step when the answer-to-line feature ships
+ * (plan 2.2); until then nothing here promises a rewrite.
  */
 export function WorkedExample() {
-    const { verdict, line, note, answers } = JORDAN_EXAMPLE;
+    const { verdict, line, note, question, answers } = JORDAN_EXAMPLE;
     return (
         <section id="how-it-works" className={styles.example} aria-labelledby="example-title" data-testid="landing-worked-example">
             <div className={styles.inner}>
@@ -39,6 +39,7 @@ export function WorkedExample() {
                     </li>
                     <li className={`${styles.step} ${styles.wide}`}>
                         <p className={styles.stepLabel}><span className={styles.number} aria-hidden="true">3</span>Jordan&rsquo;s answer</p>
+                        <p className={styles.asks}>The report asks: <q>{question}</q></p>
                         <dl className={styles.answers}>
                             {answers.map((answer) => (
                                 <div key={answer.label} className={styles.answer}>
@@ -47,7 +48,7 @@ export function WorkedExample() {
                                 </div>
                             ))}
                         </dl>
-                        <p className={styles.aside}>Blank on purpose. Jordan isn&rsquo;t real, and we don&rsquo;t make up numbers for anyone.</p>
+                        <p className={styles.aside}>Blank on purpose. Jordan isn&rsquo;t real, and we don&rsquo;t make up answers for anyone.</p>
                     </li>
                 </ol>
 

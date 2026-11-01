@@ -6,8 +6,8 @@
  */
 
 export const JORDAN_RECHECK = {
-    before: "Introduced monthly renewal-risk reviews across the portfolio",
-    after: "Ran quarterly business reviews with customer leadership teams",
+    before: "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.",
+    after: "Introduced monthly renewal-risk reviews across the portfolio",
     change: 6,
     /** Score for each version, used only for bar length; the page prints changes, never the score (D5). */
     versions: [
@@ -21,25 +21,25 @@ export const JORDAN_ROLE_FIT = {
     posting: "Senior Customer Success Manager, Fabrikam",
     groups: [
         { label: "Relevant experience", text: "32 B2B SaaS accounts with $2.4M in annual recurring revenue" },
-        { label: "Needs more detail", text: "How renewal risks were identified and handled" },
+        { label: "Needs more detail", text: "How renewal risks were identified and followed up" },
         { label: "Not shown in the resume", text: "Expansion or upsell revenue", missing: true },
     ],
 } as const;
 
 /**
- * The homepage's worked example and the hero's reviewer note. Placeholder wording, approved by Matt on
- * Nov 1, until the Critical Miss prompt (plan 1.3) is final; then it quotes Jordan's regenerated report.
+ * The homepage's worked example and the hero's reviewer note. The verdict, the line and the question
+ * are quoted word for word from Jordan's generated sample report (public/sample-report.json, prompt
+ * resume_v2 after plan 1.3). The note is the fictional hiring team's, written to ask what the report asks.
  */
 export const JORDAN_EXAMPLE = {
     verdict: {
-        lead: "A capable account manager with a real book of business.",
-        miss: "What’s missing is proof Jordan changed the outcome.",
+        lead: "Your current title points to customer success, but",
+        miss: "the objective could apply to almost any role.",
     },
-    line: "Introduced monthly renewal-risk reviews across the portfolio",
-    note: "Solid book of business, but the best example stops right before the good part. Did renewals go up?",
+    line: "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.",
+    note: "Solid book of business, but the objective could apply to almost any role. Is Jordan after another customer success role?",
+    question: "Are you pursuing another customer success role?",
     answers: [
-        { label: "Renewal rate before", placeholder: "Jordan’s number" },
-        { label: "Renewal rate after", placeholder: "Jordan’s number" },
-        { label: "Over what period", placeholder: "Jordan’s answer" },
+        { label: "The role Jordan wants", placeholder: "Jordan\u2019s answer" },
     ],
 } as const;

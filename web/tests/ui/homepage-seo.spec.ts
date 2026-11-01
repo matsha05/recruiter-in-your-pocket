@@ -35,9 +35,10 @@ test.describe("homepage feedback and SEO contract", () => {
     const example = homepage.locator("#how-it-works");
     await expect(example.getByRole("heading", { level: 2, name: "Here’s the note Jordan never saw." })).toBeVisible();
     await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
-    await expect(example.locator("figure blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
-    await expect(example).toContainText("Did renewals go up?");
-    await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up numbers for anyone.");
+    await expect(example.locator("figure blockquote")).toContainText("Your current title points to customer success, but the objective could apply to almost any role.");
+    await expect(example).toContainText("Is Jordan after another customer success role?");
+    await expect(example).toContainText("The report asks: “Are you pursuing another customer success role?”");
+    await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up answers for anyone.");
     await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
     await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
     await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();

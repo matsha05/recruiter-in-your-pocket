@@ -2,7 +2,7 @@
 
 Date: 2026-11-01
 Status: Phase B implemented on `claude/friendly-herschel-134cdb` (merged with #37 and `claude/wave-2`), Nov 1, 2026. Not pushed.
-- **Still open:** the Jordan quotes on the homepage follow the regenerated report (1.3 prompt).
+- **Jordan's sample, regenerated on the final 1.3 prompt** (prompt sha256 `55bee48b…`, gpt-6.1-terra, one call, no repair, $0.021). The Verdict and the Critical Miss now agree: both are about the Objective line. The homepage quotes this run word for word, and the hero note asks what the report asks.
 - **Changed from this plan during the build:**
   - The worked example ends at Jordan's answer. 2.2 isn't in this wave (Q5).
   - The privacy panel became a compact bottom bar from 1024px rather than a bottom-right card, so it doesn't cover the reviewer note.

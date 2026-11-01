@@ -64,22 +64,18 @@ for (const [left, right] of [
 // Known contradictions from the audit
 // ============================================
 
-// Jordan's sample (real output): the business-review strength sits on Fix 2's line, so it leaves Keep.
+// Jordan's sample (real output, prompt after plan 1.3): two strengths sit on lines the report fixes.
 const sampleIntegrity = reconcileReport(sample);
 assert.deepEqual(
   auditKeepFixCollisions(sample).map(({ strength, line }) => [strength, line]),
-  [["strengths[1]", "fix-1"]],
+  [["strengths[0]", "fix-1"], ["strengths[1]", "fix-2"]],
 );
-assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[1]), "the business-review line cannot be both Keep and Fix 2");
-assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[0], sample.strengths[2]],
-  "strengths on lines the sample doesn't fix stay, in order");
-// The Critical Miss gives its reason in the opening read and asks the model's own questions about its line.
+assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2]],
+  "only the strength on a line the sample doesn't fix stays");
+// The Critical Miss gives its reason in the opening read; the Verdict already names the target-role gap.
 assert.equal(criticalMissReason(sampleIntegrity), sample.top_fixes[0].why);
-assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, [
-  "What did you look for when identifying accounts at risk during the monthly reviews?",
-  "What prompted you to introduce monthly renewal-risk reviews?",
-]);
-assert.equal(sampleIntegrity.structuralGaps[0]?.kind, "target_role");
+assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, []);
+assert.deepEqual(sampleIntegrity.structuralGaps, [], "the Verdict already says it, so it is not repeated before the bullets");
 
 // Sales: the BrightWave proposal bullet is Keep #3 and the Critical Miss.
 const salesIntegrity = reconcileReport(sales);
@@ -123,7 +119,7 @@ for (const index of [0, 1]) {
 }
 assert.ok(!reconcileReport(ux).report.strengths!.includes(ux.strengths[2]), "\"Own the UX budget\" is Fix 3's line");
 assert.equal(structuralGapKind('The CAPM entry says "Learner level," but it is unclear whether that describes a credential.'), undefined);
-assert.deepEqual(reconcileReport(sample).report.next_steps, sample.next_steps, "a plan that ties fixes together is not a repeat");
+assert.deepEqual(reconcileReport(sample).report.next_steps, sample.next_steps.slice(0, 2), "a next step that restates Fix 3 is dropped; the others stay");
 
 // Streaming and stored reports can be partial or malformed; the pass must not throw on them.
 for (const partial of [
@@ -355,16 +351,17 @@ for (const [label, report] of outputs) {
 const sampleWeb = decode(renderToStaticMarkup(createElement(ReportStream, { report: sample, isSample: true })));
 const figure = decode(renderToStaticMarkup(createElement(FirstReadModelDiagram)));
 const quoted = [
-  fixCardSlots(sampleIntegrity, 1).why!,
-  fixCardSlots(sampleIntegrity, 2).why!,
-  sampleIntegrity.structuralGaps[0].text,
+  fixCardSlots(sampleIntegrity, 1).why,
+  fixCardSlots(sampleIntegrity, 2).why,
+  (sampleIntegrity.structuralGaps as Array<{ text: string }>)[0]?.text,
   sampleIntegrity.report.strengths![0],
-];
+].filter((line): line is string => Boolean(line));
+assert.ok(quoted.length >= 3, "the figure quotes at least three lines from the sample");
 for (const line of quoted) {
   assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
   assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
 }
-for (const removed of [sample.strengths[1], sample.gaps[1]]) {
+for (const removed of [sample.strengths[0], sample.strengths[1], sample.gaps[1]]) {
   assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
 }
 
