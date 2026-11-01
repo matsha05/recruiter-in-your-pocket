@@ -8,12 +8,10 @@ const internalPagesEnabled = () => process.env.NODE_ENV !== "production" || proc
 
 // Metadata lives here, behind the same gate as the page, so a production 404 doesn't carry the internal title.
 export function generateMetadata(): Metadata {
-  const robots = { index: false, follow: false };
-  if (!internalPagesEnabled()) return { robots };
+  if (!internalPagesEnabled()) return {};
   return {
     title: "Lifted Line Design System",
     description: "Canonical production reference for the Recruiter in Your Pocket Lifted Line design system.",
-    robots,
   };
 }
 
