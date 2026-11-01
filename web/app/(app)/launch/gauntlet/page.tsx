@@ -56,7 +56,7 @@ function Panel({ title, description, children }: { title: string; description?: 
     <section className="border-t border-line pt-5">
       <div className="mb-5 max-w-3xl">
         <h2 className="font-display text-xl riyp-weight-560 riyp-track-n025 text-foreground">{title}</h2>
-        {description ? <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p> : null}
+        {description ? <p className="mt-2 text-sm text-muted-foreground">{description}</p> : null}
       </div>
       {children}
     </section>
@@ -73,7 +73,7 @@ function DimensionCard({ progress, noun }: { progress: DimensionProgress; noun: 
           {progress.status}
         </span>
       </div>
-      <p className="mt-4 font-display text-3xl riyp-weight-600 riyp-track-n04 text-foreground">
+      <p className="mt-4 font-display text-title text-foreground">
         {progress.rate === null ? "Not measured" : `${Math.round(progress.rate * 100)}%`}
       </p>
       <p className="mt-1 text-sm text-muted-foreground">
@@ -96,7 +96,7 @@ function HashValue({ label, value }: { label: string; value: string | null | und
   return (
     <div>
       <dt className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-muted-foreground">{label}</dt>
-      <dd className="mt-1 break-all font-mono riyp-type-11px leading-5 text-foreground">{value ?? "Not bound"}</dd>
+      <dd className="mt-1 break-all font-mono riyp-type-11px text-foreground">{value ?? "Not bound"}</dd>
     </div>
   );
 }
@@ -161,7 +161,7 @@ function VariantInspection({ variant }: { variant: CaseVariantInspection }) {
       </p>
       <div className="mt-5 border-t border-line pt-4">
         <p className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-muted-foreground">Rendered presentation</p>
-        <pre className="mt-3 max-h-80 overflow-auto whitespace-pre-wrap break-words font-sans text-sm leading-6 text-foreground">
+        <pre className="mt-3 max-h-80 overflow-auto whitespace-pre-wrap break-words font-sans text-sm text-foreground">
           {variant.presentation.visibleText}
         </pre>
       </div>
@@ -176,7 +176,7 @@ function CaseInspection({ testCase }: { testCase: CaseProgress }) {
       description="The source resume and fixture path are never rendered. Variant identity appears only after a current hash-bound blind judgment exists."
     >
       {!testCase.blindVerdict ? (
-        <div className="border-l-4 border-warning bg-warning/10 px-4 py-4 text-sm leading-6 text-warning-foreground">
+        <div className="border-l-4 border-warning bg-warning/10 px-4 py-4 text-sm text-warning-foreground">
           Candidate and production remain hidden until this case has a valid blind judgment bound to the current output pair.
         </div>
       ) : (
@@ -186,7 +186,7 @@ function CaseInspection({ testCase }: { testCase: CaseProgress }) {
               <div key={dimension}>
                 <p className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-muted-foreground">{dimension}</p>
                 <p className="mt-2 text-sm font-semibold capitalize text-foreground">{preference}</p>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{testCase.blindVerdict!.rationale[dimension as keyof typeof testCase.blindVerdict.rationale]}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{testCase.blindVerdict!.rationale[dimension as keyof typeof testCase.blindVerdict.rationale]}</p>
               </div>
             ))}
           </div>
@@ -257,10 +257,10 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
               <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
                 Gauntlet loop · {snapshot.iteration.status === "retired" ? "ended by owner" : "operator only"}
               </p>
-              <h1 className="mt-3 max-w-4xl font-display text-4xl riyp-weight-620 riyp-leading-098 riyp-track-n055 text-foreground sm:text-5xl lg:text-6xl">
+              <h1 className="mt-3 max-w-4xl font-display text-headline text-foreground">
                 Can the first free review earn the second?
               </h1>
-              <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+              <p className="mt-5 max-w-3xl text-base text-muted-foreground sm:text-lg">
                 {snapshot.iteration.status === "retired"
                   ? "Matt ended this loop before evidence capture. It is retired without a quality verdict, not waiting for more tokens or review."
                   : "Twelve existing synthetic resumes. Nine candidate wins in every dimension. Zero invented facts. Zero critical desktop or mobile journey failures."}
@@ -335,16 +335,16 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
             <article className="border-l-2 border-brand pl-4">
               <p className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-brand">Builder record</p>
               <h3 className="mt-3 text-sm font-semibold text-foreground">Change</h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">{snapshot.iteration.builder.change}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{snapshot.iteration.builder.change}</p>
               <h3 className="mt-4 text-sm font-semibold text-foreground">Claim</h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">{snapshot.iteration.builder.claim}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{snapshot.iteration.builder.claim}</p>
             </article>
             <article className="border-l-2 border-line pl-4">
               <p className="riyp-type-0625 font-semibold uppercase riyp-track-010 text-muted-foreground">Critic record · {snapshot.iteration.critic.verdict}</p>
               <h3 className="mt-3 text-sm font-semibold text-foreground">Rationale</h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">{snapshot.iteration.critic.rationale}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{snapshot.iteration.critic.rationale}</p>
               <h3 className="mt-4 text-sm font-semibold text-foreground">Remaining gap</h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">{snapshot.iteration.critic.remainingGap}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{snapshot.iteration.critic.remainingGap}</p>
             </article>
           </div>
         </Panel>
@@ -367,7 +367,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-foreground">{gate.label}</p>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{gate.detail}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{gate.detail}</p>
                 </div>
               </div>
             ))}
@@ -428,10 +428,10 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
                       Official artifact <ExternalLink aria-hidden="true" className="size-3" />
                     </a>
                   </div>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
+                  <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                     {reference.observedCapabilities.map((capability) => <li key={capability}>- {capability}</li>)}
                   </ul>
-                  <p className="mt-3 text-xs leading-5 text-warning-foreground">{reference.limitation}</p>
+                  <p className="mt-3 text-xs text-warning-foreground">{reference.limitation}</p>
                 </article>
               ))}
             </div>
@@ -439,7 +439,7 @@ export default async function GauntletPage({ searchParams }: { searchParams: Pro
           <Panel title={snapshot.iteration.status === "retired" ? "Why this ended" : "What is actually missing"} description={snapshot.iteration.baselineStatement}>
             <ol className="space-y-4">
               {snapshot.baselineGaps.map((gap, index) => (
-                <li key={`${index}-${gap}`} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                <li key={`${index}-${gap}`} className="flex gap-3 text-sm text-muted-foreground">
                   <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center border border-line bg-paper-muted riyp-type-0625 font-semibold text-foreground">{index + 1}</span>
                   {gap}
                 </li>

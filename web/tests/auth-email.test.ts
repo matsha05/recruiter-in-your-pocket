@@ -58,6 +58,7 @@ async function main() {
   assert(body.html.includes("border-radius:999px"), "email code uses the dark pill treatment");
   assert(body.html.includes("font-family:Georgia"), "email heading has a dependable serif fallback");
   assert(body.html.includes("#1f5a46"), "email uses the pen color");
+  assert(!body.html.toLowerCase().includes("#ffe14d"), "yellow stays reserved for the Critical Miss, not email decoration");
   assert(!body.html.toLowerCase().includes("#c8ff2e"), "email does not drift to the old lime");
   assert(!body.text.includes("http"), "plain text does not silently fall back to a link");
   assert(!body.html.includes("ConfirmationURL"), "HTML does not rely on a hosted template token");

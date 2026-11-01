@@ -52,12 +52,12 @@ export function PricingCard({
                 )}
             >
                 {data.badge && (
-                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-surface-sky px-2 py-1 text-[0.8125rem] font-medium text-brand">
+                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-surface-sky px-2 py-1 text-xs font-medium text-brand">
                         {data.badge}
                     </span>
                 )}
-                <span className="mt-2 font-display text-3xl font-bold text-foreground">{data.price}</span>
-                <span className="mt-1 text-[0.8125rem] font-medium text-muted-foreground">{data.label}</span>
+                <span className="mt-2 font-display text-title text-foreground">{data.price}</span>
+                <span className="mt-1 text-xs font-medium text-muted-foreground">{data.label}</span>
                 <span className="text-xs text-muted-foreground">{data.period}</span>
             </button>
         );
@@ -76,15 +76,14 @@ export function PricingCard({
     );
 
     const featureTextClass = (bold?: boolean) => cn(
-        "leading-6",
+        "",
         bold ? "font-medium text-foreground" : "text-muted-foreground"
     );
 
     const marketingButton = (
         <Button
             type="button"
-            variant={isFeatured ? "brand" : "outline"}
-            size="lg"
+            variant={isFeatured ? "primary" : "secondary"}
             onClick={onSelect}
             disabled={loading || disableForFree}
             className="w-full"
@@ -96,7 +95,7 @@ export function PricingCard({
 
     const appButton = (
         <Button
-            variant={isFeatured ? "brand" : isFree ? "ghost" : "outline"}
+            variant={isFeatured ? "primary" : isFree ? "quiet" : "secondary"}
             className="w-full"
             onClick={onSelect}
             disabled={loading || disableForFree}
@@ -110,18 +109,18 @@ export function PricingCard({
         <article className={cardClass}>
             <div className="mb-6">
                 <div className={cn(
-                    "mb-3 text-[0.8125rem] font-medium ",
+                    "mb-3 text-xs font-medium",
                     isFeatured ? "text-brand" : "text-muted-foreground"
                 )}>
                     {data.label}
                 </div>
                 <div className="flex items-end gap-2">
-                    <span className="font-display text-5xl font-bold leading-none tracking-tight text-foreground">
+                    <span className="font-display text-headline text-foreground">
                         {data.price}
                     </span>
                     {data.period ? <span className="pb-1 text-base text-muted-foreground">{data.period}</span> : null}
                 </div>
-                <p className="mt-4 text-lg leading-7 text-muted-foreground">{data.description}</p>
+                <p className="mt-4 text-lg text-muted-foreground">{data.description}</p>
             </div>
 
             <ul className="mb-7 flex-1 space-y-3">

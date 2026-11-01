@@ -66,16 +66,16 @@ export default function LinkedInModeSection({
               <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase riyp-track-010 text-brand">
                 <Linkedin className="size-4" /> LinkedIn report
               </p>
-              <h1 className="font-display text-[clamp(2.75rem,6vw,4.6rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-foreground riyp-stretch-88">
+              <h1 className="font-display text-display text-foreground">
                 Review your LinkedIn profile.
               </h1>
-              <p className="mt-5 max-w-[28rem] text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-[28rem] text-lg text-muted-foreground">
                 Upload your LinkedIn PDF for feedback on your headline, experience, and missing details.
               </p>
               <dl className="mt-9 border-y border-border/70">
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">01</dt><dd className="text-sm leading-6 text-muted-foreground">First impression</dd></div>
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">02</dt><dd className="text-sm leading-6 text-muted-foreground">Headline and About section</dd></div>
-                <div className="grid grid-cols-[2.5rem_1fr] gap-3 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">03</dt><dd className="text-sm leading-6 text-muted-foreground">Skills and relevant keywords</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-xs font-semibold text-brand">01</dt><dd className="text-sm text-muted-foreground">First impression</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-xs font-semibold text-brand">02</dt><dd className="text-sm text-muted-foreground">Headline and About section</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 py-4"><dt className="font-mono text-xs font-semibold text-brand">03</dt><dd className="text-sm text-muted-foreground">Skills and relevant keywords</dd></div>
               </dl>
             </div>
 
@@ -99,7 +99,7 @@ export default function LinkedInModeSection({
           <div className="flex flex-col justify-between gap-4 px-2 ui-state-enter sm:flex-row sm:items-center">
             <div className="gap-y-1 min-w-0">
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
+                <h1 className="text-heading font-display text-foreground truncate">
                   {linkedInProfileName || "LinkedIn Report"}
                 </h1>
               </div>

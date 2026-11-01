@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { Button } from "@/components/ui/button";
 import { categories, featuredArticles, type ResearchArticle } from "@/components/research/ResearchHubData";
 import styles from "./ResearchHub.module.css";
 
@@ -48,9 +49,11 @@ export default function ResearchHub() {
 
                 <section className={styles.close} aria-labelledby="research-close-title">
                     <h2 id="research-close-title" className={styles.closeTitle}>What would they think of yours?</h2>
-                    <Link href="/workspace" className={styles.primary} data-analytics-cta="research_report">
-                        Read mine <ArrowRight weight="bold" aria-hidden="true" />
-                    </Link>
+                    <Button asChild size="lg" className="flex-none">
+                        <Link href="/workspace" data-analytics-cta="research_report">
+                            Read mine <ArrowRight weight="bold" aria-hidden="true" />
+                        </Link>
+                    </Button>
                 </section>
             </div>
             <Footer />

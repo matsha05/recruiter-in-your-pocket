@@ -129,16 +129,16 @@ export default function PurchaseConfirmedClient() {
             <div>
               <h1
                 id="purchase-confirmed-title"
-                className="max-w-xl text-balance font-sans text-3xl font-normal tracking-tight sm:text-workspace-title"
+                className="max-w-xl text-balance font-sans text-title"
               >
                 {pageTitle}
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-muted-foreground">{confirmationMessage}</p>
+              <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground">{confirmationMessage}</p>
             </div>
           </header>
 
           <div className="grid gap-5 py-8">
-            <div className="text-sm leading-6 text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
               {unlockLabel && state.status !== "missing" ? (
                 <p>Your report is right where you left it.</p>
               ) : null}
@@ -153,50 +153,50 @@ export default function PurchaseConfirmedClient() {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {checkingAccountAccess ? (
-                  <Button type="button" variant="brand" size="lg" disabled isLoading>
+                  <Button type="button" variant="primary" disabled isLoading>
                     Refreshing access…
                   </Button>
                 ) : state.status === "unlocked" && hasPaidAccess ? (
-                  <Button asChild variant="brand" size="lg">
+                  <Button asChild variant="primary">
                     <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Back to my report"} <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" && user ? (
-                  <Button asChild variant="brand" size="lg">
+                  <Button asChild variant="primary">
                     <Link href={restoreHref}>Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : state.status === "unlocked" ? (
-                  <Button asChild variant="brand" size="lg">
+                  <Button asChild variant="primary">
                     <Link href={`/auth?next=${encodeURIComponent(workspaceHref)}&from=paywall`}>Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : (
-                  <Button type="button" variant="brand" size="lg" onClick={() => window.location.reload()}>
+                  <Button type="button" variant="primary" onClick={() => window.location.reload()}>
                     <ArrowClockwise className="size-4" weight="bold" /> Check again
                   </Button>
                 )}
 
                 {accountReady ? null : (
-                  <Button asChild variant="outline" size="lg">
+                  <Button asChild variant="secondary">
                     <Link href={restoreHref}>Restore access</Link>
                   </Button>
                 )}
-                <Button asChild variant="ghost" size="lg">
+                <Button asChild variant="quiet">
                   <Link href="/settings/billing">Billing settings</Link>
                 </Button>
                 {state.status === "error" ? (
-                  <Button asChild variant="ghost" size="lg">
+                  <Button asChild variant="quiet">
                     <Link href={getCheckoutPricingHref(returnTo)}>Back to pricing</Link>
                   </Button>
                 ) : null}
               </div>
               {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
-                <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm leading-6 text-muted-foreground">
+                <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm text-muted-foreground">
                   Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
                 </p>
               ) : null}
             </div>
           </div>
 
-          <p className="border-t border-line pt-6 text-sm leading-6 text-muted-foreground">
+          <p className="border-t border-line pt-6 text-sm text-muted-foreground">
             Need help? Email{" "}
             <a href="mailto:support@recruiterinyourpocket.com" className="font-medium text-foreground riyp-link">
               support@recruiterinyourpocket.com

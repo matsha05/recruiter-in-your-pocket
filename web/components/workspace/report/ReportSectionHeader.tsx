@@ -42,7 +42,7 @@ export function ReportSectionHeader({
         <div className={cn("space-y-3", className)}>
             {/* Eyebrow: Number + Title + Optional Badge */}
             <div className="flex items-center justify-between gap-3">
-                <h2 className="flex items-center gap-2 text-[0.8125rem] font-semibold text-muted-foreground">
+                <h2 className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
                     {icon}
                     {number}. {title}
                 </h2>

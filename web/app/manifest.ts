@@ -7,26 +7,14 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'See what a recruiter sees: your Verdict, First Impression score, and the one thing they would miss.',
         start_url: '/',
         display: 'standalone',
-        background_color: '#FBFAF7',
-        theme_color: '#12191b',
+        background_color: '#f4f4f1',
+        theme_color: '#111513',
+        // Favicon C2, "The Noted R" (Matt, Nov 1, 2026), built by scripts/brand-assets.mjs.
         icons: [
-            {
-                src: '/icon/small',
-                sizes: '32x32',
-                type: 'image/png',
-            },
-            {
-                src: '/icon/medium',
-                sizes: '192x192',
-                type: 'image/png',
-                purpose: 'maskable',
-            },
-            {
-                src: '/icon/large',
-                sizes: '512x512',
-                type: 'image/png',
-                purpose: 'maskable',
-            },
+            { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+            { src: '/brand/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+            { src: '/brand/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+            { src: '/brand/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
     }
 }

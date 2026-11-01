@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalShell } from "@/components/legal/LegalShell";
@@ -36,16 +37,17 @@ export default function SupportPage() {
     >
       <section className="rounded-xl border border-border bg-muted px-5 py-6 md:px-6 md:py-7">
         <p className="text-label text-brand">Support inbox</p>
-        <h2 className="mt-3 break-all font-display text-xl font-bold leading-7 tracking-tight text-foreground sm:text-report-title">support@recruiterinyourpocket.com</h2>
+        <h2 className="mt-3 break-all font-display text-heading text-foreground">support@recruiterinyourpocket.com</h2>
         <p className="mt-3 text-prose text-muted-foreground">
           A screenshot can help us understand the problem. Remove personal information before sending it.
         </p>
-        <Link
-          href="mailto:support@recruiterinyourpocket.com?subject=Recruiter%20in%20Your%20Pocket%20support"
-          className="focus-ring mt-5 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-        >
-          Email support
-        </Link>
+        <Button asChild className="mt-5">
+            <Link
+              href="mailto:support@recruiterinyourpocket.com?subject=Recruiter%20in%20Your%20Pocket%20support"
+            >
+              Email support
+            </Link>
+        </Button>
       </section>
 
       <section className="grid gap-x-8 py-3 md:grid-cols-2 md:py-5">
@@ -58,7 +60,7 @@ export default function SupportPage() {
       </section>
 
       <section className="border-t border-border pt-7 md:pt-9">
-        <h2 className="font-display text-report-title text-foreground">Things you can do now</h2>
+        <h2 className="font-display text-heading text-foreground">Things you can do now</h2>
         <div className="mt-5 flex flex-wrap gap-3">
           <SupportLink href="/auth">Sign in</SupportLink>
           <SupportLink href="/purchase/restore">Restore a purchase</SupportLink>
@@ -73,8 +75,10 @@ export default function SupportPage() {
 
 function SupportLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-input px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-background">
-      {children}
-    </Link>
+    <Button asChild variant="secondary">
+        <Link href={href}>
+          {children}
+        </Link>
+    </Button>
   );
 }

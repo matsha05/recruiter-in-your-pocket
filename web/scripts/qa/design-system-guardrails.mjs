@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { validateFontStack, validateRuntimeSystem } from "./design-system-runtime.mjs";
+import { validateStyleBudgets } from "./design-system-budgets.mjs";
+import { runMeasure } from "./design-system-measure.mjs";
 
 const ROOT = process.cwd();
 const TEXT_EXTENSIONS = new Set([".ts", ".tsx", ".css", ".md", ".mdx"]);
@@ -13,7 +15,7 @@ const PRODUCTION_SCOPE_DIRS = [
   "app", "components", "lib",
 ];
 
-const SYSTEM_NAME = "Highlighter 1.0";
+const SYSTEM_NAME = "Highlighter 1.1";
 // Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
 // baselines after the cross-surface launch migration. New work may reduce this
 // debt, but cannot silently increase it.
@@ -35,8 +37,6 @@ const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divi
 const HEX_ALLOWLIST = new Set([
   "app/globals.css",
   "app/manifest.ts",
-  "app/icon.tsx",
-  "app/apple-icon.tsx",
   // Next ImageResponse requires inline, literal styles and cannot consume the
   // runtime CSS token sheet. Values here must mirror the canonical palette.
   "app/opengraph-image.tsx",
@@ -60,8 +60,6 @@ const INLINE_STYLE_EXCLUSIONS = new Set([
   // Satori renders metadata images from inline style objects by contract.
   "app/opengraph-image.tsx",
   "app/og/home/route.tsx",
-  "app/icon.tsx",
-  "app/apple-icon.tsx",
 ]);
 
 const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [
@@ -402,15 +400,47 @@ function printList(label, list) {
   }
 }
 
+async function measure() {
+  const result = await runMeasure(process.argv.slice(2));
+  const { summary } = result;
+  console.log("\nRendered design-system measurement (1440 and 390 px)");
+  console.log(`- Routes: ${summary.routes}`);
+  console.log(`- Text styles: ${summary.textStyles}; size/leading pairs: ${summary.sizeLeadingPairs}`);
+  console.log(`- Font sizes: ${summary.fontSizes.join(" ")}`);
+  console.log(`- Weights: ${summary.weights.join(" ")}`);
+  console.log(`- Primary action builds: ${summary.primaryBuilds.join(", ")}`);
+  console.log(`- Prose at 1440: ${summary.prose.paragraphs} paragraphs, ${summary.prose.overInRail} over the measure inside a reading rail, ${summary.prose.overOutsideRail} outside one (max ${summary.prose.maxCpl})`);
+  printList("Prose laid out outside the reading rail (audit 3.6)", result.warnings);
+  if (result.errors.length > 0) {
+    printList("Rendered budget violations", result.errors);
+    console.error("\nRendered measurement failed.");
+    process.exit(1);
+  }
+  console.log("\nRendered measurement passed.");
+}
+
 function main() {
+  if (process.argv.includes("--measure")) {
+    measure().catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
+    return;
+  }
+
   const files = walk(ROOT);
   const violations = findViolations(files);
   const missingDocTokens = validateDocs();
   const runtimeSystemErrors = validateRuntimeSystem();
   const fontValidation = validateFontStack();
   const researchSystemErrors = validateResearchSystem();
+  const styleBudgets = validateStyleBudgets();
 
   const errors = [];
+
+  if (styleBudgets.errors.length > 0) {
+    errors.push("Style budgets exceeded (type roles, buttons, radii, shadows, hovers, or prose measure).");
+  }
 
   if (violations.externalFontImport.length > 0) {
     errors.push("External font imports detected. Use self-hosted local fonts only.");
@@ -484,6 +514,7 @@ function main() {
   printList("Hardcoded color violations", violations.hardcodedHex);
   printList("Banned copy terms", violations.bannedTerms);
   printList("Hand-tuned link or motion values", violations.adHocLinkOrMotion);
+  printList("Style budget violations", styleBudgets.errors);
 
   if (missingDocTokens.length > 0) {
     console.error("\nMissing design-system doc tokens:");
@@ -516,6 +547,11 @@ function main() {
   console.log(`- Legacy font references: ${violations.legacyFontBranding.length}`);
   console.log(`- Hardcoded hex violations: ${violations.hardcodedHex.length}`);
   console.log(`- Banned copy terms: ${violations.bannedTerms.length}`);
+  const budget = styleBudgets.summary;
+  console.log(`- Text roles: ${budget.textRoles}; raw font sizes: ${budget.rawFontSizes}; legacy type utilities: ${budget.legacyTypeUtilities}; leading overrides: ${budget.leadingOverrides}`);
+  console.log(`- Button variants: ${budget.buttonVariants}; sizes: ${budget.buttonSizes}; hand-built pills: ${budget.handBuiltPills}`);
+  console.log(`- Corner radii: ${budget.radii}; shadows: ${budget.shadows}; ad-hoc hover utilities: ${budget.adHocHovers}`);
+  console.log(`- Reading rails (characters per line): ${Object.entries(budget.proseMeasure).map(([rail, cpl]) => `${rail} ${cpl}`).join(", ")}`);
 
   if (errors.length > 0) {
     console.error("\nGuardrails failed:");

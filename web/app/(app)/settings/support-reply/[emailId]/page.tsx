@@ -55,8 +55,8 @@ const STATUS_MESSAGES: Record<string, { tone: "success" | "warning"; message: st
 function unavailablePanel() {
   return (
     <section className="rounded-2xl border border-warning/30 bg-warning/5 p-6 sm:rounded-3xl">
-      <h1 className="font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title">Private reply unavailable</h1>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">
+      <h1 className="font-sans text-title text-foreground">Private reply unavailable</h1>
+      <p className="mt-2 text-sm text-muted-foreground">
         The original message could not be loaded safely. Nothing was sent; try again later.
       </p>
     </section>
@@ -113,10 +113,10 @@ export default async function SupportReplyPage({
           <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
             Private support reply
           </p>
-          <h1 className="mt-3 font-sans text-[32px] font-normal leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title">
+          <h1 className="mt-3 font-sans text-title text-foreground">
             Reply as support, not from Gmail.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground">
             The recipient, sender address, and thread headers are verified again on the server when you send.
           </p>
         </header>
@@ -124,7 +124,7 @@ export default async function SupportReplyPage({
         {statusMessage ? (
           <div
             role="status"
-            className={`mt-7 rounded-xl border p-4 text-sm leading-6 ${statusMessage.tone === "success" ? "border-success/30 bg-success/10 text-success" : "border-warning/30 bg-warning/10 text-warning-foreground"}`}
+            className={`mt-7 rounded-xl border p-4 text-sm ${statusMessage.tone === "success" ? "border-success/30 bg-success/10 text-success" : "border-warning/30 bg-warning/10 text-warning-foreground"}`}
           >
             {statusMessage.message}
           </div>
@@ -149,11 +149,11 @@ export default async function SupportReplyPage({
           <div className="border-t border-line px-5 py-5">
             <p className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Message</p>
             {result.context.textPreview ? (
-              <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words font-sans text-base leading-7 text-foreground">
+              <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words font-sans text-base text-foreground">
                 {result.context.textPreview}
               </pre>
             ) : (
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              <p className="mt-3 text-sm text-muted-foreground">
                 {result.context.htmlOnly
                   ? "This is an HTML-only message. Read the original safely in the Gmail notification before replying."
                   : "This message has no text body."}
@@ -170,7 +170,7 @@ export default async function SupportReplyPage({
           <label htmlFor="support-reply" className="text-sm font-semibold text-foreground">
             Your reply
           </label>
-          <p id="support-reply-help" className="mt-1 text-sm leading-6 text-muted-foreground">
+          <p id="support-reply-help" className="mt-1 text-sm text-muted-foreground">
             Plain text only. One reply is allowed for each incoming message.
           </p>
           <textarea
@@ -180,7 +180,7 @@ export default async function SupportReplyPage({
             disabled={sent}
             maxLength={MAX_SUPPORT_REPLY_BYTES}
             aria-describedby="support-reply-help"
-            className="mt-3 min-h-48 w-full resize-y rounded-md border border-input bg-card px-4 py-3 text-base leading-7 text-foreground outline-none transition focus:border-brand focus:ring-2 focus:ring-ring/25 disabled:cursor-not-allowed disabled:bg-muted"
+            className="mt-3 min-h-48 w-full resize-y rounded-md border border-input bg-card px-4 py-3 text-base text-foreground outline-none transition focus:border-brand focus:ring-2 focus:ring-ring/25 disabled:cursor-not-allowed disabled:bg-muted"
           />
           <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">

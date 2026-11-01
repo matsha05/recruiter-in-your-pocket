@@ -8,25 +8,25 @@
 
 .content { width: 100%; max-width: 60rem; margin-inline: auto; }
 .intro { max-width: 42rem; }
-.eyebrow { color: hsl(var(--brand)); font-size: 0.8125rem; font-weight: var(--weight-label); }
-.title { margin-top: 0.875rem; font-family: var(--font-body); font-size: 2.5rem; font-weight: var(--weight-display); line-height: 1.1; letter-spacing: -0.035em; }
-.description { max-width: 40rem; margin-top: 1rem; color: hsl(var(--text-muted)); font-size: 1rem; line-height: 1.5625; }
+.eyebrow { color: hsl(var(--brand)); font: var(--type-label); }
+.title { margin-top: 0.875rem; font: var(--type-title); letter-spacing: var(--tracking-title); }
+.description { max-width: 40rem; margin-top: 1rem; color: hsl(var(--text-muted)); font: var(--type-body); }
 .sheet { margin-top: 1.75rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: 1.25rem; box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
 .jobContext { display: flex; align-items: start; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid hsl(var(--brand) / 0.2); border-radius: 0.75rem; background: hsl(var(--surface-sky)); }
 .pausedNotice { display: flex; align-items: start; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid hsl(var(--border)); border-radius: 0.75rem; background: hsl(var(--surface-proof)); }
 .pasteHeader { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.textAction { display: inline-flex; min-height: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding-inline: 0.5rem; border-radius: 0.625rem; color: hsl(var(--brand)); font-size: 0.875rem; font-weight: var(--weight-control); transition: color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease); }
+.textAction { display: inline-flex; min-height: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding-inline: 0.5rem; border-radius: 0.625rem; color: hsl(var(--brand)); transition: color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease); font: var(--type-small); font-weight: var(--weight-control); }
 .textAction:hover { color: hsl(var(--text-strong)); background: hsl(var(--surface-proof)); }
 .textAction:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
-.field { width: 100%; min-height: 10rem; resize: vertical; border: 1px solid hsl(var(--input)); border-radius: 0.625rem; padding: 1rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); font-family: var(--font-body); font-size: 1rem; line-height: 1.5625; }
+.field { width: 100%; min-height: 10rem; resize: vertical; border: 1px solid hsl(var(--input)); border-radius: 0.625rem; padding: 1rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); font: var(--type-body); }
 .field::placeholder { color: hsl(var(--text-muted)); }
 .field:focus-visible { border-color: hsl(var(--brand)); outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
 .resumeField { min-height: 15rem; }
 .jobSection { margin-top: 1.25rem; border-block: 1px solid hsl(var(--line)); }
 .roleToggle { display: flex; min-height: 5rem; width: 100%; align-items: center; gap: 0.75rem; padding-block: 0.75rem; border-radius: 0.625rem; text-align: left; }
-.runAction { width: 100%; min-height: 3rem; margin-top: 1.5rem; font-size: 1rem; font-weight: var(--weight-control); }
+.runAction { width: 100%; margin-top: 1.5rem; }
 .runAction:disabled { border: 1px solid hsl(var(--line)); background: hsl(var(--surface-proof)); color: hsl(var(--text-muted)); opacity: 1; box-shadow: none; }
-.privacy { margin-top: 1rem; color: hsl(var(--text-muted)); font-size: 0.8125rem; line-height: 1.5; text-align: center; }
+.privacy { margin-top: 1rem; color: hsl(var(--text-muted)); text-align: center; font: var(--type-label); font-weight: var(--weight-body); }
 
 @media (min-width: 640px) {
     .root { padding: 2.75rem 1.5rem 4rem; }
@@ -34,13 +34,11 @@
 }
 
 @media (max-width: 380px) {
-    .title { font-size: 2.125rem; }
     .pasteHeader { flex-direction: column; gap: 0.25rem; }
 }
 
 @media (max-width: 639px) {
     .root { padding-top: 1.5rem; }
-    .title { font-size: 2rem; }
     .description { margin-top: 0.75rem; }
     .sheet { margin-top: 1.25rem; padding: 1rem; }
     .resumeField { min-height: 11rem; }

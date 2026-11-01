@@ -37,19 +37,19 @@ export default function AuthClient() {
         return (
             <div data-visual-anchor="auth-page" className="min-h-[80vh] bg-background px-4 pb-16 pt-28 text-foreground sm:px-6 md:px-8 md:pb-24 md:pt-36">
                 <div className="mx-auto grid max-w-[34rem] gap-4">
-                    <p className="text-[0.8125rem] font-semibold text-[hsl(var(--pen))]">Signed in</p>
-                    <h1 className="text-balance font-display text-[32px] font-bold leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title">You&apos;re already signed in.</h1>
-                    <p className="text-base leading-7 text-muted-foreground">
+                    <p className="text-xs font-semibold text-[hsl(var(--pen))]">Signed in</p>
+                    <h1 className="text-balance font-display text-title text-foreground">You&apos;re already signed in.</h1>
+                    <p className="text-base text-muted-foreground">
                         You&apos;re signed in as <span className="break-all font-medium text-foreground">{user.email}</span>.
                     </p>
                     <div className="mt-2 flex flex-wrap items-center gap-3">
-                        <Button asChild variant="brand" className="min-h-12 px-6">
+                        <Button asChild variant="primary">
                             <Link href={nextParam ? redirectTo : "/reports"}>
                                 {nextParam ? "Continue" : "Go to my reports"}
                                 <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
                             </Link>
                         </Button>
-                        <Button type="button" variant="outline" className="min-h-12 px-6" onClick={() => void signOut()}>
+                        <Button type="button" variant="secondary"  onClick={() => void signOut()}>
                             Sign out
                         </Button>
                     </div>

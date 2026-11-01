@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -73,7 +74,7 @@ export default function ExtensionPageClient() {
               <p className="editorial-kicker text-brand">
                 {extensionStoreContent.page.eyebrow}
               </p>
-              <h1 className="mt-5 max-w-md text-balance font-display text-workspace-title md:text-page-title">
+              <h1 className="mt-5 max-w-md text-balance font-display text-headline">
                 Save a job. Come back to it later.
               </h1>
               <p className="mt-6 max-w-xl text-prose text-muted-foreground">
@@ -82,22 +83,25 @@ export default function ExtensionPageClient() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link
-                  href={primaryHref}
-                  target={installReady ? "_blank" : undefined}
-                  rel={installReady ? "noopener noreferrer" : undefined}
-                  className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-                >
-                  {primaryLabel}
-                  <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
-                </Link>
-                <Link href="/privacy" className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-brand/45 hover:bg-brand/5">
-                  Read the privacy policy
-                </Link>
+                <Button asChild>
+                    <Link
+                      href={primaryHref}
+                      target={installReady ? "_blank" : undefined}
+                      rel={installReady ? "noopener noreferrer" : undefined}
+                    >
+                      {primaryLabel}
+                      <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
+                    </Link>
+                </Button>
+                <Button asChild variant="secondary">
+                    <Link href="/privacy">
+                      Read the privacy policy
+                    </Link>
+                </Button>
               </div>
 
               {!installReady ? (
-                <p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground">
+                <p className="mt-5 max-w-xl text-sm text-muted-foreground">
                   The extension is not available to install yet. You can see how it
                   works below, or paste a job description into your workspace now.
                 </p>
@@ -126,7 +130,7 @@ export default function ExtensionPageClient() {
             {extensionStoreContent.page.highlights.slice(0, 3).map((item) => (
               <div key={item} className="flex min-h-24 items-start gap-3 px-5 py-6 md:px-7">
                 <Check className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" aria-hidden="true" />
-                <p className="text-sm font-medium leading-6 text-foreground">{item}</p>
+                <p className="text-sm font-medium text-foreground">{item}</p>
               </div>
             ))}
           </div>
@@ -137,7 +141,7 @@ export default function ExtensionPageClient() {
             <div className="grid gap-10 border-t border-line pt-6 lg:grid-cols-[0.36fr_0.64fr]">
               <div>
                 <p className="editorial-kicker text-brand">How it works</p>
-                <h2 className="mt-5 max-w-sm font-display text-workspace-title md:text-section-title">
+                <h2 className="mt-5 max-w-sm font-display text-headline">
                   From job posting to resume report.
                 </h2>
               </div>
@@ -146,8 +150,8 @@ export default function ExtensionPageClient() {
                   <article key={step.number} className="grid gap-4 border-b border-line py-7 sm:grid-cols-[4rem_1fr] sm:gap-7">
                     <p className="font-mono text-xs font-semibold text-brand">{step.number}</p>
                     <div>
-                      <h3 className="font-display text-report-title">{step.title}</h3>
-                      <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">{step.copy}</p>
+                      <h3 className="font-display text-heading">{step.title}</h3>
+                      <p className="mt-3 max-w-2xl text-muted-foreground">{step.copy}</p>
                     </div>
                   </article>
                 ))}
@@ -187,10 +191,10 @@ export default function ExtensionPageClient() {
           <div className="mx-auto grid max-w-marketing gap-12 lg:grid-cols-[0.42fr_0.58fr]">
             <div>
               <p className="editorial-kicker text-brand">Permissions and privacy</p>
-              <h2 className="mt-5 max-w-sm font-display text-workspace-title md:text-section-title">
+              <h2 className="mt-5 max-w-sm font-display text-headline">
                 What the extension can read.
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground">
+              <p className="mt-6 max-w-xl text-base text-muted-foreground">
                 {extensionDisclosureMessage}
               </p>
             </div>
@@ -202,7 +206,7 @@ export default function ExtensionPageClient() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{copy}</p>
                   </div>
                 </article>
               ))}

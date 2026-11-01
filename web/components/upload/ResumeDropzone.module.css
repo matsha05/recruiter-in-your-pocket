@@ -16,7 +16,7 @@
 .dragRejected { border-color: hsl(var(--destructive)); background: hsl(var(--error-surface)); }
 .processing { opacity: 0.5; cursor: not-allowed; }
 .uploadIcon { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); }
-.title { font-family: var(--font-body); font-size: 1.25rem; font-weight: var(--weight-display); line-height: 1.5; color: hsl(var(--text-strong)); }
+.title { color: hsl(var(--text-strong)); font: var(--type-lead); font-weight: var(--weight-title); }
 .details, .chooseButton { margin-top: 1.25rem; }
 .mobileTitle { display: none; }
 .accepted { display: flex; min-height: 15rem; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid hsl(var(--brand) / 0.25); border-radius: 0.75rem; background: hsl(var(--surface-sky)); padding: 1.25rem; }
@@ -27,8 +27,8 @@
     .uploadIcon { width: 2.5rem; height: 2.5rem; border-radius: 0.625rem; }
     .uploadIcon svg { width: 1.375rem; height: 1.375rem; }
     .details { min-width: 0; margin-top: 0; }
-    .title { font-size: 1rem; line-height: 1.375; font-weight: var(--weight-control); }
-    .details > p + p { margin-top: 0.25rem; font-size: 0.8125rem; line-height: 1.25rem; }
+    .title { font: var(--type-body); font-weight: var(--weight-control); }
+    .details > p + p { margin-top: 0.25rem; font: var(--type-label); font-weight: var(--weight-body); }
     .desktopTitle { display: none; }
     .mobileTitle { display: inline; }
     .drop .chooseButton { grid-column: 1 / -1; width: 100%; margin-top: 0; }

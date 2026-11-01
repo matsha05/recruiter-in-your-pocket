@@ -16,13 +16,13 @@ export function ScoreBadge({ score, size = "md", className }: ScoreBadgeProps) {
     const sizeStyles = {
         sm: "text-base",
         md: "text-xl",
-        lg: "text-3xl",
+        lg: "text-title",
     };
 
     return (
         <span className={cn("inline-flex items-baseline font-display font-extrabold tabular-nums tracking-tight text-foreground", sizeStyles[size], className)}>
             {score}
-            <span className="ml-0.5 text-[0.8125rem] font-medium tracking-normal text-muted-foreground">/100</span>
+            <span className="ml-0.5 text-xs font-medium tracking-normal text-muted-foreground">/100</span>
         </span>
     );
 }

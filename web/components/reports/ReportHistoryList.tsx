@@ -121,8 +121,8 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-2xl bg-brand-tint text-brand">
           <EmptyReportIcon className="size-12" />
         </div>
-        <h2 className="font-display text-report-title text-foreground">Nothing here yet</h2>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
+        <h2 className="font-display text-heading text-foreground">Nothing here yet</h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
           Your first read is free. It&apos;ll wait here, Verdict and all, for whenever you revise.
         </p>
         <Button asChild className="mt-6">
@@ -145,10 +145,10 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
           const isRenaming = renamingId === report.id;
 
           return (
-            <article key={report.id} className="group grid grid-cols-[3.75rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 transition-colors duration-fast ease-snap hover:bg-muted/40 sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
+            <article key={report.id} className="riyp-surface-link grid grid-cols-[3.75rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
               <ScoreBadge score={report.score ?? 0} className="pt-0.5" />
               <div className="min-w-0">
-                <p className="text-[0.8125rem] text-muted-foreground [overflow-wrap:anywhere]">
+                <p className="text-xs text-muted-foreground [overflow-wrap:anywhere]">
                   {formatReportDate(report.createdAt)}
                   {report.targetRole ? <> · Points toward {report.targetRole}</> : null}
                 </p>
@@ -181,7 +181,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                       <Button
                         type="button"
                         onClick={cancelRename}
-                        variant="outline"
+                        variant="secondary"
                         size="icon"
                         className="text-muted-foreground hover:text-foreground"
                         aria-label="Cancel rename"
@@ -192,9 +192,9 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                   </div>
                 ) : (
                   <Link href={`/reports/${report.id}`} className="focus-ring mt-1 block rounded-lg">
-                    <h2 className="break-words font-display text-xl font-bold leading-7 text-foreground transition-colors duration-fast ease-snap group-hover:text-brand">{title}</h2>
+                    <h2 className="break-words font-display text-xl font-bold text-foreground">{title}</h2>
                     {report.resumePreview ? (
-                      <p className="mt-1 line-clamp-2 max-w-2xl text-sm leading-6 text-muted-foreground">{report.resumePreview}</p>
+                      <p className="mt-1 line-clamp-2 max-w-2xl text-sm text-muted-foreground">{report.resumePreview}</p>
                     ) : (
                       <p className="mt-1 text-sm text-muted-foreground">Open the report to see the Verdict and fixes.</p>
                     )}
@@ -204,29 +204,26 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
 
               {!isRenaming ? (
                 <div className="col-start-2 -ml-3 flex flex-wrap items-center gap-1 sm:col-start-3 sm:ml-0 sm:self-start">
-                  <Link
-                    href={`/reports/${report.id}`}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold text-foreground transition-colors duration-fast ease-snap hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-                  >
-                    Open
-                    <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => beginRename(report)}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
-                  >
+                  <Button asChild variant="quiet" size="sm">
+                    <Link href={`/reports/${report.id}`}>
+                      Open
+                      <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                  <Button type="button" variant="quiet" size="sm" onClick={() => beginRename(report)}>
                     <PencilSimple className="size-4" aria-hidden="true" />
                     Rename
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
+                    variant="quiet"
+                    size="icon"
                     onClick={() => setDeleteId(report.id)}
-                    className="inline-flex size-11 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                    className="text-muted-foreground hover:text-destructive"
                     aria-label={`Delete ${title}`}
                   >
                     <Trash className="size-4" aria-hidden="true" />
-                  </button>
+                  </Button>
                 </div>
               ) : null}
             </article>

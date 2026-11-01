@@ -50,12 +50,12 @@ export default async function ReportsPage() {
           title="Your saved reports"
           description="Every version you’ve run, read the way a recruiter reads it. Run the next one and see what moved."
           meta={items.length > 0 || reportsError
-            ? <span className="text-[0.8125rem] font-medium text-muted-foreground">{reportCountLabel}</span>
+            ? <span className="text-xs font-medium text-muted-foreground">{reportCountLabel}</span>
             : undefined}
           actions={
             <div className="flex flex-wrap items-center gap-2">
               {launchFlags.extensionSync ? (
-                <Button asChild variant="outline">
+                <Button asChild variant="secondary">
                   <Link
                     href="/extension"
                   >
@@ -64,7 +64,7 @@ export default async function ReportsPage() {
                   </Link>
                 </Button>
               ) : null}
-              <Button asChild variant="outline">
+              <Button asChild variant="secondary">
                 <Link
                   href="/dashboard"
                 >
@@ -91,8 +91,8 @@ export default async function ReportsPage() {
         {reportsError ? (
           <div role="alert" className="rounded-2xl border border-destructive/30 bg-error-surface px-5 py-10 text-center sm:rounded-3xl sm:p-10">
             <WarningCircle className="mx-auto size-7 text-destructive" aria-hidden="true" />
-            <h2 className="mt-4 font-display text-report-title text-foreground">Your report history could not load.</h2>
-            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
+            <h2 className="mt-4 font-display text-heading text-foreground">Your report history could not load.</h2>
+            <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
               Try again in a moment. If you still can’t open your reports, contact support.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
@@ -103,7 +103,7 @@ export default async function ReportsPage() {
                   Try again
                 </Button>
               </form>
-              <Button asChild variant="outline">
+              <Button asChild variant="secondary">
                 <Link
                   href="/support"
                 >
@@ -126,7 +126,7 @@ export default async function ReportsPage() {
         )}
 
         {!reportsError ? (
-          <p className="text-[0.8125rem] text-muted-foreground">Saved reports stay in your account until you delete them.</p>
+          <p className="text-xs text-muted-foreground">Saved reports stay in your account until you delete them.</p>
         ) : null}
       </div>
     </section>
