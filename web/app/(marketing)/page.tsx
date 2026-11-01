@@ -71,7 +71,7 @@ const structuredData = {
       name: "Matt Shaw",
       url: "https://www.recruiterinyourpocket.com/#about",
       sameAs: ["https://www.linkedin.com/in/mattrshaw"],
-      description: "Founder of Recruiter in Your Pocket with 14 years of recruiting and hiring experience.",
+      description: "Founder of Recruiter in Your Pocket. 14 years recruiting for companies including Google, Meta, and OpenAI.",
     },
   ],
 };

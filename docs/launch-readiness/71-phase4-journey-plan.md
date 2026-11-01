@@ -2,7 +2,7 @@
 
 Date: 2026-11-01
 Status: Phase B implemented on `claude/friendly-herschel-134cdb` (merged with #37 and `claude/wave-2`), Nov 1, 2026. Not pushed.
-- **Still open:** the founder section (4.3) waits for the coordinator's wording, and the Jordan quotes on the homepage are placeholders until the 1.3 prompt is final.
+- **Still open:** the Jordan quotes on the homepage follow the regenerated report (1.3 prompt).
 - **Changed from this plan during the build:**
   - The worked example ends at Jordan's answer. 2.2 isn't in this wave (Q5).
   - The privacy panel became a compact bottom bar from 1024px rather than a bottom-right card, so it doesn't cover the reviewer note.
@@ -80,18 +80,13 @@ Files (Phase B): `LandingMineral.tsx` (order), `home/VerdictHero.tsx` and its mo
 
 ## 4.3 Founder: a credential line instead of a logo bar
 
-**On hold (Matt, Nov 1: "think harder about this one").** The coordinator will send a direction. The founder section stays exactly as it is until then; the earlier proposal below is not approved:
-
-- Headline: "I've spent 14 years on the other side of the desk."
+**Done (Matt, Nov 1, in his own words).**
+- Headline: "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI."
 - Intro: "I'm Matt. I built this to give you the read I'd give a friend before they hit send."
-- Lines (a definition list: company, title, years):
-  - OpenAI · [title] · [YYYY–YYYY]
-  - Meta · [title] · [YYYY–YYYY]
-  - Google · [title] · [YYYY–YYYY]
-  - "Earlier: X-Team, Robert Half."
-- The disclosure and the links stay as they are.
-
-Neither the repo nor Matt's public LinkedIn (logged-out view) shows titles or dates, so these have to come from Matt. Files: `LandingMineral.tsx`, `home/HomePage.module.css`.
+- The work-history list and its label are removed; "Meet Matt" links to LinkedIn for the rest. No titles, logos, "hundreds" or "globally".
+- The disclosure and the "How the report works" link stay.
+- The structured-data Person description reads "Founder of Recruiter in Your Pocket. 14 years recruiting for companies including Google, Meta, and OpenAI."
+- Why: recruiters will check LinkedIn, overclaiming costs more than modesty, and implied expertise has to be real (FTC endorsement guides).
 
 ## 4.4 and 4.11 Pricing: what $29 buys, shown
 

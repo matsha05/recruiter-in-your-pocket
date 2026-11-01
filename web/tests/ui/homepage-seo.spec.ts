@@ -51,10 +51,12 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(truths).toContainText("One Critical Miss, not forty tips.");
     await expect(truths).toContainText("No ATS score. No interview odds.");
 
-    const founder = page.getByRole("heading", { level: 2, name: "I've hired hundreds of people and led hiring globally at OpenAI, Meta, and Google." });
+    const founder = page.getByRole("heading", { level: 2, name: "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI." });
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("After 14 years in recruiting, I built this");
+    await expect(homepage).toContainText("I'm Matt. I built this to give you the read I'd give a friend before they hit send.");
+    await expect(homepage).not.toContainText("hired hundreds");
+    await expect(homepage).not.toContainText("led hiring globally");
     await expect(homepage).toContainText("Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself.");
     await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
       "href",
