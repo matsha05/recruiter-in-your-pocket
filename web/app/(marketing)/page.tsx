@@ -4,6 +4,16 @@ import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
 const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
 
+// A shared link leads with the hero's story; search results keep the plain description.
+const shareTitle = "See what a recruiter sees: free resume report";
+const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
+const shareImage = {
+  url: "/og/home?v=20261031",
+  width: 1200,
+  height: 630,
+  alt: "They called someone back. It wasn't you. A resume with a recruiter's note you can't quite read.",
+};
+
 export const metadata: Metadata = {
   title: "See What a Recruiter Sees: Free Resume Report",
   description: homepageDescription,
@@ -11,18 +21,18 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "See what a recruiter sees.",
-    description: homepageDescription,
+    title: shareTitle,
+    description: shareDescription,
     url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
-    images: ["/opengraph-image?v=20261030"],
+    images: [shareImage],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "See what a recruiter sees.",
-    description: homepageDescription,
-    images: ["/opengraph-image?v=20261030"],
+    title: shareTitle,
+    description: shareDescription,
+    images: [shareImage],
   },
 };
 

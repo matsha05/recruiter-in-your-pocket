@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 
+const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
 const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
@@ -60,8 +61,9 @@ test.describe("homepage feedback and SEO contract", () => {
       "https://www.recruiterinyourpocket.com",
     );
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", homepageDescription);
-    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", homepageDescription);
-    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute("content", homepageDescription);
+    // A shared link leads with the hero's story; search keeps the plain description.
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", shareDescription);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute("content", shareDescription);
     const structuredData = JSON.parse(
       await page.locator('script[type="application/ld+json"]').textContent() || "{}",
     );
@@ -81,10 +83,12 @@ test.describe("homepage feedback and SEO contract", () => {
         description: expect.stringContaining("over 30 days"),
       }),
     ]));
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
-      "content",
-      /opengraph-image\?v=20261030/,
-    );
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261031/);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261031/);
+    await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
+    const card = await page.request.get("/og/home?v=20261031");
+    expect(card.status()).toBe(200);
+    expect(card.headers()["content-type"]).toBe("image/png");
   });
 
   test("terms and FAQ state the anonymous calendar-month eligibility boundary", async ({ page }) => {
@@ -114,11 +118,11 @@ test.describe("homepage feedback and SEO contract", () => {
       );
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20260730/,
+        /opengraph-image\?v=20261031/,
       );
       await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20260730/,
+        /opengraph-image\?v=20261031/,
       );
     }
   });

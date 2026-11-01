@@ -32,7 +32,7 @@ export default async function OpenGraphImage() {
           <div style={{ display: "flex", fontFamily: "Schibsted Grotesk", fontSize: 28, fontWeight: 800, letterSpacing: "-0.04em" }}>
             Recruiter in Your Pocket
           </div>
-          <div style={{ display: "flex", color: "#5a605c", fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+          <div style={{ display: "flex", color: "#5a605c", fontSize: 18 }}>
             Your resume, through a recruiter&apos;s eyes
           </div>
         </div>
@@ -54,18 +54,18 @@ export default async function OpenGraphImage() {
           </div>
 
           <div style={{ width: 438, display: "flex", flexDirection: "column", borderTop: "1px solid #dfe0dc", borderBottom: "1px solid #dfe0dc" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", borderBottom: "1px solid #dfe0dc", color: "#5a605c", fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", borderBottom: "1px solid #dfe0dc", color: "#5a605c", fontSize: 16 }}>
               <span>Example line</span>
               <span>A recruiter&apos;s view</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", padding: "20px 22px", background: "#ffffff", borderBottom: "1px solid #dfe0dc" }}>
-              <div style={{ display: "flex", color: "#5a605c", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>On the resume</div>
+              <div style={{ display: "flex", color: "#5a605c", fontSize: 16 }}>On the resume</div>
               <div style={{ display: "flex", marginTop: 10, fontSize: 23, lineHeight: 1.3, background: "#ffe14d", padding: "0 4px" }}>
                 Introduced monthly renewal-risk reviews across the portfolio.
               </div>
             </div>
             <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", padding: "20px 22px", background: "#fff6c2", border: "1px solid #f2dc6b" }}>
-              <div style={{ display: "flex", color: "#6b5400", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Critical Miss</div>
+              <div style={{ display: "flex", color: "#6b5400", fontSize: 15, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase" }}>Critical Miss</div>
               <div style={{ display: "flex", marginTop: 10, fontFamily: "Literata", fontStyle: "italic", fontSize: 25, lineHeight: 1.28, color: "#1f5a46" }}>
                 Your best example stops right before the good part. Did renewals go up?
               </div>
@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 25, color: "#5a605c", fontSize: 14 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 25, color: "#5a605c", fontSize: 18 }}>
           <span>Good work deserves a good read.</span>
           <span style={{ color: "#1f5a46", fontWeight: 600 }}>recruiterinyourpocket.com</span>
         </div>
