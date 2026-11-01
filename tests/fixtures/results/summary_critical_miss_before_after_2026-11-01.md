@@ -1,5 +1,7 @@
 # Critical Miss: before and after (plan items 1.3 and 1.9)
 
+> **Not shipped.** The automated counts below improved, but Matt's blind pick on these 10 resumes failed his pre-set bar (8 of 10): new 1, old 5, no difference 4. The prompt was reverted to `83b2a2d1`; the validator fixes and eval checks stay. See [blind-pick/result.json](blind-pick/result.json) and the "Critical Miss prompt attempt" section of `docs/promptops/shipping-gate.md`.
+
 Date: 2026-11-01. Model: `gpt-6.1-terra`, medium reasoning, 8,000-token ceiling, high-reasoning repair (the production configuration). Every number below comes from a saved live run replayed through validation candidate `0766adc18e3dca9781feeb8b8970ab909644d7a2`, so before and after use the same validator and the same eval harness.
 
 ## What changed
@@ -12,7 +14,7 @@ Date: 2026-11-01. Model: `gpt-6.1-terra`, medium reasoning, 8,000-token ceiling,
 
   Only then does it fall back to the line a recruiter reads first. The Verdict, takeaway, biggest-gap example and summary question point at the same issue. The reason uses recruiter reasoning for the role. A resume with nothing consequential says "nothing needs fixing first", and its one refinement is marked `impact_level: "low"`.
 - **1.9.** In the prompt only: `fix` is a 7 to 12 word imperative headline, and the location and conditions move to `why`.
-- **Validator.** Seven classes of false rejection or dropped heading were found during these runs, each fixed with paired fabrication controls (`11a7a021`, `64b12217`). They withheld grounded reports on the current production prompt too.
+- **Validator.** Seven classes of false rejection or dropped heading were found during these runs, each fixed with paired fabrication controls (`11a7a021`, `64b12217`). They change no pass/fail outcome on the production prompt's saved outputs; its 2 withheld reports also fail on classes not fixed ([summary](summary_validator_fixes_on_production_prompt_2026-11-01.md)).
 
 ## Result
 

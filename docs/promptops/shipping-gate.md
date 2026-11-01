@@ -60,7 +60,7 @@ Baseline for resume prompt `83b2a2d1`, from a zero-cost replay of the four saved
 
 Matching is lexical (stemmed, distinctive shared words), so these counts are the pass's own view. A strength that names two lines with little shared wording can slip through; there is one known case in the operations reruns. Judge prompt item 1.3 on these numbers together with Matt's blind read.
 
-Critical Miss prompt `55bee48b` (items 1.3 and 1.9), measured against fresh runs of `83b2a2d1` with the same harness and validator: [summary_critical_miss_before_after_2026-11-01.md](../../tests/fixtures/results/summary_critical_miss_before_after_2026-11-01.md). On 10 synthetic fixtures × 3:
+Critical Miss prompt `55bee48b` (items 1.3 and 1.9, **not shipped**), measured against fresh runs of `83b2a2d1` with the same harness and validator: [summary_critical_miss_before_after_2026-11-01.md](../../tests/fixtures/results/summary_critical_miss_before_after_2026-11-01.md). On 10 synthetic fixtures × 3:
 
 - The Critical Miss is structural in 19 of 30 reports, up from 2 of 28.
 - Reports that flag a structural issue the Critical Miss skips: 14 before, 0 after.
@@ -68,7 +68,7 @@ Critical Miss prompt `55bee48b` (items 1.3 and 1.9), measured against fresh runs
 - Fix headings over 12 words: 81 of 81 before, 0 of 79 after.
 - The widest score retest range is 3 points, down from 4.
 
-Matt's blind read is still to come.
+These counts improved, but Matt's blind pick did not. Details are under "Critical Miss prompt attempt" below. Measure the next attempt against his pick as well as these counts.
 
 ---
 
@@ -106,8 +106,8 @@ If shipping with known WARNs, add a comment to the PR:
 | Metric | Current corpus / historical baseline |
 |--------|-------------------------------------|
 | Golden fixtures in current corpus | 23 |
-| Latest candidate validation | 22 PASS, 1 WARN, 0 FAIL; saved-output replay (smoke: 2 PASS, 1 WARN, 0 FAIL) |
-| Current evaluated subset | All 23 golden fixtures and the 3 smoke fixtures, generated once on the candidate |
+| Latest candidate validation | 10 PASS, 0 WARN, 0 FAIL; saved-output replay |
+| Current evaluated subset | 10 synthetic golden fixtures; 13 stored golden fixtures not newly generated |
 | Historical V2 baseline run (2025-12-28) | 17 fixtures |
 | Historical PASS | 1 |
 | Historical WARN | 15 |
@@ -128,20 +128,47 @@ Before any live launch decision, and only after model spend is approved:
 2. Confirm the strict gate ran live smoke and golden evals
 3. Treat any prompt FAIL as an automatic no-go
 
-### Current bounded launch proof — November 1
+### Current bounded launch proof — October 31
 
-The Critical Miss prompt change (items 1.3 and 1.9) reopened the gate. With Matt's approval for all smoke fixtures, every golden and smoke fixture was generated once on clean candidate `1ddcc7b5ceac7023b2d21333af5de189b06e7260` (`gpt-6.1-terra`, medium reasoning, 8,000-token ceiling). The golden run is `eval_1793560808592` ($0.45225975 token-calculated); smoke is `eval_1793560728771` ($0.08897125).
+The resume prompt changed after the October 30 proof, so the same ten synthetic fixtures were regenerated live on `gpt-6.1-terra` (run `eval_1793463473819`, Matt-approved spend, $0.22727880 token-calculated). The original **9 PASS, 0 WARN, 1 FAIL** is retained. The failure exposed three validator false rejections (the seniority read "entry-level", a sentence-initial "Using" read as part of a product name, and the advice modal "would"), each fixed with paired fabrication controls. The unchanged outputs replay as **10 PASS, 0 WARN, 0 FAIL** through candidate `09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d`, bound to source JSON SHA-256 `da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257`. Two fresh Operations runs on that candidate passed; an intermediate fresh run that exposed the third false rejection is recorded as a failure. Details: [current summary](../../tests/fixtures/results/summary_latest_live.md).
 
-- **Smoke** passed as generated: **2 PASS, 1 WARN, 0 FAIL**.
-- **Golden** originally returned **20 PASS, 1 WARN, 2 FAIL**, and that result is retained. Both failures were validator false rejections: "practice" did not anchor to "Practicing", and a reason saying "without assuming a conflict occurred" was read as asserting one. Each is fixed with paired fabrication controls in `64b12217`.
-- The unchanged golden outputs replay as **22 PASS, 1 WARN, 0 FAIL** through `0766adc18e3dca9781feeb8b8970ab909644d7a2`, bound to source JSON SHA-256 `d72a2dbe77a0bff34afc7c44a3dc9ae10cd6df98f479c135e5035fe8bdbd7069`.
-- The four earlier false-rejection classes found during the prompt iterations are fixed in `11a7a021`. They also withheld 2 of 30 reports on the previous prompt.
+The November 1 validator fixes (`11a7a021`, `64b12217`) leave this prompt's outcomes unchanged. Its 43 saved outputs replay with the same 41 PASS and 2 FAIL, and none newly fails. Both withheld reports still fail on classes the fixes don't cover: [summary](../../tests/fixtures/results/summary_validator_fixes_on_production_prompt_2026-11-01.md).
 
-The whole campaign cost $2.33166865 of the $20 Matt approved, across 116 generations. Details: [current summary](../../tests/fixtures/results/summary_latest_live.md) and [before/after](../../tests/fixtures/results/summary_critical_miss_before_after_2026-11-01.md).
+### Critical Miss prompt attempt — November 1 (not shipped)
 
-### Previous bounded launch proof — October 31 (historical)
+The prompt for items 1.3 and 1.9 (`55bee48b`, committed as `1ddcc7b5`) passed the automated gate and failed Matt's blind pick, so it was reverted.
 
-The resume prompt changed after the October 30 proof, so the same ten synthetic fixtures were regenerated live on `gpt-6.1-terra` (run `eval_1793463473819`, Matt-approved spend, $0.22727880 token-calculated). The original **9 PASS, 0 WARN, 1 FAIL** is retained. The failure exposed three validator false rejections (the seniority read "entry-level", a sentence-initial "Using" read as part of a product name, and the advice modal "would"), each fixed with paired fabrication controls. The unchanged outputs replay as **10 PASS, 0 WARN, 0 FAIL** through candidate `09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d`, bound to source JSON SHA-256 `da5212325f26a0ad3183372e44c83fb59c3a8754bacbe0c240ef6fe3255cc257`. Two fresh Operations runs on that candidate passed; an intermediate fresh run that exposed the third false rejection is recorded as a failure. Details: [October 31 summary](../../tests/fixtures/results/summary_historical_2026-10-31.md).
+**Automated gate.** On `gpt-6.1-terra`:
+
+- Smoke `eval_1793560728771`: 2 PASS, 1 WARN, 0 FAIL.
+- Golden `eval_1793560808592`: 20 PASS, 1 WARN, 2 FAIL as generated. Both failures were validator false rejections, fixed in `64b12217`. The golden outputs replay as 22 PASS, 1 WARN, 0 FAIL ([summary](../../tests/fixtures/results/summary_critical_miss_final_golden_2026-11-01.md)).
+- Before/after counts: [summary_critical_miss_before_after_2026-11-01.md](../../tests/fixtures/results/summary_critical_miss_before_after_2026-11-01.md).
+- Spend: $2.33166865.
+
+**Blind pick.** [items](../../tests/fixtures/results/blind-pick/items.json), [key](../../tests/fixtures/results/blind-pick/key.json), [result](../../tests/fixtures/results/blind-pick/result.json).
+
+- Ten synthetic resumes, each judged on old vs new.
+- The bar, set by Matt in advance: the new Critical Miss preferred in at least 8 of 10.
+- Result: **new 1, old 5, no difference 4**, 0 vetoes. Fail.
+- Old preferred: the UX manager (budget size over moving the 15% retention result up), software engineer, project manager, sales executive, and marketing VP (over the new "Nothing critical").
+- New preferred: the HR manager's end date with nothing after it.
+- No difference: data scientist, finance analyst, product manager, operations assistant.
+
+**Matt's notes, verbatim:**
+
+- UX manager: "Budget size is a tangible thing to grasp onto, it helps the recruiter understand the scale."
+- Project manager: "Both are good though".
+- HR manager: "It's critical for sure if there is no more relevant work. This may be be a missing part of the product brain where if there isn't recent work we really need to give them advice abotu how to talk about that, or how to fill in worthy projects there. look into that."
+- Finance analyst: "Same critical miss it looks like. Both are critical. Vague stuff".
+- Product manager: "Same issue".
+- Marketing VP: "Both critical and missing details. I think we should have multiple critical misses if they exist...."
+
+**What carries forward:**
+
+- Kept: the validator fixes and the eval harness checks.
+- Reverted: the prompt, with items 1.3 and 1.9 together.
+- Open product questions: whether "Nothing critical" should exist, and whether a report can carry more than one Critical Miss.
+- Next attempt: a gap needs advice on what to say or which real projects to add, not only "say what you've done since".
 
 ### Previous bounded launch proof — October 30 (historical)
 
