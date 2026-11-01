@@ -47,7 +47,7 @@ export const LAUNCH_SIGNALS = {
     outcome: ["polished", "fallback", "error"],
     reason: [
       "polished", "unchanged", "empty", "too_long", "new_number", "new_name", "new_word", "dropped_fact",
-      "dropped_answer", "guard", "timeout", "provider", "disabled", "rate_limited", "no_context", "invalid",
+      "dropped_answer", "dropped_word", "form", "guard", "timeout", "provider", "disabled", "rate_limited", "no_context", "invalid",
     ],
     viewer: ["anonymous", "signed_in"],
   },

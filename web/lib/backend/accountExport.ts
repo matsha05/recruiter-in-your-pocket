@@ -14,11 +14,15 @@ export type AccountExportPayload = {
     user_profiles: any[];
     saved_jobs: any[];
     billing_receipts: any[];
+    /** "Was this the right thing to fix first?" answers and notes (migration 022). */
+    report_feedback: any[];
   };
   warnings: Array<{ table: string; error: string }>;
 };
 
-const EXPORT_TABLES = ["reports", "passes", "user_usage", "user_profiles", "saved_jobs", "billing_receipts"] as const;
+const EXPORT_TABLES = ["reports", "passes", "user_usage", "user_profiles", "saved_jobs", "billing_receipts", "report_feedback"] as const;
+// Tables added by a migration that may not be applied yet: a missing table exports as empty, any other error fails.
+const OPTIONAL_TABLES: ReadonlySet<string> = new Set(["report_feedback"]);
 const EXPORT_PAGE_SIZE = 500;
 const MAX_EXPORT_ROWS_PER_TABLE = 50_000;
 
@@ -29,6 +33,7 @@ const EXPORT_STABLE_KEYS: Record<(typeof EXPORT_TABLES)[number], string> = {
   user_profiles: "id",
   saved_jobs: "id",
   billing_receipts: "id",
+  report_feedback: "id",
 };
 
 async function readAllRows(
@@ -48,6 +53,7 @@ async function readAllRows(
       .range(from, from + EXPORT_PAGE_SIZE - 1);
 
     if (error) {
+      if (OPTIONAL_TABLES.has(table) && /does not exist|could not find the table/i.test(error.message || "")) return [];
       throw new Error(`Account export read failed for ${table}: ${error.message}`);
     }
 
@@ -83,6 +89,7 @@ export async function buildAccountExportPayload(
       user_profiles: byTable.user_profiles || [],
       saved_jobs: byTable.saved_jobs || [],
       billing_receipts: byTable.billing_receipts || [],
+      report_feedback: byTable.report_feedback || [],
     },
     warnings: [],
   };

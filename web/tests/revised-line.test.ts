@@ -147,4 +147,18 @@ assert.equal(parseReportFeedback({ criticalMiss: "x", right: true, note: "y".rep
 assert.equal(Object.keys(parseReportFeedback({ criticalMiss: "x", right: true, line: "resume text" })!).includes("line"), false,
   "a quoted resume line sent by a client is dropped");
 
+// The privacy policy says feedback is kept 12 months, then deleted, and never includes the resume.
+const migration = fs.readFileSync(path.join(process.cwd(), "database/migrations/022_report_feedback.sql"), "utf8");
+const retention = fs.readFileSync(path.join(process.cwd(), "database/migrations/023_report_feedback_retention.sql"), "utf8");
+assert.match(retention, /DELETE FROM public\.report_feedback\s+WHERE created_at < NOW\(\) - INTERVAL '12 months'/);
+assert.match(retention, /cron\.schedule\(\s*'riyp-expire-report-feedback',\s*'41 3 \* \* \*',\s*'SELECT private\.expire_report_feedback\(\);'/u, "it runs daily");
+assert.match(retention, /REVOKE ALL ON FUNCTION private\.expire_report_feedback\(\) FROM PUBLIC, anon, authenticated;\s*GRANT EXECUTE ON FUNCTION private\.expire_report_feedback\(\) TO service_role;/u,
+  "only the service role can run the cleanup, as with the account-export expiry");
+assert.doesNotMatch(migration, /cron\./u, "022 is the table alone, as applied to production");
+assert.match(migration, /ENABLE ROW LEVEL SECURITY/);
+assert.match(migration, /REVOKE ALL ON public\.report_feedback FROM anon, authenticated/);
+const table = migration.slice(migration.indexOf("CREATE TABLE"), migration.indexOf(");", migration.indexOf("CREATE TABLE")));
+assert.deepEqual([...table.matchAll(/^\s{2}([a-z_]+)\s/gmu)].map((match) => match[1]),
+  ["id", "created_at", "user_id", "report_id", "critical_miss", "answer", "note"], "the feedback table has no column for the resume or its quoted line");
+
 console.log("revised line tests passed");

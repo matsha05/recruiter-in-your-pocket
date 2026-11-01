@@ -20,7 +20,7 @@ import type {
 import { runAllChecks } from "./checks";
 import { evaluateReportIntegrity } from "./integrity-checks";
 import { generateMarkdownReport, printSummary } from "./report";
-import { runJudge, type JudgeResult } from "./judge";
+import { judgeEvalReport, SpendLedger } from "./judge";
 import { RESUME_REPORT_RESPONSE_FORMAT } from "../llm/response-format";
 import {
     calculateCostUsd,
@@ -243,7 +243,7 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
             for (const result of batchResults) {
                 results.push(result);
                 callsMade += result.provider_calls || 0;
-                actualCost += result.cost_usd || 0;
+                actualCost += (result.cost_usd || 0) + (result.judge_result?.cost_usd || 0);
 
                 const statusIcon = result.status === "PASS" ? "✅" :
                     result.status === "WARN" ? "⚠️" : "❌";
@@ -429,6 +429,18 @@ function failedFixtureResult(
     };
 }
 
+// One judge spend ledger per run, capped by the run's budget. Judge spend also
+// counts toward the run's actual cost, so the generator's budget check sees it.
+const judgeLedgers = new WeakMap<EvalOptions, SpendLedger>();
+function judgeLedger(options: EvalOptions) {
+    let ledger = judgeLedgers.get(options);
+    if (!ledger) {
+        ledger = new SpendLedger(options.budgetUsd);
+        judgeLedgers.set(options, ledger);
+    }
+    return ledger;
+}
+
 async function processFixture(
     fixture: CalibrationData["fixtures"][0],
     calibrationData: CalibrationData,
@@ -582,20 +594,17 @@ async function processFixture(
         integrity: evaluateReportIntegrity(output),
     };
 
-    // Run LLM-as-Judge if requested
+    // Critical Miss judge, if requested: synthetic fixtures and shown reports only.
     if (options.withJudge) {
         try {
-            const judgeResult = await runJudge({
+            const judged = await judgeEvalReport({
+                fixture,
                 resumeText,
-                feedbackOutput: output
+                status,
+                report: modelOutput,
+                ledger: judgeLedger(options),
             });
-            result.judge_result = {
-                evidence_score: judgeResult.evidence_score,
-                actionability_score: judgeResult.actionability_score,
-                tone_score: judgeResult.tone_score,
-                methodology_score: judgeResult.methodology_score,
-                final_score: judgeResult.final_score
-            };
+            if (judged) result.judge_result = judged;
         } catch (err: any) {
             console.warn(`   ⚠️ Judge failed for ${fixture.id}: ${err.message}`);
         }

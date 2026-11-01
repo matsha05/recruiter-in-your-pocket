@@ -14,6 +14,9 @@
  * 3. The existing fabrication guard passes, with the answers as the candidate's facts. Only its
  *    multi-verb relationship check may be waived, and only when the literal line fails it too.
  * 4. Nothing the candidate gave is lost: each answer, and every number and name in the line, is still there.
+ *    Only filler may be dropped from the original line (POLISH_FILLER); dropping any other word could change
+ *    what the line claims, such as moving a result onto a different action.
+ * 5. It reads as a bullet: it starts the way the original does and has no stray punctuation.
  */
 
 import { compareSourceBoundRewrite } from "../llm/source-fidelity";
@@ -22,6 +25,12 @@ import { answerInLine } from "./revised-line";
 
 /** Words that only join parts of a bullet. Scope and intensity words ("each", "all", "led") are not here. */
 export const POLISH_JOINERS: ReadonlySet<string> = new Set(["a", "an", "the", "and", "to", "for", "of", "with", "by", "in", "on", "at"]);
+
+/** Words the polish may drop from the original line: they describe duties, not what was done. */
+export const POLISH_FILLER: ReadonlySet<string> = new Set([
+  "duty", "duties", "include", "included", "includes", "responsible", "responsibility", "effort", "efforts",
+  "various", "process", "processe", "processes", "activity", "activities", "initiative", "initiatives", "ongoing",
+]);
 
 export const POLISH_MAX_LENGTH = 400;
 
@@ -39,6 +48,8 @@ export type PolishRejection =
   | "new_word"
   | "dropped_fact"
   | "dropped_answer"
+  | "dropped_word"
+  | "form"
   | "guard";
 
 export type PolishCheck =
@@ -94,6 +105,10 @@ export function checkPolishedLine(input: {
     return { ok: false, reason: "too_long", detail: `${polished.length} characters` };
   }
   const allowed = [input.sourceLine, ...input.answers].join("\n");
+  // A bullet starts the way the original does, and a polish never leaves stray punctuation like ".:".
+  const startsUpper = /^[\p{Lu}\p{N}$€£]/u;
+  if (startsUpper.test(input.sourceLine.trim()) && !startsUpper.test(polished)) return { ok: false, reason: "form", detail: "starts lowercase" };
+  if (/[.,;:]\s*[.,;:]/u.test(polished)) return { ok: false, reason: "form", detail: "stray punctuation" };
 
   const allowedNumbers = numbers(allowed);
   const newNumbers = [...numbers(polished)].filter((value) => !allowedNumbers.has(value));
@@ -128,8 +143,13 @@ export function checkPolishedLine(input: {
   }).issues;
   const literalFailsRelationships = literalIssues.some((issue) => isRelationshipIssue(issue.detail));
   for (const issue of issues) {
-    // Dropping filler ("Duties included", "efforts") is the point; dropping a fact is not.
-    if (issue.code === "dropped_fact" && issue.detail.startsWith("dropped source content")) continue;
+    // Dropping filler ("Duties included", "efforts") is the point; dropping any other word is not.
+    if (issue.code === "dropped_fact" && issue.detail.startsWith("dropped source content")) {
+      const dropped = issue.detail.replace(/^dropped source content:\s*/u, "").split(/,\s*/u).filter(Boolean);
+      const meaningful = dropped.filter((word) => !POLISH_FILLER.has(word.toLocaleLowerCase()));
+      if (meaningful.length) return { ok: false, reason: "dropped_word", detail: meaningful.join(", ") };
+      continue;
+    }
     if (issue.code === "unsupported_content" && isRelationshipIssue(issue.detail) && literalFailsRelationships) continue;
     if (issue.code === "dropped_fact") return { ok: false, reason: "dropped_fact", detail: issue.detail };
     return { ok: false, reason: "guard", detail: issue.detail };

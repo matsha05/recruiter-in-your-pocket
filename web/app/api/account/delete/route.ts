@@ -73,6 +73,7 @@ async function cancelActiveSubscriptions(subscriptionIds: string[]) {
  * - All reports (analysis results, score history)
  * - All saved_jobs (extension job descriptions)
  * - All artifacts (case-related data)
+ * - Critical Miss feedback ("Was this right?" answers and notes)
  * - Cached billing receipt rows and their local customer linkage
  * - User record
  * 
@@ -303,6 +304,24 @@ export async function DELETE(request: Request) {
             throwDeletionError("account_export_jobs", exportJobsError);
         }
         deletions.push({ table: "account_export_jobs", count: exportJobsCount });
+
+        // 6b. Delete Critical Miss feedback. The foreign key also cascades with the auth user; deleting it
+        // here means a pending auth removal never leaves the reader's notes behind.
+        const { error: feedbackError, count: feedbackCount } = await admin
+            .from("report_feedback")
+            .delete({ count: "exact" })
+            .eq("user_id", userId);
+
+        if (feedbackError && !shouldIgnoreMissingTable(feedbackError)) {
+            logError({
+                msg: "account.deletion.failed",
+                request_id,
+                user_id: userId,
+                supabase: { table: "report_feedback", error_code: feedbackError.code }
+            });
+            throwDeletionError("report_feedback", feedbackError);
+        }
+        deletions.push({ table: "report_feedback", count: feedbackCount });
 
         // 7. Delete RIYP's cached receipt copies and user-linked billing
         // metadata. Stripe remains the authoritative system for payment,
