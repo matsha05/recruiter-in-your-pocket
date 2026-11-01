@@ -7,7 +7,6 @@
 export interface ReportFeedback {
   reportId?: string;
   criticalMiss: string;
-  nothingCritical: boolean;
   right: boolean;
   note?: string;
 }
@@ -30,7 +29,6 @@ export function parseReportFeedback(value: unknown): ReportFeedback | null {
   return {
     reportId: reportId || undefined,
     criticalMiss,
-    nothingCritical: body.nothingCritical === true,
     right: body.right,
     note: note || undefined,
   };

@@ -1,6 +1,6 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
-import { isNothingCritical } from "./report-presentation";
+import { criticalFixCount } from "./report-presentation";
 import { reconcileReport } from "./report-integrity";
 
 export type ReportForPdf = {
@@ -19,8 +19,8 @@ export type ReportForPdf = {
    * `line` is the quoted resume line the fix marks, and `section` where it sits.
    */
   top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string }>;
-  /** The Critical Miss is an optional refinement (decision D2). */
-  nothing_critical?: boolean;
+  /** How many of `top_fixes`, from the first, are critical (one on the production prompt). */
+  critical_count?: number;
   /** Structural gaps shown in the opening read. */
   structural_gaps?: string[];
   job_alignment?: {
@@ -238,7 +238,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     first_impression: asTrimmedString(candidate.first_impression) || undefined,
     subscores: asSubscores(candidate.subscores),
     top_fixes,
-    nothing_critical: isNothingCritical({ top_fixes: sourceFixes }) || undefined,
+    critical_count: criticalFixCount({ top_fixes: sourceFixes }),
     structural_gaps: integrity.structuralGaps.length > 0 ? integrity.structuralGaps.map(({ text }) => text) : undefined,
     job_alignment: asJobAlignment(candidate.job_alignment),
   };

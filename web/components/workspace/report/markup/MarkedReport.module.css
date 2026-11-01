@@ -1,7 +1,8 @@
 /*
  * The marked-up resume (plan items 2.1-2.6). The candidate's lines sit on the left in their own words,
  * the recruiter's pen notes in the right margin, and the Critical Miss line carries the one highlighter.
- * Below 960px each line becomes a card with its note beneath. Type is the shared roles only; colors are
+ * Below 960px each line becomes a card with its note beneath. Prose sits on the shared 52ch reading rail
+ * (about 69 characters a line). Type is the shared roles only; colors are
  * the Highlighter tokens only. See docs/launch-readiness/72-signature-report-spec.md.
  */
 
@@ -192,10 +193,6 @@
     color: hsl(var(--brass));
 }
 
-.row[data-optional] .missLabel {
-    color: hsl(var(--pen));
-}
-
 .addressed {
     display: inline-flex;
     align-items: center;
@@ -221,6 +218,7 @@
 
 /* The recruiter's voice: Literata italic in pen. */
 .penNote {
+    max-width: 52ch;
     margin: 0;
     border-left: 1px solid hsl(var(--pen));
     padding-left: 0.75rem;
@@ -229,7 +227,7 @@
     text-wrap: pretty;
 }
 
-/* The note writes in after the highlighter has swept the line. */
+/* On the first critical line, the note writes in after the highlighter has swept it. */
 .row[data-kind="miss"] .penNote {
     opacity: 0;
     transition: opacity var(--duration-normal) var(--ease) var(--duration-slow);
@@ -240,6 +238,7 @@
 }
 
 .penWhy {
+    max-width: 52ch;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);
 }
@@ -255,6 +254,7 @@
 }
 
 .toAddList {
+    max-width: 52ch;
     display: grid;
     gap: 0.375rem;
     padding-left: 1rem;
@@ -299,7 +299,7 @@
 }
 
 .gapText {
-    max-width: 62ch;
+    max-width: 52ch;
 }
 
 /* "Keep this one": the pen's check beside the work that already reads well. */
@@ -323,7 +323,7 @@
 }
 
 .keepText {
-    max-width: 62ch;
+    max-width: 52ch;
 }
 
 /* ---------- The lift: answers to a revised line ---------- */
@@ -348,6 +348,7 @@
 }
 
 .liftLead {
+    max-width: 52ch;
     font: var(--type-small);
     font-weight: var(--weight-label);
 }
@@ -372,6 +373,7 @@
 }
 
 .liftQuestionText {
+    max-width: 52ch;
     font: var(--type-body);
     font-weight: var(--weight-label);
 }
@@ -473,6 +475,7 @@
 
 .revisedEmpty,
 .revisedNote {
+    max-width: 52ch;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);
 }
@@ -554,7 +557,7 @@
 }
 
 .bodyText {
-    max-width: 62ch;
+    max-width: 52ch;
     color: hsl(var(--text-strong) / 0.85);
 }
 
@@ -594,7 +597,7 @@
 
 .disclosureBody {
     display: grid;
-    max-width: 62ch;
+    max-width: 52ch;
     gap: 0.75rem;
     border-top: 1px solid hsl(var(--line));
     padding-block: 1.25rem 1.5rem;

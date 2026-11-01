@@ -66,10 +66,15 @@ function useHideFocus(hidden: boolean, onHide: () => void, onRestore: () => void
   };
 }
 
+/**
+ * A critical fix: its line carries the highlighter, and the questions under it build the revised line.
+ * The production report has one (the Critical Miss); the next prompt may mark up to three, the first
+ * being the one to fix first. Only the first sweeps, names itself the first fix, and asks "Was this right?".
+ */
 export function CriticalMissRow({
   fix,
+  index,
   why,
-  nothingCritical,
   hidden,
   onHide,
   onRestore,
@@ -79,59 +84,56 @@ export function CriticalMissRow({
   ...lift
 }: LiftProps & {
   fix: Fix;
+  /** Position among all fixes; the first critical fix is 0. */
+  index: number;
   why?: string;
-  nothingCritical: boolean;
   hidden: boolean;
   onHide: () => void;
   onRestore: () => void;
   onLiftChange: (change: LiftChange) => void;
   liftState: LiftChange["state"];
-  /** Omitted on the sample, which has no one to ask. */
+  /** Only on the first, and omitted on the sample, which has no one to ask. */
   feedback?: { question: string; onSubmit: (value: MissFeedbackValue) => Promise<boolean> };
 }) {
-  const { ref: lineRef, seen } = useSeen<HTMLQuoteElement>(0.6);
+  const first = index === 0;
+  const { ref: lineRef, seen: sweptIn } = useSeen<HTMLQuoteElement>(0.6);
+  // The highlighter sweeps once, on the first; any later critical line is already marked.
+  const seen = first ? sweptIn : true;
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
-  const label = nothingCritical ? "Nothing critical" : "Critical Miss";
-  const [openLift, setOpenLift] = useState(!nothingCritical);
+  const id = `section-fix-${index + 1}`;
+  const testId = first ? "critical-miss" : "critical-fix";
 
   if (hidden) {
     return (
-      <li id="section-fix-1" className={styles.row} data-kind="miss" data-testid="critical-miss">
-        <HiddenRow label={label} onRestore={restore} focus={focusRestore} />
+      <li id={id} className={styles.row} data-kind="miss" data-testid={testId}>
+        <HiddenRow label="Critical Miss" onRestore={restore} focus={focusRestore} />
       </li>
     );
   }
 
   return (
-    <li ref={rowRef} tabIndex={-1} id="section-fix-1" className={styles.row} data-kind="miss" data-optional={nothingCritical || undefined} data-state={liftState} data-testid="critical-miss">
+    <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={testId}>
       <div className={styles.lineCell}>
         {sectionOf(fix) && <p className={styles.lineSection}>{sectionOf(fix)}</p>}
-        {nothingCritical ? (
-          <blockquote className={styles.inkLine}>{quotedLine(fix)}</blockquote>
-        ) : (
-          <blockquote ref={lineRef} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
-        )}
+        <blockquote ref={first ? lineRef : undefined} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
       </div>
       <div className={styles.noteCell}>
         <div className={styles.noteHead}>
           <p className={styles.missLabel}>
-            <span className="riyp-verdict-label">{label}</span>
+            <span className="riyp-verdict-label">Critical Miss</span>
             {liftState === "addressed" && <span className={styles.addressed}><Check className="size-3.5" weight="bold" aria-hidden="true" />Addressed</span>}
           </p>
-          <p className={styles.missDefinition}>{nothingCritical ? "An optional refinement" : "The one thing to fix first"}</p>
+          {first && <p className={styles.missDefinition}>The one thing to fix first</p>}
         </div>
-        <p className={cn(styles.penNote, (seen || nothingCritical) && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
+        <p className={cn(styles.penNote, seen && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
         {why && <p className={styles.penWhy}>{why}</p>}
         <div className={styles.rowTools}>
-          {!openLift && <Button type="button" variant="quiet" size="sm" onClick={() => setOpenLift(true)}>Work on this line</Button>}
-          <Button type="button" variant="quiet" size="sm" onClick={hide} aria-label={`Hide this suggestion: ${label}`}>Hide</Button>
+          <Button type="button" variant="quiet" size="sm" onClick={hide} aria-label="Hide this suggestion: Critical Miss">Hide</Button>
         </div>
       </div>
-      {openLift && (
-        <div className={styles.liftCell}>
-          <LineLift excerpt={excerptOf(fix)} onChange={onLiftChange} {...lift} />
-        </div>
-      )}
+      <div className={styles.liftCell}>
+        <LineLift excerpt={excerptOf(fix)} onChange={onLiftChange} {...lift} />
+      </div>
       {feedback && (
         <div className={styles.feedbackCell}>
           <MissFeedback question={feedback.question} onSubmit={feedback.onSubmit} suggestNo={liftState === "not_mine"} />

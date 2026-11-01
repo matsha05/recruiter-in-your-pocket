@@ -62,18 +62,18 @@ export function renderReportHtml(report: ReportForPdf) {
 
   // Each marked line: the candidate's words on the left, the recruiter's note in the margin, as on the web.
   const markedRowHtml = (fix: NonNullable<ReportForPdf["top_fixes"]>[number], index: number) => {
-    const miss = index === 0;
-    const label = miss ? (report.nothing_critical ? "Nothing critical" : "Critical Miss") : `Fix ${index + 1}`;
+    const miss = index < (report.critical_count ?? 1);
+    const label = miss ? "Critical Miss" : `Fix ${index + 1}`;
     const questions = fix.questions || [];
     const line = escapeHtml(fix.line || "");
     return `<div class="marked-row">
         <div>
           ${fix.section ? `<div class="marked-section">${escapeHtml(fix.section)}</div>` : ""}
-          ${miss && !report.nothing_critical ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
+          ${miss ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
         </div>
         <div>
           <div class="marked-label${miss ? " miss" : ""}">${label}</div>
-          ${miss ? `<div class="marked-definition">${report.nothing_critical ? "An optional refinement" : "The one thing to fix first"}</div>` : ""}
+          ${index === 0 ? `<div class="marked-definition">The one thing to fix first</div>` : ""}
           <div class="pen-note">${escapeHtml(marginNoteFromFix(fix.fix || ""))}</div>
           ${fix.why ? `<div class="marked-why">${escapeHtml(fix.why)}</div>` : ""}
           ${questions.length ? `<div class="marked-questions"><div class="marked-questions-label">What to add</div>${questions.map((question) => `<div class="marked-question">${escapeHtml(question)}</div>`).join("")}</div>` : ""}
@@ -183,7 +183,7 @@ export function renderReportHtml(report: ReportForPdf) {
   ${fixes.length ? `
     <section class="section priority-section">
       <div class="section-kicker">Fix these first</div>
-      <div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length, report.nothing_critical))}</h2></div>
+      <div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length))}</h2></div>
       ${markedRowHtml(fixes[0], 0)}
       ${report.structural_gaps?.length ? `<div class="page-note gap"><div class="page-note-label">Before the bullets</div>${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}</div>` : ""}
       ${keepFirst ? `<div class="page-note"><div class="page-note-label">Keep this one</div><p>${escapeHtml(keepFirst)}</p></div>` : ""}

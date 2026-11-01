@@ -47,7 +47,6 @@ export async function POST(request: NextRequest) {
   recordLaunchSignal("riyp.report.critical_miss_feedback", {
     answer: feedback.right ? "right" : "wrong",
     note: feedback.note ? "yes" : "no",
-    nothing_critical: feedback.nothingCritical ? "yes" : "no",
     viewer: user ? "signed_in" : "anonymous",
   });
 
@@ -58,7 +57,6 @@ export async function POST(request: NextRequest) {
       user_id: user?.id ?? null,
       report_id: feedback.reportId ?? null,
       critical_miss: feedback.criticalMiss,
-      nothing_critical: feedback.nothingCritical,
       answer: feedback.right ? "right" : "wrong",
       note: feedback.note ?? null,
     });

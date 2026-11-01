@@ -29,8 +29,7 @@ export interface IndependentQuestion {
 }
 
 // The fix section's heading, in the approved word list (docs/copy-system.md §1).
-export function fixPlanHeadingForCount(count: number, nothingCritical = false) {
-  if (nothingCritical) return "Nothing to fix first.";
+export function fixPlanHeadingForCount(count: number) {
   if (count === 0) return "Review the suggestions below.";
   if (count === 1) return "Fix this first.";
   if (count === 2) return "Fix these two first.";
@@ -46,9 +45,13 @@ export function reportHasJobDescription(report: Pick<ReportData, "job_alignment"
   return Boolean(summary) && summary !== "No job description provided.";
 }
 
-/** The ranking prompt marks "Nothing critical" by making its only Critical Miss low impact (decision D2). */
-export function isNothingCritical(report: Pick<ReportData, "top_fixes">) {
-  return report.top_fixes?.[0]?.impact_level === "low";
+/**
+ * How many of the report's fixes are critical. The production prompt always names one Critical Miss, the
+ * first fix (Matt, Nov 1: "Always name a top fix"). The next prompt may mark up to three; read its marker
+ * here and the report, the PDF and the revised-line flow follow without other changes.
+ */
+export function criticalFixCount(report: Pick<ReportData, "top_fixes">) {
+  return Math.min(report.top_fixes?.length ?? 0, 1);
 }
 
 export function questionForPlaceholder(key: string) {

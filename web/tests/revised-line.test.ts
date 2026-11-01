@@ -4,7 +4,7 @@ import path from "node:path";
 import { getScoreLabel } from "../lib/score-utils";
 import { reconcileReport } from "../lib/reports/report-integrity";
 import { parseReportFeedback } from "../lib/reports/report-feedback";
-import { isNothingCritical } from "../lib/reports/report-presentation";
+import { criticalFixCount } from "../lib/reports/report-presentation";
 import { resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
 import {
   composeRevisedLine,
@@ -123,23 +123,23 @@ assert.equal(composeRevisedLine("Did the thing.", [{ kind: "unknown" }]), undefi
 assert.equal(composeRevisedLine("- Did the thing.", [said("for 3 teams."), said("weekly")]), "- Did the thing: for 3 teams; weekly.");
 
 // ============================================
-// Score bands (D5) and "Nothing critical" (D2)
+// Score bands (D5) and the critical fixes
 // ============================================
 
 for (const score of [0, 40, 59, 60, 69, 70, 84, 85, 92, 99]) {
   assert.equal(scoreBandFor(score).name, getScoreLabel(score), `band for ${score} matches the validator's score_label`);
 }
 assert.equal(new Set(SCORE_BANDS.map((band) => band.anchor)).size, SCORE_BANDS.length, "each band has its own anchor");
-assert.equal(isNothingCritical({ top_fixes: [{ fix: "Optional.", impact_level: "low" }] }), true);
-assert.equal(isNothingCritical({ top_fixes: [{ fix: "Fix it.", impact_level: "high" }] }), false);
-assert.equal(isNothingCritical({ top_fixes: [] }), false);
+// The production prompt always names one Critical Miss, even a low-impact one (Matt: "Always name a top fix").
+assert.equal(criticalFixCount({ top_fixes: [{ fix: "Optional.", impact_level: "low" }, { fix: "Next." }] }), 1);
+assert.equal(criticalFixCount({ top_fixes: [] }), 0);
 
 // ============================================
 // Critical Miss feedback keeps the answer and the model's wording only
 // ============================================
 
-assert.deepEqual(parseReportFeedback({ criticalMiss: "  Name the  records. ", right: false, note: " Gap mattered more. ", nothingCritical: true }),
-  { reportId: undefined, criticalMiss: "Name the records.", nothingCritical: true, right: false, note: "Gap mattered more." });
+assert.deepEqual(parseReportFeedback({ criticalMiss: "  Name the  records. ", right: false, note: " Gap mattered more. " }),
+  { reportId: undefined, criticalMiss: "Name the records.", right: false, note: "Gap mattered more." });
 assert.equal(parseReportFeedback({ criticalMiss: "x", right: "yes" }), null, "the answer must be a boolean");
 assert.equal(parseReportFeedback({ criticalMiss: "", right: true }), null);
 assert.equal(parseReportFeedback({ criticalMiss: "x", right: true, reportId: "not-a-uuid" }), null);

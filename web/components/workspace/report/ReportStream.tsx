@@ -13,7 +13,7 @@ import {
   buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
   fixPlanHeadingForCount,
-  isNothingCritical,
+  criticalFixCount,
   questionForPlaceholder,
   reportHasJobDescription,
 } from "@/lib/reports/report-presentation";
@@ -86,8 +86,7 @@ export function ReportStream({
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
-  const miss = fixes[0];
-  const nothingCritical = isNothingCritical(reconciled);
+  const criticals = fixes.slice(0, criticalFixCount(reconciled));
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
   // A recovered report has lost the posting's text but not the fact that it was read against one.
   const hasJobDescription = hasJobDescriptionText || reportHasJobDescription(report);
@@ -104,8 +103,12 @@ export function ReportStream({
   }, [fixes]);
 
   const hiddenFixes = useHiddenFixes(isSample ? undefined : hiddenFixesKey(report));
-  const [lift, setLift] = useState<LiftChange>({ state: "open" });
-  const onLiftChange = useCallback((change: LiftChange) => setLift(change), []);
+  // One revised-line flow per critical fix, each with its own state.
+  const [lifts, setLifts] = useState<Record<number, LiftChange>>({});
+  const liftHandlers = useMemo(() => [0, 1, 2].map((index) => (change: LiftChange) => {
+    setLifts((current) => (current[index]?.state === change.state && current[index]?.line === change.line ? current : { ...current, [index]: change }));
+  }), []);
+  const allAddressed = criticals.length > 0 && criticals.every((_, index) => lifts[index]?.state === "addressed");
 
   const questionsFor = (index: number) => {
     const asked = liftQuestions(integrity.fixQuestions[index] || []);
@@ -114,9 +117,10 @@ export function ReportStream({
     return liftQuestions(bracketPlaceholderKeys(draft).map(questionForPlaceholder));
   };
 
+  const firstState = lifts[0]?.state;
   useEffect(() => {
-    if (lift.state === "addressed") Analytics.track("critical_miss_addressed", { sample: isSample });
-  }, [isSample, lift.state]);
+    if (firstState === "addressed") Analytics.track("critical_miss_addressed", { sample: isSample });
+  }, [isSample, firstState]);
 
   const handleUnlock = () => {
     if (!onUpgrade) return;
@@ -138,32 +142,32 @@ export function ReportStream({
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title">
-        <h2 id="fixes-title" className={cn(styles.sectionTitle, styles.pageTitle)}>{fixPlanHeadingForCount(fixes.length, nothingCritical)}</h2>
+        <h2 id="fixes-title" className={cn(styles.sectionTitle, styles.pageTitle)}>{fixPlanHeadingForCount(fixes.length)}</h2>
         <ol className={styles.lines}>
-          {miss && (
+          {criticals.map((fix, index) => (
             <CriticalMissRow
-              fix={miss}
-              why={criticalMissReason(integrity)}
-              nothingCritical={nothingCritical}
-              hidden={hiddenFixes.isHidden(0)}
-              onHide={() => hiddenFixes.hide(0)}
-              onRestore={() => hiddenFixes.restore(0)}
-              onLiftChange={onLiftChange}
-              liftState={lift.state}
-              questions={questionsFor(0)}
-              feedback={isSample ? undefined : {
-                question: nothingCritical ? "Was this right?" : "Was this the right thing to fix first?",
+              key={`${fix.fix || fix.text}-${index}`}
+              fix={fix}
+              index={index}
+              why={index === 0 ? criticalMissReason(integrity) : fixCardSlots(integrity, index).why}
+              hidden={hiddenFixes.isHidden(index)}
+              onHide={() => hiddenFixes.hide(index)}
+              onRestore={() => hiddenFixes.restore(index)}
+              onLiftChange={liftHandlers[index]}
+              liftState={lifts[index]?.state ?? "open"}
+              questions={questionsFor(index)}
+              feedback={isSample || index > 0 ? undefined : {
+                question: "Was this the right thing to fix first?",
                 onSubmit: ({ right, note }) => sendReportFeedback({
                   reportId: buildPdfExportRequest(report)?.report_id,
-                  criticalMiss: miss.fix || miss.text || "",
-                  nothingCritical,
+                  criticalMiss: fix.fix || fix.text || "",
                   right,
                   note,
                 }),
               }}
               {...liftProps}
             />
-          )}
+          ))}
 
           {integrity.structuralGaps.length > 0 && (
             <PageNote kind="gap">
@@ -182,8 +186,8 @@ export function ReportStream({
             </PageNote>
           )}
 
-          {fixes.slice(1).map((fix, offset) => {
-            const index = offset + 1;
+          {fixes.slice(criticals.length).map((fix, offset) => {
+            const index = offset + criticals.length;
             const slots = fixCardSlots(integrity, index);
             return (
               <FixRow
@@ -262,7 +266,7 @@ export function ReportStream({
       {!isSample && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
-            {lift.state === "addressed" ? "Your line is ready. See how the whole page reads now." : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
+            {allAddressed ? "Your line is ready. See how the whole page reads now." : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
           </h2>
           <p className={styles.endingCopy}>{isExhausted
             ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>

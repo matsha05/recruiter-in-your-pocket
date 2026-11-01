@@ -339,7 +339,7 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(pdf, strength), kept ? 1 : 0, `${label}: PDF Keep matches the web report`);
   }
   // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
-  assert.ok(missRow.includes("Critical Miss") || missRow.includes("Nothing critical"), `${label}: the first marked line is the Critical Miss`);
+  assert.ok(missRow.includes("Critical Miss"), `${label}: the first marked line is the Critical Miss`);
   assert.ok(!opening.includes("Critical Miss"), `${label}: the opening read doesn't repeat the Critical Miss`);
   const missNote = marginNoteFromFix(integrity.report.top_fixes![0].fix!);
   assert.ok(missRow.includes(plain(missNote)), `${label}: the margin note gives the fix, without the locator`);

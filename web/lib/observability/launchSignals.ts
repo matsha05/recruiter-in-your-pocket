@@ -40,7 +40,6 @@ export const LAUNCH_SIGNALS = {
   "riyp.report.critical_miss_feedback": {
     answer: ["right", "wrong"],
     note: ["yes", "no"],
-    nothing_critical: ["yes", "no"],
     viewer: ["anonymous", "signed_in"],
   },
   "riyp.checkout.step": {

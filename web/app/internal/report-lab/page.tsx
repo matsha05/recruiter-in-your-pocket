@@ -32,18 +32,6 @@ function loadFixtures(): LabFixture[] {
       resumeText: file ? fs.readFileSync(path.join(golden, file), "utf8") : undefined,
     };
   });
-  // Constructed case: no saved output has the ranking prompt's "Nothing critical" yet, so this marks the
-  // strongest real output's Critical Miss low impact, the way that prompt does (decision D2).
-  const strongest = fixtures.find((item) => item.id === "synth_data_scientist_senior_elite_1");
-  if (strongest) {
-    const [first, ...rest] = strongest.report.top_fixes || [];
-    fixtures.push({
-      ...strongest,
-      id: "nothing-critical",
-      label: `nothing critical (constructed from data scientist) · ${strongest.report.score}`,
-      report: { ...strongest.report, top_fixes: first ? [{ ...first, impact_level: "low" }, ...rest] : [] },
-    });
-  }
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
   return fixtures;

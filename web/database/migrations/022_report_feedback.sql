@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS public.report_feedback (
   user_id uuid REFERENCES auth.users (id) ON DELETE CASCADE,
   report_id uuid REFERENCES public.reports (id) ON DELETE SET NULL,
   critical_miss text NOT NULL CHECK (char_length(critical_miss) BETWEEN 1 AND 600),
-  nothing_critical boolean NOT NULL DEFAULT false,
   answer text NOT NULL CHECK (answer IN ('right', 'wrong')),
   note text CHECK (note IS NULL OR char_length(note) <= 600)
 );
