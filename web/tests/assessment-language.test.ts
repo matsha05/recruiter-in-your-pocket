@@ -43,6 +43,10 @@ const positiveCases = [
     { claim: 'The MBA lists the University of Washington and a project management focus; the BS lists Virginia Military Institute.', source: 'Master of Business Administration (MBA), Project Management Focus. University of Washington. Bachelor of Science, Business Administration. Virginia Military Institute.' },
     // eval_1793560808592: "practice" is the resume's "Practicing" for the presence anchor.
     { claim: 'That description makes your role in the practice visible, but it does not describe the financial work you performed.', source: 'Practicing Certified Public Accountant as managing partner or sole practioner, always self-employed.' },
+    // eval_1793567853525 (production prompt): "less developed" describes a quality, not work done.
+    { claim: 'Your mentoring and rotation responsibilities are visible but less developed.', source: 'Mentor 3 engineers and run the payments on-call rotation. Designed and led the migration of card authorization.' },
+    // Same run: "beyond one team" compares with the resume's own count of five teams.
+    { claim: 'The Dovetail repository used by 5 product teams shows that your work reached beyond one team.', source: 'Built a research repository in Dovetail used by 5 product teams.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -88,6 +92,10 @@ const negativeCases = [
     { claim: 'The PhD lists Virginia Military Institute.', source: 'Bachelor of Science, Business Administration. Virginia Military Institute.' },
     { claim: 'That description makes your role in the practice visible.', source: 'Data Analyst. Built weekly dashboards.' },
     { claim: 'The resume makes your mentoring visible.', source: 'Managed the department budget.' },
+    { claim: 'Your work reached beyond one team.', source: 'Built a research repository in Dovetail for the team.' },
+    { claim: 'Your work reached beyond one team of 12 engineers.', source: 'Built a research repository in Dovetail used by 5 product teams.' },
+    { claim: 'Less experienced engineers relied on the Rust compiler you built.', source: 'Mentor 3 engineers. Built the invoicing API in Kotlin.' },
+    { claim: 'Developed a Rust compiler for the payments team.', source: 'Mentor 3 engineers and run the payments on-call rotation.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));

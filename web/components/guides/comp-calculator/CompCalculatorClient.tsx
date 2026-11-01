@@ -95,7 +95,7 @@ export function CompCalculatorClient() {
     <div data-calculator-hydrated={isHydrated ? "true" : "false"} className="marketing-header-offset bg-background text-foreground selection:bg-brand/15">
       <div className="border-b border-border">
         <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm sm:px-8">
-          <Link href="/resources" className="focus-ring min-h-11 rounded-sm py-3 text-muted-foreground transition-colors hover:text-foreground">Resources</Link>
+          <Link href="/resources" className="focus-ring min-h-11 rounded-sm py-3 text-muted-foreground transition-colors hover:text-foreground">After the offer</Link>
           <CaretRight aria-hidden="true" className="size-3 text-muted-foreground" weight="bold" />
           <span className="font-medium text-foreground">Offer calculator</span>
         </nav>

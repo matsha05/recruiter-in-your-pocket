@@ -64,6 +64,8 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
 
 export function isDirectFactualAssertion(value: string) {
   if (/\b(?:can|could|may|might) (?:mean|refer to|describe)\b/iu.test(value)) return false;
+  // "less developed" and "well built" describe a quality, not work someone did.
+  if (/^\s*(?:less|more|most|least|well|fully|under|over|not\s+(?:yet|as))\s/iu.test(value)) return false;
   return directFactualAssertionPattern.test(value.normalize("NFC"));
 }
 
@@ -127,6 +129,15 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
     && /\b(?:name|describe|choose|include|give)\b|^\s*(?:what|which|how)\b/iu.test(claim);
 }
 
+const countWords = "two|three|four|five|six|seven|eight|nine|ten|eleven|twelve";
+
+/** "Beyond one team" compares with a stated count; it is supported only when the resume states two or more. */
+function comparesBeyondOne(fact: NarrativeFact, claim: string, sourceText: string) {
+  const noun = fact.key.startsWith("metric-word:") ? fact.display.match(/^one\s+([\p{L}-]+?)s?$/iu)?.[1] : undefined;
+  if (!noun || !new RegExp(`\\b(?:beyond|more than|past|outside)\\s+one\\s+${noun}\\b`, "iu").test(claim)) return false;
+  return new RegExp(`\\b(?:[2-9]|\\d{2,}|${countWords})\\+?\\s+(?:[\\p{L}-]+\\s+){0,2}${noun}s\\b`, "iu").test(sourceText);
+}
+
 function presenceStem(token: string) {
   const stem = token.replace(/(?:ing|ed|e)$/u, "");
   return stem.length >= 4 ? stem : token;
@@ -155,7 +166,8 @@ export function assessmentNarrativeIssues(input: {
       && ["people", "staff", "team", "employee"].some(token => candidate.tokens.has(token)));
   const factsToCheck = input.claimFacts.filter((fact) => (
     (!input.skipSpecificFacts && /^(?:entity|metric|metric-word|symbol):/u.test(fact.key)
-      && !(!assertive && countsRequestedExamples(fact, input.claim)))
+      && !(!assertive && countsRequestedExamples(fact, input.claim))
+      && !comparesBeyondOne(fact, input.claim, input.sourceText))
     || (assertive && /^(?:agency|outcome|causal):/u.test(fact.key))
   ));
   const unsupportedTokens = assertive

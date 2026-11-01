@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 4 mockup: homepage</title>
+<link rel="stylesheet" href="mockup.css">
+<style>
+  /* Hero */
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 35rem); align-items: center; gap: 4.5rem; min-height: 50rem; padding-top: 3rem; padding-bottom: 3rem; }
+  .hero .deck { max-width: 30ch; margin-top: 1.5rem; }
+  .hero .actions { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.125rem; }
+  .hero .fine { margin-top: 1rem; font: var(--small); color: var(--muted); }
+  .stage { position: relative; height: 37.5rem; }
+  .resume { position: absolute; inset: 0 2.5rem 0 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); padding: 2.5rem 2.625rem; color: rgb(17 21 19 / 0.88); font: 0.875rem/1.5 "Times New Roman", Times, serif; overflow: hidden; transform: rotate(-1.2deg); }
+  .resume p { margin-top: 0.375rem; }
+  .resume .name { margin: 0; text-align: center; font-size: 1.25rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .resume .contact { text-align: center; color: var(--muted); font-size: 0.8125rem; }
+  .resume .head { margin-top: 0.875rem; border-bottom: 1px solid rgb(17 21 19 / 0.8); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .resume .bullet { position: relative; padding-left: 0.875rem; }
+  .resume .bullet::before { content: "•"; position: absolute; left: 0.125rem; }
+  .screen { position: absolute; top: 15rem; right: 0; width: 22.5rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); padding: 1.125rem 1.25rem 1.125rem; box-shadow: 0 1px 2px rgb(17 21 19 / 0.06), 0 1.5rem 3rem -1.25rem rgb(17 21 19 / 0.28); transform: rotate(1.4deg); }
+  .screen .req, .screen .applied { color: var(--muted); font-size: 0.8125rem; }
+  .screen .cand { margin-top: 0.625rem; font-size: 1.0625rem; font-weight: 700; }
+  .screen .row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.875rem; border-block: 1px solid var(--line); padding-block: 0.625rem; color: var(--muted); font-size: 0.8125rem; }
+  .screen .status { border-radius: 999px; background: rgb(180 35 24 / 0.08); padding: 0.25rem 0.625rem; color: var(--red-pen); font-weight: 600; }
+  .screen .nlabel { margin-top: 0.875rem; color: var(--muted); font-size: 0.8125rem; }
+  .screen .note { margin-top: 0.375rem; color: var(--pen); font: italic 400 1.0625rem/1.4 var(--serif); transition: filter 520ms var(--ease); }
+  .screen .note.blurred { filter: blur(5px); }
+
+  /* The worked example (4.1) */
+  .example { padding: 6rem 0 5rem; }
+  .example .inner { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 1.25rem); }
+  .tag { display: inline-flex; align-items: center; min-height: 1.75rem; border-radius: 999px; background: var(--inset); padding: 0 0.75rem; font: var(--label); color: var(--muted); }
+  .example h2 { margin-top: 1.25rem; max-width: 18ch; }
+  .example .deck { max-width: 44ch; margin-top: 1rem; }
+  .sheet { margin-top: 2.75rem; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+  .steps { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .step { position: relative; padding: 2rem 2.25rem 2.25rem; }
+  .step + .step { border-left: 1px solid var(--line); }
+  .steps + .steps { border-top: 1px solid var(--line); }
+  .step-label { display: flex; align-items: center; gap: 0.625rem; font: var(--label); color: var(--muted); }
+  .step-label .n { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 999px; border: 1px solid var(--line); font-size: 0.75rem; color: var(--ink); }
+  .quote { margin-top: 1rem; border-left: 3px solid var(--blue-ink); padding-left: 1rem; font: 400 1.5rem/1.5 var(--serif); }
+  .miss-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; }
+  .pen-note { margin-top: 1rem; color: var(--pen); font: italic 400 1.1875rem/1.5 var(--serif); }
+  .fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+  .field span { display: block; font: var(--label); color: var(--ink); }
+  .field div { display: flex; align-items: center; min-height: 2.75rem; margin-top: 0.375rem; border: 1px dashed var(--control); border-radius: 10px; padding: 0 0.75rem; color: var(--blue-ink); font: italic 400 0.9375rem/1 var(--serif); }
+  .aside { margin-top: 0.875rem; font: var(--small); color: var(--muted); }
+  .revised { margin-top: 1rem; font: 400 1.3125rem/1.6 var(--serif); }
+  .coda { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; align-items: center; gap: 1.75rem; margin-top: 1.25rem; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); padding: 1.25rem 1.5rem; }
+  .coda .then { font: 600 1rem/1.35 var(--sans); }
+  .compare { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 1rem; }
+  .compare .was { color: var(--muted); }
+  .compare .was q { text-decoration: line-through; text-decoration-color: rgb(90 96 92 / 0.5); }
+  .compare q { font: 400 0.9375rem/1.45 var(--serif); quotes: "\201C" "\201D"; }
+  .compare .k { display: block; margin-bottom: 0.25rem; font: var(--label); color: var(--muted); }
+  .delta { justify-self: start; border-radius: 999px; background: var(--pen-tint); padding: 0.375rem 0.75rem; color: var(--pen); font: 600 0.9375rem/1 var(--sans); white-space: nowrap; }
+  .after-sheet { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem 2rem; margin-top: 1.25rem; }
+  .link { font: 600 1rem/1 var(--sans); text-decoration: underline; text-decoration-color: rgb(31 90 70 / 0.4); text-underline-offset: 0.24em; }
+
+  .verdict-block { margin-top: 2.5rem; }
+  .verdict-block .who { font: var(--small); color: var(--muted); }
+  .verdict-block blockquote { max-width: 27ch; margin-top: 0.875rem; font: 400 clamp(1.75rem, 3.6vw, 2.75rem)/1.25 var(--serif); letter-spacing: -0.015em; text-wrap: pretty; }
+  .example .after-sheet { justify-content: flex-end; }
+  .example .turn { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+  .progress { padding: 4rem 0 5rem; }
+  .progress .inner { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 1.25rem); }
+  .progress h2 { margin-top: 1.25rem; }
+  .progress .deck { max-width: 44ch; margin-top: 1rem; }
+  .progress-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.25rem; margin-top: 2.25rem; }
+  .pcard { border: 1px solid var(--line); border-radius: 24px; background: var(--paper); padding: 1.5rem 1.75rem; }
+  .pcard .pt { font: 600 1.0625rem/1.35 var(--sans); }
+  .pcard .compare { margin-top: 1rem; }
+  .pcard .k { display: flex; justify-content: space-between; align-items: center; }
+  .journey { display: grid; gap: 0.5rem; }
+  .journey li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 3.25rem; align-items: center; gap: 0.75rem; font: var(--small); color: var(--muted); }
+  .journey .bar { height: 0.5rem; border-radius: 999px; background: var(--inset); overflow: hidden; }
+  .journey .bar span { display: block; height: 100%; border-radius: inherit; background: var(--ink); }
+  .journey li:last-child { color: var(--ink); font-weight: 600; }
+  .logos { margin-top: 0.5rem; font: 800 1.375rem/1.3 var(--sans); color: var(--muted); letter-spacing: -0.02em; }
+
+  /* Silence (kept) */
+  .silence { max-width: 46rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; text-align: center; }
+  .silence ul { border-top: 1px solid var(--line); text-align: left; }
+  .silence li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding: 0.875rem 0; font: var(--small); color: var(--muted); }
+  .silence li b { color: var(--ink); font-weight: 600; }
+  .silence h2 { margin-top: 3rem; }
+  .silence p { max-width: 34ch; margin: 1rem auto 0; font: var(--lead); color: var(--muted); }
+  .silence p strong { color: var(--ink); font-weight: 600; }
+
+  /* One sentence (kept) */
+  .one { max-width: 68rem; margin: 0 auto; padding: 4rem 1.25rem 5.5rem; }
+  .one .who { font: var(--small); color: var(--muted); }
+  .one blockquote { max-width: 27ch; margin-top: 1.375rem; font: 400 clamp(2rem, 4.4vw, 3.375rem)/1.22 var(--serif); letter-spacing: -0.015em; }
+  .one .turn { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 3.5rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+
+  /* Founder (4.3) */
+  .founder { display: grid; grid-template-columns: 17.5rem minmax(0, 1fr); gap: 4rem; max-width: 68rem; margin: 0 auto; padding: 5rem 1.25rem; border-top: 1px solid var(--line); }
+  .portrait { aspect-ratio: 420 / 460; border-radius: 10px; background: linear-gradient(160deg, #3a3f3c, #121513); }
+  .portrait-cap { display: flex; justify-content: space-between; margin-top: 0.75rem; font: var(--small); }
+  .portrait-cap span { color: var(--muted); }
+  .founder h2 { max-width: 20ch; }
+  .founder .intro { max-width: 44ch; margin-top: 1.25rem; font: var(--lead); color: var(--muted); }
+  .creds { margin-top: 2rem; border-top: 1px solid var(--line); }
+  .creds div { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: baseline; border-bottom: 1px solid var(--line); padding: 0.875rem 0; }
+  .creds dt { font: 600 1rem/1.4 var(--sans); }
+  .creds dd { font: var(--body); }
+  .creds .yrs { color: var(--muted); font: var(--small); white-space: nowrap; }
+  .creds .tbd { color: #a35a00; }
+  .earlier { margin-top: 0.875rem; font: var(--small); color: var(--muted); }
+  .disclosure { max-width: 46ch; margin-top: 1.75rem; border-left: 2px solid var(--line); padding-left: 1rem; font: var(--small); color: var(--muted); }
+  .disclosure strong { color: var(--ink); }
+  .flinks { display: flex; gap: 1.75rem; margin-top: 1.5rem; font: 600 0.9375rem/1 var(--sans); }
+  .flinks a { text-decoration: underline; text-decoration-color: rgb(31 90 70 / 0.4); text-underline-offset: 0.24em; }
+
+  /* Close (kept) */
+  .close { background: var(--ink); color: var(--ground); padding: 6rem 1.25rem; text-align: center; }
+  .close h2 { max-width: 14ch; margin: 0 auto; }
+  .close .btn { margin-top: 2rem; background: var(--ground); color: var(--ink); }
+
+  @media (max-width: 960px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 2rem; min-height: 0; padding-top: 2rem; }
+    .hero .actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .hero .fine { text-align: center; }
+    .stage { height: 29rem; }
+    .resume { inset: 0 1.125rem 0 0; padding: 1.625rem 1.375rem; font-size: 0.8125rem; -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent); mask-image: linear-gradient(to bottom, black 78%, transparent); }
+    .screen { top: 7.5rem; width: 17.5rem; padding: 0.875rem 1rem; }
+    .screen .note { font-size: 0.9375rem; }
+    .example { padding: 3.5rem 0 3.5rem; }
+    .steps { grid-template-columns: minmax(0, 1fr); }
+    .step { padding: 1.5rem 1.25rem 1.5rem 3.25rem; }
+    .step + .step { border-left: 0; border-top: 1px solid var(--line); }
+    .step-label { margin-left: -2.125rem; }
+    .step::before { content: ""; position: absolute; left: 1.875rem; top: 3.5rem; bottom: 0; width: 1px; background: var(--line); }
+    .steps:last-child .step:last-child::before { display: none; }
+    .quote { font-size: 1.1875rem; }
+    .pen-note { font-size: 1.0625rem; }
+    .fields { grid-template-columns: minmax(0, 1fr); }
+    .revised { font-size: 1.125rem; }
+    .coda { grid-template-columns: minmax(0, 1fr); gap: 0.875rem; }
+    .compare { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+    .compare .to { display: none; }
+    .one .turn, .example .turn { flex-direction: column; align-items: stretch; }
+    .progress-grid { grid-template-columns: minmax(0, 1fr); }
+    .pcard { padding: 1.25rem; border-radius: 16px; }
+    .verdict-block blockquote { font-size: 1.625rem; }
+    .founder { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 3.5rem 1.25rem; }
+    .portrait { width: 5.5rem; }
+    .creds div { grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 1rem; }
+    .creds dd { grid-column: 1 / -1; grid-row: 2; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <span class="wordmark">Recruiter <i>in</i> Your Pocket</span>
+  <nav class="nav"><span class="links">
+    <a>How it works</a><a>Sample report</a><a>Pricing</a><a>Research</a><a>After the offer</a></span>
+    <a class="signin">Sign in</a><a class="btn btn-primary">Get your free report</a><span class="menu" aria-hidden="true"></span>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <h1 class="display">They called someone back. It wasn’t you.</h1>
+    <p class="lead deck">See what a recruiter sees on your resume, and the one thing to fix first.</p>
+    <div class="actions">
+      <a class="btn btn-lg btn-primary">Get your free report <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="btn btn-quiet">See Jordan’s report</a>
+    </div>
+    <p class="fine">Your first report is free. No account or card.</p>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <div class="resume">
+      <p class="name">Jordan A. Miller</p><p class="contact">Denver, CO · jmiller@example.com</p>
+      <p class="head">Objective</p><p>Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.</p>
+      <p class="head">Experience</p><p><b>Customer Success Manager</b>, Northwind Analytics</p>
+      <p class="bullet">Responsible for managing customer relationships and renewals</p>
+      <p class="bullet">Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue</p>
+      <p class="bullet">Introduced monthly renewal-risk reviews across the portfolio</p>
+      <p class="bullet">Team player with excellent communication skills</p>
+      <p><b>Account Coordinator</b>, Brightpath Logistics</p><p class="bullet">Assisted account managers with various tasks as needed</p>
+      <p class="head">Skills</p><p>Microsoft Office, Communication, Leadership</p>
+    </div>
+    <div class="screen">
+      <p class="req">Customer Success Manager · Req 4471</p>
+      <p class="cand">Jordan A. Miller</p><p class="applied">Applied 9 days ago</p>
+      <p class="row">Stage <span class="status">Not moving forward</span></p>
+      <p class="nlabel">Reviewer note · hiring team only</p>
+      <p class="note">Solid book of business, but the best example stops right before the good part. Did renewals go up?</p>
+    </div>
+  </div>
+</div></section>
+<div class="annot-wrap"><p class="annot"><b>4.1 reveal.</b> At rest the note is blurred, as today. It clears (blur 5px to 0, 520ms, shared ease) once the visitor scrolls: the first scroll past 48px on desktop, or the card fully in view on a phone. Reduced motion: it clears without a transition. The card stays hidden from assistive tech; the example below carries the same words as real text. <b>Cut beat (Matt, Nov 1):</b> the “What Jordan got: ‘We’ve decided to move forward…’” line is gone from the card.</p></div>
+
+<section class="example" id="how-it-works"><div class="inner">
+  <span class="tag">Fictional example</span>
+  <h2 class="headline">Here’s the note Jordan never saw.</h2>
+  <p class="lead deck">It’s about one line. Answer the question it asks, and the line finally says what Jordan did.</p>
+
+  <div class="verdict-block">
+    <p class="who">The read on <b>Jordan’s</b> resume, in one sentence:</p>
+    <blockquote>“A capable account manager with a real book of business. <span class="mark">What’s missing is proof Jordan changed the outcome.</span>”</blockquote>
+  </div>
+
+  <div class="sheet">
+    <div class="steps">
+      <div class="step">
+        <p class="step-label"><span class="n">1</span>The line behind it</p>
+        <div class="miss-row"><span class="verdict-label">Critical Miss</span></div>
+        <p class="quote">Introduced monthly renewal-risk reviews across the portfolio</p>
+      </div>
+      <div class="step">
+        <p class="step-label"><span class="n">2</span>The note</p>
+        <p class="pen-note">Solid book of business, but the best example stops right before the good part. Did renewals go up?</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <p class="step-label"><span class="n">3</span>Jordan’s answer</p>
+        <div class="fields">
+          <label class="field"><span>Renewal rate before</span><div>Jordan’s number</div></label>
+          <label class="field"><span>Renewal rate after</span><div>Jordan’s number</div></label>
+          <label class="field"><span>Over what period</span><div>Jordan’s answer</div></label>
+        </div>
+        <p class="aside">Blank on purpose. Jordan isn’t real, and we don’t make up numbers for anyone.</p>
+      </div>
+      <div class="step">
+        <p class="step-label"><span class="n">4</span>The revised line</p>
+        <p class="revised">Introduced monthly renewal-risk reviews across the portfolio; renewal rate went from <em class="fact">[before]</em> to <em class="fact">[after]</em> in <em class="fact">[period]</em>.</p>
+        <p class="aside">Jordan’s line plus Jordan’s answer. Nothing added.</p>
+      </div>
+    </div>
+  </div>
+  <p class="after-sheet"><a class="link">See Jordan’s full report →</a></p>
+  <div class="turn"><h2 class="title">What would they think of yours?</h2><a class="btn btn-lg btn-primary">Get your free report <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
+</div></section>
+<div class="annot-wrap"><p class="annot"><b>Approved order (Matt, Nov 1).</b> The example opens with the one-sentence verdict, which keeps its quote and highlighter. The resume line below it carries the blue-ink rule but no second highlight, so one view has one yellow mark. Step 4 ships with Phase 2’s answer-to-line feature (2.2). If 2.2 slips, the example ends at Jordan’s answer. The verdict and note wording will quote Jordan’s real generated report.</p></div>
+
+<section class="silence">
+  <ul aria-hidden="true">
+    <li><span><b>Customer Success Manager</b> · Northwind</span><span>No response</span></li>
+    <li><span><b>Account Manager</b> · Contoso</span><span>No response</span></li>
+    <li><span><b>CS Lead</b> · Fabrikam</span><span>No response</span></li>
+    <li><span><b>Renewals Manager</b> · Tailspin</span><span>No response</span></li>
+    <li><span><b>Senior CSM</b> · Litware</span><span>Viewed · No response</span></li>
+  </ul>
+  <h2 class="headline">Not even a reply.</h2>
+  <p>Sometimes it’s the market, a ghost job, or a stack of other applicants. Sometimes it’s one line on your resume. <strong>That part you can fix.</strong></p>
+</section>
+
+<p class="annot-wrap" style="text-align:center;padding-block:2rem"><span class="label">“What we look for, line by line.” stays as it is.</span></p>
+
+<section class="progress"><div class="inner">
+  <span class="tag">Fictional example</span>
+  <h2 class="headline">Fix it. Then check it again.</h2>
+  <p class="lead deck">A re-check reads your revised resume and puts it beside the last one, so you can see what changed.</p>
+  <div class="progress-grid">
+    <div class="pcard">
+      <p class="pt">Your Critical Miss changed.</p>
+      <div class="compare">
+        <p class="was"><span class="k">Last time</span><q>Introduced monthly renewal-risk reviews across the portfolio</q></p>
+        <svg class="arrow to" viewBox="0 0 16 16" fill="none" stroke="#5a605c" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+        <p><span class="k">Now <span class="delta">Up 6</span></span><q>Results-driven, detail-oriented professional seeking a challenging role…</q></p>
+      </div>
+    </div>
+    <div class="pcard">
+      <ol class="journey" aria-label="Jordan's reports">
+        <li><span>First report</span><span class="bar"><span style="width:58%"></span></span><span></span></li>
+        <li><span>Revision 1</span><span class="bar"><span style="width:64%"></span></span><span>Up 6</span></li>
+        <li><span>Revision 2</span><span class="bar"><span style="width:69%"></span></span><span>Up 5</span></li>
+      </ol>
+      <p class="pt" style="margin-top:0.875rem">Up 11 since your first report.</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:1rem">A re-check is one Job Search Pass report. Signed in, Progress keeps every version. Scores compare versions of your own resume; they don’t predict interviews. <a class="link" style="font-size:0.875rem">What the pass includes →</a></p>
+</div></section>
+<div class="annot-wrap"><p class="annot"><b>4.11.</b> The progress beat gets its own section (Matt’s order). The changed Critical Miss and the “Up” numbers are placeholders until Jordan’s report exists. A real re-check would need a revised resume, so these are labeled as an example and show only score changes, never an absolute score (D5).</p></div>
+
+<section class="founder">
+  <div><div class="portrait"></div><p class="portrait-cap">Matt Shaw <span>Founder</span></p></div>
+  <div>
+    <h2 class="title">I’ve spent 14 years recruiting for companies like Google, Meta, and OpenAI.</h2>
+    <p class="intro">I’m Matt. I built this to give you the read I’d give a friend before they hit send.</p>
+    <p class="disclosure"><strong>Heads up:</strong> I wrote the review criteria, and AI applies them to your resume. I don’t read each report myself.</p>
+    <p class="flinks"><a>How the report works →</a><a>Meet Matt</a></p>
+  </div>
+</section>
+<div class="annot-wrap"><p class="annot"><b>4.3 (Matt, Nov 1).</b> Matt’s own wording. The work-history list is gone; “Meet Matt” links to LinkedIn for the rest.</p></div>
+
+<section class="close" style="margin-top:2rem"><h2 class="headline">Good work deserves a good read.</h2><a class="btn btn-lg">Get your free report →</a></section>
+
+<footer class="footer"><div class="wrap">
+  <div class="grid">
+    <div class="about"><span class="wordmark">Recruiter <i>in</i> Your Pocket</span>
+      <p>See what a recruiter sees before you apply. Your first report is free.</p>
+      <a class="mail">support@recruiterinyourpocket.com</a></div>
+    <nav aria-labelledby="f-product"><h3 id="f-product">Product</h3><ul><li><a>How it works</a></li><li><a>Sample report</a></li><li><a>Pricing</a></li><li><a>How the report works</a></li></ul></nav>
+    <nav aria-labelledby="f-research"><h3 id="f-research">Research</h3><ul><li><a>All research</a></li><li><a>How recruiters read</a></li><li><a>What makes a bullet land</a></li></ul></nav>
+    <nav aria-labelledby="f-offer"><h3 id="f-offer">After the offer</h3><ul><li><a>Negotiate an offer</a></li><li><a>Read a tech offer</a></li><li><a>Offer calculator</a></li></ul></nav>
+    <nav aria-labelledby="f-help"><h3 id="f-help">Help</h3><ul><li><a>Help and FAQ</a></li><li><a>Security</a></li><li><a>Privacy</a></li><li><a>Terms</a></li><li><button type="button">Privacy choices</button></li></ul></nav>
+  </div>
+  <div class="legal"><span>© 2026 Recruiter in Your Pocket</span><span>Already paid? Restore access</span></div>
+</div></footer>
+</body>
+</html>

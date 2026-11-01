@@ -4,22 +4,22 @@ import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { HiringTruths } from "./home/HiringTruths";
-import { OneSentence } from "./home/OneSentence";
+import { ProgressBeat } from "./home/ProgressBeat";
 import { SilenceSection } from "./home/SilenceSection";
 import { VerdictHero } from "./home/VerdictHero";
+import { WorkedExample } from "./home/WorkedExample";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
-const WORK_HISTORY = ["OpenAI", "Meta", "Google", "X-Team", "Robert Half"];
-
-/** The verdict you never got, the silence, one real read, what we look for, who wrote the criteria, one last ask. */
+/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, who wrote the criteria, one last ask. */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
             <VerdictHero />
+            <WorkedExample />
             <SilenceSection />
-            <OneSentence />
             <HiringTruths />
+            <ProgressBeat />
 
             <section id="about" className={styles.founder} aria-labelledby="founder-title">
                 <div className={styles.portrait}>
@@ -27,14 +27,10 @@ export function LandingMineral() {
                     <p>Matt Shaw <span>Founder</span></p>
                 </div>
                 <div className={styles.founderCopy}>
-                    <h2 id="founder-title">I&apos;ve hired hundreds of people and led hiring globally at OpenAI, Meta, and Google.</h2>
+                    <h2 id="founder-title">I&apos;ve spent 14 years recruiting for companies like Google, Meta, and OpenAI.</h2>
                     <p className={styles.introduction}>
-                        I&apos;m Matt. After 14 years in recruiting, I built this to give you the read I&apos;d give a friend before they hit send.
+                        I&apos;m Matt. I built this to give you the read I&apos;d give a friend before they hit send.
                     </p>
-                    <p className={styles.historyLabel}>Where I&apos;ve recruited and led hiring teams</p>
-                    <ul className={styles.history} aria-label="Matt's work history">
-                        {WORK_HISTORY.map((company) => <li key={company}>{company}</li>)}
-                    </ul>
                     <p className={styles.disclosure}>
                         <strong>Heads up:</strong> I wrote the review criteria, and AI applies them to your resume. I don&apos;t read each report myself.
                     </p>

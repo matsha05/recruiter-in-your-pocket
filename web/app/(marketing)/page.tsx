@@ -8,7 +8,7 @@ const homepageDescription = "Get a free resume report with feedback on what recr
 const shareTitle = "See what a recruiter sees: free resume report";
 const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
 const shareImage = {
-  url: "/og/home?v=20261101",
+  url: "/og/home?v=20261101-2",
   width: 1200,
   height: 630,
   alt: "They called someone back. It wasn't you. A recruiter's screen marks the resume Not moving forward, with a note only the hiring team can read.",
@@ -71,7 +71,7 @@ const structuredData = {
       name: "Matt Shaw",
       url: "https://www.recruiterinyourpocket.com/#about",
       sameAs: ["https://www.linkedin.com/in/mattrshaw"],
-      description: "Founder of Recruiter in Your Pocket with 14 years of recruiting and hiring experience.",
+      description: "Founder of Recruiter in Your Pocket. 14 years recruiting for companies including Google, Meta, and OpenAI.",
     },
   ],
 };

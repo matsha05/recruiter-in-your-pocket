@@ -16,7 +16,7 @@ import { NavDrawer, NavDrawerDivider, NavDrawerLink } from "./NavDrawer";
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
     showResearchLink?: boolean;
-    /** Show "Resources" nav link (hide on resources hub itself) */
+    /** Show the "After the offer" nav link (hidden on its own hub) */
     showResourcesLink?: boolean;
 }
 
@@ -44,7 +44,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <SiteNavLink href="/extension" active={isMarketingActive("/extension")}>Extension</SiteNavLink>
                         )}
                         {showResearchLink && <SiteNavLink href="/research" active={isMarketingActive("/research")}>Research</SiteNavLink>}
-                        {showResourcesLink && <SiteNavLink href="/resources" active={isMarketingActive("/resources")}>Resources</SiteNavLink>}
+                        {showResourcesLink && <SiteNavLink href="/resources" active={isMarketingActive("/resources")}>After the offer</SiteNavLink>}
                     </div>
 
                     {authLoading ? (
@@ -181,7 +181,7 @@ function SiteMobileMenu({
             <NavDrawerLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</NavDrawerLink>
             {isLaunchFlagEnabled("extensionSync") && <NavDrawerLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</NavDrawerLink>}
             {showResearchLink && <NavDrawerLink href="/research" active={isPathActive(pathname, "/research")}>Research</NavDrawerLink>}
-            {showResourcesLink && <NavDrawerLink href="/resources" active={isPathActive(pathname, "/resources")}>Resources</NavDrawerLink>}
+            {showResourcesLink && <NavDrawerLink href="/resources" active={isPathActive(pathname, "/resources")}>After the offer</NavDrawerLink>}
             <NavDrawerDivider />
             {authLoading ? (
                 <p className="min-h-12 px-3 py-3 text-base text-muted-foreground" role="status" aria-live="polite">

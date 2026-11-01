@@ -12,7 +12,7 @@ interface HarnessPlugin {
   onResolve(options: { filter: RegExp }, callback: (args: { path: string }) => { path: string; namespace: string } | undefined): void;
   onLoad(options: { filter: RegExp; namespace: string }, callback: (args: { path: string }) => { contents: string; loader: string; resolveDir: string }): void;
 }
-const ORIGIN = "http://127.0.0.1:3100";
+const ORIGIN = process.env.PLAYWRIGHT_TEST_BASE_URL || "http://127.0.0.1:3100";
 const RESUME_TEXT = "Alex Rivera\nProgram Manager\nLed cross-functional launches with product, operations, and support teams. Built review cadences and improved launch checklists. Coordinated stakeholder updates and clarified ownership across teams.";
 const UPLOADED_TEXT = `${RESUME_TEXT}\nBuilt customer workflows in HubSpot for 120 customers.`;
 const REPORT = ResumeFeedbackResponseSchema.parse(schemaValidReport);
@@ -163,7 +163,7 @@ async function openUploadCommand(page: Page) {
 async function startReport(page: Page) {
   await page.getByTestId("workspace-paste-mode").click();
   await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
-  await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get my report");
+  await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get your free report");
   await page.getByTestId("workspace-run-report").click();
 }
 
@@ -296,7 +296,7 @@ test.describe("workspace command and completion handoffs", () => {
     const chooser = await openUploadCommand(page);
     await chooser.setFiles({ name: "updated-resume.pdf", mimeType: "application/pdf", buffer: Buffer.from("%PDF-harness") });
     await expect(page.getByText("updated-resume.pdf", { exact: true })).toBeVisible();
-    await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get my report");
+    await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get your free report");
     expect(parsedFile).toBe(true);
     await page.getByTestId("workspace-run-report").click();
     await expect(reportHeading(page)).toBeVisible();
@@ -345,7 +345,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByText("replacement.docx", { exact: true })).toBeVisible();
     await page.getByTestId("workspace-role-toggle").click();
     await expect(page.getByTestId("workspace-job-description")).toHaveValue("");
-    await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get my report");
+    await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Get your free report");
     await page.getByTestId("workspace-run-report").click();
     await expect(reportHeading(page)).toBeVisible();
     expect(submissions).toHaveLength(2);

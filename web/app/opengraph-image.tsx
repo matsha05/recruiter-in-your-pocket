@@ -70,7 +70,7 @@ export default async function OpenGraphImage() {
             <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", padding: "20px 22px", background: "#fff6c2", border: "1px solid #f2dc6b" }}>
               <div style={{ display: "flex", color: "#6b5400", fontSize: 15, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase" }}>Critical Miss</div>
               <div style={{ display: "flex", marginTop: 10, fontFamily: "Literata", fontStyle: "italic", fontSize: 25, lineHeight: 1.28, color: "#1f5a46" }}>
-                Your best example stops right before the good part. Did renewals go up?
+                Your best example stops right before the good part. What did you look for, and what changed?
               </div>
             </div>
           </div>

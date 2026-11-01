@@ -1,7 +1,7 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
 export const LEGAL_LAST_UPDATED = "September 4, 2026";
-export const PRIVACY_LAST_UPDATED = "October 31, 2026";
+export const PRIVACY_LAST_UPDATED = "November 1, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -25,6 +25,20 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, and any job description you add until you delete the report or account.",
     userControl: "Anonymous recovery expires automatically. Delete saved reports in Reports, or delete your account in Settings.",
     processor: "Upstash, Supabase"
+  },
+  {
+    dataType: "Answers you add under a Critical Miss",
+    purpose: "Build a revised line from your own answers, so you can copy it into your resume.",
+    retention: "Sent to OpenAI with the resume line you're improving, to smooth the wording. RIYP does not store your answers. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
+    userControl: "Every question is optional. Questions you skip are not sent.",
+    processor: "OpenAI"
+  },
+  {
+    dataType: "Feedback on the Critical Miss",
+    purpose: "Check whether the report picked the right thing to fix first, and improve future reports.",
+    retention: "Your answer and any note you write are stored until you delete your account.",
+    userControl: "Feedback is optional. Delete your account in Settings to remove it.",
+    processor: "Supabase"
   },
   {
     dataType: "Saved resume profile (default resume)",
