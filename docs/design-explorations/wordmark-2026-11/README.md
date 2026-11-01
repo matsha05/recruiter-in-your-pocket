@@ -1,6 +1,6 @@
 # Wordmark directions, November 2026
 
-Exploration for decision D6. Nothing here is wired into the app. Open `board.html` in a browser, or look at `board-1440.png` and `board-390.png`.
+Exploration for decision D6. **Decided Nov 1, 2026: Matt chose direction C, Two Voices, with favicon C2, The Noted R.** The other directions and favicon options stay here for the record. Wiring the mark into the app is a separate change. Open `board.html` in a browser, or look at `board-1440.png` and `board-390.png`.
 
 Decision so far: Matt picked C, Two Voices, and asked for a better favicon than the plain R. Those options are in "C favicon options" below and on `board-c-favicons.html` (`board-c-favicons.png`).
 
@@ -38,7 +38,7 @@ Where it bends:
 - The italic "in" turns faint at 12 px on a standard screen. Keep the logotype at 14 px or larger.
 - The favicon is a plain R on ink. It is legible and says nothing on its own.
 
-## Recommendation: B, The Pocket Pen
+## Original recommendation: B, The Pocket Pen (superseded: Matt chose C)
 
 - It explains a 24-character name in one look.
 - It keeps yellow for the one line a recruiter would miss. A puts a highlighter on every page, including beside the Critical Miss.
@@ -65,7 +65,9 @@ Each option pairs the product's Schibsted R with the recruiter's Literata italic
 
 I set aside the italic "in" on its own. It is the prettiest at 180 px, but a rounded tile that says "in" reads as LinkedIn, which job seekers usually have open in the next tab.
 
-**Recommendation: C1.** It is the only option where the two voices form one shape, so it carries the logotype's idea instead of repeating its letters. It still reads as an R in a 16 px tab, and the green leg makes it unlike any other R favicon. C2 is the fallback if Matt wants the safest, most legible mark.
+**Chosen: C2, The Noted R (Matt, Nov 1, 2026).** Use `c-two-voices/favicons/c2-noted-r/` for the favicon (16 and 32 px), the apple touch icon (180 px), and the PWA icons.
+
+Our recommendation had been C1: it is the only option where the two voices form one shape, so it carries the logotype's idea instead of repeating its letters. It still reads as an R in a 16 px tab, and the green leg makes it unlike any other R favicon. C2 is the fallback if Matt wants the safest, most legible mark.
 
 Files: `c-two-voices/favicons/<option>/{16,32,180}-{light,dark}.svg`, where the options are `c1-finished-r`, `c2-noted-r` and `c3-r-in`. The 180 px files are full bleed, because iOS rounds the corners itself.
 
