@@ -1,6 +1,6 @@
 # RIYP Vendor and Privacy Review
 
-**Last Updated:** July 29, 2026
+**Last Updated:** October 31, 2026
 **Status:** Required for launch
 
 This is the launch-facing vendor truth table. If a processor is used in production, it must appear here and match the public privacy/security copy.
@@ -12,7 +12,7 @@ This is the launch-facing vendor truth table. If a processor is used in producti
 | Stripe | Billing and entitlements | Customer IDs, invoices, receipt metadata, Stripe-managed payment records | Approved | Webhook verification is mandatory. |
 | Sentry | Error monitoring | Scrubbed error metadata, route context, sanitized breadcrumbs | Approved with strict scrubbing | Default PII disabled. Browser replay remains off unless explicitly approved. |
 | Mixpanel | Product analytics | Session-level event and funnel metadata | Approved behind kill switch | Must respect launch flag and Do Not Track handling. |
-| Vercel | Hosting and runtime | Platform diagnostics and deployment metadata | Approved | Platform logs must continue to avoid raw resume or JD payloads. |
+| Vercel | Hosting, runtime, and basic page statistics (Web Analytics) | Platform diagnostics and deployment metadata; cookieless page statistics: scrubbed page path, campaign tags, referrer, approximate location, device and browser, and a request hash Vercel discards after 24 hours | Approved | Platform logs must continue to avoid raw resume or JD payloads. Page statistics run only on the production site, stop when a visitor declines analytics or sends Do Not Track or Global Privacy Control, and strip query values and id-like path segments in the browser before sending (`web/lib/pageStatistics.ts`). |
 | Upstash | Shared rate limiting, request idempotency, and short-lived checkout caching | Hashed request and IP identifiers, idempotency keys, short-lived checkout session metadata | Approved with short retention | Keep keys pseudonymous, enforce short TTLs, and never cache raw resume or JD text. |
 | Inngest | Background account exports and optional asynchronous PDF generation | Job identifiers, account identity, account-export payloads, and report content when asynchronous PDF generation is used | Approved with payload review | Keep event and run-history retention explicit. Prefer internal identifiers over full payloads whenever possible. |
 | Resend | Transactional authentication delivery and signed inbound support-email processing | Account email, authentication messages, support-message content, and support attachments | Approved with signed webhooks and recipient allowlisting | Verify raw webhook signatures, forward only the exact public support envelope recipient, and do not log message content or the private forwarding destination. |

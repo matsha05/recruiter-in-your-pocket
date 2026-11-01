@@ -4,6 +4,7 @@ import { AppProviders } from "@/components/providers/AppProviders";
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
 import { AnalyticsLifecycle } from "@/components/privacy/AnalyticsLifecycle";
+import { PageStatistics } from "@/components/privacy/PageStatistics";
 import { PrivacyControls } from "@/components/privacy/PrivacyControls";
 
 export const metadata: Metadata = {
@@ -53,6 +54,8 @@ export default function RootLayout({
           <CommandPalette />
           <Toaster />
           <PrivacyControls />
+          {/* Only the live site reports page statistics; previews, local runs, and tests stay quiet. */}
+          {process.env.VERCEL_ENV === "production" ? <PageStatistics /> : null}
         </AppProviders>
       </body>
     </html>
