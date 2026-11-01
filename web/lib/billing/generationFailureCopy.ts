@@ -14,12 +14,29 @@ export const REPORT_ACCESS_RESTORED = "We gave that report back. Try again whene
 export const REPORT_ACCESS_OUTCOME_UNKNOWN =
   "We couldn't tell whether this used one of your reports. Check My reports before running it again.";
 
+export const REPORT_ACCESS_USED_COUNT_UPDATED = "This used one of your reports. Your count is up to date.";
+
+export const REPORT_ACCESS_USED_CHECK = "This used one of your reports. Check My reports before running it again.";
+
+// A visitor who isn't signed in only ever has the free report, and has no My reports
+// page to check. Each outcome above has a version that says so; `forVisitor` swaps them in.
+const GUEST_OUTCOMES: Array<[string, string]> = [
+  [REPORT_ACCESS_NOT_USED, "This didn't use your free report."],
+  [REPORT_ACCESS_USED_BEFORE_DELIVERY, "Your report finished and used your free report, but the connection dropped before it showed up here."],
+  [REPORT_ACCESS_USED, "This used your free report, because it had already started."],
+  [REPORT_ACCESS_RESTORED, "We gave your free report back. Try again whenever you're ready."],
+  [REPORT_ACCESS_OUTCOME_UNKNOWN, "We couldn't tell whether this used your free report. The line under Get my report shows what's left."],
+  [REPORT_ACCESS_USED_COUNT_UPDATED, "This used your free report."],
+  [REPORT_ACCESS_USED_CHECK, "This used your free report."],
+];
+
 const ACCESS_OUTCOMES = [
   REPORT_ACCESS_NOT_USED,
   REPORT_ACCESS_USED_BEFORE_DELIVERY,
   REPORT_ACCESS_USED,
   REPORT_ACCESS_RESTORED,
   REPORT_ACCESS_OUTCOME_UNKNOWN,
+  ...GUEST_OUTCOMES.map(([, guest]) => guest),
 ];
 
 // Older server builds may still send these until every deployment has rolled over.
@@ -46,14 +63,22 @@ export function stripAccessOutcome(message: string) {
   return message.trim().replace(new RegExp(`\\s*(?:${OUTCOME_PATTERN})[.!?]*$`, "iu"), "");
 }
 
+/** Says whether the attempt used a report, unless the message already does. */
 export function withGenerationAccessOutcome(
   message: string,
   accessConsumed: boolean | null
 ) {
+  if (hasAccessOutcome(message)) return message.trim();
   const detail = accessConsumed === null
     ? REPORT_ACCESS_OUTCOME_UNKNOWN
     : accessConsumed
       ? REPORT_ACCESS_USED_BEFORE_DELIVERY
       : REPORT_ACCESS_NOT_USED;
   return `${message.trim()} ${detail}`;
+}
+
+/** Rewrites report-access sentences for someone who isn't signed in. */
+export function forVisitor(message: string, signedIn: boolean) {
+  if (signedIn) return message;
+  return GUEST_OUTCOMES.reduce((text, [account, guest]) => text.replace(account, guest), message);
 }
