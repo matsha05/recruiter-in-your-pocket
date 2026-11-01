@@ -25,8 +25,10 @@ function useTabsRevealed(enabled: boolean, tabsRef: React.RefObject<HTMLElement 
         let frame = 0
         const update = () => {
             frame = 0
-            // The tabs sit at the header's bottom edge; they appear once the opening has passed under it.
-            const line = tabsRef.current ? Number.parseFloat(getComputedStyle(tabsRef.current).top) || 0 : 0
+            // The tabs hang from the header; they appear once the opening has passed under where they end,
+            // which is also where a tab jump lands a section, so a jump never hides the tabs it came from.
+            const tabs = tabsRef.current
+            const line = tabs ? (Number.parseFloat(getComputedStyle(tabs).top) || 0) + tabs.getBoundingClientRect().height : 0
             setRevealed(opening.getBoundingClientRect().bottom <= line + 1)
         }
         const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }

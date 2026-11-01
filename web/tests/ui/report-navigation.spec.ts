@@ -19,7 +19,10 @@ async function expectSectionBelowNavigation(page: Page, id: string) {
     const nav = document.querySelector('nav[aria-label="Resume report sections"]')!;
     const navBottom = nav.closest("aside")!.getBoundingClientRect().bottom;
     const top = section.getBoundingClientRect().top;
-    return top >= navBottom - 1 && top <= navBottom + 120;
+    // The report scrolls with the page, so the last section may stop short of the tabs at the end of the page.
+    const page = document.scrollingElement!;
+    const atEnd = page.scrollTop + page.clientHeight >= page.scrollHeight - 2;
+    return top >= navBottom - 1 && (top <= navBottom + 120 || (atEnd && top < window.innerHeight));
   })).toBe(true);
 }
 

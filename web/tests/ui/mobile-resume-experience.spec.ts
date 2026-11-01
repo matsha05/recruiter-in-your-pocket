@@ -122,7 +122,8 @@ for (const width of [320, 390]) {
       }
 
       for (const [label, section] of [["Fix these first", "section-fixes"], ["Role fit", "section-role"], ["Overview", "section-first-impression"]]) {
-        const button = nav.getByRole("button", { name: label, exact: true });
+        // By attribute: back at Overview the tabs leave the screen again, and the check still reads them.
+        const button = page.locator(`nav[aria-label="Resume report sections"] button[aria-label="${label}"]`);
         await button.click();
         await expect(button).toHaveAttribute("aria-current", "location");
         // On phones the fix section's heading is for screen readers; its first visible line is the Critical Miss.
@@ -131,11 +132,10 @@ for (const width of [320, 390]) {
           : page.locator(`#${section}`).getByRole("heading").first();
         await expect(heading).toBeInViewport();
         // The selected section changes before the mobile scroll has settled.
-        await expect.poll(async () => {
-          const headingBounds = await heading.boundingBox();
-          const navBounds = await nav.boundingBox();
-          return headingBounds!.y - navBounds!.y - navBounds!.height;
-        }, { message: `${label} should finish below the sticky section navigation` }).toBeGreaterThanOrEqual(0);
+        await expect.poll(() => heading.evaluate((element) => {
+          const tabs = document.querySelector('nav[aria-label="Resume report sections"]')!.closest("aside")!;
+          return element.getBoundingClientRect().top - tabs.getBoundingClientRect().bottom;
+        }), { message: `${label} should finish below the sticky section navigation` }).toBeGreaterThanOrEqual(0);
       }
     });
   });
