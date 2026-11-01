@@ -47,7 +47,8 @@ for (const width of [320, 390]) {
 
     test("a fragment can't start a report, and an upload shows what was read before the run", async ({ page }) => {
       const parsed = ["Alex Morgan", "Experience", "Led onboarding and documented the launch process for three regional teams.",
-        "Ran the weekly launch review with product and support, and kept the checklist current."].join("\n");
+        "Ran the weekly launch review with product and support, and kept the checklist current.",
+        "Trained new account managers on the customer handoff."].join("\n");
       await page.route("**/api/parse-resume", (route) => route.fulfill({ json: { ok: true, text: parsed } }));
       await page.goto("/workspace", { waitUntil: "domcontentloaded" });
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
@@ -58,7 +59,7 @@ for (const width of [320, 390]) {
       const resume = page.getByTestId("workspace-resume-text");
       await resume.fill("Alex Morgan\nProgram Manager\nLed launches.");
       await expect(run).toBeDisabled();
-      await expect(run).toHaveText("Add more of your resume to begin");
+      await expect(run).toHaveAccessibleName("Add more of your resume to begin");
       await expect(page.getByTestId("workspace-resume-too-short")).toContainText("We need at least 200");
       await expect(resume).toHaveAttribute("aria-describedby", "workspace-resume-length");
       await resume.fill(parsed);
