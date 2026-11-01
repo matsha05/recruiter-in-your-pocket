@@ -198,4 +198,5 @@ fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(f
 </body></html>`;
   fs.writeFileSync(path.join(OUT, 'board.html'), html);
   console.log('board', (html.length / 1024).toFixed(0) + 'KB');
+  await require('./build-c-favicons.cjs').run(OUT);
 })();
