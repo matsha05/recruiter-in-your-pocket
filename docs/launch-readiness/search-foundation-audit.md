@@ -134,4 +134,16 @@ No agent has access, so these are for Matt. Do steps 1 and 6 before this ships, 
 
 Local results on this branch are below. Nothing here is deployed; hosted checks wait for the batch PR's preview and production.
 
-VERIFICATION_PLACEHOLDER
+All on commit `c11b0fb9`, locally:
+
+- `npx tsc --noEmit`, `npm run lint` (zero warnings): pass.
+- `npm run qa:design-system`: pass. The new card route is on the same Satori allowlist as the other two share cards, since ImageResponse needs literal colors.
+- `npm run test:research-figures`, `test:sample-report`, `test:client-bundle`: pass.
+- `npm run test:search-foundation`: pass (32 pages, 28 titles). I broke it on purpose five ways: a duplicated title, a page missing from the registry, a future date, robots.txt blocking `/auth`, and a wrong canonical. It failed each time.
+- `next build --webpack` with CI's dummy environment: pass. Against `next start` on that build, Playwright ran `search-foundation`, `homepage-seo`, `research-surface` (including the axe scans of the hub and every article), `editorial-surfaces`, and `page-weight`: 33 passed.
+- By eye: six share cards (two articles, the skills-first card with curly quotes, a guide, the calculator, methodology), and the article header at 1440 and 390 px, with no horizontal overflow. `/og/research/<unknown>` returns 404.
+- Local `sitemap.xml`: 32 URLs, each with its content date. Local `robots.txt`: blocks only `/api/`, `/internal/`, `/playground/`, `/monitoring`.
+
+Not verified: anything hosted. After the batch deploys, re-fetch `sitemap.xml`, `robots.txt`, one article and one share card from production, then run the Search Console steps above.
+
+Found in passing, not changed: on phones the research meta row ("Recruiter attention / 5 min read / 2 peer-reviewed studies…") wraps with a separator left dangling at the line end. That predates this branch.
