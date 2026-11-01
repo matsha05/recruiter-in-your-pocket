@@ -101,9 +101,9 @@ On the first Critical Miss: "Was this the right thing to fix first?". Yes sends 
 - Stores the answer in `report_feedback` (migration `022_report_feedback.sql`): the model's Critical Miss wording, the answer, the optional note, the report id when saved, and the user id when signed in (deleted with the account). It never stores the resume or its quoted line.
 - If storage fails and there is a note, the request returns 503 and the reader sees "Couldn't send that". A bare yes/no is still counted.
 
-Retention and accounts: a daily `pg_cron` job (`riyp-expire-report-feedback`, migration 022) deletes rows older than 12 months. The account export includes the reader's `report_feedback` rows, and account deletion removes them before the auth user goes (the foreign key also cascades).
+Retention and accounts: a daily `pg_cron` job (`riyp-expire-report-feedback`, migration `023_report_feedback_retention.sql`, the same pattern as the account-export expiry in 015) deletes rows older than 12 months. The account export includes the reader's `report_feedback` rows, and account deletion removes them before the auth user goes (the foreign key also cascades).
 
-**Before deploy:** apply migration 022 in production, which needs Matt's OK. `pg_cron` must be enabled on the project.
+**Production:** migration 022 (the table) was applied on Nov 1 with Matt's OK. Migration 023 (retention) needs Matt's OK before it is applied.
 
 ## PDF
 
@@ -128,7 +128,7 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 - Polish: `lib/reports/revised-line-polish.ts` (guard and client), `lib/reports/revised-line-polish-service.ts`, `lib/llm/revise-line-model.ts`, `prompts/revise_line_v1.txt`, `app/api/revise-line/route.ts`, `scripts/eval-revise-line.ts`.
 - Shells: `components/layout/ReportLayout.{tsx,module.css}`, `ReportPanel.tsx`, `ReportDetailClient.tsx`, `WorkspaceClient.tsx` (`data-document`), `app/globals.css`.
 - PDF: `lib/backend/pdf.ts`, `pdf-styles.ts`, `lib/reports/pdf-export.ts`.
-- Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
+- Feedback: `app/api/report-feedback/route.ts`, `database/migrations/022_report_feedback.sql`, `023_report_feedback_retention.sql`, `lib/observability/launchSignals.ts`, `lib/analyticsPolicy.ts` (`critical_miss_addressed`).
 - Prototype harness: `/internal/report-lab` (dev or `ALLOW_INTERNAL_PAGES`), with every saved output in fresh, recovered and saved states and the sample.
 
 ## Verification (local only, production build of this branch, dummy CI environment, mock model)
