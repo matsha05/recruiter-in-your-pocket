@@ -46,6 +46,8 @@ const assessmentWords = normalizedSet([
   "analytics-led", "appropriately", "become", "change", "concise", "contribution", "coverage", "date", "decision", "degree", "direction", "graduation", "headline", "institution", "iteration", "lane", "less", "listed", "often", "other", "range", "rarely", "setting", "specific", "statement", "still", "stop", "story", "strong", "strongest", "technical-to-product", "tenure", "than", "then", "thin", "too", "training", "transition", "which", "year",
   // The report's audience and its "worth keeping" reaction describe the read, not the resume.
   "reader", "reviewer", "worth", "keeping", "task",
+  // Connectives that relate two stated facts without adding one ("an initiative tied to 1,000+ hires").
+  "tied", "linked", "associated",
   "typo", "make", "slower", "current", "completed", "complete", "school", "location", "core", "job", "organized", "sequence", "straightforward", "included", "presented", "order", "scan", "section", "title", "employer", "figure", "score", "starting", "point",
   "uneven", "unevenly", "unusually", "useful", "utilization", "verified", "volume", "well", "workforce",
   // Seniority reads, matching the report's own level scale ("Early career" ... "Director-level").

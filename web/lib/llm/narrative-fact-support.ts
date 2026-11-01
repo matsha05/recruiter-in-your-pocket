@@ -163,7 +163,13 @@ export function assessmentNarrativeIssues(input: {
   const sourceFacts = input.sourceCandidates.flatMap((candidate) => candidate.facts);
   const sourceTokens = new Set(input.sourceCandidates.flatMap((candidate) => Array.from(candidate.tokens)));
   // The presence anchor needs one shared word; "practice" anchors to "Practicing".
+  // An outcome noun ("growth") is neutral when the resume states an outcome ("Expanded ..."):
+  // it neither anchors the claim nor counts against it.
   const sourceStems = new Set(Array.from(sourceTokens, presenceStem));
+  const sourceHasOutcome = sourceFacts.some((fact) => fact.key.startsWith("outcome:"));
+  const presenceTokens = Array.from(input.claimTokens)
+    .filter((token) => !(sourceHasOutcome && /^(?:growth|increase|improvement|reduction|expansion|gain)$/u.test(token)));
+  const anchors = (token: string) => sourceTokens.has(token) || sourceStems.has(presenceStem(token));
   const assertive = input.directFactualAssertion;
   const peopleManagementAssessment = /\b(?:people|staff|team) (?:oversight|management)\b/iu.test(input.claim)
     && input.sourceCandidates.some(candidate => candidate.facts.some(fact => fact.key === "agency:manage")
@@ -176,10 +182,10 @@ export function assessmentNarrativeIssues(input: {
   ));
   const unsupportedTokens = assertive
     ? Array.from(input.claimTokens).filter((token) => !sourceTokens.has(token))
-    : input.requirePresenceAnchor && input.assertsPresence && input.claimTokens.size > 0 && !peopleManagementAssessment
+    : input.requirePresenceAnchor && input.assertsPresence && presenceTokens.length > 0 && !peopleManagementAssessment
       && !/\b(?:count|impact|metric|number|outcome|result|scale|scope|size)s?\b/iu.test(input.claim)
-      && !Array.from(input.claimTokens).some((token) => sourceTokens.has(token) || sourceStems.has(presenceStem(token)))
-      ? Array.from(input.claimTokens)
+      && !presenceTokens.some(anchors)
+      ? presenceTokens
     : [];
   const unsupported = [
     ...(input.contradictsNegativeSource ? ["contradicts negative source evidence"] : []),

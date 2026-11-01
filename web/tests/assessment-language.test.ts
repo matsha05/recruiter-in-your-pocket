@@ -53,6 +53,9 @@ const positiveCases = [
     { claim: 'You supported HR at a 400-employee plant across three shifts, which helps a reader picture the workforce.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
     // Same run: "tasks" is a generic word for duties.
     { claim: 'Relevant support tasks are visible, but most lack detail about the work.', source: 'IT Help Desk Intern. Answered help desk tickets from teachers and staff. IT support specialist with help desk experience.' },
+    // eval_1793570741684 (final v3 golden): a connective, a ", though" clause, and an outcome noun.
+    { claim: 'You managed 17 Recruiters and Sourcers at Meta and contributed to an initiative tied to 1,000+ ML Gen hires.', source: 'Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires.' },
+    { claim: 'Recent work includes clear reach and growth, though some leadership details remain unstated.', source: 'Expanded small-group ministry from six to eighteen active groups.' },
 ];
 const negativeCases = [
     { claim: 'The description clearly shows SQL ownership.', source: 'No SQL experience. Built reports in Excel.' },
@@ -106,6 +109,9 @@ const negativeCases = [
     { claim: 'You supported HR at a 900-employee plant across three shifts, which helps a reader picture the workforce.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
     { claim: 'You led the HR migration, which helps a reader see the $2M you saved.', source: 'Supported HR for a plant of 400 employees across three shifts.' },
     { claim: 'Relevant SQL tasks are visible.', source: 'IT Help Desk Intern. Answered help desk tickets from teachers and staff.' },
+    { claim: 'You managed 17 Recruiters at Meta and contributed to an initiative tied to 5,000+ ML Gen hires.', source: 'Managed a team of 17 Recruiters and Sourcers at Meta. Played a pivotal role in Boom of Funnel (BoF) initiatives, contributing to 1,000+ ML Gen hires.' },
+    { claim: 'Recent work includes clear growth, though some leadership details remain unstated.', source: 'Led weekly small-group ministry meetings for active groups.' },
+    { claim: 'The resume shows clear revenue growth, though the team size is unstated.', source: 'Expanded small-group ministry from six to eighteen active groups.' },
 ];
 for (const c of positiveCases)
     assert.equal(auditReportNarrative({ summary: c.claim }, c.source).length, 0, JSON.stringify(c));
