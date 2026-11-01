@@ -2,7 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
-import { Key, Mark, PenNote, useSeen } from "@/components/research/figures/FigureKit";
+import { Key, PenNote, useSeen } from "@/components/research/figures/FigureKit";
 
 // Ghayad (2013), Table A.5: interview-request rate by time out of work and industry experience.
 const points = [
@@ -39,15 +39,15 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                         {[0, 5, 10, 15].map((tick) => (
                             <g key={tick}>
                                 <line x1={pad.left} x2={W - pad.right} y1={y(tick)} y2={y(tick)} stroke="hsl(var(--text-strong) / 0.08)" />
-                                <text x={pad.left - 10} y={y(tick) + 4} textAnchor="end" className="fill-[hsl(var(--muted-foreground))] text-[14px]">{tick}%</text>
+                                <text x={pad.left - 10} y={y(tick) + 4} textAnchor="end" className="fill-[hsl(var(--muted-foreground))] text-sm">{tick}%</text>
                             </g>
                         ))}
                         {points.map((p, i) => (
-                            <text key={p.label} x={x(i)} y={H - 12} textAnchor="middle" className="fill-[hsl(var(--muted-foreground))] text-[14px]">{p.label}</text>
+                            <text key={p.label} x={x(i)} y={H - 12} textAnchor="middle" className="fill-[hsl(var(--muted-foreground))] text-sm">{p.label}</text>
                         ))}
                         {/* The six-month line, where the cliff starts. */}
                         <rect x={(x(2) + x(3)) / 2} y={pad.top - 8} width={x(3) - (x(2) + x(3)) / 2 + 22} height={H - pad.top - pad.bottom + 8} rx={6} fill="hsl(var(--highlight) / 0.22)" />
-                        <text x={(x(2) + x(3)) / 2 + 8} y={pad.top + 8} className="fill-[hsl(var(--brass))] text-[13px] font-semibold">Past six months</text>
+                        <text x={(x(2) + x(3)) / 2 + 8} y={pad.top + 8} className="fill-[hsl(var(--brass))] text-xs font-semibold">Past six months</text>
                         <path d={path("different")} pathLength={1} fill="none" stroke="hsl(var(--text-strong) / 0.35)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" style={draw} className="transition-[stroke-dashoffset] duration-[900ms] ease-snap motion-reduce:transition-none" />
                         <path d={path("same")} pathLength={1} fill="none" stroke="hsl(var(--pen))" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" style={draw} className="transition-[stroke-dashoffset] duration-[900ms] ease-snap motion-reduce:transition-none" />
                         {points.map((p, i) => (
@@ -56,8 +56,8 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                                 <circle cx={x(i)} cy={y(p.same)} r={5} fill="hsl(var(--pen))" stroke="hsl(var(--card))" strokeWidth={2} />
                             </g>
                         ))}
-                        <text x={x(1)} y={y(points[1].same) - 14} textAnchor="middle" className="fill-[hsl(var(--foreground))] text-[15px] font-semibold">16%</text>
-                        <text x={x(3) - 14} y={y(points[3].same) - 12} textAnchor="end" className="fill-[hsl(var(--foreground))] text-[15px] font-semibold">2%</text>
+                        <text x={x(1)} y={y(points[1].same) - 14} textAnchor="middle" className="fill-[hsl(var(--foreground))] text-sm font-semibold">16%</text>
+                        <text x={x(3) - 14} y={y(points[3].same) - 12} textAnchor="end" className="fill-[hsl(var(--foreground))] text-sm font-semibold">2%</text>
                     </svg>
                     <div className="grid gap-4">
                         <div className="grid gap-2">
@@ -65,11 +65,11 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                             <Key tone="quiet">Experience in a different industry</Key>
                         </div>
                         <PenNote>
-                            A career change roughly halves the response. <Mark seen={seen}>A long current gap nearly erases it.</Mark>
+                            A career change roughly halves the response. A long current gap nearly erases it.
                         </PenNote>
                     </div>
                 </div>
-                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
                     About 3,360 resumes sent to 600 US job ads. Each point after &ldquo;Employed&rdquo; is 360 resumes, so small differences are rough.
                 </p>
             </DiagramFrame>

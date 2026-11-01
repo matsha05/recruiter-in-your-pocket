@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { Button } from "@/components/ui/button";
 import { HiringTruths } from "./home/HiringTruths";
 import { OneSentence } from "./home/OneSentence";
 import { SilenceSection } from "./home/SilenceSection";
@@ -44,11 +45,14 @@ export function LandingMineral() {
                 </div>
             </section>
 
-            <section className={styles.close} aria-labelledby="close-title">
+            {/* An ink band: the dark theme tokens invert the shared Button with it. */}
+            <section className={`${styles.close} dark`} aria-labelledby="close-title">
                 <h2 id="close-title">Good work deserves a good read.</h2>
-                <Link href="/workspace" data-analytics-cta="closing_report" className={styles.closeAction}>
-                    Get your free report <ArrowRight weight="bold" aria-hidden="true" />
-                </Link>
+                <Button asChild size="lg">
+                    <Link href="/workspace" data-analytics-cta="closing_report">
+                        Get your free report <ArrowRight weight="bold" aria-hidden="true" />
+                    </Link>
+                </Button>
             </section>
 
             <Footer />

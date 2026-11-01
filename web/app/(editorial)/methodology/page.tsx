@@ -104,11 +104,11 @@ export default function MethodologyPage() {
             <dl className="not-prose mb-12 divide-y divide-border/40 border-y border-border/40">
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-brand">From research</dt>
-                    <dd className="text-sm leading-7 text-muted-foreground">In one study, recruiters judged real resumes differently from simplified profiles. In another, longer looks at the Experience section went with moving a resume forward.</dd>
+                    <dd className="text-sm text-muted-foreground">In one study, recruiters judged real resumes differently from simplified profiles. In another, longer looks at the Experience section went with moving a resume forward.</dd>
                 </div>
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-foreground">Ours</dt>
-                    <dd className="text-sm leading-7 text-muted-foreground">The four things the score weighs, how the Critical Miss is chosen, and how findings are written. Matt designed the criteria; the studies did not test our score.</dd>
+                    <dd className="text-sm text-muted-foreground">The four things the score weighs, how the Critical Miss is chosen, and how findings are written. Matt designed the criteria; the studies did not test our score.</dd>
                 </div>
             </dl>
 

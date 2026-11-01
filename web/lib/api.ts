@@ -7,6 +7,7 @@ import {
 } from "./reports/anonymous-report-recovery-client";
 import { parseGenerationFailureResponse, retireTerminalGenerationMarker } from "./reports/generation-operation-marker";
 import { parseResumeStreamCompletion } from "./validation/resume-stream-completion";
+import { isGenerationStage, type GenerationStage } from "./generation-stage";
 
 export type ResumeFeedbackRequest = {
   text: string;
@@ -101,7 +102,7 @@ export async function streamResumeFeedback(
   jobDescription: string | undefined,
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
-  options?: { signal?: AbortSignal; savedJobId?: string | null }
+  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void }
 ): Promise<{
   ok: boolean;
   report?: any;
@@ -135,6 +136,7 @@ export async function streamResumeFeedback(
   const recoveryMarkerWasCreated = attached.created;
   let res: Response;
   let identityRetryAttempted = false;
+  options?.onStage?.("sending");
   while (true) {
     try {
       res = await fetch("/api/resume-feedback-stream", {
@@ -302,6 +304,8 @@ export async function streamResumeFeedback(
             restored: attemptDisposition === "restored",
           });
           if (creditRestored && recoveryMarker && recoveryMarkerWasCreated) clearAnonymousReportRecoveryMarker(recoveryMarker.recoveryId);
+        } else if (event.type === "stage") {
+          if (isGenerationStage(event.stage)) options?.onStage?.(event.stage);
         } else if (event.type === "meta") {
           if (recoveryMarker && event.recovery_id === recoveryMarker.recoveryId) {
             acknowledgedRecoveryId = recoveryMarker.recoveryId;

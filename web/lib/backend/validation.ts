@@ -7,6 +7,7 @@ import { positiveSourceContradictions, removeUnsafeRewrites } from "../llm/sourc
 import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 import { isOptionalReportMetadataPath } from "../llm/optional-report-metadata";
 import { logInfo } from "../observability/logger";
+import { MIN_RESUME_CHARS, RESUME_TOO_SHORT_MESSAGE } from "../resume-input";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -37,6 +38,7 @@ export function validateResumeFeedbackRequest(body: any): {
 
   const trimmedText = typeof text === "string" ? text.trim() : "";
   if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually look at it.";
+  else if (trimmedText.length < MIN_RESUME_CHARS) fieldErrors.text = RESUME_TOO_SHORT_MESSAGE;
   else if (trimmedText.length > MAX_TEXT_LENGTH) {
     fieldErrors.text = "Your resume text is very long. Try trimming extra content.";
   }
@@ -58,7 +60,9 @@ export function validateResumeFeedbackRequest(body: any): {
   if (Object.keys(fieldErrors).length > 0) {
     return {
       ok: false,
-      message: "Something in your request needs a quick tweak before I can give you feedback.",
+      message: fieldErrors.text === RESUME_TOO_SHORT_MESSAGE
+        ? RESUME_TOO_SHORT_MESSAGE
+        : "Something in your request needs a quick tweak before I can give you feedback.",
       fieldErrors
     };
   }

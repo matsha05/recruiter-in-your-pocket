@@ -106,6 +106,8 @@ async function run() {
   const stripeSessions = new Map<string, CheckoutCall>();
   let customerLookups = 0;
   let stripeCreateAttempts = 0;
+  let purchasesDisabled = false;
+  const checkoutSteps: Array<Record<string, string>> = [];
   const stripe = {
     customers: { list: async () => { customerLookups += 1; return { data: [] }; } },
     checkout: {
@@ -138,7 +140,13 @@ async function run() {
       }) } }),
     };
     if (request === "@/lib/launch/flags") return { isLaunchFlagEnabled: () => true };
-    if (request === "@/lib/launch/serverFlags") return { areNewPurchasesDisabled: () => false };
+    if (request === "@/lib/launch/serverFlags") return { areNewPurchasesDisabled: () => purchasesDisabled };
+    if (request === "@/lib/observability/launchSignals") return {
+      recordLaunchSignal: (name: string, attributes: Record<string, string>) => {
+        assert.equal(name, "riyp.checkout.step");
+        checkoutSteps.push(attributes);
+      },
+    };
     if (request === "@/lib/security/rateLimit") return { rateLimitAsync: async () => ({ ok: true }) };
     if (request === "@/lib/observability/logger") return {
       hashForLogs: (value: string) => createHash("sha256").update(value).digest("hex"),
@@ -168,6 +176,12 @@ async function run() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ tier: "30d", source: "pricing", ...body }),
     }));
+
+    purchasesDisabled = true;
+    const refused = await post({ source: "pricing" });
+    assert.equal(refused.status, 503);
+    assert.deepEqual(checkoutSteps.splice(0), [{ step: "purchases_disabled", source: "unknown" }], "a forgotten kill switch is counted on every refused buyer");
+    purchasesDisabled = false;
 
     for (const { label, input } of invalidDestinations) {
       const createsBefore = checkoutCalls.length;
@@ -199,6 +213,7 @@ async function run() {
       assert.equal(cancelUrl.searchParams.get("returnTo"), returnTo, "cancelling does not drop the saved report");
       assert.equal(call.parameters.mode, "payment");
       assert.deepEqual(call.parameters.line_items, [{ price: "price_checkout_return", quantity: 1 }]);
+      assert.deepEqual(checkoutSteps.splice(0), [{ step: "checkout_started", source }]);
     }
 
     const destinations = { pricing: "/pricing", landing: "/pricing", settings: "/settings/billing", workspace: "/workspace", paywall: "/workspace" };
@@ -238,6 +253,7 @@ async function run() {
       assert.equal(changedResult.sessionId, undefined, "the cache cannot return a stale destination for a changed intent");
       assert.equal(stripeCreateAttempts, attemptsBeforeChange + 1, "the conflicting destination reaches Stripe instead of a stale cache entry");
       assert.equal(checkoutCalls.length, createsBeforeChange, "conflicting retry cannot create a second payment session");
+      assert.deepEqual(checkoutSteps.at(-1), { step: "checkout_failed", source: "pricing" });
     }
 
     console.log("Checkout return tests passed: strict local destinations, success/cancel continuity, ordinary purchases, and idempotent retries");

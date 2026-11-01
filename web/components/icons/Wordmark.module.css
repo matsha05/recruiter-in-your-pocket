@@ -1,14 +1,27 @@
+/* The name at 20px type: the outlines are drawn at 100 units per em, cap height 70. */
 .wordmark {
-    display: inline-block;
+    display: inline-flex;
     flex-shrink: 0;
-    height: auto;
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.17;
-    letter-spacing: .115em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    align-items: center;
 }
 
-.compact { font-size: 10px; }
+.line {
+    display: block;
+    width: auto;
+    height: 1.0625rem;
+}
+
+.compact .line { height: 0.9375rem; }
+
+.pen { color: hsl(var(--pen)); }
+
+.stacked {
+    display: none;
+    width: auto;
+    height: 2.125rem;
+}
+
+@media (max-width: 639px) {
+    .stackOnPhones .line { display: none; }
+    .stackOnPhones .stacked { display: block; }
+}

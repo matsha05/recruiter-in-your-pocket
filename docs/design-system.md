@@ -1,9 +1,9 @@
 # Recruiter in Your Pocket - Highlighter Design System
 
-Last updated: 2026-10-30
+Last updated: 2026-11-01
 Owner: Product Design + Engineering
 Status: Approved implementation contract; route and output verification tracked separately
-System version: Highlighter 1.0
+System version: Highlighter 1.1 (type roles, one Button, one interaction grammar, style budgets; Nov 1, 2026)
 
 On October 30, 2026 Matt chose the Highlighter direction for every surface: web, report, workspace, signed-in pages, research and diagrams, legal and error pages, emails, the PDF, icons, and the share image. A recruiter's actual tools are the system: a yellow highlighter marks what a recruiter would miss, and a green pen writes the notes. Schibsted Grotesk sets headlines and runs the interface, and Literata carries the recruiter's voice. Product truth, security, accessibility, and working behavior remain protected. It replaces the Alpine system (Instrument Sans, Source Serif 4, aqua), which is retired.
 
@@ -60,7 +60,7 @@ The system is the floor for consistency, not a page template. Do not repeat one 
 
 | Role | Family | Use |
 | --- | --- | --- |
-| Headlines and interface | **Schibsted Grotesk** | wordmark, headlines (800), section titles (700), big numbers, navigation, controls, labels, body, tables; tabular figures for data |
+| Headlines and interface | **Schibsted Grotesk** | wordmark, headlines and titles (800), headings and controls (600), big numbers, navigation, labels, body, tables |
 | Recruiter's voice | **Literata** | the Verdict, margin notes (italic), and quoted resume lines; never a route-wide type system |
 
 Both are self-hosted in `web/app/globals.css` with `font-display: swap`, from `/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2` plus its italic (weights 400-900) and `/fonts/literata/Literata-Variable.woff2` plus `Literata-Italic-Variable.woff2` (200-900). Static `.woff` cuts in the same folders feed renderers that cannot read woff2 (share image, icons). Both are SIL Open Font License; each folder keeps its `OFL.txt`. Neither had been used in RIYP before; Geist and Newsreader (December 2025, July 2026) and Bricolage Grotesque were considered and not chosen. No runtime font CDN is allowed. There is no mono face.
@@ -69,7 +69,7 @@ Runtime mapping:
 
 - `--font-brand-sans`, `--font-display`, `--font-body`, and `--font-mono` -> `"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif`
 - `--font-editorial` -> `"Literata", Georgia, "Times New Roman", serif`
-- `--weight-display` -> `800`; `--weight-heading` -> `700`; `--weight-title` -> `600`
+- `--weight-display` and `--weight-heading` -> `800`; `--weight-title` -> `600`
 - `--weight-body` -> `400`
 - `--weight-control` and `--weight-label` -> `600`
 
@@ -77,20 +77,38 @@ Runtime mapping:
 
 Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give commas a full digit width ("$1 ,370 ,000"), so `tabular-nums` is redefined globally to proportional digits. Right-align money columns for tidy edges; never re-enable `tnum` on anything that contains a comma or period.
 
-| Role | Size / leading | Weight and treatment |
-| --- | --- | --- |
-| Landing hero | `clamp(44px, 7vw, 80px)` / 0.98 | Schibsted Grotesk 800, -0.045em; one line on desktop: “See what a recruiter sees.” |
-| Marketing section title | 32-48px / 1.05 | Schibsted Grotesk 800 |
-| Workspace and report headings | 24px / 30px | Schibsted Grotesk 700 |
-| Verdict | 22-24px / 1.4 | Literata 400 |
-| Margin notes | 15-17px / 1.45 | Literata italic 400, pen color |
-| Report and app body | 16px / 25px | Schibsted Grotesk 400 |
-| Research prose | 18px / 30px | Schibsted Grotesk 400; about 66ch measure |
-| Table data | 14px / 22px | Schibsted Grotesk 400, tabular figures |
-| Controls | 14-16px | Schibsted Grotesk 600 |
-| Labels | 12-14px | Schibsted Grotesk 600; uppercase tracking only for Verdict and Critical Miss |
+Every piece of text on the site uses one of eleven roles (Nov 1, 2026). The production audit counted 121 text styles, 31 sizes (some fractional, such as 13.76 and 100.8px), and weights from 400 to 800; the roles replace all of them. Sizes are whole pixels and step at breakpoints instead of scaling with `clamp()`, so a heading is the same size everywhere it appears at a given width.
 
-Nothing below 12px. Do not shrink actual report evidence to the homepage preview's scale. Use shared tokens rather than route-local family declarations. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
+| Role | Phone (<768px) | 768px and up | Weight and family | Use |
+| --- | --- | --- | --- | --- |
+| `display` | 44 / 44 | 64 / 64; 72 / 72 from 1280px | 800 Schibsted, -0.045em | marketing tier: the homepage headline only |
+| `headline` | 36 / 40 | 48 / 52 | 800 Schibsted, -0.04em | content tier: page titles on research, guides, pricing, legal, errors; marketing section titles |
+| `title` | 28 / 34 | 32 / 38 | 800 Schibsted, -0.03em | app tier: workspace, report, account, and auth page titles; article h2; big numbers |
+| `heading` | 24 / 30 | 24 / 30 | 600 Schibsted, -0.02em | section and card headings, report section titles |
+| `lead` | 18 / 30 | 20 / 30 | 400 Schibsted | a page's deck or introduction |
+| `prose` | 18 / 30 | 18 / 30 | 400 Schibsted | research and guide reading (18px / 30px) |
+| `body` | 16 / 25 | 16 / 25 | 400 Schibsted (600 for emphasis and controls) | report, app, and marketing body (16px / 25px) |
+| `small` | 14 / 22 | 14 / 22 | 400 or 600 Schibsted | tables, navigation, metadata, compact controls |
+| `label` | 13 / 18 | 13 / 18 | 600 Schibsted (400 for captions) | labels, captions, footnotes; the 13px floor |
+| `verdict` | 20 / 30 | 24 / 34 | 400 Literata | the Verdict, quoted resume lines, the recruiter's longer answers |
+| `note` | 16 / 25 | 16 / 25 | 400 Literata, italic for margin notes | pen notes, figure notes, short quoted findings |
+
+Rules:
+
+- Three headline tiers, so hierarchy follows importance: marketing 72 (the homepage), content 48, app 32. Nothing outranks the homepage headline; the 404 and the research index use the content tier.
+- Three weights: 800 for display, headline, and title; 600 for headings, controls, labels, and bold text (`strong`, `b`, and `th` are 600, not the browser's 700); 400 for reading. Tailwind's `font-medium` and `font-semibold` both mean 600, and `font-bold` means 800.
+- The one marketing quote (the homepage verdict in One Sentence) uses the `headline` size in Literata 400, with the leading opened to 44 / 58 (`--type-headline-serif-leading`) so the highlighter and Literata's ascenders don't collide.
+- Uppercase stays reserved for the Verdict and Critical Miss labels (`label` with 0.1em tracking).
+- Illustrations that draw a document, such as the hero resume, may use the document's own type; they are hidden from assistive technology. The stacked wordmark is exempt until the D6 logotype replaces it.
+
+Implementation:
+
+- The sizes live once, in `web/app/globals.css` (`--type-<role>-size` and `--type-<role>-leading`, with the phone-first steps in two media queries). `--type-<role>` is a `font` shorthand for CSS modules: `font: var(--type-body)`, plus `letter-spacing: var(--tracking-<role>)` for the four headline roles.
+- `web/tailwind.config.js` exposes each role as `text-<role>`. Tailwind's own keys are aliases (`text-xs` -> label, `text-sm` -> small, `text-base` -> body, `text-lg` -> prose, `text-xl` -> lead, `text-2xl` -> heading, `text-3xl`/`4xl` -> title, `text-5xl`/`6xl` -> headline, `text-7xl` and up -> display), so every size class lands on the scale. `text-report-title` and `text-data` remain as deprecated aliases while another workstream edits the files that use them.
+- A role owns its line height: don't add `leading-*` to a role, and don't write `text-[15px]`, `font-[500]`, or a raw `font-size` in CSS. The guardrail fails on all three.
+- `cn()` (tailwind-merge) knows the role names, so `text-heading` and a text color never cancel each other.
+
+Nothing below 13px. Do not shrink actual report evidence to the homepage preview's scale. Display text may use `text-wrap: balance`; prose may use `text-wrap: pretty`. Check actual loaded faces, fallback wrapping, long headings, and font-driven layout shifts.
 
 ### Separate output pipelines
 
@@ -119,7 +137,7 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 
 Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Older names (`--brand`, `--surface-sky`, `--cyan-bright`, `--teal-bright`, `--accent-apricot`, `--assessment-*`, `--premium`, `--gold`, `--amber`) are aliases into this palette so existing utilities follow it. `--citron` / `--accent-butter` remain compatibility tokens only.
 
-Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green pen for anything the recruiter says or points at; blue ink for the candidate's own work and numbers; red pen (`--destructive`) only for problems and destructive actions, never decoration; yellow only for the Critical Miss and highlighted resume lines. Charts and comparisons use `--chart-1`…`--chart-4` in that fixed order, never cycled; a fifth series folds into "Other" or small multiples. Within one view a color means one thing: in the offer calculator it means the kind of pay (base, equity, bonus, one-time), so offers are told apart by name. Data labels and values stay in text ink, never the series color. Two hands on one page: anything quoted from the candidate's resume wears a blue-ink rule (the Critical Miss quote keeps the highlighter instead); the recruiter's notes, approvals ("Don't touch this one", "What keeps working"), and suggested wording wear the green pen; what is missing wears the red pen. Single-series charts use `--chart-1`. Meaning is global, so color is spent only on meaning: pen colors mark text and mean the same thing on every page; chart colors live only inside a chart with a legend, which scopes them; a multi-series chart never shares a view with pen marks; and navigation, categories, tags, and pillars are never color-coded (they use position, numbering, and names). The research pillars were tried in chart colors on Oct 31 and rejected for exactly this reason: blue would have meant both "your words" and "Perception". Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
+Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green pen for anything the recruiter says or points at; blue ink for the candidate's own work and numbers; red pen (`--destructive`) only for problems and destructive actions, never decoration; yellow only for the Critical Miss and highlighted resume lines. Charts and comparisons use `--chart-1`…`--chart-4` in that fixed order, never cycled; a fifth series folds into "Other" or small multiples. Within one view a color means one thing: in the offer calculator it means the kind of pay (base, equity, bonus, one-time), so offers are told apart by name. Data labels and values stay in text ink, never the series color. Two hands on one page: anything quoted from the candidate's resume wears a blue-ink rule (the Critical Miss quote keeps the highlighter instead); the recruiter's notes, approvals ("Don't touch this one", "What keeps working"), and suggested wording wear the green pen; what is missing wears the red pen. Single-series charts use `--chart-1`. Guides wear the pen only for suggested wording (the "What you can say" box) and figure pen notes; their headlines, rules, section numbers, and labels stay ink or muted, and the guardrail checks it (Nov 1, 2026). Meaning is global, so color is spent only on meaning: pen colors mark text and mean the same thing on every page; chart colors live only inside a chart with a legend, which scopes them; a multi-series chart never shares a view with pen marks; and navigation, categories, tags, and pillars are never color-coded (they use position, numbering, and names). The research pillars were tried in chart colors on Oct 31 and rejected for exactly this reason: blue would have meant both "your words" and "Perception". Success, warning, destructive/error, and disabled roles remain distinct. Operational failures must be visually and verbally separate from resume findings. Pair color with labels, icons, position, or wording; never rely on color alone.
 
 Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Dark mode chart steps are lifted separately (`#5b80e6` `#3a9a6e` `#a06cc0` `#d9731a`) and validated against the dark sheet. Avoid gradients, glow, and grain.
 
@@ -148,7 +166,7 @@ Do not assign errors to missing career evidence or use green/red scores as subst
 | Workspace | 960px | focused task area, clear input grouping |
 | Report shell | 1200px | readable assessment and compact useful actions |
 | Authentication | about 440px | concise form and recovery messages |
-| Research prose | about 66ch | 18px / 30px reading, wider figures when needed |
+| Research prose | 52ch (`max-w-reading`), about 69 characters | 18px / 30px reading, wider figures when needed |
 
 Use 16-20px mobile gutters and 24-32px desktop gutters where the reference allows.
 
@@ -158,7 +176,7 @@ On phones, place the headline, explanation, and full-width action before the res
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
-The upload surface uses a compact file picker instead of a desktop-sized drop area. The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public navigation sheets keep their close control visible and scroll their links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
 ### Spacing scale
 
@@ -175,13 +193,22 @@ Open layouts are preferred to card farms. Use a container when grouping changes 
 
 | Element | Geometry |
 | --- | --- |
-| Primary action | dark pill; 60px hero height, 48px app height |
+| Action | the shared Button: a pill at 44, 48, or 60px |
 | Input or utility field | 10px radius; visible control boundary |
 | Inset | 12px radius |
 | Main sheet | 24px radius desktop; 16px on mobile |
 | Compact icon control | circle where useful; retain a 44px target |
 
 Primary actions are pills; fields, tables, tabs, and utility controls are not all pills. Secondary actions use restrained borders and clear focus. Compact appearance does not reduce the target below 44px. Shadows indicate real elevation and remain subtle. Marketing and app navigation share warm materials and type while spacing follows context. The old ink-header, citron-CTA, and mostly rectilinear requirements are retired.
+
+### Wordmark and app icons (D6, Nov 1, 2026)
+
+Matt chose direction C, "Two Voices": the name in Schibsted Grotesk ExtraBold in ink, and "in" in Literata Italic in the pen green (mint on dark), the same two voices as the report. The favicon is C2, "The Noted R": a Schibsted R underlined once in pen. No yellow appears in the mark.
+
+- `web/components/icons/Wordmark.tsx` draws outlined paths (`wordmark-paths.ts`), so it never waits on a web font. Ink follows the text color and "in" follows `--pen`. It sits on one line at about 20px type in the site header and footer and about 18px in the app header, and stacks on two lines below 640px in the headers.
+- `app/icon.svg` follows the browser theme (paper tile, or ink tile in dark mode). `app/favicon.ico` carries the 16px drawing redrawn on whole pixels plus the 32px drawing. `app/apple-icon.png` and the manifest icons in `public/brand/` use the ink tile, and are safe as maskable icons.
+- The share cards set the name in Satori spans with the Literata italic "in". The PDF embeds the static Literata Italic cut for it, and the sign-in email uses HTML text with a Georgia italic fallback, so it reads with images off.
+- Sources are in `web/public/brand/` (from `docs/design-explorations/wordmark-2026-11/`). Run `node scripts/brand-assets.mjs` from `web/` after changing them.
 
 ## 8. Icons and diagrams
 
@@ -208,7 +235,7 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 
 - **Count things people can picture.** When the number is a rate, show the units: 100 resume sheets, 500 applicants as dots, 136 callbacks. "1 in 500" lands when the reader sees the 500. Use `UnitGrid` (`shape="sheet"` for resumes, dots for people or events).
 - **One pen note per figure.** `PenNote` is the recruiter's margin note: Literata italic in pen, one or two sentences, saying what a recruiter takes from the figure. It follows the voice guide's margin-note register and never claims more than the source.
-- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two.
+- **One highlighter per figure.** `Mark` sweeps once when the figure scrolls into view and lands on the single takeaway: the highlighted unit, number, or phrase. Never two. When the data carries the highlight (a highlighted unit, bar, or band), the pen note stays pen with no `Mark` in it. The guardrail fails a figure that uses the highlighter two ways (Nov 1, 2026; the spelling figure had yellow bars and a yellow note).
 - **Pen means the thing that matters; gray is everything else.** Highlighter yellow is reserved for the one takeaway. No other hues.
 - **Draw the artifact when the finding is about the artifact.** A typo study shows a resume line with the typos circled in pen; a story study shows two versions of the same resume.
 - **Lines for change over time.** Use the SVG line pattern in `GapPivotDiagram`: 2.5–3px strokes, direct labels at the points that matter, a soft highlighter band for the region the note is about.
@@ -219,7 +246,7 @@ Research figures are drawn in the product's own hand, from `web/components/resea
 
 - **13px is the floor.** No text below 0.8125rem anywhere: labels, captions, metadata, chips, footnotes.
 - **Uppercase only for Verdict and Critical Miss**, via `.riyp-verdict-label`. Every other label is sentence case at 13px, weight 600. A resume section heading drawn inside an illustration may mimic the resume's own style.
-- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green.
+- **Every button is a pill.** The shared Button is `rounded-full` in all variants, with no shadows. Outline buttons darken their border on hover; they don't turn green. Since Nov 1, 2026 there is one Button: three sizes, three variants, and the two delete treatments (§9).
 - **Static cards don't react.** `.app-card` has a hairline border and no shadow or hover state. Only things you can click respond to the pointer.
 - **The score is a number, not a color.** `ScoreBadge` shows the score in ink with "/100". No green, gold or red bands and no band labels; the written Verdict carries the judgment.
 - **Status chips use pen.** "Active" and "Paid" use the pen tint, not success green. Green-for-good is not part of the system.
@@ -239,9 +266,32 @@ Required shared categories:
 - diagrams: frame, title, legend, caption, source, takeaway
 - feedback: empty, loading, success, warning, error, paywall
 
-Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion.
+Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion. The report wait screen shows elapsed time and the stage the stream reports (`stage` events: sending, reading, writing, checking, or a retry); a step is done only when the stream moves past it (Nov 1, 2026).
 
 Shared primitives are the default. A route-specific component is appropriate when its semantics are route-specific, not because recreating a button or card was faster.
+
+### Button
+
+`web/components/ui/button.tsx` is the only button. The production audit found nine builds of the dark pill (heights from 44 to 60px, labels from 14 to 17px at 500 or 600, white or ground-colored text); there is now one build per size and variant. A link that looks like a button is the Button with `asChild` around the `Link`.
+
+| Size | Height | Label | Use |
+| --- | --- | --- | --- |
+| `sm` | 44px | `small`, 600 | dense rows, report and account actions |
+| `md` (default) | 48px | `body`, 600 | app and page actions, the header action |
+| `lg` | 60px | 18px, 600 | the one large action on a marketing page or band |
+| `icon` | 44px circle | none | menus and close controls |
+
+| Variant | Rest | Hover | Use |
+| --- | --- | --- | --- |
+| `primary` (default) | ink fill, white label | ink at 88% | the one main action in a view |
+| `secondary` | white sheet, control-line outline | outline turns ink | other actions |
+| `quiet` | text with the quiet underline | underline goes solid | a supporting route beside a primary, like "See an example" |
+| `destructive` | white sheet, red-pen outline and label | outline goes solid red | every delete control that opens or leads to a deletion; the red pen draws a line |
+| `destructiveFinal` | red-pen fill, white label | fill at 88% | only the button that performs an irreversible step, inside its final confirm (delete account, delete report, delete job) |
+
+Delete rule (Matt, Nov 1, 2026): outlined red everywhere, filled red only on the last irreversible step. A screen never shows a filled red button outside a confirm dialog.
+
+Don't restyle a Button through `className` (height, padding, size, weight, fill, or border); pick the size and variant. Layout classes such as `w-full`, `mt-*`, `justify-between`, and `hidden md:inline-flex` are fine. An ink band (the homepage close) adds the `dark` class so its tokens, and the Button with them, invert.
 
 ## 10. Surface contracts
 
@@ -251,6 +301,7 @@ Shared primitives are the default. A route-specific component is appropriate whe
 - The story runs in four light, simple beats: the hidden verdict (hero), the silence (a fading “No response” list), one sentence (a single verdict in Literata with the highlighter on the miss), then “What we look for, line by line.”
 - The hero resume is fictional and deliberately ordinary, drawn as a printed document; inside this illustration only, the document's own Times face is allowed, as a resume drawn in an illustration may mimic its own style. The reviewer note on the recruiter's screen is blurred on purpose and hidden from assistive technology.
 - The note arrives once; reduced motion shows it in place. The illustration must not gate the report action.
+- Below 1200px the hero stacks (headline and actions, then the illustration at its desktop size) so the 64 and 72px headline never wraps in a narrow column; below 640px the actions go full width.
 - The preview bridges to the same working report grammar, not an independently styled promise.
 - Maintain one dominant action and one supporting route.
 
@@ -264,7 +315,9 @@ Shared primitives are the default. A route-specific component is appropriate whe
 
 ### Research
 
-- Research is the trust layer, not a blog. Prose uses 18px/30px at about 66ch, with readable figures and labeled tables.
+- Research is the trust layer, not a blog. Prose uses 18px/30px on the 52ch reading rail (about 69 characters per line), with readable figures and labeled tables.
+- One left content edge (Nov 1, 2026): the header, the lead figure, and the reading rail start at the container edge; figures may run wider than the rail, to the right.
+- A citation jump lands below the fixed header (`.riyp-jump-target`), marks the source in pen tint, and moves focus there.
 - Start with a concrete recruiter or hiring claim.
 - Show what the evidence supports, what remains uncertain, and what the reader can do with it.
 - Prefer diagrams, comparisons, annotated processes, and source-backed teaching surfaces when they materially improve understanding.
@@ -301,6 +354,19 @@ One underline offset (`--link-offset`, 0.24em) and one thickness (`--link-thickn
 | Prose | `.riyp-prose` container | unclassed links get the inline treatment | same as inline |
 
 Inline links are for links inside sentences and standalone text actions. Quiet links are for sources, legal and support asides, and metadata. Primary actions are buttons, not links. Underlines use the same offset in every CSS module (`text-underline-offset: var(--link-offset)`); never hand-tune `underline-offset-*` or `decoration-brand/NN` per surface. Color transitions use `--duration-fast`. Focus uses the shared `focus-ring` (2px pen outline), never an underline change alone.
+
+### Interaction grammar
+
+Everything you can click answers the same way, at `--duration-fast` on the shared curve (Nov 1, 2026). Before this, hover differed by surface (ink at 90%, ink at 88%, a gray fill, an underline, a pen-colored border, or nothing on the FAQ rows), and only Button had a press state.
+
+| Thing | Hover | Press | Implementation |
+| --- | --- | --- | --- |
+| Buttons | fill shifts to 88%; outline turns ink; quiet underline goes solid | scale 0.98 | `components/ui/button.tsx` |
+| Links | color deepens and the underline goes solid | none | `.riyp-link`, `.riyp-link-quiet`, navigation classes |
+| Rows and cards you can open (FAQ questions, menu rows, legal tabs, guide cards, related research, saved reports) | an inset wash; the row's arrow or caret turns ink | a deeper wash | `.riyp-surface-link`; mark the arrow `data-affordance` |
+| Close and menu controls | the inset wash | the deeper wash | `Button` `icon` size, or `.riyp-surface-link` on Radix close buttons |
+
+Static cards (`.app-card`) never react. Don't hand-tune `hover:bg-*`, `hover:border-*`, `hover:opacity-*`, or arrow nudges on new work; the guardrail caps the ones left.
 
 ### Shared interaction implementation
 
@@ -375,6 +441,13 @@ The guardrail must fail for:
 - unauthorized hardcoded colors
 - banned public copy patterns
 - increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
+- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 11 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
+
+The rendered check loads 23 public routes at 1440 and 390px and fails on an off-scale or fractional size, a weight outside 400/600/800, more than 40 text styles, more than one build of the primary action per size, or a paragraph inside a reading rail over 75 characters per line. Paragraphs a page lays out outside the rail are listed as warnings:
+
+```bash
+npm run qa:design-system -- --measure http://127.0.0.1:3100
+```
 
 ## 14. Final quality test
 

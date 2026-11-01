@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { ArrowClockwise, ArrowRight, WarningCircle } from "@phosphor-icons/react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import Footer from "@/components/landing/Footer";
@@ -27,28 +28,23 @@ export default function Error({
                             <WarningCircle className="size-12 text-brand" weight="regular" aria-hidden="true" />
                         </div>
                         <div className="max-w-[46rem]">
-                            <h1 className="exception-page-title font-display riyp-weight-620 text-foreground riyp-stretch-91">
+                            <h1 className="max-w-[16ch] font-display text-headline text-foreground">
                                 That page didn’t load.
                             </h1>
-                            <p className="mt-6 max-w-[38rem] text-lg leading-8 text-muted-foreground">
+                            <p className="mt-6 max-w-[38rem] text-lg text-muted-foreground">
                                 Something broke on our end, not yours. Try again, or start over from the homepage. Saved reports aren’t affected.
                             </p>
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                                <button
-                                    type="button"
-                                    onClick={reset}
-                                    className="focus-ring inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-                                >
+                                <Button type="button" onClick={reset}>
                                     <ArrowClockwise className="size-4" weight="bold" />
                                     Try again
-                                </button>
-                                <Link
-                                    href="/"
-                                    className="focus-ring inline-flex min-h-13 items-center justify-center gap-3 rounded-full border border-foreground bg-paper px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-paper-muted"
-                                >
+                                </Button>
+                                <Button asChild variant="secondary">
+                                    <Link href="/">
                                     Go to the homepage
                                     <ArrowRight className="size-4" weight="bold" />
                                 </Link>
+                                </Button>
                             </div>
                             {error.digest ? (
                                 <p className="mt-9 border-t border-line pt-4 font-mono text-xs text-muted-foreground">

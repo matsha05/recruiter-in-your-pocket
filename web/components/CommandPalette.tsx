@@ -3,14 +3,14 @@
 import * as React from "react"
 import { useRouter, usePathname } from "next/navigation"
 import {
-    FileText,
-    Home,
-    Upload,
     BookOpen,
-    Download,
-    Keyboard,
     Clock,
-} from "lucide-react"
+    DownloadSimple,
+    FileText,
+    House,
+    Keyboard,
+    UploadSimple,
+} from "@phosphor-icons/react"
 
 import {
     CommandDialog,
@@ -101,10 +101,17 @@ function addRecentCommand(command: RecentCommand) {
     }
 }
 
-export function CommandPalette() {
-    const [open, setOpen] = React.useState(false)
+export interface CommandPaletteProps {
+    /** Open on mount: the launcher loaded the palette in response to Cmd+K. */
+    defaultOpen?: boolean
+    /** Report visibility the launcher observed before the palette loaded. */
+    defaultReportVisible?: boolean
+}
+
+export function CommandPalette({ defaultOpen = false, defaultReportVisible = false }: CommandPaletteProps = {}) {
+    const [open, setOpen] = React.useState(defaultOpen)
     const [recentCommands, setRecentCommands] = React.useState<RecentCommand[]>([])
-    const [workspaceReportVisible, setWorkspaceReportVisible] = React.useState(false)
+    const [workspaceReportVisible, setWorkspaceReportVisible] = React.useState(defaultReportVisible)
     const { push } = useRouter()
     const pathname = usePathname()
 
@@ -205,7 +212,7 @@ export function CommandPalette() {
                                     { id: "upload", label: "Upload Resume", icon: "Upload" }
                                 )}
                             >
-                                <Upload className="mr-2 size-4" />
+                                <UploadSimple className="mr-2 size-4" />
                                 <span>Upload Resume</span>
                             </CommandItem>
                             {workspaceReportVisible && (
@@ -216,7 +223,7 @@ export function CommandPalette() {
                                             { id: "export-pdf", label: "Export PDF", icon: "Download" }
                                         )}
                                     >
-                                        <Download className="mr-2 size-4" />
+                                        <DownloadSimple className="mr-2 size-4" />
                                         <span>Export PDF</span>
                                     </CommandItem>
                                 </>
@@ -234,7 +241,7 @@ export function CommandPalette() {
                             { id: "nav:/", label: "Go to Home", icon: "Home" }
                         )}
                     >
-                        <Home className="mr-2 size-4" />
+                        <House className="mr-2 size-4" />
                         <span>Go to Home</span>
                     </CommandItem>
                     <CommandItem

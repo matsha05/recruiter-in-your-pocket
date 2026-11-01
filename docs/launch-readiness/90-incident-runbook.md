@@ -28,6 +28,7 @@
 - Backup: `.github/workflows/sentry-github-backup.yml` runs every 30 minutes and can be dispatched manually. It files a scrubbed GitHub issue for each unresolved production error or fatal Sentry issue and deduplicates by Sentry short ID.
 - If the primary email does not arrive, run the backup workflow manually with a 120-minute lookback and inspect its latest GitHub Actions run before treating the incident as contained.
 - If the backup workflow fails, use the Sentry issue stream as the source of truth, check the scoped `RIYP_SENTRY_READ_TOKEN` GitHub secret, and restore the workflow without copying event payloads or private user data into GitHub.
+- Launch signals: Sentry metric monitors and an uptime check for report failures, the free gate, checkout and fulfillment, purchase and report kill switches, and Core Web Vitals email the same address. Queries, thresholds and responses are in [monitoring.md](monitoring.md).
 - Delivery rehearsal: Sentry event `3883c3a8-3c03-4760-9267-672aac0f665d` produced the primary email and [GitHub issue #5](https://github.com/matsha05/recruiter-in-your-pocket/issues/5) on July 30, 2026.
 
 ## Immediate Actions

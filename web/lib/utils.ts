@@ -6,9 +6,10 @@ import { extendTailwindMerge } from "tailwind-merge"
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
+      // Type roles from tailwind.config.js, plus the two deprecated aliases still in use.
       "font-size": [{ text: [
-        "page-title", "section-title", "workspace-title", "report-title",
-        "verdict", "eyebrow", "control", "prose", "label", "data",
+        "display", "headline", "title", "heading", "lead", "prose", "body", "small", "label",
+        "verdict", "note", "report-title", "data",
       ] }],
       "max-w": [{ "max-w": ["marketing", "workspace", "form", "report", "auth", "account", "reading"] }],
       rounded: [{ rounded: ["sheet", "inset"] }],

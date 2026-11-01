@@ -2,7 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
-import { Figure, Key, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
+import { Figure, Key, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
 // Quillian et al. (2017), PNAS: average callback ratios in the 24 US field experiments since 1989
 // (resume audits and in-person audits pooled; 54,318 applications), fieldwork through 2015.
@@ -33,7 +33,7 @@ export function MetaTimeline({ figureNumber = 1 }: { figureNumber?: number }) {
                                 <UnitGrid count={100} columns={20} seen={seen} toneAt={() => "quiet"} />
                             </div>
                             <div className="grid gap-1.5">
-                                <div className="flex items-baseline justify-between text-sm text-muted-foreground"><span>White applicants</span><Figure value={item.white} className="text-2xl md:text-2xl" /></div>
+                                <div className="flex items-baseline justify-between text-sm text-muted-foreground"><span>White applicants</span><Figure value={item.white} className="text-heading" /></div>
                                 <UnitGrid count={item.white} columns={20} seen={seen} toneAt={(i) => (i < 100 ? "pen" : "mark")} />
                             </div>
                             <p className="mt-auto border-t border-line pt-3 text-sm text-muted-foreground">{item.trend}</p>
@@ -47,7 +47,7 @@ export function MetaTimeline({ figureNumber = 1 }: { figureNumber?: number }) {
                         <Key tone="mark">The extra callbacks</Key>
                     </div>
                     <PenNote>
-                        The applicants were matched on paper or in person. Our read: <Mark seen={seen}>better wording can&apos;t close this gap.</Mark>
+                        The applicants were matched on paper or in person. Our read: better wording can&apos;t close this gap.
                     </PenNote>
                 </div>
             </DiagramFrame>

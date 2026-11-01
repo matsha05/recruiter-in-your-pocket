@@ -2,7 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
-import { Key, Mark, PenNote, UnitGrid, useSeen, type UnitTone } from "@/components/research/figures/FigureKit";
+import { Key, PenNote, UnitGrid, useSeen, type UnitTone } from "@/components/research/figures/FigureKit";
 
 // Pew Research Center (April 2023), workers asked about their current job: 30% asked for more than the
 // first offer, 60% didn't, and 10% didn't remember. Of those who asked: 28% got what they asked for,
@@ -34,11 +34,11 @@ export function NegotiationOutcomeDiagram() {
                             <Key tone="open">10 don&apos;t remember</Key>
                         </div>
                         <PenNote>
-                            Of the 30 who asked, <Mark seen={seen}>19 walked away with more.</Mark> Nobody knows what the 60 who didn&apos;t ask would have gotten.
+                            Of the 30 who asked, 19 walked away with more. Nobody knows what the 60 who didn&apos;t ask would have gotten.
                         </PenNote>
                     </div>
                 </div>
-                <p className="border-t border-line px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7">
+                <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
                     Self-reported. The survey didn&apos;t ask how big the increase was, or whether anyone lost an offer by asking.
                 </p>
             </DiagramFrame>

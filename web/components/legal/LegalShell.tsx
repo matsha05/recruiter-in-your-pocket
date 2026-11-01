@@ -41,7 +41,7 @@ export function LegalShell({
                             <div>
                                 <h1
                                     id={pageKey ? `legal-${pageKey}-title` : undefined}
-                                    className="max-w-xl text-balance font-display text-workspace-title text-foreground md:text-page-title"
+                                    className="max-w-xl text-balance font-display text-headline text-foreground"
                                 >
                                     {title}
                                 </h1>
@@ -60,7 +60,7 @@ export function LegalShell({
 
                 {/* Content */}
                 <section className="px-5 pb-16 md:px-8 md:pb-24">
-                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm [overflow-wrap:anywhere] sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
+                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 [overflow-wrap:anywhere] sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
                         {children}
                     </div>
                 </section>

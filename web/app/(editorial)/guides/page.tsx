@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Clock } from "@phosphor-icons/react/dist/ssr";
@@ -97,7 +98,7 @@ export default function GuidesPage() {
                                 <Link
                                     key={guide.title}
                                     href={guide.href}
-                                    className={`${styles.sheet} focus-ring group block p-6 transition-colors hover:border-brand/40 sm:p-8`}
+                                    className={`${styles.sheet} focus-ring riyp-surface-link group block p-6 sm:p-8`}
                                 >
                                     <div className="flex items-center justify-between gap-3">
                                             <span className={`${styles.label} text-muted-foreground`}>
@@ -108,20 +109,20 @@ export default function GuidesPage() {
                                             {guide.readTime}
                                         </span>
                                     </div>
-                                    <h3 className={`${styles.componentTitle} mt-5 transition-colors group-hover:text-brand`}>
+                                    <h3 className={`${styles.componentTitle} mt-5`}>
                                         {guide.title}
                                     </h3>
                                     <ul className="mt-4 space-y-2.5">
                                         {guide.points.map((point) => (
                                             <li key={point} className={`${styles.readingCopy} flex items-start gap-2.5`}>
-                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-brand/50" />
+                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-line" />
                                                 {point}
                                             </li>
                                         ))}
                                     </ul>
                                     <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">
                                         Open guide
-                                    <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" weight="bold" />
+                                    <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
                                     </div>
                                 </Link>
                             ))}
@@ -141,13 +142,12 @@ export default function GuidesPage() {
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
                                     </p>
                                 </div>
-                                <Link
-                                    href="/resources/tools/comp-calculator"
-                                    className={`${styles.primaryAction} focus-ring shrink-0`}
-                                >
-                                    Open calculator
-                                    <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
-                                </Link>
+                                <Button asChild className="shrink-0">
+                                    <Link href="/resources/tools/comp-calculator">
+                                        Open calculator
+                                        <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
+                                    </Link>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ export default function GuidesPage() {
                 <section className="border-y border-border bg-muted px-6 py-14 text-foreground md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-marketing items-start gap-10 lg:grid-cols-2">
                         <div>
-                            <p className={`${styles.label} text-brand`}>
+                            <p className={`${styles.label} text-muted-foreground`}>
                                 The philosophy
                             </p>
                             <h2 className={`${styles.sectionTitle} mt-3 max-w-3xl`}>
@@ -215,11 +215,11 @@ export default function GuidesPage() {
                                 <Link
                                     key={item.title}
                                     href={item.href}
-                                    className={`${styles.sheet} focus-ring group p-6 transition-colors hover:border-brand/40 sm:p-8`}
+                                    className={`${styles.sheet} focus-ring riyp-surface-link group p-6 sm:p-8`}
                                 >
                                     {/* Which research pillar this belongs to: real information, where a generic icon was. */}
                                     {pillar ? <p className="mb-5 text-sm font-medium text-muted-foreground">{pillar}</p> : null}
-                                    <h3 className={`${styles.componentTitle} transition-colors group-hover:text-brand`}>
+                                    <h3 className={`${styles.componentTitle}`}>
                                         {item.title}
                                     </h3>
                                     <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">

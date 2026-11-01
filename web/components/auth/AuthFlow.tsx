@@ -282,13 +282,13 @@ export function AuthFlow({
         {variant === "page" ? (
           <div className="grid gap-8 pt-2 lg:pt-6">
             <div className="grid gap-4">
-              <div className="text-[0.8125rem] font-semibold text-[hsl(var(--pen))]">Sign in</div>
+              <div className="text-xs font-semibold text-[hsl(var(--pen))]">Sign in</div>
               <h1
-                className="max-w-[31rem] text-balance font-display text-[32px] font-bold leading-9 tracking-[-0.035em] text-foreground sm:text-workspace-title"
+                className="max-w-[31rem] text-balance font-display text-title text-foreground"
               >
                 {stepTitle}
               </h1>
-              <div className="max-w-lg text-pretty text-base leading-[1.6] text-muted-foreground">
+              <div className="max-w-lg text-pretty text-base text-muted-foreground">
                 {stepSubtitle}
               </div>
             </div>
@@ -301,24 +301,24 @@ export function AuthFlow({
                 ].map((item) => (
                   <div key={item.label} className="pt-2">
                     <p className="text-sm font-medium text-foreground">{item.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.value}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.value}</p>
                   </div>
                 ))}
               </div>
             ) : step === "code" ? (
-              <p className="hidden max-w-md border-t border-border pt-6 text-base leading-7 text-muted-foreground md:block">
+              <p className="hidden max-w-md border-t border-border pt-6 text-base text-muted-foreground md:block">
                 Not there? Check spam and Promotions. Recruiters lose good emails there too.
               </p>
             ) : null}
           </div>
         ) : (
           <div className="grid gap-3 text-left">
-            <h1 className="font-sans text-[28px] font-normal leading-9 tracking-[-0.03em] text-foreground">
+            <h1 className="font-sans text-title text-foreground">
               {stepTitle}
             </h1>
-            <p className="text-base leading-6 text-muted-foreground">{stepSubtitle}</p>
+            <p className="text-base text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
-              <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground">
+              <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm text-muted-foreground">
                 Sign in to save reports. Reports you created without signing in are saved to your account only when you choose to keep them.
               </div>
             ) : null}
@@ -328,7 +328,7 @@ export function AuthFlow({
         <div className={cn("grid min-w-0 gap-4", variant === "page" ? "w-full max-w-auth" : "max-w-none")}>
           <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
-            <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="rounded-xl border border-destructive/35 bg-error px-4 py-3 text-left text-sm leading-6 text-destructive outline-none">
+            <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="rounded-xl border border-destructive/35 bg-error px-4 py-3 text-left text-sm text-destructive outline-none">
               {error}
             </div>
           )}
@@ -360,11 +360,11 @@ export function AuthFlow({
                     )}
                   />
                 </div>
-                <p id="auth-email-help" className="text-sm leading-6 text-muted-foreground">
+                <p id="auth-email-help" className="text-sm text-muted-foreground">
                   We&apos;ll email a one-time code so you can sign in without a password.
                 </p>
               </div>
-              <Button type="submit" variant="brand" isLoading={loading} loadingLabel="Sending sign-in code…" className="min-h-12 w-full whitespace-normal px-4 text-base font-medium">
+              <Button type="submit" variant="primary" isLoading={loading} loadingLabel="Sending sign-in code…" className="w-full whitespace-normal">
                 Send sign-in code
                 <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
@@ -384,7 +384,7 @@ export function AuthFlow({
                   pattern="[0-9]*"
                   placeholder="8-digit code"
                   className={cn(
-                    "h-14 text-center font-mono text-2xl tracking-wide",
+                    "h-14 text-center font-mono text-heading tracking-wide",
                     !error && "bg-card placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-brand"
                   )}
                   value={code}
@@ -401,7 +401,7 @@ export function AuthFlow({
                   }}
                 />
               </div>
-              <Button type="submit" variant="brand" disabled={code.length !== 8} isLoading={loading} loadingLabel={loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="h-12 w-full text-base font-medium">
+              <Button type="submit" variant="primary" disabled={code.length !== 8} isLoading={loading} loadingLabel={loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="w-full">
                 Verify code
                 <Check className="ml-2 size-4" weight="bold" />
               </Button>
@@ -457,12 +457,12 @@ export function AuthFlow({
                   )}
                 />
               </div>
-              <Button type="submit" variant="brand" disabled={!firstName.trim()} isLoading={loading} loadingLabel="Saving your name…" className="h-12 w-full text-base font-medium">
+              <Button type="submit" variant="primary" disabled={!firstName.trim()} isLoading={loading} loadingLabel="Saving your name…" className="w-full">
                 Continue
               </Button>
               <Button
                 type="button"
-                variant="ghost"
+                variant="quiet"
                 className="w-full text-muted-foreground hover:text-foreground"
                 onClick={() => finishAuth()}
               >

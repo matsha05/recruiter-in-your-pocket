@@ -77,6 +77,16 @@ export function getSentryTracesSampleRate() {
   return Math.min(Math.max(sampleRate, 0), 1);
 }
 
+/** Browser sample rate for the paid-journey routes, where field Web Vitals are watched. */
+export function getSentryKeyRouteTracesSampleRate() {
+  // A literal NEXT_PUBLIC_ read, so Next inlines it into the browser bundle.
+  const configured = Number(process.env.NEXT_PUBLIC_SENTRY_KEY_ROUTE_TRACES_SAMPLE_RATE);
+  const sampleRate = process.env.NEXT_PUBLIC_SENTRY_KEY_ROUTE_TRACES_SAMPLE_RATE && Number.isFinite(configured)
+    ? configured
+    : isProductionObservabilityRuntime() ? 1 : 0;
+  return Math.min(Math.max(sampleRate, 0), 1);
+}
+
 export function getSentryEnvironment() {
   return (
     process.env.SENTRY_ENVIRONMENT ||

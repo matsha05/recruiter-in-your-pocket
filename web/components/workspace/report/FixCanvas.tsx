@@ -183,7 +183,7 @@ export function FixCanvas({
           <div className="mt-6 h-24 bg-brand/15" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <Button variant="premium" onClick={onUnlock}>
+          <Button variant="primary" onClick={onUnlock}>
             <LockKey className="mr-2 size-4" /> {JOB_SEARCH_PASS_DECISION.cta}
           </Button>
         </div>
@@ -199,7 +199,7 @@ export function FixCanvas({
             <MinusCircle className="mt-0.5 size-5 shrink-0 text-muted-foreground" weight="duotone" />
             <div>
               <p className="text-sm font-semibold text-foreground">{index === 0 ? "Critical Miss" : `Fix ${index + 1}`} hidden.</p>
-              <p className="mt-1 text-sm leading-5 text-muted-foreground">Not a fit for your resume? No problem. You can bring it back.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Not a fit for your resume? No problem. You can bring it back.</p>
             </div>
           </div>
           <button type="button" onClick={() => setDismissed(false)} className="min-h-11 self-start px-3 text-xs font-semibold text-brand hover:text-brand/75 sm:self-auto">
@@ -241,7 +241,7 @@ export function FixCanvas({
               <p className={styles.sourceText}>“{visibleSource}”</p>
               {showSourceExcerpt && <details className="mt-2">
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">Show full original text</summary>
-                <p className="mt-2 whitespace-pre-wrap text-base leading-7 text-foreground/85">{draftSource}</p>
+                <p className="mt-2 whitespace-pre-wrap text-base text-foreground/85">{draftSource}</p>
               </details>}
             </div>
           )}
@@ -261,15 +261,15 @@ export function FixCanvas({
             {hasDetailFields && <div className={styles.reasoningItem}>
               <p className={styles.label}>Details to add</p>
               {placeholderKeys.length > 0 && rewrite?.enhancement_note && (
-                <p className="mt-3 text-base leading-6 text-foreground">{rewrite.enhancement_note}</p>
+                <p className="mt-3 text-base text-foreground">{rewrite.enhancement_note}</p>
               )}
               {isSample ? (
                 placeholderKeys.length > 0 ? (
-                  !rewrite?.enhancement_note && <ul className="text-base mt-3 grid list-disc gap-2 pl-5 leading-6 text-foreground/80">
+                  !rewrite?.enhancement_note && <ul className="text-base mt-3 grid list-disc gap-2 pl-5 text-foreground/80">
                     {placeholderKeys.map((key) => <li key={key}>{questionForPlaceholder(key)}</li>)}
                   </ul>
                 ) : (
-                  <p className="text-base mt-3 leading-6 text-foreground">This example uses only the details in the original line.</p>
+                  <p className="text-base mt-3 text-foreground">This example uses only the details in the original line.</p>
                 )
               ) : placeholderKeys.length > 0 ? (
                 <div className="mt-4 grid gap-3">
@@ -286,8 +286,8 @@ export function FixCanvas({
                       />
                     </label>
                   ))}
-                  <Button type="button" variant="outline" size="sm" className="mt-1 min-h-11 justify-self-start border-brand/30 bg-paper px-4" onClick={handleUseFacts} disabled={!allRequiredFactsProvided}>Use these details</Button>
-                  <Button type="button" variant="link" size="sm" className="justify-self-start px-0 text-left font-semibold text-brand" onClick={() => {
+                  <Button type="button" variant="secondary" size="sm" className="mt-1 justify-self-start" onClick={handleUseFacts} disabled={!allRequiredFactsProvided}>Use these details</Button>
+                  <Button type="button" variant="quiet" size="sm" className="justify-self-start text-left text-brand" onClick={() => {
                     setDraft(draftSource);
                     setFactsApplied(false);
                     setEditingOriginal(true);
@@ -304,7 +304,7 @@ export function FixCanvas({
                 <summary className="flex min-h-11 cursor-pointer items-center text-sm font-semibold text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4">
                   View draft template
                 </summary>
-                <p className="my-4 max-w-[42rem] text-base leading-7 text-foreground/85">{suggestedLine}</p>
+                <p className="my-4 max-w-[42rem] text-base text-foreground/85">{suggestedLine}</p>
               </details>
             </div>
           ) : hasSuggestedLine ? (
@@ -348,10 +348,10 @@ export function FixCanvas({
                 <p className={styles.draft}>{draft}</p>
               )}
               {placeholderKeys.length === 0 && <RewriteEnhancementNote note={rewrite?.enhancement_note} className="mt-5" />}
-              {copyError && <p role="status" className="mt-3 text-sm leading-6 text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
+              {copyError && <p role="status" className="mt-3 text-sm text-muted-foreground">Couldn&apos;t copy. Select the text and copy it manually.</p>}
             </div>
           ) : questionsToAsk.length > 0 ? (
-            <p data-testid="fact-only-recommendation" className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
+            <p data-testid="fact-only-recommendation" className="mt-4 max-w-xl text-sm text-muted-foreground">
               Start with the original sentence and add the details above.
             </p>
           ) : null}

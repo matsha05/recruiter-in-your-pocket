@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+/** A Tailwind font size that reads one type role from app/globals.css. */
+const role = (name, extra = {}) => [`var(--type-${name}-size)`, { lineHeight: `var(--type-${name}-leading)`, ...extra }];
+
 module.exports = {
 	darkMode: ["class"],
 	content: [
@@ -137,59 +141,49 @@ module.exports = {
 				'status-warning': 'hsl(var(--warning))',
 				'status-error': 'hsl(var(--destructive))'
 			},
+			// Type roles (Highlighter 1.1). The sizes live in app/globals.css (--type-*) so phone steps change in one
+			// place. Tailwind's own keys are aliases of a role, so every text-* class lands on the same scale.
 			fontSize: {
-				'page-title': ['3.5rem', { lineHeight: '3.5rem', letterSpacing: '-0.04em', fontWeight: '800' }],
-				'section-title': ['2.75rem', { lineHeight: '2.75rem', letterSpacing: '-0.04em', fontWeight: '800' }],
-				'workspace-title': ['2.5rem', { lineHeight: '2.625rem', letterSpacing: '-0.035em', fontWeight: '700' }],
-				'report-title': ['1.5rem', { lineHeight: '1.875rem', letterSpacing: '-0.02em', fontWeight: '700' }],
-				'verdict': ['1.75rem', { lineHeight: '2.25rem', letterSpacing: '-0.02em', fontWeight: '400' }],
-				'eyebrow': ['0.8125rem', { lineHeight: '1.125rem', letterSpacing: '0.1em', fontWeight: '600' }],
-				'control': ['1rem', { lineHeight: '1.25rem', fontWeight: '600' }],
-				'prose': ['1.125rem', { lineHeight: '1.875rem' }],
-				'data': ['0.875rem', { lineHeight: '1.375rem' }],
-				'label': ['0.8125rem', { lineHeight: '1.125rem', fontWeight: '600' }],
-				'2xs': [
-					'0.8125rem',
-					{
-						lineHeight: '1rem'
-					}
-				],
-				xs: [
-					'0.8125rem',
-					{
-						lineHeight: '1.125rem'
-					}
-				],
-				sm: [
-					'0.875rem',
-					{
-						lineHeight: '1.25rem'
-					}
-				],
-				base: [
-					'1rem',
-					{
-						lineHeight: '1.5625rem'
-					}
-				],
-				lg: [
-					'1.125rem',
-					{
-						lineHeight: '1.75rem'
-					}
-				],
-				xl: [
-					'1.25rem',
-					{
-						lineHeight: '1.75rem'
-					}
-				],
-				'2xl': [
-					'1.5rem',
-					{
-						lineHeight: '2rem'
-					}
-				]
+				display: role('display', { letterSpacing: 'var(--tracking-display)', fontWeight: '800' }),
+				headline: role('headline', { letterSpacing: 'var(--tracking-headline)', fontWeight: '800' }),
+				title: role('title', { letterSpacing: 'var(--tracking-title)', fontWeight: '800' }),
+				heading: role('heading', { letterSpacing: 'var(--tracking-heading)', fontWeight: '600' }),
+				lead: role('lead'),
+				prose: role('prose'),
+				body: role('body'),
+				small: role('small'),
+				label: role('label', { fontWeight: '600' }),
+				verdict: role('verdict'),
+				note: role('note'),
+				// Deprecated aliases kept for files another workstream is editing; the guardrail caps their use.
+				'report-title': role('heading', { letterSpacing: 'var(--tracking-heading)', fontWeight: '600' }),
+				data: role('small'),
+				'2xs': role('label'),
+				xs: role('label'),
+				sm: role('small'),
+				base: role('body'),
+				lg: role('prose'),
+				xl: role('lead'),
+				'2xl': role('heading'),
+				'3xl': role('title'),
+				'4xl': role('title'),
+				'5xl': role('headline'),
+				'6xl': role('headline'),
+				'7xl': role('display'),
+				'8xl': role('display'),
+				'9xl': role('display')
+			},
+			// 400 reading, 600 headings and controls, 800 headlines. Older weight names fold onto these.
+			fontWeight: {
+				thin: '400',
+				extralight: '400',
+				light: '400',
+				normal: '400',
+				medium: '600',
+				semibold: '600',
+				bold: '800',
+				extrabold: '800',
+				black: '800'
 			},
 			borderRadius: {
 				DEFAULT: 'var(--radius)',
@@ -202,7 +196,9 @@ module.exports = {
 			},
 			maxWidth: {
 				marketing: '85rem', workspace: '60rem', form: '47.5rem',
-				report: '75rem', auth: '27.5rem', account: '47.5rem', reading: '66ch'
+				report: '75rem', auth: '27.5rem', account: '47.5rem',
+				// About 69 characters per line at any size: Schibsted Grotesk text averages 0.46em a glyph, a "0" is 0.61em.
+				reading: '52ch'
 			},
 			boxShadow: {
 				sheet: 'var(--shadow-sheet)',

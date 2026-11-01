@@ -91,7 +91,7 @@ export default function PaywallModal({
             <Button className="w-full" onClick={handleFreeSignIn}>
                 Sign in for your free report
             </Button>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
                 We&apos;ll email you a code. No password, no card.
             </p>
         </div>
@@ -178,10 +178,10 @@ export default function PaywallModal({
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
-                        <DialogTitle className="font-display text-2xl font-bold">
+                        <DialogTitle className="font-display text-heading">
                             {offerFreeSignIn ? "Your free report needs an account" : "Passes are paused for now"}
                         </DialogTitle>
-                        <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
+                        <DialogDescription className="mx-auto max-w-sm text-sm">
                             {offerFreeSignIn
                                 ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours. Passes are paused for now."
                                 : hasCurrentReport
@@ -190,7 +190,7 @@ export default function PaywallModal({
                         </DialogDescription>
                     </DialogHeader>
                     {offerFreeSignIn ? <div className="mt-5">{freeSignInOffer}</div> : null}
-                    <Button className={offerFreeSignIn ? "w-full" : "mt-5 w-full"} variant={offerFreeSignIn ? "outline" : "default"} onClick={onClose}>
+                    <Button className={offerFreeSignIn ? "w-full" : "mt-5 w-full"} variant={offerFreeSignIn ? "secondary" : "primary"} onClick={onClose}>
                         {hasCurrentReport ? "Back to my report" : "Back to my resume"}
                     </Button>
                 </DialogContent>
@@ -227,10 +227,10 @@ export default function PaywallModal({
 
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
                     <div>
-                        <p className="font-display text-4xl riyp-weight-520 tracking-[-0.03em] text-foreground">$29</p>
+                        <p className="font-display text-title text-foreground">$29</p>
                         <p className="mt-1 text-sm text-muted-foreground">one-time</p>
                     </div>
-                    <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
+                    <div className="border-l border-line pl-4 text-sm text-muted-foreground">
                         Good for 30 days. No automatic renewal.
                     </div>
                 </div>
@@ -250,7 +250,7 @@ export default function PaywallModal({
                             <Button
                                 type="submit"
                                 className="w-full"
-                                variant={offerFreeSignIn ? "outline" : "default"}
+                                variant={offerFreeSignIn ? "secondary" : "primary"}
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"
                             >
@@ -277,7 +277,7 @@ export default function PaywallModal({
                             <Button
                                 type="submit"
                                 className="w-full"
-                                variant={offerFreeSignIn ? "outline" : "default"}
+                                variant={offerFreeSignIn ? "secondary" : "primary"}
                                 disabled={!email.trim()}
                                 isLoading={loading}
                                 loadingLabel="Opening checkout…"
@@ -289,7 +289,7 @@ export default function PaywallModal({
                 </form>
 
                 <Button
-                    variant="ghost"
+                    variant="quiet"
                     className="w-full text-muted-foreground"
                     onClick={handleRestore}
                     isLoading={restoreLoading}
@@ -305,7 +305,7 @@ export default function PaywallModal({
                     </div>
                 )}
 
-                <p id="checkout-terms" className="text-center text-xs leading-5 text-muted-foreground">
+                <p id="checkout-terms" className="text-center text-xs text-muted-foreground">
                     Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/support" className="riyp-link-quiet">Ask us</Link>.
                 </p>
             </DialogContent>

@@ -91,7 +91,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
 
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button
-                                    variant="premium"
+                                    variant="primary"
                                     size="sm"
                                     onClick={onJumpToRewrites}
                                 >
@@ -99,7 +99,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                     <ArrowRight className="size-3.5 ml-2" />
                                 </Button>
                                 <Button
-                                    variant="ghost"
+                                    variant="quiet"
                                     size="sm"
                                     onClick={onDownloadPdf}
                                     className="text-muted-foreground hover:text-foreground"
@@ -111,7 +111,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         </div>
 
                         <Button
-                            variant="ghost"
+                            variant="quiet"
                             size="sm"
                             onClick={handleDismiss}
                             className="size-11 p-0 text-muted-foreground hover:text-foreground"

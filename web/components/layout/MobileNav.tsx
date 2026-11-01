@@ -1,167 +1,99 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { SignOut } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Gear, House, List, SignOut } from "@phosphor-icons/react";
+import { SheetClose } from "@/components/ui/sheet";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { Wordmark } from "@/components/icons";
-import { STUDIO_NAV, navLinkHref, type NavItem } from "@/lib/navigation";
+import { STUDIO_NAV, navLinkHref } from "@/lib/navigation";
+import { NavDrawer, NavDrawerDivider, NavDrawerLink } from "./NavDrawer";
 
 export function MobileNav({ workspaceReportVisible = false }: { workspaceReportVisible?: boolean }) {
-    const [open, setOpen] = useState(false);
     const pathname = usePathname();
     const { user, signOut, isLoading: authLoading } = useAuth();
 
     return (
-        <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="size-11 rounded-[10px] border border-border text-foreground hover:bg-muted hover:text-foreground md:hidden">
-                    <List className="size-5" />
-                    <span className="sr-only">Toggle menu</span>
-                </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] flex flex-col p-0">
-                <SheetHeader className="p-6 border-b text-left">
-                    <SheetTitle>
-                        <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-                            <Wordmark className="text-foreground" />
-                        </Link>
-                    </SheetTitle>
-                    <SheetDescription className="sr-only">Navigate the studio, reports, settings, and account actions.</SheetDescription>
-                </SheetHeader>
-
-                <div className="flex-1 overflow-y-auto py-6 px-4">
-                    <nav className="gap-y-2" aria-label="Mobile navigation">
-                        <MobileNavLink
-                            href="/"
-                            icon={House}
-                            label="Home"
-                            setOpen={setOpen}
-                            active={pathname === "/"}
-                        />
-                        {STUDIO_NAV.map((item) => (
-                            <MobileNavLink
-                                key={item.href}
-                                href={navLinkHref(item.href)}
-                                icon={item.icon}
-                                label={item.label}
-                                setOpen={setOpen}
-                                active={
-                                    item.href === "/workspace"
-                                        ? (pathname === "/workspace" || pathname?.startsWith("/workspace/")) && !workspaceReportVisible
-                                        : item.href === "/reports" && workspaceReportVisible
-                                            ? true
-                                        : pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                                }
-                            />
-                        ))}
-
-                        {/* Divider */}
-                        <div className="h-px bg-border/40 my-4" />
-
-                        {/* Settings - separate from primary nav */}
-                        <MobileNavLink
-                            href="/settings/account"
-                            icon={Gear}
-                            label="Settings"
-                            setOpen={setOpen}
-                            active={pathname === "/settings" || pathname?.startsWith("/settings/")}
-                        />
-                    </nav>
-                </div>
-
-                <div className="p-6 border-t border-border/60 bg-background">
-                    {authLoading ? (
-                        <p className="min-h-11 text-sm text-muted-foreground" role="status" aria-live="polite">
-                            Checking account…
-                        </p>
-                    ) : user ? (
-                        <div className="gap-y-4">
-                            <div className="flex items-center gap-3">
-                                <div className="size-10 rounded bg-brand-tint flex items-center justify-center text-brand font-semibold">
-                                    {user.email?.[0].toUpperCase()}
-                                </div>
-                                <div className="flex-1 overflow-hidden">
-                                    <p className="font-medium truncate">{user.email}</p>
-                                    <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
-                                        {user.membership === "lifetime" && (
-                                            <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Lifetime</span>
-                                            </span>
-                                        )}
-                                        {user.membership === "monthly" && (
-                                            <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-brand-tint text-brand">Monthly</span>
-                                                {typeof user.daysLeft === "number" ? (
-                                                    <span className="text-xs text-muted-foreground font-medium">• {user.daysLeft} days left</span>
-                                                ) : null}
-                                            </span>
-                                        )}
-                                        {user.membership === "credit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-success/10 text-success">
-                                                {user.paidUsesLeft || 0} Paid Reports
-                                            </span>
-                                        )}
-                                        {(user.membership === "free" || !user.membership) && (
-                                            <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[0.8125rem] font-bold bg-muted text-muted-foreground">Free Plan</span>
-                                                {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                                    <span className="text-xs text-success font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Report' : 'Reports'} remaining</span>
-                                                )}
-                                            </span>
-                                        )}
-                                    </p>
-                                </div>
-                            </div>
-                            <Button variant="outline" className="min-h-11 w-full justify-start gap-2" onClick={() => signOut()}>
-                                <SignOut className="size-4" />
-                                Sign Out
-                            </Button>
+        <NavDrawer
+            triggerClassName="md:hidden"
+            description="Navigate the studio, reports, settings, and account actions."
+            footer={authLoading ? (
+                <p className="min-h-11 text-sm text-muted-foreground" role="status" aria-live="polite">
+                    Checking account…
+                </p>
+            ) : user ? (
+                <div className="grid gap-4">
+                    <div className="flex items-center gap-3">
+                        <div className="flex size-10 items-center justify-center rounded bg-brand-tint font-semibold text-brand">
+                            {user.email?.[0].toUpperCase()}
                         </div>
-                    ) : (
-                        <div className="gap-y-2">
-                            <Button asChild className="min-h-11 w-full" variant="default">
-                                <Link href="/auth" onClick={() => setOpen(false)}>Sign in</Link>
-                            </Button>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="truncate font-medium">{user.email}</p>
+                            <p className="mt-0.5 flex items-center gap-1.5 text-xs capitalize text-muted-foreground">
+                                {user.membership === "lifetime" && (
+                                    <span className="inline-flex items-center gap-1">
+                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Lifetime</span>
+                                    </span>
+                                )}
+                                {user.membership === "monthly" && (
+                                    <span className="inline-flex items-center gap-1">
+                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Monthly</span>
+                                        {typeof user.daysLeft === "number" ? (
+                                            <span className="text-xs font-medium text-muted-foreground">• {user.daysLeft} days left</span>
+                                        ) : null}
+                                    </span>
+                                )}
+                                {user.membership === "credit" && (
+                                    <span className="inline-flex items-center rounded-sm bg-success/10 px-1.5 py-0.5 text-xs font-bold text-success">
+                                        {user.paidUsesLeft || 0} Paid Reports
+                                    </span>
+                                )}
+                                {(user.membership === "free" || !user.membership) && (
+                                    <span className="inline-flex items-center gap-1">
+                                        <span className="inline-flex items-center rounded-sm bg-muted px-1.5 py-0.5 text-xs font-bold text-muted-foreground">Free Plan</span>
+                                        {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
+                                            <span className="text-xs font-medium text-success">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Report' : 'Reports'} remaining</span>
+                                        )}
+                                    </span>
+                                )}
+                            </p>
                         </div>
-                    )}
+                    </div>
+                    <SheetClose asChild>
+                        <Button size="sm" variant="secondary" className="w-full justify-start" onClick={() => signOut()}>
+                            <SignOut className="size-4" aria-hidden="true" />
+                            Sign Out
+                        </Button>
+                    </SheetClose>
                 </div>
-            </SheetContent>
-        </Sheet>
-    );
-}
-
-function MobileNavLink({
-    href,
-    icon: Icon,
-    label,
-    setOpen,
-    active
-}: {
-    href: string;
-    icon: React.ComponentType<{ className?: string }>;
-    label: string;
-    setOpen: (open: boolean) => void;
-    active: boolean;
-}) {
-    return (
-        <Link
-            href={href}
-            aria-current={active ? "page" : undefined}
-            onClick={() => setOpen(false)}
-            className={cn(
-                "focus-ring flex min-h-12 items-center gap-3 rounded-[10px] px-4 py-3 text-sm font-medium transition-colors",
-                active
-                    ? "bg-brand/5 text-brand"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            ) : (
+                <SheetClose asChild>
+                    <Button size="sm" asChild className="w-full" variant="primary">
+                        <Link href="/auth">Sign in</Link>
+                    </Button>
+                </SheetClose>
             )}
         >
-            <Icon className={cn("size-5", active ? "text-brand" : "text-muted-foreground")} />
-            {label}
-        </Link>
+            <NavDrawerLink href="/" active={pathname === "/"}>Home</NavDrawerLink>
+            {STUDIO_NAV.map((item) => (
+                <NavDrawerLink
+                    key={item.href}
+                    href={navLinkHref(item.href)}
+                    active={
+                        item.href === "/workspace"
+                            ? (pathname === "/workspace" || pathname?.startsWith("/workspace/")) && !workspaceReportVisible
+                            : item.href === "/reports" && workspaceReportVisible
+                                ? true
+                            : pathname === item.href || pathname?.startsWith(`${item.href}/`) || false
+                    }
+                >
+                    {item.label}
+                </NavDrawerLink>
+            ))}
+            <NavDrawerDivider />
+            <NavDrawerLink href="/settings/account" active={pathname === "/settings" || pathname?.startsWith("/settings/") || false}>
+                Settings
+            </NavDrawerLink>
+        </NavDrawer>
     );
 }

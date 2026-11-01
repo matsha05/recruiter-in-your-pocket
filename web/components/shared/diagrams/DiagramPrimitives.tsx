@@ -71,7 +71,7 @@ export function DiagramCaption({
     <figcaption className={cn("mt-4 grid gap-1 border-t border-line pt-3 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-6", alignClass, className)}>
       {kicker ? <span className="block riyp-figure-kicker">{kicker}</span> : null}
       {title ? (
-        <span className="block text-data font-medium text-foreground">{title}</span>
+        <span className="block text-sm font-medium text-foreground">{title}</span>
       ) : null}
       {description ? (
         <span className="block text-data text-muted-foreground md:col-start-2">{description}</span>

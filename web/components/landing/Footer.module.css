@@ -19,9 +19,9 @@
 
 .about { max-width: 27rem; }
 .brand { display: inline-flex; min-height: 44px; color: hsl(var(--foreground)); }
-.description { margin-top: 22px; font-size: 14px; line-height: 1.7; }
-.support { margin-top: 10px; font-size: 13px; line-height: 1.6; }
-.support .link { margin-inline: 4px; font-size: inherit; }
+.description { margin-top: 22px; font: var(--type-small); }
+.support { margin-top: 10px; font: var(--type-label); font-weight: var(--weight-body); }
+.support .link { margin-inline: 4px; font: inherit; }
 
 .navigation {
     display: flex;
@@ -35,17 +35,17 @@
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: var(--radius);
     color: hsl(var(--muted-foreground));
     text-decoration-line: underline;
     text-decoration-color: transparent;
     text-decoration-thickness: var(--link-thickness);
     text-underline-offset: var(--link-offset);
     transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+    font: var(--type-small);
 }
 .link:hover { color: hsl(var(--foreground)); text-decoration-color: currentColor; }
-.copyright { max-width: 1360px; margin: 28px auto 0; font-size: 13px; line-height: 1.6; }
+.copyright { max-width: 1360px; margin: 28px auto 0; font: var(--type-label); font-weight: var(--weight-body); }
 
 @media (max-width: 767px) {
     .footer { padding-top: 36px; }

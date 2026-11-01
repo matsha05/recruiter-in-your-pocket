@@ -38,7 +38,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
                         <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                             Compare your tech offer
-                            <span className="mt-2 block text-brand">year by year.</span>
+                            <span className="mt-2 block">year by year.</span>
                         </h1>
                     </div>
                     <div className="border-l border-border pl-5">
@@ -56,7 +56,7 @@ export default function TechOfferNegotiationGuidePage() {
                         ["Check what is uncertain", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
                     ].map(([title, body], index) => (
                         <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
-                            <div className={`${styles.label} tabular-nums text-brand`}>0{index + 1}</div>
+                            <div className={`${styles.label} tabular-nums text-muted-foreground`}>0{index + 1}</div>
                             <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
                             <p className={`${styles.readingCopy} mt-2`}>{body}</p>
                         </div>
@@ -125,7 +125,7 @@ export default function TechOfferNegotiationGuidePage() {
                             <WhatItGives>The specific responsibility you want clarified. The team may explain the existing level, revisit it, or adjust the responsibilities.</WhatItGives>
                         </Disclosure>
                     </div>
-                    <div className="mt-8 border-l-2 border-brand pl-5">
+                    <div className="mt-8 border-l-2 border-foreground pl-5">
                         <p className={styles.componentTitle}>Get the revised offer in writing.</p>
                         <p className={`${styles.readingCopy} mt-2`}>After you agree on a change, check that the updated offer includes it before you sign.</p>
                     </div>

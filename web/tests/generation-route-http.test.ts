@@ -18,6 +18,10 @@ import {
   schemaValidReport,
 } from "./helpers/report-fidelity-fixture";
 
+function originalLoadSentry() {
+  return require("@sentry/nextjs") as { metrics: { count: (...args: any[]) => void } };
+}
+
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
 };
@@ -36,6 +40,13 @@ async function run() {
   let providerSucceeds = false;
   let authenticatedUser: { id: string; email: string } | null = null;
   let forcedReservationError: Error | null = null;
+  const signals: Array<{ name: string; attributes: Record<string, string> }> = [];
+  const takeSignals = (name: string) => signals.splice(0).filter((signal) => signal.name === name)
+    .map((signal) => signal.attributes);
+  const sentry = originalLoadSentry();
+  sentry.metrics.count = (name: string, _value: number, options: { attributes: Record<string, string> }) => {
+    signals.push({ name, attributes: options.attributes });
+  };
 
   runtimeModule._load = function loadWithRouteBoundaryMocks(request, parent, isMain) {
     if (request === "next/headers") {
@@ -102,7 +113,7 @@ async function run() {
     const signedWithoutOperation = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     assert.equal(signedWithoutOperation.status, 409);
     assert.equal((await signedWithoutOperation.json()).errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -125,7 +136,7 @@ async function run() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         mode: "resume",
-        text: "A".repeat(120),
+        text: "A".repeat(240),
         operation_id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
       }),
     }));
@@ -147,7 +158,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "203.0.113.42",
       },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const payload = await response.json();
     const setCookie = response.headers.get("set-cookie") || "";
@@ -168,7 +179,7 @@ async function run() {
     const signedStreamWithoutOperation = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const signedStreamBlockedEvent = JSON.parse((await signedStreamWithoutOperation.text()).trim());
     assert.equal(signedStreamBlockedEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -187,7 +198,7 @@ async function run() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         mode: "resume",
-        text: "A".repeat(120),
+        text: "A".repeat(240),
         operation_id: "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
       }),
     }));
@@ -197,6 +208,11 @@ async function run() {
     assert.equal(signedStreamConflictEvent.operation_id, null, "stream conflicts must not expose prior operation state");
     assert.equal(providerCalls, 0, "a streaming operation conflict must stop before provider work");
     assert.equal(reservationCalls, 1);
+    const signedStreamReport = { mode: "resume", viewer: "signed_in", has_jd: "no", endpoint: "stream", outcome: "failed" };
+    assert.deepEqual(takeSignals("riyp.report.outcome"), [
+      { ...signedStreamReport, failure: "precondition", error_code: "RECOVERY_STORAGE_REQUIRED" },
+      { ...signedStreamReport, failure: "access", error_code: "GENERATION_OPERATION_CONFLICT" },
+    ], "refusals before reservation are kept apart from access-boundary failures");
     forcedReservationError = null;
     reservationCalls = 0;
     authenticatedUser = null;
@@ -204,7 +220,7 @@ async function run() {
     const blockedStream = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120) }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240) }),
     }));
     const blockedStreamEvent = JSON.parse((await blockedStream.text()).trim());
     assert.equal(blockedStreamEvent.errorCode, "RECOVERY_STORAGE_REQUIRED");
@@ -216,7 +232,7 @@ async function run() {
     const streamIdentityHandshake = await streamPost(new Request("http://localhost/api/resume-feedback-stream", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     const streamHandshakePayload = JSON.parse((await streamIdentityHandshake.text()).trim());
     const streamHandshakeCookie = (streamIdentityHandshake.headers.get("set-cookie") || "")
@@ -227,11 +243,14 @@ async function run() {
     assert.equal(providerCalls, 0, "the stream identity handshake must precede provider work");
     assert.equal(reservationCalls, 0, "the stream identity handshake must precede reservation work");
     assert.ok(streamHandshakeCookie && parseAnonymousIdentityCookie(streamHandshakeCookie));
+    assert.deepEqual(takeSignals("riyp.free_gate.check"), [{
+      result: "identity_retry", reason: "none", first_attempt: "yes", viewer: "anonymous",
+    }]);
 
     const identityHandshake = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     const handshakePayload = await identityHandshake.json();
     const handshakeCookie = (identityHandshake.headers.get("set-cookie") || "")
@@ -247,7 +266,7 @@ async function run() {
     const providerFailure = await POST(new Request("http://localhost/api/resume-feedback", {
       method: "POST",
       headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.42" },
-      body: JSON.stringify({ mode: "resume", text: "A".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "A".repeat(240), recovery_id: recoveryId }),
     }));
     assert.equal((await providerFailure.json()).errorCode, "OPENAI_NETWORK_ERROR");
     assert.equal(providerCalls, 1, "a persisted recovery ID may proceed to the provider");
@@ -262,7 +281,7 @@ async function run() {
       },
       body: JSON.stringify({
         mode: "resume",
-        text: `${hubspotSource} ${hubspotSource} ${hubspotSource}`,
+        text: Array.from({ length: 6 }, () => hubspotSource).join(" "),
         jobDescription: hubspotJobDescription,
         recovery_id: recoveryId,
       }),
@@ -296,7 +315,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "198.51.100.11",
       },
-      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(240), recovery_id: recoveryId }),
     }));
     const movedStreamPayload = JSON.parse((await movedStreamResponse.text()).trim());
     assert.equal(movedStreamResponse.status, 402);
@@ -309,6 +328,9 @@ async function run() {
       "an anonymous denial must acknowledge the submitted marker so a post-purchase run starts fresh",
     );
     assert.equal(providerCalls, 2, "an anonymous stream denial must not reach the provider");
+    assert.deepEqual(takeSignals("riyp.free_gate.check"), [{
+      result: "blocked", reason: "identity", first_attempt: "yes", viewer: "anonymous",
+    }], "a visitor whose cookie shows no report but whose id already used one is a visible first-attempt block");
 
     const movedRequest = () => new Request("http://localhost/api/resume-feedback", {
       method: "POST",
@@ -316,7 +338,7 @@ async function run() {
         "content-type": "application/json",
         "x-forwarded-for": "198.51.100.11",
       },
-      body: JSON.stringify({ mode: "resume", text: "B".repeat(120), recovery_id: recoveryId }),
+      body: JSON.stringify({ mode: "resume", text: "B".repeat(240), recovery_id: recoveryId }),
     });
     const movedResponse = await POST(movedRequest());
     const movedPayload = await movedResponse.json();

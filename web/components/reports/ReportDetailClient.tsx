@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -158,16 +159,17 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
         <div className="flex flex-1 items-center justify-center px-6">
           <div className="app-card max-w-md p-8 text-center">
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
-            <h1 className="mt-3 font-display text-2xl font-bold text-foreground">Report not found</h1>
+            <h1 className="mt-3 font-display text-heading text-foreground">Report not found</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               We couldn’t find this report. It may have been deleted, or it belongs to another account.
             </p>
-            <Link
-              href="/workspace"
-              className="mt-5 inline-flex min-h-11 items-center rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background hover:bg-foreground/90"
-            >
-              Back to your workspace
-            </Link>
+            <Button asChild size="sm" className="mt-5">
+                <Link
+                  href="/workspace"
+                >
+                  Back to your workspace
+                </Link>
+            </Button>
           </div>
         </div>
       )}
@@ -176,16 +178,15 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
         <div className="flex flex-1 items-center justify-center px-6">
           <div className="app-card max-w-md p-8 text-center">
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
-            <h1 className="mt-3 font-display text-2xl font-bold text-foreground">Sign in to view this report</h1>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <h1 className="mt-3 font-display text-heading text-foreground">Sign in to view this report</h1>
+            <p className="mt-2 text-sm text-muted-foreground">
               Saved reports are private to the account that created them.
             </p>
-            <Link
-              href={`/auth?from=reports&next=${encodeURIComponent(`/reports/${reportId}`)}`}
-              className="mt-5 inline-flex min-h-11 items-center rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background hover:bg-foreground/90"
-            >
-              Sign in
-            </Link>
+            <Button asChild size="sm" className="mt-5">
+              <Link href={`/auth?from=reports&next=${encodeURIComponent(`/reports/${reportId}`)}`}>
+                Sign in
+              </Link>
+            </Button>
           </div>
         </div>
       )}
@@ -194,23 +195,24 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
         <div className="flex flex-1 items-center justify-center px-6">
           <div className="app-card max-w-md p-8 text-center">
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
-            <h1 className="mt-3 font-display text-2xl font-bold text-foreground">We couldn’t load this report.</h1>
+            <h1 className="mt-3 font-display text-heading text-foreground">We couldn’t load this report.</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Your report is safe. This is on our end; try again in a moment.
             </p>
             <div className="mt-5 flex items-center justify-center gap-2">
-              <button type="button"
+              <Button type="button"
                 onClick={() => setLoadAttempt((attempt) => attempt + 1)}
-                className="min-h-11 rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+                  variant="secondary" size="sm"
               >
                 Try again
-              </button>
-              <Link
-                href="/support"
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
-              >
-                Contact support
-              </Link>
+              </Button>
+              <Button asChild variant="secondary" size="sm">
+                  <Link
+                    href="/support"
+                  >
+                    Contact support
+                  </Link>
+              </Button>
             </div>
           </div>
         </div>

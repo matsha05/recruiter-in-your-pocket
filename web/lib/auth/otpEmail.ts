@@ -56,11 +56,8 @@ function htmlEmail(otp: string) {
         <td align="center" style="padding:40px 16px;">
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;border:1px solid #dfe0dc;background:#ffffff;">
             <tr>
-              <td style="height:4px;background:#ffe14d;"></td>
-            </tr>
-            <tr>
               <td style="padding:32px 32px 12px;">
-                <p style="margin:0;color:#1f5a46;font-size:14px;font-weight:600;letter-spacing:0;">Recruiter in Your Pocket</p>
+                <p style="margin:0;color:#111513;font-size:18px;font-weight:800;line-height:1.2;letter-spacing:-0.2px;">Recruiter <span style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;letter-spacing:0;color:#1f5a46;">in</span> Your Pocket</p>
                 <h1 style="margin:18px 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;">Your code&rsquo;s here.</h1>
                 <p style="margin:0;color:#5a605c;font-size:16px;line-height:1.55;">Pop it in and you&rsquo;re back on the other side of the desk.</p>
               </td>

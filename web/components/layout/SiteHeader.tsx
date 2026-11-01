@@ -8,8 +8,10 @@ import { UserNav } from "@/components/shared/UserNav";
 import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
-import { ArrowRight, List } from "@phosphor-icons/react";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { ArrowRight } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
+import { SheetClose } from "@/components/ui/sheet";
+import { NavDrawer, NavDrawerDivider, NavDrawerLink } from "./NavDrawer";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
@@ -30,7 +32,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
         <header className="site-header">
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-3 rounded-md">
-                    <Wordmark className="site-wordmark text-foreground" />
+                    <Wordmark stackOnPhones className="site-wordmark text-foreground" />
                 </Link>
 
                 <nav className="flex shrink-0 items-center gap-2 md:gap-4 xl:gap-6" aria-label="Main navigation">
@@ -60,14 +62,15 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                 <SiteNavLink href="/reports" active={isReportsActive}>My reports</SiteNavLink>
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
-                            <Link
-                                href="/workspace"
-                                aria-current={isWorkspaceActive ? "page" : undefined}
-                                data-analytics-cta="header_new_report"
-                                className="site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
-                            >
-                                New report
-                            </Link>
+                            <Button asChild className="hidden md:inline-flex">
+                                <Link
+                                    href="/workspace"
+                                    aria-current={isWorkspaceActive ? "page" : undefined}
+                                    data-analytics-cta="header_new_report"
+                                >
+                                    New report
+                                </Link>
+                            </Button>
                         </div>
                     ) : (
                         <div className="flex items-center gap-4">
@@ -81,16 +84,11 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             >
                                 Sign in
                             </Link>
-                            <Link
-                                href="/workspace"
-                                data-analytics-cta="header_report"
-                                className={cn(
-                                    "site-header-cta focus-ring hidden min-h-12 min-w-28 items-center justify-center whitespace-nowrap rounded-full px-6 py-2 font-medium transition-colors md:inline-flex",
-                                    "bg-primary text-primary-foreground hover:bg-primary/90"
-                                )}
-                            >
-                                Get your free report
-                            </Link>
+                            <Button asChild className="hidden md:inline-flex">
+                                <Link href="/workspace" data-analytics-cta="header_report">
+                                    Get your free report
+                                </Link>
+                            </Button>
                         </div>
                     )}
                     <SiteMobileMenu
@@ -150,102 +148,78 @@ function SiteMobileMenu({
     }, [focusDestination]);
 
     return (
-        <Sheet onOpenChange={open => {
-            if (open) {
-                navigationTarget.current = null;
-                menuClosed.current = false;
-            }
-        }}>
-            <SheetTrigger asChild>
-                <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-[10px] border border-border text-foreground transition-colors hover:bg-muted xl:hidden">
-                    <List className="size-5" weight="bold" />
-                </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="flex w-[min(88vw,22rem)] flex-col gap-0 overflow-hidden bg-background"
-                onCloseAutoFocus={event => {
-                    if (!navigationTarget.current) return;
-                    // Escape and dismissal restore the trigger normally; navigation
-                    // should keep focus at its destination instead of jumping back.
-                    event.preventDefault();
-                    menuClosed.current = true;
-                    focusFrame.current = requestAnimationFrame(focusDestination);
-                }}>
-                <SheetHeader className="shrink-0 border-b border-border pb-5 text-left">
-                    <SheetTitle><Wordmark className="text-foreground" /></SheetTitle>
-                    <SheetDescription className="sr-only">Navigate to the main areas of Recruiter in Your Pocket.</SheetDescription>
-                </SheetHeader>
-                <nav className="mt-8 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain" aria-label="Mobile navigation"
-                    onClickCapture={event => {
-                        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-                        const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
-                        if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
-                        const target = new URL(link.href, window.location.href);
-                        if (target.origin === window.location.origin) navigationTarget.current = target;
-                    }}>
-                    <MobileSiteLink href="/#how-it-works">How it works</MobileSiteLink>
-                    {pathname === "/" && <>
-                        <MobileSiteLink href="/sample-report">Sample report</MobileSiteLink>
-                        <MobileSiteLink href="/#about">About</MobileSiteLink>
-                    </>}
-                    <MobileSiteLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</MobileSiteLink>
-                    {isLaunchFlagEnabled("extensionSync") && <MobileSiteLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</MobileSiteLink>}
-                    {showResearchLink && <MobileSiteLink href="/research" active={isPathActive(pathname, "/research")}>Research</MobileSiteLink>}
-                    {showResourcesLink && <MobileSiteLink href="/resources" active={isPathActive(pathname, "/resources")}>Resources</MobileSiteLink>}
-                    <div className="my-5 h-px bg-border" />
-                    {authLoading ? (
-                        <p className="min-h-12 px-3 py-3 text-base text-muted-foreground" role="status" aria-live="polite">
-                            Checking account…
-                        </p>
-                    ) : user ? (
-                        <>
-                            <MobileSiteLink href="/workspace" active={isPathActive(pathname, "/workspace")}>New report</MobileSiteLink>
-                            <MobileSiteLink href="/reports" active={isPathActive(pathname, "/reports")}>My reports</MobileSiteLink>
-                            <MobileSiteLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</MobileSiteLink>
-                            <SheetClose asChild>
-                                <button
-                                    type="button"
-                                    onClick={() => onSignOut()}
-                                    className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                                >
-                                    Sign out
-                                </button>
-                            </SheetClose>
-                        </>
-                    ) : (
-                        <>
-                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</MobileSiteLink>
-                            <SheetClose asChild>
-                                <Link href="/workspace" data-analytics-cta="mobile_menu_report" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                                    Get your free report
-                                </Link>
-                            </SheetClose>
-                        </>
-                    )}
-                </nav>
-            </SheetContent>
-        </Sheet>
+        <NavDrawer
+            triggerClassName="xl:hidden"
+            description="Navigate to the main areas of Recruiter in Your Pocket."
+            onOpenChange={open => {
+                if (open) {
+                    navigationTarget.current = null;
+                    menuClosed.current = false;
+                }
+            }}
+            onCloseAutoFocus={event => {
+                if (!navigationTarget.current) return;
+                // Escape and dismissal restore the trigger normally; navigation
+                // should keep focus at its destination instead of jumping back.
+                event.preventDefault();
+                menuClosed.current = true;
+                focusFrame.current = requestAnimationFrame(focusDestination);
+            }}
+            onNavClickCapture={event => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+                if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+                const target = new URL(link.href, window.location.href);
+                if (target.origin === window.location.origin) navigationTarget.current = target;
+            }}
+        >
+            <NavDrawerLink href="/#how-it-works">How it works</NavDrawerLink>
+            {pathname === "/" && <>
+                <NavDrawerLink href="/sample-report">Sample report</NavDrawerLink>
+                <NavDrawerLink href="/#about">About</NavDrawerLink>
+            </>}
+            <NavDrawerLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</NavDrawerLink>
+            {isLaunchFlagEnabled("extensionSync") && <NavDrawerLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</NavDrawerLink>}
+            {showResearchLink && <NavDrawerLink href="/research" active={isPathActive(pathname, "/research")}>Research</NavDrawerLink>}
+            {showResourcesLink && <NavDrawerLink href="/resources" active={isPathActive(pathname, "/resources")}>Resources</NavDrawerLink>}
+            <NavDrawerDivider />
+            {authLoading ? (
+                <p className="min-h-12 px-3 py-3 text-base text-muted-foreground" role="status" aria-live="polite">
+                    Checking account…
+                </p>
+            ) : user ? (
+                <>
+                    <NavDrawerLink href="/workspace" active={isPathActive(pathname, "/workspace")}>New report</NavDrawerLink>
+                    <NavDrawerLink href="/reports" active={isPathActive(pathname, "/reports")}>My reports</NavDrawerLink>
+                    <NavDrawerLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</NavDrawerLink>
+                    <SheetClose asChild>
+                        <button
+                            type="button"
+                            onClick={() => onSignOut()}
+                            className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground riyp-surface-link hover:text-foreground"
+                        >
+                            Sign out
+                        </button>
+                    </SheetClose>
+                </>
+            ) : (
+                <>
+                    <NavDrawerLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</NavDrawerLink>
+                    <SheetClose asChild>
+                        <Button asChild className="mt-4">
+                            <Link href="/workspace" data-analytics-cta="mobile_menu_report">
+                                Get your free report
+                            </Link>
+                        </Button>
+                    </SheetClose>
+                </>
+            )}
+        </NavDrawer>
     );
 }
 
 function isPathActive(pathname: string | null, href: string) {
     return pathname === href || pathname?.startsWith(`${href}/`) || false;
-}
-
-function MobileSiteLink({ href, children, active = false }: { href: string; children: React.ReactNode; active?: boolean }) {
-    return (
-        <SheetClose asChild>
-            <Link
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                    "focus-ring min-h-12 rounded-[10px] px-3 py-3 text-base font-medium transition-colors hover:bg-muted hover:text-foreground",
-                    active ? "bg-secondary text-foreground" : "text-muted-foreground"
-                )}
-            >
-                {children}
-            </Link>
-        </SheetClose>
-    );
 }
 
 function SiteNavLink({

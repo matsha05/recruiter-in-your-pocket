@@ -5,6 +5,18 @@ async function waitForAppHydration(page: Page) {
   await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
 }
 
+// Entrance fades blend text with the page mid-animation, and people read the settled color, so scan after
+// finite animations end. Looping indicators (loading pulses) never end and are skipped.
+async function waitForSettledAnimations(page: Page) {
+  await expect.poll(() => page.evaluate(() => document.getAnimations()
+    .filter((animation) => animation.playState === "running" && animation.effect?.getComputedTiming().iterations !== Infinity)
+    .map((animation) => {
+      const target = animation.effect instanceof KeyframeEffect ? animation.effect.target : null;
+      const name = "animationName" in animation ? String(animation.animationName) : animation.constructor.name;
+      return `${name} on ${target instanceof Element ? `${target.tagName.toLowerCase()}.${String(target.className).split(" ")[0]}` : "unknown"}`;
+    })), { message: "animations still running before the axe scan", timeout: 10_000 }).toEqual([]);
+}
+
 const routes = [
   "/",
   "/pricing",
@@ -34,6 +46,7 @@ test.describe("a11y baseline", () => {
 
       await page.goto(route, { waitUntil: "domcontentloaded" });
       await waitForAppHydration(page);
+      await waitForSettledAnimations(page);
 
       const results = await new AxeBuilder({ page }).analyze();
       const blockingViolations = results.violations.filter((violation) =>
@@ -116,10 +129,11 @@ test("open mobile workspace navigation exposes the current page and has no serio
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/workspace", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
-  await page.getByRole("button", { name: "Toggle menu" }).click();
+  await page.getByRole("button", { name: "Open navigation", exact: true }).click();
 
   const mobileSheet = page.getByRole("dialog");
   await expect(mobileSheet.getByRole("link", { name: "New report", exact: true })).toHaveAttribute("aria-current", "page");
+  await waitForSettledAnimations(page);
 
   const results = await new AxeBuilder({ page }).analyze();
   const blockingViolations = results.violations.filter((violation) =>
@@ -135,7 +149,7 @@ test("keyboard resume upload announces success and moves focus to the file actio
       contentType: "application/json",
       body: JSON.stringify({
         ok: true,
-        text: "Senior product manager who led onboarding improvements across product, sales, and support.",
+        text: "Senior product manager who led onboarding improvements across product, sales, and support. Ran the weekly launch review, wrote the onboarding playbook, and trained new account managers on the customer handoff.",
       }),
     });
   });

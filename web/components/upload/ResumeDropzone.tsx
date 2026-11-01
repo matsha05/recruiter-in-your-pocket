@@ -24,6 +24,8 @@ interface ResumeDropzoneProps {
     onRemoveFile?: () => void;
     /** Reports whether the current file selection is invalid. */
     onValidationStateChange?: (hasError: boolean) => void;
+    /** For compact variant: replaces "Ready to review" when the file was read but can't be reviewed. */
+    readyLabel?: string;
 }
 
 const MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -38,6 +40,7 @@ export function ResumeDropzone({
     className,
     variant = "hero",
     fileName,
+    readyLabel = "Ready to review",
     onRemoveFile,
     onValidationStateChange,
 }: ResumeDropzoneProps) {
@@ -193,19 +196,18 @@ export function ResumeDropzone({
                 <div className="rounded border border-border/60 bg-card p-5 gap-y-4" aria-busy={isBusy}>
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <div className="text-[0.8125rem] text-muted-foreground">
+                            <div className="text-xs text-muted-foreground">
                                 Upload resume
                             </div>
                             <div className="text-xs text-muted-foreground">PDF or DOCX</div>
                         </div>
                         <Button
                             ref={chooseActionRef}
-                            variant="brand"
+                            variant="primary"
                             size="sm"
                             onClick={openFilePicker}
                             disabled={isBusy}
-                            className="px-3"
-                        >
+                       >
                             Select file
                         </Button>
                     </div>
@@ -254,18 +256,18 @@ export function ResumeDropzone({
                         </span>
                         <span className="min-w-0">
                             <span className="block truncate text-base font-medium text-foreground">{readingFileName || displayFileName}</span>
-                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : "Ready to review"}</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : readyLabel}</span>
                         </span>
                     </span>
                     <Button
                         ref={successActionRef}
                         aria-label={`Remove ${displayFileName}`}
-                        variant="ghost"
+                        variant="quiet"
                         size="sm"
-                        className="min-h-11 shrink-0 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                        className="shrink-0 text-muted-foreground hover:text-destructive"
                         onClick={handleRemoveFile}
                         disabled={isBusy}
-                    >
+                   >
                         Remove
                     </Button>
                 </div>
@@ -292,20 +294,19 @@ export function ResumeDropzone({
                     </div>
                     <div className="mt-5 flex items-center gap-2 text-destructive">
                         <WarningCircle className="size-5 shrink-0" weight="bold" />
-                        <p role="alert" className="text-base leading-6">{error}</p>
+                        <p role="alert" className="text-base">{error}</p>
                     </div>
                     <Button
                         type="button"
-                        variant="brand"
-                        size="sm"
+                        variant="primary"
                         onClick={() => {
                             setRejectedFile(null);
                             setError(null);
                             onValidationStateChange?.(false);
                             open();
                         }}
-                        className="mt-5 min-h-12 px-6 text-sm"
-                    >
+                        className="mt-5"
+                   >
                         Choose another file
                     </Button>
                 </div>
@@ -331,7 +332,7 @@ export function ResumeDropzone({
                                 <span className={styles.desktopTitle}>Drop your resume here</span>
                                 <span className={styles.mobileTitle}>Add your resume</span>
                             </p>
-                            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                            <p className="mt-2 text-sm text-muted-foreground">
                                 PDF or DOCX · 4 MB max
                             </p>
                         </div>
@@ -339,14 +340,13 @@ export function ResumeDropzone({
                         <Button
                             type="button"
                             ref={chooseActionRef}
-                            variant="brand"
-                            size="sm"
+                            variant="primary"
                             onClick={(event) => {
                                 event.stopPropagation();
                                 openFilePicker(event);
                             }}
                             disabled={isBusy}
-                            className={cn(styles.chooseButton, "min-h-12 px-6 text-sm")}
+                            className={styles.chooseButton}
                         >
                             Choose a file
                         </Button>

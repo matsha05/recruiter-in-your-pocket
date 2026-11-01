@@ -77,7 +77,7 @@ export function validateRuntimeSystem() {
     "--font-body: var(--font-brand-sans)",
     "--font-mono: var(--font-brand-sans)",
     "--weight-display: 800",
-    "--weight-heading: 700",
+    "--weight-heading: 800",
     "--weight-title: 600",
     "--weight-body: 400",
     "--weight-control: 600",
