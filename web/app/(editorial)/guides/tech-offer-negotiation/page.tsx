@@ -134,7 +134,7 @@ export default function TechOfferNegotiationGuidePage() {
                 <Sources>
                     <p>Equity terms vary by company and award. Carta’s explainers cover <a href="https://carta.com/learn/equity/stock-options/strike-price/">strike price</a>, option mechanics, and dilution. Company documents control the actual grant.</p>
                     <p>The IRS explains that stock-based compensation can be taxed differently depending on the award and event. See <a href="https://www.irs.gov/taxtopics/tc427">IRS Topic 427</a> and <a href="https://www.irs.gov/publications/p525">IRS Publication 525</a>. This guide is educational, not tax advice.</p>
-                    <p>For the research on asking, and the counter itself, see <a href="/resources/offer-negotiation">How to negotiate a job offer</a>. For a 2025 field experiment with US tech job seekers, see <a href="https://www.nber.org/papers/w33903">NBER Working Paper 33903</a>.</p>
+                    <p>For the research on asking, and the counter itself, see <a href="/resources/offer-negotiation">How to negotiate a job offer</a>. In a 2025 field experiment with US tech job seekers, 54% negotiated on their own; a short note encouraging them raised that to 61%, and the share who got better pay from 30% to 36% (Cullen, Pakzad-Hurson &amp; Perez-Truglia, <a href="https://www.nber.org/papers/w33903">NBER Working Paper 33903</a>).</p>
                 </Sources>
             </article>
         </div>

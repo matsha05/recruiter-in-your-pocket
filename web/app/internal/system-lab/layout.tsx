@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
+// No title here: a production 404 renders this layout's metadata, so only the robots rule lives at this level.
 export const metadata: Metadata = {
-  title: "Lifted Line Design System",
-  description: "Canonical production reference for the Recruiter in Your Pocket Lifted Line design system.",
   robots: { index: false, follow: false },
 };
 

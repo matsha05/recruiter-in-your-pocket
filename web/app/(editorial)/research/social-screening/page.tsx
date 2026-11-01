@@ -4,7 +4,8 @@ import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScr
 
 export const metadata: Metadata = {
     title: "How public social cues changed candidate ratings",
-    description: "What one screening experiment and a systematic review found about candidate ratings, validity, and fairness.",
+    description: "What one screening experiment and a literature review found about candidate ratings, validity, and fairness.",
+    alternates: { canonical: "/research/social-screening" },
 };
 
 export default function SocialScreeningPage() {
@@ -22,15 +23,15 @@ export default function SocialScreeningPage() {
                 stat: "Social content changed candidate ratings",
                 statDescription: (
                     <>
-                        In a 2024 screening experiment, social-media cues changed candidate ratings across a broad evaluator pool and a second pool of experienced recruiters. The study did not test later job performance.
+                        In a screening experiment for a hospitality job, unappealing posts cut candidate ratings the most. Having no social profile at all cost more than posts suggesting mental-health problems. The pattern held among evaluators with hiring experience.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "Baker, Grimm & Ofek-Shanny (2024)",
+                    text: "Baker, Grimm & Ofek-Shanny, working paper (revised 2024)",
                     href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4295354"
                 },
-                sampleSize: "1,500 general evaluators + 500 experienced recruiters"
+                sampleSize: "1,500 US online evaluators + 500 people with hiring experience"
             }}
             visualization={
                 <>
@@ -65,14 +66,14 @@ export default function SocialScreeningPage() {
                 {
                     id: "source-1",
                     title: "To Be or Not to Be on Social Media: How Social Media Content Impacts Recruitment",
-                    publisher: "SSRN working paper",
-                    year: "2024",
+                    publisher: "Baker, Grimm & Ofek-Shanny. SSRN working paper, not yet peer reviewed",
+                    year: "2022; revised 2024",
                     href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4295354"
                 },
                 {
                     id: "source-2",
                     title: "Social Media Screening and Procedural Justice: Towards Fairer Use of Social Media in Selection",
-                    publisher: "Employee Responsibilities and Rights Journal via PubMed Central",
+                    publisher: "Vosen. Employee Responsibilities and Rights Journal 33(4), via PubMed Central",
                     year: "2021",
                     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8055055/"
                 }
@@ -94,7 +95,7 @@ export default function SocialScreeningPage() {
         >
             <h2 className="research-h2">What the experiment actually showed</h2>
             <p className="research-body mb-6">
-                Evaluators reviewed candidates for a hospitality role while the researchers varied the social-media information available. Hashtags and liked pages changed candidate ratings. The result persisted in the experienced-recruiter pool.
+                Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -121,7 +122,7 @@ export default function SocialScreeningPage() {
 
             <h2 className="research-h2">Why social screening can be unreliable</h2>
             <p className="research-body mb-6">
-                A 2021 systematic review concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.
+                A 2021 literature review by Eva Vosen concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.
                 <Citation id="source-2">2</Citation>
             </p>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
@@ -142,7 +143,7 @@ export default function SocialScreeningPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The 2024 experiment used one hospitality role and designed profile cues; it is not every hiring market.</li>
+                <li>The experiment is a working paper that hasn&apos;t been peer reviewed. It used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version.</li>
                 <li>The experiment measured candidate ratings, not later performance.</li>
                 <li>Employer practice varies. This article does not establish legal guidance for any jurisdiction.</li>
             </ul>

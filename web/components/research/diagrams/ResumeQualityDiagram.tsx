@@ -4,13 +4,14 @@ import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 import { Key, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
-// Bertrand & Mullainathan (2004), Table 4, Panel A: callbacks per 100 resumes, rounded to the nearest whole callback.
-// White names: 8.80% weaker, 11.31% stronger. Black names: 6.41% weaker, 6.99% stronger (not significant).
+// Bertrand & Mullainathan, American Economic Review (2004), Table 4, Panel A: callbacks per 100 resumes,
+// rounded to the nearest whole callback. White names: 8.50% weaker, 10.79% stronger. Black names: 6.19% weaker,
+// 6.70% stronger (p = 0.61, not significant). The NBER working paper's numbers differ slightly; these are the published ones.
 const rows = [
-    { group: "White-sounding names", resume: "Stronger resume", callbacks: 11, exact: "11.3" },
-    { group: "White-sounding names", resume: "Weaker resume", callbacks: 9, exact: "8.8" },
-    { group: "Black-sounding names", resume: "Stronger resume", callbacks: 7, exact: "7.0" },
-    { group: "Black-sounding names", resume: "Weaker resume", callbacks: 6, exact: "6.4" },
+    { group: "White-sounding names", resume: "Stronger resume", callbacks: 11, exact: "10.8" },
+    { group: "White-sounding names", resume: "Weaker resume", callbacks: 9, exact: "8.5" },
+    { group: "Black-sounding names", resume: "Stronger resume", callbacks: 7, exact: "6.7" },
+    { group: "Black-sounding names", resume: "Weaker resume", callbacks: 6, exact: "6.2" },
 ];
 
 export function ResumeQualityDiagram({ figureNumber = 2 }: { figureNumber?: number }) {
@@ -48,11 +49,11 @@ export function ResumeQualityDiagram({ figureNumber = 2 }: { figureNumber?: numb
                         <Key tone="quiet">Callback, weaker resume</Key>
                     </div>
                     <PenNote>
-                        Substance paid off: about two and a half more calls per hundred. <Mark seen={seen}>For Black-sounding names, it barely registered.</Mark>
+                        Substance paid off: about two more calls per hundred. <Mark seen={seen}>For Black-sounding names, it barely registered.</Mark>
                     </PenNote>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Bertrand & Mullainathan`} title="Stronger meant more experience, skills, and honors, not better-worded bullets. About 5,000 resumes, 2004." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Bertrand & Mullainathan`} title="Stronger meant more experience, skills, and honors, not better-worded bullets. 4,870 resumes sent in Boston and Chicago, 2001–02." />
         </DiagramFigure>
     );
 }

@@ -4,7 +4,8 @@ import SecurityClient from "@/components/legal/SecurityClient";
 export const metadata: Metadata = {
   title: "Security and Data Handling",
   description:
-    "How Recruiter in Your Pocket secures uploads, stores report data, and handles billing and account deletion."
+    "How Recruiter in Your Pocket secures uploads, stores report data, and handles billing and account deletion.",
+  alternates: { canonical: "/security" },
 };
 
 export default function SecurityPage() {

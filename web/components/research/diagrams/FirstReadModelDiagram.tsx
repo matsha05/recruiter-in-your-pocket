@@ -29,8 +29,8 @@ const weighs = [
         finding: sample.structuralGaps[0]?.text,
     },
     {
-        title: "How easy the page is to scan",
-        question: "Can someone find your roles, dates, and results quickly?",
+        title: "How easy the text is to follow",
+        question: "Reading the text alone, can someone find your roles, dates, and results quickly?",
         finding: sample.report.strengths?.[0],
     },
 ].filter((item): item is typeof item & { finding: string } => Boolean(item.finding));
@@ -67,7 +67,7 @@ export function FirstReadModelDiagram() {
                     <section className="p-6 lg:p-8" aria-label="What the score weighs">
                         <div className="border-b border-line pb-5">
                             <h3 className="font-display text-report-title tracking-tight text-foreground">What the score weighs</h3>
-                            <p className="mt-2 max-w-[34rem] text-sm leading-6 text-muted-foreground">Four things a recruiter notices. The report explains each one in words; there are no separate sub-scores.</p>
+                            <p className="mt-2 max-w-[34rem] text-sm leading-6 text-muted-foreground">Four parts of a recruiter&apos;s criteria. The report explains each one in words; there are no separate sub-scores.</p>
                         </div>
                         <ol className="divide-y divide-line">
                             {weighs.map((item) => (
