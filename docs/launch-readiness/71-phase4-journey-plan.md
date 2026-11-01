@@ -1,32 +1,32 @@
 # Phase 4 plan: journey and homepage
 
 Date: 2026-11-01
-Status: Phase A (plan and mockups). Nothing is implemented. Phase B starts after PR #37 (design-system foundation) merges, because #37 rewrites nearly every file listed here.
+Status: Phase A (plan, mockups, word list, Jordan's resume and the sample generator). No UI files are changed. Phase B starts after PR #37 (design-system foundation) merges, because #37 rewrites nearly every file listed here.
 Items: 4.1, 4.2, 4.3, 4.4, 4.7, 4.8, 4.9, 4.10, 4.11, 4.12, 4.13 from [70-audit-remediation-plan.md](70-audit-remediation-plan.md). Matt's decisions D4 and D7 apply.
 
 Mockups (static HTML, real fonts and tokens, for review only): [phase4-mockups/home.html](phase4-mockups/home.html), [pricing.html](phase4-mockups/pricing.html), [details.html](phase4-mockups/details.html). Orange dashed boxes are reviewer notes, not product UI.
 
-## Open decisions (sent to the coordinating session for Matt)
+## Decisions
 
-| # | Decision | Recommendation | Alternative |
-| --- | --- | --- | --- |
-| Q1 | Which rejection beat to cut (D4). The plan's Keep list protects the silence list; D4 keeps the headline | Cut the hero card's "What Jordan got: 'We've decided to move forward with other candidates.'" line. Keep the "Not moving forward" stage | Cut the silence section and fold its honest line into the example |
-| Q2 | Main action name (D7) | "Get your free report" for every signed-out start button; "New report" only as signed-in app navigation | "Read mine" in marketing, which leaves the header on a second name |
-| Q3 | Founder credential wording (4.3, 0.8) | Headline "I've spent 14 years on the other side of the desk." plus role, company and years lines that Matt fills in | Keep the current headline if Matt confirms every word |
-| Q4 | How Jordan's sample report is made (4.2) | Run the production prompt once on a full fictional Jordan resume (paid; needs Matt's OK), then the integrity pass | Hand-write it to the real schema at no cost |
-| Q5 | Sequencing (coordinator) | The example's revised line shows Phase 2's answer-to-line feature (2.2), so the homepage ships in the same batch as 2.2 (D3) | Ship the example ending at Jordan's answer |
-| Q6 | Ownership (coordinator) | Report labels (keep/fix) and `public/sample-report.json` overlap with the signature-report session; the coordinator assigns them | n/a |
+| # | Decision | Outcome |
+| --- | --- | --- |
+| Q1 | Which rejection beat to cut (D4) | **Matt, Nov 1:** cut the hero card's "What Jordan got: 'We've decided to move forward with other candidates.'" line; keep the "Not moving forward" stage. Order: hero (note unblurs on scroll), worked example, silence list, what we look for, progress beat, founder, close |
+| Q2 | Main action name (D7) | **Matt, Nov 1:** "Get your free report" on every signed-out start button; "New report" only inside the app. The keep and fix names as proposed. Recorded in `docs/copy-system.md` §1 |
+| Q3 | Founder credential wording (4.3, 0.8) | **On hold.** Matt asked for more thought; the coordinator will send a direction. The founder section stays as it is: no "14 years", no bracketed template |
+| Q4 | How Jordan's sample report is made (4.2) | **Coordinator, Nov 1:** generate it with the production path, once, inside the eval budget Matt approved for this wave; label it "Fictional example" |
+| Q5 | Sequencing | **Coordinator:** the homepage example ships in the same batch as Phase 2's 2.2. If 2.2 slips, the example ends at Jordan's answer, with no revised line promised |
+| Q6 | Ownership | **Coordinator:** this session owns the word list and Jordan's sample (resume, generated report, `public/sample-report.json`, and the methodology figure's test guard). signature-report-marked owns the report renderer (`ReportTOC`, `ReportStream`, `FullRecruiterNotes`, `report-presentation.ts`, `lib/backend/pdf.ts`) and applies the keep and fix labels there |
 
 ## 4.1 Homepage: reveal the note, add the worked example, cut one beat
 
-New order (recommended):
+Order (Matt, Nov 1):
 
-1. **Hero.** Copy unchanged: "They called someone back. It wasn't you." / "See what a recruiter sees on your resume, and the one thing to fix first." / "Your first report is free. No account or card." Primary action per Q2; the quiet link becomes "See Jordan's report". The recruiter's screen keeps the requisition, the candidate, "Applied 9 days ago", the "Not moving forward" stage and the reviewer note; the "What Jordan got" line goes (Q1).
-2. **Worked example** (new, directly under the hero; takes the `#how-it-works` anchor so the header's "How it works" lands here).
+1. **Hero.** Copy unchanged: "They called someone back. It wasn't you." / "See what a recruiter sees on your resume, and the one thing to fix first." / "Your first report is free. No account or card." Primary action "Get your free report"; the quiet link becomes "See Jordan's report". The recruiter's screen keeps the requisition, the candidate, "Applied 9 days ago", the "Not moving forward" stage and the reviewer note. The "What Jordan got" line goes.
+2. **Worked example** (new, directly under the hero; takes the `#how-it-works` anchor so the header's "How it works" lands here). It opens with the one-sentence verdict and ends with "What would they think of yours?", absorbing today's One Sentence section.
 3. **Silence** (kept as is).
-4. **One sentence** (kept as is; its button gets the Q2 name).
-5. **What we look for, line by line** (kept as is).
-6. **Founder** (4.3).
+4. **What we look for, line by line** (kept as is).
+5. **Progress beat** (new, 4.11).
+6. **Founder** (unchanged until Q3 is settled).
 7. **Close band** (kept as is).
 
 ### The reveal
@@ -41,30 +41,41 @@ New order (recommended):
 - Tag: "Fictional example"
 - Title (headline role): "Here's the note Jordan never saw."
 - Deck: "It's about one line. Answer the question it asks, and the line finally says what Jordan did."
+- The verdict, kept from today's One Sentence section with its quote and highlighter: "The read on Jordan's resume, in one sentence:" / "A capable account manager with a real book of business. What's missing is proof Jordan changed the outcome." The final wording quotes Jordan's generated report.
 - Four steps, matching the Lifted Trace states (source evidence, open question, candidate's fact, revised wording):
-  1. "On Jordan's resume". The label "Critical Miss" in the uppercase verdict-label style, with the quote in Literata on a blue-ink rule and highlighted: "Introduced monthly renewal-risk reviews across the portfolio".
+  1. "The line behind it". The label "Critical Miss" in the uppercase verdict-label style, with the quote in Literata on a blue-ink rule: "Introduced monthly renewal-risk reviews across the portfolio". No second highlight, because the verdict above already carries the section's one yellow mark.
   2. "The note". In pen, Literata italic, word for word as on the hero card: "Solid book of business, but the best example stops right before the good part. Did renewals go up?"
   3. "Jordan's answer". Three labeled fields: "Renewal rate before", "Renewal rate after", "Over what period". Each shows a placeholder in blue ink ("Jordan's number", "Jordan's answer"). Under them: "Blank on purpose. Jordan isn't real, and we don't make up numbers for anyone."
   4. "The revised line": "Introduced monthly renewal-risk reviews across the portfolio; renewal rate went from [before] to [after] in [period]." The bracket tokens are blue ink with a dotted underline. Under it: "Jordan's line plus Jordan's answer. Nothing added." The line uses only the original line and the answer, no facts from other lines, matching the 2.2 rule. "Went from … to" doesn't assume which direction the number moved.
-- Coda (this is 4.11 on the homepage): "Then check it again." Last time: the struck-through Critical Miss. Now: "Your Critical Miss changed" and the new one, plus a pen-tint "Up 6" chip. Under it: "A re-check is one Job Search Pass report. Signed in, every version lands in Progress." and the link "See Jordan's full report →".
-- The coda's new Critical Miss and "Up 6" are placeholders until Jordan's sample report exists (Q4). They will be replaced with what that report actually says.
+- After the sheet: "See Jordan's full report →", then the turn from today's One Sentence section: "What would they think of yours?" with "Get your free report".
 - Five-second test target: a visitor can say what the product does (finds the line, asks the question, rebuilds the line from your answer) and that Jordan is made up (tag plus "Jordan isn't real").
 
-Layout: one paper sheet (24px radius desktop, 16px mobile, hairline border, no shadow). On desktop it is a two-by-two grid: the line beside the note, then the answer beside the revised line, like the marked-up resume in 2.1 with candidate lines on the left and pen notes on the right. On phones the steps form one vertical rail with numbered markers (the Lifted Trace's narrow-screen form). One highlighter in the section, on the Critical Miss line only.
+Layout: one paper sheet (24px radius desktop, 16px mobile, hairline border, no shadow). On desktop it is a two-by-two grid: the line beside the note, then the answer beside the revised line, like the marked-up resume in 2.1 with candidate lines on the left and pen notes on the right. On phones the steps form one vertical rail with numbered markers (the Lifted Trace's narrow-screen form). One highlighter in the section, on the verdict's missing clause.
 
-Files (Phase B): `LandingMineral.tsx` (order), `home/VerdictHero.tsx` and its module CSS, new `home/NoteReveal.tsx`, new `home/WorkedExample.tsx` and its module CSS, `home/OneSentence.tsx` (button label). Docs: `docs/design-system.md` §10 homepage contract and `docs/brand-system.md` homepage paragraph (story beats, reveal, removed line), updated in the same change.
+### The progress beat (4.11)
+
+- Tag: "Fictional example". Title: "Fix it. Then check it again." Deck: "A re-check reads your revised resume and puts it beside the last one, so you can see what changed."
+- Two panels:
+  - A miniature of the real `ReadComparison`: "Your Critical Miss changed.", Last time (struck through) and Now, with an "Up 6" chip.
+  - A three-row Progress strip (First report; Revision 1, "Up 6"; Revision 2, "Up 5") ending "Up 11 since your first report."
+- Footnote: "A re-check is one Job Search Pass report. Signed in, Progress keeps every version. Scores compare versions of your own resume; they don't predict interviews." with the link "What the pass includes →" to pricing.
+- The changed Critical Miss and the numbers are illustrative until Jordan's report exists. A real re-check needs a revised resume, so this stays labeled as an example and shows only score changes (D5).
+
+Files (Phase B): `LandingMineral.tsx` (order), `home/VerdictHero.tsx` and its module CSS, new `home/NoteReveal.tsx`, new `home/WorkedExample.tsx` and its module CSS (absorbs `home/OneSentence.tsx`), new `home/ProgressBeat.tsx` (shares the comparison miniature with pricing). Docs: `docs/design-system.md` §10 homepage contract and `docs/brand-system.md` homepage paragraph (story beats, reveal, removed line), updated in the same change.
 
 ## 4.2 "See an example" continues Jordan's story
 
-- The sample report becomes Jordan's, built from a complete fictional resume that matches the hero (Northwind Analytics CSM, Brightpath Logistics coordinator, the same five bullets, plus enough to make a real report). Method per Q4.
+- The sample report becomes Jordan's, generated from a complete fictional resume that matches the hero: `web/tests/fixtures/sample/jordan-miller-resume.txt`. It has the hero's lines word for word, plus dates and a few ordinary bullets.
+- `web/scripts/generate-sample-report.ts` runs that resume through the same path as `/api/resume-feedback`: production prompt and model, provider messages, validation, and the one repair pass. It writes `web/tests/fixtures/sample/jordan-miller-report.generated.json` with the model, prompt hash and telemetry for provenance. One paid call (two if the repair runs). It was checked end to end in mock mode; the paid run waits on the key source and production model settings.
+- The payload is stored exactly as generated. The integrity pass runs at render time, as it does for every report.
 - Labels: "Sample report" in the nav and on the page; the page shows a "Fictional example" tag (0.5); the hero link is "See Jordan's report".
 - The homepage's one-sentence verdict and the worked example's note follow the sample's actual wording, so the story matches from homepage to sample.
 - Knock-on: `components/research/diagrams/FirstReadModelDiagram.tsx` quotes the sample, and a test guards it (from #36). Both update with the new sample.
-- Files: `public/sample-report.json`, a new fixture `web/tests/fixtures/sample/jordan-resume.txt`, `app/(marketing)/sample-report/page.tsx` (metadata says "fictional"), the methodology figure and its test.
+- Files: `public/sample-report.json`, `app/(marketing)/sample-report/page.tsx` (metadata says "fictional"), the methodology figure and its test. The tests that read the sample get updated with it: `sample-report-contract`, `report-integrity`, `pdf-export`, and the UI specs `output-identity`, `paid-decision`, `ui-screenshots` and `workspace-handoffs`. The swap waits for #37, because #37 edits the methodology figure.
 
 ## 4.3 Founder: a credential line instead of a logo bar
 
-Proposed (Q3; Matt fills in every bracket, and nothing ships with blanks):
+**On hold (Matt, Nov 1: "think harder about this one").** The coordinator will send a direction. The founder section stays exactly as it is until then; the earlier proposal below is not approved:
 
 - Headline: "I've spent 14 years on the other side of the desk."
 - Intro: "I'm Matt. I built this to give you the read I'd give a friend before they hit send."
@@ -107,7 +118,7 @@ Neither the repo nor Matt's public LinkedIn (logged-out view) shows titles or da
 
 ## 4.8 One name each (D7)
 
-To be recorded as a glossary table in `docs/copy-system.md` (pending Q2):
+Approved by Matt (Q2) and recorded in `docs/copy-system.md` §1 and §6:
 
 | Thing | Name | Retired |
 | --- | --- | --- |
@@ -120,7 +131,7 @@ To be recorded as a glossary table in `docs/copy-system.md` (pending Q2):
 | The output | report | review, analysis |
 
 - Marketing surfaces (mine): `lib/navigation.ts`, `components/layout/SiteHeader.tsx` (desktop and mobile), `components/layout/AppHeader.tsx`, `app/(editorial)/resources/page.tsx` and `guides/page.tsx` metadata and eyebrow, the guide and calculator back-links, the hero, the closes and the research close.
-- Report labels (`ReportTOC.tsx`, `ReportStream.tsx`, `FullRecruiterNotes.tsx`, `lib/reports/report-presentation.ts`, `lib/backend/pdf.ts`) wait on Q6, because the signature-report session is changing those files.
+- Report labels (`ReportTOC.tsx`, `ReportStream.tsx`, `FullRecruiterNotes.tsx`, `lib/reports/report-presentation.ts`, `lib/backend/pdf.ts`) are applied by signature-report-marked from this list (Q6). This session doesn't edit them.
 - Tab labels match their headings ("Keep these" over "Keep these. They're working.", "Fix these first" over "Fix these three first.").
 
 ## 4.9 Trust cluster: four tabs

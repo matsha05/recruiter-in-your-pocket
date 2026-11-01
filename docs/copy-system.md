@@ -4,7 +4,7 @@
 
 This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
 
-Last updated: 2026-09-04
+Last updated: 2026-11-01
 Owner: Product + Design
 
 ## 1. Product Naming
@@ -23,6 +23,21 @@ Avoid mixing:
 
 If the user is looking at the generated output, call it a `report`.
 
+### One name each (Matt, November 1, 2026)
+
+Each of these things has one name everywhere: marketing, the app, the report, the PDF and email. When a label and a heading sit together, the label is the short form of the heading. Retired names must not come back.
+
+| Thing | Name | Retired |
+| --- | --- | --- |
+| The button that starts a report, signed out | `Get your free report` | Read mine, Start a report, Get my report, Review my resume |
+| Starting a report from signed-in navigation | `New report` | None |
+| Strengths to leave alone | Keep: `Keep these` (report tab, PDF), `Keep these. They're working.` (section heading), `Keep this one` (label in the opening read) | Leave these alone, Don't touch this one |
+| What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.`; cards `Critical Miss`, `Fix 2`, `Fix 3`; `Fix` in the full notes | Start with these changes, Suggested change |
+| The first fix | `Critical Miss`: the one thing to fix first. It may be `Nothing critical` (D2) | None |
+| The negotiation section and its guides | `After the offer` | Resources, Career resources, All Resources |
+| The example report | `Sample report` (navigation and page title). The homepage link names the candidate: `See Jordan's report` | See an example, Example report |
+| A paid re-run of a revised resume | `Re-check`. The comparison says the Critical Miss `changed`, never that it was `fixed` | None |
+
 ## 2. Canonical Report Structure
 
 The main report navigation uses these labels:
@@ -30,6 +45,8 @@ The main report navigation uses these labels:
 2. `Fix these first`
 3. `Keep these`
 4. `Role fit`
+
+Section headings follow the same names: `Fix this first.` / `Fix these two first.` / `Fix these three first.` and `Keep these. They're working.`
 
 Within each recommendation, show the original quotation, what needs clarification, and a suggested revision with any missing facts marked.
 
@@ -91,24 +108,24 @@ Primary CTA:
 - verb first
 - clear outcome
 
-Examples:
-- `Get Your Free Report`
-- `Get Another Report`
-- `See Pricing`
+Examples (sentence case):
+- `Get your free report` (the one name for starting a report, signed out; see §1)
+- `Get 5 more reports · $29`
 - `Export PDF`
 
 Secondary CTA:
 - clarifies or supports
 
 Examples:
-- `Copy Link`
-- `See Methodology`
-- `View Pricing`
+- `See Jordan's report`
+- `Restore access`
+- `Copy link`
 
 Avoid:
 - `Get Started`
 - `Learn More`
 - `Submit`
+- any name retired in §1
 
 ## 7. Error and Recovery Pattern
 

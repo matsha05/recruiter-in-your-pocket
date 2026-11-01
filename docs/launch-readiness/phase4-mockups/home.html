@@ -60,6 +60,27 @@
   .after-sheet { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem 2rem; margin-top: 1.25rem; }
   .link { font: 600 1rem/1 var(--sans); text-decoration: underline; text-decoration-color: rgb(31 90 70 / 0.4); text-underline-offset: 0.24em; }
 
+  .verdict-block { margin-top: 2.5rem; }
+  .verdict-block .who { font: var(--small); color: var(--muted); }
+  .verdict-block blockquote { max-width: 27ch; margin-top: 0.875rem; font: 400 clamp(1.75rem, 3.6vw, 2.75rem)/1.25 var(--serif); letter-spacing: -0.015em; text-wrap: pretty; }
+  .example .after-sheet { justify-content: flex-end; }
+  .example .turn { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+  .progress { padding: 4rem 0 5rem; }
+  .progress .inner { max-width: 68rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 1.25rem); }
+  .progress h2 { margin-top: 1.25rem; }
+  .progress .deck { max-width: 44ch; margin-top: 1rem; }
+  .progress-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.25rem; margin-top: 2.25rem; }
+  .pcard { border: 1px solid var(--line); border-radius: 24px; background: var(--paper); padding: 1.5rem 1.75rem; }
+  .pcard .pt { font: 600 1.0625rem/1.35 var(--sans); }
+  .pcard .compare { margin-top: 1rem; }
+  .pcard .k { display: flex; justify-content: space-between; align-items: center; }
+  .journey { display: grid; gap: 0.5rem; }
+  .journey li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) 3.25rem; align-items: center; gap: 0.75rem; font: var(--small); color: var(--muted); }
+  .journey .bar { height: 0.5rem; border-radius: 999px; background: var(--inset); overflow: hidden; }
+  .journey .bar span { display: block; height: 100%; border-radius: inherit; background: var(--ink); }
+  .journey li:last-child { color: var(--ink); font-weight: 600; }
+  .logos { margin-top: 0.5rem; font: 800 1.375rem/1.3 var(--sans); color: var(--muted); letter-spacing: -0.02em; }
+
   /* Silence (kept) */
   .silence { max-width: 46rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; text-align: center; }
   .silence ul { border-top: 1px solid var(--line); text-align: left; }
@@ -121,7 +142,10 @@
     .coda { grid-template-columns: minmax(0, 1fr); gap: 0.875rem; }
     .compare { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
     .compare .to { display: none; }
-    .one .turn { flex-direction: column; align-items: stretch; }
+    .one .turn, .example .turn { flex-direction: column; align-items: stretch; }
+    .progress-grid { grid-template-columns: minmax(0, 1fr); }
+    .pcard { padding: 1.25rem; border-radius: 16px; }
+    .verdict-block blockquote { font-size: 1.625rem; }
     .founder { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 3.5rem 1.25rem; }
     .portrait { width: 5.5rem; }
     .creds div { grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 1rem; }
@@ -169,19 +193,24 @@
     </div>
   </div>
 </div></section>
-<div class="annot-wrap"><p class="annot"><b>4.1 reveal.</b> At rest the note is blurred, as today. It clears (blur 5px to 0, 520ms, shared ease) once the visitor scrolls: the first scroll past 48px on desktop, or the card fully in view on a phone. Reduced motion: it clears without a transition. The card stays hidden from assistive tech; the example below carries the same words as real text. <b>Cut beat (pending Matt):</b> the “What Jordan got: ‘We’ve decided to move forward…’” line is gone from the card.</p></div>
+<div class="annot-wrap"><p class="annot"><b>4.1 reveal.</b> At rest the note is blurred, as today. It clears (blur 5px to 0, 520ms, shared ease) once the visitor scrolls: the first scroll past 48px on desktop, or the card fully in view on a phone. Reduced motion: it clears without a transition. The card stays hidden from assistive tech; the example below carries the same words as real text. <b>Cut beat (Matt, Nov 1):</b> the “What Jordan got: ‘We’ve decided to move forward…’” line is gone from the card.</p></div>
 
 <section class="example" id="how-it-works"><div class="inner">
   <span class="tag">Fictional example</span>
   <h2 class="headline">Here’s the note Jordan never saw.</h2>
   <p class="lead deck">It’s about one line. Answer the question it asks, and the line finally says what Jordan did.</p>
 
+  <div class="verdict-block">
+    <p class="who">The read on <b>Jordan’s</b> resume, in one sentence:</p>
+    <blockquote>“A capable account manager with a real book of business. <span class="mark">What’s missing is proof Jordan changed the outcome.</span>”</blockquote>
+  </div>
+
   <div class="sheet">
     <div class="steps">
       <div class="step">
-        <p class="step-label"><span class="n">1</span>On Jordan’s resume</p>
+        <p class="step-label"><span class="n">1</span>The line behind it</p>
         <div class="miss-row"><span class="verdict-label">Critical Miss</span></div>
-        <p class="quote"><span class="mark">Introduced monthly renewal-risk reviews across the portfolio</span></p>
+        <p class="quote">Introduced monthly renewal-risk reviews across the portfolio</p>
       </div>
       <div class="step">
         <p class="step-label"><span class="n">2</span>The note</p>
@@ -205,22 +234,10 @@
       </div>
     </div>
   </div>
-
-  <div class="coda">
-    <p class="then">Then check it again.</p>
-    <div class="compare">
-      <p class="was"><span class="k">Last time · Critical Miss</span><q>Introduced monthly renewal-risk reviews across the portfolio</q></p>
-      <svg class="arrow to" viewBox="0 0 16 16" fill="none" stroke="#5a605c" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
-      <p><span class="k">Now · Your Critical Miss changed</span><q>Results-driven, detail-oriented professional seeking a challenging role…</q></p>
-    </div>
-    <span class="delta">Up 6</span>
-  </div>
-  <div class="after-sheet">
-    <p class="small">A re-check is one Job Search Pass report. Signed in, every version lands in Progress.</p>
-    <a class="link">See Jordan’s full report →</a>
-  </div>
+  <p class="after-sheet"><a class="link">See Jordan’s full report →</a></p>
+  <div class="turn"><h2 class="title">What would they think of yours?</h2><a class="btn btn-lg btn-primary">Get your free report <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
 </div></section>
-<div class="annot-wrap"><p class="annot"><b>Pending.</b> Step 4 shows the answer-to-line feature (Phase 2, item 2.2), so it ships in the same batch as 2.2 or not at all (D3). The coda’s new Critical Miss and “Up 6” get replaced by whatever Jordan’s real sample report says, if Matt approves generating it. “See Jordan’s full report” needs the sample to be Jordan’s (4.2).</p></div>
+<div class="annot-wrap"><p class="annot"><b>Approved order (Matt, Nov 1).</b> The example opens with the one-sentence verdict, which keeps its quote and highlighter. The resume line below it carries the blue-ink rule but no second highlight, so one view has one yellow mark. Step 4 ships with Phase 2’s answer-to-line feature (2.2). If 2.2 slips, the example ends at Jordan’s answer. The verdict and note wording will quote Jordan’s real generated report.</p></div>
 
 <section class="silence">
   <ul aria-hidden="true">
@@ -234,30 +251,46 @@
   <p>Sometimes it’s the market, a ghost job, or a stack of other applicants. Sometimes it’s one line on your resume. <strong>That part you can fix.</strong></p>
 </section>
 
-<section class="one">
-  <p class="who">The read on <b>Jordan’s</b> resume, in one sentence:</p>
-  <blockquote>“A capable account manager with a real book of business. <span class="mark">What’s missing is proof Jordan changed the outcome.</span>”</blockquote>
-  <div class="turn"><h2 class="title">What would they think of yours?</h2><a class="btn btn-lg btn-primary">Get your free report <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
-</section>
+<p class="annot-wrap" style="text-align:center;padding-block:2rem"><span class="label">“What we look for, line by line.” stays as it is.</span></p>
 
-<p class="annot-wrap" style="text-align:center"><span class="label">“What we look for, line by line.” stays as it is.</span></p>
+<section class="progress"><div class="inner">
+  <span class="tag">Fictional example</span>
+  <h2 class="headline">Fix it. Then check it again.</h2>
+  <p class="lead deck">A re-check reads your revised resume and puts it beside the last one, so you can see what changed.</p>
+  <div class="progress-grid">
+    <div class="pcard">
+      <p class="pt">Your Critical Miss changed.</p>
+      <div class="compare">
+        <p class="was"><span class="k">Last time</span><q>Introduced monthly renewal-risk reviews across the portfolio</q></p>
+        <svg class="arrow to" viewBox="0 0 16 16" fill="none" stroke="#5a605c" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+        <p><span class="k">Now <span class="delta">Up 6</span></span><q>Results-driven, detail-oriented professional seeking a challenging role…</q></p>
+      </div>
+    </div>
+    <div class="pcard">
+      <ol class="journey" aria-label="Jordan's reports">
+        <li><span>First report</span><span class="bar"><span style="width:58%"></span></span><span></span></li>
+        <li><span>Revision 1</span><span class="bar"><span style="width:64%"></span></span><span>Up 6</span></li>
+        <li><span>Revision 2</span><span class="bar"><span style="width:69%"></span></span><span>Up 5</span></li>
+      </ol>
+      <p class="pt" style="margin-top:0.875rem">Up 11 since your first report.</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:1rem">A re-check is one Job Search Pass report. Signed in, Progress keeps every version. Scores compare versions of your own resume; they don’t predict interviews. <a class="link" style="font-size:0.875rem">What the pass includes →</a></p>
+</div></section>
+<div class="annot-wrap"><p class="annot"><b>4.11.</b> The progress beat gets its own section (Matt’s order). The changed Critical Miss and the “Up” numbers are placeholders until Jordan’s report exists. A real re-check would need a revised resume, so these are labeled as an example and show only score changes, never an absolute score (D5).</p></div>
 
 <section class="founder">
   <div><div class="portrait"></div><p class="portrait-cap">Matt Shaw <span>Founder</span></p></div>
   <div>
-    <h2 class="title">I’ve spent 14 years on the other side of the desk.</h2>
-    <p class="intro">I’m Matt. I built this to give you the read I’d give a friend before they hit send.</p>
-    <dl class="creds" aria-label="Where Matt has recruited">
-      <div><dt>OpenAI</dt><dd class="tbd">[Matt’s title]</dd><span class="yrs tbd">[YYYY–YYYY]</span></div>
-      <div><dt>Meta</dt><dd class="tbd">[Matt’s title]</dd><span class="yrs tbd">[YYYY–YYYY]</span></div>
-      <div><dt>Google</dt><dd class="tbd">[Matt’s title]</dd><span class="yrs tbd">[YYYY–YYYY]</span></div>
-    </dl>
-    <p class="earlier">Earlier: X-Team, Robert Half.</p>
+    <h2 class="title">I’ve hired hundreds of people and led hiring globally at OpenAI, Meta, and Google.</h2>
+    <p class="intro">I’m Matt. After 14 years in recruiting, I built this to give you the read I’d give a friend before they hit send.</p>
+    <p class="earlier" style="margin-top:1.5rem">Where I’ve recruited and led hiring teams</p>
+    <p class="logos">OpenAI&nbsp;&nbsp; Meta&nbsp;&nbsp; Google&nbsp;&nbsp; X-Team&nbsp;&nbsp; Robert Half</p>
     <p class="disclosure"><strong>Heads up:</strong> I wrote the review criteria, and AI applies them to your resume. I don’t read each report myself.</p>
     <p class="flinks"><a>How the report works →</a><a>Meet Matt</a></p>
   </div>
 </section>
-<div class="annot-wrap"><p class="annot"><b>4.3, pending Matt.</b> Brackets are for Matt to fill in; nothing ships with blanks. The headline replaces “I’ve hired hundreds of people and led hiring globally at OpenAI, Meta, and Google” (0.8) unless he confirms every word of it.</p></div>
+<div class="annot-wrap"><p class="annot"><b>4.3, on hold.</b> This shows the founder section as it is today. Matt asked for more thought; the coordinator is sending a direction. Nothing here changes until then.</p></div>
 
 <section class="close" style="margin-top:2rem"><h2 class="headline">Good work deserves a good read.</h2><a class="btn btn-lg">Get your free report →</a></section>
 
