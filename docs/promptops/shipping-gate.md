@@ -31,7 +31,8 @@ Before any prompt modification can be merged or deployed:
 |-------|-----------|-------------------|
 | WARN count | < 30% of fixtures | Investigate, document decision |
 | Score drift | ±5 points from baseline | Review and justify |
-| Judge score | > 8.5/10 average | Investigate regressions |
+| Judge score (the older general judge, `lib/evals/judge.ts`) | > 8.5/10 average | Investigate regressions |
+| Critical Miss judge (`npm run eval:judge -- compare`) | Reported, not gated (see below) | Read every clear production preference and every veto |
 
 ### Report integrity (reported, not gated)
 
@@ -69,6 +70,25 @@ Critical Miss prompt `55bee48b` (items 1.3 and 1.9, **not shipped**), measured a
 - The widest score retest range is 3 points, down from 4.
 
 These counts improved, but Matt's blind pick did not. Details are under "Critical Miss prompt attempt" below. Measure the next attempt against his pick as well as these counts.
+
+### Critical Miss judge (reported, not gated)
+
+An automated judge (`npm run eval:judge`, `web/lib/evals/judge/`) asks the question Matt's blind pick asks: of two reports on the same synthetic resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](../evals/critical-miss-rubric.md) on `gpt-6.1-sol`, a different model from the `gpt-6.1-terra` generator. It runs each comparison in both side orders and counts disagreement as a tie. It sends only synthetic fixtures. How to run and read it: [critical-miss-judge.md](../evals/critical-miss-judge.md).
+
+For a prompt or model change, run `compare` with production as the first run file and the candidate second, and report:
+
+- the candidate preferred / production preferred / no real difference, with how many of each are clear;
+- every **clear** production preference, with its rationale;
+- vetoes on either side (a claim the resume doesn't support).
+
+Calibration of judge `critical-miss-judge-v3` ([summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md)):
+
+- Matt's blind pick: 5 of his 6 decisive picks reproduced, and none clearly reversed. The one miss is a slight preference on the item he marked "Both are good though".
+- 25 of 25 fictional contrast pairs right, each isolating one rubric rule.
+- Same verdicts on every retest, including under a different seed; 0 of 89 pair-runs changed with side order.
+- On the two live runs behind the blind pick, it preferred production 6 to 2 with 1 tie, the same direction as Matt's 5 to 1.
+
+These numbers are in-sample: the rubric was refined on the same ten items. The judge does not change PASS/WARN/FAIL. Whether it gates, and at what bar, is Matt's decision. Prompt v3's blind pick is the first held-out check: record the judge's verdicts before his picks are revealed.
 
 ---
 

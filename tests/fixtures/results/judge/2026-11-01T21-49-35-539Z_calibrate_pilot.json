@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: pairwise calibration",
+    "timestamp": "2026-11-01T21:49:35.537Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "1ceaa4b08386c5d25dc66b088f83bbbf5f849b8e7c3ea04d748936d5fe7f1852",
+    "calls": 2,
+    "cost_usd": 0.0188998
+  },
+  "judge_prompt_version": "critical-miss-judge-v1",
+  "records": [
+    {
+      "pair": {
+        "set": "blind-pick",
+        "id": "bp-01",
+        "rule": "matt_decisive",
+        "expected": "Y",
+        "note": "Budget size is a tangible thing to grasp onto, it helps the recruiter understand the scale.",
+        "production_side": "Y",
+        "resume_chars": 3233
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "bp-01",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current BrightWave role shows substantial UX leadership: an eight-person team, budget and vendor ownership, and a SaaS redesign linked to a 15% retention improvement. The main missing detail is the scale and substance of the stated financial responsibility.",
+              "most_important_issue": "Quantify the current role's UX budget and name a concrete spending or vendor decision so a hiring manager can assess the scope of budget ownership.",
+              "first": {
+                "targets": "Move the existing retention result above the management bullets in the current role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add a verifiable budget size and a specific spending or vendor decision to the current role's budget-ownership bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "C2_concrete_fact_over_move decides this comparison: both fixes concern the current leadership role, but the second asks for missing facts rather than rearranging an already visible result. The resume states \"- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" without showing the budget size or a specific decision. The first merely moves \"- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\" higher. The second also satisfies C3_specific_ask and C7_honest_ask by naming exactly what to add and limiting the request to verifiable facts.",
+              "cited_resume_lines": [
+                "Lead UX Designer / Design Manager",
+                "March 2018 - Present",
+                "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products",
+                "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+                "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2802,
+              "completion_tokens": 498,
+              "total_tokens": 3300,
+              "cached_prompt_tokens": 0,
+              "cache_write_prompt_tokens": 2799,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0119835,
+            "latency_ms": 6006
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current BrightWave role shows credible UX management scope through an eight-person team, budget ownership, and a flagship SaaS redesign linked to improved retention. The main missing detail is the scale and substance of that financial responsibility.",
+              "most_important_issue": "Add the verifiable budget size and a concrete spending or vendor decision to the current role so a hiring manager can assess the scope of budget ownership.",
+              "first": {
+                "targets": "Missing budget scale and a concrete spending or vendor decision in the current BrightWave role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Moving the existing 15% retention result above the current role's management bullets.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "C2_concrete_fact_over_move decides this: \"- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" establishes ownership but leaves its financial scale and actual decisions unspecified. The first report asks for those exact facts, conditioned on verification, satisfying C3 and C7 and helping a hiring manager judge financial responsibility under C6. The second report only reorders an already visible accomplishment: \"- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\". Both reports are grounded, but adding missing evidence is more useful than moving existing evidence.",
+              "cited_resume_lines": [
+                "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+                "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2802,
+              "completion_tokens": 448,
+              "total_tokens": 3250,
+              "cached_prompt_tokens": 1903,
+              "cache_write_prompt_tokens": 896,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0069163,
+            "latency_ms": 6101
+          }
+        ],
+        "cost_usd": 0.0188998
+      },
+      "grade": "right"
+    }
+  ]
+}
