@@ -61,16 +61,14 @@ test("ordinary mobile navigation moves focus into the destination page", async (
     expect(await page.evaluate(() => scrollY)).toBe(0);
 });
 
-test("a section reached before the hero example switches views stays put", async ({ page }) => {
-    // The example's own switch to the recruiter's read grows the hero; it must not
-    // push a section the visitor already jumped to.
+test("a section reached before the hero's note arrives stays put", async ({ page }) => {
+    // The hero's note animates in; it must not push a section the visitor already jumped to.
     await page.setViewportSize({ width: 820, height: 844 });
     await page.goto("/");
-    await expect(page.getByTestId("recruiter-view-demo")).toHaveAttribute("data-view", "you");
+    await expect(page.getByTestId("landing-verdict-art")).toBeVisible();
     await page.evaluate(() => document.getElementById("how-it-works")!.scrollIntoView({ block: "start" }));
     await page.waitForTimeout(1500);
     const y = (await page.locator("#how-it-works").boundingBox())!.y;
     expect(y).toBeLessThanOrEqual(100);
     expect(y).toBeGreaterThanOrEqual(-1);
-    await expect(page.getByTestId("recruiter-view-demo")).toHaveAttribute("data-view", "you");
 });
