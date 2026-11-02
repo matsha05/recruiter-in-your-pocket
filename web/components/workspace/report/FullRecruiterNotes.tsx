@@ -7,7 +7,9 @@ interface FullRecruiterNotesProps {
   hasJobDescription?: boolean;
 }
 
+// The keys match the model's section_review names; the headings are sentence case.
 const SECTION_ORDER = ["Summary", "Work Experience", "Skills", "Education"] as const;
+const SECTION_LABELS: Partial<Record<(typeof SECTION_ORDER)[number], string>> = { "Work Experience": "Work experience" };
 
 function isCopy(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
@@ -70,7 +72,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       { label: "Fix", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
-    return [{ name, notes }];
+    return [{ name: SECTION_LABELS[name] ?? name, notes }];
   });
   const nextSteps = uniqueCopy(report.next_steps || []);
 
