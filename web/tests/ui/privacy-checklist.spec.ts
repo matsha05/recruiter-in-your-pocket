@@ -1,5 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { schemaValidReport } from "../helpers/report-fidelity-fixture";
+import { ResumeFeedbackResponseSchema } from "../../lib/validation/resume-report-schema";
 
 const consentKey = "riyp:analytics-consent:v1";
 
@@ -95,8 +97,14 @@ test("a tagged link's channel rides from the landing page to the finished report
   test.skip(process.env.RIYP_ANALYTICS_TEST_ENABLED !== "1", "Use the analytics-enabled test build.");
   test.setTimeout(120_000);
   const events = await interceptAnalytics(page);
-  await page.setExtraHTTPHeaders({ "x-forwarded-for": "198.51.100.211" });
+  // The report itself is stubbed: this test follows the analytics, not generation.
+  const report = ResumeFeedbackResponseSchema.parse(schemaValidReport);
   await page.route("**/auth/v1/user", route => route.fulfill({ status: 401, json: { message: "Auth session missing" } }));
+  await page.route("**/api/free-status", route => route.fulfill({ json: { ok: true, free_uses_left: 1 } }));
+  await page.route("**/api/resume-feedback-stream", route => route.fulfill({
+    headers: { "content-type": "text/event-stream", "cache-control": "no-cache" },
+    body: `${JSON.stringify({ type: "complete", ok: true, data: report, report_id: null, report_receipt: null, operation_id: route.request().postDataJSON().recovery_id, free_uses_remaining: 0 })}\n`,
+  }));
   await page.goto("/?utm_source=reddit&utm_medium=community&utm_campaign=r-resumes&utm_content=answer&gclid=private-click-id");
   await page.getByRole("button", { name: "Allow analytics", exact: true }).click();
   await page.getByTestId("landing-primary-cta").click();
