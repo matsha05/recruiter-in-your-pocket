@@ -51,6 +51,8 @@ const assessmentWords = normalizedSet([
   "tied", "linked", "associated",
   "typo", "make", "slower", "current", "completed", "complete", "school", "location", "core", "job", "organized", "sequence", "straightforward", "included", "presented", "order", "scan", "section", "title", "employer", "figure", "score", "starting", "point",
   "uneven", "unevenly", "unusually", "useful", "utilization", "verified", "volume", "well", "workforce",
+  // How the score reads the page ("The score reflects the specific workloads shown across your roles").
+  "reflect", "shown", "across", "workload",
   // Seniority reads, matching the report's own level scale ("Early career" ... "Director-level").
   // Bare "entry", "junior", and "executive" stay out: they also name duties and job titles.
   "entry-level", "early-career", "mid-level", "mid-career", "senior-level", "lead-level", "director-level", "level",

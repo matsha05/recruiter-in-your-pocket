@@ -13,6 +13,8 @@ const commonCapitalizedWords = new Set([
   "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
   // Sentence-initial auxiliaries that open a question ("Is there a verifiable change ...?").
   "Are", "Can", "Could", "Does", "Had", "Has", "Have", "Is", "Should", "Was", "Were", "Will", "Would",
+  // Sentence-initial locations that point at a section ("Above EXPERIENCE, add ...").
+  "Above", "Below", "Under",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [
