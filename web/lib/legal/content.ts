@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import type { IconProps } from "@phosphor-icons/react";
 import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react";
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
-import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
+import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TERMS_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 
 export type LegalIcon = ComponentType<IconProps>;
 
@@ -207,7 +207,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
     eyebrow: "Terms of service",
     title: "Terms for using Recruiter in Your Pocket",
     description: "Terms for product use, billing, and account behavior.",
-    lastUpdated: LEGAL_LAST_UPDATED,
+    lastUpdated: TERMS_LAST_UPDATED,
     sections: [
       {
         type: "card",
@@ -216,7 +216,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice. Company names that describe our founder's work history do not mean those companies sponsor, endorse, or are affiliated with RIYP.",
+              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice. Company names that appear on RIYP, in examples, research, or reports, do not mean those companies sponsor, endorse, or are affiliated with RIYP.",
             },
           ],
         ],
