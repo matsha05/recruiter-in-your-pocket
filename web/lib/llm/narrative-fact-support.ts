@@ -135,7 +135,10 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|choose|describe|explain|give|include|name|replace|revise|rewrite|select|show|use)\b/iu);
   const requestTail = requestHead ? prefix.slice(requestHead[0].length) : prefix;
   const questionRequest = /\b(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
-  if ((!requestHead && !questionRequest)
+  // "A verified result from one client project would help" proposes an example; it doesn't count clients.
+  const hypothetical = /^\s*(?:a|an)\s/iu.test(prefix)
+    && /^one(?:\s+(?!(?:that|which|who)\b)[\p{L}-]+){0,4}\s+(?:would|could)\b/iu.test(claim.slice(quantityMatch?.index ?? 0));
+  if ((!requestHead && !questionRequest && !hypothetical)
     || /\b(?:that|managed|served|led|owned|delivered|supported|handled)\b/iu.test(requestTail)) return false;
   // In a request or question, "one X" picks an example ("Name one type of employee concern"); it doesn't count Xs.
   if (/^one\b/iu.test(fact.display)) return true;

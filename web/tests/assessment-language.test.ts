@@ -148,6 +148,14 @@ assert.equal(fromPath({ top_fixes: [{ fix: 'Add how much time your calendar supp
 assert.ok(fromPath({ top_fixes: [{ fix: 'Name the founders you supported.', why: 'This shows how you handled conflicts between the two founders.' }] }, 'Support three founders at early-stage companies with calendar, travel, and inbox management.').length > 0, "a conflict between people still needs source support");
 console.log("possessive, example and calendar-conflict tests passed");
 
+// A hypothetical example (eval_1793578314147, content writer).
+const writerSource = 'Freelance Content Writer. Write blog posts, case studies, and email sequences for 6 software clients.';
+assert.equal(fromPath({ score_comment_long: 'A verified result from one client project would make the recent work easier to assess.' }, writerSource).length, 0, "a hypothetical example is not a count");
+assert.ok(fromPath({ score_comment_long: 'A verified result from two client projects would make the recent work easier to assess.' }, writerSource).length > 0, "a hypothetical count other than one still needs support");
+assert.ok(fromPath({ score_comment_long: 'A verified result came from one client project.' }, writerSource).length > 0, "an asserted single project still needs support");
+assert.ok(fromPath({ score_comment_long: 'A result from one client project that would make the recent work easier to assess is listed.' }, writerSource).length > 0, "a relative clause asserting the project still needs support");
+console.log("hypothetical example tests passed");
+
 // eval_1793553133997 (production prompt): "multidisciplinary" didn't match the resume's "multi-disciplinary".
 const pmSource = 'Coordinated multi-disciplinary teams of up to 50 members, effectively translating military operational requirements into actionable civilian business processes.';
 for (const c of [
