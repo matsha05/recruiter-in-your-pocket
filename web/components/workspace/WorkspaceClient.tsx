@@ -442,7 +442,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         const targetId = sectionMap[context.section];
         const scrollFrame = requestAnimationFrame(() => {
             const navigation = document.querySelector<HTMLElement>('[aria-label="Resume report sections"]');
-            if (targetId && !scrollToReportSection(targetId, navigation)) return;
+            // Back from checkout, the reader lands on the section they unlocked rather than watching the page scroll there.
+            if (targetId && !scrollToReportSection(targetId, navigation, { instant: true })) return;
 
             // A save may replace the restored report before this frame. Cleanup
             // cancels that attempt; keep its context for the next committed report.
