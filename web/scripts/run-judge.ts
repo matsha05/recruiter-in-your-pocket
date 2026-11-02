@@ -3,7 +3,7 @@
  * Critical Miss judge - CLI.
  *
  * Usage (from web/):
- *   npm run eval:judge -- calibrate [--set blind-pick|contrast|all|count] [--ids bp-01,cp-03] [--repeat 2] [--mode pairwise|absolute]
+ *   npm run eval:judge -- calibrate [--set blind-pick|contrast|all|count|key] [--ids bp-01,cp-03] [--repeat 2] [--mode pairwise|absolute] [--key <path>]
  *   npm run eval:judge -- score <live_run.json> [--limit 5]
  *   npm run eval:judge -- compare <production_live_run.json> <candidate_live_run.json> [--key <count-check-key.json>]
  *     (prints the prompt-change gate verdict, count checks included, and exits nonzero on FAIL)
@@ -38,6 +38,7 @@ import { DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, JUDGE_MODELS, JudgeBudgetError, 
 import { judgeAbsolute, judgeCount, judgePairwise } from "../lib/evals/judge/modes";
 import {
     COUNT_KEY_PATH,
+    keyCheckView,
     loadCountCalibration,
     loadCountKey,
     outcomeFor,
@@ -154,6 +155,7 @@ async function calibrate(flags: Flags) {
     const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
     const set = String(flags.set || "all");
     if (set === "count") return calibrateCount(flags, cfg, ledger);
+    if (set === "key") return keyCheck(flags, cfg, ledger);
     let pairs: CalibrationPair[] = [
         ...(set === "all" || set === "blind-pick" ? loadBlindPick() : []),
         ...(set === "all" || set === "contrast" ? loadContrastPairs() : []),
@@ -228,6 +230,52 @@ async function calibrateCount(flags: Flags, cfg: JudgeConfig, ledger: SpendLedge
     const rows = results.filter((r): r is CountCalibrationRow => !(r instanceof Error));
     const runMeta = meta("Critical Miss judge: count calibration", cfg, ledger);
     save("calibrate-count", flags, { meta: runMeta, judge_prompt_version: JUDGE_PROMPT_VERSION, rows }, countCalibrationMarkdown(runMeta, rows));
+}
+
+/**
+ * Vet a count-check key before gating on it: each bad resume's three labeled
+ * problems, shown as one report's Critical Misses, get a blind count call. A
+ * label the judge doesn't rate critical on its own would be counted against
+ * the candidate by the pairwise half of the gate, so fix it in the key first.
+ */
+async function keyCheck(flags: Flags, cfg: JudgeConfig, ledger: SpendLedger) {
+    const fixtures = new Map(loadCalibrationData().fixtures.map((fixture) => [fixture.id, fixture]));
+    const keyPath = countKeyPath(flags);
+    const loaded = loadCountKey(keyPath, fixtures, readFixtureResume);
+    if (!loaded.key || loaded.errors.length > 0) throw new Error(`The key can't be used:\n${loaded.errors.join("\n")}`);
+    const bad = loaded.key.resumes.filter((resume) => resume.kind === "bad");
+    console.log(`Key check: ${bad.length} bad resumes from ${path.relative(process.cwd(), keyPath)} on ${cfg.model}, ceiling $${ledger.ceilingUsd}`);
+    const results = await pool(bad, numberFlag(flags, "concurrency", 3), async (resume) => {
+        const fixture = fixtures.get(resume.fixture_id)!;
+        const input = { id: resume.fixture_id, resume_text: readFixtureResume(fixture), review_date: String(loaded.key!.date || new Date().toISOString()).slice(0, 10) };
+        const result = await judgeCount(input, keyCheckView(resume), { config: cfg, ledger });
+        const rows = resume.problems.map((problem, index) => ({ fixture_id: resume.fixture_id, id: problem.id, kind: (problem as { kind?: string }).kind || "", problem: problem.problem, critical: result.raw.misses[index].critical_on_its_own, note: result.raw.misses[index].note }));
+        for (const row of rows) console.log(`   ${row.fixture_id} ${row.id}: ${row.critical ? "critical" : "NOT critical on its own"}`);
+        return rows;
+    });
+    reportErrors(results.filter((r): r is Error => r instanceof Error));
+    const rows = results.filter((r): r is Exclude<typeof r, Error> => !(r instanceof Error)).flat();
+    const disputed = rows.filter((row) => !row.critical);
+    const runMeta = meta("Critical Miss judge: key check", cfg, ledger);
+    const lines = [
+        `# ${runMeta.title}`,
+        "",
+        `- Run: ${runMeta.timestamp}; calls ${ledger.calls}; spend $${ledger.spentUsd.toFixed(4)}`,
+        `- Key: \`${path.relative(path.resolve(process.cwd(), ".."), keyPath)}\``,
+        `- Judge prompt SHA-256: \`${runMeta.judge_prompt_sha256}\``,
+        `- Labeled problems the blind judge rates critical on their own: ${rows.length - disputed.length} of ${rows.length}`,
+        "",
+        "| Resume | Problem | Kind | Blind judge | Note |",
+        "| --- | --- | --- | --- | --- |",
+        ...rows.map((row) => `| ${row.fixture_id} | ${row.id} | ${row.kind} | ${row.critical ? "critical" : "**not critical**"} | ${row.note.replace(/\|/g, "/").replace(/\n/g, " ")} |`),
+        "",
+    ];
+    save("key-check", flags, { meta: runMeta, key: path.basename(keyPath), rows }, lines.join("\n"));
+    if (disputed.length) process.exitCode = 1;
+}
+
+function countKeyPath(flags: Flags) {
+    return path.resolve(process.cwd(), "..", String(typeof flags.key === "string" ? flags.key : COUNT_KEY_PATH));
 }
 
 // ============================================
@@ -309,7 +357,7 @@ async function score(file: string, flags: Flags) {
  */
 async function countChecks(candidate: Map<string, RunCase>, flags: Flags, cfg: JudgeConfig, ledger: SpendLedger) {
     const fixtures = new Map(loadCalibrationData().fixtures.map((fixture) => [fixture.id, fixture]));
-    const keyPath = path.resolve(process.cwd(), "..", String(typeof flags.key === "string" ? flags.key : COUNT_KEY_PATH));
+    const keyPath = countKeyPath(flags);
     const loaded = loadCountKey(keyPath, fixtures, readFixtureResume);
     if (!loaded.key || loaded.errors.length > 0) return { key_path: keyPath, key_errors: loaded.errors, outcomes: [] as CountCheckOutcome[] };
     console.log(`Count checks: ${loaded.key.resumes.length} keyed resumes from ${path.relative(process.cwd(), keyPath)}`);
@@ -319,7 +367,17 @@ async function countChecks(candidate: Map<string, RunCase>, flags: Flags, cfg: J
         if (!found || !view) return { fixture_id: resume.fixture_id, kind: resume.kind, pass: false, flagged: 0, problem: "no shown candidate report" };
         try {
             const result = await judgeCount(found.input, view, { config: cfg, ledger }, resume.kind === "bad" ? resume.problems : undefined);
-            const outcome = outcomeFor(resume, view, result);
+            // On a bad resume, a blind call checks the key's severity: pairwise never sees the key.
+            let blind: Awaited<ReturnType<typeof judgeCount>> | undefined;
+            let blindError: string | undefined;
+            if (resume.kind === "bad") {
+                try {
+                    blind = await judgeCount(found.input, view, { config: cfg, ledger });
+                } catch (error) {
+                    blindError = error instanceof Error ? error.message : String(error);
+                }
+            }
+            const outcome = { ...outcomeFor(resume, view, result, blind), ...(blindError ? { blind_error: blindError } : {}) };
             console.log(`   ${outcomeLine(outcome)} → ${outcome.pass ? "pass" : "FAIL"}`);
             return outcome;
         } catch (error) {

@@ -11,7 +11,10 @@
  * - bad: exactly three problems that would each cost an interview on its own.
  *   The candidate must flag at least two of them as Critical Misses
  *   (under-count). A keyed count call matches each flagged Critical Miss to a
- *   labeled problem.
+ *   labeled problem. A blind call rates the same Critical Misses without the
+ *   key; a matched problem it doesn't rate critical on its own is a disputed
+ *   label, reported for the key's owner but not failed, since the pairwise
+ *   half of the gate is blind too.
  * - strong: no such problem. A blind count call (no key) rates every Critical
  *   Miss after the first; one it doesn't rate critical on its own is padding,
  *   and so is a "more than three" signal (over-count).
@@ -116,13 +119,24 @@ export interface CountCheckOutcome {
     padding?: number[];
     /** The report says the resume has more than three Critical Misses. */
     more_than_three?: boolean;
+    /** Bad resumes: caught problems whose Critical Miss the blind call didn't rate critical on its own. A warning. */
+    disputed?: string[];
     /** Why this resume wasn't judged (no shown candidate report, or a judge error). Fails the check. */
     problem?: string;
     count?: CountResult;
+    /** Bad resumes: the blind call on the same Critical Misses. */
+    blind?: CountResult;
+    /** The blind call failed; the outcome stands without the dispute check. */
+    blind_error?: string;
 }
 
-export function badResumeOutcome(fixtureId: string, view: CriticalMissView, result: CountResult): CountCheckOutcome {
+export function badResumeOutcome(fixtureId: string, view: CriticalMissView, result: CountResult, blind?: CountResult): CountCheckOutcome {
     const caught = [...new Set(result.raw.misses.map((miss) => miss.matches).filter((id) => id !== "none"))].sort();
+    const disputed = blind
+        ? [...new Set(result.raw.misses
+            .filter((miss, index) => miss.matches !== "none" && blind.raw.misses[index]?.critical_on_its_own === false)
+            .map((miss) => miss.matches))].sort()
+        : undefined;
     return {
         fixture_id: fixtureId,
         kind: "bad",
@@ -130,7 +144,9 @@ export function badResumeOutcome(fixtureId: string, view: CriticalMissView, resu
         flagged: view.misses.length,
         caught,
         more_than_three: Boolean(view.more_than_three),
+        ...(disputed ? { disputed } : {}),
         count: result,
+        ...(blind ? { blind } : {}),
     };
 }
 
@@ -147,20 +163,34 @@ export function strongResumeOutcome(fixtureId: string, view: CriticalMissView, r
     };
 }
 
-export function outcomeFor(resume: CountKeyResume, view: CriticalMissView, result: CountResult): CountCheckOutcome {
-    return resume.kind === "bad" ? badResumeOutcome(resume.fixture_id, view, result) : strongResumeOutcome(resume.fixture_id, view, result);
+export function outcomeFor(resume: CountKeyResume, view: CriticalMissView, result: CountResult, blind?: CountResult): CountCheckOutcome {
+    return resume.kind === "bad" ? badResumeOutcome(resume.fixture_id, view, result, blind) : strongResumeOutcome(resume.fixture_id, view, result);
 }
 
 /** One line per resume, for the gate summary. */
 export function outcomeLine(outcome: CountCheckOutcome): string {
     if (outcome.problem) return `${outcome.fixture_id}: not judged (${outcome.problem})`;
     if (outcome.kind === "bad") {
-        return `${outcome.fixture_id}: flagged ${outcome.flagged}, caught ${outcome.caught?.length || 0} of 3 labeled problems${outcome.caught?.length ? ` (${outcome.caught.join(", ")})` : ""}`;
+        const dispute = outcome.disputed?.length ? `; the blind judge rates ${outcome.disputed.join(", ")} not critical on its own` : "";
+        return `${outcome.fixture_id}: flagged ${outcome.flagged}, caught ${outcome.caught?.length || 0} of 3 labeled problems${outcome.caught?.length ? ` (${outcome.caught.join(", ")})` : ""}${dispute}`;
     }
     const parts = [`flagged ${outcome.flagged}`];
     if (outcome.padding?.length) parts.push(`padding at Critical Miss ${outcome.padding.join(", ")}`);
     if (outcome.more_than_three) parts.push(`says "more than three"`);
     return `${outcome.fixture_id}: ${parts.join("; ")}`;
+}
+
+/**
+ * The key's own labels as one report per bad resume, each labeled problem a
+ * Critical Miss, for a blind count call: does the judge agree that each
+ * would cost an interview on its own? Run before trusting a new key.
+ */
+export function keyCheckView(resume: CountKeyResume): CriticalMissView {
+    return {
+        label: "Critical Miss",
+        verdict: "",
+        misses: resume.problems.map((problem) => ({ fix: problem.problem, why: problem.why, resume_lines: problem.lines })),
+    };
 }
 
 // ============================================

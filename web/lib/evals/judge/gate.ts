@@ -61,6 +61,8 @@ export interface GateVerdict {
         under_count: string[];
         /** Strong resumes with padding or a "more than three" signal. */
         over_count: string[];
+        /** Caught labeled problems the blind count call doesn't rate critical on their own. A warning, not a fail. */
+        disputed: string[];
         not_judged: string[];
         key_errors: string[];
     };
@@ -91,6 +93,7 @@ export function gateVerdict(resumes: GateResume[], options: { limited?: boolean;
         strong: tally("strong"),
         under_count: outcomes.filter((outcome) => outcome.kind === "bad" && !outcome.problem && !outcome.pass).map((outcome) => outcome.fixture_id),
         over_count: outcomes.filter((outcome) => outcome.kind === "strong" && !outcome.problem && !outcome.pass).map((outcome) => outcome.fixture_id),
+        disputed: outcomes.flatMap((outcome) => (outcome.disputed || []).map((id) => `${outcome.fixture_id} ${id}`)),
         not_judged: outcomes.filter((outcome) => outcome.problem).map((outcome) => `${outcome.fixture_id}: ${outcome.problem}`),
         key_errors: keyErrors,
     };
@@ -147,6 +150,9 @@ export function gateLines(verdict: GateVerdict): string[] {
     for (const item of verdict.not_judged) lines.push(`- Not fully judged: ${item}`);
     for (const item of verdict.count.not_judged) lines.push(`- Not count-checked: ${item}`);
     for (const item of verdict.count.key_errors) lines.push(`- Key: ${item}`);
+    if (verdict.count.disputed.length) {
+        lines.push(`- Warning (not a fail): the blind judge rates ${verdict.count.disputed.length} caught labeled problem(s) not critical on their own, so pairwise may count them as padding; check the key: ${verdict.count.disputed.join(", ")}`);
+    }
     lines.push("- The 0-FAIL smoke and golden gate still applies separately.");
     return lines;
 }

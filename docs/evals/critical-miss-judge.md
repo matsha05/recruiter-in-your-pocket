@@ -60,6 +60,8 @@ npm run eval:judge -- calibrate --set all
 Matt, November 1, 2026: "some resumes are truly horrible. i dont want to lie to people and say they have one critical miss if there are more." A Critical Miss is any problem that would cost an interview on its own. Every one is flagged, up to three, in priority order, with a "more than three" signal when true, and a strong resume isn't padded. The pairwise rubric rewards this (C8), and two checks in `compare` test it directly on fictional resumes labeled in advance:
 
 - **Under-count.** Each bad resume has three labeled problems that would each cost an interview on its own. The candidate's Critical Misses must address at least two of the three, on every bad resume. One count call per resume sees the labeled problems and names the one each Critical Miss's fix addresses ("none" if it addresses none). A Critical Miss matches at most one problem, and two Critical Misses on the same problem count once.
+  - A second, blind call rates the same Critical Misses without the key. A caught problem that it doesn't rate critical on its own is a **disputed label**: the pairwise half, which is blind too, may count it as padding.
+  - The gate prints disputed labels as a warning, not a fail. Fix the key, or the prompt's wording of that fix.
 - **Over-count.** A strong resume has no labeled problem. One blind count call (no key) rates each Critical Miss as critical on its own or not. Any Critical Miss after the first that isn't rated critical on its own is padding and fails, and so does a "more than three" signal. The first is always allowed, since every report names a top fix (C5).
 
 Only flagged Critical Misses count. A labeled resume that is missing from the candidate run, withheld (FAIL), or not judged fails the gate, and so does a key that fails its checks.
@@ -74,7 +76,7 @@ Only flagged Critical Misses count. A labeled resume that is missing from the ca
   {"fixture_id": "synth_cc_<role>_strong_1", "kind": "strong", "problems": [], "note": "why nothing here would cost an interview on its own"}]}
 ```
 
-The loader checks the key before any call:
+**Vet a key before gating on it** with `npm run eval:judge -- calibrate --set key`, which costs about $0.05. It shows each bad resume's three labeled problems to the blind count call as one report's Critical Misses. It lists any label the judge doesn't rate critical on its own, and exits nonzero if there is one. The loader also checks the key before any call:
 
 - every resume is a registered synthetic fixture (`isJudgeableFixture`);
 - each bad resume has exactly P1, P2 and P3, most important first, each on verbatim lines that no other problem shares, so one fix can't cover two;
@@ -82,6 +84,8 @@ The loader checks the key before any call:
 - the key has at least 8 bad and 4 strong resumes.
 
 **The signal.** A report that says there are more than three Critical Misses sets top-level `more_critical: true` (prompt v3 contract; the schema allows it only with three Critical Misses). The judge's view shows it as "The report also says this resume has more than three Critical Misses and shows the first three."
+
+**Wording matters as much as the label.** A missing target role on a resume whose roles span unrelated fields can be critical on its own; the blind judge rated it so on two of the three labeled resumes. But a Critical Miss worded as "add a summary section" reads as the optional-section fix that the production prompt and C1 rank low ("Do not spend a top-three fix on an optional Summary, Skills, or Education section when improving a weak experience bullet would create more hiring signal"). The pairwise judge then calls it padding. Say what the reader can't tell, and ask for one line that names the direction.
 
 **Reading the result.** The `GATE:` block prints one line per check. The markdown's "Count checks" table lists, for each Critical Miss, whether the judge rated it critical on its own and, on bad resumes, the labeled problem it matched. When a bad resume fails, compare its Critical Misses with the key: a miss on a real problem the key doesn't list shows as "none" but critical, which points at the key rather than the prompt.
 

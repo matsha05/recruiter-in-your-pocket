@@ -155,10 +155,14 @@ export function compareMarkdown(
     if (gate.length) lines.push(`## ${gate[0]}`, "", ...gate.slice(1), "");
     if (count.length) {
         lines.push("## Count checks (candidate)", "");
-        lines.push("| Resume | Kind | Result | Per Critical Miss (critical on its own / labeled problem) |");
+        lines.push("| Resume | Kind | Result | Per Critical Miss (bad: labeled problem matched, with the blind rating; strong: critical on its own) |");
         lines.push("| --- | --- | --- | --- |");
         for (const outcome of count) {
-            const per = outcome.count?.raw.misses.map((miss) => `${miss.number}: ${miss.critical_on_its_own ? "critical" : "not critical"}${outcome.kind === "bad" ? ` / ${miss.matches}` : ""}`).join("; ") || "";
+            const per = outcome.count?.raw.misses.map((miss, index) => {
+                const blind = outcome.blind?.raw.misses[index];
+                const blindNote = blind ? ` (blind: ${blind.critical_on_its_own ? "critical" : "not critical"})` : "";
+                return `${miss.number}: ${outcome.kind === "bad" ? miss.matches : miss.critical_on_its_own ? "critical" : "not critical"}${blindNote}`;
+            }).join("; ") || "";
             lines.push(`| ${outcome.fixture_id} | ${outcome.kind} | ${outcome.problem ? "not judged" : outcome.pass ? "pass" : "**FAIL**"}: ${outcomeLine(outcome).replace(`${outcome.fixture_id}: `, "").replace(/\|/g, "/")} | ${per.replace(/\|/g, "/")} |`);
         }
         lines.push("");

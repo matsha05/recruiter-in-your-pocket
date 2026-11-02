@@ -170,6 +170,8 @@ export interface JudgeRuntime {
     ledger: SpendLedger;
     /** Tests pass a fake; every real call goes to the OpenAI API. */
     fetchImpl?: typeof fetch;
+    /** Waits between retries; tests pass zeros. */
+    backoffMs?: number[];
 }
 
 export async function judgePairwise(
@@ -188,6 +190,7 @@ export async function judgePairwise(
             config,
             runtime.ledger,
             runtime.fetchImpl,
+            runtime.backoffMs,
         );
         orders.push({
             order,
@@ -220,6 +223,7 @@ export async function judgeAbsolute(
         config,
         runtime.ledger,
         runtime.fetchImpl,
+        runtime.backoffMs,
     );
     const { kept, dropped } = verifyClaims(call.output.unsupported_claims, view);
     const veto = kept.length > 0;
@@ -256,6 +260,7 @@ export async function judgeCount(
         config,
         runtime.ledger,
         runtime.fetchImpl,
+        runtime.backoffMs,
     );
     const misses = Array.isArray(call.output.misses) ? call.output.misses : [];
     if (misses.length !== view.misses.length || misses.some((miss, index) => miss.number !== index + 1)) {

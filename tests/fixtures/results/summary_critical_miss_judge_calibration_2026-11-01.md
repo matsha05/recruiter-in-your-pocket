@@ -167,7 +167,14 @@ Pairwise, on `gpt-6.1-sol` ([all 48 pairs](judge/2026-11-02T02-10-20-761Z_calibr
   - every Critical Miss rated as labeled: 48 of 48. Real problems were rated critical 30 of 30 times, and padding was rated not critical 18 of 18 times;
   - every retest gave the same answers: 27 of 27.
   - The set is 4 hand-labeled fictional resumes with 17 reports. It covers stopping at one, padding on an older role, an optional section, a supporting duty, a second ask on the same line, a duplicate on one problem, a reworded or re-cited match, and a false "more than three". It has no borderline cases.
-- **The gate's real key.** The prompt session's key (`count-check-key.json` at `630a9bcb` on `claude/critical-miss-v3`: 8 bad and 4 strong fictional resumes) passes the loader's checks with no errors. No count call has run on it yet: its candidate runs don't exist yet.
+- **The gate's real key.** The prompt session's key (`count-check-key.json` on `claude/critical-miss-v3`: 8 bad and 4 strong fictional resumes) passes the loader's checks at `630a9bcb` and `4f806f21`.
+  - **Key check at `4f806f21`** ([results](judge/2026-11-02T05-11-58-070Z_key-check_4f806f21.md), 8 calls, $0.0485): the blind count call rated 22 of the 24 labeled problems critical on their own.
+  - **The two it disputed:** the recent graduate's missing target role ("normal early-career exploration") and the staff accountant's undated AP role ("a secondary chronology issue", since the current role is dated).
+- **First gate run** (the prompt session's v3.4 against production, 52 resumes): `GATE: FAIL` on preference (31 of 51).
+  - Under-count passed 8 of 8 and over-count 4 of 4.
+  - Two count calls hit dropped connections ("fetch failed") after their one retry. Each call now gets three tries, with waits of 1 and 4 seconds.
+  - Pairwise called one target-role Critical Miss padding ("an optional target-role headline"), though the key labeled the problem critical. The key check above rates that label critical. The fix's wording ("add a summary section") reads as the optional-section fix that P ranks low; see rubric conflict 11.
+  - Bad resumes now also get a blind count call, and the gate warns about caught labels it disputes.
 
 ## Spend
 
@@ -193,7 +200,7 @@ Token-calculated at published standard rates. v3 total **$6.26** of the $8.00 ca
 
 A Sol gate run (`compare`, with the candidate veto check) on two 10-fixture golden runs costs about $0.19 and takes about a minute. The count checks add one call per labeled resume, about $0.05 for 12.
 
-Judge v4 recalibration, on `gpt-6.1-sol`: **$3.61**, so **$9.87** in all against the $11.00 cap ($8.00 plus $3.00 approved for the count decision):
+Judge v4 recalibration, on `gpt-6.1-sol`: **$3.61**, plus $0.05 for the key check, so **$9.92** in all against the $11.00 cap ($8.00 plus $3.00 approved for the count decision):
 
 | Run | Calls | Spend |
 | --- | --- | --- |
@@ -207,6 +214,7 @@ Judge v4 recalibration, on `gpt-6.1-sol`: **$3.61**, so **$9.87** in all against
 | v4d, count set × 2 | 54 | $0.1914 |
 | v4b retest, 20 pairs | 40 | $0.3090 |
 | v4b, cc-bad-1 × 2 | 20 | $0.0761 |
+| Key check of `count-check-key.json` at `4f806f21` | 8 | $0.0485 |
 
 ## Limits
 

@@ -9,6 +9,7 @@ import { COUNT_SYSTEM_PROMPT, PAIRWISE_SYSTEM_PROMPT } from "../lib/evals/judge/
 import { gateLines, gateVerdict, type CountGate } from "../lib/evals/judge/gate";
 import {
   badResumeOutcome,
+  keyCheckView,
   keyResumeErrors,
   loadCountCalibration,
   loadCountKey,
@@ -299,6 +300,24 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
   assert.deepEqual(padded.padding, [3]);
   assert.equal(strongResumeOutcome("s", viewOf(2), answer([[true, "none"], [true, "none"]])).pass, true, "an extra the judge rates critical on its own isn't padding");
   assert.equal(strongResumeOutcome("s", viewOf(1, true), answer([[true, "none"]])).pass, false, "\"more than three\" on a strong resume is padding");
+
+  // The blind call on a bad resume flags labels it doesn't rate critical on their own: a warning, not a fail.
+  const disputed = badResumeOutcome("b", viewOf(3), answer([[true, "P1"], [true, "P2"], [true, "P3"]]), answer([[true, "none"], [false, "none"], [true, "none"]]));
+  assert.equal(disputed.pass, true);
+  assert.deepEqual(disputed.disputed, ["P2"]);
+  assert.deepEqual(badResumeOutcome("b", viewOf(2), answer([[true, "P1"], [false, "none"]]), answer([[true, "none"], [false, "none"]])).disputed, [], "an unmatched Critical Miss isn't a disputed label");
+  const warned = gateVerdict(Array.from({ length: 10 }, (_, index) => ({
+    fixture_id: `synth_${index}`,
+    pairwise: { winner: "Y", strength: "slight" } as unknown as PairwiseResult,
+    candidate_absolute: { veto: false } as unknown as AbsoluteResult,
+  })), { count: { ...countOk, outcomes: countOk.outcomes.map((outcome, index) => index === 1 ? { ...outcome, disputed: ["P3"] } : outcome) } });
+  assert.equal(warned.pass, true, "a disputed label doesn't fail the gate");
+  assert.deepEqual(warned.count.disputed, ["synth_cc_bad_1 P3"]);
+  assert.ok(gateLines(warned).some((line) => line.startsWith("- Warning (not a fail)") && line.includes("synth_cc_bad_1 P3")));
+
+  // The key check shows a bad resume's labeled problems as one report's Critical Misses.
+  const keyView = keyCheckView({ fixture_id: "b", kind: "bad", problems: [{ id: "P1", problem: "No end date.", why: "w", lines: ["Jan 2020 -"] }] });
+  assert.deepEqual(keyView.misses, [{ fix: "No end date.", why: "w", resume_lines: ["Jan 2020 -"] }]);
 }
 
 // The count calibration set: fictional, verbatim, and labeled for every Critical Miss.
@@ -355,14 +374,21 @@ async function countCallTests() {
   const blind = await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P1")]) });
   assert.equal(blind.keyed, false);
   assert.equal(blind.raw.misses[0].matches, "none", "a blind call never matches");
-  // A dropped connection is retried once, like a 5xx.
-  let dropped = 0;
-  const flaky = (async (...args: Parameters<typeof fetch>) => {
-    if (dropped++ === 0) throw new TypeError("fetch failed");
-    return answerWith([entry(1, "P1")])(...args);
-  }) as unknown as typeof fetch;
-  assert.equal((await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: flaky }, labeled)).raw.misses[0].matches, "P1");
-  assert.equal(dropped, 2);
+  // A dropped connection is retried, like a 5xx: three tries in all.
+  const dropping = (failures: number) => {
+    let calls = 0;
+    const impl = (async (...args: Parameters<typeof fetch>) => {
+      if (calls++ < failures) throw new TypeError("fetch failed");
+      return answerWith([entry(1, "P1")])(...args);
+    }) as unknown as typeof fetch;
+    return { impl, calls: () => calls };
+  };
+  const twice = dropping(2);
+  assert.equal((await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: twice.impl, backoffMs: [0, 0] }, labeled)).raw.misses[0].matches, "P1");
+  assert.equal(twice.calls(), 3);
+  const thrice = dropping(3);
+  await assert.rejects(judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: thrice.impl, backoffMs: [0, 0] }, labeled), /fetch failed/);
+  assert.equal(thrice.calls(), 3);
   await assert.rejects(
     judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P1"), entry(2, "none")]) }),
     /covers 1,2 Critical Misses; the report has 1/,
