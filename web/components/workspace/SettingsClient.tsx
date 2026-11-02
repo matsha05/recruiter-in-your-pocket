@@ -112,7 +112,7 @@ async function fetchPassesRequest(): Promise<PassRecord[]> {
     const res = await fetch("/api/passes");
     const data = await res.json().catch(() => ({} as any));
     if (!res.ok || !data?.ok) {
-        throw new ClientActionError(data?.message, "We couldn't load your purchases. Please try again.");
+        throw new ClientActionError(data?.message, "We couldn't load your purchases. Try again.");
     }
     return Array.isArray(data.passes) ? data.passes : [];
 }
@@ -121,7 +121,7 @@ async function fetchReceiptsRequest(): Promise<ReceiptRecord[]> {
     const res = await fetch("/api/billing/receipts");
     const data = await res.json().catch(() => ({} as any));
     if (!res.ok || !data?.ok) {
-        throw new ClientActionError(data?.message, "We couldn't load your receipts. Please try again.");
+        throw new ClientActionError(data?.message, "We couldn't load your receipts. Try again.");
     }
     return Array.isArray(data.receipts) ? data.receipts : [];
 }
@@ -197,13 +197,13 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     useEffect(() => {
         if (passesError instanceof Error) {
-            toast.error(getClientActionError(passesError, "We couldn't load your purchases. Please try again."));
+            toast.error(getClientActionError(passesError, "We couldn't load your purchases. Try again."));
         }
     }, [passesError]);
 
     useEffect(() => {
         if (receiptsError instanceof Error) {
-            toast.error(getClientActionError(receiptsError, "We couldn't load your receipts. Please try again."));
+            toast.error(getClientActionError(receiptsError, "We couldn't load your receipts. Try again."));
         }
     }, [receiptsError]);
 
@@ -218,7 +218,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             profileForm.reset({ displayName: trimmed });
             toast.success("Profile updated");
         } catch (err: any) {
-            toast.error("We couldn't save your name. Please try again.");
+            toast.error("We couldn't save your name. Try again.");
         }
     }
 
@@ -229,7 +229,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const res = await fetch("/api/account/delete", { method: "DELETE" });
             const data = await res.json();
             if (!data.ok) {
-                throw new ClientActionError(data.message, "We couldn't delete your account. Please try again or contact support.");
+                throw new ClientActionError(data.message, "We couldn't delete your account. Try again or contact support.");
             }
 
             // The server clears the SSR cookie and returns Clear-Site-Data.
@@ -244,7 +244,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             toast.success("Account deleted");
             window.location.replace("/");
         } catch (err: any) {
-            toast.error(getClientActionError(err, "We couldn't delete your account. Please try again or contact support."));
+            toast.error(getClientActionError(err, "We couldn't delete your account. Try again or contact support."));
         } finally {
             setIsDeletingAccount(false);
         }
@@ -258,7 +258,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const createRes = await fetch("/api/account/export", { method: "POST" });
             const createData = await createRes.json().catch(() => ({} as any));
             if (!createRes.ok || !createData?.ok || !createData?.job?.id) {
-                throw new ClientActionError(createData?.message, "We couldn't start your download. Please try Export data again.");
+                throw new ClientActionError(createData?.message, "We couldn't start your download. Try Export data again.");
             }
 
             const jobId = String(createData.job.id);
@@ -280,23 +280,23 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 });
                 const statusData = await statusRes.json().catch(() => ({} as any));
                 if (!statusRes.ok || !statusData?.ok || !statusData?.job) {
-                    throw new ClientActionError(statusData?.message, "We couldn't check whether your download is ready. Please try Export data again.");
+                    throw new ClientActionError(statusData?.message, "We couldn't check whether your download is ready. Try Export data again.");
                 }
 
                 job = statusData.job as ExportJobRecord;
                 if (job.status === "failed" || job.status === "expired") {
-                    throw new ClientActionError(job.error_message, "We couldn't prepare your download. Please try Export data again.");
+                    throw new ClientActionError(job.error_message, "We couldn't prepare your download. Try Export data again.");
                 }
             }
 
             if (!job || job.status !== "completed") {
-                throw new ClientActionError(null, "Your export is still processing. Please try again in a moment.");
+                throw new ClientActionError(null, "Your export is still processing. Try again in a moment.");
             }
 
             const downloadRes = await fetch(`/api/account/export?jobId=${encodeURIComponent(jobId)}&download=1`);
             if (!downloadRes.ok) {
                 const data = await downloadRes.json().catch(() => ({} as any));
-                throw new ClientActionError(data?.message, "We couldn't download your account data. Please try Export data again.");
+                throw new ClientActionError(data?.message, "We couldn't download your account data. Try Export data again.");
             }
 
             const blob = await downloadRes.blob();
@@ -316,7 +316,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             Analytics.track("account_export_completed", { source: "settings" });
             toast.success("Export downloaded");
         } catch (err: any) {
-            toast.error(getClientActionError(err, "We couldn't download your account data. Please try Export data again."));
+            toast.error(getClientActionError(err, "We couldn't download your account data. Try Export data again."));
         } finally {
             setIsExportingData(false);
         }
@@ -345,12 +345,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             });
             const data = await res.json();
             if (!data.ok || !data.url) {
-                throw new ClientActionError(data.message, "We couldn't open checkout. Please try again.");
+                throw new ClientActionError(data.message, "We couldn't open checkout. Try again.");
             }
             window.location.href = data.url;
         } catch (err: any) {
             Analytics.track("checkout_start_failed", { source: "settings", tier });
-            toast.error(getClientActionError(err, "We couldn't open checkout. Please try again."));
+            toast.error(getClientActionError(err, "We couldn't open checkout. Try again."));
         } finally {
             setIsCheckoutLoading(null);
             setShowEmailInput(null);
@@ -368,12 +368,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             });
             const data = await res.json();
             if (!data.ok || !data.url) {
-                throw new ClientActionError(data.message, "We couldn't open the billing portal. Please try again.");
+                throw new ClientActionError(data.message, "We couldn't open the billing portal. Try again.");
             }
 
             window.location.href = data.url;
         } catch (err: any) {
-            toast.error(getClientActionError(err, "We couldn't open the billing portal. Please try again."));
+            toast.error(getClientActionError(err, "We couldn't open the billing portal. Try again."));
         } finally {
             setIsPortalLoading(false);
         }
@@ -386,7 +386,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             const res = await fetch("/api/billing/restore", { method: "POST" });
             const data = await res.json();
             if (!data.ok) {
-                throw new ClientActionError(data.message, "We couldn't restore your purchase. Please try again.");
+                throw new ClientActionError(data.message, "We couldn't restore your purchase. Try again.");
             }
 
             await Promise.all([
@@ -399,7 +399,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             });
             Analytics.track("billing_restore_succeeded", { restored: data.restored || 0 });
         } catch (err: any) {
-            toast.error(getClientActionError(err, "We couldn't restore your purchase. Please try again."));
+            toast.error(getClientActionError(err, "We couldn't restore your purchase. Try again."));
         } finally {
             setIsRestoreLoading(false);
         }
@@ -413,11 +413,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     const hasPaidMembership = Boolean(user?.membership && user.membership !== "free");
     const accessLabel = user?.membership === "lifetime"
-        ? "Lifetime Access"
+        ? "Lifetime access"
         : user?.membership === "monthly"
-            ? "Full Access Monthly"
+            ? "Monthly plan"
             : user?.membership === "credit"
-                ? `${user.paidUsesLeft || 0} paid reports`
+                ? `${user.paidUsesLeft || 0} ${(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass`
                 : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
     const latestPass = loadingPasses ? null : passes[0];
@@ -950,7 +950,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     aria-busy={!!isCheckoutLoading}
                                     className="w-full flex"
                                 >
-                                    <ActionFeedback state={isCheckoutLoading ? "pending" : "idle"} states={{ idle: { label: "Continue to Checkout" }, pending: { label: "Opening checkout…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
+                                    <ActionFeedback state={isCheckoutLoading ? "pending" : "idle"} states={{ idle: { label: "Continue to checkout" }, pending: { label: "Opening checkout…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                 </Button>
                             </form>
                             <button type="button" onClick={() => setShowEmailInput(null)} className="focus-ring min-h-11 w-full rounded-full text-sm text-muted-foreground hover:text-foreground">
@@ -966,7 +966,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     title="Delete your account?"
                     description="This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone."
                     confirmText="Delete account"
-                    cancelText="Keep Account"
+                    cancelText="Keep account"
                     variant="destructive"
                     loading={isDeletingAccount}
                 />

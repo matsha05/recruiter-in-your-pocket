@@ -133,7 +133,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                     setInputValue("");
                                 }
                             }}
-                            placeholder="e.g., General, Google PM, Senior Role..."
+                            placeholder="General, Product roles, Startups…"
                             className="w-full px-3 py-2 text-sm bg-muted/50 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand/50"
                             autoFocus
                         />
@@ -180,7 +180,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {userLabels.length > 0 && (
                                     <div className="py-2 border-b border-border">
                                         <div className="px-4 py-1 text-xs font-semibold text-muted-foreground">
-                                            Your Labels
+                                            Your labels
                                         </div>
                                         {userLabels.map((label) => (
                                             <button
@@ -199,14 +199,14 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {userLabels.length === 0 && (
                                     <div className="px-4 py-2 flex items-start gap-2 text-xs text-muted-foreground bg-muted/30 border-b border-border">
                                         <Lightbulb className="size-3.5 mt-0.5 text-brand shrink-0" />
-                                        <span>Labels help you track progress across different resume versions</span>
+                                        <span>Label each version, like “Product roles” or “Startups,” and the history shows which one you sent where.</span>
                                     </div>
                                 )}
 
                                 {/* Quick labels - minimal, just to get started */}
                                 <div className="py-2">
                                     <div className="px-4 py-1 text-xs font-semibold text-muted-foreground">
-                                        Quick Pick
+                                        Quick pick
                                     </div>
                                     {QUICK_LABELS.map((label) => (
                                         <button
@@ -219,7 +219,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                         </button>
                                     ))}
                                     <div className="px-4 py-2 text-xs text-muted-foreground italic">
-                                        Or type your own above
+                                        Or type your own
                                     </div>
                                 </div>
                             </>

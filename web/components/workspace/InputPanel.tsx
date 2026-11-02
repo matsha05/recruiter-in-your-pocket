@@ -116,11 +116,11 @@ export default function InputPanel({
         if (membership === "monthly" || membership === "lifetime") return "Paid access active";
         if (membership === "credit") {
             const paid = Number(user?.paidUsesLeft || 0);
-            return `${paid} paid report${paid === 1 ? "" : "s"} remaining`;
+            return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
         }
-        if (freeUsesRemaining > 0) return "Your first report is included";
+        if (freeUsesRemaining > 0) return "Your first report is free";
         if (!user) return "Sign in for your free report, or get a Job Search Pass";
-        return "A Job Search Pass is required for another report";
+        return "Another report needs a Job Search Pass";
     };
 
     const charCount = resumeText.trim().length;
@@ -137,14 +137,14 @@ export default function InputPanel({
         >
             <div className={styles.content}>
                 <header className={styles.intro}>
-                    <p className={styles.eyebrow}>{isRevision ? "Resume comparison" : "Resume review"}</p>
+                    <p className={styles.eyebrow}>{isRevision ? "Re-check" : "New report"}</p>
                     <h1 className={styles.title}>
-                        {isRevision ? "Now let’s see what changed." : "Start with your resume."}
+                        {isRevision ? "Now let’s see what changed." : "Let’s see what they see."}
                     </h1>
                     <p className={styles.description}>
                         {isRevision
-                            ? "Upload your revision to see what improved and what still needs attention."
-                            : "Add the resume you’re about to send. We’ll look at the whole document, show you what’s clear, and help you decide what to change first."}
+                            ? "Add the new version. We’ll put it beside the last one and show you whether the Critical Miss changed."
+                            : "Add the resume you’re about to send. We’ll read the whole thing and show you what comes through, what slips past, and what to fix first."}
                     </p>
                     {onOpenLastReport && (
                         <button type="button" data-testid="workspace-open-last-report" onClick={onOpenLastReport} className="riyp-link mt-3 min-h-11 text-sm font-semibold">

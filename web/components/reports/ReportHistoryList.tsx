@@ -79,7 +79,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         body: JSON.stringify({ name: nextName }),
       });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not rename this report. Please try again.");
+      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not rename this report. Try again.");
 
       setReports((current) => current.map((item) => (
         item.id === report.id ? { ...item, name: nextName || null } : item
@@ -88,7 +88,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
       toast.success(nextName ? "Report renamed" : "Report name cleared");
       router.refresh();
     } catch (error) {
-      toast.error(getClientActionError(error, "Could not rename this report. Please try again."));
+      toast.error(getClientActionError(error, "Could not rename this report. Try again."));
     } finally {
       setSavingId(null);
     }
@@ -102,14 +102,14 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
     try {
       const response = await fetch(`/api/reports/${reportId}`, { method: "DELETE" });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not delete this report. Please try again.");
+      if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not delete this report. Try again.");
 
       setReports((current) => current.filter((report) => report.id !== reportId));
       setDeleteId(null);
       toast.success("Report deleted");
       router.refresh();
     } catch (error) {
-      toast.error(getClientActionError(error, "Could not delete this report. Please try again."));
+      toast.error(getClientActionError(error, "Could not delete this report. Try again."));
     } finally {
       setDeletingId(null);
     }

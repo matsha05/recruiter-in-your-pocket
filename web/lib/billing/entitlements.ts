@@ -130,11 +130,11 @@ export function getNextUsesRemaining(pass: PassLike): number {
 }
 
 export function getTierLabel(tier: string | null | undefined): string {
-  if (tier === "monthly") return "Full Access Monthly";
-  if (tier === "lifetime") return "Lifetime Access";
+  if (tier === "monthly") return "Monthly plan";
+  if (tier === "lifetime") return "Lifetime access";
   if (tier === "30d") return "Job Search Pass";
-  if (tier === "90d") return "Extended Pack";
-  return "Single Report";
+  if (tier === "90d") return "Extended pack";
+  return "Single report";
 }
 
 export function getCheckoutModeForTier(tier: RequestedPricingTier): "subscription" | "payment" {

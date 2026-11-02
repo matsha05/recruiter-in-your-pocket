@@ -92,10 +92,10 @@ export default function PurchaseRestoreClient() {
         body: JSON.stringify({ returnTo: "restore" }),
       });
       const data = await res.json();
-      if (!data?.ok || !data?.url) throw new ClientActionError(data?.message, "Stripe billing couldn’t open. Please try again.");
+      if (!data?.ok || !data?.url) throw new ClientActionError(data?.message, "Stripe billing couldn’t open. Try again.");
       window.location.href = data.url;
     } catch (err: any) {
-      toast.error(getClientActionError(err, "Stripe billing couldn’t open. Please try again."));
+      toast.error(getClientActionError(err, "Stripe billing couldn’t open. Try again."));
     } finally {
       setIsPortalLoading(false);
     }
@@ -107,7 +107,7 @@ export default function PurchaseRestoreClient() {
     try {
       const res = await fetch("/api/billing/receipts");
       const data = await res.json();
-      if (!data?.ok) throw new ClientActionError(data?.message, "We couldn’t load your receipts. Please try again.");
+      if (!data?.ok) throw new ClientActionError(data?.message, "We couldn’t load your receipts. Try again.");
       const nextReceipts = Array.isArray(data.receipts) ? data.receipts : [];
       setReceipts(nextReceipts);
       setReceiptsState("loaded");
@@ -115,7 +115,7 @@ export default function PurchaseRestoreClient() {
         ? "No receipts were found for this account. If you paid with another email, sign in with that email and restore access first."
         : null);
     } catch (err: any) {
-      const message = getClientActionError(err, "We couldn’t load your receipts. Please try again.");
+      const message = getClientActionError(err, "We couldn’t load your receipts. Try again.");
       setReceiptsState("error");
       setReceiptsMessage(message);
       toast.error(message);

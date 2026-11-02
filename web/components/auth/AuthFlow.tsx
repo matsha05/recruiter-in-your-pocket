@@ -26,8 +26,8 @@ interface AuthFlowProps {
   initialError?: string | null;
 }
 
-const EMAIL_REQUIRED = "Please enter your email";
-const EMAIL_INVALID = "Please enter a valid email address";
+const EMAIL_REQUIRED = "Enter your email address.";
+const EMAIL_INVALID = "That email address doesn’t look right. Check it and try again.";
 
 export function AuthFlow({
   variant = "page",
@@ -129,7 +129,7 @@ export function AuthFlow({
         if (data?.errorCode === "rate_limited") {
           throw new ClientActionError(data?.hint, "Too many sign-in emails were sent. Wait before requesting another.");
         }
-        throw new ClientActionError(data?.message || data?.hint, "We couldn’t send a code. Please try again.");
+        throw new ClientActionError(data?.message || data?.hint, "We couldn’t send a code. Try again.");
       }
       // A new email invalidates the previous code and its automatic attempt.
       currentCodeRef.current = "";
@@ -139,7 +139,7 @@ export function AuthFlow({
       setStep("code");
       setResendCooldown(30);
     } catch (err: any) {
-      if (requestId === authRequestRef.current.id) setError(getClientActionError(err, "We couldn’t send a code. Please try again."));
+      if (requestId === authRequestRef.current.id) setError(getClientActionError(err, "We couldn’t send a code. Try again."));
     } finally {
       if (requestId === authRequestRef.current.id) {
         authRequestRef.current.pending = false;
@@ -190,7 +190,7 @@ export function AuthFlow({
     } catch (err: any) {
       // A response to the previous value must not replace feedback for an edit.
       if (requestId === authRequestRef.current.id && submittedCode === currentCodeRef.current) {
-        setError(getClientActionError(err, "We couldn’t verify that code. Please try again."));
+        setError(getClientActionError(err, "We couldn’t verify that code. Try again."));
       }
     } finally {
       if (requestId === authRequestRef.current.id) {
@@ -209,7 +209,7 @@ export function AuthFlow({
 
   const handleSaveName = useCallback(async () => {
     if (!firstName.trim()) {
-      setError("Please enter your first name");
+      setError("Add a first name, or choose Skip for now.");
       return;
     }
     setLoading(true);
@@ -319,7 +319,7 @@ export function AuthFlow({
             <p className="text-base text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
               <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm text-muted-foreground">
-                Sign in to save reports. Reports you created without signing in are saved to your account only when you choose to keep them.
+                Sign in to save reports. Anything you ran before signing in joins your account only if you choose to keep it.
               </div>
             ) : null}
           </div>

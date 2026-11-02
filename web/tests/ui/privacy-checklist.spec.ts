@@ -145,7 +145,7 @@ test("mobile CTA appears after the hero, yields to privacy choices, and opens th
   }
   await page.getByTestId("mobile-report-cta").getByRole("link").click();
   await expect(page).toHaveURL(/\/workspace$/);
-  await expect(page.getByRole("heading", { name: "Start with your resume." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Let’s see what they see." })).toBeVisible();
 });
 
 test("privacy choices remain readable and keyboard-accessible on phone and desktop", async ({ page }) => {
