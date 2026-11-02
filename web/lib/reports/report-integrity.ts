@@ -323,7 +323,7 @@ export function reconcileReport(input: ReportData): ReportIntegrity {
     const tokens = observationTokens(strength);
     const line = matchAnchors(tokens, anchors, weight).find(isOnLine);
     if (line) {
-      decisions.push({ kind: "keep_dropped", path: `strengths[${index}]`, line: line.anchor.id, criticalMiss: line.anchor.fixIndex === 0 });
+      decisions.push({ kind: "keep_dropped", path: `strengths[${index}]`, line: line.anchor.id, criticalMiss: isCriticalFix(input, line.anchor.fixIndex) });
       return;
     }
     keptStrengths.push({ text: strength, tokens, path: `strengths[${index}]` });
@@ -437,6 +437,18 @@ export function fixCardSlots(integrity: ReportIntegrity, index: number): { why?:
   return { why, whatToAdd: integrity.fixQuestions[index] || [] };
 }
 
+/** A report can flag up to three Critical Misses; one saved before the flag existed has one, the first fix. */
+export function isCriticalFix(report: ReportData, index: number | undefined) {
+  if (index === undefined) return false;
+  const fixes = list(report.top_fixes);
+  return fixes.some((fix) => typeof fix?.critical === "boolean") ? fixes[index]?.critical === true : index === 0;
+}
+
+/** Whether the report says the resume has more serious problems than the three Critical Misses it lists. */
+export function hasMoreCriticalMisses(report: ReportData) {
+  return report.more_critical === true && list(report.top_fixes).filter((fix) => fix?.critical === true).length === 3;
+}
+
 /** The reason shown beside the Critical Miss in the opening read. */
 export function criticalMissReason(integrity: ReportIntegrity): string | undefined {
   return integrity.fixWhyIsReason[0] ? integrity.report.top_fixes?.[0]?.why : undefined;
@@ -454,7 +466,7 @@ export function auditKeepFixCollisions(report: ReportData): KeepFixCollision[] {
   return list(report.strengths).flatMap((strength, index) => {
     if (!isCopy(strength)) return [];
     const line = matchAnchors(observationTokens(strength), anchors, weight).find(isOnLine);
-    return line ? [{ strength: `strengths[${index}]`, line: line.anchor.id, criticalMiss: line.anchor.fixIndex === 0 }] : [];
+    return line ? [{ strength: `strengths[${index}]`, line: line.anchor.id, criticalMiss: isCriticalFix(report, line.anchor.fixIndex) }] : [];
   });
 }
 

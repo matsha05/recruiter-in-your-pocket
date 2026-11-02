@@ -18,6 +18,8 @@ import {
 } from "../lib/llm/grounding";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
 import { reportSentences } from "../lib/llm/report-sentences";
+import { ResumeFeedbackResponseSchema, TopFixesSchema } from "../lib/validation/resume-report-schema";
+import { hasMoreCriticalMisses } from "../lib/reports/report-integrity";
 import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
@@ -80,6 +82,74 @@ assert.deepEqual(getOpenAIResponseFormat("resume_ideas"), { type: "json_object" 
 const topFixes = RESUME_REPORT_JSON_SCHEMA.properties.top_fixes;
 assert.equal(topFixes.minItems, 1, "resume reports must have at least one grounded top fix");
 assert.equal(topFixes.maxItems, 3, "resume reports must stay focused on at most three top fixes");
+
+// One to three Critical Misses, listed first. Reports saved before the flag existed still validate.
+const fixAt = (critical?: boolean) => ({
+  fix: "Name the reports you prepared and who used them.", why: "The Linton reporting bullet names the work but not its readers.",
+  confidence: "high", evidence: { excerpt: "Prepared monthly reports", section: "Work Experience" }, impact_level: "high",
+  effort: "quick", section_ref: "Work Experience", ...(critical === undefined ? {} : { critical }),
+});
+const topFixesField = TopFixesSchema;
+assert.equal(topFixesField.safeParse([fixAt(), fixAt()]).success, true, "a legacy report without flags is valid");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(true), fixAt(false)]).success, true);
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(true), fixAt(true)]).success, true, "up to three Critical Misses");
+assert.equal(topFixesField.safeParse([fixAt(false), fixAt(true)]).success, false, "the first fix must be a Critical Miss");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(false), fixAt(true)]).success, false, "Critical Misses come first");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt()]).success, false, "flags are all or nothing");
+
+// The canonicalizer keeps flagged reports well formed after it drops or reorders fixes.
+const flagSource = "- Prepared monthly reports for the finance team.\n- Supported the audit process.\n- Built a vendor tracking sheet.";
+const flaggedFix = (fix: string, excerpt: string, critical: boolean) => ({
+  fix, why: "A reviewer can't tell what this covered.", confidence: "high",
+  evidence: { excerpt, section: "Work Experience" }, impact_level: "high", effort: "quick", section_ref: "Work Experience", critical,
+});
+const reordered = canonicalizeResumeReportEvidence({ top_fixes: [
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", false),
+  flaggedFix("Name the audit steps you handled yourself.", "Supported the audit process.", true),
+] }, flagSource);
+assert.deepEqual(reordered.report.top_fixes.map((fix: any) => fix.critical), [true, false], "Critical Misses move to the front");
+assert.ok(reordered.changes.includes("top_fixes.critical_reordered"));
+const promoted = canonicalizeResumeReportEvidence({ top_fixes: [
+  flaggedFix("Show what you built.", "Built a vendor tracking sheet.", true),
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", false),
+] }, flagSource);
+assert.equal(promoted.report.top_fixes.length, 1, "the vague Critical Miss is dropped");
+assert.equal(promoted.report.top_fixes[0].critical, true, "the remaining fix becomes the Critical Miss");
+assert.ok(promoted.changes.includes("top_fixes[0].critical_promoted"));
+const legacy = canonicalizeResumeReportEvidence({ top_fixes: [
+  { ...flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", true), critical: undefined },
+] }, flagSource);
+assert.equal("critical" in legacy.report.top_fixes[0] && legacy.report.top_fixes[0].critical !== undefined, false, "unflagged reports stay unflagged");
+
+// "More than three serious problems" needs three listed Critical Misses (Matt, November 1).
+const fourFixSource = flagSource + "\n- Answered vendor questions.";
+const threeCritical = [
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", true),
+  flaggedFix("Name the audit steps you handled yourself.", "Supported the audit process.", true),
+  flaggedFix("Name the vendors the tracking sheet covered.", "Built a vendor tracking sheet.", true),
+];
+const kept = canonicalizeResumeReportEvidence({ top_fixes: threeCritical, more_critical: true }, fourFixSource);
+assert.equal(kept.report.more_critical, true, "three Critical Misses can say more exist");
+assert.ok(!kept.changes.includes("more_critical.cleared"));
+const cleared = canonicalizeResumeReportEvidence({ top_fixes: threeCritical.slice(0, 2), more_critical: true }, fourFixSource);
+assert.equal(cleared.report.more_critical, false, "fewer than three Critical Misses can't say more exist");
+assert.ok(cleared.changes.includes("more_critical.cleared"));
+const unsignalled = canonicalizeResumeReportEvidence({ top_fixes: threeCritical }, fourFixSource);
+assert.equal("more_critical" in unsignalled.report, false, "a report without the field stays without it");
+const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
+const asFlagged = (count: number) => sampleReport.top_fixes.slice(0, 3).map((fix: any, index: number) => ({ ...fix, critical: index < count }));
+assert.equal(sampleReport.top_fixes.length >= 3, true, "the sample report has three fixes to flag");
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(3), more_critical: true }).success, true);
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(2), more_critical: true }).success, false,
+  "the schema refuses more_critical without three Critical Misses");
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(1), more_critical: false }).success, true);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(3), more_critical: true }), true);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(2), more_critical: true }), false);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(3) }), false);
+assert.equal("more_critical" in RESUME_REPORT_JSON_SCHEMA.properties, false,
+  "production's strict response format is unchanged; the severity check sets the flags");
+assert.equal("critical" in topFixes.items.properties, false);
+console.log("more-than-three tests passed");
 
 const rewrites = RESUME_REPORT_JSON_SCHEMA.properties.rewrites;
 assert.equal(rewrites.minItems, 0, "resume reports must not force rewrites of already strong bullets");
