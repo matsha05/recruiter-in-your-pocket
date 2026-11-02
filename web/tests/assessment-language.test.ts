@@ -232,3 +232,9 @@ const candleRoles = "Director of Marketing\n- Posted 3 to 5 times a week on the 
 assert.equal(fromPath({ score_plain: "The score reflects the specific workloads shown across your roles." }, candleRoles).length, 0, "how the score reads the page");
 assert.ok(fromPath({ score_plain: "The score reflects the specific workloads shown across your 14 stores." }, candleRoles).length > 0, "an invented count still needs support");
 console.log("v3.4 false rejection tests passed");
+
+// Sentence-initial gerunds before a tool name (eval_1793596046745, cybersecurity analyst).
+const splunkSource = "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%";
+assert.equal(fromPath({ strengths: ["Mapping Splunk rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length, 0, "Mapping is a common word");
+assert.ok(fromPath({ strengths: ["Mapping Sentinel rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length > 0, "a tool the resume doesn't name is still unsupported");
+console.log("gerund tests passed");

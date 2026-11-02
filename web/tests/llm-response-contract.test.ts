@@ -635,3 +635,23 @@ const sixCanonical = canonicalizeResumeReportEvidence({ summary: sixSentences },
 assert.equal(reportSentences((sixCanonical.report as any).summary).length, 5, "a real sixth sentence is still capped");
 assert.ok(sixCanonical.changes.includes("summary.capped_sentences"));
 console.log("report sentence tests passed");
+
+// A target-role fix keeps its own words, and a headline line's section is Summary (eval_1793596046745).
+const headlineFixAt = (fix: string, excerpt: string, why: string, section = "Work Experience") => ({
+  fix, why, confidence: "high", evidence: { excerpt, section }, impact_level: "high", effort: "quick", section_ref: section,
+});
+const noSummarySource = "EXPERIENCE\nShift Supervisor\n- Supervise cashiers and stockers on evening shifts\nFreelance Web Developer\n- Built small business websites in WordPress";
+const headlineAsk = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Add a headline naming the role you want next.", "Shift Supervisor",
+  "With no summary or headline, a reader can't tell whether this is for retail management or web development.")] }, noSummarySource);
+assert.equal((headlineAsk.report as any).top_fixes[0].fix, "Add a headline naming the role you want next.", "a target-role fix keeps its words");
+assert.equal((headlineAsk.report as any).top_fixes[0].evidence.excerpt, "No summary section present");
+const vagueAsk = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Clarify your positioning for readers.", "Shift Supervisor",
+  "A summary would help a reader place you.")] }, noSummarySource);
+assert.match((vagueAsk.report as any).top_fixes[0].fix, /^Add a summary section/, "a vague positioning fix still gets the stock line");
+const headedSource = "Director of Operations who runs multi-site distribution networks.\nEXPERIENCE\nOperations Supervisor\n- Supervised the day shift on the warehouse floor";
+const headlineSection = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Replace the director headline with your supervisor title.",
+  "Director of Operations who runs multi-site distribution networks.", "The headline claims a director; the role is a shift supervisor.", "Headline")] }, headedSource);
+assert.equal((headlineSection.report as any).top_fixes[0].evidence.section, "Summary", "a headline line's section is Summary");
+assert.equal((headlineSection.report as any).top_fixes[0].section_ref, "Summary");
+assert.ok(headlineSection.changes.includes("top_fixes[0].evidence.section_headline"));
+console.log("headline and target-role tests passed");

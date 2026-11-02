@@ -9,6 +9,7 @@ const commonCapitalizedWords = new Set([
   "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We",
   // Sentence-initial gerunds the report uses to introduce a fact ("Naming Microsoft Office ...").
   "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating",
+  "Building", "Connecting", "Leading", "Linking", "Managing", "Mapping", "Pairing", "Running", "Showing", "Tracking", "Tying",
   // Sentence-initial imperatives that join a named tool to other work ("Connect Storyline to ...").
   "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
   // Sentence-initial auxiliaries that open a question ("Is there a verifiable change ...?").
