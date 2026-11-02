@@ -484,6 +484,17 @@ async function severity(file: string, flags: Flags) {
     reportErrors(absolute.filter((row): row is Error => row instanceof Error));
     const rows = absolute.filter((row): row is Exclude<typeof row, Error> => !(row instanceof Error));
     const count = await countChecks(cases, flags, cfg, ledger);
+    // Not gated: on extended reports outside the key, does the blind count call rate each added Critical Miss critical on its own?
+    const keyed = new Set(count.outcomes.map((outcome) => outcome.fixture_id));
+    const unkeyed = await pool(extended.filter((item) => !keyed.has(item.fixture_id)), numberFlag(flags, "concurrency", 3), async (item) => {
+        const blind = await judgeCount(item.input, item.view, { config: cfg, ledger });
+        const added = blind.raw.misses.filter((miss) => miss.number > 1);
+        return { fixture_id: item.fixture_id, added: added.length, not_critical: added.filter((miss) => !miss.critical_on_its_own).map((miss) => ({ number: miss.number, note: miss.note })) };
+    });
+    reportErrors(unkeyed.filter((row): row is Error => row instanceof Error));
+    const blindRows = unkeyed.filter((row): row is Exclude<typeof row, Error> => !(row instanceof Error));
+    const blindAdded = blindRows.reduce((total, row) => total + row.added, 0);
+    const blindPadding = blindRows.reduce((total, row) => total + row.not_critical.length, 0);
     const bad = count.outcomes.filter((outcome) => outcome.kind === "bad");
     const strong = count.outcomes.filter((outcome) => outcome.kind === "strong");
     // Stricter than the prompt-change gate: a strong resume passes only with exactly one Critical Miss.
@@ -505,6 +516,7 @@ async function severity(file: string, flags: Flags) {
         `- Under-count, labeled bad resumes: ${bad.filter((outcome) => outcome.pass).length} of ${bad.length} flag at least 2 of 3 labeled problems (bar: all 8)`,
         `- Over-count, labeled strong resumes: ${strong.filter(strongPass).length} of ${strong.length} with no added Critical Miss (bar: all 4)`,
         `- Vetoes on added Critical Misses (absolute mode): ${addedVetoes.length} in ${rows.length} extended reports (bar: 0); vetoes on production's first fix: ${rows.filter((row) => row.result.veto && !row.added_veto).length}`,
+        `- Not gated: on ${blindRows.length} extended reports outside the key, the blind count call rates ${blindAdded - blindPadding} of ${blindAdded} added Critical Misses critical on their own`,
         ...failures.map((failure) => `- Fails: ${failure}`),
         "- The smoke and golden no-regression check applies separately.",
     ];
@@ -530,9 +542,13 @@ async function severity(file: string, flags: Flags) {
         "| --- | --- | --- | --- | --- | --- |",
         ...rows.map((row) => `| ${row.fixture_id} | ${row.misses}${row.more_than_three ? " + more" : ""} | ${row.result.overall} | ${row.result.veto ? (row.added_veto ? "**added**" : "first fix") : ""} | ${(row.result.raw.unsupported_claims || []).map((claim) => `"${claim.quote}": ${claim.why}`).join("; ").replace(/\|/g, "/")} | ${String(row.result.raw.rationale || "").replace(/\|/g, "/").replace(/\n/g, " ")} |`),
         "",
+        "## Added Critical Misses outside the key (blind count call, not gated)",
+        "",
+        ...blindRows.map((row) => `- ${row.fixture_id}: ${row.added - row.not_critical.length} of ${row.added} critical on their own${row.not_critical.length ? `; not: ${row.not_critical.map((miss) => `#${miss.number} (${String(miss.note || "").replace(/\n/g, " ")})`).join("; ")}` : ""}`),
+        "",
         ...(skipped.length ? [`Skipped (never sent to the judge): ${skipped.join("; ")}`, ""] : []),
     ].join("\n");
-    save("severity", flags, { meta: runMeta, source_run: run.metadata.run_id, source_file: path.basename(file), pass, failures, absolute: rows, count, skipped }, markdown);
+    save("severity", flags, { meta: runMeta, source_run: run.metadata.run_id, source_file: path.basename(file), pass, failures, absolute: rows, count, unkeyed_blind: blindRows, skipped }, markdown);
     console.log(`\n${lines.join("\n")}`);
     if (!pass) process.exitCode = 1;
 }
