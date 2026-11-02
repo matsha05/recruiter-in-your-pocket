@@ -5,6 +5,7 @@ import { Check, LockKey } from "@phosphor-icons/react";
 import { Mark, useSeen } from "@/components/research/figures/FigureKit";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { missingFromResume } from "@/lib/reports/report-presentation";
 import { marginNoteFromFix } from "@/lib/reports/revised-line";
 import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish";
 import { cn } from "@/lib/utils";
@@ -28,6 +29,26 @@ function sectionOf(fix?: Fix) {
 /** The quoted line as the reader sees it on the page, without the resume's bullet mark. */
 export function quotedLine(fix?: Fix) {
   return excerptOf(fix).trim().replace(/^[-•*]\s+/u, "");
+}
+
+/** Whether the fix marks a line on the resume, rather than something the resume doesn't have. */
+export function marksLine(fix?: Fix) {
+  return !missingFromResume(excerptOf(fix));
+}
+
+/** Where the line would be, for a fix about something the resume doesn't have. Nothing is quoted. */
+function MissingLine({ fix, critical }: { fix: Fix; critical?: boolean }) {
+  return <p className={cn(styles.missingLine, critical && styles.missingLineMiss)}>{missingFromResume(excerptOf(fix))}</p>;
+}
+
+function WhatToAdd({ questions }: { questions: string[] }) {
+  if (questions.length === 0) return null;
+  return (
+    <div className={styles.toAdd}>
+      <p className={styles.toAddLabel}>What to add</p>
+      <ul className={styles.toAddList}>{questions.map((question) => <li key={question}>{question}</li>)}</ul>
+    </div>
+  );
 }
 
 interface LiftProps {
@@ -69,13 +90,15 @@ function useHideFocus(hidden: boolean, onHide: () => void, onRestore: () => void
 }
 
 /**
- * A critical fix: its line carries the highlighter, and the questions under it build the revised line.
- * The production report has one (the Critical Miss); the next prompt may mark up to three, the first
- * being the one to fix first. Only the first sweeps, names itself the first fix, and asks "Was this right?".
+ * A Critical Miss: its line carries the highlighter, and the questions under it build the revised line.
+ * A report has one to three, the first being the one to fix first. Each gets the same treatment; only the
+ * first sweeps and asks "Was this right?".
  */
 export function CriticalMissRow({
   fix,
   index,
+  label,
+  definition,
   why,
   hidden,
   onHide,
@@ -88,6 +111,10 @@ export function CriticalMissRow({
   fix: Fix;
   /** Position among all fixes; the first critical fix is 0. */
   index: number;
+  /** `Critical Miss`, or `Critical Miss 2` when there are several. */
+  label: string;
+  /** What a Critical Miss is, when no count heading above says it. */
+  definition?: string;
   why?: string;
   hidden: boolean;
   onHide: () => void;
@@ -98,9 +125,10 @@ export function CriticalMissRow({
   feedback?: { question: string; onSubmit: (value: MissFeedbackValue) => Promise<boolean> };
 }) {
   const first = index === 0;
+  const onPage = marksLine(fix);
   const { ref: lineRef, seen: sweptIn } = useSeen<HTMLQuoteElement>(0.6);
   // The highlighter sweeps once, on the first; any later critical line is already marked.
-  const seen = first ? sweptIn : true;
+  const seen = first && onPage ? sweptIn : true;
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
   const id = `section-fix-${index + 1}`;
   const testId = first ? "critical-miss" : "critical-fix";
@@ -108,7 +136,7 @@ export function CriticalMissRow({
   if (hidden) {
     return (
       <li id={id} className={styles.row} data-kind="miss" data-testid={testId}>
-        <HiddenRow label="Critical Miss" onRestore={restore} focus={focusRestore} />
+        <HiddenRow label={label} onRestore={restore} focus={focusRestore} />
       </li>
     );
   }
@@ -117,25 +145,31 @@ export function CriticalMissRow({
     <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={testId}>
       <div className={styles.lineCell}>
         {sectionOf(fix) && <p className={styles.lineSection}>{sectionOf(fix)}</p>}
-        <blockquote ref={first ? lineRef : undefined} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
+        {onPage
+          ? <blockquote ref={first ? lineRef : undefined} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
+          : <MissingLine fix={fix} critical />}
       </div>
       <div className={styles.noteCell}>
         <div className={styles.noteHead}>
           <p className={styles.missLabel}>
-            <span className="riyp-verdict-label">Critical Miss</span>
+            <span className="riyp-verdict-label">{label}</span>
             {liftState === "addressed" && <span className={styles.addressed}><Check className="size-3.5" weight="bold" aria-hidden="true" />Addressed</span>}
           </p>
-          {first && <p className={styles.missDefinition}>The one thing to fix first</p>}
+          {definition && <p className={styles.missDefinition}>{definition}</p>}
         </div>
         <p className={cn(styles.penNote, seen && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
         {why && <p className={styles.penWhy}>{why}</p>}
+        {/* Nothing on the page to revise: the questions are what to add. */}
+        {!onPage && <WhatToAdd questions={lift.questions} />}
         <div className={styles.rowTools}>
-          <Button type="button" variant="quiet" size="sm" onClick={hide} aria-label="Hide this suggestion: Critical Miss">Hide</Button>
+          <Button type="button" variant="quiet" size="sm" onClick={hide} aria-label={`Hide this suggestion: ${label}`}>Hide</Button>
         </div>
       </div>
-      <div className={styles.liftCell}>
-        <LineLift excerpt={excerptOf(fix)} onChange={onLiftChange} {...lift} />
-      </div>
+      {onPage && (
+        <div className={styles.liftCell}>
+          <LineLift excerpt={excerptOf(fix)} onChange={onLiftChange} {...lift} />
+        </div>
+      )}
       {feedback && (
         <div className={styles.feedbackCell}>
           <MissFeedback question={feedback.question} onSubmit={feedback.onSubmit} suggestNo={liftState === "not_mine"} />
@@ -168,6 +202,7 @@ export function FixRow({
   onUnlock?: () => void;
 }) {
   const [openLift, setOpenLift] = useState(false);
+  const onPage = marksLine(fix);
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
   const label = `Fix ${index + 1}`;
   const id = `section-fix-${index + 1}`;
@@ -191,21 +226,16 @@ export function FixRow({
     <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="fix" data-testid="fix-row">
       <div className={styles.lineCell}>
         {sectionOf(fix) && <p className={styles.lineSection}>{sectionOf(fix)}</p>}
-        <blockquote className={styles.inkLine}>{quotedLine(fix)}</blockquote>
+        {onPage ? <blockquote className={styles.inkLine}>{quotedLine(fix)}</blockquote> : <MissingLine fix={fix} />}
       </div>
       <div className={styles.noteCell}>
         <div className={styles.noteHead}><p className={styles.fixLabel}>{label}</p></div>
         <p className={styles.penNote}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
         {why && <p className={styles.penWhy}>{why}</p>}
         {/* With the questions open, the lift asks them; they aren't listed twice. */}
-        {!openLift && whatToAdd.length > 0 && (
-          <div className={styles.toAdd}>
-            <p className={styles.toAddLabel}>What to add</p>
-            <ul className={styles.toAddList}>{whatToAdd.map((question) => <li key={question}>{question}</li>)}</ul>
-          </div>
-        )}
+        {!openLift && <WhatToAdd questions={whatToAdd} />}
         <div className={styles.rowTools}>
-          {!openLift && <Button type="button" variant="quiet" size="sm" onClick={() => setOpenLift(true)}>Work on this line</Button>}
+          {!openLift && onPage && <Button type="button" variant="quiet" size="sm" onClick={() => setOpenLift(true)}>Work on this line</Button>}
           <Button type="button" variant="quiet" size="sm" onClick={hide} aria-label={`Hide this suggestion: ${label}`}>Hide</Button>
         </div>
       </div>

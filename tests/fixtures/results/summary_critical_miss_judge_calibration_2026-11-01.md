@@ -1,5 +1,7 @@
 # Critical Miss judge: calibration, November 1, 2026
 
+**Current judge: `critical-miss-judge-v4`** (prompt SHA-256 `e1860dbf0284d6b762c71ccc62cc1d2108ba9b22eff5b02ff8c3e2d8365c52e3`), recalibrated after Matt's count decision; see [Judge v4](#judge-v4-the-count-decision). Everything from "Result against the targets" to "Limits" describes v3, which v4 builds on.
+
 Judge `critical-miss-judge-v3` (prompt SHA-256 `e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd`). Default model `gpt-6.1-sol`, medium reasoning, seed 20261101, also run on `gpt-6-astra`. Rubric: [critical-miss-rubric.md](../../../docs/evals/critical-miss-rubric.md). How to read results: [critical-miss-judge.md](../../../docs/evals/critical-miss-judge.md). Raw outputs are in [judge/](judge/).
 
 Only synthetic and fictional resumes were sent: the ten synthetic blind-pick resumes and 30 hand-written fictional contrast pairs. No smoke fixture or real-person golden fixture reached a model.
@@ -113,9 +115,70 @@ Self-preference = 0.20 − 0.20 = **+0.00**. The two judges reached the same ver
   - Characterizations such as "your clearest result" count as judgment, not fact.
   - Two fixture errors of mine were caught by the veto ("your biggest project" in cp-23 and cp-13). Both are fixed and noted.
 
+## Judge v4: the count decision
+
+Matt, later on November 1: "some resumes are truly horrible. i dont want to lie to people and say they have one critical miss if there are more." A Critical Miss is any problem that would cost an interview on its own. Every one is flagged, up to three, in priority order, with a "more than three" signal when true, and strong resumes aren't padded.
+
+Prompt v3.3 had passed the v3 gate flagging exactly one Critical Miss on all 40 judge resumes. Judge v3's C8 said extras "must meet the same bar", and the judge read that as "as important as the first".
+
+**What changed in v4:**
+
+- **C8.** It applies only to the Critical Misses after the first. Each one must be a problem that would cost an interview on its own, and the C8 text lists examples of problems that qualify and problems that are padding. Leaving a real one out is a real loss; padding is worse than stopping.
+- **Pairwise deciding step 6.** It compares the sets when the reports flag different Critical Misses after the first.
+- **A count prompt** for the gate's count checks: one single-report call that rates each Critical Miss as critical on its own or not, and, when the key is shown, names the labeled problem it addresses.
+- **The view.** It shows each flagged Critical Miss, and an unflagged report's first fix only (production). It shows the `more_critical` signal.
+- **Network retry.** A dropped connection is retried once.
+
+### Four drafts; v4b kept
+
+| Draft | What it tried | Matt's 6 decisive picks | C8 pairs | Single-miss pairs identical to v3 |
+| --- | --- | --- | --- | --- |
+| v4 | Redefined the Critical Miss itself as "would cost an interview on its own" | 4 right, **1 clear reversal** (bp-04), 1 tie | 9 of 10 | 35 of 38 |
+| **v4b** | Kept v3's first-pick wording; C8 scoped to the Critical Misses after the first; date examples added | **5 right, 0 clear reversals** | 8 of 10 (both misses were fixture flaws, fixed below) | **37 of 38** |
+| v4c | C8's examples split into "qualify" and "padding" lists; fixed fixtures | 4 right, **1 clear reversal** (bp-04), 1 tie | 7 of 7 judged (cp-36 to cp-38 lost to dropped connections) | 35 of 38 |
+| v4d | C8's examples moved to the count prompt only; fixed fixtures | 5 right, **1 clear reversal** (bp-04) | 8 of 10: **cp-33 clear wrong**, cp-31 slight wrong | 35 of 38 |
+
+- v4, v4b and v4c matched v3 exactly on all 28 single-miss contrast pairs; v4d changed one strength (cp-30, clear to slight). Every other change was on three blind-pick items that v3 itself called slight: bp-04 (Matt: "Both are good though"), bp-08 and bp-09.
+- v4d shows that the examples matter to C8. Without them, on the fixed fixture, the judge called a real third Critical Miss (no scale anywhere on the page) a supporting detail, and clearly preferred the report that stopped at two.
+- v4b is the only draft that met the targets, so it is restored byte for byte (its SHA is above).
+
+**Two fixture flaws, fixed after v4b's first run.** The judge's rationales pointed at both, as cp-13 and cp-23 were caught in v2. Both are noted in the data under `fixed`.
+
+- **cp-33 (and cp-31, count cc-bad-1).** The title Critical Miss asked for "the team you led, the budget you owned", which overlaps the third Critical Miss's scale ask. One side order called the third redundant for that reason. The title fix now asks for decisions.
+- **cp-36.** The fourth problem was three short stints, which the rubric doesn't list; both orders found no fourth. The Desertview role now has no dates, a problem C8 lists.
+
+### v4b results
+
+Pairwise, on `gpt-6.1-sol` ([all 48 pairs](judge/2026-11-02T02-10-20-761Z_calibrate_v4b.md); [same-seed retest of the 10 blind-pick and 10 C8 pairs, with the fixed fixtures](judge/2026-11-02T03-35-55-924Z_calibrate_v4b-retest.md)):
+
+| Target | Run 1 | Retest |
+| --- | --- | --- |
+| Matt's 6 decisive picks: at least 5 | **5 of 6** | 4 of 6, plus 1 tie |
+| Never clearly prefer a side Matt rejected | **0 clear** (bp-04 slight, as in v3) | **0 clear** (bp-04 slight) |
+| Matt's 4 "no difference" items | bp-06 and bp-07 tie; bp-03 clear, following his later "no Nothing critical" decision, as in v3; **bp-09 clear** (v3: slight the other way) | bp-06, bp-07 and bp-09 tie; bp-03 clear |
+| C8 pairs (cp-19, cp-20, cp-31 to cp-38) | 8 of 10 (cp-33 and cp-36 ties: the fixture flaws) | **10 of 10** with the fixed fixtures |
+| Other contrast pairs | 28 of 28 | not rerun |
+
+- **Retest stability.** 15 of the 17 pairs whose text didn't change gave the same combined verdict on the same seed. The two that moved are bp-08 (production slight, then a tie, as one order flipped) and bp-09 (new clear, then a tie). v3 repeated 40 of 40.
+- So the count-aware wording leaves three of Matt's items on a knife edge that v3 held steady. There is still no clear reversal of Matt in any run.
+- **Count prompt** ([all 17 reports, twice](judge/2026-11-02T02-05-39-305Z_calibrate-count_v4b-count.md); [cc-bad-1 rerun with its fixed title fix](judge/2026-11-02T03-34-47-889Z_calibrate-count_v4b-count-cc-bad-1.md)):
+  - every gate outcome as labeled: 34 of 34, and 10 of 10 on the rerun;
+  - every labeled problem matched: 34 of 34;
+  - every Critical Miss rated as labeled: 48 of 48. Real problems were rated critical 30 of 30 times, and padding was rated not critical 18 of 18 times;
+  - every retest gave the same answers: 27 of 27.
+  - The set is 4 hand-labeled fictional resumes with 17 reports. It covers stopping at one, padding on an older role, an optional section, a supporting duty, a second ask on the same line, a duplicate on one problem, a reworded or re-cited match, and a false "more than three". It has no borderline cases.
+- **The gate's real key.** The prompt session's key (`count-check-key.json` on `claude/critical-miss-v3`: 8 bad and 4 strong fictional resumes) passes the loader's checks at `630a9bcb` and `4f806f21`.
+  - **Key check at `4f806f21`** ([results](judge/2026-11-02T05-11-58-070Z_key-check_4f806f21.md), 8 calls, $0.0485): the blind count call rated 22 of the 24 labeled problems critical on their own.
+  - **The two it disputed:** the recent graduate's missing target role ("normal early-career exploration") and the staff accountant's undated AP role ("a secondary chronology issue", since the current role is dated).
+- **First gate run** (the prompt session's v3.4 against production, 52 resumes): `GATE: FAIL` on preference (31 of 51).
+  - Under-count passed 8 of 8 and over-count 4 of 4.
+  - Two count calls hit dropped connections ("fetch failed") after their one retry. Each call now gets three tries, with waits of 1 and 4 seconds.
+  - Pairwise called one target-role Critical Miss padding ("an optional target-role headline"), though the key labeled the problem critical. The key check above rates that label critical. The fix's wording ("add a summary section") reads as the optional-section fix that P ranks low; see rubric conflict 11.
+  - Bad resumes now also get a blind count call, and the gate warns about caught labels it disputes.
+
 ## Spend
 
-Token-calculated at published standard rates. Total **$6.26** of the $8.00 cap:
+Token-calculated at published standard rates. v3 total **$6.26** of the $8.00 cap:
 
 | Run | Calls | Model | Spend |
 | --- | --- | --- | --- |
@@ -135,7 +198,23 @@ Token-calculated at published standard rates. Total **$6.26** of the $8.00 cap:
 | v3, 5 new pairs, seed 7 | 10 | Sol | $0.0476 |
 | Gate run of `compare` on the two live runs | 27 | Sol | $0.1849 |
 
-A Sol gate run (`compare`, with the candidate veto check) on two 10-fixture golden runs costs about $0.19 and takes about a minute.
+A Sol gate run (`compare`, with the candidate veto check) on two 10-fixture golden runs costs about $0.19 and takes about a minute. The count checks add one call per labeled resume, about $0.05 for 12.
+
+Judge v4 recalibration, on `gpt-6.1-sol`: **$3.61**, plus $0.05 for the key check, so **$9.92** in all against the $11.00 cap ($8.00 plus $3.00 approved for the count decision):
+
+| Run | Calls | Spend |
+| --- | --- | --- |
+| v4, all 48 pairs | 96 | $0.6279 |
+| v4, count set × 2 | 54 | $0.1859 |
+| v4b, all 48 pairs | 96 | $0.6200 |
+| v4b, count set × 2 | 54 | $0.1940 |
+| v4c, 45 of 48 pairs (3 dropped connections) | 92 | $0.5871 |
+| v4c, count set × 2 | 54 | $0.1911 |
+| v4d, all 48 pairs | 96 | $0.6226 |
+| v4d, count set × 2 | 54 | $0.1914 |
+| v4b retest, 20 pairs | 40 | $0.3090 |
+| v4b, cc-bad-1 × 2 | 20 | $0.0761 |
+| Key check of `count-check-key.json` at `4f806f21` | 8 | $0.0485 |
 
 ## Limits
 

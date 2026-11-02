@@ -181,6 +181,8 @@ export interface EvalRunMetadata {
     concurrency: number;
     baseline_path?: string;
     validation_mode?: "in_run" | "saved_output_replay";
+    /** The date sent to the model as today, when the run sent one. */
+    prompt_date?: string;
     validation_input?: "model_output_when_available";
     validation_timestamp?: string;
     source_run_sha256?: string;
@@ -224,6 +226,8 @@ export interface EvalOptions {
     outputLabel?: string;
     /** Generate each fixture this many times to measure score test-retest. Multiplies cost. */
     repeat?: number;
+    /** ISO date sent to the model as today; defaults to the run's UTC date. */
+    today?: string;
 }
 
 // ============================================

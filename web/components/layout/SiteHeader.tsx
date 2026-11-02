@@ -1,17 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { UserNav } from "@/components/shared/UserNav";
-import { Wordmark } from "@/components/icons";
+import { Wordmark } from "@/components/icons/Wordmark";
 import { cn } from "@/lib/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { SheetClose } from "@/components/ui/sheet";
 import { NavDrawer, NavDrawerDivider, NavDrawerLink } from "./NavDrawer";
+
+// The account menu (a Radix dropdown with its positioning engine and an animated
+// icon) shows only for a signed-in visitor once the account check resolves, so it
+// loads then instead of with every public page. The placeholder holds its place.
+const UserNav = dynamic(() => import("@/components/shared/UserNav").then((module) => module.UserNav), {
+    ssr: false,
+    loading: () => <span className="block size-11 shrink-0" aria-hidden="true" />,
+});
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */

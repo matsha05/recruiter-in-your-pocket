@@ -87,7 +87,7 @@ export default function HistorySidebar({
                 body: JSON.stringify({ name: editName.trim() })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The report couldn’t be renamed. Please try again.");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The report couldn’t be renamed. Try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
             ));
@@ -95,7 +95,7 @@ export default function HistorySidebar({
             setEditName("");
         } catch (error) {
             console.error("Failed to rename report:", error);
-            toast.error(getClientActionError(error, "The report couldn’t be renamed. Please try again."));
+            toast.error(getClientActionError(error, "The report couldn’t be renamed. Try again."));
         }
     };
 
@@ -107,13 +107,13 @@ export default function HistorySidebar({
                 body: JSON.stringify({ resume_variant: variant })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The label couldn’t be saved. Please try again.");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The label couldn’t be saved. Try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, resumeVariant: variant } : r
             ));
         } catch (error) {
             console.error("Failed to update variant:", error);
-            toast.error(getClientActionError(error, "The label couldn’t be saved. Please try again."));
+            toast.error(getClientActionError(error, "The label couldn’t be saved. Try again."));
         }
     };
 
@@ -128,11 +128,11 @@ export default function HistorySidebar({
         try {
             const res = await fetch("/api/reports");
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new ClientActionError(data.message, "Saved reports could not be loaded. Please try again.");
+            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new ClientActionError(data.message, "Saved reports could not be loaded. Try again.");
             setReports(data.reports);
         } catch (error) {
             console.error("Failed to fetch reports:", error);
-            setLoadError(getClientActionError(error, "Saved reports could not be loaded. Please try again."));
+            setLoadError(getClientActionError(error, "Saved reports could not be loaded. Try again."));
         } finally {
             setLoading(false);
         }
@@ -160,12 +160,12 @@ export default function HistorySidebar({
                 setReports(prev => prev.filter(r => r.id !== reportId));
                 toast.success("Report deleted");
             } else {
-                toast.error(data.message || "The report couldn’t be deleted. Please try again.");
+                toast.error(data.message || "The report couldn’t be deleted. Try again.");
                 console.error("Delete failed:", data);
             }
         } catch (error) {
             console.error("Failed to delete report:", error);
-            toast.error("The report couldn’t be deleted. Please try again.");
+            toast.error("The report couldn’t be deleted. Try again.");
         } finally {
             setDeletingId(null);
         }
@@ -220,10 +220,10 @@ export default function HistorySidebar({
                                     <TrendUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                                    Save reports you want to revisit
+                                    Keep every version in one place
                                 </h3>
                                 <p className="text-sm text-muted-foreground mb-8 max-w-[240px]">
-                                    Sign in to save reports and compare feedback on different resume versions.
+                                    Sign in to save reports and see what changed between versions.
                                 </p>
                                 <Button
                                     variant="primary"
@@ -267,10 +267,10 @@ export default function HistorySidebar({
                                     <EmptyReportIcon className="size-12" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                                    No reports yet
+                                    Nothing saved yet
                                 </h3>
                                 <p className="text-sm text-muted-foreground max-w-[240px]">
-                                    Get a report on your resume, then save it to return to the feedback later.
+                                    Save a report and it waits here for your next revision.
                                 </p>
                             </div>
                         ) : (
@@ -349,7 +349,7 @@ export default function HistorySidebar({
                                                         const [dataA, dataB] = await Promise.all([resA.json(), resB.json()]);
 
                                                         if (!resA.ok || !resB.ok || !dataA.ok || !dataB.ok) {
-                                                            throw new ClientActionError(dataA.message || dataB.message, "Reports could not be compared. Please try again.");
+                                                            throw new ClientActionError(dataA.message || dataB.message, "Reports could not be compared. Try again.");
                                                         }
                                                         {
                                                             const reportInfoA = reports.find(r => r.id === selectedForCompare[0]);
@@ -383,7 +383,7 @@ export default function HistorySidebar({
                                                         }
                                                     } catch (err) {
                                                         console.error('Failed to load reports for comparison:', err);
-                                                        toast.error(getClientActionError(err, "Reports could not be compared. Please try again."));
+                                                        toast.error(getClientActionError(err, "Reports could not be compared. Try again."));
                                                     } finally {
                                                         setLoadingComparison(false);
                                                     }
@@ -572,10 +572,10 @@ export default function HistorySidebar({
                             <div className="flex size-10 items-center justify-center rounded-sm bg-destructive/10">
                                 <Warning className="size-5 text-destructive" />
                             </div>
-                            <DialogTitle className="font-display">Delete Report?</DialogTitle>
+                            <DialogTitle className="font-display">Delete this report?</DialogTitle>
                         </div>
                         <DialogDescription>
-                            {reportToDelete?.name || `Report from ${formatDate(reportToDelete?.createdAt || '')}`} will be permanently deleted. This action cannot be undone.
+                            {reportToDelete?.name || `Report from ${formatDate(reportToDelete?.createdAt || '')}`} will be permanently deleted. This can’t be undone.
                             If this report came from a saved job, the saved job and job description stay in Jobs until you delete them there.
                         </DialogDescription>
                     </DialogHeader>

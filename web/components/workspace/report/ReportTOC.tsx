@@ -16,7 +16,7 @@ interface ReportTOCProps {
 
 const REPORT_TOC_ITEMS = [
     { id: "section-first-impression", label: "Overview", mobileLabel: "Overview" },
-    { id: "section-fixes", label: "Fix these first", mobileLabel: "Fixes" },
+    { id: "section-fixes", label: "Fix these first", mobileLabel: "Fix" },
     { id: "section-keep", label: "Keep these", mobileLabel: "Keep" },
     { id: "section-role", label: "Role fit", mobileLabel: "Role fit" },
 ] as const;

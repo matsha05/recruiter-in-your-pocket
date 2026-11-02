@@ -1,13 +1,11 @@
-// One place for the site's identity in search and on shared links. The founder
-// is described on the homepage (app/(marketing)/page.tsx); here we only point at
-// that entry by @id, so his wording lives in one place.
+// One place for the site's identity in search and on shared links. The site is
+// anonymous by design: no Person entity, founder name, or profile link.
 
 export const SITE_URL = "https://www.recruiterinyourpocket.com";
 export const SITE_NAME = "Recruiter in Your Pocket";
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
-export const FOUNDER_ID = `${SITE_URL}/#matt-shaw`;
 
 /** Section names used in breadcrumbs, matching the visible navigation. */
 export const SECTION_NAMES = {
@@ -40,7 +38,6 @@ export const siteStructuredData = {
         height: 512,
       },
       email: "support@recruiterinyourpocket.com",
-      founder: { "@type": "Person", "@id": FOUNDER_ID, name: "Matt Shaw" },
     },
     {
       "@type": "WebSite",

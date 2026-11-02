@@ -104,9 +104,9 @@ export function ResumeDropzone({
             if (rejection.errors.some((item) => item.code === "file-too-large")) {
                 setError(`This file is ${formatMegabytes(rejection.file.size)}. Choose a PDF or DOCX under 4 MB.`);
             } else if (rejection.errors[0]?.code === "file-invalid-type") {
-                setError("Please upload a PDF or DOCX file.");
+                setError("That file type won’t open here. Choose a PDF or DOCX.");
             } else {
-                setError(rejection.errors[0]?.message || "Could not read file");
+                setError(rejection.errors[0]?.message || "We couldn’t read this file. Try another PDF or DOCX.");
             }
             return;
         }
@@ -222,7 +222,7 @@ export function ResumeDropzone({
                         )}
                     >
                         <div className="text-sm font-medium">Drop your resume here</div>
-                        <div className="text-xs text-muted-foreground mt-1">No login required</div>
+                        <div className="text-xs text-muted-foreground mt-1">No account needed</div>
                     </div>
 
                     <p role="status" aria-live="polite" className="min-h-5 text-xs text-muted-foreground">

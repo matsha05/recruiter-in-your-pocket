@@ -47,7 +47,7 @@ test("stopping a signed-out run points to the free report, not My reports", asyn
   await expect(toast).toHaveCount(1);
   await expect(toast).toContainText("your free report");
   await expect(toast).not.toContainText("My reports");
-  await expect(page.getByText("Your first report is included")).toBeVisible();
+  await expect(page.getByText("Your first report is free")).toBeVisible();
 });
 
 test("the wait shows the stage the stream reports and the time elapsed, never a timed step", async ({ page }) => {

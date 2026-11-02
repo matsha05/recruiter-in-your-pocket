@@ -8,6 +8,11 @@
  * Absolute scores one report's Critical Miss on the rubric criteria. Any
  * claim the resume doesn't support is a veto.
  *
+ * Count checks each Critical Miss in one report on its own: would that
+ * problem cost an interview on its own, and, when a resume's labeled problems
+ * are given, which one does its fix address. The gate uses it to catch a
+ * report that stops short on a bad resume or pads a strong one.
+ *
  * Code checks the judge, too: a veto counts only when its quoted claim really
  * appears in that report, and cited resume lines that aren't verbatim are
  * reported.
@@ -17,12 +22,17 @@ import { callJudge, DEFAULT_JUDGE_CONFIG, SpendLedger } from "./client";
 import {
     ABSOLUTE_RESPONSE_FORMAT,
     ABSOLUTE_SYSTEM_PROMPT,
+    COUNT_RESPONSE_FORMAT,
+    COUNT_SYSTEM_PROMPT,
     PAIRWISE_RESPONSE_FORMAT,
     PAIRWISE_SYSTEM_PROMPT,
 } from "./prompt";
 import type {
     AbsoluteRawScore,
     AbsoluteResult,
+    CountKeyProblem,
+    CountRawVerdict,
+    CountResult,
     CriticalMissView,
     JudgeCase,
     JudgeConfig,
@@ -67,6 +77,28 @@ export function absoluteUserMessage(input: JudgeCase, view: CriticalMissView) {
         renderView(view),
         "",
         "Score this report's Critical Miss. Return JSON only.",
+    ].join("\n");
+}
+
+export function countUserMessage(input: JudgeCase, view: CriticalMissView, problems?: CountKeyProblem[]) {
+    const labeled = problems?.length
+        ? [
+            "",
+            "LABELED PROBLEMS (each would cost an interview on its own; use them only to fill in matches)",
+            ...problems.flatMap((problem) => [
+                `${problem.id}: ${problem.problem}`,
+                ...problem.lines.map((line) => `  Resume line: "${line}"`),
+            ]),
+        ]
+        : [];
+    return [
+        resumeBlock(input),
+        ...labeled,
+        "",
+        "REPORT",
+        renderView(view),
+        "",
+        `Check each of the report's ${view.misses.length} Critical Miss${view.misses.length === 1 ? "" : "es"} on its own. Return JSON only.`,
     ].join("\n");
 }
 
@@ -136,6 +168,10 @@ export function combineOrders(orders: Array<Pick<PairwiseOrderResult, "winner" |
 export interface JudgeRuntime {
     config?: JudgeConfig;
     ledger: SpendLedger;
+    /** Tests pass a fake; every real call goes to the OpenAI API. */
+    fetchImpl?: typeof fetch;
+    /** Waits between retries; tests pass zeros. */
+    backoffMs?: number[];
 }
 
 export async function judgePairwise(
@@ -153,6 +189,8 @@ export async function judgePairwise(
             PAIRWISE_RESPONSE_FORMAT,
             config,
             runtime.ledger,
+            runtime.fetchImpl,
+            runtime.backoffMs,
         );
         orders.push({
             order,
@@ -184,6 +222,8 @@ export async function judgeAbsolute(
         ABSOLUTE_RESPONSE_FORMAT,
         config,
         runtime.ledger,
+        runtime.fetchImpl,
+        runtime.backoffMs,
     );
     const { kept, dropped } = verifyClaims(call.output.unsupported_claims, view);
     const veto = kept.length > 0;
@@ -194,6 +234,46 @@ export async function judgeAbsolute(
         raw: { ...call.output, unsupported_claims: kept },
         dropped_claims: dropped,
         uncited_lines: uncitedLines(call.output.cited_resume_lines, input.resume_text),
+        usage: call.usage,
+        cost_usd: call.costUsd,
+        latency_ms: call.latencyMs,
+    };
+}
+
+/**
+ * One answer per Critical Miss, in the report's order. An answer that skips,
+ * repeats or reorders a Critical Miss is an error rather than a guess, and
+ * without labeled problems every match is "none".
+ */
+export async function judgeCount(
+    input: JudgeCase,
+    view: CriticalMissView,
+    runtime: JudgeRuntime,
+    problems?: CountKeyProblem[],
+): Promise<CountResult> {
+    const config = runtime.config || DEFAULT_JUDGE_CONFIG;
+    const keyed = Boolean(problems?.length);
+    const call = await callJudge<CountRawVerdict>(
+        COUNT_SYSTEM_PROMPT,
+        countUserMessage(input, view, problems),
+        COUNT_RESPONSE_FORMAT,
+        config,
+        runtime.ledger,
+        runtime.fetchImpl,
+        runtime.backoffMs,
+    );
+    const misses = Array.isArray(call.output.misses) ? call.output.misses : [];
+    if (misses.length !== view.misses.length || misses.some((miss, index) => miss.number !== index + 1)) {
+        throw new Error(`count answer for ${input.id} covers ${misses.map((miss) => miss.number).join(",") || "no"} Critical Misses; the report has ${view.misses.length}`);
+    }
+    const labeledIds = new Set<string>((problems || []).map((problem) => problem.id));
+    return {
+        case_id: input.id,
+        keyed,
+        raw: {
+            ...call.output,
+            misses: misses.map((miss) => ({ ...miss, matches: labeledIds.has(miss.matches) ? miss.matches : "none" })),
+        },
         usage: call.usage,
         cost_usd: call.costUsd,
         latency_ms: call.latencyMs,

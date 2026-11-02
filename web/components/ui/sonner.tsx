@@ -1,12 +1,23 @@
 "use client"
 
+import { useEffect } from "react"
 import { useTheme } from "next-themes"
-import { Toaster as Sonner } from "sonner"
+import { Toaster as Sonner, toast } from "sonner"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
+
+  // This Toaster loads after hydration (ToasterLauncher). Sonner keeps toasts
+  // raised before it subscribed but never delivers them, so publish those once.
+  // Sonner's own effect runs first, as a child, so it is listening by now.
+  useEffect(() => {
+    for (const pending of toast.getToasts()) {
+      if ("dismiss" in pending) continue
+      toast.message(pending.title, pending)
+    }
+  }, [])
 
   return (
     <Sonner

@@ -10,7 +10,6 @@ import { PassExamples } from "@/components/marketing/PassExamples";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
-import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
@@ -132,7 +131,8 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
             window.location.href = data.url;
         } catch {
             Analytics.track("checkout_start_failed", { source: "pricing", tier });
-            toast.error(checkoutError);
+            // Loaded on failure only, so sonner stays out of the pricing page's first load.
+            void import("sonner").then(({ toast }) => toast.error(checkoutError));
         } finally {
             setLoadingTier(null);
         }
@@ -170,7 +170,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     <p className="mt-5 font-display text-headline">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete report</p>
                                     <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-                                        Your Verdict, First Impression score, and Critical Miss, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
+                                        Your Verdict, where your resume stands, and up to three Critical Misses, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
                                     </p>
                                     <p className="mt-3 text-sm text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
                                     <Button asChild className="mt-10 w-full">
@@ -220,7 +220,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 />
                             </div>
                             <p className="max-w-xl text-pretty text-prose text-muted-foreground">
-                                Use the pass to check a revision, or to read your resume against a specific job.
+                                Use the pass to check a revision, or to read your resume against a job you actually want.
                             </p>
                         </div>
 

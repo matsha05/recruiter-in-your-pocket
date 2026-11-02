@@ -59,7 +59,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
-    await expect(page.getByRole("heading", { name: /Start with your resume/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Let’s see what they see/i })).toBeVisible();
   });
 
   test("2. public trust surfaces publish readiness and disclosure details", async ({ page, request }) => {

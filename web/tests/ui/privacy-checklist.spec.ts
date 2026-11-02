@@ -1,5 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { schemaValidReport } from "../helpers/report-fidelity-fixture";
+import { ResumeFeedbackResponseSchema } from "../../lib/validation/resume-report-schema";
 
 const consentKey = "riyp:analytics-consent:v1";
 
@@ -87,6 +89,41 @@ test("consented analytics excludes search terms from the referring page", async 
   await expect.poll(() => events.some(item => item.event === "page_viewed"), { timeout: 15_000 }).toBe(true);
   expect(JSON.stringify(events)).not.toContain("private-resume-query");
   expect(events.every(item => !("mp_keyword" in item.properties))).toBe(true);
+  // Someone else's tags are dropped; the visit keeps only the kind of site it came from.
+  expect(events.find(item => item.event === "page_viewed")?.properties).toMatchObject({ entry_source: "google", entry_medium: "organic" });
+});
+
+test("a tagged link's channel rides from the landing page to the finished report", async ({ page }) => {
+  test.skip(process.env.RIYP_ANALYTICS_TEST_ENABLED !== "1", "Use the analytics-enabled test build.");
+  test.setTimeout(120_000);
+  const events = await interceptAnalytics(page);
+  // The report itself is stubbed: this test follows the analytics, not generation.
+  const report = ResumeFeedbackResponseSchema.parse(schemaValidReport);
+  await page.route("**/auth/v1/user", route => route.fulfill({ status: 401, json: { message: "Auth session missing" } }));
+  await page.route("**/api/free-status", route => route.fulfill({ json: { ok: true, free_uses_left: 1 } }));
+  await page.route("**/api/resume-feedback-stream", route => route.fulfill({
+    headers: { "content-type": "text/event-stream", "cache-control": "no-cache" },
+    body: `${JSON.stringify({ type: "complete", ok: true, data: report, report_id: null, report_receipt: null, operation_id: route.request().postDataJSON().recovery_id, free_uses_remaining: 0 })}\n`,
+  }));
+  await page.goto("/?utm_source=reddit&utm_medium=community&utm_campaign=r-resumes&utm_content=answer&gclid=private-click-id");
+  await page.getByRole("button", { name: "Allow analytics", exact: true }).click();
+  await page.getByTestId("landing-primary-cta").click();
+  await expect(page).toHaveURL(/\/workspace$/);
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill([
+    "ALEX RIVERA", "Senior Program Manager",
+    "Led cross-functional launches across product, operations, and support teams.",
+    "Built review cadences, clarified ownership, and kept deadlines on track.",
+    "Reduced rework by creating clearer launch checklists and decision logs.",
+  ].join("\n"));
+  await page.getByTestId("workspace-run-report").click();
+  await expect(page.locator("#section-first-impression h1")).toBeVisible({ timeout: 35_000 });
+  await expect.poll(() => events.some(item => item.event === "report_completed"), { timeout: 15_000 }).toBe(true);
+  const entry = { entry_source: "reddit", entry_medium: "community", entry_campaign: "r-resumes", entry_variant: "answer" };
+  for (const name of ["page_viewed", "landing_cta_clicked", "report_started", "report_completed"]) {
+    expect(events.find(item => item.event === name)?.properties, name).toMatchObject(entry);
+  }
+  expect(JSON.stringify(events)).not.toContain("private-click-id");
 });
 
 for (const signal of ["doNotTrack", "globalPrivacyControl"]) {
@@ -145,7 +182,7 @@ test("mobile CTA appears after the hero, yields to privacy choices, and opens th
   }
   await page.getByTestId("mobile-report-cta").getByRole("link").click();
   await expect(page).toHaveURL(/\/workspace$/);
-  await expect(page.getByRole("heading", { name: "Start with your resume." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Let’s see what they see." })).toBeVisible();
 });
 
 test("privacy choices remain readable and keyboard-accessible on phone and desktop", async ({ page }) => {
@@ -170,4 +207,23 @@ test("privacy choices remain readable and keyboard-accessible on phone and deskt
   await expect(page.getByRole("heading", { name: "Your privacy choices" })).toBeFocused();
   await page.getByTestId("privacy-panel").getByRole("button", { name: "Close", exact: true }).click();
   await expect(preferences).toBeFocused();
+});
+
+test("on a phone, the privacy card leaves room to reach the workspace's run button", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/workspace");
+  const card = page.getByTestId("privacy-panel");
+  await expect(card).toBeVisible();
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill(Array.from({ length: 8 }, (_, line) => `Line ${line + 1}: led launches across product, operations, and support teams.`).join("\n"));
+  const run = page.getByTestId("workspace-run-report");
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await expect.poll(async () => {
+    const [button, panel] = await Promise.all([run.boundingBox(), card.boundingBox()]);
+    return button!.y + button!.height <= panel!.y;
+  }, { message: "the run button scrolls clear of the privacy card" }).toBe(true);
+  await run.click({ trial: true });
+  await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+  await expect(card).toHaveCount(0);
+  expect(await page.evaluate(() => getComputedStyle(document.body).paddingBottom)).toBe("0px");
 });

@@ -4,9 +4,9 @@ import { isAllowedReportNarrativeException } from "./report-narrative-exceptions
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
 import { assertsNegativePresence, negativePresenceSubject } from "./report-polarity-policy";
 import { semanticMissingDisposition } from "./semantic-missing-policy";
-import { isCommonCapitalizedWord, trackedSemanticPatterns } from "./source-semantic-patterns";
+import { abbreviatedMonth, isCommonCapitalizedWord, MONTH_ALIASES, trackedSemanticPatterns } from "./source-semantic-patterns";
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
-import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion, joinedSpellings, withJoinedSpellings } from "./narrative-fact-support";
+import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion, joinedSpellings, withJoinedPairs, withJoinedSpellings } from "./narrative-fact-support";
 import { supportsIndustrySignal } from "./source-industry-signals";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
@@ -142,7 +142,7 @@ function normalizedFactDisplay(value: string) {
 }
 
 function addMatches(target: Map<string, ProtectedFact>, kind: string, value: string) {
-  const display = normalizedFactDisplay(value);
+  const display = kind === "entity" ? abbreviatedMonth(normalizedFactDisplay(value)) : normalizedFactDisplay(value);
   if (!display) return;
   target.set(`${kind}:${display}`, { key: `${kind}:${display}`, display });
 }
@@ -178,7 +178,7 @@ function protectedFacts(value: string) {
   return Array.from(facts.values());
 }
 
-const semanticTokenAliases = new Map([["journey", "workflow"], ["non-profit", "nonprofit"]]);
+const semanticTokenAliases = new Map<string, string>([["journey", "workflow"], ["non-profit", "nonprofit"], ...MONTH_ALIASES]);
 
 function materialTokens(value: string, ignoredTokens = baseNarrativeStopWords) {
   let untracked = canonicalizeUserSourceText(value).replace(/\b([\p{L}])\.(?=[\p{L}]\b)/gu, "$1").replace(/\[[^\]]+\]/gu, "");
@@ -289,7 +289,7 @@ export function auditNarrativeClaim(
 ) {
   const candidates = narrativeSourceClauses(sourceText).map((line) => ({
     facts: protectedFacts(line),
-    tokens: withJoinedSpellings(materialTokens(line)),
+    tokens: withJoinedPairs(withJoinedSpellings(materialTokens(line)), line),
     negated: sourceClauseIsNegated(line),
   }));
   return claimSegments(value).flatMap((claim) => {

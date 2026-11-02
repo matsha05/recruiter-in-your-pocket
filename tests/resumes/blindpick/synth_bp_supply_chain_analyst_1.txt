@@ -1,0 +1,27 @@
+Grace Adeyemi
+Memphis, TN | grace.adeyemi@example.com | 555-0166
+
+Supply chain analyst focused on inventory planning and transportation cost for a national retailer.
+
+EXPERIENCE
+
+Supply Chain Analyst
+Delta Ridge Retail, Memphis, TN
+August 2022 - Present
+- Forecast weekly demand for 3,200 SKUs across 140 stores
+- Rebuilt safety stock targets for seasonal items, reducing stockouts from 6.5% to 3.8%
+- Analyzed carrier invoices and renegotiated two lanes, saving $410K a year
+- Built a Power BI report on fill rate and on-time delivery for distribution center managers
+- Partner with buyers on purchase order timing
+
+Logistics Coordinator
+Bluff City Freight, Memphis, TN
+June 2020 - July 2022
+- Scheduled inbound and outbound truckloads for 12 retail customers
+- Resolved delivery exceptions with carriers and warehouses
+
+EDUCATION
+B.B.A., Supply Chain Management, University of Memphis, 2020
+
+SKILLS
+SAP IBP, Excel (Power Query), Power BI, SQL, demand forecasting

@@ -11,6 +11,7 @@ Matt's decisions: **D1 yes** (question headlines), **D2 yes** (remove repeated F
 - `research_article_viewed` and the research report clicks are recorded, consent-gated, with tests.
 - The prototype route is gone: `/research/how-recruiters-read` is now the full answer-first version.
 - Held until the signature report merges: rec 3 (report to research through the score parts) and rec 4 ("How we write research" on `/methodology`).
+- Wave 3 (Nov 2): rec 3 and rec 4 are built. The report's "Why we read it this way" links each score part to its article (§4 mapping, plus `/methodology`); `/methodology` has "How we write the research" (no corrections promise, per D3); and each article's method note links to it.
 
 ## The short version
 

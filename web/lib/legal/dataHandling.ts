@@ -1,7 +1,8 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
 export const LEGAL_LAST_UPDATED = "September 4, 2026";
-export const PRIVACY_LAST_UPDATED = "November 1, 2026";
+export const PRIVACY_LAST_UPDATED = "November 2, 2026";
+export const TERMS_LAST_UPDATED = "November 2, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -84,7 +85,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Product analytics and conversion telemetry",
-    purpose: "Measure product quality, onboarding friction, and billing funnel health when analytics is enabled.",
+    purpose: "Measure product quality, onboarding friction, billing funnel health, and which kind of site or link a visit came from, when analytics is enabled.",
     retention: "Retained under the analytics vendors' configured retention windows.",
     userControl: "Optional analytics starts only after you allow it in Privacy choices. You can withdraw permission there at any time. Do Not Track and Global Privacy Control keep analytics off.",
     processor: "Mixpanel"
@@ -104,7 +105,7 @@ export const TRUST_PROMISES = [
   "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
-  "The score summarizes this resume review out of 100.",
+  "The band summarizes this resume review. It doesn’t predict interviews or offers.",
   `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`,
   "A Job Search Pass is one payment for five additional reports over 30 days. It does not renew, and you can restore it from Billing.",
   "Security reports can be sent using the disclosure instructions on our Security page."

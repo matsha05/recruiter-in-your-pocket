@@ -461,6 +461,31 @@ function dropUnsupportedTopFixes(topFixes: any[], resumeText: string, changes: s
   return supported;
 }
 
+/**
+ * Critical Misses lead the list, in the model's order. If validation dropped every
+ * flagged fix, the first remaining one becomes the Critical Miss so a report always names one.
+ */
+function normalizeCriticalFlags(topFixes: any[], changes: string[]) {
+  if (!topFixes.some((fix) => typeof fix?.critical === "boolean")) return topFixes;
+  const flagged = topFixes.map((fix) => (fix?.critical === true || fix?.critical === false ? fix : { ...fix, critical: false }));
+  if (!flagged.some((fix) => fix.critical)) {
+    flagged[0] = { ...flagged[0], critical: true };
+    changes.push("top_fixes[0].critical_promoted");
+  }
+  const ordered = [...flagged.filter((fix) => fix.critical), ...flagged.filter((fix) => !fix.critical)];
+  if (ordered.some((fix, index) => fix !== flagged[index])) changes.push("top_fixes.critical_reordered");
+  return ordered;
+}
+
+/** "More than three serious problems" needs three listed Critical Misses; otherwise the signal is dropped. */
+function normalizeMoreCritical(report: any, changes: string[]) {
+  if (report?.more_critical === undefined) return;
+  const listed = Array.isArray(report.top_fixes) ? report.top_fixes.filter((fix: any) => fix?.critical === true).length : 0;
+  if (report.more_critical === true && listed === 3) return;
+  if (report.more_critical !== false) changes.push("more_critical.cleared");
+  report.more_critical = false;
+}
+
 function normalizeSectionReviewPresence(report: any, resumeText: string, changes: string[], unresolved: string[]) {
   const review = report?.section_review;
   if (!review || typeof review !== "object") return;
@@ -1617,7 +1642,8 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
         }
       }
       if (!hasSummarySection(resumeText) && /\b(summary|narrative bridge|opening profile|positioning statement)\b/i.test(rationale)) {
-        if (!/\bsummary\b/i.test(String(fix.fix || ""))) {
+        // Keep a fix that already asks for the headline or target role; the stock line is for vaguer ones.
+        if (!/\b(?:summary|headline|target role|role you want|intended (?:next )?role)\b/i.test(String(fix.fix || ""))) {
           fix.fix = "Add a summary section that names your target role and highlights relevant experience already on the resume.";
         }
         fix.evidence.excerpt = "No summary section present";
@@ -1625,6 +1651,14 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
         fix.section_ref = "Summary";
         evidenceExcerpt = fix.evidence.excerpt;
         changes.push(`top_fixes[${index}].summary_absence`);
+      }
+      // A line above the first section heading is the page's headline; the report calls that place Summary.
+      for (const field of ["section", "ref"] as const) {
+        const value = field === "section" ? fix?.evidence?.section : fix?.section_ref;
+        if (typeof value !== "string" || !/^\s*(?:headline|header|profile|top of (?:the )?page)\s*$/i.test(value)) continue;
+        if (field === "section") fix.evidence.section = "Summary";
+        else fix.section_ref = "Summary";
+        changes.push(`top_fixes[${index}].${field === "section" ? "evidence.section" : "section_ref"}_headline`);
       }
       if (typeof fix?.evidence?.section === "string" && /\[?SOURCE_\d{3}\]?/i.test(fix.evidence.section)) {
         fix.evidence.section = "Work Experience";
@@ -1665,7 +1699,9 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
     copy.top_fixes = deduplicateFixEvidence(copy.top_fixes, resumeText, changes);
     copy.top_fixes = deduplicateFixInstructions(copy.top_fixes, changes);
     copy.top_fixes = dropUnsupportedTopFixes(copy.top_fixes, resumeText, changes);
+    copy.top_fixes = normalizeCriticalFlags(copy.top_fixes, changes);
   }
+  normalizeMoreCritical(copy, changes);
 
   if (Array.isArray(copy.rewrites)) {
     copy.rewrites.forEach((rewrite: any, index: number) => {

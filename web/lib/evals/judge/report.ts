@@ -3,7 +3,8 @@
  */
 
 import type { CalibrationRecord } from "./calibration";
-import type { AbsoluteResult, PairwiseResult } from "./types";
+import { outcomeLine, type CountCalibrationReport, type CountCheckOutcome } from "./count";
+import type { AbsoluteResult, CountResult, PairwiseResult } from "./types";
 
 const pct = (n: number, d: number) => (d === 0 ? "n/a" : `${Math.round((100 * n) / d)}%`);
 const usd = (value: number) => `$${value.toFixed(4)}`;
@@ -148,9 +149,24 @@ export function compareMarkdown(
     rows: Array<{ fixture_id: string; result: PairwiseResult; candidate_absolute?: AbsoluteResult | null }>,
     skipped: string[],
     gate: string[] = [],
+    count: CountCheckOutcome[] = [],
 ): string {
     const lines = header(meta);
     if (gate.length) lines.push(`## ${gate[0]}`, "", ...gate.slice(1), "");
+    if (count.length) {
+        lines.push("## Count checks (candidate)", "");
+        lines.push("| Resume | Kind | Result | Per Critical Miss (bad: labeled problem matched, with the blind rating; strong: critical on its own) |");
+        lines.push("| --- | --- | --- | --- |");
+        for (const outcome of count) {
+            const per = outcome.count?.raw.misses.map((miss, index) => {
+                const blind = outcome.blind?.raw.misses[index];
+                const blindNote = blind ? ` (blind: ${blind.critical_on_its_own ? "critical" : "not critical"})` : "";
+                return `${miss.number}: ${outcome.kind === "bad" ? miss.matches : miss.critical_on_its_own ? "critical" : "not critical"}${blindNote}`;
+            }).join("; ") || "";
+            lines.push(`| ${outcome.fixture_id} | ${outcome.kind} | ${outcome.problem ? "not judged" : outcome.pass ? "pass" : "**FAIL**"}: ${outcomeLine(outcome).replace(`${outcome.fixture_id}: `, "").replace(/\|/g, "/")} | ${per.replace(/\|/g, "/")} |`);
+        }
+        lines.push("");
+    }
     const xWins = rows.filter((row) => row.result.winner === "X");
     const yWins = rows.filter((row) => row.result.winner === "Y");
     const ties = rows.filter((row) => row.result.winner === "tie");
@@ -169,6 +185,63 @@ export function compareMarkdown(
     for (const row of rows) {
         const alone = row.candidate_absolute ? `${row.candidate_absolute.overall}${row.candidate_absolute.veto ? " (veto)" : ""}` : "";
         lines.push(`| ${row.fixture_id} | ${outcomeLabel(row.result, { X: "X", Y: "Y" })} | ${orderNote(row.result)} | ${vetoNote(row.result)} | ${alone} | ${row.result.orders[0]?.raw.rationale.replace(/\|/g, "/").replace(/\n/g, " ") || ""} |`);
+    }
+    lines.push("");
+    return lines.join("\n");
+}
+
+export interface CountCalibrationRow {
+    resume: string;
+    kind: "bad" | "strong";
+    report: CountCalibrationReport;
+    run: number;
+    keyed: boolean;
+    result: CountResult;
+    outcome: CountCheckOutcome;
+}
+
+export function countCalibrationMarkdown(meta: RunMeta, rows: CountCalibrationRow[]): string {
+    const lines = header(meta);
+    const blind = rows.filter((row) => !row.keyed);
+    const keyed = rows.filter((row) => row.keyed);
+    const criticalChecks = blind.flatMap((row) => row.result.raw.misses
+        .map((miss, index) => ({ row, miss, expected: row.report.expected_critical[index] }))
+        .filter((item) => item.expected !== null && item.expected !== undefined));
+    const matchChecks = keyed.flatMap((row) => row.result.raw.misses
+        .map((miss, index) => ({ row, miss, expected: row.report.expected_matches?.[index] }))
+        .filter((item) => item.expected !== null && item.expected !== undefined));
+    // The gate reads the keyed call on a bad resume and the blind call on a strong one.
+    const gateRows = rows.filter((row) => row.keyed === (row.kind === "bad"));
+    const right = (list: Array<{ ok: boolean }>) => `${list.filter((item) => item.ok).length} of ${list.length}`;
+    const criticalOk = criticalChecks.map((item) => ({ ...item, ok: item.miss.critical_on_its_own === item.expected }));
+    const matchOk = matchChecks.map((item) => ({ ...item, ok: item.miss.matches === item.expected }));
+    const outcomeOk = gateRows.map((row) => ({ row, ok: row.outcome.pass === row.report.expected_pass }));
+    lines.push("## Summary", "");
+    lines.push(`- Gate outcome as labeled (keyed call on bad resumes, blind call on strong ones): ${right(outcomeOk)} reports`);
+    lines.push(`- Labeled problem matched (keyed calls): ${right(matchOk)} Critical Misses`);
+    lines.push(`- Critical on its own, as labeled (blind calls): ${right(criticalOk)} Critical Misses`);
+    lines.push(`  - Labeled critical, rated critical: ${right(criticalOk.filter((item) => item.expected === true))}`);
+    lines.push(`  - Labeled padding, rated not critical: ${right(criticalOk.filter((item) => item.expected === false))}`);
+    const repeats = new Map<string, CountCalibrationRow[]>();
+    for (const row of rows) repeats.set(`${row.report.id}:${row.keyed}`, [...(repeats.get(`${row.report.id}:${row.keyed}`) || []), row]);
+    const retested = [...repeats.values()].filter((list) => list.length > 1);
+    if (retested.length) {
+        const same = retested.filter((list) => list.every((row) => JSON.stringify(row.result.raw.misses.map((miss) => [miss.critical_on_its_own, miss.matches])) === JSON.stringify(list[0].result.raw.misses.map((miss) => [miss.critical_on_its_own, miss.matches]))));
+        lines.push(`- Test-retest: ${same.length} of ${retested.length} report-calls gave the same per-miss answers on every run`);
+    }
+    lines.push("");
+    lines.push("| Report | Call | Run | Expected (per miss) | Judge (per miss) | Gate outcome (expected) | Note |");
+    lines.push("| --- | --- | --- | --- | --- | --- | --- |");
+    for (const row of rows) {
+        const expected = row.report.view.misses.map((_, index) => {
+            const critical = row.report.expected_critical[index];
+            const label = critical === null || critical === undefined ? "open" : critical ? "critical" : "padding";
+            return row.keyed ? `${label}/${row.report.expected_matches?.[index] ?? "?"}` : label;
+        }).join(", ");
+        const judged = row.result.raw.misses.map((miss) => `${miss.critical_on_its_own ? "critical" : "not"}${row.keyed ? `/${miss.matches}` : ""}`).join(", ");
+        const gateRow = row.keyed === (row.kind === "bad");
+        const outcome = gateRow ? `${row.outcome.pass ? "pass" : "fail"} (${row.report.expected_pass ? "pass" : "fail"})` : "-";
+        lines.push(`| ${row.report.id} | ${row.keyed ? "keyed" : "blind"} | ${row.run + 1} | ${expected} | ${judged} | ${outcome} | ${(row.report.note || "").replace(/\|/g, "/").slice(0, 90)} |`);
     }
     lines.push("");
     return lines.join("\n");

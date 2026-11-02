@@ -20,6 +20,8 @@ import {
     fixCardSlots,
     fixLineOf,
     questionsInWhy,
+    hasMoreCriticalMisses,
+    isCriticalFix,
     reconcileReport,
     structuralGapKind,
     type StructuralGapKind,
@@ -50,7 +52,12 @@ export interface ReportIntegrityMetrics {
     };
     /** Fix headings: one short instruction, with location and conditions left to `why`. */
     fix_headings: { count: number; max_words: number; over_12_words: number; with_location: number; with_condition: number };
+    /** Every fix the report flags as a Critical Miss (the first fix alone for unflagged reports), by what it asks for. */
+    critical_misses: { count: number; kinds: CriticalFixKind[]; more: boolean };
 }
+
+/** What one Critical Miss asks for: a concrete missing fact, a structural issue, or only moving text. */
+export type CriticalFixKind = "concrete_fact" | "dates" | "direction" | "level" | "move" | "other";
 
 const POSITIONING = /\b(?:(?:opening |professional )?summary|headline|objective|profile statement|section order)\b/i;
 const MONTH = String.raw`(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*`;
@@ -69,6 +76,8 @@ const LOW_ON_PAGE = /\b(?:buried|(?:older|earlier|previous) (?:\w+ )?(?:role|job
 // A strong result placed where a first pass misses it, as the Verdict or a gap describes it.
 const BURIED = /\b(?:appears|sits|is listed|comes)\b[^.]{0,40}\b(?:below|fourth|third|fifth|last|low on the page|further down)\b|\b(?:may|could|might) (?:not reach|miss) it\b|\bbe missed\b|\bburied\b/i;
 const LOCATION = /^\s*(?:in|on|under|for) (?:the|your)\b/i;
+// Asks for a fact a recruiter can hold onto: a size, a figure, or a named project, product or system.
+const CONCRETE_FACT = /\b(?:budget|size|scale|count|number|how many|team|headcount|customers?|clients?|accounts?|users?|patients?|students?|stores?|skus?|revenue|arr|quota|deals?|pipeline|savings?|cost|volume|dollar|amount|result|outcome|figure|rate|percent|metric|measure|time|turnaround|project|product|system|component|feature|platform|program|tool|report|deliverable|campaign|launch|client name)s?\b|\$|%|\d/i;
 const CONDITION = /\b(?:if you can|if known|if available|if that information|only if)\b/i;
 const CONCERN = /\b(?:but|though|although|however|less|harder|unclear|isn't|aren't|doesn't|don't|does not|do not|not yet|little|few|no|without|broad|general terms|vague|missing|difficult|hard to|nothing (?:later|after|since|follows)|may not|cannot see|can't see|be missed|could miss)\b/i;
 const KEEP_CLAIM = /\b(?:keep|worth keeping|leave (?:it|this|that|them) alone)\b/i;
@@ -124,6 +133,21 @@ export function criticalMissCategory(fix: Fix | undefined): Pick<ReportIntegrity
 
 function wordCount(text: string) {
     return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+export function criticalFixKind(fix: Fix | undefined): CriticalFixKind {
+    const action = String(fix?.fix || fix?.text || "").trim();
+    const category = criticalMissCategory(fix);
+    if (category.kind === "employment_gap") return "dates";
+    if (category.kind === "target_role" || category.kind === "positioning") return "direction";
+    if (category.kind === "level") return "level";
+    if (MOVES_EVIDENCE.test(action)) return "move";
+    return CONCRETE_FACT.test(action) ? "concrete_fact" : "other";
+}
+
+function criticalMisses(report: ReportData): ReportIntegrityMetrics["critical_misses"] {
+    const fixes = list(report.top_fixes).filter((fix, index) => isCriticalFix(report, index) && isCopy(fix?.fix || fix?.text));
+    return { count: fixes.length, kinds: fixes.map(criticalFixKind), more: hasMoreCriticalMisses(report) };
 }
 
 export function fixHeadings(report: ReportData): ReportIntegrityMetrics["fix_headings"] {
@@ -296,6 +320,7 @@ export function evaluateReportIntegrity(output: unknown): ReportIntegrityMetrics
         },
         verdict_critical_miss: verdictAgreement(report, category, nothingCritical),
         fix_headings: fixHeadings(report),
+        critical_misses: criticalMisses(report),
     };
 }
 

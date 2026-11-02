@@ -103,6 +103,13 @@ export function containsExactEvidence(sourceText: string, excerpt: string) {
   return containsBoundedSourceExcerpt(sourceText, excerpt);
 }
 
+function lineCountsThing(sourceLine: string, thing: string) {
+  const stems = thing.toLowerCase().split(/\s+/)
+    .filter((word) => word.length > 3 && !["your", "their", "that", "which", "with"].includes(word))
+    .map((word) => word.replace(/(?:es|s)$/, ""));
+  return stems.some((stem) => new RegExp(`\\d[\\d,]*\\+?\\s+(?:[\\p{L}-]+\\s+){0,3}${stem}`, "iu").test(sourceLine));
+}
+
 export function findAlreadySatisfiedFix(
   fix: string,
   evidenceExcerpt: string,
@@ -110,7 +117,11 @@ export function findAlreadySatisfiedFix(
 ): string[] {
   const sourceLine = sourceContextFor(evidenceExcerpt, resumeText);
   const findings: string[] = [];
-  const asksForGenericMetric = /\b(add|include|clarify|highlight|show|provide|quantify)\b[^.]{0,45}\b(metric|metrics|number|numbers|quantifiable)\b/i.test(fix);
+  // "the number of microservices" names its count: another figure on the line doesn't supply it.
+  const countedThing = fix.match(/\bnumber of\s+((?:[\p{L}-]+\s+){0,2}[\p{L}-]+)/iu)?.[1];
+  const asksForGenericMetric = !countedThing
+    && /\b(add|include|clarify|highlight|show|provide|quantify)\b[^.]{0,45}\b(metric|metrics|number|numbers|quantifiable)\b/i.test(fix);
+  if (countedThing && lineCountsThing(sourceLine, countedThing)) findings.push("metric already present in cited bullet");
   const asksForOutcome = /\b(add|include|clarify|highlight|show|provide|quantify)\b[^.]{0,45}\b(outcome|outcomes|result|results|impact|achievement|achievements)\b/i.test(fix);
   const lineHasImpactMetric = /(?:\d[\d,]*(?:\.\d+)?\s*%|\$\s*\d|\b\d[\d,]*(?:\.\d+)?\s*(?:x|k|m|b|users?|customers?|patients?|officers?)\b)/i.test(sourceLine);
   if (asksForGenericMetric && lineHasImpactMetric) findings.push("metric already present in cited bullet");
@@ -219,7 +230,9 @@ export function findFixEvidenceMismatch(
       findings.push("absence marker is contradicted by the resume");
     }
     const expectedSection = normalizedMarker.match(/^no (summary|skills|education) section present$/)?.[1];
-    if (expectedSection && !new RegExp(`\\b${expectedSection}\\b`, "i").test(fix)) {
+    // A one-line headline naming the target role sits where a summary would: the summary marker supports it.
+    const sectionWords = expectedSection === "summary" ? "summary|headline" : expectedSection;
+    if (expectedSection && !new RegExp(`\\b(?:${sectionWords})\\b`, "i").test(fix)) {
       findings.push(`absence marker does not support this ${expectedSection}-unrelated fix`);
     }
     return findings;

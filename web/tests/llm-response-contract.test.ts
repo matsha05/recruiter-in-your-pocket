@@ -18,6 +18,8 @@ import {
 } from "../lib/llm/grounding";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
 import { reportSentences } from "../lib/llm/report-sentences";
+import { ResumeFeedbackResponseSchema, TopFixesSchema } from "../lib/validation/resume-report-schema";
+import { hasMoreCriticalMisses } from "../lib/reports/report-integrity";
 import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
@@ -81,6 +83,74 @@ const topFixes = RESUME_REPORT_JSON_SCHEMA.properties.top_fixes;
 assert.equal(topFixes.minItems, 1, "resume reports must have at least one grounded top fix");
 assert.equal(topFixes.maxItems, 3, "resume reports must stay focused on at most three top fixes");
 
+// One to three Critical Misses, listed first. Reports saved before the flag existed still validate.
+const fixAt = (critical?: boolean) => ({
+  fix: "Name the reports you prepared and who used them.", why: "The Linton reporting bullet names the work but not its readers.",
+  confidence: "high", evidence: { excerpt: "Prepared monthly reports", section: "Work Experience" }, impact_level: "high",
+  effort: "quick", section_ref: "Work Experience", ...(critical === undefined ? {} : { critical }),
+});
+const topFixesField = TopFixesSchema;
+assert.equal(topFixesField.safeParse([fixAt(), fixAt()]).success, true, "a legacy report without flags is valid");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(true), fixAt(false)]).success, true);
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(true), fixAt(true)]).success, true, "up to three Critical Misses");
+assert.equal(topFixesField.safeParse([fixAt(false), fixAt(true)]).success, false, "the first fix must be a Critical Miss");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt(false), fixAt(true)]).success, false, "Critical Misses come first");
+assert.equal(topFixesField.safeParse([fixAt(true), fixAt()]).success, false, "flags are all or nothing");
+
+// The canonicalizer keeps flagged reports well formed after it drops or reorders fixes.
+const flagSource = "- Prepared monthly reports for the finance team.\n- Supported the audit process.\n- Built a vendor tracking sheet.";
+const flaggedFix = (fix: string, excerpt: string, critical: boolean) => ({
+  fix, why: "A reviewer can't tell what this covered.", confidence: "high",
+  evidence: { excerpt, section: "Work Experience" }, impact_level: "high", effort: "quick", section_ref: "Work Experience", critical,
+});
+const reordered = canonicalizeResumeReportEvidence({ top_fixes: [
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", false),
+  flaggedFix("Name the audit steps you handled yourself.", "Supported the audit process.", true),
+] }, flagSource);
+assert.deepEqual(reordered.report.top_fixes.map((fix: any) => fix.critical), [true, false], "Critical Misses move to the front");
+assert.ok(reordered.changes.includes("top_fixes.critical_reordered"));
+const promoted = canonicalizeResumeReportEvidence({ top_fixes: [
+  flaggedFix("Show what you built.", "Built a vendor tracking sheet.", true),
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", false),
+] }, flagSource);
+assert.equal(promoted.report.top_fixes.length, 1, "the vague Critical Miss is dropped");
+assert.equal(promoted.report.top_fixes[0].critical, true, "the remaining fix becomes the Critical Miss");
+assert.ok(promoted.changes.includes("top_fixes[0].critical_promoted"));
+const legacy = canonicalizeResumeReportEvidence({ top_fixes: [
+  { ...flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", true), critical: undefined },
+] }, flagSource);
+assert.equal("critical" in legacy.report.top_fixes[0] && legacy.report.top_fixes[0].critical !== undefined, false, "unflagged reports stay unflagged");
+
+// "More than three serious problems" needs three listed Critical Misses (Matt, November 1).
+const fourFixSource = flagSource + "\n- Answered vendor questions.";
+const threeCritical = [
+  flaggedFix("Name the reports you prepared and who read them.", "Prepared monthly reports for the finance team.", true),
+  flaggedFix("Name the audit steps you handled yourself.", "Supported the audit process.", true),
+  flaggedFix("Name the vendors the tracking sheet covered.", "Built a vendor tracking sheet.", true),
+];
+const kept = canonicalizeResumeReportEvidence({ top_fixes: threeCritical, more_critical: true }, fourFixSource);
+assert.equal(kept.report.more_critical, true, "three Critical Misses can say more exist");
+assert.ok(!kept.changes.includes("more_critical.cleared"));
+const cleared = canonicalizeResumeReportEvidence({ top_fixes: threeCritical.slice(0, 2), more_critical: true }, fourFixSource);
+assert.equal(cleared.report.more_critical, false, "fewer than three Critical Misses can't say more exist");
+assert.ok(cleared.changes.includes("more_critical.cleared"));
+const unsignalled = canonicalizeResumeReportEvidence({ top_fixes: threeCritical }, fourFixSource);
+assert.equal("more_critical" in unsignalled.report, false, "a report without the field stays without it");
+const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
+const asFlagged = (count: number) => sampleReport.top_fixes.slice(0, 3).map((fix: any, index: number) => ({ ...fix, critical: index < count }));
+assert.equal(sampleReport.top_fixes.length >= 3, true, "the sample report has three fixes to flag");
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(3), more_critical: true }).success, true);
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(2), more_critical: true }).success, false,
+  "the schema refuses more_critical without three Critical Misses");
+assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(1), more_critical: false }).success, true);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(3), more_critical: true }), true);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(2), more_critical: true }), false);
+assert.equal(hasMoreCriticalMisses({ top_fixes: asFlagged(3) }), false);
+assert.equal("more_critical" in RESUME_REPORT_JSON_SCHEMA.properties, false,
+  "production's strict response format is unchanged; the severity check sets the flags");
+assert.equal("critical" in topFixes.items.properties, false);
+console.log("more-than-three tests passed");
+
 const rewrites = RESUME_REPORT_JSON_SCHEMA.properties.rewrites;
 assert.equal(rewrites.minItems, 0, "resume reports must not force rewrites of already strong bullets");
 assert.equal(rewrites.maxItems, 3, "resume reports must stay focused on at most three rewrites");
@@ -118,6 +188,24 @@ assert.deepEqual(
     "- I revamped the launch process, shortening time-to-market by 30% and increasing launch success to 90%.",
   ),
   ["metric already present in cited bullet"],
+);
+assert.deepEqual(
+  findAlreadySatisfiedFix(
+    "Add the number of backend microservices you independently owned.",
+    "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+    "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+  ),
+  [],
+  "a count of named things is missing when the line gives other figures but says 'several'",
+);
+assert.deepEqual(
+  findAlreadySatisfiedFix(
+    "Add the number of patients you see each day.",
+    "- See 8 to 10 patients a day for cleanings, periodontal maintenance, and scaling and root planing",
+    "- See 8 to 10 patients a day for cleanings, periodontal maintenance, and scaling and root planing",
+  ),
+  ["metric already present in cited bullet"],
+  "a count the line already gives is still caught",
 );
 assert.deepEqual(
   findAlreadySatisfiedFix(
@@ -635,3 +723,23 @@ const sixCanonical = canonicalizeResumeReportEvidence({ summary: sixSentences },
 assert.equal(reportSentences((sixCanonical.report as any).summary).length, 5, "a real sixth sentence is still capped");
 assert.ok(sixCanonical.changes.includes("summary.capped_sentences"));
 console.log("report sentence tests passed");
+
+// A target-role fix keeps its own words, and a headline line's section is Summary (eval_1793596046745).
+const headlineFixAt = (fix: string, excerpt: string, why: string, section = "Work Experience") => ({
+  fix, why, confidence: "high", evidence: { excerpt, section }, impact_level: "high", effort: "quick", section_ref: section,
+});
+const noSummarySource = "EXPERIENCE\nShift Supervisor\n- Supervise cashiers and stockers on evening shifts\nFreelance Web Developer\n- Built small business websites in WordPress";
+const headlineAsk = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Add a headline naming the role you want next.", "Shift Supervisor",
+  "With no summary or headline, a reader can't tell whether this is for retail management or web development.")] }, noSummarySource);
+assert.equal((headlineAsk.report as any).top_fixes[0].fix, "Add a headline naming the role you want next.", "a target-role fix keeps its words");
+assert.equal((headlineAsk.report as any).top_fixes[0].evidence.excerpt, "No summary section present");
+const vagueAsk = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Clarify your positioning for readers.", "Shift Supervisor",
+  "A summary would help a reader place you.")] }, noSummarySource);
+assert.match((vagueAsk.report as any).top_fixes[0].fix, /^Add a summary section/, "a vague positioning fix still gets the stock line");
+const headedSource = "Director of Operations who runs multi-site distribution networks.\nEXPERIENCE\nOperations Supervisor\n- Supervised the day shift on the warehouse floor";
+const headlineSection = canonicalizeResumeReportEvidence({ top_fixes: [headlineFixAt("Replace the director headline with your supervisor title.",
+  "Director of Operations who runs multi-site distribution networks.", "The headline claims a director; the role is a shift supervisor.", "Headline")] }, headedSource);
+assert.equal((headlineSection.report as any).top_fixes[0].evidence.section, "Summary", "a headline line's section is Summary");
+assert.equal((headlineSection.report as any).top_fixes[0].section_ref, "Summary");
+assert.ok(headlineSection.changes.includes("top_fixes[0].evidence.section_headline"));
+console.log("headline and target-role tests passed");

@@ -32,6 +32,26 @@ function loadFixtures(): LabFixture[] {
       resumeText: file ? fs.readFileSync(path.join(golden, file), "utf8") : undefined,
     };
   });
+  // The severity check's flags, set by hand to lay out each count. They aren't a read of this resume.
+  const weak = fixtures.find((item) => item.id === "synth_finance_analyst_senior_weak_1");
+  if (weak) {
+    const flagged = (count: number, more = false): LabFixture => ({
+      ...weak,
+      id: `${weak.id}~critical-${more ? "more" : count}`,
+      label: `${weak.label} · ${more ? "more than three" : count} critical (layout only)`,
+      report: { ...weak.report, top_fixes: (weak.report.top_fixes || []).map((fix, index) => ({ ...fix, critical: index < count })), more_critical: more },
+    });
+    const absent = flagged(2);
+    fixtures.push(flagged(1), flagged(2), flagged(3), flagged(3, true), {
+      ...absent,
+      id: `${weak.id}~critical-absent`,
+      label: `${weak.label} · 2 critical, the second a missing summary (layout only)`,
+      report: {
+        ...absent.report,
+        top_fixes: (absent.report.top_fixes || []).map((fix, index) => (index === 1 ? { ...fix, evidence: { section: "Summary", excerpt: "No summary section present" } } : fix)),
+      },
+    });
+  }
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
   return fixtures;

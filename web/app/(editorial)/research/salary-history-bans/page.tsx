@@ -95,7 +95,7 @@ export default function SalaryHistoryPage() {
             </ul>
 
             <ArticleBridge question="Is the resume that got you here doing its job?">
-                Your report won&apos;t tell you what to ask for. It reads your resume: the Verdict says what it says first, and the Critical Miss is the one thing to fix first.
+                Your report won&apos;t tell you what to ask for. It reads your resume: the Verdict says what it says first, and each Critical Miss flags a problem that could cost you the interview, starting with the one to fix first.
             </ArticleBridge>
 
             <h2 className="research-h2">Why the first number matters</h2>

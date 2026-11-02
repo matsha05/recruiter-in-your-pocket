@@ -26,6 +26,24 @@ const TopFixSchema = z.object({
   impact_level: ImpactLevelSchema,
   effort: EffortLevelSchema,
   section_ref: z.string().min(1),
+  // A Critical Miss. Optional so reports saved before the flag existed still validate.
+  critical: z.boolean().optional(),
+});
+
+/** One to three Critical Misses, listed first, with the first one to fix leading. */
+export const TopFixesSchema = z.array(TopFixSchema).min(1).max(3).superRefine((fixes, context) => {
+  const flagged = fixes.filter((fix) => typeof fix.critical === "boolean");
+  if (flagged.length === 0) return;
+  if (flagged.length !== fixes.length) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "every top fix needs a critical flag once any has one" });
+    return;
+  }
+  if (fixes[0].critical !== true) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "the first top fix must be a Critical Miss" });
+  }
+  if (fixes.some((fix, index) => fix.critical && index > 0 && !fixes[index - 1].critical)) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "Critical Misses must come before the other top fixes" });
+  }
 });
 
 function normalizedKeywordKeys(values: string[]) {
@@ -117,7 +135,9 @@ export const ResumeFeedbackResponseSchema = z.object({
   strengths: z.array(z.string().min(1)).min(3).max(5),
   gaps: z.array(z.string().min(1)).min(3).max(5),
   rewrites: z.array(RewriteSchema).max(3),
-  top_fixes: z.array(TopFixSchema).min(1).max(3),
+  top_fixes: TopFixesSchema,
+  // True when the resume has more Critical Misses than the three it lists.
+  more_critical: z.boolean().optional(),
   next_steps: z.array(z.string().min(1)).min(3).max(5),
   subscores: z.object({
     impact: z.number().int().min(0).max(100),
@@ -167,6 +187,9 @@ export const ResumeFeedbackResponseSchema = z.object({
       why: z.string().min(1),
     })).length(5),
   }),
-}).transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
+}).refine(
+  report => report.more_critical !== true || report.top_fixes.filter(fix => fix.critical === true).length === 3,
+  "more_critical needs three Critical Misses",
+).transform(report => ({ ...report, score_label: getScoreLabel(report.score) }));
 
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;

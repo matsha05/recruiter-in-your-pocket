@@ -1,0 +1,28 @@
+Daniel Osei
+Columbus, GA | daniel.osei@example.com | 555-0102
+
+IT support specialist with help desk experience, looking for a desktop support or junior systems role.
+
+EDUCATION
+A.A.S., Information Technology, Columbus Technical College, May 2025
+
+CERTIFICATIONS
+CompTIA A+, 2025
+
+EXPERIENCE
+
+IT Help Desk Intern
+Chattahoochee County Schools, Columbus, GA
+January 2025 - May 2025
+- Answered help desk tickets from teachers and staff
+- Imaged and set up laptops for classrooms
+- Reset passwords and accounts in Active Directory
+
+Retail Associate
+Peachtree Electronics, Columbus, GA
+June 2022 - December 2024
+- Helped customers choose laptops, printers, and accessories
+- Set up new devices for customers at the service counter
+
+SKILLS
+Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems

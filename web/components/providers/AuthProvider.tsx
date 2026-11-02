@@ -5,7 +5,6 @@ import type { User } from "@supabase/supabase-js";
 import { identifyUser, resetAnalytics } from "@/lib/analytics";
 import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
 import { readAuthoritativeFreeUses } from "@/lib/billing/freeStatusClient";
-import { toast } from "sonner";
 
 export interface AuthUser {
     id: string;
@@ -221,7 +220,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } catch (error) {
             if (mountedRef.current) {
                 console.error("Sign out error:", error);
-                toast.error("We couldn't complete sign out. Please try again.");
+                // Every page mounts this provider, so sonner loads only when a toast is due.
+                void import("sonner").then(({ toast }) => toast.error("We couldn't complete sign out. Please try again."));
             }
         } finally {
             controller.abort();

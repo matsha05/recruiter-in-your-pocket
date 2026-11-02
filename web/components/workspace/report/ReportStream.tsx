@@ -13,10 +13,13 @@ import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
   buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
+  criticalCountHeading,
+  fixLabel,
   fixPlanHeadingForCount,
-  criticalFixCount,
   questionForPlaceholder,
+  readCriticalMisses,
   reportHasJobDescription,
+  withCriticalFirst,
 } from "@/lib/reports/report-presentation";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 import { liftQuestions } from "@/lib/reports/revised-line";
@@ -25,9 +28,10 @@ import { cn } from "@/lib/utils";
 import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
+import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
 import type { LiftChange, ResumeSource } from "./markup/LineLift";
-import { CriticalMissRow, FixRow, PageNote, excerptOf } from "./markup/MarkedRows";
+import { CriticalMissRow, FixRow, PageNote, excerptOf, marksLine } from "./markup/MarkedRows";
 import { ScoreBand } from "./markup/ScoreBand";
 import { hiddenFixesKey, useHiddenFixes } from "./markup/useHiddenFixes";
 import styles from "./markup/MarkedReport.module.css";
@@ -72,8 +76,8 @@ export function ReportStream({
   resumeText,
   resumeSource,
 }: ReportStreamProps) {
-  // One disposition per resume line and each observation once, shared with the PDF.
-  const integrity = useMemo(() => reconcileReport(report), [report]);
+  // One disposition per resume line and each observation once, shared with the PDF. Critical Misses lead.
+  const integrity = useMemo(() => reconcileReport(withCriticalFirst(report)), [report]);
   const reconciled = integrity.report;
   const fixes = useMemo(() => (reconciled.top_fixes || []).slice(0, 3), [reconciled.top_fixes]);
   const presentation = useMemo(
@@ -87,7 +91,9 @@ export function ReportStream({
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
-  const criticals = fixes.slice(0, criticalFixCount(reconciled));
+  const misses = readCriticalMisses(reconciled);
+  const countHeading = criticalCountHeading(misses);
+  const criticals = fixes.slice(0, misses.count);
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
   // A recovered report has lost the posting's text but not the fact that it was read against one.
   const hasJobDescription = hasJobDescriptionText || reportHasJobDescription(report);
@@ -109,7 +115,9 @@ export function ReportStream({
   const liftHandlers = useMemo(() => [0, 1, 2].map((index) => (change: LiftChange) => {
     setLifts((current) => (current[index]?.state === change.state && current[index]?.line === change.line ? current : { ...current, [index]: change }));
   }), []);
-  const allAddressed = criticals.length > 0 && criticals.every((_, index) => lifts[index]?.state === "addressed");
+  // A Critical Miss about something the resume doesn't have has no line to revise.
+  const revisable = criticals.flatMap((fix, index) => (marksLine(fix) ? [index] : []));
+  const allAddressed = revisable.length > 0 && revisable.every((index) => lifts[index]?.state === "addressed");
 
   const questionsFor = (index: number) => {
     const asked = liftQuestions(integrity.fixQuestions[index] || []);
@@ -153,13 +161,22 @@ export function ReportStream({
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title">
-        <h2 id="fixes-title" className={cn(styles.sectionTitle, styles.pageTitle)}>{fixPlanHeadingForCount(fixes.length)}</h2>
+        {countHeading ? (
+          <div className={styles.countHead}>
+            <h2 id="fixes-title" className={styles.sectionTitle}>{countHeading.title}</h2>
+            <p className={styles.countLead}>{countHeading.lead}</p>
+          </div>
+        ) : (
+          <h2 id="fixes-title" className={cn(styles.sectionTitle, styles.pageTitle)}>{fixPlanHeadingForCount(fixes.length)}</h2>
+        )}
         <ol className={styles.lines}>
           {criticals.map((fix, index) => (
             <CriticalMissRow
               key={`${fix.fix || fix.text}-${index}`}
               fix={fix}
               index={index}
+              label={fixLabel(index, misses)}
+              definition={index === 0 && !countHeading ? "The one thing to fix first" : undefined}
               why={index === 0 ? criticalMissReason(integrity) : fixCardSlots(integrity, index).why}
               hidden={hiddenFixes.isHidden(index)}
               onHide={() => hiddenFixes.hide(index)}
@@ -220,6 +237,8 @@ export function ReportStream({
         </ol>
       </section>
 
+      <ResearchReceipts />
+
       <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={sourceText} isReadOnly={isSample} />
 
       {strengths.length > 1 && (
@@ -277,7 +296,7 @@ export function ReportStream({
       {!isSample && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? "Your line is ready. See how the whole page reads now." : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are" : "Your line is"} ready. See how the whole page reads now.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
           </h2>
           <p className={styles.endingCopy}>{isExhausted
             ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>

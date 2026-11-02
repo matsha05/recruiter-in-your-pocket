@@ -33,8 +33,8 @@ Each of these things has one name everywhere: marketing, the app, the report, th
 | The workspace submit button | `Get your free report` while the free report is available; `Get my report` for a pass report; `Compare my revision` for a revision | None |
 | Starting a report from signed-in navigation | `New report` | None |
 | Strengths to leave alone | Keep: `Keep these` (report tab, PDF), `Keep these. They're working.` (section heading), `Keep this one` (label in the opening read) | Leave these alone, Don't touch this one |
-| What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.`; cards `Critical Miss`, `Fix 2`, `Fix 3`; `Fix` in the full notes | Start with these changes, Suggested change |
-| The first fix | `Critical Miss`: the one thing to fix first. It may be `Nothing critical` (D2) | None |
+| What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.` until the report knows its Critical Miss count, then the count heading below; cards `Critical Miss` (`Critical Miss 1`, `2`, `3` when there are several), then `Fix 2`, `Fix 3` by position; `Fix` in the full notes | Start with these changes, Suggested change |
+| A problem that could cost an interview on its own | `Critical Miss`. A report names one to three, in priority order; the first is the one to fix first. Never `Nothing critical` (Matt, November 1, 2026) | Nothing critical |
 | The negotiation section and its guides | `After the offer` | Resources, Career resources, All Resources |
 | The example report | `Sample report` (navigation and page title). The homepage link names the candidate: `See Jordan's report` | See an example, Example report |
 | A paid re-run of a revised resume | `Re-check`. The comparison says the Critical Miss `changed`, never that it was `fixed` | None |
@@ -48,6 +48,19 @@ The main report navigation uses these labels:
 4. `Role fit`
 
 Section headings follow the same names: `Fix this first.` / `Fix these two first.` / `Fix these three first.` and `Keep these. They're working.`
+
+### The Critical Miss count (Matt, November 2, 2026: "i dont want to lie to people and say they have one critical miss if there are more")
+
+Once the severity check has flagged the report's Critical Misses, the count leads the fix section on the web and in the PDF, phones included. The heading says how many and where to start; the line under it says what makes them critical.
+
+| Count | Heading | Line under it |
+| --- | --- | --- |
+| 1 | `One Critical Miss. Fix it first.` | `It's the one most likely to cost you the interview.` A judgment, not a guarantee: say nothing about the rest of the report |
+| 2 | `Two Critical Misses. Start with this one.` | `Either one could cost you the interview on its own.` |
+| 3 | `Three Critical Misses. Start with this one.` | `Any one of them could cost you the interview on its own.` |
+| More than 3 | `More than three Critical Misses. Here are the three that matter most.` | `Any one of them could cost you the interview on its own. Start with the first.` |
+
+A report without the severity check's flags (every report saved before it) states no count: it keeps the fix heading above and `The one thing to fix first` under its Critical Miss. Code: `criticalCountHeading` in `web/lib/reports/report-presentation.ts`.
 
 Within each recommendation, show the original quotation, what needs clarification, and a suggested revision with any missing facts marked.
 

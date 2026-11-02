@@ -4,7 +4,7 @@ import puppeteerCore from "puppeteer-core";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { ReportForPdf } from "../reports/pdf-export";
-import { fixPlanHeadingForCount } from "../reports/report-presentation";
+import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, scoreBandIndex } from "../reports/score-band";
 import { pdfReportStyles } from "./pdf-styles";
@@ -49,6 +49,8 @@ export function renderReportHtml(report: ReportForPdf) {
   const verdict = report.first_impression || report.score_comment_short || firstSentence(report.summary);
   const verdictReason = report.score_comment_short && report.score_comment_short !== verdict ? report.score_comment_short : "";
   const fixes = (report.top_fixes || []).filter((fix) => fix?.fix).slice(0, 3);
+  const misses = readCriticalMisses({ top_fixes: fixes, more_critical: report.more_critical });
+  const countHeading = criticalCountHeading(misses);
   const bandIndex = Math.max(0, scoreBandIndex(report.score));
   const band = SCORE_BANDS[bandIndex];
   const [keepFirst, ...keepRest] = report.strengths || [];
@@ -62,18 +64,21 @@ export function renderReportHtml(report: ReportForPdf) {
 
   // Each marked line: the candidate's words on the left, the recruiter's note in the margin, as on the web.
   const markedRowHtml = (fix: NonNullable<ReportForPdf["top_fixes"]>[number], index: number) => {
-    const miss = index < (report.critical_count ?? 1);
-    const label = miss ? "Critical Miss" : `Fix ${index + 1}`;
+    const miss = index < misses.count;
+    const label = fixLabel(index, misses);
     const questions = fix.questions || [];
     const line = escapeHtml(fix.line || "");
+    // An absence ("No summary section present") is shown as what's missing; nothing is quoted or marked.
+    const missing = missingFromResume(fix.line || "");
     return `<div class="marked-row">
         <div>
           ${fix.section ? `<div class="marked-section">${escapeHtml(fix.section)}</div>` : ""}
-          ${miss ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
+          ${missing ? `<div class="marked-missing${miss ? " miss" : ""}">${escapeHtml(missing)}</div>`
+            : miss ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
         </div>
         <div>
           <div class="marked-label${miss ? " miss" : ""}">${label}</div>
-          ${index === 0 ? `<div class="marked-definition">The one thing to fix first</div>` : ""}
+          ${index === 0 && !countHeading ? `<div class="marked-definition">The one thing to fix first</div>` : ""}
           <div class="pen-note">${escapeHtml(marginNoteFromFix(fix.fix || ""))}</div>
           ${fix.why ? `<div class="marked-why">${escapeHtml(fix.why)}</div>` : ""}
           ${questions.length ? `<div class="marked-questions"><div class="marked-questions-label">What to add</div>${questions.map((question) => `<div class="marked-question">${escapeHtml(question)}</div>`).join("")}</div>` : ""}
@@ -183,11 +188,13 @@ export function renderReportHtml(report: ReportForPdf) {
   ${fixes.length ? `
     <section class="section priority-section">
       <div class="section-kicker">Fix these first</div>
-      <div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length))}</h2></div>
-      ${markedRowHtml(fixes[0], 0)}
+      ${countHeading
+        ? `<div class="section-header count-head"><h2>${escapeHtml(countHeading.title)}</h2><p class="count-lead">${escapeHtml(countHeading.lead)}</p></div>`
+        : `<div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length))}</h2></div>`}
+      ${fixes.slice(0, misses.count).map((fix, index) => markedRowHtml(fix, index)).join("")}
       ${report.structural_gaps?.length ? `<div class="page-note gap"><div class="page-note-label">Before the bullets</div>${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}</div>` : ""}
       ${keepFirst ? `<div class="page-note"><div class="page-note-label">Keep this one</div><p>${escapeHtml(keepFirst)}</p></div>` : ""}
-      ${fixes.slice(1).map((fix, offset) => markedRowHtml(fix, offset + 1)).join("")}
+      ${fixes.slice(misses.count).map((fix, offset) => markedRowHtml(fix, offset + misses.count)).join("")}
     </section>
   ` : ""}
 

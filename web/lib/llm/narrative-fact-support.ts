@@ -63,6 +63,15 @@ export function withJoinedSpellings(tokens: Set<string>) {
   return joined;
 }
 
+/** "delivery speed" in a source line supports the claim's "delivery-speed", which joinedSpellings reads as "deliveryspeed". */
+export function withJoinedPairs(tokens: Set<string>, line: string) {
+  const words = canonicalizeUserSourceText(line).toLocaleLowerCase().match(/[\p{L}\p{M}\d]+/gu) || [];
+  for (let index = 0; index + 1 < words.length; index += 1) {
+    tokens.add(normalizeNarrativeToken(`${words[index]}-${words[index + 1]}`).replace(/-/gu, ""));
+  }
+  return tokens;
+}
+
 export function joinedSpellings(tokens: Set<string>) {
   return new Set(Array.from(tokens, (token) => token.replace(/-/gu, "")));
 }
@@ -79,7 +88,8 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
     : reportingQuote.test(value) ? value.replace(reportingQuote, "It") : value.replace(/["“][^"”]+["”]/u, " ")).replace(/\bU\.S\./gu, "US");
   // A suggested label ("a dated line such as "Career break"") proposes wording; it claims nothing.
   // Only a sentence-case label qualifies, so a suggested title or employer is still checked.
-  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”])*/gu, "$1");
+  // A comma or period the sentence closes inside the quotes ("Job search and coursework,") is still the label's.
+  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”])*/gu, "$1");
   if (path.startsWith("section_review.Education.")) auditable = auditable.replace(/\b(?:B\.S|B\.Ed|M\.S|M\.Div)\.?/gu, (degree) => sourceText.includes(degree) ? " " : degree);
   return /[\p{L}\p{N}]/u.test(auditable) ? auditable : "";
 }
@@ -96,8 +106,9 @@ export function isDirectFactualAssertion(value: string) {
 }
 
 export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>, sourceText = "", requirePositiveEntity = false) {
-  const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|reporting)$/u);
-  if (toolModifier && sourceText) return toolModifier[2] === "based"
+  // "an IT-focused application" needs IT in the source, like "SQL-based reporting" needs SQL.
+  const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|focused|oriented|heavy|facing|reporting)$/u);
+  if (toolModifier && sourceText) return toolModifier[2] !== "reporting"
     ? evidenceContainsExactEntity(toolModifier[1], sourceText, true)
     : evidenceContainsRequirement(`${toolModifier[1]} reporting`, sourceText);
   // An entity named only in negative evidence cannot establish positive presence.

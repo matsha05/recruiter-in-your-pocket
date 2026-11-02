@@ -93,7 +93,7 @@ export default function SpellingErrorsPage() {
             </ul>
 
             <ArticleBridge question="What’s worth fixing before the typos?">
-                Your report isn&apos;t a spell-checker. It leads with the Critical Miss, the one thing to fix first. Run a spell-check last, after you&apos;ve worked through your fixes.
+                Your report isn&apos;t a spell-checker. It leads with your Critical Misses, the problems that could cost you the interview, starting with the one to fix first. Run a spell-check last, after you&apos;ve worked through your fixes.
             </ArticleBridge>
         </AnswerArticle>
     );

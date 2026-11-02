@@ -95,7 +95,7 @@ export default function SaveReportPrompt({
                 </div>
 
                 <p className="mt-4 text-center text-xs text-muted-foreground">
-                    If you skip, this browser can recover the completed report for up to 24 hours, but it is not saved to history.
+                    Skip it, and this browser can still bring the report back for up to 24 hours. It won’t be saved to My reports.
                 </p>
             </DialogContent>
         </Dialog>

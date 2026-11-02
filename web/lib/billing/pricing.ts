@@ -36,8 +36,8 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     buttonText: "Get your free report",
     features: [
       { text: "One complete resume report", bold: true },
-      { text: "Your Verdict and First Impression score" },
-      { text: "The Critical Miss: the one thing to fix first" },
+      { text: "Your Verdict and where your resume stands" },
+      { text: "Critical Misses: what could cost you the interview, starting with the one to fix first" },
       { text: "Each suggestion tied to a line on your resume" },
       { text: "Questions that pull out the details you left off" },
       { text: "No account or card needed (one per browser each month)" }
