@@ -77,8 +77,12 @@ assert.deepEqual(promoted.report.top_fixes?.map((fix) => fix.fix), [payload.top_
 assert.deepEqual(promoted.report.top_fixes?.map((fix) => fix.critical), [true, true, false]);
 
 const sameLine = mergeSeverityCheck(payload, answer([item({ kind: "no_evidence_latest_role", fix: "Name the departments.", why: "x", excerpt: payload.top_fixes[1].evidence.excerpt })]));
-assert.deepEqual(sameLine.promoted, [1], "a new fix on Fix 2's line promotes Fix 2 instead");
-assert.deepEqual(sameLine.added, []);
+assert.deepEqual(sameLine.replaced, [1], "a new fix on Fix 2's line replaces Fix 2: one fix per line");
+assert.deepEqual(sameLine.added, ["no_evidence_latest_role"]);
+assert.deepEqual(sameLine.report.top_fixes?.map((fix) => fix.fix), [payload.top_fixes[0].fix, "Name the departments.", payload.top_fixes[2].fix]);
+assert.deepEqual(sameLine.report.top_fixes?.map((fix) => fix.critical), [true, true, false]);
+assert.deepEqual(mergeSeverityCheck(payload, answer([item({ kind: "no_evidence_latest_role", fix: "Name the departments.", why: "x", excerpt: payload.top_fixes[1].evidence.excerpt })]), 0)
+  .report.top_fixes?.map((fix) => fix.critical), [true, false, false], "without the new fix, Fix 2 stays an ordinary fix rather than standing in for it");
 const duplicate = mergeSeverityCheck(payload, answer([item({ kind: "no_evidence_latest_role", fix: "Name the reports.", why: "x", excerpt: payload.top_fixes[0].evidence.excerpt })]));
 assert.deepEqual(duplicate.skipped, [{ kind: "no_evidence_latest_role", reason: "duplicates_first_fix" }]);
 assert.equal(criticalCount(duplicate.report), 1);
@@ -161,6 +165,13 @@ console.log("severity check merge tests passed");
   assert.equal(timedOut.outcome, "error");
   assert.equal(timedOut.reason, "timeout");
   assert.equal(timedOut.payload, payload, "on any failure the report ships unchanged");
+  const stuck = await applySeverityCheck({
+    payload, resumeText, today: "2026-11-01", deadlineMs: 50,
+    request: () => new Promise(() => undefined),
+  });
+  assert.equal(stuck.outcome, "error", "a request that never settles can't hold the report");
+  assert.equal(stuck.reason, "timeout");
+  assert.equal(stuck.payload, payload);
   const applied = await applySeverityCheck({
     payload, resumeText, today: "2026-11-01",
     request: async () => ({ answer: answer([recent]), model: "gpt-6.1-terra", usage: null, cost_usd: 0.004, latency_ms: 12 }),
@@ -172,7 +183,7 @@ console.log("severity check merge tests passed");
   assert.equal(applied.prompt_version, SEVERITY_CHECK_PROMPT_VERSION);
 
   // ---- The flag and the counter ----
-  assert.equal(SEVERITY_CHECK_DEFAULT, false, "off until the gate passes");
+  assert.equal(SEVERITY_CHECK_DEFAULT, true, "on by default since the gate passed; RIYP_SEVERITY_CHECK=false turns it off");
   assert.equal(isSeverityCheckEnabled(undefined), SEVERITY_CHECK_DEFAULT);
   assert.equal(isSeverityCheckEnabled("true"), true);
   assert.equal(isSeverityCheckEnabled("1"), true);

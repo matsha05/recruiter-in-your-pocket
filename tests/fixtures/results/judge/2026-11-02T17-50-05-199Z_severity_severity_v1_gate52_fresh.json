@@ -1,0 +1,2519 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: severity check gate for eval_1793576471840+eval_1793576649134+eval_1793585522068_combined_with_retries_replay_severity_2026-11-02T17-45-07-062Z",
+    "timestamp": "2026-11-02T17:50:05.157Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e1860dbf0284d6b762c71ccc62cc1d2108ba9b22eff5b02ff8c3e2d8365c52e3",
+    "calls": 60,
+    "cost_usd": 0.42639599999999994
+  },
+  "source_run": "eval_1793576471840+eval_1793576649134+eval_1793585522068_combined_with_retries_replay_severity_2026-11-02T17-45-07-062Z",
+  "source_file": "2026-11-02T17-45-07-062Z_severity_run.json",
+  "pass": true,
+  "failures": [],
+  "absolute": [
+    {
+      "fixture_id": "synth_sales_executive_mid_foundation_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_sales_executive_mid_foundation_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The latest role is Sales Executive at BrightWave, ending in August 2023, with no subsequent activity listed as of November 2026. The bullets describe sales support without showing sales ownership, account scale, or results.",
+          "most_important_issue": "The unexplained period after August 2023 is the first priority. Next is establishing the scope and contribution of the latest sales role, rather than adding detail to individual supporting duties.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Clarifying the BrightWave account and proposal work is useful, but it ranks below the open gap following \"March 2020 - August 2023\" and does not resolve the broader absence of sales scope or results."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix asks for tangible missing facts: the account tasks performed and the proposal or presentation components prepared in the BrightWave account-support bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the exact BrightWave account and proposal bullet and specifies two concrete details to add."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Explaining where the candidate contributed to the client relationship is relevant to sales hiring, though it does not address whether the Sales Executive role involved meaningful account responsibility or selling results."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix preserves the supporting ownership expressed in \"Helped manage client accounts\" and asks what the candidate actually handled or helped prepare."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss correctly identifies the unexplained period after August 2023 and offers a brief dated explanation, with coursework or volunteer outreach included only if true."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The first fix usefully develops \"Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations,\" but a narrow clarification should not precede the unexplained period after \"March 2020 - August 2023.\" The second miss provides real, truthful presentation help for that higher-priority gap and belongs first. The third miss targets \"Contributed to various projects aimed at improving customer engagement and sales strategies across multiple teams,\" but one supporting project lacking an example is not independently interview-disqualifying, so it is padding under C8.",
+          "cited_resume_lines": [
+            "March 2020 - August 2023",
+            "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations",
+            "- Contributed to various projects aimed at improving customer engagement and sales strategies across multiple teams"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3268,
+          "completion_tokens": 741,
+          "total_tokens": 4009,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 802,
+          "reasoning_tokens": 100
+        },
+        "cost_usd": 0.0096673,
+        "latency_ms": 16808
+      }
+    },
+    {
+      "fixture_id": "synth_hr_manager_director_foundation_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_hr_manager_director_foundation_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The latest role is Senior Human Resources Manager at BrightWave, ending in August 2023, leaving more than three years unexplained. Its bullets describe broad HR support without showing the scope, results, or decision-making expected at that seniority.",
+          "most_important_issue": "The unexplained period after August 2023 should come before a request for one recruitment example. The latest role also needs a broader account of verifiable responsibility and scale, rather than clarification of just one supporting activity.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "Clarifying the BrightWave recruitment bullet is useful, but it is narrower than the open gap after August 2023 and the support-oriented description of the Senior Human Resources Manager role."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix requests genuinely missing facts: the hiring or onboarding stages involved and a concrete contribution to the recruitment work."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the exact BrightWave recruitment bullet and specifies the stages and contribution example to add."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "Distinguishing individual work from the recruiting team's effort is relevant, but the why does not explain how this would establish senior HR management capability."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking which stages the candidate worked on preserves the stated supporting role in recruitment rather than inflating it into ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss correctly identifies the open period after August 2023 and offers a brief dated explanation, with coursework or volunteer HR work included only if true."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest employment dates are \"June 2015 - August 2023\", so the report's second miss addresses a more consequential first-pass issue and provides useful presentation guidance. The first fix improves \"- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.\", but one contribution example is too narrow to take priority over that open gap. The broader seniority concern also remains visible in \"- Supported the development and implementation of HR strategies across multiple departments within the organization.\" The second miss belongs under C8 and is not padding, but it should have been ranked first.",
+          "cited_resume_lines": [
+            "Senior Human Resources Manager",
+            "June 2015 - August 2023",
+            "- Helped oversee recruitment efforts for various teams, contributing to talent acquisition and onboarding processes.",
+            "- Supported the development and implementation of HR strategies across multiple departments within the organization."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3224,
+          "completion_tokens": 784,
+          "total_tokens": 4008,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 758,
+          "reasoning_tokens": 145
+        },
+        "cost_usd": 0.0099873,
+        "latency_ms": 19328
+      }
+    },
+    {
+      "fixture_id": "synth_finance_analyst_senior_weak_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_finance_analyst_senior_weak_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The progression to Senior Finance Analyst is clear, but the latest role ended more than three years before the review date. Its bullets describe generic duties without showing the scope or results of the finance work.",
+          "most_important_issue": "The unexplained period after August 2023 should be addressed first with a brief, truthful dated entry. Naming the reports prepared at Linton is useful, but less urgent than establishing the candidate's current situation.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Clarifying the latest role's reporting work is worthwhile, but the unexplained gap after \"March 2018 - August 2023\" is the higher-priority first-read issue."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests actual report or statement names and their users, neither of which appears in the Linton reporting bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the exact Linton reporting bullet and specifies the two details to add: what was prepared and who used it."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation identifies what the generic reporting bullet leaves unclear, but does not explain how those details would help a finance hiring manager assess senior-level capability."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Naming reports the candidate prepared preserves the ownership stated in the resume, and the gap advice explicitly requires truthful descriptions and conditional inclusion of coursework or projects."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss correctly identifies the open period after August 2023 and gives practical, truthful presentation options rather than merely asking what happened."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix usefully makes \"- Was responsible for preparing financial reports and statements\" more concrete without inventing achievements. However, \"March 2018 - August 2023\" leaves an unexplained period of more than three years at the review date, making the report's actionable gap fix the stronger first priority. The second miss belongs independently and is not padding, but the report should reverse their order.",
+          "cited_resume_lines": [
+            "Senior Finance Analyst",
+            "March 2018 - August 2023",
+            "- Was responsible for preparing financial reports and statements"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3167,
+          "completion_tokens": 707,
+          "total_tokens": 3874,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 701,
+          "reasoning_tokens": 132
+        },
+        "cost_usd": 0.0090748,
+        "latency_ms": 16002
+      }
+    },
+    {
+      "fixture_id": "synth_operations_manager_entry_weak_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_operations_manager_entry_weak_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "An entry-level operations candidate whose latest role ended in July 2023, leaving more than three years unexplained at the review date. The recent bullets describe generic support duties without showing the work's scale or results.",
+          "most_important_issue": "Explain the open period after July 2023 briefly and truthfully. The report provides useful guidance for doing this, but incorrectly places it behind a narrow records-and-reports edit.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Naming the records and reports in the latest role is useful, but the unexplained period after \"Feb 2023 - Jul 2023\" is more consequential."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix requests tangible missing facts: which records and reports were involved in \"- Duties included maintaining records and updating reports.\""
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the exact Greenfield bullet and asks specifically for the names of the records maintained and reports updated."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation correctly identifies the generic nature of the records-and-reports bullet, but does not explain what an operations hiring manager could assess once those details are supplied."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Naming records and reports preserves the assistant-level responsibility stated in the resume, and the additional volume request is explicitly conditional on verification."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "For the open period following July 2023, the second miss offers a brief truthful break entry and conditional coursework or project examples, although it should come first."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest employment dates are \"Feb 2023 - Jul 2023\", with no subsequent activity or explanation, so the report's helpful gap fix should take priority. Naming the information behind \"- Duties included maintaining records and updating reports.\" improves a narrow duty but does not resolve the larger recency concern. The second miss belongs independently; the third returns to the same records-and-reports work already covered by the first and should be consolidated rather than presented as another independent Critical Miss.",
+          "cited_resume_lines": [
+            "Feb 2023 - Jul 2023",
+            "- Duties included maintaining records and updating reports.",
+            "- Was responsible for assisting with daily operational tasks."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3216,
+          "completion_tokens": 776,
+          "total_tokens": 3992,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 750,
+          "reasoning_tokens": 184
+        },
+        "cost_usd": 0.0098873,
+        "latency_ms": 16312
+      }
+    },
+    {
+      "fixture_id": "synth_product_manager_entry_elite_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_product_manager_entry_elite_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The resume shows SaaS product ownership, team scope, and measurable results, but its latest role is an internship ending in August 2023. At the November 2026 review date, the unexplained period since then is the main screening concern.",
+          "most_important_issue": "Address the open period after August 2023 with dated, truthful activity or a brief explanation of the break. Rewriting the summary around BrightLeaf ownership is secondary because that ownership is already clearly documented.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "The first fix targets the optional summary while the latest employment dates, June 2023 - August 2023, leave more than three years unexplained."
+            },
+            "concrete_fact": {
+              "score": 3,
+              "note": "Replacing the transition framing with BrightLeaf release ownership usefully repositions existing facts but adds nothing beyond the bullet describing ownership of the resource management module."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the summary's recent-transition framing and specifies BrightLeaf release ownership and SaaS product work as its replacement."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation reasonably favors the Associate Product Manager experience over a general technical-background introduction, but does not explain a substantial screening consequence."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "BrightLeaf release ownership and SaaS product work are explicitly supported by the experience bullets, so the requested summary change requires no inflated ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The second miss correctly recognizes the open period after August 2023, but asking for any relevant work, project, course, or current activity neither identifies actual dated activity nor explains how to present a break truthfully."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest role ends with \"June 2023 - August 2023,\" with no later activity or explanation, making the open gap the first priority. The summary rewrite instead repackages evidence already visible in \"Owned the release cycle for BrightLeaf's resource management module within their project management SaaS, overseeing delivery timelines and cross-team dependencies for a feature used by 10,000+ customers.\" The second Critical Miss belongs because the gap could independently cost an interview, but its generic request provides limited help and should not follow an optional summary edit.",
+          "cited_resume_lines": [
+            "June 2023 - August 2023",
+            "- Owned the release cycle for BrightLeaf's resource management module within their project management SaaS, overseeing delivery timelines and cross-team dependencies for a feature used by 10,000+ customers."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3378,
+          "completion_tokens": 785,
+          "total_tokens": 4163,
+          "cached_prompt_tokens": 3375,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 142
+        },
+        "cost_usd": 0.0081935,
+        "latency_ms": 17019
+      }
+    },
+    {
+      "fixture_id": "synth_bp_staff_accountant_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_staff_accountant_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Kevin is a current Staff Accountant with progression from accounts payable, but the recent bullets show duties without establishing the scope of his accounting work.",
+          "most_important_issue": "The current role needs concrete scope, especially the number or types of accounts reconciled and the portion of month-end close Kevin handles. That would establish his experience more effectively than adding further task descriptions alone.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Clarifying \"Responsible for month-end close tasks\" matters, but establishing the scope of the current role is more important than expanding its task list."
+            },
+            "concrete_fact": {
+              "score": 4,
+              "note": "The first fix requests actual close activities beyond the journal entries and reconciliations already stated, although it does not directly address the role's missing scale."
+            },
+            "specific_ask": {
+              "score": 3,
+              "note": "The fix identifies the month-end close bullet and avoids repeating existing duties, but leaves Kevin to determine which additional activities would demonstrate meaningful responsibility."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The why explains that readers cannot determine what the close responsibilities cover, but does not connect that uncertainty to assessing Kevin's accounting scope or independence."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Both fixes request Kevin's actual work, and the reconciliation-count request explicitly says \"if you can verify it.\""
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The latest role already includes \"- Prepare journal entries and account reconciliations,\" so expanding \"- Responsible for month-end close tasks\" would help distinguish additional responsibilities but would not establish how substantial the work is. The second miss appropriately addresses the absence of scope anywhere in the current role by requesting a verifiable reconciliation count; it belongs because the main accounting work otherwise remains unscaled. That more concrete scope fix should lead rather than follow the task-description fix.",
+          "cited_resume_lines": [
+            "Staff Accountant",
+            "January 2022 - Present",
+            "- Responsible for month-end close tasks",
+            "- Prepare journal entries and account reconciliations"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2871,
+          "completion_tokens": 892,
+          "total_tokens": 3763,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 405,
+          "reasoning_tokens": 347
+        },
+        "cost_usd": 0.0101848,
+        "latency_ms": 21772
+      }
+    },
+    {
+      "fixture_id": "synth_bp_data_analyst_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_data_analyst_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Samira is a current data analyst with four years at Lakeshore Grocers, using Tableau, SQL, Snowflake, and Python across reporting and analysis. The recent bullets establish relevant work but show no scale, findings, or outcomes.",
+          "most_important_issue": "The current role needs a concrete indication of its reach or value, such as the number of stores covered by the dashboards or a verified outcome. The report identifies this in its second Critical Miss, but it should come first.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Strengthening the produce promotion analysis is reasonable, but the absence of scale or results across the current Lakeshore Grocers role matters more."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests an actual comparison and verified finding missing from \"- Analyzed promotion performance for the produce category\"."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the produce promotion bullet and specifies the two details to add: the comparison performed and a finding."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The why explains that the produce bullet does not demonstrate analytical approach, although it could more explicitly connect that evidence to assessing data analyst capability."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix preserves the resume's stated analytical ownership and explicitly limits the finding to something Samira can verify."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix would genuinely improve \"- Analyzed promotion performance for the produce category\" by adding evidence of analytical reasoning. However, \"- Build weekly sales and inventory dashboards in Tableau for regional managers\" establishes an audience without showing the work's scale or value, and the other current-role bullets do not supply that evidence either. The second Critical Miss therefore belongs as an independently significant issue and should lead; the first is a useful narrower improvement rather than the strongest first priority.",
+          "cited_resume_lines": [
+            "September 2022 - Present",
+            "- Analyzed promotion performance for the produce category",
+            "- Build weekly sales and inventory dashboards in Tableau for regional managers",
+            "- Automated a manual shrink report using Python"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2904,
+          "completion_tokens": 690,
+          "total_tokens": 3594,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 438,
+          "reasoning_tokens": 126
+        },
+        "cost_usd": 0.0082473,
+        "latency_ms": 13773
+      }
+    },
+    {
+      "fixture_id": "synth_bp_mechanical_engineer_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_mechanical_engineer_1",
+        "veto": false,
+        "overall": 4,
+        "raw": {
+          "first_read": "A currently employed Mechanical Engineer II has progressed internally and leads design for a named desk platform. The recent bullets establish relevant engineering methods and supplier exposure but leave the actual design scope and delivered results unclear.",
+          "most_important_issue": "The latest role needs concrete evidence of the scope and results of the Arlo design work. Naming the components or consequential design decisions Thomas owned is a useful first step, ideally connected to what was delivered or improved.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "Clarifying ownership in \"- Lead mechanical design for the Arlo height-adjustable desk platform\" addresses the latest role's central work, although delivered results are also missing."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests actual components or design decisions absent from the otherwise broad Arlo leadership bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the Arlo desk-platform bullet and specifies exactly what to add: the components or design decisions Thomas was responsible for."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation correctly identifies that the Arlo bullet does not let a reviewer determine what leading mechanical design entailed, though it could connect this more explicitly to evaluating engineering responsibility."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking which components or decisions Thomas owned preserves the stated \"Lead mechanical design\" responsibility, and the second fix explicitly conditions a measurable result on verification."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 4,
+          "rationale": "The first fix usefully strengthens the central current-role claim, \"- Lead mechanical design for the Arlo height-adjustable desk platform,\" by asking for substantive ownership details rather than rearranging existing information. It is grounded and actionable, although combining that scope with a delivered engineering result would make the first fix stronger. The second miss also belongs: \"- Run tolerance stack-ups and FEA on load-bearing components\" sits within a current role that supplies neither meaningful scale nor results anywhere, and its conditional request for a verified outcome addresses that separate screening weakness.",
+          "cited_resume_lines": [
+            "Mechanical Engineer II",
+            "March 2022 - Present",
+            "- Lead mechanical design for the Arlo height-adjustable desk platform",
+            "- Run tolerance stack-ups and FEA on load-bearing components"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2934,
+          "completion_tokens": 867,
+          "total_tokens": 3801,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 468,
+          "reasoning_tokens": 275
+        },
+        "cost_usd": 0.0100923,
+        "latency_ms": 21013
+      }
+    },
+    {
+      "fixture_id": "synth_bp_marketing_coordinator_gap_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_marketing_coordinator_gap_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "Rachel has consumer-brand marketing coordination experience, with clear email audience scale but mostly duty-based bullets. Her latest role ended in March 2024, leaving more than two and a half years unexplained at the review date.",
+          "most_important_issue": "Explain the open period after March 2024 briefly and truthfully. The report's second Critical Miss provides useful ways to do this and should come before expanding one email-calendar bullet.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Clarifying the email-calendar work is reasonable, but the unexplained period after \"January 2021 - March 2024\" is the more consequential first-read issue."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix asks for missing operational facts about content or approvals rather than rearranging the existing 120,000-subscriber fact."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the email-calendar bullet and specifies content or approval coordination as details to add if accurate."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation identifies uncertainty about how Rachel handled the email work, but does not clearly explain what a marketing hiring manager could not assess from it."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report conditions the content and approval examples on accuracy and does not inflate the ownership stated in \"Managed the weekly email calendar for a list of 120,000 subscribers\"."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss offers brief, truthful ways to explain the period after March 2024 and explicitly limits projects or coursework to real activity, although it should be ranked first."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest employment dates are \"January 2021 - March 2024\", with no subsequent activity or explanation, making the open gap the priority at the November 2026 review. The first miss instead requests a supporting detail for \"Managed the weekly email calendar for a list of 120,000 subscribers\", which already establishes a meaningful responsibility and audience scale. The second miss belongs and provides real help through truthful, brief gap explanations, but placing it second reverses the appropriate priority.",
+          "cited_resume_lines": [
+            "January 2021 - March 2024",
+            "- Managed the weekly email calendar for a list of 120,000 subscribers"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2922,
+          "completion_tokens": 707,
+          "total_tokens": 3629,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 456,
+          "reasoning_tokens": 112
+        },
+        "cost_usd": 0.0084623,
+        "latency_ms": 14764
+      }
+    },
+    {
+      "fixture_id": "synth_bp_ux_researcher_gap_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_ux_researcher_gap_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "A senior UX researcher with clear product scale, mixed-methods experience, and a measurable product outcome, but no listed activity after January 2025. At the November 2026 review date, that unexplained gap is the main first-read concern.",
+          "most_important_issue": "Explain the period after Harborline briefly and truthfully. The report provides useful guidance for doing this, but incorrectly puts it behind an incremental improvement to an already effective research-impact bullet.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "The first fix improves a bullet that already connects research, a product decision, and an 18% outcome, while the unexplained period after January 2025 is more consequential."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The transfer-flow bullet does not state the research finding, and the fix asks for that tangible missing fact."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the transfer-flow bullet and asks specifically for the finding that prompted removal of the confirmation step."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The why explains the research-to-decision connection, but does not clearly explain what a UX research hiring manager cannot assess from the existing transfer-flow result."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The first fix preserves the team's ownership of the product change, and the gap advice explicitly makes additional project claims conditional on their being true."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss offers real help for the open period after January 2025 by explaining how to label it truthfully and suggesting dated activities only if true, although it should be ranked first."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest role ends at \"March 2021 - January 2025\", leaving an unexplained gap of roughly 21 months at review. Meanwhile, \"- Research on the transfer flow led the team to remove a confirmation step; failed transfers dropped 18%\" already establishes a credible research-to-product outcome, so adding the underlying finding is a secondary refinement. The report's second miss is legitimate rather than padding and supplies practical, truthful gap guidance, but that issue should lead the report.",
+          "cited_resume_lines": [
+            "March 2021 - January 2025",
+            "- Research on the transfer flow led the team to remove a confirmation step; failed transfers dropped 18%"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2978,
+          "completion_tokens": 707,
+          "total_tokens": 3685,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 512,
+          "reasoning_tokens": 102
+        },
+        "cost_usd": 0.0086023,
+        "latency_ms": 14806
+      }
+    },
+    {
+      "fixture_id": "synth_bp_product_designer_unrelated_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_product_designer_unrelated_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Owen has product-design experience through February 2024 and currently works as a barista. The Loop Fitness bullets identify concrete deliverables and collaborators but do not show the scale or results of his design work.",
+          "most_important_issue": "The first priority is to establish the significance of the Loop Fitness work, especially what the booking-flow redesign changed for users or the business, using a verifiable result or scope detail.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The booking-flow bullet is central to the latest relevant role, but adding a problem and decision is less consequential than establishing the scale or results missing across the Loop Fitness bullets."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The report asks for two tangible facts absent from the booking-flow bullet: the user problem and a design decision."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the exact Loop Fitness booking-flow bullet and specifies precisely what to add."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "Showing how Owen approached the booking flow is relevant to design hiring, but the explanation largely restates the requested addition rather than explaining the hiring judgment it would change."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The first fix preserves Owen's stated design ownership, and the second explicitly limits adding a project to one he actually has."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The cited line, \"- Designed the class booking flow for the iOS and Android apps\", would benefit from the requested problem and decision, but the more consequential omission is evidence of the work's scale or results. \"- Created the app's first design system in Figma\" already establishes another concrete deliverable without establishing its significance. The second miss accurately notices the lack of recent design activity, but \"May 2024 - Present\" documents current employment; an optional recent project is not clearly a separate interview-blocking omission and is overclassified as another Critical Miss.",
+          "cited_resume_lines": [
+            "- Designed the class booking flow for the iOS and Android apps",
+            "- Created the app's first design system in Figma",
+            "March 2021 - February 2024",
+            "Barista",
+            "May 2024 - Present"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2928,
+          "completion_tokens": 891,
+          "total_tokens": 3819,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 462,
+          "reasoning_tokens": 301
+        },
+        "cost_usd": 0.0103173,
+        "latency_ms": 21851
+      }
+    },
+    {
+      "fixture_id": "synth_bp_it_support_recent_grad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_it_support_recent_grad_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "Daniel has relevant entry-level IT training and a short help desk internship, but no activity is listed after May 2025, leaving an unexplained gap of about 18 months. The internship shows relevant duties without their volume or results.",
+          "most_important_issue": "Address the open period after May 2025 with a brief, truthful dated explanation or verified activity. That matters more on this first read than adding examples of ticket types and escalation decisions.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "Expanding the ticket bullet is useful, but the internship ending in May 2025 with nothing afterward is the more consequential first-read issue."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix asks for tangible information absent from the internship bullets: common ticket issues and the circumstances requiring escalation."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the exact bullet, \"- Answered help desk tickets from teachers and staff\", and specifies both details to add."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Understanding the support provided and decisions Daniel could make is relevant to desktop support screening, though the report could connect this more explicitly to independent troubleshooting readiness."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix asks Daniel to describe issues he actually handled and escalation boundaries without upgrading his internship ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss gives real help for the unexplained period after May 2025 by suggesting a truthful dated explanation and allowing projects or volunteer work only if true."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest experience ends at \"January 2025 - May 2025\", with no subsequent activity, so the report's useful gap fix should come first. Expanding \"- Answered help desk tickets from teachers and staff\" would clarify troubleshooting experience, but remains a narrower improvement than resolving that open period. The additional scale miss also belongs because the internship's main work, including \"- Imaged and set up laptops for classrooms\", has no volume or result anywhere on the page; the report identifies substantive additional problems but misorders the priorities.",
+          "cited_resume_lines": [
+            "January 2025 - May 2025",
+            "- Answered help desk tickets from teachers and staff",
+            "- Imaged and set up laptops for classrooms",
+            "- Reset passwords and accounts in Active Directory"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3006,
+          "completion_tokens": 745,
+          "total_tokens": 3751,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 540,
+          "reasoning_tokens": 139
+        },
+        "cost_usd": 0.0090523,
+        "latency_ms": 19146
+      }
+    },
+    {
+      "fixture_id": "synth_bp_bank_branch_manager_gap_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_bank_branch_manager_gap_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "An experienced retail banking manager with clear progression, responsibility for 11 employees, and measurable deposit growth. However, the latest role ended in December 2024, leaving nearly two years unexplained at the review date.",
+          "most_important_issue": "Explain the open period after December 2024 with a brief, truthful dated entry. The latest role already demonstrates team scale and business results, so explaining deposit-growth methods is less urgent.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Adding methods to the $48M-to-$63M deposit result is useful, but the unexplained period after \"May 2019 - December 2024\" matters more."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix requests missing actions behind \"Grew branch deposits from $48M to $63M over five years,\" rather than rearranging existing information."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "The fix identifies the exact deposit-growth bullet and asks for the actions that produced growth, although it gives no concrete categories to help identify those actions."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation reasonably distinguishes results from methods, but does not explain how the missing methods affect a branch-manager hiring decision."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The resume already attributes deposit growth to the candidate, and the fix explicitly limits added actions to those she can verify."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss correctly identifies the open period after December 2024 and offers truthful dated break or activity entries, with coursework and volunteering conditional on being true."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The latest role already supplies substantial evidence through \"- Managed a branch of 11 employees\" and \"- Grew branch deposits from $48M to $63M over five years\"; adding growth methods would strengthen it but is not the first priority. \"May 2019 - December 2024\" leaves an unexplained period approaching two years, which the report addresses helpfully but ranks second. That second miss independently belongs under C8 and is not padding; reversing the order would better reflect the first-read stakes.",
+          "cited_resume_lines": [
+            "May 2019 - December 2024",
+            "- Managed a branch of 11 employees",
+            "- Grew branch deposits from $48M to $63M over five years"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2929,
+          "completion_tokens": 748,
+          "total_tokens": 3677,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 463,
+          "reasoning_tokens": 137
+        },
+        "cost_usd": 0.0088898,
+        "latency_ms": 17163
+      }
+    },
+    {
+      "fixture_id": "synth_bp_event_planner_relocation_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_event_planner_relocation_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "An experienced corporate event manager with clear attendee, budget, and team scale, plus a dated and explained relocation break. The recent bullets establish responsibilities but do not show delivery results or commercial outcomes.",
+          "most_important_issue": "Add a verified outcome from the Senior Event Manager role, preferably showing how a major conference performed against its objectives or budget. Contract terms are a useful narrower improvement, but not clearly the first thing to fix.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Improving \"- Negotiated hotel and venue contracts\" is reasonable, but results from the primary work of planning conferences for 600 to 1,200 attendees would better strengthen the first read."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix asks for tangible negotiated terms or agreements absent from the contracts bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the hotel and venue contracts bullet and asks specifically for negotiated terms and a verifiable agreement."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "Showing what was at stake is useful, but the explanation does not specify how the contract details would establish commercial judgment or risk management for this Senior Event Manager."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request for an agreement the candidate can verify preserves the stated negotiation responsibility without inventing savings or expanding ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 1,
+              "note": "The second miss elevates an already dated and explained relocation break into another critical issue; its proposed July 2024-to-present line overlaps the existing August 2024–March 2025 explanation."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix would add useful evidence to \"- Negotiated hotel and venue contracts\", but the resume's main work is \"- Planned annual sales conferences for 600 to 1,200 attendees\", where a verified delivery outcome would have greater first-read value. The second miss does not meet the independent interview-cost threshold: \"Moved from Chicago to Charlotte for a family move\" and \"August 2024 - March 2025\" already date and explain the break under the supplied gap-handling rule. Although suggesting truthful coursework or projects is acceptable, adding this as a second Critical Miss is padding rather than identifying another independently critical problem.",
+          "cited_resume_lines": [
+            "- Negotiated hotel and venue contracts",
+            "- Planned annual sales conferences for 600 to 1,200 attendees",
+            "- Managed event budgets of up to $1.8M",
+            "Moved from Chicago to Charlotte for a family move",
+            "August 2024 - March 2025"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2914,
+          "completion_tokens": 916,
+          "total_tokens": 3830,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 448,
+          "reasoning_tokens": 266
+        },
+        "cost_usd": 0.0105323,
+        "latency_ms": 21844
+      }
+    },
+    {
+      "fixture_id": "synth_bp_logistics_dispatcher_1",
+      "misses": 2,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_logistics_dispatcher_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Andre has progressed from Dispatch Assistant to a current Dispatcher role, but the recent bullets read as generic duties rather than showing the workload or assignment decisions he handles.",
+          "most_important_issue": "The current Dispatcher role needs concrete scope and responsibility: how many drivers or loads Andre coordinates and what he personally decides when assigning them.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "The first fix targets the core current-role bullet, \"- Responsible for dispatching drivers\", though workload scale would make the fix stronger."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "Asking what drivers and loads Andre coordinates and how assignments are made seeks tangible work details absent from the current dispatching bullet."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "The fix identifies the current dispatching bullet and asks about assignments, but leaves the exact driver and load details somewhat open."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The why explains that the title needs supporting detail, but does not specify what a dispatch hiring manager cannot assess about Andre's responsibilities."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Both fixes request facts about Andre's stated dispatching and load-tracking duties without asserting greater ownership, and the volume request explicitly requires verification."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix usefully replaces \"- Responsible for dispatching drivers\" with evidence of the current role's actual work, although explicitly requesting workload scale would better address the main first-read weakness. The second fix asks for a useful missing fact behind \"- Track loads and update customers on delivery status\", but it is another aspect of the same underdescribed dispatch workload, not a separate interview-costing problem. Under C8, these asks should be combined into one Critical Miss rather than presented as two independent blockers.",
+          "cited_resume_lines": [
+            "April 2022 - Present",
+            "- Responsible for dispatching drivers",
+            "- Track loads and update customers on delivery status"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2860,
+          "completion_tokens": 679,
+          "total_tokens": 3539,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 394,
+          "reasoning_tokens": 146
+        },
+        "cost_usd": 0.0080273,
+        "latency_ms": 15960
+      }
+    },
+    {
+      "fixture_id": "synth_bp_graphic_designer_unrelated_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_bp_graphic_designer_unrelated_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The candidate has relevant brand and packaging experience, but has worked in a warehouse since September 2023. The last design role ended in June 2023, and its bullets show duties without indicating project scale or results.",
+          "most_important_issue": "Establish the scope or results of the Blue Stem Creative work so a design hiring manager can assess the candidate's experience beyond a list of standard duties. Evidence of recent design work, if available, would also help establish readiness to return to design.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Naming a product improves the core packaging bullet, but the Blue Stem Creative role's overall scope and the absence of design activity after June 2023 have greater screening stakes."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The request for a specific product and an applicable design constraint adds tangible information absent from \"Designed packaging for regional food and beverage brands.\""
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the packaging bullet and specifies exactly what to add: a product and, if applicable, a constraint."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Understanding the actual packaging assignment is relevant to a design reviewer, although the explanation does not establish how it would demonstrate complexity, capability, or hiring fit."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report preserves the stated design ownership and conditions constraints, recent projects, and measurable results on their being applicable or verifiable."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix gives useful substance to \"- Designed packaging for regional food and beverage brands,\" but a single product example is narrower than establishing the scope or results of the latest design role. \"September 2023 - Present\" accounts for current employment, so this is not an unexplained employment gap, although the absence of design work after \"March 2019 - June 2023\" creates a genuine recency concern. The second and third misses address distinct screening concerns—current design readiness and unproven scale—and belong, but the report should prioritize those over the narrower assignment example.",
+          "cited_resume_lines": [
+            "Graphic designer with five years in brand and packaging design.",
+            "Warehouse Associate",
+            "September 2023 - Present",
+            "Graphic Designer",
+            "March 2019 - June 2023",
+            "- Designed packaging for regional food and beverage brands",
+            "- Created brand identities, including logos and style guides"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2982,
+          "completion_tokens": 955,
+          "total_tokens": 3937,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 516,
+          "reasoning_tokens": 322
+        },
+        "cost_usd": 0.0110923,
+        "latency_ms": 22103
+      }
+    },
+    {
+      "fixture_id": "synth_cc_operations_manager_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_operations_manager_bad_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The resume shows warehouse shift supervision, but the headline claims Director-level, multi-site leadership that the experience does not substantiate. The latest role also ended in January 2025, leaving an unexplained gap of roughly 21 months.",
+          "most_important_issue": "First reconcile the Director of Operations headline with the experience actually shown. The open gap also deserves priority over adding team size to the supervision bullet, particularly because the report offers a truthful way to present that period.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "Adding scope to the latest Operations Supervisor role matters, but the unsupported Director headline and the unexplained period after January 2025 have greater first-read stakes."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests missing team size and decision responsibilities for \"- Supervised the day shift on the warehouse floor\" rather than merely rearranging existing information."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "It identifies the exact supervision bullet and asks for the number of associates, although the request for decisions could name more specific operational responsibilities."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "Distinguishing full-shift management from coordinating a smaller floor area is a clear hiring consequence for the listed Operations Supervisor role."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the stated supervision responsibility and asks for actual associate counts and decisions without inflating it into Director-level ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "For the open period after \"May 2021 - January 2025,\" the second miss offers a brief, truthful dated explanation and makes coursework or volunteer work conditional on being true."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix would meaningfully strengthen \"- Supervised the day shift on the warehouse floor,\" which currently gives neither team size nor results. However, \"Director of Operations who runs multi-site distribution networks and leads large warehouse teams.\" creates a more consequential mismatch with the listed experience, while \"May 2021 - January 2025\" leaves a substantial open gap. The second and third misses both belong rather than being padding, and their fixes provide real help, but the report should put the headline mismatch first. Its statement that there is no summary section is not a factual error under the heading-based rule.",
+          "cited_resume_lines": [
+            "Director of Operations who runs multi-site distribution networks and leads large warehouse teams.",
+            "Operations Supervisor",
+            "May 2021 - January 2025",
+            "- Supervised the day shift on the warehouse floor"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3044,
+          "completion_tokens": 823,
+          "total_tokens": 3867,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 578,
+          "reasoning_tokens": 181
+        },
+        "cost_usd": 0.0099273,
+        "latency_ms": 17533
+      }
+    },
+    {
+      "fixture_id": "synth_cc_career_changer_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_career_changer_bad_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Jordan currently works as a Shift Supervisor, but the bullets give little sense of supervisory scope. Undated freelance development work and earlier medical billing experience also leave the intended career direction and development recency unclear.",
+          "most_important_issue": "Establish the timing and relevance of the Freelance Web Developer role so a recruiter can understand this mixed career history. For retail-supervision applications, the current role would benefit more from team size and shift responsibilities than from one example of assigning work.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The fix concerns the current role's core supervision bullet, but one example of a decision is less consequential than resolving the undated Freelance Web Developer role and unclear career direction."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "It asks for actual supervisory decisions missing from '- Supervise cashiers and stockers on evening shifts', rather than rearranging existing information."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the evening-shift supervision bullet and specifies adding decisions made for cashiers and stockers, with assigning work as a conditional example."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "Saying the addition would show what supervision involved largely restates the fix rather than explaining how it would establish readiness for a supervisory opening."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The resume explicitly states supervision, and 'if applicable' keeps the suggested work-assignment example conditional rather than inventing responsibility."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The first fix usefully develops \"- Supervise cashiers and stockers on evening shifts\", but asking for one supervisory decision is not the strongest first intervention. \"Freelance Web Developer\" has no dates, making a substantial alternative career track impossible to place chronologically. The additional misses address genuine screening risks—unclear direction across three different functions and missing freelance dates—rather than merely padding the report, but they should take precedence over the narrower first ask.",
+          "cited_resume_lines": [
+            "Shift Supervisor",
+            "August 2023 - Present",
+            "- Supervise cashiers and stockers on evening shifts",
+            "Freelance Web Developer",
+            "- Built small business websites in WordPress and Webflow",
+            "Medical Billing Assistant"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3013,
+          "completion_tokens": 881,
+          "total_tokens": 3894,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 547,
+          "reasoning_tokens": 287
+        },
+        "cost_usd": 0.0104298,
+        "latency_ms": 22386
+      }
+    },
+    {
+      "fixture_id": "synth_cc_sales_rep_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_sales_rep_bad_1",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "The latest documented role is an account executive position ending in February 2025, with duties but no sales results. The Sales Director headline claims organizational leadership that the listed roles do not demonstrate, and the subsequent employment period is unexplained.",
+          "most_important_issue": "Resolve the mismatch between the Sales Director headline and the documented individual-contributor experience, either with verifiable leadership evidence or an accurate account executive headline.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The claim of building and leading sales organizations frames the entire resume but is unsupported by the Account Executive, Sales Development Representative, and Customer Service Representative experience."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The first fix asks for a verifiable example of organizational sales leadership missing from the experience, with an accurate headline revision as an alternative."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the opening summary and specifies either evidence of building or leading a sales organization or a headline reflecting the documented account executive work."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation identifies the credibility disconnect between the director claim and the listed roles, though it could state more directly that the page does not establish director-level qualifications."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report requests verifiable leadership evidence or a correction to the headline, without upgrading the ownership shown in the account executive bullets."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The latest role ends in February 2025 with nothing afterward, and the second fix offers a brief dated explanation of the period plus conditional examples of genuine current activity."
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The opening claim, \"Sales Director with a record of building and leading high-performing sales organizations.\", conflicts with the level of experience demonstrated under \"Account Executive\", making the first fix a strong priority. The alternatives let the candidate substantiate the claim or correct it truthfully. The additional misses also belong: \"April 2022 - February 2025\" leaves an open gap at the review date, while \"- Sold payroll and HR software to small businesses\" and the remaining account executive bullets provide no sales scale or results. The report's statement about no summary section is not a factual error under the heading-based rule: the resume contains an introductory statement but no Summary heading.",
+          "cited_resume_lines": [
+            "Sales Director with a record of building and leading high-performing sales organizations.",
+            "Account Executive",
+            "April 2022 - February 2025",
+            "- Sold payroll and HR software to small businesses",
+            "- Ran product demos for prospects",
+            "- Managed a pipeline of accounts in Salesforce",
+            "- Worked with onboarding on new customer handoffs"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3007,
+          "completion_tokens": 793,
+          "total_tokens": 3800,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 541,
+          "reasoning_tokens": 122
+        },
+        "cost_usd": 0.0095348,
+        "latency_ms": 15705
+      }
+    },
+    {
+      "fixture_id": "synth_cc_marketing_director_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_marketing_director_bad_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The latest role is a short Director of Marketing position whose bullets show individual execution and customer-service tasks rather than director-level responsibility. It ended in January 2025, leaving an unexplained gap of roughly 21 months at the review date.",
+          "most_important_issue": "Address the open gap first with a brief, truthful dated explanation. The director-title mismatch also merits attention, but asking only how Instagram posts were selected does not establish the scope of the person's marketing responsibility.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The Instagram bullet is relevant to the unsupported Director of Marketing title, but its content-selection detail is narrower than the open gap after \"March 2024 - January 2025\"."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix asks for a missing fact about how the person selected content, rather than rearranging the existing posting cadence and follower count."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "It identifies the Instagram bullet and specifically asks how posts were selected or content decisions were made."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The why connects content decisions to credibility of the Director of Marketing title, although those decisions alone would not establish director-level scope."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The phrase \"if that was part of your work\" preserves the actual ownership level rather than assuming the person directed marketing strategy."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "Critical Miss 2 provides real help for the unexplained period after January 2025 by suggesting a truthful dated break explanation and including projects only if true, although it should rank first."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The latest role ends at \"March 2024 - January 2025\", so the report's useful, truthful gap fix should precede the narrow Instagram edit. The bullet \"- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers\" supports asking about content decisions, but that alone would not resolve the broader director-title mismatch. Critical Miss 3 is padding: this sequence of past jobs does not establish an independently interview-blocking targeting problem, and an optional headline is not another critical fix.",
+          "cited_resume_lines": [
+            "Director of Marketing",
+            "March 2024 - January 2025",
+            "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+            "- Packed online orders during the holiday rush",
+            "- Answered customer emails about shipping"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3067,
+          "completion_tokens": 795,
+          "total_tokens": 3862,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 601,
+          "reasoning_tokens": 155
+        },
+        "cost_usd": 0.0097048,
+        "latency_ms": 16691
+      }
+    },
+    {
+      "fixture_id": "synth_cc_admin_generalist_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_admin_generalist_bad_1",
+        "veto": false,
+        "overall": 4,
+        "raw": {
+          "first_read": "The opening presents a multi-site office manager and team leader, but the latest role shows only front-desk and administrative duties. That role ended in March 2025, leaving an unexplained gap of roughly 19 months at the review date.",
+          "most_important_issue": "The management positioning needs evidence from the latest role or an honest revision to match the experience shown. The open gap is another independent screening concern.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The first miss addresses the central mismatch between the opening's multi-site leadership claims and the Office Administrator bullets describing scheduling, supplies, records, and coverage."
+            },
+            "concrete_fact": {
+              "score": 4,
+              "note": "It asks for actual management responsibilities missing from the Riverbend entry, though revising the opening is also offered as a valid alternative."
+            },
+            "specific_ask": {
+              "score": 3,
+              "note": "It identifies the opening and Office Administrator entry and names the two claims to substantiate, but does not specify details such as sites overseen, staff supervised, or operational decisions made."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation identifies the disconnect between the management description and recent duties, but stops short of explaining that a reviewer cannot establish management-level experience."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report explicitly permits revising unsupported management claims and makes the scheduling-volume and gap examples conditional on their accuracy."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The latest role ends in March 2025 with nothing afterward, and the second miss gives truthful presentation options rather than merely requesting recent activity."
+            }
+          },
+          "right_thing_first": 4,
+          "rationale": "The opening claims \"Office manager who runs multi-site practice operations and leads front-office teams.\", while recent duties include \"- Helped with front desk coverage\", making the positioning mismatch a defensible first priority. The first fix is useful and honest, but would help more if it named concrete evidence to supply for site responsibility and staff leadership. The second miss correctly addresses \"June 2022 - March 2025\" with practical, conditional gap wording. The third also belongs because the latest role's core administrative work, including \"- Answered phones and scheduled patient appointments\", has no visible scale or result; this is separate from substantiating management authority.",
+          "cited_resume_lines": [
+            "Office manager who runs multi-site practice operations and leads front-office teams.",
+            "Office Administrator",
+            "June 2022 - March 2025",
+            "- Answered phones and scheduled patient appointments",
+            "- Helped with front desk coverage"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3030,
+          "completion_tokens": 974,
+          "total_tokens": 4004,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 564,
+          "reasoning_tokens": 331
+        },
+        "cost_usd": 0.0114023,
+        "latency_ms": 23736
+      }
+    },
+    {
+      "fixture_id": "synth_cc_staff_accountant_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_staff_accountant_bad_1",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "The resume shows progression from accounting clerk to staff accountant, but the Controller opening claims leadership that the listed duties do not support. The latest role also ends in March 2025, leaving an unexplained gap, and its bullets show no scale or results.",
+          "most_important_issue": "Resolve the mismatch between the Controller-level opening and the documented staff-level work, either by correcting the opening or adding verifiable evidence of team and close leadership.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The opening claims Controller-level team and close leadership, while the latest role is Staff Accountant and says only that Elena helped with month-end close."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix offers adding verifiable team and close leadership responsibilities, facts not documented in the experience, rather than merely moving existing bullets."
+            },
+            "specific_ask": {
+              "score": 4,
+              "note": "The fix identifies the opening summary and the missing team and close leadership evidence, though it could specify team size and responsibility for reviewing or approving the close."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The why identifies the unexplained Controller-level claim, although it could more explicitly explain the resulting doubt about readiness for Controller work."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix allows a truthful revision of the opening and conditions additional leadership details on verification, preserving the stated support role in month-end close."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The second miss addresses the open period after March 2025 with a dated, truthful break description and conditional examples of coursework or bookkeeping."
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The opening, \"Controller with deep experience leading accounting teams and the monthly close.\", conflicts with the level evidenced by \"- Helped with month-end close\", making the report's first priority well chosen. The second miss gives useful, truthful presentation options for the open gap following \"July 2023 - March 2025\". The third also belongs because the latest role's core work, including \"- Prepared journal entries\", has no stated scale or result; the older accounts payable metrics do not establish the scope of this newer work.",
+          "cited_resume_lines": [
+            "Controller with deep experience leading accounting teams and the monthly close.",
+            "Staff Accountant",
+            "July 2023 - March 2025",
+            "- Prepared journal entries",
+            "- Helped with month-end close"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3008,
+          "completion_tokens": 848,
+          "total_tokens": 3856,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 542,
+          "reasoning_tokens": 236
+        },
+        "cost_usd": 0.0100873,
+        "latency_ms": 19370
+      }
+    },
+    {
+      "fixture_id": "synth_cc_recent_grad_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_recent_grad_bad_1",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "The opening presents an experienced marketing manager, but the only marketing role is an internship described entirely through support duties. That internship also ends in May 2024, leaving an unexplained gap of more than two years at the review date.",
+          "most_important_issue": "The claimed management and campaign leadership are not substantiated by the listed experience. Aligning the opening with verified responsibilities, or documenting genuine campaign leadership, is a high-stakes credibility fix.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The contrast between \"Marketing manager who has led credit union campaigns from strategy to launch.\" and the Marketing Intern role changes how a recruiter interprets the entire resume."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix asks for actual campaign strategy and launch work personally led, if it exists, rather than simply moving the existing support bullets."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the opening sentence and specifies either aligning it with verified credit union responsibilities or adding the claimed campaign leadership to Experience."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation directly identifies the credibility problem: the manager description cannot be reconciled with the internship details a reviewer can check."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report preserves the stated support-level responsibilities and offers revising the opening rather than assuming the candidate actually led campaigns."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The latest role ends in May 2024, and the second miss provides truthful, conditional ways to label and date the unexplained period rather than merely asking what happened."
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The opening claims \"Marketing manager who has led credit union campaigns from strategy to launch.\", while the relevant experience says \"Marketing Intern\" and \"- Supported planning for branch events\"; resolving that unsupported positioning is an appropriate first priority. The second miss also belongs because \"June 2023 - May 2024\" is the latest employment period and the report offers practical, conditional ways to explain the open gap. The third addresses a separate weakness across the only marketing experience: bullets such as \"- Helped with the member newsletter\" provide neither scale nor results, leaving the candidate's relevant work difficult to assess.",
+          "cited_resume_lines": [
+            "Marketing manager who has led credit union campaigns from strategy to launch.",
+            "Marketing Intern",
+            "June 2023 - May 2024",
+            "- Helped with the member newsletter",
+            "- Posted on the credit union's social media accounts",
+            "- Supported planning for branch events"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3062,
+          "completion_tokens": 1012,
+          "total_tokens": 4074,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 596,
+          "reasoning_tokens": 367
+        },
+        "cost_usd": 0.0118623,
+        "latency_ms": 24519
+      }
+    },
+    {
+      "fixture_id": "synth_cc_project_coordinator_bad_1",
+      "misses": 3,
+      "more_than_three": false,
+      "added_veto": false,
+      "result": {
+        "case_id": "synth_cc_project_coordinator_bad_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "The Program Director headline is not supported by the latest Project Coordinator role, whose bullets describe support duties rather than program leadership. The latest employment also ends in February 2025, leaving an unexplained gap of roughly 20 months.",
+          "most_important_issue": "First, align the Program Director headline with the experience actually shown, or substantiate it with verifiable program leadership experience. The open employment gap also warrants a critical fix before adding detail to one Smartsheet duty.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "Clarifying the Smartsheet duty helps, but the unsupported Program Director positioning and unexplained period after February 2025 have substantially greater first-read stakes."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix requests tangible missing facts: the health IT project type and the plan information maintained in the bullet \"- Updated project plans in Smartsheet\"."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the exact Smartsheet bullet and specifies both details to add."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The explanation helps a reader understand the work behind the Smartsheet update, but does not explain how that detail would establish the candidate's suitability for project or program work."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Naming the project type and information maintained preserves the supporting responsibility stated in \"- Updated project plans in Smartsheet\" without inflating ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 5,
+              "note": "The resume ends its latest role in February 2025, and Critical Miss 2 offers a brief dated explanation of the intervening period while explicitly limiting coursework claims to what is true."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The opening claims \"Program Director who leads large, multi-team technology programs from strategy to delivery.\", but the latest role includes \"- Tracked action items for the project manager\", making the positioning mismatch more consequential than elaborating a software-update duty. The first fix is concrete and grounded, but \"- Updated project plans in Smartsheet\" is too narrow a priority given that mismatch and the unexplained period following \"September 2022 - February 2025\". The second miss provides useful gap-handling advice, and the third addresses a legitimate absence of scope or results across the latest role; neither compensates for leaving the unsupported headline unaddressed as a Critical Miss.",
+          "cited_resume_lines": [
+            "Program Director who leads large, multi-team technology programs from strategy to delivery.",
+            "Project Coordinator",
+            "September 2022 - February 2025",
+            "- Updated project plans in Smartsheet",
+            "- Tracked action items for the project manager"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3010,
+          "completion_tokens": 797,
+          "total_tokens": 3807,
+          "cached_prompt_tokens": 2463,
+          "cache_write_prompt_tokens": 544,
+          "reasoning_tokens": 126
+        },
+        "cost_usd": 0.0095823,
+        "latency_ms": 17317
+      }
+    }
+  ],
+  "count": {
+    "key_path": "/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/.claude/worktrees/sleepy-heyrovsky-4b2a1e/tests/fixtures/judge/count-check-key.json",
+    "key_errors": [],
+    "outcomes": [
+      {
+        "fixture_id": "synth_cc_operations_manager_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_operations_manager_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing supervisory scale and decision responsibility",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The bullet \"- Supervised the day shift on the warehouse floor\" gives neither team size nor the decisions Dana controlled."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after the latest role",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"May 2021 - January 2025\", with nothing afterward to explain the period through the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Director-level headline unsupported by listed experience",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The headline \"Director of Operations who runs multi-site distribution networks and leads large warehouse teams.\" claims experience that the listed roles do not substantiate."
+              }
+            ],
+            "rationale": "All three misses identify independently interview-costing problems and offer grounded, truthful fixes; none is padding. The first fix is concrete and useful, but the open gap with a practical fix and the unsupported director-level headline deserve priority over adding supervisory scope."
+          },
+          "usage": {
+            "prompt_tokens": 2942,
+            "completion_tokens": 356,
+            "total_tokens": 3298,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 765,
+            "reasoning_tokens": 46
+          },
+          "cost_usd": 0.0056959,
+          "latency_ms": 8300
+        },
+        "blind": {
+          "case_id": "synth_cc_operations_manager_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Latest supervisory role lacks team scale and decision scope",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "\"- Supervised the day shift on the warehouse floor\" provides neither team size nor the scope of supervisory decisions, leaving the latest role's management level unclear."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after January 2025",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "\"May 2021 - January 2025\" ends the latest employment period, with no subsequent activity or explanation through the November 2026 review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Director and multi-site claims unsupported by listed experience",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "\"Director of Operations who runs multi-site distribution networks and leads large warehouse teams.\" claims a leadership level and operating scope that the listed supervisor and warehouse roles do not substantiate."
+              }
+            ],
+            "rationale": "All three misses identify independently consequential screening problems, and their fixes seek concrete, truthful information rather than inflated experience. The unsupported Director-level positioning should come first because it shapes the entire read; the report nevertheless provides useful fixes for the latest role's missing scope and the open employment gap."
+          },
+          "usage": {
+            "prompt_tokens": 2763,
+            "completion_tokens": 482,
+            "total_tokens": 3245,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 586,
+            "reasoning_tokens": 147
+          },
+          "cost_usd": 0.0065084,
+          "latency_ms": 11585
+        }
+      },
+      {
+        "fixture_id": "synth_cc_career_changer_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_career_changer_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Specific supervisory decisions",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Supervise cashiers and stockers on evening shifts\" already establishes supervision; adding an example of assigning work would not address the missing team size, store volume or result."
+              },
+              {
+                "number": 2,
+                "addresses": "Unclear target role",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The titles \"Shift Supervisor\" and \"Freelance Web Developer\" point toward different careers, with no headline or summary identifying the intended role."
+              },
+              {
+                "number": 3,
+                "addresses": "Undated freelance web development work",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The entry \"Freelance Web Developer\" followed by \"Self-employed, Remote\" has no dates, leaving the recency and duration of the only web development work unclear."
+              }
+            ],
+            "rationale": "The report is grounded, but its first fix asks for a narrow supervisory example rather than the more consequential missing scale or results in the current role. The second and third misses identify independent interview-costing problems and offer concrete fixes, but the report leaves the current role's missing scale or results unaddressed."
+          },
+          "usage": {
+            "prompt_tokens": 2918,
+            "completion_tokens": 384,
+            "total_tokens": 3302,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 741,
+            "reasoning_tokens": 50
+          },
+          "cost_usd": 0.0059159,
+          "latency_ms": 7404
+        },
+        "blind": {
+          "case_id": "synth_cc_career_changer_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Specific supervisory decisions",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"Supervise cashiers and stockers on evening shifts\" establishes supervisory work; adding an example of assigning duties would help but is not independently interview-blocking."
+              },
+              {
+                "number": 2,
+                "addresses": "Unclear target role across unrelated fields",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The titles \"Shift Supervisor\", \"Freelance Web Developer\", and \"Medical Billing Assistant\" point toward distinct hiring tracks without identifying which one the applicant is pursuing."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing freelance employment dates",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The \"Freelance Web Developer\" entry has no dates, preventing a reviewer from establishing the recency or duration of the applicant's development experience."
+              }
+            ],
+            "rationale": "The first fix is grounded and conditional but asks for a narrow example rather than addressing the current supervisory role's missing team size or scope. The other two misses identify substantive screening problems: an unclear career target and undated freelance work that could be the applicant's main relevant experience."
+          },
+          "usage": {
+            "prompt_tokens": 2732,
+            "completion_tokens": 476,
+            "total_tokens": 3208,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 555,
+            "reasoning_tokens": 154
+          },
+          "cost_usd": 0.0063709,
+          "latency_ms": 12630
+        }
+      },
+      {
+        "fixture_id": "synth_cc_sales_rep_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_sales_rep_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director headline unsupported by listed experience",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The headline, \"Sales Director with a record of building and leading high-performing sales organizations.\", claims leadership experience that the listed individual-contributor roles do not demonstrate."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after latest role",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"April 2022 - February 2025\", with no subsequent activity or explanation through the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing Account Executive sales results",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The bullet \"- Sold payroll and HR software to small businesses\" identifies the offering and customers but gives no sales result, and the other Account Executive bullets supply no performance or scale."
+              }
+            ],
+            "rationale": "The unsupported director headline is a strong first priority, and the fix offers an honest choice between substantiating leadership and aligning the headline with documented work. The other two misses independently warrant attention: the gap fix gives concrete, truthful presentation options, and the sales-results fix requests a verified outcome and timeframe; the claim that no summary section exists is grounded because there is no such heading."
+          },
+          "usage": {
+            "prompt_tokens": 2883,
+            "completion_tokens": 385,
+            "total_tokens": 3268,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 706,
+            "reasoning_tokens": 36
+          },
+          "cost_usd": 0.0058384,
+          "latency_ms": 8254
+        },
+        "blind": {
+          "case_id": "synth_cc_sales_rep_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unsupported Sales Director positioning",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The claim \"Sales Director with a record of building and leading high-performing sales organizations.\" is unsupported by the listed roles and bullets, creating a material credibility problem."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after February 2025",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"April 2022 - February 2025\", leaving approximately 20 months unexplained at the review date with no subsequent activity listed."
+              },
+              {
+                "number": 3,
+                "addresses": "Latest sales role lacks results or scale",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Sold payroll and HR software to small businesses\" and the remaining account executive bullets provide neither sales results nor meaningful scale for the latest relevant role."
+              }
+            ],
+            "rationale": "The unsupported director positioning is a justified first fix, and the report offers an honest choice between substantiating it and aligning it with documented experience. The unexplained employment gap and absence of results or scale in the latest sales role are separate interview-threatening issues; both receive grounded, actionable fixes."
+          },
+          "usage": {
+            "prompt_tokens": 2726,
+            "completion_tokens": 424,
+            "total_tokens": 3150,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 549,
+            "reasoning_tokens": 93
+          },
+          "cost_usd": 0.0058359,
+          "latency_ms": 10900
+        }
+      },
+      {
+        "fixture_id": "synth_cc_marketing_director_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_marketing_director_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by task-level bullets",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The title \"Director of Marketing\" is not supported by bullets showing director-level responsibility; the conditional request for content decisions addresses that mismatch only narrowly."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after the latest role",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"March 2024 - January 2025\", with nothing afterward, leaving an unexplained gap at the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Unclear target role across unrelated experience",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The roles \"Director of Marketing\", \"Data Entry Clerk\", \"Laboratory Assistant\", and \"Barista\" point in different directions without a stated target role."
+              }
+            ],
+            "rationale": "All three misses identify grounded, independently interview-costing problems, and the additional misses are not padding. The open gap should come first because its fix offers truthful ways to present the period, while the first fix asks only for a narrow content-decision example that may not establish director-level scope."
+          },
+          "usage": {
+            "prompt_tokens": 2963,
+            "completion_tokens": 392,
+            "total_tokens": 3355,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 786,
+            "reasoning_tokens": 62
+          },
+          "cost_usd": 0.0061084,
+          "latency_ms": 7917
+        },
+        "blind": {
+          "case_id": "synth_cc_marketing_director_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by the work described",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "Under the title \"Director of Marketing\", the bullet \"Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers\" shows execution rather than director-level responsibility."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after the latest role",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"March 2024 - January 2025\", leaving roughly 21 months unexplained at the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Unclear target across unrelated roles",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The sequence \"Director of Marketing\", \"Data Entry Clerk\", and \"Laboratory Assistant\", together with the mixed skills list, leaves the intended job direction unclear."
+              }
+            ],
+            "rationale": "The report identifies three grounded screening problems, but its first fix addresses only one content decision rather than the broader mismatch between the director title and the responsibilities shown. The open-gap fix provides a useful, truthful way to present the period and deserves priority over that narrow first fix."
+          },
+          "usage": {
+            "prompt_tokens": 2786,
+            "completion_tokens": 635,
+            "total_tokens": 3421,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 609,
+            "reasoning_tokens": 303
+          },
+          "cost_usd": 0.0080959,
+          "latency_ms": 16716
+        }
+      },
+      {
+        "fixture_id": "synth_cc_admin_generalist_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [
+          "P2"
+        ],
+        "count": {
+          "case_id": "synth_cc_admin_generalist_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unsupported management and leadership headline",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The headline \"Office manager who runs multi-site practice operations and leads front-office teams.\" claims management scope and leadership that the recent role's bullets do not substantiate."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after the latest role",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest employment dates are \"June 2022 - March 2025\", with no subsequent activity or explanation through the November 2026 review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing scale and results in the latest role",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The bullet \"- Answered phones and scheduled patient appointments\" provides no patient volume, and the other Riverbend bullets supply neither operational scale nor results."
+              }
+            ],
+            "rationale": "The report correctly prioritizes the unsupported management headline and offers an honest choice between substantiating it and revising it. Its other two misses independently belong: the gap fix gives truthful presentation options, and the scheduling fix requests a specific, verifiable measure of the latest role's scale."
+          },
+          "usage": {
+            "prompt_tokens": 2926,
+            "completion_tokens": 325,
+            "total_tokens": 3251,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 749,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0053459,
+          "latency_ms": 5848
+        },
+        "blind": {
+          "case_id": "synth_cc_admin_generalist_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unsupported management and leadership claims",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The opening claims \"Office manager who runs multi-site practice operations and leads front-office teams,\" but the recent role's bullets do not establish management or team leadership."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after the latest role",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"June 2022 - March 2025,\" with no subsequent activity or explanation through the November 2026 review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing patient-scheduling volume",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "Adding volume to \"Answered phones and scheduled patient appointments\" would strengthen a duty bullet, but that missing detail alone would not justify rejecting an otherwise credible office-management candidate."
+              }
+            ],
+            "rationale": "The first miss appropriately targets the unsupported management positioning, and the second identifies a separate open gap with practical, conditional advice for explaining it truthfully. The third is grounded and useful, but elevates a scheduling-volume improvement into an additional Critical Miss rather than an independently interview-costing problem."
+          },
+          "usage": {
+            "prompt_tokens": 2749,
+            "completion_tokens": 636,
+            "total_tokens": 3385,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 572,
+            "reasoning_tokens": 309
+          },
+          "cost_usd": 0.0080134,
+          "latency_ms": 16549
+        }
+      },
+      {
+        "fixture_id": "synth_cc_staff_accountant_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_staff_accountant_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Controller claim unsupported by documented responsibilities",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The opening, \"Controller with deep experience leading accounting teams and the monthly close.\", claims leadership that the listed roles and duties do not substantiate."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after March 2025",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest employment dates are \"July 2023 - March 2025\", with no subsequent activity or explanation through the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing scope or results in latest accounting role",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The latest role includes \"- Prepared journal entries\", but none of its bullets establishes accounting volume, scope, or results."
+              }
+            ],
+            "rationale": "The report appropriately prioritizes the unsupported Controller claim and offers an honest correction, then covers two additional independently critical problems without padding. Its gap advice provides truthful presentation options, and its latest-role advice requests concrete, verifiable scope; the statement about no summary section is not a factual error because no such heading appears."
+          },
+          "usage": {
+            "prompt_tokens": 2893,
+            "completion_tokens": 367,
+            "total_tokens": 3260,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 716,
+            "reasoning_tokens": 42
+          },
+          "cost_usd": 0.0056834,
+          "latency_ms": 7908
+        },
+        "blind": {
+          "case_id": "synth_cc_staff_accountant_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Controller claim unsupported by documented responsibilities",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The opening says \"Controller with deep experience leading accounting teams and the monthly close,\" but the latest role describes close involvement only as \"- Helped with month-end close.\""
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after March 2025",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest employment dates are \"July 2023 - March 2025,\" with no subsequent activity or explanation listed before the November 2026 review."
+              },
+              {
+                "number": 3,
+                "addresses": "Latest accounting role lacks scope and results",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role's \"- Prepared journal entries\" bullet and accompanying duties provide no volume, scope, or result for that employment."
+              }
+            ],
+            "rationale": "The unsupported Controller positioning is a defensible first priority because it changes how the whole resume is read; the fix preserves truthful ownership. The other two misses independently belong: the report offers practical, truthful gap handling and requests concrete scope for the latest accounting work; its statement that no summary section exists is consistent with the absence of that heading."
+          },
+          "usage": {
+            "prompt_tokens": 2727,
+            "completion_tokens": 477,
+            "total_tokens": 3204,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 550,
+            "reasoning_tokens": 140
+          },
+          "cost_usd": 0.0063684,
+          "latency_ms": 10585
+        }
+      },
+      {
+        "fixture_id": "synth_cc_recent_grad_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_recent_grad_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Manager headline unsupported by listed marketing responsibilities",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The headline, \"Marketing manager who has led credit union campaigns from strategy to launch.\", claims leadership that the listed internship support duties do not substantiate."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained period after May 2024",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"June 2023 - May 2024\", with no subsequent activity or explanation through the November 2026 review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Marketing internship lacks audience scale or results",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The bullet \"- Helped with the member newsletter\" supplies neither audience size nor results, and neither appears elsewhere for the marketing internship."
+              }
+            ],
+            "rationale": "The report identifies all three independently critical problems without unsupported factual claims or padding. Its first fix addresses the credibility of the opening, while the other fixes offer truthful ways to explain the open gap and add verifiable scale or results to the marketing work."
+          },
+          "usage": {
+            "prompt_tokens": 2975,
+            "completion_tokens": 314,
+            "total_tokens": 3289,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 798,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0053584,
+          "latency_ms": 6614
+        },
+        "blind": {
+          "case_id": "synth_cc_recent_grad_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Manager-level headline unsupported by experience",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The opening claims \"Marketing manager who has led credit union campaigns from strategy to launch.\", but the marketing experience lists an internship with support responsibilities rather than campaign ownership."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap since May 2024",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"June 2023 - May 2024\", with no subsequent activity or explanation covering the period through the November 2026 review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Marketing experience lacks scale or results",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Helped with the member newsletter\" gives no audience size or outcome, and neither of the other marketing bullets supplies scale or results."
+              }
+            ],
+            "rationale": "The unsupported manager headline is a defensible first priority because it changes how the entire marketing candidacy reads. All three misses are grounded and independently consequential; the fixes offer truthful ways to address the gap and request verifiable evidence without inflating ownership."
+          },
+          "usage": {
+            "prompt_tokens": 2781,
+            "completion_tokens": 438,
+            "total_tokens": 3219,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 604,
+            "reasoning_tokens": 115
+          },
+          "cost_usd": 0.0061134,
+          "latency_ms": 10841
+        }
+      },
+      {
+        "fixture_id": "synth_cc_project_coordinator_bad_1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2"
+        ],
+        "more_than_three": false,
+        "disputed": [],
+        "count": {
+          "case_id": "synth_cc_project_coordinator_bad_1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unspecified project type and project-plan content",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Updated project plans in Smartsheet\" could use concrete context, but naming the project type and maintained information is not independently interview-critical."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after February 2025",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest employment dates are \"September 2022 - February 2025\", with nothing afterward to explain the period through the review date."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing scope or results in the latest role",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The latest role includes \"- Tracked action items for the project manager\" but provides no project volume, team size, budget, or result across its bullets."
+              }
+            ],
+            "rationale": "The report is grounded, but its first fix is a narrow clarification rather than the right priority; the open gap and missing scope in the latest role are independently critical, and the gap fix provides useful, truth-qualified presentation guidance. It also leaves the unsupported Program Director headline unaddressed despite recognizing the mismatch in its verdict."
+          },
+          "usage": {
+            "prompt_tokens": 2901,
+            "completion_tokens": 399,
+            "total_tokens": 3300,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 724,
+            "reasoning_tokens": 61
+          },
+          "cost_usd": 0.0060234,
+          "latency_ms": 8319
+        },
+        "blind": {
+          "case_id": "synth_cc_project_coordinator_bad_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Project type and plan information in the Smartsheet bullet",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Updated project plans in Smartsheet\" could be more concrete, but missing those details in one supporting duty would not independently cost an interview."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after February 2025",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest employment dates are \"September 2022 - February 2025\", leaving roughly twenty months unexplained at the review date with no subsequent activity listed."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing scope or results in the latest role",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role, \"Project Coordinator\", lists only coordination duties, with no project volume, scale, or result to establish the level of recent work."
+              }
+            ],
+            "rationale": "The first fix is grounded and specific but targets a supporting bullet rather than the most consequential problem: the unsupported Program Director positioning. The second and third misses identify independently critical problems, with useful gap-presentation guidance and a verifiable scope-or-result ask, but the report leaves the headline mismatch unfixed."
+          },
+          "usage": {
+            "prompt_tokens": 2729,
+            "completion_tokens": 415,
+            "total_tokens": 3144,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 552,
+            "reasoning_tokens": 77
+          },
+          "cost_usd": 0.0057534,
+          "latency_ms": 9935
+        }
+      },
+      {
+        "fixture_id": "synth_cc_product_manager_strong_1",
+        "kind": "strong",
+        "pass": true,
+        "flagged": 1,
+        "padding": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "synth_cc_product_manager_strong_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Concrete roadmap decision from customer discovery",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Run quarterly discovery interviews with 20 to 30 customers to set the roadmap\" lacks a specific resulting priority, but the current role already demonstrates leadership, adoption, and performance outcomes."
+              }
+            ],
+            "rationale": "The report makes a grounded, specific request that would help demonstrate product judgment without inflating ownership. It is a reasonable improvement on an already strong resume, not an omission that would independently cost an interview."
+          },
+          "usage": {
+            "prompt_tokens": 2598,
+            "completion_tokens": 201,
+            "total_tokens": 2799,
+            "cached_prompt_tokens": 2595,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 39
+          },
+          "cost_usd": 0.0022755,
+          "latency_ms": 5886
+        }
+      },
+      {
+        "fixture_id": "synth_cc_physical_therapist_strong_1",
+        "kind": "strong",
+        "pass": true,
+        "flagged": 1,
+        "padding": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "synth_cc_physical_therapist_strong_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Return-to-run program components and progression",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The line \"Built a return-to-run program that 85 patients completed in 2025\" already establishes ownership and scale; missing program components would not independently cost an interview."
+              }
+            ],
+            "rationale": "The report offers a grounded, specific improvement to meaningful work in the current role, making it a reasonable first fix on an otherwise strong resume. Its explanation could better connect the requested detail to evaluating clinical judgment, but the ask is useful and preserves the therapist's stated ownership."
+          },
+          "usage": {
+            "prompt_tokens": 2602,
+            "completion_tokens": 206,
+            "total_tokens": 2808,
+            "cached_prompt_tokens": 2599,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 34
+          },
+          "cost_usd": 0.0023259,
+          "latency_ms": 6154
+        }
+      },
+      {
+        "fixture_id": "synth_cc_fpa_analyst_strong_1",
+        "kind": "strong",
+        "pass": true,
+        "flagged": 1,
+        "padding": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "synth_cc_fpa_analyst_strong_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Planning activities and decisions behind budget ownership",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The line \"Own the $240M annual operating budget for the snacks division\" already establishes ownership and scale, while the surrounding forecast and pricing bullets demonstrate substantive work and results."
+              }
+            ],
+            "rationale": "The report offers a grounded refinement to the current role's core work, but the missing planning detail would not independently cost an interview. The fix would be more actionable if it specified which planning activities or decision responsibilities to explain."
+          },
+          "usage": {
+            "prompt_tokens": 2555,
+            "completion_tokens": 207,
+            "total_tokens": 2762,
+            "cached_prompt_tokens": 2552,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 45
+          },
+          "cost_usd": 0.0023312,
+          "latency_ms": 6966
+        }
+      },
+      {
+        "fixture_id": "synth_cc_construction_pm_strong_1",
+        "kind": "strong",
+        "pass": true,
+        "flagged": 1,
+        "padding": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "synth_cc_construction_pm_strong_1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Scheduling action behind the early grocery-build delivery",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024\" already establishes project scale and a concrete result; a scheduling example would strengthen it but is not independently interview-blocking."
+              }
+            ],
+            "rationale": "The report offers a grounded, honest improvement to a major achievement, although it could name the scheduling detail to add more precisely. This is a reasonable first refinement on an already strong resume, not a problem that would independently cost an interview."
+          },
+          "usage": {
+            "prompt_tokens": 2580,
+            "completion_tokens": 170,
+            "total_tokens": 2750,
+            "cached_prompt_tokens": 2577,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0019637,
+          "latency_ms": 4932
+        }
+      }
+    ]
+  },
+  "unkeyed_blind": [
+    {
+      "fixture_id": "synth_sales_executive_mid_foundation_1",
+      "added": 2,
+      "not_critical": [
+        {
+          "number": 3,
+          "note": "The bullet \"Contributed to various projects aimed at improving customer engagement and sales strategies across multiple teams\" is vague, but missing one supporting project example would not independently cost an interview."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_hr_manager_director_foundation_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_finance_analyst_senior_weak_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_operations_manager_entry_weak_1",
+      "added": 2,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_product_manager_entry_elite_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_staff_accountant_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_data_analyst_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_mechanical_engineer_1",
+      "added": 1,
+      "not_critical": [
+        {
+          "number": 2,
+          "note": "The bullet \"- Run tolerance stack-ups and FEA on load-bearing components\" could benefit from a verified result, but that supporting activity's missing outcome is not independently an interview blocker."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_bp_marketing_coordinator_gap_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_ux_researcher_gap_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_product_designer_unrelated_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_it_support_recent_grad_1",
+      "added": 2,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_bank_branch_manager_gap_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_event_planner_relocation_1",
+      "added": 1,
+      "not_critical": [
+        {
+          "number": 2,
+          "note": "The resume already explains a \"Relocation Break\" with \"Moved from Chicago to Charlotte for a family move\" and dates \"August 2024 - March 2025\", making this an answered break under the gap-handling criterion."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_bp_logistics_dispatcher_1",
+      "added": 1,
+      "not_critical": []
+    },
+    {
+      "fixture_id": "synth_bp_graphic_designer_unrelated_1",
+      "added": 2,
+      "not_critical": []
+    }
+  ],
+  "skipped": []
+}

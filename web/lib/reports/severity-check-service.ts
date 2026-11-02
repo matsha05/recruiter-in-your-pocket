@@ -6,6 +6,7 @@ import { todayForPrompt } from "../llm/prompt-date";
 import {
   requestSeverityCheck,
   SEVERITY_CHECK_PROMPT_VERSION,
+  SEVERITY_CHECK_TIMEOUT_MS,
   type SeverityCheckAnswer,
   type SeverityCheckResponse,
   type SeverityKind,
@@ -24,6 +25,8 @@ export interface SeverityOutcome {
   added: SeverityKind[];
   /** Existing fixes (1 = Fix 2, 2 = Fix 3) that shipped as Critical Misses. */
   promoted: number[];
+  /** Existing fixes that a new Critical Miss on the same line replaced. */
+  replaced: number[];
   skipped: SeveritySkip[];
   critical_count: number;
   more_critical: boolean;
@@ -40,6 +43,17 @@ export interface SeverityOutcome {
 }
 
 type ValidationOptions = { forceGrounding?: boolean; jobDescription?: string };
+
+// A request that never settles must not hold the report: past this, the report ships as written.
+const DEADLINE_SLACK_MS = 5_000;
+
+function withDeadline<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(Object.assign(new Error("Severity check passed its deadline"), { code: "OPENAI_TIMEOUT" })), ms);
+  });
+  return Promise.race([promise, deadline]).finally(() => clearTimeout(timer));
+}
 
 /**
  * Merges a severity answer into a validated report and validates the result. Never throws. The merged
@@ -67,6 +81,7 @@ export function settleSeverityCheck(input: {
       reason: (count <= 1 ? "none" : merged.added.length > 0 ? "added" : "promoted") as SeverityReason,
       added: merged.added,
       promoted: merged.promoted,
+      replaced: merged.replaced,
       skipped: merged.skipped,
       critical_count: count,
       more_critical: payload.more_critical === true,
@@ -106,6 +121,7 @@ export function settleSeverityCheck(input: {
     reason: firstFixChanged ? "first_fix_changed" : "validation",
     added: [],
     promoted: [],
+    replaced: [],
     skipped: flagsOnly.skipped,
     critical_count: criticalCount(input.payload),
     more_critical: false,
@@ -126,16 +142,18 @@ export async function applySeverityCheck(input: {
   today?: string;
   signal?: AbortSignal;
   request?: (args: Parameters<typeof requestSeverityCheck>[0]) => Promise<SeverityCheckResponse>;
+  /** Defaults to the call's own timeout plus a few seconds. */
+  deadlineMs?: number;
 }): Promise<SeverityOutcome> {
   const startedAt = Date.now();
   let response: SeverityCheckResponse;
   try {
-    response = await (input.request || requestSeverityCheck)({
+    response = await withDeadline((input.request || requestSeverityCheck)({
       resumeText: input.resumeText,
       report: input.payload,
       today: input.today || todayForPrompt(),
       signal: input.signal,
-    });
+    }), input.deadlineMs ?? SEVERITY_CHECK_TIMEOUT_MS + DEADLINE_SLACK_MS);
   } catch (error: any) {
     const code = String(error?.code || "");
     return {
@@ -144,6 +162,7 @@ export async function applySeverityCheck(input: {
       reason: code === "OPENAI_TIMEOUT" ? "timeout" : "provider",
       added: [],
       promoted: [],
+      replaced: [],
       skipped: [],
       critical_count: criticalCount(input.payload),
       more_critical: false,

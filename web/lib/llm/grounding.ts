@@ -230,7 +230,9 @@ export function findFixEvidenceMismatch(
       findings.push("absence marker is contradicted by the resume");
     }
     const expectedSection = normalizedMarker.match(/^no (summary|skills|education) section present$/)?.[1];
-    if (expectedSection && !new RegExp(`\\b${expectedSection}\\b`, "i").test(fix)) {
+    // A one-line headline naming the target role sits where a summary would: the summary marker supports it.
+    const sectionWords = expectedSection === "summary" ? "summary|headline" : expectedSection;
+    if (expectedSection && !new RegExp(`\\b(?:${sectionWords})\\b`, "i").test(fix)) {
       findings.push(`absence marker does not support this ${expectedSection}-unrelated fix`);
     }
     return findings;

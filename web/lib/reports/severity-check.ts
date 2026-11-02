@@ -4,8 +4,10 @@ import type { SeverityCheckAnswer, SeverityCheckItem, SeverityKind } from "../ll
 /**
  * Merging the severity check into a finished report (Matt, wave 3: "i dont want to lie to people and say
  * they have one critical miss if there are more"). The first fix is the report's Critical Miss and never
- * changes. Each further Critical Miss either promotes Fix 2 or Fix 3, when it already names the problem,
- * or is added after the first fix. Critical Misses come first; the report keeps at most three fixes.
+ * changes. Each further Critical Miss either promotes Fix 2 or Fix 3, when the check says that fix already
+ * names the problem, or is added after the first fix. A new one on the line Fix 2 or Fix 3 cites replaces
+ * that fix: one fix per line, and the new one asks for what makes it serious. Critical Misses come first;
+ * the report keeps at most three fixes.
  */
 
 type Fix = Record<string, any>;
@@ -17,6 +19,8 @@ export interface SeverityMerge {
   report: Report;
   added: SeverityKind[];
   promoted: number[];
+  /** Existing fixes (1 = Fix 2, 2 = Fix 3) that a new Critical Miss on the same line replaced. */
+  replaced: number[];
   skipped: SeveritySkip[];
 }
 
@@ -47,6 +51,7 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
   const first = fixes[0];
   const added: SeverityKind[] = [];
   const promoted: number[] = [];
+  const replaced: number[] = [];
   const skipped: SeveritySkip[] = [];
   // In priority order after the first fix: an index into the existing fixes, or a new fix.
   const critical: Array<number | Fix> = [];
@@ -62,20 +67,22 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
         skipped.push({ kind: item.kind, reason: "duplicates_first_fix" });
         continue;
       }
-      // A new fix on the line Fix 2 or Fix 3 already cites is that fix: promote it instead of a duplicate.
-      index = fixes.findIndex((fix, position) => position > 0 && excerptOf(fix) === excerpt);
-      if (index < 0) {
-        if (added.length >= limitNew) continue;
-        critical.push(newFix(item));
-        added.push(item.kind);
+      const sameLine = fixes.findIndex((fix, position) => position > 0 && excerptOf(fix) === excerpt);
+      if (sameLine > 0 && (promoted.includes(sameLine) || replaced.includes(sameLine))) {
+        skipped.push({ kind: item.kind, reason: "already_flagged" });
         continue;
       }
+      if (added.length >= limitNew) continue;
+      critical.push(newFix(item));
+      added.push(item.kind);
+      if (sameLine > 0) replaced.push(sameLine);
+      continue;
     }
     if (index < 1 || index >= fixes.length) {
       skipped.push({ kind: item.kind, reason: "no_such_fix" });
       continue;
     }
-    if (promoted.includes(index)) {
+    if (promoted.includes(index) || replaced.includes(index)) {
       skipped.push({ kind: item.kind, reason: "already_flagged" });
       continue;
     }
@@ -86,7 +93,7 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
     .filter(Boolean)
     .map((fix) => ({ ...fix, critical: true }));
   const rest = fixes.slice(1)
-    .filter((_, offset) => !promoted.includes(offset + 1))
+    .filter((_, offset) => !promoted.includes(offset + 1) && !replaced.includes(offset + 1))
     .map((fix) => ({ ...fix, critical: false }));
   const topFixes = [...misses, ...rest].slice(0, 3);
   const count = topFixes.filter((fix) => fix.critical).length;
@@ -94,6 +101,7 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
     report: { ...report, top_fixes: topFixes, more_critical: answer.more_critical === true && count === 3 },
     added,
     promoted,
+    replaced,
     skipped,
   };
 }
@@ -110,8 +118,12 @@ export function criticalCount(report: Report) {
   return fixes.some((fix) => typeof fix?.critical === "boolean") ? fixes.filter((fix) => fix?.critical === true).length : Math.min(fixes.length, 1);
 }
 
-/** RIYP_SEVERITY_CHECK: "1"/"true" turns the check on, "0"/"false" off; unset means the default. */
-export const SEVERITY_CHECK_DEFAULT = false;
+/**
+ * RIYP_SEVERITY_CHECK: "1"/"true" turns the check on, "0"/"false" off; unset means the default. On since the
+ * gate passed (November 2: under-count 8 of 8, over-count 4 of 4, no vetoes, no smoke or golden regressions;
+ * tests/fixtures/results/summary_severity_check_v1_2026-11-02.md).
+ */
+export const SEVERITY_CHECK_DEFAULT = true;
 
 export function isSeverityCheckEnabled(value = process.env.RIYP_SEVERITY_CHECK) {
   const normalized = String(value ?? "").trim().toLowerCase();
