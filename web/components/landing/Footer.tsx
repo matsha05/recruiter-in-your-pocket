@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/icons";
+import { Wordmark } from "@/components/icons/Wordmark";
 import { FOOTER_NAV } from "@/lib/navigation";
 import styles from "./Footer.module.css";
 import { PrivacyPreferencesButton } from "@/components/privacy/PrivacyPreferencesButton";

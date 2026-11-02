@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { List } from "@phosphor-icons/react";
-import { Wordmark } from "@/components/icons";
+import { Wordmark } from "@/components/icons/Wordmark";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";

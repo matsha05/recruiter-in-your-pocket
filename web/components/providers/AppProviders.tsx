@@ -1,7 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactNode, useEffect } from "react";
 import { LazyMotion, MotionConfig } from "motion/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { INSTANT_TRANSITION, UI_TRANSITION } from "@/lib/animation";
@@ -15,22 +14,6 @@ type AppProvidersProps = {
 
 export function AppProviders({ children }: AppProvidersProps) {
   const prefersReducedMotion = useReducedMotion();
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 30_000,
-            gcTime: 5 * 60_000,
-            refetchOnWindowFocus: false,
-            retry: 1,
-          },
-          mutations: {
-            retry: 1,
-          },
-        },
-      })
-  );
 
   useEffect(() => {
     const root = document.documentElement;
@@ -52,9 +35,7 @@ export function AppProviders({ children }: AppProvidersProps) {
         reducedMotion="user"
         transition={prefersReducedMotion ? INSTANT_TRANSITION : UI_TRANSITION}
       >
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <AuthProvider>{children}</AuthProvider>
       </MotionConfig>
     </LazyMotion>
   );

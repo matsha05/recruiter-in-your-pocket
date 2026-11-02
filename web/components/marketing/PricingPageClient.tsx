@@ -10,7 +10,6 @@ import { PassExamples } from "@/components/marketing/PassExamples";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
-import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
@@ -132,7 +131,8 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
             window.location.href = data.url;
         } catch {
             Analytics.track("checkout_start_failed", { source: "pricing", tier });
-            toast.error(checkoutError);
+            // Loaded on failure only, so sonner stays out of the pricing page's first load.
+            void import("sonner").then(({ toast }) => toast.error(checkoutError));
         } finally {
             setLoadingTier(null);
         }

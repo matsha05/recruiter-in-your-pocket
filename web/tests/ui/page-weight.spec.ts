@@ -3,10 +3,12 @@ import { expect, test } from "@playwright/test";
 
 // First-load JavaScript budget for pages that are mostly text. It counts every
 // script the server-rendered HTML references, gzipped, so a library pulled back
-// into the root layout (Supabase, the command palette, Sentry Replay, motion
-// features) fails here instead of shipping on every page. Scripts loaded after
-// hydration or on demand are not counted.
-const TEXT_PAGE_BUDGET_KB = 400;
+// into the root layout or the public header (Supabase, the command palette,
+// Sentry Replay, motion features, sonner, React Query, the account menu) fails
+// here instead of shipping on every page. Scripts loaded after hydration or on
+// demand are not counted. The budget is about 5% over the heaviest page,
+// /pricing at 326 KB in a local production build on November 2, 2026.
+const TEXT_PAGE_BUDGET_KB = 342;
 const TEXT_PAGES = ["/", "/pricing", "/research", "/research/how-recruiters-read", "/privacy", "/status"];
 
 test.describe("first-load JavaScript budget", () => {

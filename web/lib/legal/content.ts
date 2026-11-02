@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { IconProps } from "@phosphor-icons/react";
-import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react";
+// The server-safe icon build: legal pages render on the server.
+import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react/dist/ssr";
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TERMS_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 
