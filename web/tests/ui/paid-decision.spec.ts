@@ -542,7 +542,7 @@ test.describe("paid decision boundary", () => {
       await expect(banner.getByRole("heading", { name: "Your Job Search Pass is ready." })).toBeVisible();
       // The report markers above and zero generation requests below verify
       // restoration. The banner describes the purchased report allowance.
-      await expect(banner).toContainText("five additional reports");
+      await expect(banner).toContainText("Five more reports, good for 30 days.");
       await expect(banner).not.toContainText("Full report unlocked");
       await expect(banner).not.toContainText(/(?:unlock|locked|see the rest|remaining content)/i);
       const bannerShell = page.getByTestId("pass-ready-banner-shell");
