@@ -250,3 +250,12 @@ These files are being edited by the signature-report and research-receipts sessi
 
   The only change in the first two is the workspace H1 string. No paid-decision assertion changed.
 - The last two string edits (the workspace eyebrow, a trust-card sentence) came after that build. tsc, lint and the guardrails were re-run on the final commit.
+- **Anonymous-founder pass, on a fresh build of `c9609f58`:**
+  - Passed: lint, `qa:design-system`, `test:search-foundation` (now asserting no founder or Person).
+  - The production build's type check passed.
+  - The served homepage HTML has no "Matt", "Shaw", "Google", "OpenAI" or photo path.
+  - Looked at the founder section and methodology at 390 and 1440: no horizontal overflow, no name anywhere on methodology.
+  - 8 UI spec files: 48 passed, 2 failed. homepage-seo (the new founder assertions), search-foundation, editorial-surfaces, homepage-responsive, landing-navigation, mobile-landing and site-mobile-navigation all passed.
+  - The 2 failures were timeouts in `research-surface.spec.ts` while the machine's load average was about 25. On a rerun, "load without browser errors" passed. The axe sweep (17 pages in 180 seconds) timed out again; neither run failed an assertion.
+  - Run directly, axe found no serious or critical violations on `/research/referral-advantage` (the only research page changed), `/` at 1440 and 390, or `/methodology` at 1440 and 390.
+  - The research axe sweep should be re-run on a quieter machine or in CI.
