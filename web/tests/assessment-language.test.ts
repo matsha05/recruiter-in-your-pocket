@@ -209,6 +209,19 @@ assert.ok(fromPath(breakFix('After BrightWave, use a dated line such as "Senior 
 assert.ok(fromPath(breakFix('Your resume already has a "Career break" line after BrightWave.'), breakSource).length > 0, "a label the resume is said to have still needs support");
 console.log("quoted-subject and suggested-label tests passed");
 
+// A month and its abbreviation are one word (severity check: "The Greenfield role ends in July 2023" on "Jul 2023").
+const julySource = "Operations Assistant, Greenfield Logistics\nFeb 2023 - Jul 2023";
+const julyFix = (fix: string, why: string) => ({ top_fixes: [{ fix, why }] });
+assert.equal(fromPath(julyFix("Add one dated line covering Jul 2023 to today.", "The Greenfield Logistics role ends in July 2023, and nothing later is listed."), julySource).length, 0,
+  "July is the resume's Jul");
+assert.equal(fromPath(julyFix("Add one dated line covering July 2023 to today.", "The Greenfield role ends in Jul 2023."), "Operations Assistant, Greenfield\nFebruary 2023 - July 2023").length, 0,
+  "and Jul is the resume's July");
+assert.ok(fromPath(julyFix("Add one dated line covering October 2023 to today.", "The Greenfield Logistics role ends in October 2023."), julySource).length > 0,
+  "a month the resume never names is still unsupported");
+assert.ok(fromPath(julyFix("Add one dated line covering Jul 2023 to today.", "The Greenfield Logistics role ends in July 2023 after the Northwind merger."), julySource).length > 0,
+  "a name beside the month is still checked");
+console.log("month abbreviation tests passed");
+
 // A question may open with an auxiliary (eval_1793584776603, count-check marketing director).
 const candleSource = "Director of Marketing\nLumen Candle Co., Austin, TX\n- Post 3 to 5 times a week on the company Instagram, which has 2,100 followers";
 const askIdea = (question: string) => ({ ideas: { questions: [{ question, archetype: "IMPROVEMENT" }] } });

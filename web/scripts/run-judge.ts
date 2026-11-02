@@ -7,6 +7,8 @@
  *   npm run eval:judge -- score <live_run.json> [--limit 5]
  *   npm run eval:judge -- compare <production_live_run.json> <candidate_live_run.json> [--key <count-check-key.json>]
  *     (prints the prompt-change gate verdict, count checks included, and exits nonzero on FAIL)
+ *   npm run eval:judge -- severity <severity_run.json>
+ *     (the severity check's gate: count checks and absolute-mode vetoes on added Critical Misses; exits nonzero on FAIL)
  *   npm run eval:judge -- self-preference [--author gpt-6.1-sol] [--judges gpt-6.1-sol,gpt-6-astra]
  *
  * Common flags: --budget-usd <n> (default 1), --model gpt-6.1-sol|gpt-6-astra,
@@ -446,6 +448,96 @@ async function compare(fileX: string, fileY: string, flags: Flags) {
 }
 
 // ============================================
+// SEVERITY CHECK GATE
+// ============================================
+
+function normalizedQuote(value: string) {
+    return value.toLowerCase().replace(/[“”"‘’']/g, "").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * The severity check's gate (wave 3). Production's first fix never changes, so the preference bar does
+ * not apply. Under-count: every labeled bad resume flags at least 2 of its 3 labeled problems. Over-count:
+ * no labeled strong resume gets an added Critical Miss. Vetoes: one absolute-mode call on every report the
+ * check extended; a veto counts against the check unless every unsupported claim is quoted from the
+ * first fix or the Verdict, which production wrote. Exits nonzero on FAIL.
+ */
+async function severity(file: string, flags: Flags) {
+    const cfg = judgeConfig(flags);
+    const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
+    const { run, cases, skipped } = loadRunCases(file, undefined);
+    const extended = [...cases.values()].filter((item) => item.view.misses.length > 1);
+    console.log(`Severity gate on ${run.metadata.run_id}: ${cases.size} judgeable reports, ${extended.length} with added Critical Misses; ceiling $${ledger.ceilingUsd}`);
+    const absolute = await pool(extended, numberFlag(flags, "concurrency", 3), async (item) => {
+        const result = await judgeAbsolute(item.input, item.view, { config: cfg, ledger });
+        const production = normalizedQuote(`${item.view.verdict} ${item.view.misses[0].fix} ${item.view.misses[0].why}`);
+        const added = normalizedQuote(item.view.misses.slice(1).map((miss) => `${miss.fix} ${miss.why}`).join(" "));
+        const claims = result.raw.unsupported_claims || [];
+        const productionOnly = claims.length > 0 && claims.every((claim) => {
+            const quote = normalizedQuote(claim.quote);
+            return quote && production.includes(quote) && !added.includes(quote);
+        });
+        const addedVeto = result.veto && !productionOnly;
+        console.log(`   ${item.fixture_id}: ${item.view.misses.length} Critical Misses, overall ${result.overall}${result.veto ? (addedVeto ? " (veto on an added Critical Miss)" : " (veto on production's first fix)") : ""}`);
+        return { fixture_id: item.fixture_id, misses: item.view.misses.length, more_than_three: Boolean(item.view.more_than_three), added_veto: addedVeto, result };
+    });
+    reportErrors(absolute.filter((row): row is Error => row instanceof Error));
+    const rows = absolute.filter((row): row is Exclude<typeof row, Error> => !(row instanceof Error));
+    const count = await countChecks(cases, flags, cfg, ledger);
+    const bad = count.outcomes.filter((outcome) => outcome.kind === "bad");
+    const strong = count.outcomes.filter((outcome) => outcome.kind === "strong");
+    // Stricter than the prompt-change gate: a strong resume passes only with exactly one Critical Miss.
+    const strongPass = (outcome: CountCheckOutcome) => !outcome.problem && outcome.flagged === 1 && !outcome.more_than_three;
+    const addedVetoes = rows.filter((row) => row.added_veto);
+    const failures = [
+        ...(count.key_errors.length ? [`count key errors: ${count.key_errors.join("; ")}`] : []),
+        ...(bad.length !== 8 ? [`${bad.length} labeled bad resumes judged, expected 8`] : []),
+        ...(strong.length !== 4 ? [`${strong.length} labeled strong resumes judged, expected 4`] : []),
+        ...bad.filter((outcome) => !outcome.pass).map((outcome) => `under-count: ${outcomeLine(outcome)}`),
+        ...strong.filter((outcome) => !strongPass(outcome)).map((outcome) => `over-count: ${outcomeLine(outcome)}`),
+        ...addedVetoes.map((row) => `veto on an added Critical Miss: ${row.fixture_id}`),
+        ...(absolute.length !== rows.length ? [`${absolute.length - rows.length} absolute calls failed`] : []),
+    ];
+    const pass = failures.length === 0;
+    const lines = [
+        `## SEVERITY GATE: ${pass ? "PASS" : "FAIL"}`,
+        "",
+        `- Under-count, labeled bad resumes: ${bad.filter((outcome) => outcome.pass).length} of ${bad.length} flag at least 2 of 3 labeled problems (bar: all 8)`,
+        `- Over-count, labeled strong resumes: ${strong.filter(strongPass).length} of ${strong.length} with no added Critical Miss (bar: all 4)`,
+        `- Vetoes on added Critical Misses (absolute mode): ${addedVetoes.length} in ${rows.length} extended reports (bar: 0); vetoes on production's first fix: ${rows.filter((row) => row.result.veto && !row.added_veto).length}`,
+        ...failures.map((failure) => `- Fails: ${failure}`),
+        "- The smoke and golden no-regression check applies separately.",
+    ];
+    const runMeta = meta(`Critical Miss judge: severity check gate for ${run.metadata.run_id}`, cfg, ledger);
+    const markdown = [
+        `# ${runMeta.title}`,
+        "",
+        `- Run: ${runMeta.timestamp}`,
+        `- Judge: \`${cfg.model}\`, reasoning ${cfg.reasoningEffort}, seed ${cfg.seed}`,
+        `- Judge prompt SHA-256: \`${runMeta.judge_prompt_sha256}\``,
+        `- Calls: ${ledger.calls}; token-calculated spend: $${ledger.spentUsd.toFixed(4)}`,
+        `- Source: \`${path.basename(file)}\` (${run.metadata.model}, prompt ${String(run.metadata.resume_prompt_sha256 || "").slice(0, 8)})`,
+        "",
+        ...lines,
+        "",
+        "## Count checks",
+        "",
+        ...count.outcomes.map((outcome) => `- ${outcome.kind}: ${outcomeLine(outcome)} → ${(outcome.kind === "bad" ? outcome.pass : strongPass(outcome)) ? "pass" : "FAIL"}`),
+        "",
+        "## Absolute mode on extended reports",
+        "",
+        "| Fixture | Critical Misses | Overall (1-5) | Veto | Unsupported claims | Rationale |",
+        "| --- | --- | --- | --- | --- | --- |",
+        ...rows.map((row) => `| ${row.fixture_id} | ${row.misses}${row.more_than_three ? " + more" : ""} | ${row.result.overall} | ${row.result.veto ? (row.added_veto ? "**added**" : "first fix") : ""} | ${(row.result.raw.unsupported_claims || []).map((claim) => `"${claim.quote}": ${claim.why}`).join("; ").replace(/\|/g, "/")} | ${String(row.result.raw.rationale || "").replace(/\|/g, "/").replace(/\n/g, " ")} |`),
+        "",
+        ...(skipped.length ? [`Skipped (never sent to the judge): ${skipped.join("; ")}`, ""] : []),
+    ].join("\n");
+    save("severity", flags, { meta: runMeta, source_run: run.metadata.run_id, source_file: path.basename(file), pass, failures, absolute: rows, count, skipped }, markdown);
+    console.log(`\n${lines.join("\n")}`);
+    if (!pass) process.exitCode = 1;
+}
+
+// ============================================
 // SELF-PREFERENCE
 // ============================================
 
@@ -515,8 +607,9 @@ async function main() {
     if (command === "calibrate") return calibrate(flags);
     if (command === "score" && files.length === 1) return score(files[0], flags);
     if (command === "compare" && files.length === 2) return compare(files[0], files[1], flags);
+    if (command === "severity" && files.length === 1) return severity(files[0], flags);
     if (command === "self-preference") return selfPreference(flags);
-    console.log("Usage: npm run eval:judge -- calibrate | score <run.json> | compare <runX.json> <runY.json> | self-preference");
+    console.log("Usage: npm run eval:judge -- calibrate | score <run.json> | compare <runX.json> <runY.json> | severity <severity_run.json> | self-preference");
     process.exitCode = 1;
 }
 

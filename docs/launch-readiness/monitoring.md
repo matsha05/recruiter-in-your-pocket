@@ -25,6 +25,7 @@ Server code now sends unsampled Sentry metric counters at each decision point (`
 | --- | --- | --- |
 | `riyp.report.outcome` | `outcome` (completed, failed), `failure` (none, validation, timeout, provider, canceled, paused, precondition, access, persistence, other), `error_code`, `mode`, `viewer`, `has_jd`, `endpoint` | `app/api/resume-feedback-stream/route.ts` |
 | `riyp.report.repair` | `result` (started, completed, failed) | `lib/llm/validateResumeStreamOutput.ts`, next to the `llm.response.repair_*` logs |
+| `riyp.severity.outcome` | `outcome` (added, none, fallback, error), `reason` (added, promoted, none, validation, first_fix_changed, timeout, provider), `critical` (1, 2, 3), `more` (yes, no), `endpoint` | `lib/reports/severity-check-report.ts`, after a resume report validates, while `RIYP_SEVERITY_CHECK` is on; next to the `llm.severity_check.*` logs, which carry its latency and cost |
 | `riyp.free_gate.check` | `result` (allowed, blocked, identity_retry), `reason` (none, cookie, identity, network, hold, account, unknown), `first_attempt` (yes, no, unknown), `viewer` | Report stream route; reasons come from the anonymous ledger |
 | `riyp.checkout.step` | `step` (see the funnel below), `source` | `/api/checkout`, `/api/stripe/webhook`, `/api/billing/confirm`, `/api/billing/restore` |
 

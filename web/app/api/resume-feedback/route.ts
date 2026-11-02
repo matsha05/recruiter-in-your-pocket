@@ -58,6 +58,7 @@ import { persistGeneratedReport } from "@/lib/reports/generated-report-store";
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
+import { severityCheckReport } from "@/lib/reports/severity-check-report";
 import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 
 export const runtime = "nodejs";
@@ -309,6 +310,16 @@ export async function POST(request: Request) {
         payload = ensureLayoutAndContentFields(payload);
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
+      // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
+      ({ payload } = await severityCheckReport({
+        payload,
+        mode,
+        resumeText: canonicalResumeText,
+        validationOptions: effectiveJobDescription.validationOptions,
+        signal: request.signal,
+        endpoint: "json",
+        ctx: { request_id, route, user_id },
+      }));
     }
 
     let reportId: string | null = null;

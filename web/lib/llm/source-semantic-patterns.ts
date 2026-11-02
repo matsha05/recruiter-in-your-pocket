@@ -61,3 +61,15 @@ export function isCommonCapitalizedWord(value: string) {
     return match?.index === 0 && match[0].length === value.length;
   });
 }
+
+// "July 2023" is the resume's "Jul 2023": a month and its abbreviation are one word, as a token and as a name.
+export const MONTH_ALIASES = new Map<string, string>([
+  ...["january", "february", "march", "april", "june", "july", "august", "september", "october", "november", "december"]
+    .map((month): [string, string] => [month, month.slice(0, 3)]),
+  ["sept", "sep"],
+]);
+
+export function abbreviatedMonth(name: string) {
+  const month = MONTH_ALIASES.get(name.toLowerCase());
+  return month ? `${month[0].toUpperCase()}${month.slice(1)}` : name;
+}

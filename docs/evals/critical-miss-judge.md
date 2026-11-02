@@ -89,6 +89,27 @@ Only flagged Critical Misses count. A labeled resume that is missing from the ca
 
 **Reading the result.** The `GATE:` block prints one line per check. The markdown's "Count checks" table lists, for each Critical Miss, whether the judge rated it critical on its own and, on bad resumes, the labeled problem it matched. When a bad resume fails, compare its Critical Misses with the key: a miss on a real problem the key doesn't list shows as "none" but critical, which points at the key rather than the prompt.
 
+## The severity check's gate
+
+The severity check (`prompts/severity_check_v1.txt`, wave 3) runs after a resume report is written and validated. It adds up to two Critical Misses, or promotes Fix 2 or Fix 3, and production's prompt and first fix never change. So the preference bar does not apply, and its gate is:
+
+- **Under-count:** every labeled bad resume flags at least 2 of its 3 labeled problems (the count check above);
+- **Over-count:** no labeled strong resume gets an added Critical Miss or a "more than three" signal. This is stricter than `compare`, which allows an extra Critical Miss the blind call rates critical on its own;
+- **Vetoes:** one absolute-mode call on every report the check extended. A veto counts against the check unless every unsupported claim it quotes is from the first fix or the Verdict, which production wrote;
+- **No regressions on smoke and golden**, checked separately, report by report, against the same run without the check.
+
+Run the check on saved reports, then the gate:
+
+```bash
+RIYP_ALLOW_PAID_EVALS=true node scripts/run-ts-test.cjs scripts/eval-severity-check.ts ../tests/fixtures/results/<production>_live_run.json --budget-usd 2 --label <name>
+```
+
+```bash
+npm run eval:judge -- severity ../tests/fixtures/results/<timestamp>_severity_run.json
+```
+
+`eval-severity-check.ts` writes a run file whose reports are the ones a reader sees after the check, with each source report kept as `pre_severity_output` and the check's answer, latency and cost on each result. `--rescore <severity_run.json>` settles the saved answers again through the current validator at no cost.
+
 ## Reading a comparison
 
 Each fixture is judged twice, once with each report shown first. The combined verdict is:
