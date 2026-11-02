@@ -451,6 +451,761 @@
                 "early_career",
                 "hourly_work"
             ]
+        },
+        {
+            "id": "synth_bp_customer_success_manager_1",
+            "path": "blindpick/synth_bp_customer_success_manager_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 62,
+                "max": 80
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "customer_success",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_icu_nurse_1",
+            "path": "blindpick/synth_bp_icu_nurse_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 62,
+                "max": 80
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "healthcare",
+                "nursing",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_teacher_to_instructional_designer_1",
+            "path": "blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 60,
+                "max": 78
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "education",
+                "career_change",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_staff_accountant_1",
+            "path": "blindpick/synth_bp_staff_accountant_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 52,
+                "max": 70
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "finance",
+                "accounting",
+                "weak",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_warehouse_supervisor_1",
+            "path": "blindpick/synth_bp_warehouse_supervisor_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 56,
+                "max": 75
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "operations",
+                "frontline",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_technical_recruiter_1",
+            "path": "blindpick/synth_bp_technical_recruiter_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 66,
+                "max": 84
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "recruiting",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_data_analyst_1",
+            "path": "blindpick/synth_bp_data_analyst_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 76
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "data",
+                "entry_mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_mechanical_engineer_1",
+            "path": "blindpick/synth_bp_mechanical_engineer_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 60,
+                "max": 78
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "engineering",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_marketing_coordinator_gap_1",
+            "path": "blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 55,
+                "max": 72
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "marketing",
+                "gap",
+                "no_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_paralegal_1",
+            "path": "blindpick/synth_bp_paralegal_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 64,
+                "max": 82
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "legal",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_executive_assistant_freelance_1",
+            "path": "blindpick/synth_bp_executive_assistant_freelance_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 76
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "admin",
+                "gap_with_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_retail_store_manager_1",
+            "path": "blindpick/synth_bp_retail_store_manager_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 78,
+                "max": 92
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "retail",
+                "manager",
+                "strong",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_ux_researcher_gap_1",
+            "path": "blindpick/synth_bp_ux_researcher_gap_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 72,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "design",
+                "research",
+                "gap",
+                "no_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_backend_engineer_senior_1",
+            "path": "blindpick/synth_bp_backend_engineer_senior_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 84,
+                "max": 96
+            },
+            "expected_band": "elite",
+            "tags": [
+                "engineering",
+                "senior",
+                "elite",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_account_executive_1",
+            "path": "blindpick/synth_bp_account_executive_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 70,
+                "max": 86
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "sales",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_hr_generalist_career_break_1",
+            "path": "blindpick/synth_bp_hr_generalist_career_break_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 56,
+                "max": 74
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "hr",
+                "career_break",
+                "synthetic",
+                "fictional",
+                "blindpick",
+                "career_break_answered"
+            ]
+        },
+        {
+            "id": "synth_bp_product_designer_unrelated_1",
+            "path": "blindpick/synth_bp_product_designer_unrelated_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 78
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "design",
+                "no_recent_relevant_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_supply_chain_analyst_1",
+            "path": "blindpick/synth_bp_supply_chain_analyst_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 72,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "supply_chain",
+                "mid",
+                "strong",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_nonprofit_program_manager_1",
+            "path": "blindpick/synth_bp_nonprofit_program_manager_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 76
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "nonprofit",
+                "program_management",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_it_support_recent_grad_1",
+            "path": "blindpick/synth_bp_it_support_recent_grad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 52,
+                "max": 70
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "it",
+                "entry",
+                "no_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_social_worker_1",
+            "path": "blindpick/synth_bp_social_worker_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 76
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "social_work",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_cybersecurity_analyst_1",
+            "path": "blindpick/synth_bp_cybersecurity_analyst_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 80,
+                "max": 94
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "security",
+                "senior",
+                "strong",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_kitchen_manager_1",
+            "path": "blindpick/synth_bp_kitchen_manager_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 52,
+                "max": 70
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "hospitality",
+                "frontline",
+                "weak",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_civil_engineer_1",
+            "path": "blindpick/synth_bp_civil_engineer_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 66,
+                "max": 84
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "engineering",
+                "civil",
+                "mid",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_bank_branch_manager_gap_1",
+            "path": "blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 62,
+                "max": 80
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "banking",
+                "manager",
+                "gap",
+                "no_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_content_writer_freelance_1",
+            "path": "blindpick/synth_bp_content_writer_freelance_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 64,
+                "max": 82
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "marketing",
+                "writing",
+                "gap_with_recent_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_dental_hygienist_1",
+            "path": "blindpick/synth_bp_dental_hygienist_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 60,
+                "max": 78
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "healthcare",
+                "dental",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_event_planner_relocation_1",
+            "path": "blindpick/synth_bp_event_planner_relocation_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 66,
+                "max": 84
+            },
+            "expected_band": "good_foundation",
+            "tags": [
+                "events",
+                "career_break_answered",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_logistics_dispatcher_1",
+            "path": "blindpick/synth_bp_logistics_dispatcher_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 50,
+                "max": 68
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "logistics",
+                "frontline",
+                "weak",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_bp_graphic_designer_unrelated_1",
+            "path": "blindpick/synth_bp_graphic_designer_unrelated_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 58,
+                "max": 78
+            },
+            "expected_band": "mixed_clarity",
+            "tags": [
+                "design",
+                "no_recent_relevant_work",
+                "synthetic",
+                "fictional",
+                "blindpick"
+            ]
+        },
+        {
+            "id": "synth_cc_operations_manager_bad_1",
+            "path": "countcheck/synth_cc_operations_manager_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "operations",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_career_changer_bad_1",
+            "path": "countcheck/synth_cc_career_changer_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "career_change",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "missing_dates",
+                "no_evidence_latest_role",
+                "no_target_role"
+            ]
+        },
+        {
+            "id": "synth_cc_sales_rep_bad_1",
+            "path": "countcheck/synth_cc_sales_rep_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "sales",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_marketing_director_bad_1",
+            "path": "countcheck/synth_cc_marketing_director_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "marketing",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_recent_work",
+                "no_target_role",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_admin_generalist_bad_1",
+            "path": "countcheck/synth_cc_admin_generalist_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "administration",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_staff_accountant_bad_1",
+            "path": "countcheck/synth_cc_staff_accountant_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "accounting",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_recent_grad_bad_1",
+            "path": "countcheck/synth_cc_recent_grad_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "early_career",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_project_coordinator_bad_1",
+            "path": "countcheck/synth_cc_project_coordinator_bad_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 45,
+                "max": 85
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "project_management",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "bad",
+                "no_evidence_latest_role",
+                "no_recent_work",
+                "title_level_mismatch"
+            ]
+        },
+        {
+            "id": "synth_cc_product_manager_strong_1",
+            "path": "countcheck/synth_cc_product_manager_strong_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 75,
+                "max": 95
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "product",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "strong"
+            ]
+        },
+        {
+            "id": "synth_cc_physical_therapist_strong_1",
+            "path": "countcheck/synth_cc_physical_therapist_strong_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 75,
+                "max": 95
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "healthcare",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "strong"
+            ]
+        },
+        {
+            "id": "synth_cc_fpa_analyst_strong_1",
+            "path": "countcheck/synth_cc_fpa_analyst_strong_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 75,
+                "max": 95
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "finance",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "strong"
+            ]
+        },
+        {
+            "id": "synth_cc_construction_pm_strong_1",
+            "path": "countcheck/synth_cc_construction_pm_strong_1.txt",
+            "tier": "bulk",
+            "expected_score": {
+                "min": 75,
+                "max": 95
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "construction",
+                "synthetic",
+                "fictional",
+                "count_check",
+                "strong"
+            ]
         }
     ]
 }

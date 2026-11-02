@@ -1,0 +1,28 @@
+Elena Vasquez
+San Diego, CA | elena.vasquez@example.com | 555-0138
+
+UX researcher with seven years of mixed-methods research for fintech and health products.
+
+EXPERIENCE
+
+Senior UX Researcher
+Harborline Financial, San Diego, CA
+March 2021 - January 2025
+- Led research for the mobile banking app used by 1.2 million customers
+- Ran 60+ usability sessions and 4 diary studies on bill pay and transfers
+- Research on the transfer flow led the team to remove a confirmation step; failed transfers dropped 18%
+- Built a research repository in Dovetail used by 5 product teams
+- Mentored two junior researchers
+
+UX Researcher
+Cardia Health, San Diego, CA
+July 2018 - February 2021
+- Conducted interviews with patients and clinicians for a remote monitoring app
+- Ran surveys with 2,000+ patients to prioritize roadmap features
+- Presented findings to product and engineering leadership
+
+EDUCATION
+M.S., Human-Computer Interaction, University of California San Diego, 2018
+
+SKILLS
+Usability testing, diary studies, survey design, Dovetail, Qualtrics, Figma

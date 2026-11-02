@@ -1,0 +1,28 @@
+Arjun Mehta
+Seattle, WA | arjun.mehta@example.com | 555-0122 | github.com/arjunm-example
+
+Senior backend engineer building payment and ledger systems in Go and Kotlin.
+
+EXPERIENCE
+
+Senior Software Engineer, Payments Platform
+Tidewater Commerce, Seattle, WA
+May 2021 - Present
+- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms
+- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10
+- Led a team of 5 engineers through the PCI DSS 4.0 audit with no critical findings
+- Introduced contract testing between 14 payment services, reducing integration incidents by 40% year over year
+- Mentor 3 engineers and run the payments on-call rotation
+
+Software Engineer
+Northwind Billing, Seattle, WA
+June 2017 - April 2021
+- Built the invoicing API in Kotlin used by 2,000+ business customers
+- Reduced invoice generation time from 6 hours to 25 minutes by batching database writes
+- Added observability with OpenTelemetry and Grafana dashboards for the billing team
+
+EDUCATION
+B.S., Computer Science, University of Washington, 2017
+
+SKILLS
+Go, Kotlin, PostgreSQL, Kafka, Kubernetes, AWS, gRPC, OpenTelemetry

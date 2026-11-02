@@ -1,0 +1,28 @@
+Hiro Tanaka
+Arlington, VA | hiro.tanaka@example.com | 555-0179
+
+Security analyst focused on detection engineering and incident response for financial services.
+
+EXPERIENCE
+
+Senior Security Analyst, Detection and Response
+Capital Ridge Bank, Arlington, VA
+July 2022 - Present
+- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%
+- Lead incident response for phishing and credential-theft cases; median time to contain fell from 9 hours to 3
+- Run monthly purple-team exercises with the red team
+- Automated alert enrichment with Python and the Splunk SOAR platform
+- Mentor 2 analysts on the night rotation
+
+Security Operations Analyst
+Northgate Managed Security, Reston, VA
+May 2019 - June 2022
+- Monitored alerts for 30 client environments in a 24/7 SOC
+- Escalated incidents and wrote client-facing incident summaries
+- Tuned EDR policies in CrowdStrike Falcon
+
+CERTIFICATIONS
+GIAC Certified Incident Handler (GCIH), CompTIA Security+
+
+EDUCATION
+B.S., Information Systems, George Mason University, 2019

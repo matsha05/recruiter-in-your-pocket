@@ -1,0 +1,28 @@
+Samira Haddad
+Chicago, IL | samira.haddad@example.com | 555-0136
+
+DATA ANALYST
+
+EXPERIENCE
+
+Data Analyst
+Lakeshore Grocers, Chicago, IL
+September 2022 - Present
+- Build weekly sales and inventory dashboards in Tableau for regional managers
+- Write SQL queries against the Snowflake warehouse to answer merchandising questions
+- Analyzed promotion performance for the produce category
+- Automated a manual shrink report using Python
+- Work with store operations on labor planning data
+
+Junior Analyst
+Midwest Mutual Insurance, Chicago, IL
+June 2021 - August 2022
+- Pulled claims data for monthly reporting
+- Cleaned and validated data in Excel and SQL
+- Supported the analytics team with ad hoc requests
+
+EDUCATION
+B.S., Statistics, University of Illinois Chicago, 2021
+
+SKILLS
+SQL, Python (pandas), Tableau, Snowflake, Excel, A/B test analysis

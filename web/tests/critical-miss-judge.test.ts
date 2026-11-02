@@ -192,6 +192,10 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
   assert.ok(rendered.includes("the report says the resume has no skills section"));
   assert.ok(!rendered.includes("\"No skills section present\""));
   assert.equal(viewFromReport({ first_impression: "x", top_fixes: [{ fix: "a" }, { fix: "b" }] }, 3)?.misses.length, 2);
+  // A report that flags its Critical Misses shows only the flagged ones, however many fixes it has.
+  const flaggedView = viewFromReport({ first_impression: "x", top_fixes: [{ fix: "a", critical: true }, { fix: "b", critical: true }, { fix: "c", critical: false }] }, 3);
+  assert.deepEqual(flaggedView?.misses.map((miss) => miss.fix), ["a", "b"]);
+  assert.deepEqual(viewFromReport({ first_impression: "x", top_fixes: [{ fix: "a", critical: true }, { fix: "b", critical: false }] }, 1)?.misses.map((miss) => miss.fix), ["a"]);
 
   const prompt = pairwiseUserMessage({ id: "t", resume_text: "resume", review_date: "2026-11-01" }, viewA, viewB);
   for (const leak of ["gpt-", "prompt", "sha", "run_id", "eval_", "83b2a2d1", "55bee48b", "old", "new"]) {
@@ -203,8 +207,22 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
 {
   const calibration = JSON.parse(readFileSync(path.resolve(process.cwd(), "../tests/fixtures/calibration.json"), "utf8")) as CalibrationData;
   const judgeable = calibration.fixtures.filter(isJudgeableFixture).map((fixture) => fixture.id);
-  assert.equal(judgeable.length, 10);
+  // The 10 synthetic golden fixtures, the 30 fictional resumes written for the Critical Miss v3 comparison,
+  // and the 12 fictional count-check resumes (8 bad, 4 strong) behind tests/fixtures/judge/count-check-key.json.
+  assert.equal(judgeable.length, 52);
   assert.ok(judgeable.every((id) => id.startsWith("synth_")));
+  const fictional = calibration.fixtures.filter((fixture) => judgeable.includes(fixture.id) && fixture.tier !== "golden");
+  assert.equal(fictional.length, 42);
+  assert.ok(fictional.every((fixture) => fixture.tags.includes("fictional")
+    && (fixture.tags.includes("blindpick") || fixture.tags.includes("count_check"))));
+  const countKey = JSON.parse(readFileSync(path.resolve(process.cwd(), "../tests/fixtures/judge/count-check-key.json"), "utf8"));
+  const countIds = fictional.filter((fixture) => fixture.tags.includes("count_check")).map((fixture) => fixture.id).sort();
+  assert.deepEqual(countKey.resumes.map((resume: { fixture_id: string }) => resume.fixture_id).sort(), countIds);
+  for (const resume of countKey.resumes) {
+    assert.equal(resume.problems.length, resume.kind === "bad" ? 3 : 0, resume.fixture_id);
+    const lines = resume.problems.flatMap((problem: { lines: string[] }) => problem.lines);
+    assert.equal(new Set(lines).size, lines.length, `${resume.fixture_id}: each problem on its own lines`);
+  }
   for (const id of ["talent_leader_high_bar_matt_shaw_current_1", "golden_finance_controller_strong_foundation_1", "anchor_elite_pm_ai_1", "frontline_retail_entry_1"]) {
     assert.equal(isJudgeableFixture(calibration.fixtures.find((fixture) => fixture.id === id)), false, id);
   }

@@ -1,0 +1,33 @@
+Hannah Price
+Baltimore, MD | hannah.price@example.com | 555-0149
+
+Nonprofit program manager running youth workforce programs in partnership with schools and employers.
+
+EXPERIENCE
+
+Program Manager, Youth Workforce
+Harbor Pathways, Baltimore, MD
+January 2022 - Present
+- Manage a summer jobs program placing high school students with local employers
+- Supervise 4 program coordinators and 20 seasonal staff
+- Write grant reports for city and foundation funders
+- Recruit and onboard employer partners
+- Track participant outcomes in Salesforce
+
+Program Coordinator
+Harbor Pathways, Baltimore, MD
+August 2019 - December 2021
+- Coordinated job readiness workshops for students
+- Kept attendance and outcome data for grant reporting
+- Organized an annual career fair
+
+AmeriCorps Member
+City Year Baltimore, Baltimore, MD
+August 2018 - June 2019
+- Tutored ninth graders in math and English
+
+EDUCATION
+B.A., Sociology, Towson University, 2018
+
+SKILLS
+Program design, grant reporting, Salesforce Nonprofit Cloud, partner management
