@@ -11,6 +11,8 @@ const commonCapitalizedWords = new Set([
   "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating",
   // Sentence-initial imperatives that join a named tool to other work ("Connect Storyline to ...").
   "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
+  // Sentence-initial auxiliaries that open a question ("Is there a verifiable change ...?").
+  "Are", "Can", "Could", "Does", "Had", "Has", "Have", "Is", "Should", "Was", "Were", "Will", "Would",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [

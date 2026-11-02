@@ -206,3 +206,11 @@ assert.equal(fromPath(breakFix('After BrightWave, use a dated line such as "Care
 assert.ok(fromPath(breakFix('After BrightWave, use a dated line such as "Senior Director at Google" to account for the period.'), breakSource).length > 0, "a suggested title or employer is still checked");
 assert.ok(fromPath(breakFix('Your resume already has a "Career break" line after BrightWave.'), breakSource).length > 0, "a label the resume is said to have still needs support");
 console.log("quoted-subject and suggested-label tests passed");
+
+// A question may open with an auxiliary (eval_1793584776603, count-check marketing director).
+const candleSource = "Director of Marketing\nLumen Candle Co., Austin, TX\n- Post 3 to 5 times a week on the company Instagram, which has 2,100 followers";
+const askIdea = (question: string) => ({ ideas: { questions: [{ question, archetype: "IMPROVEMENT" }] } });
+assert.equal(fromPath(askIdea("Is there a verifiable change in engagement associated with the Instagram content?"), candleSource).length, 0, "Is opens a question");
+assert.equal(fromPath(askIdea("Has the Instagram content changed engagement in a way you can verify?"), candleSource).length, 0, "Has opens a question");
+assert.ok(fromPath(askIdea("Is there a change in Shopify sales?"), candleSource).length > 0, "a tool the resume doesn't name is still unsupported");
+console.log("question auxiliary tests passed");
