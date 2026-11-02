@@ -58,6 +58,54 @@ test.describe("a11y baseline", () => {
   }
 });
 
+// Phones get their own labels and layouts, so the pages people decide on are scanned at the narrowest
+// width too. A desktop-only scan missed a Label in Name failure on the report's tabs in Nov 2026.
+const phoneRoutes = ["/", "/pricing", "/sample-report", "/workspace", "/methodology"];
+
+test.describe("a11y baseline at 320px", () => {
+  for (const route of phoneRoutes) {
+    test(`axe has no serious violations on ${route} at 320px`, async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 720 });
+      await page.addInitScript(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+      });
+
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForAppHydration(page);
+      await waitForSettledAnimations(page);
+
+      const results = await new AxeBuilder({ page }).analyze();
+      const blockingViolations = results.violations.filter((violation) =>
+        violation.impact === "critical" || violation.impact === "serious"
+      );
+
+      expect(blockingViolations, JSON.stringify(blockingViolations, null, 2)).toEqual([]);
+    });
+  }
+
+  // On phones the report's section tabs slide in only after the opening read, and axe skips hidden
+  // elements, so the scan above never sees them. Their short labels must stay part of their names (WCAG 2.5.3).
+  test("report section tabs pass axe at 320px once they slide in", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 720 });
+    await page.goto("/sample-report", { waitUntil: "domcontentloaded" });
+    await waitForAppHydration(page);
+    await page.evaluate(() => {
+      const section = document.getElementById("section-fixes")!;
+      window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
+    });
+    await expect(page.getByRole("navigation", { name: "Resume report sections" })).toBeVisible();
+    await waitForSettledAnimations(page);
+
+    const results = await new AxeBuilder({ page }).analyze();
+    const blockingViolations = results.violations.filter((violation) =>
+      violation.impact === "critical" || violation.impact === "serious"
+    );
+
+    expect(blockingViolations, JSON.stringify(blockingViolations, null, 2)).toEqual([]);
+  });
+});
+
 test("active navigation exposes the current page across site, app, mobile, and legal shells", async ({ page }) => {
   await page.goto("/pricing", { waitUntil: "domcontentloaded" });
   await waitForAppHydration(page);
