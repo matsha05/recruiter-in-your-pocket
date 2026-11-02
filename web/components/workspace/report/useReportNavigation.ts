@@ -35,13 +35,18 @@ function getReadingLine(section: HTMLElement, nav: HTMLElement | null, container
     return Math.max(navigationBottom, containerTop + sectionMargin);
 }
 
-export function scrollToReportSection(id: string, nav: HTMLElement | null) {
+/**
+ * `instant` is for landing on a section when the page opens. A smooth scroll that starts while the page is
+ * still settling can be cancelled: Framer Motion puts the window back where it measured it whenever an
+ * animation measures layout, such as the pass notice's height.
+ */
+export function scrollToReportSection(id: string, nav: HTMLElement | null, options: { instant?: boolean } = {}) {
     const element = document.getElementById(id);
     if (!element) return false;
     const container = getScrollContainer(element);
     const top = container.scrollTop + element.getBoundingClientRect().top - getReadingLine(element, nav, container);
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    container.scrollTo({ top, behavior: reducedMotion ? "instant" : "smooth" });
+    container.scrollTo({ top, behavior: options.instant || reducedMotion ? "instant" : "smooth" });
     return true;
 }
 
