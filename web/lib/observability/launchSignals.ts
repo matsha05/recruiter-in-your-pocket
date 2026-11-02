@@ -51,6 +51,15 @@ export const LAUNCH_SIGNALS = {
     ],
     viewer: ["anonymous", "signed_in"],
   },
+  // The severity check after a resume report: further Critical Misses shipped, none found, the report
+  // shipped as written because the additions failed validation, or the check itself failed.
+  "riyp.severity.outcome": {
+    outcome: ["added", "none", "fallback", "error"],
+    reason: ["added", "promoted", "none", "validation", "first_fix_changed", "timeout", "provider"],
+    critical: ["1", "2", "3"],
+    more: ["yes", "no"],
+    endpoint: ["stream", "json"],
+  },
   "riyp.checkout.step": {
     step: [
       "checkout_started",

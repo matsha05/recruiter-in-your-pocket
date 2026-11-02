@@ -10,6 +10,10 @@ const commonCapitalizedWords = new Set([
   // Sentence-initial gerunds the report uses to introduce a fact ("Naming Microsoft Office ...").
   "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating",
   "Building", "Connecting", "Leading", "Linking", "Managing", "Mapping", "Pairing", "Running", "Showing", "Tracking", "Tying",
+  // Quantifiers opening an observation ("Most HR bullets describe duties ...").
+  "Both", "Each", "Every", "Few", "Many", "More", "Most", "Other", "Several", "Some",
+  // Instructions that open a sentence ("List HR coursework ... only if true").
+  "Give", "Include", "List", "Mention", "Note", "Put", "Write",
   // Sentence-initial imperatives that join a named tool to other work ("Connect Storyline to ...").
   "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
   // Sentence-initial auxiliaries that open a question ("Is there a verifiable change ...?").
@@ -60,4 +64,16 @@ export function isCommonCapitalizedWord(value: string) {
     pattern.lastIndex = 0;
     return match?.index === 0 && match[0].length === value.length;
   });
+}
+
+// "July 2023" is the resume's "Jul 2023": a month and its abbreviation are one word, as a token and as a name.
+export const MONTH_ALIASES = new Map<string, string>([
+  ...["january", "february", "march", "april", "june", "july", "august", "september", "october", "november", "december"]
+    .map((month): [string, string] => [month, month.slice(0, 3)]),
+  ["sept", "sep"],
+]);
+
+export function abbreviatedMonth(name: string) {
+  const month = MONTH_ALIASES.get(name.toLowerCase());
+  return month ? `${month[0].toUpperCase()}${month.slice(1)}` : name;
 }

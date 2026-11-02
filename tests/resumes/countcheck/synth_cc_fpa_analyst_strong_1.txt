@@ -1,0 +1,26 @@
+Rachel Adeyemi
+Chicago, IL | rachel.adeyemi@example.com | 555-0212
+
+Senior FP&A analyst supporting budgeting, forecasting, and pricing decisions for consumer brands.
+
+EXPERIENCE
+
+Senior Financial Analyst, FP&A
+Lakeshore Foods, Chicago, IL
+April 2022 - Present
+- Own the $240M annual operating budget for the snacks division
+- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%
+- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin
+- Present monthly variance results to the division CFO and 4 brand leaders
+
+Financial Analyst
+Midway Brands, Chicago, IL
+July 2019 - March 2022
+- Prepared monthly close variance reports for 3 plants
+- Automated the weekly sales flash in Power BI, saving 6 hours a week
+
+EDUCATION
+B.S., Finance, University of Illinois Chicago, 2019
+
+SKILLS
+Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling

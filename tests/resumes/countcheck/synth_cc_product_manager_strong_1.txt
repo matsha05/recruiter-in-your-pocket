@@ -1,0 +1,31 @@
+Ana Lucia Ferreira
+Seattle, WA | ana.ferreira@example.com | 555-0210
+
+Senior product manager for B2B analytics software, from discovery through launch.
+
+EXPERIENCE
+
+Senior Product Manager
+Northbeam Analytics, Seattle, WA
+March 2022 - Present
+- Lead a product squad of 7 engineers and 2 designers on the reporting platform
+- Launched scheduled reports in 2024; 1,900 customer accounts adopted it within six months
+- Cut report load time from 9 seconds to 2.5 by prioritizing a query-caching project
+- Run quarterly discovery interviews with 20 to 30 customers to set the roadmap
+
+Product Manager
+Northbeam Analytics, Seattle, WA
+June 2019 - February 2022
+- Owned the dashboard builder used by 4,000 accounts
+- Raised trial-to-paid conversion from 11% to 15% by redesigning onboarding with the growth team
+
+Associate Product Manager
+Cascadia Software, Seattle, WA
+July 2017 - May 2019
+- Wrote requirements for a mobile time-tracking app with 30,000 users
+
+EDUCATION
+B.S., Informatics, University of Washington, 2017
+
+SKILLS
+Product discovery, roadmapping, SQL, Amplitude, Figma, Jira

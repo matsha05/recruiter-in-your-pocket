@@ -207,7 +207,35 @@ const breakFix = (why: string) => ({ top_fixes: [{ fix: "Add one dated line cove
 assert.equal(fromPath(breakFix('After BrightWave, use a dated line such as "Career break" or "Job search and coursework" to account truthfully for the period.'), breakSource).length, 0, "a suggested sentence-case label claims nothing");
 assert.ok(fromPath(breakFix('After BrightWave, use a dated line such as "Senior Director at Google" to account for the period.'), breakSource).length > 0, "a suggested title or employer is still checked");
 assert.ok(fromPath(breakFix('Your resume already has a "Career break" line after BrightWave.'), breakSource).length > 0, "a label the resume is said to have still needs support");
+assert.equal(fromPath(breakFix('Use a dated line such as "Career break" or "Job search and coursework," and include HR coursework only if true.'), breakSource).length, 0,
+  "a comma closed inside the quotes is still the suggested label's (severity check, synth_cc_staff_accountant_bad_1)");
+assert.ok(fromPath(breakFix('Use a dated line such as "Senior Director, Google," to account for the period.'), breakSource).length > 0, "a suggested title with a comma is still checked");
 console.log("quoted-subject and suggested-label tests passed");
+
+// A month and its abbreviation are one word (severity check: "The Greenfield role ends in July 2023" on "Jul 2023").
+const julySource = "Operations Assistant, Greenfield Logistics\nFeb 2023 - Jul 2023";
+const julyFix = (fix: string, why: string) => ({ top_fixes: [{ fix, why }] });
+assert.equal(fromPath(julyFix("Add one dated line covering Jul 2023 to today.", "The Greenfield Logistics role ends in July 2023, and nothing later is listed."), julySource).length, 0,
+  "July is the resume's Jul");
+assert.equal(fromPath(julyFix("Add one dated line covering July 2023 to today.", "The Greenfield role ends in Jul 2023."), "Operations Assistant, Greenfield\nFebruary 2023 - July 2023").length, 0,
+  "and Jul is the resume's July");
+assert.ok(fromPath(julyFix("Add one dated line covering October 2023 to today.", "The Greenfield Logistics role ends in October 2023."), julySource).length > 0,
+  "a month the resume never names is still unsupported");
+assert.ok(fromPath(julyFix("Add one dated line covering Jul 2023 to today.", "The Greenfield Logistics role ends in July 2023 after the Northwind merger."), julySource).length > 0,
+  "a name beside the month is still checked");
+console.log("month abbreviation tests passed");
+
+// A quantifier opening an observation is not a name (golden eval_1793640409975, synth_hr_manager_director_foundation_1).
+const hrSource = "Senior Human Resources Manager\nBrightWave Technologies\nJune 2015 - August 2023\n- Supported HR strategies across multiple departments\n- Helped oversee recruitment efforts";
+assert.equal(fromPath({ score_comment_short: "Most HR bullets describe duties, not specific contributions or completed results." }, hrSource).length, 0, "Most opens the sentence");
+assert.equal(fromPath({ score_comment_short: "Several HR bullets describe duties rather than results." }, hrSource).length, 0);
+assert.ok(fromPath({ score_comment_short: "Most Acme bullets describe duties, not results." }, hrSource).length > 0, "a name after the quantifier is still checked");
+assert.ok(fromPath({ score_comment_short: "Most HR bullets describe duties at Google." }, hrSource).length > 0, "and so is a name later in the sentence");
+assert.equal(fromPath({ top_fixes: [{ fix: "Add one dated line covering August 2023 to today.", why: "List HR coursework or volunteer HR support only if true." }] }, hrSource).length, 0,
+  "an instruction opening the sentence is not a name (severity check, golden synth_hr_manager_director_foundation_1)");
+assert.ok(fromPath({ top_fixes: [{ fix: "Add one dated line covering August 2023 to today.", why: "List Workday HR coursework only if true." }] }, hrSource).length > 0,
+  "a name after the instruction is still checked");
+console.log("quantifier tests passed");
 
 // A question may open with an auxiliary (eval_1793584776603, count-check marketing director).
 const candleSource = "Director of Marketing\nLumen Candle Co., Austin, TX\n- Post 3 to 5 times a week on the company Instagram, which has 2,100 followers";

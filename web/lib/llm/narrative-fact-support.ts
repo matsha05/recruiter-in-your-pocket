@@ -88,7 +88,8 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
     : reportingQuote.test(value) ? value.replace(reportingQuote, "It") : value.replace(/["“][^"”]+["”]/u, " ")).replace(/\bU\.S\./gu, "US");
   // A suggested label ("a dated line such as "Career break"") proposes wording; it claims nothing.
   // Only a sentence-case label qualifies, so a suggested title or employer is still checked.
-  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”])*/gu, "$1");
+  // A comma or period the sentence closes inside the quotes ("Job search and coursework,") is still the label's.
+  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”])*/gu, "$1");
   if (path.startsWith("section_review.Education.")) auditable = auditable.replace(/\b(?:B\.S|B\.Ed|M\.S|M\.Div)\.?/gu, (degree) => sourceText.includes(degree) ? " " : degree);
   return /[\p{L}\p{N}]/u.test(auditable) ? auditable : "";
 }

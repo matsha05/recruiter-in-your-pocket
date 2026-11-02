@@ -461,6 +461,31 @@ function dropUnsupportedTopFixes(topFixes: any[], resumeText: string, changes: s
   return supported;
 }
 
+/**
+ * Critical Misses lead the list, in the model's order. If validation dropped every
+ * flagged fix, the first remaining one becomes the Critical Miss so a report always names one.
+ */
+function normalizeCriticalFlags(topFixes: any[], changes: string[]) {
+  if (!topFixes.some((fix) => typeof fix?.critical === "boolean")) return topFixes;
+  const flagged = topFixes.map((fix) => (fix?.critical === true || fix?.critical === false ? fix : { ...fix, critical: false }));
+  if (!flagged.some((fix) => fix.critical)) {
+    flagged[0] = { ...flagged[0], critical: true };
+    changes.push("top_fixes[0].critical_promoted");
+  }
+  const ordered = [...flagged.filter((fix) => fix.critical), ...flagged.filter((fix) => !fix.critical)];
+  if (ordered.some((fix, index) => fix !== flagged[index])) changes.push("top_fixes.critical_reordered");
+  return ordered;
+}
+
+/** "More than three serious problems" needs three listed Critical Misses; otherwise the signal is dropped. */
+function normalizeMoreCritical(report: any, changes: string[]) {
+  if (report?.more_critical === undefined) return;
+  const listed = Array.isArray(report.top_fixes) ? report.top_fixes.filter((fix: any) => fix?.critical === true).length : 0;
+  if (report.more_critical === true && listed === 3) return;
+  if (report.more_critical !== false) changes.push("more_critical.cleared");
+  report.more_critical = false;
+}
+
 function normalizeSectionReviewPresence(report: any, resumeText: string, changes: string[], unresolved: string[]) {
   const review = report?.section_review;
   if (!review || typeof review !== "object") return;
@@ -1674,7 +1699,9 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
     copy.top_fixes = deduplicateFixEvidence(copy.top_fixes, resumeText, changes);
     copy.top_fixes = deduplicateFixInstructions(copy.top_fixes, changes);
     copy.top_fixes = dropUnsupportedTopFixes(copy.top_fixes, resumeText, changes);
+    copy.top_fixes = normalizeCriticalFlags(copy.top_fixes, changes);
   }
+  normalizeMoreCritical(copy, changes);
 
   if (Array.isArray(copy.rewrites)) {
     copy.rewrites.forEach((rewrite: any, index: number) => {

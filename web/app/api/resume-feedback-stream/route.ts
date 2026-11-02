@@ -54,6 +54,7 @@ import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
 import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
+import { severityCheckReport } from "@/lib/reports/severity-check-report";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -442,11 +443,21 @@ export async function POST(request: Request) {
                     validationOptions: effectiveJobDescription.validationOptions,
                     signal: generationController.signal,
                 });
-                const payload = validated.payload;
                 let anonymousRecovery: Awaited<ReturnType<typeof finalizeAnonymousGeneratedReport>> | null = null;
                 if (validated.replacementRaw) {
                     accumulatedJson = validated.replacementRaw;
                 }
+                throwIfClientDisconnected();
+                // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
+                const { payload } = await severityCheckReport({
+                    payload: validated.payload,
+                    mode,
+                    resumeText: canonicalResumeText,
+                    validationOptions: effectiveJobDescription.validationOptions,
+                    signal: generationController.signal,
+                    endpoint: "stream",
+                    ctx: { request_id, route, user_id },
+                });
                 throwIfClientDisconnected();
                 if (user && mode === "resume" && grantedReservation.entitlementKind !== "bypass") {
                     if (!reservationAdmin) throw new Error("Report finalization is unavailable.");

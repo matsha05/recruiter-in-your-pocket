@@ -37,6 +37,9 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     if (!isDryRun && run.metadata.resume_prompt_sha256) {
         lines.push(`**Resume prompt SHA-256:** ${run.metadata.resume_prompt_sha256}`);
     }
+    if (!isDryRun && run.metadata.prompt_date) {
+        lines.push(`**Date sent as today:** ${run.metadata.prompt_date}`);
+    }
     if (!isDryRun && run.metadata.resume_ideas_prompt_sha256) {
         lines.push(`**Resume ideas prompt SHA-256:** ${run.metadata.resume_ideas_prompt_sha256}`);
     }
@@ -194,6 +197,12 @@ export function integritySummary(run: EvalRunOutput) {
             .map((kind) => `${humanKind(kind)} ${count((metrics) => metrics.critical_miss.kind === kind)}`),
         nothingCritical: count((metrics) => metrics.critical_miss.nothing_critical),
         criticalMissDropped: measured(run).filter(criticalMissDropped).length,
+        criticalCounts: [1, 2, 3].map((n) => count((metrics) => (metrics.critical_misses?.count ?? 1) === n)),
+        moreCritical: count((metrics) => metrics.critical_misses?.more === true),
+        criticalKinds: (() => {
+            const kinds = results.flatMap((metrics) => metrics.critical_misses?.kinds ?? []);
+            return { total: kinds.length, tally: [...new Set(kinds)].map((kind) => `${humanKind(kind)} ${kinds.filter((item) => item === kind).length}`) };
+        })(),
         outranked: count((metrics) => metrics.critical_miss.outranked),
         mismatches: count((metrics) => metrics.verdict_critical_miss.agreement === "mismatch"),
         noConcern: count((metrics) => metrics.verdict_critical_miss.agreement === "no_concern"),
@@ -226,6 +235,9 @@ function integritySection(run: EvalRunOutput): string[] {
     lines.push(`| Critical Miss is a line edit / structural | ${summary.lineEdits} / ${summary.structural}${summary.structuralKinds.length > 0 ? ` (${summary.structuralKinds.join(", ")})` : ""} | same |`);
     lines.push(`| Nothing critical (Critical Miss marked low impact) | ${reports(summary.nothingCritical)} | same |`);
     lines.push(`| Model's first fix dropped by validation | ${reports(summary.criticalMissDropped)} | same |`);
+    lines.push(`| Reports with 1 / 2 / 3 Critical Misses | ${summary.criticalCounts.join(" / ")} | same |`);
+    lines.push(`| Reports saying more than three exist | ${summary.moreCritical} | same |`);
+    lines.push(`| Critical Misses by kind | ${summary.criticalKinds.tally.join(", ") || "none"} (of ${summary.criticalKinds.total}) | same |`);
     lines.push(`| Structural issue flagged, Critical Miss is a line edit | ${reports(summary.outranked)} | same |`);
     lines.push(`| Verdict and Critical Miss disagree | ${reports(summary.mismatches)} | same |`);
     lines.push(`| Verdict raises no concern | ${reports(summary.noConcern)} | same |`);
@@ -450,6 +462,7 @@ export function printSummary(run: EvalRunOutput): void {
         console.log(`  Field-slot mapping issues: ${summary.slots.model} → ${summary.slots.shown}`);
         console.log(`  Critical Miss: ${summary.lineEdits} line edits, ${summary.structural} structural${summary.structuralKinds.length > 0 ? ` (${summary.structuralKinds.join(", ")})` : ""}; ${summary.outranked} reports flag a structural issue the Critical Miss skips`);
         console.log(`  Verdict and Critical Miss: ${summary.mismatches} disagree, ${summary.noConcern} Verdicts raise no concern; ${summary.nothingCritical} reports say nothing is critical; validation dropped the model's first fix in ${summary.criticalMissDropped}`);
+        console.log(`  Critical Misses per report (1/2/3): ${summary.criticalCounts.join("/")}; more than three: ${summary.moreCritical}; by kind: ${summary.criticalKinds.tally.join(", ") || "none"}`);
         console.log(`  Fix headings: ${summary.headings.over12}/${summary.headings.total} over 12 words (longest ${summary.headings.maxWords}); ${summary.headings.withLocation} open with a location, ${summary.headings.withCondition} carry a condition`);
         const retest = scoreTestRetest(run.results);
         console.log(retest.length > 0

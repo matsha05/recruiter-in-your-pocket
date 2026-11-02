@@ -3,15 +3,18 @@
  * Critical Miss judge - CLI.
  *
  * Usage (from web/):
- *   npm run eval:judge -- calibrate [--set blind-pick|contrast|all] [--ids bp-01,cp-03] [--repeat 2] [--mode pairwise|absolute]
+ *   npm run eval:judge -- calibrate [--set blind-pick|contrast|all|count|key] [--ids bp-01,cp-03] [--repeat 2] [--mode pairwise|absolute] [--key <path>]
  *   npm run eval:judge -- score <live_run.json> [--limit 5]
- *   npm run eval:judge -- compare <production_live_run.json> <candidate_live_run.json>
- *     (prints the prompt-change gate verdict and exits nonzero on FAIL)
+ *   npm run eval:judge -- compare <production_live_run.json> <candidate_live_run.json> [--key <count-check-key.json>]
+ *     (prints the prompt-change gate verdict, count checks included, and exits nonzero on FAIL)
+ *   npm run eval:judge -- severity <severity_run.json>
+ *     (the severity check's gate: count checks and absolute-mode vetoes on added Critical Misses; exits nonzero on FAIL)
  *   npm run eval:judge -- self-preference [--author gpt-6.1-sol] [--judges gpt-6.1-sol,gpt-6-astra]
  *
  * Common flags: --budget-usd <n> (default 1), --model gpt-6.1-sol|gpt-6-astra,
  * --effort low|medium|high, --seed <n>,
- * --concurrency <n> (default 3), --label <text>, --max-misses <1-3> (score/compare).
+ * --concurrency <n> (default 3), --label <text>, --max-misses <1-3> (score/compare; by
+ * default a report shows every flagged Critical Miss, or its first fix when unflagged).
  *
  * Only synthetic or fictional resumes are sent to the judge model: run files
  * are filtered to fixtures tagged "synthetic", and everything else is skipped.
@@ -34,13 +37,22 @@ import {
     type CalibrationRecord,
 } from "../lib/evals/judge/calibration";
 import { DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, JUDGE_MODELS, JudgeBudgetError, SpendLedger } from "../lib/evals/judge/client";
-import { judgeAbsolute, judgePairwise } from "../lib/evals/judge/modes";
+import { judgeAbsolute, judgeCount, judgePairwise } from "../lib/evals/judge/modes";
+import {
+    COUNT_KEY_PATH,
+    keyCheckView,
+    loadCountCalibration,
+    loadCountKey,
+    outcomeFor,
+    outcomeLine,
+    type CountCheckOutcome,
+} from "../lib/evals/judge/count";
 import { JUDGE_PROMPT_VERSION, judgePromptSha256 } from "../lib/evals/judge/prompt";
 import { gateLines, gateVerdict, type GateResume } from "../lib/evals/judge/gate";
-import { absoluteMarkdown, calibrationMarkdown, compareMarkdown, type RunMeta } from "../lib/evals/judge/report";
+import { absoluteMarkdown, calibrationMarkdown, compareMarkdown, countCalibrationMarkdown, type CountCalibrationRow, type RunMeta } from "../lib/evals/judge/report";
 import type { AbsoluteResult, CriticalMissView, JudgeCase, JudgeConfig, PairwiseResult } from "../lib/evals/judge/types";
 import { authoredShare, writeCriticalMiss } from "../lib/evals/judge/self-preference";
-import { isJudgeableFixture, viewFromReport } from "../lib/evals/judge/view";
+import { isJudgeableFixture, shownView } from "../lib/evals/judge/view";
 
 type Flags = Record<string, string | boolean>;
 
@@ -67,6 +79,11 @@ function parse(argv: string[]) {
 function numberFlag(flags: Flags, name: string, fallback: number) {
     const value = Number(flags[name]);
     return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
+/** --max-misses when given; otherwise undefined, so each report shows what a reader sees. */
+function maxMissesFlag(flags: Flags) {
+    return flags["max-misses"] === undefined ? undefined : numberFlag(flags, "max-misses", 1);
 }
 
 function judgeConfig(flags: Flags): JudgeConfig {
@@ -139,6 +156,8 @@ async function calibrate(flags: Flags) {
     const cfg = judgeConfig(flags);
     const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
     const set = String(flags.set || "all");
+    if (set === "count") return calibrateCount(flags, cfg, ledger);
+    if (set === "key") return keyCheck(flags, cfg, ledger);
     let pairs: CalibrationPair[] = [
         ...(set === "all" || set === "blind-pick" ? loadBlindPick() : []),
         ...(set === "all" || set === "contrast" ? loadContrastPairs() : []),
@@ -184,6 +203,83 @@ async function calibrate(flags: Flags) {
     save("calibrate", flags, { meta: runMeta, judge_prompt_version: JUDGE_PROMPT_VERSION, records }, calibrationMarkdown(runMeta, records));
 }
 
+/**
+ * The count prompt on hand-labeled fictional reports. Every report gets a blind
+ * call (is each Critical Miss critical on its own?); reports on bad resumes also
+ * get the keyed call the gate uses (which labeled problem does each address?).
+ */
+async function calibrateCount(flags: Flags, cfg: JudgeConfig, ledger: SpendLedger) {
+    let resumes = loadCountCalibration();
+    if (typeof flags.ids === "string") {
+        const ids = new Set(flags.ids.split(","));
+        resumes = resumes.map((resume) => ({ ...resume, reports: resume.reports.filter((report) => ids.has(report.id) || ids.has(resume.id)) }))
+            .filter((resume) => resume.reports.length > 0);
+    }
+    const repeat = Math.max(1, Math.floor(numberFlag(flags, "repeat", 1)));
+    const tasks = Array.from({ length: repeat }, (_, run) => resumes.flatMap((resume) => resume.reports.flatMap((report) => [
+        { resume, report, run, keyed: false },
+        ...(resume.kind === "bad" ? [{ resume, report, run, keyed: true }] : []),
+    ]))).flat();
+    console.log(`Calibrating the count prompt: ${tasks.length} calls on ${cfg.model}, ceiling $${ledger.ceilingUsd}`);
+    const results = await pool(tasks, numberFlag(flags, "concurrency", 3), async ({ resume, report, run, keyed }): Promise<CountCalibrationRow> => {
+        const result = await judgeCount(resume.input, report.view, { config: cfg, ledger }, keyed ? resume.problems : undefined);
+        const outcome = outcomeFor({ fixture_id: resume.id, kind: resume.kind, problems: resume.problems }, report.view, result);
+        const row: CountCalibrationRow = { resume: resume.id, kind: resume.kind, report, run, keyed, result, outcome };
+        console.log(`   ${report.id} ${keyed ? "keyed" : "blind"} run ${run + 1}: ${result.raw.misses.map((miss) => `${miss.critical_on_its_own ? "critical" : "not"}${keyed ? `/${miss.matches}` : ""}`).join(", ")}`);
+        return row;
+    });
+    reportErrors(results.filter((r): r is Error => r instanceof Error));
+    const rows = results.filter((r): r is CountCalibrationRow => !(r instanceof Error));
+    const runMeta = meta("Critical Miss judge: count calibration", cfg, ledger);
+    save("calibrate-count", flags, { meta: runMeta, judge_prompt_version: JUDGE_PROMPT_VERSION, rows }, countCalibrationMarkdown(runMeta, rows));
+}
+
+/**
+ * Vet a count-check key before gating on it: each bad resume's three labeled
+ * problems, shown as one report's Critical Misses, get a blind count call. A
+ * label the judge doesn't rate critical on its own would be counted against
+ * the candidate by the pairwise half of the gate, so fix it in the key first.
+ */
+async function keyCheck(flags: Flags, cfg: JudgeConfig, ledger: SpendLedger) {
+    const fixtures = new Map(loadCalibrationData().fixtures.map((fixture) => [fixture.id, fixture]));
+    const keyPath = countKeyPath(flags);
+    const loaded = loadCountKey(keyPath, fixtures, readFixtureResume);
+    if (!loaded.key || loaded.errors.length > 0) throw new Error(`The key can't be used:\n${loaded.errors.join("\n")}`);
+    const bad = loaded.key.resumes.filter((resume) => resume.kind === "bad");
+    console.log(`Key check: ${bad.length} bad resumes from ${path.relative(process.cwd(), keyPath)} on ${cfg.model}, ceiling $${ledger.ceilingUsd}`);
+    const results = await pool(bad, numberFlag(flags, "concurrency", 3), async (resume) => {
+        const fixture = fixtures.get(resume.fixture_id)!;
+        const input = { id: resume.fixture_id, resume_text: readFixtureResume(fixture), review_date: String(loaded.key!.date || new Date().toISOString()).slice(0, 10) };
+        const result = await judgeCount(input, keyCheckView(resume), { config: cfg, ledger });
+        const rows = resume.problems.map((problem, index) => ({ fixture_id: resume.fixture_id, id: problem.id, kind: (problem as { kind?: string }).kind || "", problem: problem.problem, critical: result.raw.misses[index].critical_on_its_own, note: result.raw.misses[index].note }));
+        for (const row of rows) console.log(`   ${row.fixture_id} ${row.id}: ${row.critical ? "critical" : "NOT critical on its own"}`);
+        return rows;
+    });
+    reportErrors(results.filter((r): r is Error => r instanceof Error));
+    const rows = results.filter((r): r is Exclude<typeof r, Error> => !(r instanceof Error)).flat();
+    const disputed = rows.filter((row) => !row.critical);
+    const runMeta = meta("Critical Miss judge: key check", cfg, ledger);
+    const lines = [
+        `# ${runMeta.title}`,
+        "",
+        `- Run: ${runMeta.timestamp}; calls ${ledger.calls}; spend $${ledger.spentUsd.toFixed(4)}`,
+        `- Key: \`${path.relative(path.resolve(process.cwd(), ".."), keyPath)}\``,
+        `- Judge prompt SHA-256: \`${runMeta.judge_prompt_sha256}\``,
+        `- Labeled problems the blind judge rates critical on their own: ${rows.length - disputed.length} of ${rows.length}`,
+        "",
+        "| Resume | Problem | Kind | Blind judge | Note |",
+        "| --- | --- | --- | --- | --- |",
+        ...rows.map((row) => `| ${row.fixture_id} | ${row.id} | ${row.kind} | ${row.critical ? "critical" : "**not critical**"} | ${row.note.replace(/\|/g, "/").replace(/\n/g, " ")} |`),
+        "",
+    ];
+    save("key-check", flags, { meta: runMeta, key: path.basename(keyPath), rows }, lines.join("\n"));
+    if (disputed.length) process.exitCode = 1;
+}
+
+function countKeyPath(flags: Flags) {
+    return path.resolve(process.cwd(), "..", String(typeof flags.key === "string" ? flags.key : COUNT_KEY_PATH));
+}
+
 // ============================================
 // LIVE RUN FILES
 // ============================================
@@ -192,17 +288,23 @@ interface RunCase {
     fixture_id: string;
     input: JudgeCase;
     view: CriticalMissView;
+    /** The saved report, for views other than the one asked for. */
+    report: unknown;
 }
 
 function loadCalibrationData(): CalibrationData {
     return JSON.parse(readFileSync(path.resolve(process.cwd(), "../tests/fixtures/calibration.json"), "utf8"));
 }
 
+function readFixtureResume(fixture: { path: string }) {
+    return resumeTextFromFixture(readFileSync(path.resolve(process.cwd(), `../tests/resumes/${fixture.path}`), "utf8"));
+}
+
 /**
  * The first shown report per synthetic fixture, in run order. FAIL results were
  * withheld from customers, so they are skipped like a customer would never see them.
  */
-function loadRunCases(file: string, maxMisses: number) {
+function loadRunCases(file: string, maxMisses: number | undefined) {
     const resolved = path.resolve(process.cwd(), file);
     if (!existsSync(resolved)) throw new Error(`Run file not found: ${file}`);
     const run = JSON.parse(readFileSync(resolved, "utf8")) as EvalRunOutput;
@@ -218,13 +320,14 @@ function loadRunCases(file: string, maxMisses: number) {
             continue;
         }
         if (result.status === "FAIL") continue;
-        const view = viewFromReport(result.model_output ?? result.raw_output, maxMisses);
+        const report = result.model_output ?? result.raw_output;
+        const view = shownView(report, maxMisses);
         if (!view) continue;
-        const resumeText = resumeTextFromFixture(readFileSync(path.resolve(process.cwd(), `../tests/resumes/${fixture!.path}`), "utf8"));
         cases.set(result.fixture_id, {
             fixture_id: result.fixture_id,
-            input: { id: result.fixture_id, resume_text: resumeText, review_date: reviewDate },
+            input: { id: result.fixture_id, resume_text: readFixtureResume(fixture!), review_date: reviewDate },
             view,
+            report,
         });
     }
     return { run, cases, skipped };
@@ -233,7 +336,7 @@ function loadRunCases(file: string, maxMisses: number) {
 async function score(file: string, flags: Flags) {
     const cfg = judgeConfig(flags);
     const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
-    const { run, cases, skipped } = loadRunCases(file, numberFlag(flags, "max-misses", 1));
+    const { run, cases, skipped } = loadRunCases(file, maxMissesFlag(flags));
     let list = [...cases.values()];
     if (flags.limit) list = list.slice(0, numberFlag(flags, "limit", list.length));
     console.log(`Scoring ${list.length} Critical Misses from ${run.metadata.run_id} on ${cfg.model}, ceiling $${ledger.ceilingUsd}`);
@@ -250,15 +353,55 @@ async function score(file: string, flags: Flags) {
 }
 
 /**
+ * The count checks on the candidate run: one count call per keyed resume, on
+ * the Critical Misses a reader sees (whatever --max-misses says). Bad resumes
+ * get the keyed call; strong ones the blind call.
+ */
+async function countChecks(candidate: Map<string, RunCase>, flags: Flags, cfg: JudgeConfig, ledger: SpendLedger) {
+    const fixtures = new Map(loadCalibrationData().fixtures.map((fixture) => [fixture.id, fixture]));
+    const keyPath = countKeyPath(flags);
+    const loaded = loadCountKey(keyPath, fixtures, readFixtureResume);
+    if (!loaded.key || loaded.errors.length > 0) return { key_path: keyPath, key_errors: loaded.errors, outcomes: [] as CountCheckOutcome[] };
+    console.log(`Count checks: ${loaded.key.resumes.length} keyed resumes from ${path.relative(process.cwd(), keyPath)}`);
+    const results = await pool(loaded.key.resumes, numberFlag(flags, "concurrency", 3), async (resume): Promise<CountCheckOutcome> => {
+        const found = candidate.get(resume.fixture_id);
+        const view = found ? shownView(found.report) : null;
+        if (!found || !view) return { fixture_id: resume.fixture_id, kind: resume.kind, pass: false, flagged: 0, problem: "no shown candidate report" };
+        try {
+            const result = await judgeCount(found.input, view, { config: cfg, ledger }, resume.kind === "bad" ? resume.problems : undefined);
+            // On a bad resume, a blind call checks the key's severity: pairwise never sees the key.
+            let blind: Awaited<ReturnType<typeof judgeCount>> | undefined;
+            let blindError: string | undefined;
+            if (resume.kind === "bad") {
+                try {
+                    blind = await judgeCount(found.input, view, { config: cfg, ledger });
+                } catch (error) {
+                    blindError = error instanceof Error ? error.message : String(error);
+                }
+            }
+            const outcome = { ...outcomeFor(resume, view, result, blind), ...(blindError ? { blind_error: blindError } : {}) };
+            console.log(`   ${outcomeLine(outcome)} → ${outcome.pass ? "pass" : "FAIL"}`);
+            return outcome;
+        } catch (error) {
+            return { fixture_id: resume.fixture_id, kind: resume.kind, pass: false, flagged: view.misses.length, problem: `judge error: ${error instanceof Error ? error.message : String(error)}` };
+        }
+    });
+    const outcomes = results.map((result, index) => result instanceof Error
+        ? { fixture_id: loaded.key!.resumes[index].fixture_id, kind: loaded.key!.resumes[index].kind, pass: false, flagged: 0, problem: `judge error: ${result.message}` }
+        : result);
+    return { key_path: keyPath, key_errors: [] as string[], outcomes };
+}
+
+/**
  * Production is X (first file), the candidate is Y (second). Every synthetic
  * fixture with a shown production report is a gate resume; a candidate with no
- * shown report for it counts against the candidate. Prints the gate verdict and
- * exits nonzero on FAIL.
+ * shown report for it counts against the candidate. The count checks run on
+ * the candidate's keyed resumes. Prints the gate verdict and exits nonzero on FAIL.
  */
 async function compare(fileX: string, fileY: string, flags: Flags) {
     const cfg = judgeConfig(flags);
     const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
-    const maxMisses = numberFlag(flags, "max-misses", 1);
+    const maxMisses = maxMissesFlag(flags);
     const x = loadRunCases(fileX, maxMisses);
     const y = loadRunCases(fileY, maxMisses);
     const skipped = [...new Set([...x.skipped, ...y.skipped])];
@@ -291,15 +434,123 @@ async function compare(fileX: string, fileY: string, flags: Flags) {
     const gateResumes = resumes.map((resume, index) => resume instanceof Error
         ? { fixture_id: ids[index], problem: `judge error: ${resume.message}` }
         : resume);
-    const verdict = gateVerdict(gateResumes, { limited });
+    // A --limit run can't pass anyway, so it skips the count calls.
+    const count = limited ? undefined : await countChecks(y.cases, flags, cfg, ledger);
+    const verdict = gateVerdict(gateResumes, { limited, count });
     const rows = gateResumes
         .filter((resume): resume is GateResume & { pairwise: PairwiseResult } => Boolean(resume.pairwise))
         .map((resume) => ({ fixture_id: resume.fixture_id, result: resume.pairwise, candidate_absolute: resume.candidate_absolute }));
     const runMeta = meta("Critical Miss judge: pairwise comparison and gate", cfg, ledger);
-    save("compare", flags, { meta: runMeta, names, gate: verdict, resumes: gateResumes, skipped },
-        compareMarkdown(runMeta, names, rows, skipped, gateLines(verdict)));
+    save("compare", flags, { meta: runMeta, names, gate: verdict, resumes: gateResumes, count, skipped },
+        compareMarkdown(runMeta, names, rows, skipped, gateLines(verdict), count?.outcomes || []));
     console.log(`\n${gateLines(verdict).join("\n")}`);
     if (!verdict.pass) process.exitCode = 1;
+}
+
+// ============================================
+// SEVERITY CHECK GATE
+// ============================================
+
+function normalizedQuote(value: string) {
+    return value.toLowerCase().replace(/[“”"‘’']/g, "").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * The severity check's gate (wave 3). Production's first fix never changes, so the preference bar does
+ * not apply. Under-count: every labeled bad resume flags at least 2 of its 3 labeled problems. Over-count:
+ * no labeled strong resume gets an added Critical Miss. Vetoes: one absolute-mode call on every report the
+ * check extended; a veto counts against the check unless every unsupported claim is quoted from the
+ * first fix or the Verdict, which production wrote. Exits nonzero on FAIL.
+ */
+async function severity(file: string, flags: Flags) {
+    const cfg = judgeConfig(flags);
+    const ledger = new SpendLedger(numberFlag(flags, "budget-usd", 1));
+    const { run, cases, skipped } = loadRunCases(file, undefined);
+    const extended = [...cases.values()].filter((item) => item.view.misses.length > 1);
+    console.log(`Severity gate on ${run.metadata.run_id}: ${cases.size} judgeable reports, ${extended.length} with added Critical Misses; ceiling $${ledger.ceilingUsd}`);
+    const absolute = await pool(extended, numberFlag(flags, "concurrency", 3), async (item) => {
+        const result = await judgeAbsolute(item.input, item.view, { config: cfg, ledger });
+        const production = normalizedQuote(`${item.view.verdict} ${item.view.misses[0].fix} ${item.view.misses[0].why}`);
+        const added = normalizedQuote(item.view.misses.slice(1).map((miss) => `${miss.fix} ${miss.why}`).join(" "));
+        const claims = result.raw.unsupported_claims || [];
+        const productionOnly = claims.length > 0 && claims.every((claim) => {
+            const quote = normalizedQuote(claim.quote);
+            return quote && production.includes(quote) && !added.includes(quote);
+        });
+        const addedVeto = result.veto && !productionOnly;
+        console.log(`   ${item.fixture_id}: ${item.view.misses.length} Critical Misses, overall ${result.overall}${result.veto ? (addedVeto ? " (veto on an added Critical Miss)" : " (veto on production's first fix)") : ""}`);
+        return { fixture_id: item.fixture_id, misses: item.view.misses.length, more_than_three: Boolean(item.view.more_than_three), added_veto: addedVeto, result };
+    });
+    reportErrors(absolute.filter((row): row is Error => row instanceof Error));
+    const rows = absolute.filter((row): row is Exclude<typeof row, Error> => !(row instanceof Error));
+    const count = await countChecks(cases, flags, cfg, ledger);
+    // Not gated: on extended reports outside the key, does the blind count call rate each added Critical Miss critical on its own?
+    const keyed = new Set(count.outcomes.map((outcome) => outcome.fixture_id));
+    const unkeyed = await pool(extended.filter((item) => !keyed.has(item.fixture_id)), numberFlag(flags, "concurrency", 3), async (item) => {
+        const blind = await judgeCount(item.input, item.view, { config: cfg, ledger });
+        const added = blind.raw.misses.filter((miss) => miss.number > 1);
+        return { fixture_id: item.fixture_id, added: added.length, not_critical: added.filter((miss) => !miss.critical_on_its_own).map((miss) => ({ number: miss.number, note: miss.note })) };
+    });
+    reportErrors(unkeyed.filter((row): row is Error => row instanceof Error));
+    const blindRows = unkeyed.filter((row): row is Exclude<typeof row, Error> => !(row instanceof Error));
+    const blindAdded = blindRows.reduce((total, row) => total + row.added, 0);
+    const blindPadding = blindRows.reduce((total, row) => total + row.not_critical.length, 0);
+    const bad = count.outcomes.filter((outcome) => outcome.kind === "bad");
+    const strong = count.outcomes.filter((outcome) => outcome.kind === "strong");
+    // Stricter than the prompt-change gate: a strong resume passes only with exactly one Critical Miss.
+    const strongPass = (outcome: CountCheckOutcome) => !outcome.problem && outcome.flagged === 1 && !outcome.more_than_three;
+    const addedVetoes = rows.filter((row) => row.added_veto);
+    const failures = [
+        ...(count.key_errors.length ? [`count key errors: ${count.key_errors.join("; ")}`] : []),
+        ...(bad.length !== 8 ? [`${bad.length} labeled bad resumes judged, expected 8`] : []),
+        ...(strong.length !== 4 ? [`${strong.length} labeled strong resumes judged, expected 4`] : []),
+        ...bad.filter((outcome) => !outcome.pass).map((outcome) => `under-count: ${outcomeLine(outcome)}`),
+        ...strong.filter((outcome) => !strongPass(outcome)).map((outcome) => `over-count: ${outcomeLine(outcome)}`),
+        ...addedVetoes.map((row) => `veto on an added Critical Miss: ${row.fixture_id}`),
+        ...(absolute.length !== rows.length ? [`${absolute.length - rows.length} absolute calls failed`] : []),
+    ];
+    const pass = failures.length === 0;
+    const lines = [
+        `## SEVERITY GATE: ${pass ? "PASS" : "FAIL"}`,
+        "",
+        `- Under-count, labeled bad resumes: ${bad.filter((outcome) => outcome.pass).length} of ${bad.length} flag at least 2 of 3 labeled problems (bar: all 8)`,
+        `- Over-count, labeled strong resumes: ${strong.filter(strongPass).length} of ${strong.length} with no added Critical Miss (bar: all 4)`,
+        `- Vetoes on added Critical Misses (absolute mode): ${addedVetoes.length} in ${rows.length} extended reports (bar: 0); vetoes on production's first fix: ${rows.filter((row) => row.result.veto && !row.added_veto).length}`,
+        `- Not gated: on ${blindRows.length} extended reports outside the key, the blind count call rates ${blindAdded - blindPadding} of ${blindAdded} added Critical Misses critical on their own`,
+        ...failures.map((failure) => `- Fails: ${failure}`),
+        "- The smoke and golden no-regression check applies separately.",
+    ];
+    const runMeta = meta(`Critical Miss judge: severity check gate for ${run.metadata.run_id}`, cfg, ledger);
+    const markdown = [
+        `# ${runMeta.title}`,
+        "",
+        `- Run: ${runMeta.timestamp}`,
+        `- Judge: \`${cfg.model}\`, reasoning ${cfg.reasoningEffort}, seed ${cfg.seed}`,
+        `- Judge prompt SHA-256: \`${runMeta.judge_prompt_sha256}\``,
+        `- Calls: ${ledger.calls}; token-calculated spend: $${ledger.spentUsd.toFixed(4)}`,
+        `- Source: \`${path.basename(file)}\` (${run.metadata.model}, prompt ${String(run.metadata.resume_prompt_sha256 || "").slice(0, 8)})`,
+        "",
+        ...lines,
+        "",
+        "## Count checks",
+        "",
+        ...count.outcomes.map((outcome) => `- ${outcome.kind}: ${outcomeLine(outcome)} → ${(outcome.kind === "bad" ? outcome.pass : strongPass(outcome)) ? "pass" : "FAIL"}`),
+        "",
+        "## Absolute mode on extended reports",
+        "",
+        "| Fixture | Critical Misses | Overall (1-5) | Veto | Unsupported claims | Rationale |",
+        "| --- | --- | --- | --- | --- | --- |",
+        ...rows.map((row) => `| ${row.fixture_id} | ${row.misses}${row.more_than_three ? " + more" : ""} | ${row.result.overall} | ${row.result.veto ? (row.added_veto ? "**added**" : "first fix") : ""} | ${(row.result.raw.unsupported_claims || []).map((claim) => `"${claim.quote}": ${claim.why}`).join("; ").replace(/\|/g, "/")} | ${String(row.result.raw.rationale || "").replace(/\|/g, "/").replace(/\n/g, " ")} |`),
+        "",
+        "## Added Critical Misses outside the key (blind count call, not gated)",
+        "",
+        ...blindRows.map((row) => `- ${row.fixture_id}: ${row.added - row.not_critical.length} of ${row.added} critical on their own${row.not_critical.length ? `; not: ${row.not_critical.map((miss) => `#${miss.number} (${String(miss.note || "").replace(/\n/g, " ")})`).join("; ")}` : ""}`),
+        "",
+        ...(skipped.length ? [`Skipped (never sent to the judge): ${skipped.join("; ")}`, ""] : []),
+    ].join("\n");
+    save("severity", flags, { meta: runMeta, source_run: run.metadata.run_id, source_file: path.basename(file), pass, failures, absolute: rows, count, unkeyed_blind: blindRows, skipped }, markdown);
+    console.log(`\n${lines.join("\n")}`);
+    if (!pass) process.exitCode = 1;
 }
 
 // ============================================
@@ -372,8 +623,9 @@ async function main() {
     if (command === "calibrate") return calibrate(flags);
     if (command === "score" && files.length === 1) return score(files[0], flags);
     if (command === "compare" && files.length === 2) return compare(files[0], files[1], flags);
+    if (command === "severity" && files.length === 1) return severity(files[0], flags);
     if (command === "self-preference") return selfPreference(flags);
-    console.log("Usage: npm run eval:judge -- calibrate | score <run.json> | compare <runX.json> <runY.json> | self-preference");
+    console.log("Usage: npm run eval:judge -- calibrate | score <run.json> | compare <runX.json> <runY.json> | severity <severity_run.json> | self-preference");
     process.exitCode = 1;
 }
 

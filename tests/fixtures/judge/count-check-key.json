@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "written_by": "claude/critical-miss-v3 (Critical Miss v3 session)",
+  "date": "2026-11-01",
+  "note": "Fictional resumes for the under-count and over-count checks. A bad resume has exactly three problems, each serious enough on its own to cost an interview, listed most important first; everything else on it is deliberately clean. A strong resume has none. lines are verbatim resume lines, distinct across a resume's problems.",
+  "resumes": [
+    {
+      "fixture_id": "synth_cc_operations_manager_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends January 2025 and nothing is listed after it.",
+          "lines": [
+            "May 2021 - January 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The Operations Supervisor bullets give no team size, volume, site size or result.",
+          "lines": [
+            "- Supervised the day shift on the warehouse floor",
+            "- Assigned pick and pack work to associates",
+            "- Checked outbound trailers before they left the dock",
+            "- Handled scheduling and time-off requests"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims a Director of Operations who runs multi-site networks, but the latest role is a shift supervisor at one warehouse.",
+          "lines": [
+            "Director of Operations who runs multi-site distribution networks and leads large warehouse teams."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_career_changer_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_evidence_latest_role",
+          "problem": "The current Shift Supervisor bullets give no team size, store volume or result.",
+          "lines": [
+            "- Supervise cashiers and stockers on evening shifts",
+            "- Count and reconcile registers at close",
+            "- Help with weekly ordering and store resets"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P2",
+          "kind": "no_target_role",
+          "problem": "There is no summary or headline, and the roles span grocery supervision, freelance web development, medical billing and serving, so a reader cannot tell which job the resume is for.",
+          "lines": [
+            "Shift Supervisor",
+            "Medical Billing Assistant",
+            "Server"
+          ],
+          "why": "A recruiter matching the page to one opening cannot tell which job it is for, so it is set aside for resumes that say so."
+        },
+        {
+          "id": "P3",
+          "kind": "missing_dates",
+          "problem": "The Freelance Web Developer entry, the only web development work, has no dates.",
+          "lines": [
+            "Freelance Web Developer",
+            "Self-employed, Remote"
+          ],
+          "why": "An undated role reads as hiding a gap or a short stint; many recruiters treat it as a red flag on its own."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_sales_rep_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends February 2025 and nothing is listed after it.",
+          "lines": [
+            "April 2022 - February 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The Account Executive bullets give no quota, deals, revenue or book size.",
+          "lines": [
+            "- Sold payroll and HR software to small businesses",
+            "- Managed a pipeline of accounts in Salesforce",
+            "- Ran product demos for prospects"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims a Sales Director who builds and leads sales organizations, but every role is an individual contributor role.",
+          "lines": [
+            "Sales Director with a record of building and leading high-performing sales organizations."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_marketing_director_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends January 2025 and nothing is listed after it.",
+          "lines": [
+            "March 2024 - January 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "title_level_mismatch",
+          "problem": "The latest title is Director of Marketing, but the bullets describe posting, product copy, packing orders and customer email.",
+          "lines": [
+            "Director of Marketing",
+            "- Packed online orders during the holiday rush"
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        },
+        {
+          "id": "P3",
+          "kind": "no_target_role",
+          "problem": "There is no summary or headline, and the roles span a small marketing job, title data entry, lab support and a cafe, with a biology degree, so a reader cannot tell which job the resume is for.",
+          "lines": [
+            "Data Entry Clerk",
+            "Laboratory Assistant",
+            "Barista"
+          ],
+          "why": "A recruiter matching the page to one opening cannot tell which job it is for, so it is set aside for resumes that say so."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_admin_generalist_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends March 2025 and nothing is listed after it.",
+          "lines": [
+            "June 2022 - March 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The Office Administrator bullets give no size of the office or patient volume and no result.",
+          "lines": [
+            "- Answered phones and scheduled patient appointments",
+            "- Scanned and filed patient records",
+            "- Ordered office supplies",
+            "- Helped with front desk coverage"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims an office manager who runs multi-site operations and leads front-office teams, but the latest role is office administration at one practice with no team named.",
+          "lines": [
+            "Office manager who runs multi-site practice operations and leads front-office teams."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_staff_accountant_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends March 2025 and nothing is listed after it.",
+          "lines": [
+            "July 2023 - March 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The Staff Accountant bullets give no entity count, account volume, close timeline or result.",
+          "lines": [
+            "- Prepared journal entries",
+            "- Reconciled bank and credit card accounts",
+            "- Helped with month-end close",
+            "- Answered vendor questions about payments"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims a Controller who leads accounting teams, but the roles are staff accountant, AP specialist and clerk.",
+          "lines": [
+            "Controller with deep experience leading accounting teams and the monthly close."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_recent_grad_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "Graduation and the last dated activity end May 2024, and nothing is listed after it.",
+          "lines": [
+            "June 2023 - May 2024",
+            "B.A., Economics, University of Wisconsin-Madison, May 2024"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The latest role, the Marketing Intern position, gives no audience size, volume or result.",
+          "lines": [
+            "- Helped with the member newsletter",
+            "- Posted on the credit union's social media accounts",
+            "- Supported planning for branch events"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims a marketing manager who has led campaigns from strategy to launch, but the only marketing work is an internship helping with a newsletter and social posts.",
+          "lines": [
+            "Marketing manager who has led credit union campaigns from strategy to launch."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_project_coordinator_bad_1",
+      "kind": "bad",
+      "problems": [
+        {
+          "id": "P1",
+          "kind": "no_recent_work",
+          "problem": "The latest role ends February 2025 and nothing is listed after it.",
+          "lines": [
+            "September 2022 - February 2025"
+          ],
+          "why": "With nothing listed after the end date, a recruiter reads the candidate as out of the field and screens out before reading the rest."
+        },
+        {
+          "id": "P2",
+          "kind": "no_evidence_latest_role",
+          "problem": "The Project Coordinator bullets give no project size, budget, team or result.",
+          "lines": [
+            "- Scheduled project meetings and took notes",
+            "- Updated project plans in Smartsheet",
+            "- Tracked action items for the project manager",
+            "- Sent weekly status emails to stakeholders"
+          ],
+          "why": "The latest role is what a recruiter weighs most; with no size and no result anywhere in it, there is nothing to judge the candidate on."
+        },
+        {
+          "id": "P3",
+          "kind": "title_level_mismatch",
+          "problem": "The headline claims a Program Director who leads large programs, but the latest role is Project Coordinator doing scheduling and notes.",
+          "lines": [
+            "Program Director who leads large, multi-team technology programs from strategy to delivery."
+          ],
+          "why": "A title or headline the work does not support reads as inflation, and a recruiter stops trusting the rest of the page."
+        }
+      ]
+    },
+    {
+      "fixture_id": "synth_cc_product_manager_strong_1",
+      "kind": "strong",
+      "problems": [],
+      "note": "Current senior PM with team size, adoption, speed and conversion results on the latest two roles; any gap left is one missing detail, not a second problem that would cost an interview."
+    },
+    {
+      "fixture_id": "synth_cc_physical_therapist_strong_1",
+      "kind": "strong",
+      "problems": [],
+      "note": "Current, licensed senior PT with caseload, program volume and outcome rate; nothing on the page would cost an interview on its own."
+    },
+    {
+      "fixture_id": "synth_cc_fpa_analyst_strong_1",
+      "kind": "strong",
+      "problems": [],
+      "note": "Current senior FP&A analyst with budget size, forecast accuracy and a margin result; a second Critical Miss would be a refinement."
+    },
+    {
+      "fixture_id": "synth_cc_construction_pm_strong_1",
+      "kind": "strong",
+      "problems": [],
+      "note": "Current construction PM with project values, schedule and change-order results; a second Critical Miss would be a refinement."
+    }
+  ]
+}

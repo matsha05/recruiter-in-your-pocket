@@ -16,12 +16,12 @@ import { DEFAULT_JUDGE_CONFIG, SpendLedger } from "./client";
 import { judgeAbsolute } from "./modes";
 import { JUDGE_PROMPT_VERSION } from "./prompt";
 import type { JudgeConfig } from "./types";
-import { isJudgeableFixture, viewFromReport } from "./view";
+import { isJudgeableFixture, shownView } from "./view";
 
 export { DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, JudgeBudgetError, SpendLedger } from "./client";
-export { judgeAbsolute, judgePairwise } from "./modes";
+export { judgeAbsolute, judgeCount, judgePairwise } from "./modes";
 export { JUDGE_PROMPT_VERSION, judgePromptSha256 } from "./prompt";
-export { isJudgeableFixture, viewFromReport } from "./view";
+export { isJudgeableFixture, shownView, viewFromReport } from "./view";
 export type * from "./types";
 
 /** What the eval runner records per fixture when it runs with --with-judge. */
@@ -42,7 +42,7 @@ export async function judgeEvalReport(input: {
     reviewDate?: string;
 }): Promise<EvalJudgeResult | null> {
     if (!isJudgeableFixture(input.fixture) || input.status === "FAIL") return null;
-    const view = viewFromReport(input.report);
+    const view = shownView(input.report);
     if (!view) return null;
     const config = input.config || DEFAULT_JUDGE_CONFIG;
     const result = await judgeAbsolute(

@@ -330,7 +330,8 @@ for (const [name, source] of [
     `${name} signed-in finalization must not split insert, commit, or compensation`);
   assert.doesNotMatch(source, /jobDescription\.length\s*>\s*50/, `${name} must not threshold JD presence`);
   if (name === "streaming resume feedback") {
-    assert.equal(source.match(/effectiveJobDescription\.validationOptions/g)?.length, 1);
+    // Once for the stream's validation, once for the severity check's validation of the merged report.
+    assert.equal(source.match(/effectiveJobDescription\.validationOptions/g)?.length, 2);
     assert.equal(
       resumeStreamValidation.match(/input\.validationOptions/g)?.length,
       2,
@@ -339,8 +340,8 @@ for (const [name, source] of [
   } else {
     assert.equal(
       source.match(/effectiveJobDescription\.validationOptions/g)?.length,
-      2,
-      `${name} normal and repair validation must share effective JD options`,
+      3,
+      `${name} normal, repair and severity-check validation must share effective JD options`,
     );
   }
   assert.match(source, /jobDescriptionText:\s*effectiveJobDescription\.persistenceText/);

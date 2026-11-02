@@ -58,6 +58,7 @@
 2. Freeze prompt changes.
 3. Run `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json` only with an explicit cost budget.
 4. Revert the candidate or keep generation paused if any FAIL fixtures appear.
+5. If the problem is in the added Critical Misses (wrong, padded, or slow), set `RIYP_SEVERITY_CHECK=false` and redeploy instead of pausing generation: every report then ships with its one Critical Miss, as before the check. Watch `riyp.severity.outcome` (`fallback`, `error`) and the `llm.severity_check.*` logs.
 
 ## Deployment Rollback
 

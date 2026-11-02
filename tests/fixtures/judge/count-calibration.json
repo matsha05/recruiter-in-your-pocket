@@ -1,0 +1,599 @@
+{
+  "version": 1,
+  "review_date": "2026-11-01",
+  "provenance": "Written by hand for judge calibration on 2026-11-01. Every person, employer and school is fictional; any resemblance is coincidental. Labels follow Matt's November 1 definition: a Critical Miss is any problem that would cost an interview on its own.",
+  "scoring": "expected_critical is graded on blind calls (no key); null leaves a Critical Miss ungraded, as the gate does for the first one on a strong resume. expected_matches is graded on keyed calls; null leaves it ungraded. expected_pass is what the gate check should conclude: the keyed call on a bad resume (at least 2 of 3 labeled problems caught), the blind call on a strong one (no padding and no 'more than three').",
+  "resumes": [
+    {
+      "id": "cc-bad-1",
+      "kind": "bad",
+      "resume_text": "Marcus Delaney\nTampa, FL\n\nExperience\n\nDirector of Operations\nBrightwater Logistics, Tampa, FL\nMar 2021 - Aug 2024\n- Scheduled driver shifts and updated the dispatch board\n- Entered delivery exceptions into the tracking system\n- Answered customer calls about late deliveries\n- Helped with month-end inventory counts\n\nDispatch Coordinator\nBrightwater Logistics, Tampa, FL\nJan 2018 - Feb 2021\n- Coordinated daily routes for local delivery drivers\n- Kept the dispatch log current\n\nEducation\nAS Business Administration, Hillsborough Community College",
+      "problems": [
+        {
+          "id": "P1",
+          "problem": "The latest role ended in August 2024, with nothing listed after it and no explanation.",
+          "lines": [
+            "Mar 2021 - Aug 2024"
+          ],
+          "why": "An open gap with no recent work is the first question a recruiter asks, and many pass rather than ask."
+        },
+        {
+          "id": "P2",
+          "problem": "The Director of Operations title sits over bullets that describe coordinator tasks.",
+          "lines": [
+            "Director of Operations"
+          ],
+          "why": "A recruiter for an operations leader will doubt the title, and one for a coordinator will see a mismatch."
+        },
+        {
+          "id": "P3",
+          "problem": "No line gives the size of the operation: drivers, deliveries, routes or team.",
+          "lines": [
+            "- Scheduled driver shifts and updated the dispatch board"
+          ],
+          "why": "Without scale a hiring manager can't size the experience, so the resume can't compete."
+        }
+      ],
+      "reports": [
+        {
+          "id": "cc-bad-1-a",
+          "note": "All three, in order.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+            "misses": [
+              {
+                "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+                "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+                "resume_lines": [
+                  "Mar 2021 - Aug 2024"
+                ]
+              },
+              {
+                "fix": "Under Director of Operations, add the director-level decisions you were accountable for, such as a process you redesigned or a vendor or hiring decision you made, if you can verify them.",
+                "why": "Every bullet under the director title describes coordinator tasks, so a recruiter will doubt the title or read you as a coordinator.",
+                "resume_lines": [
+                  "Director of Operations"
+                ]
+              },
+              {
+                "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+                "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+                "resume_lines": [
+                  "- Scheduled driver shifts and updated the dispatch board"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            true,
+            true
+          ],
+          "expected_pass": true,
+          "expected_matches": [
+            "P1",
+            "P2",
+            "P3"
+          ]
+        },
+        {
+          "id": "cc-bad-1-b",
+          "note": "Stops at one.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+            "misses": [
+              {
+                "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+                "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+                "resume_lines": [
+                  "- Scheduled driver shifts and updated the dispatch board"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P3"
+          ]
+        },
+        {
+          "id": "cc-bad-1-c",
+          "note": "The title problem worded differently and citing a bullet, then the gap.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+            "misses": [
+              {
+                "fix": "Your Brightwater bullets read as dispatch support work; add what you ran as Director of Operations, such as the people who reported to you or an operating decision you owned, if you can verify it.",
+                "why": "A recruiter screening for an operations leader sees support tasks under a director title and won't know which one is true.",
+                "resume_lines": [
+                  "- Entered delivery exceptions into the tracking system"
+                ]
+              },
+              {
+                "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+                "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+                "resume_lines": [
+                  "Mar 2021 - Aug 2024"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            true
+          ],
+          "expected_pass": true,
+          "expected_matches": [
+            "P2",
+            "P1"
+          ]
+        },
+        {
+          "id": "cc-bad-1-d",
+          "note": "One real problem plus an optional Skills section.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+            "misses": [
+              {
+                "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+                "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+                "resume_lines": [
+                  "- Scheduled driver shifts and updated the dispatch board"
+                ]
+              },
+              {
+                "fix": "Add a Skills section listing your dispatch and tracking software.",
+                "why": "Software names are easy to scan.",
+                "resume_lines": [
+                  "No skills section present"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            false
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P3",
+            "none"
+          ]
+        },
+        {
+          "id": "cc-bad-1-e",
+          "note": "The scale problem twice: the second asks for a count on a supporting duty.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+            "misses": [
+              {
+                "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+                "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+                "resume_lines": [
+                  "- Scheduled driver shifts and updated the dispatch board"
+                ]
+              },
+              {
+                "fix": "In the customer calls bullet, add how many calls you handled each day.",
+                "why": "A call count shows your workload.",
+                "resume_lines": [
+                  "- Answered customer calls about late deliveries"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            false
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P3",
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-bad-2",
+      "kind": "bad",
+      "resume_text": "Jordan Whitfield\nDenver, CO\n\nSummary\nMarketing manager seeking a senior brand marketing role.\n\nExperience\n\nMarketing Manager\nSummit Ridge Outdoor, Denver, CO\nFeb 2020 - Present\n- Managed social media accounts and posted weekly content\n- Coordinated with designers on campaign assets\n- Tracked campaign performance in spreadsheets\n\nMarketing Assistant\nSummit Ridge Outdoor, Denver, CO\nJun 2017 - Jan 2020\n- Scheduled posts and drafted newsletter copy\n- Organized trade show materials\n\nSkills\nHootsuite, Canva, Mailchimp, Google Analytics\n\nEducation\nBA Marketing, University of Colorado Denver",
+      "problems": [
+        {
+          "id": "P1",
+          "problem": "No line gives the reach or a result of the marketing work.",
+          "lines": [
+            "- Managed social media accounts and posted weekly content"
+          ],
+          "why": "A marketing hiring manager screens for results, and this page has none."
+        },
+        {
+          "id": "P2",
+          "problem": "The Marketing Manager title sits over coordination bullets: no budget, channel ownership or reports.",
+          "lines": [
+            "Marketing Manager"
+          ],
+          "why": "The title reads as unsupported, so the resume won't pass a manager-level screen."
+        },
+        {
+          "id": "P3",
+          "problem": "The summary targets senior brand marketing, and no line shows brand work.",
+          "lines": [
+            "Marketing manager seeking a senior brand marketing role."
+          ],
+          "why": "A brand hiring manager has nothing to match to the role."
+        }
+      ],
+      "reports": [
+        {
+          "id": "cc-bad-2-a",
+          "note": "Two of three.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You've run Summit Ridge's social and campaign work since 2020 and want a senior brand role. No line gives a reach, a result, or the scope behind the manager title.",
+            "misses": [
+              {
+                "fix": "In the social media bullet, add the accounts' audience size and one result you can verify, such as follower growth, engagement or sales from social.",
+                "why": "A brand marketing lead looks for reach and results, and no line on the page has either.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              },
+              {
+                "fix": "Under Marketing Manager, add what you managed: the budget, the channels you owned, or anyone who reported to you, if you can verify them.",
+                "why": "The bullets read as coordination, so a recruiter can't see the manager-level scope behind the title.",
+                "resume_lines": [
+                  "Marketing Manager"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            true
+          ],
+          "expected_pass": true,
+          "expected_matches": [
+            "P1",
+            "P2"
+          ]
+        },
+        {
+          "id": "cc-bad-2-b",
+          "note": "One real problem plus padding on the older role.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You've run Summit Ridge's social and campaign work since 2020 and want a senior brand role. No line gives a reach, a result, or the scope behind the manager title.",
+            "misses": [
+              {
+                "fix": "In the social media bullet, add the accounts' audience size and one result you can verify, such as follower growth, engagement or sales from social.",
+                "why": "A brand marketing lead looks for reach and results, and no line on the page has either.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              },
+              {
+                "fix": "In the trade show bullet, add how many shows you supported.",
+                "why": "Event counts show your workload.",
+                "resume_lines": [
+                  "- Organized trade show materials"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            false
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P1",
+            "none"
+          ]
+        },
+        {
+          "id": "cc-bad-2-c",
+          "note": "The brand target first, then results.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You've run Summit Ridge's social and campaign work since 2020 and want a senior brand role. No line gives a reach, a result, or the scope behind the manager title.",
+            "misses": [
+              {
+                "fix": "Add the brand work you've done at Summit Ridge, such as a positioning project, a brand campaign you led, or brand guidelines you wrote, if you did it.",
+                "why": "Your summary targets senior brand marketing, but no line shows brand work, so a brand hiring manager has nothing to match.",
+                "resume_lines": [
+                  "Marketing manager seeking a senior brand marketing role."
+                ]
+              },
+              {
+                "fix": "Give the social media work a size and an outcome: how big the audience was and what changed, such as growth or sales, if you can verify it.",
+                "why": "Without reach or results anywhere, a hiring manager can't tell what your marketing achieved.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            true
+          ],
+          "expected_pass": true,
+          "expected_matches": [
+            "P3",
+            "P1"
+          ]
+        },
+        {
+          "id": "cc-bad-2-d",
+          "note": "Stops at one.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You've run Summit Ridge's social and campaign work since 2020 and want a senior brand role. No line gives a reach, a result, or the scope behind the manager title.",
+            "misses": [
+              {
+                "fix": "In the social media bullet, add the accounts' audience size and one result you can verify, such as follower growth, engagement or sales from social.",
+                "why": "A brand marketing lead looks for reach and results, and no line on the page has either.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P1"
+          ]
+        },
+        {
+          "id": "cc-bad-2-e",
+          "note": "One real problem plus a second ask on the same line.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You've run Summit Ridge's social and campaign work since 2020 and want a senior brand role. No line gives a reach, a result, or the scope behind the manager title.",
+            "misses": [
+              {
+                "fix": "In the social media bullet, add the accounts' audience size and one result you can verify, such as follower growth, engagement or sales from social.",
+                "why": "A brand marketing lead looks for reach and results, and no line on the page has either.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              },
+              {
+                "fix": "In the social media bullet, also name the platforms you posted on.",
+                "why": "Platform names are easy to scan.",
+                "resume_lines": [
+                  "- Managed social media accounts and posted weekly content"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            true,
+            false
+          ],
+          "expected_pass": false,
+          "expected_matches": [
+            "P1",
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-strong-1",
+      "kind": "strong",
+      "resume_text": "Elena Vasquez\nChicago, IL\n\nExperience\n\nSenior Product Manager\nHartwell Payments, Chicago, IL\nApr 2022 - Present\n- Lead a team of 6 engineers and 2 designers on the merchant onboarding product\n- Launched instant account verification, cutting onboarding time from 3 days to 4 hours\n- Grew monthly active merchants from 18,000 to 31,000 in 2024\n- Run quarterly roadmap reviews with sales and support leads\n\nProduct Manager\nHartwell Payments, Chicago, IL\nJun 2019 - Mar 2022\n- Owned the merchant dashboard; shipped reporting used by 12,000 merchants\n- Partnered with compliance on KYC requirements\n\nEducation\nBS Industrial Engineering, Northwestern University",
+      "problems": [],
+      "reports": [
+        {
+          "id": "cc-strong-1-a",
+          "note": "The one first fix.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You lead 6 engineers and 2 designers on merchant onboarding and cut onboarding time from 3 days to 4 hours. The merchant growth line doesn't say what drove it.",
+            "misses": [
+              {
+                "fix": "In the merchant growth bullet, add what you changed that drove the growth from 18,000 to 31,000, if you can verify it.",
+                "why": "A hiring manager will ask how much of that growth came from your product work; one line on the cause answers it.",
+                "resume_lines": [
+                  "- Grew monthly active merchants from 18,000 to 31,000 in 2024"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null
+          ],
+          "expected_pass": true
+        },
+        {
+          "id": "cc-strong-1-b",
+          "note": "Pads with a supporting duty.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You lead 6 engineers and 2 designers on merchant onboarding and cut onboarding time from 3 days to 4 hours. The merchant growth line doesn't say what drove it.",
+            "misses": [
+              {
+                "fix": "In the merchant growth bullet, add what you changed that drove the growth from 18,000 to 31,000, if you can verify it.",
+                "why": "A hiring manager will ask how much of that growth came from your product work; one line on the cause answers it.",
+                "resume_lines": [
+                  "- Grew monthly active merchants from 18,000 to 31,000 in 2024"
+                ]
+              },
+              {
+                "fix": "In the roadmap reviews bullet, add how many teams take part and one decision that came out of a review.",
+                "why": "It shows how you work across functions.",
+                "resume_lines": [
+                  "- Run quarterly roadmap reviews with sales and support leads"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null,
+            false
+          ],
+          "expected_pass": false
+        },
+        {
+          "id": "cc-strong-1-c",
+          "note": "Pads with an optional Skills section.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You lead 6 engineers and 2 designers on merchant onboarding and cut onboarding time from 3 days to 4 hours. The merchant growth line doesn't say what drove it.",
+            "misses": [
+              {
+                "fix": "In the merchant growth bullet, add what you changed that drove the growth from 18,000 to 31,000, if you can verify it.",
+                "why": "A hiring manager will ask how much of that growth came from your product work; one line on the cause answers it.",
+                "resume_lines": [
+                  "- Grew monthly active merchants from 18,000 to 31,000 in 2024"
+                ]
+              },
+              {
+                "fix": "Add a Skills section listing your analytics and experimentation tools.",
+                "why": "Tools are easy to scan.",
+                "resume_lines": [
+                  "No skills section present"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null,
+            false
+          ],
+          "expected_pass": false
+        },
+        {
+          "id": "cc-strong-1-d",
+          "note": "The one first fix, but says there are more than three.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You lead 6 engineers and 2 designers on merchant onboarding and cut onboarding time from 3 days to 4 hours. The merchant growth line doesn't say what drove it.",
+            "misses": [
+              {
+                "fix": "In the merchant growth bullet, add what you changed that drove the growth from 18,000 to 31,000, if you can verify it.",
+                "why": "A hiring manager will ask how much of that growth came from your product work; one line on the cause answers it.",
+                "resume_lines": [
+                  "- Grew monthly active merchants from 18,000 to 31,000 in 2024"
+                ]
+              }
+            ],
+            "more_than_three": true
+          },
+          "expected_critical": [
+            null
+          ],
+          "expected_pass": false
+        }
+      ]
+    },
+    {
+      "id": "cc-strong-2",
+      "kind": "strong",
+      "resume_text": "Samuel Okonkwo\nAtlanta, GA\n\nExperience\n\nAccounting Manager\nPeachtree Medical Group, Atlanta, GA\nJan 2021 - Present\n- Manage a team of 4 accountants and close the books for 11 clinics\n- Cut the monthly close from 12 days to 6 by standardizing reconciliations\n- Prepare the annual audit package; two clean audits in a row\n- Review vendor contracts with procurement\n\nSenior Accountant\nKessler & Long CPAs, Atlanta, GA\nAug 2016 - Dec 2020\n- Managed a book of 30 small-business clients for monthly close and tax prep\n\nCertifications\nCPA, Georgia\n\nEducation\nBBA Accounting, Georgia State University",
+      "problems": [],
+      "reports": [
+        {
+          "id": "cc-strong-2-a",
+          "note": "The one first fix.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You manage 4 accountants, cut the monthly close from 12 days to 6 and hold a Georgia CPA. The size of the books you close isn't stated.",
+            "misses": [
+              {
+                "fix": "In the clinics bullet, add the combined annual revenue or the size of the books you close, if you can verify it.",
+                "why": "An accounting leader sizes a manager by the size of the books; 11 clinics doesn't say how big they are.",
+                "resume_lines": [
+                  "- Manage a team of 4 accountants and close the books for 11 clinics"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null
+          ],
+          "expected_pass": true
+        },
+        {
+          "id": "cc-strong-2-b",
+          "note": "Pads with a detail on the older role.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You manage 4 accountants, cut the monthly close from 12 days to 6 and hold a Georgia CPA. The size of the books you close isn't stated.",
+            "misses": [
+              {
+                "fix": "In the clinics bullet, add the combined annual revenue or the size of the books you close, if you can verify it.",
+                "why": "An accounting leader sizes a manager by the size of the books; 11 clinics doesn't say how big they are.",
+                "resume_lines": [
+                  "- Manage a team of 4 accountants and close the books for 11 clinics"
+                ]
+              },
+              {
+                "fix": "In the Kessler & Long bullet, add the industries your clients were in.",
+                "why": "Industries show the range of books you've handled.",
+                "resume_lines": [
+                  "- Managed a book of 30 small-business clients for monthly close and tax prep"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null,
+            false
+          ],
+          "expected_pass": false
+        },
+        {
+          "id": "cc-strong-2-c",
+          "note": "Pads with a supporting duty, then the older role.",
+          "view": {
+            "label": "Critical Miss",
+            "verdict": "You manage 4 accountants, cut the monthly close from 12 days to 6 and hold a Georgia CPA. The size of the books you close isn't stated.",
+            "misses": [
+              {
+                "fix": "In the clinics bullet, add the combined annual revenue or the size of the books you close, if you can verify it.",
+                "why": "An accounting leader sizes a manager by the size of the books; 11 clinics doesn't say how big they are.",
+                "resume_lines": [
+                  "- Manage a team of 4 accountants and close the books for 11 clinics"
+                ]
+              },
+              {
+                "fix": "In the vendor contracts bullet, add how many contracts you review each year.",
+                "why": "A count shows the workload.",
+                "resume_lines": [
+                  "- Review vendor contracts with procurement"
+                ]
+              },
+              {
+                "fix": "In the Kessler & Long bullet, add the industries your clients were in.",
+                "why": "Industries show the range of books you've handled.",
+                "resume_lines": [
+                  "- Managed a book of 30 small-business clients for monthly close and tax prep"
+                ]
+              }
+            ]
+          },
+          "expected_critical": [
+            null,
+            false,
+            false
+          ],
+          "expected_pass": false
+        }
+      ]
+    }
+  ]
+}

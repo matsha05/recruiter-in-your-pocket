@@ -47,6 +47,15 @@ export type LogRecord = {
     idempotency_key_hash?: string;
   };
 
+  // The severity check after a resume report (lib/reports/severity-check-report.ts).
+  severity?: {
+    reason?: string;
+    critical_count?: number;
+    added?: string[];
+    promoted?: number;
+    validation_attempts?: number;
+  };
+
   security?: {
     injection_detected?: boolean;
     patterns_matched?: string[];

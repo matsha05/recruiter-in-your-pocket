@@ -55,6 +55,11 @@ export interface JudgeCallResult<T> {
 
 type Fetch = typeof fetch;
 
+/** Tries per call; a dropped connection, a 429 or a 5xx waits and tries again. */
+const ATTEMPTS = 3;
+const BACKOFF_MS = [1000, 4000];
+const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function callJudge<T>(
     system: string,
     user: string,
@@ -62,6 +67,7 @@ export async function callJudge<T>(
     config: JudgeConfig,
     ledger: SpendLedger,
     fetchImpl: Fetch = fetch,
+    backoffMs: number[] = BACKOFF_MS,
 ): Promise<JudgeCallResult<T>> {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) throw new Error("OPENAI_API_KEY environment variable is required");
@@ -73,8 +79,11 @@ export async function callJudge<T>(
     const startedAt = Date.now();
     let spentUsd = 0;
     let lastError: Error | null = null;
-    for (let attempt = 0; attempt < 2; attempt++) {
-        const res = await fetchImpl("https://api.openai.com/v1/chat/completions", {
+    for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
+        if (attempt > 0 && lastError && !/finish_reason/.test(lastError.message)) await pause(backoffMs[attempt - 1] ?? 0);
+        let res: Response;
+        try {
+            res = await fetchImpl("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
             body: JSON.stringify({
@@ -90,7 +99,12 @@ export async function callJudge<T>(
                     { role: "user", content: user },
                 ],
             }),
-        });
+            });
+        } catch (error) {
+            // A dropped connection never reached the model; retry it like a 5xx.
+            lastError = error instanceof Error ? error : new Error(String(error));
+            continue;
+        }
 
         if (!res.ok) {
             const body = (await res.text()).slice(0, 500);

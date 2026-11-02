@@ -18,6 +18,7 @@ import {
   auditRepeats,
   criticalMissReason,
   fixCardSlots,
+  isCriticalFix,
   reconcileReport,
   structuralGapKind,
 } from "../lib/reports/report-integrity";
@@ -243,6 +244,22 @@ assert.equal(dataScientistHeadings.with_condition, 2);
 assert.ok(dataScientistHeadings.over_12_words >= 1);
 assert.deepEqual(withMiss({ fix: "Name the proposal sections you drafted." }).fix_headings.with_location, 2,
   "only the two saved headings still open with a location");
+
+// Up to three Critical Misses: an unflagged report has one (the first fix); a flagged one has each flagged fix.
+assert.equal(isCriticalFix(sales, 0), true);
+assert.equal(isCriticalFix(sales, 1), false);
+const flaggedSales = { ...sales, top_fixes: sales.top_fixes.map((fix: any, index: number) => ({ ...fix, critical: index < 2 })) };
+assert.equal(isCriticalFix(flaggedSales, 1), true);
+assert.equal(isCriticalFix(flaggedSales, 2), false);
+assert.deepEqual(evaluateReportIntegrity(sales).critical_misses, { count: 1, kinds: ["concrete_fact"], more: false });
+assert.equal(evaluateReportIntegrity(flaggedSales).critical_misses.count, 2);
+const allFlaggedSales = { ...sales, top_fixes: sales.top_fixes.slice(0, 3).map((fix: any) => ({ ...fix, critical: true })), more_critical: true };
+assert.equal(allFlaggedSales.top_fixes.length, 3);
+assert.equal(evaluateReportIntegrity(allFlaggedSales).critical_misses.more, true, "three Critical Misses can say more exist");
+assert.equal(evaluateReportIntegrity({ ...flaggedSales, more_critical: true }).critical_misses.more, false, "two can't");
+assert.deepEqual(withMiss({ fix: "Say what you've done since August 2023.", why: "Your BrightWave role ends in August 2023." }).critical_misses.kinds, ["dates"]);
+assert.deepEqual(withMiss({ fix: "Move the 15% retention result above the management bullets.", why: "It sits fourth in the role." }).critical_misses.kinds, ["move"]);
+assert.deepEqual(withMiss({ fix: "Add the UX budget size and one vendor decision.", why: "The budget bullet names ownership but not scale." }).critical_misses.kinds, ["concrete_fact"]);
 
 function pickMiss(metrics: ReturnType<typeof evaluateReportIntegrity>) {
   const { category, kind } = metrics.critical_miss;

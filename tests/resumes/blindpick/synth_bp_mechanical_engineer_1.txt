@@ -1,0 +1,28 @@
+Thomas Bergstrom
+Grand Rapids, MI | thomas.bergstrom@example.com | 555-0154
+
+Mechanical engineer with six years in product design for commercial furniture and fixtures.
+
+PROFESSIONAL EXPERIENCE
+
+Mechanical Engineer II
+Westhaven Office Systems, Grand Rapids, MI
+March 2022 - Present
+- Lead mechanical design for the Arlo height-adjustable desk platform
+- Create 3D models and drawings in SolidWorks with GD&T
+- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection
+- Run tolerance stack-ups and FEA on load-bearing components
+- Support manufacturing with engineering change orders
+
+Mechanical Engineer I
+Westhaven Office Systems, Grand Rapids, MI
+June 2020 - February 2022
+- Designed brackets and sheet-metal parts for storage products
+- Ran prototype testing to BIFMA standards
+- Updated bills of materials in the PLM system
+
+EDUCATION
+B.S., Mechanical Engineering, Michigan Technological University, 2020
+
+SKILLS
+SolidWorks, GD&T, ANSYS, sheet metal design, DFM, Windchill PLM

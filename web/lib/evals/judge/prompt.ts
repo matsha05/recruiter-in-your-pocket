@@ -7,13 +7,13 @@
  */
 
 import { createHash } from "node:crypto";
-import { CRITERIA } from "./types";
+import { COUNT_MATCH_IDS, CRITERIA } from "./types";
 
-export const JUDGE_PROMPT_VERSION = "critical-miss-judge-v3";
+export const JUDGE_PROMPT_VERSION = "critical-miss-judge-v4";
 
 const CRITERIA_TEXT = `WHAT YOU ARE JUDGING
-The Critical Miss is the thing a resume should fix first, as an experienced recruiter sees it on a first read. A report shows a Verdict (its first impression) and one to three Critical Misses, each with a fix, a why, and the resume line it cites. A report may be labeled "Nothing critical", meaning it claims nothing needs fixing first.
-Judge one question only: is this the right thing to fix first, and is the fix real help to the person? Do not grade tone, length, polish, or formatting of the report.
+The Critical Miss is the thing a resume should fix first, as an experienced recruiter sees it on a first read. A report shows a Verdict (its first impression) and one to three Critical Misses, most important first, each with a fix, a why, and the resume line it cites; it may also say the resume has more than three. A report may be labeled "Nothing critical", meaning it claims nothing needs fixing first.
+Judge one question first: is the first Critical Miss the right thing to fix first, and is the fix real help to the person? When a report flags more than one, also judge whether the others belong (C8). Do not grade tone, length, polish, or formatting of the report.
 
 HOW TO READ
 1. Read the resume like a recruiter's first pass: the most recent title, employer and dates, then the recent bullets. Note the review date: an end date long before it, with nothing after, is an open gap.
@@ -44,7 +44,7 @@ C6_recruiter_consequence. The why says what a recruiter or hiring manager for th
 
 C7_honest_ask. The fix asks only for facts the person can verify and keeps their real level of ownership. A fix that pushes the person to estimate, inflate or invent is a clear loss.
 
-C8_multiple_misses. A report may name up to three Critical Misses. If the resume has a second critical issue, naming it too is better than stopping at one. Extra Critical Misses must meet the same bar; padding with a minor edit, a formatting tweak or a duplicate of the first is worse than stopping at one.
+C8_multiple_misses. This criterion is about the Critical Misses after the first; rank the first one by the criteria above. Every Critical Miss after the first must be a problem that would cost an interview on its own: a recruiter screening for this kind of role would pass on the resume because of it, even if the rest were fine. Problems that usually qualify: an open gap with no recent relevant work; the main work of the latest relevant role with no scale or result anywhere on the page; a title or headline the bullets do not support; roles so scattered that a reader cannot tell what job the resume is for; missing or contradictory dates on the latest or most relevant work, so its recency or length cannot be told. A report should flag every such problem, up to three, most important first, and say so when there are more than three. Some resumes have several. A report that also flags a real second or third one is better than one that stops at the first, because stopping tells the person they have one problem when they have more. A real second or third Critical Miss is not padding just because it matters less than the first; the test is whether it would cost an interview on its own. Padding is an extra Critical Miss that would not: a supporting duty or an older role missing a detail, an optional section, wording or formatting, a reversed or missing date on an old or minor role, a second ask on a line another Critical Miss already covers, or a duplicate. Padding is worse than stopping. A strong resume usually has only the first thing to fix, so extra Critical Misses on it are usually padding.
 
 NOT A CRITICAL MISS unless severe on this resume: page count or length; "the ATS will reject this", keyword density, or layout; a single typo; referrals; a missing optional credential, degree, GPA or section that no supplied job description requires.
 
@@ -57,10 +57,11 @@ ${CRITERIA_TEXT}
 DECIDING
 1. Check both reports against the resume (V_grounded). A report with a real unsupported claim loses clearly. If both have one, there is no real difference.
 2. A report that names a real, grounded issue beats "Nothing critical" (C5).
-3. Identify what each report asks the person to fix. If both target the same issue or the same line with comparably useful asks, the answer is no_real_difference. Different wording of the same fix is not a difference.
-4. If they target different issues, decide which issue matters more on a first read for this role (C1), using C2 and C4 as the tests of "matters more".
-5. Then compare how well each fix helps (C3, C7), and finally the stated consequence (C6). With several Critical Misses, compare the sets (C8).
-6. strength = "clear" when a named rule plainly decides it (a veto, a concrete fact against a structural move, a vague ask against a specific one on similar stakes, an open gap with no recent work against a minor line, "Nothing critical" against a real issue). strength = "slight" when both are reasonable first fixes and the preference is a judgment call. Use winner "no_real_difference" with strength "none" when neither is better.
+3. Identify what each report asks the person to fix. If both target the same issues with comparably useful asks, the answer is no_real_difference. Different wording of the same fix is not a difference.
+4. If their first Critical Misses target different issues, decide which issue matters more on a first read for this role (C1), using C2 and C4 as the tests of "matters more".
+5. Then compare how well each fix helps (C3, C7), and finally the stated consequence (C6).
+6. If the reports flag different Critical Misses after the first, compare the sets (C8). A report that also flags another problem that would cost an interview on its own beats one that leaves it out, and a report whose extra Critical Miss is padding loses to one that stops. On a resume with several such problems, leaving one out is a real loss, not a matter of taste: weigh it as heavily as the choice of the first Critical Miss.
+7. strength = "clear" when a named rule plainly decides it (a veto, a concrete fact against a structural move, a vague ask against a specific one on similar stakes, an open gap with no recent work against a minor line, "Nothing critical" against a real issue, a set that leaves out a problem that plainly costs an interview on its own against one that flags it when the first Critical Misses are comparable, an extra Critical Miss on an optional section, wording or formatting against stopping). strength = "slight" when both are reasonable first fixes, or reasonable sets, and the preference is a judgment call. Use winner "no_real_difference" with strength "none" when neither is better.
 Position does not matter: the first report is not more likely to be better than the second.
 
 OUTPUT
@@ -83,9 +84,23 @@ right_thing_first: 1 to 5, your overall judgment of whether this is the right th
 OUTPUT
 Return JSON only, matching the schema. Keep first_read and most_important_issue to one or two sentences each. rationale is two to four sentences quoting the deciding resume lines in double quotes. cited_resume_lines must be copied exactly from the resume. unsupported_claims must quote the report's exact words; leave the list empty when there is no real error.`;
 
+export const COUNT_SYSTEM_PROMPT = `You are an experienced recruiter and hiring manager who has screened resumes for many years across functions. You are checking each Critical Miss in one report on its own. You do not know who or what wrote the report, and you must not guess.
+
+${CRITERIA_TEXT}
+
+FOR EACH CRITICAL MISS, in the report's order
+- number: its position in the report, starting at 1.
+- addresses: the problem on the resume it asks the person to fix, in a few words.
+- critical_on_its_own: true when that problem, by itself, would likely cost this person an interview for the kind of role the resume targets: a recruiter would pass on the resume because of it even if the rest were fine (C8). Judge each Critical Miss by the problem it names, not by its position, its wording, or how many others the report lists. A real problem is still critical when its fix is weak; the quality of the fix is not the question here. The first Critical Miss is rated the same way as the others.
+- matches: only when LABELED PROBLEMS are given. The id of the labeled problem whose underlying issue this Critical Miss's fix addresses, even if it words it differently or cites a different line; "none" if it addresses none of them. Citing the same line is not enough when the fix asks about something else. A Critical Miss matches at most one labeled problem: when it touches two, pick the one its fix mainly asks about. Without labeled problems, always "none".
+- note: one sentence that quotes the deciding resume line in double quotes.
+
+OUTPUT
+Return JSON only, matching the schema, with one entry per Critical Miss in the report, in order. rationale is one or two sentences on the report as a whole.`;
+
 export function judgePromptSha256(): string {
     return createHash("sha256")
-        .update(`${JUDGE_PROMPT_VERSION}\n${PAIRWISE_SYSTEM_PROMPT}\n${ABSOLUTE_SYSTEM_PROMPT}`)
+        .update(`${JUDGE_PROMPT_VERSION}\n${PAIRWISE_SYSTEM_PROMPT}\n${ABSOLUTE_SYSTEM_PROMPT}\n${COUNT_SYSTEM_PROMPT}`)
         .digest("hex");
 }
 
@@ -188,6 +203,37 @@ export const ABSOLUTE_RESPONSE_FORMAT = {
                 "first_read", "most_important_issue", "unsupported_claims", "criteria",
                 "right_thing_first", "rationale", "cited_resume_lines",
             ],
+            additionalProperties: false,
+        },
+    },
+} as const;
+
+export const COUNT_RESPONSE_FORMAT = {
+    type: "json_schema",
+    json_schema: {
+        name: "riyp_critical_miss_count_v1",
+        strict: true,
+        schema: {
+            type: "object",
+            properties: {
+                misses: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            number: { type: "integer", minimum: 1, maximum: 3 },
+                            addresses: text,
+                            critical_on_its_own: { type: "boolean" },
+                            matches: { type: "string", enum: [...COUNT_MATCH_IDS] },
+                            note: text,
+                        },
+                        required: ["number", "addresses", "critical_on_its_own", "matches", "note"],
+                        additionalProperties: false,
+                    },
+                },
+                rationale: text,
+            },
+            required: ["misses", "rationale"],
             additionalProperties: false,
         },
     },

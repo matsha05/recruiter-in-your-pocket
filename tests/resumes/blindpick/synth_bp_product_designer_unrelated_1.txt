@@ -1,0 +1,32 @@
+Owen Gallagher
+Brooklyn, NY | owen.gallagher@example.com | 555-0114 | owengallagher-design.example.com
+
+Product designer with four years designing web and mobile apps for startups.
+
+EXPERIENCE
+
+Barista
+Ferry Street Coffee, Brooklyn, NY
+May 2024 - Present
+- Prepare drinks and serve customers in a busy cafe
+- Train new baristas on espresso equipment
+
+Product Designer
+Loop Fitness, New York, NY
+March 2021 - February 2024
+- Designed the class booking flow for the iOS and Android apps
+- Worked with two engineers and a product manager on weekly releases
+- Created the app's first design system in Figma
+- Ran usability tests with members before launches
+
+Junior Product Designer
+Brightpath Studio, New York, NY
+June 2019 - February 2021
+- Designed marketing sites and app screens for agency clients
+- Made prototypes for client presentations
+
+EDUCATION
+B.F.A., Communication Design, Pratt Institute, 2019
+
+SKILLS
+Figma, Principle, user research, prototyping, design systems

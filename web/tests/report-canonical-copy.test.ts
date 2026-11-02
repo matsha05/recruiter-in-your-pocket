@@ -338,6 +338,14 @@ assert.deepEqual(findFixEvidenceMismatch("In the Finance forecasting bullet, ide
   "Partnered with Finance on headcount forecasting and requisition approval.", "Partnered with Finance on headcount forecasting and requisition approval."), []);
 assert.deepEqual(findFixEvidenceMismatch("Name the policy steps you used for returns and exchanges.", "Processed returns and exchanges.", "Processed returns and exchanges."), []);
 assert.ok(findFixEvidenceMismatch("Add audit results to this transaction bullet.", "Processed returns and exchanges.", "Processed returns and exchanges.").length > 0);
+// A one-line headline naming the target role sits where a summary would (severity check, synth_cc_career_changer_bad_1).
+const noSummaryResume = "EXPERIENCE\nShift Supervisor\n- Supervise cashiers and stockers on evening shifts\nFreelance Web Developer\n- Built small business websites";
+assert.deepEqual(findFixEvidenceMismatch("Add a one-line headline above Experience naming the role you want.", "No summary section present", noSummaryResume), []);
+assert.deepEqual(findFixEvidenceMismatch("Add a summary naming the role you want.", "No summary section present", noSummaryResume), []);
+assert.ok(findFixEvidenceMismatch("Add the number of cashiers and stockers you supervise.", "No summary section present", noSummaryResume).length > 0,
+  "the summary marker still supports only a summary or headline fix");
+assert.ok(findFixEvidenceMismatch("Add a headline naming the role you want.", "No skills section present", noSummaryResume).length > 0,
+  "a headline is not a skills section");
 const distinctTools = ["Replace the hackathon statement with a verified system example.", "Add environment context to the GitOps bullet without changing its tools."];
 assert.deepEqual((canonicalizeResumeReportEvidence({ next_steps: distinctTools }, "Used GitOps tools and participated in hackathons.").report as any).next_steps, distinctTools);
 
