@@ -77,7 +77,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "What the score tells you",
-            body: "How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved. It never predicts interviews.",
+            body: "How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved.",
           },
           {
             icon: LockKey,

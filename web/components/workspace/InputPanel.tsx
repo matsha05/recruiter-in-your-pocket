@@ -137,7 +137,7 @@ export default function InputPanel({
         >
             <div className={styles.content}>
                 <header className={styles.intro}>
-                    <p className={styles.eyebrow}>{isRevision ? "Re-check" : "New report"}</p>
+                    <p className={styles.eyebrow}>{isRevision ? "Re-check" : "Your resume"}</p>
                     <h1 className={styles.title}>
                         {isRevision ? "Now let’s see what changed." : "Let’s see what they see."}
                     </h1>

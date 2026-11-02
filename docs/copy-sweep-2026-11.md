@@ -21,7 +21,7 @@ Branch `claude/copy-sweep-2026-11`, cut from origin/main `568b923a`. This pass r
 
 | Where | Before | After |
 | --- | --- | --- |
-| Eyebrow | Resume review / Resume comparison | New report / Re-check |
+| Eyebrow | Resume review / Resume comparison | Your resume / Re-check |
 | H1 | Start with your resume. | Let's see what they see. |
 | Intro | Add the resume you're about to send. We'll look at the whole document, show you what's clear, and help you decide what to change first. | Add the resume you're about to send. We'll read the whole thing and show you what comes through, what slips past, and what to fix first. |
 | Re-check intro | Upload your revision to see what improved and what still needs attention. | Add the new version. We'll put it beside the last one and show you whether the Critical Miss changed. |
@@ -121,7 +121,7 @@ The homepage title now fits in search results, so `/` comes off the long-title e
 | What is the Job Search Pass? | It is a $29 one-time purchase for five additional complete reports and PDF exports. The pass expires 30 days after purchase and never renews automatically. | One $29 payment for five more complete reports, plus PDF exports. Use them to check a revision or read your resume against a job. The pass expires 30 days after purchase and never renews automatically. |
 | Categories | Privacy & Security / Pricing & Billing | Privacy and security / Pricing and billing |
 | Restore answer, terms link | Restore Access | Restore access |
-| Trust card: What the score tells you | Your resume gets a score out of 100, with an explanation of what affected it. | How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved. It never predicts interviews. |
+| Trust card: What the score tells you | Your resume gets a score out of 100, with an explanation of what affected it. | How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved. |
 | Trust card titles | Clear data handling / Simple billing / You control deletion | What we keep, and for how long / One payment, no renewal / Delete it whenever you like |
 | Trust and security promise | The score summarizes this resume review out of 100. | The score summarizes this resume review out of 100. It doesn't predict interviews or offers. |
 
