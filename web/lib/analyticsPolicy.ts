@@ -89,3 +89,63 @@ export function sanitizeAnalyticsEvent(
 
   return { name: approvedName, properties: sanitized };
 }
+
+// Where a visit came from, attached to every event after consent so a channel can be followed
+// from landing to checkout. Our own links carry campaign tags (docs/growth/first-100-users.md);
+// an untagged visit keeps only the kind of site it came from, never its address or search terms.
+export const VISIT_ENTRY_PROPERTIES = ["entry_source", "entry_medium", "entry_campaign", "entry_variant"] as const;
+export type VisitEntry = Partial<Record<(typeof VISIT_ENTRY_PROPERTIES)[number], string>>;
+
+// A tag with any other medium is someone else's, so none of it is kept.
+const TAGGED_MEDIUMS = new Set(["social", "community", "partner", "directory", "cpc", "email"]);
+const CAMPAIGN_LABEL = /^[a-z0-9][a-z0-9_-]{0,39}$/;
+
+const REFERRER_CHANNELS: readonly [RegExp, string, string][] = [
+  [/^(?:www\.)?google\.[a-z.]+$/, "google", "organic"],
+  [/^(?:www\.)?bing\.com$/, "bing", "organic"],
+  [/^(?:www\.)?duckduckgo\.com$/, "duckduckgo", "organic"],
+  [/^(?:www\.)?chatgpt\.com$/, "chatgpt", "ai"],
+  [/^(?:www\.)?perplexity\.ai$/, "perplexity", "ai"],
+  [/^gemini\.google\.com$/, "gemini", "ai"],
+  [/^copilot\.microsoft\.com$/, "copilot", "ai"],
+  [/^claude\.ai$/, "claude", "ai"],
+  [/(?:^|\.)linkedin\.com$|^lnkd\.in$/, "linkedin", "social"],
+  [/(?:^|\.)threads\.(?:net|com)$/, "threads", "social"],
+  [/^(?:www\.)?(?:x|twitter)\.com$|^t\.co$/, "x", "social"],
+  [/(?:^|\.)reddit\.com$/, "reddit", "community"],
+];
+
+// Steps inside our own journey (checkout, sign-in) send people back with a referrer; they aren't a channel.
+const JOURNEY_HOSTS = /(?:^|\.)(?:stripe\.com|supabase\.co)$|^accounts\.google\.com$/;
+
+function campaignLabel(value: string | null): string | null {
+  const label = value?.trim().toLowerCase() ?? "";
+  return CAMPAIGN_LABEL.test(label) && safeScalar(label) !== null ? label : null;
+}
+
+/** The visit's channel from its query string and referrer, or null for a direct or internal visit. */
+export function visitEntry(search: string, referrer: string, ownHost: string): VisitEntry | null {
+  const params = new URLSearchParams(search);
+  const medium = campaignLabel(params.get("utm_medium"));
+  const source = campaignLabel(params.get("utm_source"));
+  if (medium && source && TAGGED_MEDIUMS.has(medium)) {
+    const entry: VisitEntry = { entry_source: source, entry_medium: medium };
+    const campaign = campaignLabel(params.get("utm_campaign"));
+    const variant = campaignLabel(params.get("utm_content"));
+    if (campaign) entry.entry_campaign = campaign;
+    if (variant) entry.entry_variant = variant;
+    return entry;
+  }
+  let host: string;
+  try {
+    host = new URL(referrer).hostname.toLowerCase();
+  } catch {
+    return null;
+  }
+  const site = (name: string) => name.replace(/^www\./, "");
+  if (!host || site(host) === site(ownHost.toLowerCase()) || JOURNEY_HOSTS.test(host)) return null;
+  for (const [pattern, entrySource, entryMedium] of REFERRER_CHANNELS) {
+    if (pattern.test(host)) return { entry_source: entrySource, entry_medium: entryMedium };
+  }
+  return { entry_source: "other", entry_medium: "referral" };
+}

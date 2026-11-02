@@ -87,6 +87,35 @@ test("consented analytics excludes search terms from the referring page", async 
   await expect.poll(() => events.some(item => item.event === "page_viewed"), { timeout: 15_000 }).toBe(true);
   expect(JSON.stringify(events)).not.toContain("private-resume-query");
   expect(events.every(item => !("mp_keyword" in item.properties))).toBe(true);
+  // Someone else's tags are dropped; the visit keeps only the kind of site it came from.
+  expect(events.find(item => item.event === "page_viewed")?.properties).toMatchObject({ entry_source: "google", entry_medium: "organic" });
+});
+
+test("a tagged link's channel rides from the landing page to the finished report", async ({ page }) => {
+  test.skip(process.env.RIYP_ANALYTICS_TEST_ENABLED !== "1", "Use the analytics-enabled test build.");
+  test.setTimeout(120_000);
+  const events = await interceptAnalytics(page);
+  await page.setExtraHTTPHeaders({ "x-forwarded-for": "198.51.100.211" });
+  await page.route("**/auth/v1/user", route => route.fulfill({ status: 401, json: { message: "Auth session missing" } }));
+  await page.goto("/?utm_source=reddit&utm_medium=community&utm_campaign=r-resumes&utm_content=answer&gclid=private-click-id");
+  await page.getByRole("button", { name: "Allow analytics", exact: true }).click();
+  await page.getByTestId("landing-primary-cta").click();
+  await expect(page).toHaveURL(/\/workspace$/);
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill([
+    "ALEX RIVERA", "Senior Program Manager",
+    "Led cross-functional launches across product, operations, and support teams.",
+    "Built review cadences, clarified ownership, and kept deadlines on track.",
+    "Reduced rework by creating clearer launch checklists and decision logs.",
+  ].join("\n"));
+  await page.getByTestId("workspace-run-report").click();
+  await expect(page.locator("#section-first-impression h1")).toBeVisible({ timeout: 35_000 });
+  await expect.poll(() => events.some(item => item.event === "report_completed"), { timeout: 15_000 }).toBe(true);
+  const entry = { entry_source: "reddit", entry_medium: "community", entry_campaign: "r-resumes", entry_variant: "answer" };
+  for (const name of ["page_viewed", "landing_cta_clicked", "report_started", "report_completed"]) {
+    expect(events.find(item => item.event === name)?.properties, name).toMatchObject(entry);
+  }
+  expect(JSON.stringify(events)).not.toContain("private-click-id");
 });
 
 for (const signal of ["doNotTrack", "globalPrivacyControl"]) {
