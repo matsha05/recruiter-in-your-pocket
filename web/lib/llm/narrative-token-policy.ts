@@ -22,7 +22,7 @@ export const baseNarrativeStopWords = normalizedSet([
   "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "of",
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "but", "only", "while", "yet", "using", "via",
-  "though", "although", "toward", "towards",
+  "though", "although", "toward", "towards", "also", "before",
 ]);
 
 const styleWords = normalizedSet([

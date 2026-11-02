@@ -238,3 +238,9 @@ const splunkSource = "- Built 140+ detection rules in Splunk mapped to MITRE ATT
 assert.equal(fromPath({ strengths: ["Mapping Splunk rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length, 0, "Mapping is a common word");
 assert.ok(fromPath({ strengths: ["Mapping Sentinel rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length > 0, "a tool the resume doesn't name is still unsupported");
 console.log("gerund tests passed");
+
+// Function words in a description of the timeline (eval_1793597366261, count-check admin generalist).
+const endedSource = "Office Administrator, Riverbend Dental Group\nJune 2022 - March 2025\n- Answered phones and scheduled patient appointments";
+assert.equal(fromPath({ score_plain: "The recent work history also stops before the present." }, endedSource).length, 0, "also and before are function words");
+assert.ok(fromPath({ score_plain: "The recent work history also stops before the Google role." }, endedSource).length > 0, "an employer the resume doesn't name is still unsupported");
+console.log("timeline function word tests passed");
