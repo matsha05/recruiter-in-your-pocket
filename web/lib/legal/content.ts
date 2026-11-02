@@ -338,7 +338,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "Does a person read my resume?",
-                a: "No. A recruiter with 14 years in hiring wrote the review criteria, and AI applies them to your resume. No one reads individual reports, so check every suggested edit against what you actually did.",
+                a: "No. A recruiter with 14 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
               },
               {
                 q: "What file formats are supported?",
