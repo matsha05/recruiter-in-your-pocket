@@ -121,6 +121,24 @@ assert.deepEqual(
 );
 assert.deepEqual(
   findAlreadySatisfiedFix(
+    "Add the number of backend microservices you independently owned.",
+    "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+    "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+  ),
+  [],
+  "a count of named things is missing when the line gives other figures but says 'several'",
+);
+assert.deepEqual(
+  findAlreadySatisfiedFix(
+    "Add the number of patients you see each day.",
+    "- See 8 to 10 patients a day for cleanings, periodontal maintenance, and scaling and root planing",
+    "- See 8 to 10 patients a day for cleanings, periodontal maintenance, and scaling and root planing",
+  ),
+  ["metric already present in cited bullet"],
+  "a count the line already gives is still caught",
+);
+assert.deepEqual(
+  findAlreadySatisfiedFix(
     "Add [retention metric] and [timeframe] to this redesign bullet.",
     "Spearheaded redesign of the flagship SaaS platform",
     "Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch.",
