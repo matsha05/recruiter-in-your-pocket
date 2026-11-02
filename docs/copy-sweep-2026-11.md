@@ -202,6 +202,19 @@ These files are being edited by the signature-report and research-receipts sessi
 - **Dead code:** `MARKETING_NAV` in `lib/navigation.ts` is unused and title-cased ("How Recruiters Read", "Research Hub").
 - **Kept on purpose:** "Résumé" in `quantifying-impact` is the cited paper's title, quoted as published.
 
-## Verification
+## Verification (local, November 2, 2026)
 
-See the hand-over note in the shared notes folder for the exact commands and results on the final SHA.
+- **Passed:** `tsc --noEmit`, `npm run lint`, `npm run qa:design-system` (0 banned copy terms), `test:search-foundation`, `tests/billing-pricing.test.ts`.
+- **Banned-phrase scan of every added line:** voice-and-tone's avoid list, the retired names in copy-system §1, "Please", accents on resume, and em dashes. No hits in copy.
+- **UI specs on a production build:** billing off, mock OpenAI, Supabase pointed at 127.0.0.1. 111 passed, 1 skipped, 0 failed across 13 files:
+  - homepage-seo, site-mobile-navigation, legal-mobile-layout, landing-navigation, pricing-mobile
+  - editorial-surfaces, search-foundation, auth-code-retry, workspace-handoffs (which runs the shared action-failure cases)
+  - first-report-wait, mobile-resume-experience, status-states, accessibility
+- **Looked at in the browser:** the workspace, the guides index, the 404 and the trust page, on that build.
+- **Not run:**
+  - `privacy-checklist.spec.ts` needs an analytics-on build (`test:consent-ui`).
+  - `redteam-journeys.spec.ts` needs the dev-server journey runner.
+  - `paid-decision.spec.ts` needs a billing-on build.
+
+  The only change in the first two is the workspace H1 string. No paid-decision assertion changed.
+- The last two string edits (the workspace eyebrow, a trust-card sentence) came after that build. tsc, lint and the guardrails were re-run on the final commit.
