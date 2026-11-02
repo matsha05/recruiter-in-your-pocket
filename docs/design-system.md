@@ -315,6 +315,7 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 - Preserve file/paste modes, optional job context, generation, missing-fact entry, comparison, history, save, and export behavior.
 - Density may increase, but hierarchy must stay calm. Operational errors are not resume findings.
 - Scores support judgment; they do not replace it.
+- After the fixes, "Why we read it this way" links each of the four parts the score weighs to the research behind it, as pen margin notes that open in a new tab (`components/workspace/report/ResearchReceipts.tsx`, Nov 2, 2026). It stays below the first screen so the Critical Miss keeps its place.
 
 ### Research
 

@@ -112,6 +112,32 @@ test.describe("research system", () => {
     }
   });
 
+  test("the report links each part of the score to the research behind it", async ({ page, request }) => {
+    for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/sample-report", { waitUntil: "domcontentloaded" });
+      const receipts = page.getByTestId("research-receipts");
+      await expect(receipts).toBeVisible();
+      const links = receipts.locator("a");
+      await expect(links).toHaveCount(5);
+      for (const link of await links.all()) {
+        const href = await link.getAttribute("href");
+        expect(href).toMatch(/^\/(research\/[a-z-]+|methodology)$/);
+        await expect(link).toHaveAttribute("target", "_blank");
+        expect((await request.get(href ?? "")).status(), `${href}`).toBe(200);
+      }
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow).toBeLessThanOrEqual(1);
+    }
+  });
+
+  test("each article's method note leads to how we write the research", async ({ page }) => {
+    await page.goto("/research/how-recruiters-read", { waitUntil: "domcontentloaded" });
+    await page.getByRole("link", { name: "The longer version" }).click();
+    await expect(page).toHaveURL(/\/methodology#how-we-write-research$/);
+    await expect(page.getByRole("heading", { name: "How we write the research" })).toBeVisible();
+  });
+
   test("hub and every canonical article load without browser errors", async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(`pageerror: ${error.message}`));

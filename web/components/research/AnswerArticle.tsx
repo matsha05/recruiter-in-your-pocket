@@ -139,7 +139,8 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                     <section id="how-we-write" tabIndex={-1} className={`riyp-jump-target ${styles.method}`} aria-labelledby="how-we-write-title">
                         <h2 id="how-we-write-title" className={styles.methodTitle}>How we write these</h2>
                         <p className={styles.methodBody}>
-                            We link every study we cite and say what it can&rsquo;t tell you. When something is our advice rather than a finding, we say so. The date above is when the page last changed.
+                            We link every study we cite and say what it can&rsquo;t tell you. When something is our advice rather than a finding, we say so. The date above is when the page last changed.{" "}
+                            <Link href="/methodology#how-we-write-research" className="focus-ring riyp-link-quiet">The longer version</Link>
                         </p>
                     </section>
 

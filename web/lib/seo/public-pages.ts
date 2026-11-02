@@ -25,7 +25,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/", updated: "2026-10-31" },
   { path: "/sample-report", updated: "2026-11-01" },
   { path: "/pricing", updated: "2026-11-01" },
-  { path: "/methodology", updated: "2026-11-01", published: "2026-01-02", card: "how-we-score" },
+  { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 
   { path: "/research", updated: "2026-11-01" },
   // Every article was corrected against its sources on Nov 1, 2026 (#35).

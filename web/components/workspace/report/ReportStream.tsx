@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
+import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
 import type { LiftChange, ResumeSource } from "./markup/LineLift";
 import { CriticalMissRow, FixRow, PageNote, excerptOf } from "./markup/MarkedRows";
@@ -219,6 +220,8 @@ export function ReportStream({
           })}
         </ol>
       </section>
+
+      <ResearchReceipts />
 
       <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={sourceText} isReadOnly={isSample} />
 

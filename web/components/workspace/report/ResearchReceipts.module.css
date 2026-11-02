@@ -1,0 +1,78 @@
+/* The report's margin-note voice: Literata italic in pen, on one pen rule. Quiet on purpose. */
+
+.receipts {
+    max-width: 34rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1.25rem;
+}
+
+.title {
+    margin: 0;
+    font: var(--type-label);
+}
+
+.intro {
+    margin: 0.25rem 0 0;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.notes {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    border-left: 1px solid hsl(var(--pen));
+    padding: 0 0 0 0.75rem;
+    list-style: none;
+}
+
+.notes li {
+    display: grid;
+}
+
+.part {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+    font-weight: var(--weight-body);
+}
+
+.note {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.375rem;
+    justify-self: start;
+    border-radius: var(--radius-sm);
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--pen) / 0.35);
+    text-decoration-thickness: var(--link-thickness);
+    text-underline-offset: var(--link-offset);
+    transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+}
+
+.note:hover {
+    color: hsl(var(--pen-strong));
+    text-decoration-color: currentColor;
+}
+
+.icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex: none;
+}
+
+.method {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: 0.5rem;
+    font: var(--type-small);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .note { transition: none; }
+}
