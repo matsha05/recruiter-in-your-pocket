@@ -1,0 +1,1541 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: pairwise comparison and gate",
+    "timestamp": "2026-11-01T22:33:45.195Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd",
+    "calls": 27,
+    "cost_usd": 0.18491739999999998
+  },
+  "names": {
+    "X": "eval_1793553133997 (2026-11-01T17-22-02-097Z_live_run.json; gpt-6.1-terra, prompt 83b2a2d1)",
+    "Y": "eval_1793560808592 (2026-11-01T19-27-24-729Z_live_run.json; gpt-6.1-terra, prompt 55bee48b)"
+  },
+  "gate": {
+    "pass": false,
+    "compared": 10,
+    "preferred": 2,
+    "share": 0.2,
+    "candidate_vetoes": [],
+    "not_judged": [
+      "synth_finance_analyst_senior_weak_1: no shown candidate report"
+    ],
+    "reasons": [
+      "candidate preferred on 2 of 10 resumes (20%), below 80%",
+      "1 resume(s) not fully judged"
+    ]
+  },
+  "resumes": [
+    {
+      "fixture_id": "synth_data_scientist_senior_elite_1",
+      "pairwise": {
+        "case_id": "synth_data_scientist_senior_elite_1",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "This is a currently employed senior data science lead with explicit team ownership, production modeling experience, and quantified healthcare and fraud outcomes. The latest role already establishes team size, technical scope, and business impact.",
+              "most_important_issue": "The main healthcare outcome would be more interpretable with the patient population and comparison behind the reported 15% reduction in readmissions. That is a more consequential addition than an example of a mentoring-related validation practice.",
+              "first": {
+                "targets": "Add the patient group and comparison supporting the latest role's 15% readmission reduction, if verifiable.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Declares nothing critical and offers an optional example of a model validation practice in the mentoring bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C5_always_a_top_fix",
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report identifies a grounded, specific improvement to the latest role's central achievement: \"reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.\" Asking for the patient group and comparison makes that outcome easier to assess without inventing facts. The second report declares nothing critical and instead suggests an optional detail about \"establishing best practices in data preprocessing, model validation, and production deployment\" in a secondary mentoring bullet. C5 favors the real, grounded fix over Nothing critical, and C1 favors strengthening the core platform outcome over elaborating the mentoring example. The first report's conditional wording also preserves an honest, verifiable ask under C7.",
+              "cited_resume_lines": [
+                "- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.",
+                "- I mentored 5 junior data scientists, establishing best practices in data preprocessing, model validation, and production deployment that decreased model errors by 22% across projects within the first year."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2996,
+              "completion_tokens": 555,
+              "total_tokens": 3551,
+              "cached_prompt_tokens": 2993,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 48
+            },
+            "cost_usd": 0.0058553,
+            "latency_ms": 8850
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Senior Data Scientist & Team Lead role shows substantial team leadership, hands-on deployment, patient scale, and financial results. The main uncertainty is how the headline reduction in hospital readmissions was assessed.",
+              "most_important_issue": "Add the patient group and comparison behind the current role's 15% readmission reduction, if verifiable, so a hiring manager can interpret the central healthcare outcome.",
+              "first": {
+                "targets": "Declares nothing critical and offers an optional example of a model validation practice from the current role's mentoring bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Requests the patient group and comparison used to assess the current role's headline 15% readmission reduction.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C5_always_a_top_fix",
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The second report identifies a real, grounded improvement rather than declaring nothing critical, which decides the comparison under C5_always_a_top_fix. The current role's core achievement is \"- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.\" Making that outcome interpretable matters more on first read than adding a practice example to the mentoring bullet (C1_first_read_stakes). The second report names exactly what to add—the patient group and comparison—and explicitly conditions the request on verification (C3_specific_ask, C7_honest_ask). Neither report makes an unsupported factual claim.",
+              "cited_resume_lines": [
+                "Senior Data Scientist & Team Lead",
+                "Feb 2018 - Present",
+                "- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.",
+                "- I mentored 5 junior data scientists, establishing best practices in data preprocessing, model validation, and production deployment that decreased model errors by 22% across projects within the first year."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2996,
+              "completion_tokens": 525,
+              "total_tokens": 3521,
+              "cached_prompt_tokens": 2993,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0055553,
+            "latency_ms": 5894
+          }
+        ],
+        "cost_usd": 0.0114106
+      },
+      "candidate_absolute": {
+        "case_id": "synth_data_scientist_senior_elite_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "An experienced, currently employed data science lead with explicit team sizes, technical tools, deployment scale, and business results. The latest role supports both hands-on technical work and leadership.",
+          "most_important_issue": "The strongest first fix is to add a concrete model-quality measure or validation design to the current hospital readmission platform work, so a hiring manager can assess predictive reliability alongside business impact.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "The report declares nothing needs fixing first and selects an optional example from the mentoring bullet rather than strengthening the core OptiMed platform and model work."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "A specific validation practice would add a tangible fact beyond the OptiMed bullet's general reference to 'model validation.'"
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the OptiMed mentoring bullet and asks for one model validation practice the candidate established across projects."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "Helping a data science manager understand the candidate's approach to model quality is relevant, although the report does not explain what technical judgment remains unproven."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the stated ownership of establishing best practices and asks for a factual example without inventing metrics or expanding responsibility."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The current role already establishes substantial scope: \"I led a cross-functional team of 8 data scientists and engineers\" and \"enabling real-time decision support for 150K patients monthly.\" Asking for a validation practice would genuinely improve the claim \"establishing best practices in data preprocessing, model validation, and production deployment,\" but it remains a narrow mentoring-bullet example. The report's conclusion that nothing needs fixing first overlooks the more consequential opportunity to substantiate the predictive quality of the latest role's main platform.",
+          "cited_resume_lines": [
+            "Feb 2018 - Present",
+            "- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.",
+            "- I architected and deployed machine learning models using Python (scikit-learn, TensorFlow) and Spark on AWS, improving model training time by 40% and enabling real-time decision support for 150K patients monthly.",
+            "- I mentored 5 junior data scientists, establishing best practices in data preprocessing, model validation, and production deployment that decreased model errors by 22% across projects within the first year."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2893,
+          "completion_tokens": 758,
+          "total_tokens": 3651,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 728,
+          "reasoning_tokens": 97
+        },
+        "cost_usd": 0.0096222,
+        "latency_ms": 11383
+      }
+    },
+    {
+      "fixture_id": "synth_marketing_manager_vp_elite_1",
+      "pairwise": {
+        "case_id": "synth_marketing_manager_vp_elite_1",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current CMO role establishes substantial executive scope through a 45-person organization, a $25M budget and quantified commercial results. The chronology is current, with no open employment gap.",
+              "most_important_issue": "The product-launch bullet gives substantial results without identifying the process change or defining a successful launch. Adding those facts would make this executive-level achievement easier to evaluate.",
+              "first": {
+                "targets": "Name one actual change to Novara's launch process and define what counted as a successful launch.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Define launch success, but treat this as optional and conclude that nothing needs fixing first.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C5_always_a_top_fix",
+                "C3_specific_ask"
+              ],
+              "rationale": "Both reports target the same current-role achievement: \"- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.\" Neither makes an unsupported factual claim. The first identifies a real improvement and asks for two precise, missing facts: the process change and the success criteria. The second recognizes the missing criteria but labels the issue optional and says nothing needs fixing first. C5 decides this comparison: a strong resume still has a useful first fix, and the first report supplies one. Its additional request for the actual process change also provides concrete help under C3.",
+              "cited_resume_lines": [
+                "Jan 2016 - Present",
+                "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+                "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3471,
+              "completion_tokens": 549,
+              "total_tokens": 4020,
+              "cached_prompt_tokens": 3468,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 71
+            },
+            "cost_usd": 0.0058428,
+            "latency_ms": 9785
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current CMO role establishes executive scope through a 45-person global organization, a $25M budget, and substantial commercial results. The career progression is clear, and there is no open employment gap.",
+              "most_important_issue": "The product-launch bullet should identify the actual process change and define launch success so the reader can interpret the claimed improvement and understand the candidate's contribution.",
+              "first": {
+                "targets": "Defining launch success in the current CMO role, but explicitly treats that clarification as optional and concludes nothing needs fixing first.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Naming one concrete launch-process change and defining what counted as a successful launch in the current CMO role.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C5_always_a_top_fix",
+                "C3_specific_ask"
+              ],
+              "rationale": "Both reports address the same bullet: \"- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.\" Neither makes an unsupported claim. Under C5_always_a_top_fix, the second report correctly identifies a grounded first fix rather than dismissing it as optional. Its request also provides more concrete help under C3_specific_ask: name one actual process change as well as define success. Those details would make an important current-role achievement more interpretable without inventing results or changing ownership.",
+              "cited_resume_lines": [
+                "Jan 2016 - Present",
+                "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+                "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3471,
+              "completion_tokens": 552,
+              "total_tokens": 4023,
+              "cached_prompt_tokens": 3468,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 74
+            },
+            "cost_usd": 0.0058728,
+            "latency_ms": 8092
+          }
+        ],
+        "cost_usd": 0.0117156
+      },
+      "candidate_absolute": {
+        "case_id": "synth_marketing_manager_vp_elite_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "An established, currently employed CMO with substantial global scope, a 45-person organization, a $25M budget, and quantified commercial results. The main uncertainty is when the reported achievements occurred during the nearly eleven-year current tenure.",
+          "most_important_issue": "Date the headline Novara growth results and identify the most recent relevant performance period. The undated three-year ARR improvement does not establish how recently this executive delivered those results.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 1,
+              "note": "The report labels nothing critical and treats defining launch success as optional, overlooking the more consequential lack of timing for headline results within the Jan 2016 - Present role."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The criteria behind 'increasing launch success rate to 90%' are genuinely missing, and defining them would add a tangible fact."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the Novara launch bullet and asks precisely how product launch success was assessed."
+            },
+            "recruiter_consequence": {
+              "score": 2,
+              "note": "The why identifies the undefined 90% metric but does not explain what a hiring manager cannot judge about the candidate's launch leadership without that definition."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for the actual assessment criteria preserves the stated ownership and does not invent or inflate the launch results."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "Defining \"increasing launch success rate to 90%\" is grounded and useful, but that bullet already provides \"shortening time-to-market by 30%\" and a \"$15M incremental revenue increase over 2 years.\" The larger first-read uncertainty is that the current role spans \"Jan 2016 - Present,\" while its headline ARR achievement is only located \"within 3 years,\" without calendar dates. The report's optional refinement does not address whether the strongest commercial evidence reflects recent executive performance.",
+          "cited_resume_lines": [
+            "Jan 2016 - Present",
+            "- I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 years.",
+            "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3363,
+          "completion_tokens": 814,
+          "total_tokens": 4177,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 1198,
+          "reasoning_tokens": 190
+        },
+        "cost_usd": 0.0113572,
+        "latency_ms": 13834
+      }
+    },
+    {
+      "fixture_id": "synth_software_engineer_mid_strong_1",
+      "pairwise": {
+        "case_id": "synth_software_engineer_mid_strong_1",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The latest engineering role shows independent backend-service ownership, reliability and performance results, and dashboard delivery. The resume explicitly explains the caregiving break and states that the candidate recently returned to the workforce.",
+              "most_important_issue": "The strongest first fix would make the recent technical work more concrete. Of the proposed fixes, identifying the actual AWS migration component and contribution adds useful engineering evidence, whereas the return-to-work context is already addressed.",
+              "first": {
+                "targets": "Name the component or task in the NovaTech AWS migration and describe the candidate's actual contribution.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add dated activities after the caregiving break to substantiate the stated workforce return.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask"
+              ],
+              "rationale": "Under C4_gap_handling, this is an answered break: the resume states \"Career Break for Family Caregiving\" with \"September 2022 - April 2024\", and the summary says \"Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.\" The absence of a later dated entry is real, but an answered break ranks below a concrete missing fact in actual work. The first report targets \"- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.\" Its request for the component or task and the candidate's action is specific, adds missing technical evidence, and preserves the stated contribution level. C2 and C3 therefore reinforce the first report's advantage.",
+              "cited_resume_lines": [
+                "Career Break for Family Caregiving",
+                "September 2022 - April 2024",
+                "Results-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.",
+                "- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3093,
+              "completion_tokens": 621,
+              "total_tokens": 3714,
+              "cached_prompt_tokens": 3090,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 90
+            },
+            "cost_usd": 0.006525,
+            "latency_ms": 9775
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Evelyn’s latest engineering role shows backend service ownership, reliability improvements, and dashboard delivery. Her caregiving break is dated and explained, and the summary states that she has returned to the workforce.",
+              "most_important_issue": "The latest engineering experience could better establish the substance of her technical work, particularly her own contribution to the AWS migration.",
+              "first": {
+                "targets": "Add dated activity after the caregiving break ended in April 2024.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Specify the component or migration task Evelyn contributed to and her actual work on it in the NovaTech AWS migration bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "Under C4_gap_handling, this is an answered break: the resume includes \"Career Break for Family Caregiving\" and \"September 2022 - April 2024\", while the summary explicitly says \"Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.\" The first report truthfully identifies the absence of later dated activity, but that is lower priority than a concrete missing fact in the actual engineering work. The second report targets \"- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.\" Its request for the component or task and the work performed is specific, adds substantive technical evidence, and preserves the stated contributor-level ownership.",
+              "cited_resume_lines": [
+                "Career Break for Family Caregiving",
+                "September 2022 - April 2024",
+                "Results-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.",
+                "- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3093,
+              "completion_tokens": 641,
+              "total_tokens": 3734,
+              "cached_prompt_tokens": 3090,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 120
+            },
+            "cost_usd": 0.006725,
+            "latency_ms": 9451
+          }
+        ],
+        "cost_usd": 0.013250000000000001
+      },
+      "candidate_absolute": {
+        "case_id": "synth_software_engineer_mid_strong_1",
+        "veto": false,
+        "overall": 2,
+        "raw": {
+          "first_read": "An experienced software engineer with independent backend-service ownership, quantified reliability and performance results, and an explicitly explained caregiving break. The summary states a return to the workforce, but the strongest engineering experience lacks concrete service or system scope.",
+          "most_important_issue": "Make the NovaTech backend ownership concrete by identifying the services' functions, implementation technologies, and verified operating scale. That would better establish the depth of the candidate's most recent engineering work.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 2,
+              "note": "Reconciling the April 2024 end date with the stated return is useful, but the summary already says the candidate recently returned after caregiving, making this lower priority than concrete scope for the NovaTech services."
+            },
+            "concrete_fact": {
+              "score": 4,
+              "note": "The report requests a real, dated role, project, course, or other activity beyond the caregiving entry, which currently names only undated coursework and personal projects."
+            },
+            "specific_ask": {
+              "score": 3,
+              "note": "It identifies the period after April 2024 and requests dates, but offers broad activity categories rather than specifying which existing coursework or project to document and what engineering detail to include."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation appropriately connects recent activity to engineering reviewers' need to understand what the candidate has recently built or maintained."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request for a real role, project, course, or other dated activity 'if applicable' does not invent employment or inflate the candidate's stated ownership."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 1,
+              "note": "The report makes the post-break chronology the Critical Miss even though the resume explicitly explains caregiving and states a recent return, which counts as answered under the gap criteria."
+            }
+          },
+          "right_thing_first": 2,
+          "rationale": "The chronology observation is factual: the caregiving entry ends at \"September 2022 - April 2024\" and no later dated activity appears. However, the summary explicitly says \"Recently returned to the workforce following a dedicated family caregiving break\", so this is an answered break rather than the top-priority open-gap problem. The conditional request for dated activity is honest and useful, but adding concrete system scope to \"Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.\" would do more to establish engineering fit.",
+          "cited_resume_lines": [
+            "September 2022 - April 2024",
+            "Results-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.",
+            "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+            "- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3005,
+          "completion_tokens": 867,
+          "total_tokens": 3872,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 840,
+          "reasoning_tokens": 124
+        },
+        "cost_usd": 0.0109922,
+        "latency_ms": 14358
+      }
+    },
+    {
+      "fixture_id": "synth_ux_designer_director_strong_1",
+      "pairwise": {
+        "case_id": "synth_ux_designer_director_strong_1",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Lead UX Designer / Design Manager role shows credible leadership of eight designers and researchers, budget ownership, and a measurable product result. The main missing detail is the scale and substance of the financial responsibility.",
+              "most_important_issue": "Make the current role's budget ownership concrete by adding a verified budget size and a specific spending or vendor decision.",
+              "first": {
+                "targets": "Adds financial scale and a concrete decision to the current role's budget and vendor ownership bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Moves the existing retention result above the management bullets in the current role.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "Both reports are grounded and address the current role, but C2_concrete_fact_over_move decides this comparison. The bullet \"- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" establishes ownership without showing financial scale or a specific decision. The first report asks for those exact facts and conditions the request on verification, satisfying C3 and C7. The second report only relocates an already visible achievement: \"- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\". Moving that result does not add evidence about the candidate's responsibilities.",
+              "cited_resume_lines": [
+                "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+                "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3009,
+              "completion_tokens": 466,
+              "total_tokens": 3475,
+              "cached_prompt_tokens": 3006,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 33
+            },
+            "cost_usd": 0.0049666,
+            "latency_ms": 7390
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current BrightWave role shows credible design-management responsibility: eight direct team members, budget ownership, UX strategy, and a flagship redesign with a measured retention result. The main missing information is the scale and substance of the stated financial responsibility.",
+              "most_important_issue": "Make the current role's budget ownership concrete by adding a verifiable budget size and a specific spending or vendor decision. This adds evidence of management scope rather than repositioning a result already visible in the entry.",
+              "first": {
+                "targets": "Move the flagship SaaS redesign's retention result above the management bullets.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add a verifiable budget size and one actual spending or vendor decision to the current role's budget-ownership bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C7_honest_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports are grounded and address the current role, but C2_concrete_fact_over_move clearly favors the second. The resume already states \"- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\"; moving it changes prominence without adding evidence. By contrast, \"- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions\" leaves the financial scale and actual decisions unspecified. The second report names exactly which facts to add, conditions the request on verification, and explains why those facts help a reviewer judge management responsibility, satisfying C3_specific_ask, C7_honest_ask, and C6_recruiter_consequence.",
+              "cited_resume_lines": [
+                "- Own the UX budget and vendor contracts, optimizing spend to support research initiatives and tool acquisitions",
+                "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3009,
+              "completion_tokens": 485,
+              "total_tokens": 3494,
+              "cached_prompt_tokens": 3006,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0051566,
+            "latency_ms": 6397
+          }
+        ],
+        "cost_usd": 0.010123199999999999
+      },
+      "candidate_absolute": {
+        "case_id": "synth_ux_designer_director_strong_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "An established UX design manager currently leads eight designers and researchers, owns a budget, and reports a measurable SaaS redesign outcome. The leadership title is supported by the recent work, and there is no employment gap.",
+          "most_important_issue": "The flagship redesign needs a concrete explanation of the user problem and the design change Brennan led. That would make the strongest recent product achievement more assessable than moving its existing retention figure upward.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The report targets the current BrightWave role's important redesign achievement, but its fourth-place position is less consequential than the missing explanation of what was redesigned."
+            },
+            "concrete_fact": {
+              "score": 3,
+              "note": "Moving the existing 15% retention result is a useful structural change, but adds no facts about the flagship SaaS platform or the design intervention."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The instruction identifies the BrightWave retention bullet and explicitly places it above the broader management bullets."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation appropriately connects BrightWave's team-management responsibilities and retention outcome to how UX design leaders are assessed."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The fix only relocates the stated redesign achievement and preserves both its 15% result and Brennan's stated leadership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly observes that \"Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation\" appears fourth in the current role. Moving it upward could improve emphasis, but the first bullet already establishes meaningful leadership: \"Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products\". Adding the specific user problem and design intervention behind the redesign would give a hiring manager more new evidence than rearranging an already visible result.",
+          "cited_resume_lines": [
+            "- Manage a team of 8 UX designers and researchers, overseeing project roadmaps and design resource allocation for multiple client-facing web and mobile products",
+            "- Spearheaded redesign of the flagship SaaS platform, improving user retention by 15% within six months of launch through iterative user testing and feedback incorporation"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2917,
+          "completion_tokens": 743,
+          "total_tokens": 3660,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 752,
+          "reasoning_tokens": 147
+        },
+        "cost_usd": 0.0095322,
+        "latency_ms": 12345
+      }
+    },
+    {
+      "fixture_id": "synth_sales_executive_mid_foundation_1",
+      "pairwise": {
+        "case_id": "synth_sales_executive_mid_foundation_1",
+        "winner": "X",
+        "strength": "slight",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The resume shows progression into a Sales Executive role, but the recent bullets describe broadly defined support work rather than clear sales responsibilities. The latest role ended in August 2023, leaving an unexplained gap of more than three years at the review date.",
+              "most_important_issue": "The open employment gap is a major concern, but a useful fix must explain how to present it truthfully. Between these reports, the specific request to clarify the latest role's account and proposal work provides slightly more actionable help.",
+              "first": {
+                "targets": "Clarify the account tasks and proposal or presentation contributions in the latest role's first bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Account for the period after August 2023 by adding subsequent activity.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C4_gap_handling"
+              ],
+              "rationale": "Both reports are grounded. \"March 2020 - August 2023\" establishes a substantial open gap, but the second report's \"Say what you've done since August 2023\" and generic activity suggestions neither identify dated activity nor explain how to present the break truthfully. Under C4_gap_handling, that receives slightly less weight than a concrete, specific fix on the latest role's core work. The first report targets \"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" and asks for the actual account tasks and proposal contributions without inflating ownership. That addresses first-read uncertainty about the Sales Executive role under C1_first_read_stakes and supplies a more specific ask under C3_specific_ask.",
+              "cited_resume_lines": [
+                "March 2020 - August 2023",
+                "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2872,
+              "completion_tokens": 529,
+              "total_tokens": 3401,
+              "cached_prompt_tokens": 2869,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 69
+            },
+            "cost_usd": 0.0055829,
+            "latency_ms": 8644
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The latest role is Sales Executive at BrightWave Solutions, ending in August 2023, leaving an unexplained gap of over three years. The recent bullets describe support activities without establishing the person's specific sales responsibilities.",
+              "most_important_issue": "The open gap is critical, but merely asking what happened since August 2023 offers little help. A concrete clarification of the latest role's core account and proposal work is a slightly more useful first fix.",
+              "first": {
+                "targets": "The unexplained period after August 2023, asking the person to state subsequent activity.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The latest role's account-support bullet, asking for the specific account tasks handled and contributions to proposals or presentations.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C1_first_read_stakes",
+                "C3_specific_ask"
+              ],
+              "rationale": "The date line \"March 2020 - August 2023\" establishes a real open gap at the review date. However, the first report's request to say what happened afterward, supplemented by generic activity categories, neither identifies an actual dated activity nor explains how to present the period truthfully. Under C4_gap_handling, that loses slightly to a concrete fix on the latest role's core work. The second report targets \"- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\" and specifies the missing facts: account tasks and proposal or presentation contributions. This addresses first-read uncertainty about actual responsibilities without inflating ownership, satisfying C1_first_read_stakes and C3_specific_ask.",
+              "cited_resume_lines": [
+                "March 2020 - August 2023",
+                "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2872,
+              "completion_tokens": 544,
+              "total_tokens": 3416,
+              "cached_prompt_tokens": 2869,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 93
+            },
+            "cost_usd": 0.0057329,
+            "latency_ms": 8838
+          }
+        ],
+        "cost_usd": 0.0113158
+      },
+      "candidate_absolute": {
+        "case_id": "synth_sales_executive_mid_foundation_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The latest role is Sales Executive at BrightWave Solutions, ending in August 2023, leaving over three years unexplained at the review date. Its bullets describe sales support rather than clearly established selling responsibility or results.",
+          "most_important_issue": "The open period since August 2023 needs a truthful explanation or dated activity. The latest role also needs concrete evidence of the candidate's actual sales responsibilities and contribution.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The latest employment dates are \"March 2020 - August 2023\", with no subsequent activity or explanation, making recency a first-pass concern."
+            },
+            "concrete_fact": {
+              "score": 2,
+              "note": "The report requests information after the BrightWave end date but does not identify a particular dated activity or give a concrete way to explain the period."
+            },
+            "specific_ask": {
+              "score": 2,
+              "note": "It identifies August 2023 precisely, but \"Say what you've done\" and the generic activity categories do not tell the candidate what to write."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The concern about recent sales activity is relevant to assessing a Sales Executive whose latest listed role ended in August 2023."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report asks for real activity after the listed BrightWave employment and does not invent work or inflate the candidate's support responsibilities."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The gap is genuinely open, but the fix offers only a generic request for subsequent activity rather than real dated evidence or guidance for presenting the period briefly and truthfully."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly identifies an open gap: \"March 2020 - August 2023\" is the latest employment date, and nothing on the page explains the following period. However, its fix largely repeats the problem rather than helping the candidate present that period truthfully. A concrete fix to the latest role's core work, such as specifying the actual account responsibilities behind \"Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations\", would offer more practical help than this generic gap request.",
+          "cited_resume_lines": [
+            "Sales Executive",
+            "March 2020 - August 2023",
+            "- Helped manage client accounts and provided ongoing support to the sales team in developing proposals and presentations"
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2793,
+          "completion_tokens": 776,
+          "total_tokens": 3569,
+          "cached_prompt_tokens": 2790,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 175
+        },
+        "cost_usd": 0.008045,
+        "latency_ms": 12474
+      }
+    },
+    {
+      "fixture_id": "synth_hr_manager_director_foundation_1",
+      "pairwise": {
+        "case_id": "synth_hr_manager_director_foundation_1",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The latest role is Senior Human Resources Manager at BrightWave Technologies, ending in August 2023, with no subsequent activity listed as of November 2026. Its bullets describe broad HR responsibilities but mostly use support-level language.",
+              "most_important_issue": "The unexplained period of more than three years after the latest role is the first issue to address. The resume needs a brief, truthful account of that period rather than an additional example within one past responsibility.",
+              "first": {
+                "targets": "Add a specific performance-management or conflict-resolution example and identify the candidate's contribution in the BrightWave employee relations bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Address the open period after August 2023 by adding relevant work or activity that actually occurred.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C4_gap_handling"
+              ],
+              "rationale": "The latest role is dated \"June 2015 - August 2023\", and the resume lists no later activity or explanation. The first report instead expands \"- Contributed to employee relations initiatives, including performance management and conflict resolution activities.\" Under C4_gap_handling, the second report's generic request offers limited practical help, but an open gap still takes priority over a narrow request for one example in a secondary bullet. C1_first_read_stakes also favors resolving the candidate's recent work status over elaborating one past responsibility. Both reports are grounded.",
+              "cited_resume_lines": [
+                "Senior Human Resources Manager",
+                "BrightWave Technologies, Chicago, IL",
+                "June 2015 - August 2023",
+                "- Contributed to employee relations initiatives, including performance management and conflict resolution activities."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2912,
+              "completion_tokens": 469,
+              "total_tokens": 3381,
+              "cached_prompt_tokens": 2909,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 44
+            },
+            "cost_usd": 0.0049869,
+            "latency_ms": 6764
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The latest role is Senior Human Resources Manager at BrightWave Technologies, ending in August 2023. As of November 2026, the resume leaves more than three years unexplained, and its recent bullets describe mostly supporting contributions.",
+              "most_important_issue": "The unexplained period after August 2023 is the first issue to address. It affects whether a recruiter can understand the candidate’s current employment status and recent HR experience.",
+              "first": {
+                "targets": "The open period after the latest role, asking for relevant work or activity since August 2023.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "One employee-relations bullet in the latest role, asking for a specific performance or conflict matter and the candidate’s contribution.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C4_gap_handling"
+              ],
+              "rationale": "The latest role is dated \"June 2015 - August 2023\", with nothing afterward explaining the period through the review date. The second report reasonably seeks evidence behind \"- Contributed to employee relations initiatives, including performance management and conflict resolution activities.\", but that is a request for one example within a secondary bullet. Under C4_gap_handling, an open-gap fix that merely asks for subsequent activity still beats this kind of narrow anecdote request. The first report therefore addresses the more consequential first-read issue under C1_first_read_stakes, although its fix would be more helpful if it explained how to present the period briefly and truthfully.",
+              "cited_resume_lines": [
+                "June 2015 - August 2023",
+                "- Contributed to employee relations initiatives, including performance management and conflict resolution activities."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2912,
+              "completion_tokens": 458,
+              "total_tokens": 3370,
+              "cached_prompt_tokens": 2909,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 35
+            },
+            "cost_usd": 0.0048769,
+            "latency_ms": 6753
+          }
+        ],
+        "cost_usd": 0.009863799999999999
+      },
+      "candidate_absolute": {
+        "case_id": "synth_hr_manager_director_foundation_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The latest role is Senior Human Resources Manager at BrightWave Technologies, ending in August 2023, leaving an unexplained gap of more than three years. Its bullets describe broad HR support activities without establishing senior-level responsibility or scale.",
+          "most_important_issue": "The open gap is critical, but the report offers no practical help presenting it. A concrete fix establishing the actual responsibility and scope behind the latest senior title would narrowly outrank this generic gap request.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 4,
+              "note": "The unexplained period after \"June 2015 - August 2023\" materially affects the first read, although the generic fix leaves the senior-role scope problem untouched."
+            },
+            "concrete_fact": {
+              "score": 3,
+              "note": "The report requests missing activity after the latest role's August 2023 end date, but does not identify a concrete activity or explain what facts to provide."
+            },
+            "specific_ask": {
+              "score": 2,
+              "note": "It identifies the period after \"June 2015 - August 2023,\" but \"Add relevant work or activity\" does not specify an entry, dates, or a truthful way to explain a break."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation connects the August 2023 end date to a senior HR recruiter's need to assess recent work, although it does not explain the uncertainty created by the unexplained interval."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "With nothing listed after \"June 2015 - August 2023,\" the report appropriately limits additions to employment or activity that actually occurred."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The gap after August 2023 is open, but the fix merely asks for subsequent activity rather than helping the person present the period briefly and truthfully."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly flags the open gap following \"June 2015 - August 2023\" and makes no unsupported claims. However, its fix provides no more help than asking what happened afterward. The latest title, \"Senior Human Resources Manager,\" also needs concrete evidence of actual responsibility and scope because bullets such as \"- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation.\" do not establish it; a specific, ownership-preserving fix there would narrowly beat this generic gap advice.",
+          "cited_resume_lines": [
+            "Senior Human Resources Manager",
+            "June 2015 - August 2023",
+            "- Assisted in managing the HR budget, collaborating with finance and operations to align resource allocation."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2829,
+          "completion_tokens": 754,
+          "total_tokens": 3583,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 664,
+          "reasoning_tokens": 115
+        },
+        "cost_usd": 0.0094222,
+        "latency_ms": 12513
+      }
+    },
+    {
+      "fixture_id": "synth_finance_analyst_senior_weak_1",
+      "problem": "no shown candidate report"
+    },
+    {
+      "fixture_id": "synth_operations_manager_entry_weak_1",
+      "pairwise": {
+        "case_id": "synth_operations_manager_entry_weak_1",
+        "winner": "tie",
+        "strength": "none",
+        "orders_agree": false,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Kevin has entry-level operations experience, but his latest role ended in July 2023, more than three years before the review date. The resume provides no explanation or dated activity covering that period, and the work bullets are generic.",
+              "most_important_issue": "The unexplained period after July 2023 is the most important first-read issue. Naming the records and reports would improve one bullet but would not address the absence of recent activity.",
+              "first": {
+                "targets": "Add the types of records maintained and reports updated in the Greenfield role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add relevant activity after the latest role ended in July 2023.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C4_gap_handling"
+              ],
+              "rationale": "The latest role is dated \"Feb 2023 - Jul 2023\", with no later activity or explanation on the page. Under C4_gap_handling, the second report's generic request offers limited practical help, but an open gap still takes priority over a narrow individual-bullet fix. The first report would make \"- Duties included maintaining records and updating reports.\" more concrete, but that improvement has lower first-read stakes than the unexplained three-plus-year period (C1_first_read_stakes).",
+              "cited_resume_lines": [
+                "Feb 2023 - Jul 2023",
+                "- Duties included maintaining records and updating reports."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2837,
+              "completion_tokens": 472,
+              "total_tokens": 3309,
+              "cached_prompt_tokens": 2834,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 98
+            },
+            "cost_usd": 0.0050094,
+            "latency_ms": 7622
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Kevin has entry-level operations experience, but his latest role ended in July 2023, leaving more than three years unexplained at the review date. The recent bullets also give little indication of the operational work he actually performed.",
+              "most_important_issue": "The open employment gap is a major first-read concern, but it needs a useful, truthful presentation strategy. Making the latest role's actual records and reporting work concrete is also a high-priority fix.",
+              "first": {
+                "targets": "The unexplained period after the Greenfield role, asking only for relevant activity after it ended.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The latest role's records and reports bullet, asking for the specific types of records maintained and reports updated.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C4_gap_handling",
+                "C3_specific_ask",
+                "C1_first_read_stakes"
+              ],
+              "rationale": "The first report correctly identifies the open gap: the latest employment dates are \"Feb 2023 - Jul 2023\", with no subsequent activity explaining the period. However, \"Add any relevant activity after your Greenfield role ended\" supplies neither a concrete activity to date nor a way to present the period truthfully. Under C4_gap_handling, that unhelpful gap ask loses slightly to a concrete, specific fix on the latest role's core work. The second report targets \"- Duties included maintaining records and updating reports.\" and specifies exactly what to add: the record and report types. That would make actual operations responsibilities visible without inflating ownership, giving it the edge under C3_specific_ask and C1_first_read_stakes.",
+              "cited_resume_lines": [
+                "Feb 2023 - Jul 2023",
+                "- Duties included maintaining records and updating reports."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2837,
+              "completion_tokens": 535,
+              "total_tokens": 3372,
+              "cached_prompt_tokens": 2834,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 90
+            },
+            "cost_usd": 0.0056394,
+            "latency_ms": 9400
+          }
+        ],
+        "cost_usd": 0.0106488
+      },
+      "candidate_absolute": {
+        "case_id": "synth_operations_manager_entry_weak_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "Kevin has a business degree and brief operations experience, but his latest role ended in July 2023, more than three years before the review date. The recent bullets describe general support duties without showing concrete work products or scope.",
+          "most_important_issue": "The unexplained period after July 2023 is the first issue to address. A useful fix would explain how to present that period briefly and truthfully, rather than merely ask for relevant activity.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The report correctly targets the open gap after Greenfield's \"Feb 2023 - Jul 2023\" dates, which materially affects the first read."
+            },
+            "concrete_fact": {
+              "score": 2,
+              "note": "The request for \"any relevant activity\" seeks missing information after Greenfield but identifies no particular role, project, course, or truthful explanation to supply."
+            },
+            "specific_ask": {
+              "score": 2,
+              "note": "The fix identifies the period after the Greenfield role but does not specify what facts or dated entry the person should write."
+            },
+            "recruiter_consequence": {
+              "score": 3,
+              "note": "The why connects the July 2023 end date to reviewers' need for recent context, but does not clearly explain the uncertainty about the candidate's current work status."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The instruction to \"include only what actually applies\" avoids inventing activity after the stated July 2023 end date."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The resume has an unexplained open gap after July 2023, but asking for relevant activity without guidance on presenting the period supplies no substantive help."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly identifies the main first-read concern: the latest employment dates are \"Feb 2023 - Jul 2023\", with no subsequent activity or explanation by November 2026. However, \"Add any relevant activity after your Greenfield role ended\" names the problem without explaining how to resolve it truthfully if there is no relevant work to add. This is a grounded priority, but the proposed fix provides limited practical help.",
+          "cited_resume_lines": [
+            "Operations Assistant",
+            "Greenfield Logistics, Springfield, IL",
+            "Feb 2023 - Jul 2023",
+            "- Was responsible for assisting with daily operational tasks."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2771,
+          "completion_tokens": 699,
+          "total_tokens": 3470,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 606,
+          "reasoning_tokens": 105
+        },
+        "cost_usd": 0.0087272,
+        "latency_ms": 10627
+      }
+    },
+    {
+      "fixture_id": "synth_project_manager_vp_strong_1",
+      "pairwise": {
+        "case_id": "synth_project_manager_vp_strong_1",
+        "winner": "Y",
+        "strength": "slight",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Senior Project Manager role at GlobalTech shows substantial scope through budgets exceeding $12M, a 25+ person team, and three software releases. The main uncertainty is what specific products or infrastructure upgrades those projects delivered.",
+              "most_important_issue": "Name a concrete product or infrastructure upgrade in the opening bullet of the current role so the reader can understand the work behind the stated budget and leadership scope.",
+              "first": {
+                "targets": "Add a specific project priority and personal contribution to the executive-alignment bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Identify a specific product or infrastructure upgrade directed in the current role's opening bullet, retaining the budget figure.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports are grounded and request concrete information, but C1_first_read_stakes favors the second: \"- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\" establishes the current role's main work without identifying a delivered product or upgrade. Naming that deliverable helps a hiring manager assess the candidate's project experience. The first instead improves the secondary bullet \"- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency.\" Its example would help, but it does less to establish what this Senior Project Manager actually delivered. The second also gives a precise ask under C3_specific_ask and connects it to a relevant hiring judgment under C6_recruiter_consequence.",
+              "cited_resume_lines": [
+                "Senior Project Manager | Apr 2017 - Present",
+                "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+                "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3058,
+              "completion_tokens": 457,
+              "total_tokens": 3515,
+              "cached_prompt_tokens": 3055,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0048815,
+            "latency_ms": 6557
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "slight",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Senior Project Manager role shows substantial scope: budgets exceeding $12M, a 25+ person team, and three software releases. The scale is clear, but the actual products or infrastructure delivered remain generic.",
+              "most_important_issue": "Name a concrete product or infrastructure upgrade in the current role so a hiring manager can understand the work behind the budget and leadership claims.",
+              "first": {
+                "targets": "Add a specific product or infrastructure upgrade to the opening GlobalTech bullet while retaining the budget figure.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Make the GlobalTech executive-collaboration bullet concrete by naming a project priority and the candidate's contribution to alignment.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "slight",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "The opening bullet, \"- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\", establishes scale without identifying a particular deliverable. The first report's specific, grounded request would clarify the current role's core work, giving it the edge under C1_first_read_stakes. The second report also makes a useful, specific ask, but it improves the supporting claim \"- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency.\" Both satisfy C3_specific_ask; the first more directly helps a reviewer understand what this senior project manager delivered under C6_recruiter_consequence.",
+              "cited_resume_lines": [
+                "Senior Project Manager | Apr 2017 - Present",
+                "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+                "- Led a cross-departmental team of 25+ personnel, coordinating efforts across product, marketing, and engineering to launch three major software releases in two years.",
+                "- Collaborated with executive leadership to align projects with company-wide strategic goals, enhancing organizational efficiency."
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3058,
+              "completion_tokens": 562,
+              "total_tokens": 3620,
+              "cached_prompt_tokens": 3055,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 79
+            },
+            "cost_usd": 0.0059315,
+            "latency_ms": 8673
+          }
+        ],
+        "cost_usd": 0.010813
+      },
+      "candidate_absolute": {
+        "case_id": "synth_project_manager_vp_strong_1",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "The current Senior Project Manager role shows substantial scale through budgets exceeding $12M and a team of 25+ personnel. However, its product development and infrastructure work remains generic, leaving the actual deliverables unclear.",
+          "most_important_issue": "Name a concrete product or infrastructure upgrade in the current role so reviewers can understand what the candidate directed, alongside the already stated budget and team scale.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix targets the opening bullet of the current GlobalTech Senior Project Manager role, where the main work is described only as product development and IT infrastructure upgrades."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "A named product or infrastructure upgrade adds a tangible deliverable missing from the GlobalTech bullets rather than rearranging the existing budget and team figures."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the first GlobalTech bullet and asks for a specific product or upgrade while retaining its budget figure."
+            },
+            "recruiter_consequence": {
+              "score": 5,
+              "note": "The explanation makes clear that project management reviewers need to understand what was delivered, not just the money managed in the $12M-budget role."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for an example the candidate can describe preserves the stated ownership level of 'Directed' without inventing scope or results."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role's opening bullet states \"Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.\" That establishes financial scale but not a recognizable deliverable, and \"three major software releases in two years\" still does not identify a product. The report correctly prioritizes a concrete missing fact in the candidate's current core work and offers a specific, truthful way to add it.",
+          "cited_resume_lines": [
+            "Senior Project Manager | Apr 2017 - Present",
+            "- Directed multiple high-impact projects spanning product development and IT infrastructure upgrades, managing budgets exceeding $12M.",
+            "- Led a cross-departmental team of 25+ personnel, coordinating efforts across product, marketing, and engineering to launch three major software releases in two years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2956,
+          "completion_tokens": 622,
+          "total_tokens": 3578,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 791,
+          "reasoning_tokens": 49
+        },
+        "cost_usd": 0.0084197,
+        "latency_ms": 8613
+      }
+    },
+    {
+      "fixture_id": "synth_product_manager_entry_elite_1",
+      "pairwise": {
+        "case_id": "synth_product_manager_entry_elite_1",
+        "winner": "tie",
+        "strength": "none",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The resume shows substantive SaaS product work, but the latest role is an internship ending in August 2023. At the November 2026 review date, more than three years have no listed activity or explanation.",
+              "most_important_issue": "Address the open period after August 2023 with truthful, dated activity if available, or a brief explanation of the break.",
+              "first": {
+                "targets": "The open gap after August 2023, suggesting dated relevant work, a project, or coursework if available.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The same open gap after August 2023, suggesting a real role, project, course, or other relevant activity if applicable.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C4_gap_handling",
+                "C7_honest_ask"
+              ],
+              "rationale": "The latest listed position is \"Product Manager Intern\" dated \"June 2023 - August 2023\", with no subsequent activity or explanation. Both reports correctly prioritize this open gap under C1_first_read_stakes and C4_gap_handling. Both offer comparable concrete categories of truthful activity to include, rather than merely asking what happened since then, and neither asks the candidate to invent experience. The first explicitly requests dates; the second supplies similar examples in its why. These are not materially different fixes under C3_specific_ask and C7_honest_ask.",
+              "cited_resume_lines": [
+                "Product Manager Intern",
+                "June 2023 - August 2023"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3113,
+              "completion_tokens": 456,
+              "total_tokens": 3569,
+              "cached_prompt_tokens": 3110,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 48
+            },
+            "cost_usd": 0.004877,
+            "latency_ms": 7060
+          },
+          {
+            "order": "YX",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The resume shows substantive SaaS product experience with ownership, team sizes, and measurable results. However, the latest role is a summer 2023 internship, leaving more than three years unexplained at the review date.",
+              "most_important_issue": "Address the open period after August 2023 with truthful, dated activity or a brief explanation of the break.",
+              "first": {
+                "targets": "The unexplained period after August 2023, suggesting a real role, project, course, or other relevant activity if applicable.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The same unexplained period after August 2023, suggesting dated relevant work, a project, or coursework if available.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C4_gap_handling"
+              ],
+              "rationale": "The latest role is \"Product Manager Intern\" with dates \"June 2023 - August 2023\", and nothing later explains the period through the review date. Both reports correctly prioritize this open gap under C1_first_read_stakes and C4_gap_handling. Both offer comparably useful conditional suggestions for real activity; the second explicitly requests dates, while the first supplies similar examples in its why. Under C3_specific_ask, that wording difference does not establish a meaningful advantage.",
+              "cited_resume_lines": [
+                "Product Manager Intern",
+                "June 2023 - August 2023"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 3113,
+              "completion_tokens": 432,
+              "total_tokens": 3545,
+              "cached_prompt_tokens": 3110,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 52
+            },
+            "cost_usd": 0.004637,
+            "latency_ms": 6435
+          }
+        ],
+        "cost_usd": 0.009514
+      },
+      "candidate_absolute": {
+        "case_id": "synth_product_manager_entry_elite_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The resume shows substantial early-career SaaS product ownership and quantified outcomes, but the latest role is an internship ending in August 2023. At the November 2026 review date, more than three years are unexplained.",
+          "most_important_issue": "The open period after August 2023 is the first issue to address. The report identifies it correctly, but gives little guidance beyond asking for relevant activity.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The latest role ends at \"June 2023 - August 2023,\" with no subsequent activity or explanation, making recency the strongest first-read concern."
+            },
+            "concrete_fact": {
+              "score": 3,
+              "note": "The report asks for missing post-August 2023 activity, but does not identify a specific dated fact to supply or explain how to present a period without relevant activity."
+            },
+            "specific_ask": {
+              "score": 2,
+              "note": "It identifies the period after \"June 2023 - August 2023,\" but its list of possible activities leaves the person to determine what to write and how to date it."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation connects the absence of work after the NovaSense internship to a product reviewer's inability to assess recent responsibility and development."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The report requests a real role, project, course, or other activity only if applicable, without inflating the ownership stated in the NovaSense bullets."
+            },
+            "gap_handling": {
+              "applies": true,
+              "score": 3,
+              "note": "The gap after August 2023 is genuinely open, but generic activity categories neither identify real dated activity nor explain how to present the period briefly and truthfully."
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report correctly prioritizes the unexplained period following \"June 2023 - August 2023\" over edits to already substantive product achievements. The latest role already demonstrates ownership through \"Owned the product roadmap for the onboarding feature, prioritizing user feedback and analytics data collected from over 150 beta users to iterate on flows weekly.\" However, asking for relevant activity and listing generic possibilities largely names the problem rather than helping the person resolve it, especially if there was no relevant work during the period.",
+          "cited_resume_lines": [
+            "June 2023 - August 2023",
+            "- Owned the product roadmap for the onboarding feature, prioritizing user feedback and analytics data collected from over 150 beta users to iterate on flows weekly."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3030,
+          "completion_tokens": 776,
+          "total_tokens": 3806,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 865,
+          "reasoning_tokens": 155
+        },
+        "cost_usd": 0.0101447,
+        "latency_ms": 11565
+      }
+    }
+  ],
+  "skipped": [
+    "golden_talent_leader_high_bar_matt_shaw_current_1: not synthetic",
+    "golden_finance_controller_strong_foundation_1: not synthetic",
+    "golden_sales_strong_foundation_mark_sherrod_1: not synthetic",
+    "anchor_elite_ml_staff_1: not synthetic",
+    "anchor_elite_pm_ai_1: not synthetic",
+    "anchor_elite_vp_talent_1: not synthetic",
+    "recruiter_palantir_strong_foundation_1: not synthetic",
+    "devops_senior_high_bar_1: not synthetic",
+    "law_inhouse_thin_signal_1: not synthetic",
+    "finance_not_ready_sam_helmuth_1: not synthetic",
+    "career_path_elementary_educator_1: not synthetic",
+    "career_path_ministry_leader_1: not synthetic",
+    "frontline_retail_entry_1: not synthetic"
+  ]
+}

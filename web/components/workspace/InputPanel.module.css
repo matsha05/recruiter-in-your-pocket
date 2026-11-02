@@ -27,6 +27,18 @@
 .runAction { width: 100%; margin-top: 1.5rem; }
 .runAction:disabled { border: 1px solid hsl(var(--line)); background: hsl(var(--surface-proof)); color: hsl(var(--text-muted)); opacity: 1; box-shadow: none; }
 .privacy { margin-top: 1rem; color: hsl(var(--text-muted)); text-align: center; font: var(--type-label); font-weight: var(--weight-body); }
+.privacy > p { max-width: 36rem; margin-inline: auto; }
+.runHint { color: hsl(var(--text-strong)); }
+/* Too little text to review: the red pen marks what's missing, and the run stays disabled. */
+.lengthGuard { display: flex; align-items: start; gap: 0.5rem; margin-top: 0.75rem; border-left: 2px solid hsl(var(--destructive)); padding: 0.25rem 0.75rem; color: hsl(var(--text-strong)); font: var(--type-small); }
+.lengthGuard svg { color: hsl(var(--destructive)); }
+.readPreview { margin-top: 1rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-raised)); }
+.readPreview .lengthGuard { margin: 0 1rem 0.75rem; }
+.readSummary { display: flex; min-height: 3.5rem; align-items: center; gap: 0.75rem; padding: 0.625rem 1rem; border-radius: 0.75rem; cursor: pointer; list-style: none; }
+.readSummary::-webkit-details-marker { display: none; }
+.readText { max-height: 16rem; overflow: auto; margin: 0 1rem; border-radius: 0.625rem; padding: 0.75rem 1rem; background: hsl(var(--surface-proof)); color: hsl(var(--text-strong)); white-space: pre-wrap; overflow-wrap: anywhere; font: var(--type-small); }
+.readText:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+.readPreview .textAction { margin: 0.5rem 0.5rem 0.5rem; }
 
 @media (min-width: 640px) {
     .root { padding: 2.75rem 1.5rem 4rem; }

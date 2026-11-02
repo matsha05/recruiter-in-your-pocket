@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { marginNoteFromFix } from "../lib/reports/revised-line";
 import Module from "node:module";
 import path from "node:path";
 import { createElement } from "react";
@@ -115,17 +116,20 @@ const completeReportHtml = renderToStaticMarkup(createElement(ReportStream, {
   report: completeReport,
   hasJobDescription: true,
 }));
-const factOnlyStart = completeReportHtml.indexOf('<article id="section-fix-1"');
+// The Critical Miss is the first marked line: its quoted source, the fix as a margin note, its reason
+// once, and its question as an answer field that builds the revised line.
+const factOnlyStart = completeReportHtml.indexOf('id="section-fix-1"');
 assert.notEqual(factOnlyStart, -1, "a recommendation without a rewrite must remain visible");
-const factOnlyEnd = completeReportHtml.indexOf("</article>", factOnlyStart);
-const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd + "</article>".length);
-assert.ok(factOnlyHtml.includes(hubspotSource), "the original evidence must survive when no rewrite is supplied");
-assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].fix));
-// The Critical Miss gives its reason once, in the opening read; its card asks what to add.
-assert.equal(factOnlyHtml.includes(completeReport.top_fixes[0].why), false, "the Critical Miss card must not repeat its reason");
-assert.ok(completeReportHtml.slice(0, factOnlyStart).includes(completeReport.top_fixes[0].why), "the Critical Miss must carry the why");
-assert.match(factOnlyHtml, /What to add[\s\S]*What customer count can you verify\?/, "the card asks the question written for its line");
-assert.ok(factOnlyHtml.includes('data-testid="fact-only-recommendation"'));
+const factOnlyEnd = ['data-testid="structural-gaps"', 'data-testid="keep-note"', 'id="section-fix-2"']
+  .map((marker) => completeReportHtml.indexOf(marker, factOnlyStart)).filter((at) => at > factOnlyStart)
+  .reduce((first, at) => Math.min(first, at), completeReportHtml.length);
+const factOnlyHtml = completeReportHtml.slice(factOnlyStart, factOnlyEnd);
+assert.ok(factOnlyHtml.includes(hubspotSource.replace(/^[-•*]\s+/u, "")), "the original evidence must survive when no rewrite is supplied");
+assert.ok(factOnlyHtml.includes(marginNoteFromFix(completeReport.top_fixes[0].fix)), "the fix is the line's margin note");
+assert.equal(completeReportHtml.split(completeReport.top_fixes[0].why).length - 1, 1, "the Critical Miss gives its reason once");
+assert.ok(factOnlyHtml.includes(completeReport.top_fixes[0].why), "the Critical Miss row carries the why");
+assert.match(factOnlyHtml, /What customer count can you verify\?/, "the lift asks the question written for its line");
+assert.ok(factOnlyHtml.includes('data-testid="line-lift"'));
 assert.doesNotMatch(factOnlyHtml, /Suggested wording|View draft template|Why this is stronger/,
   "a fact-only recommendation must not promise or praise an absent rewrite");
 const scoreStart = completeReportHtml.indexOf('<details id="section-score"');
@@ -186,8 +190,9 @@ for (const alreadyVisible of [
   assert.equal(fullNotesHtml.includes(alreadyVisible), false, `full recruiter notes must not repeat ${alreadyVisible}`);
 }
 
+// Without a posting, the validator writes the exact "No job description provided." summary.
 const sampleReportHtml = renderToStaticMarkup(createElement(ReportStream, {
-  report: completeReport,
+  report: { ...completeReport, job_alignment: { ...completeReport.job_alignment, jd_match_summary: "No job description provided." } },
   isSample: true,
 }));
 const sampleFullNotesStart = sampleReportHtml.indexOf('<details id="section-full-notes"');

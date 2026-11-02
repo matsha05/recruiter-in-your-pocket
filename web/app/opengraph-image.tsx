@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { JORDAN_EXAMPLE } from "@/lib/marketing/jordan-example";
 
 export const alt = "Recruiter in Your Pocket: see what a recruiter sees";
 export const size = { width: 1200, height: 630 };
@@ -64,13 +65,13 @@ export default async function OpenGraphImage() {
             <div style={{ display: "flex", flexDirection: "column", padding: "20px 22px", background: "#ffffff", borderBottom: "1px solid #dfe0dc" }}>
               <div style={{ display: "flex", color: "#5a605c", fontSize: 16 }}>On the resume</div>
               <div style={{ display: "flex", marginTop: 10, fontSize: 23, lineHeight: 1.3, background: "#ffe14d", padding: "0 4px" }}>
-                Introduced monthly renewal-risk reviews across the portfolio.
+                {JORDAN_EXAMPLE.line}
               </div>
             </div>
             <div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", padding: "20px 22px", background: "#fff6c2", border: "1px solid #f2dc6b" }}>
               <div style={{ display: "flex", color: "#6b5400", fontSize: 15, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase" }}>Critical Miss</div>
               <div style={{ display: "flex", marginTop: 10, fontFamily: "Literata", fontStyle: "italic", fontSize: 25, lineHeight: 1.28, color: "#1f5a46" }}>
-                Your best example stops right before the good part. Did renewals go up?
+                {JORDAN_EXAMPLE.asks[0].question}
               </div>
             </div>
           </div>

@@ -1,37 +1,33 @@
-import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { GapPivotDiagram } from "@/components/research/diagrams/GapPivotDiagram";
 
-export const metadata: Metadata = {
-    title: "Gaps, pivots, and short stints",
+const PATH = "/research/gaps-and-pivots";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Should I explain the gap on my resume?",
     description: "What field experiments found about employment gaps, career changes, and frequent moves, and what actually helped the resumes that had them.",
-    alternates: { canonical: "/research/gaps-and-pivots" },
-};
+    type: "article",
+});
 
 export default function GapsAndPivotsPage() {
     return (
-        <ResearchArticle
-            header={{
-                tag: "Story",
-                title: "Gaps, pivots, and short stints",
-                description: "When a resume leaves a question open, recruiters tend to answer it themselves. The research shows which questions cost the most, and what helped.",
-                lastUpdated: "October 2026",
-                readTime: "7 min read"
+        <AnswerArticle
+            path={PATH}
+            answer={
+                <>
+                    In the largest test, no. A line explaining a caregiving gap did no better than leaving it unexplained.
+                    Listing years in each job instead of dates did help: it beat even resumes with no gap by about 8%.
+                </>
+            }
+            answerSource={{
+                text: <>From a preregistered UK experiment with 9,022 employers (Kristal et al., Nature Human Behaviour, 2023).</>,
+                href: "https://doi.org/10.1038/s41562-022-01485-6",
             }}
-            keyFinding={{
-                subtitle: "What the largest experiment found",
-                stat: "Explaining the gap didn't help",
-                statDescription: (
-                    <>
-                        In a preregistered UK experiment with 9,022 employers, a line explaining a caregiving gap did no better than leaving it unexplained. Listing years in each job instead of dates did help: it beat even resumes with no gap by about 8%.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Kristal et al., Nature Human Behaviour, 2023",
-                    href: "https://doi.org/10.1038/s41562-022-01485-6"
-                }
-            }}
+            painNote="You can stop drafting the apology."
+            nextQuestions={["who-you-are", "referral-advantage", "quantifying-impact"]}
             visualization={
                 <>
                     <h2 className="research-h2">A current gap and a career change both cost callbacks</h2>
@@ -46,24 +42,6 @@ export default function GapsAndPivotsPage() {
                     </p>
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "The Verdict",
-                        description: "If a gap or a pivot is the question your resume leaves open, the Verdict says so in plain words."
-                    },
-                    {
-                        title: "The Critical Miss",
-                        description: "If that open question is the one thing to fix first, it becomes the Critical Miss, with a fix that keeps your facts intact."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "Can a recruiter tell who you are?", href: "/research/who-you-are", tag: "Story" },
-                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Referrals" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Impact" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -113,20 +91,6 @@ export default function GapsAndPivotsPage() {
                     publisher: "Hollister, Denier & St-Denis. Sociological Science 12",
                     year: "2025",
                     href: "https://doi.org/10.15195/v12.a11"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Should I hide the dates on my resume?",
-                    answer: "Showing years in each role is honest and helped in the largest test. Hiding dates altogether tends to raise the question you're trying to answer, and applications and background checks will ask for them anyway."
-                },
-                {
-                    question: "Should I explain a caregiving gap?",
-                    answer: "In the largest test, an explanation line didn't help or hurt. Lead with your experience. Be ready to explain the gap in a sentence when someone asks."
-                },
-                {
-                    question: "I've had a lot of short jobs. What now?",
-                    answer: "Group contract or agency work under one heading, and make each move read as a step: more scope, a new skill, a better team."
                 }
             ]}
         >
@@ -182,6 +146,14 @@ export default function GapsAndPivotsPage() {
                 />
             </div>
 
+            <p className="research-body mb-6">
+                <strong>Our advice on dates:</strong> show the years in each role. That&apos;s honest, and it helped in the largest test. Hiding dates altogether tends to raise the question you&apos;re trying to answer, and applications and background checks will ask for them anyway. Be ready to explain the gap in a sentence when someone asks.
+            </p>
+
+            <ArticleBridge question="What question does your resume leave open?">
+                If a gap or a pivot is the question your resume leaves open, the Verdict says so in plain words. If it&apos;s the one thing to fix first, it becomes the Critical Miss, with a fix that keeps your facts intact.
+            </ArticleBridge>
+
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>These are audit studies: fictitious resumes and callbacks, not hires.</li>
@@ -189,6 +161,6 @@ export default function GapsAndPivotsPage() {
                 <li>The studies span the UK, the US, Sweden, and Switzerland, and results differed by field and skill level.</li>
                 <li>The UK experiment changed the resume and cover letter together, and tested caregiving gaps for mothers.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

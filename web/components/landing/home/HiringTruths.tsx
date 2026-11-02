@@ -3,7 +3,7 @@ import styles from "./HiringTruths.module.css";
 /** What the read looks for, each paired with what the report actually does about it. */
 export function HiringTruths() {
     return (
-        <section id="how-it-works" className={styles.truths} aria-labelledby="truths-title">
+        <section id="what-we-look-for" className={styles.truths} aria-labelledby="truths-title">
             <h2 id="truths-title" className={styles.title}>What we look for, line by line.</h2>
             <dl className={styles.list}>
                 <div className={styles.row}>

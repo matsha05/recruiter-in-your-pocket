@@ -8,14 +8,15 @@ import { UserNav } from "@/components/shared/UserNav";
 import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
-import { ArrowRight, List } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { SheetClose } from "@/components/ui/sheet";
+import { NavDrawer, NavDrawerDivider, NavDrawerLink } from "./NavDrawer";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
     showResearchLink?: boolean;
-    /** Show "Resources" nav link (hide on resources hub itself) */
+    /** Show the "After the offer" nav link (hidden on its own hub) */
     showResourcesLink?: boolean;
 }
 
@@ -43,7 +44,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <SiteNavLink href="/extension" active={isMarketingActive("/extension")}>Extension</SiteNavLink>
                         )}
                         {showResearchLink && <SiteNavLink href="/research" active={isMarketingActive("/research")}>Research</SiteNavLink>}
-                        {showResourcesLink && <SiteNavLink href="/resources" active={isMarketingActive("/resources")}>Resources</SiteNavLink>}
+                        {showResourcesLink && <SiteNavLink href="/resources" active={isMarketingActive("/resources")}>After the offer</SiteNavLink>}
                     </div>
 
                     {authLoading ? (
@@ -147,104 +148,78 @@ function SiteMobileMenu({
     }, [focusDestination]);
 
     return (
-        <Sheet onOpenChange={open => {
-            if (open) {
-                navigationTarget.current = null;
-                menuClosed.current = false;
-            }
-        }}>
-            <SheetTrigger asChild>
-                <Button type="button" variant="secondary" size="icon" aria-label="Open navigation" className="xl:hidden">
-                    <List className="size-5" weight="bold" />
-                </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="flex w-[min(88vw,22rem)] flex-col gap-0 overflow-hidden bg-background"
-                onCloseAutoFocus={event => {
-                    if (!navigationTarget.current) return;
-                    // Escape and dismissal restore the trigger normally; navigation
-                    // should keep focus at its destination instead of jumping back.
-                    event.preventDefault();
-                    menuClosed.current = true;
-                    focusFrame.current = requestAnimationFrame(focusDestination);
-                }}>
-                <SheetHeader className="shrink-0 border-b border-border pb-5 text-left">
-                    <SheetTitle><Wordmark className="text-foreground" /></SheetTitle>
-                    <SheetDescription className="sr-only">Navigate to the main areas of Recruiter in Your Pocket.</SheetDescription>
-                </SheetHeader>
-                <nav className="mt-8 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain" aria-label="Mobile navigation"
-                    onClickCapture={event => {
-                        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-                        const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
-                        if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
-                        const target = new URL(link.href, window.location.href);
-                        if (target.origin === window.location.origin) navigationTarget.current = target;
-                    }}>
-                    <MobileSiteLink href="/#how-it-works">How it works</MobileSiteLink>
-                    {pathname === "/" && <>
-                        <MobileSiteLink href="/sample-report">Sample report</MobileSiteLink>
-                        <MobileSiteLink href="/#about">About</MobileSiteLink>
-                    </>}
-                    <MobileSiteLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</MobileSiteLink>
-                    {isLaunchFlagEnabled("extensionSync") && <MobileSiteLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</MobileSiteLink>}
-                    {showResearchLink && <MobileSiteLink href="/research" active={isPathActive(pathname, "/research")}>Research</MobileSiteLink>}
-                    {showResourcesLink && <MobileSiteLink href="/resources" active={isPathActive(pathname, "/resources")}>Resources</MobileSiteLink>}
-                    <div className="my-5 h-px bg-border" />
-                    {authLoading ? (
-                        <p className="min-h-12 px-3 py-3 text-base text-muted-foreground" role="status" aria-live="polite">
-                            Checking account…
-                        </p>
-                    ) : user ? (
-                        <>
-                            <MobileSiteLink href="/workspace" active={isPathActive(pathname, "/workspace")}>New report</MobileSiteLink>
-                            <MobileSiteLink href="/reports" active={isPathActive(pathname, "/reports")}>My reports</MobileSiteLink>
-                            <MobileSiteLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</MobileSiteLink>
-                            <SheetClose asChild>
-                                <button
-                                    type="button"
-                                    onClick={() => onSignOut()}
-                                    className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground riyp-surface-link hover:text-foreground"
-                                >
-                                    Sign out
-                                </button>
-                            </SheetClose>
-                        </>
-                    ) : (
-                        <>
-                            <MobileSiteLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</MobileSiteLink>
-                            <SheetClose asChild>
-                                <Button asChild className="mt-4">
-                                    <Link href="/workspace" data-analytics-cta="mobile_menu_report">
-                                        Get your free report
-                                    </Link>
-                                </Button>
-                            </SheetClose>
-                        </>
-                    )}
-                </nav>
-            </SheetContent>
-        </Sheet>
+        <NavDrawer
+            triggerClassName="xl:hidden"
+            description="Navigate to the main areas of Recruiter in Your Pocket."
+            onOpenChange={open => {
+                if (open) {
+                    navigationTarget.current = null;
+                    menuClosed.current = false;
+                }
+            }}
+            onCloseAutoFocus={event => {
+                if (!navigationTarget.current) return;
+                // Escape and dismissal restore the trigger normally; navigation
+                // should keep focus at its destination instead of jumping back.
+                event.preventDefault();
+                menuClosed.current = true;
+                focusFrame.current = requestAnimationFrame(focusDestination);
+            }}
+            onNavClickCapture={event => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
+                if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+                const target = new URL(link.href, window.location.href);
+                if (target.origin === window.location.origin) navigationTarget.current = target;
+            }}
+        >
+            <NavDrawerLink href="/#how-it-works">How it works</NavDrawerLink>
+            {pathname === "/" && <>
+                <NavDrawerLink href="/sample-report">Sample report</NavDrawerLink>
+                <NavDrawerLink href="/#about">About</NavDrawerLink>
+            </>}
+            <NavDrawerLink href="/pricing" active={isPathActive(pathname, "/pricing")}>Pricing</NavDrawerLink>
+            {isLaunchFlagEnabled("extensionSync") && <NavDrawerLink href="/extension" active={isPathActive(pathname, "/extension")}>Extension</NavDrawerLink>}
+            {showResearchLink && <NavDrawerLink href="/research" active={isPathActive(pathname, "/research")}>Research</NavDrawerLink>}
+            {showResourcesLink && <NavDrawerLink href="/resources" active={isPathActive(pathname, "/resources")}>After the offer</NavDrawerLink>}
+            <NavDrawerDivider />
+            {authLoading ? (
+                <p className="min-h-12 px-3 py-3 text-base text-muted-foreground" role="status" aria-live="polite">
+                    Checking account…
+                </p>
+            ) : user ? (
+                <>
+                    <NavDrawerLink href="/workspace" active={isPathActive(pathname, "/workspace")}>New report</NavDrawerLink>
+                    <NavDrawerLink href="/reports" active={isPathActive(pathname, "/reports")}>My reports</NavDrawerLink>
+                    <NavDrawerLink href="/settings/account" active={isPathActive(pathname, "/settings")}>Settings</NavDrawerLink>
+                    <SheetClose asChild>
+                        <button
+                            type="button"
+                            onClick={() => onSignOut()}
+                            className="focus-ring min-h-12 rounded-[10px] px-3 py-3 text-left text-base font-medium text-muted-foreground riyp-surface-link hover:text-foreground"
+                        >
+                            Sign out
+                        </button>
+                    </SheetClose>
+                </>
+            ) : (
+                <>
+                    <NavDrawerLink href="/auth" active={isPathActive(pathname, "/auth")}>Sign in</NavDrawerLink>
+                    <SheetClose asChild>
+                        <Button asChild className="mt-4">
+                            <Link href="/workspace" data-analytics-cta="mobile_menu_report">
+                                Get your free report
+                            </Link>
+                        </Button>
+                    </SheetClose>
+                </>
+            )}
+        </NavDrawer>
     );
 }
 
 function isPathActive(pathname: string | null, href: string) {
     return pathname === href || pathname?.startsWith(`${href}/`) || false;
-}
-
-function MobileSiteLink({ href, children, active = false }: { href: string; children: React.ReactNode; active?: boolean }) {
-    return (
-        <SheetClose asChild>
-            <Link
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                    "focus-ring min-h-12 rounded-[10px] px-3 py-3 text-base font-medium riyp-surface-link hover:text-foreground",
-                    active ? "bg-secondary text-foreground" : "text-muted-foreground"
-                )}
-            >
-                {children}
-            </Link>
-        </SheetClose>
-    );
 }
 
 function SiteNavLink({

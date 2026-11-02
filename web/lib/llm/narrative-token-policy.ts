@@ -22,10 +22,11 @@ export const baseNarrativeStopWords = normalizedSet([
   "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "of",
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "but", "only", "while", "yet", "using", "via",
+  "though", "although", "toward", "towards",
 ]);
 
 const styleWords = normalizedSet([
-  "appear", "blurry", "clear", "clearly", "context", "explicit", "focus", "missing", "need",
+  "appear", "blurry", "clear", "clearly", "context", "explicit", "focus", "missing", "need", "unstated",
   "not", "page", "present", "read", "readable", "strong", "unclear", "visible", "work",
 ]);
 const actionWords = normalizedSet([
@@ -36,7 +37,7 @@ const assessmentDimensionWords = normalizedSet([
   "count", "detail", "fact", "impact", "metric", "outcome", "result", "scale", "scope", "size",
 ]);
 const assessmentWords = normalizedSet([
-  "about", "activity", "afterward", "all", "annual", "area", "base", "breadth", "broad", "broader", "career",
+  "about", "activity", "afterward", "all", "annual", "area", "background", "base", "breadth", "broad", "broader", "career", "some",
   "contain", "contracting", "conversion", "credible", "concrete", "deal", "delivery", "dense", "describe", "description",
   "development", "duty", "earlier", "effect", "evidence", "experience", "experienced", "exposure", "few", "finance", "first",
   "foundation", "general", "give", "history", "individual", "leadership", "learning", "like", "limited", "limiting",
@@ -44,6 +45,10 @@ const assessmentWords = normalizedSet([
   "participation", "partly", "pastoral", "performance", "process", "progression", "quantified", "reach", "real", "recent",
   "relevant", "remain", "repeatedly", "responsibility", "responsibility-based", "resume", "role", "senior", "signal",
   "analytics-led", "appropriately", "become", "change", "concise", "contribution", "coverage", "date", "decision", "degree", "direction", "graduation", "headline", "institution", "iteration", "lane", "less", "listed", "often", "other", "range", "rarely", "setting", "specific", "statement", "still", "stop", "story", "strong", "strongest", "technical-to-product", "tenure", "than", "then", "thin", "too", "training", "transition", "which", "year",
+  // The report's audience and its "worth keeping" reaction describe the read, not the resume.
+  "reader", "reviewer", "worth", "keeping", "task", "deliverable", "subject",
+  // Connectives that relate two stated facts without adding one ("an initiative tied to 1,000+ hires").
+  "tied", "linked", "associated",
   "typo", "make", "slower", "current", "completed", "complete", "school", "location", "core", "job", "organized", "sequence", "straightforward", "included", "presented", "order", "scan", "section", "title", "employer", "figure", "score", "starting", "point",
   "uneven", "unevenly", "unusually", "useful", "utilization", "verified", "volume", "well", "workforce",
   // Seniority reads, matching the report's own level scale ("Early career" ... "Director-level").
@@ -95,7 +100,7 @@ export function narrativeTokenPolicy(
   const isAssessment = context === "assessment";
   // Comparative clarity describes a limitation; retain any other positive cue in the clause.
   const presenceText = normalized
-    .replace(/\b(?:less|not\s+as)\s+clear(?:ly)?\b/giu, " ")
+    .replace(/\b(?:less|not\s+as)\s+(?:clear(?:ly)?|visible|apparent|evident)\b/giu, " ")
     .replace(/\b(?:(?:do|does|did)\s+not|don['’]t|doesn['’]t|didn['’]t)\s+(?:yet\s+)?(?:show|include|contain|add|appear)\b/giu, " ");
   const assertsPresence = !lexicalQuestion
     && !lexicalAdvice

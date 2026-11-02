@@ -8,6 +8,8 @@ import Footer from "@/components/landing/Footer";
 export const metadata: Metadata = {
     title: "Page not found",
     description: "The page you requested could not be found.",
+    // Otherwise the layout's "index, follow" sits next to the noindex Next adds for a 404.
+    robots: { index: false, follow: true },
 };
 
 export default function NotFound() {

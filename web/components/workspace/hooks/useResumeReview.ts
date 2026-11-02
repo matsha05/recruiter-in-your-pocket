@@ -7,6 +7,7 @@ import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
 import { publishAuthoritativeAnalysis } from "@/lib/analysis-completion";
+import type { GenerationStage } from "@/lib/generation-stage";
 import { REPORT_ACCESS_NOT_USED, REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, REPORT_ACCESS_USED_CHECK, REPORT_ACCESS_USED_COUNT_UPDATED, forVisitor, hasAccessOutcome } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
@@ -27,6 +28,7 @@ export function useResumeReview(input: {
   setReport: Setter<any>;
   setIsLoading: Setter<boolean>;
   setIsStreaming: Setter<boolean>;
+  setAnalysisStage?: Setter<GenerationStage | null>;
   setIsPaywallOpen: Setter<boolean>;
   setPendingReportForSave: Setter<any>;
   setIsSavePromptOpen: Setter<boolean>;
@@ -139,7 +141,13 @@ export function useResumeReview(input: {
         input.jobDescription || undefined,
         () => undefined,
         "resume",
-        { signal: controller.signal, savedJobId: input.persistedSavedJobId },
+        {
+          signal: controller.signal,
+          savedJobId: input.persistedSavedJobId,
+          onStage: (stage) => {
+            if (input.isAnalysisCurrent(controller)) input.setAnalysisStage?.(stage);
+          },
+        },
       );
       if (!input.isAnalysisCurrent(controller)) return;
       if (result.aborted) {

@@ -2,7 +2,7 @@
 
 import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
-import { Figure, Key, Mark, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
+import { Figure, Key, PenNote, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 
 // Quillian et al. (2017), PNAS: average callback ratios in the 24 US field experiments since 1989
 // (resume audits and in-person audits pooled; 54,318 applications), fieldwork through 2015.
@@ -47,7 +47,7 @@ export function MetaTimeline({ figureNumber = 1 }: { figureNumber?: number }) {
                         <Key tone="mark">The extra callbacks</Key>
                     </div>
                     <PenNote>
-                        The applicants were matched on paper or in person. Our read: <Mark seen={seen}>better wording can&apos;t close this gap.</Mark>
+                        The applicants were matched on paper or in person. Our read: better wording can&apos;t close this gap.
                     </PenNote>
                 </div>
             </DiagramFrame>

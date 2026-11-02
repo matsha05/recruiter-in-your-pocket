@@ -1,4 +1,5 @@
 import { hasSkillsSection } from "./source-sections";
+import { reportSentences } from "./report-sentences";
 import { canonicalizeOptionalReportMetadata } from "./optional-report-metadata";
 import {
   findAlreadySatisfiedFix,
@@ -307,14 +308,8 @@ function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resume
   return "Move the existing size and result into the opening clause of this bullet.";
 }
 
-function splitReportSentences(value: string) {
-  const protectedValue = value.replace(/(?<=\d)\.(?=\d)/g, "\uE001");
-  return (protectedValue.match(/[^.!?]+(?:[.!?]+|$)/g) || [])
-    .map((sentence) => sentence.replaceAll("\uE001", ".").trim()).filter(Boolean);
-}
-
 function capSummarySentences(value: string) {
-  const sentences = splitReportSentences(value);
+  const sentences = reportSentences(value);
   if (sentences.length <= 5) return value;
   return sentences.slice(0, 5).join(" ");
 }
@@ -566,7 +561,7 @@ function normalizeAdviceLists(report: any, resumeText: string, changes: string[]
   }
 
   if (typeof report.summary === "string") {
-    const sentences = splitReportSentences(report.summary);
+    const sentences = reportSentences(report.summary);
     const kept = sentences.filter((sentence: string) => !isOptionalCredentialAdvice(sentence));
     if (kept.length > 0 && kept.length !== sentences.length) {
       report.summary = kept.join(" ");
@@ -826,7 +821,7 @@ function normalizeCareerBreakAdvice(report: any, resumeText: string, changes: st
 
   for (const field of ["first_impression", "summary", "score_comment_long", "score_plain"]) {
     if (typeof report?.[field] !== "string" || !careerAmbiguityPattern.test(report[field])) continue;
-    const sentences = splitReportSentences(report[field]);
+    const sentences = reportSentences(report[field]);
     const next: string[] = [];
     for (const sentence of sentences) {
       const candidate = careerAmbiguityPattern.test(sentence) ? replacementSentence : sentence;
@@ -945,7 +940,7 @@ function normalizeOptionalAdviceFields(report: any, changes: string[]) {
   if (!isNoJobDescription(report)) return;
   for (const field of ["score_comment_long", "score_plain"]) {
     if (typeof report?.[field] !== "string") continue;
-    const sentences = splitReportSentences(report[field]);
+    const sentences = reportSentences(report[field]);
     const kept = sentences.filter((sentence: string) => !isOptionalCredentialAdvice(sentence));
     if (kept.length > 0 && kept.length !== sentences.length) {
       report[field] = kept.join(" ");
@@ -956,7 +951,7 @@ function normalizeOptionalAdviceFields(report: any, changes: string[]) {
 
 function removeSummaryAppendix(report: any, changes: string[]) {
   if (typeof report.summary !== "string") return;
-  const sentences = splitReportSentences(report.summary);
+  const sentences = reportSentences(report.summary);
   const kept = sentences.filter((sentence: string) =>
     !/^(?:One material gap is that\b|One thing is still unresolved:|Expected next step|Fast path|Strengthen (?:this )?by)/i.test(sentence));
   if (kept.length >= 3 && kept.length < sentences.length) {

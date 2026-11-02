@@ -88,7 +88,7 @@ test.describe("editorial resources", () => {
 });
 
 const numberedResearchRoutes = [
-  { route: "/research/how-recruiters-read", figures: [1, 2] },
+  { route: "/research/how-recruiters-read", figures: [1] },
   { route: "/research/referral-advantage", figures: [1, 2, 3] },
   { route: "/research/spelling-errors-impact", figures: [1, 2] },
   { route: "/research/linkedin-visibility", figures: [1, 2] },

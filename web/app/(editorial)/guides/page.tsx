@@ -3,12 +3,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Clock } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
-import { pillarForHref } from "@/components/research/ResearchHubData";
+import { hubLink, pillarForHref } from "@/components/research/ResearchHubData";
 import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
-    title: "Career resources",
-    description: "Recruiter-grounded negotiation guides, compensation tools, and practical career resources.",
+    title: "After the offer",
+    description: "Recruiter-grounded negotiation guides and an offer calculator, for when the offer arrives.",
     alternates: { canonical: "/resources" },
 };
 
@@ -37,20 +37,8 @@ const playbooks = [
     },
 ];
 
-const researchLinks = [
-    {
-        title: "What a referral changes",
-        href: "/research/referral-advantage",
-    },
-    {
-        title: "Should you share your salary history?",
-        href: "/research/salary-history-bans",
-    },
-    {
-        title: "Tell the story behind the line",
-        href: "/research/star-method",
-    },
-];
+// Titled from the Research hub, the same string as each article's H1.
+const researchLinks = ["/research/referral-advantage", "/research/salary-history-bans", "/research/star-method"].map(hubLink);
 
 export default function GuidesPage() {
     return (
@@ -61,7 +49,7 @@ export default function GuidesPage() {
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-marketing">
                         <div className="max-w-4xl">
-                            <p className={`${styles.label} text-muted-foreground`}>Negotiation</p>
+                            <p className={`${styles.label} text-muted-foreground`}>After the offer</p>
                             <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
                                 Work out what to ask for in your next offer
                             </h1>
@@ -115,7 +103,7 @@ export default function GuidesPage() {
                                     <ul className="mt-4 space-y-2.5">
                                         {guide.points.map((point) => (
                                             <li key={point} className={`${styles.readingCopy} flex items-start gap-2.5`}>
-                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-brand/50" />
+                                                <span className="mt-3.5 inline-block h-px w-3 shrink-0 bg-line" />
                                                 {point}
                                             </li>
                                         ))}
@@ -136,7 +124,7 @@ export default function GuidesPage() {
                                         Tool
                                     </p>
                                     <h3 className={`${styles.componentTitle} mt-2`}>
-                                        Compare two offers side by side
+                                        Compare job offers side by side
                                     </h3>
                                     <p className={`${styles.readingCopy} mt-3`}>
                                         Compare base salary, target bonus, equity, and one-time payments year by year. See which assumptions change the total.
@@ -157,7 +145,7 @@ export default function GuidesPage() {
                 <section className="border-y border-border bg-muted px-6 py-14 text-foreground md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-marketing items-start gap-10 lg:grid-cols-2">
                         <div>
-                            <p className={`${styles.label} text-brand`}>
+                            <p className={`${styles.label} text-muted-foreground`}>
                                 The philosophy
                             </p>
                             <h2 className={`${styles.sectionTitle} mt-3 max-w-3xl`}>

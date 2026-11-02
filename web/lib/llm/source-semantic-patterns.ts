@@ -6,7 +6,11 @@ const commonCapitalizedWords = new Set([
   "On", "Operational", "Operations", "Organized", "Partnership", "Position", "Principal", "Product", "Quantified", "Ran", "Recent",
   "Recorded", "Recruiter", "Reducing", "Register", "Relevant", "Reorder", "Replace", "Resume", "Retail", "Revise", "Rewrite", "Role", "Sales", "Scaled", "Section", "Separate",
   "SaaS-focused", "Senior", "Sharpen", "Show", "Skills", "Specific", "Split", "State", "Strong", "Summary", "Supported", "That", "The", "This", "To",
-  "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
+  "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We",
+  // Sentence-initial gerunds the report uses to introduce a fact ("Naming Microsoft Office ...").
+  "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating",
+  // Sentence-initial imperatives that join a named tool to other work ("Connect Storyline to ...").
+  "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [
@@ -16,6 +20,8 @@ const ownershipPatterns: Array<[string, RegExp]> = [
   ["agency:manage", /\b(?:manage|manages|managed|managing)\b/giu],
   ["agency:direct", /\b(?:direct|directs|directed|directing|spearhead|spearheaded|head|headed)\b/giu],
   ["agency:build", /\b(?:build|builds|built|building|architect|architected|design|designed|implement|implemented|create|created)\b/giu],
+  // Each support verb is one fact family, so the -ing forms stay untracked: otherwise "Helped
+  // oversee ..., contributing to ..." polished to "Oversee ..., contributing to ..." would hide the dropped "Helped".
   ["agency:support", /\b(?:support|supports|supported|supporting|assist|assisted|help|helped|contribute|contributed|participate|participated|collaborate|collaborated|coordinate|coordinated|partner|partnered)\b/giu],
 ];
 

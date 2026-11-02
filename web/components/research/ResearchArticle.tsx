@@ -1,10 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import Footer from "@/components/landing/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { publicPage } from "@/lib/seo/public-pages";
+import { SECTION_NAMES } from "@/lib/seo/site";
+import { articleStructuredData, formatMonth } from "@/lib/seo/structured-data";
 
 interface ResearchSource {
     id?: string;
@@ -15,11 +19,12 @@ interface ResearchSource {
 }
 
 interface ResearchArticleProps {
+    /** The page's own path. Its published and updated dates live in PUBLIC_PAGES. */
+    path: string;
     header: {
         tag: string;
         title: string;
         description: string;
-        lastUpdated?: string;
         readTime?: string;
         sourceSummary?: string;
     };
@@ -60,13 +65,8 @@ interface ResearchArticleProps {
     };
 }
 
-function dateToIso(date?: string): string | undefined {
-    if (!date) return undefined;
-    const parsed = new Date(date);
-    return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
-}
-
 export function ResearchArticle({
+    path,
     header,
     keyFinding,
     visualization,
@@ -81,37 +81,32 @@ export function ResearchArticle({
         href: "/workspace",
     },
 }: ResearchArticleProps) {
-    const publishedDate = dateToIso(header.lastUpdated);
+    const { updated } = publicPage(path);
+    const trail = path.startsWith("/research/")
+        ? [{ name: SECTION_NAMES["/research"], path: "/research" }, { name: header.title, path }]
+        : [{ name: header.title, path }];
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Article",
-                        headline: header.title,
-                        description: header.description,
-                        author: { "@type": "Organization", name: "Recruiter in Your Pocket" },
-                        publisher: { "@type": "Organization", name: "Recruiter in Your Pocket" },
-                        datePublished: publishedDate,
-                        dateModified: publishedDate,
-                    }),
-                }}
+            <JsonLd
+                data={articleStructuredData({
+                    path,
+                    headline: header.title,
+                    description: header.description,
+                    trail,
+                    citations: sources,
+                })}
             />
+            {/* Mirrors the visible "Common questions" section below. */}
             {faq && faq.length > 0 ? (
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "FAQPage",
-                            mainEntity: faq.map((item) => ({
-                                "@type": "Question",
-                                name: item.question,
-                                acceptedAnswer: { "@type": "Answer", text: item.answer },
-                            })),
-                        }),
+                <JsonLd
+                    data={{
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: faq.map((item) => ({
+                            "@type": "Question",
+                            name: item.question,
+                            acceptedAnswer: { "@type": "Answer", text: item.answer },
+                        })),
                     }}
                 />
             ) : null}
@@ -139,6 +134,10 @@ export function ResearchArticle({
                                 </h1>
                                 <p className="mt-6 max-w-reading text-prose text-muted-foreground">
                                     {header.description}
+                                </p>
+                                {/* Same date as the sitemap and the Article data (PUBLIC_PAGES). */}
+                                <p className="mt-4 text-xs font-medium text-muted-foreground">
+                                    Last updated <time dateTime={updated}>{formatMonth(updated)}</time>
                                 </p>
                             </div>
 
@@ -174,7 +173,7 @@ export function ResearchArticle({
                         ) : null}
 
                         <div className="pb-20 pt-12 md:pb-28 md:pt-16">
-                            <div className="mx-auto min-w-0 max-w-[46rem]">
+                            <div className="min-w-0 max-w-[46rem]">
                                 <article className="prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-title prose-h3:mt-10 prose-h3:text-heading prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground">
                                     {children}
                                 </article>
@@ -220,7 +219,7 @@ export function ResearchArticle({
                                                     const sourceId = source.id ?? `source-${index + 1}`;
                                                     const sourceLabel = [source.title, source.publisher ? `— ${source.publisher}` : null, source.year ? `(${source.year})` : null].filter(Boolean).join(" ").trim().concat(".");
                                                     return (
-                                                        <li key={sourceId} id={sourceId}>
+                                                        <li key={sourceId} id={sourceId} tabIndex={-1} className="riyp-jump-target -mx-2 px-2 py-1">
                                                             <span className="mr-2 tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                                                             {source.href ? <a href={source.href} target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">{sourceLabel}</a> : <span>{sourceLabel}</span>}
                                                         </li>
@@ -282,11 +281,20 @@ export function ArticleInsight({ title, desc }: { title: string; desc: ReactNode
     );
 }
 
+// The browser scrolls to the source (its scroll margin clears the fixed header); keyboard
+// and screen-reader position follow it there instead of staying on the citation.
+function focusCitedSource(event: MouseEvent<HTMLAnchorElement>, id: string) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const source = document.getElementById(id);
+    if (!source) return;
+    requestAnimationFrame(() => source.focus({ preventScroll: true }));
+}
+
 export function Citation({ id, children }: { id: string; children: ReactNode }) {
     const sourceLabel = typeof children === "string" || typeof children === "number" ? children : "reference";
     return (
         <sup className="relative top-[-0.25em] ml-0.5 inline-flex size-4 align-baseline">
-            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold tabular-nums riyp-link">
+            <a href={`#${id}`} onClick={(event) => focusCitedSource(event, id)} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold tabular-nums riyp-link">
                 {children}
             </a>
         </sup>

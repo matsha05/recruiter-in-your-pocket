@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Toaster } from "@/components/ui/sonner";
-import { CommandPalette } from "@/components/CommandPalette";
+import { CommandPaletteLauncher } from "@/components/CommandPaletteLauncher";
 import { AnalyticsLifecycle } from "@/components/privacy/AnalyticsLifecycle";
 import { PageStatistics } from "@/components/privacy/PageStatistics";
 import { PrivacyControls } from "@/components/privacy/PrivacyControls";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteStructuredData } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.recruiterinyourpocket.com'),
@@ -48,12 +50,14 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/literata/Literata-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Favicon is handled automatically by icon.tsx */}
+        {/* Who publishes the site, on every page; the homepage adds the founder and the product. */}
+        <JsonLd data={siteStructuredData} />
       </head>
       <body>
         <AppProviders>
           <AnalyticsLifecycle />
           {children}
-          <CommandPalette />
+          <CommandPaletteLauncher />
           <Toaster />
           <PrivacyControls />
           {/* Only the live site reports page statistics; previews, local runs, and tests stay quiet. */}

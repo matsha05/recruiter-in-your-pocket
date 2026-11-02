@@ -32,6 +32,7 @@ import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { needsReceiptValidatedSave, saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
 import { fetchSampleReport } from "@/lib/reports/sample-report";
+import type { GenerationStage } from "@/lib/generation-stage";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { scrollToReportSection } from "@/components/workspace/report/useReportNavigation";
 
@@ -74,6 +75,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
     const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
+    const [analysisStage, setAnalysisStage] = useState<GenerationStage | null>(null);
     const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
     const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
     const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
@@ -185,6 +187,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         latestAnalysisControllerRef.current = controller;
         setAnalysisMode(mode);
         setAnalysisStartedAt(Date.now());
+        setAnalysisStage(null);
         return controller;
     }, [resetReportCompletion]);
 
@@ -195,6 +198,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const endAnalysis = useCallback((controller: AbortController) => {
         if (!finishOwnedAnalysisRun(abortControllerRef, controller)) return false;
         setAnalysisStartedAt(null);
+        setAnalysisStage(null);
         return true;
     }, []);
 
@@ -203,6 +207,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsLoading(false);
         setIsStreaming(false);
         setAnalysisStartedAt(null);
+        setAnalysisStage(null);
         if (!silent) {
             toast.info("Report stopped");
         }
@@ -251,7 +256,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
-        setIsStreaming, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
+        setIsStreaming, setAnalysisStage, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,
         onReportReady: prepareReportCompletion, canRun: !revisionBlocked,
         captureUploadOwner: captureRecoveryOwner,
@@ -437,7 +442,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         const targetId = sectionMap[context.section];
         const scrollFrame = requestAnimationFrame(() => {
             const navigation = document.querySelector<HTMLElement>('[aria-label="Resume report sections"]');
-            if (targetId && !scrollToReportSection(targetId, navigation)) return;
+            // Back from checkout, the reader lands on the section they unlocked rather than watching the page scroll there.
+            if (targetId && !scrollToReportSection(targetId, navigation, { instant: true })) return;
 
             // A save may replace the restored report before this frame. Cleanup
             // cancels that attempt; keep its context for the next committed report.
@@ -463,6 +469,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                 aria-label="Workspace"
                 data-visual-anchor="workspace-shell"
                 data-workspace-mode={reviewMode}
+                data-document={report && !isLoading && (!linkedInReviewEnabled || reviewMode === "resume") ? "" : undefined}
                 className="workspace-product-shell flex flex-col overflow-hidden bg-body"
             >
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
@@ -509,6 +516,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             highlightSection={highlightSection}
                             hasPaidAccess={hasPaidAccess}
                             analysisStartedAt={analysisStartedAt}
+                            analysisStage={analysisStage}
                             onCancelAnalysis={() => handleCancelAnalysis(true)}
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={savedRevision.active ? savedRevision.baseline : comparisonBaseline}

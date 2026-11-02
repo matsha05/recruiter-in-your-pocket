@@ -8,9 +8,10 @@ const SECTIONS = [
 ] as const;
 
 async function expectCurrent(page: Page, label: string) {
-  const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
   await expect(navigation.locator('[aria-current="location"]')).toHaveCount(1);
-  await expect(navigation.getByRole("button", { name: label, exact: true })).toHaveAttribute("aria-current", "location");
+  // By attribute, so the check also reads the phone tabs while they wait off screen.
+  await expect(navigation.locator(`button[aria-label="${label}"]`)).toHaveAttribute("aria-current", "location");
 }
 
 async function expectSectionBelowNavigation(page: Page, id: string) {
@@ -18,8 +19,22 @@ async function expectSectionBelowNavigation(page: Page, id: string) {
     const nav = document.querySelector('nav[aria-label="Resume report sections"]')!;
     const navBottom = nav.closest("aside")!.getBoundingClientRect().bottom;
     const top = section.getBoundingClientRect().top;
-    return top >= navBottom - 1 && top <= navBottom + 120;
+    // The report scrolls with the page, so the last section may stop short of the tabs at the end of the page.
+    const page = document.scrollingElement!;
+    const atEnd = page.scrollTop + page.clientHeight >= page.scrollHeight - 2;
+    return top >= navBottom - 1 && (top <= navBottom + 120 || (atEnd && top < window.innerHeight));
   })).toBe(true);
+}
+
+/** On phones the tabs wait until the opening read has scrolled away (plan item 2.5). */
+async function revealNavigation(page: Page) {
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
+  if (await navigation.isVisible()) return navigation;
+  await page.locator("#section-fixes").evaluate((section) => {
+    window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
+  });
+  await expect(navigation).toBeVisible();
+  return navigation;
 }
 
 async function expectInsideReadingViewport(element: Locator) {
@@ -67,23 +82,27 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/sample-report");
     await page.evaluate(() => document.fonts.ready);
-    const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+    const navigation = page.locator('nav[aria-label="Resume report sections"]');
     await expectCurrent(page, "Overview");
 
     // Visit non-adjacent targets in both directions so intermediate scroll events
     // cannot leave the previous observer entry selected after a smooth jump.
     for (const index of [3, 0, 2, 1]) {
       const section = SECTIONS[index];
+      await revealNavigation(page);
       await navigation.getByRole("button", { name: section.label, exact: true }).click();
       await expectSectionBelowNavigation(page, section.id);
       await expectCurrent(page, section.label);
     }
 
-    if (viewport.width >= 1024) {
+    if (viewport.width >= 960) {
+      // The marked page: the line on the left, the recruiter's note in the margin beside it.
       const firstFix = page.locator("#section-fix-1");
-      await expect(firstFix.getByRole("list", { name: "How fix 1 moves from resume evidence to clearer wording", exact: true })).toHaveCount(0);
-      await expect(page.locator("#section-fix-2").getByRole("list", { name: "How fix 2 moves from resume evidence to clearer wording", exact: true })).toBeVisible();
-      expect(await firstFix.getByRole("heading", { level: 3 }).evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize))).toBe(24);
+      const line = await firstFix.locator("blockquote").boundingBox();
+      const note = await firstFix.getByText("The one thing to fix first", { exact: true }).boundingBox();
+      expect(note!.x).toBeGreaterThan(line!.x + line!.width);
+      expect(Math.abs(note!.y - line!.y)).toBeLessThan(40);
+      await expect(firstFix.getByRole("list", { name: "From your line to a revised line", exact: true })).toBeVisible();
     }
 
     const fixesHeight = await page.locator("#section-fixes").evaluate((section) => section.getBoundingClientRect().height);
@@ -107,25 +126,19 @@ for (const width of [320, 390]) {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/sample-report");
     await page.evaluate(() => document.fonts.ready);
-    const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+    const navigation = await revealNavigation(page);
     await navigation.getByRole("button", { name: "Fix these first", exact: true }).click();
     await expectSectionBelowNavigation(page, "section-fixes");
     await expectCurrent(page, "Fix these first");
 
-    const firstFix = page.locator("#section-fix-1");
-    const title = firstFix.getByRole("heading", { level: 3 });
-    const titleSize = await title.evaluate((heading) => Number.parseFloat(getComputedStyle(heading).fontSize));
-    expect(titleSize, "The action title uses the shared 24px report heading scale").toBe(24);
-    await expect(firstFix.locator('ol[aria-label="How fix 1 moves from resume evidence to clearer wording"]')).toBeHidden();
-
-    // Inspect the source text and question label themselves. Checking document
-    // scrollWidth or merely finding these nodes would miss a fix header that
+    // Inspect the quoted line and the first question themselves. Checking document
+    // scrollWidth or merely finding these nodes would miss a row header that
     // pushes both below the fold. No further scrolling occurs after the jump.
-    const sourceQuote = firstFix.locator("p").filter({ hasText: /^“/ });
-    await expect(sourceQuote).toHaveCount(1);
-    await expectInsideReadingViewport(sourceQuote);
-    await expectInsideReadingViewport(firstFix.getByText("What to add", { exact: true }));
-    await expectInsideReadingViewport(firstFix.getByText(/^How many people did you onboard, on which teams/));
+    const firstFix = page.locator("#section-fix-1");
+    await expect(firstFix.getByRole("list", { name: "From your line to a revised line", exact: true })).toBeHidden();
+    await expectInsideReadingViewport(firstFix.locator("blockquote"));
+    await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("label"));
+    await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("input"));
   });
 }
 
@@ -133,7 +146,7 @@ test("workspace report navigation supports keyboard jumps with reduced motion", 
   await page.setViewportSize({ width: 1024, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/workspace?sample=1");
-  const navigation = page.getByRole("navigation", { name: "Resume report sections" });
+  const navigation = page.locator('nav[aria-label="Resume report sections"]');
 
   for (const section of [...SECTIONS].reverse()) {
     const button = navigation.getByRole("button", { name: section.label, exact: true });

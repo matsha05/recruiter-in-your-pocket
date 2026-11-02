@@ -51,6 +51,7 @@ Load `extension/dist` in `chrome://extensions` (Developer Mode).
 - `npm run test` - contract tests and smoke checks
 - `npm run eval:dry-run` - offline evaluation harness sanity check
 - `npm run eval:smoke` - paid smoke evaluation harness
+- `npm run eval:judge` - paid Critical Miss judge on synthetic fixtures; `compare` is the prompt-change gate ([how to read it](docs/evals/critical-miss-judge.md))
 - `npm run calibrate` - score calibration
 
 ## Design and Research

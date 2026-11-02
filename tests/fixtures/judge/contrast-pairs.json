@@ -1,0 +1,1030 @@
+{
+  "version": 1,
+  "review_date": "2026-11-01",
+  "provenance": "Written by hand for judge calibration on 2026-11-01. Every person, employer and school is fictional; any resemblance is coincidental. Each pair isolates one rule in docs/evals/critical-miss-rubric.md. Both sides are grounded and specific unless the rule under test says otherwise.",
+  "scoring": "A decisive pair is right when the combined verdict names the expected side. A tie control is right when the verdict is a tie, acceptable when it is a slight preference, and wrong when it is a clear preference.",
+  "pairs": [
+    {
+      "id": "cp-01",
+      "rule": "C2_concrete_fact_over_move",
+      "expected": "B",
+      "note": "Missing budget size beats moving a result that is already on the page.",
+      "resume_text": "Dana Okafor\nColumbus, OH\n\nExperience\n\nSenior Marketing Manager\nLarkspur Home Goods, Columbus, OH\nJan 2022 - Present\n- Own the paid media budget and agency relationships for the e-commerce site\n- Built the email lifecycle program, from the welcome series to win-back flows\n- Partner with merchandising on seasonal campaign calendars\n- Cut customer acquisition cost 22% in 2024 by shifting spend from display to search\n\nMarketing Manager\nBluefin Outfitters, Columbus, OH\nJun 2018 - Dec 2021\n- Ran social and influencer campaigns for three product launches\n- Managed a freelance designer and copywriter\n\nEducation\nBA Communications, Ohio University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your current role pairs budget ownership with a 22% cut in acquisition cost. That result sits fourth, after three responsibility bullets.",
+        "misses": [
+          {
+            "fix": "Move the 22% acquisition-cost result to the top of the Larkspur role.",
+            "why": "In the Larkspur entry, the strongest result comes last. Leading with it puts the outcome where a reviewer starts.",
+            "resume_lines": [
+              "- Cut customer acquisition cost 22% in 2024 by shifting spend from display to search"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You own paid media at Larkspur and cut acquisition cost 22%. The budget behind that work isn't stated anywhere.",
+        "misses": [
+          {
+            "fix": "In the paid media bullet, add the annual budget you manage and the number of agencies, if you can verify them.",
+            "why": "Budget size tells a marketing leader how much spend you're trusted with, which the 22% result alone can't show.",
+            "resume_lines": [
+              "- Own the paid media budget and agency relationships for the e-commerce site"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-02",
+      "rule": "C2_concrete_fact_over_move",
+      "expected": "A",
+      "note": "The size of a named migration beats moving an existing result to the top.",
+      "resume_text": "Ravi Castellano\nDenver, CO\n\nExperience\n\nEngineering Manager, Platform\nQuarry Logistics, Denver, CO\nMar 2021 - Present\n- Lead the platform team responsible for CI/CD and internal developer tooling\n- Led the migration of services from VMs to Kubernetes\n- Introduced on-call runbooks and a blameless postmortem practice\n- Hire and develop engineers across two time zones\n- Reduced average deploy time from 40 minutes to 6 minutes\n\nSenior Software Engineer\nQuarry Logistics, Denver, CO\nJul 2017 - Feb 2021\n- Built the shipment-tracking API used by the customer portal\n- Mentored three junior engineers\n\nEducation\nBS Computer Science, Colorado State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You lead a platform team and cut deploy time from 40 minutes to 6. The Kubernetes migration gives no sense of its size.",
+        "misses": [
+          {
+            "fix": "In the Kubernetes migration bullet, add how many services moved and how many teams depended on them.",
+            "why": "A platform manager is judged on the size of what they moved. Without a count, a reader can't tell whether this was a handful of services or most of the company.",
+            "resume_lines": [
+              "- Led the migration of services from VMs to Kubernetes"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You lead the platform team at Quarry. Your clearest result, the deploy-time cut, is the last bullet.",
+        "misses": [
+          {
+            "fix": "Move the deploy-time result to the first bullet of the Quarry platform role.",
+            "why": "The 40-to-6-minute change is the clearest result in the role, and it currently sits last.",
+            "resume_lines": [
+              "- Reduced average deploy time from 40 minutes to 6 minutes"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-03",
+      "rule": "C2_concrete_fact_over_move",
+      "expected": "B",
+      "note": "Site count and team size beat leading with an existing result.",
+      "resume_text": "Marisol Vance\nReno, NV\n\nExperience\n\nOperations Manager\nCedar Ridge Distribution, Reno, NV\nApr 2020 - Present\n- Manage warehouse operations across multiple sites\n- Run weekly safety audits and corrective-action reviews\n- Coordinate carrier schedules with the transportation team\n- Implemented a slotting redesign that cut mis-picks 31% over 2023\n\nShift Supervisor\nCedar Ridge Distribution, Reno, NV\nJan 2016 - Mar 2020\n- Supervised a night shift of 18 associates\n- Trained new hires on scanner and pick-path procedures\n\nEducation\nBS Business Administration, University of Nevada, Reno",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You run warehouse operations at Cedar Ridge, and the slotting redesign cut mis-picks 31%. That result is the last bullet in the role.",
+        "misses": [
+          {
+            "fix": "Lead the Cedar Ridge manager role with the 31% mis-pick result.",
+            "why": "It's the one measured result in your current role, and it's below three routine bullets.",
+            "resume_lines": [
+              "- Implemented a slotting redesign that cut mis-picks 31% over 2023"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You moved from supervising a night shift of 18 to managing operations across sites. The manager role never says how many sites or people.",
+        "misses": [
+          {
+            "fix": "In the warehouse operations bullet, name the number of sites and the size of the team you manage.",
+            "why": "An operations director sizes a manager by sites and headcount. Your supervisor role gives a crew of 18, so the manager role reads smaller than it may be.",
+            "resume_lines": [
+              "- Manage warehouse operations across multiple sites"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-04",
+      "rule": "C1_first_read_stakes",
+      "expected": "A",
+      "note": "Both concrete; the current role's core responsibility outranks a 2014 internship line.",
+      "resume_text": "Theo Lindqvist\nPortland, OR\n\nExperience\n\nDirector of FP&A\nHarborview Medical Group, Portland, OR\nFeb 2021 - Present\n- Own the operating budget and monthly forecast for the medical group\n- Built a rolling 18-month forecast model adopted by all clinic directors\n- Present variance analysis to the CFO and board finance committee\n\nSenior Financial Analyst\nHarborview Medical Group, Portland, OR\nMay 2016 - Jan 2021\n- Prepared monthly close packages for 12 clinics\n- Automated the payroll accrual workbook, saving 2 days per close\n\nStaff Accountant Intern\nPinecone Credit Union, Portland, OR\nJun 2014 - Aug 2014\n- Assisted with account reconciliations\n\nEducation\nBS Accounting, Portland State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You run FP&A for Harborview and built the forecast all clinic directors use. The budget you own has no size.",
+        "misses": [
+          {
+            "fix": "In the operating budget bullet, add the size of the budget you own.",
+            "why": "An FP&A director is placed by the size of the budget they run, and the forecast and board work read very differently depending on it.",
+            "resume_lines": [
+              "- Own the operating budget and monthly forecast for the medical group"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your path runs from an internship to Director of FP&A. The internship bullet doesn't say what you reconciled.",
+        "misses": [
+          {
+            "fix": "In the Pinecone internship bullet, name the types of accounts you reconciled and how many.",
+            "why": "That would show the volume of your early accounting work.",
+            "resume_lines": [
+              "- Assisted with account reconciliations"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-05",
+      "rule": "C1_first_read_stakes",
+      "expected": "B",
+      "note": "An optional Skills section loses to a weak current-role bullet.",
+      "resume_text": "Priya Natarajan\nAustin, TX\n\nExperience\n\nCustomer Success Manager\nFernway Software, Austin, TX\nAug 2021 - Present\n- Manage a book of mid-market accounts\n- Lead quarterly business reviews with customer executives\n- Reduced onboarding time from 60 to 35 days by rebuilding the kickoff checklist\n\nAccount Coordinator\nFernway Software, Austin, TX\nJun 2019 - Jul 2021\n- Supported renewals for the enterprise team\n- Maintained account notes in Salesforce\n\nEducation\nBA Economics, University of Texas at Austin",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from coordinating renewals to managing your own accounts. The resume has no Skills section.",
+        "misses": [
+          {
+            "fix": "Add a Skills section listing Salesforce and the other tools you use.",
+            "why": "A Skills section makes your tools easy to find at a glance.",
+            "resume_lines": [
+              "No skills section present"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You cut onboarding from 60 to 35 days. The book of accounts you manage has no size or retention result.",
+        "misses": [
+          {
+            "fix": "In the mid-market accounts bullet, add how many accounts you manage and their renewal rate, if you can verify them.",
+            "why": "A customer success leader sizes a CSM by the book they carry and how much of it renews; the bullet doesn't say whether that's a handful of accounts or a large book.",
+            "resume_lines": [
+              "- Manage a book of mid-market accounts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-06",
+      "rule": "C4_gap_handling",
+      "expected": "A",
+      "note": "An open gap of more than two years with no recent work, handled with real help, beats a line edit.",
+      "resume_text": "Jonah Whitlock\nChicago, IL\n\nExperience\n\nProgram Manager\nMeridian Health Partners, Chicago, IL\nSep 2017 - Mar 2024\n- Ran the rollout of a patient scheduling system across 14 clinics\n- Managed a $2.1M implementation budget with the vendor and IT\n- Built the weekly status reporting used by the operations leadership team\n\nProject Coordinator\nMeridian Health Partners, Chicago, IL\nJun 2014 - Aug 2017\n- Coordinated vendor onboarding for the billing team\n- Tracked project milestones and risks\n\nCertifications\nPMP (2019)\n\nEducation\nBA Public Health, Loyola University Chicago",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You ran a 14-clinic scheduling rollout on a $2.1M budget. The Meridian role ends in March 2024, and nothing after it is listed.",
+        "misses": [
+          {
+            "fix": "After the Meridian role, add a dated entry for what you've done since March 2024, such as contract, consulting or volunteer project work or a course, if you have it. If it was a break, add one line with the dates and the reason.",
+            "why": "Program management reviewers start with your latest role, and an open stretch of more than two years will be their first question. A real, dated entry answers it on the page.",
+            "resume_lines": [
+              "Sep 2017 - Mar 2024"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You ran a 14-clinic scheduling rollout on a $2.1M budget. The status reporting bullet says who used it but not what it changed.",
+        "misses": [
+          {
+            "fix": "In the weekly status reporting bullet, name one decision leadership made from your reports.",
+            "why": "That would show your reporting shaped decisions rather than just tracking work.",
+            "resume_lines": [
+              "- Built the weekly status reporting used by the operations leadership team"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-07",
+      "rule": "C4_gap_handling",
+      "expected": "B",
+      "note": "A closed gap between two past roles, followed by nearly five years of relevant work, is not the thing to fix first.",
+      "resume_text": "Alana Brightwater\nCharlotte, NC\n\nExperience\n\nSenior Product Designer\nTidewater Bank, Charlotte, NC\nJan 2022 - Present\n- Lead design for the mobile banking app's payments experience\n- Redesigned the bill-pay flow, reducing support tickets about failed payments\n- Run usability sessions with customers each sprint\n\nProduct Designer\nLumen Travel, Charlotte, NC\nMar 2017 - Jun 2020\n- Designed booking and itinerary screens for the iOS and Android apps\n- Built the first shared component library with two engineers\n\nEducation\nBFA Graphic Design, UNC Charlotte",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You lead payments design for Tidewater's mobile app. There's a stretch between June 2020 and January 2022 with no role listed.",
+        "misses": [
+          {
+            "fix": "Add a line explaining the time between Lumen Travel and Tidewater Bank.",
+            "why": "Reviewers notice the time between June 2020 and January 2022 and may wonder what happened.",
+            "resume_lines": [
+              "Mar 2017 - Jun 2020"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You lead payments design for Tidewater's mobile app, and the bill-pay redesign is the clearest result. It doesn't say how far tickets fell.",
+        "misses": [
+          {
+            "fix": "In the bill-pay redesign bullet, add how much failed-payment tickets dropped and over what period, if you can verify it.",
+            "why": "A design hiring manager wants to see that your redesign changed something measurable; 'reducing support tickets' says it moved but not how much.",
+            "resume_lines": [
+              "- Redesigned the bill-pay flow, reducing support tickets about failed payments"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-08",
+      "rule": "C4_gap_handling",
+      "expected": "B",
+      "note": "A dated, explained break followed by relevant current work is not the thing to fix first.",
+      "resume_text": "Corinne Delacroix\nMilwaukee, WI\n\nExperience\n\nStaff Accountant\nOakmont Brewing Co., Milwaukee, WI\nFeb 2024 - Present\n- Own month-end close for two of the company's three entities\n- Reconcile intercompany balances and prepare journal entries\n- Supported the first external audit, preparing schedules for the auditors\n\nCareer Break: Family Caregiving\nJul 2021 - Jan 2024\n- Full-time care for a family member; completed two CPE courses in revenue recognition\n\nAccountant\nGranite Peak Insurance, Milwaukee, WI\nAug 2016 - Jun 2021\n- Prepared monthly accruals and fixed-asset schedules\n- Managed vendor payments for the claims department\n\nEducation\nBBA Accounting, Marquette University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You're back in accounting at Oakmont after a dated caregiving break. A reviewer sees the break before your earlier experience.",
+        "misses": [
+          {
+            "fix": "Add a short summary at the top that frames your return to accounting after the career break.",
+            "why": "A reviewer may wonder how current your skills are after the break.",
+            "resume_lines": [
+              "Jul 2021 - Jan 2024"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You own month-end close for two entities at Oakmont. The audit bullet says you prepared schedules but not which ones.",
+        "misses": [
+          {
+            "fix": "In the external audit bullet, name the schedules you prepared and the areas they covered.",
+            "why": "Audit support is one of the clearest things a staff accountant can show; naming the schedules shows what you actually handled.",
+            "resume_lines": [
+              "- Supported the first external audit, preparing schedules for the auditors"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-09",
+      "rule": "C4_gap_handling",
+      "expected": "A",
+      "note": "Same open gap on both sides; real help (dating activity already on the page) beats 'say what you've done since'.",
+      "resume_text": "Desmond Achebe\nPhoenix, AZ\n\nExperience\n\nData Analyst\nSunline Energy, Phoenix, AZ\nMar 2020 - Jun 2024\n- Built Tableau dashboards for field operations and finance\n- Wrote SQL pipelines that refreshed outage reporting daily instead of weekly\n- Partnered with the pricing team on rate-case analysis\n\nJunior Analyst\nCopperleaf Insurance, Phoenix, AZ\nJul 2018 - Feb 2020\n- Maintained claims reports in Excel and Access\n\nProjects\n- Public transit ridership dashboard (Python, dbt, Looker Studio), published on GitHub\n\nCertifications\nGoogle Data Analytics Certificate (2025)\n\nEducation\nBS Statistics, Arizona State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You built outage and finance reporting at Sunline. That role ends in June 2024, and the only later item, a 2025 certificate, sits under Certifications.",
+        "misses": [
+          {
+            "fix": "After the Sunline role, add a dated entry for the time since June 2024 that includes the 2025 Google certificate and, with its dates, the transit ridership project, plus any other real work from that period.",
+            "why": "Analytics reviewers look for current hands-on work. You may already have it on the page; it just isn't dated where they look.",
+            "resume_lines": [
+              "Mar 2020 - Jun 2024"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You built outage and finance reporting at Sunline. The role ends in June 2024, and no later work is listed.",
+        "misses": [
+          {
+            "fix": "Say what you've done since June 2024.",
+            "why": "The latest role ends in June 2024 and no later work is listed.",
+            "resume_lines": [
+              "Mar 2020 - Jun 2024"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-10",
+      "rule": "C7_honest_ask",
+      "expected": "B",
+      "note": "Same gap; telling the person to invent a consulting role is a clear loss.",
+      "resume_text": "Fiona Marchetti\nSacramento, CA\n\nExperience\n\nMarketing Coordinator\nBrightleaf Organics, Sacramento, CA\nJan 2019 - Feb 2024\n- Scheduled social posts and tracked engagement for four brand accounts\n- Coordinated trade-show logistics for the sales team\n- Wrote product descriptions for the online store\n\nMarketing Intern\nValley Arts Council, Sacramento, CA\nJun 2018 - Dec 2018\n- Drafted newsletters and event listings\n\nEducation\nBA English, UC Davis",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You coordinated social and trade-show work for four brands at Brightleaf. The role ends in February 2024, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "Add an Independent Marketing Consultant role from March 2024 to present to cover the gap.",
+            "why": "A current title closes the gap a reviewer will see after February 2024.",
+            "resume_lines": [
+              "Jan 2019 - Feb 2024"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You coordinated social and trade-show work for four brands at Brightleaf. The role ends in February 2024, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "After the Brightleaf role, add a dated entry for real work since February 2024, such as freelance social media clients, a course or volunteer marketing. If there's none, add one line with the dates and the reason.",
+            "why": "A marketing hiring manager will ask about the time since February 2024 first. Real, dated work answers that on the page.",
+            "resume_lines": [
+              "Jan 2019 - Feb 2024"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-11",
+      "rule": "V_grounded",
+      "expected": "A",
+      "note": "B asks for a team size the resume already states.",
+      "resume_text": "Gregory Osei\nAtlanta, GA\n\nExperience\n\nRegional Sales Manager\nNorthstar Medical Devices, Atlanta, GA\nMay 2020 - Present\n- Lead a team of 9 account executives across Georgia and the Carolinas\n- Grew regional revenue from $14M to $21M between 2021 and 2024\n- Launched a new surgical stapler line into 40 hospital systems\n- Coach reps on deal reviews and forecast accuracy\n\nAccount Executive\nNorthstar Medical Devices, Atlanta, GA\nJun 2015 - Apr 2020\n- Exceeded quota four consecutive years\n- Opened 12 new hospital accounts in metro Atlanta\n\nEducation\nBS Biology, Georgia State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You grew regional revenue from $14M to $21M with a team of 9. Your earlier quota line doesn't say by how much you beat it.",
+        "misses": [
+          {
+            "fix": "In the quota bullet, add your attainment percentage or team rank for those four years, if you can verify it.",
+            "why": "Sales leaders are hired partly on their own record as a rep, and attainment is the number they look for.",
+            "resume_lines": [
+              "- Exceeded quota four consecutive years"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You lead a regional sales team at Northstar, but the size of that team isn't stated.",
+        "misses": [
+          {
+            "fix": "In the team leadership bullet, add how many account executives you manage.",
+            "why": "Sales leaders are sized by the team they run, and the bullet leaves that out.",
+            "resume_lines": [
+              "- Lead a team of 9 account executives across Georgia and the Carolinas"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-12",
+      "rule": "V_grounded",
+      "expected": "B",
+      "note": "A invents a trial count; otherwise the two fixes are the same.",
+      "resume_text": "Hannah Kowalczyk\nCleveland, OH\n\nExperience\n\nClinical Research Coordinator\nLakeview University Hospital, Cleveland, OH\nAug 2021 - Present\n- Coordinate patient enrollment for oncology trials\n- Maintain regulatory binders and IRB submissions\n- Train new coordinators on the electronic data capture system\n\nResearch Assistant\nLakeview University Hospital, Cleveland, OH\nJun 2019 - Jul 2021\n- Collected and entered study data for cardiology studies\n\nEducation\nBS Biology, Case Western Reserve University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You coordinate enrollment across Lakeview's 12 oncology trials. The enrollment bullet doesn't say how many patients you enrolled.",
+        "misses": [
+          {
+            "fix": "In the enrollment bullet, add how many patients you enrolled across the 12 trials.",
+            "why": "Research managers size a coordinator by enrollment volume.",
+            "resume_lines": [
+              "- Coordinate patient enrollment for oncology trials"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You coordinate oncology trial enrollment at Lakeview. The bullet doesn't say how many trials or patients it covered.",
+        "misses": [
+          {
+            "fix": "In the oncology enrollment bullet, add how many trials you supported and how many patients you enrolled, if you can verify them.",
+            "why": "Research managers size a coordinator by enrollment volume.",
+            "resume_lines": [
+              "- Coordinate patient enrollment for oncology trials"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-13",
+      "rule": "V_grounded",
+      "expected": "A",
+      "note": "B upgrades 'Supported the launch' to 'led the launch'.",
+      "resume_text": "Isaac Ferreira\nNew York, NY\n\nExperience\n\nProduct Analyst\nKestrel Payments, New York, NY\nFeb 2022 - Present\n- Supported the launch of instant payouts for small-business customers\n- Built the adoption dashboard product managers use in weekly reviews\n- Analyzed checkout drop-off and presented findings to the growth team\n\nBusiness Analyst\nHollis & Grant Consulting, New York, NY\nJul 2019 - Jan 2022\n- Built pricing models for three retail clients\n\nEducation\nBA Economics, Fordham University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You work across launch analysis and product dashboards at Kestrel. The instant payouts bullet doesn't say what your part was.",
+        "misses": [
+          {
+            "fix": "In the instant payouts bullet, name the part of the launch you supported, such as the analysis or tracking you built, and the adoption it reached if you can verify it.",
+            "why": "A product hiring manager wants to see your contribution to a launch, not only that it happened.",
+            "resume_lines": [
+              "- Supported the launch of instant payouts for small-business customers"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You work across launch analysis and product dashboards at Kestrel. The instant payouts bullet doesn't say what the launch reached.",
+        "misses": [
+          {
+            "fix": "In the instant payouts bullet, say that you led the launch and add the adoption it reached.",
+            "why": "Leading a launch is what a product hiring manager looks for in an analyst moving toward product management.",
+            "resume_lines": [
+              "- Supported the launch of instant payouts for small-business customers"
+            ]
+          }
+        ]
+      },
+      "fixed": "v3: the B Verdict first called the launch \"your biggest project\", which the resume doesn't state. Removed so the pair isolates ownership inflation."
+    },
+    {
+      "id": "cp-14",
+      "rule": "V_grounded",
+      "expected": "B",
+      "note": "A misreads a current role as ended.",
+      "resume_text": "Jasmine Holloway\nMinneapolis, MN\n\nExperience\n\nHR Business Partner\nSterling Foods, Minneapolis, MN\nOct 2022 - Present\n- Partner with plant leadership at three manufacturing sites\n- Led the redesign of the hourly attendance policy with legal and operations\n- Handle employee relations investigations for 900 employees\n\nHR Generalist\nSterling Foods, Minneapolis, MN\nJan 2019 - Sep 2022\n- Ran onboarding for new hourly hires\n- Administered leave of absence cases\n\nEducation\nBA Psychology, University of Minnesota",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from HR generalist to business partner at Sterling Foods. Your latest role ends in 2022, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "Add what you've done since leaving Sterling Foods in 2022.",
+            "why": "HR leaders look for recent work first.",
+            "resume_lines": [
+              "Jan 2019 - Sep 2022"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You partner with leadership at three plants and handle investigations for 900 employees. The attendance policy redesign doesn't say what changed.",
+        "misses": [
+          {
+            "fix": "In the attendance policy bullet, name what changed for hourly employees and any result you can verify, such as fewer grievances or absences.",
+            "why": "A policy redesign is a strong HR business partner example, but without the change or result a reader can't tell what it achieved.",
+            "resume_lines": [
+              "- Led the redesign of the hourly attendance policy with legal and operations"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-15",
+      "rule": "C3_specific_ask",
+      "expected": "A",
+      "note": "Same line; the specific ask beats 'add more detail'.",
+      "resume_text": "Kevin Ashdown\nNashville, TN\n\nExperience\n\nImplementation Manager\nHarbor Health Systems, Nashville, TN\nMar 2021 - Present\n- Manage client implementations of the scheduling platform for health systems\n- Built the go-live readiness checklist now used by all implementation managers\n- Train client super-users and run post-launch check-ins\n\nImplementation Specialist\nHarbor Health Systems, Nashville, TN\nJun 2018 - Feb 2021\n- Configured scheduling templates for physician groups\n\nEducation\nBS Health Administration, Belmont University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your go-live checklist became the standard for every implementation manager at Harbor. The implementations bullet doesn't say how many you've led.",
+        "misses": [
+          {
+            "fix": "In the client implementations bullet, name how many health systems you've taken live and the go-live timelines you were responsible for.",
+            "why": "Implementation leaders hire for volume and on-time go-lives; the bullet shows the work but not how much of it you've carried.",
+            "resume_lines": [
+              "- Manage client implementations of the scheduling platform for health systems"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your go-live checklist became the standard for every implementation manager at Harbor. The implementations bullet is thin.",
+        "misses": [
+          {
+            "fix": "Add more detail to the client implementations bullet.",
+            "why": "More detail would make the work clearer.",
+            "resume_lines": [
+              "- Manage client implementations of the scheduling platform for health systems"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-16",
+      "rule": "C3_specific_ask",
+      "expected": "A",
+      "note": "A specific ask on the current role's main result beats a vague ask on the same role.",
+      "resume_text": "Lena Sorensen\nGrand Rapids, MI\n\nExperience\n\nSupply Chain Planner\nArbor Furniture Co., Grand Rapids, MI\nMay 2021 - Present\n- Plan inventory for the upholstered furniture line\n- Responsible for supplier communication\n- Reduced stockouts on top-selling SKUs by reworking reorder points in 2024\n- Prepare the monthly S&OP demand review\n\nBuyer\nArbor Furniture Co., Grand Rapids, MI\nJun 2018 - Apr 2021\n- Placed purchase orders with fabric and foam suppliers\n\nEducation\nBS Supply Chain Management, Western Michigan University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You plan inventory for Arbor's upholstered line and reworked its reorder points. The stockout result has no size.",
+        "misses": [
+          {
+            "fix": "In the stockout bullet, add how much stockouts fell and how many SKUs the new reorder points covered, if you can verify them.",
+            "why": "A supply chain manager looks for the size of a planning result; 'reduced stockouts' says it improved but not by how much.",
+            "resume_lines": [
+              "- Reduced stockouts on top-selling SKUs by reworking reorder points in 2024"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You plan inventory for Arbor's upholstered line. Several bullets describe responsibilities.",
+        "misses": [
+          {
+            "fix": "Clarify your impact in the Arbor planner role.",
+            "why": "Your impact isn't always clear.",
+            "resume_lines": [
+              "- Responsible for supplier communication"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-17",
+      "rule": "C5_always_a_top_fix",
+      "expected": "B",
+      "note": "On a strong resume, 'Nothing critical' with a cosmetic tweak loses to the one major line without scale.",
+      "resume_text": "Marcus Ellery\nSan Francisco, CA\n\nExperience\n\nVP of Engineering\nStratus Analytics, San Francisco, CA\nJan 2021 - Present\n- Lead an engineering organization of 85 across four product teams and infrastructure\n- Raised platform uptime from 99.5% to 99.95% while traffic tripled\n- Cut cloud spend 28% ($3.4M annually) through a reserved-capacity and rightsizing program\n- Led the rebuild of the data ingestion pipeline\n- Hired 40 engineers in 2022 with 92% first-year retention\n\nDirector of Engineering\nStratus Analytics, San Francisco, CA\nMar 2017 - Dec 2020\n- Built the analytics query engine team from 6 to 24 engineers\n- Shipped the self-serve dashboard product, now used by 2,300 customers\n\nEducation\nBS Electrical Engineering, UC San Diego",
+      "A": {
+        "label": "Nothing critical",
+        "verdict": "You lead 85 engineers with clear uptime, cost and hiring results. Nothing needs fixing first.",
+        "misses": [
+          {
+            "fix": "Optionally, combine the two Stratus roles under one company heading.",
+            "why": "This is an optional polish; the resume already reads as a strong VP of Engineering.",
+            "resume_lines": [
+              "Stratus Analytics, San Francisco, CA"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You lead 85 engineers with uptime, cost and hiring results to show for it. The data ingestion rebuild is the one major project with no size or result.",
+        "misses": [
+          {
+            "fix": "In the ingestion pipeline bullet, add the data volume it handles and what the rebuild changed, such as latency, cost or reliability, if you can verify them.",
+            "why": "It's the only major line without the detail the rest of the resume has, so it reads as a project you oversaw rather than one that mattered.",
+            "resume_lines": [
+              "- Led the rebuild of the data ingestion pipeline"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-18",
+      "rule": "C5_always_a_top_fix",
+      "expected": "A",
+      "note": "On a strong resume, a real Critical Miss beats 'Nothing critical' with a cosmetic tweak.",
+      "resume_text": "Nadia Petrov, RN\nAlbany, NY\n\nExperience\n\nDirector of Nursing\nRiverbend Regional Hospital, Albany, NY\nJun 2020 - Present\n- Lead nursing operations for a 220-bed hospital with 410 nursing staff\n- Reduced hospital-acquired pressure injuries 47% over two years with a skin-care bundle\n- Cut agency nurse spend from $6.2M to $2.9M by building an internal float pool\n- Led the hospital through its Magnet redesignation\n\nNurse Manager, ICU\nRiverbend Regional Hospital, Albany, NY\nMar 2015 - May 2020\n- Managed a 32-bed ICU and 75 staff\n- Raised ICU nurse retention from 78% to 91%\n\nEducation\nMSN, Nursing Leadership, SUNY Upstate Medical University\nBSN, The Sage Colleges",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You lead 410 nursing staff with measured safety, cost and retention results. The Magnet redesignation is the one major line that doesn't say what you did.",
+        "misses": [
+          {
+            "fix": "In the Magnet redesignation bullet, add the year and one change you led to meet the standards.",
+            "why": "Magnet work is a headline item for a nursing executive, and hiring committees will want to know your part in it.",
+            "resume_lines": [
+              "- Led the hospital through its Magnet redesignation"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Nothing critical",
+        "verdict": "You lead 410 nursing staff with measured safety, cost and retention results. Nothing needs fixing first.",
+        "misses": [
+          {
+            "fix": "Optionally, list the MSN and BSN on one line each with graduation years.",
+            "why": "This is an optional polish; your experience already carries the resume.",
+            "resume_lines": [
+              "MSN, Nursing Leadership, SUNY Upstate Medical University"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-19",
+      "rule": "C8_multiple_misses",
+      "expected": "A",
+      "note": "Two critical issues exist (an open gap with no recent work, and an unsized budget); naming both beats naming one.",
+      "resume_text": "Oliver Tran\nSacramento, CA\n\nExperience\n\nOperations Supervisor\nPinecrest Grocery Distribution, Sacramento, CA\nApr 2019 - Jan 2024\n- Supervise inbound receiving and put-away\n- Own the overtime budget for the receiving team\n- Cut dock-to-stock time from 9 hours to 4 by rebalancing shifts\n\nReceiving Lead\nPinecrest Grocery Distribution, Sacramento, CA\nJun 2015 - Mar 2019\n- Led a crew of 12 on the night receiving shift\n\nEducation\nAA Business, Sacramento City College",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You cut dock-to-stock time from 9 hours to 4. The Pinecrest role ends in January 2024 with nothing after it, and the budget you owned has no size.",
+        "misses": [
+          {
+            "fix": "After the Pinecrest role, add a dated entry for real work since January 2024, such as a warehouse, logistics or contract role, or a course or certification. If it was a break, add one line with the dates and the reason.",
+            "why": "An operations hiring manager will see an open stretch of almost three years before anything else; a real, dated entry answers it.",
+            "resume_lines": [
+              "Apr 2019 - Jan 2024"
+            ]
+          },
+          {
+            "fix": "In the overtime budget bullet, add the budget's size and how you kept to it, if you can verify them.",
+            "why": "Budget size shows the scale you were trusted with as a supervisor.",
+            "resume_lines": [
+              "- Own the overtime budget for the receiving team"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You cut dock-to-stock time from 9 hours to 4. The overtime budget you owned has no size.",
+        "misses": [
+          {
+            "fix": "In the overtime budget bullet, add the budget's size and how you kept to it, if you can verify them.",
+            "why": "Budget size shows the scale you were trusted with as a supervisor.",
+            "resume_lines": [
+              "- Own the overtime budget for the receiving team"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-20",
+      "rule": "C8_multiple_misses",
+      "expected": "A",
+      "note": "Same first Critical Miss; B pads with two minor edits labeled critical.",
+      "resume_text": "Paige Lindholm\nPittsburgh, PA\n\nExperience\n\nSenior Recruiter\nNorthbeam Robotics, Pittsburgh, PA\nJul 2021 - Present\n- Recruit for hardware and firmware engineering roles\n- Partner with hiring managers on interview loops and calibration\n- Built a university pipeline with two robotics programs\n- Reduced time-to-fill for engineering roles from 62 to 41 days in 2023\n\nRecruiter\nIronwood Staffing, Pittsburgh, PA\nJun 2017 - Jun 2021\n- Filled 120+ light-industrial and warehouse roles per year\n\nEducation\nBA Sociology, University of Pittsburgh",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You cut engineering time-to-fill from 62 to 41 days at Northbeam. The core recruiting bullet doesn't say how many hires or at what level.",
+        "misses": [
+          {
+            "fix": "In the hardware and firmware recruiting bullet, add how many hires you've made and the levels you recruit for, if you can verify them.",
+            "why": "A talent leader sizes a technical recruiter by hires and level; your agency role gives a volume, but the current role doesn't.",
+            "resume_lines": [
+              "- Recruit for hardware and firmware engineering roles"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You cut engineering time-to-fill from 62 to 41 days at Northbeam. The core recruiting bullet doesn't say how many hires or at what level.",
+        "misses": [
+          {
+            "fix": "In the hardware and firmware recruiting bullet, add how many hires you've made and the levels you recruit for, if you can verify them.",
+            "why": "A talent leader sizes a technical recruiter by hires and level; your agency role gives a volume, but the current role doesn't.",
+            "resume_lines": [
+              "- Recruit for hardware and firmware engineering roles"
+            ]
+          },
+          {
+            "fix": "Add a Skills section listing your applicant tracking and sourcing tools.",
+            "why": "Recruiting tools are easy to scan in a Skills section.",
+            "resume_lines": [
+              "No skills section present"
+            ]
+          },
+          {
+            "fix": "In the interview loops bullet, change 'calibration' to 'interviewer calibration sessions'.",
+            "why": "The longer phrase is clearer to readers outside recruiting.",
+            "resume_lines": [
+              "- Partner with hiring managers on interview loops and calibration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-21",
+      "rule": "tie_control",
+      "expected": "tie",
+      "note": "The same fix on the same line, worded differently.",
+      "resume_text": "Quentin Harlow\nTampa, FL\n\nExperience\n\nFacilities Manager\nBayside Community College, Tampa, FL\nAug 2019 - Present\n- Manage maintenance and custodial operations for a four-building campus\n- Oversee the deferred maintenance budget and contractor bids\n- Led the HVAC replacement in the science building, completed under budget\n\nMaintenance Supervisor\nGulfview Apartments, Tampa, FL\nMay 2013 - Jul 2019\n- Supervised a team of 6 technicians for 400 units\n\nEducation\nAS Building Construction Technology, Hillsborough Community College",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You run maintenance for a four-building campus and brought the HVAC replacement in under budget. The deferred maintenance budget has no size.",
+        "misses": [
+          {
+            "fix": "In the deferred maintenance budget bullet, add the budget's annual size and how many contractor bids you manage, if you can verify them.",
+            "why": "A facilities director sizes a manager by the budget and contracts they control.",
+            "resume_lines": [
+              "- Oversee the deferred maintenance budget and contractor bids"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You manage a four-building campus and finished the science building's HVAC replacement under budget. The budget you oversee isn't sized.",
+        "misses": [
+          {
+            "fix": "Add the size of the deferred maintenance budget you oversee and the number of contractor bids you handle each year, if you know them.",
+            "why": "Budget and contract volume are how a facilities leader gauges the scale of your role.",
+            "resume_lines": [
+              "- Oversee the deferred maintenance budget and contractor bids"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-22",
+      "rule": "tie_control",
+      "expected": "tie",
+      "note": "Two concrete asks on the same current-role line; a mild preference is acceptable, a clear one is not.",
+      "resume_text": "Rosa Delgado\nRemote\n\nExperience\n\nAccount Executive\nClearpath HR Software, Remote\nFeb 2022 - Present\n- Sell payroll and benefits software to companies with 50 to 500 employees\n- Closed new business across the Southeast territory\n- Partner with solutions engineers on product demos\n\nSales Development Representative\nClearpath HR Software, Remote\nJun 2020 - Jan 2022\n- Booked meetings for four account executives\n\nEducation\nBA Communication, Florida State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from booking meetings to closing deals in the Southeast. The new business bullet has no numbers.",
+        "misses": [
+          {
+            "fix": "In the new business bullet, add your annual quota and attainment, if you can verify them.",
+            "why": "Sales managers read attainment first when they size an account executive.",
+            "resume_lines": [
+              "- Closed new business across the Southeast territory"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You moved from booking meetings to closing deals in the Southeast. The new business bullet has no numbers.",
+        "misses": [
+          {
+            "fix": "In the new business bullet, add the revenue you closed and your attainment against quota, if you can verify them.",
+            "why": "Closed revenue and attainment are what a sales manager looks for first.",
+            "resume_lines": [
+              "- Closed new business across the Southeast territory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-23",
+      "rule": "C4_gap_handling",
+      "expected": "A",
+      "added": "v2",
+      "note": "A dated, explained break with a stated return answers the gap on the page, even with nothing listed after it; a concrete missing fact on the latest relevant role wins.",
+      "resume_text": "Tobias Wren\nBoise, ID\n\nSummary\nCivil engineer with six years of transportation design experience, returning to work after a planned break to care for a parent.\n\nExperience\n\nCareer Break: Family Caregiving\nNov 2023 - Jun 2025\n- Full-time care for a parent after surgery\n\nProject Engineer\nSawtooth Civil Partners, Boise, ID\nMay 2017 - Oct 2023\n- Designed roadway and drainage plans for state and county highway projects\n- Contributed to the redesign of the Eagle Road interchange\n- Prepared quantity estimates and plan sets for bid packages\n\nEducation\nBS Civil Engineering, Boise State University\nPE, Idaho (2021)",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You bring six years of highway design and a PE license. The Eagle Road interchange bullet doesn't say what you designed on it.",
+        "misses": [
+          {
+            "fix": "In the Eagle Road interchange bullet, name the part of the redesign you were responsible for, such as the drainage design or a ramp, and the project's size, if you can verify them.",
+            "why": "Transportation hiring managers look for the projects you designed and how large they were; 'contributed to the redesign' doesn't say which part was yours.",
+            "resume_lines": [
+              "- Contributed to the redesign of the Eagle Road interchange"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You bring six years of highway design and a PE license. The caregiving break ends in June 2025, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "Add what you've done since June 2025.",
+            "why": "The break ends in June 2025 and no later activity is listed.",
+            "resume_lines": [
+              "Nov 2023 - Jun 2025"
+            ]
+          }
+        ]
+      },
+      "fixed": "v3: the A Verdict first called Eagle Road \"your biggest project\", which the resume doesn't state; the judge vetoed it in both orders. Removed so the pair isolates C4."
+    },
+    {
+      "id": "cp-24",
+      "rule": "C4_gap_handling",
+      "expected": "B",
+      "added": "v2",
+      "note": "An open gap whose fix gives no help loses to a concrete, specific fix on the core work of the latest role, where every bullet reads as support work under a senior title.",
+      "resume_text": "Ursula Brandt\nKansas City, MO\n\nExperience\n\nSenior Account Manager\nPrairieline Freight, Kansas City, MO\nFeb 2019 - May 2023\n- Helped manage shipper accounts and supported the sales team on renewals\n- Assisted with rate quotes for new lanes\n- Supported quarterly reviews with shipper customers\n- Contributed to a project to reduce billing disputes\n\nAccount Coordinator\nPrairieline Freight, Kansas City, MO\nJul 2015 - Jan 2019\n- Processed shipment paperwork and customer updates\n- Maintained account records in the TMS\n\nEducation\nBS Business Administration, University of Missouri-Kansas City",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from coordinator to Senior Account Manager at Prairieline. The role ends in May 2023, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "Add relevant work or activity since May 2023.",
+            "why": "The latest role ends in May 2023, and nothing later is listed; include later work only if it happened.",
+            "resume_lines": [
+              "Feb 2019 - May 2023"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You carry a Senior Account Manager title, but every bullet in that role reads as support work, so it's hard to tell which accounts were yours.",
+        "misses": [
+          {
+            "fix": "In the shipper accounts bullet, name the accounts or freight volume you were responsible for and which renewals you handled yourself, if you can verify them.",
+            "why": "A freight sales leader hiring an account manager wants to know what book you owned; 'helped manage' leaves that to the reader for the whole role.",
+            "resume_lines": [
+              "- Helped manage shipper accounts and supported the sales team on renewals"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-25",
+      "rule": "C4_gap_handling",
+      "expected": "A",
+      "added": "v2",
+      "note": "An open gap, even with a fix that gives no help, beats a narrow request for one example on a secondary bullet.",
+      "resume_text": "Victor Almeida\nTucson, AZ\n\nExperience\n\nOffice Manager\nDesert Bloom Dental Group, Tucson, AZ\nMar 2016 - Apr 2023\n- Managed front-desk scheduling and patient billing for three dental offices\n- Oversaw a staff of 7 front-desk and billing coordinators\n- Reduced unpaid insurance claims by moving follow-up to a weekly aging report\n- Supported staff training on patient privacy practices\n\nReceptionist\nSaguaro Family Medicine, Tucson, AZ\nJun 2012 - Feb 2016\n- Checked in patients and verified insurance\n\nEducation\nAAS Medical Office Administration, Pima Community College",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You ran scheduling and billing for three dental offices with a staff of 7. The role ends in April 2023, and nothing later is listed.",
+        "misses": [
+          {
+            "fix": "Add relevant work or activity since April 2023.",
+            "why": "The latest role ends in April 2023 and nothing later is listed; add later work only if it happened.",
+            "resume_lines": [
+              "Mar 2016 - Apr 2023"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You ran scheduling and billing for three dental offices with a staff of 7. The privacy training bullet is general.",
+        "misses": [
+          {
+            "fix": "In the patient privacy training bullet, add one example of a training session you supported.",
+            "why": "An example would show what supporting the training involved.",
+            "resume_lines": [
+              "- Supported staff training on patient privacy practices"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-26",
+      "rule": "tie_control",
+      "expected": "tie",
+      "added": "v3",
+      "note": "The same fix on the same line; only the why differs. Identical fixes are no real difference (rubric C6 and Deciding step 3; Matt, bp-06: \"Same critical miss it looks like\").",
+      "resume_text": "Wendell Park\nSeattle, WA\n\nExperience\n\nSecurity Engineer\nCascade Payments, Seattle, WA\nApr 2021 - Present\n- Run the vulnerability management program for the payments platform\n- Built detection rules for suspicious login activity in the SIEM\n- Partner with engineering teams on threat modeling for new services\n\nIT Support Specialist\nEvergreen Credit Union, Tacoma, WA\nJun 2017 - Mar 2021\n- Resolved help desk tickets for 300 employees\n- Managed laptop imaging and access requests\n\nEducation\nBS Information Technology, Western Washington University\n\nCertifications\nCISSP (2023)",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You moved from IT support into security engineering at Cascade. The vulnerability program bullet doesn't say how big it is or what it changed.",
+        "misses": [
+          {
+            "fix": "In the vulnerability management bullet, add how many systems the program covers and how fast critical findings get fixed, if you can verify them.",
+            "why": "Adding these details would make the bullet more specific.",
+            "resume_lines": [
+              "- Run the vulnerability management program for the payments platform"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You moved from IT support into security engineering at Cascade. The vulnerability program bullet doesn't say how big it is or what it changed.",
+        "misses": [
+          {
+            "fix": "In the vulnerability management bullet, add how many systems the program covers and how fast critical findings get fixed, if you can verify them.",
+            "why": "A security hiring manager wants to know whether you ran a program for a few servers or a whole payments platform, and whether critical issues actually close; without that, the program reads as a title rather than results.",
+            "resume_lines": [
+              "- Run the vulnerability management program for the payments platform"
+            ]
+          }
+        ]
+      },
+      "relabeled": "Written to test C6 as a tie-breaker with expected B. Both judges, on every run, said no real difference because the fix is identical. Relabeled to a tie after the v3 runs, when the rubric was clarified to match Matt's bp-06; the v3 calibration counts it as a miss under the original label."
+    },
+    {
+      "id": "cp-27",
+      "rule": "C7_honest_ask",
+      "expected": "A",
+      "added": "v3",
+      "note": "Same line; asking for verifiable figures beats telling the person to estimate a number if they don't know it.",
+      "resume_text": "Ximena Duarte\nSan Antonio, TX\n\nExperience\n\nEvent Marketing Manager\nAlamo Conference Center, San Antonio, TX\nMar 2020 - Present\n- Plan and market the center's annual trade show season\n- Manage sponsor packages and exhibitor sales with the sales team\n- Run email and social promotion for each event\n\nEvents Coordinator\nRiverwalk Hotels Group, San Antonio, TX\nJul 2016 - Feb 2020\n- Coordinated weddings and corporate events for two hotels\n\nEducation\nBA Marketing, University of Texas at San Antonio",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You run marketing for the center's trade show season. The sponsor bullet doesn't say what the packages brought in.",
+        "misses": [
+          {
+            "fix": "In the sponsor packages bullet, add the sponsorship revenue or the number of sponsors you signed, using figures you can verify from your records.",
+            "why": "An events director sizes this role by the revenue and exhibitors it brings in; the bullet shows the work but not its scale.",
+            "resume_lines": [
+              "- Manage sponsor packages and exhibitor sales with the sales team"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You run marketing for the center's trade show season. The sponsor bullet doesn't say what the packages brought in.",
+        "misses": [
+          {
+            "fix": "In the sponsor packages bullet, add the sponsorship revenue; if you don't know it, estimate a round number that sounds right.",
+            "why": "An events director sizes this role by the revenue it brings in, and any number reads better than none.",
+            "resume_lines": [
+              "- Manage sponsor packages and exhibitor sales with the sales team"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-28",
+      "rule": "not_a_critical_miss",
+      "expected": "B",
+      "added": "v3",
+      "note": "'Add keywords so the ATS doesn't reject you' is not a Critical Miss; a concrete gap in current work is.",
+      "resume_text": "Yusuf Haddad\nDetroit, MI\n\nExperience\n\nQuality Engineer\nGreatLakes Axle Co., Detroit, MI\nJan 2021 - Present\n- Lead root-cause investigations for customer quality complaints\n- Introduced a layered process audit on the gear machining line\n- Maintain control plans and PFMEAs for two product families\n\nQuality Technician\nGreatLakes Axle Co., Detroit, MI\nAug 2017 - Dec 2020\n- Performed CMM inspections and first-article reports\n\nEducation\nBS Mechanical Engineering, Wayne State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You've moved from technician to quality engineer at GreatLakes. The resume doesn't repeat common quality keywords.",
+        "misses": [
+          {
+            "fix": "Add keywords such as Six Sigma, 8D and APQP throughout the resume so applicant tracking systems don't reject it.",
+            "why": "Applicant tracking systems filter out resumes that are missing the right keywords.",
+            "resume_lines": [
+              "- Lead root-cause investigations for customer quality complaints"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You've moved from technician to quality engineer at GreatLakes. The layered process audit bullet doesn't say what it changed.",
+        "misses": [
+          {
+            "fix": "In the layered process audit bullet, add what changed on the gear machining line after you introduced it, such as scrap, defects or complaints, if you can verify it.",
+            "why": "A quality manager hires for problems you've actually reduced; the audit shows initiative but not whether quality improved.",
+            "resume_lines": [
+              "- Introduced a layered process audit on the gear machining line"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-29",
+      "rule": "not_a_critical_miss",
+      "expected": "A",
+      "added": "v3",
+      "note": "A single typo is not the thing to fix first when the current role's main responsibility has no scale.",
+      "resume_text": "Zara Whitfield\nRaleigh, NC\n\nExperience\n\nProcurement Manager\nTriangle BioPharma, Raleigh, NC\nMay 2020 - Present\n- Manage indirect procurement for lab supplies and facilities services\n- Negotiated a three-year lab supply agreement that consolidated four vendors into one\n- Run the quarterly supplier performance reveiw\n\nBuyer\nTriangle BioPharma, Raleigh, NC\nJun 2016 - Apr 2020\n- Placed purchase orders for lab consumables\n\nEducation\nBS Business Administration, NC State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You consolidated four lab suppliers into one agreement at Triangle. The procurement you manage has no size.",
+        "misses": [
+          {
+            "fix": "In the indirect procurement bullet, add the annual spend you manage and the number of suppliers, if you can verify them.",
+            "why": "A procurement director sizes a manager by the spend under management; without it, the vendor consolidation is hard to weigh.",
+            "resume_lines": [
+              "- Manage indirect procurement for lab supplies and facilities services"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You consolidated four lab suppliers into one agreement at Triangle. One bullet has a spelling error.",
+        "misses": [
+          {
+            "fix": "Correct 'reveiw' to 'review' in the supplier performance bullet.",
+            "why": "Spelling errors can make a reader doubt your attention to detail.",
+            "resume_lines": [
+              "- Run the quarterly supplier performance reveiw"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cp-30",
+      "rule": "C1_first_read_stakes",
+      "expected": "B",
+      "added": "v3",
+      "note": "A pattern across the latest role (a director title over bullets that all read as support) outranks adding a detail to the one strong bullet.",
+      "resume_text": "Abel Okonkwo\nColumbus, OH\n\nExperience\n\nDirector of Customer Support\nBrightpath Insurance, Columbus, OH\nFeb 2021 - Present\n- Helped with support team scheduling and coverage\n- Assisted in rolling out the new ticketing system\n- Supported escalations from policyholders\n- Contributed to raising customer satisfaction from 82% to 90% in 2023\n\nSupport Team Lead\nBrightpath Insurance, Columbus, OH\nMay 2016 - Jan 2021\n- Led a team of 12 phone support agents\n- Wrote the call-handling guide used for new hires\n\nEducation\nBA Communication, Ohio State University",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You've led support at Brightpath since 2016, and customer satisfaction rose from 82% to 90% in 2023. That bullet doesn't say what you did to raise it.",
+        "misses": [
+          {
+            "fix": "In the customer satisfaction bullet, name the change you made that contributed to the rise, if you can verify it.",
+            "why": "A hiring manager wants to know your part in the result.",
+            "resume_lines": [
+              "- Contributed to raising customer satisfaction from 82% to 90% in 2023"
+            ]
+          }
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your title is Director of Customer Support, but every bullet in that role says helped, assisted, supported or contributed, so a reader can't tell what you ran.",
+        "misses": [
+          {
+            "fix": "In the director role, name what you own: the size of the support organization, the budget if you hold one, and which programs, such as the ticketing rollout, you led yourself, if you can verify them.",
+            "why": "A support leader is hired to run an organization; under a director title, support verbs throughout make the role read like a team lead's, and your earlier role shows a team of 12 that the director role never sizes.",
+            "resume_lines": [
+              "Director of Customer Support"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

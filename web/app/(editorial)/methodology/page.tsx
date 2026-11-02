@@ -1,22 +1,26 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { FirstReadModelDiagram } from "@/components/research/diagrams/FirstReadModelDiagram";
+import { hubLink } from "@/components/research/ResearchHubData";
 import sampleReport from "@/public/sample-report.json";
 
-export const metadata: Metadata = {
-    title: "How the Report Works",
+const PATH = "/methodology";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How the resume report works: score, Verdict, Critical Miss",
     description: "How your report reaches its Verdict, First Impression score, and Critical Miss, what the score can't tell you, and how suggested edits protect your facts.",
-    alternates: { canonical: "/methodology" },
-};
+    type: "article",
+});
 
 export default function MethodologyPage() {
     return (
         <ResearchArticle
+            path={PATH}
             header={{
                 tag: "Methodology",
                 title: "How the report works",
                 description: "Every report applies a recruiter's criteria to your resume: a Verdict, one First Impression score, and the Critical Miss, the one thing to fix first. Here's how each part is made, and what it can't tell you.",
-                lastUpdated: "October 2026",
                 sourceSummary: "2 peer-reviewed studies",
             }}
             keyFinding={{
@@ -34,11 +38,7 @@ export default function MethodologyPage() {
                     { title: "Critical Miss", description: "The one change to make first, with the line it comes from and the questions to answer." },
                 ],
             }}
-            relatedArticles={[
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Research" },
-                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
-            ]}
+            relatedArticles={["/research/how-recruiters-read", "/research/quantifying-impact", "/research/star-method"].map(hubLink)}
             sources={[
                 {
                     id: "source-0",

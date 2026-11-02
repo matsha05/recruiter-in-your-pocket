@@ -46,6 +46,8 @@ const MIGRATIONS = [
   ["019_atomic_generation_report_finalization", "web/database/migrations/019_atomic_generation_report_finalization.sql"],
   ["020_authenticated_generation_operations", "web/database/migrations/020_authenticated_generation_operations.sql"],
   ["021_revoked_pass_generation_access", "web/database/migrations/021_revoked_pass_generation_access.sql"],
+  ["022_report_feedback", "web/database/migrations/022_report_feedback.sql"],
+  ["023_report_feedback_retention", "web/database/migrations/023_report_feedback_retention.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -139,6 +141,40 @@ function parseArgs() {
   };
 }
 
+// PGlite does not bundle pg_cron; the replay stubs its cron schema instead.
+function withoutPgCronExtension(sql) {
+  return sql.replace(/CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;\s*/i, "");
+}
+
+async function verifyReportFeedback(db) {
+  const state = await db.query(`
+    SELECT
+      (SELECT relrowsecurity FROM pg_class WHERE oid = 'public.report_feedback'::regclass) AS rls,
+      has_table_privilege('anon', 'public.report_feedback', 'SELECT') AS anon_can_read,
+      has_table_privilege('authenticated', 'public.report_feedback', 'INSERT') AS authenticated_can_write,
+      has_function_privilege('anon', 'private.expire_report_feedback()', 'EXECUTE') AS anon_can_expire,
+      has_function_privilege('service_role', 'private.expire_report_feedback()', 'EXECUTE') AS service_can_expire,
+      (SELECT count(*)::int FROM cron.job WHERE jobname = 'riyp-expire-report-feedback') AS retention_jobs
+  `);
+  const row = state.rows[0];
+  assert.equal(row.rls, true);
+  assert.equal(row.anon_can_read, false);
+  assert.equal(row.authenticated_can_write, false);
+  assert.equal(row.anon_can_expire, false);
+  assert.equal(row.service_can_expire, true);
+  assert.equal(row.retention_jobs, 1);
+
+  await db.query(`
+    INSERT INTO public.report_feedback (created_at, critical_miss, answer)
+    VALUES (now() - interval '13 months', 'old', 'right'), (now() - interval '11 months', 'recent', 'wrong')
+  `);
+  const expired = await db.query("SELECT private.expire_report_feedback() AS deleted");
+  assert.equal(expired.rows[0].deleted, 1);
+  const kept = await db.query("SELECT critical_miss FROM public.report_feedback");
+  assert.deepEqual(kept.rows.map((r) => r.critical_miss), ["recent"]);
+  console.log("Report feedback RLS, grants, and 12-month retention passed.");
+}
+
 async function verifyCleanReplay(manifest) {
   const { PGlite } = require("@electric-sql/pglite");
   const { vector } = require("@electric-sql/pglite/vector");
@@ -204,15 +240,12 @@ async function verifyCleanReplay(manifest) {
         "019_atomic_generation_report_finalization",
         "020_authenticated_generation_operations",
         "021_revoked_pass_generation_access",
+        "022_report_feedback",
+        "023_report_feedback_retention",
       ],
     );
     for (const migration of upgradeBaseline) {
-      const replaySql = migration.id === "015_account_export_database_cron"
-        ? migration.sql.replace(
-          /CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;\s*/i,
-          "",
-        )
-        : migration.sql;
+      const replaySql = withoutPgCronExtension(migration.sql);
       await db.exec("BEGIN");
       try {
         await db.exec(replaySql);
@@ -231,11 +264,16 @@ async function verifyCleanReplay(manifest) {
         [migration.id, migration.relativePath, migration.checksum],
       );
     }
-    await applyMigrations(db, manifest);
+    // Forward migrations replay with the same pg_cron stub; checksums still come from the files.
+    await applyMigrations(
+      db,
+      manifest.map((migration) => ({ ...migration, sql: withoutPgCronExtension(migration.sql) })),
+    );
     await verifyReportReceiptSecurity(db);
     await verifyAtomicReportFinalization(db);
     await verifyAuthenticatedGenerationOperations(db);
     await verifyRevokedPassAccess(db);
+    await verifyReportFeedback(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";

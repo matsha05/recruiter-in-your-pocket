@@ -15,12 +15,12 @@ test.describe("homepage feedback and SEO contract", () => {
       "See what a recruiter sees on your resume, and the one thing to fix first.",
     );
 
-    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Read mine");
+    await expect(homepage.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await expect(homepage.getByTestId("landing-primary-cta")).toHaveAttribute(
       "href",
       "/workspace",
     );
-    await expect(page.getByRole("link", { name: "See an example", exact: true })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "See Jordan’s report", exact: true })).toHaveAttribute(
       "href",
       "/sample-report",
     );
@@ -30,20 +30,34 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
     await expect(homepage).not.toContainText("Trusted by people at");
-    // The blurred note is decoration; the story says the same thing in text.
+    // The blurred note is decoration; the worked example under the hero says the same thing in text.
+    await expect(hero).not.toContainText("What Jordan got");
+    const example = homepage.locator("#how-it-works");
+    await expect(example.getByRole("heading", { level: 2, name: "Here’s the note Jordan never saw." })).toBeVisible();
+    await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
+    await expect(example.locator("figure blockquote")).toContainText("Your account portfolio and review cadence are specific, but results remain unclear.");
+    await expect(example).toContainText("What did Jordan look for, and what changed?");
+    await expect(example).toContainText("What factors did you review when identifying renewal risk across the portfolio?");
+    await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up answers for anyone.");
+    await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
+    await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
     await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
     await expect(homepage).toContainText("Sometimes it’s one line on your resume. That part you can fix.");
-    await expect(homepage.locator("blockquote")).toContainText("What’s missing is proof Jordan changed the outcome.");
-    await expect(homepage.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
-    const truths = homepage.locator("#how-it-works");
+    const progress = homepage.getByTestId("landing-progress-beat");
+    await expect(progress.getByRole("heading", { level: 2, name: "Fix it. Then check it again." })).toBeVisible();
+    await expect(progress).toContainText("Your Critical Miss changed.");
+    await expect(progress).not.toContainText("fixed");
+    const truths = homepage.locator("#what-we-look-for");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
     await expect(truths).toContainText("One Critical Miss, not forty tips.");
     await expect(truths).toContainText("No ATS score. No interview odds.");
 
-    const founder = page.getByRole("heading", { level: 2, name: "I've hired hundreds of people and led hiring globally at OpenAI, Meta, and Google." });
+    const founder = page.getByRole("heading", { level: 2, name: "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI." });
     await expect(founder).toBeVisible();
     await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("After 14 years in recruiting, I built this");
+    await expect(homepage).toContainText("I'm Matt. I built this to give you the read I'd give a friend before they hit send.");
+    await expect(homepage).not.toContainText("hired hundreds");
+    await expect(homepage).not.toContainText("led hiring globally");
     await expect(homepage).toContainText("Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself.");
     await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
       "href",
@@ -64,8 +78,10 @@ test.describe("homepage feedback and SEO contract", () => {
     // A shared link leads with the hero's story; search keeps the plain description.
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", shareDescription);
     await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute("content", shareDescription);
+    // The layout adds the site's Organization and WebSite; this is the homepage's own graph.
     const structuredData = JSON.parse(
-      await page.locator('script[type="application/ld+json"]').textContent() || "{}",
+      (await page.locator('script[type="application/ld+json"]').allTextContents())
+        .find((text) => text.includes("SoftwareApplication")) || "{}",
     );
     const graph = structuredData["@graph"] as Array<Record<string, unknown>>;
     const founderData = graph.find((entry) => entry["@type"] === "Person");
@@ -83,10 +99,10 @@ test.describe("homepage feedback and SEO contract", () => {
         description: expect.stringContaining("over 30 days"),
       }),
     ]));
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
-    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101-2/);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", /\/og\/home\?v=20261101-2/);
     await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
-    const card = await page.request.get("/og/home?v=20261101");
+    const card = await page.request.get("/og/home?v=20261101-2");
     expect(card.status()).toBe(200);
     expect(card.headers()["content-type"]).toBe("image/png");
   });
@@ -118,16 +134,16 @@ test.describe("homepage feedback and SEO contract", () => {
       );
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261031/,
+        /opengraph-image\?v=20261101/,
       );
       await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261031/,
+        /opengraph-image\?v=20261101/,
       );
     }
   });
 
-  test("the sitemap publishes the calculator, omits the workspace, and avoids synthetic timestamps", async ({ request }) => {
+  test("the sitemap publishes the calculator, omits the workspace, and dates pages by their content", async ({ request }) => {
     const response = await request.get("/sitemap.xml");
     expect(response.status()).toBe(200);
 
@@ -139,6 +155,10 @@ test.describe("homepage feedback and SEO contract", () => {
       "<loc>https://www.recruiterinyourpocket.com/sample-report</loc>",
     );
     expect(xml).not.toContain("<loc>https://www.recruiterinyourpocket.com/workspace</loc>");
-    expect(xml).not.toContain("<lastmod>");
+    // lastmod comes from PUBLIC_PAGES, never the build date.
+    const today = new Date().toISOString().slice(0, 10);
+    const lastmods = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
+    expect(lastmods.length).toBe((xml.match(/<url>/g) ?? []).length);
+    expect(lastmods.every((value) => /^\d{4}-\d{2}-\d{2}$/.test(value) && value <= today)).toBe(true);
   });
 });

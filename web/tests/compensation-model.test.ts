@@ -6,6 +6,7 @@ import {
   getYearBreakdown,
   isComparableOffer,
   isVestingScheduleValid,
+  missingRecurringPay,
 } from "../lib/compensation-model";
 
 const backloaded = {
@@ -52,5 +53,16 @@ const growthCase = {
   stockGrowth: 10,
 };
 assert.ok(Math.abs(getYearBreakdown(growthCase, 4).stock - 133.1) < 0.0001);
+
+// An offer left at zero where another offer has bonus or equity is incomplete, not ranked as complete.
+const fullOffer = { ...createEmptyOffer("full"), baseSalary: 200_000, bonusPercent: 15, stockTotal: 400_000, signingBonus: 50_000 };
+const baseOnly = { ...createEmptyOffer("base-only"), baseSalary: 220_000 };
+const bonusOnly = { ...createEmptyOffer("bonus-only"), baseSalary: 210_000, bonusPercent: 10 };
+assert.deepEqual(missingRecurringPay(baseOnly, [fullOffer]), ["bonus", "equity"]);
+assert.deepEqual(missingRecurringPay(bonusOnly, [fullOffer, baseOnly]), ["equity"]);
+assert.deepEqual(missingRecurringPay(fullOffer, [baseOnly, bonusOnly]), [], "a complete offer is never flagged");
+assert.deepEqual(missingRecurringPay(baseOnly, [bonusOnly]), ["bonus"], "only kinds of pay another offer has count");
+assert.deepEqual(missingRecurringPay(baseOnly, [{ ...baseOnly, id: "other", signingBonus: 30_000 }]), [],
+  "one-time pay is not flagged: plenty of real offers have none");
 
 console.log("compensation model tests passed");

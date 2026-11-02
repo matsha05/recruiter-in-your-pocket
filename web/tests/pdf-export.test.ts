@@ -3,8 +3,11 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { renderReportHtml } from "../lib/backend/pdf";
 import { attachStoredReportId, buildPdfExportRequest, normalizeReportForPdf } from "../lib/reports/pdf-export";
+import { reconcileReport } from "../lib/reports/report-integrity";
 import { assertSampleReportResponseOk } from "../lib/reports/sample-report";
 import { getScoreLabel } from "../lib/score-utils";
+import { scoreBandFor } from "../lib/reports/score-band";
+import { marginNoteFromFix } from "../lib/reports/revised-line";
 import {
   makeValidatedReportReceipt,
   RECEIPT_TTL_MS,
@@ -26,16 +29,13 @@ const normalizedSample = normalizeReportForPdf(sampleReport);
 assert.ok(normalizedSample, "sample report should normalize");
 assert.equal(normalizedSample?.score, sampleReport.score);
 assert.equal(normalizedSample?.summary, sampleReport.summary);
-assert.deepEqual(normalizedSample?.next_steps, sampleReport.next_steps);
+// The PDF applies the same integrity pass as the web report, so it shows the reconciled plan.
+assert.deepEqual(normalizedSample?.next_steps, reconcileReport(sampleReport).report.next_steps);
 assert.equal(normalizedSample?.score_label, getScoreLabel(sampleReport.score));
 
-const serializedSampleRewrites = JSON.stringify(sampleReport.rewrites);
-assert.doesNotMatch(serializedSampleRewrites, /18 weekly hires|cutting ramp time 28%|six-team platform launch|14 to 3/i);
-assert.match(sampleReport.rewrites[0].better, /\[verified before-and-after result\]/i);
-assert.match(sampleReport.rewrites[1].better, /\[ownership detail\]/i);
-for (const rewrite of sampleReport.rewrites) {
-  assert.match(rewrite.enhancement_note, /^Add\b/, "sample rewrite notes must tell the candidate which fact to add");
-}
+// Jordan's sample is real output and, like real reports today, carries no rewrites (D3).
+assert.deepEqual(sampleReport.rewrites, [], "the sample must not promise rewrites reports don't deliver");
+assert.equal(normalizedSample?.top_fixes?.length, sampleReport.top_fixes.length, "every fix reaches the PDF");
 assert.doesNotThrow(() => assertSampleReportResponseOk({ ok: true, status: 200 }));
 assert.throws(
   () => assertSampleReportResponseOk({ ok: false, status: 503 }),
@@ -162,20 +162,36 @@ assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Space Grotesk|
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
 assert.match(renderedHtml, /<html lang="en">/);
-assert.match(renderedHtml, /First Impression score/);
-assert.match(renderedHtml, /78<span>\/100<\/span>/);
+// D5: the first report shows the band and its anchor; the number is only for comparing revisions.
+assert.ok(renderedHtml.includes(`<div class="band-name">${scoreBandFor(sampleReport.score).name}</div>`), "the PDF names the sample's band");
+assert.ok(renderedHtml.includes(scoreBandFor(sampleReport.score).anchor), "and gives its anchor");
+assert.doesNotMatch(renderedHtml, /\/100|score-value/, "the PDF must not show the number on a first report");
 assert.match(renderedHtml, /It doesn't predict interviews or offers\./);
 assert.match(renderedHtml, /<div class="verdict-label">Verdict<\/div>/);
 assert.ok(renderedHtml.includes(sampleReport.first_impression), "the PDF must open with the same Verdict as the web report");
 assert.match(renderedHtml, /Critical Miss/);
-assert.ok(renderedHtml.includes(sampleReport.top_fixes[0].fix));
-assert.doesNotMatch(renderedHtml, /subscores-grid|score-band/, "the PDF must use one score system");
-assert.match(renderedHtml, /Leave these alone\. They&rsquo;re working\./);
+assert.ok(renderedHtml.includes(marginNoteFromFix(sampleReport.top_fixes[0].fix)), "the fix is the Critical Miss line's margin note, as on the web");
+assert.ok(renderedHtml.includes(`<span class="miss-mark">${sampleReport.top_fixes[0].evidence.excerpt.replace(/^[-•*]\s+/u, "")}</span>`), "the Critical Miss line carries the highlighter, as on the web");
+assert.match(renderedHtml, /Fix these three first\./);
+assert.doesNotMatch(renderedHtml, /subscores-grid/, "the PDF must use one score system");
+assert.match(renderedHtml, /Keep this one/);
+assert.doesNotMatch(renderedHtml, /Leave these alone|Start here/, "retired names stay retired");
 assert.doesNotMatch(renderedHtml, /What stays unclear/, "gaps already surface as the Critical Miss and fixes; the PDF must not repeat them");
-assert.match(renderedHtml, /Suggested edits/);
-assert.match(renderedHtml, /Draft template/);
-assert.match(renderedHtml, /Complete the bracketed details with facts from your experience/);
-assert.doesNotMatch(renderedHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
+// The sample has no drafts (D3), so the draft layout is checked on a copy with one source-bound draft.
+const criticalLine = sampleReport.top_fixes[0].evidence.excerpt;
+const draftHtml = renderReportHtml(normalizeReportForPdf({
+  ...sampleReport,
+  rewrites: [{
+    label: "Scope",
+    original: criticalLine,
+    better: `${criticalLine}; [verified before-and-after result].`,
+    enhancement_note: "Add a result you can verify.",
+  }],
+})!);
+assert.match(draftHtml, /Suggested edits/);
+assert.match(draftHtml, /Draft template/);
+assert.match(draftHtml, /Complete the bracketed details with facts from your experience/);
+assert.doesNotMatch(draftHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
 assert.doesNotMatch(renderedHtml, /PocketMark|#0d9488|#22c55e|#d97706|#dc2626/);
 assert.doesNotMatch(renderedHtml, /[\u2010-\u2015\u2212]/, "PDF text should use ASCII hyphens");
 

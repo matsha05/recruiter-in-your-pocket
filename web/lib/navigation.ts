@@ -5,14 +5,6 @@
  * Edit here to update sidebar, mobile nav, footer, and headers.
  */
 
-import {
-    FileText,
-    Briefcase,
-    Library,
-    Chrome,
-    BookOpen,
-    FileClock,
-} from "lucide-react";
 import { launchFlags } from "@/lib/launch/flags";
 
 // ============================================================================
@@ -22,7 +14,6 @@ import { launchFlags } from "@/lib/launch/flags";
 export interface NavItem {
     label: string;
     href: string;
-    icon: React.ComponentType<{ className?: string }>;
     description?: string;
 }
 
@@ -30,37 +21,31 @@ const STUDIO_NAV_ITEMS: NavItem[] = [
     {
         label: "New report",
         href: "/workspace",
-        icon: FileText,
         description: "Review your resume",
     },
     {
         label: "My reports",
         href: "/reports",
-        icon: FileClock,
         description: "Saved reports and versions",
     },
     {
         label: "Jobs",
         href: "/jobs",
-        icon: Briefcase,
         description: "Saved jobs and matching",
     },
     {
         label: "Extension",
         href: "/extension",
-        icon: Chrome,
         description: "Install and use the Chrome extension",
     },
     {
         label: "Research",
         href: "/research",
-        icon: Library,
         description: "Hiring research hub",
     },
     {
-        label: "Resources",
+        label: "After the offer",
         href: "/resources",
-        icon: BookOpen,
         description: "Negotiation guides & tools",
     },
     // Settings is now accessed via UserNav dropdown (premium pattern)
@@ -104,7 +89,7 @@ const MARKETING_NAV = {
     resources: [
         { label: "Negotiation Guide", href: "/resources/tech-offer-negotiation" },
         { label: "Offer Calculator", href: "/resources/tools/comp-calculator" },
-        { label: "All Resources", href: "/resources" },
+        { label: "All guides and tools", href: "/resources" },
     ],
     company: [
         { label: "FAQ", href: "/faq" },
@@ -120,19 +105,51 @@ const MARKETING_NAV = {
 // FOOTER NAVIGATION
 // ============================================================================
 
-export const FOOTER_NAV = {
-    pillLinks: [
-        { label: "Pricing", href: "/pricing" },
-        ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
-        { label: "Research", href: "/research" },
-        { label: "Resources", href: "/resources" },
-        { label: "Offer calculator", href: "/resources/tools/comp-calculator" },
-    ],
-    legalLinks: [
-        { label: "FAQ", href: "/faq" },
-        { label: "Security", href: "/security" },
-        { label: "How the report works", href: "/methodology" },
-        { label: "Terms", href: "/terms" },
-        { label: "Privacy", href: "/privacy" },
-    ],
-} as const;
+export interface FooterNavGroup {
+    id: string;
+    label: string;
+    links: MarketingNavItem[];
+}
+
+// Grouped, labeled columns (plan 4.10). Names follow the one-name word list in docs/copy-system.md.
+export const FOOTER_NAV: FooterNavGroup[] = [
+    {
+        id: "product",
+        label: "Product",
+        links: [
+            { label: "How it works", href: "/#how-it-works" },
+            { label: "Sample report", href: "/sample-report" },
+            { label: "Pricing", href: "/pricing" },
+            ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
+            { label: "How the report works", href: "/methodology" },
+        ],
+    },
+    {
+        id: "research",
+        label: "Research",
+        links: [
+            { label: "All research", href: "/research" },
+            { label: "How recruiters read", href: "/research/how-recruiters-read" },
+            { label: "What makes a bullet land", href: "/research/quantifying-impact" },
+        ],
+    },
+    {
+        id: "after-the-offer",
+        label: "After the offer",
+        links: [
+            { label: "Negotiate an offer", href: "/resources/offer-negotiation" },
+            { label: "Read a tech offer", href: "/resources/tech-offer-negotiation" },
+            { label: "Offer calculator", href: "/resources/tools/comp-calculator" },
+        ],
+    },
+    {
+        id: "help",
+        label: "Help",
+        links: [
+            { label: "Help and FAQ", href: "/faq" },
+            { label: "Security", href: "/security" },
+            { label: "Privacy", href: "/privacy" },
+            { label: "Terms", href: "/terms" },
+        ],
+    },
+];

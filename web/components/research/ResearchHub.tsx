@@ -5,15 +5,19 @@ import { Button } from "@/components/ui/button";
 import { categories, featuredArticles, type ResearchArticle } from "@/components/research/ResearchHubData";
 import styles from "./ResearchHub.module.css";
 
-function Answer({ article, size }: { article: ResearchArticle; size: "lead" | "list" }) {
-    const Heading = size === "lead" ? "h2" : "h4";
+/** A question, its one-line answer, and the way in. Articles reuse it for their next questions. */
+export function ResearchAnswerRow({ article, size, heading }: { article: ResearchArticle; size: "lead" | "list"; heading?: "h2" | "h3" | "h4" }) {
+    const Heading = heading ?? (size === "lead" ? "h2" : "h4");
     return (
         <article className={size === "lead" ? styles.lead : styles.row}>
-            <Heading className={styles.question}>{article.question}</Heading>
+            {/* The question is the link; its hit area stretches over the whole row. */}
+            <Heading className={styles.question}>
+                <Link href={article.href} className={styles.link}>{article.question}</Link>
+            </Heading>
             <p className={styles.answer}>{article.answer}</p>
-            <Link href={article.href} className={styles.read}>
-                {article.action ?? "Read"}<span className="sr-only">: {article.title}</span> <ArrowRight weight="bold" aria-hidden="true" />
-            </Link>
+            <span className={styles.read} aria-hidden="true">
+                {article.action ?? "Read"} <ArrowRight weight="bold" data-affordance />
+            </span>
         </article>
     );
 }
@@ -30,7 +34,7 @@ export default function ResearchHub() {
                 <p className={styles.deck}>Straight answers, and where each one comes from.</p>
 
                 <section className={styles.leads} aria-label="The questions people ask most">
-                    {featuredArticles.map((article) => <Answer key={article.id} article={article} size="lead" />)}
+                    {featuredArticles.map((article) => <ResearchAnswerRow key={article.id} article={article} size="lead" />)}
                 </section>
 
                 <section className={styles.library} aria-labelledby="research-library-title">
@@ -41,7 +45,7 @@ export default function ResearchHub() {
                         return (
                             <section key={category.id} className={styles.group} aria-labelledby={`research-${category.id}`}>
                                 <h3 id={`research-${category.id}`} className={styles.groupTitle}>{category.title}</h3>
-                                <div>{rest.map((article) => <Answer key={article.id} article={article} size="list" />)}</div>
+                                <div>{rest.map((article) => <ResearchAnswerRow key={article.id} article={article} size="list" />)}</div>
                             </section>
                         );
                     })}
@@ -51,7 +55,7 @@ export default function ResearchHub() {
                     <h2 id="research-close-title" className={styles.closeTitle}>What would they think of yours?</h2>
                     <Button asChild size="lg" className="flex-none">
                         <Link href="/workspace" data-analytics-cta="research_report">
-                            Read mine <ArrowRight weight="bold" aria-hidden="true" />
+                            Get your free report <ArrowRight weight="bold" aria-hidden="true" />
                         </Link>
                     </Button>
                 </section>

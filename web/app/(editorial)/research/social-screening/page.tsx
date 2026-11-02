@@ -1,38 +1,34 @@
-import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
-export const metadata: Metadata = {
-    title: "How public social cues changed candidate ratings",
-    description: "What one screening experiment and a literature review found about candidate ratings, validity, and fairness.",
-    alternates: { canonical: "/research/social-screening" },
-};
+const PATH = "/research/social-screening";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Will employers judge me by my social media?",
+    description: "Social media content changed candidate ratings in one experiment. What the study didn't test, and why a review questions the fairness of social screening.",
+    type: "article",
+});
 
 export default function SocialScreeningPage() {
     return (
-        <ResearchArticle
-            header={{
-                tag: "Social screening",
-                title: "How public social cues changed candidate ratings",
-                description: "Social-media content affected ratings in one hiring experiment. That does not mean the ratings predicted job performance.",
-                lastUpdated: "July 2026",
-                readTime: "5 min read"
+        <AnswerArticle
+            path={PATH}
+            answer={
+                <>
+                    In one experiment, posts changed how candidates were rated. Unappealing posts cut ratings the most, and having no social profile at all cost more than posts suggesting mental-health problems.
+                    Nobody showed those ratings predict how you&rsquo;d do the job.
+                </>
+            }
+            answerSource={{
+                text: <>From a screening experiment with 1,500 US online evaluators and 500 people with hiring experience (Baker, Grimm &amp; Ofek-Shanny). It&rsquo;s a working paper, not yet peer reviewed.</>,
+                href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4295354",
+                linkLabel: "Read the paper",
             }}
-            keyFinding={{
-                subtitle: "The useful finding",
-                stat: "Social content changed candidate ratings",
-                statDescription: (
-                    <>
-                        In a screening experiment for a hospitality job, unappealing posts cut candidate ratings the most. Having no social profile at all cost more than posts suggesting mental-health problems. The pattern held among evaluators with hiring experience.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Baker, Grimm & Ofek-Shanny, working paper (revised 2024)",
-                    href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4295354"
-                },
-                sampleSize: "1,500 US online evaluators + 500 people with hiring experience"
-            }}
+            painNote="Deleting everything isn’t as safe as it feels."
+            nextQuestions={["linkedin-visibility", "hiring-discrimination-meta-analysis", "referral-advantage"]}
             visualization={
                 <>
                     <h2 className="research-h2">What a public profile can and cannot show</h2>
@@ -44,24 +40,6 @@ export default function SocialScreeningPage() {
                     <SocialScreeningDiagram />
                 </>
             }
-            productTieIn={{
-                title: "What your report looks at",
-                items: [
-                    {
-                        title: "Just the resume",
-                        description: "We read the document you send. We don't look up or score your social accounts."
-                    },
-                    {
-                        title: "No personality guesses",
-                        description: "Hobbies, politics, and lifestyle don't go into your score."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What makes a LinkedIn profile easier to find", href: "/research/linkedin-visibility", tag: "LinkedIn" },
-                { title: "Discrimination in hiring hasn't gone away", href: "/research/hiring-discrimination-meta-analysis", tag: "Bias" },
-                { title: "What a referral changes", href: "/research/referral-advantage", tag: "Context" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -76,20 +54,6 @@ export default function SocialScreeningPage() {
                     publisher: "Vosen. Employee Responsibilities and Rights Journal 33(4), via PubMed Central",
                     year: "2021",
                     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8055055/"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Do recruiters check social media beyond LinkedIn?",
-                    answer: "Some employers do. The evidence here shows that public social cues can affect ratings, but practice varies and the validity of those judgments is a separate question."
-                },
-                {
-                    question: "Should I link a portfolio?",
-                    answer: "Link it when it gives the reviewer useful work evidence that the resume cannot show on its own."
-                },
-                {
-                    question: "What should I check on my public profiles?",
-                    answer: "Check that titles, dates, credentials, and work links are accurate and consistent with your resume. Review the privacy settings on personal accounts and decide what you want to share."
                 }
             ]}
         >
@@ -139,7 +103,12 @@ export default function SocialScreeningPage() {
                 <li>Reconcile titles, dates, credentials, and public work links.</li>
                 <li>Use privacy settings intentionally on personal accounts.</li>
                 <li>Keep public work samples current when they are part of your candidacy.</li>
+                <li>Link a portfolio when it shows work evidence your resume can&apos;t show on its own.</li>
             </ul>
+
+            <ArticleBridge question="What does the page you control say?">
+                Your report reads only the resume you send. It doesn&apos;t look up or score your social accounts, and hobbies, politics, and lifestyle don&apos;t go into your score.
+            </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
@@ -147,6 +116,6 @@ export default function SocialScreeningPage() {
                 <li>The experiment measured candidate ratings, not later performance.</li>
                 <li>Employer practice varies. This article does not establish legal guidance for any jurisdiction.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

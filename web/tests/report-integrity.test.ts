@@ -22,6 +22,7 @@ import {
   structuralGapKind,
 } from "../lib/reports/report-integrity";
 import { stemWord } from "../lib/reports/observation-tokens";
+import { liftQuestions, marginNoteFromFix } from "../lib/reports/revised-line";
 
 // Saved production-prompt outputs (resume prompt 83b2a2d1), validated by the current
 // production validator. No model calls are made by this test.
@@ -64,25 +65,21 @@ for (const [left, right] of [
 // Known contradictions from the audit
 // ============================================
 
-// The sample's launch line is both "Don't touch this one" and Fix 2; its roadmap line is both Keep and Fix 3.
+// Jordan's sample (real output, production prompt 83b2a2d1): the business-review strength sits on Fix 2's line.
 const sampleIntegrity = reconcileReport(sample);
 assert.deepEqual(
   auditKeepFixCollisions(sample).map(({ strength, line }) => [strength, line]),
-  [["strengths[0]", "fix-1"], ["strengths[1]", "fix-2"]],
+  [["strengths[1]", "fix-1"]],
 );
-assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[0]), "the launch line cannot be both Keep and Fix 2");
-assert.ok(!sampleIntegrity.report.strengths!.includes(sample.strengths[1]), "the roadmap line cannot be both Keep and Fix 3");
-assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[2], sample.strengths[3]],
-  "the education strength and a strength about relevance, not one line, stay");
-assert.match(sampleIntegrity.report.strengths![0], /^Education/, "\"Don't touch this one\" is a line the sample doesn't fix");
-assert.equal(sampleIntegrity.report.section_review!.Education.working, "", "Education's \"What works\" is said once, as the strength");
-// The sample's Critical Miss "why" is itself the missing-detail questions: it belongs in What to add, once.
-assert.equal(criticalMissReason(sampleIntegrity), undefined);
+assert.deepEqual(sampleIntegrity.report.strengths, [sample.strengths[0], sample.strengths[2]],
+  "strengths on lines the sample doesn't fix stay, in order");
+// The Critical Miss gives its reason in the opening read and asks the model's own questions about its line.
+assert.equal(criticalMissReason(sampleIntegrity), sample.top_fixes[0].why);
 assert.deepEqual(fixCardSlots(sampleIntegrity, 0).whatToAdd, [
-  "How many people did you onboard, on which teams, and over what period?",
-  "What got easier or faster, and how did you measure it?",
+  "What factors did you review when identifying renewal risk across the portfolio?",
+  "What changed in your renewal workflow after you introduced the monthly risk reviews?",
 ]);
-assert.equal(sampleIntegrity.structuralGaps[0]?.kind, "target_role");
+assert.deepEqual(sampleIntegrity.structuralGaps, [], "the Verdict already mentions the objective, so it is not repeated before the bullets");
 
 // Sales: the BrightWave proposal bullet is Keep #3 and the Critical Miss.
 const salesIntegrity = reconcileReport(sales);
@@ -126,7 +123,7 @@ for (const index of [0, 1]) {
 }
 assert.ok(!reconcileReport(ux).report.strengths!.includes(ux.strengths[2]), "\"Own the UX budget\" is Fix 3's line");
 assert.equal(structuralGapKind('The CAPM entry says "Learner level," but it is unclear whether that describes a credential.'), undefined);
-assert.deepEqual(reconcileReport(sample).report.next_steps, sample.next_steps, "a plan that ties fixes together is not a repeat");
+assert.deepEqual(reconcileReport(sample).report.next_steps, [sample.next_steps[0], sample.next_steps[2]], "a next step that restates Fix 3 is dropped; the others stay");
 
 // Streaming and stored reports can be partial or malformed; the pass must not throw on them.
 for (const partial of [
@@ -209,6 +206,49 @@ assert.equal(evaluateReportIntegrity({
   top_fixes: [{ ...sales.top_fixes[0], fix: "Explain what you have been doing since your BrightWave role ended in August 2023." }],
 }).critical_miss.category, "structural");
 
+// The Critical Miss kinds a first read turns on, however the model words them.
+const withMiss = (fix: Record<string, unknown>, extra: Record<string, unknown> = {}) => evaluateReportIntegrity({
+  ...sales,
+  ...extra,
+  top_fixes: [{ ...sales.top_fixes[0], ...fix }, ...sales.top_fixes.slice(1)],
+});
+assert.deepEqual(pickMiss(withMiss({ fix: "Say what you've done since Jul 2023.", why: "Your Greenfield role ends in Jul 2023 and nothing later is listed." })),
+  { category: "structural", kind: "employment_gap" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Add a dated line for your current activity.", evidence: { excerpt: "March 2020 - August 2023", section: "Work Experience" } })),
+  { category: "structural", kind: "employment_gap" }, "citing the last date range is a dates Critical Miss");
+assert.deepEqual(pickMiss(withMiss({ fix: "Name the decisions you made as Sales Executive.", why: "Your Sales Executive title sits over bullets that only say you helped or supported." })),
+  { category: "structural", kind: "level" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Lead with the 30% renewal result.", why: "It sits in your older Glenmark role, below generic BrightWave bullets." })),
+  { category: "structural", kind: "buried_evidence" });
+assert.deepEqual(pickMiss(withMiss({ fix: "Name the proposal sections you drafted.", why: "The BrightWave proposal bullet says you supported the team." })),
+  { category: "bullet_edit" }, "an ordinary line edit stays a line edit");
+
+// "Nothing critical": a low-impact Critical Miss under a Verdict with no concern is one story.
+const polished = evaluateReportIntegrity({ ...marketing, top_fixes: [{ ...marketing.top_fixes[0], impact_level: "low" }] });
+assert.equal(polished.critical_miss.nothing_critical, true);
+assert.equal(polished.verdict_critical_miss.agreement, "agree");
+assert.deepEqual(polished.verdict_critical_miss.notes, []);
+assert.equal(evaluateReportIntegrity(marketing).critical_miss.nothing_critical, false);
+assert.equal(withMiss({ impact_level: "low" }, {
+  first_impression: "Your path moves into sales. The last listed role ends in August 2023, and no later activity is shown.",
+}).verdict_critical_miss.agreement, "mismatch", "a structural concern can't sit over an optional Critical Miss");
+assert.equal(withMiss({ fix: "Say what you've done since August 2023.", why: "Your BrightWave role ends in August 2023." }, {
+  first_impression: "Your path moves into sales. Your summary doesn't say which role you want next.",
+}).verdict_critical_miss.agreement, "mismatch", "a direction concern over a dates Critical Miss is two stories");
+
+// 1.9: fix headings scan as one short instruction.
+const dataScientistHeadings = evaluateReportIntegrity(dataScientist).fix_headings;
+assert.equal(dataScientistHeadings.with_location, 2, "the saved headings open with \"In the ... bullet\"");
+assert.equal(dataScientistHeadings.with_condition, 2);
+assert.ok(dataScientistHeadings.over_12_words >= 1);
+assert.deepEqual(withMiss({ fix: "Name the proposal sections you drafted." }).fix_headings.with_location, 2,
+  "only the two saved headings still open with a location");
+
+function pickMiss(metrics: ReturnType<typeof evaluateReportIntegrity>) {
+  const { category, kind } = metrics.critical_miss;
+  return kind ? { category, kind } : { category };
+}
+
 assert.deepEqual(scoreTestRetest([
   { fixture_id: "a", actual_score: 60, status: "PASS" },
   { fixture_id: "a", actual_score: 58, status: "FAIL" },
@@ -268,12 +308,22 @@ const decode = (html: string) => html
 const plain = (text: string) => text.replace(/[‐-―−]/g, "-").replace(/\s+/g, " ");
 const occurrences = (haystack: string, needle: string) => haystack.split(plain(needle)).length - 1;
 
+// The marked page: a row for each fix, the Critical Miss first, then any page notes and the other fixes.
+const rowOf = (html: string, start: string) => {
+  const from = html.indexOf(start);
+  if (from < 0) return "";
+  const ends = ['data-testid="structural-gaps"', 'data-testid="keep-note"', 'id="section-fix-2"', 'id="section-fix-3"', 'id="section-keep"', '<details']
+    .map((marker) => html.indexOf(marker, from + start.length)).filter((at) => at > from);
+  return html.slice(from, ends.length ? Math.min(...ends) : undefined);
+};
+
 for (const [label, report] of outputs) {
   const integrity = reconcileReport(report);
   const webHtml = renderToStaticMarkup(createElement(ReportStream, { report, isSample: label === "sample" }));
   const web = decode(webHtml);
   const opening = decode(webHtml.slice(webHtml.indexOf('id="section-first-impression"'), webHtml.indexOf('id="section-fixes"')));
-  const firstCard = decode(webHtml.slice(webHtml.indexOf('id="section-fix-1"'), webHtml.indexOf("</article>", webHtml.indexOf('id="section-fix-1"'))));
+  const missRow = decode(rowOf(webHtml, 'id="section-fix-1"'));
+  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-full-notes"')));
   const fullNotes = decode(webHtml.slice(webHtml.indexOf('id="section-full-notes"')));
   const pdfReport = normalizeReportForPdf(report);
   assert.ok(pdfReport, `${label}: PDF normalizes`);
@@ -284,25 +334,34 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(web, strength), kept ? 1 : 0, `${label}: web Keep renders "${strength.slice(0, 40)}" ${kept ? "once" : "never"}`);
     assert.equal(occurrences(pdf, strength), kept ? 1 : 0, `${label}: PDF Keep matches the web report`);
   }
+  // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
+  assert.ok(missRow.includes("Critical Miss"), `${label}: the first marked line is the Critical Miss`);
+  assert.ok(!opening.includes("Critical Miss"), `${label}: the opening read doesn't repeat the Critical Miss`);
+  const missNote = marginNoteFromFix(integrity.report.top_fixes![0].fix!);
+  assert.ok(missRow.includes(plain(missNote)), `${label}: the margin note gives the fix, without the locator`);
   const reason = criticalMissReason(integrity);
   if (reason) {
-    assert.ok(opening.includes(plain(reason)), `${label}: the opening gives the Critical Miss reason`);
-    assert.ok(!firstCard.includes(plain(reason)), `${label}: the Critical Miss card does not repeat it`);
+    assert.ok(missRow.includes(plain(reason)), `${label}: the Critical Miss row gives its reason`);
+    assert.equal(occurrences(web, reason), 1, `${label}: once on the web`);
     assert.equal(occurrences(pdf, reason), 1, `${label}: the PDF gives it once`);
   }
-  for (const question of integrity.fixQuestions.flat()) {
+  // The Critical Miss asks its questions as answer fields, one question per field.
+  const asked = liftQuestions(integrity.fixQuestions[0]);
+  for (const question of asked) assert.equal(occurrences(missRow, question), 1, `${label}: the lift asks "${question.slice(0, 40)}" once`);
+  if (asked.length === 0) assert.ok(missRow.includes("What would you add to this line?"), `${label}: without questions, one open question stands in`);
+  assert.ok(!missRow.includes("What to add"), `${label}: the lift replaces the "What to add" list on the Critical Miss`);
+  for (const question of integrity.fixQuestions.slice(1).flat()) {
     assert.equal(occurrences(web, question), 1, `${label}: "${question.slice(0, 40)}" renders once on the web`);
-    assert.equal(occurrences(pdf, question), 1, `${label}: and once in the PDF`);
   }
-  if (integrity.fixQuestions[0].length > 0) assert.ok(firstCard.includes("What to add"), `${label}: the Critical Miss asks what to add`);
-  else assert.ok(!firstCard.includes("What to add") && !firstCard.includes("Start with the original sentence"),
-    `${label}: no label, and no hint pointing at it, without questions`);
+  for (const question of integrity.fixQuestions.flat()) {
+    assert.equal(occurrences(pdf, question), 1, `${label}: "${question.slice(0, 40)}" once in the PDF`);
+  }
   if (integrity.structuralGaps.length > 0) {
-    assert.ok(opening.includes("Before the bullets"), `${label}: the opening labels the structural gap`);
+    assert.ok(page.includes("Before the bullets"), `${label}: the page labels the structural gap`);
     assert.ok(pdf.includes("Before the bullets"), `${label}: and so does the PDF`);
   }
   for (const { text } of integrity.structuralGaps) {
-    assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read`);
+    assert.ok(page.includes(plain(text)), `${label}: the structural gap is on the page, without expanding anything`);
     assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);
     assert.equal(occurrences(pdf, text), 1, `${label}: the PDF shows it once`);
   }
@@ -315,16 +374,17 @@ for (const [label, report] of outputs) {
 const sampleWeb = decode(renderToStaticMarkup(createElement(ReportStream, { report: sample, isSample: true })));
 const figure = decode(renderToStaticMarkup(createElement(FirstReadModelDiagram)));
 const quoted = [
-  fixCardSlots(sampleIntegrity, 1).why!,
-  fixCardSlots(sampleIntegrity, 2).why!,
-  sampleIntegrity.structuralGaps[0].text,
+  fixCardSlots(sampleIntegrity, 1).why,
+  fixCardSlots(sampleIntegrity, 2).why,
+  (sampleIntegrity.structuralGaps as Array<{ text: string }>)[0]?.text,
   sampleIntegrity.report.strengths![0],
-];
+].filter((line): line is string => Boolean(line));
+assert.ok(quoted.length >= 3, "the figure quotes at least three lines from the sample");
 for (const line of quoted) {
   assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
   assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
 }
-for (const removed of [sample.strengths[0], sample.gaps[0], sample.top_fixes[0].why]) {
+for (const removed of [sample.strengths[1], sample.gaps[1], sample.gaps[2]]) {
   assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
 }
 

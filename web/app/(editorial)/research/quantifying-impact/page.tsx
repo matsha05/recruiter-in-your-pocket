@@ -1,39 +1,35 @@
-import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormulaDiagram";
 import { ResumeQualityDiagram } from "@/components/research/diagrams/ResumeQualityDiagram";
 
-export const metadata: Metadata = {
-    title: "Show what changed and your part in it",
+const PATH = "/research/quantifying-impact";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "How do I write resume bullets that show results?",
     description: "Recruiters judge what you can do from what your resume shows you did. What the research supports about showing results, and a practical way to write them.",
-    alternates: { canonical: "/research/quantifying-impact" },
-};
+    type: "article",
+});
 
 export default function QuantifyingImpactPage() {
     return (
-        <ResearchArticle
-            header={{
-                tag: "Resume writing",
-                title: "Show what changed and your part in it",
-                description: "Recruiters judge what you can do by what your resume shows you did. Here's what the research supports, and a practical way to write it.",
-                lastUpdated: "October 2026",
-                readTime: "7 min read"
+        <AnswerArticle
+            path={PATH}
+            answer={
+                <>
+                    Say what changed, how you measured it, and what you did to get there. That&rsquo;s practitioner guidance, not a tested rule: no study we know of pits a quantified bullet against a duty-style one.
+                    What research does show is that recruiters infer what you can do from what you did.
+                </>
+            }
+            answerSource={{
+                text: <>The formula is Laszlo Bock&rsquo;s (Google): accomplished [X] as measured by [Y], by doing [Z].</>,
+                href: "https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume",
+                linkLabel: "Read his post",
             }}
-            keyFinding={{
-                label: "Practitioner guidance",
-                subtitle: "Practitioner guidance",
-                stat: "X → Y → Z",
-                statDescription: (
-                    <>
-                        Accomplished [X] as measured by [Y], by doing [Z]. Name the result, explain how you measured it, and describe what you did.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Laszlo Bock (Google) resume formula",
-                    href: "https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume"
-                }
-            }}
+            painNote="You did good work. The line just doesn’t say what changed."
+            nextQuestions={["star-method", "resume-length-myths", "how-recruiters-read"]}
             visualization={
                 <>
                     <h2 className="research-h2">The formula visualized</h2>
@@ -44,24 +40,6 @@ export default function QuantifyingImpactPage() {
                     <ImpactFormulaDiagram />
                 </>
             }
-            productTieIn={{
-                title: "Where this shows up in your report",
-                items: [
-                    {
-                        title: "Often the Critical Miss",
-                        description: "When a line says what you did but not what changed, it often becomes the Critical Miss."
-                    },
-                    {
-                        title: "No made-up numbers",
-                        description: "We'll ask for the result or the scale. We won't invent one for you."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
-                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Structure" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -99,20 +77,6 @@ export default function QuantifyingImpactPage() {
                     href: "https://doi.org/10.1257/0002828042002561"
                 }
             ]}
-            faq={[
-                {
-                    question: "What if I do not have numbers?",
-                    answer: "Describe what changed or what you were responsible for. For example, name the process you documented, the decision you made, or the teams you supported. You do not need a number in every bullet."
-                },
-                {
-                    question: "Is the XYZ formula the only format?",
-                    answer: "No. It is one way to make the result, action, and context visible. Any clear, accurate format can work."
-                },
-                {
-                    question: "Does this matter for every role?",
-                    answer: "Most roles produce outcomes, but not every useful result has a clean number. Use a metric when it adds honest context."
-                }
-            ]}
         >
             <h2 className="research-h2">What the research supports</h2>
             <p className="research-body mb-6">
@@ -145,6 +109,7 @@ export default function QuantifyingImpactPage() {
             <p className="research-body mb-6">
                 Bock&apos;s point: say what changed, not what you were responsible for. The formula puts the outcome first and the activity second.
                 <Citation id="source-1">1</Citation>
+                {" "}It&apos;s one way to make the result, the action, and the context visible. Any clear, accurate format can work.
             </p>
 
             <h2 className="research-h2">Finding numbers when you think you don&apos;t have any</h2>
@@ -169,6 +134,9 @@ export default function QuantifyingImpactPage() {
                     desc="No clean number? Name what you built and who relied on it. That's evidence too."
                 />
             </div>
+            <p className="research-body mb-6">
+                You don&apos;t need a number in every bullet. Not every useful result has a clean one, so use a metric when it adds honest context. Without one, name the process you documented, the decision you made, or the teams you supported.
+            </p>
 
             <h2 className="research-h2">An illustrative before and after</h2>
             <p className="research-body mb-6">
@@ -189,6 +157,10 @@ export default function QuantifyingImpactPage() {
                 A number without context can still mislead. &quot;Cut time by 40%&quot; leaves the reader asking: time spent on what, compared with when, and what did you change? Include those details when you can verify them.
             </p>
 
+            <ArticleBridge question="Which of your lines stop before the result?">
+                When a line says what you did but not what changed, it often becomes the Critical Miss. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.
+            </ArticleBridge>
+
             <h2 className="research-h2">What the evidence does not prove</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>Bock&apos;s X–Y–Z formula is experienced practitioner guidance, not a controlled trial.</li>
@@ -196,6 +168,6 @@ export default function QuantifyingImpactPage() {
                 <li>The recruiter studies are correlational, and the writing experiment ran on an online work platform.</li>
                 <li>Neither source justifies inventing a metric or forcing a number into every bullet.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

@@ -1,4 +1,6 @@
 import { expect, test } from "@playwright/test";
+import sampleReport from "../../public/sample-report.json";
+import { scoreBandFor } from "../../lib/reports/score-band";
 
 for (const width of [320, 390]) {
   test.describe(`resume experience at ${width}px`, () => {
@@ -31,7 +33,7 @@ for (const width of [320, 390]) {
       const draft = "Alex Morgan\nExperience\n" + "Led onboarding and documented the launch process. ".repeat(35);
       await resume.fill(draft);
       await expect(run).toBeEnabled();
-      await expect(run).toContainText("Get my report");
+      await expect(run).toContainText("Get your free report");
 
       const jobToggle = page.getByTestId("workspace-role-toggle");
       await jobToggle.click();
@@ -45,6 +47,41 @@ for (const width of [320, 390]) {
       await expect(resume).toHaveValue(draft);
     });
 
+    test("a fragment can't start a report, and an upload shows what was read before the run", async ({ page }) => {
+      const parsed = ["Alex Morgan", "Experience", "Led onboarding and documented the launch process for three regional teams.",
+        "Ran the weekly launch review with product and support, and kept the checklist current.",
+        "Trained new account managers on the customer handoff."].join("\n");
+      await page.route("**/api/parse-resume", (route) => route.fulfill({ json: { ok: true, text: parsed } }));
+      await page.goto("/workspace", { waitUntil: "domcontentloaded" });
+      await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
+      await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+
+      const run = page.getByTestId("workspace-run-report");
+      await page.getByTestId("workspace-paste-mode").click();
+      const resume = page.getByTestId("workspace-resume-text");
+      await resume.fill("Alex Morgan\nProgram Manager\nLed launches.");
+      await expect(run).toBeDisabled();
+      await expect(run).toHaveAccessibleName("Add more of your resume to begin");
+      await expect(page.getByTestId("workspace-resume-too-short")).toContainText("We need at least 200");
+      await expect(resume).toHaveAttribute("aria-describedby", "workspace-resume-length");
+      await resume.fill(parsed);
+      await expect(run).toBeEnabled();
+      await expect(page.getByTestId("workspace-resume-too-short")).toHaveCount(0);
+
+      await page.getByTestId("workspace-upload-mode").click();
+      await page.getByLabel("Upload resume file (PDF or DOCX)", { exact: true }).setInputFiles({ name: "alex-morgan.pdf", mimeType: "application/pdf", buffer: Buffer.from("%PDF-1.4 mocked") });
+      const preview = page.getByTestId("workspace-read-preview");
+      await expect(preview).toContainText("What we read");
+      await expect(preview).toContainText(`${parsed.split(/\s+/).length} words from your file`);
+      await preview.locator("summary").click();
+      await expect(preview.getByLabel("Text we read from your file")).toContainText("Ran the weekly launch review");
+      await expect(page.getByTestId("workspace-privacy-line")).toContainText("We don’t store the resume or opt it into model training.");
+      await expect(page.getByTestId("workspace-privacy-line").getByRole("link", { name: "How we handle your data" })).toHaveAttribute("href", "/privacy");
+
+      await page.getByTestId("workspace-edit-read-text").click();
+      await expect(resume).toHaveValue(parsed);
+    });
+
     test("advice appears early and section jumps stay below the compact navigation", async ({ page }) => {
       await page.goto("/sample-report", { waitUntil: "domcontentloaded" });
       await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
@@ -56,12 +93,27 @@ for (const width of [320, 390]) {
       const openingBounds = await opening.boundingBox();
       expect(openingBounds!.y).toBeLessThan(300);
       expect(openingBounds!.width).toBeGreaterThanOrEqual(width - 36);
-      await expect(page.getByTestId("first-impression-score")).toContainText("78/100");
+      await expect(page.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
+      await expect(page.getByTestId("score-band")).not.toContainText("/100");
 
+      // The first screen holds the Verdict, the Critical Miss once, and its first question (plan item 2.5).
+      const miss = page.getByTestId("critical-miss");
+      await expect(page.getByText("Critical Miss", { exact: true })).toHaveCount(1);
+      await expect(miss.locator("blockquote")).toBeInViewport({ ratio: 1 });
+      // The plan's target is a 390px phone; at 320 the line itself still lands on the first screen.
+      if (width >= 390) await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
+
+      // The section tabs wait until the opening read has scrolled away, then sit under the header.
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
+      await expect(nav).toBeHidden();
+      await page.locator("#section-fixes").evaluate((section) => {
+        window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
+      });
+      await expect(nav).toBeVisible();
       const buttons = await nav.getByRole("button").all();
       const bounds = await Promise.all(buttons.map((button) => button.boundingBox()));
-      expect(bounds).toHaveLength(4);
+      // Keep appears only when the report has strengths beyond the one shown in the opening read.
+      expect([3, 4]).toContain(bounds.length);
       for (const box of bounds) {
         expect(box!.height).toBeGreaterThanOrEqual(44);
         expect(box!.width).toBeGreaterThanOrEqual(44);
@@ -71,17 +123,20 @@ for (const width of [320, 390]) {
       }
 
       for (const [label, section] of [["Fix these first", "section-fixes"], ["Role fit", "section-role"], ["Overview", "section-first-impression"]]) {
-        const button = nav.getByRole("button", { name: label, exact: true });
+        // By attribute: back at Overview the tabs leave the screen again, and the check still reads them.
+        const button = page.locator(`nav[aria-label="Resume report sections"] button[aria-label="${label}"]`);
         await button.click();
         await expect(button).toHaveAttribute("aria-current", "location");
-        const heading = page.locator(`#${section}`).getByRole("heading").first();
+        // On phones the fix section's heading is for screen readers; its first visible line is the Critical Miss.
+        const heading = section === "section-fixes"
+          ? page.locator("#section-fix-1 blockquote")
+          : page.locator(`#${section}`).getByRole("heading").first();
         await expect(heading).toBeInViewport();
         // The selected section changes before the mobile scroll has settled.
-        await expect.poll(async () => {
-          const headingBounds = await heading.boundingBox();
-          const navBounds = await nav.boundingBox();
-          return headingBounds!.y - navBounds!.y - navBounds!.height;
-        }, { message: `${label} should finish below the sticky section navigation` }).toBeGreaterThanOrEqual(0);
+        await expect.poll(() => heading.evaluate((element) => {
+          const tabs = document.querySelector('nav[aria-label="Resume report sections"]')!.closest("aside")!;
+          return element.getBoundingClientRect().top - tabs.getBoundingClientRect().bottom;
+        }), { message: `${label} should finish below the sticky section navigation` }).toBeGreaterThanOrEqual(0);
       }
     });
   });

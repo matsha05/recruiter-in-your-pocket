@@ -61,8 +61,8 @@
 .page .bullet { position: relative; padding-left: 0.875rem; }
 .page .bullet::before { content: "•"; position: absolute; left: 0.125rem; }
 
-/* The recruiter's screen, laid over the resume: the stage they chose, the note
-   only the hiring team reads, and the line the candidate was sent instead. */
+/* The recruiter's screen, laid over the resume: the stage they chose, and the note
+   only the hiring team reads. */
 .note {
     position: absolute;
     top: 15rem;
@@ -114,7 +114,7 @@
     font-size: 0.8125rem;
 }
 
-/* The verdict is real text, but nobody gets to read it. */
+/* The verdict is real text, but nobody gets to read it until the visitor scrolls on (NoteReveal). */
 .verdict {
     margin-top: 0.375rem;
     color: hsl(var(--pen));
@@ -124,21 +124,13 @@
     line-height: 1.4;
     filter: blur(5px);
     user-select: none;
+    transition: filter var(--duration-slow) var(--ease);
 }
 
-.sent {
-    margin-top: 0.875rem;
-    border-top: 1px dashed hsl(var(--line));
-    padding-top: 0.75rem;
-    color: hsl(var(--text-muted));
-    font-size: 0.8125rem;
-    line-height: 1.45;
-}
-
-.sent b { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+.revealed .verdict { filter: none; user-select: text; }
 
 @keyframes arrive { from { opacity: 0; transform: translate(0, 0.75rem) rotate(1.4deg); } }
-@media (prefers-reduced-motion: reduce) { .note { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .note { animation: none; } .verdict { transition: none; } }
 
 /* Below 1200px the story stacks: headline and actions first, then the illustration at its desktop size. */
 @media (max-width: 1199px) {
@@ -157,4 +149,5 @@
     .page { inset: 0 1.125rem 0 0; padding: 1.625rem 1.375rem; font-size: 0.8125rem; mask-image: linear-gradient(to bottom, black 78%, transparent); }
     .note { top: 7.5rem; width: 17.5rem; padding: 0.875rem 1rem 0.875rem; }
     .verdict { font-size: 0.9375rem; filter: blur(4px); }
+    .revealed .verdict { filter: none; }
 }

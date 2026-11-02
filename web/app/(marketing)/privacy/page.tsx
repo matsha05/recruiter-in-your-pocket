@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/metadata";
 import PrivacyClient from "@/components/legal/PrivacyClient";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+    path: "/privacy",
     title: "Privacy policy",
-    description: "Privacy Policy for Recruiter in Your Pocket - how we handle your resume data and protect your privacy.",
-    alternates: { canonical: "/privacy" },
-};
+    description: "What information we collect when you use Recruiter in Your Pocket, why we need it, who processes it, and how to export or delete it.",
+});
 
 export default function PrivacyPage() {
     return <PrivacyClient />;

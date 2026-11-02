@@ -1,38 +1,33 @@
-import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
 import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
-export const metadata: Metadata = {
-    title: "How spelling errors changed recruiter ratings",
-    description: "What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings.",
-    alternates: { canonical: "/research/spelling-errors-impact" },
-};
+const PATH = "/research/spelling-errors-impact";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Will one typo on my resume cost me the interview?",
+    description: "What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings, and why one typo isn't a reason to panic.",
+    type: "article",
+});
 
 export default function SpellingErrorsPage() {
     return (
-        <ResearchArticle
-            header={{
-                tag: "Screening heuristics",
-                title: "How spelling errors changed recruiter ratings",
-                description: "A recruiter experiment gives us a useful answer and a reason not to panic over one typo.",
-                lastUpdated: "July 2026",
-                readTime: "4 min read"
+        <AnswerArticle
+            path={PATH}
+            answer={
+                <>
+                    Don&rsquo;t panic over one. In a 2020 experiment in Belgium, graduate resumes with five spelling errors were rated 1.85 points lower on a 0&ndash;10 interview scale than error-free ones.
+                    A single typo wasn&rsquo;t tested, and these were hypothetical judgments, not observed callbacks.
+                </>
+            }
+            answerSource={{
+                text: <>Five errors: −1.85 on a 0–10 interview rating, from an experiment with 445 hiring professionals (Sterkens et al., PLOS ONE, 2023).</>,
+                href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280",
             }}
-            keyFinding={{
-                subtitle: "The clearest result",
-                stat: "Five errors: −1.85 on a 0–10 interview rating",
-                statDescription: (
-                    <>
-                        In a 2020 experiment in Belgium, graduate resumes with five spelling errors received ratings 1.85 points lower on a 0–10 interview scale than error-free resumes. These were hypothetical judgments, not observed callbacks.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Sterkens et al. (2023), 445 hiring professionals",
-                    href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"
-                }
-            }}
+            nextQuestions={["writing-quality-hire-probability", "how-recruiters-read", "resume-length-myths"]}
             visualization={
                 <>
                     <h2 className="research-h2">What the experiment actually tested</h2>
@@ -43,24 +38,6 @@ export default function SpellingErrorsPage() {
                     <ErrorImpactDiagram figureNumber={1} />
                 </>
             }
-            productTieIn={{
-                title: "Where this fits with your report",
-                items: [
-                    {
-                        title: "Spell-check last",
-                        description: "Your report isn't a spell-checker. Run one after you've worked through your fixes."
-                    },
-                    {
-                        title: "One typo isn't the story",
-                        description: "Fix it when you see it. This study didn't test a single typo."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "Writing help led to more hires in one experiment", href: "/research/writing-quality-hire-probability", tag: "Writing" },
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "There is no universal one-page rule", href: "/research/resume-length-myths", tag: "Structure" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -68,20 +45,6 @@ export default function SpellingErrorsPage() {
                     publisher: "Sterkens, Caers, De Couck, Van Driessche, Geamanu & Baert. PLOS ONE",
                     year: "2023",
                     href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Do a few typos really matter?",
-                    answer: "The strongest result here concerns five errors, not one. Fix any error you find, but do not treat a single typo as a proven automatic rejection."
-                },
-                {
-                    question: "Is grammar more important than content?",
-                    answer: "This study can't say. It kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical."
-                },
-                {
-                    question: "What is the fastest fix?",
-                    answer: "Run a spelling check, then read the final document for spacing, punctuation, and inconsistent verb tenses."
                 }
             ]}
         >
@@ -115,6 +78,7 @@ export default function SpellingErrorsPage() {
             <p className="research-body mb-6">
                 It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending a Dutch-language result from Belgium to every language or labor market, or treating error-free writing as proof of job performance.
                 <Citation id="source-1">1</Citation>
+                {" "}It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical.
             </p>
 
             <h2 className="research-h2">What to fix first</h2>
@@ -125,7 +89,12 @@ export default function SpellingErrorsPage() {
                 <li>Spelling and grammar consistency.</li>
                 <li>Date alignment and spacing.</li>
                 <li>Repeated tense shifts inside a single role.</li>
+                <li>Punctuation, read in the final file.</li>
             </ul>
-        </ResearchArticle>
+
+            <ArticleBridge question="What’s worth fixing before the typos?">
+                Your report isn&apos;t a spell-checker. It leads with the Critical Miss, the one thing to fix first. Run a spell-check last, after you&apos;ve worked through your fixes.
+            </ArticleBridge>
+        </AnswerArticle>
     );
 }

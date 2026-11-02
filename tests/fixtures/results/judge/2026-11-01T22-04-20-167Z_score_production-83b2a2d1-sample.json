@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: absolute scores for eval_1793553133997",
+    "timestamp": "2026-11-01T22:04:20.166Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd",
+    "calls": 3,
+    "cost_usd": 0.0293952
+  },
+  "source_run": "eval_1793553133997",
+  "source_file": "2026-11-01T17-22-02-097Z_live_run.json",
+  "rows": [
+    {
+      "label": "synth_data_scientist_senior_elite_1",
+      "result": {
+        "case_id": "synth_data_scientist_senior_elite_1",
+        "veto": false,
+        "overall": 5,
+        "raw": {
+          "first_read": "A current senior data scientist and team lead with explicit team ownership, production deployment experience, and substantial healthcare outcomes. The recent role already establishes technical depth, team size, and operating scale.",
+          "most_important_issue": "The headline 15% reduction in readmissions lacks the patient population and comparison needed to interpret it. Adding that context would strengthen the most consequential result in the current role.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 5,
+              "note": "The fix addresses the headline healthcare outcome in the current OptiMed role, where the candidate reports leading eight people and reducing readmissions by 15%."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The patient group and comparison behind the reported 15% reduction are tangible facts not supplied elsewhere in the resume."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the hospital readmissions bullet and asks specifically for the patient group and comparison used to assess its result."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation correctly identifies interpretability of the reported healthcare outcome as the benefit, though it could more explicitly connect that to assessing the candidate's evaluation rigor."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request is conditional on verification and preserves the stated leadership and outcome rather than inventing evidence or expanding ownership."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 5,
+          "rationale": "The current role already supplies ownership and scale through \"I led a cross-functional team of 8 data scientists and engineers\" and \"enabling real-time decision support for 150K patients monthly.\" Its headline claim, \"reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually,\" does not identify the population or comparison underlying the reduction. The report targets that meaningful missing context with a precise, verifiable request rather than rearranging already strong evidence.",
+          "cited_resume_lines": [
+            "Feb 2018 - Present",
+            "- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.",
+            "- I architected and deployed machine learning models using Python (scikit-learn, TensorFlow) and Spark on AWS, improving model training time by 40% and enabling real-time decision support for 150K patients monthly."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2906,
+          "completion_tokens": 739,
+          "total_tokens": 3645,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 741,
+          "reasoning_tokens": 123
+        },
+        "cost_usd": 0.0094647,
+        "latency_ms": 10431
+      }
+    },
+    {
+      "label": "synth_marketing_manager_vp_elite_1",
+      "result": {
+        "case_id": "synth_marketing_manager_vp_elite_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The current CMO role establishes substantial executive scope through a 45-person organization, a $25M budget, and quantified growth results. The main uncertainty is which strategic choices produced those results and how recent the achievements are within a tenure beginning in 2016.",
+          "most_important_issue": "The strongest first fix would be to make the current role's central growth achievement more concrete: identify the consequential campaign or investment choice behind the lead and ARR gains and date the three-year result period.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The Novara launch bullet is relevant and substantial, but clarifying the strategic choices behind the current CMO's company-wide demand generation and ARR growth would contribute more to the executive first impression."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The resume states that she revamped the product launch process and reached a 90% success rate, but does not name the process change or define success; both requested additions are tangible missing facts."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The fix identifies the Novara product-launch bullet and asks for exactly one process change and the criterion used to classify a launch as successful."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation correctly identifies why the 30% time-to-market reduction and 90% success rate are hard to interpret, though it could more directly explain how those details establish executive operating judgment."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "Asking for the actual process change and success definition preserves the ownership already stated in 'I decided to revamp the product launch process' without inventing results or expanding responsibility."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The report offers a grounded, actionable improvement to \"I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.\" However, the broader CMO achievement—\"I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 years.\"—has greater first-read stakes and also lacks the strategic choice behind the result. With the current role dated \"Jan 2016 - Present\", anchoring that growth period would further help establish the relevance of the executive track record.",
+          "cited_resume_lines": [
+            "Jan 2016 - Present",
+            "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+            "- I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 years.",
+            "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 3383,
+          "completion_tokens": 906,
+          "total_tokens": 4289,
+          "cached_prompt_tokens": 2162,
+          "cache_write_prompt_tokens": 1218,
+          "reasoning_tokens": 130
+        },
+        "cost_usd": 0.0123272,
+        "latency_ms": 13990
+      }
+    },
+    {
+      "label": "synth_software_engineer_mid_strong_1",
+      "result": {
+        "case_id": "synth_software_engineer_mid_strong_1",
+        "veto": false,
+        "overall": 3,
+        "raw": {
+          "first_read": "The latest engineering role shows backend service ownership, dashboard delivery, and measurable performance improvements. The caregiving break is dated and explained, and the summary explicitly states a return to the workforce.",
+          "most_important_issue": "The strongest backend ownership bullet needs concrete scope: what the microservices did and the workload or users they supported. That would establish the depth of the latest role more directly than expanding the supporting AWS migration bullet.",
+          "unsupported_claims": [],
+          "criteria": {
+            "first_read_stakes": {
+              "score": 3,
+              "note": "The AWS migration contribution is relevant recent experience, but the stronger first priority is establishing the scope behind \"Independently owned several backend microservices\"."
+            },
+            "concrete_fact": {
+              "score": 5,
+              "note": "The fix asks for a component or migration task and the candidate's actual contribution, neither of which is specified in the AWS migration bullet."
+            },
+            "specific_ask": {
+              "score": 5,
+              "note": "The report identifies the exact AWS migration bullet and asks for the component or task plus what the candidate did."
+            },
+            "recruiter_consequence": {
+              "score": 4,
+              "note": "The explanation usefully distinguishes concrete cloud engineering experience from the broad statement that the candidate contributed to an AWS migration."
+            },
+            "honest_ask": {
+              "score": 5,
+              "note": "The request preserves the resume's stated contribution level and explicitly avoids implying leadership of the migration."
+            },
+            "gap_handling": {
+              "applies": false,
+              "score": 3,
+              "note": "Not applicable"
+            }
+          },
+          "right_thing_first": 3,
+          "rationale": "The fix would genuinely strengthen \"Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS\" by identifying actual technical work without inflating ownership. However, \"Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%\" is more central to the candidate's backend engineering case and still lacks service purpose and operating scale. The dated caregiving entry and the summary's statement that the candidate has returned mean the break is already answered under the supplied criteria.",
+          "cited_resume_lines": [
+            "- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.",
+            "- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.",
+            "September 2022 - April 2024",
+            "Results-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team."
+          ]
+        },
+        "dropped_claims": [],
+        "uncited_lines": [],
+        "usage": {
+          "prompt_tokens": 2976,
+          "completion_tokens": 730,
+          "total_tokens": 3706,
+          "cached_prompt_tokens": 2973,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 78
+        },
+        "cost_usd": 0.0076033,
+        "latency_ms": 10107
+      }
+    }
+  ],
+  "skipped": []
+}

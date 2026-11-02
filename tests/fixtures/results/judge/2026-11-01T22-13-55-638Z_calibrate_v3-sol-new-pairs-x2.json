@@ -1,0 +1,1226 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: pairwise calibration",
+    "timestamp": "2026-11-01T22:13:55.636Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e36e7dae19536291b3f27275b66123f5583e960c4fb0f8c3636a8cf8870568bd",
+    "calls": 20,
+    "cost_usd": 0.10236719999999999
+  },
+  "judge_prompt_version": "critical-miss-judge-v3",
+  "records": [
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-26",
+        "rule": "C6_recruiter_consequence",
+        "expected": "Y",
+        "note": "Same fix on the same line; a role-specific consequence beats a why that only restates the fix. A slight preference is enough.",
+        "resume_chars": 575
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "cp-26",
+        "winner": "tie",
+        "strength": "none",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Wendell is a current Security Engineer with payments-platform experience after moving from IT support. The recent bullets show relevant security work but little evidence of its scale or effectiveness.",
+              "most_important_issue": "The vulnerability management program needs concrete scope and remediation performance so a hiring manager can assess the substance of the candidate's current responsibility.",
+              "first": {
+                "targets": "Add verified system coverage and critical-finding remediation speed to the vulnerability management bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add verified system coverage and critical-finding remediation speed to the vulnerability management bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports identify the same important omission in \"- Run the vulnerability management program for the payments platform\" and give identical, specific, verification-conditioned fixes. That addresses the core work of the current \"Security Engineer\" role under C1_first_read_stakes and C3_specific_ask. The second report explains the hiring consequence better under C6_recruiter_consequence, but this does not distinguish which report picked the more important first fix: their target and practical help are identical.",
+              "cited_resume_lines": [
+                "Security Engineer",
+                "Apr 2021 - Present",
+                "- Run the vulnerability management program for the payments platform"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2528,
+              "completion_tokens": 358,
+              "total_tokens": 2886,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 399,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0047961,
+            "latency_ms": 5903
+          },
+          {
+            "order": "YX",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Wendell is a current Security Engineer who moved from IT support into security work in April 2021. The recent bullets show relevant responsibilities but little evidence of their scale or effectiveness.",
+              "most_important_issue": "The vulnerability management program needs concrete scope and remediation performance so a hiring manager can assess the substance of the candidate's current core responsibility.",
+              "first": {
+                "targets": "Add the number of systems covered and the time taken to fix critical findings to the vulnerability management bullet, if verifiable.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add the number of systems covered and the time taken to fix critical findings to the vulnerability management bullet, if verifiable.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports target \"- Run the vulnerability management program for the payments platform\" and give exactly the same specific, verifiable fix. This addresses the scale and effectiveness of the current role's core work (C1_first_read_stakes, C3_specific_ask). The first report explains the hiring consequence more clearly (C6_recruiter_consequence), but that does not change the issue selected or the practical help provided; neither picked a more important fix.",
+              "cited_resume_lines": [
+                "Security Engineer",
+                "Apr 2021 - Present",
+                "- Run the vulnerability management program for the payments platform"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2528,
+              "completion_tokens": 416,
+              "total_tokens": 2944,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 399,
+              "reasoning_tokens": 36
+            },
+            "cost_usd": 0.0053761,
+            "latency_ms": 6504
+          }
+        ],
+        "cost_usd": 0.0101722
+      },
+      "grade": "tie_on_decisive"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-27",
+        "rule": "C7_honest_ask",
+        "expected": "X",
+        "note": "Same line; asking for verifiable figures beats telling the person to estimate a number if they don't know it.",
+        "resume_chars": 495
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "cp-27",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Ximena is a current Event Marketing Manager with more than six years at Alamo Conference Center. Her bullets establish trade show marketing and sponsor/exhibitor responsibilities but provide no scale or results.",
+              "most_important_issue": "The latest role needs verifiable scope or outcomes, particularly sponsorship revenue or sponsor volume, so a hiring manager can assess the commercial scale of her work.",
+              "first": {
+                "targets": "Add verified sponsorship revenue or the number of sponsors personally signed to the current role's sponsor packages bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add sponsorship revenue to the same bullet, explicitly suggesting an invented estimate if the actual revenue is unknown.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C7_honest_ask"
+              ],
+              "rationale": "Both reports target the same important missing scale in \"- Manage sponsor packages and exhibitor sales with the sales team\" within the current role dated \"Mar 2020 - Present\". C7_honest_ask clearly decides the comparison: the first asks for \"figures you can verify from your records,\" whereas the second says \"estimate a round number that sounds right.\" The latter encourages inventing a revenue figure rather than establishing a truthful accomplishment. This is an unacceptable fix, not an unsupported factual claim about the existing resume.",
+              "cited_resume_lines": [
+                "Event Marketing Manager",
+                "Mar 2020 - Present",
+                "- Manage sponsor packages and exhibitor sales with the sales team"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2504,
+              "completion_tokens": 371,
+              "total_tokens": 2875,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 375,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0048661,
+            "latency_ms": 5207
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Ximena is a current Event Marketing Manager at Alamo Conference Center, with continuous relevant experience. Her recent bullets show marketing and commercial responsibilities but no scale or results.",
+              "most_important_issue": "The latest role needs verifiable scale, particularly sponsorship revenue or sponsor counts, so a hiring manager can assess the commercial scope of her work.",
+              "first": {
+                "targets": "Adding sponsorship revenue to the current sponsor-packages bullet, including an instruction to invent a plausible number if revenue is unknown.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Adding verifiable sponsorship revenue or the number of sponsors signed to the current sponsor-packages bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C7_honest_ask"
+              ],
+              "rationale": "Both reports target the same important missing scale in \"- Manage sponsor packages and exhibitor sales with the sales team\" and offer concrete details to add. C7_honest_ask clearly decides the comparison: the first explicitly recommends \"estimate a round number that sounds right,\" which encourages fabrication. The second instead requires \"figures you can verify from your records,\" making its fix useful without compromising accuracy.",
+              "cited_resume_lines": [
+                "Event Marketing Manager",
+                "Mar 2020 - Present",
+                "- Manage sponsor packages and exhibitor sales with the sales team"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2504,
+              "completion_tokens": 341,
+              "total_tokens": 2845,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 375,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0045661,
+            "latency_ms": 5421
+          }
+        ],
+        "cost_usd": 0.0094322
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-28",
+        "rule": "not_a_critical_miss",
+        "expected": "Y",
+        "note": "'Add keywords so the ATS doesn't reject you' is not a Critical Miss; a concrete gap in current work is.",
+        "resume_chars": 484
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "cp-28",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Yusuf has progressed from Quality Technician to a current Quality Engineer role at the same manufacturer. His recent bullets establish relevant responsibilities and an audit initiative, but do not show whether his work improved quality.",
+              "most_important_issue": "Add a verifiable result to the current engineering work, especially what changed after introducing the layered process audit.",
+              "first": {
+                "targets": "Adding Six Sigma, 8D and APQP keywords throughout the resume to avoid claimed ATS rejection.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Adding a verified quality outcome to the current role's layered process audit bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The current role includes \"- Lead root-cause investigations for customer quality complaints\" and \"- Introduced a layered process audit on the gear machining line\", but neither establishes a quality outcome. The second report targets substantive evidence in the latest relevant role (C1), specifies the bullet and possible measures to add (C3), and explains why a quality manager needs that evidence (C6). Its verification condition preserves honesty. The first instead recommends inserting methods not established by the resume, without requiring that Yusuf actually used them (C7); keyword density and speculative ATS rejection are not critical issues under the supplied criteria.",
+              "cited_resume_lines": [
+                "Quality Engineer",
+                "Jan 2021 - Present",
+                "- Lead root-cause investigations for customer quality complaints",
+                "- Introduced a layered process audit on the gear machining line"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2495,
+              "completion_tokens": 500,
+              "total_tokens": 2995,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 366,
+              "reasoning_tokens": 84
+            },
+            "cost_usd": 0.0061336,
+            "latency_ms": 8524
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Yusuf has progressed from Quality Technician to a current Quality Engineer role at GreatLakes Axle Co. His recent work shows relevant quality responsibilities, but no results from his investigations or process improvements.",
+              "most_important_issue": "The current engineering role needs evidence of what its quality work changed. Adding a verified outcome to the layered process audit would help a hiring manager assess effectiveness beyond responsibility and initiative.",
+              "first": {
+                "targets": "Add a verified quality outcome to the layered process audit bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add Six Sigma, 8D and APQP keywords throughout the resume to avoid alleged ATS rejection.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report targets substantive evidence in the current role: \"- Introduced a layered process audit on the gear machining line\" names an improvement initiative without showing its outcome. Its request for verified changes in scrap, defects or complaints is specific and preserves factual accuracy (C3_specific_ask, C7_honest_ask). The second instead recommends keyword insertion without establishing that Yusuf has used those methods or that any supplied job requires them. The resume already demonstrates relevant work through \"- Lead root-cause investigations for customer quality complaints\" and \"- Maintain control plans and PFMEAs for two product families\"; assessing the effectiveness of that work matters more than speculative ATS keyword coverage (C1_first_read_stakes).",
+              "cited_resume_lines": [
+                "Jan 2021 - Present",
+                "- Introduced a layered process audit on the gear machining line",
+                "- Lead root-cause investigations for customer quality complaints",
+                "- Maintain control plans and PFMEAs for two product families"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2495,
+              "completion_tokens": 520,
+              "total_tokens": 3015,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 366,
+              "reasoning_tokens": 72
+            },
+            "cost_usd": 0.0063336,
+            "latency_ms": 9109
+          }
+        ],
+        "cost_usd": 0.012467200000000001
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-29",
+        "rule": "not_a_critical_miss",
+        "expected": "X",
+        "note": "A single typo is not the thing to fix first when the current role's main responsibility has no scale.",
+        "resume_chars": 479
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "cp-29",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Zara is a current Procurement Manager with progression from Buyer at the same employer. The recent work shows procurement responsibility and vendor consolidation, but not the scale of the procurement portfolio.",
+              "most_important_issue": "The current role needs annual spend under management and supplier scope so a recruiter can judge the level of procurement responsibility.",
+              "first": {
+                "targets": "Add verifiable annual spend and supplier count to the current role's indirect procurement bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Correct the spelling of 'reveiw' in the supplier performance bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report addresses the scale missing from the current role's core responsibility: \"- Manage indirect procurement for lab supplies and facilities services\". Under C1_first_read_stakes, that matters substantially more than the isolated typo in \"- Run the quarterly supplier performance reveiw\". The first fix names concrete details to add—annual spend and supplier count—and explicitly limits the request to verifiable facts, satisfying C3_specific_ask and C7_honest_ask. Both reports are grounded, but the spelling correction is not a critical first fix on this resume.",
+              "cited_resume_lines": [
+                "Procurement Manager",
+                "May 2020 - Present",
+                "- Manage indirect procurement for lab supplies and facilities services",
+                "- Run the quarterly supplier performance reveiw"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2463,
+              "completion_tokens": 382,
+              "total_tokens": 2845,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 334,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0048736,
+            "latency_ms": 5609
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Zara is a current Procurement Manager with progression from Buyer at the same employer. Her recent work includes indirect procurement and a three-year vendor consolidation, but the scale of her procurement responsibility is unclear.",
+              "most_important_issue": "The current manager role needs concrete scope, particularly annual spend under management, so a recruiter can assess the level of responsibility.",
+              "first": {
+                "targets": "Correct the spelling of 'reveiw' in the supplier performance bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add verifiable annual spend and supplier count to the current role's indirect procurement bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The second report addresses the core scope of the current role: \"- Manage indirect procurement for lab supplies and facilities services\" gives no spend or overall supplier count. Although \"- Negotiated a three-year lab supply agreement that consolidated four vendors into one\" provides scope for one agreement, it does not establish the size of the procurement portfolio. Under C1_first_read_stakes, that missing scope matters substantially more than the isolated typo in \"- Run the quarterly supplier performance reveiw\". The second fix names specific facts to add (C3), explains how they affect assessment of a procurement manager (C6), and limits the request to verifiable information (C7).",
+              "cited_resume_lines": [
+                "Procurement Manager",
+                "May 2020 - Present",
+                "- Manage indirect procurement for lab supplies and facilities services",
+                "- Negotiated a three-year lab supply agreement that consolidated four vendors into one",
+                "- Run the quarterly supplier performance reveiw"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2463,
+              "completion_tokens": 436,
+              "total_tokens": 2899,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 334,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0054136,
+            "latency_ms": 5459
+          }
+        ],
+        "cost_usd": 0.0102872
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-30",
+        "rule": "C1_first_read_stakes",
+        "expected": "Y",
+        "note": "A pattern across the latest role (a director title over bullets that all read as support) outranks adding a detail to the one strong bullet.",
+        "resume_chars": 553
+      },
+      "repeat": 0,
+      "result": {
+        "case_id": "cp-30",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Abel is a current Director of Customer Support with a prior team-lead role at the same insurer. The director bullets describe helping and supporting, without showing the organization's size or his own decision-making responsibilities.",
+              "most_important_issue": "The director role needs verifiable scope and ownership so a recruiter can assess whether his experience supports director-level responsibility.",
+              "first": {
+                "targets": "Identify the specific change Abel contributed to the customer satisfaction increase.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Establish the director role's organizational scope and actual ownership through team size, budget if applicable, and programs personally led.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The second report addresses the central first-read problem under C1_first_read_stakes: the title \"Director of Customer Support\" is followed by bullets such as \"- Helped with support team scheduling and coverage\" and \"- Assisted in rolling out the new ticketing system\", leaving director-level scope and responsibility unclear. The earlier role explicitly says \"- Led a team of 12 phone support agents\", making the absence of comparable scope in the current role particularly consequential. The first report offers a useful, honest improvement to \"- Contributed to raising customer satisfaction from 82% to 90% in 2023\", but that fixes one result rather than the pattern across the latest role. The second gives specific factual asks under C3, explains the hiring consequence under C6, and conditions leadership claims on verification under C7.",
+              "cited_resume_lines": [
+                "Director of Customer Support",
+                "Feb 2021 - Present",
+                "- Helped with support team scheduling and coverage",
+                "- Assisted in rolling out the new ticketing system",
+                "- Supported escalations from policyholders",
+                "- Contributed to raising customer satisfaction from 82% to 90% in 2023",
+                "- Led a team of 12 phone support agents"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2581,
+              "completion_tokens": 533,
+              "total_tokens": 3114,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 452,
+              "reasoning_tokens": 28
+            },
+            "cost_usd": 0.0066786,
+            "latency_ms": 7495
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Director of Customer Support role is described entirely through supporting contributions, while the earlier team-lead role explicitly shows responsibility for 12 agents. The director role's organizational scope and decision-making responsibility are unclear.",
+              "most_important_issue": "Establish the actual scope and ownership of the current director role, using verifiable responsibilities rather than simply replacing support verbs with stronger ones.",
+              "first": {
+                "targets": "Missing organizational scale and verified ownership in the current director role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The specific action the candidate contributed to the customer-satisfaction improvement.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report addresses the central first-read problem: \"Director of Customer Support\" is followed by bullets such as \"- Helped with support team scheduling and coverage\", without establishing director-level scope. The contrast with \"- Led a team of 12 phone support agents\" makes that omission especially consequential. Under C1_first_read_stakes, establishing the current role's actual responsibility matters more than explaining one result in \"- Contributed to raising customer satisfaction from 82% to 90% in 2023\". Both fixes are grounded and useful, but the first names concrete scope details to supply under C3_specific_ask and conditions leadership claims on verification under C7_honest_ask.",
+              "cited_resume_lines": [
+                "Director of Customer Support",
+                "- Helped with support team scheduling and coverage",
+                "- Led a team of 12 phone support agents",
+                "- Contributed to raising customer satisfaction from 82% to 90% in 2023"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2581,
+              "completion_tokens": 506,
+              "total_tokens": 3087,
+              "cached_prompt_tokens": 2126,
+              "cache_write_prompt_tokens": 452,
+              "reasoning_tokens": 71
+            },
+            "cost_usd": 0.0064086,
+            "latency_ms": 7809
+          }
+        ],
+        "cost_usd": 0.0130872
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-26",
+        "rule": "C6_recruiter_consequence",
+        "expected": "Y",
+        "note": "Same fix on the same line; a role-specific consequence beats a why that only restates the fix. A slight preference is enough.",
+        "resume_chars": 575
+      },
+      "repeat": 1,
+      "result": {
+        "case_id": "cp-26",
+        "winner": "tie",
+        "strength": "none",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Wendell is a current Security Engineer at Cascade Payments with prior IT support experience. The recent bullets establish security responsibilities but provide no program scale or measurable results.",
+              "most_important_issue": "The vulnerability management bullet needs concrete scope and remediation performance so a hiring manager can assess the significance of the candidate's core work.",
+              "first": {
+                "targets": "Add the number of systems covered and the speed of critical-finding remediation to the vulnerability management bullet, if verifiable.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add the number of systems covered and the speed of critical-finding remediation to the vulnerability management bullet, if verifiable.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence"
+              ],
+              "rationale": "Both reports target the same important current-role line: \"- Run the vulnerability management program for the payments platform\". Both give identical, specific, conditional requests for scope and remediation speed, satisfying C1 and C3 equally. The second explains the hiring consequence more clearly under C6, but it does not identify a different priority or provide a more useful fix; the same-issue decision rule therefore yields no real difference.",
+              "cited_resume_lines": [
+                "Security Engineer",
+                "Cascade Payments, Seattle, WA",
+                "Apr 2021 - Present",
+                "- Run the vulnerability management program for the payments platform"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2528,
+              "completion_tokens": 399,
+              "total_tokens": 2927,
+              "cached_prompt_tokens": 2525,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 24
+            },
+            "cost_usd": 0.0042485,
+            "latency_ms": 5881
+          },
+          {
+            "order": "YX",
+            "winner": "tie",
+            "strength": "none",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Wendell is a current Security Engineer at Cascade Payments after progressing from IT support. The recent bullets establish relevant security responsibilities but do not show their scale or results.",
+              "most_important_issue": "The vulnerability management program needs concrete scope and remediation performance so a hiring manager can assess the significance of Wendell's core work.",
+              "first": {
+                "targets": "Add verifiable system coverage and critical-finding remediation speed to the vulnerability management bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add verifiable system coverage and critical-finding remediation speed to the vulnerability management bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "no_real_difference",
+              "strength": "none",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask"
+              ],
+              "rationale": "Both reports target \"- Run the vulnerability management program for the payments platform\" and give exactly the same specific, conditional request for missing scope and remediation facts. This addresses the core work of the current \"Security Engineer\" role under C1, C2, and C3. The first report explains the hiring consequence better, but that does not change which issue was selected or the practical help provided; the same-issue decision rule therefore yields no real difference.",
+              "cited_resume_lines": [
+                "Security Engineer",
+                "Apr 2021 - Present",
+                "- Run the vulnerability management program for the payments platform"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2528,
+              "completion_tokens": 387,
+              "total_tokens": 2915,
+              "cached_prompt_tokens": 2525,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 27
+            },
+            "cost_usd": 0.0041285,
+            "latency_ms": 6180
+          }
+        ],
+        "cost_usd": 0.008376999999999999
+      },
+      "grade": "tie_on_decisive"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-27",
+        "rule": "C7_honest_ask",
+        "expected": "X",
+        "note": "Same line; asking for verifiable figures beats telling the person to estimate a number if they don't know it.",
+        "resume_chars": 495
+      },
+      "repeat": 1,
+      "result": {
+        "case_id": "cp-27",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Ximena is a current Event Marketing Manager responsible for trade show marketing, sponsorship packages, exhibitor sales, and promotion. The recent bullets show responsibilities but not the scale or results of that work.",
+              "most_important_issue": "Add verifiable scale or results to the current role, particularly sponsorship revenue or sponsor count, while preserving the stated collaboration with the sales team.",
+              "first": {
+                "targets": "Add verified sponsorship revenue or the number of sponsors personally signed to the current sponsor-packages bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add sponsorship revenue to the same bullet, permitting an invented estimate if the actual figure is unknown.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C7_honest_ask"
+              ],
+              "rationale": "Both reports target the same meaningful omission in \"- Manage sponsor packages and exhibitor sales with the sales team\": the reader cannot tell the commercial scale. C7_honest_ask clearly favors the first report because it requests figures verified from records and offers sponsor count as an alternative. The second explicitly recommends \"estimate a round number that sounds right,\" which encourages fabrication rather than helping the candidate substantiate the work.",
+              "cited_resume_lines": [
+                "Event Marketing Manager",
+                "Mar 2020 - Present",
+                "- Manage sponsor packages and exhibitor sales with the sales team"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2504,
+              "completion_tokens": 389,
+              "total_tokens": 2893,
+              "cached_prompt_tokens": 2501,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 39
+            },
+            "cost_usd": 0.0041461,
+            "latency_ms": 6345
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Ximena is a current Event Marketing Manager with more than six years at Alamo Conference Center. The recent bullets establish relevant responsibilities but do not show the scale of the trade show season, sponsorships, or exhibitor sales.",
+              "most_important_issue": "The current role needs a verifiable indication of commercial scale, particularly in the sponsorship and exhibitor sales work.",
+              "first": {
+                "targets": "Add sponsorship revenue to the current role's sponsor packages bullet, but recommends inventing a plausible number if the actual figure is unknown.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Add verified sponsorship revenue or the number of sponsors signed to the current role's sponsor packages bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": true,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C7_honest_ask"
+              ],
+              "rationale": "Both reports target the same important missing scale in \"- Manage sponsor packages and exhibitor sales with the sales team\" under the current role dated \"Mar 2020 - Present\". C7_honest_ask clearly decides the comparison: the first tells the candidate to \"estimate a round number that sounds right,\" which pushes fabrication. The second asks for \"figures you can verify from your records,\" providing a useful, truthful way to strengthen the same bullet. Neither report makes a factual misstatement about the resume; the first report's problem is its dishonest advice.",
+              "cited_resume_lines": [
+                "Event Marketing Manager",
+                "Mar 2020 - Present",
+                "- Manage sponsor packages and exhibitor sales with the sales team"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2504,
+              "completion_tokens": 383,
+              "total_tokens": 2887,
+              "cached_prompt_tokens": 2501,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0040861,
+            "latency_ms": 5471
+          }
+        ],
+        "cost_usd": 0.008232199999999999
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-28",
+        "rule": "not_a_critical_miss",
+        "expected": "Y",
+        "note": "'Add keywords so the ATS doesn't reject you' is not a Critical Miss; a concrete gap in current work is.",
+        "resume_chars": 484
+      },
+      "repeat": 1,
+      "result": {
+        "case_id": "cp-28",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Yusuf has progressed from Quality Technician to a current Quality Engineer role, with responsibility for investigations, process audits, control plans and PFMEAs. The recent bullets establish relevant work but do not show what quality problems improved.",
+              "most_important_issue": "The current engineering work needs a concrete result, particularly what changed after the layered process audit was introduced.",
+              "first": {
+                "targets": "Adding Six Sigma, 8D and APQP keywords throughout the resume to avoid claimed ATS rejection.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Adding a verifiable quality outcome to the current role's layered process audit bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The current role includes \"- Introduced a layered process audit on the gear machining line\" but gives no result from that work. The second report targets substantive evidence in the latest relevant role (C1_first_read_stakes), specifies the outcome to add (C3_specific_ask), and explains why a quality manager needs it (C6_recruiter_consequence). Its verification condition preserves honesty (C7_honest_ask). The first report instead recommends adding methods not established on the page to address speculative ATS rejection; keyword density is not a critical miss here.",
+              "cited_resume_lines": [
+                "Quality Engineer",
+                "Jan 2021 - Present",
+                "- Lead root-cause investigations for customer quality complaints",
+                "- Introduced a layered process audit on the gear machining line",
+                "- Maintain control plans and PFMEAs for two product families"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2495,
+              "completion_tokens": 482,
+              "total_tokens": 2977,
+              "cached_prompt_tokens": 2492,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 54
+            },
+            "cost_usd": 0.0050752,
+            "latency_ms": 7220
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Yusuf has progressed from quality technician to a current quality engineer role, with responsibility for investigations, audits, control plans and PFMEAs. The recent bullets show relevant work but do not show whether it improved quality.",
+              "most_important_issue": "Add a verified outcome to the current engineering work so a hiring manager can assess effectiveness, not just responsibilities. The layered process audit is a concrete place to start.",
+              "first": {
+                "targets": "The missing quality outcome of introducing the layered process audit on the gear machining line.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Adding Six Sigma, 8D and APQP keywords throughout the resume to avoid alleged ATS rejection.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report addresses substantive evidence in the current role: \"- Introduced a layered process audit on the gear machining line\" states an action without its outcome. Its request for a verified change in scrap, defects or complaints is specific and would help a quality manager judge effectiveness (C1, C3, C6). The resume already contains relevant technical work, including \"- Maintain control plans and PFMEAs for two product families\". The second report's keyword addition is not a critical fix under the supplied criteria, and it asks for methodologies without checking whether Yusuf actually used them. The first explicitly limits its request to verifiable facts, preserving honesty (C7).",
+              "cited_resume_lines": [
+                "Quality Engineer",
+                "Jan 2021 - Present",
+                "- Introduced a layered process audit on the gear machining line",
+                "- Maintain control plans and PFMEAs for two product families"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2495,
+              "completion_tokens": 563,
+              "total_tokens": 3058,
+              "cached_prompt_tokens": 2492,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 116
+            },
+            "cost_usd": 0.0058852,
+            "latency_ms": 9831
+          }
+        ],
+        "cost_usd": 0.0109604
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-29",
+        "rule": "not_a_critical_miss",
+        "expected": "X",
+        "note": "A single typo is not the thing to fix first when the current role's main responsibility has no scale.",
+        "resume_chars": 479
+      },
+      "repeat": 1,
+      "result": {
+        "case_id": "cp-29",
+        "winner": "X",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Zara is a current Procurement Manager with a progression from Buyer, but her recent bullets do not establish the size of the procurement function she manages. The vendor consolidation shows a concrete accomplishment without enough scope to assess its significance.",
+              "most_important_issue": "Add verified annual spend and supplier count to the current procurement-management bullet so a hiring manager can assess the scale of her responsibilities.",
+              "first": {
+                "targets": "Missing spend and supplier scope in the current Procurement Manager role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The spelling error in the quarterly supplier performance bullet.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C6_recruiter_consequence",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report addresses the core responsibility, \"- Manage indirect procurement for lab supplies and facilities services\", by requesting specific, verifiable scope facts. Under C1_first_read_stakes, that matters substantially more than correcting the isolated typo in \"- Run the quarterly supplier performance reveiw\". Its ask is actionable under C3_specific_ask, preserves accuracy under C7_honest_ask, and explains why spend matters to evaluating a procurement manager under C6_recruiter_consequence. Both reports are grounded, but the typo is not a critical issue on this resume.",
+              "cited_resume_lines": [
+                "- Manage indirect procurement for lab supplies and facilities services",
+                "- Negotiated a three-year lab supply agreement that consolidated four vendors into one",
+                "- Run the quarterly supplier performance reveiw"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2463,
+              "completion_tokens": 399,
+              "total_tokens": 2862,
+              "cached_prompt_tokens": 2460,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.004242,
+            "latency_ms": 5342
+          },
+          {
+            "order": "YX",
+            "winner": "X",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "Zara is a current Procurement Manager with progression from Buyer at the same employer. Her recent work includes indirect procurement and a three-year vendor consolidation agreement, but the scale of the procurement portfolio is not stated.",
+              "most_important_issue": "Add verifiable annual spend and supplier count to the current procurement-management bullet so a hiring manager can assess the scope of the role.",
+              "first": {
+                "targets": "Correcting the spelling of 'reveiw' in the supplier performance bullet.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Adding verifiable annual spend and supplier count to establish the scale of the current procurement role.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C2_concrete_fact_over_move",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The current role's core bullet, \"- Manage indirect procurement for lab supplies and facilities services\", identifies the work but not its scale. The second report asks for specific, verifiable facts that would materially change how a procurement hiring manager sizes the role, satisfying C1, C2, C3 and C7. The first report accurately flags \"- Run the quarterly supplier performance reveiw\", but a single spelling error is not severe here and is much less important than establishing the scope of the manager's responsibilities.",
+              "cited_resume_lines": [
+                "Procurement Manager",
+                "May 2020 - Present",
+                "- Manage indirect procurement for lab supplies and facilities services",
+                "- Negotiated a three-year lab supply agreement that consolidated four vendors into one",
+                "- Run the quarterly supplier performance reveiw"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2463,
+              "completion_tokens": 409,
+              "total_tokens": 2872,
+              "cached_prompt_tokens": 2460,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.004342,
+            "latency_ms": 5349
+          }
+        ],
+        "cost_usd": 0.008584000000000001
+      },
+      "grade": "right"
+    },
+    {
+      "pair": {
+        "set": "contrast",
+        "id": "cp-30",
+        "rule": "C1_first_read_stakes",
+        "expected": "Y",
+        "note": "A pattern across the latest role (a director title over bullets that all read as support) outranks adding a detail to the one strong bullet.",
+        "resume_chars": 553
+      },
+      "repeat": 1,
+      "result": {
+        "case_id": "cp-30",
+        "winner": "Y",
+        "strength": "clear",
+        "orders_agree": true,
+        "veto": {
+          "X": false,
+          "Y": false
+        },
+        "orders": [
+          {
+            "order": "XY",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Director of Customer Support role has no visible organizational scale or clear ownership, and its bullets consistently describe supporting contributions. The earlier team lead role establishes more concrete leadership scope than the director role.",
+              "most_important_issue": "Clarify the actual scope and ownership of the current director role so a recruiter can assess director-level responsibility without assuming authority the resume does not establish.",
+              "first": {
+                "targets": "Identify the person's specific contribution to the customer satisfaction increase.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "Establish the current director role's organizational scope and verified ownership, including support organization size, budget if applicable, and programs personally led.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "second",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The second report addresses the central first-read problem: \"Director of Customer Support\" is followed by bullets such as \"- Helped with support team scheduling and coverage\" and \"- Assisted in rolling out the new ticketing system\", while the earlier role explicitly says \"- Led a team of 12 phone support agents\". Under C1_first_read_stakes, establishing the current role's scope and authority matters more than explaining one result. The first report's request about \"- Contributed to raising customer satisfaction from 82% to 90% in 2023\" is useful and grounded, but narrower. The second gives concrete details to add under C3_specific_ask and conditions budget and leadership claims on actual responsibility and verification, satisfying C7_honest_ask.",
+              "cited_resume_lines": [
+                "Director of Customer Support",
+                "Feb 2021 - Present",
+                "- Helped with support team scheduling and coverage",
+                "- Assisted in rolling out the new ticketing system",
+                "- Supported escalations from policyholders",
+                "- Contributed to raising customer satisfaction from 82% to 90% in 2023",
+                "- Led a team of 12 phone support agents"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2581,
+              "completion_tokens": 487,
+              "total_tokens": 3068,
+              "cached_prompt_tokens": 2578,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 0
+            },
+            "cost_usd": 0.0051338,
+            "latency_ms": 6951
+          },
+          {
+            "order": "YX",
+            "winner": "Y",
+            "strength": "clear",
+            "vetoes": {
+              "X": [],
+              "Y": []
+            },
+            "dropped_claims": [],
+            "raw": {
+              "first_read": "The current Director of Customer Support role lists only supporting contributions, with no organizational scope or clear decision-making responsibility. The earlier team lead role is more concrete about leadership scale.",
+              "most_important_issue": "The director role needs verifiable scope and responsibility so a recruiter can assess whether the work supports the senior title.",
+              "first": {
+                "targets": "Missing organizational scale and personally held responsibilities across the current director role.",
+                "unsupported_claims": []
+              },
+              "second": {
+                "targets": "The specific contribution behind the customer satisfaction improvement.",
+                "unsupported_claims": []
+              },
+              "same_issue": false,
+              "winner": "first",
+              "strength": "clear",
+              "deciding_criteria": [
+                "C1_first_read_stakes",
+                "C3_specific_ask",
+                "C7_honest_ask"
+              ],
+              "rationale": "The first report addresses the central first-read problem: \"Director of Customer Support\" is followed by bullets such as \"- Helped with support team scheduling and coverage\" and \"- Assisted in rolling out the new ticketing system\", while the earlier role explicitly states \"- Led a team of 12 phone support agents\". Under C1_first_read_stakes, establishing the scope and responsibility of the current director role matters more than explaining one result. The second report reasonably asks what contributed to \"- Contributed to raising customer satisfaction from 82% to 90% in 2023\", but that would strengthen only one bullet without resolving the broader seniority question. The first report names concrete details to add under C3_specific_ask and makes leadership claims conditional on verification under C7_honest_ask.",
+              "cited_resume_lines": [
+                "Director of Customer Support",
+                "- Helped with support team scheduling and coverage",
+                "- Assisted in rolling out the new ticketing system",
+                "- Led a team of 12 phone support agents",
+                "- Contributed to raising customer satisfaction from 82% to 90% in 2023"
+              ]
+            },
+            "uncited_lines": [],
+            "usage": {
+              "prompt_tokens": 2581,
+              "completion_tokens": 537,
+              "total_tokens": 3118,
+              "cached_prompt_tokens": 2578,
+              "cache_write_prompt_tokens": 0,
+              "reasoning_tokens": 83
+            },
+            "cost_usd": 0.0056338,
+            "latency_ms": 8361
+          }
+        ],
+        "cost_usd": 0.010767599999999999
+      },
+      "grade": "right"
+    }
+  ]
+}

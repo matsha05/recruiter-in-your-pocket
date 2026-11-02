@@ -160,7 +160,7 @@ const QUALITATIVE_FIX_TARGET_PATTERN = /\b(?:decisions? (?:you|made|about)|probl
 // A concrete request can name a qualitative detail without matching a metric vocabulary.
 export function namesConcreteEditDetail(fix: string) {
   // The attached evidence locates the edit; prose need not repeat the word bullet.
-  const request = fix.match(/\b(?:add|align|name|say|turn|state|identify|describe|explain|specify|clarify|compare|expand|revise|replace|rewrite)\b(.*)/i)?.[1];
+  const request = fix.match(/\b(?:add|align|name|say|turn|state|identify|describe|explain|specify|clarify|compare|expand|revise|replace|rewrite|define|move|lead|surface)\b(.*)/i)?.[1];
   if (!request) return false;
   const generic = new Set(["the", "this", "that", "your", "you", "each", "every", "one", "more", "better", "stronger", "detail", "details", "bullet", "entry", "line", "section", "statement", "resume", "experience", "show", "scope", "impact", "outcome", "outcomes", "result", "results", "specific", "concrete", "clear", "clearly", "improve", "potential"]);
   return contentTokens(request).filter(token => !generic.has(token)).length >= 4;
@@ -173,7 +173,7 @@ export function findNonActionableFix(fix: string): string[] {
     findings.push("does not name the detail to add");
   }
   const isLabelWithoutDirection = /^\s*(?:bullet|line|section)\s+to\s+(?:rewrite|replace|change|shorten|combine)\b/i.test(fix);
-  if (!/\b(add|align|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten|describe|explain|clarify|include|expand|connect|correct|separate|state|identify|compare|revise|say|turn)\b/i.test(fix)) {
+  if (!/\b(add|align|move|surface|cut|remove|replace|rewrite|merge|lead|name|quantify|specify|change|combine|shorten|describe|explain|clarify|include|expand|connect|correct|separate|state|identify|compare|revise|say|turn|define)\b/i.test(fix)) {
     findings.push("missing a concrete edit action");
   }
   const namesBulletAndDetail = /\b(?:bullet|section|statement)\b/i.test(fix)
@@ -193,10 +193,11 @@ export function findNonActionableFix(fix: string): string[] {
   return findings;
 }
 
-const FIX_EVIDENCE_TOPICS: Array<{ label: string; pattern: RegExp }> = [
-  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|interviews?|talent acquisition|candidate|requisition|backfill)s?\b/i },
+// `evidence` widens what counts as support in the cited line; it never adds a mismatch.
+const FIX_EVIDENCE_TOPICS: Array<{ label: string; pattern: RegExp; evidence?: RegExp }> = [
+  { label: "recruiting", pattern: /\b(recruit(?:ing|ment|er)?|hiring|interviews?|talent acquisition|candidate|requisition|backfill)s?\b/i, evidence: /\b(?:sourcing|placements?|searches)\b/i },
   { label: "budget", pattern: /\b(budget|spend|expense|resource allocation)s?\b/i },
-  { label: "training", pattern: /\b(training|learning|development program|upskill|workshop)s?\b/i },
+  { label: "training", pattern: /\b(training|learning|development program|upskill|workshop)s?\b/i, evidence: /\b(?:modules?|courses?|curriculum|lessons?|self-paced|students?)\b/i },
   { label: "mentoring", pattern: /\b(mentor(?:ing|ship|ed)?|mentee|coach(?:ing|ed)?)s?\b/i },
   { label: "compliance", pattern: /\b(compliance|employment law|policy|policies|audit)s?\b/i },
   { label: "launch", pattern: /\b(launch|time[- ]?to[- ]?market|go[- ]?to[- ]?market)s?\b/i },
@@ -231,7 +232,7 @@ export function findFixEvidenceMismatch(
     if (isDatedRoleReference && topic.label === "recruiting") continue;
     // Asking about an internal policy does not assert regulated compliance work.
     if (topic.label === "compliance" && !/\b(?:audit|compliance|law)\b/i.test(fix)) continue;
-    if (topic.pattern.test(fix) && !topic.pattern.test(sourceLine)) {
+    if (topic.pattern.test(fix) && !topic.pattern.test(sourceLine) && !topic.evidence?.test(sourceLine)) {
       findings.push(`cited evidence does not support the ${topic.label} fix`);
     }
   }

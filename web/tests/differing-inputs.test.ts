@@ -67,3 +67,16 @@ assert.equal(conflictIssue("How did you coordinate the different teams during a 
   "different teams does not itself assert a disagreement");
 
 console.log("differing-input conflict presupposition tests passed");
+
+// Live evals eval_1793553133997 and eval_1793560808592: a reason that disclaims the
+// conflict was read as asserting one, and a grounded report was withheld.
+for (const claim of [
+  "A conditional example could show how you handled competing information without assuming a conflict occurred.",
+  "This could add detail about your role without assuming priorities conflicted.",
+]) assert.equal(conflictIssue(claim, source), false, `a reason that disclaims the conflict is allowed: ${claim}`);
+// Paired controls: an asserted conflict stays unsupported when only something else is disclaimed.
+for (const claim of [
+  "This shows how you handled conflicting stakeholder priorities.",
+  "You resolved conflicting priorities without assuming a manager would step in.",
+  "How did you settle the conflict between teams, without assuming anyone's help?",
+]) assert.equal(conflictIssue(claim, source), true, `an asserted conflict still needs source support: ${claim}`);

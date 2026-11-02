@@ -38,6 +38,9 @@ function entityIdentityTokens(value: string) {
   const roleAliases: Record<string, string[]> = {
     "annual-recurring-revenue": ["annual", "recurring", "revenue"],
     bba: ["bachelor", "business", "administration"],
+    ba: ["bachelor", "arts"], bs: ["bachelor", "science"], bsc: ["bachelor", "science"],
+    ms: ["master", "science"], msc: ["master", "science"], mba: ["master", "business", "administration"],
+    phd: ["doctor", "philosophy"],
     bsba: ["bachelor", "science", "business", "administration"],
     ceo: ["chief", "executive", "officer"], cfo: ["chief", "financial", "officer"],
     cio: ["chief", "information", "officer"], cmo: ["chief", "marketing", "officer"],
@@ -49,18 +52,46 @@ function entityIdentityTokens(value: string) {
   return tokens.flatMap(token => roleAliases[token] || [token]);
 }
 
+/**
+ * "multi-disciplinary" and "multidisciplinary" are one word. Resume tokens keep the
+ * hyphenated form and add the joined one; claim tokens are compared joined. A claim
+ * that matched before still matches.
+ */
+export function withJoinedSpellings(tokens: Set<string>) {
+  const joined = new Set(tokens);
+  for (const token of tokens) if (token.includes("-")) joined.add(token.replace(/-/gu, ""));
+  return joined;
+}
+
+export function joinedSpellings(tokens: Set<string>) {
+  return new Set(Array.from(tokens, (token) => token.replace(/-/gu, "")));
+}
+
 export function auditableNarrativeValue(path: string, value: string, sourceText = "", reportScore?: number) {
   // A report's displayed score is metadata, but any other number still needs support.
   if (path === "score_plain" && Number.isFinite(reportScore)) {
     value = value.replace(new RegExp(`\\b(?:At|score (?:of|is)) ${reportScore}\\b`, "i"), "At this score");
   }
-  let auditable = (path === "biggest_gap_example" ? value.replace(/["“][^"”]+["”]/u, " ") : value).replace(/\bU\.S\./gu, "US");
+  // A quoted line that reports something is the sentence's subject: "“Rebuilt the funnel” reports ..."
+  // means it, the line, reports. Any other quote is blanked, so "“Feb 2023” is the latest ..." stays a description.
+  const reportingQuote = /^\s*["“][^"”]+["”](?=\s+(?:reports|shows|lists|says|states|gives|names|mentions|describes|notes|covers|includes)\b)/u;
+  let auditable = (path !== "biggest_gap_example" ? value
+    : reportingQuote.test(value) ? value.replace(reportingQuote, "It") : value.replace(/["“][^"”]+["”]/u, " ")).replace(/\bU\.S\./gu, "US");
+  // A suggested label ("a dated line such as "Career break"") proposes wording; it claims nothing.
+  // Only a sentence-case label qualifies, so a suggested title or employer is still checked.
+  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”])*/gu, "$1");
   if (path.startsWith("section_review.Education.")) auditable = auditable.replace(/\b(?:B\.S|B\.Ed|M\.S|M\.Div)\.?/gu, (degree) => sourceText.includes(degree) ? " " : degree);
   return /[\p{L}\p{N}]/u.test(auditable) ? auditable : "";
 }
 
 export function isDirectFactualAssertion(value: string) {
   if (/\b(?:can|could|may|might) (?:mean|refer to|describe)\b/iu.test(value)) return false;
+  // "The managed finance-process deliverables ..." uses the participle as an adjective.
+  if (/^\s*(?:the|a|an|this|that|these|those|your|its|their)\s+\p{L}+ed\b/iu.test(value)) return false;
+  // A question asserts nothing: "What led you to build ..." is not the claim "What led".
+  if (/\?\s*$/u.test(value) || /^\s*(?:what|which|how|why|when|where|who)\b/iu.test(value)) return false;
+  // "less developed" and "well built" describe a quality, not work someone did.
+  if (/^\s*(?:less|more|most|least|well|fully|under|over|not\s+(?:yet|as))\s/iu.test(value)) return false;
   return directFactualAssertionPattern.test(value.normalize("NFC"));
 }
 
@@ -86,6 +117,8 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
     const available = new Set([
       ...Array.from(sourceTokens).flatMap(token => [token, ...entityIdentityTokens(token)]),
       ...sourceFacts.flatMap((sourceFact) => entityIdentityTokens(sourceFact.display)),
+      // "P.E." splits into single letters as source tokens, so read the source's initialisms whole.
+      ...(sourceText.match(/\b(?:\p{L}\.){2,}/gu) || []).flatMap(entityIdentityTokens),
     ]);
     const required = entityIdentityTokens(fact.display);
     return required.length > 0 && required.every((token) => available.has(token));
@@ -110,9 +143,14 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   const prefix = claim.slice(0, quantityMatch?.index ?? 0);
   const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|choose|describe|explain|give|include|name|replace|revise|rewrite|select|show|use)\b/iu);
   const requestTail = requestHead ? prefix.slice(requestHead[0].length) : prefix;
-  const questionRequest = /^\s*(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
-  if ((!requestHead && !questionRequest)
+  const questionRequest = /\b(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
+  // "A verified result from one client project would help" proposes an example; it doesn't count clients.
+  const hypothetical = /^\s*(?:a|an)\s/iu.test(prefix)
+    && /^one(?:\s+(?!(?:that|which|who)\b)[\p{L}-]+){0,4}\s+(?:would|could)\b/iu.test(claim.slice(quantityMatch?.index ?? 0));
+  if ((!requestHead && !questionRequest && !hypothetical)
     || /\b(?:that|managed|served|led|owned|delivered|supported|handled)\b/iu.test(requestTail)) return false;
+  // In a request or question, "one X" picks an example ("Name one type of employee concern"); it doesn't count Xs.
+  if (/^one\b/iu.test(fact.display)) return true;
   if (new RegExp(`\\b${quantity}(?:\\s+or\\s+[\\p{L}-]+){0,2}\\s+(?:problems?|situations?|examples?|artifacts?|decisions?|cases?)\\b`, "iu").test(claim)) return true;
   // Hyphenated project names can otherwise look like a count of customers.
   if (/^one customer$/iu.test(fact.display)
@@ -122,6 +160,20 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   return /^(?:one|1)\b/iu.test(fact.display)
     && /\bprojects?$/iu.test(fact.display)
     && /\b(?:name|describe|choose|include|give)\b|^\s*(?:what|which|how)\b/iu.test(claim);
+}
+
+const countWords = "two|three|four|five|six|seven|eight|nine|ten|eleven|twelve";
+
+/** "Beyond one team" compares with a stated count; it is supported only when the resume states two or more. */
+function comparesBeyondOne(fact: NarrativeFact, claim: string, sourceText: string) {
+  const noun = fact.key.startsWith("metric-word:") ? fact.display.match(/^one\s+([\p{L}-]+?)s?$/iu)?.[1] : undefined;
+  if (!noun || !new RegExp(`\\b(?:beyond|more than|past|outside)\\s+one\\s+${noun}\\b`, "iu").test(claim)) return false;
+  return new RegExp(`\\b(?:[2-9]|\\d{2,}|${countWords})\\+?\\s+(?:[\\p{L}-]+\\s+){0,2}${noun}s\\b`, "iu").test(sourceText);
+}
+
+function presenceStem(token: string) {
+  const stem = token.replace(/(?:ing|ed|e)$/u, "");
+  return stem.length >= 4 ? stem : token;
 }
 
 export function assessmentNarrativeIssues(input: {
@@ -139,21 +191,30 @@ export function assessmentNarrativeIssues(input: {
 }) {
   const sourceFacts = input.sourceCandidates.flatMap((candidate) => candidate.facts);
   const sourceTokens = new Set(input.sourceCandidates.flatMap((candidate) => Array.from(candidate.tokens)));
+  // The presence anchor needs one shared word; "practice" anchors to "Practicing".
+  // An outcome noun ("growth") is neutral when the resume states an outcome ("Expanded ..."):
+  // it neither anchors the claim nor counts against it.
+  const sourceStems = new Set(Array.from(sourceTokens, presenceStem));
+  const sourceHasOutcome = sourceFacts.some((fact) => fact.key.startsWith("outcome:"));
+  const presenceTokens = Array.from(input.claimTokens)
+    .filter((token) => !(sourceHasOutcome && /^(?:growth|increase|improvement|reduction|expansion|gain)$/u.test(token)));
+  const anchors = (token: string) => sourceTokens.has(token) || sourceStems.has(presenceStem(token));
   const assertive = input.directFactualAssertion;
   const peopleManagementAssessment = /\b(?:people|staff|team) (?:oversight|management)\b/iu.test(input.claim)
     && input.sourceCandidates.some(candidate => candidate.facts.some(fact => fact.key === "agency:manage")
       && ["people", "staff", "team", "employee"].some(token => candidate.tokens.has(token)));
   const factsToCheck = input.claimFacts.filter((fact) => (
     (!input.skipSpecificFacts && /^(?:entity|metric|metric-word|symbol):/u.test(fact.key)
-      && !(!assertive && countsRequestedExamples(fact, input.claim)))
+      && !(!assertive && countsRequestedExamples(fact, input.claim))
+      && !comparesBeyondOne(fact, input.claim, input.sourceText))
     || (assertive && /^(?:agency|outcome|causal):/u.test(fact.key))
   ));
   const unsupportedTokens = assertive
     ? Array.from(input.claimTokens).filter((token) => !sourceTokens.has(token))
-    : input.requirePresenceAnchor && input.assertsPresence && input.claimTokens.size > 0 && !peopleManagementAssessment
+    : input.requirePresenceAnchor && input.assertsPresence && presenceTokens.length > 0 && !peopleManagementAssessment
       && !/\b(?:count|impact|metric|number|outcome|result|scale|scope|size)s?\b/iu.test(input.claim)
-      && !Array.from(input.claimTokens).some((token) => sourceTokens.has(token))
-      ? Array.from(input.claimTokens)
+      && !presenceTokens.some(anchors)
+      ? presenceTokens
     : [];
   const unsupported = [
     ...(input.contradictsNegativeSource ? ["contradicts negative source evidence"] : []),

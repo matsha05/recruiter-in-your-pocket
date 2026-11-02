@@ -5,6 +5,15 @@ const { randomUUID } = require("crypto");
 process.env.USE_MOCK_OPENAI = "1";
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
 const { startNextServer } = require("../scripts/next_server");
+
+// Long enough to clear the 200-character minimum, so these checks reach the
+// access layer they are testing instead of stopping at input validation.
+const VALID_RESUME_TEXT = [
+  "Software Engineer, Google, 2019 to present",
+  "- Led a team of 5 engineers building the billing service used by 40 internal products",
+  "- Cut checkout errors by 30% by moving payment retries into a single queue",
+  "- Wrote the on-call runbook adopted by three teams",
+].join("\n");
 let next = null;
 
 async function request(method, url, body = null, extraHeaders = {}) {
@@ -31,7 +40,7 @@ function cookieFromSetCookie(headers, name) {
 
 async function anonymousIdentityHandshake(url, ip, recoveryId) {
   const response = await request("POST", url, {
-    text: "Software Engineer\nGoogle\nLed team of 5 engineers",
+    text: VALID_RESUME_TEXT,
     mode: "resume",
     recovery_id: recoveryId,
   }, { "x-forwarded-for": ip });
@@ -50,7 +59,7 @@ async function run() {
       "/api/resume-feedback", "192.0.2.10", validRecoveryId,
     );
     const validResponse = await request("POST", "/api/resume-feedback", {
-      text: "Software Engineer\nGoogle\nLed team of 5 engineers",
+      text: VALID_RESUME_TEXT,
       mode: "resume",
       recovery_id: validRecoveryId,
     }, { Cookie: validIdentityCookie, "x-forwarded-for": "192.0.2.10" });
@@ -67,7 +76,7 @@ async function run() {
       "/api/resume-feedback-stream", "192.0.2.11", streamRecoveryId,
     );
     const streamResponse = await request("POST", "/api/resume-feedback-stream", {
-      text: "Software Engineer\nGoogle\nLed team of 5 engineers",
+      text: VALID_RESUME_TEXT,
       mode: "resume",
       recovery_id: streamRecoveryId,
     }, { Cookie: streamIdentityCookie, "x-forwarded-for": "192.0.2.11" });

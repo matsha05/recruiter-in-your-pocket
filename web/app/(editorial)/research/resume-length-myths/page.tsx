@@ -1,37 +1,34 @@
-import type { Metadata } from "next";
-import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { Citation } from "@/components/research/ResearchArticle";
+import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
-export const metadata: Metadata = {
-    title: "There is no universal one-page rule",
-    description: "What a peer-reviewed recruiter study does and does not say about one-page and two-page resumes.",
-    alternates: { canonical: "/research/resume-length-myths" },
-};
+const PATH = "/research/resume-length-myths";
+
+export const metadata = pageMetadata({
+    path: PATH,
+    title: "Does my resume really have to fit on one page?",
+    description: "One study favored two-page resumes for entry-level accountants. It doesn't settle the best length for every role. What it does and doesn't say.",
+    type: "article",
+});
 
 export default function ResumeLengthPage() {
     return (
-        <ResearchArticle
-            header={{
-                tag: "Resume structure",
-                title: "There is no universal one-page rule",
-                description: "One study favored two-page resumes for entry-level accountants. It does not establish the best length for every role.",
-                lastUpdated: "July 2026",
-                readTime: "4 min read"
+        <AnswerArticle
+            path={PATH}
+            answer={
+                <>
+                    No. In one national study, recruiters at major accounting firms ranked two-page versions of strong entry-level resumes above one-page versions.
+                    It&rsquo;s one narrow, dated test, so the useful rule is simpler: use a second page when it adds experience that matters for the role.
+                </>
+            }
+            answerSource={{
+                text: <>From a 2001 study that mailed resumes to 570 CPA recruiters (Blackburn-Brockman &amp; Belanger). We could read only its abstract.</>,
+                href: "https://journals.sagepub.com/doi/abs/10.1177/002194360103800104",
+                linkLabel: "Read the abstract",
             }}
-            keyFinding={{
-                subtitle: "What the study found",
-                stat: "Two-page versions ranked higher in one narrow test",
-                statDescription: (
-                    <>
-                        Recruiters from major accounting firms ranked two-page versions of resumes from highly qualified entry-level accounting candidates more favorably than one-page versions.
-                        <Citation id="source-1">1</Citation>
-                    </>
-                ),
-                source: {
-                    text: "Blackburn-Brockman & Belanger (2001)",
-                    href: "https://journals.sagepub.com/doi/abs/10.1177/002194360103800104"
-                }
-            }}
+            painNote="If you’ve shrunk the margins to make it fit, this one’s for you."
+            nextQuestions={["how-recruiters-read", "star-method", "quantifying-impact"]}
             visualization={
                 <>
                     <h2 className="research-h2">When to use a second page</h2>
@@ -41,24 +38,6 @@ export default function ResumeLengthPage() {
                     <PageTwoGateDiagram />
                 </>
             }
-            productTieIn={{
-                title: "What your report can judge",
-                items: [
-                    {
-                        title: "What's on the page",
-                        description: "We read for relevance, scope, ownership, and results. Page count isn't a shortcut in your score."
-                    },
-                    {
-                        title: "What it can't",
-                        description: "We read your text, not your PDF's layout. Open the final file at 100% and check the density yourself."
-                    }
-                ]
-            }}
-            relatedArticles={[
-                { title: "What recruiters notice in the first pass", href: "/research/how-recruiters-read", tag: "Research" },
-                { title: "Tell the story behind the line", href: "/research/star-method", tag: "Story" },
-                { title: "Show what changed and your part in it", href: "/research/quantifying-impact", tag: "Writing" }
-            ]}
             sources={[
                 {
                     id: "source-1",
@@ -66,16 +45,6 @@ export default function ResumeLengthPage() {
                     publisher: "The Journal of Business Communication",
                     year: "2001",
                     href: "https://journals.sagepub.com/doi/abs/10.1177/002194360103800104"
-                }
-            ]}
-            faq={[
-                {
-                    question: "Is one page still the safest option?",
-                    answer: "There is no universal safest length. Use the shortest version that preserves the relevant evidence a reviewer needs."
-                },
-                {
-                    question: "When is two pages acceptable?",
-                    answer: "When page 1 is clear and page 2 adds relevant, non-repetitive evidence."
                 }
             ]}
         >
@@ -109,12 +78,16 @@ export default function ResumeLengthPage() {
                 If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it. Check that your recent responsibilities and strongest results remain easy to find.
             </p>
 
+            <ArticleBridge question="Which lines are earning their space?">
+                Your report reads for relevance, scope, ownership, and results. Page count isn&apos;t a shortcut in your score. It reads your text, not your PDF&apos;s layout, so open the final file at 100% and check the density yourself.
+            </ArticleBridge>
+
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>This is a peer-reviewed study, but its setting is narrow and dated.</li>
                 <li>Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled.</li>
                 <li>Use the finding to reject a rigid one-page rule, not to replace it with a rigid two-page rule.</li>
             </ul>
-        </ResearchArticle>
+        </AnswerArticle>
     );
 }

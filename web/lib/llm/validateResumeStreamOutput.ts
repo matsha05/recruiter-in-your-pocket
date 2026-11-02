@@ -9,6 +9,7 @@ import {
   validateResumeModelPayload,
 } from "../backend/validation";
 import { logError, logInfo, logWarn } from "../observability/logger";
+import { recordLaunchSignal } from "../observability/launchSignals";
 import { runJson } from "./orchestrator";
 import {
   buildResumeRepairMessages,
@@ -78,6 +79,7 @@ export async function validateResumeStreamOutput(input: {
       throw validationError;
     }
 
+    recordLaunchSignal("riyp.report.repair", { result: "started" });
     logWarn({
       msg: "llm.response.repair_started",
       request_id: input.requestId,
@@ -109,6 +111,7 @@ export async function validateResumeStreamOutput(input: {
       const payload = ensureLayoutAndContentFields(
         validateResumeModelPayload(repaired.parsed, input.text, input.validationOptions)
       );
+      recordLaunchSignal("riyp.report.repair", { result: "completed" });
       logInfo({
         msg: "llm.response.repair_completed",
         request_id: input.requestId,
@@ -118,6 +121,7 @@ export async function validateResumeStreamOutput(input: {
       return { payload, replacementRaw: repaired.raw };
     } catch (repairError: any) {
       if (isStableOpenAITransportError(repairError)) throw repairError;
+      recordLaunchSignal("riyp.report.repair", { result: "failed" });
       logError({
         msg: "llm.response.repair_failed",
         request_id: input.requestId,

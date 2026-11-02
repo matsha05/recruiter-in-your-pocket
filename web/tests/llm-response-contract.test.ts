@@ -17,6 +17,7 @@ import {
   isAcceptedAbsenceMarker,
 } from "../lib/llm/grounding";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
+import { reportSentences } from "../lib/llm/report-sentences";
 import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
@@ -214,6 +215,28 @@ for (const instruction of [
   assert.deepEqual(findNonActionableFix(instruction), [], "specific qualitative details are actionable without invented metrics");
 }
 assert.notDeepEqual(findNonActionableFix("Explain your value more clearly."), [], "general encouragement is not a concrete fact request");
+// Live eval eval_1793560808592: short Critical Miss headings were dropped, so a weaker fix
+// became the Critical Miss. Moving a named result and defining a measure are concrete edits.
+for (const instruction of [
+  "Move the Kubernetes repair-time result above the infrastructure bullets.",
+  "Move the small-group expansion closer to the top.",
+  "Define how you assessed product launch success rates.",
+  "Move the flagship redesign's retention result above strategy responsibilities.",
+]) {
+  assert.deepEqual(findNonActionableFix(instruction), [], `a short heading that names its subject is actionable: ${instruction}`);
+}
+// eval_1793570024387: a sourcing playbook is recruiting work, and a self-paced module is learning.
+const recruiterSource = "- Built a sourcing playbook for data engineering searches";
+assert.deepEqual(findFixEvidenceMismatch("Add the recruiting result of your data engineering playbook.", recruiterSource, recruiterSource), []);
+const teacherSource = "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas";
+assert.deepEqual(findFixEvidenceMismatch("Add a learning result from the self-paced functions module.", teacherSource, teacherSource), []);
+const procurementSource = "- Built a vendor playbook for procurement";
+assert.deepEqual(findFixEvidenceMismatch("Add the recruiting result of your playbook.", procurementSource, procurementSource), ["cited evidence does not support the recruiting fix"]);
+const salesSource = "- Closed $1.1M in new annual recurring revenue";
+assert.deepEqual(findFixEvidenceMismatch("Add the training program you ran for new hires.", salesSource, salesSource), ["cited evidence does not support the training fix"]);
+for (const instruction of ["Move it higher.", "Define the work better.", "Lead with your strengths."]) {
+  assert.notDeepEqual(findNonActionableFix(instruction), [], `a move or define without a subject is still vague: ${instruction}`);
+}
 const qualitativeInstruction = "In the customer-complaint bullet, name the problems you handled and the decisions you could make without a manager.";
 const qualitativeSource = "- Resolved customer complaints and processed returns.";
 const qualitativeReport = canonicalizeResumeReportEvidence({ top_fixes: [{
@@ -595,3 +618,20 @@ assert.deepEqual(findMechanicalCopyIssues({ summary: "The roles include $180M in
   "a shared unit on two different measurements is not repetitive prose");
 assert.ok(findMechanicalCopyIssues({ summary: "The resume needs more detail, because it needs more detail about the work." }).length > 0,
   "genuine repeated prose must still be detected");
+
+// Sentence counts: decimals and initialisms don't end a sentence (eval_1793578314147, civil engineer).
+assert.deepEqual(reportSentences("Your Ohio P.E. license helps. How large are the projects?"),
+  ["Your Ohio P.E. license helps.", "How large are the projects?"], "an initialism is not a sentence end");
+assert.equal(reportSentences("Stockouts fell from 6.5% to 3.8%, saving $3.2M a year. Forecast accuracy is missing.").length, 2,
+  "a decimal point is not a sentence end");
+assert.equal(reportSentences("Built it in Node.js for three teams. Then it shipped.").length, 2, "a dotted name is not a sentence end");
+assert.equal(reportSentences("One. Two! Three? Four.").length, 4, "real sentence ends still split");
+const civilSummary = "Roadway and stormwater design connect your current Project Engineer work for state and county clients. The 2.4-mile corridor reconstruction gives a reader a concrete sense of the stormwater assignment. Your Ohio P.E. license and progression from Engineer in Training help place you at the project engineer level. How large are the roadway and intersection projects you lead? Without that context, a reviewer has less to go on.";
+const civilCanonical = canonicalizeResumeReportEvidence({ summary: civilSummary }, "Lead design for roadway widening and intersection projects for ODOT and Franklin County");
+assert.equal((civilCanonical.report as any).summary, civilSummary, "a five-sentence summary with an initialism is not cut");
+assert.ok(!civilCanonical.changes.includes("summary.capped_sentences"));
+const sixSentences = "One role leads. Two results stand out. Three teams are named. Four tools appear. Five years are dated. Six is too many.";
+const sixCanonical = canonicalizeResumeReportEvidence({ summary: sixSentences }, "Lead design for roadway projects");
+assert.equal(reportSentences((sixCanonical.report as any).summary).length, 5, "a real sixth sentence is still capped");
+assert.ok(sixCanonical.changes.includes("summary.capped_sentences"));
+console.log("report sentence tests passed");

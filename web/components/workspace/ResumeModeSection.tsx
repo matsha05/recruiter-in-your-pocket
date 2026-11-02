@@ -5,6 +5,7 @@ import ReportPanel from "@/components/workspace/ReportPanel";
 import AnalysisScanning from "@/components/workspace/AnalysisScanning";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { hasEffectiveJobDescriptionValue } from "@/lib/security/effectiveJobDescription";
+import type { GenerationStage } from "@/lib/generation-stage";
 
 type ResumeModeSectionProps = {
   report: any | null;
@@ -34,6 +35,7 @@ type ResumeModeSectionProps = {
   highlightSection?: string | null;
   hasPaidAccess: boolean;
   analysisStartedAt: number | null;
+  analysisStage?: GenerationStage | null;
   onCancelAnalysis: () => void;
   onRetryAnalysis: () => void;
   comparisonBaseline?: ReportData | null;
@@ -68,6 +70,7 @@ export default function ResumeModeSection({
   highlightSection,
   hasPaidAccess,
   analysisStartedAt,
+  analysisStage = null,
   onCancelAnalysis,
   onRetryAnalysis,
   comparisonBaseline = null,
@@ -80,6 +83,7 @@ export default function ResumeModeSection({
           <AnalysisScanning
             mode="resume"
             startedAt={analysisStartedAt}
+            stage={analysisStage}
             onCancel={onCancelAnalysis}
             onRetry={onRetryAnalysis}
           />

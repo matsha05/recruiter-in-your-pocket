@@ -4,9 +4,15 @@
 .title { margin-top: 0.875rem; color: hsl(var(--text-strong)); scroll-margin-top: 5rem; font: var(--type-title); letter-spacing: var(--tracking-title); }
 .title:focus { outline: none; }
 .sheet { margin-top: 1.75rem; overflow: hidden; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
-.sheetHeader { display: grid; min-height: 4rem; align-items: center; gap: 0.5rem; border-bottom: 1px solid hsl(var(--line)); padding: 1rem 1.25rem; }
+.sheetHeader { display: flex; min-height: 4rem; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1rem; border-bottom: 1px solid hsl(var(--line)); padding: 1rem 1.25rem; }
+/* Proportional digits (see globals.css, Numbers); right-aligned so the word "elapsed" stays put as the clock ticks. */
+.elapsed { margin-left: auto; color: hsl(var(--text-strong)); text-align: right; white-space: nowrap; font: var(--type-small); font-weight: var(--weight-control); }
 .reviewRow { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); align-items: center; gap: 0.5rem 1rem; border-bottom: 1px solid hsl(var(--line)); padding-block: 1.25rem; }
 .reviewRow:last-child { border-bottom: 0; }
+.stepMarker { display: flex; width: 2.25rem; height: 2.25rem; align-items: center; justify-content: center; border: 1px solid hsl(var(--line)); border-radius: 999px; background: hsl(var(--surface-proof)); color: hsl(var(--text-muted)); font: var(--type-small); font-weight: var(--weight-control); transition: background-color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease), color var(--duration-normal) var(--ease); }
+.stepMarkerCurrent { border-color: hsl(var(--pen)); background: hsl(var(--surface-raised)); color: hsl(var(--pen)); }
+.stepMarkerDone { border-color: hsl(var(--pen-tint)); background: hsl(var(--pen-tint)); color: hsl(var(--pen)); }
 .stepDetail { grid-column: 2; color: hsl(var(--text-muted)); font: var(--type-body); }
-@media (min-width: 640px) { .root { padding: 2.75rem 1.5rem 4rem; } .sheet { border-radius: 1.5rem; } .sheetHeader { grid-template-columns: 8rem 1fr auto; padding-inline: 2rem; } }
+@media (min-width: 640px) { .root { padding: 2.75rem 1.5rem 4rem; } .sheet { border-radius: 1.5rem; } .sheetHeader { padding-inline: 2rem; } }
 @media (min-width: 768px) { .reviewRow { grid-template-columns: 2.25rem 13rem minmax(0, 1fr); min-height: 5rem; } .stepDetail { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .stepMarker { transition: none; } }

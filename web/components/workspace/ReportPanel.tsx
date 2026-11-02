@@ -46,6 +46,8 @@ interface ReportPanelProps {
     onRetryAnalysis?: () => void;
     comparisonBaseline?: ReportData | null;
     onStartRevision?: () => void;
+    /** A report opened from My reports. Saved reports never keep the resume. */
+    isSavedReport?: boolean;
 }
 
 export default function ReportPanel({
@@ -72,6 +74,7 @@ export default function ReportPanel({
     onRetryAnalysis,
     comparisonBaseline = null,
     onStartRevision,
+    isSavedReport = false,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -150,7 +153,8 @@ export default function ReportPanel({
     };
 
     return (
-        <div className="group relative flex h-full flex-col overflow-y-auto bg-mineral">
+        // A report is one document that scrolls with the page; loading and empty states keep the panel.
+        <div className={showReport && !isLoading ? "group relative flex flex-col bg-mineral" : "group relative flex h-full flex-col overflow-y-auto bg-mineral"}>
 
             {/* Loading preserves the report-generation controls. */}
             {isLoading && (
@@ -241,10 +245,10 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-3 sm:gap-x-4 sm:pb-4">
+                            <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-2 sm:min-h-12 sm:gap-x-4 sm:pb-4">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-xs font-semibold text-muted-foreground">
-                                        {isSample ? "Example report" : "Your resume report"}
+                                        {isSample ? "Sample report · Jordan is fictional" : "Your resume report"}
                                     </span>
                                     {shareEnabled && shareMode && <span className="text-xs font-semibold text-premium">Share view</span>}
                                 </div>
@@ -341,6 +345,7 @@ export default function ReportPanel({
                                 onStartRevision={onStartRevision}
                                 onStartReport={onNewReport}
                                 resumeText={resumeText}
+                                resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>

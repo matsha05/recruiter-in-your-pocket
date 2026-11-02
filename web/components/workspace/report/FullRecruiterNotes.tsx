@@ -67,7 +67,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
     const notes = [
       { label: "What works", text: review.working },
       { label: "Still unclear", text: review.missing },
-      { label: "Suggested change", text: review.fix },
+      { label: "Fix", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
     return [{ name, notes }];

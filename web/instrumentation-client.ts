@@ -4,10 +4,13 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { launchFlags } from "@/lib/launch/flags";
+import { getAnalyticsConsent } from "@/lib/analyticsConsent";
+import { browserTraceSampleRate } from "@/lib/observability/browserTracesSampler";
 import {
   areSentryLogsEnabled,
   getSentryDsn,
   getSentryEnvironment,
+  getSentryKeyRouteTracesSampleRate,
   getSentryRelease,
   getSentryTracesSampleRate,
   isSentryEnabled,
@@ -15,16 +18,35 @@ import {
   scrubSentryEvent,
 } from "@/lib/observability/sentryConfig";
 
+const baseTracesSampleRate = getSentryTracesSampleRate();
+const keyRouteTracesSampleRate = getSentryKeyRouteTracesSampleRate();
+
 Sentry.init({
   dsn: getSentryDsn(),
   enabled: isSentryEnabled(),
   environment: getSentryEnvironment(),
   release: getSentryRelease(),
 
-  // Add optional integrations for additional features
-  integrations: isSentryEnabled() && launchFlags.errorReplay ? [Sentry.replayIntegration()] : [],
+  // next.config.mjs inlines RIYP_BUNDLE_ERROR_REPLAY at build time. It must stay
+  // in this condition, not in a variable, so webpack sees the constant and drops
+  // the Replay recorder from every page when the replay flag is unset. The runtime
+  // flag still decides whether a build that includes Replay records anything.
+  integrations: process.env.RIYP_BUNDLE_ERROR_REPLAY === "1" && isSentryEnabled() && launchFlags.errorReplay
+    ? [Sentry.replayIntegration()]
+    : [],
 
-  tracesSampleRate: getSentryTracesSampleRate(),
+  tracesSampler: ({ name, attributes, parentSampled }) => {
+    const op = attributes?.["sentry.op"];
+    return browserTraceSampleRate({
+      op: typeof op === "string" ? op : undefined,
+      name,
+      currentPathname: window.location.pathname,
+      consent: getAnalyticsConsent(),
+      baseRate: baseTracesSampleRate,
+      keyRouteRate: keyRouteTracesSampleRate,
+      parentSampled,
+    });
+  },
   enableLogs: areSentryLogsEnabled(),
 
   // Define how likely Replay events are sampled.
