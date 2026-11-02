@@ -199,7 +199,7 @@ From `hello@recruiterinyourpocket.com`, display name "Recruiter in Your Pocket".
 >
 > It's built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. It doesn't write the resume for anyone, and it doesn't promise interviews.
 >
-> If you'd like to try it on a few resumes before deciding anything, reply and we'll send a code for a free Job Search Pass (five reports). If it turns out to be useful, we'll send a link you can share with clients.
+> The quickest way to judge it is to run a resume through it yourself; the first report is free. If it turns out to be useful, reply and we'll send a link you can share with clients.
 >
 > Either way, thanks for the work you put out there.
 >

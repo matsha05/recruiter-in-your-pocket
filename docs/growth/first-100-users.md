@@ -18,7 +18,7 @@ Directories and listings (4), brand social accounts (5), and a paid search test 
 
 **Nothing goes out before the site is anonymous in production.** Today the founder's name and three employers are on the homepage and in several other places (listed under "Before the first post"). Every post and email in this plan drives strangers to those pages.
 
-**Decisions for Matt** are at the end. The one that blocks everything is the anonymity gate; the rest can wait for week 2 data.
+**Matt's decisions** (November 2) are at the end. The one that blocks everything is the anonymity gate: nothing goes out until the anonymized site ships in wave 3.
 
 ## Where we start
 
@@ -118,8 +118,8 @@ Matt's total for channels 1 to 5 is about 5 hours a week after a setup week of a
 
 **The offer.**
 
-- Their clients' first report is free already. That's the whole pitch for most.
-- A free Job Search Pass so the partner can try it on a few resumes before deciding. Checkout already accepts Stripe promotion codes (`allow_promotion_codes` in `app/api/checkout/route.ts`), and fulfillment treats `no_payment_required` as settled, so a 100%-off code should work without code changes. Matt creates the code; test it in Stripe test mode first. The cost is the model cost of five reports.
+- Their clients' first report is free already. For now that's the whole offer.
+- No free passes for partners yet (Matt, November 2). If a partner asks for more, for example to run several client resumes before recommending it, bring the request to Matt. The likely route is a 100%-off Stripe promotion code: checkout already accepts codes (`allow_promotion_codes` in `app/api/checkout/route.ts`) and fulfillment treats `no_payment_required` as settled, so it should need no code changes, after a check in Stripe test mode.
 - A tagged link so we can see which partner's clients finish reports. Don't promise partners a report on their clients: the count only covers consenting visitors.
 - No client discount at first. That's a pricing decision; revisit if a partner asks for it.
 
@@ -262,10 +262,10 @@ These are decision rules for the first 100 finished reports, judged on counts an
 - If "who's behind this?" costs us partners or community trust repeatedly, anonymity has a price. Answer it with more visible evidence (the sample report, the methodology, the sources), not a name.
 - If people describe the score as an ATS score or a prediction in replies and feedback, the decision memo's rule applies: make the number quieter.
 
-## Decisions for Matt
+## Decisions (Matt, November 2)
 
-1. **Hold every post and email until the anonymized site is live in production**, and the email, Stripe, and domain checks in "Before the first post" pass. *Recommendation: yes.* Each channel sends strangers to pages that name you today.
-2. **The LinkedIn Page needs your personal profile as its hidden admin.** *Recommendation: create it, with no link from your profile and no invitations.* Admins aren't public, and the Page is what partners will look for. The alternative is to skip LinkedIn and lean on Threads and X.
-3. **Partner trial passes through a 100%-off Stripe promotion code**, one pass per interested partner, model cost only. *Recommendation: yes, after a test-mode check.*
-4. **Paid search test, $150 cap.** *Recommendation: not now.* Revisit after week 2 if organic channels produce fewer than 10 finished reports in total, and only under a company name, since Google's ads show the verified legal name.
-5. **The privacy wording change in this branch** ("which kind of site or link a visit came from", privacy date November 2). *Recommendation: keep.* It describes the new channel labels plainly; reverting it should go with reverting the tracking.
+1. **Hold every post and email until the anonymized site is live in production**, and the email, Stripe, and domain checks in "Before the first post" pass. *Decided: yes.* The anonymity change ships with wave 3.
+2. **The LinkedIn Page, with Matt's personal profile as its hidden admin.** *Decided: create it,* with no link from his profile and no invitations. The coordinating session is setting it up with the tagline and About text from brand-drafts.md.
+3. **Free passes for partners.** *Decided: not yet.* Partners get the free report like everyone else; revisit when a partner asks for more.
+4. **Paid search test, $150 cap.** *Decided: not now.* Revisit after week 2 if organic channels produce fewer than 10 finished reports in total, and only under a company name, since Google's ads show the verified legal name.
+5. **The privacy wording change in this branch** ("which kind of site or link a visit came from", privacy date November 2). *Decided: keep.*
