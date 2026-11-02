@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ResearchArticle, Citation } from "@/components/research/ResearchArticle";
 import { FirstReadModelDiagram } from "@/components/research/diagrams/FirstReadModelDiagram";
@@ -111,6 +112,22 @@ export default function MethodologyPage() {
                     <dd className="text-sm text-muted-foreground">The four things the score weighs, how the Critical Miss is chosen, and how findings are written. Matt designed the criteria; the studies did not test our score.</dd>
                 </div>
             </dl>
+
+            <h2 id="how-we-write-research" className="research-h2 riyp-jump-target">How we write the research</h2>
+            <p className="research-body mb-6">
+                The research library is where the report&apos;s advice comes from, so it has to survive a skeptic. The authority is the studies, not us: every one is linked, so you can check our reading against the source.
+            </p>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>Every page opens with the question you asked and a straight answer, with the study behind it linked right there.</li>
+                <li>We link the full study when it&apos;s public. If we could read only the abstract, the page says so.</li>
+                <li>Each finding travels with its limits: who was studied, where, how many, and what the study can&apos;t tell you.</li>
+                <li>When something is our advice, or a recruiter&apos;s experience rather than a finding, we label it, usually &ldquo;Our take&rdquo; or &ldquo;Our advice.&rdquo;</li>
+                <li>We&apos;d rather print a small, honest number than a big, round one. If hires went from 3.1% to 3.3%, that&apos;s what you&apos;ll read.</li>
+                <li>Each page shows when it last changed. That date moves for a corrected claim or a new section, never for a redesign.</li>
+            </ul>
+            <p className="research-body mb-6">
+                <Link href="/research">Read the research</Link>, starting with the question that&apos;s been keeping you up.
+            </p>
 
             <h2 className="research-h2">How to use the score</h2>
             <p className="research-body mb-6">

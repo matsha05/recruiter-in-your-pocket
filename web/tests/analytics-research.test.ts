@@ -22,6 +22,17 @@ assert.equal(ctaClick("/pricing", "header_report", "/workspace"), null, "other p
 assert.equal(ctaClick("/research/ats-myths", "research_bridge", "/pricing"), null, "only report and sample destinations count");
 assert.equal(ctaClick("/research/ats-myths", undefined, "/workspace"), null);
 
+// From a report to the research behind it. The report's own path (and any id in it) is never sent.
+assert.deepEqual(ctaClick("/workspace", "report_research_impact", "/research/quantifying-impact"), { cta: "report_research_impact", destination: "/research/quantifying-impact" });
+assert.deepEqual(ctaClick("/reports/0b9f3c1e-0000-4000-8000-000000000000", "report_research_story", "/research/who-you-are"), { cta: "report_research_story", destination: "/research/who-you-are" });
+assert.deepEqual(ctaClick("/sample-report", "report_methodology", "/methodology"), { cta: "report_methodology", destination: "/methodology" });
+assert.equal(ctaClick("/workspace", "report_research_impact", "/pricing"), null, "only research and methodology destinations count from a report");
+assert.equal(ctaClick("/pricing", "report_research_impact", "/research/quantifying-impact"), null, "only report pages send research clicks");
+assert.deepEqual(
+  sanitizeAnalyticsEvent("landing_cta_clicked", ctaClick("/workspace", "report_research_clarity", "/research/how-recruiters-read") ?? {}),
+  { name: "landing_cta_clicked", properties: { cta: "report_research_clarity", destination: "/research/how-recruiters-read" } },
+);
+
 // The policy keeps the slug and drops anything else.
 assert.deepEqual(
   sanitizeAnalyticsEvent("research_article_viewed", { slug: "how-recruiters-read", url: "https://www.recruiterinyourpocket.com/research/how-recruiters-read" }),
@@ -66,11 +77,17 @@ async function consentGate() {
     consent.setAnalyticsConsent("accepted");
     Analytics.researchArticleViewed("how-recruiters-read");
     Analytics.track("landing_cta_clicked", ctaClick("/research/how-recruiters-read", "research_bridge", "/workspace") ?? {});
+    Analytics.track("landing_cta_clicked", ctaClick("/workspace", "report_research_story", "/research/who-you-are") ?? {});
     await settle();
     assert.deepEqual(tracked, [
       ["research_article_viewed", { slug: "how-recruiters-read" }],
       ["landing_cta_clicked", { cta: "research_bridge", destination: "/workspace" }],
+      ["landing_cta_clicked", { cta: "report_research_story", destination: "/research/who-you-are" }],
     ]);
+    consent.setAnalyticsConsent("declined");
+    Analytics.track("landing_cta_clicked", ctaClick("/workspace", "report_research_impact", "/research/quantifying-impact") ?? {});
+    await settle();
+    assert.equal(tracked.length, 3, "report research clicks stop when the visitor declines");
   } finally {
     unsubscribe();
     loader._load = originalLoad;
@@ -78,5 +95,5 @@ async function consentGate() {
 }
 
 consentGate()
-  .then(() => console.log("PASS: research article views and report clicks are allowlisted and wait for consent"))
+  .then(() => console.log("PASS: research views, report clicks, and report-to-research clicks are allowlisted and wait for consent"))
   .catch((error) => { console.error(error); process.exitCode = 1; });
