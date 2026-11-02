@@ -110,6 +110,8 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
     const available = new Set([
       ...Array.from(sourceTokens).flatMap(token => [token, ...entityIdentityTokens(token)]),
       ...sourceFacts.flatMap((sourceFact) => entityIdentityTokens(sourceFact.display)),
+      // "P.E." splits into single letters as source tokens, so read the source's initialisms whole.
+      ...(sourceText.match(/\b(?:\p{L}\.){2,}/gu) || []).flatMap(entityIdentityTokens),
     ]);
     const required = entityIdentityTokens(fact.display);
     return required.length > 0 && required.every((token) => available.has(token));

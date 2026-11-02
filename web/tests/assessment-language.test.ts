@@ -186,3 +186,10 @@ for (const [report, source] of [
   [{ section_review: { Education: { working: 'The degree, subject, and honors are listed clearly.' } } }, 'EDUCATION\nB.A., Communication, Ohio University, 2018'],
 ] as Array<[any, string]>) assert.ok(auditReportNarrative(report, source).length > 0, JSON.stringify(report));
 console.log("judge-run false rejection tests passed");
+
+// Initialisms in the source are read whole (eval_1793578314147, civil engineer).
+const engineerSource = "Megan O'Brien, P.E.\nProject Engineer\nLead design for roadway widening and intersection projects for ODOT and Franklin County\nLICENSE\nProfessional Engineer, Ohio, 2022";
+assert.equal(fromPath({ summary: 'Your Ohio P.E. license helps place you at the project engineer level.' }, engineerSource).length, 0, "a P.E. in the source supports Ohio P.E.");
+assert.ok(fromPath({ summary: 'Your Texas P.E. license helps place you at the project engineer level.' }, engineerSource).length > 0, "a state the source doesn't name is still unsupported");
+assert.ok(fromPath({ summary: 'Your Ohio P.E. license helps place you at the project engineer level.' }, "Project Engineer\nLead design for roadway projects in Ohio").length > 0, "a P.E. the source doesn't state is still unsupported");
+console.log("initialism tests passed");

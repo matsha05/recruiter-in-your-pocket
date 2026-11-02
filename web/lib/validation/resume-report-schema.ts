@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { getScoreLabel } from "../score-utils";
+import { reportSentences } from "../llm/report-sentences";
 
 const RewriteSchema = z.object({
   label: z.string().min(1),
@@ -67,7 +68,7 @@ export const JobKeywordsSchema = z.object({
 });
 
 function sentenceCount(value: string) {
-  return value.split(/[.!?]+(?:\s+|$)/).filter(part => part.trim().length > 0).length;
+  return reportSentences(value).length;
 }
 
 function wordCount(value: string) {

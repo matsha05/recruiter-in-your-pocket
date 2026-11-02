@@ -1,4 +1,5 @@
 import { namesConcreteEditDetail } from "../llm/grounding";
+import { reportSentences } from "../llm/report-sentences";
 /**
  * PromptOps Eval Harness - Validation Checks
  */
@@ -83,7 +84,7 @@ function checkSummaryStructure(summary: string): CheckResult {
     // Check for: role-level signal + strength + gap
     // This is heuristic: look for sentence count and key phrases
 
-    const sentences = summary.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const sentences = reportSentences(summary);
 
     if (sentences.length < 3 || sentences.length > 5) {
         return {

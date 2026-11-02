@@ -17,6 +17,7 @@ import {
   isAcceptedAbsenceMarker,
 } from "../lib/llm/grounding";
 import { canonicalizeResumeReportEvidence } from "../lib/llm/evidence-canonicalizer";
+import { reportSentences } from "../lib/llm/report-sentences";
 import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
@@ -617,3 +618,20 @@ assert.deepEqual(findMechanicalCopyIssues({ summary: "The roles include $180M in
   "a shared unit on two different measurements is not repetitive prose");
 assert.ok(findMechanicalCopyIssues({ summary: "The resume needs more detail, because it needs more detail about the work." }).length > 0,
   "genuine repeated prose must still be detected");
+
+// Sentence counts: decimals and initialisms don't end a sentence (eval_1793578314147, civil engineer).
+assert.deepEqual(reportSentences("Your Ohio P.E. license helps. How large are the projects?"),
+  ["Your Ohio P.E. license helps.", "How large are the projects?"], "an initialism is not a sentence end");
+assert.equal(reportSentences("Stockouts fell from 6.5% to 3.8%, saving $3.2M a year. Forecast accuracy is missing.").length, 2,
+  "a decimal point is not a sentence end");
+assert.equal(reportSentences("Built it in Node.js for three teams. Then it shipped.").length, 2, "a dotted name is not a sentence end");
+assert.equal(reportSentences("One. Two! Three? Four.").length, 4, "real sentence ends still split");
+const civilSummary = "Roadway and stormwater design connect your current Project Engineer work for state and county clients. The 2.4-mile corridor reconstruction gives a reader a concrete sense of the stormwater assignment. Your Ohio P.E. license and progression from Engineer in Training help place you at the project engineer level. How large are the roadway and intersection projects you lead? Without that context, a reviewer has less to go on.";
+const civilCanonical = canonicalizeResumeReportEvidence({ summary: civilSummary }, "Lead design for roadway widening and intersection projects for ODOT and Franklin County");
+assert.equal((civilCanonical.report as any).summary, civilSummary, "a five-sentence summary with an initialism is not cut");
+assert.ok(!civilCanonical.changes.includes("summary.capped_sentences"));
+const sixSentences = "One role leads. Two results stand out. Three teams are named. Four tools appear. Five years are dated. Six is too many.";
+const sixCanonical = canonicalizeResumeReportEvidence({ summary: sixSentences }, "Lead design for roadway projects");
+assert.equal(reportSentences((sixCanonical.report as any).summary).length, 5, "a real sixth sentence is still capped");
+assert.ok(sixCanonical.changes.includes("summary.capped_sentences"));
+console.log("report sentence tests passed");
