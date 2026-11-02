@@ -22,7 +22,7 @@ export type PublicPage = {
 };
 
 export const PUBLIC_PAGES: readonly PublicPage[] = [
-  { path: "/", updated: "2026-10-31" },
+  { path: "/", updated: "2026-11-02" },
   { path: "/sample-report", updated: "2026-11-01" },
   { path: "/pricing", updated: "2026-11-01" },
   { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
@@ -37,7 +37,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/research/human-vs-algorithm", updated: "2026-11-01", published: "2025-12-15", card: "human-vs-algorithm" },
   { path: "/research/linkedin-visibility", updated: "2026-11-01", published: "2025-12-28", card: "linkedin-visibility" },
   { path: "/research/quantifying-impact", updated: "2026-11-01", published: "2025-12-17", card: "quantifying-impact" },
-  { path: "/research/referral-advantage", updated: "2026-11-01", published: "2025-12-17", card: "referral-advantage" },
+  { path: "/research/referral-advantage", updated: "2026-11-02", published: "2025-12-17", card: "referral-advantage" },
   { path: "/research/resume-length-myths", updated: "2026-11-01", published: "2025-12-17", card: "resume-length-myths" },
   { path: "/research/salary-history-bans", updated: "2026-11-01", published: "2025-12-15", card: "salary-history-bans" },
   { path: "/research/skills-first-promise-reality", updated: "2026-11-01", published: "2026-01-01", card: "skills-first-promise-reality" },
