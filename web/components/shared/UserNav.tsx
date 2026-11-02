@@ -80,9 +80,9 @@ export function UserNav({
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free account</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
-                                    <span className="text-success lowercase normal-case">• {user.freeUsesLeft === 1 ? 'Free report available' : `${user.freeUsesLeft} free reports available`}</span>
+                                    <span className="text-success">• {user.freeUsesLeft === 1 ? 'Free report available' : `${user.freeUsesLeft} free reports available`}</span>
                                 ) : (
-                                    <span className="text-muted-foreground/60 lowercase normal-case">• Free report used</span>
+                                    <span className="text-muted-foreground/60">• Free report used</span>
                                 )}
                             </div>
                         )}

@@ -199,7 +199,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {userLabels.length === 0 && (
                                     <div className="px-4 py-2 flex items-start gap-2 text-xs text-muted-foreground bg-muted/30 border-b border-border">
                                         <Lightbulb className="size-3.5 mt-0.5 text-brand shrink-0" />
-                                        <span>Label each version, like “Product roles” or “Startups,” and the history shows which one you sent where.</span>
+                                        <span>Label each version, like “Product roles” or “Startups,” to keep them apart in your history.</span>
                                     </div>
                                 )}
 
