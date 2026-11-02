@@ -1,7 +1,7 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
 export const LEGAL_LAST_UPDATED = "September 4, 2026";
-export const PRIVACY_LAST_UPDATED = "November 1, 2026";
+export const PRIVACY_LAST_UPDATED = "November 2, 2026";
 export const TERMS_LAST_UPDATED = "November 2, 2026";
 
 export type DataHandlingRow = {
@@ -85,7 +85,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Product analytics and conversion telemetry",
-    purpose: "Measure product quality, onboarding friction, and billing funnel health when analytics is enabled.",
+    purpose: "Measure product quality, onboarding friction, billing funnel health, and which kind of site or link a visit came from, when analytics is enabled.",
     retention: "Retained under the analytics vendors' configured retention windows.",
     userControl: "Optional analytics starts only after you allow it in Privacy choices. You can withdraw permission there at any time. Do Not Track and Global Privacy Control keep analytics off.",
     processor: "Mixpanel"

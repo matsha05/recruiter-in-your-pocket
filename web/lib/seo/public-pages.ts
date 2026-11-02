@@ -53,8 +53,8 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/resources/tools/comp-calculator", updated: "2026-10-31", published: "2026-01-01", card: "comp-calculator" },
 
   { path: "/trust", updated: "2026-11-01" },
-  { path: "/security", updated: "2026-10-31" },
-  { path: "/privacy", updated: "2026-11-01" },
+  { path: "/security", updated: "2026-11-02" },
+  { path: "/privacy", updated: "2026-11-02" },
   { path: "/terms", updated: "2026-10-31" },
   { path: "/support", updated: "2026-10-31" },
   { path: "/faq", updated: "2026-10-31" },

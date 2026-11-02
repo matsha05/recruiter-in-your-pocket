@@ -2,13 +2,17 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Analytics, watchAnalyticsConsent } from "@/lib/analytics";
+import { Analytics, noteVisitEntry, watchAnalyticsConsent } from "@/lib/analytics";
 import { getAnalyticsConsent, subscribeAnalyticsConsent } from "@/lib/analyticsConsent";
 import { ctaClick, PAGE_SURFACES, researchArticleSlug } from "@/lib/analyticsSurfaces";
 
 export function AnalyticsLifecycle() {
   const pathname = usePathname();
-  useEffect(() => watchAnalyticsConsent(), []);
+  useEffect(() => {
+    // The landing address and referrer are only readable on the first page; later navigation drops them.
+    noteVisitEntry(location.search, document.referrer, location.hostname);
+    return watchAnalyticsConsent();
+  }, []);
   useEffect(() => {
     let recorded = false;
     const record = () => {

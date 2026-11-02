@@ -1,5 +1,5 @@
 /** Explicit-consent, schema-bounded product analytics. */
-import { sanitizeAnalyticsEvent } from "./analyticsPolicy";
+import { sanitizeAnalyticsEvent, visitEntry, type VisitEntry } from "./analyticsPolicy";
 import { getAnalyticsConsent, subscribeAnalyticsConsent } from "./analyticsConsent";
 
 const TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
@@ -10,6 +10,8 @@ let currentUserId: string | null = null;
 let consentRevision = 0;
 let sessionRevision = 0;
 let sdkEnabled = false;
+// Held in memory only, so nothing about the visit is stored before the visitor chooses.
+let currentVisitEntry: VisitEntry | null = null;
 
 function canTrack() {
   return typeof window !== "undefined" && ANALYTICS_ENABLED && Boolean(TOKEN)
@@ -92,7 +94,11 @@ async function withAnalytics(action: (sdk: NonNullable<typeof mixpanelInstance>)
     if (!initPromise) initPromise = initMixpanel().finally(() => { initPromise = null; });
     await initPromise;
     // Never replay actions from before a change of consent.
-    if (canTrack() && revision === consentRevision && (!accountScoped || session === sessionRevision) && mixpanelInstance && sdkEnabled) action(mixpanelInstance);
+    if (canTrack() && revision === consentRevision && (!accountScoped || session === sessionRevision) && mixpanelInstance && sdkEnabled) {
+      // First touch: a later visit from another channel keeps the channel that brought them.
+      if (currentVisitEntry) mixpanelInstance.register_once(currentVisitEntry);
+      action(mixpanelInstance);
+    }
   } catch {
     // Optional telemetry must not interrupt the product or log private values.
   }
@@ -123,6 +129,11 @@ export function identifyUser(userId: string, traits?: {
 
 function incrementUserProperty(prop: string, by = 1) {
   void withAnalytics(sdk => sdk.people.increment(prop, by), true);
+}
+
+/** Note where this visit came from, once per page load. It reaches the vendor only with consent. */
+export function noteVisitEntry(search: string, referrer: string, ownHost: string) {
+  currentVisitEntry ??= visitEntry(search, referrer, ownHost);
 }
 
 export function resetAnalytics() {
