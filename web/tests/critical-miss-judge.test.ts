@@ -1,13 +1,22 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { gradePair, loadBlindPick, loadContrastPairs, unverifiedCitations } from "../lib/evals/judge/calibration";
 import { callJudge, DEFAULT_JUDGE_CONFIG, GENERATOR_MODEL, SpendLedger } from "../lib/evals/judge/client";
-import { combineOrders, pairwiseUserMessage, resolveOrder } from "../lib/evals/judge/modes";
-import { PAIRWISE_SYSTEM_PROMPT } from "../lib/evals/judge/prompt";
-import { gateLines, gateVerdict } from "../lib/evals/judge/gate";
-import type { AbsoluteResult, CriticalMissView, PairwiseRawVerdict, PairwiseResult } from "../lib/evals/judge/types";
-import { isJudgeableFixture, renderView, viewFromReport } from "../lib/evals/judge/view";
+import { combineOrders, countUserMessage, judgeCount, pairwiseUserMessage, resolveOrder } from "../lib/evals/judge/modes";
+import { COUNT_SYSTEM_PROMPT, PAIRWISE_SYSTEM_PROMPT } from "../lib/evals/judge/prompt";
+import { gateLines, gateVerdict, type CountGate } from "../lib/evals/judge/gate";
+import {
+  badResumeOutcome,
+  keyResumeErrors,
+  loadCountCalibration,
+  loadCountKey,
+  strongResumeOutcome,
+  type CountCheckOutcome,
+} from "../lib/evals/judge/count";
+import type { AbsoluteResult, CountKeyProblem, CountRawVerdict, CountResult, CriticalMissView, PairwiseRawVerdict, PairwiseResult } from "../lib/evals/judge/types";
+import { containsQuote, isJudgeableFixture, renderView, shownView, viewFromReport, viewText } from "../lib/evals/judge/view";
 import { judgeEvalReport } from "../lib/evals/judge";
 import type { CalibrationData } from "../lib/evals/types";
 
@@ -87,33 +96,68 @@ function raw(overrides: Partial<PairwiseRawVerdict>): PairwiseRawVerdict {
   assert.equal(both.winner, "tie");
 }
 
-// The prompt-change gate: candidate preferred on at least 80% of resumes, ties against, zero candidate vetoes.
+// The prompt-change gate: candidate preferred on at least 80% of resumes, ties against, zero candidate vetoes,
+// and the count checks on every labeled resume.
+const countOutcome = (fixture_id: string, kind: "bad" | "strong", pass: boolean, extra: Partial<CountCheckOutcome> = {}): CountCheckOutcome =>
+  ({ fixture_id, kind, pass, flagged: 1, ...extra });
+const countOk: CountGate = {
+  key_errors: [],
+  outcomes: [
+    ...Array.from({ length: 8 }, (_, index) => countOutcome(`synth_cc_bad_${index}`, "bad", true)),
+    ...Array.from({ length: 4 }, (_, index) => countOutcome(`synth_cc_strong_${index}`, "strong", true)),
+  ],
+};
 {
   const pair = (winner: "X" | "Y" | "tie") => ({ winner, strength: winner === "tie" ? "none" : "slight" }) as unknown as PairwiseResult;
   const alone = (veto = false) => ({ veto }) as unknown as AbsoluteResult;
   const resumes = (winners: Array<"X" | "Y" | "tie">, vetoAt = -1) =>
     winners.map((winner, index) => ({ fixture_id: `synth_${index}`, pairwise: pair(winner), candidate_absolute: alone(index === vetoAt) }));
 
-  const pass = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "X"]));
+  const pass = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "X"]), { count: countOk });
   assert.equal(pass.pass, true, "8 of 10 meets the bar");
   assert.equal(pass.share, 0.8);
   assert.equal(gateLines(pass)[0], "GATE: PASS");
+  assert.ok(gateLines(pass).includes("- Under-count, labeled bad resumes: 8 of 8 flag at least 2 of 3 labeled problems (bar: all)"));
+  assert.ok(gateLines(pass).includes("- Over-count, labeled strong resumes: 4 of 4 without padding (bar: all)"));
 
-  const ties = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "tie", "tie"]));
+  const ties = gateVerdict(resumes(["Y", "Y", "Y", "Y", "Y", "Y", "Y", "tie", "tie", "tie"]), { count: countOk });
   assert.equal(ties.pass, false, "ties count against the candidate");
   assert.match(ties.reasons[0], /7 of 10/);
 
-  const vetoed = gateVerdict(resumes(Array(10).fill("Y"), 4));
+  const vetoed = gateVerdict(resumes(Array(10).fill("Y"), 4), { count: countOk });
   assert.equal(vetoed.pass, false, "one candidate veto fails the gate");
   assert.deepEqual(vetoed.candidate_vetoes, ["synth_4"]);
 
-  assert.equal(gateVerdict(resumes(Array(7).fill("Y"))).pass, false, "too few resumes to gate");
-  assert.equal(gateVerdict(resumes(Array(10).fill("Y")), { limited: true }).pass, false, "a --limit run is not a gate run");
+  assert.equal(gateVerdict(resumes(Array(7).fill("Y")), { count: countOk }).pass, false, "too few resumes to gate");
+  assert.equal(gateVerdict(resumes(Array(10).fill("Y")), { limited: true, count: countOk }).pass, false, "a --limit run is not a gate run");
 
-  const missing = gateVerdict([...resumes(Array(9).fill("Y")), { fixture_id: "synth_9", problem: "no shown candidate report" }]);
+  const missing = gateVerdict([...resumes(Array(9).fill("Y")), { fixture_id: "synth_9", problem: "no shown candidate report" }], { count: countOk });
   assert.equal(missing.pass, false, "a resume the candidate didn't report on, or the judge didn't finish, fails the gate");
   assert.equal(missing.not_judged.length, 1);
   assert.equal(gateLines(missing)[0], "GATE: FAIL");
+
+  // Count checks: required, and every labeled resume must pass.
+  const all = resumes(Array(10).fill("Y"));
+  const noCount = gateVerdict(all);
+  assert.equal(noCount.pass, false, "a gate run without the count checks fails");
+  assert.ok(noCount.reasons.some((reason) => /count checks can't run/.test(reason)));
+  const keyMissing = gateVerdict(all, { count: { key_errors: ["count-check key not found at x"], outcomes: [] } });
+  assert.equal(keyMissing.pass, false, "no key, no pass");
+  assert.ok(gateLines(keyMissing).includes("- Key: count-check key not found at x"));
+
+  const under = gateVerdict(all, { count: { ...countOk, outcomes: countOk.outcomes.map((outcome, index) => index === 2 ? { ...outcome, pass: false, caught: ["P1"] } : outcome) } });
+  assert.equal(under.pass, false, "one bad resume with fewer than 2 of 3 labeled problems flagged fails the gate");
+  assert.deepEqual(under.count.under_count, ["synth_cc_bad_2"]);
+  assert.match(under.reasons.join(" "), /under-count on 1 bad resume/);
+
+  const over = gateVerdict(all, { count: { ...countOk, outcomes: countOk.outcomes.map((outcome, index) => index === 9 ? { ...outcome, pass: false, padding: [2] } : outcome) } });
+  assert.equal(over.pass, false, "padding on one strong resume fails the gate");
+  assert.deepEqual(over.count.over_count, ["synth_cc_strong_1"]);
+
+  const unjudged = gateVerdict(all, { count: { ...countOk, outcomes: countOk.outcomes.map((outcome, index) => index === 0 ? { ...outcome, pass: false, problem: "no shown candidate report" } : outcome) } });
+  assert.equal(unjudged.pass, false, "a keyed resume missing from the candidate run fails the gate");
+  assert.equal(unjudged.count.under_count.length, 0, "unjudged is reported as unjudged, not as an under-count");
+  assert.ok(gateLines(unjudged).includes("- Not count-checked: synth_cc_bad_0: no shown candidate report"));
 }
 
 // Grading: a clear pick of the rejected side is the failure that must never happen.
@@ -182,6 +226,150 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
   assert.ok(expectedSides.filter((side) => side === "X").length >= 8 && expectedSides.filter((side) => side === "Y").length >= 8, "expected winners are spread across both sides");
 }
 
+// What a reader sees: every flagged Critical Miss by default, or only the first fix of an unflagged report.
+{
+  const flaggedReport = {
+    first_impression: "x",
+    more_critical: true,
+    top_fixes: [{ fix: "a", critical: true }, { fix: "b", critical: true }, { fix: "c", critical: false }],
+  };
+  assert.deepEqual(shownView(flaggedReport)?.misses.map((miss) => miss.fix), ["a", "b"]);
+  assert.equal(shownView(flaggedReport)?.more_than_three, true);
+  assert.deepEqual(shownView({ first_impression: "x", top_fixes: [{ fix: "a" }, { fix: "b" }] })?.misses.map((miss) => miss.fix), ["a"], "an unflagged report shows one Critical Miss, as production renders it");
+  assert.equal(shownView({ first_impression: "x", top_fixes: [{ fix: "a" }, { fix: "b" }] }, 3)?.misses.length, 2, "--max-misses overrides");
+  assert.equal(shownView({ first_impression: "x", top_fixes: [{ fix: "a", critical: true }] })?.more_than_three, undefined);
+  const signal = renderView({ ...viewA, more_than_three: true });
+  assert.match(signal, /more than three Critical Misses/);
+  assert.ok(viewText({ ...viewA, more_than_three: true }).includes("more than three Critical Misses"), "a quote of the signal can back a veto");
+}
+
+// The count-check key: three verbatim, distinct problems per bad resume, none on a strong one, and enough of each.
+{
+  const resume = "Director of Operations\nMar 2021 - Aug 2024\n- Scheduled driver shifts\n- Answered calls";
+  const problem = (id: CountKeyProblem["id"], line: string): CountKeyProblem => ({ id, problem: "p", why: "w", lines: [line] });
+  const good = { fixture_id: "synth_cc_x_bad_1", kind: "bad" as const, problems: [problem("P1", "Mar 2021 - Aug 2024"), problem("P2", "Director of Operations"), problem("P3", "- Scheduled driver shifts")] };
+  assert.deepEqual(keyResumeErrors(good, resume), []);
+  assert.match(keyResumeErrors({ ...good, problems: good.problems.slice(0, 2) }, resume).join(), /exactly three problems/);
+  assert.match(keyResumeErrors({ ...good, problems: [good.problems[0], good.problems[1], problem("P3", "- Invented line")] }, resume).join(), /isn't verbatim/);
+  assert.match(keyResumeErrors({ ...good, problems: [good.problems[0], good.problems[1], problem("P3", "Director of Operations")] }, resume).join(), /shares a line/);
+  assert.match(keyResumeErrors({ fixture_id: "synth_cc_y_strong_1", kind: "strong", problems: [good.problems[0]] }, resume).join(), /no labeled problems/);
+
+  const dir = mkdtempSync(path.join(tmpdir(), "riyp-count-key-"));
+  const fixtures = new Map<string, { id: string; tags: string[]; path: string }>();
+  const resumes = [];
+  for (let index = 0; index < 8; index++) {
+    const id = `synth_cc_role${index}_bad_1`;
+    fixtures.set(id, { id, tags: ["synthetic", "fictional", "count_check"], path: `countcheck/${id}.txt` });
+    resumes.push({ ...good, fixture_id: id });
+  }
+  for (let index = 0; index < 4; index++) {
+    const id = `synth_cc_role${index}_strong_1`;
+    fixtures.set(id, { id, tags: ["synthetic", "fictional", "count_check"], path: `countcheck/${id}.txt` });
+    resumes.push({ fixture_id: id, kind: "strong", problems: [] });
+  }
+  const keyPath = path.join(dir, "key.json");
+  writeFileSync(keyPath, JSON.stringify({ version: 1, resumes }));
+  assert.deepEqual(loadCountKey(keyPath, fixtures, () => resume).errors, []);
+  writeFileSync(keyPath, JSON.stringify({ version: 1, resumes: resumes.slice(1) }));
+  assert.match(loadCountKey(keyPath, fixtures, () => resume).errors.join(), /7 bad resumes; the gate needs at least 8/);
+  fixtures.set("synth_cc_role0_bad_1", { id: "synth_cc_role0_bad_1", tags: ["golden"], path: "smoke/real_person_1.txt" });
+  writeFileSync(keyPath, JSON.stringify({ version: 1, resumes }));
+  assert.match(loadCountKey(keyPath, fixtures, () => resume).errors.join(), /can't be sent to the judge/, "a real person's resume is refused even when keyed");
+  assert.match(loadCountKey(path.join(dir, "absent.json"), fixtures, () => resume).errors.join(), /not found/);
+}
+
+// Count outcomes: a bad resume needs 2 of 3 distinct labeled problems; a strong one, no padding after the first.
+{
+  const answer = (misses: Array<[boolean, CountRawVerdict["misses"][number]["matches"]]>): CountResult => ({
+    case_id: "t", keyed: true, cost_usd: 0, latency_ms: 0,
+    raw: { rationale: "", misses: misses.map(([critical, matches], index) => ({ number: index + 1, addresses: "", critical_on_its_own: critical, matches, note: "" })) },
+  });
+  const viewOf = (count: number, more = false): CriticalMissView => ({ ...viewA, misses: Array(count).fill(viewA.misses[0]), ...(more ? { more_than_three: true } : {}) });
+  assert.equal(badResumeOutcome("b", viewOf(3), answer([[true, "P1"], [true, "P2"], [true, "P3"]])).pass, true);
+  assert.equal(badResumeOutcome("b", viewOf(2), answer([[true, "P3"], [true, "P1"]])).pass, true);
+  const duplicate = badResumeOutcome("b", viewOf(2), answer([[true, "P1"], [true, "P1"]]));
+  assert.equal(duplicate.pass, false, "two Critical Misses on one labeled problem count once");
+  assert.deepEqual(duplicate.caught, ["P1"]);
+  assert.equal(badResumeOutcome("b", viewOf(1), answer([[true, "P1"]])).pass, false, "stopping at one fails");
+  assert.equal(badResumeOutcome("b", viewOf(2), answer([[true, "P1"], [false, "none"]])).pass, false);
+
+  assert.equal(strongResumeOutcome("s", viewOf(1), answer([[false, "none"]])).pass, true, "the first Critical Miss on a strong resume isn't rated");
+  const padded = strongResumeOutcome("s", viewOf(3), answer([[true, "none"], [true, "none"], [false, "none"]]));
+  assert.equal(padded.pass, false);
+  assert.deepEqual(padded.padding, [3]);
+  assert.equal(strongResumeOutcome("s", viewOf(2), answer([[true, "none"], [true, "none"]])).pass, true, "an extra the judge rates critical on its own isn't padding");
+  assert.equal(strongResumeOutcome("s", viewOf(1, true), answer([[true, "none"]])).pass, false, "\"more than three\" on a strong resume is padding");
+}
+
+// The count calibration set: fictional, verbatim, and labeled for every Critical Miss.
+{
+  const sets = loadCountCalibration();
+  assert.ok(sets.filter((resume) => resume.kind === "bad").length >= 2 && sets.filter((resume) => resume.kind === "strong").length >= 2);
+  for (const resume of sets) {
+    if (resume.kind === "bad") assert.deepEqual(keyResumeErrors({ fixture_id: resume.id, kind: "bad", problems: resume.problems }, resume.input.resume_text), [], resume.id);
+    else assert.equal(resume.problems.length, 0);
+    for (const report of resume.reports) {
+      assert.equal(report.expected_critical.length, report.view.misses.length, report.id);
+      if (resume.kind === "bad") assert.equal(report.expected_matches?.length, report.view.misses.length, report.id);
+      for (const line of report.view.misses.flatMap((miss) => miss.resume_lines)) {
+        assert.ok(line === "No skills section present" || containsQuote(resume.input.resume_text, line), `${report.id}: ${line}`);
+      }
+    }
+  }
+  const reports = sets.flatMap((resume) => resume.reports);
+  assert.ok(reports.some((report) => report.expected_pass) && reports.some((report) => !report.expected_pass), "both outcomes are tested");
+}
+
+// The count prompt and message: the labeled problems appear only when given, and nothing about the run leaks.
+{
+  assert.match(COUNT_SYSTEM_PROMPT, /would cost an interview on its own/);
+  assert.match(PAIRWISE_SYSTEM_PROMPT, /not padding just because it matters less than the first/);
+  const labeled: CountKeyProblem[] = [{ id: "P1", problem: "No attainment.", why: "w", lines: ["- Exceeded quota"] }];
+  const keyedMessage = countUserMessage({ id: "t", resume_text: "resume", review_date: "2026-11-01" }, viewA, labeled);
+  assert.match(keyedMessage, /LABELED PROBLEMS/);
+  assert.match(keyedMessage, /P1: No attainment\./);
+  const blindMessage = countUserMessage({ id: "t", resume_text: "resume", review_date: "2026-11-01" }, viewA);
+  assert.ok(!blindMessage.includes("LABELED PROBLEMS"), "a strong resume's call is blind");
+  for (const leak of ["gpt-", "prompt", "sha", "run_id", "eval_", "candidate", "production"]) {
+    assert.ok(!keyedMessage.toLowerCase().includes(leak), `the count message must not mention "${leak}"`);
+  }
+}
+
+async function countCallTests() {
+  const answerWith = (misses: unknown[]) => (async () => ({
+    ok: true,
+    json: async () => ({
+      model: "gpt-6.1-sol",
+      usage: { prompt_tokens: 1000, completion_tokens: 100 },
+      choices: [{ finish_reason: "stop", message: { content: JSON.stringify({ misses, rationale: "r" }) } }],
+    }),
+  })) as unknown as typeof fetch;
+  const input = { id: "t", resume_text: "- Exceeded quota", review_date: "2026-11-01" };
+  const labeled: CountKeyProblem[] = [{ id: "P1", problem: "No attainment.", why: "w", lines: ["- Exceeded quota"] }];
+  const entry = (number: number, matches: string) => ({ number, addresses: "a", critical_on_its_own: true, matches, note: "n" });
+  const keyed = await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P1")]) }, labeled);
+  assert.equal(keyed.keyed, true);
+  assert.equal(keyed.raw.misses[0].matches, "P1");
+  const unlisted = await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P2")]) }, labeled);
+  assert.equal(unlisted.raw.misses[0].matches, "none", "a match to a problem that isn't labeled is dropped");
+  const blind = await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P1")]) });
+  assert.equal(blind.keyed, false);
+  assert.equal(blind.raw.misses[0].matches, "none", "a blind call never matches");
+  // A dropped connection is retried once, like a 5xx.
+  let dropped = 0;
+  const flaky = (async (...args: Parameters<typeof fetch>) => {
+    if (dropped++ === 0) throw new TypeError("fetch failed");
+    return answerWith([entry(1, "P1")])(...args);
+  }) as unknown as typeof fetch;
+  assert.equal((await judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: flaky }, labeled)).raw.misses[0].matches, "P1");
+  assert.equal(dropped, 2);
+  await assert.rejects(
+    judgeCount(input, viewA, { ledger: new SpendLedger(1), fetchImpl: answerWith([entry(1, "P1"), entry(2, "none")]) }),
+    /covers 1,2 Critical Misses; the report has 1/,
+    "an answer that doesn't cover each Critical Miss once, in order, is an error",
+  );
+}
+
 // The judge never runs on the generator's model, and the spend ceiling holds.
 (async () => {
   assert.notEqual(DEFAULT_JUDGE_CONFIG.model, GENERATOR_MODEL);
@@ -240,6 +428,7 @@ assert.equal(gradePair("tie", { winner: "Y", strength: "clear" }), "wrong_clear"
   } finally {
     globalThis.fetch = originalFetch;
   }
+  await countCallTests();
   if (previousKey === undefined) delete process.env.OPENAI_API_KEY;
   else process.env.OPENAI_API_KEY = previousKey;
   console.log("critical-miss-judge tests passed");

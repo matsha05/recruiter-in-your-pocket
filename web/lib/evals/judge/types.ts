@@ -25,6 +25,8 @@ export interface CriticalMissView {
     verdict: string;
     /** One to three Critical Misses, most important first. */
     misses: CriticalMissItem[];
+    /** The report says the resume has more than three Critical Misses and shows the first three. */
+    more_than_three?: boolean;
 }
 
 /** A resume plus the date it is reviewed on, so recency and gaps can be judged. */
@@ -160,4 +162,61 @@ export interface JudgeConfig {
     reasoningEffort: "low" | "medium" | "high";
     seed: number;
     maxCompletionTokens: number;
+}
+
+// ============================================
+// COUNT CHECKS
+// ============================================
+
+/** A labeled problem on a bad resume: one that would cost an interview on its own. */
+export interface CountKeyProblem {
+    id: "P1" | "P2" | "P3";
+    /** The issue in one plain sentence (not the fix). */
+    problem: string;
+    /** The resume line(s) it lives on, verbatim. */
+    lines: string[];
+    /** Why it would cost an interview on its own. */
+    why: string;
+}
+
+/** One keyed resume: "bad" has three labeled problems, "strong" has none. */
+export interface CountKeyResume {
+    fixture_id: string;
+    kind: "bad" | "strong";
+    problems: CountKeyProblem[];
+    note?: string;
+}
+
+export interface CountKey {
+    version: number;
+    written_by?: string;
+    date?: string;
+    resumes: CountKeyResume[];
+}
+
+export const COUNT_MATCH_IDS = ["none", "P1", "P2", "P3"] as const;
+
+/** One call's answer about each Critical Miss in a report, in the report's order. */
+export interface CountRawVerdict {
+    misses: Array<{
+        number: number;
+        /** The problem this Critical Miss asks the person to fix, in a few words. */
+        addresses: string;
+        /** Would this problem cost an interview on its own? */
+        critical_on_its_own: boolean;
+        /** The labeled problem its fix addresses, or "none" (always "none" without a key). */
+        matches: typeof COUNT_MATCH_IDS[number];
+        note: string;
+    }>;
+    rationale: string;
+}
+
+export interface CountResult {
+    case_id: string;
+    /** Whether the labeled problems were shown (bad resumes only). */
+    keyed: boolean;
+    raw: CountRawVerdict;
+    usage?: TokenUsage;
+    cost_usd: number;
+    latency_ms: number;
 }

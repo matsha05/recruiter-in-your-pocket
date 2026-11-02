@@ -1,0 +1,2301 @@
+{
+  "meta": {
+    "title": "Critical Miss judge: count calibration",
+    "timestamp": "2026-11-02T03:34:47.886Z",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "seed": 20261101,
+    "judge_prompt_sha256": "e1860dbf0284d6b762c71ccc62cc1d2108ba9b22eff5b02ff8c3e2d8365c52e3",
+    "calls": 20,
+    "cost_usd": 0.07613919999999999
+  },
+  "judge_prompt_version": "critical-miss-judge-v4",
+  "rows": [
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-a",
+        "note": "All three, in order.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            },
+            {
+              "fix": "Under Director of Operations, add the director-level decisions you were accountable for, such as a process you redesigned or a vendor or hiring decision you made, if you can verify them.",
+              "why": "Every bullet under the director title describes coordinator tasks, so a recruiter will doubt the title or read you as a coordinator.",
+              "resume_lines": [
+                "Director of Operations"
+              ]
+            },
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P1",
+          "P2",
+          "P3"
+        ]
+      },
+      "run": 0,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Unexplained gap after August 2024",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The latest role ends with \"Mar 2021 - Aug 2024\", leaving more than two years unexplained at the review date."
+            },
+            {
+              "number": 2,
+              "addresses": "Director title unsupported by stated responsibilities",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The title \"Director of Operations\" is supported only by task-level bullets such as \"- Helped with month-end inventory counts\", leaving director-level accountability unestablished."
+            },
+            {
+              "number": 3,
+              "addresses": "No visible scale for the latest role's core work",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes the operation's scale or results."
+            }
+          ],
+          "rationale": "All three misses identify distinct, interview-threatening problems: an open employment gap, unsupported director-level seniority, and no scale or results for the latest role. The gap-first ordering is defensible because its fix offers concrete, truthful ways to account for the period; the other fixes request specific, verifiable facts rather than inflated ownership."
+        },
+        "usage": {
+          "prompt_tokens": 2636,
+          "completion_tokens": 391,
+          "total_tokens": 3027,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 459,
+          "reasoning_tokens": 50
+        },
+        "cost_usd": 0.0052809,
+        "latency_ms": 7583
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 3,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unexplained gap after August 2024",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role ends with \"Mar 2021 - Aug 2024\", leaving more than two years unexplained at the review date."
+              },
+              {
+                "number": 2,
+                "addresses": "Director title unsupported by stated responsibilities",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The title \"Director of Operations\" is supported only by task-level bullets such as \"- Helped with month-end inventory counts\", leaving director-level accountability unestablished."
+              },
+              {
+                "number": 3,
+                "addresses": "No visible scale for the latest role's core work",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes the operation's scale or results."
+              }
+            ],
+            "rationale": "All three misses identify distinct, interview-threatening problems: an open employment gap, unsupported director-level seniority, and no scale or results for the latest role. The gap-first ordering is defensible because its fix offers concrete, truthful ways to account for the period; the other fixes request specific, verifiable facts rather than inflated ownership."
+          },
+          "usage": {
+            "prompt_tokens": 2636,
+            "completion_tokens": 391,
+            "total_tokens": 3027,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 459,
+            "reasoning_tokens": 50
+          },
+          "cost_usd": 0.0052809,
+          "latency_ms": 7583
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-a",
+        "note": "All three, in order.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            },
+            {
+              "fix": "Under Director of Operations, add the director-level decisions you were accountable for, such as a process you redesigned or a vendor or hiring decision you made, if you can verify them.",
+              "why": "Every bullet under the director title describes coordinator tasks, so a recruiter will doubt the title or read you as a coordinator.",
+              "resume_lines": [
+                "Director of Operations"
+              ]
+            },
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P1",
+          "P2",
+          "P3"
+        ]
+      },
+      "run": 0,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Unexplained gap since August 2024",
+              "critical_on_its_own": true,
+              "matches": "P1",
+              "note": "The latest role ends at \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation, leaving an open gap of more than two years."
+            },
+            {
+              "number": 2,
+              "addresses": "Director title unsupported by the work described",
+              "critical_on_its_own": true,
+              "matches": "P2",
+              "note": "The title \"Director of Operations\" sits above scheduling, data-entry, customer-call and inventory-support duties rather than evidence of director-level accountability."
+            },
+            {
+              "number": 3,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" provides no driver or delivery volume, and no other line establishes the operation's size."
+            }
+          ],
+          "rationale": "The report identifies three grounded, independently critical problems without padding. Addressing the open gap first is justified because the fix offers concrete ways to document activity or present a break truthfully; the remaining fixes specifically seek verifiable director-level accountability and operational scale."
+        },
+        "usage": {
+          "prompt_tokens": 2756,
+          "completion_tokens": 313,
+          "total_tokens": 3069,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 579,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0048009,
+        "latency_ms": 4919
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unexplained gap since August 2024",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role ends at \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation, leaving an open gap of more than two years."
+              },
+              {
+                "number": 2,
+                "addresses": "Director title unsupported by the work described",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The title \"Director of Operations\" sits above scheduling, data-entry, customer-call and inventory-support duties rather than evidence of director-level accountability."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" provides no driver or delivery volume, and no other line establishes the operation's size."
+              }
+            ],
+            "rationale": "The report identifies three grounded, independently critical problems without padding. Addressing the open gap first is justified because the fix offers concrete ways to document activity or present a break truthfully; the remaining fixes specifically seek verifiable director-level accountability and operational scale."
+          },
+          "usage": {
+            "prompt_tokens": 2756,
+            "completion_tokens": 313,
+            "total_tokens": 3069,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 579,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0048009,
+          "latency_ms": 4919
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-b",
+        "note": "Stops at one.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3"
+        ]
+      },
+      "run": 0,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of the latest role's operations",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies scale or results for the director role."
+            }
+          ],
+          "rationale": "The fix is grounded, specific, and useful, requesting verifiable driver and delivery counts. However, it is not the strongest first fix: the unexplained gap since August 2024 and the director title unsupported by director-level responsibilities carry greater first-read stakes."
+        },
+        "usage": {
+          "prompt_tokens": 2448,
+          "completion_tokens": 217,
+          "total_tokens": 2665,
+          "cached_prompt_tokens": 0,
+          "cache_write_prompt_tokens": 2445,
+          "reasoning_tokens": 51
+        },
+        "cost_usd": 0.0082885,
+        "latency_ms": 5111
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 1,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of the latest role's operations",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies scale or results for the director role."
+              }
+            ],
+            "rationale": "The fix is grounded, specific, and useful, requesting verifiable driver and delivery counts. However, it is not the strongest first fix: the unexplained gap since August 2024 and the director title unsupported by director-level responsibilities carry greater first-read stakes."
+          },
+          "usage": {
+            "prompt_tokens": 2448,
+            "completion_tokens": 217,
+            "total_tokens": 2665,
+            "cached_prompt_tokens": 0,
+            "cache_write_prompt_tokens": 2445,
+            "reasoning_tokens": 51
+          },
+          "cost_usd": 0.0082885,
+          "latency_ms": 5111
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-b",
+        "note": "Stops at one.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3"
+        ]
+      },
+      "run": 0,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of the operation",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+            }
+          ],
+          "rationale": "The fix asks for specific, verifiable facts about the latest role and explains why they matter, but the unsupported director-level scope is the stronger first priority. The report also leaves the open gap and title-to-duties mismatch without Critical Miss fixes, despite both independently threatening an interview."
+        },
+        "usage": {
+          "prompt_tokens": 2568,
+          "completion_tokens": 161,
+          "total_tokens": 2729,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 391,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0028109,
+        "latency_ms": 4457
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 1,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of the operation",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+              }
+            ],
+            "rationale": "The fix asks for specific, verifiable facts about the latest role and explains why they matter, but the unsupported director-level scope is the stronger first priority. The report also leaves the open gap and title-to-duties mismatch without Critical Miss fixes, despite both independently threatening an interview."
+          },
+          "usage": {
+            "prompt_tokens": 2568,
+            "completion_tokens": 161,
+            "total_tokens": 2729,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 391,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0028109,
+          "latency_ms": 4457
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-c",
+        "note": "The title problem worded differently and citing a bullet, then the gap.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "Your Brightwater bullets read as dispatch support work; add what you ran as Director of Operations, such as the people who reported to you or an operating decision you owned, if you can verify it.",
+              "why": "A recruiter screening for an operations leader sees support tasks under a director title and won't know which one is true.",
+              "resume_lines": [
+                "- Entered delivery exceptions into the tracking system"
+              ]
+            },
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P2",
+          "P1"
+        ]
+      },
+      "run": 0,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Director title unsupported by leadership responsibilities",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The Director of Operations bullet \"Entered delivery exceptions into the tracking system\" describes support work, and the other bullets likewise show no leadership responsibility."
+            },
+            {
+              "number": 2,
+              "addresses": "Unexplained employment gap after August 2024",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the period through the review date."
+            }
+          ],
+          "rationale": "Both misses identify independently critical problems and offer grounded, actionable fixes. The first appropriately asks for verifiable leadership responsibilities, while the second provides concrete ways to account truthfully for the open gap; given that helpful gap fix, the gap would be the stronger first priority."
+        },
+        "usage": {
+          "prompt_tokens": 2574,
+          "completion_tokens": 237,
+          "total_tokens": 2811,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 397,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0035859,
+        "latency_ms": 4729
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by leadership responsibilities",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The Director of Operations bullet \"Entered delivery exceptions into the tracking system\" describes support work, and the other bullets likewise show no leadership responsibility."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained employment gap after August 2024",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the period through the review date."
+              }
+            ],
+            "rationale": "Both misses identify independently critical problems and offer grounded, actionable fixes. The first appropriately asks for verifiable leadership responsibilities, while the second provides concrete ways to account truthfully for the open gap; given that helpful gap fix, the gap would be the stronger first priority."
+          },
+          "usage": {
+            "prompt_tokens": 2574,
+            "completion_tokens": 237,
+            "total_tokens": 2811,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 397,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0035859,
+          "latency_ms": 4729
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-c",
+        "note": "The title problem worded differently and citing a bullet, then the gap.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "Your Brightwater bullets read as dispatch support work; add what you ran as Director of Operations, such as the people who reported to you or an operating decision you owned, if you can verify it.",
+              "why": "A recruiter screening for an operations leader sees support tasks under a director title and won't know which one is true.",
+              "resume_lines": [
+                "- Entered delivery exceptions into the tracking system"
+              ]
+            },
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P2",
+          "P1"
+        ]
+      },
+      "run": 0,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Director title unsupported by leadership responsibilities",
+              "critical_on_its_own": true,
+              "matches": "P2",
+              "note": "The title \"Director of Operations\" is supported only by coordinator-level duties, so asking for verifiable management responsibility or an owned operating decision addresses a screening-level mismatch."
+            },
+            {
+              "number": 2,
+              "addresses": "Unexplained gap after August 2024",
+              "critical_on_its_own": true,
+              "matches": "P1",
+              "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation by the November 2026 review date."
+            }
+          ],
+          "rationale": "Both misses identify grounded, independently interview-blocking problems and offer specific, truthful fixes. However, the open-gap fix provides real help and merits first priority, and the report omits the separate interview-blocking absence of operational scale."
+        },
+        "usage": {
+          "prompt_tokens": 2694,
+          "completion_tokens": 237,
+          "total_tokens": 2931,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 517,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0038859,
+        "latency_ms": 4894
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 2,
+        "caught": [
+          "P1",
+          "P2"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by leadership responsibilities",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The title \"Director of Operations\" is supported only by coordinator-level duties, so asking for verifiable management responsibility or an owned operating decision addresses a screening-level mismatch."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after August 2024",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation by the November 2026 review date."
+              }
+            ],
+            "rationale": "Both misses identify grounded, independently interview-blocking problems and offer specific, truthful fixes. However, the open-gap fix provides real help and merits first priority, and the report omits the separate interview-blocking absence of operational scale."
+          },
+          "usage": {
+            "prompt_tokens": 2694,
+            "completion_tokens": 237,
+            "total_tokens": 2931,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 517,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0038859,
+          "latency_ms": 4894
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-d",
+        "note": "One real problem plus an optional Skills section.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "Add a Skills section listing your dispatch and tracking software.",
+              "why": "Software names are easy to scan.",
+              "resume_lines": [
+                "No skills section present"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          "none"
+        ]
+      },
+      "run": 0,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of latest role's operations",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet supplies scale or results for the director role."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing software names in an optional Skills section",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The bullet \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but that omission alone would not justify rejecting this operations resume."
+            }
+          ],
+          "rationale": "The first fix requests concrete, verifiable scale for the latest role, but does not address the more consequential mismatch between the director title and support-level duties. The software request is padding, while the report leaves the open gap since August 2024 and unsupported director-level scope without fixes."
+        },
+        "usage": {
+          "prompt_tokens": 2496,
+          "completion_tokens": 360,
+          "total_tokens": 2856,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 319,
+          "reasoning_tokens": 111
+        },
+        "cost_usd": 0.0046209,
+        "latency_ms": 7907
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of latest role's operations",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet supplies scale or results for the director role."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing software names in an optional Skills section",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but that omission alone would not justify rejecting this operations resume."
+              }
+            ],
+            "rationale": "The first fix requests concrete, verifiable scale for the latest role, but does not address the more consequential mismatch between the director title and support-level duties. The software request is padding, while the report leaves the open gap since August 2024 and unsupported director-level scope without fixes."
+          },
+          "usage": {
+            "prompt_tokens": 2496,
+            "completion_tokens": 360,
+            "total_tokens": 2856,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 319,
+            "reasoning_tokens": 111
+          },
+          "cost_usd": 0.0046209,
+          "latency_ms": 7907
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-d",
+        "note": "One real problem plus an optional Skills section.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "Add a Skills section listing your dispatch and tracking software.",
+              "why": "Software names are easy to scan.",
+              "resume_lines": [
+                "No skills section present"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          "none"
+        ]
+      },
+      "run": 0,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing software names and Skills section",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The line \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but adding software names in an optional Skills section would not independently determine interview eligibility."
+            }
+          ],
+          "rationale": "The first miss offers a concrete, verifiable improvement to the latest role's core work, but the second is padding rather than an independently critical problem. The report leaves the open employment gap and director-title/task mismatch without fixes, despite identifying both in its verdict."
+        },
+        "usage": {
+          "prompt_tokens": 2616,
+          "completion_tokens": 291,
+          "total_tokens": 2907,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 439,
+          "reasoning_tokens": 51
+        },
+        "cost_usd": 0.0042309,
+        "latency_ms": 6112
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing software names and Skills section",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The line \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but adding software names in an optional Skills section would not independently determine interview eligibility."
+              }
+            ],
+            "rationale": "The first miss offers a concrete, verifiable improvement to the latest role's core work, but the second is padding rather than an independently critical problem. The report leaves the open employment gap and director-title/task mismatch without fixes, despite identifying both in its verdict."
+          },
+          "usage": {
+            "prompt_tokens": 2616,
+            "completion_tokens": 291,
+            "total_tokens": 2907,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 439,
+            "reasoning_tokens": 51
+          },
+          "cost_usd": 0.0042309,
+          "latency_ms": 6112
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-e",
+        "note": "The scale problem twice: the second asks for a count on a supporting duty.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "In the customer calls bullet, add how many calls you handled each day.",
+              "why": "A call count shows your workload.",
+              "resume_lines": [
+                "- Answered customer calls about late deliveries"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          null
+        ]
+      },
+      "run": 0,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of the latest role's core operations work",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet establishes the size or results of the director-level work."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing customer-call volume",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The bullet \"- Answered customer calls about late deliveries\" lacks a call count, but quantifying this supporting duty would not independently determine suitability for an operations director interview."
+            }
+          ],
+          "rationale": "The first fix requests concrete, verifiable scale for the latest role, but it is not the strongest first priority given the unexplained gap since August 2024 and the director title unsupported by the listed duties. The second miss is padding, while those independently critical problems are acknowledged in the verdict but left without fixes."
+        },
+        "usage": {
+          "prompt_tokens": 2499,
+          "completion_tokens": 320,
+          "total_tokens": 2819,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 322,
+          "reasoning_tokens": 60
+        },
+        "cost_usd": 0.0042284,
+        "latency_ms": 7545
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of the latest role's core operations work",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet establishes the size or results of the director-level work."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing customer-call volume",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Answered customer calls about late deliveries\" lacks a call count, but quantifying this supporting duty would not independently determine suitability for an operations director interview."
+              }
+            ],
+            "rationale": "The first fix requests concrete, verifiable scale for the latest role, but it is not the strongest first priority given the unexplained gap since August 2024 and the director title unsupported by the listed duties. The second miss is padding, while those independently critical problems are acknowledged in the verdict but left without fixes."
+          },
+          "usage": {
+            "prompt_tokens": 2499,
+            "completion_tokens": 320,
+            "total_tokens": 2819,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 322,
+            "reasoning_tokens": 60
+          },
+          "cost_usd": 0.0042284,
+          "latency_ms": 7545
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-e",
+        "note": "The scale problem twice: the second asks for a count on a supporting duty.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "In the customer calls bullet, add how many calls you handled each day.",
+              "why": "A call count shows your workload.",
+              "resume_lines": [
+                "- Answered customer calls about late deliveries"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          null
+        ]
+      },
+      "run": 0,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes the operation's size."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing customer-call volume",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The bullet \"- Answered customer calls about late deliveries\" lacks a call count, but quantifying this supporting duty would not independently determine an interview for an operations director."
+            }
+          ],
+          "rationale": "The first fix is grounded, specific, and useful for establishing operational scale, but director-level ownership and the unexplained gap are higher-stakes concerns. The second miss is padding under C8; the report mentions the title mismatch and open gap in its verdict but supplies no Critical Miss fixing either."
+        },
+        "usage": {
+          "prompt_tokens": 2619,
+          "completion_tokens": 241,
+          "total_tokens": 2860,
+          "cached_prompt_tokens": 2174,
+          "cache_write_prompt_tokens": 442,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0037384,
+        "latency_ms": 4166
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes the operation's size."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing customer-call volume",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Answered customer calls about late deliveries\" lacks a call count, but quantifying this supporting duty would not independently determine an interview for an operations director."
+              }
+            ],
+            "rationale": "The first fix is grounded, specific, and useful for establishing operational scale, but director-level ownership and the unexplained gap are higher-stakes concerns. The second miss is padding under C8; the report mentions the title mismatch and open gap in its verdict but supplies no Critical Miss fixing either."
+          },
+          "usage": {
+            "prompt_tokens": 2619,
+            "completion_tokens": 241,
+            "total_tokens": 2860,
+            "cached_prompt_tokens": 2174,
+            "cache_write_prompt_tokens": 442,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0037384,
+          "latency_ms": 4166
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-a",
+        "note": "All three, in order.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            },
+            {
+              "fix": "Under Director of Operations, add the director-level decisions you were accountable for, such as a process you redesigned or a vendor or hiring decision you made, if you can verify them.",
+              "why": "Every bullet under the director title describes coordinator tasks, so a recruiter will doubt the title or read you as a coordinator.",
+              "resume_lines": [
+                "Director of Operations"
+              ]
+            },
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P1",
+          "P2",
+          "P3"
+        ]
+      },
+      "run": 1,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Unexplained gap after August 2024",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The latest role ends \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the more than two years before review."
+            },
+            {
+              "number": 2,
+              "addresses": "Director title unsupported by listed responsibilities",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The title \"Director of Operations\" is supported only by scheduling, data entry, customer calls and inventory assistance, not visible director-level accountability."
+            },
+            {
+              "number": 3,
+              "addresses": "Missing scale of the latest role's core operations work",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale or results."
+            }
+          ],
+          "rationale": "The report appropriately prioritizes the open gap and offers practical, truthful ways to explain it. The unsupported director title and complete absence of operational scale are separate screening risks; both additional fixes request concrete, verifiable facts without inflating ownership."
+        },
+        "usage": {
+          "prompt_tokens": 2636,
+          "completion_tokens": 413,
+          "total_tokens": 3049,
+          "cached_prompt_tokens": 2633,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 97
+        },
+        "cost_usd": 0.0043993,
+        "latency_ms": 7856
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 3,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unexplained gap after August 2024",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role ends \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the more than two years before review."
+              },
+              {
+                "number": 2,
+                "addresses": "Director title unsupported by listed responsibilities",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The title \"Director of Operations\" is supported only by scheduling, data entry, customer calls and inventory assistance, not visible director-level accountability."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing scale of the latest role's core operations work",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale or results."
+              }
+            ],
+            "rationale": "The report appropriately prioritizes the open gap and offers practical, truthful ways to explain it. The unsupported director title and complete absence of operational scale are separate screening risks; both additional fixes request concrete, verifiable facts without inflating ownership."
+          },
+          "usage": {
+            "prompt_tokens": 2636,
+            "completion_tokens": 413,
+            "total_tokens": 3049,
+            "cached_prompt_tokens": 2633,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 97
+          },
+          "cost_usd": 0.0043993,
+          "latency_ms": 7856
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-a",
+        "note": "All three, in order.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            },
+            {
+              "fix": "Under Director of Operations, add the director-level decisions you were accountable for, such as a process you redesigned or a vendor or hiring decision you made, if you can verify them.",
+              "why": "Every bullet under the director title describes coordinator tasks, so a recruiter will doubt the title or read you as a coordinator.",
+              "resume_lines": [
+                "Director of Operations"
+              ]
+            },
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P1",
+          "P2",
+          "P3"
+        ]
+      },
+      "run": 1,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Unexplained gap since August 2024",
+              "critical_on_its_own": true,
+              "matches": "P1",
+              "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation listed."
+            },
+            {
+              "number": 2,
+              "addresses": "Director title unsupported by listed responsibilities",
+              "critical_on_its_own": true,
+              "matches": "P2",
+              "note": "The title \"Director of Operations\" is followed by scheduling, data-entry, customer-call and inventory-support duties rather than evidence of director-level accountability."
+            },
+            {
+              "number": 3,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+            }
+          ],
+          "rationale": "The report correctly prioritizes the open employment gap and offers practical, truthful ways to present the period. Its other two misses independently warrant attention for director-level screening, and both fixes request specific, verifiable facts without assuming greater ownership."
+        },
+        "usage": {
+          "prompt_tokens": 2756,
+          "completion_tokens": 298,
+          "total_tokens": 3054,
+          "cached_prompt_tokens": 2753,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0032613,
+        "latency_ms": 4801
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 3,
+        "caught": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Unexplained gap since August 2024",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation listed."
+              },
+              {
+                "number": 2,
+                "addresses": "Director title unsupported by listed responsibilities",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The title \"Director of Operations\" is followed by scheduling, data-entry, customer-call and inventory-support duties rather than evidence of director-level accountability."
+              },
+              {
+                "number": 3,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+              }
+            ],
+            "rationale": "The report correctly prioritizes the open employment gap and offers practical, truthful ways to present the period. Its other two misses independently warrant attention for director-level screening, and both fixes request specific, verifiable facts without assuming greater ownership."
+          },
+          "usage": {
+            "prompt_tokens": 2756,
+            "completion_tokens": 298,
+            "total_tokens": 3054,
+            "cached_prompt_tokens": 2753,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0032613,
+          "latency_ms": 4801
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-b",
+        "note": "Stops at one.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3"
+        ]
+      },
+      "run": 1,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale in the latest role",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives neither driver count nor delivery volume, and no other line establishes the operation's scale."
+            }
+          ],
+          "rationale": "The fix is grounded, specific, and appropriately asks for verifiable facts about the latest role's core work. However, it is not the strongest first priority: the unexplained gap since August 2024 and the director title unsupported by director-level responsibilities are more consequential screening problems that the report recognizes but does not offer fixes for."
+        },
+        "usage": {
+          "prompt_tokens": 2448,
+          "completion_tokens": 229,
+          "total_tokens": 2677,
+          "cached_prompt_tokens": 2445,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 49
+        },
+        "cost_usd": 0.0025405,
+        "latency_ms": 5541
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 1,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale in the latest role",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives neither driver count nor delivery volume, and no other line establishes the operation's scale."
+              }
+            ],
+            "rationale": "The fix is grounded, specific, and appropriately asks for verifiable facts about the latest role's core work. However, it is not the strongest first priority: the unexplained gap since August 2024 and the director title unsupported by director-level responsibilities are more consequential screening problems that the report recognizes but does not offer fixes for."
+          },
+          "usage": {
+            "prompt_tokens": 2448,
+            "completion_tokens": 229,
+            "total_tokens": 2677,
+            "cached_prompt_tokens": 2445,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 49
+          },
+          "cost_usd": 0.0025405,
+          "latency_ms": 5541
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-b",
+        "note": "Stops at one.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3"
+        ]
+      },
+      "run": 1,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of the operation",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "\"- Scheduled driver shifts and updated the dispatch board\" gives no driver, delivery, route or team count, and no other line establishes operational scale."
+            }
+          ],
+          "rationale": "The fix is grounded, specific and appropriately limited to verifiable facts about the latest role's core work. However, the report leaves the unsupported director-level scope and the open gap since August 2024 without fixes; both are independently interview-blocking problems, and adding volume alone would not establish director-level responsibility."
+        },
+        "usage": {
+          "prompt_tokens": 2568,
+          "completion_tokens": 167,
+          "total_tokens": 2735,
+          "cached_prompt_tokens": 2565,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0019325,
+        "latency_ms": 3878
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 1,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of the operation",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "\"- Scheduled driver shifts and updated the dispatch board\" gives no driver, delivery, route or team count, and no other line establishes operational scale."
+              }
+            ],
+            "rationale": "The fix is grounded, specific and appropriately limited to verifiable facts about the latest role's core work. However, the report leaves the unsupported director-level scope and the open gap since August 2024 without fixes; both are independently interview-blocking problems, and adding volume alone would not establish director-level responsibility."
+          },
+          "usage": {
+            "prompt_tokens": 2568,
+            "completion_tokens": 167,
+            "total_tokens": 2735,
+            "cached_prompt_tokens": 2565,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0019325,
+          "latency_ms": 3878
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-c",
+        "note": "The title problem worded differently and citing a bullet, then the gap.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "Your Brightwater bullets read as dispatch support work; add what you ran as Director of Operations, such as the people who reported to you or an operating decision you owned, if you can verify it.",
+              "why": "A recruiter screening for an operations leader sees support tasks under a director title and won't know which one is true.",
+              "resume_lines": [
+                "- Entered delivery exceptions into the tracking system"
+              ]
+            },
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P2",
+          "P1"
+        ]
+      },
+      "run": 1,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Director title unsupported by leadership responsibilities",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The Director of Operations bullet \"Entered delivery exceptions into the tracking system\" describes support work, and no other bullet establishes director-level authority."
+            },
+            {
+              "number": 2,
+              "addresses": "Unexplained employment gap since August 2024",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the period through the review date."
+            }
+          ],
+          "rationale": "The report identifies two independently critical problems and reasonably prioritizes the mismatch between the director title and the work shown. Both fixes are specific and grounded: the first requests verifiable leadership responsibilities without inflating ownership, and the second provides concrete, truthful ways to account for the open gap."
+        },
+        "usage": {
+          "prompt_tokens": 2574,
+          "completion_tokens": 239,
+          "total_tokens": 2813,
+          "cached_prompt_tokens": 2571,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0026531,
+        "latency_ms": 4269
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by leadership responsibilities",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The Director of Operations bullet \"Entered delivery exceptions into the tracking system\" describes support work, and no other bullet establishes director-level authority."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained employment gap since August 2024",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The latest role is dated \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation covering the period through the review date."
+              }
+            ],
+            "rationale": "The report identifies two independently critical problems and reasonably prioritizes the mismatch between the director title and the work shown. Both fixes are specific and grounded: the first requests verifiable leadership responsibilities without inflating ownership, and the second provides concrete, truthful ways to account for the open gap."
+          },
+          "usage": {
+            "prompt_tokens": 2574,
+            "completion_tokens": 239,
+            "total_tokens": 2813,
+            "cached_prompt_tokens": 2571,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0026531,
+          "latency_ms": 4269
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-c",
+        "note": "The title problem worded differently and citing a bullet, then the gap.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "Your Brightwater bullets read as dispatch support work; add what you ran as Director of Operations, such as the people who reported to you or an operating decision you owned, if you can verify it.",
+              "why": "A recruiter screening for an operations leader sees support tasks under a director title and won't know which one is true.",
+              "resume_lines": [
+                "- Entered delivery exceptions into the tracking system"
+              ]
+            },
+            {
+              "fix": "After the Brightwater role, add a dated line for what you've done since August 2024: a logistics, dispatch or warehouse job, contract work, or a course or certification. If it was a break, add one line with the dates and the reason.",
+              "why": "An operations hiring manager will see nothing listed after August 2024 and will wonder whether your experience is current.",
+              "resume_lines": [
+                "Mar 2021 - Aug 2024"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          true
+        ],
+        "expected_pass": true,
+        "expected_matches": [
+          "P2",
+          "P1"
+        ]
+      },
+      "run": 1,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Director title unsupported by leadership responsibilities",
+              "critical_on_its_own": true,
+              "matches": "P2",
+              "note": "The title \"Director of Operations\" is supported by coordinator-level bullets rather than evidence of management or operating authority."
+            },
+            {
+              "number": 2,
+              "addresses": "Unexplained gap after August 2024",
+              "critical_on_its_own": true,
+              "matches": "P1",
+              "note": "The latest role dates are \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation before the November 2026 review."
+            }
+          ],
+          "rationale": "Both misses identify grounded, independently interview-costing problems and offer specific, truthful fixes. The first addresses the director title's credibility, and the second provides useful ways to explain the open gap; however, the report omits the independently critical lack of operational scale."
+        },
+        "usage": {
+          "prompt_tokens": 2694,
+          "completion_tokens": 231,
+          "total_tokens": 2925,
+          "cached_prompt_tokens": 2691,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0025851,
+        "latency_ms": 4685
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": true,
+        "flagged": 2,
+        "caught": [
+          "P1",
+          "P2"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Director title unsupported by leadership responsibilities",
+                "critical_on_its_own": true,
+                "matches": "P2",
+                "note": "The title \"Director of Operations\" is supported by coordinator-level bullets rather than evidence of management or operating authority."
+              },
+              {
+                "number": 2,
+                "addresses": "Unexplained gap after August 2024",
+                "critical_on_its_own": true,
+                "matches": "P1",
+                "note": "The latest role dates are \"Mar 2021 - Aug 2024\", with no subsequent activity or explanation before the November 2026 review."
+              }
+            ],
+            "rationale": "Both misses identify grounded, independently interview-costing problems and offer specific, truthful fixes. The first addresses the director title's credibility, and the second provides useful ways to explain the open gap; however, the report omits the independently critical lack of operational scale."
+          },
+          "usage": {
+            "prompt_tokens": 2694,
+            "completion_tokens": 231,
+            "total_tokens": 2925,
+            "cached_prompt_tokens": 2691,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0025851,
+          "latency_ms": 4685
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-d",
+        "note": "One real problem plus an optional Skills section.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "Add a Skills section listing your dispatch and tracking software.",
+              "why": "Software names are easy to scan.",
+              "resume_lines": [
+                "No skills section present"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          "none"
+        ]
+      },
+      "run": 1,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale in the latest role",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "\"Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet supplies scale or results to establish director-level experience."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing software names and Skills section",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "\"Entered delivery exceptions into the tracking system\" leaves the software unnamed, but that omission alone would not justify passing on this operations candidate."
+            }
+          ],
+          "rationale": "The first fix requests concrete, verifiable scope on the latest role, but leaves the unsupported director-level responsibilities and the open gap since August 2024 unaddressed. The second miss is padding: an optional Skills section and easier scanning are not independently interview-blocking problems."
+        },
+        "usage": {
+          "prompt_tokens": 2496,
+          "completion_tokens": 361,
+          "total_tokens": 2857,
+          "cached_prompt_tokens": 2493,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 123
+        },
+        "cost_usd": 0.0038653,
+        "latency_ms": 7331
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale in the latest role",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "\"Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other bullet supplies scale or results to establish director-level experience."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing software names and Skills section",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "\"Entered delivery exceptions into the tracking system\" leaves the software unnamed, but that omission alone would not justify passing on this operations candidate."
+              }
+            ],
+            "rationale": "The first fix requests concrete, verifiable scope on the latest role, but leaves the unsupported director-level responsibilities and the open gap since August 2024 unaddressed. The second miss is padding: an optional Skills section and easier scanning are not independently interview-blocking problems."
+          },
+          "usage": {
+            "prompt_tokens": 2496,
+            "completion_tokens": 361,
+            "total_tokens": 2857,
+            "cached_prompt_tokens": 2493,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 123
+          },
+          "cost_usd": 0.0038653,
+          "latency_ms": 7331
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-d",
+        "note": "One real problem plus an optional Skills section.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "Add a Skills section listing your dispatch and tracking software.",
+              "why": "Software names are easy to scan.",
+              "resume_lines": [
+                "No skills section present"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          "none"
+        ]
+      },
+      "run": 1,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing software skills section",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The line \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but naming it in an optional Skills section would not independently determine interview eligibility."
+            }
+          ],
+          "rationale": "The first miss offers a concrete, verifiable improvement to the latest role, but the report leaves the open employment gap and unsupported director-level scope without fixes. Its second miss is padding: software names could help, but their absence is not independently interview-blocking."
+        },
+        "usage": {
+          "prompt_tokens": 2616,
+          "completion_tokens": 231,
+          "total_tokens": 2847,
+          "cached_prompt_tokens": 2613,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost_usd": 0.0025773,
+        "latency_ms": 4407
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no driver or delivery volume, and no other line establishes operational scale."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing software skills section",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The line \"- Entered delivery exceptions into the tracking system\" leaves the software unnamed, but naming it in an optional Skills section would not independently determine interview eligibility."
+              }
+            ],
+            "rationale": "The first miss offers a concrete, verifiable improvement to the latest role, but the report leaves the open employment gap and unsupported director-level scope without fixes. Its second miss is padding: software names could help, but their absence is not independently interview-blocking."
+          },
+          "usage": {
+            "prompt_tokens": 2616,
+            "completion_tokens": 231,
+            "total_tokens": 2847,
+            "cached_prompt_tokens": 2613,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0025773,
+          "latency_ms": 4407
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-e",
+        "note": "The scale problem twice: the second asks for a count on a supporting duty.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "In the customer calls bullet, add how many calls you handled each day.",
+              "why": "A call count shows your workload.",
+              "resume_lines": [
+                "- Answered customer calls about late deliveries"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          null
+        ]
+      },
+      "run": 1,
+      "keyed": false,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": false,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing scale of the latest role's core work",
+              "critical_on_its_own": true,
+              "matches": "none",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies scale or results for the latest role."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing customer-call volume",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The supporting duty \"- Answered customer calls about late deliveries\" lacks a call count, but that omission alone would not justify rejecting the resume."
+            }
+          ],
+          "rationale": "The first fix requests concrete, verifiable scope, but the unexplained gap since August 2024 and the director title unsupported by the listed duties are higher-priority problems that the report identifies without addressing. The second miss is padding: quantifying a supporting customer-service duty would not independently determine an interview decision."
+        },
+        "usage": {
+          "prompt_tokens": 2499,
+          "completion_tokens": 340,
+          "total_tokens": 2839,
+          "cached_prompt_tokens": 2496,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 89
+        },
+        "cost_usd": 0.0036556,
+        "latency_ms": 7069
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": false,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing scale of the latest role's core work",
+                "critical_on_its_own": true,
+                "matches": "none",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies scale or results for the latest role."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing customer-call volume",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The supporting duty \"- Answered customer calls about late deliveries\" lacks a call count, but that omission alone would not justify rejecting the resume."
+              }
+            ],
+            "rationale": "The first fix requests concrete, verifiable scope, but the unexplained gap since August 2024 and the director title unsupported by the listed duties are higher-priority problems that the report identifies without addressing. The second miss is padding: quantifying a supporting customer-service duty would not independently determine an interview decision."
+          },
+          "usage": {
+            "prompt_tokens": 2499,
+            "completion_tokens": 340,
+            "total_tokens": 2839,
+            "cached_prompt_tokens": 2496,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 89
+          },
+          "cost_usd": 0.0036556,
+          "latency_ms": 7069
+        }
+      }
+    },
+    {
+      "resume": "cc-bad-1",
+      "kind": "bad",
+      "report": {
+        "id": "cc-bad-1-e",
+        "note": "The scale problem twice: the second asks for a count on a supporting duty.",
+        "view": {
+          "label": "Critical Miss",
+          "verdict": "Your Brightwater roles end in August 2024 with nothing after. The director title sits over coordinator tasks, and no line gives a number.",
+          "misses": [
+            {
+              "fix": "In the driver scheduling bullet, add how many drivers and daily deliveries you scheduled, if you can verify them.",
+              "why": "Nothing on the page says how big the operation was, so a hiring manager can't size your experience.",
+              "resume_lines": [
+                "- Scheduled driver shifts and updated the dispatch board"
+              ]
+            },
+            {
+              "fix": "In the customer calls bullet, add how many calls you handled each day.",
+              "why": "A call count shows your workload.",
+              "resume_lines": [
+                "- Answered customer calls about late deliveries"
+              ]
+            }
+          ]
+        },
+        "expected_critical": [
+          true,
+          false
+        ],
+        "expected_pass": false,
+        "expected_matches": [
+          "P3",
+          null
+        ]
+      },
+      "run": 1,
+      "keyed": true,
+      "result": {
+        "case_id": "cc-bad-1",
+        "keyed": true,
+        "raw": {
+          "misses": [
+            {
+              "number": 1,
+              "addresses": "Missing operational scale",
+              "critical_on_its_own": true,
+              "matches": "P3",
+              "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies it."
+            },
+            {
+              "number": 2,
+              "addresses": "Missing customer-call volume",
+              "critical_on_its_own": false,
+              "matches": "none",
+              "note": "The bullet \"- Answered customer calls about late deliveries\" lacks call volume, but quantifying this supporting duty would not independently determine interview eligibility."
+            }
+          ],
+          "rationale": "The first miss offers a concrete, verifiable fix for a genuine lack of operational scale. The second is padding, while the report leaves the open employment gap and the director title unsupported by the bullets without fixes."
+        },
+        "usage": {
+          "prompt_tokens": 2619,
+          "completion_tokens": 293,
+          "total_tokens": 2912,
+          "cached_prompt_tokens": 2616,
+          "cache_write_prompt_tokens": 0,
+          "reasoning_tokens": 73
+        },
+        "cost_usd": 0.0031976,
+        "latency_ms": 5610
+      },
+      "outcome": {
+        "fixture_id": "cc-bad-1",
+        "kind": "bad",
+        "pass": false,
+        "flagged": 2,
+        "caught": [
+          "P3"
+        ],
+        "more_than_three": false,
+        "count": {
+          "case_id": "cc-bad-1",
+          "keyed": true,
+          "raw": {
+            "misses": [
+              {
+                "number": 1,
+                "addresses": "Missing operational scale",
+                "critical_on_its_own": true,
+                "matches": "P3",
+                "note": "The bullet \"- Scheduled driver shifts and updated the dispatch board\" gives no operational scale, and no other line supplies it."
+              },
+              {
+                "number": 2,
+                "addresses": "Missing customer-call volume",
+                "critical_on_its_own": false,
+                "matches": "none",
+                "note": "The bullet \"- Answered customer calls about late deliveries\" lacks call volume, but quantifying this supporting duty would not independently determine interview eligibility."
+              }
+            ],
+            "rationale": "The first miss offers a concrete, verifiable fix for a genuine lack of operational scale. The second is padding, while the report leaves the open employment gap and the director title unsupported by the bullets without fixes."
+          },
+          "usage": {
+            "prompt_tokens": 2619,
+            "completion_tokens": 293,
+            "total_tokens": 2912,
+            "cached_prompt_tokens": 2616,
+            "cache_write_prompt_tokens": 0,
+            "reasoning_tokens": 73
+          },
+          "cost_usd": 0.0031976,
+          "latency_ms": 5610
+        }
+      }
+    }
+  ]
+}

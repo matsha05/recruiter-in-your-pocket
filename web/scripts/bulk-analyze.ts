@@ -17,7 +17,7 @@ config({ path: ".env.local" });
 import * as fs from "fs/promises";
 import { existsSync } from "fs";
 import * as path from "path";
-import { DEFAULT_JUDGE_CONFIG, judgeAbsolute, SpendLedger, viewFromReport, type AbsoluteResult } from "../lib/evals/judge";
+import { DEFAULT_JUDGE_CONFIG, judgeAbsolute, SpendLedger, shownView, type AbsoluteResult } from "../lib/evals/judge";
 import { getChatCompletionTuning, resolveOpenAIModel } from "../lib/llm/model-config";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -152,7 +152,7 @@ Options:
             totalCost += 0.025;
 
             // Score the Critical Miss (synthetic sources only)
-            const view = judgeable ? viewFromReport(output) : null;
+            const view = judgeable ? shownView(output) : null;
             const judgeResult = view
                 ? await judgeAbsolute(
                     { id: resume.id, resume_text: resumeText, review_date: new Date().toISOString().slice(0, 10) },

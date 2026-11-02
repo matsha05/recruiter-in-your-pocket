@@ -17,8 +17,10 @@ type ReportLike = {
         why?: unknown;
         impact_level?: unknown;
         evidence?: unknown;
+        critical?: unknown;
     }>;
     critical_misses?: unknown;
+    more_critical?: unknown;
 };
 
 function text(value: unknown): string {
@@ -46,7 +48,10 @@ function excerptOf(evidence: unknown): string[] {
 export function viewFromReport(output: unknown, maxMisses = 1): CriticalMissView | null {
     const report = (output && typeof output === "object" ? output : {}) as ReportLike;
     const fixes = Array.isArray(report.top_fixes) ? report.top_fixes : [];
-    const misses = fixes
+    // A report that flags its Critical Misses (`critical: true`, listed first) shows only those;
+    // its other fixes are ordinary fixes. Unflagged reports show their first fixes, as before.
+    const flagged = fixes.some((fix) => typeof fix?.critical === "boolean");
+    const misses = (flagged ? fixes.filter((fix) => fix?.critical === true) : fixes)
         .slice(0, Math.max(1, Math.min(3, maxMisses)))
         .map((fix) => ({
             fix: text(fix?.fix) || text(fix?.text),
@@ -60,7 +65,21 @@ export function viewFromReport(output: unknown, maxMisses = 1): CriticalMissView
         label: nothingCritical ? "Nothing critical" : "Critical Miss",
         verdict: text(report.first_impression),
         misses,
+        ...(report.more_critical === true ? { more_than_three: true } : {}),
     };
+}
+
+/**
+ * What a reader sees as the report's Critical Misses, the default for every
+ * judge run: each flagged one (up to three) when the report flags them, or
+ * only the first fix when it doesn't, as the production report renders it.
+ * An explicit `maxMisses` overrides it, for instance `--max-misses 3` to show
+ * an unflagged report's first three fixes.
+ */
+export function shownView(output: unknown, maxMisses?: number): CriticalMissView | null {
+    const fixes = (output && typeof output === "object" ? (output as ReportLike).top_fixes : undefined);
+    const flagged = Array.isArray(fixes) && fixes.some((fix) => typeof fix?.critical === "boolean");
+    return viewFromReport(output, maxMisses ?? (flagged ? 3 : 1));
 }
 
 /** Every string in a view, for checking that a quoted claim really came from it. */
@@ -89,6 +108,7 @@ export function renderView(view: CriticalMissView): string {
                 : `  Resume line it cites: "${line}"`);
         }
     });
+    if (view.more_than_three) lines.push("The report also says this resume has more than three Critical Misses and shows the first three.");
     return lines.join("\n");
 }
 

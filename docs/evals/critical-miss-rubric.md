@@ -1,14 +1,15 @@
 # Critical Miss rubric
 
-Version: 3 (2026-11-01), matching judge prompt `critical-miss-judge-v3`. The automated judge in `web/lib/evals/judge/` applies this rubric. Its criterion IDs match the judge prompt (`web/lib/evals/judge/prompt.ts`).
+Version: 4 (2026-11-01), matching judge prompt `critical-miss-judge-v4`. The automated judge in `web/lib/evals/judge/` applies this rubric. Its criterion IDs match the judge prompt (`web/lib/evals/judge/prompt.ts`).
 
 ## What is being judged
 
-The Critical Miss is the thing a resume should fix first, as an experienced recruiter sees it on a first read. A report shows it beside the Verdict (the first impression) and cites the resume line it comes from.
+The Critical Miss is the thing a resume should fix first, as an experienced recruiter sees it on a first read. A report shows it beside the Verdict (the first impression) and cites the resume line it comes from. Since Matt's count decision, a report flags every problem that would cost an interview on its own, up to three, most important first; the first is still the thing to fix first.
 
 - Product definition: "the one thing to fix first" (`web/lib/billing/pricing.ts:40`, `web/app/(marketing)/page.tsx:9`). The methodology page describes the choice: "Of everything that could be clearer, the report picks one thing to fix first. Often it's a strong example that stops short of its result, or a responsibility that hides how much you owned" (`web/app/(editorial)/methodology/page.tsx:98`).
 - Matt's decisions after the November 1 blind pick: a report may carry **up to three** Critical Misses, and **every report names a top fix**; there is no "Nothing critical" state (relayed by the coordinating session; see [Conflicts](#conflicts)).
-- The judge doesn't grade the rest of the report, its tone, or its formatting. It asks one question: is this the right thing to fix first, and is the fix real help?
+- Matt's count decision, later on November 1: "some resumes are truly horrible. i dont want to lie to people and say they have one critical miss if there are more." He approved this definition: a Critical Miss is any problem that would cost an interview on its own; every one is flagged, up to three, in priority order, with a "more than three" signal when true; and there is no padding on strong resumes (relayed by the coordinating session; see [C8](#c8-every-critical-miss-up-to-three)).
+- The judge doesn't grade the rest of the report, its tone, or its formatting. It asks one question first: is the first Critical Miss the right thing to fix first, and is the fix real help? When a report flags more than one, it also asks whether the others belong (C8).
 
 ## Sources, in order of authority
 
@@ -17,7 +18,7 @@ Where sources conflict, the earlier one wins. Every conflict is listed under [Co
 | Key | Source | Strength |
 | --- | --- | --- |
 | **M** | Matt's blind pick, November 1, 2026: [result.json](../../tests/fixtures/results/blind-pick/result.json), with [items](../../tests/fixtures/results/blind-pick/items.json) and [key](../../tests/fixtures/results/blind-pick/key.json). Production prompt preferred 5, new prompt 1, no difference 4. His notes are quoted verbatim in [shipping-gate.md](../promptops/shipping-gate.md#critical-miss-prompt-attempt--november-1-not-shipped) | The founder's recorded expert judgment (14 years recruiting). Ten synthetic resumes, one judge, and 4 of 10 items without a note |
-| **MD** | Matt's decisions that followed the pick: up to three Critical Misses; always a top fix | Product decision, relayed by the coordinator on November 1 |
+| **MD** | Matt's decisions that followed the pick: up to three Critical Misses; always a top fix; and the count decision (every problem that would cost an interview on its own is flagged, up to three, with a "more than three" signal; no padding on strong resumes) | Product decisions, relayed by the coordinator on November 1 |
 | **P** | Production prompt `web/prompts/resume_v2.txt` (`83b2a2d1`), whose review criteria Matt wrote | Product policy |
 | **S** | Prompt-ops and eval specs: [40-promptops-quality-spec.md](../launch-readiness/40-promptops-quality-spec.md), [50-evals-regression-plan.md](../launch-readiness/50-evals-regression-plan.md), [shipping-gate.md](../promptops/shipping-gate.md), plan rows 1.1–1.9 in [70-audit-remediation-plan.md](../launch-readiness/70-audit-remediation-plan.md) | Product policy and audit findings |
 | **R** | The research library, `web/app/(editorial)/research/*`, as fact-checked in #35. Claims are used only as the pages now source them | Labeled per claim below |
@@ -150,13 +151,26 @@ The fix asks only for facts the person can verify, keeps their real level of own
 
 Sources: P rules 10, 23, and `next_steps` ("Ask only for facts they can verify"; "Never tell a candidate to invent a post-break role"); R: "Neither source justifies inventing a metric" (`quantifying-impact/page.tsx:200`) and "no claims you cannot defend" (`human-vs-algorithm/page.tsx:91`, editorial). A fix that tells the person to inflate or invent is close to a veto; the judge treats it as a clear loss.
 
-### C8. Up to three Critical Misses
+### C8. Every Critical Miss, up to three
 
-When a resume has more than one critical issue, a report that names the second one as well is better than one that names only the first. Extra Critical Misses must meet the same bar: padding with a minor edit, a formatting tweak or a duplicate of the first is worse than stopping at one.
+C8 applies only to the Critical Misses after the first. The first is ranked by V and C1–C7, exactly as before. The first v4 draft let the count test reach the first pick and moved Matt's blind-pick items, so the judge prompt now says so outright. Its examples stay in C8: a draft without them stopped counting a real third Critical Miss (see the calibration summary).
 
-Sources: M, marketing executive: "I think we should have multiple critical misses if they exist"; MD: up to three; P: "Never pad the list when fewer fixes are genuinely supported"; "Do not return two fixes that cite the same source bullet".
+A Critical Miss is any problem that would cost an interview on its own: a recruiter screening for this kind of role would pass on the resume because of it, even if the rest were fine. Extra Critical Misses that usually qualify:
 
-The production report shows one Critical Miss, so this criterion applies only when a report returns more than one.
+- an open gap, as C4 describes it;
+- the main work of the latest relevant role with no scale or result anywhere on the page;
+- a title or headline the bullets don't support;
+- roles so scattered that a reader can't tell what job the resume is for (the evidence is indirect; see [below](#things-that-are-not-a-critical-miss));
+- missing or contradictory dates on the latest or most relevant work, so its recency or length can't be told. R: "Familiar headings, visible dates, and a predictable order let a reader find your roles without hunting for them" (`research/how-recruiters-read/page.tsx:69`, editorial guidance); P uses "Check the conflicting graduation dates" as a model heading. Not from Matt's picks: an inference, not yet confirmed by him.
+
+- **Flag every one, up to three, most important first.** On a resume with several, a report that also flags a real second or third one is better than one that stops at the first. Stopping tells the person they have one problem when they have more. When the first Critical Misses are comparable, leaving out a problem that plainly costs an interview is a clear loss.
+- **Say so when there are more than three.** A report that signals more than three, on a resume that really has more, beats one that doesn't.
+- **The test is the interview, not the first one.** A real second or third Critical Miss isn't padding just because it matters less than the first. Judge v3 read "the same bar" as "as important as the first", and prompt v3.3 learned to flag exactly one Critical Miss on every report (40 of 40 judge resumes).
+- **Padding is worse than stopping.** Padding is a Critical Miss that would not cost an interview on its own: a supporting duty or an older role missing a detail, an optional section, wording or formatting, a reversed or missing date on an old or minor role (it reads as a typo; see "a single typo" below), a second ask on a line another Critical Miss covers, or a duplicate. A strong resume usually has only the first thing to fix, so extra Critical Misses there, or a "more than three" signal, are padding.
+
+Sources: MD, Matt's count decision: "some resumes are truly horrible. i dont want to lie to people and say they have one critical miss if there are more," with the definition above; M, marketing executive: "I think we should have multiple critical misses if they exist"; P: "Never pad the list when fewer fixes are genuinely supported"; "Do not return two fixes that cite the same source bullet".
+
+The gate also checks the count directly, on fictional resumes labeled in advance; see [critical-miss-judge.md](critical-miss-judge.md#count-checks). The production report shows one Critical Miss, so in a comparison it shows only its first fix.
 
 ## Things that are not a Critical Miss
 
@@ -176,8 +190,9 @@ An unclear professional identity or direction can be a structural Critical Miss,
 2. A report that names a real grounded issue beats "Nothing critical" (C5).
 3. Find what each report asks the person to fix. If both target the same issue or line with comparably useful asks, the result is **no real difference** (M: "Same critical miss it looks like", "Same issue"). A better-worded why doesn't change that.
 4. If they target different issues, decide which issue matters more on a first read for this role (C1), applying C2 (fact over move) and C4 (gaps) as the tests of "matters more".
-5. Then compare how well each fix helps (C3, C7), and finally the stated consequence (C6). With several Critical Misses, compare the sets (C8).
-6. Strength: **clear** when a named rule decides it (a veto, fact over move, vague against specific, an open gap with no recent work against a minor line). **Slight** when both are reasonable first fixes and the preference is a judgment call (M: "Both are good though"). Otherwise, no real difference.
+5. Then compare how well each fix helps (C3, C7), and finally the stated consequence (C6).
+6. If the reports flag different Critical Misses after the first, compare the sets (C8): flagging another problem that would cost an interview on its own beats leaving it out, and padding loses to stopping. On a resume with several such problems, leaving one out weighs as much as the choice of the first Critical Miss.
+7. Strength: **clear** when a named rule decides it (a veto, fact over move, vague against specific, an open gap with no recent work against a minor line, a set that leaves out a problem that plainly costs an interview against one that flags it, padding on an optional section, wording or formatting against stopping). **Slight** when both are reasonable first fixes, or reasonable sets, and the preference is a judgment call (M: "Both are good though"). Otherwise, no real difference.
 
 ## Conflicts
 
@@ -192,10 +207,12 @@ An unclear professional identity or direction can be a structural Critical Miss,
 | 7 | M's sales executive and HR manager items look alike: the latest role ends in August 2023 with nothing later, the bullets are support work, and a gap fix that gives no help faces a line edit on the recent role. Matt picked the line edit in one and the gap in the other, with no note on the difference. | **Confirmed by Matt on November 1, 2026.** C4's "no help" sub-rule fits both picks: the sales line edit asks for the core of the role on its lead bullet, while the HR line edit asks for one example on a secondary bullet. A gap fix that gives no help ranks below a concrete fix on the latest role's core work and above a narrow line edit. Judge v1 lacked the sub-rule and missed the sales item clearly. |
 | 8 | Kristal 2023 (an explanation line did no better than none) suggests an explained break still costs callbacks. M's software engineer pick treats a dated, explained caregiving break as answered on the page. | M wins (C4, "answered on the page"). Inferred from one pick with no note; **confirmed by Matt on November 1, 2026**. |
 | 9 | P asks every why to state the recruiter consequence, so a better why could seem to break a tie. M called two reports with the same fix and different whys "Same critical miss". | M wins: identical fixes are no real difference (C6). Contrast pair cp-26 was written the other way and relabeled after both judges disagreed with it; see the calibration summary. |
+| 10 | Rubric v3's C8 said extra Critical Misses "must meet the same bar", which the judge read as "as important as the first". Prompt v3.3 followed it ("Extra Critical Misses must be as important as the first") and flagged one Critical Miss on every report. Matt's count decision sets the bar at "would cost an interview on its own". | MD wins (C8, v4). A real second or third Critical Miss isn't padding because it matters less than the first. Padding stays worse than stopping, and strong resumes stay at one. |
 
 ## Known limits
 
 - **In-sample.** The rubric was written from the same ten blind-pick items the judge is calibrated on. Agreement there shows the judge can apply Matt's stated rules, not that it predicts his next pick. Since November 1, 2026 the judge gates prompt changes without a blind pick from Matt, so no held-out human check is scheduled.
 - **One expert, ten items.** Four items have no note. Several rules rest on one or two picks.
 - **The research is mostly about callbacks and attention, not about which fix to make first.** It supports C1 and C4 directly and C2 only weakly. Honesty rules (V, C7) are policy.
+- **The count rules are newer than the picks.** Matt's count decision has no blind pick of its own behind it. The C8 contrast pairs and the count calibration set were written from his definition, so they show that the judge applies it, not that it matches his next call. The date examples in C8 are an inference from the research library and the production prompt; Matt hasn't ruled on them.
 - **Same model family.** The judge runs on `gpt-6.1-sol`; production reports come from `gpt-6.1-terra`: a different model, but the same family and vendor. Measured self-preference was +0.00: Sol favored Critical Misses it wrote itself exactly as often as `gpt-6-astra` did. In normal use both sides come from the same generator, so a family preference can't favor one prompt over the other.

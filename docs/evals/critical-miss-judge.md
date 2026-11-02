@@ -2,7 +2,7 @@
 
 The judge is an automated stand-in for Matt's blind pick. It asks the question his pick asks: of two reports on the same resume, which Critical Miss is the more important thing to fix first? It applies the [Critical Miss rubric](critical-miss-rubric.md), which cites a source for every criterion. Since November 1, 2026 it **gates prompt changes**, in place of Matt's blind pick: see [shipping-gate.md](../promptops/shipping-gate.md#critical-miss-judge-gates-prompt-changes).
 
-Code: `web/lib/evals/judge/` (entry point `index.ts`). CLI: `web/scripts/run-judge.ts`. Calibration data: `tests/fixtures/judge/contrast-pairs.json` and `tests/fixtures/results/blind-pick/`. Results: `tests/fixtures/results/judge/`.
+Code: `web/lib/evals/judge/` (entry point `index.ts`). CLI: `web/scripts/run-judge.ts`. Calibration data: `tests/fixtures/judge/contrast-pairs.json`, `tests/fixtures/judge/count-calibration.json` and `tests/fixtures/results/blind-pick/`. Gate key: `tests/fixtures/judge/count-check-key.json`. Results: `tests/fixtures/results/judge/`.
 
 ## What it replaced, and what it deliberately isn't
 
@@ -38,10 +38,14 @@ npm run eval:judge -- score ../tests/fixtures/results/<candidate>_live_run.json
 npm run eval:judge -- calibrate --set all
 ```
 
-- **compare** is the gate. Put production as the first file (X) and the candidate second (Y). Each synthetic fixture with a shown production report is compared; the first non-FAIL report per fixture is used, in run order, as the blind pick did. Each candidate Critical Miss is also scored alone for the veto. It prints `GATE: PASS` or `GATE: FAIL` and exits nonzero on FAIL. A `--limit` run never passes.
-- **score** gives one Critical Miss per fixture an absolute score with a rationale.
-- **calibrate** reruns the calibration sets. Add `--repeat 2` for test-retest, `--ids bp-05,cp-09` for a subset, or `--mode absolute` to score each side alone.
-- `--max-misses 3` judges up to three Critical Misses per report, for a contract that returns more than one. The default is 1, which is what the production report shows.
+- **compare** is the gate. Put production as the first file (X) and the candidate second (Y).
+  - Each synthetic fixture with a shown production report is compared. The first non-FAIL report per fixture is used, in run order, as the blind pick did.
+  - Each candidate report is also scored alone for the veto.
+  - The [count checks](#count-checks) run on the candidate's labeled resumes. `--key <path>` (relative to the repository root) points at a different key.
+  - It prints `GATE: PASS` or `GATE: FAIL` and exits nonzero on FAIL. A `--limit` run never passes and skips the count calls.
+- **score** gives each fixture's Critical Misses an absolute score with a rationale.
+- **calibrate** reruns the calibration sets. Add `--repeat 2` for test-retest, `--ids bp-05,cp-09` for a subset, or `--mode absolute` to score each side alone. `--set count` checks the count prompt against hand-labeled reports.
+- **What a report shows.** By default each report shows what a reader sees as its Critical Misses: every fix flagged `critical: true`, up to three, or, for a report without flags (production `83b2a2d1`), only its first fix. `--max-misses <1-3>` overrides that for pairwise and absolute calls; `--max-misses 3` shows an unflagged report's first three fixes. The count checks always use the default.
 - **self-preference** measures whether a judge favors Critical Misses written by its own model (`--author`, `--judges`).
 - `--model gpt-6-astra` runs the stronger, pricier judge. It calibrated the same as Sol (39 of 40 pairs identical) at about 5.6 times the cost, so Sol is the default. The generator's model is refused.
 - `--effort low|medium|high` changes the judge's reasoning effort, and `--seed` its sampling seed. Calibration ran at medium, so treat any other effort as uncalibrated.
@@ -50,6 +54,36 @@ npm run eval:judge -- calibrate --set all
 **Only synthetic resumes are sent.** A run file's fixtures are filtered to those tagged `synthetic` with a `synth_` ID and path, and every other fixture is listed as skipped. Real-person smoke and golden fixtures never reach the judge. The guard is code (`isJudgeableFixture`), not a flag, and `npm run test:judge` checks it.
 
 **Blindness.** The judge sees the resume, the review date, and each report's label, Verdict and Critical Miss(es). It never sees a prompt hash, model name, run ID or score, and `test:judge` checks the message for them. Report style can still give a side away, for example the production prompt's long "In the … bullet" headings.
+
+## Count checks
+
+Matt, November 1, 2026: "some resumes are truly horrible. i dont want to lie to people and say they have one critical miss if there are more." A Critical Miss is any problem that would cost an interview on its own. Every one is flagged, up to three, in priority order, with a "more than three" signal when true, and a strong resume isn't padded. The pairwise rubric rewards this (C8), and two checks in `compare` test it directly on fictional resumes labeled in advance:
+
+- **Under-count.** Each bad resume has three labeled problems that would each cost an interview on its own. The candidate's Critical Misses must address at least two of the three, on every bad resume. One count call per resume sees the labeled problems and names the one each Critical Miss's fix addresses ("none" if it addresses none). A Critical Miss matches at most one problem, and two Critical Misses on the same problem count once.
+- **Over-count.** A strong resume has no labeled problem. One blind count call (no key) rates each Critical Miss as critical on its own or not. Any Critical Miss after the first that isn't rated critical on its own is padding and fails, and so does a "more than three" signal. The first is always allowed, since every report names a top fix (C5).
+
+Only flagged Critical Misses count. A labeled resume that is missing from the candidate run, withheld (FAIL), or not judged fails the gate, and so does a key that fails its checks.
+
+**The key.** `tests/fixtures/judge/count-check-key.json` lists each labeled resume:
+
+```json
+{"version": 1, "written_by": "…", "date": "2026-11-01", "resumes": [
+  {"fixture_id": "synth_cc_<role>_bad_1", "kind": "bad", "problems": [
+    {"id": "P1", "problem": "The issue in one sentence, not the fix", "lines": ["the verbatim resume line it lives on"], "why": "why it would cost an interview on its own"},
+    {"id": "P2", "…": "…"}, {"id": "P3", "…": "…"}]},
+  {"fixture_id": "synth_cc_<role>_strong_1", "kind": "strong", "problems": [], "note": "why nothing here would cost an interview on its own"}]}
+```
+
+The loader checks the key before any call:
+
+- every resume is a registered synthetic fixture (`isJudgeableFixture`);
+- each bad resume has exactly P1, P2 and P3, most important first, each on verbatim lines that no other problem shares, so one fix can't cover two;
+- each strong resume has no problems;
+- the key has at least 8 bad and 4 strong resumes.
+
+**The signal.** A report that says there are more than three Critical Misses sets top-level `more_critical: true` (prompt v3 contract; the schema allows it only with three Critical Misses). The judge's view shows it as "The report also says this resume has more than three Critical Misses and shows the first three."
+
+**Reading the result.** The `GATE:` block prints one line per check. The markdown's "Count checks" table lists, for each Critical Miss, whether the judge rated it critical on its own and, on bad resumes, the labeled problem it matched. When a bad resume fails, compare its Critical Misses with the key: a miss on a real problem the key doesn't list shows as "none" but critical, which points at the key rather than the prompt.
 
 ## Reading a comparison
 
@@ -65,7 +99,7 @@ Each fixture is judged twice, once with each report shown first. The combined ve
 
 **What to look at first:**
 
-1. The `GATE:` line. To pass, the candidate must be preferred on at least 80% of compared resumes (ties count against), with no veto on a candidate side, across at least 8 fully judged resumes. That is Matt's bar for his own November 1 pick.
+1. The `GATE:` line. To pass, the candidate must be preferred on at least 80% of compared resumes (ties count against), with no veto on a candidate side, across at least 8 fully judged resumes. That is Matt's bar for his own November 1 pick. Both count checks must pass on every labeled resume.
 2. Any **clear** preference for production. On calibration, the judge never made a clear pick against Matt; a clear loss is the strongest signal it gives.
 3. Vetoes on the candidate side, in the "Candidate alone" column, and their quoted claims in the JSON.
 
@@ -83,12 +117,18 @@ Absolute scores are for spotting bad Critical Misses (vetoes, low stakes, vague 
 
 ## How far to trust it
 
-- Calibration of `critical-miss-judge-v3`: [summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md), with raw outputs in `tests/fixtures/results/judge/`. In short:
+- Calibration of `critical-miss-judge-v3`, and the v4 recalibration after the count decision: [summary](../../tests/fixtures/results/summary_critical_miss_judge_calibration_2026-11-01.md), with raw outputs in `tests/fixtures/results/judge/`. In short, for v3:
   - 5 of Matt's 6 decisive blind picks reproduced, and none clearly reversed, on both Sol and Astra.
   - 29 of the 30 contrast pairs right as written. The miss led to a rubric clarification.
   - Identical verdicts on every retest, including under a second seed.
   - No side-order flips on Sol.
   - Self-preference +0.00.
+- **v4, after Matt's count decision** (prompt SHA `e1860dbf…`):
+  - Matt's 6 decisive picks: 5 right in the first run, and 4 right plus 1 tie in a same-seed retest. Neither run clearly reversed Matt.
+  - All 10 C8 pairs right with the fixed fixtures.
+  - The count prompt was right on all 34 gate outcomes, 34 matches and 48 ratings, and repeated exactly.
+  - The cost of the change: three of Matt's borderline items (bp-04, bp-08, bp-09), which v3 called slight and repeated exactly, now move between slight and a tie on retest.
+  - Three other drafts did worse and were dropped.
 - **In-sample.** The rubric was written from the same ten blind-pick items the judge was calibrated on, and the contrast pairs were written from the rubric. Agreement shows the judge applies Matt's stated rules consistently; it doesn't yet show it predicts his next pick. Matt chose to gate on the judge without a further blind pick of his own, so a gate result is the judge's call, not a check against him.
 - **Ten items.** One unexplained disagreement moves agreement by 17 points on the six decisive picks.
 - **Same family.** The judge (`gpt-6.1-sol`) and the generator (`gpt-6.1-terra`) are different models from the same vendor and generation, so shared blind spots are possible. The self-preference probe found Sol no more favorable to its own writing than Astra was, on ten items. A cross-vendor judge would need a key this repository doesn't have.

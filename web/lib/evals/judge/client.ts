@@ -74,7 +74,9 @@ export async function callJudge<T>(
     let spentUsd = 0;
     let lastError: Error | null = null;
     for (let attempt = 0; attempt < 2; attempt++) {
-        const res = await fetchImpl("https://api.openai.com/v1/chat/completions", {
+        let res: Response;
+        try {
+            res = await fetchImpl("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
             body: JSON.stringify({
@@ -90,7 +92,12 @@ export async function callJudge<T>(
                     { role: "user", content: user },
                 ],
             }),
-        });
+            });
+        } catch (error) {
+            // A dropped connection never reached the model; retry it like a 5xx.
+            lastError = error instanceof Error ? error : new Error(String(error));
+            continue;
+        }
 
         if (!res.ok) {
             const body = (await res.text()).slice(0, 500);
