@@ -215,6 +215,35 @@ The suggested-edits paragraph is checked against `LineLift.tsx` (the questions, 
 
 "Most offers have some room" is labeled as our experience, the same way the offer guide labels it, and it follows the voice guide's negotiation rule. The handoff line is the guide's own request → basis → decision idea in plain words.
 
+## Critical Miss definition (separate commit; drop it if the severity check fails its gate)
+
+The definition: a problem that could cost you the interview on its own. The report flags up to three and starts with the one to fix first. The homepage H1, the subhead, its share description and the sample description keep "the one thing to fix first", as Matt asked. The HiringTruths line ships with the severity feature elsewhere.
+
+| Where | Before | After |
+| --- | --- | --- |
+| Methodology header | …and the Critical Miss, the one thing to fix first. | …and up to three Critical Misses, each a problem that could cost you the interview on its own, starting with the one to fix first. |
+| Methodology, "What you'll see" | The one change to make first, with the line it comes from and the questions to answer. | A problem that could cost you the interview on its own. The report flags up to three and starts with the one to fix first, each with its line and the questions to answer. |
+| How the Critical Miss is chosen | Of everything that could be clearer, the report picks one thing to fix first… The report quotes the line… | A Critical Miss is a problem that could cost you the interview on its own. The report flags up to three, in order, and starts with the one to fix first… For each one, the report quotes the line… |
+| Methodology FAQ and "How to use the band" | …which is the Critical Miss. / Fix the Critical Miss… / Start with the Critical Miss… | …which is your first Critical Miss. / Start with your first Critical Miss… (twice) |
+| Fig. 1 path | Critical Miss: The one change to make first | Critical Miss: Up to three, starting with the one to fix first |
+| Pricing, free tier | The Critical Miss: the one thing to fix first | Critical Misses: what could cost you the interview, starting with the one to fix first |
+| Pricing, paused layout | …and the Critical Miss, with the lines behind them… | …and up to three Critical Misses, with the lines behind them… |
+| FAQ, What does the report cover? | …and the Critical Miss tells you what to fix first. | …and each Critical Miss flags a problem that could cost you the interview, starting with the one to fix first. |
+| gaps-and-pivots | If it's the one thing to fix first, it becomes the Critical Miss… | If it could cost you the interview on its own, it becomes a Critical Miss… |
+| how-recruiters-read | …the Critical Miss leads with that as the one thing to fix first. | …in a way that could cost you the interview, a Critical Miss says so, starting with the one to fix first. |
+| spelling-errors-impact | It leads with the Critical Miss, the one thing to fix first. | It leads with your Critical Misses, the problems that could cost you the interview, starting with the one to fix first. |
+| referral-advantage | The Critical Miss is the one thing to fix first. | Your Critical Misses are the problems that could cost you the interview on their own; start with the first. |
+| linkedin-visibility | …and the Critical Miss is the one thing to fix first. | …and each Critical Miss is a problem that could cost you the interview on its own, starting with the one to fix first. |
+| hiring-discrimination-meta-analysis | Your Critical Miss is the one thing to fix first on the page. Fixing it won't close a gap… | Your Critical Misses are the problems on the page that could cost you the interview. Fixing them won't close a gap… |
+| salary-history-bans | …and the Critical Miss is the one thing to fix first. | …and each Critical Miss flags a problem that could cost you the interview, starting with the one to fix first. |
+
+Those seven research pages move to 2026-11-02 in `public-pages.ts`, inside the same commit.
+
+**For routing, not edited here (owned by the critical-miss-count session):**
+- `components/workspace/report/markup/MarkedRows.tsx:128` and `lib/backend/pdf.ts:76` label the first row "The one thing to fix first". That label stays true for the first of several. When the count ships, the report should lead with the count ("3 Critical Misses. Start with this one."), per Matt's November 1 decision.
+- `report-navigation.spec.ts:102` asserts that label.
+- `docs/copy-system.md` §1 still says the Critical Miss "may be Nothing critical (D2)". Matt has since ruled that out. That session is editing the file.
+
 ## Proposed changes to report components (for routing)
 
 These files are being edited by the signature-report and research-receipts sessions, so nothing here is committed.
@@ -250,6 +279,8 @@ These files are being edited by the signature-report and research-receipts sessi
    - `FirstReadModelDiagram.tsx:41`, `MarkedRows.tsx:128`, `pdf.ts:76`: "The one change to make first" / "The one thing to fix first"
    - `sample-report/page.tsx:12`, and `page.tsx:9` (share description): "the one thing to fix first"
    - Research tie-ins in seven articles: "the Critical Miss is the one thing to fix first"
+
+   **Status:** the coordinator asked for the definition below as its own droppable commit; see "Critical Miss definition" above.
 
    **Recommendation:** keep the subhead as is. "The one thing to fix first" stays true, because a report with three still starts with one. Change the definition everywhere else on the day the count ships:
    - Definition: "A Critical Miss is a problem that could cost you the interview on its own. The report flags up to three and starts with the one to fix first."

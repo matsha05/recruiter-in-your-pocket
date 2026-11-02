@@ -23,7 +23,7 @@ export default function MethodologyPage() {
             header={{
                 tag: "Methodology",
                 title: "How the report works",
-                description: "Every report applies a recruiter's criteria to your resume: a Verdict, a band that shows where your resume stands, and the Critical Miss, the one thing to fix first. Here's how each part is made, and what it can't tell you.",
+                description: "Every report applies a recruiter's criteria to your resume: a Verdict, a band that shows where your resume stands, and up to three Critical Misses, each a problem that could cost you the interview on its own, starting with the one to fix first. Here's how each part is made, and what it can't tell you.",
                 sourceSummary: "2 peer-reviewed studies",
             }}
             keyFinding={{
@@ -38,7 +38,7 @@ export default function MethodologyPage() {
                 items: [
                     { title: "Verdict", description: "A plain-words read of what your resume says first, judged against a recruiter's criteria." },
                     { title: "Where your resume stands", description: "One of three bands, from Needs more context to Clear and specific, with a line on what it means. The number behind it is for comparing versions, in My reports and in a re-check." },
-                    { title: "Critical Miss", description: "The one change to make first, with the line it comes from and the questions to answer." },
+                    { title: "Critical Miss", description: "A problem that could cost you the interview on its own. The report flags up to three and starts with the one to fix first, each with its line and the questions to answer." },
                 ],
             }}
             relatedArticles={["/research/how-recruiters-read", "/research/quantifying-impact", "/research/star-method"].map(hubLink)}
@@ -65,11 +65,11 @@ export default function MethodologyPage() {
                 },
                 {
                     question: "Why a band instead of a number?",
-                    answer: "A number invites you to chase points, and four numbers invite you to chase the lowest one. A band plus a written read keeps you on the change that matters most, which is the Critical Miss. When you revise, a re-check shows how far the number moved.",
+                    answer: "A number invites you to chase points, and four numbers invite you to chase the lowest one. A band plus a written read keeps you on the change that matters most, which is your first Critical Miss. When you revise, a re-check shows how far the number moved.",
                 },
                 {
                     question: "Should I chase a better band?",
-                    answer: "Not for its own sake. Fix the Critical Miss and check every suggestion against what you actually did. A better band on a less accurate resume doesn't help you.",
+                    answer: "Not for its own sake. Start with your first Critical Miss and check every suggestion against what you actually did. A better band on a less accurate resume doesn't help you.",
                 },
                 {
                     question: "Does a person read my report?",
@@ -95,7 +95,7 @@ export default function MethodologyPage() {
 
             <h2 className="research-h2">How the Critical Miss is chosen</h2>
             <p className="research-body mb-6">
-                Of everything that could be clearer, the report picks one thing to fix first. Often it&apos;s a strong example that stops short of its result, or a responsibility that hides how much you owned. The report quotes the line, says what&apos;s missing, and lists the questions that would fill it in. The choice applies our criteria; it isn&apos;t a prediction of what a particular recruiter will notice.
+                A Critical Miss is a problem that could cost you the interview on its own. The report flags up to three, in order, and starts with the one to fix first. Often it&apos;s a strong example that stops short of its result, or a responsibility that hides how much you owned. For each one, the report quotes the line, says what&apos;s missing, and lists the questions that would fill it in. The choice applies our criteria; it isn&apos;t a prediction of what a particular recruiter will notice.
             </p>
 
             <h2 className="research-h2">How suggested edits protect your facts</h2>
@@ -117,7 +117,7 @@ export default function MethodologyPage() {
 
             <h2 className="research-h2">How to use the band</h2>
             <p className="research-body mb-6">
-                Start with the Critical Miss and check it against your experience. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. That study shaped how we think about experience; it didn&apos;t test our score or show that an edit causes more attention.
+                Start with your first Critical Miss and check it against your experience. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. That study shaped how we think about experience; it didn&apos;t test our score or show that an edit causes more attention.
                 <Citation id="source-1">2</Citation>
             </p>
 

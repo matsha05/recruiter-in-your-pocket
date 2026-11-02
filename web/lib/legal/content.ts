@@ -330,7 +330,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What does the report cover?",
-                a: "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every note quotes the line behind it, and the Critical Miss tells you what to fix first. Add a job posting, and the report reads your resume against that role too.",
+                a: "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every note quotes the line behind it, and each Critical Miss flags a problem that could cost you the interview, starting with the one to fix first. Add a job posting, and the report reads your resume against that role too.",
               },
               {
                 q: "How is this different from ATS keyword tools?",

@@ -43,7 +43,7 @@ const NO_NOTE = "The sample report has no note here.";
 const reviewPath = [
     { label: "Your lines", detail: "What the resume actually says" },
     { label: "The read", detail: "What comes through and what slips past" },
-    { label: "Critical Miss", detail: "The one change to make first" },
+    { label: "Critical Miss", detail: "Up to three, starting with the one to fix first" },
 ];
 
 export function FirstReadModelDiagram() {
