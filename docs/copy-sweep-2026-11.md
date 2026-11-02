@@ -321,3 +321,9 @@ These files are being edited by the signature-report and research-receipts sessi
   - The 2 failures were timeouts in `research-surface.spec.ts` while the machine's load average was about 25. On a rerun, "load without browser errors" passed. The axe sweep (17 pages in 180 seconds) timed out again; neither run failed an assertion.
   - Run directly, axe found no serious or critical violations on `/research/referral-advantage` (the only research page changed), `/` at 1440 and 390, or `/methodology` at 1440 and 390.
   - The research axe sweep should be re-run on a quieter machine or in CI.
+- **Band and Critical Miss definition commits, on a fresh build of `d28cb070`:**
+  - Passed: lint, `qa:design-system`, `test:search-foundation`, `billing-pricing`, and the build's type check.
+  - 5 UI spec files: 30 passed, 1 skipped, 0 failed. editorial-surfaces (including the new "score language" tests), pricing-mobile, homepage-seo, search-foundation and research-surface.
+  - research-surface's full axe sweep passed, with the machine less loaded than in the earlier run.
+  - Looked at methodology at 1440 and 390. The hero card reads "Example band · Mostly clear". Fig. 1 shows the report's ScoreBand and four rows. No "/100", no "First Impression score", no horizontal overflow.
+  - The band commit changes no Critical Miss line, and the definition commit changes no score line, so dropping the definition commit leaves the band work intact.
