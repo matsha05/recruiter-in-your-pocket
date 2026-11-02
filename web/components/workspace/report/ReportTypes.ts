@@ -12,7 +12,8 @@ export interface ReportData {
     first_impression?: string;
     strengths?: string[];
     gaps?: string[];
-    top_fixes?: Array<{ fix?: string; text?: string; why?: string; confidence?: 'high' | 'medium' | 'low'; evidence?: string | { excerpt?: string; section?: string }; impact_level?: string; effort?: string; section_ref?: string }>;
+    top_fixes?: Array<{ fix?: string; text?: string; why?: string; confidence?: 'high' | 'medium' | 'low'; evidence?: string | { excerpt?: string; section?: string }; impact_level?: string; effort?: string; section_ref?: string; critical?: boolean }>;
+    more_critical?: boolean;
     section_review?: Record<string, { working?: string | null; missing?: string | null; fix?: string | null; grade?: string; priority?: string }>;
     rewrites?: Array<{ original: string; better: string; label?: string; enhancement_note?: string }>;
     job_alignment?: {

@@ -4,7 +4,7 @@ import path from "node:path";
 import { getScoreLabel } from "../lib/score-utils";
 import { reconcileReport } from "../lib/reports/report-integrity";
 import { parseReportFeedback } from "../lib/reports/report-feedback";
-import { criticalFixCount } from "../lib/reports/report-presentation";
+import { criticalCountHeading, fixLabel, missingFromResume, readCriticalMisses, withCriticalFirst } from "../lib/reports/report-presentation";
 import { resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
 import {
   composeRevisedLine,
@@ -130,9 +130,43 @@ for (const score of [0, 40, 59, 60, 69, 70, 84, 85, 92, 99]) {
   assert.equal(scoreBandFor(score).name, getScoreLabel(score), `band for ${score} matches the validator's score_label`);
 }
 assert.equal(new Set(SCORE_BANDS.map((band) => band.anchor)).size, SCORE_BANDS.length, "each band has its own anchor");
-// The production prompt always names one Critical Miss, even a low-impact one (Matt: "Always name a top fix").
-assert.equal(criticalFixCount({ top_fixes: [{ fix: "Optional.", impact_level: "low" }, { fix: "Next." }] }), 1);
-assert.equal(criticalFixCount({ top_fixes: [] }), 0);
+// The production prompt always names one Critical Miss, even a low-impact one (Matt: "Always name a top fix"),
+// but without the severity check's flags the report can't say how many there are.
+const unflagged = readCriticalMisses({ top_fixes: [{ fix: "Optional.", impact_level: "low" }, { fix: "Next." }] });
+assert.deepEqual(unflagged, { count: 1, counted: false, more: false });
+assert.equal(criticalCountHeading(unflagged), null, "no count heading without the severity check");
+assert.deepEqual(readCriticalMisses({ top_fixes: [] }), { count: 0, counted: false, more: false });
+
+// Flagged: the count is the leading critical fixes, up to three; "more than three" needs three.
+const flags = (...critical: boolean[]) => critical.map((value, index) => ({ fix: `Fix ${index}.`, critical: value }));
+assert.deepEqual(readCriticalMisses({ top_fixes: flags(true, false, false) }), { count: 1, counted: true, more: false });
+assert.deepEqual(readCriticalMisses({ top_fixes: flags(true, true, false) }), { count: 2, counted: true, more: false });
+assert.deepEqual(readCriticalMisses({ top_fixes: flags(true, true, true), more_critical: true }), { count: 3, counted: true, more: true });
+assert.deepEqual(readCriticalMisses({ top_fixes: flags(true, true, false), more_critical: true }), { count: 2, counted: true, more: false }, "more_critical without three flagged is dropped");
+assert.deepEqual(readCriticalMisses({ top_fixes: flags(false, false) }), { count: 1, counted: true, more: false }, "a report always names one");
+assert.equal(readCriticalMisses({ top_fixes: flags(true, true, true, true) }).count, 3, "three at most");
+
+// A flagged fix below an unflagged one moves up; the first stays first; unflagged reports keep their order.
+const stray = { top_fixes: flags(true, false, true) };
+assert.deepEqual(withCriticalFirst(stray).top_fixes?.map((fix) => fix.fix), ["Fix 0.", "Fix 2.", "Fix 1."]);
+assert.equal(readCriticalMisses(withCriticalFirst(stray)).count, 2);
+const plain = { top_fixes: [{ fix: "A." }, { fix: "B." }] };
+assert.equal(withCriticalFirst(plain), plain);
+const ordered = { top_fixes: flags(true, false) };
+assert.equal(withCriticalFirst(ordered), ordered, "already in order: the same object");
+
+// The count leads (copy-system §1); labels number the Critical Misses only when there are several.
+assert.deepEqual(criticalCountHeading({ count: 1, counted: true, more: false }), { title: "One Critical Miss. Fix it first.", lead: "It's the one most likely to cost you the interview." });
+assert.equal(criticalCountHeading({ count: 2, counted: true, more: false })?.title, "Two Critical Misses. Start with this one.");
+assert.equal(criticalCountHeading({ count: 3, counted: true, more: false })?.title, "Three Critical Misses. Start with this one.");
+assert.equal(criticalCountHeading({ count: 3, counted: true, more: true })?.title, "More than three Critical Misses. Here are the three that matter most.");
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 1, counted: true, more: false })), ["Critical Miss", "Fix 2", "Fix 3"]);
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false })), ["Critical Miss 1", "Critical Miss 2", "Fix 3"]);
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, unflagged)), ["Critical Miss", "Fix 2", "Fix 3"]);
+// A fix about something the resume doesn't have names it; there's no line to quote, mark or revise.
+assert.equal(missingFromResume("No summary section present"), "No summary section");
+assert.equal(missingFromResume("No LinkedIn profile provided."), "No LinkedIn profile");
+assert.equal(missingFromResume("No budget was named for the rollout."), null, "a real line that starts with No");
 
 // ============================================
 // Critical Miss feedback keeps the answer and the model's wording only
