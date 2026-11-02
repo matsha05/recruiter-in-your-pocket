@@ -98,7 +98,7 @@ export default function HumanVsAlgorithmPage() {
             </p>
 
             <ArticleBridge question="Can you check the advice you’re given?">
-                Your First Impression score sums up the written findings. Read those first: the number on its own can&apos;t tell you what to change. Every fix points to a line on your resume, so you can compare it with what you actually did before you take it.
+                Your report&apos;s band sums up the written findings. Read those first: the band on its own can&apos;t tell you what to change. Every fix points to a line on your resume, so you can compare it with what you actually did before you take it.
             </ArticleBridge>
         </AnswerArticle>
     );

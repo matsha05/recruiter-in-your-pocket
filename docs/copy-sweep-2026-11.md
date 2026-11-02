@@ -169,6 +169,37 @@ The founder headline uses the title type role at 34ch instead of the 20ch headli
 
 The old paragraph predated the answer-to-line flow (#39) and implied a bracketed draft becomes copyable once it's filled in. In the report a bracketed draft is a read-only template (`IndependentAdvice`). The polish guard drops only filler (`revised-line-polish.ts`). `/methodology` moves to 2026-11-02.
 
+### Band language (Impeccable audit P1 #1)
+
+A first report shows a band, not a number (D5, design-system §8b). Methodology and pricing still promised a 0 to 100 "First Impression score". This change is copy and figure work only; no prompt changed.
+
+| Where | Before | After |
+| --- | --- | --- |
+| Methodology hero card | Example score · 80 / 100 · the sample's short comment | Example band · Mostly clear · "Most lines show what you did. A few leave your part or the result unclear." (from `SCORE_BANDS`) |
+| Methodology header | …a Verdict, one First Impression score, and the Critical Miss… | …a Verdict, a band that shows where your resume stands, and the Critical Miss… |
+| Methodology search description | How your report reaches its Verdict, First Impression score, and Critical Miss, what the score can't tell you… | How your report reaches its Verdict, where your resume stands, and its Critical Miss, what it can't tell you… |
+| "What you'll see", item 2 | First Impression score: One number that summarizes the read. The written findings explain it. | Where your resume stands: One of three bands, from Needs more context to Clear and specific, with a line on what it means. The number behind it is for comparing versions, in My reports and in a re-check. |
+| FAQ | What does the score summarize? | What does the band summarize? The answer adds that a score out of 100 sits behind it, and that the number is for comparing versions. |
+| FAQ | Why one score instead of four? / Four numbers invite you to chase the lowest one. One number plus a written read keeps you focused… | Why a band instead of a number? / A number invites you to chase points, and four numbers invite you to chase the lowest one. A band plus a written read keeps you on the change that matters most… When you revise, a re-check shows how far the number moved. |
+| FAQ | Should I optimize for the number? / …A higher number on a less accurate resume doesn't help you. | Should I chase a better band? / Not for its own sake… A better band on a less accurate resume doesn't help you. |
+| Fig. 1 | "80 /100 First Impression score" | The report's own `ScoreBand` component, at the sample's score (Mostly clear, the three-step scale, the anchor) |
+| Fig. 1 | What the score weighs: "Four parts" with three rows (the empty "How your experience fits together" row was filtered out) | What goes into the band: all four rows. A part with no note in the sample says "The sample report has no note here." |
+| Fig. 1 caption | The number summarizes; the written read tells you what to change first. | The band summarizes; the written read tells you what to change first. |
+| How suggested edits protect your facts | …stays in brackets as a template for you to fill in… | For each fix, the report asks what's missing, and the revised line is your line plus the answers you type, word for word. Skip a question, or say you didn't do it, and it stays out… If you edit the line and add something that isn't in your line or your answers, we flag it, and it can't be copied until you add it as an answer. Wording suggested for other lines uses only what's already on your resume… |
+| Section headings | How to use the score / The four things the score weighs | How to use the band / The four things behind the band |
+| Pricing, free tier | Your Verdict and First Impression score | Your Verdict and where your resume stands |
+| Pricing, paused layout | Your Verdict, First Impression score, and Critical Miss… | Your Verdict, where your resume stands, and the Critical Miss… |
+| Research: human vs algorithm | Your First Impression score sums up the written findings… the number on its own… | Your report's band sums up the written findings… the band on its own… |
+| Research hub, methodology row | …how the Verdict, the score, and the Critical Miss are made, and what the score can't tell you. | …how the Verdict, the band, and the Critical Miss are made, and what they can't tell you. |
+| App manifest | your Verdict, First Impression score, and the one thing they would miss. | your Verdict, where your resume stands, and what to fix first. |
+| Trust and security promise | The score summarizes this resume review out of 100. It doesn't predict interviews or offers. | The band summarizes this resume review. It doesn't predict interviews or offers. |
+
+The suggested-edits paragraph is checked against `LineLift.tsx` (the questions, the "I don't know" and "I didn't do this" choices, the new-fact guard, the "Use my exact words" toggle) and `IndependentAdvice.tsx` (templates behind "View draft template", the unsafe-draft copy guard).
+
+**Product note, not changed:** design-system §8b says "the number appears only when two reads are compared". My reports and the history drawer show each saved report's number (`ScoreBadge`), even when there's only one. Methodology now describes what ships: "for comparing versions, in My reports and in a re-check".
+
+**Regression test:** `editorial-surfaces.spec.ts` has a "score language" block. On /methodology it checks for no "/100", no "First Impression score", the band component reading "Mostly clear", and four rows under "What goes into the band". On /pricing it checks for no "First Impression score" and the band wording.
+
 ### After the offer (guides index)
 
 | Where | Before | After |

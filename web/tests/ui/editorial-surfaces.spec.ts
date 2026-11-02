@@ -8,6 +8,26 @@ const publicEditorialRoutes = [
   { route: "/resources/tools/comp-calculator", canonical: "/resources/tools/comp-calculator" },
 ] as const;
 
+test.describe("score language", () => {
+  // A first report shows a band, never the number (D5); methodology and pricing must say the same.
+  test("methodology shows the sample's band and all four parts, with no 0 to 100 score", async ({ page }) => {
+    await page.goto("/methodology", { waitUntil: "domcontentloaded" });
+    const body = page.locator("body");
+    await expect(body).not.toContainText(/\/\s?100\b/);
+    await expect(body).not.toContainText("First Impression score");
+    await expect(page.getByTestId("score-band").first()).toBeVisible();
+    await expect(page.getByTestId("score-band").first()).toContainText("Mostly clear");
+    await expect(page.getByRole("region", { name: "What goes into the band" }).getByRole("listitem")).toHaveCount(4);
+  });
+
+  test("pricing names the band, not a First Impression score", async ({ page }) => {
+    await page.goto("/pricing", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("body")).not.toContainText("First Impression score");
+    // Both the live and the paused pricing layouts describe the free report this way.
+    await expect(page.locator("body")).toContainText("where your resume stands");
+  });
+});
+
 test.describe("editorial resources", () => {
   for (const { route, canonical } of publicEditorialRoutes) {
     test(`${route} has canonical metadata, a complete page ending, and no serious a11y violations`, async ({ page }) => {

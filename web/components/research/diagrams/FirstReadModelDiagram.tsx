@@ -4,10 +4,12 @@ import sampleReport from "@/public/sample-report.json";
 import { DiagramCaption, DiagramFigure } from "@/components/shared/diagrams/DiagramPrimitives";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { ScoreBand } from "@/components/workspace/report/markup/ScoreBand";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 
 // Every line below is one the sample report shows after its integrity pass, so the
-// figure quotes what a reader of the report actually sees.
+// figure quotes what a reader of the report actually sees. The band is the report's own
+// ScoreBand: a first report shows where the resume stands, never the number (D5).
 const sample = reconcileReport(sampleReport as ReportData);
 const criticalMiss = sample.report.top_fixes?.[0];
 const criticalMissWhy = criticalMissReason(sample);
@@ -33,7 +35,10 @@ const weighs = [
         question: "Reading the text alone, can someone find your roles, dates, and results quickly?",
         finding: sample.report.strengths?.[0],
     },
-].filter((item): item is typeof item & { finding: string } => Boolean(item.finding));
+];
+
+// When the sample has no note for a part, the figure says so rather than dropping the row.
+const NO_NOTE = "The sample report has no note here.";
 
 const reviewPath = [
     { label: "Your lines", detail: "What the resume actually says" },
@@ -43,7 +48,7 @@ const reviewPath = [
 
 export function FirstReadModelDiagram() {
     return (
-        <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the Verdict, the First Impression score, the Critical Miss, and the four things the score weighs">
+        <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the Verdict, the band, the Critical Miss, and the four things behind the band">
             <div className="overflow-hidden rounded-sheet border border-line bg-card">
                 <div className="grid lg:grid-cols-[20rem_minmax(0,1fr)]">
                     <section className="flex flex-col justify-between gap-8 border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="How the sample report opens">
@@ -52,9 +57,8 @@ export function FirstReadModelDiagram() {
                             <p className="mt-3 font-serif text-lg text-foreground">{sampleReport.first_impression}</p>
                         </div>
                         <div className="flex flex-col gap-5">
-                        <div className="flex items-baseline gap-3 border-t border-line pt-5">
-                            <p className="font-display text-title tabular-nums text-foreground">{sampleReport.score}<span className="ml-0.5 text-base font-medium text-muted-foreground">/100</span></p>
-                            <p className="text-sm text-muted-foreground">First Impression score</p>
+                        <div className="border-t border-line pt-1">
+                            <ScoreBand score={sampleReport.score} />
                         </div>
                         <div className="rounded-xl border border-[hsl(var(--miss-line))] bg-[hsl(var(--miss-surface))] p-4">
                             <p className="riyp-verdict-label text-[hsl(var(--brass))]">Critical Miss</p>
@@ -64,9 +68,9 @@ export function FirstReadModelDiagram() {
                         </div>
                     </section>
 
-                    <section className="p-6 lg:p-8" aria-label="What the score weighs">
+                    <section className="p-6 lg:p-8" aria-label="What goes into the band">
                         <div className="border-b border-line pb-5">
-                            <h3 className="font-display text-heading text-foreground">What the score weighs</h3>
+                            <h3 className="font-display text-heading text-foreground">What goes into the band</h3>
                             <p className="mt-2 max-w-[34rem] text-sm text-muted-foreground">Four parts of a recruiter&apos;s criteria. The report explains each one in words; there are no separate sub-scores.</p>
                         </div>
                         <ol className="divide-y divide-line">
@@ -75,7 +79,9 @@ export function FirstReadModelDiagram() {
                                     <p className="text-sm font-semibold text-foreground">{item.title}</p>
                                     <div>
                                         <p className="text-sm text-foreground">{item.question}</p>
-                                        <p className="mt-2 border-l-2 border-[hsl(var(--pen)/0.35)] pl-3 text-note text-[hsl(var(--pen))]">{item.finding}</p>
+                                        {item.finding
+                                            ? <p className="mt-2 border-l-2 border-[hsl(var(--pen)/0.35)] pl-3 text-note text-[hsl(var(--pen))]">{item.finding}</p>
+                                            : <p className="mt-2 text-sm text-muted-foreground">{NO_NOTE}</p>}
                                     </div>
                                 </li>
                             ))}
@@ -91,7 +97,7 @@ export function FirstReadModelDiagram() {
                     />
                 </div>
             </div>
-            <DiagramCaption kicker="Fig. 1 / From the sample report" title="The number summarizes; the written read tells you what to change first." />
+            <DiagramCaption kicker="Fig. 1 / From the sample report" title="The band summarizes; the written read tells you what to change first." />
         </DiagramFigure>
     );
 }

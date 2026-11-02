@@ -104,7 +104,7 @@ export const TRUST_PROMISES = [
   "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
-  "The score summarizes this resume review out of 100. It doesn’t predict interviews or offers.",
+  "The band summarizes this resume review. It doesn’t predict interviews or offers.",
   `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`,
   "A Job Search Pass is one payment for five additional reports over 30 days. It does not renew, and you can restore it from Billing.",
   "Security reports can be sent using the disclosure instructions on our Security page."
