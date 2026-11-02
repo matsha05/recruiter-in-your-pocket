@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
-import { Toaster } from "@/components/ui/sonner";
+import { ToasterLauncher } from "@/components/ToasterLauncher";
 import { CommandPaletteLauncher } from "@/components/CommandPaletteLauncher";
 import { AnalyticsLifecycle } from "@/components/privacy/AnalyticsLifecycle";
 import { PageStatistics } from "@/components/privacy/PageStatistics";
@@ -58,7 +58,7 @@ export default function RootLayout({
           <AnalyticsLifecycle />
           {children}
           <CommandPaletteLauncher />
-          <Toaster />
+          <ToasterLauncher />
           <PrivacyControls />
           {/* Only the live site reports page statistics; previews, local runs, and tests stay quiet. */}
           {process.env.VERCEL_ENV === "production" ? <PageStatistics /> : null}

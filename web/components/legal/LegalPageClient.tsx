@@ -1,5 +1,5 @@
-"use client";
-
+// Rendered on the server despite its name: the legal text and its icons reach the
+// browser as HTML, not JavaScript. Only the FAQ accordion and the legal nav hydrate.
 import Link from "next/link";
 import { LegalShell } from "@/components/legal/LegalShell";
 import {
