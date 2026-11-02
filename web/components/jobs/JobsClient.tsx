@@ -588,14 +588,14 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                       <Link
                           href="/auth?from=jobs"
                       >
-                          Sign In
+                          Sign in
                       </Link>
                     </Button>
                     <Button asChild variant="secondary">
                       <Link
                           href="/workspace"
                       >
-                          Open Workspace
+                          Get your free report
                       </Link>
                     </Button>
                     <Button asChild variant="secondary">
@@ -637,7 +637,7 @@ function EmptyState({ hasJobs, signedIn, hasMore }: { hasJobs: boolean; signedIn
                   <Link
                       href="/workspace"
                   >
-                      Start a report
+                      New report
                   </Link>
                 </Button>
             </div>

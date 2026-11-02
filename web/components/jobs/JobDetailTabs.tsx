@@ -363,7 +363,7 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | 
         <Link
           href={`/workspace?job=${job.id}`}
         >
-          Start a report
+          New report
           <ArrowRight className="size-4" />
         </Link>
       </Button>
@@ -392,7 +392,7 @@ function NextBestActions({ jobId, onReviewJobDescription }: { jobId: string; onR
       <div className="space-y-2">
         <ActionButton
           icon={FileText}
-          label="Start a report"
+          label="New report"
           description="Get resume feedback for this job"
           href={`/workspace?job=${jobId}`}
         />

@@ -38,7 +38,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
       if (!res.ok) {
         if (controller.signal.aborted) return;
         if (res.status === 401) setError("Sign in to view saved job details.");
-        else if (res.status === 404) setError("This saved job is no longer available. You can still start a report with a job description you paste in.");
+        else if (res.status === 404) setError("This saved job is no longer available. Paste the job description into a new report instead.");
         else setError("We couldn't load this saved job. Please try again.");
         return;
       }
@@ -111,7 +111,7 @@ function JobDetailContent({ jobId, userId, authLoading }: JobDetailClientProps &
               <Link
                 href="/workspace"
               >
-                Start a report
+                New report
               </Link>
             </Button>
           ) : error?.includes("Sign in") ? (

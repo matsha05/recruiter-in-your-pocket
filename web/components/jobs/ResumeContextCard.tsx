@@ -383,7 +383,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                       <Link
                           href="/auth?from=jobs"
                       >
-                          Sign In
+                          Sign in
                       </Link>
                     </Button>
                 </div>
