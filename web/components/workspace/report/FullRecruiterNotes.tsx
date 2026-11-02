@@ -127,7 +127,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">
         {detailedRead.length > 0 && (
           <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
-            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The full read.</h3>
+            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The rest of the notes.</h3>
             <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {detailedRead.map(({ label, text }) => (
                 <div key={label} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">

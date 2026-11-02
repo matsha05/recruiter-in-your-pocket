@@ -244,9 +244,25 @@ Those seven research pages move to 2026-11-02 in `public-pages.ts`, inside the s
 - `report-navigation.spec.ts:102` asserts that label.
 - `docs/copy-system.md` §1 still says the Critical Miss "may be Nothing critical (D2)". Matt has since ruled that out. That session is editing the file.
 
-## Proposed changes to report components (for routing)
+## Report components (applied November 2 on `claude/report-copy-fixes`, cut from `claude/wave-3`)
 
-These files are being edited by the signature-report and research-receipts sessions, so nothing here is committed.
+These were proposals while other sessions owned the files. Once those sessions went idle, Matt asked for them to be applied. What shipped differs from the table below in a few places:
+- **Applied as proposed:**
+  - The score explanation ("how easy the text is to follow").
+  - The sample's end: "What would they think of yours?", the "comes through / slips past" line, "No account or card".
+  - Both ReadComparison lines, the MissFeedback thanks, "The rest of the notes.", "More lines worth a second look.", the ReportPanel empty-state line and its arrow icon, and "Here's where to start."
+- **Changed from the proposal:**
+  - The ready-line heading became "Your line is ready. Drop it into your resume and see what changed." (plural: "Your lines are ready. Drop them…"). The button under it starts the comparison.
+  - The PDF's rewrites section matches the web: kicker "More from your resume", heading "More lines worth a second look.", rows "Line 01". The template note reads "About the brackets: Fill in the brackets with your own facts before you use a draft."
+  - The PDF footer is anonymous: "A recruiter's review criteria, applied by AI. Check every suggested detail against what you actually did."
+- **Not applied:**
+  - "Work Experience" in `FullRecruiterNotes.tsx` is the `SECTION_ORDER` key that matches the model's section names, not display copy.
+  - "The one thing to fix first" was settled in wave 3: it shows only when there's a single Critical Miss.
+- **Tests updated:**
+  - `pdf-export.test.ts`: the section heading and the bracket note.
+  - `redteam-journeys.spec.ts`: the sample's end and the feedback thanks.
+
+The original proposals, for reference:
 
 | File:line (at 568b923a) | Before | Proposed | Why |
 | --- | --- | --- | --- |

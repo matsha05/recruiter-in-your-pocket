@@ -180,7 +180,7 @@ export default function ReportPanel({
                             Your report will show up here.
                         </h2>
                         <p className="text-muted-foreground">
-                            Add your resume and see what a recruiter notices first.
+                            Add your resume to see what a recruiter sees first.
                         </p>
                     </div>
 
@@ -195,7 +195,7 @@ export default function ReportPanel({
                             onClick={onNewReport}
                             className="min-h-11 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            <span className="text-brand hover:underline">Get your free report →</span>
+                            <span className="inline-flex items-center gap-1 text-brand hover:underline">Get your free report <ArrowRight className="size-4" weight="bold" aria-hidden="true" /></span>
                         </button>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ export interface IndependentQuestion {
 
 // The fix section's heading, in the approved word list (docs/copy-system.md §1).
 export function fixPlanHeadingForCount(count: number) {
-  if (count === 0) return "Review the suggestions below.";
+  if (count === 0) return "Here's where to start.";
   if (count === 1) return "Fix this first.";
   if (count === 2) return "Fix these two first.";
   return "Fix these three first.";

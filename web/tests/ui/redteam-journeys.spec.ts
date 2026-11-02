@@ -171,7 +171,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
-    await expect(terminalCta).toContainText("Now let's look at yours.");
+    await expect(terminalCta).toContainText("What would they think of yours?");
     await terminalCta.getByRole("button", { name: "Get your free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
@@ -226,7 +226,7 @@ test.describe("launch red-team journeys", () => {
     const feedbackSent = page.waitForResponse((response) => response.url().endsWith("/api/report-feedback"));
     await feedback.getByRole("button", { name: "Yes", exact: true }).click();
     expect((await feedbackSent).status()).toBe(200);
-    await expect(miss.getByText("Thanks. Answers like this are how we check the read.")).toBeVisible();
+    await expect(miss.getByText("Thanks. This is how we find out when we picked the wrong thing.")).toBeVisible();
   });
 
   test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {

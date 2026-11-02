@@ -138,7 +138,7 @@ export function IndependentAdvice({
       {rewrites.length > 0 && (
         <div>
           <p className="text-xs font-semibold text-brand">More from your resume</p>
-          <h2 className={`${styles.sectionTitle} mt-3`}>Other suggested edits.</h2>
+          <h2 className={`${styles.sectionTitle} mt-3`}>More lines worth a second look.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
             Compare each suggestion with the original before you use it.
           </p>
