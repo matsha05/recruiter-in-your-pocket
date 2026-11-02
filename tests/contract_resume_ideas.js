@@ -8,6 +8,15 @@ process.env.USE_MOCK_OPENAI = "1";
 process.env.RIYP_ENABLE_RESUME_IDEAS_API = "1";
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
 const { startNextServer } = require("../scripts/next_server");
+
+// Long enough to clear the 200-character minimum, so these checks reach the
+// access layer they are testing instead of stopping at input validation.
+const VALID_RESUME_TEXT = [
+  "Software Engineer, Google, 2019 to present",
+  "- Led a team of 5 engineers building the billing service used by 40 internal products",
+  "- Cut checkout errors by 30% by moving payment retries into a single queue",
+  "- Wrote the on-call runbook adopted by three teams",
+].join("\n");
 let next = null;
 
 async function request(method, url, body = null) {
@@ -34,7 +43,7 @@ async function run() {
     // production server has no durable anonymous-access ledger. The provider
     // must not run and no free attempt may be consumed.
     const validResponse = await request("POST", "/api/resume-ideas", {
-      text: "Software Engineer\nGoogle\nLed team of 5 engineers"
+      text: VALID_RESUME_TEXT
     });
     assert.strictEqual(validResponse.status, 503, `Expected fail-closed 503, got ${validResponse.status}: ${validResponse.body}`);
     const validPayload = JSON.parse(validResponse.body);
