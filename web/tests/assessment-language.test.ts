@@ -193,3 +193,16 @@ assert.equal(fromPath({ summary: 'Your Ohio P.E. license helps place you at the 
 assert.ok(fromPath({ summary: 'Your Texas P.E. license helps place you at the project engineer level.' }, engineerSource).length > 0, "a state the source doesn't name is still unsupported");
 assert.ok(fromPath({ summary: 'Your Ohio P.E. license helps place you at the project engineer level.' }, "Project Engineer\nLead design for roadway projects in Ohio").length > 0, "a P.E. the source doesn't state is still unsupported");
 console.log("initialism tests passed");
+
+// A quoted line as the subject, and suggested labels (eval_1793580600825, golden on the v3.3 candidate).
+const funnelSource = "VP Talent\nRebuilt the engineering recruiting funnel, improving onsite to offer from 21 percent to 33 percent and offer acceptance from 76 percent to 89 percent.";
+assert.equal(fromPath({ biggest_gap_example: '“Rebuilt the engineering recruiting funnel” reports improved offer acceptance but not candidate volume.' }, funnelSource).length, 0, "a leading quote is the line that reports");
+assert.ok(fromPath({ biggest_gap_example: '“Rebuilt the engineering recruiting funnel” reports a 40% drop in cost per hire.' }, funnelSource).length > 0, "what the quoted line reports still needs support");
+assert.ok(fromPath({ biggest_gap_example: '"June 2015 - August 2023" is the latest dated role at Google.' }, "HR Manager, BrightWave\nJune 2015 - August 2023").length > 0, "an employer after a quoted date still needs support");
+assert.equal(fromPath({ biggest_gap_example: '"Feb 2023 - Jul 2023" is the latest relevant date range, with no later activity listed to show your current connection to operations.' }, "Operations Assistant, Greenfield\nFeb 2023 - Jul 2023").length, 0, "a quoted date described by \"is\" is still a description");
+const breakSource = "HR Manager, BrightWave\nJune 2015 - August 2023";
+const breakFix = (why: string) => ({ top_fixes: [{ fix: "Add one dated line covering August 2023 to today.", why }] });
+assert.equal(fromPath(breakFix('After BrightWave, use a dated line such as "Career break" or "Job search and coursework" to account truthfully for the period.'), breakSource).length, 0, "a suggested sentence-case label claims nothing");
+assert.ok(fromPath(breakFix('After BrightWave, use a dated line such as "Senior Director at Google" to account for the period.'), breakSource).length > 0, "a suggested title or employer is still checked");
+assert.ok(fromPath(breakFix('Your resume already has a "Career break" line after BrightWave.'), breakSource).length > 0, "a label the resume is said to have still needs support");
+console.log("quoted-subject and suggested-label tests passed");

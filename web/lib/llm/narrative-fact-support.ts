@@ -72,7 +72,14 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
   if (path === "score_plain" && Number.isFinite(reportScore)) {
     value = value.replace(new RegExp(`\\b(?:At|score (?:of|is)) ${reportScore}\\b`, "i"), "At this score");
   }
-  let auditable = (path === "biggest_gap_example" ? value.replace(/["“][^"”]+["”]/u, " ") : value).replace(/\bU\.S\./gu, "US");
+  // A quoted line that reports something is the sentence's subject: "“Rebuilt the funnel” reports ..."
+  // means it, the line, reports. Any other quote is blanked, so "“Feb 2023” is the latest ..." stays a description.
+  const reportingQuote = /^\s*["“][^"”]+["”](?=\s+(?:reports|shows|lists|says|states|gives|names|mentions|describes|notes|covers|includes)\b)/u;
+  let auditable = (path !== "biggest_gap_example" ? value
+    : reportingQuote.test(value) ? value.replace(reportingQuote, "It") : value.replace(/["“][^"”]+["”]/u, " ")).replace(/\bU\.S\./gu, "US");
+  // A suggested label ("a dated line such as "Career break"") proposes wording; it claims nothing.
+  // Only a sentence-case label qualifies, so a suggested title or employer is still checked.
+  auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}["”])*/gu, "$1");
   if (path.startsWith("section_review.Education.")) auditable = auditable.replace(/\b(?:B\.S|B\.Ed|M\.S|M\.Div)\.?/gu, (degree) => sourceText.includes(degree) ? " " : degree);
   return /[\p{L}\p{N}]/u.test(auditable) ? auditable : "";
 }
