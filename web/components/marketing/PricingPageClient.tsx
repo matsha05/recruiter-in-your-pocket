@@ -170,7 +170,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     <p className="mt-5 font-display text-headline">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete report</p>
                                     <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-                                        Your Verdict, First Impression score, and Critical Miss, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
+                                        Your Verdict, where your resume stands, and up to three Critical Misses, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
                                     </p>
                                     <p className="mt-3 text-sm text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
                                     <Button asChild className="mt-10 w-full">
@@ -220,7 +220,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 />
                             </div>
                             <p className="max-w-xl text-pretty text-prose text-muted-foreground">
-                                Use the pass to check a revision, or to read your resume against a specific job.
+                                Use the pass to check a revision, or to read your resume against a job you actually want.
                             </p>
                         </div>
 

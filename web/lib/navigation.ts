@@ -130,7 +130,7 @@ export const FOOTER_NAV: FooterNavGroup[] = [
         links: [
             { label: "All research", href: "/research" },
             { label: "How recruiters read", href: "/research/how-recruiters-read" },
-            { label: "What makes a bullet land", href: "/research/quantifying-impact" },
+            { label: "Bullets that show results", href: "/research/quantifying-impact" },
         ],
     },
     {

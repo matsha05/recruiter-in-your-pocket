@@ -92,7 +92,7 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">What a referral changes on the recruiter&apos;s desk</h2>
             <p className="research-body mb-6">
-                <strong>Our take:</strong> this section is Matt Shaw&apos;s experience from years of receiving referrals as a recruiter, not a finding from the studies above.
+                <strong>Our take:</strong> this section is our founder&apos;s experience from years of receiving referrals as a recruiter, not a finding from the studies above.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
@@ -137,7 +137,7 @@ export default function ReferralAdvantagePage() {
             </p>
 
             <ArticleBridge question="Is it ready for a real read?">
-                A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. The Critical Miss is the one thing to fix first.
+                A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. Your Critical Misses are the problems that could cost you the interview on their own; start with the first.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

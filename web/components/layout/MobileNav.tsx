@@ -29,15 +29,15 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                         </div>
                         <div className="flex-1 overflow-hidden">
                             <p className="truncate font-medium">{user.email}</p>
-                            <p className="mt-0.5 flex items-center gap-1.5 text-xs capitalize text-muted-foreground">
+                            <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
                                 {user.membership === "lifetime" && (
                                     <span className="inline-flex items-center gap-1">
-                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Lifetime</span>
+                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Lifetime access</span>
                                     </span>
                                 )}
                                 {user.membership === "monthly" && (
                                     <span className="inline-flex items-center gap-1">
-                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Monthly</span>
+                                        <span className="inline-flex items-center rounded-sm bg-brand-tint px-1.5 py-0.5 text-xs font-bold text-brand">Monthly plan</span>
                                         {typeof user.daysLeft === "number" ? (
                                             <span className="text-xs font-medium text-muted-foreground">• {user.daysLeft} days left</span>
                                         ) : null}
@@ -45,14 +45,14 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                 )}
                                 {user.membership === "credit" && (
                                     <span className="inline-flex items-center rounded-sm bg-success/10 px-1.5 py-0.5 text-xs font-bold text-success">
-                                        {user.paidUsesLeft || 0} Paid Reports
+                                        {user.paidUsesLeft || 0} {(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass
                                     </span>
                                 )}
                                 {(user.membership === "free" || !user.membership) && (
                                     <span className="inline-flex items-center gap-1">
-                                        <span className="inline-flex items-center rounded-sm bg-muted px-1.5 py-0.5 text-xs font-bold text-muted-foreground">Free Plan</span>
+                                        <span className="inline-flex items-center rounded-sm bg-muted px-1.5 py-0.5 text-xs font-bold text-muted-foreground">Free account</span>
                                         {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                            <span className="text-xs font-medium text-success">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Report' : 'Reports'} remaining</span>
+                                            <span className="text-xs font-medium text-success">• {user.freeUsesLeft === 1 ? 'Free report available' : `${user.freeUsesLeft} free reports available`}</span>
                                         )}
                                     </span>
                                 )}
@@ -62,7 +62,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                     <SheetClose asChild>
                         <Button size="sm" variant="secondary" className="w-full justify-start" onClick={() => signOut()}>
                             <SignOut className="size-4" aria-hidden="true" />
-                            Sign Out
+                            Sign out
                         </Button>
                     </SheetClose>
                 </div>

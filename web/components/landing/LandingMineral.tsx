@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { HiringTruths } from "./home/HiringTruths";
@@ -11,7 +10,7 @@ import { WorkedExample } from "./home/WorkedExample";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
-/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, who wrote the criteria, one last ask. */
+/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, why it exists (anonymous by design), one last ask. */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
@@ -22,21 +21,17 @@ export function LandingMineral() {
             <ProgressBeat />
 
             <section id="about" className={styles.founder} aria-labelledby="founder-title">
-                <div className={styles.portrait}>
-                    <Image src="/assets/founder-avatar.jpg" alt="Matt Shaw, founder of Recruiter in Your Pocket" width={420} height={460} sizes="(max-width: 800px) 88px, 280px" />
-                    <p>Matt Shaw <span>Founder</span></p>
-                </div>
+                <p className={styles.founderLabel}>Who built this</p>
                 <div className={styles.founderCopy}>
-                    <h2 id="founder-title">I&apos;ve spent 14 years recruiting for companies like Google, Meta, and OpenAI.</h2>
+                    <h2 id="founder-title">After 14 years in recruiting, it&apos;s obvious to me why one resume gets the call and another doesn&apos;t. It almost never is to the person who wrote it.</h2>
                     <p className={styles.introduction}>
-                        I&apos;m Matt. I built this to give you the read I&apos;d give a friend before they hit send.
+                        That gap is why this exists. It shows you what goes through a recruiter&apos;s head when they read yours, and what to fix first.
                     </p>
                     <p className={styles.disclosure}>
-                        <strong>Heads up:</strong> I wrote the review criteria, and AI applies them to your resume. I don&apos;t read each report myself.
+                        Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don&apos;t read each report myself.
                     </p>
                     <div className={styles.founderLinks}>
                         <Link href="/methodology">How the report works <ArrowRight aria-hidden="true" /></Link>
-                        <a href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer"><LinkedinLogo weight="fill" aria-hidden="true" /> Meet Matt</a>
                     </div>
                 </div>
             </section>

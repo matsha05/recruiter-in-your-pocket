@@ -60,12 +60,12 @@ export function UserNav({
                     <div className="mt-2 text-xs font-medium flex flex-col gap-1">
                         {user.membership === "lifetime" && (
                             <span className="text-brand flex items-center gap-1">
-                                Lifetime Access
+                                Lifetime access
                             </span>
                         )}
                         {user.membership === "monthly" && (
                             <span className="text-brand flex items-center gap-1">
-                                Full Access Monthly
+                                Monthly plan
                                 {typeof user.daysLeft === "number" ? (
                                     <span className="text-muted-foreground lowercase normal-case">• {user.daysLeft} days left</span>
                                 ) : null}
@@ -73,16 +73,16 @@ export function UserNav({
                         )}
                         {user.membership === "credit" && (
                             <span className="text-success">
-                                {user.paidUsesLeft || 0} paid report{(user.paidUsesLeft || 0) === 1 ? "" : "s"} remaining
+                                {user.paidUsesLeft || 0} {(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass
                             </span>
                         )}
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free account</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
-                                    <span className="text-success lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'report' : 'reports'} remaining</span>
+                                    <span className="text-success">• {user.freeUsesLeft === 1 ? 'Free report available' : `${user.freeUsesLeft} free reports available`}</span>
                                 ) : (
-                                    <span className="text-muted-foreground/60 lowercase normal-case">• 0 reports remaining</span>
+                                    <span className="text-muted-foreground/60">• Free report used</span>
                                 )}
                             </div>
                         )}
@@ -128,7 +128,7 @@ export function UserNav({
                     className="text-destructive focus:text-destructive focus:bg-destructive/10"
                 >
                     <SignOut className="mr-2 size-4" />
-                    Sign Out
+                    Sign out
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

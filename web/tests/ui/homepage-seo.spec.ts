@@ -52,17 +52,19 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(truths).toContainText("Not forty tips. Every Critical Miss, and the one to fix first.");
     await expect(truths).toContainText("No ATS score. No interview odds.");
 
-    const founder = page.getByRole("heading", { level: 2, name: "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI." });
-    await expect(founder).toBeVisible();
-    await expect(page.getByAltText("Matt Shaw, founder of Recruiter in Your Pocket")).toBeVisible();
-    await expect(homepage).toContainText("I'm Matt. I built this to give you the read I'd give a friend before they hit send.");
+    // The founder section is anonymous by design: no name, photo, profile link, or employer names.
+    const founder = homepage.locator("#about");
+    await expect(founder.getByRole("heading", { level: 2 })).toHaveText("After 14 years in recruiting, it's obvious to me why one resume gets the call and another doesn't. It almost never is to the person who wrote it.");
+    await expect(founder).toContainText("That gap is why this exists. It shows you what goes through a recruiter's head when they read yours, and what to fix first.");
+    await expect(founder).toContainText("Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don't read each report myself.");
+    await expect(founder.getByRole("link", { name: "How the report works" })).toHaveAttribute("href", "/methodology");
+    await expect(founder.locator("img")).toHaveCount(0);
+    await expect(page.locator('a[href*="linkedin.com/in"]')).toHaveCount(0);
+    for (const identifying of ["Matt", "Shaw", "Google", "Meta", "OpenAI"]) {
+      await expect(homepage).not.toContainText(identifying);
+    }
     await expect(homepage).not.toContainText("hired hundreds");
     await expect(homepage).not.toContainText("led hiring globally");
-    await expect(homepage).toContainText("Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself.");
-    await expect(page.getByRole("link", { name: "Meet Matt" })).toHaveAttribute(
-      "href",
-      "https://www.linkedin.com/in/mattrshaw",
-    );
     await expect(page.getByRole("heading", { level: 2, name: "Good work deserves a good read." })).toBeVisible();
 
     const calculator = page.locator("footer").getByRole("link", { name: "Offer calculator", exact: true });
@@ -84,12 +86,9 @@ test.describe("homepage feedback and SEO contract", () => {
         .find((text) => text.includes("SoftwareApplication")) || "{}",
     );
     const graph = structuredData["@graph"] as Array<Record<string, unknown>>;
-    const founderData = graph.find((entry) => entry["@type"] === "Person");
     const applicationData = graph.find((entry) => entry["@type"] === "SoftwareApplication");
-    expect(founderData).toMatchObject({
-      name: "Matt Shaw",
-      sameAs: ["https://www.linkedin.com/in/mattrshaw"],
-    });
+    expect(graph.some((entry) => entry["@type"] === "Person")).toBe(false);
+    expect(JSON.stringify(structuredData)).not.toMatch(/Matt|Shaw|linkedin\.com\/in/);
     expect(applicationData).toMatchObject({ description: homepageDescription });
     expect(JSON.stringify(structuredData)).not.toContain("the three most important changes");
     expect(applicationData?.offers).toEqual(expect.arrayContaining([

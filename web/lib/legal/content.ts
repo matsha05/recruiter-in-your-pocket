@@ -77,21 +77,21 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "What the score tells you",
-            body: "Your resume gets a score out of 100, with an explanation of what affected it.",
+            body: "How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved.",
           },
           {
             icon: LockKey,
-            title: "Clear data handling",
+            title: "What we keep, and for how long",
             body: "Our Security and Privacy pages explain what report data we collect, how long we keep it, and how to delete it.",
           },
           {
             icon: Receipt,
-            title: "Simple billing",
+            title: "One payment, no renewal",
             body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 30 days, with no automatic renewal.",
           },
           {
             icon: Trash,
-            title: "You control deletion",
+            title: "Delete it whenever you like",
             body: "Delete individual reports from Reports, or delete your account in Settings to remove your reports, default resume, and usage history from our database.",
           },
         ],
@@ -250,7 +250,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         paragraphs: [
           [
             { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
-            { type: "link", label: "Restore Access", href: "/purchase/restore" },
+            { type: "link", label: "Restore access", href: "/purchase/restore" },
             { type: "text", value: " before contacting Support." },
           ],
           [
@@ -319,7 +319,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   },
   faq: {
     title: "Frequently asked questions",
-    description: "Answers to common questions about the product, privacy, and billing.",
+    description: "Straight answers about the report, your data, and what you pay.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -330,24 +330,24 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What does the report cover?",
-                a: "Your report explains the impression your resume may give, what it makes clear, and where a reader needs more detail. It quotes the lines behind the feedback and suggests what to change first. Add a job posting for feedback on that role.",
+                a: "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every note quotes the line behind it, and each Critical Miss flags a problem that could cost you the interview, starting with the one to fix first. Add a job posting, and the report reads your resume against that role too.",
               },
               {
                 q: "How is this different from ATS keyword tools?",
-                a: "The report goes beyond a keyword list. It explains what your experience communicates, quotes the lines behind its feedback, and asks for facts that are missing.",
+                a: "Keyword tools count matches. The report reads for what you did and what changed because of it. It quotes the line behind every note and asks for the facts that are missing, instead of handing you a keyword score.",
               },
               {
-                q: "Does a person review my resume?",
-                a: "AI generates your report using resume review criteria developed by Matt Shaw. A personal review from Matt is not included. Check suggested edits against your own experience before using them.",
+                q: "Does a person read my resume?",
+                a: "No. A recruiter with 14 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
               },
               {
                 q: "What file formats are supported?",
-                a: "PDF and Word documents (.docx), up to 4 MB. If the file cannot be read, you can paste the resume text instead.",
+                a: "PDF and Word documents (.docx), up to 4 MB. If we can’t read the file, paste the resume text instead. Formatting doesn’t matter; we only need the words.",
               },
             ],
           },
           {
-            category: "Privacy & Security",
+            category: "Privacy and security",
             questions: [
               {
                 q: "What happens to uploaded resume data?",
@@ -364,15 +364,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             ],
           },
           {
-            category: "Pricing & Billing",
+            category: "Pricing and billing",
             questions: [
               {
                 q: "Is the first report really free?",
-                a: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary}`,
+                a: `Yes, and nothing in it is held back. ${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary}`,
               },
               {
                 q: "What is the Job Search Pass?",
-                a: "It is a $29 one-time purchase for five additional complete reports and PDF exports. The pass expires 30 days after purchase and never renews automatically.",
+                a: "One $29 payment for five more complete reports, plus PDF exports. Use them to check a revision or read your resume against a job. The pass expires 30 days after purchase and never renews automatically.",
               },
               {
                 q: "What happens after I use all five reports?",
@@ -380,7 +380,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "How do I restore access and get receipts?",
-                a: "Open Restore Access and sign in with the email you used at checkout. You can restore your pass and view receipts there, or in Settings > Billing. If you still need help, contact support with your checkout email and purchase date.",
+                a: "Open Restore access and sign in with the email you used at checkout. You can restore your pass and view receipts there, or in Settings > Billing. If you still need help, contact support with your checkout email and purchase date.",
               },
               {
                 q: "Can I get a refund?",

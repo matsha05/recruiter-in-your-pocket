@@ -37,7 +37,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       const name = page.getByLabel("Name Original name", { exact: true });
       await name.fill("Operations resume");
       await name.press("Enter");
-      await expect(page.getByText(failure === "api" ? API_MESSAGE : "The report couldn’t be renamed. Please try again.", { exact: true })).toBeVisible();
+      await expect(page.getByText(failure === "api" ? API_MESSAGE : "The report couldn’t be renamed. Try again.", { exact: true })).toBeVisible();
       await expect(name).toHaveValue("Operations resume");
       await name.press("Enter");
       await expect(page.getByRole("button", { name: "Rename Operations resume", exact: true })).toBeVisible();
@@ -53,7 +53,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await page.goto(`${origin}/auth`);
       await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
-      await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t send a code. Please try again.");
+      await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t send a code. Try again.");
       await expect(page.getByLabel("Email address", { exact: true })).toHaveValue("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
       await expect(page.getByLabel("Sign-in code", { exact: true })).toBeVisible();
@@ -71,7 +71,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
       await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
       await page.getByLabel("Sign-in code", { exact: true }).fill("12345678");
-      await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t verify that code. Please try again.");
+      await expect(page.getByRole("alert")).toHaveText(failure === "api" ? API_MESSAGE : "We couldn’t verify that code. Try again.");
       await expect(page.getByLabel("Sign-in code", { exact: true })).toHaveValue("12345678");
       await page.getByRole("button", { name: "Verify code", exact: true }).click();
       await expect(page.getByLabel("First name", { exact: true })).toBeVisible();
@@ -80,8 +80,8 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
 
     for (const action of [
       { button: "Restore access", endpoint: "restore", fallback: "We couldn’t restore your pass. Try again or contact support." },
-      { button: "Billing portal", endpoint: "portal", fallback: "Stripe billing couldn’t open. Please try again." },
-      { button: "View receipts", endpoint: "receipts", fallback: "We couldn’t load your receipts. Please try again." },
+      { button: "Billing portal", endpoint: "portal", fallback: "Stripe billing couldn’t open. Try again." },
+      { button: "View receipts", endpoint: "receipts", fallback: "We couldn’t load your receipts. Try again." },
     ]) {
       test(`${action.button} recovers from ${failure} failure without exposing browser errors`, async ({ page }) => {
         await signInHarness(page);

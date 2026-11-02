@@ -37,11 +37,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         try {
             const res = await fetch("/api/user/default-resume");
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.success) throw new ClientActionError(data.error, "We couldn't load your default resume. Please try again.");
+            if (!res.ok || !data.success) throw new ClientActionError(data.error, "We couldn't load your default resume. Try again.");
             setProfile(data.data);
         } catch (error) {
             console.error("[DefaultResume] Fetch error:", error);
-            setLoadError(getClientActionError(error, "We couldn't load your default resume. Please try again."));
+            setLoadError(getClientActionError(error, "We couldn't load your default resume. Try again."));
         } finally {
             setIsLoading(false);
         }
@@ -110,14 +110,14 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             const res = await fetch("/api/user/default-resume", { method: "DELETE" });
             const data = await res.json();
             if (!data.success) {
-                throw new ClientActionError(data.error, "We couldn't remove your default resume. Please try again.");
+                throw new ClientActionError(data.error, "We couldn't remove your default resume. Try again.");
             }
             toast.success("Default resume removed");
             setProfile({ hasResume: false });
             setFileName(null);
         } catch (error: any) {
             console.error("[DefaultResume] Remove error:", error);
-            toast.error(getClientActionError(error, "We couldn't remove your default resume. Please try again."));
+            toast.error(getClientActionError(error, "We couldn't remove your default resume. Try again."));
         } finally {
             setIsRemoving(false);
         }

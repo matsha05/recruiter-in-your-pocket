@@ -149,7 +149,7 @@ test("sign-in input keeps its visible default boundary and exposes its error sta
 
   await page.getByRole("button", { name: "Send sign-in code" }).click();
 
-  await expect(page.locator("#auth-error")).toHaveText("Please enter your email");
+  await expect(page.locator("#auth-error")).toHaveText("Enter your email address.");
   await expect(emailInput).toHaveAttribute("aria-invalid", "true");
   await expect(emailInput).toHaveCSS("border-color", "rgb(180, 35, 24)");
   await expect(emailInput).toHaveCSS("background-color", "rgb(254, 243, 242)");
@@ -157,7 +157,7 @@ test("sign-in input keeps its visible default boundary and exposes its error sta
   await emailInput.fill("not-an-email");
   await page.getByRole("button", { name: "Send sign-in code" }).click();
 
-  await expect(page.locator("#auth-error")).toHaveText("Please enter a valid email address");
+  await expect(page.locator("#auth-error")).toHaveText("That email address doesn’t look right. Check it and try again.");
   expect(authRequests).toEqual([]);
 });
 
