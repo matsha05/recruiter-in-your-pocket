@@ -79,6 +79,8 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
 
 export function isDirectFactualAssertion(value: string) {
   if (/\b(?:can|could|may|might) (?:mean|refer to|describe)\b/iu.test(value)) return false;
+  // "The managed finance-process deliverables ..." uses the participle as an adjective.
+  if (/^\s*(?:the|a|an|this|that|these|those|your|its|their)\s+\p{L}+ed\b/iu.test(value)) return false;
   // A question asserts nothing: "What led you to build ..." is not the claim "What led".
   if (/\?\s*$/u.test(value) || /^\s*(?:what|which|how|why|when|where|who)\b/iu.test(value)) return false;
   // "less developed" and "well built" describe a quality, not work someone did.

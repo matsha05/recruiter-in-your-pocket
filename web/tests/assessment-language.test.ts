@@ -160,3 +160,21 @@ for (const c of [
   { claim: 'You coordinated multi-disciplinary vendors across military procurement.', source: pmSource },
 ]) assert.ok(auditReportNarrative({ strengths: [c.claim] }, c.source).length > 0, JSON.stringify(c));
 console.log("hyphenated spelling tests passed");
+
+// Judge runs eval_1793576471840 (production prompt) and eval_1793576522281 / eval_1793576733207 (v3).
+const gd = 'Graphic Designer, Blue Stem Creative. Designed packaging for regional food and beverage brands. Created brand identities, including logos and style guides. Prepared print-ready files for production.';
+for (const [report, source] of [
+  [{ first_impression: 'Your experience points toward entry-level operations work.' }, 'Operations Assistant, Greenfield Logistics. Intern - Operations Department, MetroRetail Inc.'],
+  [{ score_comment_short: 'Design deliverables are clear, but project details remain thin across experience.' }, gd],
+  [{ summary: 'The design bullets offer little detail about choices made on individual assignments, so your approach is less visible than the outputs.' }, gd],
+  [{ gaps: ["The managed finance-process deliverables aren't named, making it difficult to understand what you delivered."] }, 'Senior Finance Analyst. Managed project deliverables related to finance processes.'],
+  [{ section_review: { Education: { working: 'The degree, subject, school, and graduation year are listed clearly.' } } }, 'EDUCATION\nB.A., Communication, Ohio University, 2018'],
+] as Array<[any, string]>) assert.equal(auditReportNarrative(report, source).length, 0, JSON.stringify(report));
+for (const [report, source] of [
+  [{ first_impression: 'Your experience points toward SQL engineering work.' }, 'Operations Assistant, Greenfield Logistics.'],
+  [{ score_comment_short: 'Packaging deliverables for Coca-Cola are clear.' }, gd],
+  [{ summary: 'Your Figma prototypes are less visible than the outputs.' }, gd],
+  [{ gaps: ["The managed $4M finance budget isn't named in the summary."] }, 'Senior Finance Analyst. Managed project deliverables related to finance processes.'],
+  [{ section_review: { Education: { working: 'The degree, subject, and honors are listed clearly.' } } }, 'EDUCATION\nB.A., Communication, Ohio University, 2018'],
+] as Array<[any, string]>) assert.ok(auditReportNarrative(report, source).length > 0, JSON.stringify(report));
+console.log("judge-run false rejection tests passed");
