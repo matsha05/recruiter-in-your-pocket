@@ -275,7 +275,7 @@ export function LinkedInInputPanel({
                                 className="inline-flex min-h-11 items-center gap-2 px-3 py-2 text-sm font-medium text-brand transition-colors hover:text-brand/80"
                             >
                                 <FileText className="size-4" />
-                                See example report
+                                See a sample report
                             </button>
                         )}
                     </div>
