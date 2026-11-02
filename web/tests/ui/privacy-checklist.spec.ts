@@ -208,3 +208,22 @@ test("privacy choices remain readable and keyboard-accessible on phone and deskt
   await page.getByTestId("privacy-panel").getByRole("button", { name: "Close", exact: true }).click();
   await expect(preferences).toBeFocused();
 });
+
+test("on a phone, the privacy card leaves room to reach the workspace's run button", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/workspace");
+  const card = page.getByTestId("privacy-panel");
+  await expect(card).toBeVisible();
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill(Array.from({ length: 8 }, (_, line) => `Line ${line + 1}: led launches across product, operations, and support teams.`).join("\n"));
+  const run = page.getByTestId("workspace-run-report");
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await expect.poll(async () => {
+    const [button, panel] = await Promise.all([run.boundingBox(), card.boundingBox()]);
+    return button!.y + button!.height <= panel!.y;
+  }, { message: "the run button scrolls clear of the privacy card" }).toBe(true);
+  await run.click({ trial: true });
+  await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
+  await expect(card).toHaveCount(0);
+  expect(await page.evaluate(() => getComputedStyle(document.body).paddingBottom)).toBe("0px");
+});

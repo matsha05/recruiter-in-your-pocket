@@ -386,6 +386,12 @@
     font-kerning: normal;
   }
 
+  /* While the privacy card is open, the page gets room under it, so the last control on a page (the
+     workspace's run button on a phone) can scroll clear of the card. PrivacyControls measures the space. */
+  html[data-privacy-panel-open="true"] body {
+    padding-bottom: var(--privacy-panel-space, 0px);
+  }
+
   /* Global Selection Color */
   ::selection {
     @apply bg-brand/20 text-brand;

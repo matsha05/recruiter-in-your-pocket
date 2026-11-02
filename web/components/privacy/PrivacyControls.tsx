@@ -10,6 +10,7 @@ export function PrivacyControls() {
   const consent = useSyncExternalStore(subscribeAnalyticsConsent, getAnalyticsConsent, () => "unknown" as const);
   const [ready, setReady] = useState(false);
   const [reopened, setReopened] = useState(false);
+  const panel = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
   const visible = ready && (consent === "unknown" || reopened);
@@ -24,11 +25,27 @@ export function PrivacyControls() {
     if (reopened) heading.current?.focus();
     return () => { delete document.documentElement.dataset.privacyPanelOpen; };
   }, [visible, reopened]);
+  useEffect(() => {
+    const element = panel.current;
+    if (!visible || !element) return;
+    // The card's height plus its gap from the bottom edge: the room globals.css leaves under the page.
+    const root = document.documentElement;
+    const measure = () => root.style.setProperty("--privacy-panel-space", `${Math.ceil(window.innerHeight - element.getBoundingClientRect().top)}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+      root.style.removeProperty("--privacy-panel-space");
+    };
+  }, [visible]);
   const close = () => { setReopened(false); trigger.current?.focus({ preventScroll: true }); };
   const choose = (choice: AnalyticsChoice) => { setAnalyticsConsent(choice); close(); };
   if (!visible) return null;
   return (
-    <section className={styles.panel} role="region" aria-labelledby="privacy-choices-title" data-testid="privacy-panel">
+    <section ref={panel} className={styles.panel} role="region" aria-labelledby="privacy-choices-title" data-testid="privacy-panel">
       <h2 id="privacy-choices-title" ref={heading} tabIndex={-1}>Your privacy choices</h2>
       <p>Essential storage keeps the site working. With your OK, Mixpanel shows us which features people use. Your resume text is never included. <Link href="/privacy" className={styles.inlineLink}>Privacy policy</Link></p>
       {consent === "blocked" ? <p>Your browser asks us not to track. Optional analytics stays off.</p> : <div className={styles.actions}>
