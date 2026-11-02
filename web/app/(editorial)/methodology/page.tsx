@@ -70,7 +70,7 @@ export default function MethodologyPage() {
                 },
                 {
                     question: "Does a person read my report?",
-                    answer: "No. Matt Shaw wrote the review criteria from 14 years in recruiting; AI applies them to your resume.",
+                    answer: "No. A recruiter with 14 years in hiring wrote the review criteria; AI applies them to your resume.",
                 },
             ]}
             visualization={
@@ -108,7 +108,7 @@ export default function MethodologyPage() {
                 </div>
                 <div className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-8">
                     <dt className="text-sm font-semibold text-foreground">Ours</dt>
-                    <dd className="text-sm text-muted-foreground">The four things the score weighs, how the Critical Miss is chosen, and how findings are written. Matt designed the criteria; the studies did not test our score.</dd>
+                    <dd className="text-sm text-muted-foreground">The four things the score weighs, how the Critical Miss is chosen, and how findings are written. A recruiter designed the criteria; the studies did not test our score.</dd>
                 </div>
             </dl>
 

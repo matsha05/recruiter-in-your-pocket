@@ -183,7 +183,8 @@ try {
   const website = site["@graph"].find((node: { "@type": string }) => node["@type"] === "WebSite");
   assert.equal(organization.name, "Recruiter in Your Pocket");
   assert.match(organization.logo.url, /^https:\/\/www\.recruiterinyourpocket\.com\/.+\.png$/);
-  assert.equal(organization.founder["@id"], `${SITE_URL}/#matt-shaw`, "the founder must point at the homepage's Person");
+  assert.equal(organization.founder, undefined, "the site is anonymous: the Organization names no founder");
+  assert.ok(!site["@graph"].some((node: { "@type": string }) => node["@type"] === "Person"), "the site graph has no Person");
   assert.equal(website.publisher["@id"], organization["@id"]);
 
   for (const page of pages.filter((candidate) => candidate.published)) {

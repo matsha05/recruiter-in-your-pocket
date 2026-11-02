@@ -92,7 +92,7 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">What a referral changes on the recruiter&apos;s desk</h2>
             <p className="research-body mb-6">
-                <strong>Our take:</strong> this section is Matt Shaw&apos;s experience from years of receiving referrals as a recruiter, not a finding from the studies above.
+                <strong>Our take:</strong> this section is our founder&apos;s experience from years of receiving referrals as a recruiter, not a finding from the studies above.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight

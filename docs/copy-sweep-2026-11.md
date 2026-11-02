@@ -5,7 +5,8 @@ Branch `claude/copy-sweep-2026-11`, cut from origin/main `568b923a`. This pass r
 ## What this pass did and didn't do
 
 - **Changed:** line copy on the workspace, sign-in, account menus, settings and billing errors, the 404 and app error, pricing and share titles, FAQ and trust, the methodology's suggested-edits section, the guides index, the footer and the homepage's progress footnote.
-- **Not changed, by rule:** the homepage H1, the subhead's "the one thing to fix first", the founder headline, and the Critical Miss definition. Proposals are at the end.
+- **Not changed, by rule:** the homepage H1, the subhead's "the one thing to fix first", the HiringTruths Critical Miss line (its approved replacement ships with the severity feature), and the Critical Miss definition. Proposals are at the end.
+- **Changed at Matt's request (via the coordinator):** the founder section and everything that named him. The site is now anonymous. See "Anonymous founder" below.
 - **Not changed, by ownership:** report components (`components/workspace/report/*`, `ReportPanel`, `lib/backend/pdf.ts`, `lib/reports/report-presentation.ts`), the root layout and providers. Proposed changes for the report are in their own table below.
 - **Left alone on purpose:**
   - Research article bodies and the two negotiation guides. They were fact-checked line by line in #35 and restructured in #39, and they already meet the voice.
@@ -115,7 +116,7 @@ The homepage title now fits in search results, so `/` comes off the long-title e
 | What does the report cover? | Your report explains the impression your resume may give, what it makes clear, and where a reader needs more detail. It quotes the lines behind the feedback and suggests what to change first. Add a job posting for feedback on that role. | What a recruiter is likely to take from your resume, what comes through clearly, and where they'd need more detail. Every note quotes the line behind it, and the Critical Miss tells you what to fix first. Add a job posting, and the report reads your resume against that role too. |
 | How is this different from ATS keyword tools? | The report goes beyond a keyword list. It explains what your experience communicates, quotes the lines behind its feedback, and asks for facts that are missing. | Keyword tools count matches. The report reads for what you did and what changed because of it. It quotes the line behind every note and asks for the facts that are missing, instead of handing you a keyword score. |
 | Question | Does a person review my resume? | Does a person read my resume? |
-| Answer | AI generates your report using resume review criteria developed by Matt Shaw. A personal review from Matt is not included. Check suggested edits against your own experience before using them. | No. Matt Shaw wrote the review criteria from 14 years in recruiting, and AI applies them to your resume. Matt doesn't read individual reports, so check every suggested edit against what you actually did. |
+| Answer | AI generates your report using resume review criteria developed by Matt Shaw. A personal review from Matt is not included. Check suggested edits against your own experience before using them. | No. A recruiter with 14 years in hiring wrote the review criteria, and AI applies them to your resume. No one reads individual reports, so check every suggested edit against what you actually did. (Anonymous since the founder change below.) |
 | File formats | …If the file cannot be read, you can paste the resume text instead. | …If we can't read the file, paste the resume text instead. Formatting doesn't matter; we only need the words. |
 | Is the first report really free? | (the entitlement text alone) | Yes, and nothing in it is held back. (then the same entitlement text) |
 | What is the Job Search Pass? | It is a $29 one-time purchase for five additional complete reports and PDF exports. The pass expires 30 days after purchase and never renews automatically. | One $29 payment for five more complete reports, plus PDF exports. Use them to check a revision or read your resume against a job. The pass expires 30 days after purchase and never renews automatically. |
@@ -126,6 +127,38 @@ The homepage title now fits in search results, so `/` comes off the long-title e
 | Trust and security promise | The score summarizes this resume review out of 100. | The score summarizes this resume review out of 100. It doesn't predict interviews or offers. |
 
 The old score card said every resume "gets a score out of 100." Since D5 a first report shows a band, not the number, so the card now says that. The FAQ answers keep every fact (file limit, recovery window, refund terms, entitlement text). `/faq` and `/trust` dates move to 2026-11-02 in `public-pages.ts`.
+
+### Anonymous founder (Matt's request, November 2)
+
+Matt wants the site anonymous while he's employed elsewhere: a nod to big tech, but no name, photo, profile link or company names. His wording replaces the wave-2 founder copy.
+
+| Where | Before | After |
+| --- | --- | --- |
+| Founder H2 | I've spent 14 years recruiting for companies like Google, Meta, and OpenAI. | After 14 years in recruiting, it's obvious to me why one resume gets the call and another doesn't. It almost never is to the person who wrote it. |
+| Founder body | I'm Matt. I built this to give you the read I'd give a friend before they hit send. | That gap is why this exists. It shows you what goes through a recruiter's head when they read yours, and what to fix first. |
+| Founder small line | Heads up: I wrote the review criteria, and AI applies them to your resume. I don't read each report myself. | Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don't read each report myself. |
+| Founder portrait and caption | Photo, alt "Matt Shaw, founder of Recruiter in Your Pocket", caption "Matt Shaw · Founder" | Removed. The left column now holds a small label, "Who built this". |
+| Founder links | How the report works · Meet Matt (LinkedIn) | How the report works |
+| Homepage JSON-LD | Person "Matt Shaw" with LinkedIn sameAs and the Google/Meta/OpenAI description; SoftwareApplication `creator` pointing at it | Removed. SoftwareApplication, Organization and WebSite remain. |
+| Site JSON-LD (`lib/seo/site.ts`) | Organization `founder: { name: "Matt Shaw" }` | Removed |
+| Methodology FAQ | No. Matt Shaw wrote the review criteria from 14 years in recruiting; AI applies them to your resume. | No. A recruiter with 14 years in hiring wrote the review criteria; AI applies them to your resume. |
+| Methodology, "Ours" | …Matt designed the criteria; the studies did not test our score. | …A recruiter designed the criteria; the studies did not test our score. |
+| Research: referral advantage | Our take: this section is Matt Shaw's experience from years of receiving referrals as a recruiter… | Our take: this section is our founder's experience from years of receiving referrals as a recruiter… |
+| Public files | `public/assets/founder-avatar.jpg`, `public/assets/founder-portrait-print.png` (portrait photos, served publicly) | Deleted. Nothing referenced either one. `founder-avatar.svg` is a generic silhouette, unreferenced, and was left alone. |
+
+The founder headline uses the title type role at 34ch instead of the 20ch headline role, because it's now two sentences.
+
+**Checked, nothing identifying:** share cards and OG images, the sample report JSON, the PDF template, the sign-in email, alt text, and research pages. The only remaining "Google" on a public page is a research citation (Laszlo Bock's formula). "OpenAI" appears only as the API vendor in privacy, processor and workspace copy, which stays.
+
+**Legal pages don't name him.** One terms sentence refers to employers the site no longer names. It's unchanged, for Matt to decide:
+- `lib/legal/content.ts:219` (Terms §1): "Company names that describe our founder's work history do not mean those companies sponsor, endorse, or are affiliated with RIYP."
+- Privacy and terms both say RIYP is "operated from Colorado, United States". That names no person.
+
+**Internal only, not public:**
+- `/launch` and `/launch/gauntlet` (404 in production) show "Matt" in `lib/gauntlet/progress/summary.ts` and `lib/launch/program.ts`.
+- Code comments say "(Matt, Nov 1)"; minification strips them.
+- The red-team spec's test resume starts "MATT SHAW".
+- The root layout has a comment, "the homepage adds the founder"; the layout belongs to the page-weight session.
 
 ### Methodology
 
@@ -173,14 +206,14 @@ These files are being edited by the signature-report and research-receipts sessi
 | `lib/reports/report-presentation.ts:33` | Review the suggestions below. | Here's where to start. | The fallback heading reads like a form. ReportStream already uses "Here's where to start." |
 | `lib/backend/pdf.ts` (rewrites section) | Suggested edits / Revising your resume | More lines to revise | Retired "Suggested" name. One heading in place of a kicker that repeats it. |
 | `lib/backend/pdf.ts` (template note) | About draft templates: Complete the bracketed details with facts from your experience before using a draft. | Fill in the brackets with your own facts before you use a draft. | Same rule, half the words. |
-| `lib/backend/pdf.ts` (footer) | AI-generated feedback. Check every suggested detail before using it. | AI applied Matt Shaw's review criteria to this resume. Check every suggested detail against what you actually did. | Matches the founder disclosure and FAQ. The current line is accurate; this one is optional. |
+| `lib/backend/pdf.ts` (footer) | AI-generated feedback. Check every suggested detail before using it. | A recruiter's review criteria, applied by AI. Check every suggested detail against what you actually did. | Matches the founder disclosure and FAQ without naming anyone. The current line is accurate; this one is optional. |
 
 ## Brand-identity proposals (Matt's call, via the coordinator)
 
 1. **Homepage H1, "They called someone back. It wasn't you."** Keep. It's the most distinctive line on the site and it carries the pain Matt asked for. No alternative beats it.
-2. **Founder headline, "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI."** Keep. It's specific and checkable, and the disclosure under it does the honest work.
+2. **Founder headline.** Superseded: Matt asked for an anonymous site (see "Anonymous founder" above), and his new wording is in place.
 3. **Subhead, "…and the one thing to fix first", and the Critical Miss definition.** Matt approved up to three Critical Misses on November 1 ("A Critical Miss is any problem that would cost an interview on its own"), and the critical-miss-count session is building it. Once a report can say "3 Critical Misses. Start with this one.", these lines say something the report doesn't:
-   - `HiringTruths.tsx:15`: "One Critical Miss, not forty tips. Every report names the one thing to fix first."
+   - `HiringTruths.tsx:15`: "One Critical Miss, not forty tips. Every report names the one thing to fix first." Matt has already approved its replacement, which ships with the severity feature in another session. This branch leaves the line exactly as it is.
    - `pricing.ts:40`: "The Critical Miss: the one thing to fix first"
    - `methodology/page.tsx:23, 38, 95`: "the Critical Miss, the one thing to fix first"; "The one change to make first"; "the report picks one thing to fix first"
    - `FirstReadModelDiagram.tsx:41`, `MarkedRows.tsx:128`, `pdf.ts:76`: "The one change to make first" / "The one thing to fix first"
@@ -189,7 +222,6 @@ These files are being edited by the signature-report and research-receipts sessi
 
    **Recommendation:** keep the subhead as is. "The one thing to fix first" stays true, because a report with three still starts with one. Change the definition everywhere else on the day the count ships:
    - Definition: "A Critical Miss is a problem that could cost you the interview on its own. The report flags up to three and starts with the one to fix first."
-   - `HiringTruths`: "A few Critical Misses, not forty tips." / "Every report names the one to fix first."
    - Pricing feature: "Critical Misses: what could cost you the interview, starting with the one to fix first"
 
    Alternative subhead, if Matt wants it to match the count: "See what a recruiter sees on your resume, and what to fix first." It's accurate but loses the edge of "the one thing".

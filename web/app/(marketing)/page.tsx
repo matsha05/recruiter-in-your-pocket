@@ -47,9 +47,6 @@ const structuredData = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description: homepageDescription,
-      creator: {
-        "@id": "https://www.recruiterinyourpocket.com/#matt-shaw",
-      },
       offers: [
         {
           "@type": "Offer",
@@ -64,14 +61,6 @@ const structuredData = {
           description: "Five additional resume reports over 30 days. One payment of $29, with no automatic renewal.",
         },
       ],
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.recruiterinyourpocket.com/#matt-shaw",
-      name: "Matt Shaw",
-      url: "https://www.recruiterinyourpocket.com/#about",
-      sameAs: ["https://www.linkedin.com/in/mattrshaw"],
-      description: "Founder of Recruiter in Your Pocket. 14 years recruiting for companies including Google, Meta, and OpenAI.",
     },
   ],
 };
