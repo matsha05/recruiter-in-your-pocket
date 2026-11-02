@@ -206,7 +206,7 @@
 .missingLine {
     margin: 0;
     border: 1px dashed hsl(var(--muted-foreground) / 0.6);
-    border-radius: 0.5rem;
+    border-radius: var(--radius-inset);
     padding: 0.625rem 0.875rem;
     color: hsl(var(--muted-foreground));
     font: var(--type-body);
