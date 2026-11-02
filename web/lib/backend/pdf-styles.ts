@@ -89,6 +89,7 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     .signal-panel h2 { margin-bottom: 13px; }
     .priority-section { padding-top: 12px; border-top: 1px solid var(--accent); }
     .priority-section .section-header { border: 0; padding-bottom: 0; }
+    .count-lead { margin-top: 5px; color: var(--muted); font-size: 10pt; line-height: 15pt; }
     /* The marked page, as on the web: the candidate's line on the left, the recruiter's note in the margin. */
     .band { margin-top: 16px; max-width: 360px; }
     .band-name { font-weight: 600; }
@@ -101,6 +102,8 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     .marked-section { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-bottom: 4px; }
     .marked-line { font-family: "Literata", Georgia, serif; font-size: 11.5pt; line-height: 17pt; }
     .marked-line.ink { border-left: 2px solid var(--blue-ink); padding-left: 10px; }
+    .marked-missing { border: 1px dashed var(--muted); border-radius: 6px; padding: 6px 10px; color: var(--muted); font-size: 10.5pt; line-height: 15pt; }
+    .marked-missing.miss { border-color: var(--miss-line); background: var(--miss-surface); color: var(--brass); }
     .miss-mark { background: linear-gradient(transparent 52%, var(--highlight) 52%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
     .marked-label { color: var(--accent); font-size: 9pt; font-weight: 600; line-height: 13pt; }
     .marked-label.miss { color: var(--brass); letter-spacing: 0.08em; text-transform: uppercase; }

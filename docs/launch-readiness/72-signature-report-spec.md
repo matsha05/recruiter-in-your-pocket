@@ -16,7 +16,7 @@ The report becomes a resume a recruiter has marked up. The candidate's own lines
 | 2 | The revised line starts as the original line plus the answers, word for word, after a colon; a guarded polish may replace it | The literal line always passes the guard (see Evidence). Matt chose "Guarded polish now": a model smooths it, and the smoother line shows only if every word traces to the line or the answers (see "Guarded polish") |
 | 3 | Edits may reword freely; a new number, name or claim (for example "led") must come in as an answer first | The guard stops us putting words in the candidate's mouth. Their own rewording is theirs, but an inflated claim needs a deliberate step |
 | 4 | Score bands with anchors on the first report; the number only in revision comparisons (D5) | Thresholds match the validator's `score_label` (85 and 70) |
-| 5 | Always a Critical Miss; the layout is ready for up to three | Matt: "Always name a top fix" and "Up to three Critical Misses" (next prompt). `criticalFixCount` is the one place a v3 marker is read; rows, the highlighter (sweeping only the first), the revised-line flow, its polish and the PDF follow it |
+| 5 | Always a Critical Miss; one to three, and the count leads | Matt: "Always name a top fix", "Up to three Critical Misses" and "i dont want to lie to people and say they have one critical miss if there are more". The severity check flags `top_fixes[i].critical` (Critical Misses first) and `more_critical`. `readCriticalMisses` is the one place they're read. Once flagged, the count heading leads the fix section (copy-system §2); every Critical Miss gets the marked line, the highlighter (sweeping only the first), the revised-line flow and its polish, numbered when there are several; the PDF matches. Unflagged reports state no count |
 | 6 | One signature motion: the highlighter sweeps the Critical Miss line once, then the note fades in | Reuses `Mark` and `useSeen` from the research figures. The old staggered reveal of the opening is gone; report prose stays still |
 
 ## Layout
@@ -124,7 +124,7 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
 ## Files
 
 - Report: `components/workspace/report/ReportStream.tsx`, `markup/{MarkedRows,LineLift,MissFeedback,ScoreBand}.tsx`, `markup/useHiddenFixes.ts`, `markup/MarkedReport.module.css`. `FixCanvas` is retired.
-- Rules: `lib/reports/revised-line.ts`, `lib/reports/score-band.ts`, `lib/reports/report-feedback.ts`, `fixPlanHeadingForCount` and `criticalFixCount` in `lib/reports/report-presentation.ts`.
+- Rules: `lib/reports/revised-line.ts`, `lib/reports/score-band.ts`, `lib/reports/report-feedback.ts`, `fixPlanHeadingForCount`, `readCriticalMisses`, `withCriticalFirst`, `criticalCountHeading` and `fixLabel` in `lib/reports/report-presentation.ts`.
 - Polish: `lib/reports/revised-line-polish.ts` (guard and client), `lib/reports/revised-line-polish-service.ts`, `lib/llm/revise-line-model.ts`, `prompts/revise_line_v1.txt`, `app/api/revise-line/route.ts`, `scripts/eval-revise-line.ts`.
 - Shells: `components/layout/ReportLayout.{tsx,module.css}`, `ReportPanel.tsx`, `ReportDetailClient.tsx`, `WorkspaceClient.tsx` (`data-document`), `app/globals.css`.
 - PDF: `lib/backend/pdf.ts`, `pdf-styles.ts`, `lib/reports/pdf-export.ts`.

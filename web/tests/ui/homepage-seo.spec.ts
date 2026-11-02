@@ -49,7 +49,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(progress).not.toContainText("fixed");
     const truths = homepage.locator("#what-we-look-for");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
-    await expect(truths).toContainText("One Critical Miss, not forty tips.");
+    await expect(truths).toContainText("Not forty tips. Every Critical Miss, and the one to fix first.");
     await expect(truths).toContainText("No ATS score. No interview odds.");
 
     const founder = page.getByRole("heading", { level: 2, name: "I've spent 14 years recruiting for companies like Google, Meta, and OpenAI." });

@@ -1,6 +1,6 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
-import { criticalFixCount } from "./report-presentation";
+import { withCriticalFirst } from "./report-presentation";
 import { reconcileReport } from "./report-integrity";
 
 export type ReportForPdf = {
@@ -16,11 +16,12 @@ export type ReportForPdf = {
   subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
   /**
    * `why` is present only when it is a reason; `questions` are the details to add, as on the web report.
-   * `line` is the quoted resume line the fix marks, and `section` where it sits.
+   * `line` is the quoted resume line the fix marks, and `section` where it sits. `critical` is the
+   * severity check's flag, Critical Misses first; a report without flags leaves it out.
    */
-  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string }>;
-  /** How many of `top_fixes`, from the first, are critical (one on the production prompt). */
-  critical_count?: number;
+  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string; critical?: boolean }>;
+  /** More than three Critical Misses; set only with three flagged. */
+  more_critical?: boolean;
   /** Structural gaps shown in the opening read. */
   structural_gaps?: string[];
   job_alignment?: {
@@ -83,6 +84,7 @@ function asSourceFixes(value: unknown): SourceFix[] {
     const fix = asTrimmedString((item as { fix?: unknown }).fix) || undefined;
     const why = asTrimmedString((item as { why?: unknown }).why) || undefined;
     const impact_level = asTrimmedString((item as { impact_level?: unknown }).impact_level) || undefined;
+    const critical = (item as { critical?: unknown }).critical;
     if (!fix && !why) return [];
 
     const rawEvidence = (item as { evidence?: unknown }).evidence;
@@ -94,7 +96,7 @@ function asSourceFixes(value: unknown): SourceFix[] {
           section: asTrimmedString((rawEvidence as { section?: unknown }).section) || undefined,
         }
         : undefined;
-    return [{ fix, why, evidence, impact_level }];
+    return [{ fix, why, evidence, impact_level, ...(typeof critical === "boolean" ? { critical } : {}) }];
   });
 }
 
@@ -203,7 +205,8 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
   if (score === null) return null;
 
   // The same post-generation pass as the web report, so Keep, fixes and notes agree.
-  const sourceFixes = asSourceFixes(candidate.top_fixes);
+  // Critical Misses first, as on the web report.
+  const { top_fixes: sourceFixes = [] } = withCriticalFirst({ top_fixes: asSourceFixes(candidate.top_fixes) });
   const rewrites = asRewrites(candidate.rewrites);
   const integrity = reconcileReport({
     first_impression: asTrimmedString(candidate.first_impression) || undefined,
@@ -224,6 +227,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
       questions: integrity.fixQuestions[index].length > 0 ? integrity.fixQuestions[index] : undefined,
       line: excerpt?.replace(/^[-•*]\s+/u, "") || undefined,
       section: (typeof fix.evidence === "object" ? fix.evidence?.section : undefined) || fix.section_ref || undefined,
+      ...(typeof fix.critical === "boolean" ? { critical: fix.critical } : {}),
     };
   });
   const normalized: ReportForPdf = {
@@ -238,7 +242,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     first_impression: asTrimmedString(candidate.first_impression) || undefined,
     subscores: asSubscores(candidate.subscores),
     top_fixes,
-    critical_count: criticalFixCount({ top_fixes: sourceFixes }),
+    ...(candidate.more_critical === true ? { more_critical: true } : {}),
     structural_gaps: integrity.structuralGaps.length > 0 ? integrity.structuralGaps.map(({ text }) => text) : undefined,
     job_alignment: asJobAlignment(candidate.job_alignment),
   };

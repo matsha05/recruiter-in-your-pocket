@@ -111,6 +111,30 @@
     white-space: nowrap;
 }
 
+/*
+ * Once the report knows how many Critical Misses there are, the count leads the page, phones included.
+ * Phones set it at the Verdict's size so the Verdict stays the loudest line on the first screen.
+ */
+.countHead {
+    display: grid;
+    gap: 0.375rem;
+    max-width: 40rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.25rem;
+}
+
+.countHead .sectionTitle {
+    font-size: var(--type-lead-size);
+    line-height: var(--type-body-leading);
+    text-wrap: balance;
+}
+
+.countLead {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+    text-wrap: pretty;
+}
+
 .lines {
     position: relative;
     display: grid;
@@ -176,6 +200,22 @@
 .inkLine {
     border-left: 2px solid hsl(var(--blue-ink));
     padding-left: 0.875rem;
+}
+
+/* A fix about something the resume doesn't have: an empty slot where the line would be, never a quote. */
+.missingLine {
+    margin: 0;
+    border: 1px dashed hsl(var(--muted-foreground) / 0.6);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-body);
+}
+
+.missingLineMiss {
+    border-color: hsl(var(--miss-line));
+    background: hsl(var(--miss-surface));
+    color: hsl(var(--brass));
 }
 
 .noteHead {
@@ -646,6 +686,19 @@
         clip-path: none;
         white-space: normal;
         margin-bottom: 1rem;
+    }
+
+    .countHead {
+        padding-top: 0;
+        padding-bottom: 1rem;
+    }
+
+    .countHead .sectionTitle {
+        font: var(--type-heading);
+    }
+
+    .countLead {
+        font: var(--type-body);
     }
 
     .band {

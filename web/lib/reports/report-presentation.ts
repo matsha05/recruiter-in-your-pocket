@@ -45,13 +45,80 @@ export function reportHasJobDescription(report: Pick<ReportData, "job_alignment"
   return Boolean(summary) && summary !== "No job description provided.";
 }
 
+type SeverityFlags = { top_fixes?: Array<{ critical?: unknown; [field: string]: unknown } | undefined>; more_critical?: unknown };
+
+export interface CriticalMisses {
+  /** How many of the first fixes are Critical Misses, in priority order: 1 to 3, or 0 with no fixes. */
+  count: number;
+  /** The severity check marked each fix, so the report can say how many there are. */
+  counted: boolean;
+  /** More than three exist; the report shows the three that matter most. */
+  more: boolean;
+}
+
+function isFlagged(report: SeverityFlags) {
+  return (report.top_fixes || []).some((fix) => typeof fix?.critical === "boolean");
+}
+
 /**
- * How many of the report's fixes are critical. The production prompt always names one Critical Miss, the
- * first fix (Matt, Nov 1: "Always name a top fix"). The next prompt may mark up to three; read its marker
- * here and the report, the PDF and the revised-line flow follow without other changes.
+ * Critical Misses lead, each group in the report's own order. The first fix stays first unless a later
+ * one is flagged and it isn't. Unflagged reports keep their order.
  */
-export function criticalFixCount(report: Pick<ReportData, "top_fixes">) {
-  return Math.min(report.top_fixes?.length ?? 0, 1);
+export function withCriticalFirst<T extends SeverityFlags>(report: T): T {
+  const fixes = report.top_fixes;
+  if (!fixes || !isFlagged(report)) return report;
+  const ordered = [...fixes.filter((fix) => fix?.critical === true), ...fixes.filter((fix) => fix?.critical !== true)];
+  return ordered.every((fix, index) => fix === fixes[index]) ? report : { ...report, top_fixes: ordered };
+}
+
+/**
+ * Which fixes are Critical Misses (Matt, Nov 1: "i dont want to lie to people and say they have one
+ * critical miss if there are more"). A Critical Miss is a problem that could cost an interview on its own.
+ * The severity check flags up to three (`critical`, listed first) and `more_critical` when there are more.
+ * A report without flags still names its first fix, but it can't say how many there are.
+ * Expects the fixes in display order (`withCriticalFirst`).
+ */
+export function readCriticalMisses(report: SeverityFlags): CriticalMisses {
+  const fixes = (report.top_fixes || []).slice(0, 3);
+  if (fixes.length === 0) return { count: 0, counted: false, more: false };
+  if (!isFlagged(report)) return { count: 1, counted: false, more: false };
+  const leading = fixes.findIndex((fix) => fix?.critical !== true);
+  // A report always names one; validation can drop every flagged fix.
+  const count = Math.max(1, leading === -1 ? fixes.length : leading);
+  return { count, counted: true, more: count === 3 && report.more_critical === true };
+}
+
+/**
+ * The count leads the fix section once the report knows it. Without it, the fix headings above stay.
+ * Copy: docs/copy-system.md §1.
+ */
+export function criticalCountHeading(misses: CriticalMisses): { title: string; lead: string } | null {
+  if (!misses.counted || misses.count === 0) return null;
+  if (misses.more) {
+    return {
+      title: "More than three Critical Misses. Here are the three that matter most.",
+      lead: "Any one of them could cost you the interview on its own. Start with the first.",
+    };
+  }
+  // A judgment, not a guarantee: it says nothing about the rest of the report (Matt, Nov 2).
+  if (misses.count === 1) return { title: "One Critical Miss. Fix it first.", lead: "It's the one most likely to cost you the interview." };
+  if (misses.count === 2) return { title: "Two Critical Misses. Start with this one.", lead: "Either one could cost you the interview on its own." };
+  return { title: "Three Critical Misses. Start with this one.", lead: "Any one of them could cost you the interview on its own." };
+}
+
+/**
+ * What's missing, when a fix's evidence is an absence ("No summary section present") rather than a line
+ * on the resume: there's no line to quote, highlight or revise. Null for a real line.
+ */
+export function missingFromResume(excerpt: string) {
+  const value = excerpt.trim().replace(/\.$/u, "");
+  return isExactAbsenceSentinel(value) ? value.replace(/ (?:present|provided)$/u, "") : null;
+}
+
+/** A fix's card label: `Critical Miss` (numbered when there are several), then `Fix 2`, `Fix 3` by position. */
+export function fixLabel(index: number, misses: CriticalMisses) {
+  if (index >= misses.count) return `Fix ${index + 1}`;
+  return misses.count > 1 ? `Critical Miss ${index + 1}` : "Critical Miss";
 }
 
 export function questionForPlaceholder(key: string) {

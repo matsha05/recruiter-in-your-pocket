@@ -188,6 +188,43 @@ const draftHtml = renderReportHtml(normalizeReportForPdf({
     enhancement_note: "Add a result you can verify.",
   }],
 })!);
+// Without the severity check the PDF names the first fix and states no count, as on the web.
+assert.doesNotMatch(renderedHtml, /Critical Misses?\. |Critical Miss \d/);
+assert.match(renderedHtml, /The one thing to fix first/);
+// With it, the count leads, every Critical Miss is marked and numbered, and the flags reorder the fixes.
+const lineOf = (index: number) => sampleReport.top_fixes[index].evidence.excerpt.replace(/^[-•*]\s+/u, "");
+const flaggedPdf = normalizeReportForPdf({
+  ...sampleReport,
+  top_fixes: sampleReport.top_fixes.map((fix: object, index: number) => ({ ...fix, critical: index !== 1 })),
+  more_critical: true,
+})!;
+assert.deepEqual(flaggedPdf.top_fixes?.map((fix) => fix.line), [lineOf(0), lineOf(2), lineOf(1)], "Critical Misses lead");
+assert.equal(flaggedPdf.more_critical, true, "carried through; the renderer drops it without three flagged");
+const flaggedHtml = renderReportHtml(flaggedPdf);
+assert.match(flaggedHtml, /<h2>Two Critical Misses\. Start with this one\.<\/h2><p class="count-lead">Either one could cost you the interview on its own\.<\/p>/);
+assert.doesNotMatch(flaggedHtml, /More than three|The one thing to fix first|Fix these three first/);
+assert.ok(flaggedHtml.includes(`<span class="miss-mark">${lineOf(2)}</span>`), "every Critical Miss carries the highlighter");
+assert.doesNotMatch(flaggedHtml, new RegExp(`<span class="miss-mark">${lineOf(1).replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")}`), "a plain fix doesn't");
+assert.ok(flaggedHtml.indexOf("Critical Miss 1") < flaggedHtml.indexOf("Critical Miss 2") && flaggedHtml.indexOf("Critical Miss 2") < flaggedHtml.indexOf(">Fix 3<"));
+const moreHtml = renderReportHtml(normalizeReportForPdf({
+  ...sampleReport,
+  top_fixes: sampleReport.top_fixes.map((fix: object) => ({ ...fix, critical: true })),
+  more_critical: true,
+})!);
+assert.match(moreHtml, /<h2>More than three Critical Misses\. Here are the three that matter most\.<\/h2>/);
+assert.equal(moreHtml.match(/class="miss-mark"/gu)?.length, 3);
+// A Critical Miss about something the resume doesn't have shows what's missing: no quote, no highlighter.
+const absentHtml = renderReportHtml(normalizeReportForPdf({
+  ...sampleReport,
+  top_fixes: sampleReport.top_fixes.map((fix: { evidence: object }, index: number) => ({
+    ...fix,
+    critical: index < 2,
+    ...(index === 1 ? { evidence: { ...fix.evidence, excerpt: "No summary section present" } } : {}),
+  })),
+})!);
+assert.match(absentHtml, /<div class="marked-missing miss">No summary section<\/div>/);
+assert.doesNotMatch(absentHtml, /No summary section present/);
+assert.equal(absentHtml.match(/class="miss-mark"/gu)?.length, 1);
 assert.match(draftHtml, /Suggested edits/);
 assert.match(draftHtml, /Draft template/);
 assert.match(draftHtml, /Complete the bracketed details with facts from your experience/);
