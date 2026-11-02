@@ -8,7 +8,7 @@ import styles from "@/components/guides/GuidePresentation";
 
 export const metadata: Metadata = {
     title: "After the offer",
-    description: "Recruiter-grounded negotiation guides and an offer calculator, for when the offer arrives.",
+    description: "Negotiation guides written from the recruiter’s side of the table, plus an offer calculator for comparing the pay.",
     alternates: { canonical: "/resources" },
 };
 
@@ -51,10 +51,10 @@ export default function GuidesPage() {
                         <div className="max-w-4xl">
                             <p className={`${styles.label} text-muted-foreground`}>After the offer</p>
                             <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
-                                Work out what to ask for in your next offer
+                                Got the offer? Here&apos;s what to ask for, and how.
                             </h1>
                             <p className={`${styles.readingCopy} mt-5`}>
-                                Compare the pay, understand the terms, and find words you can use with the recruiter.
+                                Most offers have some room, in our experience. Compare the pay, read the terms, and find words you can actually say to the recruiter.
                             </p>
                         </div>
                     </div>
@@ -146,29 +146,29 @@ export default function GuidesPage() {
                     <div className="mx-auto grid max-w-marketing items-start gap-10 lg:grid-cols-2">
                         <div>
                             <p className={`${styles.label} text-muted-foreground`}>
-                                The philosophy
+                                How these are written
                             </p>
                             <h2 className={`${styles.sectionTitle} mt-3 max-w-3xl`}>
                                 Written from the recruiter&apos;s side of the table
                             </h2>
                             <p className={`${styles.readingCopy} mt-5`}>
-                                These guides explain how a request moves through a hiring team, which facts help someone evaluate it, and what you can say without overstating your leverage.
+                                Your counter doesn’t stop with the recruiter. It gets passed to a manager or a compensation team, so these guides show you how to ask in a way that survives the handoff, without overstating your leverage.
                             </p>
                         </div>
 
                         <div className={`${styles.sheet} p-6 sm:p-8`}>
                             <div className="space-y-5">
                                 <div>
-                                    <p className="text-prose font-medium text-foreground">Examples you can adapt.</p>
-                                    <p className={`${styles.readingCopy} mt-1`}>Use the sample wording to ask about pay, request more time, or make a counteroffer.</p>
+                                    <p className="text-prose font-medium text-foreground">Words you can actually say.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Sample lines for asking about pay, buying more time, and making the counter.</p>
                                 </div>
                                 <div className="border-t border-border pt-5">
-                                    <p className="text-prose font-medium text-foreground">Sources and limits included.</p>
-                                    <p className={`${styles.readingCopy} mt-1`}>Research links are included where relevant, with source limits stated plainly.</p>
+                                    <p className="text-prose font-medium text-foreground">The research, with its limits.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Where a study helps, we link it and say what it can’t tell you.</p>
                                 </div>
                                 <div className="border-t border-border pt-5">
-                                    <p className="text-prose font-medium text-foreground">Built for your next conversation.</p>
-                                    <p className={`${styles.readingCopy} mt-1`}>Go straight to the question you need help with, whether you have an offer or are still interviewing.</p>
+                                    <p className="text-prose font-medium text-foreground">Start with your question.</p>
+                                    <p className={`${styles.readingCopy} mt-1`}>Jump to the part you need, whether the offer is in hand or you’re still interviewing.</p>
                                 </div>
                             </div>
                         </div>

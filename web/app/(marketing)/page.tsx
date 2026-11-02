@@ -15,7 +15,7 @@ const shareImage = {
 };
 
 export const metadata: Metadata = {
-  title: "See What a Recruiter Sees: Free Resume Report",
+  title: { absolute: "See what a recruiter sees: free resume report" },
   description: homepageDescription,
   alternates: {
     canonical: "/",

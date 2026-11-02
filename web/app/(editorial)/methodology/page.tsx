@@ -97,7 +97,7 @@ export default function MethodologyPage() {
 
             <h2 className="research-h2">How suggested edits protect your facts</h2>
             <p className="research-body mb-6">
-                When the report suggests new wording, it uses only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets for you to fill in. You can&apos;t copy a draft until those brackets hold real details, and a draft that changes one of your facts is flagged.
+                Under the Critical Miss, the revised line is your line plus the answers you type, word for word. When we offer a smoother version, it can drop filler words but never add one. Other suggested wording uses only what&apos;s already on your resume. Anything we can&apos;t know, like a number or a team size, stays in brackets as a template for you to fill in, and a draft that changes one of your facts is flagged and can&apos;t be copied.
             </p>
 
             <h2 className="research-h2">What comes from research, and what is ours</h2>

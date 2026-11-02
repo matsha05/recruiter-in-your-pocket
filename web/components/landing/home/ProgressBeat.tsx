@@ -13,7 +13,7 @@ export function ProgressBeat() {
                 <p className={styles.deck}>A re-check reads your revised resume and puts it beside the last one, so you can see what changed.</p>
                 <RecheckExample className={styles.demo} />
                 <p className={styles.footnote}>
-                    A re-check is one Job Search Pass report. Signed in, Progress keeps every version. Scores compare versions of your own resume; they don&rsquo;t predict interviews.{" "}
+                    Each re-check uses one report from a Job Search Pass. Sign in, and Progress keeps every version. Scores compare your own versions; they don&rsquo;t predict interviews.{" "}
                     <Link href="/pricing" className="riyp-link">What the pass includes</Link>
                 </p>
             </div>

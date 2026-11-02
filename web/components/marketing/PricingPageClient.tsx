@@ -220,7 +220,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 />
                             </div>
                             <p className="max-w-xl text-pretty text-prose text-muted-foreground">
-                                Use the pass to check a revision, or to read your resume against a specific job.
+                                Use the pass to check a revision, or to read your resume against a job you actually want.
                             </p>
                         </div>
 

@@ -25,7 +25,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/", updated: "2026-10-31" },
   { path: "/sample-report", updated: "2026-11-01" },
   { path: "/pricing", updated: "2026-11-01" },
-  { path: "/methodology", updated: "2026-11-01", published: "2026-01-02", card: "how-we-score" },
+  { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 
   { path: "/research", updated: "2026-11-01" },
   // Every article was corrected against its sources on Nov 1, 2026 (#35).
@@ -52,12 +52,12 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/resources/tech-offer-negotiation", updated: "2026-11-01", published: "2026-01-01", card: "tech-offer-negotiation" },
   { path: "/resources/tools/comp-calculator", updated: "2026-10-31", published: "2026-01-01", card: "comp-calculator" },
 
-  { path: "/trust", updated: "2026-11-01" },
+  { path: "/trust", updated: "2026-11-02" },
   { path: "/security", updated: "2026-10-31" },
   { path: "/privacy", updated: "2026-11-01" },
   { path: "/terms", updated: "2026-10-31" },
   { path: "/support", updated: "2026-10-31" },
-  { path: "/faq", updated: "2026-10-31" },
+  { path: "/faq", updated: "2026-11-02" },
 ];
 
 /** The site card (app/opengraph-image.tsx), for pages without an answer card. */

@@ -27,7 +27,7 @@ export default function GlobalError({
                   We couldn&apos;t load the app.
                 </h1>
                 <p className="mt-5 max-w-[38rem] text-lg text-muted-foreground">
-                  Try again, or open your workspace in a new page. If this keeps happening, contact support and include the error reference below if one is shown.
+                  Something broke on our end. Try again, or open your workspace in a new page. If it keeps happening, email support and include the error reference below, if you see one.
                 </p>
               </div>
               <div className="flex flex-col gap-3">

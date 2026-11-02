@@ -11,7 +11,7 @@ export function PassExamples() {
             <div className={styles.inner}>
                 <div className={styles.head}>
                     <h2 id="pass-uses-title" className={styles.title}>What five more reports are for.</h2>
-                    <p className={styles.deck}>Most people use them two ways. Here&rsquo;s each one on Jordan&rsquo;s resume.</p>
+                    <p className={styles.deck}>Two good ways to spend them, both shown on Jordan&rsquo;s resume.</p>
                 </div>
 
                 <div className={styles.uses}>
@@ -20,7 +20,7 @@ export function PassExamples() {
                         <h3 id="pass-use-recheck" className={styles.useTitle}>Check your revision</h3>
                         <p className={styles.useBody}>Run the revised resume, and the report puts it beside the last one: whether the Critical Miss changed, and which way the score moved.</p>
                         <RecheckExample className={styles.demo} stacked />
-                        <p className={styles.footnote}>Signed in, Progress keeps every version. Scores compare versions of your own resume. They don&rsquo;t predict interviews.</p>
+                        <p className={styles.footnote}>Sign in, and Progress keeps every version. Scores compare your own versions; they don&rsquo;t predict interviews.</p>
                     </article>
 
                     <article className={styles.use} aria-labelledby="pass-use-job">

@@ -8,7 +8,7 @@ const localPath = (url: string) => url.replace(SITE, "") || "/";
 
 // Known gaps in files this audit doesn't own; see
 // docs/launch-readiness/search-foundation-audit.md. Remove an entry once it's fixed.
-const LONG_TITLE_EXCEPTIONS = new Set(["/"]);
+const LONG_TITLE_EXCEPTIONS = new Set<string>();
 const NO_IMAGE_ALT_EXCEPTIONS = new Set(["/pricing", "/sample-report"]);
 const NO_OG_URL_EXCEPTIONS = new Set(["/resources"]);
 
