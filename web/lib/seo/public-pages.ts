@@ -55,7 +55,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/trust", updated: "2026-11-01" },
   { path: "/security", updated: "2026-11-02" },
   { path: "/privacy", updated: "2026-11-02" },
-  { path: "/terms", updated: "2026-10-31" },
+  { path: "/terms", updated: "2026-11-02" },
   { path: "/support", updated: "2026-10-31" },
   { path: "/faq", updated: "2026-10-31" },
 ];
