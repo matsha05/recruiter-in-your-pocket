@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { auditReportNarrative } from "../lib/llm/source-fidelity";
 import { narrativeTokenPolicy } from "../lib/llm/narrative-token-policy";
 for (const text of ['Other bullets leave your contribution or the resulting work less clear.', 'The market-share claim would be easier to evaluate if it distinguished relative growth from percentage-point change.', 'The result is not as clear.'])
@@ -206,3 +208,39 @@ assert.equal(fromPath(breakFix('After BrightWave, use a dated line such as "Care
 assert.ok(fromPath(breakFix('After BrightWave, use a dated line such as "Senior Director at Google" to account for the period.'), breakSource).length > 0, "a suggested title or employer is still checked");
 assert.ok(fromPath(breakFix('Your resume already has a "Career break" line after BrightWave.'), breakSource).length > 0, "a label the resume is said to have still needs support");
 console.log("quoted-subject and suggested-label tests passed");
+
+// A question may open with an auxiliary (eval_1793584776603, count-check marketing director).
+const candleSource = "Director of Marketing\nLumen Candle Co., Austin, TX\n- Post 3 to 5 times a week on the company Instagram, which has 2,100 followers";
+const askIdea = (question: string) => ({ ideas: { questions: [{ question, archetype: "IMPROVEMENT" }] } });
+assert.equal(fromPath(askIdea("Is there a verifiable change in engagement associated with the Instagram content?"), candleSource).length, 0, "Is opens a question");
+assert.equal(fromPath(askIdea("Has the Instagram content changed engagement in a way you can verify?"), candleSource).length, 0, "Has opens a question");
+assert.ok(fromPath(askIdea("Is there a change in Shopify sales?"), candleSource).length > 0, "a tool the resume doesn't name is still unsupported");
+console.log("question auxiliary tests passed");
+
+// Four false rejections from the v3.4 runs (eval_1793585506553, eval_1793585516970).
+const speedSource = readFileSync(path.join(process.cwd(), "../tests/resumes/golden/synth_project_manager_vp_strong_1766957014608.txt"), "utf8");
+assert.equal(fromPath({ first_impression: "The delivery-speed improvement stands out, though its comparison point isn't given." }, speedSource).length, 0, "adjacent source words support a hyphenated compound");
+assert.ok(fromPath({ first_impression: "The delivery-quality improvement stands out, though its comparison point isn't given." }, speedSource).length > 0, "a compound the source doesn't contain is still unsupported");
+const helpDeskSource = "Office Administrator\nIT Help Desk Technician, Commonwealth Credit Union\n- Resolved an average of 25 tickets a day for 300 employees across 9 branches";
+assert.equal(fromPath({ score_plain: "The earlier help desk figures provide useful detail for an IT-focused application." }, helpDeskSource).length, 0, "IT-focused needs IT in the source");
+assert.ok(fromPath({ score_plain: "The earlier help desk figures provide useful detail for an SAP-focused application." }, helpDeskSource).length > 0, "SAP-focused without SAP is still unsupported");
+const headedSource = "EXPERIENCE\nOffice Administrator, Riverbend Dental Group\nIT Help Desk Technician, Commonwealth Credit Union";
+const headlineFix = (why: string) => ({ top_fixes: [{ fix: "Add a headline naming the role you want.", why }] });
+assert.equal(fromPath(headlineFix("Above EXPERIENCE, identify whether you are targeting Office Administrator or IT Help Desk Technician."), headedSource).length, 0, "Above opens a location");
+assert.ok(fromPath(headlineFix("Above Acme Dental, identify the role you want."), headedSource).length > 0, "a place the resume doesn't name is still unsupported");
+const candleRoles = "Director of Marketing\n- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers\nData Entry Clerk\n- Entered 150 property records a day into the county title system";
+assert.equal(fromPath({ score_plain: "The score reflects the specific workloads shown across your roles." }, candleRoles).length, 0, "how the score reads the page");
+assert.ok(fromPath({ score_plain: "The score reflects the specific workloads shown across your 14 stores." }, candleRoles).length > 0, "an invented count still needs support");
+console.log("v3.4 false rejection tests passed");
+
+// Sentence-initial gerunds before a tool name (eval_1793596046745, cybersecurity analyst).
+const splunkSource = "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%";
+assert.equal(fromPath({ strengths: ["Mapping Splunk rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length, 0, "Mapping is a common word");
+assert.ok(fromPath({ strengths: ["Mapping Sentinel rules to MITRE ATT&CK connects your detection work to a recognized framework."] }, splunkSource).length > 0, "a tool the resume doesn't name is still unsupported");
+console.log("gerund tests passed");
+
+// Function words in a description of the timeline (eval_1793597366261, count-check admin generalist).
+const endedSource = "Office Administrator, Riverbend Dental Group\nJune 2022 - March 2025\n- Answered phones and scheduled patient appointments";
+assert.equal(fromPath({ score_plain: "The recent work history also stops before the present." }, endedSource).length, 0, "also and before are function words");
+assert.ok(fromPath({ score_plain: "The recent work history also stops before the Google role." }, endedSource).length > 0, "an employer the resume doesn't name is still unsupported");
+console.log("timeline function word tests passed");

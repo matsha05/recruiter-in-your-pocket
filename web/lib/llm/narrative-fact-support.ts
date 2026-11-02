@@ -63,6 +63,15 @@ export function withJoinedSpellings(tokens: Set<string>) {
   return joined;
 }
 
+/** "delivery speed" in a source line supports the claim's "delivery-speed", which joinedSpellings reads as "deliveryspeed". */
+export function withJoinedPairs(tokens: Set<string>, line: string) {
+  const words = canonicalizeUserSourceText(line).toLocaleLowerCase().match(/[\p{L}\p{M}\d]+/gu) || [];
+  for (let index = 0; index + 1 < words.length; index += 1) {
+    tokens.add(normalizeNarrativeToken(`${words[index]}-${words[index + 1]}`).replace(/-/gu, ""));
+  }
+  return tokens;
+}
+
 export function joinedSpellings(tokens: Set<string>) {
   return new Set(Array.from(tokens, (token) => token.replace(/-/gu, "")));
 }
@@ -96,8 +105,9 @@ export function isDirectFactualAssertion(value: string) {
 }
 
 export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>, sourceText = "", requirePositiveEntity = false) {
-  const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|reporting)$/u);
-  if (toolModifier && sourceText) return toolModifier[2] === "based"
+  // "an IT-focused application" needs IT in the source, like "SQL-based reporting" needs SQL.
+  const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|focused|oriented|heavy|facing|reporting)$/u);
+  if (toolModifier && sourceText) return toolModifier[2] !== "reporting"
     ? evidenceContainsExactEntity(toolModifier[1], sourceText, true)
     : evidenceContainsRequirement(`${toolModifier[1]} reporting`, sourceText);
   // An entity named only in negative evidence cannot establish positive presence.

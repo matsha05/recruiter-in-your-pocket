@@ -1617,7 +1617,8 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
         }
       }
       if (!hasSummarySection(resumeText) && /\b(summary|narrative bridge|opening profile|positioning statement)\b/i.test(rationale)) {
-        if (!/\bsummary\b/i.test(String(fix.fix || ""))) {
+        // Keep a fix that already asks for the headline or target role; the stock line is for vaguer ones.
+        if (!/\b(?:summary|headline|target role|role you want|intended (?:next )?role)\b/i.test(String(fix.fix || ""))) {
           fix.fix = "Add a summary section that names your target role and highlights relevant experience already on the resume.";
         }
         fix.evidence.excerpt = "No summary section present";
@@ -1625,6 +1626,14 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
         fix.section_ref = "Summary";
         evidenceExcerpt = fix.evidence.excerpt;
         changes.push(`top_fixes[${index}].summary_absence`);
+      }
+      // A line above the first section heading is the page's headline; the report calls that place Summary.
+      for (const field of ["section", "ref"] as const) {
+        const value = field === "section" ? fix?.evidence?.section : fix?.section_ref;
+        if (typeof value !== "string" || !/^\s*(?:headline|header|profile|top of (?:the )?page)\s*$/i.test(value)) continue;
+        if (field === "section") fix.evidence.section = "Summary";
+        else fix.section_ref = "Summary";
+        changes.push(`top_fixes[${index}].${field === "section" ? "evidence.section" : "section_ref"}_headline`);
       }
       if (typeof fix?.evidence?.section === "string" && /\[?SOURCE_\d{3}\]?/i.test(fix.evidence.section)) {
         fix.evidence.section = "Work Experience";

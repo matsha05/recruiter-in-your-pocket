@@ -9,8 +9,13 @@ const commonCapitalizedWords = new Set([
   "Tighten", "Training", "Turn", "Say", "Use", "Useful", "Using", "We",
   // Sentence-initial gerunds the report uses to introduce a fact ("Naming Microsoft Office ...").
   "Adding", "Describing", "Explaining", "Including", "Keeping", "Listing", "Mentioning", "Moving", "Naming", "Placing", "Putting", "Specifying", "Stating",
+  "Building", "Connecting", "Leading", "Linking", "Managing", "Mapping", "Pairing", "Running", "Showing", "Tracking", "Tying",
   // Sentence-initial imperatives that join a named tool to other work ("Connect Storyline to ...").
   "Connect", "Link", "Pair", "Tie", "What", "When", "Where", "Which", "Who", "Why", "With", "Without", "Work", "Your",
+  // Sentence-initial auxiliaries that open a question ("Is there a verifiable change ...?").
+  "Are", "Can", "Could", "Does", "Had", "Has", "Have", "Is", "Should", "Was", "Were", "Will", "Would",
+  // Sentence-initial locations that point at a section ("Above EXPERIENCE, add ...").
+  "Above", "Below", "Under",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [
