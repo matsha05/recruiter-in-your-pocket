@@ -8,14 +8,14 @@ import { recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { readTextWithLimit } from "@/lib/security/requestBody";
 import {
-    toStoredPassTier,
-} from "@/lib/billing/entitlements";
-import {
-    getTierDefaultsForCheckout,
     isCheckoutPaymentSettled,
-    paymentIntentIdForSession,
     stripeId,
 } from "@/lib/billing/checkoutFulfillment";
+import {
+    buildCheckoutPassInput,
+    fulfillCheckoutPass,
+    revokeCheckoutEntitlements,
+} from "@/lib/billing/passLifecycle";
 import { createStripeClient } from "@/lib/billing/stripeClient";
 import { getSubscriptionPeriodEndUnix } from "@/lib/billing/subscriptionPeriod";
 import {
@@ -284,6 +284,12 @@ async function maybeSendOtp(admin: any, email: string, context: UserResolutionCo
     });
 }
 
+const GRANT_LOG_MESSAGES = {
+    created: "stripe.webhook.pass_created",
+    renewed: "stripe.webhook.pass_renewed",
+    existing: "stripe.webhook.pass_already_exists_for_session",
+} as const;
+
 async function upsertPassForCheckout(
     admin: any,
     session: Stripe.Checkout.Session,
@@ -291,21 +297,6 @@ async function upsertPassForCheckout(
     offer: ApprovedStripeOffer,
     context: UserResolutionContext
 ): Promise<void> {
-    const storedTier = toStoredPassTier(offer.tier);
-    const paymentIntentId = paymentIntentIdForSession(session);
-    const customerId = stripeId(session.customer);
-
-    const { data: entitlementBlock, error: entitlementBlockError } = await admin
-        .from("billing_entitlement_blocks")
-        .select("checkout_session_id, reason")
-        .eq("checkout_session_id", session.id)
-        .maybeSingle();
-
-    if (entitlementBlockError) throw entitlementBlockError;
-    if (entitlementBlock?.checkout_session_id) {
-        throw new EntitlementBlockedError(entitlementBlock.reason || "reversed");
-    }
-
     let subscriptionId: string | null = null;
     let subscriptionPeriodEndUnix: number | null = null;
 
@@ -319,88 +310,22 @@ async function upsertPassForCheckout(
         if (subscriptionPeriodEndUnix * 1000 <= Date.now()) return;
     }
 
-    const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
-        storedTier,
-        session,
-        subscriptionPeriodEndUnix,
+    // The grant transition is atomic in the database: it checks the block
+    // ledger, replays idempotently, renews a live subscription pass, and never
+    // revives a revoked one.
+    const grant = await fulfillCheckoutPass(
+        admin,
+        buildCheckoutPassInput(session, offer, userId, {
+            id: subscriptionId,
+            periodEndUnix: subscriptionPeriodEndUnix,
+        }),
     );
-
-    // 1) Idempotency by checkout session id.
-    const { data: existingBySession } = await admin
-        .from("passes")
-        .select("id")
-        .eq("checkout_session_id", session.id)
-        .limit(1)
-        .maybeSingle();
-
-    if (existingBySession?.id) {
-        logInfo({
-            msg: "stripe.webhook.pass_already_exists_for_session",
-            request_id: context.request_id,
-            route: context.route,
-            method: context.method,
-            path: context.path,
-            outcome: "success",
-            user_id: userId,
-            stripe: { session_id: session.id }
-        });
-        return;
+    if (grant.outcome === "blocked") {
+        throw new EntitlementBlockedError(grant.reason);
     }
-
-    // 2) For subscription plans, update existing pass for the same subscription if present.
-    if (subscriptionId) {
-        const { data: existingSubPass } = await admin
-            .from("passes")
-            .select("id")
-            .eq("user_id", userId)
-            .eq("stripe_subscription_id", subscriptionId)
-            .limit(1)
-            .maybeSingle();
-
-        if (existingSubPass?.id) {
-            const { error: updateError } = await admin
-                .from("passes")
-                .update({
-                    tier: storedTier,
-                    uses_remaining: usesRemaining,
-                    expires_at: expiresAt,
-                    price_id: offer.priceId,
-                    stripe_subscription_id: subscriptionId,
-                    checkout_session_id: session.id,
-                    stripe_payment_intent_id: paymentIntentId,
-                    stripe_customer_id: customerId,
-                    revoked_at: null,
-                    revocation_reason: null
-                })
-                .eq("id", existingSubPass.id);
-
-            if (updateError) throw updateError;
-            return;
-        }
-    }
-
-    const passId = crypto.randomUUID();
-    const { error: insertError } = await admin
-        .from("passes")
-        .insert({
-            id: passId,
-            user_id: userId,
-            tier: storedTier,
-            uses_remaining: usesRemaining,
-            purchased_at: purchasedAt,
-            expires_at: expiresAt,
-            price_id: offer.priceId,
-            stripe_subscription_id: subscriptionId,
-            checkout_session_id: session.id,
-            stripe_payment_intent_id: paymentIntentId,
-            stripe_customer_id: customerId,
-            created_at: new Date().toISOString()
-        });
-
-    if (insertError) throw insertError;
 
     logInfo({
-        msg: "stripe.webhook.pass_created",
+        msg: GRANT_LOG_MESSAGES[grant.outcome],
         request_id: context.request_id,
         route: context.route,
         method: context.method,
@@ -440,15 +365,38 @@ async function linkStripeCustomerToUser(
     }
 }
 
-async function paymentIntentIdForReversal(object: Record<string, unknown>): Promise<string | null> {
-    const direct = stripeId(object.payment_intent);
-    if (direct) return direct;
+function subscriptionIdFromInvoice(invoice: Stripe.Invoice): string | null {
+    const parent = (invoice as { parent?: { subscription_details?: { subscription?: unknown } } }).parent;
+    return stripeId(parent?.subscription_details?.subscription)
+        || stripeId((invoice as { subscription?: unknown }).subscription);
+}
+
+/**
+ * What a refund, charge, or dispute object points at. One-time purchases are
+ * reached by payment intent; subscription charges carry no checkout payment
+ * intent, so they are reached through their invoice's subscription.
+ */
+async function reversalReferences(object: Record<string, unknown>): Promise<{
+    paymentIntentId: string | null;
+    subscriptionId: string | null;
+}> {
+    let paymentIntentId = stripeId(object.payment_intent);
+    let invoiceId = stripeId(object.invoice);
 
     const chargeId = stripeId(object.charge) || (object.object === "charge" ? stripeId(object.id) : null);
-    if (!chargeId) return null;
+    if (chargeId && (!paymentIntentId || !invoiceId)) {
+        const charge = await stripe!.charges.retrieve(chargeId);
+        paymentIntentId = paymentIntentId || stripeId(charge.payment_intent);
+        invoiceId = invoiceId || stripeId((charge as { invoice?: unknown }).invoice);
+    }
 
-    const charge = await stripe!.charges.retrieve(chargeId);
-    return stripeId(charge.payment_intent);
+    let subscriptionId = stripeId(object.subscription);
+    if (!subscriptionId && invoiceId) {
+        const invoice = await stripe!.invoices.retrieve(invoiceId);
+        subscriptionId = subscriptionIdFromInvoice(invoice);
+    }
+
+    return { paymentIntentId, subscriptionId };
 }
 
 async function revokeEntitlementForReversal(
@@ -456,55 +404,29 @@ async function revokeEntitlementForReversal(
     object: Record<string, unknown>,
     reason: "refund" | "dispute",
 ) {
-    const paymentIntentId = await paymentIntentIdForReversal(object);
-    if (!paymentIntentId) throw new Error("Reversal did not identify a payment intent");
+    const { paymentIntentId, subscriptionId } = await reversalReferences(object);
+    if (!paymentIntentId && !subscriptionId) {
+        throw new Error("Reversal did not identify a payment intent or subscription");
+    }
 
-    const { data: localPasses, error: localPassesError } = await admin
-        .from("passes")
-        .select("checkout_session_id")
-        .eq("stripe_payment_intent_id", paymentIntentId);
-    if (localPassesError) throw localPassesError;
+    const sessionIds = new Set<string>();
+    if (paymentIntentId) {
+        const sessions = await stripe!.checkout.sessions.list({ payment_intent: paymentIntentId, limit: 100 });
+        for (const session of sessions.data) sessionIds.add(session.id);
+    }
 
-    const sessionIds = new Set<string>(
-        (localPasses || [])
-            .map((pass: any) => pass.checkout_session_id)
-            .filter((id: unknown): id is string => typeof id === "string" && id.startsWith("cs_")),
-    );
-
-    const sessions = await stripe!.checkout.sessions.list({ payment_intent: paymentIntentId, limit: 100 });
-    for (const session of sessions.data) sessionIds.add(session.id);
-    if (sessionIds.size === 0) throw new Error("Reversal did not identify a checkout session");
-
-    const now = new Date().toISOString();
-    const blockRows = [...sessionIds].map(checkoutSessionId => ({
-        checkout_session_id: checkoutSessionId,
-        stripe_payment_intent_id: paymentIntentId,
+    // The reversal transition blocks these sessions, revokes every pass they,
+    // the payment intent, or the subscription reach, and blocks those passes'
+    // sessions too, all in one transaction.
+    const result = await revokeCheckoutEntitlements(admin, {
+        checkoutSessionIds: sessionIds,
+        stripePaymentIntentId: paymentIntentId,
+        stripeSubscriptionId: subscriptionId,
         reason,
-        updated_at: now,
-    }));
-    const { error: blockError } = await admin
-        .from("billing_entitlement_blocks")
-        .upsert(blockRows, { onConflict: "checkout_session_id" });
-    if (blockError) throw blockError;
-
-    const revocationPatch = {
-        uses_remaining: 0,
-        expires_at: now,
-        revoked_at: now,
-        revocation_reason: reason,
-        updated_at: now,
-    };
-    const byIntent = await admin
-        .from("passes")
-        .update(revocationPatch)
-        .eq("stripe_payment_intent_id", paymentIntentId);
-    if (byIntent.error) throw byIntent.error;
-
-    const bySession = await admin
-        .from("passes")
-        .update(revocationPatch)
-        .in("checkout_session_id", [...sessionIds]);
-    if (bySession.error) throw bySession.error;
+    });
+    if (result.blocked === 0 && result.revoked === 0) {
+        throw new Error("Reversal did not identify a checkout session or pass");
+    }
 }
 
 async function syncSubscriptionStatus(

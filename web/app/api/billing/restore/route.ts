@@ -2,16 +2,12 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
+import { isPassActive } from "@/lib/billing/entitlements";
 import {
-  isPassActive,
-  toStoredPassTier
-} from "@/lib/billing/entitlements";
-import {
-  getTierDefaultsForCheckout,
   isCheckoutPaymentSettled,
   paymentIntentIdForSession,
-  stripeId,
 } from "@/lib/billing/checkoutFulfillment";
+import { buildCheckoutPassInput, fulfillCheckoutPass } from "@/lib/billing/passLifecycle";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 import { recordCheckoutResponse, restoreStepFor } from "@/lib/observability/launchSignals";
@@ -173,7 +169,7 @@ async function restorePurchases() {
         .filter((v: unknown): v is string => typeof v === "string" && v.length > 0)
     );
 
-    const inserts: any[] = [];
+    let restored = 0;
     for (const sessionId of sessionIds) {
       if (existingSessionIds.has(sessionId)) continue;
       if (blockedSessionIds.has(sessionId)) continue;
@@ -210,8 +206,6 @@ async function restorePurchases() {
         continue;
       }
 
-      const storedTier = toStoredPassTier(validation.offer.tier);
-
       let subscriptionId: string | null = null;
       let subscriptionPeriodEndUnix: number | null = null;
       if (session.mode === "subscription") {
@@ -234,7 +228,7 @@ async function restorePurchases() {
         if (!subscriptionPeriodEndUnix || subscriptionPeriodEndUnix * 1000 <= Date.now()) continue;
       }
 
-      if (storedTier === "monthly" && session.mode !== "subscription") continue;
+      if (validation.offer.tier === "monthly" && session.mode !== "subscription") continue;
 
       const paymentIntentId = paymentIntentIdForSession(session);
       if (paymentIntentId) {
@@ -257,47 +251,31 @@ async function restorePurchases() {
         }
       }
 
-      const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
-        storedTier,
-        session,
-        subscriptionPeriodEndUnix,
-      );
-      if (Date.parse(expiresAt) <= Date.now()) continue;
-      inserts.push({
-        id: crypto.randomUUID(),
-        user_id: user.id,
-        tier: storedTier,
-        uses_remaining: usesRemaining,
-        purchased_at: purchasedAt,
-        expires_at: expiresAt,
-        price_id: validation.offer.priceId,
-        stripe_subscription_id: subscriptionId,
-        checkout_session_id: sessionId,
-        stripe_payment_intent_id: paymentIntentId,
-        stripe_customer_id: stripeId(session.customer),
-        created_at: new Date().toISOString()
+      const input = buildCheckoutPassInput(session, validation.offer, user.id, {
+        id: subscriptionId,
+        periodEndUnix: subscriptionPeriodEndUnix,
       });
-    }
+      if (Date.parse(input.expiresAt) <= Date.now()) continue;
 
-    let restored = 0;
-    for (const pass of inserts) {
-      const { error: insertError } = await admin.from("passes").insert(pass);
-      if (insertError) {
-        // The webhook or another restore request may have won the unique
-        // checkout-session race. That is a successful idempotent outcome.
-        if (insertError.code === "23505") continue;
+      // The grant transition decides atomically: a webhook or another restore
+      // that already granted this session, or a reversal that landed since the
+      // checks above, both end here without a second pass.
+      let grant;
+      try {
+        grant = await fulfillCheckoutPass(admin, input);
+      } catch (err: any) {
         logError({
           msg: "billing.restore.insert_failed",
-          supabase: { table: "passes", op: "insert", error_code: insertError.code },
+          supabase: { table: "passes", op: "rpc", error_code: err?.code ?? null },
           outcome: "provider_error",
-          err: { name: "SupabaseError", message: insertError.message }
+          err: { name: err?.name || "PassLifecycleError", message: err?.message || "Fulfillment failed" }
         });
         return NextResponse.json(
           { ok: false, restored: 0, message: "Could not restore your purchases. Try again or contact support." },
           { status: 500 }
         );
       }
-      restored += 1;
+      if (grant.outcome === "created" || grant.outcome === "renewed") restored += 1;
     }
 
     const { data: updatedPasses, error: updatedPassesError } = await admin

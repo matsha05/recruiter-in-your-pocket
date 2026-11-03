@@ -51,8 +51,10 @@ async function run() {
   let passReadFailsAt = 0;
   let passReads = 0;
   let passes: any[] = [];
+  let blocks = new Map<string, string>();
   let mutations = 0;
   let failedEvents = 0;
+  let rejectedEvents = 0;
   let eventType = "customer.subscription.updated";
   let session: any;
   let beforePassUpdate: (() => void) | null = null;
@@ -63,6 +65,34 @@ async function run() {
     line_items: { has_more: false, data: [{ quantity: 1, price: approvedItem.price }] },
   };
   const admin = {
+    // Mirrors migration 025's grant transition: block check, idempotent
+    // replay, subscription renewal that never revives a revoked pass, insert.
+    async rpc(functionName: string, args: Record<string, any>) {
+      assert.equal(functionName, "fulfill_checkout_pass", `unexpected rpc ${functionName}`);
+      const sessionId = args.p_checkout_session_id as string;
+      if (blocks.has(sessionId)) return { data: { outcome: "blocked", reason: blocks.get(sessionId) }, error: null };
+      const existing = passes.find((row) => row.checkout_session_id === sessionId);
+      if (existing) return { data: { outcome: "existing", pass: existing }, error: null };
+      const fields = {
+        user_id: args.p_user_id, tier: args.p_tier, uses_remaining: args.p_uses_remaining,
+        purchased_at: args.p_purchased_at, expires_at: args.p_expires_at, price_id: args.p_price_id,
+        stripe_subscription_id: args.p_stripe_subscription_id, checkout_session_id: sessionId,
+        stripe_payment_intent_id: args.p_stripe_payment_intent_id, stripe_customer_id: args.p_stripe_customer_id,
+      };
+      if (args.p_stripe_subscription_id) {
+        const renewal = passes.find((row) => row.user_id === args.p_user_id && row.stripe_subscription_id === args.p_stripe_subscription_id);
+        if (renewal) {
+          if (renewal.revoked_at) return { data: { outcome: "blocked", reason: renewal.revocation_reason || "revoked" }, error: null };
+          mutations += 1;
+          Object.assign(renewal, fields);
+          return { data: { outcome: "renewed", pass: renewal }, error: null };
+        }
+      }
+      mutations += 1;
+      const pass = { id: `pass_${passes.length + 1}`, revoked_at: null, revocation_reason: null, ...fields };
+      passes.push(pass);
+      return { data: { outcome: "created", pass }, error: null };
+    },
     from(table: string) {
       let operation = "select";
       let values: any;
@@ -120,7 +150,7 @@ async function run() {
       claimStripeEvent: async () => ({ claimed: true, leaseToken: "lease_test" }),
       completeStripeEvent: async () => {},
       failStripeEvent: async () => { failedEvents += 1; },
-      rejectStripeEvent: async () => { throw new Error("Unexpected rejection"); },
+      rejectStripeEvent: async () => { rejectedEvents += 1; },
     };
     if (request.startsWith("@/")) return originalLoad(path.join(process.cwd(), request.slice(2)), parent, isMain);
     return originalLoad(request, parent, isMain);
@@ -136,8 +166,10 @@ async function run() {
     passReadFailsAt = 0;
     passReads = 0;
     passes = [];
+    blocks = new Map();
     mutations = 0;
     failedEvents = 0;
+    rejectedEvents = 0;
     eventType = "customer.subscription.updated";
     beforePassUpdate = null;
   };
@@ -305,6 +337,40 @@ async function run() {
     assert.equal((await webhook(webhookRequest())).status, 200, "cancellation needs no active billing period");
     assert.equal(passes[0].uses_remaining, 0);
     assert.ok(Date.parse(passes[0].expires_at) <= Date.now());
+
+    // Revocation is terminal: a replayed or late checkout event for a refunded
+    // subscription is rejected at the grant, never retried, never revived.
+    reset();
+    eventType = "checkout.session.completed";
+    passes = [{
+      ...existingPass(), revoked_at: new Date(nowUnix * 1000).toISOString(), revocation_reason: "refund", uses_remaining: 0,
+    }];
+    assert.equal((await webhook(webhookRequest())).status, 200, "a replayed checkout for a refunded subscription is acknowledged");
+    assert.equal(rejectedEvents, 1, "the event is rejected as blocked rather than retried");
+    assert.equal(failedEvents, 0);
+    assert.equal(mutations, 0, "a refunded subscription pass is never revived");
+    assert.equal(passes[0].revocation_reason, "refund");
+    assert.equal(passes[0].revoked_at, new Date(nowUnix * 1000).toISOString());
+
+    // A reversal that lands after the route's own checks is still caught by
+    // the grant transition, and the return page learns it is terminal.
+    reset();
+    blocks.set(session.id, "refund");
+    const blockedConfirm = await confirm(confirmRequest());
+    const blockedBody = await blockedConfirm.json();
+    assert.equal(blockedConfirm.status, 409);
+    assert.equal(blockedBody.state, "access_revoked");
+    assert.equal(blockedBody.ok, false);
+    assert.equal(blockedBody.pending, false, "a reversed purchase must not keep the return page polling");
+    assert.equal(mutations, 0);
+
+    reset();
+    blocks.set(session.id, "dispute");
+    const blockedRestore = await restore();
+    assert.equal(blockedRestore.status, 200);
+    assert.equal((await blockedRestore.json()).restored, 0, "restore cannot regrant a disputed purchase");
+    assert.equal(mutations, 0);
+
     console.log("Billing subscription route tests passed");
   } finally {
     runtimeModule._load = originalLoad;

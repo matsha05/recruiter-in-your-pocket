@@ -12,6 +12,7 @@ const {
   verifyAuthenticatedGenerationOperations,
 } = require("./migration-replay/verify-authenticated-generation-operations.cjs");
 const { verifyRevokedPassAccess } = require("./migration-replay/verify-revoked-pass-access.cjs");
+const { verifyPassLifecycle } = require("./migration-replay/verify-pass-lifecycle.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const migrationsDir = path.join(repoRoot, "web", "database", "migrations");
@@ -49,6 +50,7 @@ const MIGRATIONS = [
   ["022_report_feedback", "web/database/migrations/022_report_feedback.sql"],
   ["023_report_feedback_retention", "web/database/migrations/023_report_feedback_retention.sql"],
   ["024_report_line_answers", "web/database/migrations/024_report_line_answers.sql"],
+  ["025_pass_lifecycle", "web/database/migrations/025_pass_lifecycle.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -244,6 +246,7 @@ async function verifyCleanReplay(manifest) {
         "022_report_feedback",
         "023_report_feedback_retention",
         "024_report_line_answers",
+        "025_pass_lifecycle",
       ],
     );
     for (const migration of upgradeBaseline) {
@@ -276,6 +279,7 @@ async function verifyCleanReplay(manifest) {
     await verifyAuthenticatedGenerationOperations(db);
     await verifyRevokedPassAccess(db);
     await verifyReportFeedback(db);
+    await verifyPassLifecycle(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";

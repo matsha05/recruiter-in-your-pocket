@@ -5,6 +5,7 @@ import { Analytics } from "@/lib/analytics";
 import {
   getInitialUnlockState,
   isPendingConfirmResponse,
+  nextConfirmDelayMs,
   transitionUnlockState,
   type UnlockConfirmResponse,
   type UnlockUiState,
@@ -82,7 +83,9 @@ export function usePaymentConfirmation({
           }
 
           if (isPendingConfirmResponse(data)) {
-            await sleep(900 + i * 450);
+            // A rate-limited answer carries its own wait so polling does not
+            // run straight into the next limit.
+            await sleep(nextConfirmDelayMs(data, i));
             continue;
           }
 

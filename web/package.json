@@ -31,7 +31,7 @@
     "test:billing-access": "node scripts/run-ts-test.cjs tests/billing-access.test.ts",
     "test:billing-pricing": "node scripts/run-ts-test.cjs tests/billing-pricing.test.ts && node scripts/run-ts-test.cjs tests/checkout-return.test.ts",
     "test:stripe-security": "node scripts/run-ts-test.cjs tests/stripe-security.test.ts",
-    "test:stripe-fulfillment": "node scripts/run-ts-test.cjs tests/stripe-fulfillment.test.ts && node scripts/run-ts-test.cjs tests/subscription-period.test.ts && node scripts/run-ts-test.cjs tests/billing-subscription-routes.test.ts",
+    "test:stripe-fulfillment": "node scripts/run-ts-test.cjs tests/stripe-fulfillment.test.ts && node scripts/run-ts-test.cjs tests/subscription-period.test.ts && node scripts/run-ts-test.cjs tests/billing-subscription-routes.test.ts && node scripts/run-ts-test.cjs tests/pass-lifecycle.test.ts",
     "test:workspace-context": "node scripts/run-ts-test.cjs tests/workspace-job-context.test.ts",
     "test:saved-jobs-pagination": "node scripts/run-ts-test.cjs tests/saved-jobs-pagination.test.ts",
     "test:sample-report": "node scripts/run-ts-test.cjs tests/sample-report-contract.test.ts",

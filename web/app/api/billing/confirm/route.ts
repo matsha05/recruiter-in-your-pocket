@@ -4,14 +4,12 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
   getPassStatus,
   isPassActive,
-  toStoredPassTier
 } from "@/lib/billing/entitlements";
 import {
-  getTierDefaultsForCheckout,
   isCheckoutPaymentSettled,
-  paymentIntentIdForSession,
   stripeId,
 } from "@/lib/billing/checkoutFulfillment";
+import { buildCheckoutPassInput, fulfillCheckoutPass } from "@/lib/billing/passLifecycle";
 import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { createStripeClient } from "@/lib/billing/stripeClient";
@@ -60,30 +58,22 @@ async function findUserIdByEmail(admin: any, email: string): Promise<string | nu
   return null;
 }
 
+type EnsuredPass =
+  | { blocked: string }
+  | { id: string; tier: string | null; uses_remaining: number | null; expires_at: string | null; revoked_at: string | null }
+  | null;
+
+/**
+ * Grants the pass for a settled checkout when the webhook has not yet. The
+ * grant transition itself decides between created, existing, renewed, and
+ * blocked, so a reversal landing between the caller's checks and this write
+ * cannot leave an unrevoked pass behind.
+ */
 async function ensurePassForCheckoutSession(
   admin: any,
   session: Stripe.Checkout.Session,
   offer: ApprovedStripeOffer
-) {
-  const { data: block, error: blockError } = await admin
-    .from("billing_entitlement_blocks")
-    .select("checkout_session_id")
-    .eq("checkout_session_id", session.id)
-    .maybeSingle();
-  if (blockError) throw blockError;
-  if (block?.checkout_session_id) return null;
-
-  const existing = await admin
-    .from("passes")
-    .select("id, tier, uses_remaining, expires_at, revoked_at")
-    .eq("checkout_session_id", session.id)
-    .limit(1)
-    .maybeSingle();
-
-  if (existing?.data?.id) {
-    return existing.data;
-  }
-
+): Promise<EnsuredPass> {
   const metadataUserId = typeof session.metadata?.user_id === "string" && session.metadata.user_id
     ? session.metadata.user_id
     : null;
@@ -91,8 +81,6 @@ async function ensurePassForCheckoutSession(
   const email = getEmailFromCheckoutSession(session);
   const userId = metadataUserId || (email ? await findUserIdByEmail(admin, email) : null);
   if (!userId) return null;
-
-  const storedTier = toStoredPassTier(offer.tier);
 
   let subscriptionId: string | null = null;
   let subscriptionPeriodEndUnix: number | null = null;
@@ -105,45 +93,27 @@ async function ensurePassForCheckoutSession(
     if (!subscriptionPeriodEndUnix || subscriptionPeriodEndUnix * 1000 <= Date.now()) return null;
   }
 
-  const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
-    storedTier,
-    session,
-    subscriptionPeriodEndUnix,
+  const grant = await fulfillCheckoutPass(
+    admin,
+    buildCheckoutPassInput(session, offer, userId, {
+      id: subscriptionId,
+      periodEndUnix: subscriptionPeriodEndUnix,
+    }),
   );
-  const passId = crypto.randomUUID();
+  if (grant.outcome === "blocked") return { blocked: grant.reason };
+  return grant.pass;
+}
 
-  const { error: insertError } = await admin.from("passes").insert({
-    id: passId,
-    user_id: userId,
-    tier: storedTier,
-    uses_remaining: usesRemaining,
-    purchased_at: purchasedAt,
-    expires_at: expiresAt,
-    price_id: offer.priceId,
-    stripe_subscription_id: subscriptionId,
-    checkout_session_id: session.id,
-    stripe_payment_intent_id: paymentIntentIdForSession(session),
-    stripe_customer_id: stripeId(session.customer),
-    created_at: new Date().toISOString(),
-  });
-
-  if (insertError) {
-    const fallback = await admin
-      .from("passes")
-      .select("id, tier, uses_remaining, expires_at, revoked_at")
-      .eq("checkout_session_id", session.id)
-      .limit(1)
-      .maybeSingle();
-
-    return fallback?.data ?? null;
-  }
-
-  return {
-    id: passId,
-    tier: storedTier,
-    uses_remaining: usesRemaining,
-    expires_at: expiresAt,
-  };
+function reversedResponse(status: string | null) {
+  return response(
+    buildConfirmResponse({
+      state: "access_revoked",
+      status: status ?? "reversed",
+      message: "This purchase is no longer eligible for access.",
+      pending: false,
+    }),
+    409,
+  );
 }
 
 async function confirmCheckout(req: NextRequest) {
@@ -173,7 +143,11 @@ async function confirmCheckout(req: NextRequest) {
     const ipLimit = await rateLimitAsync(`ip:${hashForLogs(ip)}:billing-confirm`, 30, 10 * 60 * 1000);
     if (!ipLimit.ok) {
       return response(
-        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many payment checks. Wait a few minutes before trying again." }),
+        buildConfirmResponse({
+          state: "rate_limited",
+          message: "Too many payment checks. We'll check again in a moment.",
+          retryAfterMs: ipLimit.resetMs,
+        }),
         429,
       );
     }
@@ -198,7 +172,11 @@ async function confirmCheckout(req: NextRequest) {
     );
     if (!sessionLimit.ok) {
       return response(
-        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many payment checks. Wait a few minutes before trying again." }),
+        buildConfirmResponse({
+          state: "rate_limited",
+          message: "Too many payment checks. We'll check again in a moment.",
+          retryAfterMs: sessionLimit.resetMs,
+        }),
         429,
       );
     }
@@ -289,15 +267,7 @@ async function confirmCheckout(req: NextRequest) {
       );
     }
     if (entitlementBlock?.reason) {
-      return response(
-        buildConfirmResponse({
-          state: "checkout_incomplete",
-          status: "reversed",
-          message: "This purchase is no longer eligible for access.",
-          pending: false,
-        }),
-        409,
-      );
+      return reversedResponse("reversed");
     }
 
     const { data, error } = await supabaseAdmin
@@ -323,9 +293,13 @@ async function confirmCheckout(req: NextRequest) {
       );
     }
 
-    const pass = data?.id
+    const pass: EnsuredPass = data?.id
       ? data
       : await ensurePassForCheckoutSession(supabaseAdmin, checkoutSession, validation.offer);
+
+    if (pass && "blocked" in pass) {
+      return reversedResponse("reversed");
+    }
 
     if (!pass?.id) {
       return response(
@@ -337,11 +311,18 @@ async function confirmCheckout(req: NextRequest) {
       );
     }
 
+    // Project the pass's lifecycle state honestly: a refunded or expired
+    // purchase is terminal, not "checkout incomplete", so the client stops
+    // polling and the message says what happened.
     const passStatus = getPassStatus(pass);
     if (passStatus === "expired" || passStatus === "revoked" || passStatus === "invalid") {
       return response(
         buildConfirmResponse({
-          state: "checkout_incomplete",
+          state: passStatus === "expired"
+            ? "pass_expired"
+            : passStatus === "revoked"
+              ? "access_revoked"
+              : "checkout_incomplete",
           status: passStatus,
           message: passStatus === "expired"
             ? "This pass has expired. Check Billing for your current access."
