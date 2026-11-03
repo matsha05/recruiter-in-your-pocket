@@ -48,6 +48,7 @@ const MIGRATIONS = [
   ["021_revoked_pass_generation_access", "web/database/migrations/021_revoked_pass_generation_access.sql"],
   ["022_report_feedback", "web/database/migrations/022_report_feedback.sql"],
   ["023_report_feedback_retention", "web/database/migrations/023_report_feedback_retention.sql"],
+  ["024_report_line_answers", "web/database/migrations/024_report_line_answers.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -242,6 +243,7 @@ async function verifyCleanReplay(manifest) {
         "021_revoked_pass_generation_access",
         "022_report_feedback",
         "023_report_feedback_retention",
+        "024_report_line_answers",
       ],
     );
     for (const migration of upgradeBaseline) {
