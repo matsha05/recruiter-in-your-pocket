@@ -104,6 +104,10 @@ export function ReportStream({
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
+  // The first sentence leads the phone's first screen; the rest waits behind "Read the rest" (W1).
+  const opening = useMemo(() => splitVerdict(verdict), [verdict]);
+  const [restOpen, setRestOpen] = useState(false);
+  const readLine = report.score_comment_short && report.score_comment_short !== verdict && report.score_comment_short !== opening.lead ? report.score_comment_short : null;
   const misses = readCriticalMisses(reconciled);
   const countHeading = criticalCountHeading(misses);
   const criticals = fixes.slice(0, misses.count);
@@ -161,10 +165,6 @@ export function ReportStream({
   }, [isSample, reportId, report]);
   const polishContext = isSample ? undefined : reportId ? { reportId } : recoveryId ? { recoveryId } : undefined;
 
-  const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach, polishContext };
-
-  return (
-    <div className={cn(styles.root, className)}>
   // Answers and the chosen line stay with a signed-in report, so a saved report and the PDF carry them (W3).
   const storeHandlers = useMemo(() => [0, 1, 2].map((index) => (payload: Omit<StoredLineAnswers, "fix_index">) => {
     if (!reportId || isSample) return;
@@ -172,12 +172,37 @@ export function ReportStream({
   }), [isSample, reportId]);
   const storedFor = (index: number) => storedLineAnswers.find((entry) => entry.fix_index === index);
 
+  const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach, polishContext };
+
+  return (
+    <div className={cn(styles.root, className)}>
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
 
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
         <p className="riyp-verdict-label text-muted-foreground">Verdict</p>
-        <h1 id="report-verdict" className={styles.verdict}>{verdict}</h1>
+        <h1 id="report-verdict" className={opening.rest ? styles.verdictLead : styles.verdict}>{opening.lead}</h1>
+        {(opening.rest || readLine) && (
+          <div className={styles.verdictRest} data-folded={restOpen ? undefined : ""} data-testid="verdict-rest">
+            <div id="verdict-rest" className={styles.verdictRestText}>
+              {opening.rest && <p>{opening.rest}</p>}
+              {/* The one-sentence read the homepage quotes (Impeccable 8): under the Verdict, where a visitor looks for it. */}
+              {readLine && <p className={styles.readLine} data-testid="report-read-line">{readLine}</p>}
+            </div>
+            {!restOpen && (
+              <button type="button" className={cn("focus-ring", styles.readRest)} aria-expanded={false} aria-controls="verdict-rest" onClick={() => setRestOpen(true)}>
+                Read the rest
+              </button>
+            )}
+          </div>
+        )}
         {typeof report.score === "number" && <ScoreBand score={report.score} />}
+        {/* A structural gap the model flags (a dated break, a missing section) is said in the opening read, where the person looks for it. */}
+        {integrity.structuralGaps.length > 0 && (
+          <div className={styles.gapRow} data-testid="structural-gaps">
+            <p className={styles.gapLabel}><WarningCircle className="size-4" weight="bold" aria-hidden="true" />Before the bullets</p>
+            {integrity.structuralGaps.map((gap) => <p key={gap.text} className={styles.gapText}>{gap.text}</p>)}
+          </div>
+        )}
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title">
@@ -204,6 +229,8 @@ export function ReportStream({
               onLiftChange={liftHandlers[index]}
               liftState={lifts[index]?.state ?? "open"}
               questions={questionsFor(index)}
+              stored={storedFor(index)}
+              onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
               feedback={isSample || index > 0 ? undefined : {
                 question: "Was this the right thing to fix first?",
                 onSubmit: ({ right, note }) => sendReportFeedback({
@@ -217,20 +244,11 @@ export function ReportStream({
             />
           ))}
 
-          {integrity.structuralGaps.length > 0 && (
-            <PageNote kind="gap">
-              <p className={styles.gapLabel}><WarningCircle className="size-4" weight="bold" aria-hidden="true" />Before the bullets</p>
-              {integrity.structuralGaps.map((gap) => <p key={gap.text} className={styles.gapText}>{gap.text}</p>)}
-            </PageNote>
-          )}
-
           {strengths[0] && (
             <PageNote kind="keep">
               <Check className={styles.keepTick} weight="bold" aria-hidden="true" />
               <div>
                 <p className={styles.keepLabel}>Keep this one</p>
-              stored={storedFor(index)}
-              onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
                 <p className={styles.keepText}>{strengths[0]}</p>
               </div>
             </PageNote>
@@ -244,6 +262,7 @@ export function ReportStream({
                 key={`${fix.fix || fix.text}-${index}`}
                 fix={fix}
                 index={index}
+                total={fixes.length}
                 why={slots.why}
                 whatToAdd={slots.whatToAdd}
                 hidden={hiddenFixes.isHidden(index)}
@@ -252,6 +271,8 @@ export function ReportStream({
                 onRestore={() => hiddenFixes.restore(index)}
                 onUnlock={handleUnlock}
                 questions={questionsFor(index)}
+                stored={storedFor(index)}
+                onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
                 {...liftProps}
               />
             );
@@ -271,8 +292,6 @@ export function ReportStream({
               <li key={strength} className={styles.keepNote}>
                 <Check className={styles.keepTick} weight="bold" aria-hidden="true" />
                 <p className={styles.keepText}>{strength}</p>
-                stored={storedFor(index)}
-                onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
               </li>
             ))}
           </ul>
@@ -285,7 +304,6 @@ export function ReportStream({
           <div className={styles.roleGrid}>
             <p className={styles.bodyText}>{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             <div className={styles.roleList}>
-                total={fixes.length}
               <p className={styles.keepLabel}>Roles to consider</p>
               <ul>{(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role}>{role}</li>)}</ul>
               {roleFit?.seniority_read && <p className={styles.roleMeta}>Level suggested by the resume: {roleFit.seniority_read}</p>}
@@ -301,7 +319,6 @@ export function ReportStream({
         </summary>
         <div className={styles.disclosureBody}>
           <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
-          {report.score_comment_short && report.score_comment_short !== verdict && <p>{report.score_comment_short}</p>}
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
         </div>

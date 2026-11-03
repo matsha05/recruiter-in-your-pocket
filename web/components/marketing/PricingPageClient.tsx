@@ -52,8 +52,9 @@ function PricingHeroActions({
     onCheckout: () => void;
 }) {
     return (
-        <nav aria-label="Pricing actions" className="mt-7 grid max-w-xl gap-3 sm:grid-cols-2 lg:hidden">
-            <Button asChild className="justify-between">
+        /* One dominant action (Impeccable 5): the free report is filled; the pass is a quiet route to its card below. */
+        <nav aria-label="Pricing actions" className="mt-7 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-center lg:hidden">
+            <Button asChild className="w-full sm:w-auto">
                 <Link
                     href="/workspace"
                     data-testid="pricing-hero-free-action"
@@ -65,30 +66,13 @@ function PricingHeroActions({
             </Button>
 
             {billingEnabled ? (
-                <Button
-                    type="button"
-                    data-testid="pricing-hero-paid-action"
-                    onClick={onCheckout}
-                    disabled={checkoutLoading}
-                    variant="secondary"
-                    className="justify-between text-left"
-                >
+                <Button type="button" variant="quiet" data-testid="pricing-hero-paid-action" onClick={onCheckout} disabled={checkoutLoading}>
                     {checkoutLoading ? "Opening checkout…" : JOB_SEARCH_PASS_DECISION.cta}
-                    <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
                 </Button>
             ) : (
-                <Button
-                    type="button"
-                    disabled
-                    data-testid="pricing-hero-paid-action"
-                    variant="secondary"
-                    className="justify-between text-left"
-               >
-                    <span>
-                        <span className="block text-sm font-semibold">5 reports · $29</span>
-                        <span className="mt-0.5 block text-xs">Passes are paused for now</span>
-                    </span>
+                <Button type="button" variant="quiet" disabled data-testid="pricing-hero-paid-action">
                     <LockKey aria-hidden="true" className="size-4 shrink-0" weight="bold" />
+                    5 reports · $29. Passes are paused for now.
                 </Button>
             )}
         </nav>

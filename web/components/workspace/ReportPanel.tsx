@@ -124,6 +124,13 @@ export default function ReportPanel({
     const showEmptyState = !report && !isLoading;
     const showReport = !!report;
     const canExport = !isStreaming && Boolean(onExportPdf);
+    // One name for keeping a report (copy-system §1): the ending says the same.
+    const saveLabel = isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save this version";
+    // The header row: the role the report reads toward, the level it reads at, and how long it took.
+    const roleFit = displayReport?.job_alignment?.role_fit;
+    const targetRole = targetRoleOf(roleFit);
+    const readAs = readAsChip(roleFit);
+    const readTime = isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
 
     const handleExport = () => {
         if (!onExportPdf) return;
@@ -135,13 +142,6 @@ export default function ReportPanel({
         }
         onExportPdf(shareMode ? displayReport || undefined : undefined);
     };
-    // One name for keeping a report (copy-system §1): the ending says the same.
-    const saveLabel = isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save this version";
-    // The header row: the role the report reads toward, the level it reads at, and how long it took.
-    const roleFit = displayReport?.job_alignment?.role_fit;
-    const targetRole = targetRoleOf(roleFit);
-    const readAs = readAsChip(roleFit);
-    const readTime = isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
 
     const buildShareUrl = () => {
         const url = new URL(window.location.href);
@@ -179,6 +179,7 @@ export default function ReportPanel({
                 <AnalysisScanning
                     mode="resume"
                     startedAt={analysisStartedAt}
+                    resumeText={resumeText}
                     onCancel={onCancelAnalysis}
                     onRetry={onRetryAnalysis}
                 />
@@ -308,7 +309,7 @@ export default function ReportPanel({
                             {shareEnabled && shareMode && (
                                 <div className="mb-4 flex flex-col gap-3 rounded-xl border border-line bg-proof p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                                        <ShieldCheck className="size-4 text-premium" />
+                                        <ShieldCheck className="size-4 text-brand" />
                                         <div>
                                             <p className="text-foreground font-medium">Share view is on.</p>
                                             <p className="text-xs text-muted-foreground">
@@ -320,14 +321,11 @@ export default function ReportPanel({
                                         <Button type="button" variant="secondary" size="sm" onClick={handleShare}>
                                             <LinkIcon className="size-3.5" />
                                             Copy link
-                                        </button>
-                                        <button type="button"
-                                            onClick={handleExitShare}
-                                            className="inline-flex min-h-11 items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
-                                        >
+                                        </Button>
+                                        <Button type="button" variant="secondary" size="sm" onClick={handleExitShare}>
                                             <X className="size-3.5" />
                                             Exit share
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             )}
@@ -364,12 +362,12 @@ export default function ReportPanel({
                                 comparisonBaseline={comparisonBaseline}
                                 onStartRevision={onStartRevision}
                                 onStartReport={onNewReport}
+                                resumeText={resumeText}
+                                resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
                                 isSignedIn={isSignedIn}
                                 onSaveReport={!isStreaming && !shareMode ? onKeepReport : undefined}
                                 isSavingReport={isSavingReport}
                                 storedLineAnswers={storedLineAnswers}
-                                resumeText={resumeText}
-                                resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>

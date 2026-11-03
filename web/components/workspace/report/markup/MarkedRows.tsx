@@ -28,7 +28,6 @@ function sectionOf(fix?: Fix) {
   return fix.evidence.section || fix.section_ref;
 }
 
-/** The quoted line as the reader sees it on the page, without the resume's bullet mark. */
 /** A resume's own heading ("EXPERIENCE") in sentence case; uppercase stays reserved for the Verdict and Critical Miss labels. */
 function sectionLabel(fix?: Fix) {
   const section = sectionOf(fix)?.trim();
@@ -36,6 +35,7 @@ function sectionLabel(fix?: Fix) {
   return section === section.toLocaleUpperCase() ? section.charAt(0) + section.slice(1).toLocaleLowerCase() : section;
 }
 
+/** The quoted line as the reader sees it on the page, without the resume's bullet mark. */
 export function quotedLine(fix?: Fix) {
   return excerptOf(fix).trim().replace(/^[-•*]\s+/u, "");
 }
@@ -165,11 +165,11 @@ export function CriticalMissRow({
         <div className={styles.noteHead}>
           <p className={styles.missLabel}>
             <span className="riyp-verdict-label">{label}</span>
+            {sectionLabel(fix) && <span className={styles.missSection}>· {sectionLabel(fix)}</span>}
             {liftState === "addressed" && <span className={styles.addressed}><Check className="size-3.5" weight="bold" aria-hidden="true" />Addressed</span>}
           </p>
           {definition && <p className={styles.missDefinition}>{definition}</p>}
         </div>
-            {sectionLabel(fix) && <span className={styles.missSection}>· {sectionLabel(fix)}</span>}
         <p className={cn(styles.penNote, seen && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
         {why && <p className={styles.penWhy}>{why}</p>}
         {/* Nothing on the page to revise: the questions are what to add. */}
@@ -195,11 +195,11 @@ export function CriticalMissRow({
 export function FixRow({
   fix,
   index,
+  total,
   why,
   whatToAdd,
   hidden,
   locked,
-  total,
   onHide,
   onRestore,
   onUnlock,
@@ -207,12 +207,12 @@ export function FixRow({
 }: LiftProps & {
   fix: Fix;
   index: number;
+  /** How many fixes the report shows, so the label reads "Fix 2 of 3" where the heading is out of view. */
+  total: number;
   why?: string;
   whatToAdd: string[];
   hidden: boolean;
   locked?: boolean;
-  /** How many fixes the report shows, so the label reads "Fix 2 of 3" where the heading is out of view. */
-  total: number;
   onHide: () => void;
   onRestore: () => void;
   onUnlock?: () => void;

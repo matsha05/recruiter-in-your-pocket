@@ -81,7 +81,7 @@ export default function ResumeModeSection({
 }: ResumeModeSectionProps) {
   if (!report && isStreaming) {
     return (
-      <div className="h-full overflow-y-auto bg-body">
+      <div className="workspace-pane h-full overflow-y-auto bg-body">
         <div className="h-full">
           <AnalysisScanning
             mode="resume"
@@ -98,7 +98,7 @@ export default function ResumeModeSection({
 
   if (!report) {
     return (
-      <div className="h-full overflow-y-auto bg-mineral">
+      <div className="workspace-pane h-full overflow-y-auto bg-mineral">
         <InputPanel
           resumeText={resumeText}
           jobDescription={jobDescription}

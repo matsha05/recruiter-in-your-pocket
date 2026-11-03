@@ -1,7 +1,7 @@
 .example {
-    max-width: 68rem;
+    max-width: var(--marketing-content);
     margin: 0 auto;
-    padding: 5rem 1.25rem 6rem;
+    padding: 5rem var(--marketing-gutter) 6rem;
     scroll-margin-top: var(--marketing-header-height-desktop);
 }
 
@@ -150,7 +150,7 @@
 
 /* Phones: one vertical rail of numbered steps (the Lifted Trace's narrow form). */
 @media (max-width: 760px) {
-    .example { padding: 4rem 1.25rem 4.5rem; scroll-margin-top: var(--marketing-header-height-mobile); }
+    .example { padding: 4rem var(--marketing-gutter) 4.5rem; scroll-margin-top: var(--marketing-header-height-mobile); }
     .sheet { grid-template-columns: minmax(0, 1fr); border-radius: 1rem; }
     .step { padding: 1.5rem 1.25rem 1.5rem 3.25rem; }
     .step:nth-child(2) { border-left: 0; border-top: 1px solid hsl(var(--line)); }

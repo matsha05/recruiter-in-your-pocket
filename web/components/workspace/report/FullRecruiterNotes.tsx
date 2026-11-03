@@ -66,9 +66,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const sectionNotes = SECTION_ORDER.flatMap((name) => {
     const review = report.section_review?.[name];
     if (!review) return [];
+    // "Still unclear: Nothing important is missing" contradicts itself (Impeccable 15); a note that says nothing is missing is left out.
+    const nothingMissing = isCopy(review.missing) && /^\s*nothing\b[^.]*\bmissing\b/iu.test(review.missing);
     const notes = [
       { label: "What works", text: review.working },
-      { label: "Still unclear", text: review.missing },
+      { label: "Still unclear", text: nothingMissing ? null : review.missing },
       { label: "Fix", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
