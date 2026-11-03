@@ -252,6 +252,8 @@ test.describe("launch red-team journeys", () => {
   test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
     await page.goto("/auth?from=extension&next=/jobs");
     await expect(page).toHaveURL(/\/auth\?from=extension&next=\/jobs/);
+    // The sign-in form is client-rendered; before hydration settles a dev server can briefly show it twice.
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
   });
@@ -259,6 +261,7 @@ test.describe("launch red-team journeys", () => {
   test("7. report history sends anonymous users into an auth-protected flow", async ({ page }) => {
     await page.goto("/reports");
     await expect(page).toHaveURL(/\/auth\?from=reports&next=\/reports/);
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.locator("#auth-email")).toBeVisible();
   });
 
