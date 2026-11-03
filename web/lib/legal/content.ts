@@ -197,8 +197,33 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures should follow the instructions on /security or /.well-known/security.txt.",
+              value: "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures follow section 9 below.",
             },
+          ],
+        ],
+      },
+      // The Security and Trust pages fold in here (Matt, Nov 2, 2026): one place for "can I trust you with this file?".
+      {
+        type: "table",
+        title: "7. What we store and why",
+        columns: ["Data type", "Purpose", "Retention", "Your control"],
+        rows: DATA_HANDLING_ROWS,
+      },
+      {
+        type: "bullet_list",
+        title: "8. What we commit to",
+        items: [...TRUST_PROMISES],
+      },
+      {
+        type: "card",
+        title: "9. Responsible disclosure",
+        paragraphs: [
+          [
+            { type: "text", value: "If you find a security issue, email " },
+            { type: "link", label: "support@recruiterinyourpocket.com", href: "mailto:support@recruiterinyourpocket.com" },
+            { type: "text", value: " with steps to reproduce it. The same instructions are published at " },
+            { type: "link", label: "/.well-known/security.txt", href: "/.well-known/security.txt" },
+            { type: "text", value: "." },
           ],
         ],
       },

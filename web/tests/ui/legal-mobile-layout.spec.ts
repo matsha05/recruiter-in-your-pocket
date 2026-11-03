@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 for (const width of [320, 390]) {
-  for (const route of ["/privacy", "/security"]) {
+  for (const route of ["/privacy", "/terms"]) {
     test(`${route} keeps long contact details inside a ${width}px phone`, async ({ page }) => {
       await page.setViewportSize({ width, height: 667 });
       await page.goto(route);
@@ -39,17 +39,17 @@ for (const width of [320, 390]) {
 test.describe("legal navigation pointer activation", () => {
   test.use({ isMobile: true, hasTouch: true });
 
-  // Four tabs (plan 4.9) fit a 320px phone: every label is whole, and each opens with mouse or touch.
+  // Three tabs (Matt, Nov 2, 2026) fit a 320px phone: every label is whole, and each opens with mouse or touch.
   for (const width of [320, 390]) {
     for (const pointer of ["mouse", "touch"] as const) {
       test(`${pointer} can activate a fully visible legal link at ${width}px`, async ({ page }) => {
         await page.setViewportSize({ width, height: 667 });
-        await page.goto("/security");
+        await page.goto("/privacy");
         await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
         await page.evaluate(() => document.fonts.ready);
 
         const nav = page.getByRole("navigation", { name: "Trust and legal pages" });
-        await expect(nav.getByRole("link")).toHaveText(["Privacy", "Terms", "Security", "Help"]);
+        await expect(nav.getByRole("link")).toHaveText(["Privacy", "Terms", "Help"]);
         expect(await nav.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
         const help = nav.getByRole("link", { name: "Help", exact: true });
         const linkBox = (await help.boundingBox())!;
