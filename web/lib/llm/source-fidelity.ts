@@ -11,6 +11,7 @@ import { supportsIndustrySignal } from "./source-industry-signals";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { narrativeMeaningIssues } from "./narrative-meaning";
+import { memoizeByText } from "./source-memo";
 export const EXACT_ABSENCE_SENTINELS = [
   "No summary section present",
   "No skills section present",
@@ -55,12 +56,10 @@ export function canonicalSourceIdentity(value: string) {
     .replace(/\s+/gu, " ")
     .trim();
 }
-function sourceLines(sourceText: string) {
-  return sourceText
-    .split(/\r?\n/u)
-    .map((line) => canonicalSourceIdentity(line))
-    .filter(Boolean);
-}
+const sourceLines = memoizeByText((sourceText: string) => sourceText
+  .split(/\r?\n/u)
+  .map((line) => canonicalSourceIdentity(line))
+  .filter(Boolean));
 function isSourceBoundary(value: string, side: "before" | "after") {
   return !value
     || (!sourceContinuationPattern.test(value)
@@ -279,6 +278,12 @@ function narrativeSourceClauses(sourceText: string) {
     .map((clause) => canonicalSourceIdentity(clause))
     .filter(Boolean);
 }
+// The resume's clauses with their facts and tokens, computed once per resume rather than once per claim.
+const narrativeSourceCandidates = memoizeByText((sourceText: string) => narrativeSourceClauses(sourceText).map((line) => ({
+  facts: protectedFacts(line),
+  tokens: withJoinedPairs(withJoinedSpellings(materialTokens(line)), line),
+  negated: sourceClauseIsNegated(line),
+})));
 export function auditNarrativeClaim(
   value: string,
   sourceText: string,
@@ -287,11 +292,7 @@ export function auditNarrativeClaim(
     rejectPositiveSourceAbsence?: boolean;
   } = {},
 ) {
-  const candidates = narrativeSourceClauses(sourceText).map((line) => ({
-    facts: protectedFacts(line),
-    tokens: withJoinedPairs(withJoinedSpellings(materialTokens(line)), line),
-    negated: sourceClauseIsNegated(line),
-  }));
+  const candidates = narrativeSourceCandidates(sourceText);
   return claimSegments(value).flatMap((claim) => {
     const meaningIssues = narrativeMeaningIssues(claim, sourceText);
     if (meaningIssues.length > 0) return [{ claim, unsupportedFacts: meaningIssues }];

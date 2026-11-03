@@ -1,3 +1,4 @@
+import { withDeadline } from "../backend/deadline";
 import crypto from "node:crypto";
 import {
   FREE_RUN_LIMIT,
@@ -59,6 +60,9 @@ const anonymousCookieMetaAfterCommit = new WeakMap<
   GenerationAccessReservation,
   AnonymousFreeCookieMeta
 >();
+
+// Reserving access is one round trip; past this the person is told access is unavailable rather than left waiting.
+export const ACCESS_RESERVE_DEADLINE_MS = 10_000;
 
 export function isMockGenerationProviderEnabled() {
   return TRUE_VALUES.has(String(process.env.USE_MOCK_OPENAI || "").trim().toLowerCase());
@@ -151,6 +155,8 @@ export async function reserveGenerationAccess(input: {
   randomUUID?: () => string;
   operationId?: string | null;
   requestDigest?: string | null;
+  /** How long the ledger or RPC may take before access is refused as unavailable. */
+  deadlineMs?: number;
 }): Promise<GenerationAccessReservation> {
   const now = input.now || (() => new Date());
   const randomUUID = input.randomUUID || (() => crypto.randomUUID());
@@ -203,12 +209,12 @@ export async function reserveGenerationAccess(input: {
     const reservationId = randomUUID();
     let ledgerResult: Awaited<ReturnType<typeof anonymousGenerationAccessBackend.reserveWithReason>>;
     try {
-      ledgerResult = await anonymousGenerationAccessBackend.reserveWithReason({
+      ledgerResult = await withDeadline(anonymousGenerationAccessBackend.reserveWithReason({
         identityHash: anonymousIdentityHash,
         shadowHash: anonymousShadowHash,
         monthKey: anonymousMonthKey,
         reservationId,
-      });
+      }), input.deadlineMs ?? ACCESS_RESERVE_DEADLINE_MS, () => new Error("Anonymous ledger did not answer in time"));
     } catch {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
@@ -273,18 +279,23 @@ export async function reserveGenerationAccess(input: {
     throw unavailableFromRpc("reserve");
   }
   const requestedReservationId = operationId ? null : randomUUID();
-  const { data, error } = operationId
-    ? await input.admin.rpc("begin_generation_operation", {
-      p_user_id: input.userId,
-      p_operation_id: operationId,
-      p_report_kind: input.reportKind,
-      p_request_digest: requestDigest,
-    })
-    : await input.admin.rpc("reserve_generation_access", {
-      p_user_id: input.userId,
-      p_reservation_id: requestedReservationId,
-      p_report_kind: input.reportKind,
-    });
+  // A reservation that never answers fails closed here, before the model call: nothing is consumed.
+  const { data, error } = await withDeadline(
+    Promise.resolve(operationId
+      ? input.admin.rpc("begin_generation_operation", {
+        p_user_id: input.userId,
+        p_operation_id: operationId,
+        p_report_kind: input.reportKind,
+        p_request_digest: requestDigest,
+      })
+      : input.admin.rpc("reserve_generation_access", {
+        p_user_id: input.userId,
+        p_reservation_id: requestedReservationId,
+        p_report_kind: input.reportKind,
+      })),
+    input.deadlineMs ?? ACCESS_RESERVE_DEADLINE_MS,
+    () => unavailableFromRpc("reserve"),
+  );
 
   if (error) throw unavailableFromRpc("reserve", error);
 

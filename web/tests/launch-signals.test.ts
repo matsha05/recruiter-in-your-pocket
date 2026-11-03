@@ -105,6 +105,8 @@ async function main() {
   assert.equal(classifyReportFailure({ code: "GENERATION_PAUSED" }), "paused");
   assert.equal(classifyReportFailure({ code: "GENERATION_BUDGET_EXHAUSTED" }), "paused");
   assert.equal(classifyReportFailure({ code: "RECOVERY_STORAGE_REQUIRED" }), "precondition");
+  // The daily cap's storage missing or down refuses every report; it is an outage, not a pause, so the alert sees it.
+  assert.equal(classifyReportFailure({ code: "GENERATION_BUDGET_UNAVAILABLE" }), "access");
   assert.equal(classifyReportFailure({ code: "ACCESS_DEPENDENCY_UNAVAILABLE" }), "access");
   assert.equal(classifyReportFailure({ code: "REPORT_PERSISTENCE_FAILED" }), "persistence");
   assert.equal(classifyReportFailure({ code: "INTERNAL_SERVER_ERROR" }), "other");

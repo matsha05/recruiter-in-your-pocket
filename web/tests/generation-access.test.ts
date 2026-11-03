@@ -612,6 +612,18 @@ assert.ok(
 assert.match(linkedInRoute, /errorCode:\s*"FEATURE_DISABLED"/);
 assert.match(launchProgram, /LinkedIn review[\s\S]+Blocked from enablement until its generation route uses the atomic access-reservation lifecycle/);
 
+// A reservation RPC that never answers fails closed within its deadline, before any model call.
+const hangingAdmin: GenerationAccessRpcClient = { rpc: () => new Promise(() => undefined) as any };
+const hungStartedAt = Date.now();
+await assert.rejects(
+  reserveGenerationAccess({
+    userId: "user-hung", admin: hangingAdmin, reportKind: "resume_feedback", bypass: false,
+    freeMeta: { used: 0, last_free_ts: null, reset_month: "2026-11", needs_reset: false }, deadlineMs: 20,
+  }),
+  (error: any) => error instanceof GenerationAccessError && error.code === "ACCESS_RESERVATION_FAILED" && error.accessConsumed === null,
+);
+assert.ok(Date.now() - hungStartedAt < 1_000, "the deadline answers, not the hung RPC");
+
 console.log("generation-access tests passed");
 }
 

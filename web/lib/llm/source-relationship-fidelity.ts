@@ -1,4 +1,5 @@
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { memoizeByText } from "./source-memo";
 
 type DirectionRelation = { from: string; to: string };
 
@@ -247,13 +248,12 @@ function parseRelationalSentence(value: string) {
   return relations.filter((relation) => relation.object || relation.directions.length > 0);
 }
 
-function relationshipTuples(value: string) {
-  return canonicalizeUserSourceText(value).replace(/(\d)\s*\r?\n\s*(hours?|days?|weeks?|months?|years?)\b/giu, "$1 $2")
-    .split(/(?:\r?\n)+|(?<=[.!?])\s+/u)
-    .map((sentence) => normalizedText(sentence))
-    .filter(Boolean)
-    .flatMap(parseRelationalSentence);
-}
+// Parsed once per text: the resume is the same for every claim audited against it.
+const relationshipTuples = memoizeByText((value: string) => canonicalizeUserSourceText(value).replace(/(\d)\s*\r?\n\s*(hours?|days?|weeks?|months?|years?)\b/giu, "$1 $2")
+  .split(/(?:\r?\n)+|(?<=[.!?])\s+/u)
+  .map((sentence) => normalizedText(sentence))
+  .filter(Boolean)
+  .flatMap(parseRelationalSentence), 32);
 
 function unsafeRelationalClauses(value: string) {
   return canonicalizeUserSourceText(value).replace(/(\d)\s*\r?\n\s*(hours?|days?|weeks?|months?|years?)\b/giu, "$1 $2")

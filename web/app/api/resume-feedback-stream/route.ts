@@ -23,6 +23,7 @@ import { prepareResumeStreamPrompt } from "@/lib/llm/resumeStreamPrompt";
 import { validateResumeStreamOutput } from "@/lib/llm/validateResumeStreamOutput";
 import { validateResumeFeedbackRequest } from "@/lib/backend/validation";
 import type { GenerationStage } from "@/lib/generation-stage";
+import { reportPreview } from "@/lib/reports/report-preview";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
@@ -57,6 +58,8 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Worst case: main call 90 s, one incomplete retry, a repair call, the severity check and persistence.
+export const maxDuration = 300;
 export async function POST(request: Request) {
     const request_id = getRequestId(request);
     const { method, path } = routeLabel(request);
@@ -363,6 +366,13 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({ type: "stage", stage }) + "\n"));
                 } catch { /* the client is gone; cancellation is handled below */ }
             };
+            const sendPreview = (payload: unknown) => {
+                const preview = reportPreview(payload);
+                if (!preview) return;
+                try {
+                    controller.enqueue(encoder.encode(JSON.stringify({ type: "preview", ...preview }) + "\n"));
+                } catch { /* the client is gone; cancellation is handled below */ }
+            };
             try {
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
@@ -449,6 +459,10 @@ export async function POST(request: Request) {
                     accumulatedJson = validated.replacementRaw;
                 }
                 throwIfClientDisconnected();
+                // What is final once the report has validated: the Verdict, the band and the first Critical Miss.
+                // The severity check adds Critical Misses after the first and never changes it, so the wait
+                // screen may show these now. Informational, like a stage: only "complete" is the report.
+                sendPreview(validated.payload);
                 // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
                 const { payload } = await severityCheckReport({
                     payload: validated.payload,
@@ -571,7 +585,7 @@ export async function POST(request: Request) {
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
                     captureOperationalError(err, {
                         operation: "generation.resume_feedback_stream",
-                        tags: { error_code: String(code) },
+                        tags: { error_code: String(code), ...(typeof err?.reason === "string" ? { reason: err.reason } : {}) },
                     });
                 }
                 const message = code === "OPENAI_TIMEOUT"

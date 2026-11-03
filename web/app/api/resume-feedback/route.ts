@@ -64,6 +64,8 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Worst case: main call 90 s, a repair call, the severity check and persistence.
+export const maxDuration = 300;
 
 export async function POST(request: Request) {
   const request_id = getRequestId(request);
@@ -450,7 +452,7 @@ export async function POST(request: Request) {
     ) {
       captureOperationalError(err, {
         operation: "generation.resume_feedback",
-        tags: { error_code: String(code) },
+        tags: { error_code: String(code), ...(typeof err?.reason === "string" ? { reason: err.reason } : {}) },
       });
     }
 

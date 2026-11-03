@@ -156,6 +156,8 @@ export function classifyReportFailure(error: { code?: unknown; name?: unknown } 
   if (code.startsWith("OPENAI_RESPONSE_")) return "validation";
   if (code.startsWith("OPENAI_")) return "provider";
   if (code === "GENERATION_PAUSED" || code === "GENERATION_BUDGET_EXHAUSTED") return "paused";
+  // The daily cap's own storage missing or down refuses every report: an outage, alerted like Redis or Supabase.
+  if (code === "GENERATION_BUDGET_UNAVAILABLE") return "access";
   if (code === "RECOVERY_STORAGE_REQUIRED") return "precondition";
   if (code.startsWith("ACCESS_") || code.startsWith("GENERATION_")) return "access";
   if (code.startsWith("REPORT_")) return "persistence";
