@@ -10,6 +10,7 @@ import ReportPanel from "@/components/workspace/ReportPanel";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
+import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
@@ -31,6 +32,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   const [loadAttempt, setLoadAttempt] = useState(0);
   const state = loadedFor === requestIdentity ? loadState : "loading";
   const [report, setReport] = useState<ReportData | null>(null);
+  const [lineAnswers, setLineAnswers] = useState<StoredLineAnswersByFix | null>(null);
   const [hasJobDescription, setHasJobDescription] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
@@ -43,6 +45,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
     setLoadedFor(requestIdentity);
     setState("loading");
     setReport(null);
+    setLineAnswers(null);
     setHasJobDescription(false);
     if (isAuthLoading) return;
     if (!userId) {
@@ -76,6 +79,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       const nextReport: ReportData = { ...data.report, id: reportId };
       setReport(nextReport);
+      setLineAnswers(data.lineAnswers ?? null);
       setHasJobDescription(Boolean(data.jdPreview));
       setState("ready");
       Analytics.track("report_detail_opened");
@@ -224,6 +228,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           <ReportPanel
             isSavedReport
             report={report}
+            storedLineAnswers={lineAnswers}
             isLoading={false}
             hasJobDescription={hasJobDescription}
             onExportPdf={canExportPdf ? handleExportPdf : undefined}

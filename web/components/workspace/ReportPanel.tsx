@@ -18,6 +18,7 @@ import { redactReport } from "@/lib/redaction";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { Button } from "@/components/ui/button";
 import { ActionFeedback } from "@/components/ui/action-feedback";
+import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
 
@@ -48,6 +49,8 @@ interface ReportPanelProps {
     onStartRevision?: () => void;
     /** A report opened from My reports. Saved reports never keep the resume. */
     isSavedReport?: boolean;
+    /** The reader's answers kept with a saved report (W3). */
+    storedLineAnswers?: StoredLineAnswersByFix | null;
 }
 
 export default function ReportPanel({
@@ -75,6 +78,7 @@ export default function ReportPanel({
     comparisonBaseline = null,
     onStartRevision,
     isSavedReport = false,
+    storedLineAnswers = null,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -346,6 +350,7 @@ export default function ReportPanel({
                                 onStartReport={onNewReport}
                                 resumeText={resumeText}
                                 resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
+                                storedLineAnswers={storedLineAnswers}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>

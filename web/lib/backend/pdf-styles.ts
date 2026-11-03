@@ -102,6 +102,10 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     .marked-section { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-bottom: 4px; }
     .marked-line { font-family: "Literata", Georgia, serif; font-size: 11.5pt; line-height: 17pt; }
     .marked-line.ink { border-left: 2px solid var(--blue-ink); padding-left: 10px; }
+    .marked-revised { margin-top: 10px; border-left: 2px solid var(--blue-ink); padding-left: 10px; }
+    .marked-revised-label { color: var(--accent); font-size: 9pt; font-weight: 600; line-height: 13pt; }
+    .marked-revised-text { font-family: "Literata", Georgia, serif; font-size: 11pt; line-height: 16pt; margin-top: 2px; }
+    .marked-revised-note { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 2px; }
     .marked-missing { border: 1px dashed var(--muted); border-radius: 6px; padding: 6px 10px; color: var(--muted); font-size: 10.5pt; line-height: 15pt; }
     .marked-missing.miss { border-color: var(--miss-line); background: var(--miss-surface); color: var(--brass); }
     .miss-mark { background: linear-gradient(transparent 52%, var(--highlight) 52%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
