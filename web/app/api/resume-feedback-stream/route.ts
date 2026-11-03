@@ -40,6 +40,7 @@ import {
     singleGenerationStreamEvent,
 } from "@/lib/billing/generationRouteResponse";
 import {
+    ACCESS_UNAVAILABLE_MESSAGE,
     assertGenerationAccessDependencies,
     assertGenerationAuthLookup,
     commitGenerationAccess,
@@ -129,7 +130,7 @@ export async function POST(request: Request) {
             type: "error",
             errorCode: "VALIDATION_ERROR",
             message: withGenerationAccessOutcome(
-                validation.message || "The report request could not be read. Please check it and try again.",
+                validation.message || "We couldn't read that request. Check the resume text and try again.",
                 false,
             ),
             access_consumed: false,
@@ -261,7 +262,7 @@ export async function POST(request: Request) {
             });
         }
         const message = withGenerationAccessOutcome(
-            err?.message || "Report access is temporarily unavailable. Please try again in a moment.",
+            err?.message || ACCESS_UNAVAILABLE_MESSAGE,
             false,
         );
         logError({
@@ -288,7 +289,7 @@ export async function POST(request: Request) {
             type: "error",
             errorCode: "ACCESS_RESERVATION_FAILED",
             message: withGenerationAccessOutcome(
-                "Report access could not be reserved. Please try again.",
+                "We couldn't set aside a report for you just now. Nothing was used. Try again in a minute.",
                 false,
             ),
             access_consumed: false,
@@ -592,7 +593,7 @@ export async function POST(request: Request) {
                     ? "This is taking longer than usual. Try again in a moment."
                     : code === "OPENAI_NETWORK_ERROR"
                         ? "Connection hiccup. Try again in a moment."
-                        : err?.message || "The report could not be completed. Please try again.";
+                        : err?.message || "We couldn't finish this report. Try again in a minute.";
                 const honestMessage = withGenerationAccessOutcome(message, accessConsumed);
                 const attemptDisposition = accessConsumed === true
                     ? "consumed"

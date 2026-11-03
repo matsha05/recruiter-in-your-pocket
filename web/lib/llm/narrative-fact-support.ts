@@ -1,3 +1,4 @@
+import { sourceStatesOutcomeFamily } from "./narrative-meaning";
 import { normalizeNarrativeToken } from "./narrative-token-policy";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { evidenceContainsExactEntity, evidenceContainsOnlyNegatedEntity } from "./source-evidence-segmentation";
@@ -92,6 +93,17 @@ export function auditableNarrativeValue(path: string, value: string, sourceText 
   auditable = auditable.replace(/\b(line|label|heading|entry)\s+(?:such as|like)\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”](?:\s+or\s+["“]\p{Lu}[\p{Ll} -]{0,40}[,.]?["”])*/gu, "$1");
   if (path.startsWith("section_review.Education.")) auditable = auditable.replace(/\b(?:B\.S|B\.Ed|M\.S|M\.Div)\.?/gu, (degree) => sourceText.includes(degree) ? " " : degree);
   return /[\p{L}\p{N}]/u.test(auditable) ? auditable : "";
+}
+
+/**
+ * Commentary on the previous sentence: an anaphoric subject ("That detail", "This line", "It") and an
+ * evaluative predicate ("is worth keeping because it shows ..."). Its descriptive words paraphrase a
+ * sentence the audit already checked, so they need no anchor of their own, but every concrete claim
+ * in it (a number, a name, an agency or outcome claim) still has to be in the resume.
+ */
+export function isAnaphoricCommentary(value: string) {
+  return /^\s*(?:that|this|it)(?:\s+(?:detail|line|example|number|figure|sentence|bullet|point|quote|context|result|metric|title|date|phrase|wording|pairing|contrast))?\s+(?:is|’s|'s|remains|stays|also\s+is)\s+(?:worth\s+(?:keeping|noting|stating|leading\s+with|a\s+closer\s+look)|the\s+(?:strongest|clearest|most\s+concrete)\b|what\s+(?:a\s+)?(?:reader|recruiter|reviewer)s?\b)/iu.test(value.normalize("NFC"))
+    || /^\s*(?:that|this|it)(?:\s+\p{L}+)?\s+(?:matters|counts|stands\s+out|earns\s+its\s+place)\b/iu.test(value.normalize("NFC"));
 }
 
 export function isDirectFactualAssertion(value: string) {
@@ -199,6 +211,8 @@ export function assessmentNarrativeIssues(input: {
   skipSpecificFacts: boolean;
   requirePresenceAnchor: boolean;
   contradictsNegativeSource: boolean;
+  /** Check agency, outcome and causal claims even when the sentence is not a direct assertion. */
+  checkTrackedClaims?: boolean;
 }) {
   const sourceFacts = input.sourceCandidates.flatMap((candidate) => candidate.facts);
   const sourceTokens = new Set(input.sourceCandidates.flatMap((candidate) => Array.from(candidate.tokens)));
@@ -219,6 +233,9 @@ export function assessmentNarrativeIssues(input: {
       && !(!assertive && countsRequestedExamples(fact, input.claim))
       && !comparesBeyondOne(fact, input.claim, input.sourceText))
     || (assertive && /^(?:agency|outcome|causal):/u.test(fact.key))
+    // Commentary: an agency or outcome claim must be in the resume, in any form the resume uses.
+    || (!assertive && input.checkTrackedClaims && /^(?:agency|outcome|causal):/u.test(fact.key)
+      && !(fact.key.startsWith("outcome:") && sourceStatesOutcomeFamily(fact.key, input.sourceText)))
   ));
   const unsupportedTokens = assertive
     ? Array.from(input.claimTokens).filter((token) => !sourceTokens.has(token))

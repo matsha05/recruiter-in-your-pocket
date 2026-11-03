@@ -72,7 +72,7 @@ export async function validateResumeStreamOutput(input: {
           message: error?.message || "Response validation failed",
         },
       });
-      const validationError = new Error("Could not parse the response. Please try again.") as Error & {
+      const validationError = new Error("The model's answer didn't come back in a shape we could read. Your resume wasn't the problem. Try again.") as Error & {
         code: string;
       };
       validationError.code = "OPENAI_RESPONSE_PARSE_ERROR";
@@ -134,7 +134,7 @@ export async function validateResumeStreamOutput(input: {
         },
       });
       const validationError = new Error(
-        "We couldn’t finish this report on our side. Your resume wasn’t the problem. Please try again."
+        "We couldn’t finish this report on our side. Your resume wasn’t the problem. Try again in a minute."
       ) as Error & { code: string };
       validationError.code = "OPENAI_RESPONSE_SHAPE_INVALID";
       throw validationError;

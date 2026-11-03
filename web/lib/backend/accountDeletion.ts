@@ -63,7 +63,7 @@ export function buildIncompleteAccountDeletionResponse() {
       ok: false as const,
       errorCode: "ACCOUNT_DELETION_INCOMPLETE",
       message:
-        "Account deletion did not complete. Some app data may already be deleted; please try again or contact support.",
+        "Account deletion didn't finish. Some of your data may already be gone. Try again, or contact support.",
       deletion_status: "incomplete" as const,
       retryable: true as const,
     },

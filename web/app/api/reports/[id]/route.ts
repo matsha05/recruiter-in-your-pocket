@@ -38,7 +38,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     if (error) {
       return NextResponse.json(
-        { ok: false, errorCode: "FETCH_REPORT_FAILED", message: "Could not load this report. Please try again.", report: null },
+        { ok: false, errorCode: "FETCH_REPORT_FAILED", message: "We couldn't load this report. Refresh and try again.", report: null },
         { status: 500 }
       );
     }

@@ -32,7 +32,7 @@ export type GenerationBudgetStatus = {
 };
 
 export const DAILY_CAPACITY_EXHAUSTED_MESSAGE =
-  "Today's report capacity has been reached. Please try again tomorrow.";
+  "We've reached today's report limit. It resets tomorrow.";
 export const DAILY_CAPACITY_UNAVAILABLE_MESSAGE =
   "We can't start reports right now. The problem is on our side, not in your resume. Give it a few minutes and try again.";
 
@@ -146,7 +146,7 @@ export async function assertGenerationCapacity(
   if (status.reason === "paused") {
     throw new GenerationBudgetError(
       "GENERATION_PAUSED",
-      "Reports are paused for a short while as we fix a problem. Please try again later today.",
+      "Reports are paused while we fix a problem on our side. Check back later today.",
       status.reason,
     );
   }

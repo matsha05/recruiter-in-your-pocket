@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       return NextResponse.json(
-        { ok: false, errorCode: "FETCH_REPORTS_FAILED", message: "Could not load your report history. Please try again." },
+        { ok: false, errorCode: "FETCH_REPORTS_FAILED", message: "We couldn't load your reports. Refresh and try again." },
         { status: 500 }
       );
     }

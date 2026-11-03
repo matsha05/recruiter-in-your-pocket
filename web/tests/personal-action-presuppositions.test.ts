@@ -190,4 +190,49 @@ assert.deepEqual(narrativeMeaningIssues("What did you present before leadership 
 assert.ok(narrativeMeaningIssues("What did you present before onboarding was launched nationally?", "Planned to launch onboarding.").length > 0);
 assert.ok(narrativeMeaningIssues("What did you present before onboarding was later launched nationally?", "Planned to launch onboarding.").length > 0);
 assert.deepEqual(narrativeMeaningIssues("What did you present before onboarding was later launched nationally?", "Planned to launch onboarding. Leadership launched onboarding."), []);
+// A wh-question that presupposes an outcome asserts it (plan row 1.10's open class). The resume must
+// state the outcome's family; a question that asks whether it happened is fine; a count question is fine.
+const noOutcome = "Owned the pricing page and the quarterly revenue forecast. Presented the forecast to leadership.";
+const rejectsOutcome = (claim: string, source: string) => narrativeMeaningIssues(claim, source).some((issue) => issue.includes("presupposes an outcome"));
+for (const claim of [
+  "How did you triple revenue?",
+  "How did you triple revenue at Acme?",
+  "Why did you cut the forecast cycle?",
+  "When did you first double the pricing page's conversion?",
+  "How did you deliver the forecast on time?",
+  "Where did you grow the pipeline the most?",
+]) {
+  assert.equal(rejectsOutcome(claim, noOutcome), true, `presupposed outcome with no source outcome: ${claim}`);
+}
+for (const claim of [
+  "Did you triple revenue?",
+  "Which quarter did the forecast cover?",
+  "How many forecasts did you present?",
+  "What changed in revenue after the pricing page?",
+  "How did you present the forecast to leadership?",
+  "How did you build the forecast?",
+  "If you grew revenue, how did you measure it?",
+  "How did you decide whether to cut the forecast cycle?",
+  "Did you double conversion, or did it stay flat?",
+]) {
+  assert.equal(rejectsOutcome(claim, noOutcome), false, `asks rather than presupposes: ${claim}`);
+}
+for (const source of [
+  "Tripled revenue in two years.",
+  "Grew revenue from $2M to $6M.",
+  "Revenue tripled after the pricing change I led.",
+  "Scaled the subscription business to 3x.",
+]) {
+  assert.equal(rejectsOutcome("How did you triple revenue?", source), false, `the resume states the outcome: ${source}`);
+}
+for (const source of [
+  "Planned to triple revenue in two years.",
+  "Did not triple revenue; held it flat through the downturn.",
+  "Revenue goal: triple the subscription business.",
+]) {
+  assert.equal(rejectsOutcome("How did you triple revenue?", source), true, `a plan, a goal or a negation is not the outcome: ${source}`);
+}
+assert.equal(rejectsOutcome("How did you reduce onboarding time?", "Cut onboarding time from 5 days to 3."), false, "the family, not the exact verb, is what the resume must state");
+assert.equal(rejectsOutcome("How did you save the account?", "Generated $1.2M in renewals."), false, "a financial outcome in the resume covers a financial question");
+
 console.log("personal-action presupposition tests passed");

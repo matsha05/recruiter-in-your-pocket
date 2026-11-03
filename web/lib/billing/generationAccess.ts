@@ -63,6 +63,8 @@ const anonymousCookieMetaAfterCommit = new WeakMap<
 
 // Reserving access is one round trip; past this the person is told access is unavailable rather than left waiting.
 export const ACCESS_RESERVE_DEADLINE_MS = 10_000;
+/** What happened and what to do, in the house voice: plain, on our side, next step. */
+export const ACCESS_UNAVAILABLE_MESSAGE = "We can't check report access right now. The problem is on our side. Give it a minute and try again.";
 
 export function isMockGenerationProviderEnabled() {
   return TRUE_VALUES.has(String(process.env.USE_MOCK_OPENAI || "").trim().toLowerCase());
@@ -84,7 +86,7 @@ export function assertGenerationAccessDependencies(input: {
   if (!input.authClientAvailable || !input.adminClientAvailable) {
     throw new GenerationAccessError(
       "ACCESS_DEPENDENCY_UNAVAILABLE",
-      "Report access is temporarily unavailable. Please try again in a moment."
+      ACCESS_UNAVAILABLE_MESSAGE
     );
   }
 }
@@ -100,7 +102,7 @@ export function assertGenerationAuthLookup(error: unknown) {
 
   throw new GenerationAccessError(
     "ACCESS_DEPENDENCY_UNAVAILABLE",
-    "Report access is temporarily unavailable. Please try again in a moment."
+    ACCESS_UNAVAILABLE_MESSAGE
   );
 }
 
@@ -135,12 +137,12 @@ function unavailableFromRpc(
       ? "ACCESS_COMMIT_FAILED"
       : "ACCESS_RELEASE_FAILED";
 
-  return new GenerationAccessError(
-    code,
-    `Report access could not be ${operation === "reserve" ? "reserved" : operation === "commit" ? "confirmed" : "released"}. Please try again.`,
-    503,
-    accessConsumed
-  );
+  const message = operation === "reserve"
+    ? "We couldn't set aside a report for you just now. Nothing was used. Try again in a minute."
+    : operation === "commit"
+      ? "Your report finished, but we couldn't confirm it against your account. Check My reports before running it again."
+      : "We couldn't give that report back cleanly. Check My reports before running it again.";
+  return new GenerationAccessError(code, message, 503, accessConsumed);
 }
 
 export async function reserveGenerationAccess(input: {
@@ -202,7 +204,7 @@ export async function reserveGenerationAccess(input: {
     if (!anonymousIdentityHash || !anonymousShadowHash) {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
-        "Report access is temporarily unavailable. Please try again in a moment."
+        ACCESS_UNAVAILABLE_MESSAGE
       );
     }
 
@@ -218,7 +220,7 @@ export async function reserveGenerationAccess(input: {
     } catch {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
-        "Report access is temporarily unavailable. Please try again in a moment."
+        ACCESS_UNAVAILABLE_MESSAGE
       );
     }
 
@@ -265,7 +267,7 @@ export async function reserveGenerationAccess(input: {
   if (!input.admin) {
     throw new GenerationAccessError(
       "ACCESS_DEPENDENCY_UNAVAILABLE",
-      "Report access is temporarily unavailable. Please try again in a moment."
+      ACCESS_UNAVAILABLE_MESSAGE
     );
   }
 

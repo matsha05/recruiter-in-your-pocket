@@ -6,7 +6,7 @@ import { assertsNegativePresence, negativePresenceSubject } from "./report-polar
 import { semanticMissingDisposition } from "./semantic-missing-policy";
 import { abbreviatedMonth, isCommonCapitalizedWord, MONTH_ALIASES, trackedSemanticPatterns } from "./source-semantic-patterns";
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
-import { assessmentNarrativeIssues, auditableNarrativeValue, isDirectFactualAssertion, joinedSpellings, withJoinedPairs, withJoinedSpellings } from "./narrative-fact-support";
+import { assessmentNarrativeIssues, auditableNarrativeValue, isAnaphoricCommentary, isDirectFactualAssertion, joinedSpellings, withJoinedPairs, withJoinedSpellings } from "./narrative-fact-support";
 import { supportsIndustrySignal } from "./source-industry-signals";
 import { evidenceContainsRequirement } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
@@ -301,7 +301,8 @@ export function auditNarrativeClaim(
     const facts = protectedFacts(claim);
     const claimFactKeys = new Set(facts.map((fact) => fact.key));
     const hasTrackedClaim = facts.some((fact) => /^(?:agency|outcome|qualifier|causal):/u.test(fact.key));
-    const directFactualAssertion = isDirectFactualAssertion(claim);
+    const commentary = isAnaphoricCommentary(claim);
+    const directFactualAssertion = isDirectFactualAssertion(claim) && !commentary;
     const policy = narrativeTokenPolicy(claim, options.interpretationContext || "observation", hasTrackedClaim, directFactualAssertion);
     const relationshipIssues = relationshipBindingIssues(claim, sourceText)
       .filter((issue) => directFactualAssertion || !issue.startsWith("unresolved relationship binding:"));
@@ -320,16 +321,17 @@ export function auditNarrativeClaim(
         ));
       })()
     ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
-    if (policy.assessment || policy.interpretive) return assessmentNarrativeIssues({
+    if (policy.assessment || policy.interpretive || commentary) return assessmentNarrativeIssues({
       claim, sourceText,
       claimFacts: facts,
       claimTokens,
       sourceCandidates: eligibleCandidates,
-      assertsPresence: policy.assertsPresence,
-      interpretive: policy.interpretive,
+      assertsPresence: policy.assertsPresence && !commentary,
+      interpretive: policy.interpretive || commentary,
       directFactualAssertion,
       skipSpecificFacts: policy.lexicalAbsence,
-      requirePresenceAnchor: policy.assessment || !options.interpretationContext || options.interpretationContext === "observation",
+      checkTrackedClaims: commentary,
+      requirePresenceAnchor: !commentary && (policy.assessment || !options.interpretationContext || options.interpretationContext === "observation"),
       contradictsNegativeSource: policy.assertsPresence && claimTokens.size > 0 && candidates.some(({ negated, tokens }) => negated && Array.from(claimTokens).every((token) => tokens.has(token))) && !candidates.some(({ negated, tokens }) => !negated && Array.from(claimTokens).every((token) => tokens.has(token))),
     });
     const supporting = eligibleCandidates.filter(({ facts: sourceFacts }) => {
