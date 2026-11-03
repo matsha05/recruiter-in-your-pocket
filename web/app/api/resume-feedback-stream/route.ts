@@ -26,7 +26,7 @@ import type { GenerationStage } from "@/lib/generation-stage";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
-import { classifyReportFailure, recordLaunchSignal } from "@/lib/observability/launchSignals";
+import { classifyReportFailure, latencyBucketFor, recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -254,6 +254,7 @@ export async function POST(request: Request) {
                 outcome: "failed",
                 failure: classifyReportFailure({ code, name: err?.name }),
                 error_code: String(code),
+                latency_bucket: latencyBucketFor(startedAt),
             });
         }
         const message = withGenerationAccessOutcome(
@@ -457,6 +458,7 @@ export async function POST(request: Request) {
                     signal: generationController.signal,
                     endpoint: "stream",
                     ctx: { request_id, route, user_id },
+                    onStage: sendStage,
                 });
                 throwIfClientDisconnected();
                 if (user && mode === "resume" && grantedReservation.entitlementKind !== "bypass") {
@@ -515,7 +517,10 @@ export async function POST(request: Request) {
 
                 // Recorded before close so the flush is scheduled while the request is still open.
                 recordLaunchSignal("riyp.report.outcome", {
-                    ...reportSignal(Boolean(user)), outcome: "completed", failure: "none",
+                    ...reportSignal(Boolean(user)),
+                    outcome: "completed",
+                    failure: "none",
+                    latency_bucket: latencyBucketFor(startedAt),
                 });
                 controller.close();
                 logInfo({
@@ -561,6 +566,7 @@ export async function POST(request: Request) {
                     outcome: "failed",
                     failure: classifyReportFailure(err),
                     error_code: String(code),
+                    latency_bucket: latencyBucketFor(startedAt),
                 });
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
                     captureOperationalError(err, {

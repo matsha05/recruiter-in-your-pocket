@@ -17,6 +17,7 @@ import { resolveOpenAIModel, resolveReasoningEffortForMode } from "../lib/llm/mo
 import { sanitizeLaunchSignal } from "../lib/observability/launchSignals";
 import { hasMoreCriticalMisses, isCriticalFix } from "../lib/reports/report-integrity";
 import { criticalCount, isSeverityCheckEnabled, mergeSeverityCheck, sameFirstFix, SEVERITY_CHECK_DEFAULT } from "../lib/reports/severity-check";
+import { severityCheckReport } from "../lib/reports/severity-check-report";
 import { applySeverityCheck, settleSeverityCheck } from "../lib/reports/severity-check-service";
 import { ResumeFeedbackResponseSchema } from "../lib/validation/resume-report-schema";
 
@@ -181,6 +182,38 @@ console.log("severity check merge tests passed");
   assert.equal(applied.call_latency_ms, 12);
   assert.ok(applied.latency_ms >= 0);
   assert.equal(applied.prompt_version, SEVERITY_CHECK_PROMPT_VERSION);
+
+  // ---- The stage event: emitted once, before the second model call, only when the check runs ----
+  const stageEvents: Array<{ stage: string; beforeCall: boolean }> = [];
+  let severityCallSeen = false;
+  const originalFetch = globalThis.fetch;
+  const previousFlag = process.env.RIYP_SEVERITY_CHECK;
+  try {
+    globalThis.fetch = (async (...args: Parameters<typeof fetch>) => {
+      severityCallSeen = true;
+      return reply(answer([]))(...args);
+    }) as typeof fetch;
+    process.env.RIYP_SEVERITY_CHECK = "true";
+    const ctx = { request_id: "req-stage", route: "POST /api/resume-feedback-stream" };
+    const onStage = (stage: string) => stageEvents.push({ stage, beforeCall: !severityCallSeen });
+    const reported = await severityCheckReport({ payload, mode: "resume", resumeText, endpoint: "stream", ctx, onStage });
+    assert.deepEqual(stageEvents, [{ stage: "severity", beforeCall: true }], "one severity stage, before the call");
+    assert.equal(severityCallSeen, true);
+    assert.equal(reported.outcome?.outcome, "none");
+
+    stageEvents.length = 0;
+    severityCallSeen = false;
+    await severityCheckReport({ payload, mode: "resume_ideas", resumeText, endpoint: "stream", ctx, onStage });
+    assert.deepEqual(stageEvents, [], "other modes have no severity check and no stage");
+    process.env.RIYP_SEVERITY_CHECK = "false";
+    await severityCheckReport({ payload, mode: "resume", resumeText, endpoint: "stream", ctx, onStage });
+    assert.deepEqual(stageEvents, [], "the stage is not announced when the check is off");
+    assert.equal(severityCallSeen, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (previousFlag === undefined) delete process.env.RIYP_SEVERITY_CHECK;
+    else process.env.RIYP_SEVERITY_CHECK = previousFlag;
+  }
 
   // ---- The flag and the counter ----
   assert.equal(SEVERITY_CHECK_DEFAULT, true, "on by default since the gate passed; RIYP_SEVERITY_CHECK=false turns it off");

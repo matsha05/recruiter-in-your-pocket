@@ -49,6 +49,7 @@ async function run() {
       { type: "stage", stage: "writing" },
       { type: "stage", stage: "almost-done" },
       { type: "stage", stage: "checking" },
+      { type: "stage", stage: "severity" },
       { type: "complete", ok: true, data: structuredClone(schemaValidReport) },
     ]);
     const stages: string[] = [];
@@ -56,7 +57,8 @@ async function run() {
       onStage: (stage) => stages.push(stage),
     });
     assert.ok(staged.ok, "stage events must not interfere with completion");
-    assert.deepEqual(stages, ["sending", "reading", "writing", "checking"]);
+    assert.deepEqual(stages, ["sending", "reading", "writing", "checking", "severity"],
+      "the severity check is a stage of its own, after the report has validated");
     assert.equal(
       (canonical.report as unknown as Record<string, unknown>).unknown_terminal_field,
       undefined,

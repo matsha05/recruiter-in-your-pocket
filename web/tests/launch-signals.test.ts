@@ -16,6 +16,7 @@ sentry.metrics.count = (name: string, value: number, options: { attributes: Reco
 const {
   classifyReportFailure,
   confirmStepFor,
+  latencyBucketFor,
   recordLaunchSignal,
   restoreStepFor,
   sanitizeLaunchSignal,
@@ -43,6 +44,7 @@ async function main() {
       viewer: "anonymous",
       has_jd: "yes",
       endpoint: "stream",
+      latency_bucket: "60to120",
       email: "person@example.com",
       report_id: "3f2b9c1e-7d4a-4c1b-9e2f-1a2b3c4d5e6f",
     }),
@@ -56,9 +58,28 @@ async function main() {
         viewer: "anonymous",
         has_jd: "yes",
         endpoint: "stream",
+        latency_bucket: "60to120",
       },
     },
   );
+  // The wait is recorded only as one of four buckets; a raw millisecond value never leaves.
+  assert.deepEqual(
+    sanitizeLaunchSignal("riyp.report.outcome", { outcome: "completed", latency_bucket: "87412" })?.attributes,
+    { outcome: "completed" },
+  );
+  const t0 = 1_700_000_000_000;
+  assert.equal(latencyBucketFor(t0, t0), "lt30");
+  assert.equal(latencyBucketFor(t0, t0 + 29_999), "lt30");
+  assert.equal(latencyBucketFor(t0, t0 + 30_000), "30to60");
+  assert.equal(latencyBucketFor(t0, t0 + 59_999), "30to60");
+  assert.equal(latencyBucketFor(t0, t0 + 60_000), "60to120");
+  assert.equal(latencyBucketFor(t0, t0 + 119_999), "60to120");
+  assert.equal(latencyBucketFor(t0, t0 + 120_000), "gt120");
+  assert.equal(latencyBucketFor(t0, t0 + 600_000), "gt120");
+  assert.equal(latencyBucketFor(t0 + 5_000, t0), "lt30", "a clock that moved backwards still yields a bucket");
+  for (const bucket of ["lt30", "30to60", "60to120", "gt120"]) {
+    assert.equal(sanitizeLaunchSignal("riyp.report.outcome", { latency_bucket: bucket })?.attributes.latency_bucket, bucket);
+  }
   assert.deepEqual(
     sanitizeLaunchSignal("riyp.report.outcome", {
       outcome: "maybe",

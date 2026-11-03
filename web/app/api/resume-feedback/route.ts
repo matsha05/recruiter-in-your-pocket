@@ -37,6 +37,7 @@ import {
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
+import { classifyReportFailure, latencyBucketFor, recordLaunchSignal } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -74,6 +75,8 @@ export async function POST(request: Request) {
   let reservationAdmin: GenerationAccessRpcClient | null = null;
   let requestedOperationId: string | null = null;
   let authenticatedOperationId: string | null = null;
+  // The same counter the stream route sends, with endpoint "json"; the wait is bucketed from startedAt.
+  const reportSignal: { mode?: any; viewer: "anonymous" | "signed_in"; has_jd: "yes" | "no" } = { viewer: "anonymous", has_jd: "no" };
   logInfo({ msg: "http.request.started", request_id, route, method, path });
   const cookieStore = await cookies();
   const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
@@ -133,6 +136,8 @@ export async function POST(request: Request) {
 
     const { text, mode, jobDescription } = validation.value;
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
+    reportSignal.mode = mode;
+    reportSignal.has_jd = effectiveJobDescription.hasValue ? "yes" : "no";
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -147,6 +152,7 @@ export async function POST(request: Request) {
       : { data: { user: null }, error: null };
     assertGenerationAuthLookup("error" in userData ? userData.error : null);
     const user = userData.data.user || null;
+    reportSignal.viewer = user ? "signed_in" : "anonymous";
     const user_id = user?.id ? hashForLogs(user.id) : undefined;
     const savedJobId = user && supabase
       ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
@@ -389,6 +395,9 @@ export async function POST(request: Request) {
 
     const res = NextResponse.json(responseBody);
     res.headers.set("x-request-id", request_id);
+    recordLaunchSignal("riyp.report.outcome", {
+      ...reportSignal, endpoint: "json", outcome: "completed", failure: "none", latency_bucket: latencyBucketFor(startedAt),
+    });
 
     if (accessReservation.anonymousCookieMeta) {
       res.cookies.set(
@@ -422,6 +431,17 @@ export async function POST(request: Request) {
     const completion = generationFailureCompletion(err);
     const status = completion.status;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
+    // A pending operation is a retry still in flight, not an outcome.
+    if (code !== "GENERATION_OPERATION_PENDING") {
+      recordLaunchSignal("riyp.report.outcome", {
+        ...reportSignal,
+        endpoint: "json",
+        outcome: "failed",
+        failure: classifyReportFailure(err),
+        error_code: String(code),
+        latency_bucket: latencyBucketFor(startedAt),
+      });
+    }
 
     if (
       status >= 500 &&

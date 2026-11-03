@@ -26,6 +26,8 @@ export const LAUNCH_SIGNALS = {
     viewer: ["anonymous", "signed_in"],
     has_jd: ["yes", "no"],
     endpoint: ["stream", "json"],
+    // Seconds from the request's arrival to its outcome, bucketed; the only production record of the wait.
+    latency_bucket: ["lt30", "30to60", "60to120", "gt120"],
   },
   "riyp.report.repair": {
     result: ["started", "completed", "failed"],
@@ -129,6 +131,16 @@ export function recordLaunchSignal<Name extends LaunchSignalName>(
 }
 
 export type ReportFailureKind = (typeof LAUNCH_SIGNALS)["riyp.report.outcome"]["failure"][number];
+export type ReportLatencyBucket = (typeof LAUNCH_SIGNALS)["riyp.report.outcome"]["latency_bucket"][number];
+
+/** The wait as a closed bucket, measured from the route's start to its outcome. */
+export function latencyBucketFor(startedAt: number, now: number = Date.now()): ReportLatencyBucket {
+  const seconds = Math.max(0, now - startedAt) / 1000;
+  if (seconds < 30) return "lt30";
+  if (seconds < 60) return "30to60";
+  if (seconds < 120) return "60to120";
+  return "gt120";
+}
 
 /**
  * Groups generation error codes into the failure kinds the alerts watch, in
