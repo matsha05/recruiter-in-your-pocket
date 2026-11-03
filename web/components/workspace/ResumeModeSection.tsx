@@ -40,6 +40,8 @@ type ResumeModeSectionProps = {
   onRetryAnalysis: () => void;
   comparisonBaseline?: ReportData | null;
   onStartRevision: () => void;
+  /** How long this visit's report took to arrive; null when it was restored or sampled. */
+  readDurationMs?: number | null;
 };
 
 export default function ResumeModeSection({
@@ -75,6 +77,7 @@ export default function ResumeModeSection({
   onRetryAnalysis,
   comparisonBaseline = null,
   onStartRevision,
+  readDurationMs = null,
 }: ResumeModeSectionProps) {
   if (!report && isStreaming) {
     return (

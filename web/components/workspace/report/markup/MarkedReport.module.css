@@ -22,7 +22,7 @@
     padding-bottom: 0.625rem;
 }
 
-/* Phones set the Verdict a step down (18px Literata) so the Critical Miss and its first question fit the first screen. */
+/* The Verdict, whole: when its first sentence can't be split off safely (see report-opening.ts). */
 .verdict {
     max-width: 44ch;
     margin-top: 0.5rem;
@@ -112,8 +112,9 @@
 }
 
 /*
- * Once the report knows how many Critical Misses there are, the count leads the page, phones included.
- * Phones set it at the Verdict's size so the Verdict stays the loudest line on the first screen.
+ * Once the report knows how many Critical Misses there are, the count leads the page, phones included:
+ * one row, the count on the left and what makes them critical on the right (W1, Nov 2, 2026). It sits
+ * below the Verdict in size so the Verdict stays the loudest line on the first screen.
  */
 .countHead {
     display: grid;
@@ -140,6 +141,11 @@
     display: grid;
     margin: 0;
     padding: 0;
+/* Phones show the band's name and bar on one row; its anchor sentence waits for wider screens. */
+.bandAnchor {
+    display: none;
+}
+
     list-style: none;
 }
 
@@ -737,9 +743,6 @@
         border-bottom: 1px solid hsl(var(--line));
     }
 
-    .row[data-kind="miss"] .lineSection {
-        display: block;
-    }
 }
 
 @media (min-width: 960px) {
@@ -841,3 +844,22 @@
         transition: none;
     }
 }
+    .row[data-first] {
+        padding: 1.5rem 1.5rem 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* With the margin layout there is room for the lift's step rail on the sheet. */
+    .row[data-first] .liftTrace {
+        display: grid;
+        margin-inline: 0;
+        margin-top: 0;
+        border-bottom: 1px solid hsl(var(--miss-line));
+    }
+
+    .row[data-first] + .row .lineCell {
+        margin-top: 0;
+        border-top: 0;
+        padding-top: 0;
+    }
+

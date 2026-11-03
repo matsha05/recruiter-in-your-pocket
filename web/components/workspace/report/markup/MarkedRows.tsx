@@ -5,6 +5,7 @@ import { Check, LockKey } from "@phosphor-icons/react";
 import { Mark, useSeen } from "@/components/research/figures/FigureKit";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { fixPositionLabel } from "@/lib/reports/report-opening";
 import { missingFromResume } from "@/lib/reports/report-presentation";
 import { marginNoteFromFix } from "@/lib/reports/revised-line";
 import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish";
@@ -27,6 +28,13 @@ function sectionOf(fix?: Fix) {
 }
 
 /** The quoted line as the reader sees it on the page, without the resume's bullet mark. */
+/** A resume's own heading ("EXPERIENCE") in sentence case; uppercase stays reserved for the Verdict and Critical Miss labels. */
+function sectionLabel(fix?: Fix) {
+  const section = sectionOf(fix)?.trim();
+  if (!section) return undefined;
+  return section === section.toLocaleUpperCase() ? section.charAt(0) + section.slice(1).toLocaleLowerCase() : section;
+}
+
 export function quotedLine(fix?: Fix) {
   return excerptOf(fix).trim().replace(/^[-•*]\s+/u, "");
 }
@@ -157,6 +165,7 @@ export function CriticalMissRow({
           </p>
           {definition && <p className={styles.missDefinition}>{definition}</p>}
         </div>
+            {sectionLabel(fix) && <span className={styles.missSection}>· {sectionLabel(fix)}</span>}
         <p className={cn(styles.penNote, seen && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
         {why && <p className={styles.penWhy}>{why}</p>}
         {/* Nothing on the page to revise: the questions are what to add. */}
@@ -186,6 +195,7 @@ export function FixRow({
   whatToAdd,
   hidden,
   locked,
+  total,
   onHide,
   onRestore,
   onUnlock,
@@ -197,6 +207,8 @@ export function FixRow({
   whatToAdd: string[];
   hidden: boolean;
   locked?: boolean;
+  /** How many fixes the report shows, so the label reads "Fix 2 of 3" where the heading is out of view. */
+  total: number;
   onHide: () => void;
   onRestore: () => void;
   onUnlock?: () => void;
@@ -204,7 +216,7 @@ export function FixRow({
   const [openLift, setOpenLift] = useState(false);
   const onPage = marksLine(fix);
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
-  const label = `Fix ${index + 1}`;
+  const label = fixPositionLabel(index, total);
   const id = `section-fix-${index + 1}`;
 
   if (locked) {

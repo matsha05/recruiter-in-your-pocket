@@ -180,6 +180,10 @@
     --type-verdict-size: 1.25rem;
     --type-verdict-leading: 1.875rem;
     --type-note-size: 1rem;
+    /* The Verdict's first sentence, leading the report's first screen (W1, Nov 2, 2026): one sentence
+       in Literata, a step above the full Verdict so the judgment is the loudest line on a phone. */
+    --type-verdict-lead-size: 1.375rem;
+    --type-verdict-lead-leading: 1.875rem;
     --type-note-leading: 1.5625rem;
     /* Shorthands for CSS modules: `font: var(--type-body)`. Add letter-spacing from the role table. */
     --type-display: var(--weight-display) var(--type-display-size) / var(--type-display-leading) var(--font-display);
@@ -193,6 +197,7 @@
     --type-label: var(--weight-label) var(--type-label-size) / var(--type-label-leading) var(--font-body);
     --type-verdict: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
     --type-note: italic var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
+    --type-verdict-lead: var(--weight-body) var(--type-verdict-lead-size) / var(--type-verdict-lead-leading) var(--font-editorial);
     --tracking-display: -0.045em;
     --tracking-headline: -0.04em;
     --tracking-title: -0.03em;
@@ -357,6 +362,8 @@
   @media (min-width: 1280px) {
     :root {
       --type-display-size: 4.5rem;
+      --type-verdict-lead-size: 1.75rem;
+      --type-verdict-lead-leading: 2.375rem;
       --type-display-leading: 4.5rem;
     }
   }
@@ -443,7 +450,8 @@
 @layer utilities {
 
   /* The recruiter's voice: the two Literata roles carry their family (and the note its italic). */
-  .text-verdict {
+  .text-verdict,
+  .text-verdict-lead {
     font-family: var(--font-editorial);
   }
 

@@ -22,6 +22,7 @@ import {
   withCriticalFirst,
 } from "@/lib/reports/report-presentation";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
+import { splitVerdict } from "@/lib/reports/report-opening";
 import { liftQuestions } from "@/lib/reports/revised-line";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
@@ -261,6 +262,7 @@ export function ReportStream({
           <div className={styles.roleGrid}>
             <p className={styles.bodyText}>{report.job_alignment.positioning_suggestion || report.job_alignment.jd_match_summary}</p>
             <div className={styles.roleList}>
+                total={fixes.length}
               <p className={styles.keepLabel}>Roles to consider</p>
               <ul>{(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => <li key={role}>{role}</li>)}</ul>
               {roleFit?.seniority_read && <p className={styles.roleMeta}>Level suggested by the resume: {roleFit.seniority_read}</p>}

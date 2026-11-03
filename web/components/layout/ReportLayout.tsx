@@ -6,6 +6,10 @@ import styles from "./ReportLayout.module.css"
 interface ReportLayoutProps {
     children: React.ReactNode
     toc?: React.ReactNode
+    /** Save and Export: they ride in the sticky section row, so they're reachable wherever the reader is. */
+    actions?: React.ReactNode
+    /** The sheet's header row: who the report is about, the role it reads toward, how long it took. */
+    head?: React.ReactNode
     mobileReading?: boolean
 }
 
@@ -44,7 +48,7 @@ function useTabsRevealed(enabled: boolean, tabsRef: React.RefObject<HTMLElement 
     return revealed
 }
 
-export function ReportLayout({ children, toc, mobileReading = false }: ReportLayoutProps) {
+export function ReportLayout({ children, toc, actions, head, mobileReading = false }: ReportLayoutProps) {
     const tabsRef = React.useRef<HTMLElement>(null)
     const revealed = useTabsRevealed(Boolean(toc && mobileReading), tabsRef)
 
@@ -58,9 +62,11 @@ export function ReportLayout({ children, toc, mobileReading = false }: ReportLay
                     data-revealed={revealed || undefined}
                 >
                     {toc}
+                    {actions && <div className={styles.actions}>{actions}</div>}
                 </aside>
             )}
             <article className={styles.paper}>
+                {head && <header className={styles.head} data-testid="report-header-row">{head}</header>}
                 {children}
             </article>
         </div>

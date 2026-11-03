@@ -176,6 +176,10 @@ test.describe("saving an anonymous report after sign-in", () => {
       await page.goto(`${ORIGIN}/workspace`);
       const heading = page.locator("#section-first-impression h1");
       await expect(heading).toHaveText(REPORT.first_impression);
+      // On a phone, Save rides in the section row, which slides in once the opening read has scrolled away.
+      if (viewport.width < 640) {
+        await page.locator("#section-fixes").evaluate((section) => window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" }));
+      }
       await page.getByTestId("workspace-keep-report").click();
       await page.getByRole("button", { name: "Sign in to save", exact: true }).click();
       await page.getByRole("button", { name: "Complete test sign-in", exact: true }).click();

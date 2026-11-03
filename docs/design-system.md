@@ -77,7 +77,7 @@ Runtime mapping:
 
 Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give commas a full digit width ("$1 ,370 ,000"), so `tabular-nums` is redefined globally to proportional digits. Right-align money columns for tidy edges; never re-enable `tnum` on anything that contains a comma or period.
 
-Every piece of text on the site uses one of eleven roles (Nov 1, 2026). The production audit counted 121 text styles, 31 sizes (some fractional, such as 13.76 and 100.8px), and weights from 400 to 800; the roles replace all of them. Sizes are whole pixels and step at breakpoints instead of scaling with `clamp()`, so a heading is the same size everywhere it appears at a given width.
+Every piece of text on the site uses one of twelve roles (eleven on Nov 1, 2026, plus `verdict-lead` on Nov 2). The production audit counted 121 text styles, 31 sizes (some fractional, such as 13.76 and 100.8px), and weights from 400 to 800; the roles replace all of them. Sizes are whole pixels and step at breakpoints instead of scaling with `clamp()`, so a heading is the same size everywhere it appears at a given width.
 
 | Role | Phone (<768px) | 768px and up | Weight and family | Use |
 | --- | --- | --- | --- | --- |
@@ -91,6 +91,7 @@ Every piece of text on the site uses one of eleven roles (Nov 1, 2026). The prod
 | `small` | 14 / 22 | 14 / 22 | 400 or 600 Schibsted | tables, navigation, metadata, compact controls |
 | `label` | 13 / 18 | 13 / 18 | 600 Schibsted (400 for captions) | labels, captions, footnotes; the 13px floor |
 | `verdict` | 20 / 30 | 24 / 34 | 400 Literata | the Verdict, quoted resume lines, the recruiter's longer answers |
+| `verdict-lead` | 22 / 30 | 28 / 38 | 400 Literata | the Verdict's first sentence on the report's first screen (Nov 2, 2026); the rest of the Verdict is `body` behind "Read the rest" on phones |
 | `note` | 16 / 25 | 16 / 25 | 400 Literata, italic for margin notes | pen notes, figure notes, short quoted findings |
 
 Rules:
@@ -176,7 +177,7 @@ On phones, place the headline, explanation, and full-width action before the res
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
-The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. On phones the section row stays out of the first screen, so the Verdict, the Critical Miss and its first question come first; it slides in under the header once the opening read has scrolled away (Nov 1, 2026, plan item 2.5). Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. On phones the section row stays out of the first screen, so the Verdict, the Critical Miss and its first question come first; it slides in under the header once the opening read has scrolled away (Nov 1, 2026, plan item 2.5). The report's first screen (W1, Nov 2, 2026): a header row on the sheet (the candidate's name from the resume's first line when this visit holds it, the first best-fit role, how long the read took, and a "Read as" chip from `role_fit.seniority_read` only when it is a short level, never a sentence), the Verdict's first sentence in `verdict-lead` with the rest behind "Read the rest" on phones, the band name and bar on one row, the Critical Miss count on one row, and the first Critical Miss on its miss sheet (`--miss-surface`) with the quoted line, the pen note and the first question. Save and Export ride in the sticky section row, icon-only on phones. Fix cards read "Fix 2 of 3". The PDF keeps its own order. Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
 ### Spacing scale
 
@@ -446,7 +447,7 @@ The guardrail must fail for:
 - unauthorized hardcoded colors
 - banned public copy patterns
 - increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
-- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 11 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
+- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 12 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
 
 The rendered check loads 23 public routes at 1440 and 390px and fails on an off-scale or fractional size, a weight outside 400/600/800, more than 40 text styles, more than one build of the primary action per size, or a paragraph inside a reading rail over 75 characters per line. Paragraphs a page lays out outside the rail are listed as warnings:
 
