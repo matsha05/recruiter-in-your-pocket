@@ -458,7 +458,7 @@ test.describe("saved jobs pagination", () => {
     await page.route('**/api/extension/saved-jobs/*', (route) => route.fulfill({ status: 404, json: { success: false } }));
     await page.goto(`${HARNESS_ORIGIN}/jobs`);
     await expect(page.getByRole('alert')).toContainText('This saved job is no longer available.');
-    await expect(page.getByRole('link', { name: 'Start a report', exact: true })).toHaveAttribute('href', '/workspace');
+    await expect(page.getByRole('link', { name: 'New report', exact: true })).toHaveAttribute('href', '/workspace');
   });
 
   test("failed resume rename keeps the draft open and succeeds on retry", async ({ page }) => {

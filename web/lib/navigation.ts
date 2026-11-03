@@ -61,49 +61,14 @@ export const STUDIO_NAV: NavItem[] = STUDIO_NAV_ITEMS.filter(
 );
 
 // ============================================================================
-// MARKETING NAVIGATION (SiteHeader, Footer)
+// FOOTER NAVIGATION
 // ============================================================================
-
-export interface MarketingNavGroup {
-    label: string;
-    items: MarketingNavItem[];
-}
 
 export interface MarketingNavItem {
     label: string;
     href: string;
     description?: string;
 }
-
-const MARKETING_NAV = {
-    product: [
-        { label: "Pricing", href: "/pricing" },
-        { label: "Workspace", href: "/workspace" },
-        ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
-    ],
-    research: [
-        { label: "How Recruiters Read", href: "/research/how-recruiters-read" },
-        { label: "How the report works", href: "/methodology" },
-        { label: "Research Hub", href: "/research" },
-    ],
-    resources: [
-        { label: "Negotiation Guide", href: "/resources/tech-offer-negotiation" },
-        { label: "Offer Calculator", href: "/resources/tools/comp-calculator" },
-        { label: "All guides and tools", href: "/resources" },
-    ],
-    company: [
-        { label: "FAQ", href: "/faq" },
-        { label: "Security", href: "/security" },
-        { label: "Status", href: "/status" },
-        { label: "How the report works", href: "/methodology" },
-        { label: "Privacy", href: "/privacy" },
-        { label: "Terms", href: "/terms" },
-    ],
-} as const;
-
-// ============================================================================
-// FOOTER NAVIGATION
-// ============================================================================
 
 export interface FooterNavGroup {
     id: string;

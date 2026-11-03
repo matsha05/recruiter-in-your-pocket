@@ -96,7 +96,7 @@ export function renderReportHtml(report: ReportForPdf) {
         return `
           <div class="rewrite-card">
             <div class="rewrite-heading">
-              <span>Suggested edit ${String(index + 1).padStart(2, "0")}</span>
+              <span>Line ${String(index + 1).padStart(2, "0")}</span>
               ${r.label ? `<span>${escapeHtml(r.label)}</span>` : ""}
             </div>
             ${isTemplate ? noteHtml : ""}
@@ -208,9 +208,9 @@ export function renderReportHtml(report: ReportForPdf) {
 
   ${report.rewrites.length ? `
     <section class="section">
-      <div class="section-kicker">Suggested edits</div>
-      <div class="section-header"><h2>Revising your resume</h2></div>
-      ${report.rewrites.some((rewrite) => /\[[^\]]+\]/.test(rewrite.better)) ? '<div class="note"><strong>About draft templates</strong><span>Complete the bracketed details with facts from your experience before using a draft.</span></div>' : ""}
+      <div class="section-kicker">More from your resume</div>
+      <div class="section-header"><h2>More lines worth a second look.</h2></div>
+      ${report.rewrites.some((rewrite) => /\[[^\]]+\]/.test(rewrite.better)) ? '<div class="note"><strong>About the brackets</strong><span>Fill in the brackets with your own facts before you use a draft.</span></div>' : ""}
       ${rewriteHtml(report.rewrites)}
     </section>
   ` : ""}
@@ -227,7 +227,7 @@ export function renderReportHtml(report: ReportForPdf) {
   ` : ""}
 
   <footer>
-    <div>AI-generated feedback. Check every suggested detail before using it.</div>
+    <div>A recruiter&rsquo;s review criteria, applied by AI. Check every suggested detail against what you actually did.</div>
     <div>recruiterinyourpocket.com</div>
   </footer>
   </div>

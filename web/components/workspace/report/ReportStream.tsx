@@ -275,7 +275,7 @@ export function ReportStream({
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className={styles.disclosureBody}>
-          <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the page is to scan. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
+          <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
           {report.score_comment_short && report.score_comment_short !== verdict && <p>{report.score_comment_short}</p>}
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
@@ -286,17 +286,17 @@ export function ReportStream({
 
       {isSample && onStartReport && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
-          <h2 id="report-next-step" className={styles.sectionTitle}>Now let&apos;s look at yours.</h2>
-          <p className={styles.endingCopy}>Upload or paste it to see what comes through clearly, where it leaves questions, and what to change first.</p>
+          <h2 id="report-next-step" className={styles.sectionTitle}>What would they think of yours?</h2>
+          <p className={styles.endingCopy}>Upload it or paste it. You&apos;ll see what comes through, what slips past, and what to fix first.</p>
           <div><Button variant="primary" onClick={onStartReport}>Get your free report <ArrowRight className="size-4" weight="bold" /></Button></div>
-          <p className={styles.endingNote}>Your first report is free. No card or account needed.</p>
+          <p className={styles.endingNote}>Your first report is free. No account or card.</p>
         </section>
       )}
 
       {!isSample && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? `${revisable.length > 1 ? "Your lines are" : "Your line is"} ready. See how the whole page reads now.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
           </h2>
           <p className={styles.endingCopy}>{isExhausted
             ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>

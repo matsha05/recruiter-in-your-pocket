@@ -7,7 +7,9 @@ interface FullRecruiterNotesProps {
   hasJobDescription?: boolean;
 }
 
+// The keys match the model's section_review names; the headings are sentence case.
 const SECTION_ORDER = ["Summary", "Work Experience", "Skills", "Education"] as const;
+const SECTION_LABELS: Partial<Record<(typeof SECTION_ORDER)[number], string>> = { "Work Experience": "Work experience" };
 
 function isCopy(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
@@ -70,7 +72,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       { label: "Fix", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];
-    return [{ name, notes }];
+    return [{ name: SECTION_LABELS[name] ?? name, notes }];
   });
   const nextSteps = uniqueCopy(report.next_steps || []);
 
@@ -127,7 +129,7 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">
         {detailedRead.length > 0 && (
           <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
-            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The full read.</h3>
+            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The rest of the notes.</h3>
             <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
               {detailedRead.map(({ label, text }) => (
                 <div key={label} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">

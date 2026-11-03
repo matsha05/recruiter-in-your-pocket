@@ -241,8 +241,8 @@ export function LinkedInReportPanel({
                 <ReportSectionHeader
                     icon={<HiddenGemIcon className="size-4 text-brand" />}
                     number="06"
-                    title="Priority edits"
-                    subtitle="Start with these changes."
+                    title="Fix these first"
+                    subtitle="Each one says why it matters and how much work it takes."
                 />
 
                 <div className="mt-7 border-y riyp-border-paper-line">
@@ -254,7 +254,7 @@ export function LinkedInReportPanel({
                             <p className="riyp-type-10px font-semibold uppercase riyp-track-012 text-brand">{fix.effort}</p>
                         </div>
                     ))}
-                    {(!report.top_fixes || report.top_fixes.length === 0) && <p className="py-5 text-sm text-muted-foreground">No priority edits were returned for this profile.</p>}
+                    {(!report.top_fixes || report.top_fixes.length === 0) && <p className="py-5 text-sm text-muted-foreground">No fixes were returned for this profile.</p>}
                 </div>
             </section>
 

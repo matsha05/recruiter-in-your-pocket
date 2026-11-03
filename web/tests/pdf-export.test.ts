@@ -225,9 +225,9 @@ const absentHtml = renderReportHtml(normalizeReportForPdf({
 assert.match(absentHtml, /<div class="marked-missing miss">No summary section<\/div>/);
 assert.doesNotMatch(absentHtml, /No summary section present/);
 assert.equal(absentHtml.match(/class="miss-mark"/gu)?.length, 1);
-assert.match(draftHtml, /Suggested edits/);
+assert.match(draftHtml, /More lines worth a second look\./);
 assert.match(draftHtml, /Draft template/);
-assert.match(draftHtml, /Complete the bracketed details with facts from your experience/);
+assert.match(draftHtml, /Fill in the brackets with your own facts before you use a draft\./);
 assert.doesNotMatch(draftHtml, /Why this is stronger|<div class="col-label">After<\/div>/);
 assert.doesNotMatch(renderedHtml, /PocketMark|#0d9488|#22c55e|#d97706|#dc2626/);
 assert.doesNotMatch(renderedHtml, /[\u2010-\u2015\u2212]/, "PDF text should use ASCII hyphens");

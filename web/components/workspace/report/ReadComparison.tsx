@@ -34,8 +34,8 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
 
     const title = sameMiss ? "Same Critical Miss as last time." : "Your Critical Miss changed.";
     const intro = sameMiss
-        ? "The revision didn't change what a recruiter would miss first. Start there again."
-        : "Your report now leads with something new. Check that the old gap is really closed, then take on this one.";
+        ? "Your revision didn't change the Critical Miss. Start there again."
+        : "The report now leads with a new Critical Miss. Make sure the old one is really answered, then take this one on.";
 
     return (
         <section aria-labelledby="read-comparison-title" className={styles.root} data-testid="read-comparison">

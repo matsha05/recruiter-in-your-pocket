@@ -319,7 +319,7 @@ test.describe("product motion contracts on real app routes", () => {
     // smoke build can keep LinkedIn review behind its existing launch flag.
     test.skip(await linkedIn.count() === 0, "LinkedIn review is disabled in this app build");
     await linkedIn.click();
-    await page.getByRole("button", { name: "See example report", exact: true }).click();
+    await page.getByRole("button", { name: "See a sample report", exact: true }).click();
     const navigation = page.getByRole("navigation", { name: "LinkedIn report sections", exact: true });
     await expectCurrent(navigation, "First impression");
     for (const name of ["Headline", "About section", "First impression"]) {

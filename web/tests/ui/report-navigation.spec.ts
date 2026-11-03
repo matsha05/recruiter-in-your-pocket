@@ -161,3 +161,12 @@ test("workspace report navigation supports keyboard jumps with reduced motion", 
   await scrollInsideSection(page, "section-fixes", 0.5);
   await expectCurrent(page, "Fix these first");
 });
+
+test("full recruiter notes head each resume section in sentence case", async ({ page }) => {
+  await page.goto("/sample-report");
+  const notes = page.getByTestId("full-recruiter-notes");
+  await notes.locator("summary").click();
+  // The model's section key stays "Work Experience"; only the heading changes case.
+  await expect(notes.getByRole("heading", { name: "Work experience", exact: true })).toBeVisible();
+  await expect(notes.getByRole("heading", { name: "Work Experience", exact: true })).toHaveCount(0);
+});
