@@ -87,6 +87,7 @@ export default function ResumeModeSection({
             mode="resume"
             startedAt={analysisStartedAt}
             stage={analysisStage}
+            resumeText={resumeText}
             onCancel={onCancelAnalysis}
             onRetry={onRetryAnalysis}
           />

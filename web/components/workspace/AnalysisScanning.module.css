@@ -1,18 +1,59 @@
-.root { display: flex; min-height: 100%; align-items: start; padding: 2rem 1rem 3rem; background: hsl(var(--surface-page)); font-family: var(--font-body); }
-.content { width: 100%; max-width: 60rem; margin-inline: auto; }
-.intro { display: grid; gap: 1rem; }
-.title { margin-top: 0.875rem; color: hsl(var(--text-strong)); scroll-margin-top: 5rem; font: var(--type-title); letter-spacing: var(--tracking-title); }
+/*
+ * The wait (W2, Nov 2, 2026): the heading row with the clock, five stage chips, the person's own resume
+ * dimmed on a sheet with the pen on the line the stream is reading, and Stop as a quiet link. Nothing
+ * here moves on a timer; the pen and the chips change only on stage events.
+ */
+.root { display: flex; min-height: 100%; align-items: start; padding: 1.25rem 1rem 3rem; background: hsl(var(--surface-page)); font-family: var(--font-body); }
+.content { width: 100%; max-width: 48rem; margin-inline: auto; }
+
+.intro { display: grid; gap: 0.25rem; align-items: baseline; }
+/* The heading clears the sticky header when the run opens at it, on every width. */
+.title { margin: 0; color: hsl(var(--text-strong)); scroll-margin-top: calc(var(--product-header-height) + 1.25rem); font: var(--type-title); letter-spacing: var(--tracking-title); text-wrap: balance; }
 .title:focus { outline: none; }
-.sheet { margin-top: 1.75rem; overflow: hidden; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
-.sheetHeader { display: flex; min-height: 4rem; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1rem; border-bottom: 1px solid hsl(var(--line)); padding: 1rem 1.25rem; }
-/* Proportional digits (see globals.css, Numbers); right-aligned so the word "elapsed" stays put as the clock ticks. */
-.elapsed { margin-left: auto; color: hsl(var(--text-strong)); text-align: right; white-space: nowrap; font: var(--type-small); font-weight: var(--weight-control); }
-.reviewRow { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); align-items: center; gap: 0.5rem 1rem; border-bottom: 1px solid hsl(var(--line)); padding-block: 1.25rem; }
-.reviewRow:last-child { border-bottom: 0; }
-.stepMarker { display: flex; width: 2.25rem; height: 2.25rem; align-items: center; justify-content: center; border: 1px solid hsl(var(--line)); border-radius: 999px; background: hsl(var(--surface-proof)); color: hsl(var(--text-muted)); font: var(--type-small); font-weight: var(--weight-control); transition: background-color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease), color var(--duration-normal) var(--ease); }
-.stepMarkerCurrent { border-color: hsl(var(--pen)); background: hsl(var(--surface-raised)); color: hsl(var(--pen)); }
-.stepMarkerDone { border-color: hsl(var(--pen-tint)); background: hsl(var(--pen-tint)); color: hsl(var(--pen)); }
-.stepDetail { grid-column: 2; color: hsl(var(--text-muted)); font: var(--type-body); }
-@media (min-width: 640px) { .root { padding: 2.75rem 1.5rem 4rem; } .sheet { border-radius: 1.5rem; } .sheetHeader { padding-inline: 2rem; } }
-@media (min-width: 768px) { .reviewRow { grid-template-columns: 2.25rem 13rem minmax(0, 1fr); min-height: 5rem; } .stepDetail { grid-column: auto; } }
-@media (prefers-reduced-motion: reduce) { .stepMarker { transition: none; } }
+.elapsed { color: hsl(var(--text-muted)); font: var(--type-small); white-space: nowrap; }
+/* Proportional digits (see globals.css, Numbers); the clock keeps its width so the note stays put. */
+.clock { display: inline-block; min-width: 2.25rem; color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.375rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.chip { display: inline-flex; min-height: 2rem; align-items: center; border: 1px solid transparent; border-radius: 999px; background: hsl(var(--secondary)); padding: 0.25rem 0.75rem; color: hsl(var(--text-muted)); font: var(--type-label); font-weight: var(--weight-body); transition: background-color var(--duration-normal) var(--ease), color var(--duration-normal) var(--ease), border-color var(--duration-normal) var(--ease); }
+.chip[data-state="current"] { background: hsl(var(--text-strong)); color: hsl(var(--background)); font-weight: var(--weight-label); }
+.chip[data-state="done"] { border-color: hsl(var(--pen-tint)); background: hsl(var(--pen-tint)); color: hsl(var(--pen)); }
+
+.retry { margin-top: 0.75rem; color: hsl(var(--text-muted)); font: var(--type-small); }
+
+/* An operational notice, not a resume finding: an inset sheet in ink, never the Critical Miss yellow. */
+.slow { display: grid; gap: 1rem; margin-top: 1rem; border: 1px solid hsl(var(--line)); border-radius: var(--radius-inset); background: hsl(var(--secondary)); padding: 1rem 1.25rem; }
+.slowTitle { color: hsl(var(--text-strong)); font: var(--type-body); font-weight: var(--weight-label); }
+.slowNote { margin-top: 0.25rem; color: hsl(var(--text-muted)); font: var(--type-small); }
+.slowActions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* The sheet: a page of the person's own words, cropped, scrolled to the pen on each stage event. */
+.sheet { position: relative; max-height: min(24rem, 46dvh); margin-top: 1rem; overflow: hidden; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); }
+.sheet::after { position: absolute; right: 0; bottom: 0; left: 0; height: 3rem; background: linear-gradient(to bottom, hsl(var(--surface-raised) / 0), hsl(var(--surface-raised))); content: ""; pointer-events: none; }
+/* A document drawn in the document's own face (design-system §3): the resume as it was pasted, not our type. */
+.document { padding: 1.5rem 1.25rem 2.5rem; color: hsl(var(--text-strong)); font-family: "Times New Roman", Times, "Liberation Serif", "Noto Serif", serif; font-size: var(--type-label-size); line-height: 1.4; }
+.line { position: relative; margin: 0; padding: 0.0625rem 0.375rem; overflow-wrap: anywhere; opacity: 0.4; transition: opacity var(--duration-normal) var(--ease), background-color var(--duration-normal) var(--ease); }
+.line[data-state="read"] { opacity: 0.72; }
+.line[data-state="current"] { padding-right: 4.75rem; background: hsl(var(--pen-tint)); opacity: 1; }
+.blank { min-height: 0.5rem; padding: 0; }
+.name { font-weight: 600; letter-spacing: 0.04em; text-align: center; text-transform: uppercase; }
+.heading { margin-top: 0.5rem; border-bottom: 1px solid hsl(var(--line)); font-weight: 600; letter-spacing: 0.06em; }
+/* The pen, on the line it is reading: the recruiter's hand at the line's end. */
+.cursor { position: absolute; top: 50%; right: 0.5rem; transform: translateY(-50%); color: hsl(var(--pen)); font: var(--type-note); font-size: var(--type-label-size); line-height: 1; white-space: nowrap; }
+
+.foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1rem; margin-top: 0.75rem; }
+.footNote { max-width: 36ch; color: hsl(var(--text-muted)); font: var(--type-small); }
+.stop { margin-right: -0.5rem; }
+
+@media (min-width: 640px) {
+    .root { padding: 2rem 1.5rem 4rem; }
+    .intro { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; }
+    .chips { gap: 0.5rem; margin-top: 1.25rem; }
+    .sheet { max-height: 28rem; margin-top: 1.25rem; border-radius: 1.5rem; }
+    .document { padding: 2.25rem 2.5rem 3rem; }
+    .slow { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chip, .line { transition: none; }
+}
