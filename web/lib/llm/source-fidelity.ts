@@ -56,10 +56,7 @@ export function canonicalSourceIdentity(value: string) {
     .replace(/\s+/gu, " ")
     .trim();
 }
-const sourceLines = memoizeByText((sourceText: string) => sourceText
-  .split(/\r?\n/u)
-  .map((line) => canonicalSourceIdentity(line))
-  .filter(Boolean));
+const sourceLines = memoizeByText((sourceText: string) => sourceText.split(/\r?\n/u).map((line) => canonicalSourceIdentity(line)).filter(Boolean));
 function isSourceBoundary(value: string, side: "before" | "after") {
   return !value
     || (!sourceContinuationPattern.test(value)
