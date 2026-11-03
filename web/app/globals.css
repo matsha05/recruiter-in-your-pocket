@@ -130,10 +130,11 @@
     --amber: var(--brass);
     --rose: 4.231 76.471% 40.000%;
 
-    /* Status semantics */
+    /* Status semantics. An operational warning (a slow run, a failed save, a pending purchase) is ink on an
+       inset sheet, never the Critical Miss yellow: yellow means a resume finding, nowhere else (Nov 2, 2026). */
     --success: 160 48.8% 23.7%;
-    --warning: var(--brass);
-    --warning-foreground: var(--brass);
+    --warning: var(--foreground);
+    --warning-foreground: var(--foreground);
     /* Assessment graphics follow the same roles. */
     --assessment-aqua: var(--pen);
     --assessment-green: var(--success);
@@ -205,7 +206,7 @@
 
     /* Accessible state surfaces and shared sheet geometry. */
     --success-surface: 144.000 31.250% 93.725%;
-    --warning-surface: 35.172 100.000% 94.314%;
+    --warning-surface: var(--secondary);
     --destructive-surface: 5.000 85.714% 97.255%;
     --disabled-surface: 80.000 7.692% 92.353%;
     --radius-sheet: 1.125rem;
@@ -335,9 +336,9 @@
     --paper-muted: 145 7% 13%;
     --success: 153 43% 69%;
     --success-surface: 147.857 30.435% 18.039%;
-    --warning: var(--brass);
-    --warning-foreground: var(--brass);
-    --warning-surface: 27.857 30.435% 18.039%;
+    --warning: var(--foreground);
+    --warning-foreground: var(--foreground);
+    --warning-surface: var(--secondary);
     --destructive-surface: 4.000 28.846% 20.392%;
     --disabled-surface: 170.000 6.818% 17.255%;
   }

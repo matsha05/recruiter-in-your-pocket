@@ -20,9 +20,9 @@ const font = (...path: string[]) => readFile(join(process.cwd(), "public", "font
  * and a note you can't read.
  */
 export async function GET() {
-  const [literataItalic, sourceSerif, schibstedRegular, schibstedSemibold, schibstedExtraBold] = await Promise.all([
+  const [literataItalic, literataRegular, schibstedRegular, schibstedSemibold, schibstedExtraBold] = await Promise.all([
     font("literata", "Literata-Italic.woff"),
-    font("source-serif-4", "SourceSerif4-Regular.ttf"),
+    font("literata", "Literata-Regular.woff"),
     font("schibsted-grotesk", "SchibstedGrotesk-Regular.woff"),
     font("schibsted-grotesk", "SchibstedGrotesk-Semibold.woff"),
     font("schibsted-grotesk", "SchibstedGrotesk-ExtraBold.woff"),
@@ -62,7 +62,7 @@ export async function GET() {
         </div>
 
         <div style={{ position: "relative", display: "flex", flex: 1 }}>
-          {/* An ordinary resume, set in a document serif and cut off by the frame. */}
+          {/* An ordinary resume, set in the one serif the system has (Literata, upright) and cut off by the frame. */}
           <div
             style={{
               position: "absolute",
@@ -77,7 +77,8 @@ export async function GET() {
               background: "#ffffff",
               padding: "34px 36px",
               color: "#2b2f2d",
-              fontFamily: "Source Serif",
+              fontFamily: "Literata",
+              fontStyle: "normal",
               fontSize: 16,
               lineHeight: 1.45,
               transform: "rotate(-1.2deg)",
@@ -110,7 +111,6 @@ export async function GET() {
               padding: "20px 24px 18px",
               fontSize: 17,
               transform: "rotate(1.4deg)",
-              boxShadow: "0 28px 48px -20px rgba(17, 21, 19, 0.32)",
             }}
           >
             <div style={{ display: "flex", color: muted }}>Customer Success Manager · Req 4471</div>
@@ -133,7 +133,7 @@ export async function GET() {
       height: 630,
       fonts: [
         { name: "Literata", data: literataItalic, style: "italic", weight: 400 },
-        { name: "Source Serif", data: sourceSerif, style: "normal", weight: 400 },
+        { name: "Literata", data: literataRegular, style: "normal", weight: 400 },
         { name: "Schibsted Grotesk", data: schibstedRegular, style: "normal", weight: 400 },
         { name: "Schibsted Grotesk", data: schibstedSemibold, style: "normal", weight: 600 },
         { name: "Schibsted Grotesk", data: schibstedExtraBold, style: "normal", weight: 800 },

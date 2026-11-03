@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { scoreBandFor } from "@/lib/reports/score-band";
 import styles from "./progress.module.css";
 
 export interface ProgressAnalytics {
@@ -99,7 +100,7 @@ export function ProgressView({ analytics }: { analytics: ProgressAnalytics }) {
 
             <section className={styles.sheet} aria-labelledby="scores-title">
                 <div className={styles.scoresHeader}>
-                    <h2 id="scores-title" className={styles.sheetTitle}>First Impression score over time</h2>
+                    <h2 id="scores-title" className={styles.sheetTitle}>{history.length < 2 ? "Where your resume stands" : "Your score over time"}</h2>
                     <p className={styles.movement}>{movementSentence(first, latest, history.length)}</p>
                 </div>
                 <ol className={styles.timeline}>
@@ -107,7 +108,8 @@ export function ProgressView({ analytics }: { analytics: ProgressAnalytics }) {
                         <li key={`${point.date}-${index}`} className={cn(styles.point, index === latestIndex && styles.pointLatest)}>
                             <span className={styles.pointLabel}>{point.name ? <>{point.name}<span className={styles.pointDate}>{formatDate(point.date)}</span></> : formatDate(point.date)}</span>
                             <span className={styles.track} aria-hidden="true"><span style={{ transform: `scaleX(${point.score / 100})` }} /></span>
-                            <span className={styles.pointScore}>{point.score}</span>
+                            {/* The number appears only once two reads can be compared (design-system §8b); until then, the band. */}
+                            <span className={styles.pointScore}>{history.length < 2 ? scoreBandFor(point.score).name : point.score}</span>
                         </li>
                     ))}
                 </ol>

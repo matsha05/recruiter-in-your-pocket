@@ -47,8 +47,8 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const visibleOpening = [report.first_impression || report.first_impression_takeaway || report.summary, report.score_comment_short];
   const detailedReadCandidates = [
     { label: "First impression", text: report.first_impression },
-    { label: "Overall assessment", text: report.summary },
-    { label: "Example to improve", text: report.biggest_gap_example },
+    { label: "The whole resume", text: report.summary },
+    { label: "The example that stops short", text: report.biggest_gap_example },
   ];
   const seenDetailedCopy = new Set(
     [...visibleOpening, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])].filter(isCopy).map(copyKey),

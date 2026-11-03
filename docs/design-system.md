@@ -132,7 +132,8 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 | Red pen | `--destructive` | `--red-pen`; what slips past or is missing (wavy underline on skimmed lines, "What's missing" labels, "What keeps coming up"), plus errors and destructive actions. Never decoration |
 | Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
 | Miss sheet | `#fff6c2` / `#f2dc6b` | `--miss-surface` / `--miss-line`; the Critical Miss block |
-| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`, `--warning`); text on or beside yellow |
+| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`); text on or beside yellow |
+| Warning | ink on inset | `--warning` / `--warning-foreground` are the text ink and `--warning-surface` the inset (Nov 2, 2026): an operational notice (a slow run, a failed save, a purchase that needs a look) is ink on an inset sheet, never the Critical Miss yellow |
 | Divider | `#dfe0dc` | `--line`; nonessential grouping rules |
 | Control boundary | `#808983` | `--control-line` / `--input`; identifiable input boundaries |
 
@@ -142,7 +143,7 @@ Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green p
 
 Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Dark mode chart steps are lifted separately (`#5b80e6` `#3a9a6e` `#a06cc0` `#d9731a`) and validated against the dark sheet. Avoid gradients, glow, and grain.
 
-Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
+Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets. Shadows mark real elevation only (a sheet lifted off the desk, a floating card, a dialog) and stay subtle; static cards and share images carry none (reconciled with §7, Nov 2, 2026). Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 
 ## 5. Signature evidence grammar
 

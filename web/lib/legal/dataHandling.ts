@@ -1,6 +1,6 @@
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
 
-export const LEGAL_LAST_UPDATED = "September 4, 2026";
+export const LEGAL_LAST_UPDATED = "November 2, 2026";
 export const PRIVACY_LAST_UPDATED = "November 2, 2026";
 export const TERMS_LAST_UPDATED = "November 2, 2026";
 
