@@ -1,0 +1,287 @@
+[
+  {
+    "t": 4.4,
+    "step": "shot",
+    "file": "maria-01-entry-first-screen@1440.jpg"
+  },
+  {
+    "t": 4.9,
+    "step": "shot",
+    "file": "maria-02-entry-full@1440.jpg"
+  },
+  {
+    "t": 8.2,
+    "step": "shot",
+    "file": "maria-03-signin@1440.jpg"
+  },
+  {
+    "t": 25,
+    "step": "shot",
+    "file": "maria-04-signin-code-sent@1440.jpg"
+  },
+  {
+    "t": 31.1,
+    "step": "shot",
+    "file": "maria-05-signin-first-name@1440.jpg"
+  },
+  {
+    "t": 57.9,
+    "step": "shot",
+    "file": "maria-06-after-signin@1440.jpg"
+  },
+  {
+    "t": 57.9,
+    "step": "signed-in",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 70.7,
+    "step": "shot",
+    "file": "maria-07-workspace-empty@1440.jpg"
+  },
+  {
+    "t": 103.7,
+    "step": "shot",
+    "file": "maria-08-workspace-after-upload@1440.jpg"
+  },
+  {
+    "t": 103.7,
+    "step": "run-button",
+    "text": "Choose a resume to beginReading your resume…Reading your resume…",
+    "disabled": true
+  },
+  {
+    "t": 118.1,
+    "step": "shot",
+    "file": "maria-09-wait-stage-1@1440.jpg"
+  },
+  {
+    "t": 118.2,
+    "step": "shot",
+    "file": "maria-10-wait-14s@1440.jpg"
+  },
+  {
+    "t": 118.8,
+    "step": "shot",
+    "file": "maria-11-wait-15s@1440.jpg"
+  },
+  {
+    "t": 129.3,
+    "step": "shot",
+    "file": "maria-12-wait-25s@1440.jpg"
+  },
+  {
+    "t": 136.1,
+    "step": "shot",
+    "file": "maria-13-wait-stage-2@1440.jpg"
+  },
+  {
+    "t": 144.8,
+    "step": "shot",
+    "file": "maria-14-wait-stage-3@1440.jpg"
+  },
+  {
+    "t": 149,
+    "step": "shot",
+    "file": "maria-15-wait-45s@1440.jpg"
+  },
+  {
+    "t": 165.9,
+    "step": "shot",
+    "file": "maria-16-wait-stage-4@1440.jpg"
+  },
+  {
+    "t": 179.2,
+    "step": "shot",
+    "file": "maria-17-wait-75s@1440.jpg"
+  },
+  {
+    "t": 214.3,
+    "step": "shot",
+    "file": "maria-18-wait-110s@1440.jpg"
+  },
+  {
+    "t": 217.3,
+    "step": "report-arrived",
+    "done": true,
+    "waitSeconds": 113.6,
+    "stageLog": [
+      {
+        "at": 14.3,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 32.3,
+        "states": [
+          "done",
+          "current",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 41,
+        "states": [
+          "done",
+          "done",
+          "current",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 62.1,
+        "states": [
+          "done",
+          "done",
+          "done",
+          "current"
+        ]
+      }
+    ]
+  },
+  {
+    "t": 218.9,
+    "step": "shot",
+    "file": "maria-19-report-first-screen@1440.jpg"
+  },
+  {
+    "t": 219.2,
+    "step": "shot",
+    "file": "maria-20-report-full@1440.jpg"
+  },
+  {
+    "t": 219.2,
+    "step": "report-text",
+    "verdict": "Your move from mathematics teaching into analytics is clear from the certificate, bootcamp, and dashboard work. The projects name relevant tools, though the analysis itself gets less attention.",
+    "band": "Mostly clearNeeds more contextMostly clearClear and specificMost lines show what you did. A few leave your part or the result unclear.",
+    "fixesHeading": "One Critical Miss. Fix it first.",
+    "countLead": "It's the one most likely to cost you the interview.",
+    "rows": [
+      "DATA PROJECTS\n\nPresented findings to a panel of instructors and peers\n\nCRITICAL MISS\n\nIn the housing capstone, add one finding from the affordability analysis and identify the comparison behind it.\n\nA finding would show what you learned from the housing and income data, beyond the tools you used.\n\nHide\n01\nYour line\n02\nWhat's missing\n03\nYour answers\n04\nRevised line\n\nAnswer and we'll add them to your line.\nOnly what's true. Skip anything you don't know.\n\nWhat affordability finding from the housing capstone would you highlight?\nI don't know\nI didn't do this\nWhich comparison led you to it?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+      "01\nYour line",
+      "02\nWhat's missing",
+      "03\nYour answers",
+      "04\nRevised line",
+      "What affordability finding from the housing capstone would you highlight?\nI don't know\nI didn't do this",
+      "Which comparison led you to it?\nI don't know\nI didn't do this",
+      "Keep this one\n\nThe housing capstone names Python, SQL, Tableau, 10 years of data, and zip-code trends, giving the project a concrete technical foundation.",
+      "PROFESSIONAL EXPERIENCE\n\nAnalyzed student assessment data to identify learning gaps and adjust instruction\n\nFix 2\n\nName one learning gap you identified and the instructional adjustment you made.\n\nAn example would make your classroom analysis tangible to a reader outside education.\n\nWhat to add\n\nWhat learning gap did you identify in assessment data, and how did you adjust instruction?\nWork on this line\nHide",
+      "DATA PROJECTS\n\nUsed by the math department to decide which units needed re-teaching\n\nFix 3\n\nIn the student dashboard project, add an example of a unit identified for re-teaching and what the dashboard showed.\n\nThat detail would let a reviewer follow how the department used the displayed scores.\n\nWhat to add\n\nWhat did the dashboard show for a unit the department identified for re-teaching?\nWork on this line\nHide"
+    ],
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 219.3,
+    "step": "shot",
+    "file": "maria-21-critical-miss-questions@1440.jpg"
+  },
+  {
+    "t": 219.3,
+    "step": "questions",
+    "count": 2,
+    "labels": [
+      "What affordability finding from the housing capstone would you highlight?\nI don't know\nI didn't do this",
+      "Which comparison led you to it?\nI don't know\nI didn't do this"
+    ]
+  },
+  {
+    "t": 223.5,
+    "step": "revised-line",
+    "revised": "Presented findings to a panel of instructors and peers: about 150 students a year; AP Statistics pass rate went from 61% to 74% over two years.",
+    "state": "addressed"
+  },
+  {
+    "t": 223.7,
+    "step": "shot",
+    "file": "maria-22-revised-line@1440.jpg"
+  },
+  {
+    "t": 223.7,
+    "step": "copy-button",
+    "disabled": false
+  },
+  {
+    "t": 224.6,
+    "step": "shot",
+    "file": "maria-23-feedback-sent@1440.jpg"
+  },
+  {
+    "t": 224.6,
+    "step": "after-save",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 224.6,
+    "step": "pdf",
+    "error": "no export button visible"
+  },
+  {
+    "t": 224.8,
+    "step": "shot",
+    "file": "maria-24-report-ending@1440.jpg"
+  },
+  {
+    "t": 224.8,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 227.4,
+    "step": "shot",
+    "file": "maria-25-after-ending-cta@1440.jpg"
+  },
+  {
+    "t": 283.3,
+    "step": "shot",
+    "file": "maria-26-pricing-first-screen@1440.jpg"
+  },
+  {
+    "t": 283.5,
+    "step": "shot",
+    "file": "maria-27-pricing-full@1440.jpg"
+  },
+  {
+    "t": 293.4,
+    "step": "shot",
+    "file": "maria-28-return-workspace@1440.jpg"
+  },
+  {
+    "t": 307.1,
+    "step": "shot",
+    "file": "maria-29-return-my-reports@1440.jpg"
+  },
+  {
+    "t": 307.1,
+    "step": "saved-report",
+    "href": "/reports/1bdfd909-cde2-4ca9-8e8a-01da45e53463"
+  },
+  {
+    "t": 344.6,
+    "step": "shot",
+    "file": "maria-30-return-saved-report-first-screen@1440.jpg"
+  },
+  {
+    "t": 344.9,
+    "step": "shot",
+    "file": "maria-31-return-saved-report-full@1440.jpg"
+  },
+  {
+    "t": 357.6,
+    "step": "shot",
+    "file": "maria-32-return-progress@1440.jpg"
+  },
+  {
+    "t": 357.6,
+    "step": "console-errors",
+    "errs": [
+      "Error fetching paid pass status: Error: Pass details timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Error fetching free report status: Error: Free report status timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Failed to refresh free status."
+    ]
+  }
+]

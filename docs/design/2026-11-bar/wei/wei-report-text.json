@@ -1,0 +1,18 @@
+{
+  "verdict": "Your current role centers on the ledger and settlement platform. The elimination of a class of duplicate-charge incidents is worth keeping because it connects a technical change to a concrete payment problem.",
+  "band": "Mostly clearNeeds more contextMostly clearClear and specificMost lines show what you did. A few leave your part or the result unclear.",
+  "fixesHeading": "One Critical Miss. Fix it first.",
+  "countLead": "It's the one most likely to cost you the interview.",
+  "rows": [
+    "EXPERIENCE\n\nLed the redesign of the core ledger service\n\nCRITICAL MISS\n\nAdd the payment volume or geographic reach you can verify, and name a key architecture tradeoff you addressed.\n\nThe job specifies a global ledger handling billions in annual volume, while the current bullet describes the technology change without its operating scale.\n\nHide\n01\nYour line\n02\nWhat's missing\n03\nYour answers\n04\nRevised line\n\nAnswer and we'll add it to your line.\nOnly what's true. Skip anything you don't know.\n\nWhat would you add to this line?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+    "01\nYour line",
+    "02\nWhat's missing",
+    "03\nYour answers",
+    "04\nRevised line",
+    "What would you add to this line?\nI don't know\nI didn't do this",
+    "Keep this one\n\nThe fraud scoring pipeline names Flink, Kafka and p99 latency under 50ms, making the performance work concrete.",
+    "EXPERIENCE\n\nDrove adoption of a new idempotency framework across payment services\n\nFix 2\n\nIdentify the engineering teams involved and how you secured adoption across their services.\n\nThe stated elimination of duplicate-charge incidents is useful, and the adoption details could show how you set direction beyond one team.\n\nWhat to add\n\nWhich engineering teams adopted the idempotency framework, and how did you work with them?\nWork on this line\nHide",
+    "EXPERIENCE\n\nPartnered with product and finance on the roadmap for multi-currency settlement\n\nFix 3\n\nDescribe a technical recommendation you contributed and the tradeoff it addressed.\n\nProduct and finance collaboration is relevant to settlement work, but the current wording does not show your part in the roadmap.\n\nWhat to add\n\nWhat technical recommendation did you contribute to the multi-currency settlement roadmap?\nWork on this line\nHide"
+  ],
+  "url": "http://127.0.0.1:3140/workspace"
+}

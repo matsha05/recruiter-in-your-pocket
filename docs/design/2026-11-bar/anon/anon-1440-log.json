@@ -1,0 +1,132 @@
+[
+  {
+    "t": 77.2,
+    "step": "shot",
+    "file": "anon-01-home-first-screen@1440.jpg"
+  },
+  {
+    "t": 85,
+    "step": "shot",
+    "file": "anon-02-workspace-first-screen@1440.jpg"
+  },
+  {
+    "t": 87.3,
+    "step": "shot",
+    "file": "anon-03-workspace-pasted@1440.jpg"
+  },
+  {
+    "t": 87.4,
+    "step": "run-button",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 92.1,
+    "step": "shot",
+    "file": "anon-04-wait-early@1440.jpg"
+  },
+  {
+    "t": 92.2,
+    "step": "first-run",
+    "done": true,
+    "stages": [],
+    "seconds": 4.8
+  },
+  {
+    "t": 94.1,
+    "step": "shot",
+    "file": "anon-05-report-first-screen@1440.jpg"
+  },
+  {
+    "t": 97.3,
+    "step": "shot",
+    "file": "anon-06-report-full@1440.jpg"
+  },
+  {
+    "t": 97.4,
+    "step": "save-prompt",
+    "visible": false
+  },
+  {
+    "t": 98.5,
+    "step": "shot",
+    "file": "anon-07-critical-miss@1440.jpg"
+  },
+  {
+    "t": 102.7,
+    "step": "shot",
+    "file": "anon-08-revised-line@1440.jpg"
+  },
+  {
+    "t": 102.8,
+    "step": "revised",
+    "text": "Improved process across teams: about 40 warehouse staff used it.",
+    "state": "addressed"
+  },
+  {
+    "t": 103.1,
+    "step": "shot",
+    "file": "anon-09-report-ending@1440.jpg"
+  },
+  {
+    "t": 103.1,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 105.3,
+    "step": "shot",
+    "file": "anon-10-after-ending-cta@1440.jpg"
+  },
+  {
+    "t": 205.9,
+    "step": "shot",
+    "file": "anon-11-second-visit-new-report@1440.jpg"
+  },
+  {
+    "t": 207.9,
+    "step": "run-button-2",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 209.1,
+    "step": "shot",
+    "file": "anon-12-second-attempt-ready@1440.jpg"
+  },
+  {
+    "t": 213.2,
+    "step": "shot",
+    "file": "anon-13-second-attempt-result@1440.jpg"
+  },
+  {
+    "t": 213.2,
+    "step": "second-run",
+    "done": true,
+    "stages": [],
+    "seconds": 4.1
+  },
+  {
+    "t": 214.8,
+    "step": "shot",
+    "file": "anon-14-second-attempt-after@1440.jpg"
+  },
+  {
+    "t": 220.4,
+    "step": "shot",
+    "file": "anon-15-return-workspace@1440.jpg"
+  },
+  {
+    "t": 317.6,
+    "step": "shot",
+    "file": "anon-16-return-my-reports-signed-out@1440.jpg"
+  },
+  {
+    "t": 317.6,
+    "step": "console-errors",
+    "errs": [
+      "Failed to refresh free status.",
+      "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client bran"
+    ]
+  }
+]

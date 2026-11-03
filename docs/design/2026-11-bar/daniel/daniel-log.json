@@ -1,0 +1,281 @@
+[
+  {
+    "t": 38.5,
+    "step": "shot",
+    "file": "daniel-01-entry-first-screen@390.jpg"
+  },
+  {
+    "t": 40,
+    "step": "shot",
+    "file": "daniel-02-entry-full@390.jpg"
+  },
+  {
+    "t": 45.8,
+    "step": "shot",
+    "file": "daniel-03-signin@390.jpg"
+  },
+  {
+    "t": 72.1,
+    "step": "shot",
+    "file": "daniel-04-signin-code-sent@390.jpg"
+  },
+  {
+    "t": 122.7,
+    "step": "shot",
+    "file": "daniel-05-after-signin@390.jpg"
+  },
+  {
+    "t": 122.7,
+    "step": "signed-in",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 137.8,
+    "step": "shot",
+    "file": "daniel-06-workspace-empty@390.jpg"
+  },
+  {
+    "t": 142.8,
+    "step": "shot",
+    "file": "daniel-07-workspace-paste-mode@390.jpg"
+  },
+  {
+    "t": 143.8,
+    "step": "shot",
+    "file": "daniel-08-workspace-after-paste@390.jpg"
+  },
+  {
+    "t": 143.9,
+    "step": "run-button",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 144.8,
+    "step": "shot",
+    "file": "daniel-09-wait-stage-1@390.jpg"
+  },
+  {
+    "t": 146.7,
+    "step": "shot",
+    "file": "daniel-10-wait-2s@390.jpg"
+  },
+  {
+    "t": 154.7,
+    "step": "shot",
+    "file": "daniel-11-wait-10s@390.jpg"
+  },
+  {
+    "t": 169.4,
+    "step": "shot",
+    "file": "daniel-12-wait-25s@390.jpg"
+  },
+  {
+    "t": 189.7,
+    "step": "shot",
+    "file": "daniel-13-wait-45s@390.jpg"
+  },
+  {
+    "t": 198,
+    "step": "shot",
+    "file": "daniel-14-wait-stage-2@390.jpg"
+  },
+  {
+    "t": 203.4,
+    "step": "shot",
+    "file": "daniel-15-wait-stage-3@390.jpg"
+  },
+  {
+    "t": 219.2,
+    "step": "shot",
+    "file": "daniel-16-wait-75s@390.jpg"
+  },
+  {
+    "t": 228.4,
+    "step": "shot",
+    "file": "daniel-17-wait-stage-4@390.jpg"
+  },
+  {
+    "t": 255.4,
+    "step": "shot",
+    "file": "daniel-18-wait-111s@390.jpg"
+  },
+  {
+    "t": 277.1,
+    "step": "report-arrived",
+    "done": true,
+    "waitSeconds": 133.2,
+    "stageLog": [
+      {
+        "at": 0.6,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 53.7,
+        "states": [
+          "done",
+          "current",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 59.3,
+        "states": [
+          "done",
+          "done",
+          "current",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 84.2,
+        "states": [
+          "done",
+          "done",
+          "done",
+          "current"
+        ]
+      }
+    ]
+  },
+  {
+    "t": 279.2,
+    "step": "shot",
+    "file": "daniel-19-report-first-screen@390.jpg"
+  },
+  {
+    "t": 280.7,
+    "step": "shot",
+    "file": "daniel-20-report-full@390.jpg"
+  },
+  {
+    "t": 280.7,
+    "step": "report-text",
+    "verdict": "Your Cardinal Health internship and campus ordering project point toward an entry-level software engineering role. The capstone's authentication and cart features are worth keeping because they show what you implemented, not just the stack you used.",
+    "band": "Needs more contextNeeds more contextMostly clearClear and specificThe jobs are easy to follow. What you did in them mostly isn't.",
+    "fixesHeading": "Two Critical Misses. Start with this one.",
+    "countLead": "Either one could cost you the interview on its own.",
+    "rows": [
+      "Responsible for developing features for an internal inventory management web application using React and Spring Boot\n\nCRITICAL MISS 1\n\nName a feature you developed and the inventory task it addressed.\n\nA concrete feature would show what your React and Spring Boot work actually involved.\n\nHide\n\nAnswer and we'll add them to your line.\n\nWhich inventory feature did you develop?\nI don't know\nI didn't do this\nWhat task did it help users perform?\nI don't know\nI didn't do this\nWhich roles helped define an inventory application requirement?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+      "01Your line",
+      "02What's missing",
+      "03Your answers",
+      "04Revised line",
+      "Which inventory feature did you develop?\nI don't know\nI didn't do this",
+      "What task did it help users perform?\nI don't know\nI didn't do this",
+      "Which roles helped define an inventory application requirement?\nI don't know\nI didn't do this",
+      "Software Engineering Intern, Cardinal Health, Dublin, OH\n\nCRITICAL MISS 2\n\nIn the Cardinal Health internship, add the size of the engineering team you worked on, if you can verify it.\n\nSoftware engineering reviewers look for the scope of an intern's work. The resume describes your tasks but doesn't show team size or measurable results, so the scale of the work may be unclear.\n\nHide\n\nAnswer and we'll add it to your line.\n\nWhat would you add to this line?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.",
+      "01Your line",
+      "02What's missing",
+      "03Your answers",
+      "04Revised line",
+      "What would you add to this line?\nI don't know\nI didn't do this",
+      "Keep this one\n\nBuckeyeBites identifies a team of 4 and a full-stack application for campus food ordering, making the project easier to place.",
+      "EXPERIENCE\n\nWrote unit tests to improve code quality and reliability\n\nFix 3\n\nDescribe a behavior or edge case you tested and the part of the application it covered.\n\nThat example would give a reviewer a better sense of how you approached code reliability.\n\nWhat to add\n\nWhat application behavior or edge case did one of your unit tests cover?\nWork on this line\nHide"
+    ],
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 281.4,
+    "step": "shot",
+    "file": "daniel-21-critical-miss-questions@390.jpg"
+  },
+  {
+    "t": 281.5,
+    "step": "questions",
+    "count": 3,
+    "labels": [
+      "Which inventory feature did you develop?\nI don't know\nI didn't do this",
+      "What task did it help users perform?\nI don't know\nI didn't do this",
+      "Which roles helped define an inventory application requirement?\nI don't know\nI didn't do this"
+    ]
+  },
+  {
+    "t": 286.7,
+    "step": "revised-line",
+    "revised": "Responsible for developing features for an internal inventory management web application using React and Spring Boot: 3 features used by about 40 warehouse staff; manual stock checks went from daily to weekly; the inventory web app used by 40 warehouse staff.",
+    "state": "open"
+  },
+  {
+    "t": 287.2,
+    "step": "shot",
+    "file": "daniel-22-revised-line@390.jpg"
+  },
+  {
+    "t": 287.2,
+    "step": "copy-button",
+    "disabled": true
+  },
+  {
+    "t": 288.9,
+    "step": "shot",
+    "file": "daniel-23-feedback-sent@390.jpg"
+  },
+  {
+    "t": 288.9,
+    "step": "after-save",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 289,
+    "step": "pdf",
+    "error": "no export button visible"
+  },
+  {
+    "t": 290,
+    "step": "shot",
+    "file": "daniel-24-report-ending@390.jpg"
+  },
+  {
+    "t": 290.1,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 293.8,
+    "step": "shot",
+    "file": "daniel-25-after-ending-cta@390.jpg"
+  },
+  {
+    "t": 469.8,
+    "step": "shot",
+    "file": "daniel-26-pricing-first-screen@390.jpg"
+  },
+  {
+    "t": 471.2,
+    "step": "shot",
+    "file": "daniel-27-pricing-full@390.jpg"
+  },
+  {
+    "t": 478.4,
+    "step": "shot",
+    "file": "daniel-28-return-workspace@390.jpg"
+  },
+  {
+    "t": 588.1,
+    "step": "error",
+    "message": "page.goto: net::ERR_ABORTED at http://127.0.0.1:3140/reports\nCall log:\n  - navigating to \"http://127.0.0.1:3140/reports\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "t": 588.1,
+    "step": "shot-failed",
+    "file": "daniel-29-error-state@390.jpg",
+    "error": "page.screenshot: Target page, context or browser has been closed\nCall log:\n  - taking page screenshot\n    - disabled all"
+  },
+  {
+    "t": 588.1,
+    "step": "console-errors",
+    "errs": [
+      "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client bran",
+      "Failed to refresh free status.",
+      "Error fetching paid pass status: Error: Pass details timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Error fetching free report status: Error: Free report status timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)"
+    ]
+  }
+]
