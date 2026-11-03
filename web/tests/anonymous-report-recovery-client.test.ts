@@ -199,14 +199,26 @@ async function run() {
     randomUUID: () => RECOVERY_ID,
   });
   const pending = await fetchAnonymousReportRecovery(marker, {
-    fetchImpl: async () => new Response(null, { status: 404 }),
+    fetchImpl: async () => Response.json(
+      { ok: false, recovery_id: RECOVERY_ID, status: "pending", reason: "generating" },
+      { status: 202 },
+    ),
   });
   assert.equal(pending.status, "pending");
   assert.equal(
     readAnonymousReportRecoveryMarker({ storage, now: () => NOW })?.recoveryId,
     RECOVERY_ID,
-    "a 404 lookup must leave a still-valid pending marker intact",
+    "a 202 lookup must leave a still-valid pending marker intact",
   );
+  for (const [status, label] of [[404, "not bound to this browser"], [410, "claimed or expired"]] as const) {
+    assert.deepEqual(
+      await fetchAnonymousReportRecovery(marker, {
+        fetchImpl: async () => new Response(null, { status }),
+      }),
+      { status: "invalid" },
+      `a ${status} answer (${label}) is terminal, so the browser stops polling`,
+    );
+  }
 
   const operationPending = await fetchAnonymousReportRecovery(marker, {
     fetchImpl: async () => new Response(JSON.stringify({
@@ -257,7 +269,7 @@ async function run() {
     (await pollAnonymousReportRecovery(marker, {
       fetchImpl: async () => {
         boundedAttempts += 1;
-        return new Response(null, { status: 404 });
+        return new Response(null, { status: 202 });
       },
       pollDelaysMs: [10, 20],
       sleep: async (delayMs) => { boundedSleeps.push(delayMs); },
@@ -286,7 +298,7 @@ async function run() {
     fetchImpl: async () => {
       sameTabAttempts += 1;
       return sameTabAttempts === 1
-        ? new Response(null, { status: 404 })
+        ? new Response(null, { status: 202 })
         : new Response(JSON.stringify({
             ok: true,
             recovery_id: RECOVERY_ID,
@@ -311,7 +323,7 @@ async function run() {
   });
   const restoredReport = await restoredPromise;
   stopSameTabWatcher();
-  assert.equal(sameTabAttempts, 2, "the same-tab marker event must poll 404 then 200");
+  assert.equal(sameTabAttempts, 2, "the same-tab marker event must poll 202 then 200");
   assert.deepEqual(restoredReport, { ...exactReport, recovery_id: RECOVERY_ID });
   assert.equal(eventDetail, undefined, "the marker event must not carry recovery data");
   assert.equal(
@@ -410,7 +422,7 @@ async function run() {
     fetchImpl: async () => {
       firstWatcherAttempts += 1;
       return firstWatcherAttempts === 1
-        ? new Response(null, { status: 404 })
+        ? new Response(null, { status: 202 })
         : Response.json({ ok: true, recovery_id: RECOVERY_ID, report: exactReport });
     },
     pollDelaysMs: [1],
@@ -424,7 +436,7 @@ async function run() {
   releasePending();
   await nextTurn();
   stopRunAWatcher();
-  assert.equal(firstWatcherAttempts, 2, "Run A recovery must exercise 404 then 200 while Run B owns the UI");
+  assert.equal(firstWatcherAttempts, 2, "Run A recovery must exercise 202 then 200 while Run B owns the UI");
   assert.equal(competingRestores, 0, "Run A may not overwrite active Run B");
   assert.equal(readAnonymousReportRecoveryMarker({ storage: competingStorage, now: () => NOW })?.recoveryId, RECOVERY_ID);
 
@@ -454,7 +466,7 @@ async function run() {
     storage: expiryStorage,
     eventTarget: null,
     now: () => NOW,
-    fetchImpl: async () => new Response(null, { status: 404 }),
+    fetchImpl: async () => new Response(null, { status: 202 }),
     pollDelaysMs: [],
     onRestore: () => undefined,
     setTimeoutImpl: ((callback: () => void, delay?: number) => {

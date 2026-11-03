@@ -18,7 +18,6 @@ import {
 } from "@/lib/billing/anonymousGenerationAccess";
 import {
   anonymousNetworkHashFromRequest,
-  anonymousReceiptId,
   hashAnonymousIdentity,
 } from "@/lib/billing/anonymousIdentity";
 import { assertGenerationAuthLookup } from "@/lib/billing/generationAccess";
@@ -86,26 +85,16 @@ export async function GET(request: Request) {
       const shadowHash = anonymousNetworkHashFromRequest(request);
       if (!shadowHash) throw new Error("Anonymous network identity is unavailable");
       const monthKey = getCurrentMonthKey();
-      let ledgerStatus = await anonymousGenerationAccessBackend.status({
+      // This is a GET: it reads the ledger and never writes it. A signed used
+      // cookie refuses a reservation on its own at generation time; it does
+      // not seed the ledger here, because a cookie proves this visitor minted
+      // a report, not that this network did.
+      const ledger = await anonymousGenerationAccessBackend.inspect({
         identityHash,
         shadowHash,
         monthKey,
       });
-
-      // A signed used receipt is fail-closed evidence. If shared state was
-      // evicted or the durable identity had to be reissued, seed a committed
-      // ledger entry instead of minting another report.
-      if (
-        ledgerStatus === "committed"
-        || (ledgerStatus === "available" && (meta.used || 0) >= FREE_RUN_LIMIT)
-      ) {
-        ledgerStatus = await anonymousGenerationAccessBackend.reconcileCommitted({
-          identityHash,
-          shadowHash,
-          monthKey,
-          receiptId: anonymousReceiptId(identityResult.identity, monthKey),
-        });
-      }
+      const ledgerStatus = ledger.status;
       freeUsesRemaining = resolveAnonymousFreeUsesRemaining(
         ledgerStatus,
         meta.used || 0,
@@ -123,7 +112,9 @@ export async function GET(request: Request) {
       // A successful streaming response commits the shared ledger after the
       // response headers are fixed. Synchronize the signed cookie here so a
       // later network change cannot make that completed report look unused.
-      const shouldPersistCommittedUse = ledgerStatus === "committed" && (meta.used || 0) < FREE_RUN_LIMIT;
+      // Only the visitor's own identity key may mark the cookie: a network
+      // where someone else minted a report must not follow this visitor home.
+      const shouldPersistCommittedUse = ledger.identity === "committed" && (meta.used || 0) < FREE_RUN_LIMIT;
       if (identityResult.cookieValue) {
         res.cookies.set(
           ANONYMOUS_ID_COOKIE,

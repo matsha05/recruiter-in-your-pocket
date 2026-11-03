@@ -289,9 +289,12 @@ async function run() {
       > streamRoute.indexOf("await validateResumeStreamOutput"),
     "a canceled stream must abort and release access before atomic or anonymous finalization"
   );
-  assert.match(freeStatus, /anonymousGenerationAccessBackend\.status/);
+  assert.match(freeStatus, /anonymousGenerationAccessBackend\.inspect/);
   assert.match(freeStatus, /resolveAnonymousFreeUsesRemaining/);
-  assert.match(freeStatus, /reconcileCommitted/);
+  assert.doesNotMatch(freeStatus, /reconcileCommitted|\.commit\(|\.reserve\(|\.release\(/,
+    "GET /api/free-status reads the anonymous ledger and never writes it");
+  assert.match(freeStatus, /ledger\.identity === "committed"/,
+    "only the visitor's own identity key may mark the free cookie as used");
   assert.match(resumeReview, /if \(result\.aborted\)[\s\S]+await input\.refreshFreeStatus/);
   assert.match(resumeReview, /Failed to generate report:[\s\S]+await input\.refreshFreeStatus/);
   assert.match(resumeReview, /Report generation error:[\s\S]+await input\.refreshFreeStatus/);

@@ -213,7 +213,12 @@ async function main() {
   assert.equal(
     await anonymousGenerationAccessBackend.reserve({ ...sameBrowserNewNetwork, reservationId: crypto.randomUUID() }),
     false,
-    "the boolean reserve still refuses, and the refusal copied the commit to the new network",
+    "the boolean reserve still refuses the used-up browser",
+  );
+  assert.equal(
+    (await anonymousGenerationAccessBackend.inspect(sameBrowserNewNetwork)).network,
+    "available",
+    "a refusal names its cause and writes nothing: the new network stays open for everyone else",
   );
 
   const newBrowserSameNetwork = { ...first, identityHash: hash(), reservationId: crypto.randomUUID() };
@@ -223,8 +228,8 @@ async function main() {
   );
   assert.deepEqual(
     await anonymousGenerationAccessBackend.reserveWithReason({ ...newBrowserSameNetwork, reservationId: crypto.randomUUID() }),
-    { reserved: false, refusal: "identity" },
-    "after the copy, that browser's own id records the report too",
+    { reserved: false, refusal: "network" },
+    "a network refusal leaves that browser's own id clean, so it works once it leaves the network",
   );
 
   // Reservations carry the gate reason to the route.

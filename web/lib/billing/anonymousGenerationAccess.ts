@@ -11,40 +11,114 @@ import {
   writeLocalAnonymousEntry,
   type AnonymousReportRecoveryCommit,
 } from "../reports/anonymous-report-recovery";
+import {
+  ANONYMOUS_COMMITTED_TTL_SECONDS,
+  ANONYMOUS_HOLD_TTL_SECONDS,
+} from "./anonymousLedgerTimings";
 import { allowsExplicitLocalAnonymousAccessFallback } from "./anonymousAccessFallback";
 export { allowsExplicitLocalAnonymousAccessFallback } from "./anonymousAccessFallback";
 
-const HOLD_TTL_SECONDS = 10 * 60;
-const COMMITTED_TTL_SECONDS = 40 * 24 * 60 * 60;
+/**
+ * # The anonymous free-report ledger
+ *
+ * One free report per calendar month for a visitor who is not signed in. The
+ * ledger is the authority; the signed `rip_free_meta` cookie is a hint the
+ * browser carries, and the Postgres reservation table only covers accounts.
+ *
+ * ## Keys
+ *
+ * Two Redis keys per visit, both scoped to the month:
+ *
+ * - identity key `generation:anonymous:{month}:{identityHash}`: a hash of the
+ *   signed, durable `rip_anon_id` cookie. This is the visitor.
+ * - network key `generation:anonymous:{month}:network:{shadowHash}`: a salted
+ *   hash of the request's network address. It exists for one reason: a visitor
+ *   who clears both cookies gets a fresh identity, and without this key could
+ *   mint a report every time. It is not a judgment about the network.
+ *
+ * Each key holds one of `reserved:{reservationId}` or `committed:{reservationId}`
+ * or nothing.
+ *
+ * ## States and transitions (per key pair)
+ *
+ *     available ──reserve──▶ reserved ──commit / completeWithRecovery──▶ committed
+ *         ▲                     │                                            │
+ *         └──release / hold TTL─┘                     committed TTL (month over)
+ *
+ * - available: neither key holds anything. A reservation may be taken.
+ * - reserved: both keys hold `reserved:{id}` for ANONYMOUS_HOLD_TTL_SECONDS.
+ *   A generation is in flight. Nothing else may reserve.
+ * - committed: both keys hold `committed:{id}` for ANONYMOUS_COMMITTED_TTL_SECONDS.
+ *   A report was minted. The month is spent for this identity and this network.
+ *
+ * Reserve is refused, without writing anything, when:
+ * - the identity key is committed ("identity": this visitor already used it),
+ * - the network key is committed ("network": a report was minted on this
+ *   network this month by someone, possibly this visitor after clearing cookies),
+ * - either key is reserved ("hold": a generation is still in flight).
+ *
+ * ## Invariants
+ *
+ * 1. A key is written only by a reservation made with that key, by that
+ *    reservation's commit, or by that reservation's release. A refusal never
+ *    writes, so the identity key alone can never mark a network, and a network
+ *    can never mark a fresh identity. A visitor who used their report at home
+ *    and then opens the app at a cafe is refused there, but leaves the cafe's
+ *    network untouched for everyone else.
+ * 2. Both keys move together inside one Lua script. There is no state where
+ *    one key is reserved and the other committed by the same reservation.
+ * 3. Reads never write. `status` and `inspect` are pure; `GET /api/free-status`
+ *    only reads the ledger and may refresh the browser's cookie from the
+ *    identity key, never from the network key.
+ * 4. The signed cookie refuses a reservation on its own when it says the
+ *    report was used, but it never seeds the ledger. Only a minted report
+ *    (commit or completeWithRecovery) writes `committed:`.
+ *
+ * ## The recovery envelope (per recovery id)
+ *
+ * A completed anonymous report is stored for the browser that generated it
+ * under `generation:anonymous:recovery:{recoveryId}`, written in the same Lua
+ * script that commits the reservation (`completeWithRecovery`), so a report
+ * is never minted without its envelope and never stored without its commit.
+ *
+ *     none ──(reservation held)──▶ pending ──completeWithRecovery──▶ stored
+ *                                                                       │
+ *                     claim into an account ◀───────────────────────────┤
+ *                            │                                          │
+ *                            ▼                                          ▼
+ *                        tombstoned ───────── envelope TTL ────────▶ expired
+ *
+ * - pending: the identity key is reserved and no envelope exists yet.
+ * - stored (restored to the browser on request): the envelope exists and both
+ *   ledger keys from the envelope hold `committed:{its reservation}`.
+ * - tombstoned: the envelope has been replaced by a signed tombstone naming the
+ *   account that saved it. The report is no longer served to the browser.
+ * - expired: the identity key is committed but nothing is stored under the
+ *   recovery id. It will not reappear.
+ * - never: the recovery id is bound to another identity, or the request has no
+ *   identity. Terminal for this browser.
+ *
+ * The claim order and its recovery are documented in
+ * `app/api/reports/recovery/route.ts`. All lifetimes live in
+ * `anonymousLedgerTimings.ts`.
+ */
+
+const HOLD_TTL_SECONDS = ANONYMOUS_HOLD_TTL_SECONDS;
+const COMMITTED_TTL_SECONDS = ANONYMOUS_COMMITTED_TTL_SECONDS;
 const IDENTITY_PATTERN = /^[0-9a-f]{64}$/i;
 
 // Returns 1 when reserved. Every other value is a refusal, and names its cause
 // for monitoring only: 2 = this anonymous id already used its report,
-// 3 = another browser on this network did, 4 = a generation is still in flight.
+// 3 = a report was minted on this network, 4 = a generation is still in flight.
+// A refusal writes nothing (invariant 1).
 const RESERVE_SCRIPT = `
 local primary = redis.call("GET", KEYS[1])
 local shadow = redis.call("GET", KEYS[2])
-if primary and string.sub(primary, 1, 10) == "committed:" and not shadow then
-  local ttl = redis.call("PTTL", KEYS[1])
-  if ttl < 0 then ttl = ARGV[3] end
-  if ttl == 0 then ttl = 1 end
-  redis.call("SET", KEYS[2], primary, "PX", ttl, "NX")
-  return 2
-end
-if shadow and string.sub(shadow, 1, 10) == "committed:" and not primary then
-  local ttl = redis.call("PTTL", KEYS[2])
-  if ttl < 0 then ttl = ARGV[3] end
-  if ttl == 0 then ttl = 1 end
-  redis.call("SET", KEYS[1], shadow, "PX", ttl, "NX")
-  return 3
-end
-if primary or shadow then
-  if primary and string.sub(primary, 1, 10) == "committed:" then return 2 end
-  if shadow and string.sub(shadow, 1, 10) == "committed:" then return 3 end
-  return 4
-end
-redis.call("SET", KEYS[1], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
-redis.call("SET", KEYS[2], "reserved:" .. ARGV[1], "EX", ARGV[2], "NX")
+if primary and string.sub(primary, 1, 10) == "committed:" then return 2 end
+if shadow and string.sub(shadow, 1, 10) == "committed:" then return 3 end
+if primary or shadow then return 4 end
+redis.call("SET", KEYS[1], "reserved:" .. ARGV[1], "EX", ARGV[2])
+redis.call("SET", KEYS[2], "reserved:" .. ARGV[1], "EX", ARGV[2])
 return 1
 `;
 
@@ -54,6 +128,9 @@ const RESERVE_REFUSAL_REASONS: Record<number, AnonymousReserveRefusal> = {
   4: "hold",
 };
 
+// Only the holder's own reservation can commit. A key the holder's reservation
+// wrote that has since expired is rewritten, because the report was minted on
+// exactly this identity and this network.
 const COMMIT_SCRIPT = `
 local primary = redis.call("GET", KEYS[1])
 local shadow = redis.call("GET", KEYS[2])
@@ -93,33 +170,9 @@ redis.call("DEL", KEYS[2])
 return 1
 `;
 
-const RECONCILE_COMMITTED_SCRIPT = `
-local primary = redis.call("GET", KEYS[1])
-local shadow = redis.call("GET", KEYS[2])
-local committed = "committed:" .. ARGV[1]
-if (primary and string.sub(primary, 1, 10) == "committed:")
-  or (shadow and string.sub(shadow, 1, 10) == "committed:") then
-  if not primary then redis.call("SET", KEYS[1], committed, "EX", ARGV[2], "NX") end
-  if not shadow then redis.call("SET", KEYS[2], committed, "EX", ARGV[2], "NX") end
-  return 1
-end
-if (primary and string.sub(primary, 1, 9) == "reserved:")
-  or (shadow and string.sub(shadow, 1, 9) == "reserved:") then
-  return 2
-end
-redis.call("SET", KEYS[1], committed, "EX", ARGV[2])
-redis.call("SET", KEYS[2], committed, "EX", ARGV[2])
-return 1
-`;
-
+// Pure read of both keys (invariant 3).
 const INSPECT_SCRIPT = `
-local primary = redis.call("GET", KEYS[1])
-local shadow = redis.call("GET", KEYS[2])
-if primary and string.sub(primary, 1, 10) == "committed:" then return primary end
-if shadow and string.sub(shadow, 1, 10) == "committed:" then return shadow end
-if primary and string.sub(primary, 1, 9) == "reserved:" then return primary end
-if shadow and string.sub(shadow, 1, 9) == "reserved:" then return shadow end
-return ""
+return { redis.call("GET", KEYS[1]) or "", redis.call("GET", KEYS[2]) or "" }
 `;
 
 export class AnonymousGenerationAccessError extends Error {
@@ -136,6 +189,18 @@ export type AnonymousReserveRefusal = "identity" | "network" | "hold" | "unknown
 export type AnonymousReserveResult =
   | { reserved: true }
   | { reserved: false; refusal: AnonymousReserveRefusal };
+
+export type AnonymousLedgerKeyStatus = "available" | "reserved" | "committed";
+
+export type AnonymousLedgerInspection = {
+  /** The pair's state: committed if either key is, else reserved if either is. */
+  status: AnonymousLedgerKeyStatus;
+  reservationId: string | null;
+  /** The visitor's own key. Only this key may refresh the browser's cookie. */
+  identity: AnonymousLedgerKeyStatus;
+  /** The network key. Committed means a report was minted on this network. */
+  network: AnonymousLedgerKeyStatus;
+};
 
 export type AnonymousGenerationAccessBackend = {
   reserve(input: {
@@ -177,25 +242,16 @@ export type AnonymousGenerationAccessBackend = {
     identityHash: string;
     shadowHash: string;
     monthKey: string;
-  }): Promise<"available" | "reserved" | "committed">;
+  }): Promise<AnonymousLedgerKeyStatus>;
   inspect(input: {
     identityHash: string;
     shadowHash: string;
     monthKey: string;
-  }): Promise<{
-    status: "available" | "reserved" | "committed";
-    reservationId: string | null;
-  }>;
-  reconcileCommitted(input: {
-    identityHash: string;
-    shadowHash: string;
-    monthKey: string;
-    receiptId: string;
-  }): Promise<"reserved" | "committed">;
+  }): Promise<AnonymousLedgerInspection>;
 };
 
 export function resolveAnonymousFreeUsesRemaining(
-  status: "available" | "reserved" | "committed",
+  status: AnonymousLedgerKeyStatus,
   cookieUsed: number,
   limit: number
 ) {
@@ -203,17 +259,42 @@ export function resolveAnonymousFreeUsesRemaining(
   return Math.max(0, limit - Math.max(0, cookieUsed));
 }
 
-function stateFromValue(value: unknown) {
+function keyState(value: unknown): { status: AnonymousLedgerKeyStatus; reservationId: string | null } {
   if (typeof value !== "string") {
-    return { status: "available" as const, reservationId: null };
+    return { status: "available", reservationId: null };
   }
   if (value.startsWith("reserved:")) {
-    return { status: "reserved" as const, reservationId: value.slice(9) || null };
+    return { status: "reserved", reservationId: value.slice(9) || null };
   }
   if (value.startsWith("committed:")) {
-    return { status: "committed" as const, reservationId: value.slice(10) || null };
+    return { status: "committed", reservationId: value.slice(10) || null };
   }
-  return { status: "available" as const, reservationId: null };
+  return { status: "available", reservationId: null };
+}
+
+/**
+ * Folds the two key values into one inspection. Committed wins over reserved,
+ * and the identity key wins over the network key at the same rank, so a
+ * caller that only needs "which reservation" gets the visitor's own.
+ */
+export function inspectionFromValues(primaryValue: unknown, shadowValue: unknown): AnonymousLedgerInspection {
+  const primary = keyState(primaryValue);
+  const shadow = keyState(shadowValue);
+  const ranked = [primary, shadow];
+  const leading = ranked.find((item) => item.status === "committed")
+    || ranked.find((item) => item.status === "reserved")
+    || { status: "available" as const, reservationId: null };
+  return {
+    status: leading.status,
+    reservationId: leading.reservationId,
+    identity: primary.status,
+    network: shadow.status,
+  };
+}
+
+function inspectionFromScriptResult(result: unknown): AnonymousLedgerInspection {
+  const values = Array.isArray(result) ? result : [];
+  return inspectionFromValues(values[0], values[1]);
 }
 
 function ledgerKeys(identityHash: string, shadowHash: string, monthKey: string) {
@@ -226,12 +307,11 @@ function ledgerKeys(identityHash: string, shadowHash: string, monthKey: string) 
   ];
 }
 
-function localState(keys: string[]) {
-  const primary = readLocalAnonymousEntry(keys[0])?.value;
-  const shadow = readLocalAnonymousEntry(keys[1])?.value;
-  const value = [primary, shadow].find((item) => item?.startsWith("committed:"))
-    || [primary, shadow].find((item) => item?.startsWith("reserved:"));
-  return stateFromValue(value);
+function localInspection(keys: string[]) {
+  return inspectionFromValues(
+    readLocalAnonymousEntry(keys[0])?.value,
+    readLocalAnonymousEntry(keys[1])?.value,
+  );
 }
 
 function unavailable(cause?: unknown): never {
@@ -242,12 +322,19 @@ function unavailable(cause?: unknown): never {
   throw error;
 }
 
+function failClosedWithoutSharedState(cause?: unknown) {
+  if (
+    process.env.NODE_ENV === "production"
+    && !allowsExplicitLocalAnonymousAccessFallback()
+  ) unavailable(cause);
+}
+
 /**
  * The signed cookie remains a user-facing hint. This ledger is the
  * authoritative anonymous entitlement. A durable signed identity is primary;
  * a separately salted network hash closes simple both-cookie resets. Raw
- * network addresses are never stored, and shared networks can affect access.
- * Hosted environments fail closed if shared state is unavailable.
+ * network addresses are never stored. Hosted environments fail closed if
+ * shared state is unavailable.
  */
 async function reserveWithReason({
   identityHash, shadowHash, monthKey, reservationId,
@@ -265,46 +352,25 @@ async function reserveWithReason({
       const result = Number(await redis.eval(
         RESERVE_SCRIPT,
         keys,
-        [
-          reservationId,
-          String(HOLD_TTL_SECONDS),
-          String(COMMITTED_TTL_SECONDS * 1000),
-        ]
+        [reservationId, String(HOLD_TTL_SECONDS)]
       ));
       return result === 1
         ? { reserved: true }
         : { reserved: false, refusal: RESERVE_REFUSAL_REASONS[result] ?? "unknown" };
     } catch (error) {
-      if (
-        process.env.NODE_ENV === "production"
-        && !allowsExplicitLocalAnonymousAccessFallback()
-      ) unavailable(error);
+      failClosedWithoutSharedState(error);
     }
-  } else if (
-    process.env.NODE_ENV === "production"
-    && !allowsExplicitLocalAnonymousAccessFallback()
-  ) {
-    unavailable();
+  } else {
+    failClosedWithoutSharedState();
   }
 
-  const entries = keys.map((key) => readLocalAnonymousEntry(key));
-  const primary = entries[0];
-  const shadow = entries[1];
-  if (primary?.value.startsWith("committed:") && !shadow) {
-    writeLocalAnonymousEntry(
-      keys[1], primary.value, Math.max(1, Math.ceil((primary.expiresAtMs - Date.now()) / 1000))
-    );
-    return { reserved: false, refusal: "identity" };
+  // Local mirror of RESERVE_SCRIPT: a refusal writes nothing.
+  const inspection = localInspection(keys);
+  if (inspection.identity === "committed") return { reserved: false, refusal: "identity" };
+  if (inspection.network === "committed") return { reserved: false, refusal: "network" };
+  if (inspection.identity !== "available" || inspection.network !== "available") {
+    return { reserved: false, refusal: "hold" };
   }
-  if (shadow?.value.startsWith("committed:") && !primary) {
-    writeLocalAnonymousEntry(
-      keys[0], shadow.value, Math.max(1, Math.ceil((shadow.expiresAtMs - Date.now()) / 1000))
-    );
-    return { reserved: false, refusal: "network" };
-  }
-  if (primary?.value.startsWith("committed:")) return { reserved: false, refusal: "identity" };
-  if (shadow?.value.startsWith("committed:")) return { reserved: false, refusal: "network" };
-  if (entries.some(Boolean)) return { reserved: false, refusal: "hold" };
   for (const key of keys) {
     writeLocalAnonymousEntry(key, `reserved:${reservationId}`, HOLD_TTL_SECONDS);
   }
@@ -331,16 +397,10 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
         );
         return Number(result) === 1;
       } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
+        failClosedWithoutSharedState(error);
       }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
+    } else {
+      failClosedWithoutSharedState();
     }
 
     const entries = keys.map((key) => readLocalAnonymousEntry(key));
@@ -403,16 +463,10 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
         if (Number(result) === 0) return { status: "available", action: "none" };
         return { status: "conflict", action: "none" };
       } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
+        failClosedWithoutSharedState(error);
       }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
+    } else {
+      failClosedWithoutSharedState();
     }
 
     const entries = keys.map((key) => readLocalAnonymousEntry(key));
@@ -427,28 +481,8 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     return { status: "released", action: "released" };
   },
 
-  async status({ identityHash, shadowHash, monthKey }) {
-    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
-    const redis = getRedisClient();
-
-    if (redis) {
-      try {
-        const value = await redis.eval(INSPECT_SCRIPT, keys, []);
-        return stateFromValue(value).status;
-      } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
-      }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
-    }
-
-    return localState(keys).status;
+  async status(input) {
+    return (await this.inspect(input)).status;
   },
 
   async inspect({ identityHash, shadowHash, monthKey }) {
@@ -456,62 +490,13 @@ export const anonymousGenerationAccessBackend: AnonymousGenerationAccessBackend 
     const redis = getRedisClient();
     if (redis) {
       try {
-        return stateFromValue(await redis.eval(INSPECT_SCRIPT, keys, []));
+        return inspectionFromScriptResult(await redis.eval(INSPECT_SCRIPT, keys, []));
       } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
+        failClosedWithoutSharedState(error);
       }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
+    } else {
+      failClosedWithoutSharedState();
     }
-    return localState(keys);
-  },
-
-  async reconcileCommitted({ identityHash, shadowHash, monthKey, receiptId }) {
-    const keys = ledgerKeys(identityHash, shadowHash, monthKey);
-    const redis = getRedisClient();
-    if (redis) {
-      try {
-        const result = await redis.eval(
-          RECONCILE_COMMITTED_SCRIPT,
-          keys,
-          [receiptId, String(COMMITTED_TTL_SECONDS)]
-        );
-        if (Number(result) === 1) return "committed";
-        if (Number(result) === 2) return "reserved";
-        unavailable();
-      } catch (error) {
-        if (
-          process.env.NODE_ENV === "production"
-          && !allowsExplicitLocalAnonymousAccessFallback()
-        ) unavailable(error);
-      }
-    } else if (
-      process.env.NODE_ENV === "production"
-      && !allowsExplicitLocalAnonymousAccessFallback()
-    ) {
-      unavailable();
-    }
-
-    const entries = keys.map((key) => readLocalAnonymousEntry(key));
-    if (entries.some((entry) => entry?.value.startsWith("committed:"))) {
-      for (const [index, key] of keys.entries()) {
-        if (!entries[index]) {
-          writeLocalAnonymousEntry(key, `committed:${receiptId}`, COMMITTED_TTL_SECONDS);
-        }
-      }
-      return "committed";
-    }
-    const state = localState(keys);
-    if (state.status === "reserved") return "reserved";
-    for (const key of keys) {
-      writeLocalAnonymousEntry(key, `committed:${receiptId}`, COMMITTED_TTL_SECONDS);
-    }
-    return "committed";
+    return localInspection(keys);
   },
 };

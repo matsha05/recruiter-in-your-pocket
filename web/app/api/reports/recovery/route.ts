@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ANONYMOUS_ID_COOKIE, parseAnonymousIdentityCookie } from "@/lib/backend/freeCookie";
-import { hashAnonymousIdentity } from "@/lib/billing/anonymousIdentity";
+import {
+  ANONYMOUS_ID_COOKIE,
+  getCurrentMonthKey,
+  parseAnonymousIdentityCookie,
+} from "@/lib/backend/freeCookie";
+import {
+  anonymousNetworkHashFromRequest,
+  hashAnonymousIdentity,
+} from "@/lib/billing/anonymousIdentity";
+import { hashForLogs, logWarn } from "@/lib/observability/logger";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { createSupabaseServerClient, maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -12,6 +20,7 @@ import {
 } from "@/lib/reports/generated-report-store";
 import { validatedReportReceiptClaim } from "@/lib/reports/report-receipt";
 import {
+  inspectAnonymousReportRecovery,
   loadAnonymousReportClaimTombstone,
   replaceAnonymousReportRecoveryWithClaimTombstone,
   type AnonymousReportClaimLookup,
@@ -20,6 +29,7 @@ import {
   AnonymousReportRecoveryError,
   isAnonymousRecoveryId,
   loadAnonymousReportRecovery,
+  type AnonymousReportRecoveryEnvelope,
 } from "@/lib/reports/anonymous-report-recovery";
 
 export const runtime = "nodejs";
@@ -63,12 +73,37 @@ function isSameOriginMutation(request: NextRequest) {
   return Boolean(origin && expected && origin === expected);
 }
 
+// Terminal: the recovery id is not bound to this browser identity. The browser
+// clears its marker and stops polling.
 function recoveryNotFound() {
   return privateJson({
     ok: false,
     errorCode: "RECOVERY_NOT_FOUND",
     message: "This completed report is not available for this browser identity.",
   }, 404);
+}
+
+// Not terminal: a hold is in flight for this identity, or nothing is stored
+// yet. The browser keeps its marker and polls on its bounded schedule.
+function recoveryPending(recoveryId: string, reason: "generating" | "unknown") {
+  return privateJson({
+    ok: false,
+    recovery_id: recoveryId,
+    status: "pending",
+    reason,
+  }, 202);
+}
+
+// Terminal: the report existed for this browser and will not come back here,
+// because it was saved to an account or its recovery window closed.
+function recoveryGone(errorCode: "RECOVERY_CLAIMED" | "RECOVERY_EXPIRED") {
+  return privateJson({
+    ok: false,
+    errorCode,
+    message: errorCode === "RECOVERY_CLAIMED"
+      ? "This report has already been saved to an account."
+      : "This browser can no longer bring that report back.",
+  }, 410);
 }
 
 function firstRpcRecord(data: unknown): Record<string, unknown> | null {
@@ -170,6 +205,39 @@ async function claimedResponse(
   }, 410);
 }
 
+async function tombstoneAfterClaim(
+  recovery: AnonymousReportRecoveryEnvelope,
+  userId: string,
+  reportId: string,
+): Promise<"created" | "idempotent" | "conflict" | "deferred"> {
+  try {
+    const replacement = await replaceAnonymousReportRecoveryWithClaimTombstone({
+      envelope: recovery,
+      userId,
+      reportId,
+    });
+    if (replacement === "conflict") {
+      logWarn({
+        msg: "recovery.claim.tombstone_conflict",
+        route: "POST /api/reports/recovery",
+        user_id: hashForLogs(userId),
+      });
+    }
+    return replacement;
+  } catch (error) {
+    if (!(error instanceof AnonymousReportRecoveryError)) throw error;
+    // The account already holds the report (step 1). The envelope stays until
+    // a retry tombstones it or its TTL ends.
+    logWarn({
+      msg: "recovery.claim.tombstone_deferred",
+      route: "POST /api/reports/recovery",
+      user_id: hashForLogs(userId),
+      err: { name: error.name, message: error.message, code: error.code },
+    });
+    return "deferred";
+  }
+}
+
 export async function GET(request: NextRequest) {
   const recoveryId = request.nextUrl.searchParams.get("recovery_id");
   if (!isAnonymousRecoveryId(recoveryId)) {
@@ -193,17 +261,29 @@ export async function GET(request: NextRequest) {
   const binding = requestBinding(request);
   if (!binding) return recoveryNotFound();
   try {
-    const recovery = await loadAnonymousReportRecovery({
+    const lookup = await inspectAnonymousReportRecovery({
       recoveryId,
-      ...binding,
+      identityHash: binding.identityHash,
+      shadowHash: anonymousNetworkHashFromRequest(request),
+      monthKey: getCurrentMonthKey(),
     });
-    if (!recovery) return recoveryNotFound();
-    return privateJson({
-      ok: true,
-      recovery_id: recovery.recovery_id,
-      expiresAt: recovery.expires_at,
-      report: recovery.report,
-    });
+    switch (lookup.state) {
+      case "found":
+        return privateJson({
+          ok: true,
+          recovery_id: lookup.envelope.recovery_id,
+          expiresAt: lookup.envelope.expires_at,
+          report: lookup.envelope.report,
+        });
+      case "pending":
+        return recoveryPending(recoveryId, lookup.reason);
+      case "claimed":
+        return recoveryGone("RECOVERY_CLAIMED");
+      case "expired":
+        return recoveryGone("RECOVERY_EXPIRED");
+      default:
+        return recoveryNotFound();
+    }
   } catch (error) {
     const unavailable = error instanceof AnonymousReportRecoveryError;
     return privateJson({
@@ -264,6 +344,17 @@ export async function POST(request: NextRequest) {
     );
     if (!receiptClaim) return recoveryNotFound();
 
+    // Claim order, and why a failure between the two writes converges:
+    // 1. Postgres `claim_anonymous_report_receipt` is the owner record and the
+    //    only write that matters. It is idempotent per receipt: the same
+    //    account gets the same report id back on a retry, another account
+    //    gets "consumed".
+    // 2. The Redis tombstone replaces the envelope so this browser stops
+    //    serving a report that now lives in an account. It is derived from
+    //    step 1, so if it fails or the envelope is gone the claim is still
+    //    complete: answer with the saved report. The next retry runs step 1
+    //    (idempotent) and step 2 again; otherwise the envelope's own TTL
+    //    closes the window.
     const reportId = await persistReceiptValidatedReport({
       admin,
       userId: user.id,
@@ -273,15 +364,10 @@ export async function POST(request: NextRequest) {
       resumeHash: recovery.resume_hash,
       createdAt: recovery.created_at,
     });
-    const replacement = await replaceAnonymousReportRecoveryWithClaimTombstone({
-      envelope: recovery,
-      userId: user.id,
-      reportId,
-    });
+    const replacement = await tombstoneAfterClaim(recovery, user.id, reportId);
     if (replacement === "conflict") {
       const racedClaim = await loadAnonymousReportClaimTombstone(claimBinding);
       if (racedClaim) return await claimedResponse(racedClaim, recoveryId, admin, user.id);
-      throw new AnonymousReportRecoveryError();
     }
     return await claimedResponse({ status: "owned", reportId }, recoveryId, admin, user.id);
   } catch (error: any) {
