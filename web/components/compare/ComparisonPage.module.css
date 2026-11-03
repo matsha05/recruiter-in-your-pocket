@@ -1,0 +1,344 @@
+/* Shares the research article's container and left edge (AnswerArticle.module.css), so the
+   comparison pages belong to the same product as Research. */
+
+.page {
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+}
+
+.inner {
+    max-width: 79.25rem;
+    margin: 0 auto;
+    padding: calc(var(--marketing-header-height-desktop) + 2.5rem) clamp(1.25rem, 5vw, 5.375rem) 5rem;
+}
+
+/* The two names, and the straight answer about who each is for */
+
+.opening {
+    margin-top: 2.5rem;
+}
+
+.title {
+    max-width: 16ch;
+    margin: 0;
+    text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+.answerGrid {
+    max-width: 40rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.75rem;
+}
+
+.answer {
+    margin: 0;
+    color: hsl(var(--pen));
+    text-wrap: pretty;
+    font: var(--type-verdict);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 2rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-label);
+}
+
+/* Side by side */
+
+.tableSection {
+    margin-top: 4rem;
+}
+
+.sectionTitle {
+    margin: 0;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.25rem;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: left;
+    font: var(--type-small);
+}
+
+/* The first column holds the row label; the tools' columns share the rest equally. */
+.table thead th:first-child {
+    width: 10rem;
+}
+
+.table th,
+.table td {
+    vertical-align: top;
+    padding: 1rem 1.25rem 1rem 0;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.table thead th {
+    padding-top: 0;
+    border-top: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.table tbody th {
+    color: hsl(var(--text-muted));
+    font: var(--type-label);
+    padding-top: 1.125rem;
+}
+
+.table td {
+    color: hsl(var(--text-muted));
+    text-wrap: pretty;
+}
+
+.table td:last-child {
+    padding-right: 0;
+    color: hsl(var(--text-strong));
+}
+
+/* On a phone the table becomes a list: the row's label, then each tool's cell under its name. */
+@media (max-width: 767px) {
+    .table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table th,
+    .table td {
+        display: block;
+        width: auto;
+    }
+
+    .table tr {
+        border-top: 1px solid hsl(var(--line));
+        padding: 1.125rem 0 0.5rem;
+    }
+
+    .table th,
+    .table td {
+        border-top: 0;
+        padding: 0 0 0.875rem;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 0.125rem;
+        color: hsl(var(--text-strong));
+        font: var(--type-label);
+    }
+
+    .table tbody th {
+        padding-top: 0;
+    }
+}
+
+/* The sections a searcher came for */
+
+.body {
+    max-width: 52ch;
+    margin-top: 2rem;
+}
+
+.prose {
+    margin-top: 3.5rem;
+}
+
+.proseTitle {
+    margin: 0;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+.proseBody {
+    margin: 1.25rem 0 0;
+    color: hsl(var(--text-muted));
+    text-wrap: pretty;
+    font: var(--type-prose);
+}
+
+/* The one turn to the report, after "When Recruiter in Your Pocket is the better choice" */
+
+.bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin: 2.5rem 0 0;
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-sheet);
+    background: hsl(var(--card));
+    padding: 1.5rem 1.75rem;
+}
+
+.bridgeTitle {
+    margin: 0;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.bridgeBody {
+    margin: 0.5rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-body);
+}
+
+/* Sections after the body */
+
+.section {
+    margin-top: 5rem;
+}
+
+.sources {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 46rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    color: hsl(var(--text-muted));
+    list-style: none;
+    font: var(--type-small);
+}
+
+.sources li {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    margin: 0 -0.5rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.sourceNumber {
+    color: hsl(var(--text-muted));
+}
+
+.others {
+    max-width: 46rem;
+    margin-top: 1rem;
+}
+
+.otherRow {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    min-height: 3.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 0.875rem 0;
+    color: hsl(var(--text-strong));
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease);
+}
+
+.otherRow:hover {
+    color: hsl(var(--pen));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .otherRow { transition: none; }
+}
+
+.otherName {
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.otherSummary {
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+/* The hub's "How to choose" rows lead with a sentence, so the first column is wider. */
+.chooseRow {
+    grid-template-columns: 18rem minmax(0, 1fr) auto;
+}
+
+@media (max-width: 639px) {
+    .otherRow,
+    .chooseRow {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .otherName {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .otherRow svg {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .otherSummary {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-top: -0.5rem;
+    }
+}
+
+/* How we compare */
+
+.method {
+    max-width: 46rem;
+    margin-top: 4rem;
+    border-radius: var(--radius-inset);
+    background: hsl(var(--secondary));
+    padding: 1.25rem 1.5rem;
+}
+
+.methodTitle {
+    margin: 0;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.methodBody {
+    max-width: 54ch;
+    margin: 0.375rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+/* The turn back to your own resume */
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 2rem;
+}
+
+.closeTitle {
+    margin: 0;
+    max-width: 22ch;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+@media (max-width: 639px) {
+    .close {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
