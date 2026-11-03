@@ -7,9 +7,11 @@ import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
+import type { LineSource } from "@/lib/reports/line-answers";
 import {
   answeredValues,
   composeRevisedLine,
+  describeRefusal,
   liftSourceLine,
   liftState,
   revisedLinePolicy,
@@ -37,6 +39,26 @@ export interface LiftChange {
   line?: string;
 }
 
+/** Answers kept with a saved report, lined up with today's questions by `liftAnswersFromStored`. */
+export interface LiftInitial {
+  answers: LiftAnswer[];
+  line: string | null;
+  source: LineSource;
+}
+
+/** The question a fix asks when the report gave it none. */
+export const DEFAULT_LIFT_QUESTION = "What would you add to this line?";
+
+/** What to keep with the report when the answers or the chosen line change. Resolves false when it wasn't kept. */
+export interface LiftPersist {
+  /** The questions as shown, in order, so the answers can be matched back by text. */
+  questions: string[];
+  answers: LiftAnswer[];
+  line: string | null;
+  source: LineSource;
+}
+export type LiftPersistHandler = (change: LiftPersist) => Promise<boolean> | boolean | void;
+
 /** Why the full resume line isn't here, so the note under the line can say so accurately. */
 export type ResumeSource = "attached" | "recovered" | "saved" | "sample";
 
@@ -59,6 +81,8 @@ export function LineLift({
   onChange,
   onReattach,
   polishContext,
+  initial,
+  onPersist,
 }: {
   excerpt: string;
   /** The resume, when this visit has it (or the candidate pasted it back). */
@@ -71,16 +95,23 @@ export function LineLift({
   onReattach?: (text: string) => string | null;
   /** The report this line belongs to, so the server can offer a smoother line. Absent on the sample. */
   polishContext?: RevisedLinePolishRequest["context"];
+  /** Answers kept with a saved report (W3). */
+  initial?: LiftInitial;
+  /** Keeps the answers and the chosen line with the saved report. Absent when there is nowhere to keep them. */
+  onPersist?: LiftPersistHandler;
 }) {
-  const asked = questions.length > 0 ? questions : ["What would you add to this line?"];
+  const asked = useMemo(() => (questions.length > 0 ? questions : [DEFAULT_LIFT_QUESTION]), [questions]);
   // Answers are kept by question, so a report still streaming in can add questions without losing any.
-  const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>({});
+  const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>(() => {
+    if (!initial) return {};
+    return Object.fromEntries(asked.map((question, index) => [question, initial.answers[index] ?? { kind: "open" }]).filter(([, answer]) => (answer as LiftAnswer).kind !== "open"));
+  });
   const askedKey = asked.join("\n");
   const answers = useMemo<LiftAnswer[]>(
     () => askedKey.split("\n").map((question) => byQuestion[question] ?? { kind: "open" }),
     [byQuestion, askedKey],
   );
-  const [edited, setEdited] = useState<string | null>(null);
+  const [edited, setEdited] = useState<string | null>(initial?.source === "edited" ? initial.line : null);
   const [editing, setEditing] = useState(false);
   const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -98,7 +129,9 @@ export function LineLift({
 
   // Guarded polish: the literal line shows at once; a smoother one replaces it only if it passes the guard.
   const [polished, setPolished] = useState<{ literal: string; line: string } | null>(null);
-  const [useExact, setUseExact] = useState(false);
+  const [useExact, setUseExact] = useState(initial?.source === "literal");
+  // A kept polished line shows at once; the server is asked again only when the answers change.
+  const [keptPolish] = useState<string | null>(initial?.source === "polished" ? initial.line : null);
   const reportId = polishContext?.reportId;
   const recoveryId = polishContext?.recoveryId;
   useEffect(() => {
@@ -120,7 +153,7 @@ export function LineLift({
       controller.abort();
     };
   }, [allResolved, answers, composed, edited, excerpt, polished?.literal, recoveryId, reportId, sourceLine.line]);
-  const polishedLine = polished && polished.literal === composed ? polished.line : null;
+  const polishedLine = polished && polished.literal === composed ? polished.line : (keptPolish && composed && initial?.answers && answeredValues(initial.answers).join("\n") === answeredValues(answers).join("\n") ? keptPolish : null);
   const showPolished = edited === null && Boolean(polishedLine) && !useExact;
 
   const line = edited ?? (showPolished ? polishedLine! : composed);
@@ -131,7 +164,7 @@ export function LineLift({
         { sourceLine: sourceLine.line, answers: answeredValues(answers), literal: composed, polished: line },
         { allowJoiners: POLISH_ALLOWS_JOINERS },
       );
-      return { copyable: check.ok, newFacts: [] as string[] };
+      return { copyable: check.ok, newFacts: [] as string[], refusal: undefined };
     }
     return revisedLinePolicy({ resumeText, excerpt, line, answers });
   }, [answers, composed, excerpt, line, resumeText, showPolished, sourceLine.line]);
@@ -143,6 +176,27 @@ export function LineLift({
 
   useEffect(() => { onChange?.({ state, line: copyableLine }); }, [copyableLine, onChange, state]);
   useEffect(() => { if (editing) editRef.current?.focus(); }, [editing]);
+
+  // Keep the answers with the saved report once they settle (W3). Nothing is kept until something is answered.
+  const [kept, setKept] = useState<"idle" | "saving" | "kept" | "failed">(initial ? "kept" : "idle");
+  const lineSource: LineSource = edited !== null ? "edited" : showPolished ? "polished" : "literal";
+  // Only a line whose facts check out is kept; a refused edit keeps the answers and drops the line.
+  const persistKey = JSON.stringify({ answers, line: copyableLine ?? null, lineSource });
+  const lastPersisted = useRef<string | null>(initial ? persistKey : null);
+  useEffect(() => {
+    if (!onPersist) return;
+    if (answers.every((answer) => answer.kind === "open")) return;
+    if (lastPersisted.current === persistKey) return;
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      lastPersisted.current = persistKey;
+      setKept("saving");
+      Promise.resolve(onPersist({ questions: asked, answers, line: copyableLine ?? null, source: lineSource }))
+        .then((ok) => { if (!cancelled) setKept(ok === false ? "failed" : "kept"); })
+        .catch(() => { if (!cancelled) setKept("failed"); });
+    }, 1500);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [answers, asked, copyableLine, lineSource, onPersist, persistKey]);
 
   const setAnswer = (index: number, next: LiftAnswer) => {
     setByQuestion((current) => ({ ...current, [asked[index]]: next }));
@@ -183,7 +237,7 @@ export function LineLift({
   const written = answeredValues(answers);
 
   return (
-    <div className={styles.lift} data-testid="line-lift" data-state={state}>
+    <div className={styles.lift} data-testid="line-lift" data-state={state} data-kept={onPersist ? kept : undefined}>
       <LiftedTrace items={traceItems} progress={progress} ariaLabel="From your line to a revised line" className={styles.liftTrace} compact />
 
       <p className={styles.liftLead}>
@@ -285,9 +339,14 @@ export function LineLift({
               ? edited === null
                 ? showPolished ? "Every word is from your resume or your answers." : "Every word is from your resume or your answers. Reword it however you like."
                 : "Your wording. The facts all come from your line or your answers."
-              : policy?.newFacts.length
-                ? `“${policy.newFacts.join("”, “")}” isn't in your line or your answers. If it's true, add it as an answer first.`
-                : "This changes a detail from your resume. Edit it back to what's true to copy it."}
+              : describeRefusal(policy?.refusal) || "This changes a detail from your resume. Edit it back to what's true to copy it."}
+          </p>
+        )}
+        {copyableLine && onPersist && kept !== "idle" && (
+          <p className={styles.revisedNote} data-testid="line-kept" aria-live="polite">
+            {kept === "kept" ? "Kept with this report. It will be here when you come back, and in the PDF."
+              : kept === "saving" ? "Keeping this with your report…"
+                : "We couldn't keep this with your report just now. Copy the line to be safe."}
           </p>
         )}
         {edited === null && polishedLine && (

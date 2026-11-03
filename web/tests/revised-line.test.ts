@@ -8,10 +8,12 @@ import { criticalCountHeading, fixLabel, missingFromResume, readCriticalMisses, 
 import { resolveRewriteCopyPolicy } from "../lib/reports/report-presentation";
 import {
   composeRevisedLine,
+  describeRefusal,
   liftQuestions,
   liftSourceLine,
   liftState,
   marginNoteFromFix,
+  nearestAllowedWord,
   revisedLinePolicy,
   type LiftAnswer,
 } from "../lib/reports/revised-line";
@@ -104,6 +106,46 @@ const invented = edit("Helped oversee recruitment for engineering and sales, scr
 assert.equal(invented.copyable, false);
 assert.deepEqual(invented.newFacts, ["55", "Google"], "a new number or name is named back to the candidate");
 assert.equal(revisedLinePolicy({ resumeText: hrResume, excerpt: hrExcerpt, line: "", answers: [] }).copyable, false, "an empty line is never copyable");
+
+// ============================================
+// W3: the guard explains itself, and pure additions are never refused
+// ============================================
+
+// Daniel (Nov 2 walk): three true answers under "Responsible for developing features…" were refused by the
+// responsibility-binding check, which the composition waiver did not cover. Every binding class is waived now.
+const danielResume = [
+  "DANIEL OKAFOR", "", "EXPERIENCE", "Software Engineering Intern, Cardinal Health, Dublin, OH", "May 2025 - August 2025",
+  "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+  "- Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+  "- Wrote unit tests to improve code quality and reliability",
+].join("\n");
+const danielExcerpt = "Responsible for developing features for an internal inventory management web application using React and Spring Boot";
+const typedBy = (value: string): LiftAnswer => ({ kind: "answered", value });
+const danielAnswers: LiftAnswer[] = [
+  typedBy("3 features used by about 40 warehouse staff"),
+  typedBy("manual stock checks went from daily to weekly"),
+  typedBy("the inventory web app used by 40 warehouse staff"),
+];
+const danielLine = composeRevisedLine(liftSourceLine(danielExcerpt, danielResume).line, danielAnswers)!;
+const danielPolicy = revisedLinePolicy({ resumeText: danielResume, excerpt: danielExcerpt, line: danielLine, answers: danielAnswers });
+assert.ok(danielPolicy.copyable, `true answers added to the line are never refused (${JSON.stringify(danielPolicy.issues)})`);
+assert.equal(danielPolicy.refusal, undefined);
+
+// A refusal names what it objects to, in the candidate's words, and says what to do.
+assert.deepEqual(invented.refusal, { kind: "new_fact", tokens: ["55", "Google"] });
+assert.equal(describeRefusal(invented.refusal), "“55”, “Google” isn't in your line or your answers. If it's true, add it as an answer first.");
+assert.equal(describeRefusal({ kind: "new_word", tokens: ["app"], nearest: ["application"] }),
+  "“app” isn't in your line or your answers, but “application” is. Use the word you wrote, or add the new one as an answer.");
+assert.equal(describeRefusal({ kind: "new_word", tokens: ["synergy"] }), "“synergy” isn't in your line or your answers. Use the words you wrote, or add it as an answer.");
+assert.equal(describeRefusal({ kind: "lost_fact", tokens: ["35%"] }), "“35%” from your line is missing. Put it back, or keep the line as it was.");
+assert.equal(describeRefusal({ kind: "binding", tokens: [] }), "We can't tell which part of your line the new words belong to. Use my exact words, or add them as an answer.");
+assert.equal(describeRefusal(undefined), "");
+assert.equal(describeRefusal({ kind: "empty", tokens: [] }), "");
+assert.equal(revisedLinePolicy({ resumeText: hrResume, excerpt: hrExcerpt, line: "", answers: [] }).refusal?.kind, "empty");
+assert.equal(nearestAllowedWord("app", "an internal inventory management web application"), "application");
+assert.equal(nearestAllowedWord("warehous", "about 40 warehouse staff"), "warehouse");
+assert.equal(nearestAllowedWord("55", "40 warehouse staff"), undefined, "numbers have no nearest word");
+assert.equal(nearestAllowedWord("led", "Helped oversee recruitment"), undefined);
 
 // ============================================
 // States

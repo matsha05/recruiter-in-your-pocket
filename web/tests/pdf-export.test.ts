@@ -179,6 +179,20 @@ assert.doesNotMatch(renderedHtml, /Leave these alone|Start here/, "retired names
 assert.doesNotMatch(renderedHtml, /What stays unclear/, "gaps already surface as the Critical Miss and fixes; the PDF must not repeat them");
 // The sample has no drafts (D3), so the draft layout is checked on a copy with one source-bound draft.
 const criticalLine = sampleReport.top_fixes[0].evidence.excerpt;
+// W3: the reader's revised line, kept with the saved report, prints under its marked line.
+const withAnswers = normalizeReportForPdf(sampleReport, {
+  "0": { answers: [{ question: "What changed?", kind: "answered", text: "renewal churn fell from 9% to 6%" }], line: "Introduced monthly renewal-risk reviews across the portfolio: renewal churn fell from 9% to 6%.", source: "literal", updated_at: "2026-11-02T20:00:00.000Z" },
+  "2": { answers: [{ question: "Scope?", kind: "not_mine" }], line: null, source: "literal", updated_at: "2026-11-02T20:00:00.000Z" },
+});
+assert.equal(withAnswers?.top_fixes?.[0]?.revised, "Introduced monthly renewal-risk reviews across the portfolio: renewal churn fell from 9% to 6%.");
+assert.equal(withAnswers?.top_fixes?.[1]?.revised, undefined, "a fix without a kept line prints none");
+assert.equal(withAnswers?.top_fixes?.[2]?.revised, undefined, "a cleared line prints none");
+const answersHtml = renderReportHtml(withAnswers!);
+assert.ok(answersHtml.includes("Your revised line"), "the PDF labels the revised line");
+assert.ok(answersHtml.includes("renewal churn fell from 9% to 6%"), "the PDF prints the kept line");
+assert.equal(normalizeReportForPdf(sampleReport, "garbage")?.top_fixes?.[0]?.revised, undefined, "a malformed column prints nothing and breaks nothing");
+assert.ok(!renderedHtml.includes("Your revised line"), "no kept line, no label");
+
 const draftHtml = renderReportHtml(normalizeReportForPdf({
   ...sampleReport,
   rewrites: [{

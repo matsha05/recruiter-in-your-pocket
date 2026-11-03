@@ -141,7 +141,14 @@ The same order: Verdict, band (name, bar, anchor; no number), "Fix these three f
   - Paid decision's two confirmation cases stop at the purchase page.
   - The internal-route 404 check fails because this build allows internal pages for the lab.
 
-## Not done here
+## The answer you can keep (W3, Nov 2026)
 
-- The revised line in the PDF. The export rebuilds the report from the server's validated copy, so session edits don't reach it.
+Built after the Nov 2 walk (`docs/design/2026-11-bar.md`), where a reader's three true answers were refused with "This changes a detail from your resume" and no word named, and where every answer vanished on reload.
+
+- **The guard explains itself.** `revisedLinePolicy` returns a `refusal` (`new_fact`, `new_word` with the nearest allowed word, `lost_fact`, `binding`, `empty`, `source`) and `describeRefusal` turns it into the sentence under the line. Every message ends on what to do and none suggests adding something untrue.
+- **Pure additions are never refused.** The exact composition waives every binding class (metric, direction, responsibility, unresolved), not only two of them. An edited line is still refused only for a new protected fact.
+- **Answers persist with the saved report.** `reports.line_answers` (migration 024) holds, per fix position, the answers as typed, the chosen line and its source (literal, polished, edited). `PATCH /api/reports/:id/answers` writes it for the owner (service role, after an owner check through the reader's own session; 8 KB; 120 an hour); `GET /api/reports/:id` returns it; the report restores it by question text, so a reworded question starts fresh. Only reports with a row of their own persist, which means signed-in reports; the sample and anonymous reports keep today's in-tab behavior.
+- **The PDF prints the revised line** under its marked line ("Your revised line"), from the same column.
+
+## Not done here
 - Usability sessions (6.2) for "most participants produce a line they'd use".

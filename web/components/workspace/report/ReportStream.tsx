@@ -8,6 +8,7 @@ import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { bracketPlaceholderKeys } from "@/lib/llm/report-placeholder-policy";
 import { resolveUniqueSourceLine } from "@/lib/llm/source-fidelity";
 import { readAnonymousReportRecoveryMarker } from "@/lib/reports/anonymous-report-recovery-client";
+import { liftAnswersFromStored, sendLineAnswers, storedAnswersFromLift, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
@@ -30,7 +31,7 @@ import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
 import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
-import type { LiftChange, ResumeSource } from "./markup/LineLift";
+import { DEFAULT_LIFT_QUESTION, type LiftChange, type LiftPersist, type ResumeSource } from "./markup/LineLift";
 import { CriticalMissRow, FixRow, PageNote, excerptOf, marksLine } from "./markup/MarkedRows";
 import { ScoreBand } from "./markup/ScoreBand";
 import { hiddenFixesKey, useHiddenFixes } from "./markup/useHiddenFixes";
@@ -53,6 +54,8 @@ interface ReportStreamProps {
   resumeText?: string;
   /** Why the resume may be missing: a saved report never keeps it; a reloaded one lost it. */
   resumeSource?: ResumeSource;
+  /** The reader's answers kept with a saved report, keyed by fix position (W3). */
+  storedLineAnswers?: StoredLineAnswersByFix | null;
 }
 
 /**
@@ -75,6 +78,7 @@ export function ReportStream({
   onStartReport,
   resumeText,
   resumeSource,
+  storedLineAnswers = null,
 }: ReportStreamProps) {
   // One disposition per resume line and each observation once, shared with the PDF. Critical Misses lead.
   const integrity = useMemo(() => reconcileReport(withCriticalFirst(report)), [report]);
@@ -119,12 +123,12 @@ export function ReportStream({
   const revisable = criticals.flatMap((fix, index) => (marksLine(fix) ? [index] : []));
   const allAddressed = revisable.length > 0 && revisable.every((index) => lifts[index]?.state === "addressed");
 
-  const questionsFor = (index: number) => {
+  const questionsFor = useCallback((index: number) => {
     const asked = liftQuestions(integrity.fixQuestions[index] || []);
     if (asked.length > 0) return asked;
     const draft = presentation.fixes[index]?.rewrite?.better || "";
     return liftQuestions(bracketPlaceholderKeys(draft).map(questionForPlaceholder));
-  };
+  }, [integrity.fixQuestions, presentation.fixes]);
 
   const firstState = lifts[0]?.state;
   useEffect(() => {
@@ -147,6 +151,16 @@ export function ReportStream({
     setRecoveryId(readAnonymousReportRecoveryMarker()?.recoveryId);
   }, [isSample, reportId, report]);
   const polishContext = isSample ? undefined : reportId ? { reportId } : recoveryId ? { recoveryId } : undefined;
+
+  // Answers are kept with the report when it has a row of its own, which only a signed-in report does (W3).
+  const askedFor = (index: number) => { const asked = questionsFor(index); return asked.length > 0 ? asked : [DEFAULT_LIFT_QUESTION]; };
+  const liftInitial = (index: number) => liftAnswersFromStored(storedLineAnswers?.[String(index)], askedFor(index)) ?? undefined;
+  const persistHandlers = useMemo(() => (!reportId || isSample ? [] : [0, 1, 2].map((index) => (change: LiftPersist) => sendLineAnswers(reportId, {
+    fix_index: index,
+    answers: storedAnswersFromLift(change.questions, change.answers),
+    line: change.line,
+    source: change.source,
+  }))), [isSample, reportId]);
 
   const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach, polishContext };
 
@@ -184,6 +198,8 @@ export function ReportStream({
               onLiftChange={liftHandlers[index]}
               liftState={lifts[index]?.state ?? "open"}
               questions={questionsFor(index)}
+              initial={liftInitial(index)}
+              onPersist={persistHandlers[index]}
               feedback={isSample || index > 0 ? undefined : {
                 question: "Was this the right thing to fix first?",
                 onSubmit: ({ right, note }) => sendReportFeedback({
@@ -230,6 +246,8 @@ export function ReportStream({
                 onRestore={() => hiddenFixes.restore(index)}
                 onUnlock={handleUnlock}
                 questions={questionsFor(index)}
+                initial={liftInitial(index)}
+                onPersist={persistHandlers[index]}
                 {...liftProps}
               />
             );

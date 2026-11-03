@@ -23,7 +23,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Report output + resume preview",
     purpose: "So you can open past reports, compare versions, inspect evidence excerpts, and export.",
-    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, and any job description you add until you delete the report or account.",
+    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type under a Critical Miss with the revised line built from them, until you delete the report or account.",
     userControl: "Anonymous recovery expires automatically. Delete saved reports in Reports, or delete your account in Settings.",
     processor: "Upstash, Supabase"
   },
@@ -102,7 +102,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 export const TRUST_PROMISES = [
   "Your upload is encrypted in transit.",
   "Completed anonymous report output can be recovered in the same browser for up to 24 hours, but is not saved to an account automatically. RIYP does not store the raw anonymous resume or job description.",
-  "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
+  "Signed-in reports save report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type under a Critical Miss with the revised line built from them. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
   "The band summarizes this resume review. It doesn’t predict interviews or offers.",

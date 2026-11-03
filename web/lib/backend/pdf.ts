@@ -75,6 +75,7 @@ export function renderReportHtml(report: ReportForPdf) {
           ${fix.section ? `<div class="marked-section">${escapeHtml(fix.section)}</div>` : ""}
           ${missing ? `<div class="marked-missing${miss ? " miss" : ""}">${escapeHtml(missing)}</div>`
             : miss ? `<div class="marked-line"><span class="miss-mark">${line}</span></div>` : `<div class="marked-line ink">${line}</div>`}
+          ${fix.revised ? `<div class="marked-revised"><div class="marked-revised-label">Your revised line</div><div class="marked-revised-text">${escapeHtml(fix.revised)}</div><div class="marked-revised-note">Built from your line and your answers.</div></div>` : ""}
         </div>
         <div>
           <div class="marked-label${miss ? " miss" : ""}">${label}</div>

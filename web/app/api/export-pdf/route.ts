@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
       return res;
     }
     const { data: stored, error: reportError } = await supabase.from("reports")
-      .select("report_json, evidence_version, evidence_json")
+      .select("report_json, evidence_version, evidence_json, line_answers")
       .eq("id", exportRequest.report_id)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -89,7 +89,8 @@ export async function POST(request: NextRequest) {
     const trustedReport = stored
       ? parseTrustedStoredReport(stored.report_json, stored.evidence_version, stored.evidence_json, user.id)
       : null;
-    const payload = trustedReport ? normalizeReportForPdf(trustedReport) : null;
+    // The reader's revised lines print with their marked lines (W3).
+    const payload = trustedReport ? normalizeReportForPdf(trustedReport, stored?.line_answers) : null;
 
     if (!payload) {
       const res = NextResponse.json(

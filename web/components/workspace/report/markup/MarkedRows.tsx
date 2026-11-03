@@ -10,7 +10,7 @@ import { marginNoteFromFix } from "@/lib/reports/revised-line";
 import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish";
 import { cn } from "@/lib/utils";
 import type { ReportData } from "../ReportTypes";
-import { LineLift, type LiftChange, type ResumeSource } from "./LineLift";
+import { LineLift, type LiftChange, type LiftInitial, type LiftPersistHandler, type ResumeSource } from "./LineLift";
 import { MissFeedback, type MissFeedbackValue } from "./MissFeedback";
 import styles from "./MarkedReport.module.css";
 
@@ -57,6 +57,10 @@ interface LiftProps {
   questions: string[];
   onReattach?: (text: string) => string | null;
   polishContext?: RevisedLinePolishRequest["context"];
+  /** Answers kept with a saved report, so the revised line survives a reload (W3). */
+  initial?: LiftInitial;
+  /** Keeps the answers with the saved report as they change. Absent on the sample and anonymous reports. */
+  onPersist?: LiftPersistHandler;
 }
 
 /** A hidden suggestion keeps its place in the page; after Hide, focus lands on "Bring it back". */

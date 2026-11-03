@@ -95,19 +95,112 @@ export function composeRevisedLine(sourceLine: string, answers: readonly LiftAns
   return `${base}: ${values.join("; ")}.`;
 }
 
+/**
+ * Why Copy is off, in terms the candidate can act on (W3: the guard names its objection).
+ *
+ * - `new_fact`: a number, a name or a tracked claim ("led") that is in neither the line nor an answer.
+ * - `new_word`: a word that is in neither; `nearest` holds the closest word that is, when one exists
+ *   ("web app" when the line says "web application").
+ * - `lost_fact`: a number or name from the original line that the edit dropped.
+ * - `binding`: the guard can't tell which action a metric or result in the edited line belongs to.
+ * - `empty`: nothing to copy. `source`: the line can't be checked against the resume.
+ */
+export type RevisedLineRefusal = {
+  kind: "new_fact" | "new_word" | "lost_fact" | "binding" | "empty" | "source";
+  /** The offending words, in the candidate's spelling. */
+  tokens: string[];
+  /** For `new_word`: the word from the line or the answers each token most resembles, when any. */
+  nearest?: string[];
+};
+
 export type RevisedLinePolicy = RewriteCopyPolicy & {
   /** The line is the resume line and the answers, unedited. */
   composed: boolean;
   /** Numbers, names or claims in an edited line that aren't in the line or the answers. */
   newFacts: string[];
+  /** Set when `copyable` is false; absent otherwise. */
+  refusal?: RevisedLineRefusal;
 };
 
-const isRelationshipIssue = (issue: RewriteCopyPolicy["issues"][number]) => (
-  issue.code === "unsupported_content" && /relationship binding|direction binding/u.test(issue.detail)
+/**
+ * The relationship checks (metric, direction, responsibility and unresolved bindings) refuse a quarter of
+ * real fix lines unchanged, so they are waived for the exact composition, which adds words but moves none.
+ */
+const isBindingIssue = (issue: RewriteCopyPolicy["issues"][number]) => (
+  issue.code === "unsupported_content" && /\bbinding:/u.test(issue.detail)
 );
 
 function factsIn(issue: RewriteCopyPolicy["issues"][number]) {
   return issue.detail.replace(/^unsupported (?:bracket )?facts:\s*/u, "").split(/,\s*/u).filter(Boolean);
+}
+
+function listIn(issue: RewriteCopyPolicy["issues"][number], prefix: RegExp) {
+  return issue.detail.replace(prefix, "").split(/,\s*/u).map((item) => item.trim()).filter(Boolean);
+}
+
+/** The words of a line or an answer, as typed, for naming the nearest allowed word. */
+function typedWords(text: string) {
+  return (text.normalize("NFKC").match(/[\p{L}\p{N}][\p{L}\p{N}'’&+-]*/gu) || []);
+}
+
+/**
+ * The allowed word an unsupported token most resembles: the same first four letters, or one that
+ * contains the other. "app" finds "application"; "warehous" finds "warehouse"; "55" finds nothing.
+ */
+export function nearestAllowedWord(token: string, allowedText: string): string | undefined {
+  const needle = token.toLocaleLowerCase();
+  if (!/\p{L}/u.test(needle)) return undefined;
+  const candidates = [...new Set(typedWords(allowedText))];
+  const scored = candidates
+    .map((word) => ({ word, key: word.toLocaleLowerCase() }))
+    .filter(({ key }) => key !== needle && key.length >= 3 && (
+      key.startsWith(needle) || needle.startsWith(key) || (needle.length >= 4 && key.slice(0, 4) === needle.slice(0, 4))
+    ))
+    .sort((a, b) => Math.abs(a.key.length - needle.length) - Math.abs(b.key.length - needle.length));
+  return scored[0]?.word;
+}
+
+function refusalFor(issues: RewriteCopyPolicy["issues"], allowedText: string): RevisedLineRefusal {
+  const newFacts = issues.filter((issue) => issue.code === "unsupported_fact").flatMap(factsIn);
+  if (newFacts.length) return { kind: "new_fact", tokens: [...new Set(newFacts)] };
+  const lost = issues.filter((issue) => issue.code === "dropped_fact" && issue.detail.startsWith("dropped source facts"))
+    .flatMap((issue) => listIn(issue, /^dropped source facts:\s*/u));
+  if (lost.length) return { kind: "lost_fact", tokens: [...new Set(lost)] };
+  const unsupported = issues.filter((issue) => issue.code === "unsupported_content" && issue.detail.startsWith("unsupported content"))
+    .flatMap((issue) => listIn(issue, /^unsupported content:\s*/u));
+  if (unsupported.length) {
+    const tokens = [...new Set(unsupported)];
+    const nearest = tokens.map((token) => nearestAllowedWord(token, allowedText)).filter((word): word is string => Boolean(word));
+    return { kind: "new_word", tokens, ...(nearest.length ? { nearest: [...new Set(nearest)] } : {}) };
+  }
+  if (issues.some(isBindingIssue)) return { kind: "binding", tokens: [] };
+  const droppedContent = issues.filter((issue) => issue.code === "dropped_fact").flatMap((issue) => listIn(issue, /^dropped source content:\s*/u));
+  if (droppedContent.length) return { kind: "lost_fact", tokens: [...new Set(droppedContent)] };
+  if (issues.some((issue) => issue.code.startsWith("source_"))) return { kind: "source", tokens: [] };
+  return { kind: "binding", tokens: [] };
+}
+
+/** The sentence under the line when Copy is off. Every message ends on what to do; none suggests adding anything untrue. */
+export function describeRefusal(refusal: RevisedLineRefusal | undefined): string {
+  if (!refusal) return "";
+  const quote = (tokens: string[]) => tokens.map((token) => `“${token}”`).join(", ");
+  switch (refusal.kind) {
+    case "new_fact":
+      return `${quote(refusal.tokens)} isn't in your line or your answers. If it's true, add it as an answer first.`;
+    case "new_word":
+      return refusal.nearest?.length
+        ? `${quote(refusal.tokens)} isn't in your line or your answers, but ${quote(refusal.nearest)} is. Use the word you wrote, or add the new one as an answer.`
+        : `${quote(refusal.tokens)} isn't in your line or your answers. Use the words you wrote, or add it as an answer.`;
+    case "lost_fact":
+      return `${quote(refusal.tokens)} from your line is missing. Put it back, or keep the line as it was.`;
+    case "binding":
+      return "We can't tell which part of your line the new words belong to. Use my exact words, or add them as an answer.";
+    case "source":
+      return "This line can't be checked against your resume here. Paste your resume back in to work on it.";
+    case "empty":
+    default:
+      return "";
+  }
 }
 
 /**
@@ -130,25 +223,33 @@ export function revisedLinePolicy(input: {
   line: string;
   answers: readonly LiftAnswer[];
 }): RevisedLinePolicy {
-  if (!input.line.trim()) return { copyable: false, reason: "unsafe", issues: [], composed: false, newFacts: [] };
+  if (!input.line.trim()) return { copyable: false, reason: "unsafe", issues: [], composed: false, newFacts: [], refusal: { kind: "empty", tokens: [] } };
   const source = liftSourceLine(input.excerpt, input.resumeText);
+  const values = answeredValues(input.answers);
   const composed = composeRevisedLine(source.line, input.answers) === input.line;
   const policy = resolveRewriteCopyPolicy({
     sourceText: source.full ? input.resumeText : source.line,
     original: source.line,
     draft: input.line,
-    verifiedFacts: answeredValues(input.answers).map((value, index) => ({ key: `answer-${index + 1}`, value })),
+    verifiedFacts: values.map((value, index) => ({ key: `answer-${index + 1}`, value })),
   });
-  if (policy.copyable || policy.reason !== "unsafe") return { ...policy, composed, newFacts: [] };
-  if (composed) {
-    return policy.issues.every(isRelationshipIssue)
-      ? { copyable: true, reason: "ready", issues: [], composed, newFacts: [] }
-      : { ...policy, composed, newFacts: [] };
+  if (policy.copyable) return { ...policy, composed, newFacts: [] };
+  const allowedText = [source.line, ...values].join("\n");
+  if (policy.reason !== "unsafe") {
+    return { ...policy, composed, newFacts: [], refusal: policy.reason === "source_unavailable" ? { kind: "source", tokens: [] } : { kind: "new_fact", tokens: [] } };
   }
-  const newFacts = policy.issues.filter((issue) => issue.code === "unsupported_fact").flatMap(factsIn);
-  return newFacts.length === 0
-    ? { copyable: true, reason: "ready", issues: [], composed, newFacts }
-    : { ...policy, composed, newFacts };
+  if (composed) {
+    // Nothing was moved or reworded, so only the binding checks can fire, and they are waived.
+    return policy.issues.every(isBindingIssue)
+      ? { copyable: true, reason: "ready", issues: [], composed, newFacts: [] }
+      : { ...policy, composed, newFacts: [], refusal: refusalFor(policy.issues, allowedText) };
+  }
+  // An edit may reword, reorder and drop words freely; only a new protected fact (a number, a name, a
+  // tracked claim such as "led") has to arrive through an answer first.
+  const blocking = policy.issues.filter((issue) => issue.code === "unsupported_fact");
+  if (blocking.length === 0) return { copyable: true, reason: "ready", issues: [], composed, newFacts: [] };
+  const refusal = refusalFor(blocking, allowedText);
+  return { ...policy, composed, newFacts: refusal.tokens, refusal };
 }
 
 /** Whether a written answer is still in the line (the candidate may have edited it). */

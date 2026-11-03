@@ -1,6 +1,7 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
 import { withCriticalFirst } from "./report-presentation";
+import { parseStoredLineAnswers } from "./line-answers";
 import { reconcileReport } from "./report-integrity";
 
 export type ReportForPdf = {
@@ -19,7 +20,9 @@ export type ReportForPdf = {
    * `line` is the quoted resume line the fix marks, and `section` where it sits. `critical` is the
    * severity check's flag, Critical Misses first; a report without flags leaves it out.
    */
-  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string; critical?: boolean }>;
+  top_fixes?: Array<{ fix?: string; why?: string; questions?: string[]; line?: string; section?: string; critical?: boolean;
+    /** The reader's revised line, kept with the saved report (W3); printed under the marked line. */
+    revised?: string }>;
   /** More than three Critical Misses; set only with three flagged. */
   more_critical?: boolean;
   /** Structural gaps shown in the opening read. */
@@ -197,8 +200,9 @@ function deriveNextSteps(
   return asStringArray(report.gaps).slice(0, 4);
 }
 
-export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
+export function normalizeReportForPdf(report: unknown, lineAnswers?: unknown): ReportForPdf | null {
   if (!report || typeof report !== "object") return null;
+  const storedAnswers = parseStoredLineAnswers(lineAnswers);
 
   const candidate = report as Record<string, unknown>;
   const score = clampScore(candidate.score);
@@ -228,6 +232,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
       line: excerpt?.replace(/^[-•*]\s+/u, "") || undefined,
       section: (typeof fix.evidence === "object" ? fix.evidence?.section : undefined) || fix.section_ref || undefined,
       ...(typeof fix.critical === "boolean" ? { critical: fix.critical } : {}),
+      ...(storedAnswers?.[String(index)]?.line ? { revised: storedAnswers[String(index)].line as string } : {}),
     };
   });
   const normalized: ReportForPdf = {

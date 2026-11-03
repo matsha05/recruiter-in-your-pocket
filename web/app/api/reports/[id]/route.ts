@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { logError } from "@/lib/observability/logger";
+import { parseStoredLineAnswers } from "@/lib/reports/line-answers";
 import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
 export const runtime = "nodejs";
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant")
+      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant, line_answers")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -67,7 +68,9 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       report: { ...trustedReport, report_id: reportId },
       jdPreview: data.job_description_text?.slice(0, 200) || null,
       targetRole: data.target_role || null,
-      resumeVariant: data.resume_variant || null
+      resumeVariant: data.resume_variant || null,
+      // The reader's own answers under each Critical Miss, so the revised line survives a reload (W3).
+      lineAnswers: parseStoredLineAnswers(data.line_answers),
     });
   } catch (error: any) {
     logError({ msg: "reports.detail_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to fetch report", code: error?.code } });
