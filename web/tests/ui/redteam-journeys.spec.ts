@@ -191,7 +191,7 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision).toContainText("Everything in your free report is yours. Nothing is held back.");
     await expect(purchaseDecision).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
-    await expect(purchaseDecision).toContainText("5 more reports, good for 30 days. No automatic renewal.");
+    await expect(purchaseDecision).toContainText("5 more reports, good for 90 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
     const reportPaywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");

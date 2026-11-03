@@ -58,7 +58,7 @@ const structuredData = {
           "@type": "Offer",
           price: "29",
           priceCurrency: "USD",
-          description: "Five additional resume reports over 30 days. One payment of $29, with no automatic renewal.",
+          description: "Five additional resume reports over 90 days. One payment of $29, with no automatic renewal.",
         },
       ],
     },

@@ -167,7 +167,8 @@ Any pricing or paywall surface must make three things obvious:
 
 Preferred phrasing:
 - `Your first report is free.`
-- `The Job Search Pass includes five additional reports for $29, valid for 30 days, with no automatic renewal.`
+- `The Job Search Pass includes five additional reports for $29, valid for 90 days, with no automatic renewal.` (90 days since November 2, 2026)
+- `PDF export and saved reports come with signing in, not with the pass.` The pass is for re-checks and other jobs; it is never sold as the way to get a PDF.
 
 Do not imply the free report has shallower feedback. Saved history requires sign-in. Paid PDF exports remain available through the valid paid period even after all report credits are used.
 

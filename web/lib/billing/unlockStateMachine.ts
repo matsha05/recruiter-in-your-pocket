@@ -48,7 +48,7 @@ const UI_TITLES: Record<UnlockUiStatus, string> = {
 const UI_MESSAGES = {
   checking: "Checking your payment…",
   pending: "Payment received. Turning on your pass…",
-  unlocked: "5 more reports, good for 30 days.",
+  unlocked: "5 more reports, good for 90 days.",
   missing: "This link doesn't identify a purchase. Use Restore access with the email you entered at checkout.",
   checkout_incomplete: "Checkout is not complete yet. If you closed Stripe early, restart checkout.",
   not_paid: "We haven't received payment confirmation yet. Check your receipt or use Restore access.",

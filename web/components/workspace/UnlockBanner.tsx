@@ -85,7 +85,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                     Your Job Search Pass is ready.
                                 </h3>
                                 <p className="text-sm text-muted-foreground">
-                                    Five more reports, good for 30 days. Spend one on your revision, or on a job you actually want.
+                                    Five more reports, good for 90 days. Spend one on your revision, or on a job you actually want.
                                 </p>
                             </div>
 

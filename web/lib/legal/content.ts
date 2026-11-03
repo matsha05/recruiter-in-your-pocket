@@ -88,7 +88,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Receipt,
             title: "One payment, no renewal",
-            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 30 days, with no automatic renewal.",
+            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 90 days, with no automatic renewal.",
           },
           {
             icon: Trash,
@@ -250,7 +250,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
+            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 90 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
             { type: "link", label: "Restore access", href: "/purchase/restore" },
             { type: "text", value: " before contacting Support." },
           ],
@@ -373,11 +373,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What is the Job Search Pass?",
-                a: "One $29 payment for five more complete reports, plus PDF exports. Use them to check a revision or read your resume against a job. The pass expires 30 days after purchase and never renews automatically.",
+                a: "One $29 payment for five more complete reports. Use them to check a revision or read your resume against a job. The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.",
               },
               {
                 q: "What happens after I use all five reports?",
-                a: "You can keep opening your saved reports. PDF exports remain available until the pass expires, even after all five reports are used. Refunded or revoked passes no longer include exports. Another report requires a new pass or available free access.",
+                a: "You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. Another report requires a new pass or available free access.",
               },
               {
                 q: "How do I restore access and get receipts?",
