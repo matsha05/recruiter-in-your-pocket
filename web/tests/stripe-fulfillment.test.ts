@@ -55,7 +55,7 @@ assert.equal(isCheckoutPaymentSettled("unpaid"), false);
 const purchaseCreated = Date.parse("2026-04-01T12:00:00.000Z") / 1000;
 const anchoredPass = getTierDefaultsForCheckout("30d", { created: purchaseCreated } as any);
 assert.equal(anchoredPass.purchasedAt, "2026-04-01T12:00:00.000Z");
-assert.equal(anchoredPass.expiresAt, "2026-05-01T12:00:00.000Z");
+assert.equal(anchoredPass.expiresAt, "2026-06-30T12:00:00.000Z", "the Job Search Pass runs 90 days from checkout");
 assert.equal(anchoredPass.usesRemaining, 5);
 assert.equal(
   isPassActive({ tier: "30d", uses_remaining: 5, expires_at: "2099-01-01T00:00:00.000Z", revoked_at: "2026-04-02T00:00:00.000Z" }),

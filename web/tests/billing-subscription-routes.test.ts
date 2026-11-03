@@ -201,7 +201,7 @@ async function run() {
       };
       lookupFails = true;
       assert.equal((await call()).status, 200, `${route} still fulfills the one-time offer without a subscription lookup`);
-      assert.equal(passes[0].expires_at, new Date((nowUnix + 30 * 86_400) * 1000).toISOString());
+      assert.equal(passes[0].expires_at, new Date((nowUnix + 90 * 86_400) * 1000).toISOString(), "the one-time pass runs 90 days from the session");
       assert.equal(passes[0].uses_remaining, 5);
     }
 
