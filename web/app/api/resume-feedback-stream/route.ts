@@ -27,7 +27,7 @@ import { reportPreview } from "@/lib/reports/report-preview";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
-import { classifyReportFailure, latencyBucketFor, recordLaunchSignal } from "@/lib/observability/launchSignals";
+import { classifyReportFailure, latencyBucketFor, recordLaunchSignal, stageStopwatch } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -66,6 +66,8 @@ export async function POST(request: Request) {
     const { method, path } = routeLabel(request);
     const route = `${method} ${path}`;
     const startedAt = Date.now();
+    // Where the wait goes, per stage, as Sentry distributions (monitoring.md, "The wait").
+    const stages = stageStopwatch({ endpoint: "stream", viewer: () => (user ? "signed_in" : "anonymous") }, () => Date.now());
     logInfo({ msg: "http.request.started", request_id, route, method, path });
     const cookieStore = await cookies();
     const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
@@ -388,6 +390,7 @@ export async function POST(request: Request) {
                     recovery_id: anonymousRecoveryId,
                 }) + "\n"));
 
+                stages.lap("gates");
                 const { messages, model, canonicalResumeText } = await prepareResumeStreamPrompt({
                     text,
                     mode,
@@ -397,6 +400,7 @@ export async function POST(request: Request) {
                     userIdForLogs: user_id,
                 });
                 await markGenerationProviderCallStarted(grantedReservation);
+                stages.lap("prompt");
                 sendStage("reading");
                 const maxIncompleteRetries = 1;
                 for (let streamAttempt = 0; streamAttempt <= maxIncompleteRetries; streamAttempt++) {
@@ -441,6 +445,7 @@ export async function POST(request: Request) {
                     }
                 }
                 throwIfClientDisconnected();
+                stages.lap("model");
 
                 sendStage("checking");
                 const validated = await validateResumeStreamOutput({
@@ -455,6 +460,8 @@ export async function POST(request: Request) {
                     validationOptions: effectiveJobDescription.validationOptions,
                     signal: generationController.signal,
                 });
+                if (validated.repairMs) stages.record("repair", validated.repairMs);
+                stages.lap("validation");
                 let anonymousRecovery: Awaited<ReturnType<typeof finalizeAnonymousGeneratedReport>> | null = null;
                 if (validated.replacementRaw) {
                     accumulatedJson = validated.replacementRaw;
@@ -465,7 +472,7 @@ export async function POST(request: Request) {
                 // screen may show these now. Informational, like a stage: only "complete" is the report.
                 sendPreview(validated.payload);
                 // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
-                const { payload } = await severityCheckReport({
+                const { payload, outcome: severity } = await severityCheckReport({
                     payload: validated.payload,
                     mode,
                     resumeText: canonicalResumeText,
@@ -475,6 +482,12 @@ export async function POST(request: Request) {
                     ctx: { request_id, route, user_id },
                     onStage: sendStage,
                 });
+                if (severity) {
+                    const call = severity.call_latency_ms ?? severity.latency_ms;
+                    stages.record("severity_call", call, severity.outcome === "error" ? "failed" : "ok");
+                    stages.record("severity_merge", Math.max(0, severity.latency_ms - call));
+                }
+                stages.skip();
                 throwIfClientDisconnected();
                 if (user && mode === "resume" && grantedReservation.entitlementKind !== "bypass") {
                     if (!reservationAdmin) throw new Error("Report finalization is unavailable.");
@@ -512,6 +525,7 @@ export async function POST(request: Request) {
                     await commitGenerationAccess(grantedReservation, reservationAdmin);
                     reservationCommitted = true;
                 }
+                stages.lap("finalize");
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
                 const newFreeRemaining = freeUsesRemaining;
@@ -537,6 +551,7 @@ export async function POST(request: Request) {
                     failure: "none",
                     latency_bucket: latencyBucketFor(startedAt),
                 });
+                stages.total("ok");
                 controller.close();
                 logInfo({
                     msg: "http.request.completed",
@@ -583,6 +598,7 @@ export async function POST(request: Request) {
                     error_code: String(code),
                     latency_bucket: latencyBucketFor(startedAt),
                 });
+                stages.total("failed");
                 if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
                     captureOperationalError(err, {
                         operation: "generation.resume_feedback_stream",

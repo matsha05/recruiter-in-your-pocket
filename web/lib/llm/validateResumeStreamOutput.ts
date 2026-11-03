@@ -58,7 +58,7 @@ export async function validateResumeStreamOutput(input: {
         validateResumeModelPayload(parsedJson, input.text, input.validationOptions)
       );
     }
-    return { payload, replacementRaw: null as string | null };
+    return { payload, replacementRaw: null as string | null, repairMs: 0 };
   } catch (error: any) {
     if (input.mode !== "resume" || !isRepairableResumeResponseError(error)) {
       logError({
@@ -92,6 +92,7 @@ export async function validateResumeStreamOutput(input: {
       },
     });
 
+    const repairStartedAt = Date.now();
     try {
       const repaired = await runJson<any>({
         ctx: {
@@ -118,7 +119,7 @@ export async function validateResumeStreamOutput(input: {
         route: input.route,
         user_id: input.userIdForLogs,
       });
-      return { payload, replacementRaw: repaired.raw };
+      return { payload, replacementRaw: repaired.raw, repairMs: Date.now() - repairStartedAt };
     } catch (repairError: any) {
       if (isStableOpenAITransportError(repairError)) throw repairError;
       recordLaunchSignal("riyp.report.repair", { result: "failed" });

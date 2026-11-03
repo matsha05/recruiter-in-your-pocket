@@ -12,12 +12,21 @@ const counted: Array<{ name: string; value: number; attributes: Record<string, s
 sentry.metrics.count = (name: string, value: number, options: { attributes: Record<string, string> }) => {
   counted.push({ name, value, attributes: options.attributes });
 };
+const timed: Array<{ name: string; value: number; unit?: string; attributes: Record<string, string> }> = [];
+sentry.metrics.distribution = (name: string, value: number, options: { unit?: string; attributes: Record<string, string> }) => {
+  timed.push({ name, value, unit: options.unit, attributes: options.attributes });
+};
 
 const {
   classifyReportFailure,
   confirmStepFor,
   latencyBucketFor,
   recordLaunchSignal,
+  recordStageTiming,
+  REPORT_STAGE_METRIC,
+  REPORT_STAGES,
+  sanitizeStageTiming,
+  stageStopwatch,
   restoreStepFor,
   sanitizeLaunchSignal,
 } = require("../lib/observability/launchSignals") as typeof import("../lib/observability/launchSignals");
@@ -125,6 +134,41 @@ async function main() {
   assert.equal(restoreStepFor(401, { restored: 0 }), null);
   assert.equal(restoreStepFor(429, { restored: 0 }), null);
   assert.equal(restoreStepFor(503, { restored: 0 }), "restore_failed");
+
+  // Stage timings: a closed set of stages, milliseconds only, and a stopwatch that records laps.
+  assert.deepEqual([...REPORT_STAGES], ["gates", "prompt", "model", "validation", "repair", "severity_call", "severity_merge", "finalize", "total"]);
+  assert.deepEqual(
+    sanitizeStageTiming("model", 41234.6, { endpoint: "stream", outcome: "ok", viewer: "anonymous", report_id: "x", request_id: "y" }),
+    { stage: "model", ms: 41235, attributes: { stage: "model", endpoint: "stream", outcome: "ok", viewer: "anonymous" } },
+    "only the closed attributes survive; ids never do",
+  );
+  assert.equal(sanitizeStageTiming("thinking", 10, {}), null, "a stage outside the list is dropped");
+  assert.equal(sanitizeStageTiming("model", Number.NaN, {}), null);
+  assert.equal(sanitizeStageTiming("model", -5, {}), null);
+  recordStageTiming("validation", 92, { endpoint: "stream", outcome: "ok" });
+  recordStageTiming("thinking" as never, 92, { endpoint: "stream", outcome: "ok" });
+  assert.deepEqual(timed.splice(0), [{ name: REPORT_STAGE_METRIC, value: 92, unit: "millisecond", attributes: { stage: "validation", endpoint: "stream", outcome: "ok" } }]);
+  let clock = 1_000;
+  const watch = stageStopwatch({ endpoint: "stream", viewer: () => "signed_in" }, () => clock);
+  clock = 1_250; watch.lap("gates");
+  clock = 1_300; watch.lap("prompt");
+  clock = 61_300; watch.lap("model");
+  clock = 61_400; watch.record("repair", 30_000);
+  watch.lap("validation");
+  watch.record("severity_call", 7_000, "failed");
+  clock = 70_000; watch.skip();
+  clock = 70_400; watch.lap("finalize");
+  watch.total("ok");
+  assert.deepEqual(timed.splice(0).map((entry) => [entry.attributes.stage, entry.value, entry.attributes.outcome, entry.attributes.viewer]), [
+    ["gates", 250, "ok", "signed_in"],
+    ["prompt", 50, "ok", "signed_in"],
+    ["model", 60_000, "ok", "signed_in"],
+    ["repair", 30_000, "ok", "signed_in"],
+    ["validation", 100, "ok", "signed_in"],
+    ["severity_call", 7_000, "failed", "signed_in"],
+    ["finalize", 400, "ok", "signed_in"],
+    ["total", 69_400, "ok", "signed_in"],
+  ], "laps measure from the previous lap; recorded stages and skips do not move the clock except skip");
 
   // Recording works outside a request, sends one unsampled count, and logs without tripping the PII guard.
   const logged: string[] = [];

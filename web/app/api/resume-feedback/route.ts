@@ -37,7 +37,7 @@ import {
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
-import { classifyReportFailure, latencyBucketFor, recordLaunchSignal } from "@/lib/observability/launchSignals";
+import { classifyReportFailure, latencyBucketFor, recordLaunchSignal, recordStageTiming } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -319,7 +319,7 @@ export async function POST(request: Request) {
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
       // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
-      ({ payload } = await severityCheckReport({
+      const severity = await severityCheckReport({
         payload,
         mode,
         resumeText: canonicalResumeText,
@@ -327,7 +327,13 @@ export async function POST(request: Request) {
         signal: request.signal,
         endpoint: "json",
         ctx: { request_id, route, user_id },
-      }));
+      });
+      payload = severity.payload;
+      if (severity.outcome) {
+        const call = severity.outcome.call_latency_ms ?? severity.outcome.latency_ms;
+        recordStageTiming("severity_call", call, { endpoint: "json", outcome: severity.outcome.outcome === "error" ? "failed" : "ok", viewer: reportSignal.viewer });
+        recordStageTiming("severity_merge", Math.max(0, severity.outcome.latency_ms - call), { endpoint: "json", outcome: "ok", viewer: reportSignal.viewer });
+      }
     }
 
     let reportId: string | null = null;
@@ -400,6 +406,7 @@ export async function POST(request: Request) {
     recordLaunchSignal("riyp.report.outcome", {
       ...reportSignal, endpoint: "json", outcome: "completed", failure: "none", latency_bucket: latencyBucketFor(startedAt),
     });
+    recordStageTiming("total", Date.now() - startedAt, { endpoint: "json", outcome: "ok", viewer: reportSignal.viewer });
 
     if (accessReservation.anonymousCookieMeta) {
       res.cookies.set(
@@ -443,6 +450,7 @@ export async function POST(request: Request) {
         error_code: String(code),
         latency_bucket: latencyBucketFor(startedAt),
       });
+      recordStageTiming("total", Date.now() - startedAt, { endpoint: "json", outcome: "failed", viewer: reportSignal.viewer });
     }
 
     if (
