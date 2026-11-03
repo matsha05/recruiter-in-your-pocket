@@ -11,6 +11,7 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const SECTION_NAMES = {
   "/research": "Research",
   "/resources": "After the offer",
+  "/compare": "Compared with other tools",
 } as const;
 
 /** Matches the canonical tag Next.js renders, so the homepage has no trailing slash. */

@@ -53,6 +53,14 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/resources/tech-offer-negotiation", updated: "2026-11-01", published: "2026-01-01", card: "tech-offer-negotiation" },
   { path: "/resources/tools/comp-calculator", updated: "2026-10-31", published: "2026-01-01", card: "comp-calculator" },
 
+  // Comparisons with other resume tools (components/compare/comparisons.tsx). Bump `updated` when a
+  // tool's price or plan changes, in the same change as PRICES_CHECKED.
+  { path: "/compare", updated: "2026-11-03" },
+  { path: "/compare/topresume", updated: "2026-11-03", published: "2026-11-03" },
+  { path: "/compare/jobscan", updated: "2026-11-03", published: "2026-11-03" },
+  { path: "/compare/resume-worded", updated: "2026-11-03", published: "2026-11-03" },
+  { path: "/compare/teal", updated: "2026-11-03", published: "2026-11-03" },
+
   // /trust and /security redirect to /privacy, /faq and /support to /help (lib/seo/retired-routes.json).
   { path: "/privacy", updated: "2026-11-02" },
   // Folded into Privacy and Help on Nov 2, 2026 (Matt's M6). Engine adds the redirects in next.config.mjs;

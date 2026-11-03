@@ -87,6 +87,7 @@ export const FOOTER_NAV: FooterNavGroup[] = [
             { label: "Pricing", href: "/pricing" },
             ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
             { label: "How the report works", href: "/methodology" },
+            { label: "Compared with other tools", href: "/compare" },
         ],
     },
     {

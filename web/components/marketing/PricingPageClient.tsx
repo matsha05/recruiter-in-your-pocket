@@ -284,6 +284,16 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     </div>
                 </section>
 
+                <section className="px-6 pt-12 md:px-8 md:pt-16" aria-labelledby="pricing-compare-title">
+                    <div className="mx-auto max-w-marketing border-b border-line pb-10 md:pb-14">
+                        <h2 id="pricing-compare-title" className="font-display text-heading">Weighing other tools?</h2>
+                        <p className="mt-2 max-w-reading text-lg text-muted-foreground">
+                            A writer, a keyword scanner, a builder, and a recruiter&rsquo;s read are different purchases.{" "}
+                            <Link href="/compare" className="font-semibold riyp-link">See how we compare with TopResume, Jobscan, Resume Worded, and Teal</Link>, with each one&rsquo;s own prices.
+                        </p>
+                    </div>
+                </section>
+
                 <section className="px-6 py-12 md:px-8 md:py-16">
                     <div className="mx-auto flex max-w-marketing flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div>
