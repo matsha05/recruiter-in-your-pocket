@@ -100,7 +100,13 @@ async function verifyRevokedPassAccess(db) {
     const reservation = await begin(owner);
     assert.equal(reservation.allowed, true);
     await revokeWithoutChangingCreditsOrExpiry(passId);
-    await assert.rejects(() => finalize(owner, reservation.reservation_id), /generation pass was revoked or is unavailable/i);
+    // A revoked finite pass has zero credits after migration 025, so finalize
+    // fails at the credit decrement; a revoked unlimited pass fails at the
+    // revocation guard. Either way the transaction rolls back.
+    await assert.rejects(
+      () => finalize(owner, reservation.reservation_id),
+      /generation pass was revoked or is unavailable|pass credit commit conflict/i,
+    );
     const state = await db.query(`
       SELECT r.status, p.uses_remaining,
         (SELECT count(*)::integer FROM public.reports WHERE user_id = $1) AS reports
@@ -108,8 +114,11 @@ async function verifyRevokedPassAccess(db) {
       JOIN public.passes p ON p.id = r.pass_id
       WHERE r.id = $2
     `, [owner, reservation.reservation_id]);
-    assert.deepEqual(state.rows[0], { status: "reserved", uses_remaining: 1, reports: 0 },
-      "revocation during generation rolls back both report insertion and credit mutation");
+    // Migration 025 zeroes credits on revocation, so the credit column no
+    // longer distinguishes a rolled-back decrement; the hold and the absent
+    // report still show the finalization rolled back.
+    assert.deepEqual(state.rows[0], { status: "reserved", uses_remaining: 0, reports: 0 },
+      "revocation during generation rolls back report insertion and leaves the hold reserved");
   }
 
   for (const tier of ["monthly", "30d"]) {
@@ -121,14 +130,26 @@ async function verifyRevokedPassAccess(db) {
     `, [owner, reservationId]);
     assert.equal((await reserveIdeas()).rows[0].result.allowed, true);
     await revokeWithoutChangingCreditsOrExpiry(passId);
-    await assert.rejects(() => asService(db, `
-      SELECT public.commit_generation_access($1::uuid, $2::uuid)
-    `, [owner, reservationId]), /generation pass was revoked or is unavailable/i);
+    const commitIdeas = () => asService(db, `
+      SELECT public.commit_generation_access($1::uuid, $2::uuid) AS result
+    `, [owner, reservationId]);
+    let expectedHold;
+    if (tier === "monthly") {
+      await assert.rejects(commitIdeas, /generation pass was revoked or is unavailable/i);
+      expectedHold = "reserved";
+    } else {
+      // Migration 025 zeroes credits on revocation, so the legacy ideas commit
+      // finds no credit to spend and releases the hold as a conflict instead
+      // of reaching the revocation guard. Either way nothing is granted.
+      assert.deepEqual((await commitIdeas()).rows[0].result, { ok: false, status: "released" });
+      expectedHold = "released";
+    }
     const state = await db.query(`
       SELECT r.status, p.uses_remaining FROM private.generation_access_reservations r
       JOIN public.passes p ON p.id = r.pass_id WHERE r.id = $1
     `, [reservationId]);
-    assert.deepEqual(state.rows[0], { status: "reserved", uses_remaining: 1 });
+    assert.deepEqual(state.rows[0], { status: expectedHold, uses_remaining: 0 },
+      "a revoked pass keeps zero credits and the hold never commits");
     const retriedIdeas = (await reserveIdeas()).rows[0].result;
     assert.equal(retriedIdeas.allowed, false, "reusing a revoked ideas hold cannot authorize another provider run");
     assert.equal(retriedIdeas.status, "released");

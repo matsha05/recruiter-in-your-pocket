@@ -245,7 +245,12 @@ type CheckoutStep = (typeof LAUNCH_SIGNALS)["riyp.checkout.step"]["step"][number
 export function confirmStepFor(status: number, body: { state?: unknown } | null): CheckoutStep | null {
   if (status >= 500) return "confirm_failed";
   if (body?.state === "unlocked") return "confirm_unlocked";
-  if (body?.state === "not_paid" || body?.state === "checkout_incomplete") return "confirm_incomplete";
+  if (
+    body?.state === "not_paid"
+    || body?.state === "checkout_incomplete"
+    || body?.state === "access_revoked"
+    || body?.state === "pass_expired"
+  ) return "confirm_incomplete";
   return null;
 }
 

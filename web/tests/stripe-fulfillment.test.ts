@@ -231,15 +231,18 @@ for (const source of fulfillmentRouteSources) {
 assert.match(fulfillmentRouteSources[2], /claimStripeEvent/);
 assert.match(fulfillmentRouteSources[2], /completeStripeEvent/);
 assert.match(fulfillmentRouteSources[0], /billing_entitlement_blocks/);
-assert.match(fulfillmentRouteSources[0], /status: "reversed"/);
+assert.match(fulfillmentRouteSources[0], /access_revoked/);
 assert.match(fulfillmentRouteSources[0], /This purchase is no longer eligible for access/);
 assert.match(fulfillmentRouteSources[1], /billing_entitlement_blocks/);
-assert.match(fulfillmentRouteSources[2], /billing_entitlement_blocks/);
+assert.match(fulfillmentRouteSources[2], /revokeCheckoutEntitlements/);
 assert.match(fulfillmentRouteSources[2], /EntitlementBlockedError/);
 assert.match(fulfillmentRouteSources[2], /rejectStripeEvent/);
 assert.match(fulfillmentRouteSources[2], /entitlement_blocked:/);
-assert.match(fulfillmentRouteSources[1], /getTierDefaultsForCheckout/);
-assert.match(fulfillmentRouteSources[2], /getTierDefaultsForCheckout/);
+for (const source of fulfillmentRouteSources) {
+  assert.match(source, /buildCheckoutPassInput/, "every grant derives the pass from the approved offer the same way");
+  assert.match(source, /fulfillCheckoutPass/, "every grant goes through the atomic lifecycle transition");
+  assert.doesNotMatch(source, /from\("passes"\)\s*\.insert/, "no route inserts a pass directly");
+}
 
 const migration016 = fs.readFileSync(
   path.join(process.cwd(), "database", "migrations", "016_billing_reversals_and_deletion_safety.sql"),
