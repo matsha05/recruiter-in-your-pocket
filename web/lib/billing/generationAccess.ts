@@ -1,3 +1,4 @@
+import { withDeadline } from "../backend/deadline";
 import crypto from "node:crypto";
 import {
   FREE_RUN_LIMIT,
@@ -60,6 +61,11 @@ const anonymousCookieMetaAfterCommit = new WeakMap<
   AnonymousFreeCookieMeta
 >();
 
+// Reserving access is one round trip; past this the person is told access is unavailable rather than left waiting.
+export const ACCESS_RESERVE_DEADLINE_MS = 10_000;
+/** What happened and what to do, in the house voice: plain, on our side, next step. */
+export const ACCESS_UNAVAILABLE_MESSAGE = "We can't check report access right now. The problem is on our side. Give it a minute and try again.";
+
 export function isMockGenerationProviderEnabled() {
   return TRUE_VALUES.has(String(process.env.USE_MOCK_OPENAI || "").trim().toLowerCase());
 }
@@ -80,7 +86,7 @@ export function assertGenerationAccessDependencies(input: {
   if (!input.authClientAvailable || !input.adminClientAvailable) {
     throw new GenerationAccessError(
       "ACCESS_DEPENDENCY_UNAVAILABLE",
-      "Report access is temporarily unavailable. Please try again in a moment."
+      ACCESS_UNAVAILABLE_MESSAGE
     );
   }
 }
@@ -96,7 +102,7 @@ export function assertGenerationAuthLookup(error: unknown) {
 
   throw new GenerationAccessError(
     "ACCESS_DEPENDENCY_UNAVAILABLE",
-    "Report access is temporarily unavailable. Please try again in a moment."
+    ACCESS_UNAVAILABLE_MESSAGE
   );
 }
 
@@ -131,12 +137,12 @@ function unavailableFromRpc(
       ? "ACCESS_COMMIT_FAILED"
       : "ACCESS_RELEASE_FAILED";
 
-  return new GenerationAccessError(
-    code,
-    `Report access could not be ${operation === "reserve" ? "reserved" : operation === "commit" ? "confirmed" : "released"}. Please try again.`,
-    503,
-    accessConsumed
-  );
+  const message = operation === "reserve"
+    ? "We couldn't set aside a report for you just now. Nothing was used. Try again in a minute."
+    : operation === "commit"
+      ? "Your report finished, but we couldn't confirm it against your account. Check My reports before running it again."
+      : "We couldn't give that report back cleanly. Check My reports before running it again.";
+  return new GenerationAccessError(code, message, 503, accessConsumed);
 }
 
 export async function reserveGenerationAccess(input: {
@@ -151,6 +157,8 @@ export async function reserveGenerationAccess(input: {
   randomUUID?: () => string;
   operationId?: string | null;
   requestDigest?: string | null;
+  /** How long the ledger or RPC may take before access is refused as unavailable. */
+  deadlineMs?: number;
 }): Promise<GenerationAccessReservation> {
   const now = input.now || (() => new Date());
   const randomUUID = input.randomUUID || (() => crypto.randomUUID());
@@ -196,23 +204,23 @@ export async function reserveGenerationAccess(input: {
     if (!anonymousIdentityHash || !anonymousShadowHash) {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
-        "Report access is temporarily unavailable. Please try again in a moment."
+        ACCESS_UNAVAILABLE_MESSAGE
       );
     }
 
     const reservationId = randomUUID();
     let ledgerResult: Awaited<ReturnType<typeof anonymousGenerationAccessBackend.reserveWithReason>>;
     try {
-      ledgerResult = await anonymousGenerationAccessBackend.reserveWithReason({
+      ledgerResult = await withDeadline(anonymousGenerationAccessBackend.reserveWithReason({
         identityHash: anonymousIdentityHash,
         shadowHash: anonymousShadowHash,
         monthKey: anonymousMonthKey,
         reservationId,
-      });
+      }), input.deadlineMs ?? ACCESS_RESERVE_DEADLINE_MS, () => new Error("Anonymous ledger did not answer in time"));
     } catch {
       throw new GenerationAccessError(
         "ACCESS_DEPENDENCY_UNAVAILABLE",
-        "Report access is temporarily unavailable. Please try again in a moment."
+        ACCESS_UNAVAILABLE_MESSAGE
       );
     }
 
@@ -259,7 +267,7 @@ export async function reserveGenerationAccess(input: {
   if (!input.admin) {
     throw new GenerationAccessError(
       "ACCESS_DEPENDENCY_UNAVAILABLE",
-      "Report access is temporarily unavailable. Please try again in a moment."
+      ACCESS_UNAVAILABLE_MESSAGE
     );
   }
 
@@ -273,18 +281,23 @@ export async function reserveGenerationAccess(input: {
     throw unavailableFromRpc("reserve");
   }
   const requestedReservationId = operationId ? null : randomUUID();
-  const { data, error } = operationId
-    ? await input.admin.rpc("begin_generation_operation", {
-      p_user_id: input.userId,
-      p_operation_id: operationId,
-      p_report_kind: input.reportKind,
-      p_request_digest: requestDigest,
-    })
-    : await input.admin.rpc("reserve_generation_access", {
-      p_user_id: input.userId,
-      p_reservation_id: requestedReservationId,
-      p_report_kind: input.reportKind,
-    });
+  // A reservation that never answers fails closed here, before the model call: nothing is consumed.
+  const { data, error } = await withDeadline(
+    Promise.resolve(operationId
+      ? input.admin.rpc("begin_generation_operation", {
+        p_user_id: input.userId,
+        p_operation_id: operationId,
+        p_report_kind: input.reportKind,
+        p_request_digest: requestDigest,
+      })
+      : input.admin.rpc("reserve_generation_access", {
+        p_user_id: input.userId,
+        p_reservation_id: requestedReservationId,
+        p_report_kind: input.reportKind,
+      })),
+    input.deadlineMs ?? ACCESS_RESERVE_DEADLINE_MS,
+    () => unavailableFromRpc("reserve"),
+  );
 
   if (error) throw unavailableFromRpc("reserve", error);
 

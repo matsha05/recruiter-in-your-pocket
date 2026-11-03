@@ -14,14 +14,14 @@ interface ReportTOCProps {
     hasRole?: boolean;
 }
 
+// On phones the visible text is the short label; the rest of the name is read, not shown, so what a
+// voice-control user says ("Fix") is the start of the name the button announces (WCAG 2.5.3).
 const REPORT_TOC_ITEMS = [
     { id: "section-first-impression", label: "Overview", mobileLabel: "Overview" },
     { id: "section-fixes", label: "Fix these first", mobileLabel: "Fix" },
     { id: "section-keep", label: "Keep these", mobileLabel: "Keep" },
     { id: "section-role", label: "Role fit", mobileLabel: "Role fit" },
 ] as const;
-
-const GRID_COLUMNS = ["", "grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4"];
 
 export function ReportTOC({ activeId, hasKeep = true, hasRole = true }: ReportTOCProps) {
     const items = React.useMemo(
@@ -34,19 +34,20 @@ export function ReportTOC({ activeId, hasKeep = true, hasRole = true }: ReportTO
 
     return (
         <LayoutGroup id={layoutId}>
-            <nav ref={navRef} aria-label="Resume report sections" className={cn("mx-auto grid w-full gap-x-1", GRID_COLUMNS[items.length], " sm:flex sm:items-center sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden")}>
+            <nav ref={navRef} aria-label="Resume report sections" className="flex min-w-0 flex-1 items-center gap-x-1 sm:flex-none sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {items.map((item) => {
                     const active = selectedId === item.id;
+                    const hiddenRest = item.label.startsWith(item.mobileLabel) ? item.label.slice(item.mobileLabel.length) : ` ${item.label}`;
                     return (
                         <button
                             type="button"
                             ref={(element) => { buttonRefs.current[item.id] = element; }}
                             key={item.id}
+                            data-section={item.id}
                             onClick={() => handleScroll(item.id)}
-                            aria-label={item.label}
                             aria-current={active ? "location" : undefined}
                             className={cn(
-                                "focus-ring relative min-h-11 w-full rounded-lg px-1 text-xs font-semibold transition-colors duration-fast ease-snap motion-reduce:transition-none sm:w-auto sm:shrink-0 sm:snap-start sm:px-4 sm:text-sm",
+                                "focus-ring relative min-h-11 min-w-11 flex-1 rounded-lg px-1 text-xs font-semibold transition-colors duration-fast ease-snap motion-reduce:transition-none sm:flex-none sm:snap-start sm:px-4 sm:text-sm",
                                 active ? "text-brand" : "text-muted-foreground hover:bg-proof hover:text-foreground"
                             )}
                         >
@@ -58,7 +59,7 @@ export function ReportTOC({ activeId, hasKeep = true, hasRole = true }: ReportTO
                                     transition={reducedMotion ? { duration: 0 } : UI_TRANSITION}
                                 />
                             )}
-                            <span className="relative sm:hidden">{item.mobileLabel}</span>
+                            <span className="relative sm:hidden">{item.mobileLabel}<span className="sr-only">{hiddenRest}</span></span>
                             <span className="relative hidden sm:inline">{item.label}</span>
                         </button>
                     );

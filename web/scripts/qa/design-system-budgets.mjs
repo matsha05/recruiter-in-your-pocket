@@ -9,7 +9,8 @@ const require = createRequire(import.meta.url);
 // weights 400-800, and nine builds of the dark pill. Each budget is the ceiling after consolidation:
 // lower it when debt is paid down; raising one is a design decision recorded in docs/design-system.md.
 export const STYLE_BUDGETS = {
-  textRoles: 11,
+  // Eleven roles (Nov 1), plus verdict-lead (Nov 2): the Verdict's first sentence on the report's first screen.
+  textRoles: 12,
   // primary, secondary, quiet, destructive, and destructiveFinal (filled only on the last irreversible step).
   buttonVariants: 5,
   buttonSizes: 4,
@@ -90,7 +91,7 @@ function declarations(body, prop) {
 }
 
 function countTextRoles(globals) {
-  const roles = new Set([...globals.matchAll(/--type-([a-z]+)-size\s*:/g)].map((match) => match[1]));
+  const roles = new Set([...globals.matchAll(/--type-([a-z-]+)-size\s*:/g)].map((match) => match[1]));
   return [...roles];
 }
 
@@ -101,7 +102,7 @@ function validateTailwindRoles(errors) {
   const sizes = config.theme?.extend?.fontSize ?? {};
   for (const [key, value] of Object.entries(sizes)) {
     const size = Array.isArray(value) ? value[0] : value;
-    if (!/^var\(--type-[a-z]+-size\)$/.test(size)) errors.push(`tailwind fontSize "${key}" must resolve to a --type-* role (got ${size})`);
+    if (!/^var\(--type-[a-z-]+-size\)$/.test(size)) errors.push(`tailwind fontSize "${key}" must resolve to a --type-* role (got ${size})`);
   }
   const weights = config.theme?.extend?.fontWeight ?? {};
   for (const name of ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black"]) {
@@ -216,14 +217,14 @@ function validateTypeDeclarations(errors) {
     const source = read(file);
     for (const [selector, body] of cssRules(source)) {
       for (const value of declarations(body, "font-size")) {
-        if (/var\(--type-[a-z]+-size\)|^inherit$|^[\d.]+em$/.test(value)) continue;
+        if (/var\(--type-[a-z-]+-size\)|^inherit$|^[\d.]+em$/.test(value)) continue;
         if (!RAW_SIZE_EXEMPT.has(file)) rawSizes.push(`${file} ${selector} -> ${value}`);
       }
       for (const value of declarations(body, "font-weight")) {
         if (/^var\(--weight-[a-z]+\)$/.test(value) || WEIGHTS.has(value) || /^\d+ \d+$/.test(value)) continue;
         if (!RAW_SIZE_EXEMPT.has(file)) badWeights.push(`${file} ${selector} -> ${value}`);
       }
-      const font = declarations(body, "font").find((value) => !/^var\(--type-[a-z]+\)$|var\(--type-[a-z]+-size\)|^inherit$/.test(value));
+      const font = declarations(body, "font").find((value) => !/^var\(--type-[a-z-]+\)$|var\(--type-[a-z-]+-size\)|^inherit$/.test(value));
       if (font && !RAW_SIZE_EXEMPT.has(file)) rawSizes.push(`${file} ${selector} -> font: ${font}`);
     }
   }

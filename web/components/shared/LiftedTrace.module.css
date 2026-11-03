@@ -42,8 +42,9 @@
   transition: transform var(--duration-slow) var(--ease);
 }
 
+/* A completed step is the recruiter's pen; yellow stays on the one highlighted line. */
 .item[data-state="complete"] .segment {
-  background: hsl(var(--citron));
+  background: hsl(var(--pen));
 }
 
 .meta {

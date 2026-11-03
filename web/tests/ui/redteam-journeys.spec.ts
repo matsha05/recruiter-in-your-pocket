@@ -88,7 +88,7 @@ test.describe("launch red-team journeys", () => {
     expect(securityTxt.ok()).toBeTruthy();
     const securityText = await securityTxt.text();
     expect(securityText).toContain("Contact: mailto:support@recruiterinyourpocket.com");
-    expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/security");
+    expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/privacy");
 
     await page.goto("/status");
     await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();
@@ -191,7 +191,7 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision).toContainText("Everything in your free report is yours. Nothing is held back.");
     await expect(purchaseDecision).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
-    await expect(purchaseDecision).toContainText("5 more reports, good for 30 days. No automatic renewal.");
+    await expect(purchaseDecision).toContainText("5 more reports, good for 90 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
     const reportPaywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");
@@ -229,7 +229,7 @@ test.describe("launch red-team journeys", () => {
     await expect(miss.getByText("Thanks. This is how we find out when we picked the wrong thing.")).toBeVisible();
   });
 
-  test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
+  test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
     const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");
@@ -252,6 +252,8 @@ test.describe("launch red-team journeys", () => {
   test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
     await page.goto("/auth?from=extension&next=/jobs");
     await expect(page).toHaveURL(/\/auth\?from=extension&next=\/jobs/);
+    // The sign-in form is client-rendered; before hydration settles a dev server can briefly show it twice.
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Send sign-in code/i })).toBeVisible();
   });
@@ -259,6 +261,7 @@ test.describe("launch red-team journeys", () => {
   test("7. report history sends anonymous users into an auth-protected flow", async ({ page }) => {
     await page.goto("/reports");
     await expect(page).toHaveURL(/\/auth\?from=reports&next=\/reports/);
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await expect(page.locator("#auth-email")).toBeVisible();
   });
 

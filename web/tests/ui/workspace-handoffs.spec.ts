@@ -273,7 +273,7 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace`);
     await page.route("**/api/resume-feedback-stream", () => new Promise(() => {}));
     await startReport(page);
-    await expect(page.getByRole("heading", { name: "Reading your resume like a recruiter would." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Reading your resume." })).toBeVisible();
     await page.clock.fastForward(90_000);
     await expect(page.getByRole("button", { name: "Retry", exact: true })).toHaveCount(0);
     await page.clock.fastForward(31_000);
@@ -366,7 +366,7 @@ test.describe("workspace command and completion handoffs", () => {
     await page.goto(`${ORIGIN}/workspace`);
     await startReport(page);
     await expect.poll(() => Boolean(pendingReport)).toBe(true);
-    await expect(page.getByRole("region", { name: "Reading your resume like a recruiter would." })).toHaveAttribute("aria-busy", "true");
+    await expect(page.getByRole("region", { name: "Reading your resume." })).toHaveAttribute("aria-busy", "true");
     const stop = page.getByRole("button", { name: "Stop", exact: true });
     await stop.focus();
     await expect(stop).toBeFocused();

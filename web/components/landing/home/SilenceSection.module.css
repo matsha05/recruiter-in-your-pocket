@@ -1,7 +1,7 @@
 .silence {
     max-width: 44rem;
     margin: 0 auto;
-    padding: 5rem 1.25rem 6rem;
+    padding: 5rem var(--marketing-gutter) 6rem;
     text-align: center;
 }
 
@@ -45,7 +45,7 @@
 .body strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 @media (max-width: 640px) {
-    .silence { padding: 1.5rem 1.25rem 4rem; }
+    .silence { padding: 1.5rem var(--marketing-gutter) 4rem; }
     .list li { padding: 0.75rem 0.125rem; }
     .list li > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .title { margin-top: 2.5rem; }

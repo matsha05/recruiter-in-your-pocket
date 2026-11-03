@@ -1,0 +1,132 @@
+[
+  {
+    "t": 11.4,
+    "step": "returned",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 11.9,
+    "step": "shot",
+    "file": "james-41-return-landing@390.jpg"
+  },
+  {
+    "t": 18.3,
+    "step": "shot",
+    "file": "james-42-return-workspace@390.jpg"
+  },
+  {
+    "t": 132.5,
+    "step": "shot",
+    "file": "james-43-return-my-reports@390.jpg"
+  },
+  {
+    "t": 132.5,
+    "step": "saved-report",
+    "href": "/reports/1ec2778f-9c09-42fd-9910-fc5ec3f47e44"
+  },
+  {
+    "t": 243.5,
+    "step": "shot",
+    "file": "james-44-saved-report-first-screen@390.jpg"
+  },
+  {
+    "t": 245,
+    "step": "shot",
+    "file": "james-45-saved-report-full@390.jpg"
+  },
+  {
+    "t": 275.2,
+    "step": "saved-lift-state",
+    "state": "open",
+    "revised": null
+  },
+  {
+    "t": 275.6,
+    "step": "shot",
+    "file": "james-46-saved-report-critical-miss@390.jpg"
+  },
+  {
+    "t": 275.6,
+    "step": "pdf",
+    "error": "no export button"
+  },
+  {
+    "t": 276,
+    "step": "shot",
+    "file": "james-47-report-ending@390.jpg"
+  },
+  {
+    "t": 276,
+    "step": "ending-cta",
+    "text": "Get 5 more reports · $29"
+  },
+  {
+    "t": 279.6,
+    "step": "shot",
+    "file": "james-48-after-ending-cta@390.jpg"
+  },
+  {
+    "t": 280.3,
+    "step": "shot",
+    "file": "james-49-after-ending-cta-full@390.jpg"
+  },
+  {
+    "t": 371.9,
+    "step": "shot",
+    "file": "james-50-progress@390.jpg"
+  },
+  {
+    "t": 379.2,
+    "step": "shot",
+    "file": "james-51-pricing-first-screen@390.jpg"
+  },
+  {
+    "t": 380,
+    "step": "shot",
+    "file": "james-52-pricing-full@390.jpg"
+  },
+  {
+    "t": 380.5,
+    "step": "shot",
+    "file": "james-53-pricing-pass-card@390.jpg"
+  },
+  {
+    "t": 417,
+    "step": "after-buy-click",
+    "url": "https://checkout.stripe.com/<test-session-redacted>"
+  },
+  {
+    "t": 417.5,
+    "step": "shot",
+    "file": "james-54-checkout@390.jpg"
+  },
+  {
+    "t": 417.8,
+    "step": "shot",
+    "file": "james-55-stripe-checkout-full@390.jpg"
+  },
+  {
+    "t": 447.8,
+    "step": "error",
+    "message": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#cardNumber')\n"
+  },
+  {
+    "t": 448,
+    "step": "shot",
+    "file": "james-56-error-state@390.jpg"
+  },
+  {
+    "t": 448,
+    "step": "console-errors",
+    "errs": [
+      "Failed to refresh free status.",
+      "Error fetching paid pass status: Error: Pass details timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Error fetching free report status: Error: Free report status timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Access to fetch at 'https://js.stripe.com/v3/.deploy_status_henson.json' from origin 'https://checkout.stripe.com' has been blocked by CORS policy: Response to preflight request doesn't pass access co",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://r.stripe.com/b' from origin 'https://checkout.stripe.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Contr",
+      "Access to fetch at 'https://r.stripe.com/b' from origin 'https://js.stripe.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-All",
+      "Access to fetch at 'https://09b2d2b6658d.w.hcaptcha.com/logo.png' from origin 'https://b.stripecdn.com' has been blocked by CORS policy: Request header field x-forwarded-for is not allowed by Access-C"
+    ]
+  }
+]

@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import {
   configuredDailyGenerationLimit,
   configuredDailyPaidGenerationLimit,
+  DAILY_CAP_DEADLINE_MS,
   DAILY_CAPACITY_EXHAUSTED_MESSAGE,
+  GenerationBudgetError,
   reserveDailyGenerationCapacity,
 } from "../lib/operations/generationBudget";
 
@@ -25,7 +27,7 @@ async function run() {
   assert.equal(configuredDailyGenerationLimit({ RIYP_MAX_DAILY_GENERATIONS: "not-a-number" }), null);
   assert.equal(
     DAILY_CAPACITY_EXHAUSTED_MESSAGE,
-    "Today's report capacity has been reached. Please try again tomorrow.",
+    "We've reached today's report limit. It resets tomorrow.",
   );
 
   const local = await reserveDailyGenerationCapacity({ env: { NODE_ENV: "development" }, redis: null });
@@ -79,6 +81,18 @@ async function run() {
     env: { ...capEnv, RIYP_DISABLE_GENERATION: "1" }, redis: paidRedis, tier: "paid",
   });
   assert.equal(pausedPaid.reason, "paused", "the kill switch still stops paid generation");
+
+  // A Redis that never answers is an outage: the cap fails closed within its deadline instead of holding the person.
+  const hanging = { async eval<T>(): Promise<T> { return new Promise<T>(() => undefined); } };
+  const startedAt = Date.now();
+  const hung = await reserveDailyGenerationCapacity({ env: capEnv, redis: hanging, deadlineMs: 20 });
+  assert.equal(hung.allowed, false);
+  assert.equal(hung.reason, "storage_unavailable");
+  assert.ok(Date.now() - startedAt < 1_000, "the deadline, not the hung call, decides when the cap answers");
+  assert.ok(DAILY_CAP_DEADLINE_MS <= 10_000, "the cap waits seconds, not the whole function budget");
+  const unavailable = new GenerationBudgetError("GENERATION_BUDGET_UNAVAILABLE", "x", "storage_unavailable");
+  assert.equal(unavailable.reason, "storage_unavailable", "the refusal names its cause for logs and Sentry");
+  assert.equal(unavailable.httpStatus, 503);
 
   console.log("✅ PASS: generation kill switch and atomic daily spend ceiling fail closed");
 }

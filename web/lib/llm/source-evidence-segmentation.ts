@@ -1,5 +1,6 @@
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { sourceClauseIsNegated } from "./narrative-token-policy";
+import { memoizeByText } from "./source-memo";
 
 const contrastMarker = "(?:but|however|yet|although|though|while|whereas)";
 const leadingSubordinateContrast = new RegExp(
@@ -21,13 +22,12 @@ function contrastClauses(segment: string): string[] {
     .filter(Boolean);
 }
 
-export function narrativeEvidenceClauses(sourceText: string) {
-  return protectIdentityDots(canonicalizeUserSourceText(sourceText))
-    .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
-    .map((segment) => segment.replaceAll(protectedIdentityDot, "."))
-    .flatMap(contrastClauses)
-    .filter(Boolean);
-}
+// Split once per text and reused across every claim audited against the same resume. Read-only.
+export const narrativeEvidenceClauses: (sourceText: string) => string[] = memoizeByText((sourceText: string) => protectIdentityDots(canonicalizeUserSourceText(sourceText))
+  .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
+  .map((segment) => segment.replaceAll(protectedIdentityDot, "."))
+  .flatMap(contrastClauses)
+  .filter(Boolean), 32);
 
 const protectedIdentityDot = "\uE000";
 
@@ -39,12 +39,10 @@ function protectIdentityDots(sourceText: string) {
     .replace(/(?<=\d)\.(?=\d)/gu, protectedIdentityDot);
 }
 
-export function roleEvidenceSegments(sourceText: string) {
-  return protectIdentityDots(canonicalizeUserSourceText(sourceText))
-    .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
-    .map((segment) => segment.replaceAll(protectedIdentityDot, ".").trim())
-    .filter(Boolean);
-}
+export const roleEvidenceSegments: (sourceText: string) => string[] = memoizeByText((sourceText: string) => protectIdentityDots(canonicalizeUserSourceText(sourceText))
+  .split(/(?:\r?\n)+|[.!?;]+|\s*[•●◦▪▫‣⁃|]\s*/u)
+  .map((segment) => segment.replaceAll(protectedIdentityDot, ".").trim())
+  .filter(Boolean), 32);
 
 const identityPattern = /(?:\.[\p{L}\p{M}\d]+|[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*)(?:[.&/](?:[\p{L}\p{M}\d][\p{L}\p{M}\d']*[+#]*))*/gu;
 

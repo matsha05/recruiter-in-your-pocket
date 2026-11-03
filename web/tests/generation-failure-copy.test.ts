@@ -13,7 +13,7 @@ const count = (text: string, phrase: string) => text.split(phrase).length - 1;
 
 // The server already states the outcome; the client wraps the same message again.
 // It must say it once, not twice.
-const fromServer = withGenerationAccessOutcome("Report access is temporarily unavailable. Please try again in a moment.", false);
+const fromServer = withGenerationAccessOutcome("We can't check report access right now. The problem is on our side. Give it a minute and try again.", false);
 const onClient = withGenerationAccessOutcome(fromServer, false);
 assert.equal(count(onClient, REPORT_ACCESS_NOT_USED), 1, onClient);
 assert.equal(onClient, fromServer);

@@ -1,4 +1,5 @@
 import { narrativeEvidenceClauses } from "./source-evidence-segmentation";
+import { trackedSemanticPatterns } from "./source-semantic-patterns";
 
 // Keep distinctions that a bag of source words cannot establish.
 const recurringPipeline = /\b(?:pipeline\s+(?:in\s+)?(?:ARR|annual recurring revenue)|(?:ARR|annual recurring revenue)\s+pipeline)\b/iu;
@@ -164,8 +165,50 @@ function personalActionPresuppositionIssues(claim: string, source: string) {
   return [...issues];
 }
 
+// A wh-question that presupposes an outcome ("How did you triple revenue?") asserts the outcome as much
+// as a statement would. The base forms, by the outcome family the resume audit already tracks.
+const presupposedOutcomeFamilies: Array<[string, RegExp, RegExp]> = [
+  ["outcome:improve", /\b(?:improve|increase|boost|raise|enhance)\b/iu, /\b(?:improv|increas|boost|rais|enhanc)(?:e|es|ed|ing)\b/iu],
+  ["outcome:reduce", /\b(?:reduce|cut|lower|decrease)\b/iu, /\b(?:reduc(?:e|es|ed|ing)|cut(?:s|ting)?|lower(?:s|ed|ing)?|decreas(?:e|es|ed|ing))\b/iu],
+  ["outcome:growth", /\b(?:grow|scale|double|triple)\b/iu, /\b(?:grow(?:s|n|ing)?|grew|scal(?:e|es|ed|ing)|doubl(?:e|es|ed|ing)|tripl(?:e|es|ed|ing))\b/iu],
+  ["outcome:financial", /\b(?:save|generate|earn)\b/iu, /\b(?:sav(?:e|es|ed|ing)|generat(?:e|es|ed|ing)|earn(?:s|ed|ing)?)\b/iu],
+  ["outcome:delivery", /\b(?:deliver|achieve|ship|launch|accelerate)\b/iu, /\b(?:deliver(?:s|ed|ing)?|achiev(?:e|es|ed|ing)|ship(?:s|ped|ping)?|launch(?:es|ed|ing)?|accelerat(?:e|es|ed|ing))\b/iu],
+  ["outcome:expansion", /\b(?:expand)\b/iu, /\b(?:expan(?:d|ds|ded|ding|sion))\b/iu],
+];
+const presupposingQuestion = /^\s*(?:how|why|when|where)\b(?!\s+(?:many|much|often|long|large|big|far|soon|quickly|early))[^?]*?\b(?:did|do|does|have|has|had|were|was)\s+you\s+(?:(?:first|then|personally|actually|eventually|also)\s+)?((?:[\p{L}-]+))/iu;
+
+/**
+ * Whether the resume states an outcome of this family ("outcome:growth" and so on) in any form the
+ * resume might use: the tracked past forms, or the base and gerund forms ("deliver", "launching").
+ * A plan, a goal or a negation is not the outcome.
+ */
+export function sourceStatesOutcomeFamily(key: string, source: string) {
+  const family = presupposedOutcomeFamilies.find(([familyKey]) => familyKey === key);
+  const tracked = trackedSemanticPatterns.find(([trackedKey]) => trackedKey === key)?.[1];
+  if (!family && !tracked) return false;
+  return narrativeEvidenceClauses(source).some((clause) => {
+    if (/\b(?:not|never|without|plan(?:s|ned|ning)?|intend(?:s|ed|ing)?|aim(?:s|ed|ing)?|goal|would|could|might|may|if|whether)\b/iu.test(clause)) return false;
+    if (tracked) { tracked.lastIndex = 0; const hit = tracked.test(clause); tracked.lastIndex = 0; if (hit) return true; }
+    return Boolean(family && family[2].test(clause));
+  });
+}
+
+function outcomePresuppositionIssues(claim: string, source: string) {
+  const match = claim.match(presupposingQuestion);
+  if (!match) return [];
+  const prefix = claim.slice(0, match.index! + match[0].length - match[1].length);
+  // "whether you doubled", "if you cut", "did you ... or" ask; they do not presuppose.
+  if (/\b(?:if|whether)\b[^?]*$/iu.test(prefix) || /\bor\s+(?:not\s+)?$/iu.test(prefix)) return [];
+  const verb = match[1];
+  const family = presupposedOutcomeFamilies.find(([, base]) => base.test(verb));
+  if (!family) return [];
+  return sourceStatesOutcomeFamily(family[0], source)
+    ? []
+    : [`the question presupposes an outcome the resume does not state (${verb.toLowerCase()}); ask whether it happened first`];
+}
+
 export function narrativeMeaningIssues(claim: string, source: string): string[] {
-  const issues: string[] = [...plannedExecutionIssues(claim, source), ...personalActionPresuppositionIssues(claim, source)];
+  const issues: string[] = [...plannedExecutionIssues(claim, source), ...personalActionPresuppositionIssues(claim, source), ...outcomePresuppositionIssues(claim, source)];
   const sourceGeography = geographicBindings(source);
   for (const binding of geographicBindings(claim)) {
     const sameQuantity = sourceGeography.filter(item => item.count === binding.count && item.unit === binding.unit);

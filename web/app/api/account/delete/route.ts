@@ -174,7 +174,7 @@ export async function DELETE(request: Request) {
                     {
                         ok: false,
                         errorCode: "BILLING_CANCELLATION_FAILED",
-                        message: "We could not cancel your subscription, so your account was not deleted. Please try again or contact support.",
+                        message: "We couldn't cancel your subscription, so your account wasn't deleted. Try again, or contact support.",
                     },
                     { status: 502 }
                 );

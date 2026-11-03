@@ -58,7 +58,7 @@ export async function validateResumeStreamOutput(input: {
         validateResumeModelPayload(parsedJson, input.text, input.validationOptions)
       );
     }
-    return { payload, replacementRaw: null as string | null };
+    return { payload, replacementRaw: null as string | null, repairMs: 0 };
   } catch (error: any) {
     if (input.mode !== "resume" || !isRepairableResumeResponseError(error)) {
       logError({
@@ -72,7 +72,7 @@ export async function validateResumeStreamOutput(input: {
           message: error?.message || "Response validation failed",
         },
       });
-      const validationError = new Error("Could not parse the response. Please try again.") as Error & {
+      const validationError = new Error("The model's answer didn't come back in a shape we could read. Your resume wasn't the problem. Try again.") as Error & {
         code: string;
       };
       validationError.code = "OPENAI_RESPONSE_PARSE_ERROR";
@@ -92,6 +92,7 @@ export async function validateResumeStreamOutput(input: {
       },
     });
 
+    const repairStartedAt = Date.now();
     try {
       const repaired = await runJson<any>({
         ctx: {
@@ -118,7 +119,7 @@ export async function validateResumeStreamOutput(input: {
         route: input.route,
         user_id: input.userIdForLogs,
       });
-      return { payload, replacementRaw: repaired.raw };
+      return { payload, replacementRaw: repaired.raw, repairMs: Date.now() - repairStartedAt };
     } catch (repairError: any) {
       if (isStableOpenAITransportError(repairError)) throw repairError;
       recordLaunchSignal("riyp.report.repair", { result: "failed" });
@@ -134,7 +135,7 @@ export async function validateResumeStreamOutput(input: {
         },
       });
       const validationError = new Error(
-        "We couldn’t finish this report on our side. Your resume wasn’t the problem. Please try again."
+        "We couldn’t finish this report on our side. Your resume wasn’t the problem. Try again in a minute."
       ) as Error & { code: string };
       validationError.code = "OPENAI_RESPONSE_SHAPE_INVALID";
       throw validationError;

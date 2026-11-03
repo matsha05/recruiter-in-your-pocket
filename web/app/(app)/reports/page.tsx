@@ -105,7 +105,7 @@ export default async function ReportsPage() {
               </form>
               <Button asChild variant="secondary">
                 <Link
-                  href="/support"
+                  href="/help"
                 >
                   Contact support
                 </Link>

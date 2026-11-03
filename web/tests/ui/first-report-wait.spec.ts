@@ -1,15 +1,23 @@
 import { expect, test, type Page } from "@playwright/test";
 
-// The wait for a first report on a phone: the progress screen opens where its
-// controls are, and stopping tells a signed-out visitor something they can check.
+// The wait for a first report on a phone (W2, Nov 2026): the screen opens at its heading, clear of the
+// sticky header, with the clock, the five stages, the person's own resume on the sheet and Stop in view.
+// The pen and the chips move only when the stream reports a stage, never on elapsed time.
 
 const RESUME_TEXT = [
   "Alex Rivera",
   "Program Manager, Northwind Analytics",
+  "",
+  "EXPERIENCE",
   "Led cross-functional launches with product, operations, and support teams.",
   "Built review cadences and improved launch checklists across four regions.",
   "Coordinated stakeholder updates and clarified ownership across teams.",
+  "",
+  "EDUCATION",
+  "B.S. Business Administration, State University",
 ].join("\n");
+
+const STAGES = ["Sent", "Reading", "Writing the notes", "Checking every quote", "Anything else that costs an interview?"];
 
 async function openWorkspaceAsGuest(page: Page) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -26,31 +34,8 @@ async function openWorkspaceAsGuest(page: Page) {
   await page.getByTestId("workspace-resume-text").fill(RESUME_TEXT);
 }
 
-test("on a phone, the progress screen opens at its heading with Stop in view", async ({ page }) => {
-  await openWorkspaceAsGuest(page);
-  const run = page.getByTestId("workspace-run-report");
-  await run.scrollIntoViewIfNeeded();
-  await run.click();
-
-  const heading = page.getByRole("heading", { name: "Reading your resume like a recruiter would." });
-  await expect(heading).toBeFocused();
-  await expect(heading).toBeInViewport();
-  await expect(page.getByRole("button", { name: "Stop", exact: true })).toBeInViewport();
-});
-
-test("stopping a signed-out run points to the free report, not My reports", async ({ page }) => {
-  await openWorkspaceAsGuest(page);
-  await page.getByTestId("workspace-run-report").click();
-  await page.getByRole("button", { name: "Stop", exact: true }).click();
-
-  const toast = page.locator("[data-sonner-toast]").filter({ hasText: "Report stopped" });
-  await expect(toast).toHaveCount(1);
-  await expect(toast).toContainText("your free report");
-  await expect(toast).not.toContainText("My reports");
-  await expect(page.getByText("Your first report is free")).toBeVisible();
-});
-
-test("the wait shows the stage the stream reports and the time elapsed, never a timed step", async ({ page }) => {
+/** A stream the test drives one stage at a time. */
+async function driveStream(page: Page) {
   await page.addInitScript(() => {
     const realFetch = window.fetch.bind(window);
     window.fetch = (input, init) => {
@@ -70,22 +55,77 @@ test("the wait shows the stage the stream reports and the time elapsed, never a 
   await openWorkspaceAsGuest(page);
   await page.unroute("**/api/resume-feedback-stream");
   await page.getByTestId("workspace-run-report").click();
+  return (stage: string) => page.evaluate((s) => (window as unknown as { pushStage: (stage: string) => void }).pushStage(s), stage);
+}
+
+test("on a phone, the progress screen opens at its heading, clear of the header, with the sheet and Stop in view", async ({ page }) => {
+  await openWorkspaceAsGuest(page);
+  const run = page.getByTestId("workspace-run-report");
+  await run.scrollIntoViewIfNeeded();
+  await run.click();
+
+  const heading = page.getByRole("heading", { name: "Reading your resume." });
+  await expect(heading).toBeFocused();
+  await expect(heading).toBeInViewport({ ratio: 1 });
+  // Nothing sticky covers the heading: its top sits below whatever header the route shows.
+  const headerBottom = await page.locator("header").first().evaluate((header) => header.getBoundingClientRect().bottom);
+  expect((await heading.boundingBox())!.y).toBeGreaterThanOrEqual(headerBottom);
+  await expect(page.getByTestId("analysis-sheet")).toBeInViewport();
+  await expect(page.getByTestId("analysis-sheet")).toContainText("Led cross-functional launches");
+  await expect(page.getByRole("button", { name: "Stop", exact: true })).toBeInViewport({ ratio: 1 });
+  await expect(page.getByText("usually under two minutes")).toBeVisible();
+});
+
+test("stopping a signed-out run points to the free report, not My reports", async ({ page }) => {
+  await openWorkspaceAsGuest(page);
+  await page.getByTestId("workspace-run-report").click();
+  await page.getByRole("button", { name: "Stop", exact: true }).click();
+
+  const toast = page.locator("[data-sonner-toast]").filter({ hasText: "Report stopped" });
+  await expect(toast).toHaveCount(1);
+  await expect(toast).toContainText("your free report");
+  await expect(toast).not.toContainText("My reports");
+  await expect(page.getByText("Your first report is free")).toBeVisible();
+});
+
+test("the five chips and the pen follow the stream's stages, never the clock", async ({ page }) => {
+  const push = await driveStream(page);
 
   const stages = page.getByTestId("analysis-stages");
+  await expect(stages.getByRole("listitem")).toHaveText(STAGES.map((label) => new RegExp(label.replace("?", "\\?"))));
   const current = stages.locator("[aria-current='step']");
-  await expect(current).toContainText("Send your resume");
+  const sheet = page.getByTestId("analysis-sheet");
+  const penLine = sheet.locator("[data-state='current']");
+  await expect(current).toContainText("Sent");
+  await expect(penLine).toContainText("Alex Rivera");
+  await expect(sheet).toHaveAttribute("data-stage", "sending");
   await page.waitForTimeout(1500);
-  // Time alone never advances a step.
-  await expect(current).toContainText("Send your resume");
-  await expect(page.getByTestId("analysis-elapsed")).toContainText(/0:0[1-9] elapsed/);
+  // Time alone never advances a chip or moves the pen.
+  await expect(current).toContainText("Sent");
+  await expect(penLine).toContainText("Alex Rivera");
+  await expect(page.getByTestId("analysis-elapsed")).toContainText(/0:0[1-9] · usually under two minutes/);
 
-  const push = (stage: string) => page.evaluate((s) => (window as unknown as { pushStage: (stage: string) => void }).pushStage(s), stage);
   await push("reading");
-  await expect(current).toContainText("Read your resume");
+  await expect(current).toContainText("Reading");
+  await expect(sheet).toHaveAttribute("data-stage", "reading");
+  await expect(penLine).toContainText("Program Manager");
   await push("writing");
-  await expect(current).toContainText("Write your report");
+  await expect(current).toContainText("Writing the notes");
   await expect(stages.locator("li[data-state='done']")).toHaveCount(2);
-  await expect(page.getByRole("status").filter({ hasText: "Writing your report." })).toBeAttached();
+  await expect(page.getByRole("status").filter({ hasText: "Writing the notes." })).toBeAttached();
+  await expect(penLine).toContainText("Built review cadences");
   await push("checking");
-  await expect(current).toContainText("Check every quote");
+  await expect(current).toContainText("Checking every quote");
+  await expect(penLine).toContainText("Coordinated stakeholder updates");
+  await expect(stages.locator("li[data-state='done']")).toHaveCount(3);
+});
+
+test("with reduced motion the sheet is static and still shows the stage", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const push = await driveStream(page);
+  const sheet = page.getByTestId("analysis-sheet");
+  await expect(sheet).toBeVisible();
+  await push("writing");
+  await expect(sheet.locator("[data-state='current']")).toContainText("Built review cadences");
+  expect(Number.parseFloat(await sheet.locator("[data-state='current']").evaluate((line) => getComputedStyle(line).transitionDuration))).toBeLessThan(0.01);
 });

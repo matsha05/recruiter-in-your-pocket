@@ -36,7 +36,7 @@ export const extensionStoreContent = {
   privacyFieldSummary:
     "The extension reads supported LinkedIn and Indeed job pages only when needed for user-initiated job capture. Saved-job history can sync to your RIYP account when you sign in.",
   supportHref: "mailto:support@recruiterinyourpocket.com",
-  securityHref: "/security",
+  securityHref: "/privacy",
   privacyHref: "/privacy",
   screenshots: [
     {

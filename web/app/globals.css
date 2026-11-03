@@ -130,10 +130,11 @@
     --amber: var(--brass);
     --rose: 4.231 76.471% 40.000%;
 
-    /* Status semantics */
+    /* Status semantics. An operational warning (a slow run, a failed save, a pending purchase) is ink on an
+       inset sheet, never the Critical Miss yellow: yellow means a resume finding, nowhere else (Nov 2, 2026). */
     --success: 160 48.8% 23.7%;
-    --warning: var(--brass);
-    --warning-foreground: var(--brass);
+    --warning: var(--foreground);
+    --warning-foreground: var(--foreground);
     /* Assessment graphics follow the same roles. */
     --assessment-aqua: var(--pen);
     --assessment-green: var(--success);
@@ -179,6 +180,10 @@
     --type-label-leading: 1.125rem;
     --type-verdict-size: 1.25rem;
     --type-verdict-leading: 1.875rem;
+    /* The Verdict's first sentence, leading the report's first screen (W1, Nov 2, 2026): one sentence
+       in Literata, a step above the full Verdict so the judgment is the loudest line on a phone. */
+    --type-verdict-lead-size: 1.375rem;
+    --type-verdict-lead-leading: 1.875rem;
     --type-note-size: 1rem;
     --type-note-leading: 1.5625rem;
     /* Shorthands for CSS modules: `font: var(--type-body)`. Add letter-spacing from the role table. */
@@ -192,6 +197,7 @@
     --type-small: var(--weight-body) var(--type-small-size) / var(--type-small-leading) var(--font-body);
     --type-label: var(--weight-label) var(--type-label-size) / var(--type-label-leading) var(--font-body);
     --type-verdict: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
+    --type-verdict-lead: var(--weight-body) var(--type-verdict-lead-size) / var(--type-verdict-lead-leading) var(--font-editorial);
     --type-note: italic var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
     --tracking-display: -0.045em;
     --tracking-headline: -0.04em;
@@ -200,7 +206,7 @@
 
     /* Accessible state surfaces and shared sheet geometry. */
     --success-surface: 144.000 31.250% 93.725%;
-    --warning-surface: 35.172 100.000% 94.314%;
+    --warning-surface: var(--secondary);
     --destructive-surface: 5.000 85.714% 97.255%;
     --disabled-surface: 80.000 7.692% 92.353%;
     --radius-sheet: 1.125rem;
@@ -273,6 +279,10 @@
     --header-height: var(--product-header-height);
     --header-height-desktop: var(--marketing-header-height-desktop);
     --page-max: 85rem;
+    /* The homepage's one content edge (Impeccable 10, Nov 2, 2026): every section below the hero shares this
+       width and gutter; the hero shares the gutter while it is stacked, and runs wider from 1200px. */
+    --marketing-content: 68rem;
+    --marketing-gutter: 1.25rem;
   }
 
   .dark {
@@ -330,9 +340,9 @@
     --paper-muted: 145 7% 13%;
     --success: 153 43% 69%;
     --success-surface: 147.857 30.435% 18.039%;
-    --warning: var(--brass);
-    --warning-foreground: var(--brass);
-    --warning-surface: 27.857 30.435% 18.039%;
+    --warning: var(--foreground);
+    --warning-foreground: var(--foreground);
+    --warning-surface: var(--secondary);
     --destructive-surface: 4.000 28.846% 20.392%;
     --disabled-surface: 170.000 6.818% 17.255%;
   }
@@ -341,6 +351,7 @@
      homepage hero has room for it beside the illustration. */
   @media (min-width: 768px) {
     :root {
+      --marketing-gutter: clamp(1.5rem, 4vw, 2.5rem);
       --type-display-size: 4rem;
       --type-display-leading: 4rem;
       --type-headline-size: 3rem;
@@ -351,6 +362,8 @@
       --type-lead-size: 1.25rem;
       --type-verdict-size: 1.5rem;
       --type-verdict-leading: 2.125rem;
+      --type-verdict-lead-size: 1.75rem;
+      --type-verdict-lead-leading: 2.375rem;
     }
   }
 
@@ -443,7 +456,8 @@
 @layer utilities {
 
   /* The recruiter's voice: the two Literata roles carry their family (and the note its italic). */
-  .text-verdict {
+  .text-verdict,
+  .text-verdict-lead {
     font-family: var(--font-editorial);
   }
 
@@ -502,6 +516,23 @@
 
   .workspace-product-shell[data-document] > div {
     overflow: visible;
+  }
+
+  /* On phones the input and wait screens scroll as a page too (Nov 2, 2026), so the room the page leaves under
+     the consent card (body padding) reaches the run button, and the wait's heading opens under the header. */
+  @media (max-width: 639px) {
+    .workspace-product-shell,
+    .sample-report-page-shell > .workspace-product-shell {
+      height: auto;
+      min-height: calc(100dvh - var(--product-header-height));
+      overflow: visible;
+    }
+
+    .workspace-product-shell > div,
+    .workspace-product-shell .workspace-pane {
+      height: auto;
+      overflow: visible;
+    }
   }
 
   .workspace-role-toggle {
@@ -790,6 +821,12 @@
     transition: transform var(--duration-normal) var(--ease);
   }
 
+  .site-nav-link:focus-visible,
+  .app-nav-link:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
   .site-nav-link:hover,
   .site-nav-link:focus-visible {
     color: hsl(var(--foreground));
@@ -992,6 +1029,10 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+
+  /* Headings balance their lines and prose avoids a lone last word (Impeccable 11, Nov 2, 2026). */
+  h1, h2, h3 { text-wrap: balance; }
+  p, li, dd { text-wrap: pretty; }
 
   .riyp-evidence-title {
     font: var(--type-heading);

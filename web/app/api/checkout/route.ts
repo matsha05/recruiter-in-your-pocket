@@ -299,7 +299,7 @@ export async function POST(request: Request) {
                 allow_promotion_codes: true,
                 custom_text: {
                     submit: {
-                        message: "You're getting five additional reports for 30 days. This is a one-time payment and will not renew."
+                        message: "You're getting five more reports, good for 90 days. One payment. It does not renew."
                     }
                 }
             }, idempotencyKey ? { idempotencyKey: `checkout:${idempotencyKey}` } : undefined);

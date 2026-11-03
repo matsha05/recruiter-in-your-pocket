@@ -2,6 +2,8 @@
 
 Product analytics requires all three conditions: `NEXT_PUBLIC_ENABLE_ANALYTICS=true`, a configured `NEXT_PUBLIC_MIXPANEL_TOKEN`, and the visitor choosing **Allow analytics**. The build-time flag remains a separate operational kill switch. The missing production enable flag was set to `true` on September 14, 2026, retaining the existing token. It applies to the next production build; it does not establish that analytics is active in the previously deployed bundle.
 
+The consent card is one line (Matt, November 2, 2026): "Optional analytics only, if you allow it. Your resume text never goes to analytics." with a Privacy link and two equal buttons, Decline and Allow (named "Decline analytics" and "Allow analytics" for assistive technology). Essential storage needs no consent, so it isn't offered as a choice; the privacy policy's "Your controls" section says the same. On phones the bar is about a third of the old card's height, so a page's first screen, its privacy line and the Critical Miss stay in view, and the page still leaves room under it for its last action.
+
 `web/lib/analyticsConsent.ts` owns the versioned browser preference. Unknown, declined, Do Not Track, and Global Privacy Control states prevent SDK initialization and tracking. Visitors can reopen **Privacy choices** in the site footer. The choice still works for the current page if browser storage is unavailable.
 
 `web/lib/analytics.ts` rechecks consent after loading the SDK and before each operation. Withdrawal clears local analytics identifiers and queued events, stops SDK senders, and propagates to other tabs. It does not delete data already received by the provider. Actions from before consent or withdrawal are not replayed. Re-consent starts a fresh browser identifier.

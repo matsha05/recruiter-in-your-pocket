@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import Module from "node:module";
 import path from "node:path";
 import { NextRequest } from "next/server";
-import { hasPdfExportAccess, isPassActive } from "../lib/billing/entitlements";
+import { isPassActive } from "../lib/billing/entitlements";
 
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
@@ -201,7 +201,7 @@ async function run() {
       };
       lookupFails = true;
       assert.equal((await call()).status, 200, `${route} still fulfills the one-time offer without a subscription lookup`);
-      assert.equal(passes[0].expires_at, new Date((nowUnix + 30 * 86_400) * 1000).toISOString());
+      assert.equal(passes[0].expires_at, new Date((nowUnix + 90 * 86_400) * 1000).toISOString(), "the one-time pass runs 90 days from the session");
       assert.equal(passes[0].uses_remaining, 5);
     }
 
@@ -264,7 +264,6 @@ async function run() {
           assert.equal(passes[0].revoked_at, revokedAt);
           assert.equal(passes[0].revocation_reason, reason);
           assert.equal(isPassActive(passes[0]), false);
-          assert.equal(hasPdfExportAccess(passes[0]), false);
         }
       }
     }

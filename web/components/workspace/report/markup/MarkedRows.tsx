@@ -5,6 +5,7 @@ import { Check, LockKey } from "@phosphor-icons/react";
 import { Mark, useSeen } from "@/components/research/figures/FigureKit";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { fixPositionLabel } from "@/lib/reports/report-opening";
 import { missingFromResume } from "@/lib/reports/report-presentation";
 import { marginNoteFromFix } from "@/lib/reports/revised-line";
 import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish";
@@ -24,6 +25,13 @@ export function excerptOf(fix?: Fix) {
 function sectionOf(fix?: Fix) {
   if (!fix?.evidence || typeof fix.evidence === "string") return fix?.section_ref;
   return fix.evidence.section || fix.section_ref;
+}
+
+/** A resume's own heading ("EXPERIENCE") in sentence case; uppercase stays reserved for the Verdict and Critical Miss labels. */
+function sectionLabel(fix?: Fix) {
+  const section = sectionOf(fix)?.trim();
+  if (!section) return undefined;
+  return section === section.toLocaleUpperCase() ? section.charAt(0) + section.slice(1).toLocaleLowerCase() : section;
 }
 
 /** The quoted line as the reader sees it on the page, without the resume's bullet mark. */
@@ -157,6 +165,7 @@ export function CriticalMissRow({
         <div className={styles.noteHead}>
           <p className={styles.missLabel}>
             <span className="riyp-verdict-label">{label}</span>
+            {sectionLabel(fix) && <span className={styles.missSection}>· {sectionLabel(fix)}</span>}
             {liftState === "addressed" && <span className={styles.addressed}><Check className="size-3.5" weight="bold" aria-hidden="true" />Addressed</span>}
           </p>
           {definition && <p className={styles.missDefinition}>{definition}</p>}
@@ -186,6 +195,7 @@ export function CriticalMissRow({
 export function FixRow({
   fix,
   index,
+  total,
   why,
   whatToAdd,
   hidden,
@@ -197,6 +207,8 @@ export function FixRow({
 }: LiftProps & {
   fix: Fix;
   index: number;
+  /** How many fixes the report shows, so the label reads "Fix 2 of 3" where the heading is out of view. */
+  total: number;
   why?: string;
   whatToAdd: string[];
   hidden: boolean;
@@ -208,7 +220,7 @@ export function FixRow({
   const [openLift, setOpenLift] = useState(false);
   const onPage = marksLine(fix);
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
-  const label = `Fix ${index + 1}`;
+  const label = fixPositionLabel(index, total);
   const id = `section-fix-${index + 1}`;
 
   if (locked) {

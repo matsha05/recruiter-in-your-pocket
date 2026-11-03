@@ -30,11 +30,14 @@ async function run() {
   const exhaustedPass = { ...lastCreditPass, uses_remaining: getNextUsesRemaining(lastCreditPass) };
   assert.equal(exhaustedPass.uses_remaining, 0);
   assert.equal(isPassActive(exhaustedPass, now), false, "PDF access must not restore generation credits");
-  assert.equal(hasPdfExportAccess(exhaustedPass, now), true);
+  // The PDF is free for every signed-in report (Matt, M2): the gate is sign-in, not a pass.
+  assert.equal(hasPdfExportAccess({ userId: ownerId }), true);
+  assert.equal(hasPdfExportAccess({ userId: null }), false, "anonymous reports are not stored, so there is nothing to export");
+  assert.equal(hasPdfExportAccess(null), false);
   assert.deepEqual(
     readAuthoritativePassAccess(true, { ok: true, passes: [exhaustedPass] }, now),
     { membership: "free", canExportPdf: true },
-    "the final credit changes generation membership without removing paid PDF access",
+    "the final credit changes generation membership; the PDF stays",
   );
   assert.deepEqual(
     readAuthoritativePassAccess(true, { ok: true, passes: [lastCreditPass] }, now),
@@ -47,18 +50,11 @@ async function run() {
     { ...exhaustedPass, expires_at: now.toISOString() },
     { ...exhaustedPass, revoked_at: now.toISOString() },
   ];
-  for (const pass of invalidPasses) {
-    assert.equal(hasPdfExportAccess(pass, now), false, `invalid PDF entitlement: ${JSON.stringify(pass)}`);
-  }
   for (const passes of [[], invalidPasses]) {
-    assert.equal(readAuthoritativePassAccess(true, { ok: true, passes }, now).canExportPdf, false);
+    assert.equal(readAuthoritativePassAccess(true, { ok: true, passes }, now).canExportPdf, true, "a signed-in account without a pass can still export");
   }
   for (const tier of ["monthly", "lifetime", "single_use", "30d", "90d"]) {
-    const pass = { ...exhaustedPass, tier };
-    assert.equal(hasPdfExportAccess(pass, now), true, `${tier} exports survive credit exhaustion`);
-    assert.equal(isPassActive(pass, now), tier === "monthly" || tier === "lifetime");
-    assert.equal(hasPdfExportAccess({ ...pass, expires_at: now.toISOString() }, now), false);
-    assert.equal(hasPdfExportAccess({ ...pass, revoked_at: now.toISOString() }, now), false);
+    assert.equal(isPassActive({ ...exhaustedPass, tier }, now), tier === "monthly" || tier === "lifetime");
   }
 
   const originalSecret = process.env.SESSION_SECRET;
@@ -136,39 +132,22 @@ async function run() {
     assert.equal(reportLookups, 2);
     assert.equal(exhaustedPass.uses_remaining, 0, "export must not mutate the credit balance");
 
-    for (const tier of ["monthly", "lifetime", "single_use", "30d", "90d"]) {
-      passes = [{ ...exhaustedPass, tier }];
-      assert.equal((await exportRequest()).status, 200, `unexpired ${tier} exports remain available`);
-      const previousLookups: number = reportLookups;
-      for (const invalid of [
-        { ...exhaustedPass, tier, expires_at: now.toISOString() },
-        { ...lastCreditPass, tier, revoked_at: now.toISOString() },
-      ]) {
-        passes = [invalid];
-        await assertDenied(402, "PAID_ACCESS_REQUIRED");
-      }
-      assert.equal(reportLookups, previousLookups, "expiry and revocation must deny before report lookup");
-    }
-    for (const deniedPasses of [
-      [], [{ ...lastCreditPass, user_id: otherOwnerId }],
-      [{ ...lastCreditPass, tier: "unknown" }], [{ ...lastCreditPass, expires_at: "invalid" }],
+    // No pass, an expired one, a revoked one, someone else's: a signed-in owner exports all the same.
+    for (const anyPasses of [
+      [], [{ ...lastCreditPass, user_id: otherOwnerId }], [{ ...lastCreditPass, tier: "unknown" }],
+      [{ ...exhaustedPass, expires_at: now.toISOString() }], [{ ...lastCreditPass, revoked_at: now.toISOString() }],
     ]) {
-      passes = deniedPasses;
-      await assertDenied(402, "PAID_ACCESS_REQUIRED");
+      passes = anyPasses;
+      assert.equal((await exportRequest()).status, 200, `the PDF is free for a signed-in report (${JSON.stringify(anyPasses).slice(0, 40)})`);
     }
-    passes = [
-      { ...lastCreditPass, revoked_at: now.toISOString() },
-      { ...lastCreditPass, expires_at: now.toISOString() }, exhaustedPass,
-    ];
-    assert.equal((await exportRequest()).status, 200, "one valid exhausted purchase keeps exports available");
+    passQueryError = true;
+    assert.equal((await exportRequest()).status, 200, "the pass table is not consulted, so its outage cannot block the PDF");
+    passQueryError = false;
 
     passes = [exhaustedPass];
     signedIn = false;
     await assertDenied(401, "UNAUTHORIZED");
     signedIn = true;
-    passQueryError = true;
-    await assertDenied(500, "PDF_GENERATION_FAILED");
-    passQueryError = false;
     await assertDenied(400, "REPORT_ID_REQUIRED", { report: schemaValidReport });
     await assertDenied(400, "REPORT_ID_REQUIRED", { report_id: "not-a-report-id" });
     await assertDenied(413, "PAYLOAD_TOO_LARGE", { report_id: reportId, oversized: "x".repeat(256 * 1024) });

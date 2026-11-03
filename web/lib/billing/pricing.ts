@@ -22,7 +22,7 @@ export const FREE_REPORT_ENTITLEMENT = {
 export const JOB_SEARCH_PASS_DECISION = {
   freeBoundary: "Everything in your free report is yours. Nothing is held back.",
   whenToBuy: "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",
-  terms: "5 more reports, good for 30 days. No automatic renewal.",
+  terms: "5 more reports, good for 90 days. No automatic renewal.",
   cta: "Get 5 more reports · $29",
 } as const;
 
@@ -40,14 +40,15 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
       { text: "Critical Misses: what could cost you the interview, starting with the one to fix first" },
       { text: "Each suggestion tied to a line on your resume" },
       { text: "Questions that pull out the details you left off" },
-      { text: "No account or card needed (one per browser each month)" }
+      { text: "We'll rewrite your line. Only from your facts." },
+      { text: "PDF export and saved reports when you sign in. No card needed." }
     ]
   },
   "30d": {
     id: "30d",
     label: "Job Search Pass",
     price: "$29",
-    period: "one-time · 30 days",
+    period: "one-time · 90 days",
     description: "For revising and applying: check each revision, and read your resume against each job you want.",
     buttonText: "Get 5 more reports · $29",
     badge: "For an active search",
@@ -55,8 +56,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
       { text: "5 more complete reports", bold: true },
       { text: "Re-check a revision and see whether your Critical Miss changed" },
       { text: "Read your resume against each job posting" },
-      { text: "PDF exports, and saved reports when signed in" },
-      { text: "$29 once. Good for 30 days. No automatic renewal." }
+      { text: "$29 once. Good for 90 days. No automatic renewal." }
     ]
   },
 };

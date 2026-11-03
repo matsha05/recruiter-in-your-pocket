@@ -1,3 +1,4 @@
+import retiredRoutes from "./retired-routes.json";
 // Every page we want in search. The sitemap is built from this list, and
 // articles take their published and updated dates from it.
 //
@@ -52,12 +53,12 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/resources/tech-offer-negotiation", updated: "2026-11-01", published: "2026-01-01", card: "tech-offer-negotiation" },
   { path: "/resources/tools/comp-calculator", updated: "2026-10-31", published: "2026-01-01", card: "comp-calculator" },
 
-  { path: "/trust", updated: "2026-11-02" },
-  { path: "/security", updated: "2026-11-02" },
+  // /trust and /security redirect to /privacy, /faq and /support to /help (lib/seo/retired-routes.json).
   { path: "/privacy", updated: "2026-11-02" },
+  // Folded into Privacy and Help on Nov 2, 2026 (Matt's M6). Engine adds the redirects in next.config.mjs;
+  // until then the routes still render, out of the sitemap. Delete them with the routes.
   { path: "/terms", updated: "2026-11-02" },
-  { path: "/support", updated: "2026-10-31" },
-  { path: "/faq", updated: "2026-11-02" },
+  { path: "/help", updated: "2026-11-03" },
 ];
 
 /** The site card (app/opengraph-image.tsx), for pages without an answer card. */
@@ -70,6 +71,11 @@ export function shareImageUrl(path: string) {
 
 export function publicPage(path: string): PublicPage {
   const page = PUBLIC_PAGES.find((candidate) => candidate.path === path);
-  if (!page) throw new Error(`${path} is not in PUBLIC_PAGES (web/lib/seo/public-pages.ts).`);
-  return page;
+  if (page) return page;
+  // A retired page (lib/seo/retired-routes.json) stays buildable until its file is removed: it carries
+  // its destination's dates and card, and it is out of the sitemap because it is not in PUBLIC_PAGES.
+  const retired = (retiredRoutes.routes as Array<{ source: string; destination: string }>).find((route) => route.source === path);
+  const destination = retired && PUBLIC_PAGES.find((candidate) => candidate.path === retired.destination);
+  if (destination) return { ...destination, path };
+  throw new Error(`${path} is not in PUBLIC_PAGES (web/lib/seo/public-pages.ts).`);
 }

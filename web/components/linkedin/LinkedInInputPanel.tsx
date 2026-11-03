@@ -302,7 +302,7 @@ export function LinkedInInputPanel({
                         {getRunHint()}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                        <Link href="/security" className="riyp-link-quiet">
+                        <Link href="/privacy" className="riyp-link-quiet">
                             Data handling
                         </Link>
                         {' · '}

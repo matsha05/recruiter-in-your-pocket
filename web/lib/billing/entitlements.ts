@@ -25,6 +25,8 @@ export type PassLike = {
 export type PassStatus = "active" | "used" | "expired" | "revoked" | "invalid";
 
 const UNLIMITED_PASS_TIERS = new Set<string>(["monthly", "lifetime"]);
+/** How long the Job Search Pass runs from purchase. */
+export const JOB_SEARCH_PASS_DAYS = 90;
 const PAID_PASS_TIERS = new Set<string>(["monthly", "lifetime", "single_use", "30d", "90d"]);
 
 export function normalizeRequestedTier(input: unknown): RequestedPricingTier | null {
@@ -110,12 +112,18 @@ export function isPassActive(pass: PassLike | null | undefined, now = new Date()
   return getPassStatus(pass, now) === "active";
 }
 
-export function hasPdfExportAccess(pass: PassLike | null | undefined, now = new Date()): boolean {
-  if (!pass?.tier || !PAID_PASS_TIERS.has(pass.tier)) return false;
-  const status = getPassStatus(pass, now);
-  // Report credits limit generation; saved-report exports last until the paid
-  // pass expires or is revoked, including after its final credit is consumed.
-  return status === "active" || status === "used";
+/**
+ * The PDF is free for every signed-in report (Matt, M2, November 2, 2026): the pass is for
+ * re-checks and job comparisons; the PDF is how a report reaches a coach, a friend or a printer.
+ * Anonymous reports are not stored, so there is nothing to export until the reader signs in.
+ */
+export function hasPdfExportAccess(viewer: { userId?: string | null } | null | undefined): boolean {
+  return Boolean(viewer?.userId);
+}
+
+/** Whether a tier is one of the paid passes, for restore and labels. */
+export function isPaidPassTier(tier: string | null | undefined): boolean {
+  return Boolean(tier && PAID_PASS_TIERS.has(tier));
 }
 
 export function shouldConsumePassCredit(pass: PassLike | null | undefined): boolean {
@@ -165,10 +173,12 @@ export function getTierDefaults(
     };
   }
 
+  // The Job Search Pass. Its tier id stays "30d" (stored rows, Stripe metadata and the "pack" alias
+  // all carry it); its length is 90 days since November 2, 2026 (Matt, M4): a job search runs months.
   if (tier === "30d") {
     return {
       usesRemaining: 5,
-      expiresAt: new Date(nowMs + 30 * 24 * 60 * 60 * 1000).toISOString()
+      expiresAt: new Date(nowMs + JOB_SEARCH_PASS_DAYS * 24 * 60 * 60 * 1000).toISOString()
     };
   }
 

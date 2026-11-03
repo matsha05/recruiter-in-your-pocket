@@ -23,7 +23,7 @@ const billingPoints: { icon: typeof ShieldCheck; title: string; body: React.Reac
     {
         icon: ArrowsClockwise,
         title: "No renewal",
-        body: "The Job Search Pass is one payment. It ends after 30 days and never auto-renews.",
+        body: "The Job Search Pass is one payment. It ends after 90 days and never auto-renews.",
     },
     {
         icon: Receipt,
@@ -33,7 +33,7 @@ const billingPoints: { icon: typeof ShieldCheck; title: string; body: React.Reac
     {
         icon: Stack,
         title: "Used all five",
-        body: "Your saved reports stay open, and PDF exports keep working until the pass ends. Another report needs a new pass.",
+        body: "Your saved reports stay open, and their PDFs still download: that comes with signing in, not with the pass. Another report needs a new pass.",
     },
     {
         icon: ArrowUUpLeft,
@@ -52,8 +52,9 @@ function PricingHeroActions({
     onCheckout: () => void;
 }) {
     return (
-        <nav aria-label="Pricing actions" className="mt-7 grid max-w-xl gap-3 sm:grid-cols-2 lg:hidden">
-            <Button asChild className="justify-between">
+        /* One dominant action (Impeccable 5): the free report is filled; the pass is a quiet route to its card below. */
+        <nav aria-label="Pricing actions" className="mt-7 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-center lg:hidden">
+            <Button asChild className="w-full sm:w-auto">
                 <Link
                     href="/workspace"
                     data-testid="pricing-hero-free-action"
@@ -65,30 +66,13 @@ function PricingHeroActions({
             </Button>
 
             {billingEnabled ? (
-                <Button
-                    type="button"
-                    data-testid="pricing-hero-paid-action"
-                    onClick={onCheckout}
-                    disabled={checkoutLoading}
-                    variant="secondary"
-                    className="justify-between text-left"
-                >
+                <Button type="button" variant="quiet" data-testid="pricing-hero-paid-action" onClick={onCheckout} disabled={checkoutLoading}>
                     {checkoutLoading ? "Opening checkout…" : JOB_SEARCH_PASS_DECISION.cta}
-                    <ArrowRight aria-hidden="true" className="size-4" weight="bold" />
                 </Button>
             ) : (
-                <Button
-                    type="button"
-                    disabled
-                    data-testid="pricing-hero-paid-action"
-                    variant="secondary"
-                    className="justify-between text-left"
-               >
-                    <span>
-                        <span className="block text-sm font-semibold">5 reports · $29</span>
-                        <span className="mt-0.5 block text-xs">Passes are paused for now</span>
-                    </span>
+                <Button type="button" variant="quiet" disabled data-testid="pricing-hero-paid-action">
                     <LockKey aria-hidden="true" className="size-4 shrink-0" weight="bold" />
+                    5 reports · $29. Passes are paused for now.
                 </Button>
             )}
         </nav>
@@ -183,7 +167,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
                                     <p className="text-base font-semibold text-foreground">Job Search Pass</p>
                                     <p className="mt-5 font-display text-headline">$29</p>
-                                    <p className="mt-2 text-base text-muted-foreground">5 more reports, good for 30 days</p>
+                                    <p className="mt-2 text-base text-muted-foreground">5 more reports, good for 90 days</p>
                                     <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
                                         Check each revision, or read your resume against each job you apply for.
                                     </p>
@@ -282,7 +266,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 What happens after checkout.
                             </h2>
                             <p className="mt-4 max-w-sm text-lg text-muted-foreground">
-                                Your pass starts right away and lasts 30 days. We never charge your card again.
+                                Your pass starts right away and lasts 90 days. We never charge your card again.
                             </p>
                         </div>
 

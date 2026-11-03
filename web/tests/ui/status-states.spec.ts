@@ -51,7 +51,7 @@ test("a failed status request has a recovery action and never reports a passed c
   await expect(page.getByText("We cannot tell which settings need attention until the check succeeds.", { exact: true })).toBeVisible();
   await expect(page.getByText(/The required configuration checks passed/)).toHaveCount(0);
   await expect(page.getByText(/No configuration blockers/)).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Get help", exact: true })).toHaveAttribute("href", "/support");
+  await expect(page.getByRole("link", { name: "Get help", exact: true })).toHaveAttribute("href", "/help");
 
   failRequest = false;
   await page.getByRole("button", { name: "Try again", exact: true }).click();

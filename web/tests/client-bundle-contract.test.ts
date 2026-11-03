@@ -26,8 +26,6 @@ const serverLegalPages = [
   "components/legal/LegalShell.tsx",
   "components/legal/PrivacyClient.tsx",
   "components/legal/TermsClient.tsx",
-  "components/legal/FAQClient.tsx",
-  "components/legal/TrustClient.tsx",
 ];
 const staticSonnerImport = /^import [^;]*from "sonner"/m;
 

@@ -4,7 +4,7 @@
 /** Pages whose views count as a "page_viewed" surface. */
 export const PAGE_SURFACES: Record<string, string> = {
   "/": "home", "/pricing": "pricing", "/workspace": "workspace",
-  "/sample-report": "sample_report", "/research": "research", "/resources": "resources", "/faq": "faq",
+  "/sample-report": "sample_report", "/research": "research", "/resources": "resources", "/help": "help",
 };
 
 /** The research article's slug for "research_article_viewed", or null for any other page. */

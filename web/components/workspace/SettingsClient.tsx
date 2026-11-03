@@ -539,7 +539,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             ) : null}
                             <Button asChild variant="secondary">
                                 <Link
-                                    href="/security"
+                                    href="/privacy"
                                 >
                                     How we handle your data
                                 </Link>
@@ -730,7 +730,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             {activePass || hasPaidMembership ? (
                                 <section className="flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
-                                    <p className="max-w-md text-sm text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 30 days.</p>
+                                    <p className="max-w-md text-sm text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 90 days.</p>
                                     <Button type="button"
                                         onClick={() => handleCheckout("30d")}
                                         disabled={isCheckoutLoading === "30d"}
@@ -744,7 +744,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <section>
                                     <h2 className="text-lg font-medium text-foreground mb-1">Job Search Pass</h2>
                                     <p className="text-sm text-muted-foreground mb-5">
-                                        Five more complete reports for 30 days. One payment, no automatic renewal.
+                                        Five more complete reports for 90 days. One payment, no automatic renewal.
                                     </p>
                                     <div className="grid gap-4">
                                         <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />

@@ -41,7 +41,7 @@ const PASS_BULLETS = [
     "5 more complete reports",
     "Re-check a revision and see whether your Critical Miss changed",
     "Read your resume against each job posting",
-    "PDF exports for 30 days",
+    "Good for 90 days, one payment",
 ];
 
 const DEFAULT_UNLOCK_COPY = {
@@ -56,7 +56,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     bullet_upgrades: { ...DEFAULT_UNLOCK_COPY, label: "Your edits", title: "See what your edits changed" },
     missing_wins: { ...DEFAULT_UNLOCK_COPY, label: "Details to add", title: "Check the details you add" },
     job_alignment: { ...DEFAULT_UNLOCK_COPY, label: "Role fit", title: "Read it against another role" },
-    export_pdf: { ...DEFAULT_UNLOCK_COPY, label: "PDF export", title: "Take your report with you" },
+    export_pdf: { ...DEFAULT_UNLOCK_COPY, label: "PDF export", title: "PDFs come with a signed-in report" },
 };
 
 export default function PaywallModal({
@@ -231,7 +231,7 @@ export default function PaywallModal({
                         <p className="mt-1 text-sm text-muted-foreground">one-time</p>
                     </div>
                     <div className="border-l border-line pl-4 text-sm text-muted-foreground">
-                        Good for 30 days. No automatic renewal.
+                        Good for 90 days. No automatic renewal.
                     </div>
                 </div>
 
@@ -306,7 +306,7 @@ export default function PaywallModal({
                 )}
 
                 <p id="checkout-terms" className="text-center text-xs text-muted-foreground">
-                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/support" className="riyp-link-quiet">Ask us</Link>.
+                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/help" className="riyp-link-quiet">Ask us</Link>.
                 </p>
             </DialogContent>
         </Dialog>

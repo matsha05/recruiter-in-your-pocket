@@ -17,8 +17,11 @@ export async function severityCheckReport(input: {
   signal?: AbortSignal;
   endpoint: "stream" | "json";
   ctx: { request_id: string; route: string; user_id?: string };
+  /** Called once, right before the second model call, so the wait screen can show it. */
+  onStage?: (stage: "severity") => void;
 }): Promise<{ payload: any; outcome: SeverityOutcome | null }> {
   if (input.mode !== "resume" || !isSeverityCheckEnabled()) return { payload: input.payload, outcome: null };
+  input.onStage?.("severity");
   const outcome = await applySeverityCheck({
     payload: input.payload,
     resumeText: input.resumeText,

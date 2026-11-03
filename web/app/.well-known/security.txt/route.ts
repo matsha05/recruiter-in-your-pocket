@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 export async function GET() {
   const body = [
     "Contact: mailto:support@recruiterinyourpocket.com",
-    "Policy: https://recruiterinyourpocket.com/security",
+    "Policy: https://recruiterinyourpocket.com/privacy",
     "Canonical: https://recruiterinyourpocket.com/.well-known/security.txt",
     "Preferred-Languages: en",
   ].join("\n");

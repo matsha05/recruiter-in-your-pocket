@@ -1,0 +1,9 @@
+{
+  "_comment": "Pages folded into another (bar doc 6c.3, Matt M6, Nov 2, 2026). next.config.mjs redirects each source permanently once its destination page exists on disk, so a redirect never points at a page that is not built yet; tests/search-foundation.test.ts keeps an active source out of the sitemap.",
+  "routes": [
+    { "source": "/trust", "destination": "/privacy" },
+    { "source": "/security", "destination": "/privacy" },
+    { "source": "/faq", "destination": "/help" },
+    { "source": "/support", "destination": "/help" }
+  ]
+}

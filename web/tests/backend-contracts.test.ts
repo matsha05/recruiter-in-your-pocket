@@ -374,9 +374,12 @@ assert.match(exportPdfRoute, /select\("report_json, evidence_version, evidence_j
 assert.match(exportPdfRoute, /normalizeReportForPdf\(trustedReport, stored\?\.line_answers\)/);
 assert.match(exportPdfRoute, /\.eq\("id", exportRequest\.report_id\)[\s\S]+\.eq\("user_id", user\.id\)/);
 assert.match(exportPdfRoute, /parseTrustedStoredReport\(stored\.report_json, stored\.evidence_version, stored\.evidence_json, user\.id\)/);
+// The PDF is free for every signed-in report (Nov 2): no pass gate, no paywall bypass, and the owner
+// check comes before anything is read.
+assert.doesNotMatch(exportPdfRoute, /isDevelopmentPaywallBypassEnabled|from\("passes"\)|PAID_ACCESS_REQUIRED/u);
 assert.ok(
-  exportPdfRoute.indexOf("await supabase.auth.getUser()") < exportPdfRoute.indexOf("isDevelopmentPaywallBypassEnabled()"),
-  "development paywall bypass must never bypass report ownership authentication",
+  exportPdfRoute.indexOf("await supabase.auth.getUser()") < exportPdfRoute.indexOf('from("reports")'),
+  "report ownership authentication must come before the report lookup",
 );
 assert.match(reportsRoute, /ResumeFeedbackResponseSchema\.safeParse\(reportWithoutReceipt\)/);
 assert.match(reportsRoute, /validatedReportReceiptClaim\(parsed\.data, receipt\)/);

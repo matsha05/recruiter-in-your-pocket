@@ -3,9 +3,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
-import { ArrowRight, DownloadSimple, X } from "@phosphor-icons/react";
+import { ArrowRight, Check, DownloadSimple, X } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
-import { InsightSparkleIcon } from "@/components/icons";
 import { UI_TRANSITION } from "@/lib/animation";
 
 const DISMISSED_BANNERS_KEY = 'riyp_dismissed_unlock_banners:v1';
@@ -66,26 +65,22 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                 exit={{ height: 0, opacity: 0, marginBottom: 0 }}
                 transition={reducedMotion ? { duration: 0 } : UI_TRANSITION}
             >
+                {/* A paper sheet with a pen status chip: the pass is a fact, not a flourish (brand finding 20). */}
                 <div
                     data-testid="pass-ready-banner"
-                    className="relative overflow-hidden rounded border border-premium/20 bg-premium/5 p-4 md:p-6"
+                    className="app-card rounded-2xl p-4 md:p-6"
                     role="status"
                     aria-live="polite"
                 >
-                    {/* Background Sparkle Decoration */}
-                    <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                        <InsightSparkleIcon className="size-16 text-premium" />
-                    </div>
-
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 gap-y-4">
                             <div className="gap-y-1">
-                                <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                                    <InsightSparkleIcon className="size-4 text-premium" />
+                                <h3 className="text-base font-display font-semibold text-foreground flex flex-wrap items-center gap-2">
                                     Your Job Search Pass is ready.
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-2 py-0.5 text-label text-brand"><Check className="size-3.5" weight="bold" aria-hidden="true" />Pass active</span>
                                 </h3>
                                 <p className="text-sm text-muted-foreground">
-                                    Five more reports, good for 30 days. Spend one on your revision, or on a job you actually want.
+                                    Five more reports, good for 90 days. Spend one on your revision, or on a job you actually want.
                                 </p>
                             </div>
 

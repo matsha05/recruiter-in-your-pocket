@@ -26,6 +26,8 @@ export const LAUNCH_SIGNALS = {
     viewer: ["anonymous", "signed_in"],
     has_jd: ["yes", "no"],
     endpoint: ["stream", "json"],
+    // Seconds from the request's arrival to its outcome, bucketed; the only production record of the wait.
+    latency_bucket: ["lt30", "30to60", "60to120", "gt120"],
   },
   "riyp.report.repair": {
     result: ["started", "completed", "failed"],
@@ -82,6 +84,80 @@ export const LAUNCH_SIGNALS = {
   },
 } as const satisfies Record<string, Record<string, readonly string[] | RegExp>>;
 
+/**
+ * Stage timings for a report, as a Sentry distribution in milliseconds. Vercel Hobby keeps logs for an
+ * hour, so this is the only durable record of where the wait goes. Closed like the counters: a stage
+ * outside this list is dropped.
+ */
+export const REPORT_STAGES = [
+  "gates", "prompt", "model", "validation", "repair", "severity_call", "severity_merge", "finalize", "total",
+] as const;
+export type ReportStage = (typeof REPORT_STAGES)[number];
+export const REPORT_STAGE_METRIC = "riyp.report.stage_ms";
+export const REPORT_STAGE_ATTRIBUTES = {
+  stage: REPORT_STAGES,
+  endpoint: ["stream", "json"],
+  outcome: ["ok", "failed"],
+  viewer: ["anonymous", "signed_in"],
+} as const;
+
+export function sanitizeStageTiming(
+  stage: string,
+  ms: number,
+  attributes: Record<string, unknown> = {},
+): { stage: ReportStage; ms: number; attributes: Record<string, string> } | null {
+  if (!(REPORT_STAGES as readonly string[]).includes(stage) || !Number.isFinite(ms) || ms < 0) return null;
+  const sanitized: Record<string, string> = { stage };
+  for (const [key, value] of Object.entries(attributes)) {
+    const rule = (REPORT_STAGE_ATTRIBUTES as Record<string, readonly string[]>)[key];
+    if (rule && key !== "stage" && typeof value === "string" && rule.includes(value)) sanitized[key] = value;
+  }
+  return { stage: stage as ReportStage, ms: Math.round(ms), attributes: sanitized };
+}
+
+/** Records how long one stage of a report took. Never throws; monitoring must not interrupt a report. */
+export function recordStageTiming(
+  stage: ReportStage,
+  ms: number,
+  attributes: { endpoint: "stream" | "json"; outcome: "ok" | "failed"; viewer?: "anonymous" | "signed_in" },
+) {
+  const approved = sanitizeStageTiming(stage, ms, attributes);
+  if (!approved) return;
+  try {
+    Sentry.metrics.distribution(REPORT_STAGE_METRIC, approved.ms, { unit: "millisecond", attributes: approved.attributes });
+    flushAfterResponse();
+  } catch {
+    // Monitoring must never interrupt a report.
+  }
+}
+
+/** A stopwatch for the report routes: `lap(stage)` records the time since the previous lap. */
+export function stageStopwatch(
+  attributes: { endpoint: "stream" | "json"; viewer?: () => "anonymous" | "signed_in" },
+  now: () => number = Date.now,
+) {
+  const startedAt = now();
+  let last = startedAt;
+  return {
+    startedAt,
+    lap(stage: Exclude<ReportStage, "total">, outcome: "ok" | "failed" = "ok") {
+      const at = now();
+      recordStageTiming(stage, at - last, { endpoint: attributes.endpoint, outcome, viewer: attributes.viewer?.() });
+      last = at;
+    },
+    /** Records a stage measured elsewhere (the severity check's own latencies) without moving the clock. */
+    record(stage: Exclude<ReportStage, "total">, ms: number, outcome: "ok" | "failed" = "ok") {
+      recordStageTiming(stage, ms, { endpoint: attributes.endpoint, outcome, viewer: attributes.viewer?.() });
+    },
+    skip() {
+      last = now();
+    },
+    total(outcome: "ok" | "failed") {
+      recordStageTiming("total", now() - startedAt, { endpoint: attributes.endpoint, outcome, viewer: attributes.viewer?.() });
+    },
+  };
+}
+
 export type LaunchSignalName = keyof typeof LAUNCH_SIGNALS;
 type AttributeValue<Rule> = Rule extends readonly (infer Value)[] ? Value : string;
 export type LaunchSignalAttributes<Name extends LaunchSignalName> = {
@@ -129,6 +205,16 @@ export function recordLaunchSignal<Name extends LaunchSignalName>(
 }
 
 export type ReportFailureKind = (typeof LAUNCH_SIGNALS)["riyp.report.outcome"]["failure"][number];
+export type ReportLatencyBucket = (typeof LAUNCH_SIGNALS)["riyp.report.outcome"]["latency_bucket"][number];
+
+/** The wait as a closed bucket, measured from the route's start to its outcome. */
+export function latencyBucketFor(startedAt: number, now: number = Date.now()): ReportLatencyBucket {
+  const seconds = Math.max(0, now - startedAt) / 1000;
+  if (seconds < 30) return "lt30";
+  if (seconds < 60) return "30to60";
+  if (seconds < 120) return "60to120";
+  return "gt120";
+}
 
 /**
  * Groups generation error codes into the failure kinds the alerts watch, in
@@ -144,6 +230,8 @@ export function classifyReportFailure(error: { code?: unknown; name?: unknown } 
   if (code.startsWith("OPENAI_RESPONSE_")) return "validation";
   if (code.startsWith("OPENAI_")) return "provider";
   if (code === "GENERATION_PAUSED" || code === "GENERATION_BUDGET_EXHAUSTED") return "paused";
+  // The daily cap's own storage missing or down refuses every report: an outage, alerted like Redis or Supabase.
+  if (code === "GENERATION_BUDGET_UNAVAILABLE") return "access";
   if (code === "RECOVERY_STORAGE_REQUIRED") return "precondition";
   if (code.startsWith("ACCESS_") || code.startsWith("GENERATION_")) return "access";
   if (code.startsWith("REPORT_")) return "persistence";

@@ -1,0 +1,47 @@
+[
+  {
+    "t": 254.6,
+    "step": "returned",
+    "url": "http://127.0.0.1:3140/auth"
+  },
+  {
+    "t": 254.7,
+    "step": "shot",
+    "file": "daniel-41-return-landing@390.jpg"
+  },
+  {
+    "t": 353.3,
+    "step": "shot",
+    "file": "daniel-42-return-workspace@390.jpg"
+  },
+  {
+    "t": 453.1,
+    "step": "shot",
+    "file": "daniel-43-return-my-reports@390.jpg"
+  },
+  {
+    "t": 453.1,
+    "step": "saved-report",
+    "none": true
+  },
+  {
+    "t": 579.5,
+    "step": "shot",
+    "file": "daniel-44-progress@390.jpg"
+  },
+  {
+    "t": 650.3,
+    "step": "shot",
+    "file": "daniel-45-pricing-first-screen@390.jpg"
+  },
+  {
+    "t": 650.5,
+    "step": "shot",
+    "file": "daniel-46-pricing-full@390.jpg"
+  },
+  {
+    "t": 650.5,
+    "step": "console-errors",
+    "errs": []
+  }
+]

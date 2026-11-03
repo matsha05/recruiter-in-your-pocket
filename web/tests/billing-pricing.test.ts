@@ -5,6 +5,7 @@ import {
   getPassStatusLabel,
   getTierDefaults,
   getTierLabel,
+  JOB_SEARCH_PASS_DAYS,
   normalizeRequestedTier,
 } from "../lib/billing/entitlements";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION, PRICING_PLANS } from "../lib/billing/pricing";
@@ -17,9 +18,22 @@ const legacyExtendedPass = getTierDefaults("90d", { now });
 assert.equal(jobSearchPass.usesRemaining, 5, "Job Search Pass includes five reports");
 assert.equal(
   jobSearchPass.expiresAt,
-  "2026-08-11T12:00:00.000Z",
-  "Job Search Pass expires 30 days after fulfillment"
+  "2026-10-10T12:00:00.000Z",
+  "Job Search Pass expires 90 days after fulfillment (Matt, M4, Nov 2, 2026)"
 );
+assert.equal(JOB_SEARCH_PASS_DAYS, 90);
+// Every place that states the pass length says 90 days; nothing still says 30.
+for (const [label, text] of [
+  ["pricing terms", JOB_SEARCH_PASS_DECISION.terms],
+  ["pricing period", PRICING_PLANS["30d"].period],
+  ["pricing features", PRICING_PLANS["30d"].features.map(({ text }) => text).join(" ")],
+  ["trust promises", TRUST_PROMISES.join(" ")],
+] as const) {
+  assert.match(text, /90 days/u, `${label} states the 90-day pass`);
+  assert.doesNotMatch(text, /30 days|30-day|thirty/iu, `${label} no longer says 30 days`);
+}
+assert.ok(!PRICING_PLANS["30d"].features.some(({ text }) => /PDF/iu.test(text)), "the PDF is no longer sold with the pass");
+assert.ok(PRICING_PLANS.free.features.some(({ text }) => /PDF export/u.test(text)), "the free plan names the PDF for signed-in reports");
 assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one-time payment");
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
@@ -41,7 +55,7 @@ assert.ok(
   TRUST_PROMISES.includes(`${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`),
   "the public trust checklist must state the bounded free entitlement",
 );
-assert.equal(LEGAL_LAST_UPDATED, "September 4, 2026");
+assert.equal(LEGAL_LAST_UPDATED, "November 2, 2026");
 assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /nothing is held back/i);
 assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /checking your revision, or tailoring your resume/i);
 assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/i);

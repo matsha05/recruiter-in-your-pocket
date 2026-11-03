@@ -57,8 +57,8 @@
     text-wrap: pretty;
 }
 
-.lead .answer { font: var(--type-verdict); font-style: italic; }
-.row .answer { font: var(--type-note); }
+.lead .answer { font: var(--type-verdict); }
+.row .answer { font: var(--type-note); font-style: normal; }
 
 .read {
     display: inline-flex;

@@ -37,6 +37,7 @@ import {
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { captureOperationalError } from "@/lib/observability/operations";
+import { classifyReportFailure, latencyBucketFor, recordLaunchSignal, recordStageTiming } from "@/lib/observability/launchSignals";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -63,6 +64,8 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Worst case: main call 90 s, a repair call, the severity check and persistence.
+export const maxDuration = 300;
 
 export async function POST(request: Request) {
   const request_id = getRequestId(request);
@@ -74,6 +77,8 @@ export async function POST(request: Request) {
   let reservationAdmin: GenerationAccessRpcClient | null = null;
   let requestedOperationId: string | null = null;
   let authenticatedOperationId: string | null = null;
+  // The same counter the stream route sends, with endpoint "json"; the wait is bucketed from startedAt.
+  const reportSignal: { mode?: any; viewer: "anonymous" | "signed_in"; has_jd: "yes" | "no" } = { viewer: "anonymous", has_jd: "no" };
   logInfo({ msg: "http.request.started", request_id, route, method, path });
   const cookieStore = await cookies();
   const anonymousIdentityCookie = cookieStore.get(ANONYMOUS_ID_COOKIE)?.value;
@@ -133,6 +138,8 @@ export async function POST(request: Request) {
 
     const { text, mode, jobDescription } = validation.value;
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
+    reportSignal.mode = mode;
+    reportSignal.has_jd = effectiveJobDescription.hasValue ? "yes" : "no";
 
     const supabase = await maybeCreateSupabaseServerClient();
     const admin = createSupabaseAdminClient();
@@ -147,6 +154,7 @@ export async function POST(request: Request) {
       : { data: { user: null }, error: null };
     assertGenerationAuthLookup("error" in userData ? userData.error : null);
     const user = userData.data.user || null;
+    reportSignal.viewer = user ? "signed_in" : "anonymous";
     const user_id = user?.id ? hashForLogs(user.id) : undefined;
     const savedJobId = user && supabase
       ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
@@ -199,7 +207,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
+          message: "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"
@@ -311,7 +319,7 @@ export async function POST(request: Request) {
         logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
       }
       // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
-      ({ payload } = await severityCheckReport({
+      const severity = await severityCheckReport({
         payload,
         mode,
         resumeText: canonicalResumeText,
@@ -319,7 +327,13 @@ export async function POST(request: Request) {
         signal: request.signal,
         endpoint: "json",
         ctx: { request_id, route, user_id },
-      }));
+      });
+      payload = severity.payload;
+      if (severity.outcome) {
+        const call = severity.outcome.call_latency_ms ?? severity.outcome.latency_ms;
+        recordStageTiming("severity_call", call, { endpoint: "json", outcome: severity.outcome.outcome === "error" ? "failed" : "ok", viewer: reportSignal.viewer });
+        recordStageTiming("severity_merge", Math.max(0, severity.outcome.latency_ms - call), { endpoint: "json", outcome: "ok", viewer: reportSignal.viewer });
+      }
     }
 
     let reportId: string | null = null;
@@ -389,6 +403,10 @@ export async function POST(request: Request) {
 
     const res = NextResponse.json(responseBody);
     res.headers.set("x-request-id", request_id);
+    recordLaunchSignal("riyp.report.outcome", {
+      ...reportSignal, endpoint: "json", outcome: "completed", failure: "none", latency_bucket: latencyBucketFor(startedAt),
+    });
+    recordStageTiming("total", Date.now() - startedAt, { endpoint: "json", outcome: "ok", viewer: reportSignal.viewer });
 
     if (accessReservation.anonymousCookieMeta) {
       res.cookies.set(
@@ -422,6 +440,18 @@ export async function POST(request: Request) {
     const completion = generationFailureCompletion(err);
     const status = completion.status;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
+    // A pending operation is a retry still in flight, not an outcome.
+    if (code !== "GENERATION_OPERATION_PENDING") {
+      recordLaunchSignal("riyp.report.outcome", {
+        ...reportSignal,
+        endpoint: "json",
+        outcome: "failed",
+        failure: classifyReportFailure(err),
+        error_code: String(code),
+        latency_bucket: latencyBucketFor(startedAt),
+      });
+      recordStageTiming("total", Date.now() - startedAt, { endpoint: "json", outcome: "failed", viewer: reportSignal.viewer });
+    }
 
     if (
       status >= 500 &&
@@ -430,7 +460,7 @@ export async function POST(request: Request) {
     ) {
       captureOperationalError(err, {
         operation: "generation.resume_feedback",
-        tags: { error_code: String(code) },
+        tags: { error_code: String(code), ...(typeof err?.reason === "string" ? { reason: err.reason } : {}) },
       });
     }
 

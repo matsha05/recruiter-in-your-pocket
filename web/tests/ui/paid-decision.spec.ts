@@ -31,7 +31,7 @@ const EXPECTED_UNLOCK_COPY = {
     label: "Role fit",
   },
   export_pdf: {
-    title: "Take your report with you",
+    title: "PDFs come with a signed-in report",
     label: "PDF export",
   },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
@@ -317,7 +317,7 @@ test.describe("paid decision boundary", () => {
         await expect(dialog).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
         await expect(dialog).toContainText("5 more complete reports");
         await expect(dialog).toContainText("$29");
-        await expect(dialog).toContainText("30 days");
+        await expect(dialog).toContainText("90 days");
         await expect(dialog).toContainText("no automatic renewal", { ignoreCase: true });
 
         const dialogText = await dialog.innerText();
@@ -542,7 +542,7 @@ test.describe("paid decision boundary", () => {
       await expect(banner.getByRole("heading", { name: "Your Job Search Pass is ready." })).toBeVisible();
       // The report markers above and zero generation requests below verify
       // restoration. The banner describes the purchased report allowance.
-      await expect(banner).toContainText("Five more reports, good for 30 days.");
+      await expect(banner).toContainText("Five more reports, good for 90 days.");
       await expect(banner).not.toContainText("Full report unlocked");
       await expect(banner).not.toContainText(/(?:unlock|locked|see the rest|remaining content)/i);
       const bannerShell = page.getByTestId("pass-ready-banner-shell");

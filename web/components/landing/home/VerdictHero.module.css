@@ -134,13 +134,13 @@
 
 /* Below 1200px the story stacks: headline and actions first, then the illustration at its desktop size. */
 @media (max-width: 1199px) {
-    .inner { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 3rem; padding: calc(var(--marketing-header-height-desktop) + 3rem) clamp(1.25rem, 5vw, 3rem) 3rem; }
+    .inner { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 3rem; padding: calc(var(--marketing-header-height-desktop) + 3rem) var(--marketing-gutter) 3rem; }
     .copy { max-width: 40rem; }
     .stage { width: 100%; max-width: 35rem; }
 }
 
 @media (max-width: 640px) {
-    .inner { gap: 2rem; padding: calc(var(--marketing-header-height-mobile) + 2rem) 1.25rem 2rem; }
+    .inner { gap: 2rem; padding: calc(var(--marketing-header-height-mobile) + 2rem) var(--marketing-gutter) 2rem; }
     .deck { margin-top: 1.125rem; }
     .actions { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-top: 1.75rem; }
     .fine { text-align: center; }

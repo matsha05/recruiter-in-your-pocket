@@ -12,7 +12,7 @@ import { siteStructuredData } from "@/lib/seo/site";
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.recruiterinyourpocket.com'),
   title: {
-    default: "Recruiter in Your Pocket | Free Resume Report from a Recruiter's Perspective",
+    default: "Recruiter in Your Pocket: see what a recruiter sees",
     template: "%s | Recruiter in Your Pocket"
   },
   description: "Get a free recruiter report on your resume. See what stands out first, what gets missed, and what to fix next.",

@@ -98,7 +98,7 @@ export default function PurchaseConfirmedClient() {
     : "Needs attention";
   const confirmationMessage = !paymentConfirmed ? state.message
     : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
-    : accountReady ? "5 more reports, good for 30 days. Spend them on revisions, or on the jobs you actually want."
+    : accountReady ? "5 more reports, good for 90 days. Spend them on revisions, or on the jobs you actually want."
     : user ? "Your payment is confirmed, but this account does not show the pass yet."
     : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
   const pageTitle = !paymentConfirmed || checkingAccountAccess ? state.title

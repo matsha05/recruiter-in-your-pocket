@@ -21,6 +21,7 @@ import { ActionFeedback } from "@/components/ui/action-feedback";
 import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
+import { candidateNameOf, formatReadTime, readAsChip, targetRoleOf } from "@/lib/reports/report-opening";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -51,6 +52,10 @@ interface ReportPanelProps {
     isSavedReport?: boolean;
     /** The reader's answers kept with a saved report (W3). */
     storedLineAnswers?: StoredLineAnswersByFix | null;
+    /** How long this visit's report took to arrive, for the header row. Absent on the sample, a saved or a recovered report. */
+    readDurationMs?: number | null;
+    /** The reader has an account: the ending leads with saving this version (W3). */
+    isSignedIn?: boolean;
 }
 
 export default function ReportPanel({
@@ -79,6 +84,8 @@ export default function ReportPanel({
     onStartRevision,
     isSavedReport = false,
     storedLineAnswers = null,
+    readDurationMs = null,
+    isSignedIn = false,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -117,6 +124,13 @@ export default function ReportPanel({
     const showEmptyState = !report && !isLoading;
     const showReport = !!report;
     const canExport = !isStreaming && Boolean(onExportPdf);
+    // One name for keeping a report (copy-system §1): the ending says the same.
+    const saveLabel = isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save this version";
+    // The header row: the role the report reads toward, the level it reads at, and how long it took.
+    const roleFit = displayReport?.job_alignment?.role_fit;
+    const targetRole = targetRoleOf(roleFit);
+    const readAs = readAsChip(roleFit);
+    const readTime = isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
 
     const handleExport = () => {
         if (!onExportPdf) return;
@@ -165,6 +179,7 @@ export default function ReportPanel({
                 <AnalysisScanning
                     mode="resume"
                     startedAt={analysisStartedAt}
+                    resumeText={resumeText}
                     onCancel={onCancelAnalysis}
                     onRetry={onRetryAnalysis}
                 />
@@ -207,7 +222,79 @@ export default function ReportPanel({
 
             {/* 3. The working report */}
             {showReport && !isLoading && displayReport && (
-                <ReportLayout mobileReading toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={Boolean(displayReport.job_alignment)} />}>
+                <ReportLayout
+                    mobileReading
+                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={Boolean(displayReport.job_alignment)} />}
+                    head={
+                        /* Whose resume, the role it reads toward, and how long the read took (W1, Nov 2, 2026). */
+                        <>
+                            <div className="min-w-0">
+                                <p className="text-small font-semibold text-foreground">
+                                    {isSample ? "Sample report · Jordan is fictional" : (!shareMode && candidateNameOf(resumeText)) || "Your resume report"}
+                                </p>
+                                {(targetRole || readTime) && (
+                                    <p className="text-label font-normal text-muted-foreground">{[targetRole, readTime].filter(Boolean).join(" · ")}</p>
+                                )}
+                            </div>
+                            {isSample && onNewReport ? (
+                                <Button data-testid="sample-start-report" type="button" variant="primary" size="sm" onClick={onNewReport} className="shrink-0">
+                                    Get your free report <ArrowRight className="size-4" weight="bold" />
+                                </Button>
+                            ) : readAs ? (
+                                <p className="shrink-0 rounded-full bg-brand-tint px-3 py-1 text-label text-brand" data-testid="report-read-as">Read as: {readAs}</p>
+                            ) : null}
+                            {shareEnabled && shareMode && <span className="text-label text-brand">Share view</span>}
+                        </>
+                    }
+                    actions={!isSample && (
+                        <>
+                            {!isStreaming && !shareMode && onKeepReport && (
+                                <Button
+                                    data-testid="workspace-keep-report"
+                                    type="button"
+                                    variant="quiet"
+                                    size="sm"
+                                    onClick={onKeepReport}
+                                    disabled={isSavingReport}
+                                    aria-busy={isSavingReport || undefined}
+                                    aria-describedby={reportSaveError ? "report-save-error" : undefined}
+                                    className="shrink-0 text-foreground"
+                               >
+                                    <BookmarkSimple className="size-4 text-brand" weight="duotone" />
+                                    {/* Icon-only on phones; the label is still the button's name. */}
+                                    <span className="sr-only sm:not-sr-only">{saveLabel}</span>
+                                </Button>
+                            )}
+                            {canExport && (
+                                <button type="button"
+                                    onClick={handleExport}
+                                    disabled={isExporting}
+                                    aria-busy={isExporting || undefined}
+                                    aria-label={isExporting ? "Exporting report as PDF" : "Export report as PDF"}
+                                    className="focus-ring flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
+                                >
+                                    <ActionFeedback
+                                        state={isExporting ? "pending" : "idle"}
+                                        states={{
+                                            idle: { label: <span className="hidden sm:inline">Export PDF</span>, icon: <DownloadIcon size={16} /> },
+                                            pending: { label: <span className="hidden sm:inline">Exporting…</span>, icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
+                                        }}
+                                    />
+                                </button>
+                            )}
+                            {!isStreaming && shareEnabled && !shareMode && (
+                                <button type="button"
+                                    onClick={handleShare}
+                                    aria-label="Share report"
+                                    className="focus-ring flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                                >
+                                    <LinkIcon className="size-4" />
+                                    <span className="hidden sm:inline">Share report</span>
+                                </button>
+                            )}
+                        </>
+                    )}
+                >
                         <div className="gap-y-6">
                             {isStreaming && (
                                 <div
@@ -222,7 +309,7 @@ export default function ReportPanel({
                             {shareEnabled && shareMode && (
                                 <div className="mb-4 flex flex-col gap-3 rounded-xl border border-line bg-proof p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                                        <ShieldCheck className="size-4 text-premium" />
+                                        <ShieldCheck className="size-4 text-brand" />
                                         <div>
                                             <p className="text-foreground font-medium">Share view is on.</p>
                                             <p className="text-xs text-muted-foreground">
@@ -231,90 +318,17 @@ export default function ReportPanel({
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <button type="button"
-                                            onClick={handleShare}
-                                            className="inline-flex min-h-11 items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
-                                        >
+                                        <Button type="button" variant="secondary" size="sm" onClick={handleShare}>
                                             <LinkIcon className="size-3.5" />
                                             Copy link
-                                        </button>
-                                        <button type="button"
-                                            onClick={handleExitShare}
-                                            className="inline-flex min-h-11 items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
-                                        >
+                                        </Button>
+                                        <Button type="button" variant="secondary" size="sm" onClick={handleExitShare}>
                                             <X className="size-3.5" />
                                             Exit share
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             )}
-
-                            <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-line pb-2 sm:min-h-12 sm:gap-x-4 sm:pb-4">
-                                <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-xs font-semibold text-muted-foreground">
-                                        {isSample ? "Sample report · Jordan is fictional" : "Your resume report"}
-                                    </span>
-                                    {shareEnabled && shareMode && <span className="text-xs font-semibold text-premium">Share view</span>}
-                                </div>
-                                {/* Below 360px the actions wrap under the label; pull the ghost button's padding back to the column edge. */}
-                                <div className={`flex shrink-0 items-center gap-1${isSample ? "" : " max-[359px]:-ml-3"}`}>
-                                    {isSample && onNewReport && (
-                                        <Button
-                                            data-testid="sample-start-report"
-                                            type="button"
-                                            variant="primary"
-                                            size="sm"
-                                            onClick={onNewReport}
-                                            className="shrink-0 sm:px-4"
-                                       >
-                                            Get your free report <ArrowRight className="ml-1 size-4" weight="bold" />
-                                        </Button>
-                                    )}
-                                    {!isSample && !isStreaming && !shareMode && onKeepReport && (
-                                        <Button
-                                            data-testid="workspace-keep-report"
-                                            type="button"
-                                            variant="quiet"
-                                            size="sm"
-                                            onClick={onKeepReport}
-                                            disabled={isSavingReport}
-                                            aria-busy={isSavingReport || undefined}
-                                            aria-describedby={reportSaveError ? "report-save-error" : undefined}
-                                            className="shrink-0 text-foreground"
-                                       >
-                                            <BookmarkSimple className="size-4 text-brand" weight="duotone" />
-                                            {isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save report"}
-                                        </Button>
-                                    )}
-                                    {canExport && !isSample && (
-                                        <button type="button"
-                                            onClick={handleExport}
-                                            disabled={isExporting}
-                                            aria-busy={isExporting || undefined}
-                                            aria-label={isExporting ? "Exporting report as PDF" : "Export report as PDF"}
-                                            className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
-                                        >
-                                            <ActionFeedback
-                                                state={isExporting ? "pending" : "idle"}
-                                                states={{
-                                                    idle: { label: <span className="hidden sm:inline">Export PDF</span>, icon: <DownloadIcon size={16} /> },
-                                                    pending: { label: <span className="hidden sm:inline">Exporting…</span>, icon: <CircleNotch className="size-4 motion-safe:animate-spin" /> },
-                                                }}
-                                            />
-                                        </button>
-                                    )}
-                                    {!isStreaming && shareEnabled && !shareMode && !isSample && (
-                                        <button type="button"
-                                            onClick={handleShare}
-                                            aria-label="Share report"
-                                            className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
-                                        >
-                                            <LinkIcon className="size-4" />
-                                            <span className="hidden sm:inline">Share report</span>
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
 
                             {reportSaveError && !isSample && !shareMode && (
                                 <p id="report-save-error" role="alert" className="mt-3 rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm text-foreground">
@@ -350,6 +364,9 @@ export default function ReportPanel({
                                 onStartReport={onNewReport}
                                 resumeText={resumeText}
                                 resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
+                                isSignedIn={isSignedIn}
+                                onSaveReport={!isStreaming && !shareMode ? onKeepReport : undefined}
+                                isSavingReport={isSavingReport}
                                 storedLineAnswers={storedLineAnswers}
                                 className="max-w-none sm:pb-16"
                             />

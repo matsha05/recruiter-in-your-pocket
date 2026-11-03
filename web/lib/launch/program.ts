@@ -234,10 +234,10 @@ export const REQUIRED_LAUNCH_DOCS = [
 
 export const REQUIRED_PUBLIC_TRUST_FILES = [
   "web/app/(marketing)/privacy/page.tsx",
-  "web/app/(marketing)/security/page.tsx",
+  "web/app/(marketing)/terms/page.tsx",
   "web/app/(editorial)/methodology/page.tsx",
   "web/app/(marketing)/status/page.tsx",
-  "web/app/(marketing)/support/page.tsx",
+  "web/app/(marketing)/help/page.tsx",
   "web/app/.well-known/security.txt/route.ts",
   "web/app/robots.ts",
   "web/app/sitemap.ts",

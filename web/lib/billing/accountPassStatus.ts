@@ -15,7 +15,8 @@ export function readAuthoritativePassAccess(
   if (!httpOk || payload?.ok !== true || !Array.isArray(payload.passes)) {
     throw new Error("Paid pass status is unavailable");
   }
-  const canExportPdf = payload.passes.some((pass) => hasPdfExportAccess(pass, now));
+  // /api/passes answers only a signed-in account, and every signed-in report can be exported.
+  const canExportPdf = hasPdfExportAccess({ userId: "signed-in" });
   const activePasses = payload.passes.filter((pass) => isPassActive(pass, now));
   const lifetimePass = activePasses.find((pass) => pass.tier === "lifetime");
   if (lifetimePass) return { membership: "lifetime", canExportPdf };

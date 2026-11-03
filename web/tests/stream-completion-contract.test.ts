@@ -49,14 +49,19 @@ async function run() {
       { type: "stage", stage: "writing" },
       { type: "stage", stage: "almost-done" },
       { type: "stage", stage: "checking" },
+      // What is final after validation; informational, never the report.
+      { type: "preview", first_impression: "Early verdict", score: 12, score_label: "Hard to read", critical_miss: { fix: "x", why: "y", evidence: { excerpt: "z", section: "Experience" } } },
+      { type: "stage", stage: "severity" },
       { type: "complete", ok: true, data: structuredClone(schemaValidReport) },
     ]);
     const stages: string[] = [];
     const staged = await streamResumeFeedback("Resume source", undefined, () => undefined, "resume", {
       onStage: (stage) => stages.push(stage),
     });
-    assert.ok(staged.ok, "stage events must not interfere with completion");
-    assert.deepEqual(stages, ["sending", "reading", "writing", "checking"]);
+    assert.ok(staged.ok, "stage and preview events must not interfere with completion");
+    assert.equal(staged.report?.score, schemaValidReport.score, "a preview never becomes the report");
+    assert.deepEqual(stages, ["sending", "reading", "writing", "checking", "severity"],
+      "the severity check is a stage of its own, after the report has validated");
     assert.equal(
       (canonical.report as unknown as Record<string, unknown>).unknown_terminal_field,
       undefined,

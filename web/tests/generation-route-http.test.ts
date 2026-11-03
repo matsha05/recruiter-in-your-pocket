@@ -209,7 +209,14 @@ async function run() {
     assert.equal(providerCalls, 0, "a streaming operation conflict must stop before provider work");
     assert.equal(reservationCalls, 1);
     const signedStreamReport = { mode: "resume", viewer: "signed_in", has_jd: "no", endpoint: "stream", outcome: "failed" };
-    assert.deepEqual(takeSignals("riyp.report.outcome"), [
+    const signedJsonReport = { ...signedStreamReport, endpoint: "json" };
+    const outcomes = takeSignals("riyp.report.outcome");
+    assert.ok(outcomes.every((signal) => signal.latency_bucket === "lt30"), "every outcome carries the bucketed wait");
+    assert.deepEqual(outcomes.map(({ latency_bucket: _bucket, ...rest }) => rest), [
+      // The JSON route's refusals above, counted the same way with endpoint "json".
+      { ...signedJsonReport, failure: "precondition", error_code: "RECOVERY_STORAGE_REQUIRED" },
+      { ...signedJsonReport, failure: "access", error_code: "GENERATION_OPERATION_CONFLICT" },
+      { ...signedJsonReport, viewer: "anonymous", failure: "precondition", error_code: "RECOVERY_STORAGE_REQUIRED" },
       { ...signedStreamReport, failure: "precondition", error_code: "RECOVERY_STORAGE_REQUIRED" },
       { ...signedStreamReport, failure: "access", error_code: "GENERATION_OPERATION_CONFLICT" },
     ], "refusals before reservation are kept apart from access-boundary failures");

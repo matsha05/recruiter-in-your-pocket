@@ -21,7 +21,7 @@ function hashResumeText(text: string) {
 }
 
 function reportPersistenceError() {
-  const error = new Error("We could not safely save this report. Please try again.") as Error & {
+  const error = new Error("We couldn't save this report safely. Try again in a minute.") as Error & {
     code: string;
     httpStatus: number;
   };

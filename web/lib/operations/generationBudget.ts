@@ -1,6 +1,10 @@
 import "server-only";
 
+import { withDeadline } from "../backend/deadline";
 import { getRedisClient } from "../redis/client";
+
+// A Redis call that hangs is a Redis outage: the cap fails closed before the model call, not after a long wait.
+export const DAILY_CAP_DEADLINE_MS = 5_000;
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
 const DAILY_CAP_SCRIPT = `
@@ -28,16 +32,21 @@ export type GenerationBudgetStatus = {
 };
 
 export const DAILY_CAPACITY_EXHAUSTED_MESSAGE =
-  "Today's report capacity has been reached. Please try again tomorrow.";
+  "We've reached today's report limit. It resets tomorrow.";
+export const DAILY_CAPACITY_UNAVAILABLE_MESSAGE =
+  "We can't start reports right now. The problem is on our side, not in your resume. Give it a few minutes and try again.";
 
 export class GenerationBudgetError extends Error {
   code: "GENERATION_PAUSED" | "GENERATION_BUDGET_EXHAUSTED" | "GENERATION_BUDGET_UNAVAILABLE";
   httpStatus = 503;
+  /** Why the cap refused, for logs and Sentry: "unconfigured" and "storage_unavailable" are operator problems. */
+  reason: GenerationBudgetStatus["reason"];
 
-  constructor(code: GenerationBudgetError["code"], message: string) {
+  constructor(code: GenerationBudgetError["code"], message: string, reason: GenerationBudgetStatus["reason"]) {
     super(message);
     this.name = "GenerationBudgetError";
     this.code = code;
+    this.reason = reason;
   }
 }
 
@@ -82,6 +91,7 @@ export async function reserveDailyGenerationCapacity(options: {
   redis?: BudgetRedis | null;
   now?: Date;
   tier?: GenerationCapacityTier;
+  deadlineMs?: number;
 } = {}): Promise<GenerationBudgetStatus> {
   const env = options.env ?? process.env;
   const tier = options.tier ?? "free";
@@ -110,10 +120,14 @@ export async function reserveDailyGenerationCapacity(options: {
 
   const day = (options.now ?? new Date()).toISOString().slice(0, 10);
   try {
-    const result = await redis.eval<[number, number]>(
-      DAILY_CAP_SCRIPT,
-      [tier === "paid" ? `ops:generation:daily:paid:${day}` : `ops:generation:daily:${day}`],
-      [limit, 48 * 60 * 60]
+    const result = await withDeadline(
+      redis.eval<[number, number]>(
+        DAILY_CAP_SCRIPT,
+        [tier === "paid" ? `ops:generation:daily:paid:${day}` : `ops:generation:daily:${day}`],
+        [limit, 48 * 60 * 60]
+      ),
+      options.deadlineMs ?? DAILY_CAP_DEADLINE_MS,
+      () => new Error("Daily cap storage did not answer in time"),
     );
     const allowed = Number(result?.[0]) === 1;
     const used = Math.max(0, Number(result?.[1]) || 0);
@@ -132,17 +146,21 @@ export async function assertGenerationCapacity(
   if (status.reason === "paused") {
     throw new GenerationBudgetError(
       "GENERATION_PAUSED",
-      "Reports are paused for a short while as we fix a problem. Please try again later today."
+      "Reports are paused while we fix a problem on our side. Check back later today.",
+      status.reason,
     );
   }
   if (status.reason === "limit_reached") {
     throw new GenerationBudgetError(
       "GENERATION_BUDGET_EXHAUSTED",
-      DAILY_CAPACITY_EXHAUSTED_MESSAGE
+      DAILY_CAPACITY_EXHAUSTED_MESSAGE,
+      status.reason,
     );
   }
+  // The cap's own storage is missing or down: an operator problem, counted and alerted as an access failure.
   throw new GenerationBudgetError(
     "GENERATION_BUDGET_UNAVAILABLE",
-    "Report generation is temporarily unavailable. Please try again shortly."
+    DAILY_CAPACITY_UNAVAILABLE_MESSAGE,
+    status.reason,
   );
 }

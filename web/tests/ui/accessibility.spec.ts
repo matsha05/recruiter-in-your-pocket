@@ -25,14 +25,12 @@ const routes = [
   "/auth",
   "/settings/account",
   "/settings/billing",
-  "/trust",
-  "/security",
   "/privacy",
   "/terms",
   "/methodology",
   "/research",
   "/guides",
-  "/faq",
+  "/help",
   "/purchase/restore",
 ];
 
