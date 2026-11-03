@@ -28,13 +28,13 @@ The Recruiter First Impression: a Verdict in a recruiter's words, a band that sa
 3. **The wait.** Forty to ninety seconds. The person is on a phone, half-expecting nothing. The screen has to prove the thing is alive and say what's being read, without faking progress.
 4. **The first Critical Miss.** It must feel true and specific: a line from their resume, the question a recruiter would actually ask about it, in words that could not apply to anyone else's resume. If this moment is generic, nothing after it matters.
 5. **Answering it and seeing their own line improve.** They type the missing fact, and their line, built only from their words, gets better in front of them. This is the moment the product stops being a judgment and becomes a tool.
-6. **Deciding whether a second read is worth $29.** Five reports over 30 days, one payment, no renewal. The case is made by the first report, not by the pricing page.
+6. **Deciding whether a second read is worth $29.** Five reports over 90 days (30 until the next wave ships), one payment, no renewal. The case is made by the first report, not by the pricing page.
 7. **Coming back.** With the revised resume, with a specific job, or two weeks later when the next silence sets in.
 
 ## What RIYP refuses to be today, and why
 
 - **An ATS keyword score.** The research library says keyword matching doesn't predict who gets read; the number would be false precision sold as confidence. A keyword scanner also makes the resume worse: it rewards stuffing.
-- **An AI resume writer.** A rewrite that invents scope is a lie the candidate has to defend in the interview. We build the revised line from their facts only, and refuse to add a word they didn't give us.
+- **An AI resume writer that invents.** A rewrite that invents scope is a lie the candidate has to defend in the interview. We do rewrite the line, but only from their facts: "We'll rewrite your line. Only from your facts." (Decided by Matt, Nov 2, 2026: the refusal is to invention, not to help.)
 - **A template builder.** Layout is not the problem for these four people. Content is. Templates also pull the product toward "produce a document" and away from "see what they see".
 - **A chatbot.** A chat window moves the work back to the person ("ask me anything") when the whole point is that the recruiter speaks first, about their page.
 - **A consultancy.** The founder is anonymous, nobody reads individual reports, and the price is $29. A service promise would be false.
