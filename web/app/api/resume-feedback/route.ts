@@ -207,7 +207,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
+          message: "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"

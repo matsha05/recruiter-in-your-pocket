@@ -55,7 +55,7 @@ type OfferSpec = {
 
 type CheckoutSessionLike = Pick<Stripe.Checkout.Session, "mode" | "metadata" | "line_items">;
 
-// Only the 30-day offer is available for new checkout. The remaining pairs are
+// Only the Job Search Pass (tier id "30d"; 90 days since Nov 2, 2026) is available for new checkout. The remaining pairs are
 // restore-only so existing customers can recover a known historical purchase.
 // An offer is trusted only when both identifiers are configured.
 const OFFER_SPECS: OfferSpec[] = [

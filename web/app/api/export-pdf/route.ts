@@ -7,7 +7,6 @@ import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { normalizeReportForPdf, parsePdfExportRequest } from "@/lib/reports/pdf-export";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { hasPdfExportAccess } from "@/lib/billing/entitlements";
-import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import { parseTrustedStoredReport } from "@/lib/reports/report-trust";
 
 export const runtime = "nodejs";
@@ -43,31 +42,14 @@ export async function POST(request: NextRequest) {
     const supabase = await createSupabaseServerClient();
     const { data: authData, error: authError } = await supabase.auth.getUser();
     const user = authData.user;
-    if (authError || !user) {
+    // The PDF is free for any signed-in owner of a saved report; a pass is not needed.
+    if (authError || !user || !hasPdfExportAccess({ userId: user.id })) {
       const res = NextResponse.json(
-        { ok: false, errorCode: "UNAUTHORIZED", message: "Sign in with a paid account to export a PDF." },
+        { ok: false, errorCode: "UNAUTHORIZED", message: "Sign in to export this report as a PDF." },
         { status: 401 },
       );
       res.headers.set("x-request-id", request_id);
       return res;
-    }
-
-    if (!isDevelopmentPaywallBypassEnabled()) {
-      const { data: passes, error: passesError } = await supabase
-        .from("passes")
-        .select("tier, uses_remaining, expires_at, revoked_at")
-        .eq("user_id", user.id);
-
-      if (passesError) throw passesError;
-      const canExportPdf = (passes || []).some((pass) => hasPdfExportAccess(pass));
-      if (!canExportPdf) {
-        const res = NextResponse.json(
-          { ok: false, errorCode: "PAID_ACCESS_REQUIRED", message: "PDF export is included with paid access." },
-          { status: 402 }
-        );
-        res.headers.set("x-request-id", request_id);
-        return res;
-      }
     }
 
     const body = await readJsonWithLimit<any>(request, 256 * 1024);

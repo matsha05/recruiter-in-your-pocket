@@ -77,5 +77,5 @@ const purchase = { created: periodEnd + 86_400 };
 assert.equal(getTierDefaultsForCheckout("monthly", purchase, periodEnd).expiresAt,
   "2026-10-01T12:00:00.000Z", "even an expired provider period remains exact, with no synthetic extension");
 assert.equal(getTierDefaultsForCheckout("30d", { created: periodEnd }).expiresAt,
-  "2026-10-31T12:00:00.000Z", "the current one-time 30-day pass remains anchored to checkout");
+  "2026-12-30T12:00:00.000Z", "the current one-time pass (90 days) remains anchored to checkout");
 console.log("Subscription period tests passed");

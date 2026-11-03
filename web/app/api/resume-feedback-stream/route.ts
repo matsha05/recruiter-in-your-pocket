@@ -241,7 +241,7 @@ export async function POST(request: Request) {
             return respond(singleGenerationStreamEvent(request_id, {
                 type: "error",
                 errorCode: "PAYWALL_REQUIRED",
-                message: "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
+                message: "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
                 access_consumed: false,
                 attempt_consumed: false,
                 attempt_disposition: "not_started",
