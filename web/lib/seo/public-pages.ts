@@ -1,3 +1,4 @@
+import retiredRoutes from "./retired-routes.json";
 // Every page we want in search. The sitemap is built from this list, and
 // articles take their published and updated dates from it.
 //
@@ -71,6 +72,11 @@ export function shareImageUrl(path: string) {
 
 export function publicPage(path: string): PublicPage {
   const page = PUBLIC_PAGES.find((candidate) => candidate.path === path);
-  if (!page) throw new Error(`${path} is not in PUBLIC_PAGES (web/lib/seo/public-pages.ts).`);
-  return page;
+  if (page) return page;
+  // A retired page (lib/seo/retired-routes.json) stays buildable until its file is removed: it carries
+  // its destination's dates and card, and it is out of the sitemap because it is not in PUBLIC_PAGES.
+  const retired = (retiredRoutes.routes as Array<{ source: string; destination: string }>).find((route) => route.source === path);
+  const destination = retired && PUBLIC_PAGES.find((candidate) => candidate.path === retired.destination);
+  if (destination) return { ...destination, path };
+  throw new Error(`${path} is not in PUBLIC_PAGES (web/lib/seo/public-pages.ts).`);
 }
