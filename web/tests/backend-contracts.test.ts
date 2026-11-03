@@ -369,7 +369,9 @@ assert.doesNotMatch(atomicReportFinalizer, /commit_generation_access|from\("repo
 
 assert.match(exportPdfRoute, /parsePdfExportRequest\(body\)/);
 assert.doesNotMatch(exportPdfRoute, /body\?\.report|normalizeReportForPdf\(body/);
-assert.match(exportPdfRoute, /select\("report_json, evidence_version, evidence_json"\)/);
+// The export reads the stored report and the reader's kept answers (W3), nothing else from the row.
+assert.match(exportPdfRoute, /select\("report_json, evidence_version, evidence_json, line_answers"\)/);
+assert.match(exportPdfRoute, /normalizeReportForPdf\(trustedReport, stored\?\.line_answers\)/);
 assert.match(exportPdfRoute, /\.eq\("id", exportRequest\.report_id\)[\s\S]+\.eq\("user_id", user\.id\)/);
 assert.match(exportPdfRoute, /parseTrustedStoredReport\(stored\.report_json, stored\.evidence_version, stored\.evidence_json, user\.id\)/);
 assert.ok(
