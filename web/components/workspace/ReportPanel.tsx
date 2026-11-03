@@ -20,6 +20,8 @@ import { Button } from "@/components/ui/button";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
+import { candidateNameOf, formatReadTime, readAsChip, targetRoleOf } from "@/lib/reports/report-opening";
+import type { StoredLineAnswers } from "./report/markup/lineAnswersClient";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -48,6 +50,12 @@ interface ReportPanelProps {
     onStartRevision?: () => void;
     /** A report opened from My reports. Saved reports never keep the resume. */
     isSavedReport?: boolean;
+    /** How long this visit's report took to arrive, for the header row. Absent on the sample, a saved or a recovered report. */
+    readDurationMs?: number | null;
+    /** The reader has an account: the ending leads with saving this version (W3). */
+    isSignedIn?: boolean;
+    /** Answers and lines kept with a saved report (W3). */
+    storedLineAnswers?: StoredLineAnswers[];
 }
 
 export default function ReportPanel({
@@ -75,6 +83,9 @@ export default function ReportPanel({
     comparisonBaseline = null,
     onStartRevision,
     isSavedReport = false,
+    readDurationMs = null,
+    isSignedIn = false,
+    storedLineAnswers,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -353,6 +364,10 @@ export default function ReportPanel({
                                 comparisonBaseline={comparisonBaseline}
                                 onStartRevision={onStartRevision}
                                 onStartReport={onNewReport}
+                                isSignedIn={isSignedIn}
+                                onSaveReport={!isStreaming && !shareMode ? onKeepReport : undefined}
+                                isSavingReport={isSavingReport}
+                                storedLineAnswers={storedLineAnswers}
                                 resumeText={resumeText}
                                 resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}
                                 className="max-w-none sm:pb-16"

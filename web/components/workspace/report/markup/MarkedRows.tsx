@@ -12,6 +12,7 @@ import type { RevisedLinePolishRequest } from "@/lib/reports/revised-line-polish
 import { cn } from "@/lib/utils";
 import type { ReportData } from "../ReportTypes";
 import { LineLift, type LiftChange, type ResumeSource } from "./LineLift";
+import type { StoredLineAnswers } from "./lineAnswersClient";
 import { MissFeedback, type MissFeedbackValue } from "./MissFeedback";
 import styles from "./MarkedReport.module.css";
 
@@ -65,6 +66,9 @@ interface LiftProps {
   questions: string[];
   onReattach?: (text: string) => string | null;
   polishContext?: RevisedLinePolishRequest["context"];
+  /** Answers kept with a saved report for this fix. */
+  stored?: StoredLineAnswers;
+  onStore?: (payload: Omit<StoredLineAnswers, "fix_index">) => void;
 }
 
 /** A hidden suggestion keeps its place in the page; after Hide, focus lands on "Bring it back". */

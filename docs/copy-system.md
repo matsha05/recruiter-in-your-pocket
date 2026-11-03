@@ -38,6 +38,7 @@ Each of these things has one name everywhere: marketing, the app, the report, th
 | The negotiation section and its guides | `After the offer` | Resources, Career resources, All Resources |
 | The example report | `Sample report` (navigation and page title). The homepage link names the candidate: `See Jordan's report` | See an example, Example report |
 | A paid re-run of a revised resume | `Re-check`. The comparison says the Critical Miss `changed`, never that it was `fixed` | None |
+| Keeping a report in My reports | `Save this version` (the section row and the signed-in ending, Nov 2, 2026) | Save report |
 
 ## 2. Canonical Report Structure
 

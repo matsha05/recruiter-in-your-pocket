@@ -22,6 +22,8 @@ import {
   POLISH_ALLOWS_JOINERS,
   type RevisedLinePolishRequest,
 } from "@/lib/reports/revised-line-polish";
+import { guardMessage, guardOffersExactWords, readGuardVerdict } from "./guardCopy";
+import { liftAnswerFrom, storedAnswerFrom, type StoredLineAnswers } from "./lineAnswersClient";
 import styles from "./MarkedReport.module.css";
 
 const traceItems = [
@@ -59,6 +61,8 @@ export function LineLift({
   onChange,
   onReattach,
   polishContext,
+  stored,
+  onStore,
 }: {
   excerpt: string;
   /** The resume, when this visit has it (or the candidate pasted it back). */
@@ -71,16 +75,20 @@ export function LineLift({
   onReattach?: (text: string) => string | null;
   /** The report this line belongs to, so the server can offer a smoother line. Absent on the sample. */
   polishContext?: RevisedLinePolishRequest["context"];
+  /** Answers and the line kept with a saved report, so a reopened report picks up where it left off. */
+  stored?: StoredLineAnswers;
+  /** Keeps the answers and the chosen line with the report once they check out. */
+  onStore?: (payload: Omit<StoredLineAnswers, "fix_index">) => void;
 }) {
-  const asked = questions.length > 0 ? questions : ["What would you add to this line?"];
+  const asked = useMemo(() => (questions.length > 0 ? questions : ["What would you add to this line?"]), [questions]);
   // Answers are kept by question, so a report still streaming in can add questions without losing any.
-  const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>({});
+  const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>(() => Object.fromEntries((stored?.answers || []).map((answer) => [answer.question, liftAnswerFrom(answer)])));
   const askedKey = asked.join("\n");
   const answers = useMemo<LiftAnswer[]>(
     () => askedKey.split("\n").map((question) => byQuestion[question] ?? { kind: "open" }),
     [byQuestion, askedKey],
   );
-  const [edited, setEdited] = useState<string | null>(null);
+  const [edited, setEdited] = useState<string | null>(stored?.source === "edited" ? stored.line : null);
   const [editing, setEditing] = useState(false);
   const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -140,8 +148,20 @@ export function LineLift({
     policy?.copyable ? line : undefined,
   );
   const copyableLine = policy?.copyable ? line : undefined;
+  const verdict = useMemo(() => readGuardVerdict(policy), [policy]);
+  const guardNote = line ? guardMessage(verdict) : null;
 
   useEffect(() => { onChange?.({ state, line: copyableLine }); }, [copyableLine, onChange, state]);
+
+  // Once the line checks out, it and the answers stay with the report (a saved one), a moment after the last keystroke.
+  const storeSource: StoredLineAnswers["source"] = edited !== null ? "edited" : showPolished ? "polished" : "literal";
+  useEffect(() => {
+    if (!onStore || !copyableLine) return;
+    const timer = setTimeout(() => {
+      onStore({ answers: asked.map((question, index) => storedAnswerFrom(question, answers[index])), line: copyableLine, source: storeSource });
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [answers, asked, copyableLine, onStore, storeSource]);
   useEffect(() => { if (editing) editRef.current?.focus(); }, [editing]);
 
   const setAnswer = (index: number, next: LiftAnswer) => {
@@ -198,7 +218,7 @@ export function LineLift({
           const skipped = answer.kind === "unknown" || answer.kind === "not_mine";
           return (
             <li key={question} className={styles.liftQuestion} data-testid="lift-question" data-skipped={skipped || undefined}>
-              <label htmlFor={inputId} className={styles.liftQuestionText}>{question}</label>
+              <label id={`${inputId}-label`} htmlFor={inputId} className={styles.liftQuestionText}>{question}</label>
               {skipped ? (
                 <p className={styles.liftSkipped}>
                   {answer.kind === "unknown" ? "Left out for now." : "Left out. It's not your work."}
@@ -215,8 +235,8 @@ export function LineLift({
                     autoComplete="off"
                   />
                   <div className={styles.liftSkips}>
-                    <Button type="button" variant="quiet" size="sm" onClick={() => setAnswer(index, { kind: "unknown" })}>I don&apos;t know</Button>
-                    <Button type="button" variant="quiet" size="sm" onClick={() => setAnswer(index, { kind: "not_mine" })}>I didn&apos;t do this</Button>
+                    <Button type="button" variant="quiet" size="sm" aria-describedby={`${inputId}-label`} onClick={() => setAnswer(index, { kind: "unknown" })}>I don&apos;t know</Button>
+                    <Button type="button" variant="quiet" size="sm" aria-describedby={`${inputId}-label`} onClick={() => setAnswer(index, { kind: "not_mine" })}>I didn&apos;t do this</Button>
                   </div>
                 </>
               )}
@@ -285,10 +305,13 @@ export function LineLift({
               ? edited === null
                 ? showPolished ? "Every word is from your resume or your answers." : "Every word is from your resume or your answers. Reword it however you like."
                 : "Your wording. The facts all come from your line or your answers."
-              : policy?.newFacts.length
-                ? `“${policy.newFacts.join("”, “")}” isn't in your line or your answers. If it's true, add it as an answer first.`
-                : "This changes a detail from your resume. Edit it back to what's true to copy it."}
+              : guardNote}
           </p>
+        )}
+        {line && !copyableLine && edited !== null && guardOffersExactWords(verdict) && (
+          <div className={styles.liftSkips}>
+            <Button type="button" variant="quiet" size="sm" onClick={() => { setEdited(null); setEditing(false); copied.reset(); }}>Use my exact words</Button>
+          </div>
         )}
         {edited === null && polishedLine && (
           <div className={styles.liftSkips}>

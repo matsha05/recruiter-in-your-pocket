@@ -310,7 +310,7 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 
 ### Workspace and report
 
-- The report is a marked-up resume (Nov 1, 2026; [spec](launch-readiness/72-signature-report-spec.md)): the Verdict and score band, then the candidate's quoted lines in Literata on the left (blue-ink rule; the Critical Miss line carries the highlighter), with the recruiter's pen notes in a right margin from 960px and beneath each line below it. Under the Critical Miss the candidate answers one to three questions and the revised line is their line plus their answers, word for word; Copy waits for the facts to check out. One component and one document scroll serve the sample, a fresh, recovered or saved report, and the PDF follows the same order.
+- The report is a marked-up resume (Nov 1, 2026; [spec](launch-readiness/72-signature-report-spec.md)): the Verdict and score band, then the candidate's quoted lines in Literata on the left (blue-ink rule; the Critical Miss line carries the highlighter), with the recruiter's pen notes in a right margin from 960px and beneath each line below it. Under the Critical Miss the candidate answers one to three questions and the revised line is their line plus their answers, word for word; Copy waits for the facts to check out. When it can't (W3, Nov 2, 2026), the note names the word in the person's own words ("“web app” isn't in your line or your answers, but “web application” is."), ends with the if-it's-true clause, and never suggests adding something untrue; the relationship check offers "Use my exact words". A signed-in report keeps the answers and the chosen line (stored once the line checks out), so a saved report reopened elsewhere shows the line and "Addressed"; its ending leads with "Save this version" and the re-check second, and the $29 button stays on pricing and in the paywall. One component and one document scroll serve the sample, a fresh, recovered or saved report, and the PDF follows the same order.
 - Put the likely takeaway, exact evidence, and next useful action first.
 - Use a quiet shared header, regular-weight introduction, warm form/report sheet, and dark primary action. Report body is 16px/25px.
 - Preserve file/paste modes, optional job context, generation, missing-fact entry, comparison, history, save, and export behavior.
@@ -396,7 +396,7 @@ The interactive examples in `/internal/system-lab` show these states explicitly.
 3. candidate-supplied fact
 4. resolved wording or action
 
-Pen identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+Pen identifies current evidence and marks completed segments (Nov 2, 2026; the trace no longer completes in citron); completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 

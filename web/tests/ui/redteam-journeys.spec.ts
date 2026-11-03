@@ -229,7 +229,7 @@ test.describe("launch red-team journeys", () => {
     await expect(miss.getByText("Thanks. This is how we find out when we picked the wrong thing.")).toBeVisible();
   });
 
-  test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
+  test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
     const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");

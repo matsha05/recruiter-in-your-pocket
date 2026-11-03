@@ -144,6 +144,8 @@ export default function ResumeModeSection({
       onRetryAnalysis={onRetryAnalysis}
       comparisonBaseline={comparisonBaseline}
       onStartRevision={onStartRevision}
+      readDurationMs={readDurationMs}
+      isSignedIn={Boolean(user)}
     />
   );
 }

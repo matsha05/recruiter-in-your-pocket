@@ -32,6 +32,7 @@ import { ReadComparison } from "./ReadComparison";
 import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
 import type { LiftChange, ResumeSource } from "./markup/LineLift";
+import { storeLineAnswers, type StoredLineAnswers } from "./markup/lineAnswersClient";
 import { CriticalMissRow, FixRow, PageNote, excerptOf, marksLine } from "./markup/MarkedRows";
 import { ScoreBand } from "./markup/ScoreBand";
 import { hiddenFixesKey, useHiddenFixes } from "./markup/useHiddenFixes";
@@ -54,6 +55,13 @@ interface ReportStreamProps {
   resumeText?: string;
   /** Why the resume may be missing: a saved report never keeps it; a reloaded one lost it. */
   resumeSource?: ResumeSource;
+  /** The reader has an account, so the report can be kept and its answers stay with it. */
+  isSignedIn?: boolean;
+  /** Saves this report to My reports; absent once it is saved. */
+  onSaveReport?: () => void;
+  isSavingReport?: boolean;
+  /** Answers and lines kept with a saved report (W3). */
+  storedLineAnswers?: StoredLineAnswers[];
 }
 
 /**
@@ -76,6 +84,10 @@ export function ReportStream({
   onStartReport,
   resumeText,
   resumeSource,
+  isSignedIn = false,
+  onSaveReport,
+  isSavingReport = false,
+  storedLineAnswers = [],
 }: ReportStreamProps) {
   // One disposition per resume line and each observation once, shared with the PDF. Critical Misses lead.
   const integrity = useMemo(() => reconcileReport(withCriticalFirst(report)), [report]);
@@ -153,6 +165,13 @@ export function ReportStream({
 
   return (
     <div className={cn(styles.root, className)}>
+  // Answers and the chosen line stay with a signed-in report, so a saved report and the PDF carry them (W3).
+  const storeHandlers = useMemo(() => [0, 1, 2].map((index) => (payload: Omit<StoredLineAnswers, "fix_index">) => {
+    if (!reportId || isSample) return;
+    void storeLineAnswers(reportId, { fix_index: index, ...payload });
+  }), [isSample, reportId]);
+  const storedFor = (index: number) => storedLineAnswers.find((entry) => entry.fix_index === index);
+
       {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
 
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
@@ -210,6 +229,8 @@ export function ReportStream({
               <Check className={styles.keepTick} weight="bold" aria-hidden="true" />
               <div>
                 <p className={styles.keepLabel}>Keep this one</p>
+              stored={storedFor(index)}
+              onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
                 <p className={styles.keepText}>{strengths[0]}</p>
               </div>
             </PageNote>
@@ -250,6 +271,8 @@ export function ReportStream({
               <li key={strength} className={styles.keepNote}>
                 <Check className={styles.keepTick} weight="bold" aria-hidden="true" />
                 <p className={styles.keepText}>{strength}</p>
+                stored={storedFor(index)}
+                onStore={isSignedIn && reportId ? storeHandlers[index] : undefined}
               </li>
             ))}
           </ul>
@@ -295,7 +318,38 @@ export function ReportStream({
         </section>
       )}
 
-      {!isSample && onStartRevision && (
+      {!isSample && isSignedIn && onSaveReport && (
+        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-save-version">
+          <h2 id="report-next-step" className={styles.sectionTitle}>
+            {allAddressed ? "Your line is ready. Save this version." : "Save this version."}
+          </h2>
+          <p className={styles.endingCopy}>Your answers and the revised line stay with it, so you can come back for them from any device. Then edit your resume and check the new version against this one.</p>
+          <div className={styles.endingActions}>
+            <Button variant="primary" onClick={onSaveReport} disabled={isSavingReport} aria-busy={isSavingReport || undefined} data-testid="report-save-version-button">
+              {isSavingReport ? "Saving…" : "Save this version"}
+            </Button>
+            {onStartRevision && (
+              <Button variant="quiet" onClick={onStartRevision}>Compare my revision <ArrowRight className="size-4" weight="bold" /></Button>
+            )}
+          </div>
+          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.whenToBuy : "Saved reports keep your Verdict, your Critical Misses and your lines."}</p>
+        </section>
+      )}
+
+      {!isSample && isSignedIn && !onSaveReport && onStartRevision && (
+        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-next-step">
+          <h2 id="report-next-step" className={styles.sectionTitle}>
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : "Made your edits? See what changed."}
+          </h2>
+          <p className={styles.endingCopy}>{isExhausted
+            ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
+            : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss changed, what got clearer, and what to do next.</>}</p>
+          <div><Button variant="primary" onClick={onStartRevision}>Compare my revision<ArrowRight className="size-4" weight="bold" /></Button></div>
+          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "This report is saved. The comparison will sit beside it."}</p>
+        </section>
+      )}
+
+      {!isSample && !isSignedIn && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
             {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}

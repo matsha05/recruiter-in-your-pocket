@@ -142,7 +142,7 @@ test.describe("saving an anonymous report after sign-in", () => {
     const heading = page.locator("#section-first-impression h1");
     const save = page.getByTestId("workspace-keep-report");
     await expect(heading).toHaveText(REPORT.first_impression);
-    await expect(save).toHaveAccessibleName("Save report");
+    await expect(save).toHaveAccessibleName("Save this version");
     await expect(save).toBeEnabled();
     expect(attempts).toHaveLength(0);
     await expect(page.getByRole("dialog")).toHaveCount(0);

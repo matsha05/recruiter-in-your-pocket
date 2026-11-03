@@ -754,6 +754,13 @@
             "lift feedback";
         grid-template-columns: minmax(0, 1fr) var(--margin-width);
         grid-template-rows: auto auto 1fr;
+.endingActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+}
+
         column-gap: var(--margin-gap);
         row-gap: 1.25rem;
         padding-block: 2rem;

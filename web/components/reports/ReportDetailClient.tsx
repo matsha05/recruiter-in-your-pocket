@@ -14,6 +14,7 @@ import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
+import { readStoredLineAnswers, type StoredLineAnswers } from "@/components/workspace/report/markup/lineAnswersClient";
 
 type ReportLoadState = "loading" | "ready" | "signed_out" | "not_found" | "error";
 
@@ -32,6 +33,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   const state = loadedFor === requestIdentity ? loadState : "loading";
   const [report, setReport] = useState<ReportData | null>(null);
   const [hasJobDescription, setHasJobDescription] = useState(false);
+  const [storedLineAnswers, setStoredLineAnswers] = useState<StoredLineAnswers[]>([]);
   const [isExporting, setIsExporting] = useState(false);
 
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
@@ -77,6 +79,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       const nextReport: ReportData = { ...data.report, id: reportId };
       setReport(nextReport);
       setHasJobDescription(Boolean(data.jdPreview));
+      // The answers and lines kept with the report (W3), when the route returns them.
+      setStoredLineAnswers(readStoredLineAnswers(data));
       setState("ready");
       Analytics.track("report_detail_opened");
     } catch {
@@ -237,6 +241,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             justUnlocked={false}
             highlightSection={null}
             hasPaidAccess={hasPaidAccess}
+            isSignedIn
+            storedLineAnswers={storedLineAnswers}
           />
         </div>
       )}
