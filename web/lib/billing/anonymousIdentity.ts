@@ -29,7 +29,3 @@ export function attachAnonymousIdentityCookie<T extends NextResponse>(
   response.cookies.set(ANONYMOUS_ID_COOKIE, cookieValue, freeCookieOptions());
   return response;
 }
-
-export function anonymousReceiptId(identity: AnonymousIdentity, monthKey: string) {
-  return hashForLogs(`anonymous-receipt:${identity.id}:${monthKey}`);
-}

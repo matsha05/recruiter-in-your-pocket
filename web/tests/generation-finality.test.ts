@@ -213,26 +213,22 @@ async function run() {
     anonymousShadowHash: changedShadowHash,
     randomUUID: () => "cdcdcdcd-cdcd-4dcd-8dcd-cdcdcdcdcdcd",
   });
-  assert.equal(clearedAfterMove.access, "preview");
   assert.equal(
-    clearedAfterMove.entitlementKind,
-    null,
-    "a direct moved-network denial must bind its shadow before both cookies are cleared"
+    clearedAfterMove.access,
+    "full",
+    "a refused visit on a new network must not mark that network: a fresh identity there is a different visitor"
   );
-
-  const staleIdentityHash = crypto.createHash("sha256").update("stale-used-cookie").digest("hex");
-  const staleShadowHash = crypto.createHash("sha256").update("stale-used-network").digest("hex");
-  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, shadowHash: staleShadowHash, monthKey }), "available");
+  assert.deepEqual(
+    await anonymousGenerationAccessBackend.inspect({ identityHash, shadowHash: changedShadowHash, monthKey }),
+    { status: "committed", reservationId, identity: "committed", network: "reserved" },
+    "the moved visitor's own key stays committed while the new network only carries the fresh visitor's hold"
+  );
+  await releaseGenerationAccess(clearedAfterMove, null, "client_disconnect");
   assert.equal(
-    await anonymousGenerationAccessBackend.reconcileCommitted({
-      identityHash: staleIdentityHash,
-      shadowHash: staleShadowHash,
-      monthKey,
-      receiptId: "stale-cookie-receipt",
-    }),
-    "committed"
+    (await anonymousGenerationAccessBackend.inspect({ identityHash, shadowHash: changedShadowHash, monthKey })).network,
+    "available",
+    "releasing the fresh visitor's hold leaves the new network open again"
   );
-  assert.equal(await anonymousGenerationAccessBackend.status({ identityHash: staleIdentityHash, shadowHash: staleShadowHash, monthKey }), "committed");
 
   const rpc = new AmbiguousCommitRpc();
   const paid = await reserveGenerationAccess({

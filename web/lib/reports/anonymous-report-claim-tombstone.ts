@@ -3,11 +3,13 @@ import "server-only";
 import crypto from "node:crypto";
 import { allowsExplicitLocalAnonymousAccessFallback } from "../billing/anonymousAccessFallback";
 import { getRedisClient } from "../redis/client";
+import { anonymousGenerationAccessBackend } from "../billing/anonymousGenerationAccess";
 import {
   ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS,
   AnonymousReportRecoveryError,
   anonymousRecoveryStorageKey,
   isAnonymousRecoveryId,
+  loadAnonymousReportRecovery,
   parseAnonymousReportRecovery,
   readLocalAnonymousEntry,
   serializedAnonymousReportRecovery,
@@ -166,6 +168,61 @@ export async function loadAnonymousReportClaimTombstone(input: {
   return tombstone.claimant_hash === claimantHash(input.userId)
     ? { status: "owned", reportId: tombstone.report_id }
     : { status: "consumed" };
+}
+
+export type AnonymousReportRecoveryInspection =
+  /** The envelope exists, is bound to this identity, and the ledger vouches for it. */
+  | { state: "found"; envelope: AnonymousReportRecoveryEnvelope }
+  /** Nothing is stored yet: a hold is in flight, or nothing is known. Keep polling. */
+  | { state: "pending"; reason: "generating" | "unknown" }
+  /** This browser's report was saved to an account. Terminal. */
+  | { state: "claimed" }
+  /** This identity minted a report this month but nothing is stored under the id. Terminal. */
+  | { state: "expired" }
+  /** The id is bound to another identity, or the input is malformed. Terminal. */
+  | { state: "never" };
+
+/**
+ * Tells the recovery states apart for one browser identity. This is the read
+ * behind `GET /api/reports/recovery`: it writes nothing and answers with one
+ * of the recovery states documented in `anonymousGenerationAccess.ts`, so the
+ * browser can stop polling on a terminal answer instead of guessing.
+ */
+export async function inspectAnonymousReportRecovery(input: {
+  recoveryId: string;
+  identityHash: string;
+  shadowHash: string | null;
+  monthKey: string;
+}): Promise<AnonymousReportRecoveryInspection> {
+  if (!isAnonymousRecoveryId(input.recoveryId) || !HASH_PATTERN.test(input.identityHash)) {
+    return { state: "never" };
+  }
+  const identityHash = input.identityHash.toLowerCase();
+  const raw = await readClaimValue(input.recoveryId);
+  const tombstone = parseTombstone(raw);
+  if (tombstone) {
+    return tombstone.identity_hash === identityHash ? { state: "claimed" } : { state: "never" };
+  }
+  const envelope = parseAnonymousReportRecovery(raw);
+  if (envelope) {
+    if (envelope.identity_hash !== identityHash) return { state: "never" };
+    const vouched = await loadAnonymousReportRecovery({ recoveryId: input.recoveryId, identityHash });
+    return vouched ? { state: "found", envelope: vouched } : { state: "never" };
+  }
+  // Nothing is stored under this id. The ledger says whether a report is still
+  // being made for this identity, was already minted (so the envelope is gone
+  // for good), or is unknown to it.
+  if (!input.shadowHash || !HASH_PATTERN.test(input.shadowHash)) {
+    return { state: "pending", reason: "unknown" };
+  }
+  const ledger = await anonymousGenerationAccessBackend.inspect({
+    identityHash,
+    shadowHash: input.shadowHash,
+    monthKey: input.monthKey,
+  });
+  if (ledger.identity === "reserved") return { state: "pending", reason: "generating" };
+  if (ledger.identity === "committed") return { state: "expired" };
+  return { state: "pending", reason: "unknown" };
 }
 
 export async function replaceAnonymousReportRecoveryWithClaimTombstone(input: {

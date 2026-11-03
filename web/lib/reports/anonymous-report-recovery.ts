@@ -5,9 +5,14 @@ import { getRedisClient } from "../redis/client";
 import { allowsExplicitLocalAnonymousAccessFallback } from "../billing/anonymousAccessFallback";
 import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "./report-receipt";
 import { ResumeFeedbackResponseSchema, type ResumeFeedbackResponse } from "../validation/schemas";
+import {
+  ANONYMOUS_COMMITTED_TTL_SECONDS,
+  ANONYMOUS_RECOVERY_TTL_SECONDS,
+} from "../billing/anonymousLedgerTimings";
 
-export const ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS = 24 * 60 * 60;
-const COMMITTED_TTL_SECONDS = 40 * 24 * 60 * 60;
+/** Re-exported for callers that only know the recovery side of the ledger. */
+export const ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS = ANONYMOUS_RECOVERY_TTL_SECONDS;
+const COMMITTED_TTL_SECONDS = ANONYMOUS_COMMITTED_TTL_SECONDS;
 const MAX_RECOVERY_BYTES = 256 * 1024;
 const HASH_PATTERN = /^[0-9a-f]{64}$/u;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;

@@ -1,10 +1,12 @@
 import type { ResumeFeedbackResponse } from "../validation/schemas";
+import { ANONYMOUS_RECOVERY_TTL_MS } from "../billing/anonymousLedgerTimings";
 
 export const ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY =
   "riyp:anonymous-report-recovery:v1";
 export const ANONYMOUS_REPORT_RECOVERY_MARKER_EVENT =
   "riyp:anonymous-report-recovery-marker:v1";
-export const ANONYMOUS_REPORT_RECOVERY_TTL_MS = 24 * 60 * 60 * 1000;
+/** The browser marker lives exactly as long as the server envelope. */
+export const ANONYMOUS_REPORT_RECOVERY_TTL_MS = ANONYMOUS_RECOVERY_TTL_MS;
 export const ANONYMOUS_REPORT_RECOVERY_POLL_DELAYS_MS = [
   1_000,
   2_000,
@@ -286,13 +288,17 @@ export async function fetchAnonymousReportRecovery(
     };
   }
 
-  if (response.status === 202 || response.status === 404) {
+  // 202 is the only "keep waiting" answer: the server has a hold in flight or
+  // no record yet. Everything below it is terminal for this browser, so the
+  // marker is cleared and polling stops: 400 malformed, 404 not bound to this
+  // browser identity, 410 claimed into an account or expired.
+  if (response.status === 202) {
     return {
       status: "pending",
       message: ANONYMOUS_REPORT_RECOVERY_PENDING_MESSAGE,
     };
   }
-  if (response.status === 400 || response.status === 410) {
+  if (response.status === 400 || response.status === 404 || response.status === 410) {
     return { status: "invalid" };
   }
   if (!response.ok) {

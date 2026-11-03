@@ -258,8 +258,16 @@ async function run() {
     assert.equal(persisted.length, 1, "a tombstone retry must not persist again");
 
     const afterClaimGet = await recoveryRoute.GET(request(recoveryUrl, identityCookie, address));
-    assert.equal(afterClaimGet.status, 404, "GET must never expose a claimed report or tombstone");
-    assert.equal("reportId" in await afterClaimGet.json(), false);
+    assert.equal(afterClaimGet.status, 410, "a claimed report answers terminal so the browser stops polling");
+    const afterClaimBody = await afterClaimGet.json();
+    assert.equal(afterClaimBody.errorCode, "RECOVERY_CLAIMED");
+    assert.equal("reportId" in afterClaimBody, false, "GET must never expose a claimed report or tombstone");
+    assert.equal("report" in afterClaimBody, false);
+    assert.equal(
+      (await recoveryRoute.GET(request(recoveryUrl, makeAnonymousIdentityCookie({ id: crypto.randomUUID() }), address))).status,
+      404,
+      "another identity learns nothing about a claimed report",
+    );
     assert.equal(
       (await recoveryRoute.POST(claimRequest(
         { recovery_id: prepared.recoveryId },
