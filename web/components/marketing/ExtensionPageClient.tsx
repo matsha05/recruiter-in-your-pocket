@@ -212,8 +212,8 @@ export default function ExtensionPageClient() {
               ))}
               <div className="flex flex-wrap gap-x-5 gap-y-3 pt-6 text-sm font-medium">
                 <Link href="/privacy" className="text-brand hover:text-brand-strong">Privacy</Link>
-                <Link href="/security" className="text-brand hover:text-brand-strong">Security</Link>
-                <Link href="/support" className="text-brand hover:text-brand-strong">Support</Link>
+                <Link href="/privacy" className="text-brand hover:text-brand-strong">Privacy</Link>
+                <Link href="/help" className="text-brand hover:text-brand-strong">Help</Link>
               </div>
             </div>
           </div>

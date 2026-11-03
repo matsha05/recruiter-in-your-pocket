@@ -27,11 +27,11 @@ export function LegalNav({ className }: LegalNavProps) {
     const [hasMore, setHasMore] = useState(false);
 
     // Three tabs (Matt, Nov 2, 2026): Privacy carries security and data handling, Help carries the FAQ
-    // and support; /security, /trust and /support redirect. Status is an operations view, not navigation.
+    // and support; /security, /trust, /faq and /support redirect. Status is an operations view, not navigation.
     const tabs = [
-        { name: "Privacy", href: "/privacy", match: ["/privacy", "/security", "/trust"] },
+        { name: "Privacy", href: "/privacy", match: ["/privacy"] },
         { name: "Terms", href: "/terms", match: ["/terms"] },
-        { name: "Help", href: "/faq", match: ["/faq", "/support"] },
+        { name: "Help", href: "/help", match: ["/help"] },
     ];
 
     useEffect(() => {

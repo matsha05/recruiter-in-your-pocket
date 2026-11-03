@@ -539,7 +539,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             ) : null}
                             <Button asChild variant="secondary">
                                 <Link
-                                    href="/security"
+                                    href="/privacy"
                                 >
                                     How we handle your data
                                 </Link>

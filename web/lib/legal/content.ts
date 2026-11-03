@@ -62,68 +62,9 @@ export type LegalPageContent = {
   sections: LegalSection[];
 };
 
-export type LegalPageKey = "trust" | "privacy" | "terms" | "faq";
+export type LegalPageKey = "privacy" | "terms" | "help";
 
 export const legalContent: Record<LegalPageKey, LegalPageContent> = {
-  trust: {
-    eyebrow: "Trust",
-    title: "Your data, billing, and reports",
-    description: "How we handle your information, what you pay for, and what the report can tell you.",
-    lastUpdated: LEGAL_LAST_UPDATED,
-    sections: [
-      {
-        type: "card_grid",
-        columns: 2,
-        items: [
-          {
-            icon: ShieldCheck,
-            title: "What the score tells you",
-            body: "How clearly your resume shows your work, explained in plain words. A first report shows it as a band; a re-check shows how far the number moved.",
-          },
-          {
-            icon: LockKey,
-            title: "What we keep, and for how long",
-            body: "Our Security and Privacy pages explain what report data we collect, how long we keep it, and how to delete it.",
-          },
-          {
-            icon: Receipt,
-            title: "One payment, no renewal",
-            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 90 days, with no automatic renewal.",
-          },
-          {
-            icon: Trash,
-            title: "Delete it whenever you like",
-            body: "Delete individual reports from Reports, or delete your account in Settings to remove your reports, default resume, and usage history from our database.",
-          },
-        ],
-      },
-      {
-        type: "checklist",
-        title: "What we commit to",
-        items: TRUST_PROMISES,
-        icon: CheckCircle,
-        variant: "soft",
-      },
-      {
-        type: "callout",
-        paragraphs: [
-          [
-            { type: "text", value: "Verify details in " },
-            { type: "link", label: "Security", href: "/security" },
-            { type: "text", value: " · " },
-            { type: "link", label: "Support", href: "/support" },
-            { type: "text", value: " · " },
-            { type: "link", label: "Privacy", href: "/privacy" },
-            { type: "text", value: " · " },
-            { type: "link", label: "Terms", href: "/terms" },
-            { type: "text", value: " · " },
-            { type: "link", label: "Methodology", href: "/methodology" },
-            { type: "text", value: "." },
-          ],
-        ],
-      },
-    ],
-  },
   privacy: {
     eyebrow: "Privacy policy",
     title: "How we handle your data",
@@ -265,7 +206,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             { type: "text", value: "Our " },
             { type: "link", label: "Privacy Policy", href: "/privacy" },
             { type: "text", value: " and " },
-            { type: "link", label: "Security page", href: "/security" },
+            { type: "link", label: "Help page", href: "/help" },
             { type: "text", value: " explain how we handle your data. If you're signed in, your report history is saved until you delete it." },
           ],
         ],
@@ -281,7 +222,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           ],
           [
             { type: "text", value: "You may request a full refund within 14 calendar days of purchase if none of the paid reports has been used. A refund revokes the remaining pass immediately. Duplicate charges, processing errors, and legally required refunds are reviewed regardless of usage. If a paid report was used, we may still issue a full or partial refund when the service failed materially, but completed AI reports are otherwise non-refundable. This policy does not limit rights that cannot be waived under applicable law. Send the request from the checkout email through " },
-            { type: "link", label: "Support", href: "/support" },
+            { type: "link", label: "Help", href: "/help" },
             { type: "text", value: " with the purchase date and receipt identifier." },
           ],
         ],
@@ -316,7 +257,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         paragraphs: [
           [
             { type: "text", value: "You are responsible for access to your email account and for activity under your account. We may limit or suspend access when needed to investigate abuse, protect the service, comply with law, or prevent harm. Contact " },
-            { type: "link", label: "Support", href: "/support" },
+            { type: "link", label: "Help", href: "/help" },
             { type: "text", value: " if you believe a restriction was applied in error." },
           ],
         ],
@@ -336,16 +277,16 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         paragraphs: [
           [
             { type: "text", value: "We may update the service or these terms as the product changes. Material revisions will be reflected by the updated date on this page and will apply prospectively unless the law requires otherwise. Questions, billing disputes, privacy requests, and legal notices can be sent through " },
-            { type: "link", label: "Support", href: "/support" },
+            { type: "link", label: "Help", href: "/help" },
             { type: "text", value: "." },
           ],
         ],
       },
     ],
   },
-  faq: {
-    title: "Frequently asked questions",
-    description: "Straight answers about the report, your data, and what you pay.",
+  help: {
+    title: "Help",
+    description: "Straight answers about the report, your data, and what you pay, and a person to write to when they don't cover it.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -417,13 +358,25 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         ],
       },
       {
-        type: "callout",
-        variant: "soft",
-        align: "center",
+        type: "card",
+        title: "Still stuck? Write to a person",
         paragraphs: [
           [
-            { type: "text", value: "Still need help? " },
-            { type: "link", label: "support@recruiterinyourpocket.com", href: "mailto:support@recruiterinyourpocket.com" },
+            { type: "text", value: "Email " },
+            { type: "link", label: "support@recruiterinyourpocket.com", href: "mailto:support@recruiterinyourpocket.com?subject=Recruiter%20in%20Your%20Pocket%20support" },
+            { type: "text", value: " with what you were trying to do and what happened. A screenshot helps; remove personal details first, and don't send your resume unless we ask for it." },
+          ],
+          [
+            { type: "text", value: "For sign-in, a purchase or a refund, include the email you used at checkout and the purchase date. We will never ask for your password or your full card number." },
+          ],
+          [
+            { type: "text", value: "Some things you can do without us: " },
+            { type: "link", label: "sign in", href: "/auth" },
+            { type: "text", value: ", " },
+            { type: "link", label: "restore a purchase", href: "/purchase/restore" },
+            { type: "text", value: ", or export or delete your data from " },
+            { type: "link", label: "account settings", href: "/settings/account" },
+            { type: "text", value: "." },
           ],
         ],
       },

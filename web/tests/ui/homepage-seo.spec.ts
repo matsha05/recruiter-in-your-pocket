@@ -118,7 +118,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await page.goto("/terms");
     await assertAnonymousBoundary();
 
-    await page.goto("/faq");
+    await page.goto("/help");
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
     await page.getByRole("button", { name: "Is the first report really free?", exact: true }).click();
     await assertAnonymousBoundary();

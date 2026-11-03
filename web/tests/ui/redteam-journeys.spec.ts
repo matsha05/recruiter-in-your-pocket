@@ -88,7 +88,7 @@ test.describe("launch red-team journeys", () => {
     expect(securityTxt.ok()).toBeTruthy();
     const securityText = await securityTxt.text();
     expect(securityText).toContain("Contact: mailto:support@recruiterinyourpocket.com");
-    expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/security");
+    expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/privacy");
 
     await page.goto("/status");
     await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();

@@ -44,10 +44,9 @@ test.describe("launch smoke", () => {
       ["/", "[data-visual-anchor='landing-home']"],
       ["/pricing", "[data-visual-anchor='pricing-page']"],
       ["/auth", "[data-visual-anchor='auth-page']"],
-      ["/trust", "[data-visual-anchor='legal-trust']"],
-      ["/security", "[data-visual-anchor='legal-security']"],
       ["/privacy", "[data-visual-anchor='legal-privacy']"],
-      ["/support", "[data-visual-anchor='legal-support']"],
+      ["/terms", "[data-visual-anchor='legal-terms']"],
+      ["/help", "[data-visual-anchor='legal-help']"],
       ["/workspace", "[data-visual-anchor='workspace-resume-empty']"],
     ] as const;
 

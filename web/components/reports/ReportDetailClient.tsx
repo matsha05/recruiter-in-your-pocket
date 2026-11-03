@@ -212,7 +212,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               </Button>
               <Button asChild variant="secondary" size="sm">
                   <Link
-                    href="/support"
+                    href="/help"
                   >
                     Contact support
                   </Link>

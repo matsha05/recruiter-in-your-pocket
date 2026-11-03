@@ -100,18 +100,13 @@ export default function StatusClient() {
             </Button>
           ) : null}
           <Button asChild variant="secondary">
-              <Link href="/support">
+              <Link href="/help">
                 Get help
               </Link>
           </Button>
           <Button asChild variant="secondary">
-              <Link href="/trust">
-                Trust overview
-              </Link>
-          </Button>
-          <Button asChild variant="secondary">
-              <Link href="/security">
-                Security details
+              <Link href="/privacy">
+                Privacy and data
               </Link>
           </Button>
           {isLaunchFlagEnabled("extensionSync") && (
@@ -173,13 +168,13 @@ export default function StatusClient() {
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Support</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Having trouble with a report, payment, or account? <Link href="/support" className="riyp-link-quiet">Contact support</Link> and tell us what happened.
+              Having trouble with a report, payment, or account? <Link href="/help" className="riyp-link-quiet">Contact support</Link> and tell us what happened.
             </p>
           </div>
           <div className="border-t border-line pt-4">
             <p className="text-sm font-medium text-foreground">Security and privacy</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              See <Link href="/security" className="riyp-link-quiet">what data we keep</Link>, how long we keep it, and how to delete it.
+              See <Link href="/privacy" className="riyp-link-quiet">what data we keep</Link>, how long we keep it, and how to delete it.
             </p>
           </div>
         </div>

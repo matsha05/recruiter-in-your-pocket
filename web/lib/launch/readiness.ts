@@ -504,10 +504,10 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   const trustRouteSet = hasWebAppDir ? null : getNextRouteSet(repoRoot);
   const requiredTrustRoutes = [
     "/privacy",
-    "/security",
+    "/terms",
     "/methodology",
     "/status",
-    "/support",
+    "/help",
     "/.well-known/security.txt",
     "/robots.txt",
     "/sitemap.xml",

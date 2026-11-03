@@ -10,7 +10,7 @@ export const DEFAULT_ROUTES = [
   "/", "/pricing", "/sample-report", "/workspace", "/research", "/research/how-recruiters-read",
   "/research/quantifying-impact", "/research/spelling-errors-impact", "/research/referral-advantage",
   "/research/writing-quality-hire-probability", "/guides", "/guides/offer-negotiation", "/guides/tools/comp-calculator",
-  "/methodology", "/trust", "/privacy", "/terms", "/security", "/faq", "/support", "/status", "/auth", "/this-page-does-not-exist",
+  "/methodology", "/privacy", "/terms", "/help", "/status", "/auth", "/this-page-does-not-exist",
 ];
 
 // Every rendered size comes from a role step in app/globals.css (whole pixels only).

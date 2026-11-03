@@ -62,7 +62,7 @@ test.describe("legal navigation pointer activation", () => {
         if (pointer === "touch") await page.touchscreen.tap(x, y);
         else await page.mouse.click(x, y);
 
-        await expect(page).toHaveURL(/\/faq$/);
+        await expect(page).toHaveURL(/\/help$/);
         await expect(nav.getByRole("link", { name: "Help", exact: true })).toHaveAttribute("aria-current", "page");
       });
     }

@@ -306,7 +306,7 @@ export default function PaywallModal({
                 )}
 
                 <p id="checkout-terms" className="text-center text-xs text-muted-foreground">
-                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/support" className="riyp-link-quiet">Ask us</Link>.
+                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/help" className="riyp-link-quiet">Ask us</Link>.
                 </p>
             </DialogContent>
         </Dialog>
