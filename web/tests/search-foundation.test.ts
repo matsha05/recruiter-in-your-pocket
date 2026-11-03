@@ -59,6 +59,21 @@ try {
   };
   const isRedirectStub = (file: string) => /\b(permanentRedirect|redirect)\(/.test(readFileSync(file, "utf8"));
 
+  // Retired pages (lib/seo/retired-routes.json) redirect once their destination exists; an active
+  // source stays out of the sitemap, and one whose destination is not built yet stays a live page.
+  const retired = require("../lib/seo/retired-routes.json").routes as Array<{ source: string; destination: string }>;
+  const activeRedirects = retired.filter((route) => pageFiles.has(route.destination));
+  const nextConfig = readFileSync(path.join(root, "next.config.mjs"), "utf8");
+  assert.ok(nextConfig.includes("./lib/seo/retired-routes.json") && nextConfig.includes("...activeRetiredRedirects"), "next.config.mjs applies the retired routes");
+  for (const route of retired) {
+    assert.ok(route.source.startsWith("/") && route.destination.startsWith("/") && route.source !== route.destination, `${route.source} -> ${route.destination}`);
+    assert.ok(!retired.some((other) => other.source === route.destination), `${route.destination} must not itself be retired: one hop only`);
+  }
+  for (const route of activeRedirects) {
+    assert.ok(!pages.some((page) => page.path === route.source), `${route.source} redirects to ${route.destination}: remove it from PUBLIC_PAGES (lib/seo/public-pages.ts)`);
+  }
+  const redirectsAway = (route: string) => activeRedirects.some((item) => item.source === route);
+
   // Every listed page is a real, indexable page.
   const paths = pages.map((page) => page.path);
   assert.equal(new Set(paths).size, paths.length, "PUBLIC_PAGES lists a path twice");
@@ -72,7 +87,7 @@ try {
   // Every indexable public page is listed. /guides/* redirects to /resources/* in next.config.mjs.
   for (const [route, file] of pageFiles) {
     if (!/\((marketing|editorial)\)/.test(file)) continue;
-    if (route.startsWith("/guides") || isRedirectStub(file) || isNoindex(file)) continue;
+    if (route.startsWith("/guides") || redirectsAway(route) || isRedirectStub(file) || isNoindex(file)) continue;
     assert.ok(paths.includes(route), `${route} is public and indexable but missing from PUBLIC_PAGES (lib/seo/public-pages.ts)`);
   }
 

@@ -1,6 +1,6 @@
 import bundleAnalyzer from "@next/bundle-analyzer";
 import { withSentryConfig } from "@sentry/nextjs/config";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "url";
 
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -12,6 +12,16 @@ const gauntletDefinitionSources = {
   baseline: readFileSync(new URL("./gauntlet/iterations/iteration-000-baseline.json", import.meta.url), "utf8"),
   iteration002: readFileSync(new URL("./gauntlet/iterations/iteration-002.json", import.meta.url), "utf8"),
 };
+// The trust cluster collapses into Privacy, Terms and Help. A retired page redirects only once its
+// destination page exists on disk, so the Experience build can land the new page in its own change.
+const retiredRoutes = JSON.parse(readFileSync(new URL("./lib/seo/retired-routes.json", import.meta.url), "utf8")).routes;
+const routeGroups = ["", "(marketing)", "(public)", "(editorial)", "(app)"];
+const pageExists = (route) => routeGroups.some((group) =>
+  existsSync(fileURLToPath(new URL(`./app/${group ? `${group}/` : ""}${route.replace(/^\//, "")}/page.tsx`, import.meta.url))));
+const activeRetiredRedirects = retiredRoutes
+  .filter((route) => pageExists(route.destination))
+  .map((route) => ({ source: route.source, destination: route.destination, permanent: true }));
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
@@ -74,6 +84,7 @@ const nextConfig = {
     return [
       // The methodology article and page were merged into one "How the report works" page.
       { source: "/research/how-we-score", destination: "/methodology", permanent: true },
+      ...activeRetiredRedirects,
       ...(!extensionSyncEnabled ? [{
         source: "/extension",
         destination: "/workspace",

@@ -19,8 +19,6 @@ export type PublicPage = {
   published?: string;
   /** The page's answer on the Research hub, shared as its card. */
   card?: string;
-  /** Still a route (its metadata reads this list) but out of the sitemap: it redirects, or will, to another page. */
-  retired?: true;
 };
 
 export const PUBLIC_PAGES: readonly PublicPage[] = [
@@ -54,12 +52,11 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/resources/tech-offer-negotiation", updated: "2026-11-01", published: "2026-01-01", card: "tech-offer-negotiation" },
   { path: "/resources/tools/comp-calculator", updated: "2026-10-31", published: "2026-01-01", card: "comp-calculator" },
 
+  // /trust and /security redirect to /privacy (lib/seo/retired-routes.json); /faq and /support follow once /help exists.
   { path: "/privacy", updated: "2026-11-02" },
   // Folded into Privacy and Help on Nov 2, 2026 (Matt's M6). Engine adds the redirects in next.config.mjs;
   // until then the routes still render, out of the sitemap. Delete them with the routes.
-  { path: "/trust", updated: "2026-11-02", retired: true },
-  { path: "/security", updated: "2026-11-02", retired: true },
-  { path: "/support", updated: "2026-10-31", retired: true },
+  { path: "/support", updated: "2026-10-31" },
   { path: "/terms", updated: "2026-11-02" },
   { path: "/faq", updated: "2026-11-02" },
 ];
