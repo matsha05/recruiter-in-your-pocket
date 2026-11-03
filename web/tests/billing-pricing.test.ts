@@ -41,7 +41,7 @@ assert.ok(
   TRUST_PROMISES.includes(`${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.boundary}`),
   "the public trust checklist must state the bounded free entitlement",
 );
-assert.equal(LEGAL_LAST_UPDATED, "September 4, 2026");
+assert.equal(LEGAL_LAST_UPDATED, "November 2, 2026");
 assert.match(JOB_SEARCH_PASS_DECISION.freeBoundary, /nothing is held back/i);
 assert.match(JOB_SEARCH_PASS_DECISION.whenToBuy, /checking your revision, or tailoring your resume/i);
 assert.match(JOB_SEARCH_PASS_DECISION.terms, /no automatic renewal/i);

@@ -40,6 +40,8 @@ type ResumeModeSectionProps = {
   onRetryAnalysis: () => void;
   comparisonBaseline?: ReportData | null;
   onStartRevision: () => void;
+  /** How long this visit's report took to arrive; null when it was restored or sampled. */
+  readDurationMs?: number | null;
 };
 
 export default function ResumeModeSection({
@@ -75,15 +77,17 @@ export default function ResumeModeSection({
   onRetryAnalysis,
   comparisonBaseline = null,
   onStartRevision,
+  readDurationMs = null,
 }: ResumeModeSectionProps) {
   if (!report && isStreaming) {
     return (
-      <div className="h-full overflow-y-auto bg-body">
+      <div className="workspace-pane h-full overflow-y-auto bg-body">
         <div className="h-full">
           <AnalysisScanning
             mode="resume"
             startedAt={analysisStartedAt}
             stage={analysisStage}
+            resumeText={resumeText}
             onCancel={onCancelAnalysis}
             onRetry={onRetryAnalysis}
           />
@@ -94,7 +98,7 @@ export default function ResumeModeSection({
 
   if (!report) {
     return (
-      <div className="h-full overflow-y-auto bg-mineral">
+      <div className="workspace-pane h-full overflow-y-auto bg-mineral">
         <InputPanel
           resumeText={resumeText}
           jobDescription={jobDescription}
@@ -140,6 +144,8 @@ export default function ResumeModeSection({
       onRetryAnalysis={onRetryAnalysis}
       comparisonBaseline={comparisonBaseline}
       onStartRevision={onStartRevision}
+      readDurationMs={readDurationMs}
+      isSignedIn={Boolean(user)}
     />
   );
 }

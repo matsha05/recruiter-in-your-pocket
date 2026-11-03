@@ -1,0 +1,50 @@
+DANIEL OKAFOR
+Columbus, OH | daniel.okafor@example.com | (614) 555-0142 | linkedin.com/in/danielokafor-example | github.com/dokafor-example
+
+OBJECTIVE
+Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.
+
+EDUCATION
+The Ohio State University, Columbus, OH
+Bachelor of Science in Computer Science and Engineering, May 2026
+GPA: 3.4/4.0
+Relevant Coursework: Data Structures and Algorithms, Operating Systems, Database Systems, Software Engineering, Computer Networks, Machine Learning, Web Development, Linear Algebra
+
+TECHNICAL SKILLS
+Languages: Java, Python, C++, JavaScript, TypeScript, SQL, HTML/CSS
+Frameworks & Tools: React, Node.js, Express, Spring Boot, Git, Docker, Jenkins, AWS (EC2, S3), PostgreSQL, MongoDB, Jira, Agile/Scrum
+Soft Skills: Communication, Teamwork, Leadership, Time Management, Problem Solving
+
+EXPERIENCE
+Software Engineering Intern, Cardinal Health, Dublin, OH
+May 2025 - August 2025
+- Responsible for developing features for an internal inventory management web application using React and Spring Boot
+- Participated in daily stand-ups and sprint planning meetings as part of an Agile team
+- Wrote unit tests to improve code quality and reliability
+- Collaborated with cross-functional teams to gather requirements and deliver solutions
+- Fixed bugs and performed code reviews
+
+IT Help Desk Assistant, OSU Office of Technology and Digital Innovation, Columbus, OH
+September 2023 - May 2025
+- Provided technical support to students and faculty for hardware and software issues
+- Resolved tickets in a timely manner and documented solutions
+- Assisted with setting up laptops and classroom technology
+
+PROJECTS
+BuckeyeBites - Campus Food Ordering App (Team Capstone Project)
+- Developed a full-stack web application allowing students to order food from campus dining locations
+- Used React, Node.js, Express, and MongoDB
+- Implemented user authentication and a shopping cart feature
+- Worked in a team of 4 using Agile methodology
+
+Personal Finance Tracker
+- Built a Python application to track expenses and visualize spending with matplotlib
+- Utilized SQLite for data storage
+
+Weather Dashboard
+- Created a weather dashboard using JavaScript and the OpenWeather API
+
+LEADERSHIP & ACTIVITIES
+Member, National Society of Black Engineers (NSBE), 2022 - 2026
+Volunteer, Code for Columbus Hackathon, 2024
+Intramural Soccer Team Captain, 2023 - 2025

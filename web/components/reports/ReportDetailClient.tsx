@@ -242,6 +242,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             justUnlocked={false}
             highlightSection={null}
             hasPaidAccess={hasPaidAccess}
+            isSignedIn
           />
         </div>
       )}

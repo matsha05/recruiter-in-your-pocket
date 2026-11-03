@@ -1,25 +1,22 @@
-.panel { position: fixed; z-index: 45; bottom: max(16px, env(safe-area-inset-bottom)); left: 20px; width: min(420px, calc(100vw - 40px)); padding: 22px; border: 1px solid hsl(var(--border)); border-radius: 16px; background: hsl(var(--surface-page)); color: hsl(var(--text-strong)); box-shadow: 0 8px 36px hsl(var(--text-strong) / 0.1); font-family: var(--font-body); }
-.panel h2 { font: var(--type-body); font-weight: var(--weight-control); }
-.panel p { margin-top: 9px; color: hsl(var(--text-muted)); font: var(--type-small); }
-.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 17px; }
-.actions button { min-height: 46px; padding: 9px 10px; border: 1px solid hsl(var(--input)); border-radius: 100px; font: var(--type-label); }
-.actions button:hover { background: hsl(var(--surface-inset)); }
-.links { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; font: var(--type-label); font-weight: var(--weight-body); }
+/* The privacy choice: one line and two equal buttons along the bottom edge (Matt, Nov 2, 2026). On phones it
+   is a short bar, so the page's first screen, its privacy line and the Critical Miss stay in view; globals.css
+   leaves room under the page for it (--privacy-panel-space, measured by the component). */
+.panel { position: fixed; z-index: 45; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); left: 12px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 4px; padding: 10px 12px 10px 14px; border: 1px solid hsl(var(--border)); border-radius: 16px; background: hsl(var(--surface-page)); color: hsl(var(--text-strong)); box-shadow: 0 8px 36px hsl(var(--text-strong) / 0.1); font-family: var(--font-body); }
+.line { grid-column: 1; margin: 0; color: hsl(var(--text-muted)); font: var(--type-label); font-weight: var(--weight-body); text-wrap: pretty; }
+.actions { grid-column: 2; grid-row: 1; display: flex; gap: 6px; }
+.actions button { min-height: 44px; padding-inline: 14px; border: 1px solid hsl(var(--input)); border-radius: 100px; font: var(--type-label); }
+.actions button:hover { background: hsl(var(--secondary)); }
+.links { grid-column: 1 / -1; display: flex; justify-content: flex-end; font: var(--type-label); font-weight: var(--weight-body); }
 .links > * { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; text-decoration-color: hsl(var(--link-line-quiet)); text-decoration-thickness: var(--link-thickness); text-underline-offset: var(--link-offset); transition: text-decoration-color var(--duration-fast) var(--ease); }
 .links > *:hover { text-decoration-color: currentColor; }
 .inlineLink { color: hsl(var(--text-strong)); text-decoration: underline; text-decoration-color: hsl(var(--link-line-quiet)); text-decoration-thickness: var(--link-thickness); text-underline-offset: var(--link-offset); transition: text-decoration-color var(--duration-fast) var(--ease); }
 .inlineLink:hover { text-decoration-color: currentColor; }
 .panel :focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 4px; }
-/* Phones: keep the choice clear but short enough not to bury the page's main action. */
-@media (max-width: 700px) { .panel { left: 12px; width: calc(100vw - 24px); padding: 16px; bottom: max(12px, env(safe-area-inset-bottom)); max-height: calc(100dvh - 24px); overflow-y: auto; } .panel p { margin-top: 6px; } .actions { margin-top: 12px; } .actions button { min-height: 44px; } }
-/* Laptops and up: a compact bar along the bottom edge, text left and the two equal choices right, so it
-   covers neither a page's main action nor the homepage's reviewer note (at 1280×720 the old bottom-left
-   panel covered the hero's first button). */
+/* Laptops and up: the same bar across the bottom edge, text left and the two equal choices right, so it covers
+   neither a page's main action nor the homepage's reviewer note. */
 @media (min-width: 1024px) {
-  .panel { left: 20px; right: 20px; width: auto; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 24px; padding: 12px 16px 12px 20px; }
-  .panel h2 { grid-column: 1; }
-  .panel p { grid-column: 1; margin-top: 2px; max-width: 72ch; }
-  .actions { grid-column: 2; grid-row: 1 / span 2; grid-template-columns: auto auto; margin-top: 0; }
-  .actions button { min-height: 44px; padding-inline: 20px; }
-  .links { grid-column: 2; justify-content: flex-end; margin-top: 0; }
+  .panel { right: 20px; left: 20px; column-gap: 24px; padding: 12px 16px 12px 20px; }
+  .line { max-width: 72ch; font: var(--type-small); }
+  .actions { gap: 8px; }
+  .actions button { padding-inline: 20px; }
 }

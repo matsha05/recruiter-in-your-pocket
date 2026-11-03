@@ -225,9 +225,9 @@ export default function InputPanel({
                                     </p>
                                 )}
                                 {isShortResume && (
-                                    <div className="mt-3 flex items-start gap-2 border-l-2 border-warning px-3 py-1 text-xs text-muted-foreground">
-                                        <Info className="mt-0.5 size-4 shrink-0 text-warning" />
-                                        This is a short resume ({charCount} characters), so the review may have less to work with.
+                                    <div className="mt-3 flex items-start gap-2 border-l-2 border-line px-3 py-1 text-xs text-muted-foreground">
+                                        <Info className="mt-0.5 size-4 shrink-0 text-muted-foreground" weight="bold" aria-hidden="true" />
+                                        This is a short resume ({charCount} characters), so the report may have less to work with.
                                     </div>
                                 )}
                             </div>
@@ -259,7 +259,7 @@ export default function InputPanel({
                         )}
 
                         {!fileName && !showPaste && (
-                            <div className={cn(hasRejectedResume ? "mt-4" : "mt-3", "text-center")}>
+                            <div className={cn(hasRejectedResume ? "mt-4" : "mt-3", "flex flex-wrap items-center justify-center gap-x-6")}>
                                 <button
                                     type="button"
                                     data-testid="workspace-paste-mode"
@@ -270,8 +270,23 @@ export default function InputPanel({
                                     <TextAlignLeft className="size-4" />
                                     Paste the text instead
                                 </button>
+                                {/* The sample stays within reach of a visitor deciding whether to hand over the file (Impeccable 12). */}
+                                {!user && !isRevision && (
+                                    <Link href="/sample-report" className="riyp-link-quiet inline-flex min-h-11 items-center text-sm" data-testid="workspace-sample-link">See Jordan&apos;s report</Link>
+                                )}
                             </div>
                         )}
+
+                        {/* The privacy line sits where the decision is made, under the file picker (Impeccable 13). */}
+                        <p className={cn(styles.privacy, "mt-4 flex items-start gap-2")} data-testid="workspace-privacy-line">
+                            <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="bold" aria-hidden="true" />
+                            <span>
+                                {user
+                                    ? "OpenAI writes the report from your resume, and we don’t opt it into model training. Saved reports keep a short preview and the lines they quote."
+                                    : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
+                                <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
+                            </span>
+                        </p>
 
                         <div className={styles.jobSection}>
                             <button
@@ -282,7 +297,7 @@ export default function InputPanel({
                                 aria-controls="workspace-job-context"
                                 className={cn(styles.roleToggle, "focus-ring")}
                             >
-                                <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="duotone" />
+                                <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="bold" />
                                 <span className="min-w-0 flex-1">
                                     <span className="block text-base font-semibold text-foreground">Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></span>
                                     <span className="mt-0.5 block text-sm text-muted-foreground">Add a posting to see how your experience fits.</span>
@@ -324,15 +339,6 @@ export default function InputPanel({
 
                         <div className={styles.privacy}>
                             <p className={styles.runHint}>{getRunHint()}</p>
-                            <p className="mt-2 flex items-start justify-center gap-2" data-testid="workspace-privacy-line">
-                                <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
-                                <span>
-                                    {user
-                                        ? "OpenAI writes the report from your resume, and we don’t opt it into model training. Saved reports keep a short preview and the lines they quote."
-                                        : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
-                                    <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
-                                </span>
-                            </p>
                         </div>
                     </div>
                 </section>

@@ -140,7 +140,7 @@ export function IndependentAdvice({
           <p className="text-xs font-semibold text-brand">More from your resume</p>
           <h2 className={`${styles.sectionTitle} mt-3`}>More lines worth a second look.</h2>
           <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
-            Compare each suggestion with the original before you use it.
+            Read each one beside your original before you use it.
           </p>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
             {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
@@ -155,7 +155,7 @@ export function IndependentAdvice({
             <p className="text-xs font-semibold">Other experience to consider</p>
           </div>
           <h2 className={`${styles.sectionTitle} mt-3`}>Questions only you can answer.</h2>
-          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">Use these prompts to recall relevant examples. You don&apos;t need an answer to every one.</p>
+          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">They&apos;re here to jog your memory. Answer the ones you can.</p>
           <ol className="mt-6 divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
             {questions.map(({ question, originalIndex }) => (
               <li key={`${originalIndex}-${question.question}`} className="grid gap-2 py-5 sm:grid-cols-[2.5rem_1fr]">

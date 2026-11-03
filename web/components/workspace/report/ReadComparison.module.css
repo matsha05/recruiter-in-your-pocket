@@ -94,6 +94,14 @@
 
 .missPast { color: hsl(var(--muted-foreground)); }
 
+/* One row per Critical Miss: a report carries one to three. */
+.missRow { display: grid; gap: 0.125rem; }
+
+.more {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
 .verdict {
     margin-top: auto;
     border-top: 1px solid hsl(var(--line));

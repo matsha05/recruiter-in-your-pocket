@@ -47,8 +47,8 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const visibleOpening = [report.first_impression || report.first_impression_takeaway || report.summary, report.score_comment_short];
   const detailedReadCandidates = [
     { label: "First impression", text: report.first_impression },
-    { label: "Overall assessment", text: report.summary },
-    { label: "Example to improve", text: report.biggest_gap_example },
+    { label: "The whole resume", text: report.summary },
+    { label: "The example that stops short", text: report.biggest_gap_example },
   ];
   const seenDetailedCopy = new Set(
     [...visibleOpening, ...(report.top_fixes || []).flatMap((fix) => [fix.fix, fix.text, fix.why])].filter(isCopy).map(copyKey),
@@ -66,9 +66,11 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
   const sectionNotes = SECTION_ORDER.flatMap((name) => {
     const review = report.section_review?.[name];
     if (!review) return [];
+    // "Still unclear: Nothing important is missing" contradicts itself (Impeccable 15); a note that says nothing is missing is left out.
+    const nothingMissing = isCopy(review.missing) && /^\s*nothing\b[^.]*\bmissing\b/iu.test(review.missing);
     const notes = [
       { label: "What works", text: review.working },
-      { label: "Still unclear", text: review.missing },
+      { label: "Still unclear", text: nothingMissing ? null : review.missing },
       { label: "Fix", text: review.fix },
     ].filter((note): note is { label: string; text: string } => isCopy(note.text));
     if (notes.length === 0) return [];

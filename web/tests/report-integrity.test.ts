@@ -373,12 +373,13 @@ for (const [label, report] of outputs) {
   for (const question of integrity.fixQuestions.flat()) {
     assert.equal(occurrences(pdf, question), 1, `${label}: "${question.slice(0, 40)}" once in the PDF`);
   }
+  // A structural gap is said in the opening read, where the person looks for it (Nov 2, 2026).
   if (integrity.structuralGaps.length > 0) {
-    assert.ok(page.includes("Before the bullets"), `${label}: the page labels the structural gap`);
+    assert.ok(opening.includes("Before the bullets"), `${label}: the opening read labels the structural gap`);
     assert.ok(pdf.includes("Before the bullets"), `${label}: and so does the PDF`);
   }
   for (const { text } of integrity.structuralGaps) {
-    assert.ok(page.includes(plain(text)), `${label}: the structural gap is on the page, without expanding anything`);
+    assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read, without expanding anything`);
     assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);
     assert.equal(occurrences(pdf, text), 1, `${label}: the PDF shows it once`);
   }

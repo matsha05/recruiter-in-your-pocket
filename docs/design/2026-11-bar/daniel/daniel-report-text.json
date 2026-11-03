@@ -1,0 +1,25 @@
+{
+  "verdict": "Your Cardinal Health internship and campus ordering project point toward an entry-level software engineering role. The capstone's authentication and cart features are worth keeping because they show what you implemented, not just the stack you used.",
+  "band": "Needs more contextNeeds more contextMostly clearClear and specificThe jobs are easy to follow. What you did in them mostly isn't.",
+  "fixesHeading": "Two Critical Misses. Start with this one.",
+  "countLead": "Either one could cost you the interview on its own.",
+  "rows": [
+    "Responsible for developing features for an internal inventory management web application using React and Spring Boot\n\nCRITICAL MISS 1\n\nName a feature you developed and the inventory task it addressed.\n\nA concrete feature would show what your React and Spring Boot work actually involved.\n\nHide\n\nAnswer and we'll add them to your line.\n\nWhich inventory feature did you develop?\nI don't know\nI didn't do this\nWhat task did it help users perform?\nI don't know\nI didn't do this\nWhich roles helped define an inventory application requirement?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+    "01Your line",
+    "02What's missing",
+    "03Your answers",
+    "04Revised line",
+    "Which inventory feature did you develop?\nI don't know\nI didn't do this",
+    "What task did it help users perform?\nI don't know\nI didn't do this",
+    "Which roles helped define an inventory application requirement?\nI don't know\nI didn't do this",
+    "Software Engineering Intern, Cardinal Health, Dublin, OH\n\nCRITICAL MISS 2\n\nIn the Cardinal Health internship, add the size of the engineering team you worked on, if you can verify it.\n\nSoftware engineering reviewers look for the scope of an intern's work. The resume describes your tasks but doesn't show team size or measurable results, so the scale of the work may be unclear.\n\nHide\n\nAnswer and we'll add it to your line.\n\nWhat would you add to this line?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.",
+    "01Your line",
+    "02What's missing",
+    "03Your answers",
+    "04Revised line",
+    "What would you add to this line?\nI don't know\nI didn't do this",
+    "Keep this one\n\nBuckeyeBites identifies a team of 4 and a full-stack application for campus food ordering, making the project easier to place.",
+    "EXPERIENCE\n\nWrote unit tests to improve code quality and reliability\n\nFix 3\n\nDescribe a behavior or edge case you tested and the part of the application it covered.\n\nThat example would give a reviewer a better sense of how you approached code reliability.\n\nWhat to add\n\nWhat application behavior or edge case did one of your unit tests cover?\nWork on this line\nHide"
+  ],
+  "url": "http://127.0.0.1:3140/workspace"
+}

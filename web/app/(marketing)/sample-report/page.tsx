@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Footer from "@/components/landing/Footer";
 import WorkspaceClient from "@/components/workspace/WorkspaceClient";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import sampleReport from "@/public/sample-report.json";
@@ -30,8 +31,11 @@ export const metadata: Metadata = {
 
 export default function SampleReportPage() {
   return (
-    <div className="sample-report-page-shell">
-      <WorkspaceClient initialReport={sampleReport as ReportData} />
-    </div>
+    <>
+      <div className="sample-report-page-shell">
+        <WorkspaceClient initialReport={sampleReport as ReportData} />
+      </div>
+      <Footer />
+    </>
   );
 }

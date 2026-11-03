@@ -26,12 +26,11 @@ export function LegalNav({ className }: LegalNavProps) {
     const activeRef = useRef<HTMLAnchorElement>(null);
     const [hasMore, setHasMore] = useState(false);
 
-    // Four tabs (plan 4.9). Trust folds into Security and Support into Help; Status and the
-    // methodology stay reachable from the footer and the research library, not from here.
+    // Three tabs (Matt, Nov 2, 2026): Privacy carries security and data handling, Help carries the FAQ
+    // and support; /security, /trust and /support redirect. Status is an operations view, not navigation.
     const tabs = [
-        { name: "Privacy", href: "/privacy", match: ["/privacy"] },
+        { name: "Privacy", href: "/privacy", match: ["/privacy", "/security", "/trust"] },
         { name: "Terms", href: "/terms", match: ["/terms"] },
-        { name: "Security", href: "/security", match: ["/security", "/trust"] },
         { name: "Help", href: "/faq", match: ["/faq", "/support"] },
     ];
 

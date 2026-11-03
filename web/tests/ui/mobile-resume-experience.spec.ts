@@ -123,8 +123,9 @@ for (const width of [320, 390]) {
       }
 
       for (const [label, section] of [["Fix these first", "section-fixes"], ["Role fit", "section-role"], ["Overview", "section-first-impression"]]) {
-        // By attribute: back at Overview the tabs leave the screen again, and the check still reads them.
-        const button = page.locator(`nav[aria-label="Resume report sections"] button[aria-label="${label}"]`);
+        // By section, through a CSS locator: back at Overview the tabs leave the screen again, and the check still reads them.
+        const button = page.locator(`nav[aria-label="Resume report sections"] button[data-section="${section}"]`);
+        await expect(button).toHaveAccessibleName(label);
         await button.click();
         await expect(button).toHaveAttribute("aria-current", "location");
         // On phones the fix section's heading is for screen readers; its first visible line is the Critical Miss.

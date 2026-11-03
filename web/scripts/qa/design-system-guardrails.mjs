@@ -318,6 +318,11 @@ function validateResearchSystem() {
 function validateDocs() {
   const designSystemDoc = path.join(ROOT, "..", "docs", "design-system.md");
   const content = fs.readFileSync(designSystemDoc, "utf8");
+  // Headings balance and prose avoids a lone last word (Impeccable 11, Nov 2, 2026): the rules live once, in globals.css.
+  const globalsCss = fs.readFileSync(path.join(ROOT, "app", "globals.css"), "utf8");
+  for (const rule of ["h1, h2, h3 { text-wrap: balance; }", "p, li, dd { text-wrap: pretty; }"]) {
+    if (!globalsCss.includes(rule)) missing.push(`globals.css -> ${rule}`);
+  }
   const brandSystemDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "brand-system.md"), "utf8");
   const voiceAndToneDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "voice-and-tone.md"), "utf8");
   const legacyAgentEntry = fs.readFileSync(path.join(ROOT, "..", ".agent", "AGENTS.md"), "utf8");
@@ -366,6 +371,8 @@ function validateDocs() {
     "16px / 25px",
     "18px / 30px",
     "qa:design-system",
+    "text-wrap: balance",
+    "text-wrap: pretty",
   ];
 
   for (const token of requiredStrings) {

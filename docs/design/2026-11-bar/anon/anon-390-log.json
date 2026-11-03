@@ -1,0 +1,165 @@
+[
+  {
+    "t": 10.1,
+    "step": "shot",
+    "file": "anon-01-home-first-screen@390.jpg"
+  },
+  {
+    "t": 91.1,
+    "step": "shot",
+    "file": "anon-02-workspace-first-screen@390.jpg"
+  },
+  {
+    "t": 92.9,
+    "step": "shot",
+    "file": "anon-03-workspace-pasted@390.jpg"
+  },
+  {
+    "t": 92.9,
+    "step": "run-button",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 98.1,
+    "step": "shot",
+    "file": "anon-04-wait-early@390.jpg"
+  },
+  {
+    "t": 99.6,
+    "step": "shot",
+    "file": "anon-05-wait-stage-1@390.jpg"
+  },
+  {
+    "t": 177.9,
+    "step": "first-run",
+    "done": true,
+    "stages": [
+      {
+        "at": 5.9,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      }
+    ],
+    "seconds": 85
+  },
+  {
+    "t": 179.5,
+    "step": "shot",
+    "file": "anon-06-report-first-screen@390.jpg"
+  },
+  {
+    "t": 180.5,
+    "step": "shot",
+    "file": "anon-07-report-full@390.jpg"
+  },
+  {
+    "t": 180.5,
+    "step": "save-prompt",
+    "visible": false
+  },
+  {
+    "t": 181,
+    "step": "shot",
+    "file": "anon-08-critical-miss@390.jpg"
+  },
+  {
+    "t": 187.1,
+    "step": "shot",
+    "file": "anon-09-revised-line@390.jpg"
+  },
+  {
+    "t": 187.2,
+    "step": "revised",
+    "text": "Improved process across teams: about 40 warehouse staff used it.",
+    "state": "addressed"
+  },
+  {
+    "t": 189.8,
+    "step": "shot",
+    "file": "anon-10-report-ending@390.jpg"
+  },
+  {
+    "t": 189.9,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 193.1,
+    "step": "shot",
+    "file": "anon-11-after-ending-cta@390.jpg"
+  },
+  {
+    "t": 225.6,
+    "step": "shot",
+    "file": "anon-12-second-visit-new-report@390.jpg"
+  },
+  {
+    "t": 227.5,
+    "step": "run-button-2",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 228,
+    "step": "shot",
+    "file": "anon-13-second-attempt-ready@390.jpg"
+  },
+  {
+    "t": 232.6,
+    "step": "shot",
+    "file": "anon-14-second-attempt-result@390.jpg"
+  },
+  {
+    "t": 233.8,
+    "step": "shot",
+    "file": "anon-15-wait-stage-1@390.jpg"
+  },
+  {
+    "t": 257,
+    "step": "second-run",
+    "done": false,
+    "paywall": true,
+    "stages": [
+      {
+        "at": 5,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      }
+    ],
+    "seconds": 28.9
+  },
+  {
+    "t": 258.1,
+    "step": "shot",
+    "file": "anon-16-second-attempt-after@390.jpg"
+  },
+  {
+    "t": 266.6,
+    "step": "shot",
+    "file": "anon-17-return-workspace@390.jpg"
+  },
+  {
+    "t": 412.7,
+    "step": "shot",
+    "file": "anon-18-return-my-reports-signed-out@390.jpg"
+  },
+  {
+    "t": 412.7,
+    "step": "console-errors",
+    "errs": [
+      "Failed to refresh free status.",
+      "Failed to load resource: the server responded with a status of 409 (Conflict)",
+      "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client bran",
+      "Failed to load resource: the server responded with a status of 402 (Payment Required)"
+    ]
+  }
+]

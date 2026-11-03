@@ -23,6 +23,7 @@ import {
   withCriticalFirst,
 } from "@/lib/reports/report-presentation";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
+import { splitVerdict } from "@/lib/reports/report-opening";
 import { liftQuestions } from "@/lib/reports/revised-line";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
@@ -56,6 +57,11 @@ interface ReportStreamProps {
   resumeSource?: ResumeSource;
   /** The reader's answers kept with a saved report, keyed by fix position (W3). */
   storedLineAnswers?: StoredLineAnswersByFix | null;
+  /** The reader has an account, so the report can be kept and its answers stay with it. */
+  isSignedIn?: boolean;
+  /** Saves this report to My reports; absent once it is saved. */
+  onSaveReport?: () => void;
+  isSavingReport?: boolean;
 }
 
 /**
@@ -79,6 +85,9 @@ export function ReportStream({
   resumeText,
   resumeSource,
   storedLineAnswers = null,
+  isSignedIn = false,
+  onSaveReport,
+  isSavingReport = false,
 }: ReportStreamProps) {
   // One disposition per resume line and each observation once, shared with the PDF. Critical Misses lead.
   const integrity = useMemo(() => reconcileReport(withCriticalFirst(report)), [report]);
@@ -95,6 +104,10 @@ export function ReportStream({
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
+  // The first sentence leads the phone's first screen; the rest waits behind "Read the rest" (W1).
+  const opening = useMemo(() => splitVerdict(verdict), [verdict]);
+  const [restOpen, setRestOpen] = useState(false);
+  const readLine = report.score_comment_short && report.score_comment_short !== verdict && report.score_comment_short !== opening.lead ? report.score_comment_short : null;
   const misses = readCriticalMisses(reconciled);
   const countHeading = criticalCountHeading(misses);
   const criticals = fixes.slice(0, misses.count);
@@ -170,8 +183,29 @@ export function ReportStream({
 
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
         <p className="riyp-verdict-label text-muted-foreground">Verdict</p>
-        <h1 id="report-verdict" className={styles.verdict}>{verdict}</h1>
+        <h1 id="report-verdict" className={opening.rest ? styles.verdictLead : styles.verdict}>{opening.lead}</h1>
+        {(opening.rest || readLine) && (
+          <div className={styles.verdictRest} data-folded={restOpen ? undefined : ""} data-testid="verdict-rest">
+            <div id="verdict-rest" className={styles.verdictRestText}>
+              {opening.rest && <p>{opening.rest}</p>}
+              {/* The one-sentence read the homepage quotes (Impeccable 8): under the Verdict, where a visitor looks for it. */}
+              {readLine && <p className={styles.readLine} data-testid="report-read-line">{readLine}</p>}
+            </div>
+            {!restOpen && (
+              <button type="button" className={cn("focus-ring", styles.readRest)} aria-expanded={false} aria-controls="verdict-rest" onClick={() => setRestOpen(true)}>
+                Read the rest
+              </button>
+            )}
+          </div>
+        )}
         {typeof report.score === "number" && <ScoreBand score={report.score} />}
+        {/* A structural gap the model flags (a dated break, a missing section) is said in the opening read, where the person looks for it. */}
+        {integrity.structuralGaps.length > 0 && (
+          <div className={styles.gapRow} data-testid="structural-gaps">
+            <p className={styles.gapLabel}><WarningCircle className="size-4" weight="bold" aria-hidden="true" />Before the bullets</p>
+            {integrity.structuralGaps.map((gap) => <p key={gap.text} className={styles.gapText}>{gap.text}</p>)}
+          </div>
+        )}
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title">
@@ -213,13 +247,6 @@ export function ReportStream({
             />
           ))}
 
-          {integrity.structuralGaps.length > 0 && (
-            <PageNote kind="gap">
-              <p className={styles.gapLabel}><WarningCircle className="size-4" weight="bold" aria-hidden="true" />Before the bullets</p>
-              {integrity.structuralGaps.map((gap) => <p key={gap.text} className={styles.gapText}>{gap.text}</p>)}
-            </PageNote>
-          )}
-
           {strengths[0] && (
             <PageNote kind="keep">
               <Check className={styles.keepTick} weight="bold" aria-hidden="true" />
@@ -238,6 +265,7 @@ export function ReportStream({
                 key={`${fix.fix || fix.text}-${index}`}
                 fix={fix}
                 index={index}
+                total={fixes.length}
                 why={slots.why}
                 whatToAdd={slots.whatToAdd}
                 hidden={hiddenFixes.isHidden(index)}
@@ -294,7 +322,6 @@ export function ReportStream({
         </summary>
         <div className={styles.disclosureBody}>
           <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
-          {report.score_comment_short && report.score_comment_short !== verdict && <p>{report.score_comment_short}</p>}
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
         </div>
@@ -311,7 +338,38 @@ export function ReportStream({
         </section>
       )}
 
-      {!isSample && onStartRevision && (
+      {!isSample && isSignedIn && onSaveReport && (
+        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-save-version">
+          <h2 id="report-next-step" className={styles.sectionTitle}>
+            {allAddressed ? "Your line is ready. Save this version." : "Save this version."}
+          </h2>
+          <p className={styles.endingCopy}>Your answers and the revised line stay with it, so you can come back for them from any device. Then edit your resume and check the new version against this one.</p>
+          <div className={styles.endingActions}>
+            <Button variant="primary" onClick={onSaveReport} disabled={isSavingReport} aria-busy={isSavingReport || undefined} data-testid="report-save-version-button">
+              {isSavingReport ? "Saving…" : "Save this version"}
+            </Button>
+            {onStartRevision && (
+              <Button variant="quiet" onClick={onStartRevision}>Compare my revision <ArrowRight className="size-4" weight="bold" /></Button>
+            )}
+          </div>
+          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.whenToBuy : "Saved reports keep your Verdict, your Critical Misses and your lines."}</p>
+        </section>
+      )}
+
+      {!isSample && isSignedIn && !onSaveReport && onStartRevision && (
+        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-next-step">
+          <h2 id="report-next-step" className={styles.sectionTitle}>
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : "Made your edits? See what changed."}
+          </h2>
+          <p className={styles.endingCopy}>{isExhausted
+            ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
+            : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss changed, what got clearer, and what to do next.</>}</p>
+          <div><Button variant="primary" onClick={onStartRevision}>Compare my revision<ArrowRight className="size-4" weight="bold" /></Button></div>
+          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "This report is saved. The comparison will sit beside it."}</p>
+        </section>
+      )}
+
+      {!isSample && !isSignedIn && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
             {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}

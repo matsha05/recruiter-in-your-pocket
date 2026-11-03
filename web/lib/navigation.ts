@@ -107,12 +107,13 @@ export const FOOTER_NAV: FooterNavGroup[] = [
             { label: "Offer calculator", href: "/resources/tools/comp-calculator" },
         ],
     },
+    // Three trust destinations (Matt, Nov 2, 2026): Privacy (which now carries security and data handling),
+    // Terms, and Help (FAQ and support together). /security, /trust and /support redirect to them.
     {
         id: "help",
         label: "Help",
         links: [
-            { label: "Help and FAQ", href: "/faq" },
-            { label: "Security", href: "/security" },
+            { label: "Help", href: "/faq" },
             { label: "Privacy", href: "/privacy" },
             { label: "Terms", href: "/terms" },
         ],

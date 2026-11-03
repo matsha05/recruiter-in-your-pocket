@@ -1,0 +1,298 @@
+[
+  {
+    "t": 54.4,
+    "step": "shot",
+    "file": "james-01-entry-first-screen@390.jpg"
+  },
+  {
+    "t": 55.2,
+    "step": "shot",
+    "file": "james-02-entry-full@390.jpg"
+  },
+  {
+    "t": 60.1,
+    "step": "shot",
+    "file": "james-03-signin@390.jpg"
+  },
+  {
+    "t": 66.7,
+    "step": "shot",
+    "file": "james-04-signin-code-sent@390.jpg"
+  },
+  {
+    "t": 74.9,
+    "step": "shot",
+    "file": "james-05-signin-first-name@390.jpg"
+  },
+  {
+    "t": 78.6,
+    "step": "shot",
+    "file": "james-06-after-signin@390.jpg"
+  },
+  {
+    "t": 78.6,
+    "step": "signed-in",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 84.1,
+    "step": "shot",
+    "file": "james-07-workspace-empty@390.jpg"
+  },
+  {
+    "t": 91.8,
+    "step": "shot",
+    "file": "james-08-workspace-paste-mode@390.jpg"
+  },
+  {
+    "t": 92.9,
+    "step": "shot",
+    "file": "james-09-workspace-after-paste@390.jpg"
+  },
+  {
+    "t": 92.9,
+    "step": "run-button",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 94.2,
+    "step": "shot",
+    "file": "james-10-wait-stage-1@390.jpg"
+  },
+  {
+    "t": 95.7,
+    "step": "shot",
+    "file": "james-11-wait-2s@390.jpg"
+  },
+  {
+    "t": 103.1,
+    "step": "shot",
+    "file": "james-12-wait-10s@390.jpg"
+  },
+  {
+    "t": 118.4,
+    "step": "shot",
+    "file": "james-13-wait-25s@390.jpg"
+  },
+  {
+    "t": 127.5,
+    "step": "shot",
+    "file": "james-14-wait-stage-2@390.jpg"
+  },
+  {
+    "t": 134.1,
+    "step": "shot",
+    "file": "james-15-wait-stage-3@390.jpg"
+  },
+  {
+    "t": 140.5,
+    "step": "shot",
+    "file": "james-16-wait-47s@390.jpg"
+  },
+  {
+    "t": 160,
+    "step": "shot",
+    "file": "james-17-wait-stage-4@390.jpg"
+  },
+  {
+    "t": 168.8,
+    "step": "shot",
+    "file": "james-18-wait-75s@390.jpg"
+  },
+  {
+    "t": 170.5,
+    "step": "report-arrived",
+    "done": true,
+    "waitSeconds": 77.6,
+    "stageLog": [
+      {
+        "at": 0.9,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 34.3,
+        "states": [
+          "done",
+          "current",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 40.8,
+        "states": [
+          "done",
+          "done",
+          "current",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 66.7,
+        "states": [
+          "done",
+          "done",
+          "done",
+          "current"
+        ]
+      }
+    ]
+  },
+  {
+    "t": 172.2,
+    "step": "shot",
+    "file": "james-19-report-first-screen@390.jpg"
+  },
+  {
+    "t": 172.9,
+    "step": "shot",
+    "file": "james-20-report-full@390.jpg"
+  },
+  {
+    "t": 172.9,
+    "step": "report-text",
+    "verdict": "Your senior marketing role is easy to place: you managed four marketers and a $1.8M annual budget. The 35% year-over-year MQL increase is worth keeping prominent because it gives the demand generation work a concrete result. Your current freelance work is less detailed.",
+    "band": "Mostly clearNeeds more contextMostly clearClear and specificMost lines show what you did. A few leave your part or the result unclear.",
+    "fixesHeading": "Two Critical Misses. Start with this one.",
+    "countLead": "Either one could cost you the interview on its own.",
+    "rows": [
+      "Launched ABM program targeting enterprise accounts\n\nCRITICAL MISS 1\n\nAdd the main activities or deliverables you used to reach enterprise accounts.\n\nThat would distinguish a launched program from a general intent to target accounts.\n\nHide\n\nAnswer and we'll add it to your line.\n\nWhat would you add to this line?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+      "01Your line",
+      "02What's missing",
+      "03Your answers",
+      "04Revised line",
+      "What would you add to this line?\nI don't know\nI didn't do this",
+      "Provided marketing strategy and execution support for small businesses and startups\n\nCRITICAL MISS 2\n\nAdd the number of clients you served or a measurable project result, if you can verify it.\n\nMarketing hiring managers look for the scope or results of recent work. The freelance role lists project types but doesn't show client volume or a measurable outcome.\n\nHide\n\nAnswer and we'll add it to your line.\n\nWhich freelance assignment required a difficult tradeoff between strategy and execution support?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.",
+      "01Your line",
+      "02What's missing",
+      "03Your answers",
+      "04Revised line",
+      "Which freelance assignment required a difficult tradeoff between strategy and execution support?\nI don't know\nI didn't do this",
+      "Keep this one\n\nThe $40M ARR company context helps a reader place the Velocity role without confusing company revenue with marketing-generated revenue.",
+      "PROFESSIONAL EXPERIENCE\n\nGrew blog traffic significantly through SEO-driven content strategy\n\nFix 3\n\nReplace the word significantly with the verified change and comparison period, if available.\n\nThe existing result is useful, but its magnitude is not clear.\n\nWhat to add\n\nWhat did you change in the SEO-driven content strategy as blog traffic grew?\nWork on this line\nHide"
+    ],
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 173.4,
+    "step": "shot",
+    "file": "james-21-critical-miss-questions@390.jpg"
+  },
+  {
+    "t": 173.4,
+    "step": "questions",
+    "count": 1,
+    "labels": [
+      "What would you add to this line?\nI don't know\nI didn't do this"
+    ]
+  },
+  {
+    "t": 177.5,
+    "step": "revised-line",
+    "revised": "Launched ABM program targeting enterprise accounts: four clients, including a 40-person logistics startup.",
+    "state": "addressed"
+  },
+  {
+    "t": 178.1,
+    "step": "shot",
+    "file": "james-22-revised-line@390.jpg"
+  },
+  {
+    "t": 178.1,
+    "step": "copy-button",
+    "disabled": false
+  },
+  {
+    "t": 179.8,
+    "step": "shot",
+    "file": "james-23-feedback-sent@390.jpg"
+  },
+  {
+    "t": 179.9,
+    "step": "after-save",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 179.9,
+    "step": "pdf",
+    "error": "no export button visible"
+  },
+  {
+    "t": 181,
+    "step": "shot",
+    "file": "james-24-report-ending@390.jpg"
+  },
+  {
+    "t": 181,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 184.7,
+    "step": "shot",
+    "file": "james-25-after-ending-cta@390.jpg"
+  },
+  {
+    "t": 287.5,
+    "step": "shot",
+    "file": "james-26-pricing-first-screen@390.jpg"
+  },
+  {
+    "t": 287.8,
+    "step": "shot",
+    "file": "james-27-pricing-full@390.jpg"
+  },
+  {
+    "t": 302.4,
+    "step": "shot",
+    "file": "james-28-return-workspace@390.jpg"
+  },
+  {
+    "t": 402.8,
+    "step": "shot",
+    "file": "james-29-return-my-reports@390.jpg"
+  },
+  {
+    "t": 402.8,
+    "step": "saved-report",
+    "href": "/reports/1ec2778f-9c09-42fd-9910-fc5ec3f47e44"
+  },
+  {
+    "t": 644.8,
+    "step": "shot",
+    "file": "james-30-return-saved-report-first-screen@390.jpg"
+  },
+  {
+    "t": 645.3,
+    "step": "shot",
+    "file": "james-31-return-saved-report-full@390.jpg"
+  },
+  {
+    "t": 680.9,
+    "step": "error",
+    "message": "page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:3140/dashboard\nCall log:\n  - navigating to \"http://127.0.0.1:3140/dashboard\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "t": 681.1,
+    "step": "shot",
+    "file": "james-32-error-state@390.jpg"
+  },
+  {
+    "t": 681.1,
+    "step": "console-errors",
+    "errs": [
+      "Error fetching paid pass status: TypeError: Failed to fetch\n    at AuthProvider.useCallback[refreshUser] (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:104:38)",
+      "Error fetching free report status: TypeError: Failed to fetch\n    at AuthProvider.useCallback[refreshUser] (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:112:38)",
+      "Failed to refresh free status.",
+      "Error fetching paid pass status: Error: Pass details timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Error fetching free report status: Error: Free report status timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Failed to load resource: net::ERR_NETWORK_IO_SUSPENDED"
+    ]
+  }
+]

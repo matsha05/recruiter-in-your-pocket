@@ -29,7 +29,7 @@ Check each handle's availability before creating anything; Reddit usernames can'
 
 > What you meant isn't always what they read.
 >
-> Recruiter in Your Pocket reads your resume the way a recruiter does on the first pass. You get a Verdict in plain words, a score that says where to start, and the Critical Miss: what to fix first, with your facts kept intact. Your first report is free.
+> Recruiter in Your Pocket reads your resume the way a recruiter does on the first pass. You get a Verdict in plain words, where your resume stands, and the Critical Miss: what to fix first, built from your own facts. Your first report is free.
 >
 > It's built by a recruiter with 14 years in hiring, including at some of the biggest names in tech.
 >
@@ -193,7 +193,7 @@ From `hello@recruiterinyourpocket.com`, display name "Recruiter in Your Pocket".
 >
 > [One line that shows we read their work. Example: "Your post on rewriting resumes for people leaving teaching was one of the clearest we've read on it."]
 >
-> We make Recruiter in Your Pocket. It reads a resume the way a recruiter does on the first pass and gives back a Verdict in plain words, a score that says where to start, and the Critical Miss: what to fix first. The first report is free, with no account needed.
+> We make Recruiter in Your Pocket. It reads a resume the way a recruiter does on the first pass and gives back a Verdict in plain words, where your resume stands, and the Critical Miss: what to fix first. The first report is free, with no account needed.
 >
 > Where it might help you: clients can arrive at a first session already knowing what a recruiter notices first, so your time goes to their story and their search instead of missing dates and vague bullets.
 >
@@ -269,12 +269,12 @@ Optional link: `/research/gaps-and-pivots?utm_source=reddit&utm_medium=community
 
 - **Name:** Recruiter in Your Pocket
 - **One-liner** (60 characters): See what a recruiter sees in your resume. First report free.
-- **Short description** (159 characters): Paste or upload your resume for a recruiter's first read: a Verdict in plain words, a score that says where to start, and what to fix first. First report free.
+- **Short description** (159 characters): Paste or upload your resume for a recruiter's first read: a Verdict in plain words, where your resume stands, and what to fix first. First report free.
 - **Long description:**
 
 > What you meant isn't always what they read. Recruiter in Your Pocket reads your resume the way a recruiter does on the first pass and tells you what comes through, what slips past, and what to fix first.
 >
-> Every report has a Verdict in plain words, a score that summarizes the review and says where to start, and the Critical Miss: what to fix first, with suggested edits that keep your facts intact. Add a job description to see how the resume reads for that role.
+> Every report has a Verdict in plain words, where your resume stands, and the Critical Miss: what to fix first, with a revised line built only from your own answers. Add a job posting to see how your experience fits that role.
 >
 > It's built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. It isn't an ATS score, it doesn't write your resume for you, and it doesn't promise interviews.
 >

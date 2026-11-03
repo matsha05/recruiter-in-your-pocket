@@ -33,11 +33,12 @@ Each of these things has one name everywhere: marketing, the app, the report, th
 | The workspace submit button | `Get your free report` while the free report is available; `Get my report` for a pass report; `Compare my revision` for a revision | None |
 | Starting a report from signed-in navigation | `New report` | None |
 | Strengths to leave alone | Keep: `Keep these` (report tab, PDF), `Keep these. They're working.` (section heading), `Keep this one` (label in the opening read) | Leave these alone, Don't touch this one |
-| What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.` until the report knows its Critical Miss count, then the count heading below; cards `Critical Miss` (`Critical Miss 1`, `2`, `3` when there are several), then `Fix 2`, `Fix 3` by position; `Fix` in the full notes | Start with these changes, Suggested change |
+| What to change | Fix: `Fix these first` (report tab, PDF); headings `Fix this first.`, `Fix these two first.`, `Fix these three first.` until the report knows its Critical Miss count, then the count heading below; cards `Critical Miss` (`Critical Miss 1`, `2`, `3` when there are several), then `Fix 2 of 3`, `Fix 3 of 3` by position (Nov 2, 2026: the count travels with the card, since phones hide the heading); `Fix` in the full notes | Start with these changes, Suggested change |
 | A problem that could cost an interview on its own | `Critical Miss`. A report names one to three, in priority order; the first is the one to fix first. Never `Nothing critical` (Matt, November 1, 2026) | Nothing critical |
 | The negotiation section and its guides | `After the offer` | Resources, Career resources, All Resources |
 | The example report | `Sample report` (navigation and page title). The homepage link names the candidate: `See Jordan's report` | See an example, Example report |
 | A paid re-run of a revised resume | `Re-check`. The comparison says the Critical Miss `changed`, never that it was `fixed` | None |
+| Keeping a report in My reports | `Save this version` (the section row and the signed-in ending, Nov 2, 2026) | Save report |
 
 ## 2. Canonical Report Structure
 
@@ -166,7 +167,8 @@ Any pricing or paywall surface must make three things obvious:
 
 Preferred phrasing:
 - `Your first report is free.`
-- `The Job Search Pass includes five additional reports for $29, valid for 30 days, with no automatic renewal.`
+- `The Job Search Pass includes five additional reports for $29, valid for 90 days, with no automatic renewal.` (90 days since November 2, 2026)
+- `PDF export and saved reports come with signing in, not with the pass.` The pass is for re-checks and other jobs; it is never sold as the way to get a PDF.
 
 Do not imply the free report has shallower feedback. Saved history requires sign-in. Paid PDF exports remain available through the valid paid period even after all report credits are used.
 

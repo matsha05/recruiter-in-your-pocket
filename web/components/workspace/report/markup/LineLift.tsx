@@ -11,7 +11,6 @@ import type { LineSource } from "@/lib/reports/line-answers";
 import {
   answeredValues,
   composeRevisedLine,
-  describeRefusal,
   liftSourceLine,
   liftState,
   revisedLinePolicy,
@@ -24,6 +23,7 @@ import {
   POLISH_ALLOWS_JOINERS,
   type RevisedLinePolishRequest,
 } from "@/lib/reports/revised-line-polish";
+import { guardMessage, guardOffersExactWords, readGuardVerdict } from "./guardCopy";
 import styles from "./MarkedReport.module.css";
 
 const traceItems = [
@@ -173,8 +173,11 @@ export function LineLift({
     policy?.copyable ? line : undefined,
   );
   const copyableLine = policy?.copyable ? line : undefined;
+  const verdict = useMemo(() => readGuardVerdict(policy), [policy]);
+  const guardNote = line ? guardMessage(verdict) : null;
 
   useEffect(() => { onChange?.({ state, line: copyableLine }); }, [copyableLine, onChange, state]);
+
   useEffect(() => { if (editing) editRef.current?.focus(); }, [editing]);
 
   // Keep the answers with the saved report once they settle (W3). Nothing is kept until something is answered.
@@ -252,7 +255,7 @@ export function LineLift({
           const skipped = answer.kind === "unknown" || answer.kind === "not_mine";
           return (
             <li key={question} className={styles.liftQuestion} data-testid="lift-question" data-skipped={skipped || undefined}>
-              <label htmlFor={inputId} className={styles.liftQuestionText}>{question}</label>
+              <label id={`${inputId}-label`} htmlFor={inputId} className={styles.liftQuestionText}>{question}</label>
               {skipped ? (
                 <p className={styles.liftSkipped}>
                   {answer.kind === "unknown" ? "Left out for now." : "Left out. It's not your work."}
@@ -269,8 +272,8 @@ export function LineLift({
                     autoComplete="off"
                   />
                   <div className={styles.liftSkips}>
-                    <Button type="button" variant="quiet" size="sm" onClick={() => setAnswer(index, { kind: "unknown" })}>I don&apos;t know</Button>
-                    <Button type="button" variant="quiet" size="sm" onClick={() => setAnswer(index, { kind: "not_mine" })}>I didn&apos;t do this</Button>
+                    <Button type="button" variant="quiet" size="sm" aria-describedby={`${inputId}-label`} onClick={() => setAnswer(index, { kind: "unknown" })}>I don&apos;t know</Button>
+                    <Button type="button" variant="quiet" size="sm" aria-describedby={`${inputId}-label`} onClick={() => setAnswer(index, { kind: "not_mine" })}>I didn&apos;t do this</Button>
                   </div>
                 </>
               )}
@@ -339,7 +342,7 @@ export function LineLift({
               ? edited === null
                 ? showPolished ? "Every word is from your resume or your answers." : "Every word is from your resume or your answers. Reword it however you like."
                 : "Your wording. The facts all come from your line or your answers."
-              : describeRefusal(policy?.refusal) || "This changes a detail from your resume. Edit it back to what's true to copy it."}
+              : guardNote}
           </p>
         )}
         {copyableLine && onPersist && kept !== "idle" && (
@@ -348,6 +351,11 @@ export function LineLift({
               : kept === "saving" ? "Keeping this with your report…"
                 : "We couldn't keep this with your report just now. Copy the line to be safe."}
           </p>
+        )}
+        {line && !copyableLine && edited !== null && guardOffersExactWords(verdict) && (
+          <div className={styles.liftSkips}>
+            <Button type="button" variant="quiet" size="sm" onClick={() => { setEdited(null); setEditing(false); copied.reset(); }}>Use my exact words</Button>
+          </div>
         )}
         {edited === null && polishedLine && (
           <div className={styles.liftSkips}>

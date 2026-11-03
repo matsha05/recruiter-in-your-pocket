@@ -77,7 +77,7 @@ Runtime mapping:
 
 Numbers (Oct 31, 2026): Schibsted Grotesk's tabular figures also give commas a full digit width ("$1 ,370 ,000"), so `tabular-nums` is redefined globally to proportional digits. Right-align money columns for tidy edges; never re-enable `tnum` on anything that contains a comma or period.
 
-Every piece of text on the site uses one of eleven roles (Nov 1, 2026). The production audit counted 121 text styles, 31 sizes (some fractional, such as 13.76 and 100.8px), and weights from 400 to 800; the roles replace all of them. Sizes are whole pixels and step at breakpoints instead of scaling with `clamp()`, so a heading is the same size everywhere it appears at a given width.
+Every piece of text on the site uses one of twelve roles (eleven on Nov 1, 2026, plus `verdict-lead` on Nov 2). The production audit counted 121 text styles, 31 sizes (some fractional, such as 13.76 and 100.8px), and weights from 400 to 800; the roles replace all of them. Sizes are whole pixels and step at breakpoints instead of scaling with `clamp()`, so a heading is the same size everywhere it appears at a given width.
 
 | Role | Phone (<768px) | 768px and up | Weight and family | Use |
 | --- | --- | --- | --- | --- |
@@ -91,6 +91,7 @@ Every piece of text on the site uses one of eleven roles (Nov 1, 2026). The prod
 | `small` | 14 / 22 | 14 / 22 | 400 or 600 Schibsted | tables, navigation, metadata, compact controls |
 | `label` | 13 / 18 | 13 / 18 | 600 Schibsted (400 for captions) | labels, captions, footnotes; the 13px floor |
 | `verdict` | 20 / 30 | 24 / 34 | 400 Literata | the Verdict, quoted resume lines, the recruiter's longer answers |
+| `verdict-lead` | 22 / 30 | 28 / 38 | 400 Literata | the Verdict's first sentence on the report's first screen (Nov 2, 2026); the rest of the Verdict is `body` behind "Read the rest" on phones |
 | `note` | 16 / 25 | 16 / 25 | 400 Literata, italic for margin notes | pen notes, figure notes, short quoted findings |
 
 Rules:
@@ -131,7 +132,8 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 | Red pen | `--destructive` | `--red-pen`; what slips past or is missing (wavy underline on skimmed lines, "What's missing" labels, "What keeps coming up"), plus errors and destructive actions. Never decoration |
 | Highlighter | `#ffe14d` | `--highlight`; marks a quoted line the recruiter would miss. Never a button or a large fill |
 | Miss sheet | `#fff6c2` / `#f2dc6b` | `--miss-surface` / `--miss-line`; the Critical Miss block |
-| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`, `--warning`); text on or beside yellow |
+| Miss ink | `#6b5400` | `--brass` (aliased by `--premium`); text on or beside yellow |
+| Warning | ink on inset | `--warning` / `--warning-foreground` are the text ink and `--warning-surface` the inset (Nov 2, 2026): an operational notice (a slow run, a failed save, a purchase that needs a look) is ink on an inset sheet, never the Critical Miss yellow |
 | Divider | `#dfe0dc` | `--line`; nonessential grouping rules |
 | Control boundary | `#808983` | `--control-line` / `--input`; identifiable input boundaries |
 
@@ -141,7 +143,7 @@ Rules (a recruiter's desk of pens, Matt, Oct 31, 2026): ink for actions; green p
 
 Dark mode has its own values: ground `#111412`-range ink-green, paper slightly lifted, pen lightened to a readable mint, and the highlighter becomes a deep olive mark under light text. Print uses white paper. Dark mode chart steps are lifted separately (`#5b80e6` `#3a9a6e` `#a06cc0` `#d9731a`) and validated against the dark sheet. Avoid gradients, glow, and grain.
 
-Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets, no drop shadows. Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
+Surfaces are paper on a desk: white sheets on the neutral ground, hairline borders, 18px radius for sheets and 10-12px for insets. Shadows mark real elevation only (a sheet lifted off the desk, a floating card, a dialog) and stay subtle; static cards and share images carry none (reconciled with §7, Nov 2, 2026). Motion is quiet (160-200ms, one shared curve) except one signature move: the highlighter sweeps across a line, then the note writes in. Reduced motion shows the same end state immediately.
 
 ## 5. Signature evidence grammar
 
@@ -176,7 +178,7 @@ On phones, place the headline, explanation, and full-width action before the res
 
 Its longer first-impression and strengths content can expand on phones; the selected priority, source evidence, and next action stay available immediately.
 
-The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. On phones the section row stays out of the first screen, so the Verdict, the Critical Miss and its first question come first; it slides in under the header once the opening read has scrolled away (Nov 1, 2026, plan item 2.5). Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
+The upload surface uses a compact file picker instead of a desktop-sized drop area. After a file is read, "What we read" shows the extracted text before the run, and text under 200 characters can't start a report (the server rejects it too) (Nov 1, 2026). The report uses one 44px row of section controls and 16px reading gutters, with its main takeaway before score context. On phones the section row stays out of the first screen, so the Verdict, the Critical Miss and its first question come first; it slides in under the header once the opening read has scrolled away (Nov 1, 2026, plan item 2.5). The report's first screen (W1, Nov 2, 2026): a header row on the sheet (the candidate's name from the resume's first line when this visit holds it, the first best-fit role, how long the read took, and a "Read as" chip from `role_fit.seniority_read` only when it is a short level, never a sentence), the Verdict's first sentence in `verdict-lead` with the rest behind "Read the rest" on phones, the band name and bar on one row, the Critical Miss count on one row, and the first Critical Miss on its miss sheet (`--miss-surface`) with the quoted line, the pen note and the first question. Save and Export ride in the sticky section row, icon-only on phones. Fix cards read "Fix 2 of 3". The PDF keeps its own order. Public and app navigation use one drawer, `components/layout/NavDrawer.tsx` (Nov 1, 2026): it opens from the right under its trigger at `min(88vw, 22rem)`, with the wordmark, text rows, and a Phosphor trigger and close, and it keeps the close control visible and scrolls its links on short screens. Research introductions and cards use tighter spacing while retaining readable prose and source links. Review these choices at 320, 390, and 430px, and check landscape/reflow navigation separately; absence of horizontal overflow is not visual approval.
 
 ### Spacing scale
 
@@ -266,7 +268,7 @@ Required shared categories:
 - diagrams: frame, title, legend, caption, source, takeaway
 - feedback: empty, loading, success, warning, error, paywall
 
-Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion. The report wait screen shows elapsed time and the stage the stream reports (`stage` events: sending, reading, writing, checking, or a retry); a step is done only when the stream moves past it (Nov 1, 2026).
+Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending. System Lab exposes actual primitives in these states, not imitation controls. Preserve entered content after recoverable failures. Loading describes real operational state without invented percentages or timed completion. The report wait screen shows elapsed time and the stage the stream reports (`stage` events: sending, reading, writing, checking, severity, or a retry); a step is done only when the stream moves past it (Nov 1, 2026). Since Nov 2, 2026 (W2) the wait is the person's own resume on a sheet, dimmed, in the document's own serif, with the pen on the line the stream is reading: the pen's position is a function of the stage, never of elapsed time, and the sheet scrolls to it only on a stage event. Five chips name the stages (Sent, Reading, Writing the notes, Checking every quote, Anything else that costs an interview?); the heading row carries the clock and "usually under two minutes" until a measured number replaces it; Stop is a quiet link; the slow-run aside is ink on an inset. Reduced motion shows the static sheet. The sheet is hidden from assistive technology; the status line says the same thing in words.
 
 Shared primitives are the default. A route-specific component is appropriate when its semantics are route-specific, not because recreating a button or card was faster.
 
@@ -309,7 +311,7 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 
 ### Workspace and report
 
-- The report is a marked-up resume (Nov 1, 2026; [spec](launch-readiness/72-signature-report-spec.md)): the Verdict and score band, then the candidate's quoted lines in Literata on the left (blue-ink rule; the Critical Miss line carries the highlighter), with the recruiter's pen notes in a right margin from 960px and beneath each line below it. Under the Critical Miss the candidate answers one to three questions and the revised line is their line plus their answers, word for word; Copy waits for the facts to check out. One component and one document scroll serve the sample, a fresh, recovered or saved report, and the PDF follows the same order.
+- The report is a marked-up resume (Nov 1, 2026; [spec](launch-readiness/72-signature-report-spec.md)): the Verdict and score band, then the candidate's quoted lines in Literata on the left (blue-ink rule; the Critical Miss line carries the highlighter), with the recruiter's pen notes in a right margin from 960px and beneath each line below it. Under the Critical Miss the candidate answers one to three questions and the revised line is their line plus their answers, word for word; Copy waits for the facts to check out. When it can't (W3, Nov 2, 2026), the note names the word in the person's own words ("“web app” isn't in your line or your answers, but “web application” is."), ends with the if-it's-true clause, and never suggests adding something untrue; the relationship check offers "Use my exact words". A signed-in report keeps the answers and the chosen line (stored once the line checks out), so a saved report reopened elsewhere shows the line and "Addressed"; its ending leads with "Save this version" and the re-check second, and the $29 button stays on pricing and in the paywall. One component and one document scroll serve the sample, a fresh, recovered or saved report, and the PDF follows the same order.
 - Put the likely takeaway, exact evidence, and next useful action first.
 - Use a quiet shared header, regular-weight introduction, warm form/report sheet, and dark primary action. Report body is 16px/25px.
 - Preserve file/paste modes, optional job context, generation, missing-fact entry, comparison, history, save, and export behavior.
@@ -395,7 +397,7 @@ The interactive examples in `/internal/system-lab` show these states explicitly.
 3. candidate-supplied fact
 4. resolved wording or action
 
-Pen identifies current evidence; completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+Pen identifies current evidence and marks completed segments (Nov 2, 2026; the trace no longer completes in citron); completed states use explicit wording or icons. There is no neon completion requirement. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 
@@ -446,7 +448,7 @@ The guardrail must fail for:
 - unauthorized hardcoded colors
 - banned public copy patterns
 - increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
-- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 11 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
+- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 12 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
 
 The rendered check loads 23 public routes at 1440 and 390px and fails on an off-scale or fractional size, a weight outside 400/600/800, more than 40 text styles, more than one build of the primary action per size, or a paragraph inside a reading rail over 75 characters per line. Paragraphs a page lays out outside the rail are listed as warnings:
 

@@ -46,11 +46,16 @@ export function PrivacyControls() {
   if (!visible) return null;
   return (
     <section ref={panel} className={styles.panel} role="region" aria-labelledby="privacy-choices-title" data-testid="privacy-panel">
-      <h2 id="privacy-choices-title" ref={heading} tabIndex={-1}>Your privacy choices</h2>
-      <p>Essential storage keeps the site working. With your OK, Mixpanel shows us which features people use. Your resume text is never included. <Link href="/privacy" className={styles.inlineLink}>Privacy policy</Link></p>
-      {consent === "blocked" ? <p>Your browser asks us not to track. Optional analytics stays off.</p> : <div className={styles.actions}>
-        <Button type="button" variant="secondary" size="sm" onClick={() => choose("declined")}>Decline analytics</Button>
-        <Button type="button" variant="secondary" size="sm" onClick={() => choose("accepted")}>Allow analytics</Button>
+      {/* One line (Matt, Nov 2, 2026): essential storage needs no consent, so the only choice is optional
+          analytics (Mixpanel), and the resume text never goes to it. The heading names the region for
+          assistive technology and takes focus when the card is reopened from the footer. */}
+      <h2 id="privacy-choices-title" ref={heading} tabIndex={-1} className="sr-only">Your privacy choices</h2>
+      <p className={styles.line}>
+        Optional analytics only, if you allow it. Your resume text never goes to analytics. <Link href="/privacy" className={styles.inlineLink}>Privacy</Link>
+      </p>
+      {consent === "blocked" ? <p className={styles.line}>Your browser asks us not to track. Optional analytics stays off.</p> : <div className={styles.actions}>
+        <Button type="button" variant="secondary" size="sm" onClick={() => choose("declined")}>Decline<span className="sr-only"> analytics</span></Button>
+        <Button type="button" variant="secondary" size="sm" onClick={() => choose("accepted")}>Allow<span className="sr-only"> analytics</span></Button>
       </div>}
       {reopened && <div className={styles.links}>
         <button type="button" className="focus-ring riyp-link-quiet" onClick={close}>Close</button>

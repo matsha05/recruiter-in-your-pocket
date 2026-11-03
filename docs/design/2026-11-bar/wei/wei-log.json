@@ -1,0 +1,295 @@
+[
+  {
+    "t": 67.2,
+    "step": "shot",
+    "file": "wei-01-entry-first-screen@1440.jpg"
+  },
+  {
+    "t": 72,
+    "step": "shot",
+    "file": "wei-02-entry-full@1440.jpg"
+  },
+  {
+    "t": 119.1,
+    "step": "shot",
+    "file": "wei-03-signin@1440.jpg"
+  },
+  {
+    "t": 132.2,
+    "step": "shot",
+    "file": "wei-04-signin-code-sent@1440.jpg"
+  },
+  {
+    "t": 188.7,
+    "step": "shot",
+    "file": "wei-05-signin-first-name@1440.jpg"
+  },
+  {
+    "t": 192.7,
+    "step": "shot",
+    "file": "wei-06-after-signin@1440.jpg"
+  },
+  {
+    "t": 192.7,
+    "step": "signed-in",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 198.8,
+    "step": "shot",
+    "file": "wei-07-workspace-empty@1440.jpg"
+  },
+  {
+    "t": 203.4,
+    "step": "shot",
+    "file": "wei-08-workspace-paste-mode@1440.jpg"
+  },
+  {
+    "t": 204.6,
+    "step": "shot",
+    "file": "wei-09-workspace-after-paste@1440.jpg"
+  },
+  {
+    "t": 205.5,
+    "step": "shot",
+    "file": "wei-10-workspace-with-job@1440.jpg"
+  },
+  {
+    "t": 205.6,
+    "step": "run-button",
+    "text": "Get your free report Reading your resume…Get your free report",
+    "disabled": false
+  },
+  {
+    "t": 206.6,
+    "step": "shot",
+    "file": "wei-11-wait-stage-1@1440.jpg"
+  },
+  {
+    "t": 208.6,
+    "step": "shot",
+    "file": "wei-12-wait-2s@1440.jpg"
+  },
+  {
+    "t": 216.5,
+    "step": "shot",
+    "file": "wei-13-wait-10s@1440.jpg"
+  },
+  {
+    "t": 231.5,
+    "step": "shot",
+    "file": "wei-14-wait-25s@1440.jpg"
+  },
+  {
+    "t": 251.8,
+    "step": "shot",
+    "file": "wei-15-wait-45s@1440.jpg"
+  },
+  {
+    "t": 267.7,
+    "step": "shot",
+    "file": "wei-16-wait-stage-2@1440.jpg"
+  },
+  {
+    "t": 279,
+    "step": "shot",
+    "file": "wei-17-wait-stage-3@1440.jpg"
+  },
+  {
+    "t": 281.1,
+    "step": "shot",
+    "file": "wei-18-wait-75s@1440.jpg"
+  },
+  {
+    "t": 304.8,
+    "step": "shot",
+    "file": "wei-19-wait-stage-4@1440.jpg"
+  },
+  {
+    "t": 307.6,
+    "step": "report-arrived",
+    "done": true,
+    "waitSeconds": 102,
+    "stageLog": [
+      {
+        "at": 0.4,
+        "states": [
+          "current",
+          "upcoming",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 61.5,
+        "states": [
+          "done",
+          "current",
+          "upcoming",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 72.9,
+        "states": [
+          "done",
+          "done",
+          "current",
+          "upcoming"
+        ]
+      },
+      {
+        "at": 98.6,
+        "states": [
+          "done",
+          "done",
+          "done",
+          "current"
+        ]
+      }
+    ]
+  },
+  {
+    "t": 309.6,
+    "step": "shot",
+    "file": "wei-20-report-first-screen@1440.jpg"
+  },
+  {
+    "t": 311.2,
+    "step": "shot",
+    "file": "wei-21-report-full@1440.jpg"
+  },
+  {
+    "t": 311.2,
+    "step": "report-text",
+    "verdict": "Your current role centers on the ledger and settlement platform. The elimination of a class of duplicate-charge incidents is worth keeping because it connects a technical change to a concrete payment problem.",
+    "band": "Mostly clearNeeds more contextMostly clearClear and specificMost lines show what you did. A few leave your part or the result unclear.",
+    "fixesHeading": "One Critical Miss. Fix it first.",
+    "countLead": "It's the one most likely to cost you the interview.",
+    "rows": [
+      "EXPERIENCE\n\nLed the redesign of the core ledger service\n\nCRITICAL MISS\n\nAdd the payment volume or geographic reach you can verify, and name a key architecture tradeoff you addressed.\n\nThe job specifies a global ledger handling billions in annual volume, while the current bullet describes the technology change without its operating scale.\n\nHide\n01\nYour line\n02\nWhat's missing\n03\nYour answers\n04\nRevised line\n\nAnswer and we'll add it to your line.\nOnly what's true. Skip anything you don't know.\n\nWhat would you add to this line?\nI don't know\nI didn't do this\n\nRevised line\n\nYour line shows up here as you answer.\n\nWas this the right thing to fix first?\nYes\nNo",
+      "01\nYour line",
+      "02\nWhat's missing",
+      "03\nYour answers",
+      "04\nRevised line",
+      "What would you add to this line?\nI don't know\nI didn't do this",
+      "Keep this one\n\nThe fraud scoring pipeline names Flink, Kafka and p99 latency under 50ms, making the performance work concrete.",
+      "EXPERIENCE\n\nDrove adoption of a new idempotency framework across payment services\n\nFix 2\n\nIdentify the engineering teams involved and how you secured adoption across their services.\n\nThe stated elimination of duplicate-charge incidents is useful, and the adoption details could show how you set direction beyond one team.\n\nWhat to add\n\nWhich engineering teams adopted the idempotency framework, and how did you work with them?\nWork on this line\nHide",
+      "EXPERIENCE\n\nPartnered with product and finance on the roadmap for multi-currency settlement\n\nFix 3\n\nDescribe a technical recommendation you contributed and the tradeoff it addressed.\n\nProduct and finance collaboration is relevant to settlement work, but the current wording does not show your part in the roadmap.\n\nWhat to add\n\nWhat technical recommendation did you contribute to the multi-currency settlement roadmap?\nWork on this line\nHide"
+    ],
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 312,
+    "step": "shot",
+    "file": "wei-22-critical-miss-questions@1440.jpg"
+  },
+  {
+    "t": 312,
+    "step": "questions",
+    "count": 1,
+    "labels": [
+      "What would you add to this line?\nI don't know\nI didn't do this"
+    ]
+  },
+  {
+    "t": 316.1,
+    "step": "revised-line",
+    "revised": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB: about B in annual payment volume.",
+    "state": "addressed"
+  },
+  {
+    "t": 316.9,
+    "step": "shot",
+    "file": "wei-23-revised-line@1440.jpg"
+  },
+  {
+    "t": 316.9,
+    "step": "copy-button",
+    "disabled": false
+  },
+  {
+    "t": 318,
+    "step": "shot",
+    "file": "wei-24-feedback-sent@1440.jpg"
+  },
+  {
+    "t": 318,
+    "step": "after-save",
+    "url": "http://127.0.0.1:3140/workspace"
+  },
+  {
+    "t": 318,
+    "step": "pdf",
+    "error": "no export button visible"
+  },
+  {
+    "t": 318.2,
+    "step": "shot",
+    "file": "wei-25-report-ending@1440.jpg"
+  },
+  {
+    "t": 318.2,
+    "step": "ending-cta",
+    "text": "OverviewOverview"
+  },
+  {
+    "t": 320.9,
+    "step": "shot",
+    "file": "wei-26-after-ending-cta@1440.jpg"
+  },
+  {
+    "t": 448.9,
+    "step": "shot",
+    "file": "wei-27-pricing-first-screen@1440.jpg"
+  },
+  {
+    "t": 450.4,
+    "step": "shot",
+    "file": "wei-28-pricing-full@1440.jpg"
+  },
+  {
+    "t": 487.7,
+    "step": "shot",
+    "file": "wei-29-return-workspace@1440.jpg"
+  },
+  {
+    "t": 591.5,
+    "step": "shot",
+    "file": "wei-30-return-my-reports@1440.jpg"
+  },
+  {
+    "t": 591.5,
+    "step": "saved-report",
+    "href": "/reports/666da671-a4e4-43a0-8e7b-69994122fb44"
+  },
+  {
+    "t": 777.1,
+    "step": "shot",
+    "file": "wei-31-return-saved-report-first-screen@1440.jpg"
+  },
+  {
+    "t": 777.5,
+    "step": "shot",
+    "file": "wei-32-return-saved-report-full@1440.jpg"
+  },
+  {
+    "t": 955.6,
+    "step": "shot",
+    "file": "wei-33-return-progress@1440.jpg"
+  },
+  {
+    "t": 955.6,
+    "step": "console-errors",
+    "errs": [
+      "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client bran",
+      "Error fetching paid pass status: TypeError: Failed to fetch\n    at AuthProvider.useCallback[refreshUser] (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:104:38)",
+      "Error fetching free report status: TypeError: Failed to fetch\n    at AuthProvider.useCallback[refreshUser] (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:112:38)",
+      "Failed to refresh free status.",
+      "Error fetching paid pass status: Error: Pass details timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Error fetching free report status: Error: Free report status timed out\n    at eval (webpack-internal:///(app-pages-browser)/./components/providers/AuthProvider.tsx:34:52)",
+      "Failed to load resource: net::ERR_EMPTY_RESPONSE",
+      "WebSocket connection to 'ws://127.0.0.1:3140/_next/hmr?id=mTsFcsjDRa35AsgpnAet6' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    ]
+  }
+]

@@ -191,7 +191,7 @@ test.describe("launch red-team journeys", () => {
     await expect(purchaseDecision).toContainText("Everything in your free report is yours. Nothing is held back.");
     await expect(purchaseDecision).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
     await expect(purchaseDecision.getByRole("button")).toHaveText(/Get 5 more reports · \$29/);
-    await expect(purchaseDecision).toContainText("5 more reports, good for 30 days. No automatic renewal.");
+    await expect(purchaseDecision).toContainText("5 more reports, good for 90 days. No automatic renewal.");
     await purchaseDecision.getByRole("button").click();
     const reportPaywall = page.getByRole("dialog", { name: /Passes are paused for now/i });
     await expect(reportPaywall).toContainText("Your existing report stays available");
@@ -229,7 +229,7 @@ test.describe("launch red-team journeys", () => {
     await expect(miss.getByText("Thanks. This is how we find out when we picked the wrong thing.")).toBeVisible();
   });
 
-  test("5. guest save prompt opens only after Save report and requires verified sign-in", async ({ page }) => {
+  test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {
     await runAnonymousReview(page, "198.51.100.5");
     const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");

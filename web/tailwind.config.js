@@ -154,6 +154,7 @@ module.exports = {
 				small: role('small'),
 				label: role('label', { fontWeight: '600' }),
 				verdict: role('verdict'),
+				'verdict-lead': role('verdict-lead'),
 				note: role('note'),
 				// Deprecated aliases kept for files another workstream is editing; the guardrail caps their use.
 				'report-title': role('heading', { letterSpacing: 'var(--tracking-heading)', fontWeight: '600' }),

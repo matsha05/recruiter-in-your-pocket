@@ -16,7 +16,7 @@ export function HiringTruths() {
                 </div>
                 <div className={styles.row}>
                     <dt className={styles.quote}>No ATS score. No interview odds.</dt>
-                    <dd className={styles.answer}><strong>Just what reads clearly and what doesn&rsquo;t,</strong> with every suggestion quoting your line and using only your facts.</dd>
+                    <dd className={styles.answer}><strong>Just what reads clearly and what doesn&rsquo;t.</strong> We&rsquo;ll rewrite your line. Only from your facts.</dd>
                 </div>
             </dl>
         </section>

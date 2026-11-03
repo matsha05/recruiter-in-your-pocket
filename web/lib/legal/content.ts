@@ -88,7 +88,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Receipt,
             title: "One payment, no renewal",
-            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 30 days, with no automatic renewal.",
+            body: "Stripe handles checkout and card details. A $29 Job Search Pass includes five additional reports over 90 days, with no automatic renewal.",
           },
           {
             icon: Trash,
@@ -197,8 +197,33 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures should follow the instructions on /security or /.well-known/security.txt.",
+              value: "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures follow section 9 below.",
             },
+          ],
+        ],
+      },
+      // The Security and Trust pages fold in here (Matt, Nov 2, 2026): one place for "can I trust you with this file?".
+      {
+        type: "table",
+        title: "7. What we store and why",
+        columns: ["Data type", "Purpose", "Retention", "Your control"],
+        rows: DATA_HANDLING_ROWS,
+      },
+      {
+        type: "bullet_list",
+        title: "8. What we commit to",
+        items: [...TRUST_PROMISES],
+      },
+      {
+        type: "card",
+        title: "9. Responsible disclosure",
+        paragraphs: [
+          [
+            { type: "text", value: "If you find a security issue, email " },
+            { type: "link", label: "support@recruiterinyourpocket.com", href: "mailto:support@recruiterinyourpocket.com" },
+            { type: "text", value: " with steps to reproduce it. The same instructions are published at " },
+            { type: "link", label: "/.well-known/security.txt", href: "/.well-known/security.txt" },
+            { type: "text", value: "." },
           ],
         ],
       },
@@ -250,7 +275,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
+            { type: "text", value: `${FREE_REPORT_ENTITLEMENT.promise} ${FREE_REPORT_ENTITLEMENT.anonymousBoundary} A $29 Job Search Pass adds five paid reports and expires 90 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try ` },
             { type: "link", label: "Restore access", href: "/purchase/restore" },
             { type: "text", value: " before contacting Support." },
           ],
@@ -373,11 +398,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What is the Job Search Pass?",
-                a: "One $29 payment for five more complete reports, plus PDF exports. Use them to check a revision or read your resume against a job. The pass expires 30 days after purchase and never renews automatically.",
+                a: "One $29 payment for five more complete reports. Use them to check a revision or read your resume against a job. The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.",
               },
               {
                 q: "What happens after I use all five reports?",
-                a: "You can keep opening your saved reports. PDF exports remain available until the pass expires, even after all five reports are used. Refunded or revoked passes no longer include exports. Another report requires a new pass or available free access.",
+                a: "You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. Another report requires a new pass or available free access.",
               },
               {
                 q: "How do I restore access and get receipts?",

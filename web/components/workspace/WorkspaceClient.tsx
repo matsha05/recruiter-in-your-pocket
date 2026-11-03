@@ -69,6 +69,11 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setActiveSampleReport(sample);
     }, []);
     const { announcement, prepareReportCompletion, resetReportCompletion } = useReportCompletion(report);
+    useEffect(() => {
+        if (!report || runStartedAtRef.current === null) return;
+        setReadDurationMs(Date.now() - runStartedAtRef.current);
+        runStartedAtRef.current = null;
+    }, [report]);
     const resumePickerRef = useRef<WorkspaceResumePickerHandle>(null);
     const [commandUploadName, setCommandUploadName] = useState<string | null>(null);
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
@@ -76,6 +81,15 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
     const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
     const [analysisStage, setAnalysisStage] = useState<GenerationStage | null>(null);
+    // How long the report took, for its header row: from the run's start to the report's arrival. The
+    // start is mirrored in a ref because ending the run clears it in the same commit the report lands.
+    const runStartedAtRef = useRef<number | null>(null);
+    const [readDurationMs, setReadDurationMs] = useState<number | null>(null);
+    useLayoutEffect(() => {
+        if (analysisStartedAt === null) return;
+        runStartedAtRef.current = analysisStartedAt;
+        setReadDurationMs(null);
+    }, [analysisStartedAt]);
     const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
     const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
     const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
@@ -521,6 +535,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={savedRevision.active ? savedRevision.baseline : comparisonBaseline}
                             onStartRevision={handleStartRevision}
+                            readDurationMs={readDurationMs}
                         />
                     ) : (
                         <LinkedInModeSection

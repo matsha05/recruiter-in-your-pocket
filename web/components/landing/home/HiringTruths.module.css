@@ -1,7 +1,7 @@
 .truths {
-    max-width: 72rem;
+    max-width: var(--marketing-content);
     margin: 0 auto;
-    padding: 6.5rem 1rem 6rem;
+    padding: 6.5rem var(--marketing-gutter) 6rem;
     scroll-margin-top: 4.5rem;
 }
 
@@ -45,7 +45,7 @@
 .answer strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 @media (max-width: 800px) {
-    .truths { padding: 4rem 1.25rem 3.5rem; }
+    .truths { padding: 4rem var(--marketing-gutter) 3.5rem; }
     .title { margin-bottom: 1.75rem; }
     .row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 1.75rem 0; }
 }
