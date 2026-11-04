@@ -97,6 +97,8 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
+Since November 3, 2026 the homepage follows `docs/design/2026-11-homepage-visual-brief.md`: one 68rem column, one hairline and one space between sections, the recruiter's screen as the only framed element, the pen and the highlighter as the only colors that carry meaning.
+
 Curiosity first, then recognition, then proof. Beat one: “They called someone back. It wasn’t you.” then “See what a recruiter sees on your resume, and the one thing to fix first.”, one primary action (“Get your free report”), and a quiet route to Jordan's report; a fictional, ordinary resume carries a recruiter's note that is blurred until the visitor scrolls. Beat two works that note through on the same fictional resume (labeled “Fictional example”, with blanks instead of invented numbers) and turns it into the question about yours. Beat three names the silence in job seekers' own plain words (“Not even a reply.”) and is honest that silence is not always the resume. Later beats show what we look for and the re-check loop. Never claim a person reads each resume: the read applies a recruiter's criteria, and the founder section says so plainly. The illustration is decorative for assistive technology and never gates the report action.
 
 ### Workspace and reports

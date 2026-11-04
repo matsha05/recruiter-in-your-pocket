@@ -1,4 +1,8 @@
+/* The homepage's rhythm: one column, one hairline and one space between sections
+   (docs/design/2026-11-homepage-visual-brief.md). Sections read --home-section for both. */
+
 .page {
+    --home-section: 7rem;
     overflow-x: clip;
     background: hsl(var(--background));
     color: hsl(var(--text-strong));
@@ -7,26 +11,25 @@
 
 .founder {
     max-width: var(--marketing-content);
-    margin: 0 auto;
+    margin: var(--home-section) auto 0;
     border-top: 1px solid hsl(var(--line));
-    padding: 6rem var(--marketing-gutter);
+    padding: var(--home-section) var(--marketing-gutter);
     scroll-margin-top: 4.5rem;
 }
 
 .founderCopy h2 {
-    max-width: 34ch;
+    margin: 0;
+    max-width: 32ch;
     font: var(--type-title);
     letter-spacing: var(--tracking-title);
     text-wrap: pretty;
 }
 
 .disclosure {
-    max-width: 34rem;
-    margin-top: 2rem;
-    border-left: 2px solid hsl(var(--line));
-    padding-left: 0.875rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
+    max-width: 40ch;
+    margin: 1.5rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-lead);
 }
 
 .founderLinks {
@@ -46,25 +49,27 @@
     text-decoration-thickness: var(--link-thickness);
     text-underline-offset: var(--link-offset);
     transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
-    font: var(--type-small);
+    font: var(--type-body);
     font-weight: var(--weight-control);
 }
 
 .founderLinks a:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
 .founderLinks svg { width: 1rem; height: 1rem; }
 
+/* The one dark moment: the closing ask. */
 .close {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 2.25rem;
     background: hsl(var(--background));
     color: hsl(var(--foreground));
-    padding: 6rem var(--marketing-gutter);
+    padding: var(--home-section) var(--marketing-gutter);
     text-align: center;
 }
 
 .close h2 {
+    margin: 0;
     max-width: 16ch;
     color: hsl(var(--foreground));
     text-wrap: balance;
@@ -74,7 +79,6 @@
 
 .page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
 
-@media (max-width: 800px) {
-    .founder { padding: 4rem var(--marketing-gutter); }
-    .close { padding: 4.5rem var(--marketing-gutter); }
+@media (max-width: 760px) {
+    .page { --home-section: 4.5rem; }
 }

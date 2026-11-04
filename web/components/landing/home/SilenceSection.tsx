@@ -12,6 +12,11 @@ const APPLICATIONS = [
 export function SilenceSection() {
     return (
         <section className={styles.silence} aria-labelledby="silence-title">
+            <h2 id="silence-title" className={styles.title}>Not even a reply.</h2>
+            <p className={styles.body}>
+                Sometimes it&rsquo;s the market, a ghost job, or a stack of other applicants.
+                Sometimes it&rsquo;s one line on your resume. <strong>That part you can fix.</strong>
+            </p>
             <ul className={styles.list} aria-hidden="true">
                 {APPLICATIONS.map((item) => (
                     <li key={item.company}>
@@ -20,11 +25,6 @@ export function SilenceSection() {
                     </li>
                 ))}
             </ul>
-            <h2 id="silence-title" className={styles.title}>Not even a reply.</h2>
-            <p className={styles.body}>
-                Sometimes it&rsquo;s the market, a ghost job, or a stack of other applicants.
-                Sometimes it&rsquo;s one line on your resume. <strong>That part you can fix.</strong>
-            </p>
         </section>
     );
 }

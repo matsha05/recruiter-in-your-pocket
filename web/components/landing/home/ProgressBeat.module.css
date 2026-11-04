@@ -1,19 +1,17 @@
 .progress {
     max-width: var(--marketing-content);
-    margin: 0 auto;
-    padding: 5rem var(--marketing-gutter);
+    margin: var(--home-section) auto 0;
+    border-top: 1px solid hsl(var(--line));
+    padding: var(--home-section) var(--marketing-gutter) 0;
 }
 
 .inner { display: flex; flex-direction: column; }
 
 .title {
+    margin: 0;
     text-wrap: balance;
     font: var(--type-headline);
     letter-spacing: var(--tracking-headline);
 }
 
-.demo { margin-top: 2.25rem; }
-
-@media (max-width: 760px) {
-    .progress { padding: 4rem var(--marketing-gutter); }
-}
+.demo { margin-top: 2.5rem; }

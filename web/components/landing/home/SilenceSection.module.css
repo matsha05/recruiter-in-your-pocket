@@ -1,24 +1,43 @@
+/* The silence, in the page's one column: the headline, then the inbox you stopped checking. */
+
 .silence {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding: 5rem var(--marketing-gutter) 6rem;
-    text-align: center;
+    max-width: var(--marketing-content);
+    margin: var(--home-section) auto 0;
+    border-top: 1px solid hsl(var(--line));
+    padding: var(--home-section) var(--marketing-gutter) 0;
 }
 
-.list { margin: 0 auto; padding: 0; list-style: none; text-align: left; }
+.title {
+    margin: 0;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+.body {
+    max-width: 40ch;
+    margin: 1.25rem 0 0;
+    color: hsl(var(--text-muted));
+    text-wrap: pretty;
+    font: var(--type-lead);
+}
+
+.body strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+.list { max-width: 36rem; margin: 2.5rem 0 0; padding: 0; list-style: none; }
 
 .list li {
     display: flex;
     justify-content: space-between;
     gap: 1.25rem;
-    border-bottom: 1px solid hsl(var(--line));
-    padding: 0.9375rem 0.25rem;
+    border-top: 1px solid hsl(var(--line));
+    padding: 0.9375rem 0;
     color: hsl(var(--text-strong));
     font: var(--type-body);
 }
 
+.list li:last-child { border-bottom: 1px solid hsl(var(--line)); }
 .list b { color: hsl(var(--text-strong)); font-weight: 600; }
-.status { flex: none; font: var(--type-small); }
+.status { flex: none; color: hsl(var(--text-strong)); font: var(--type-small); }
 
 /* Older applications fade, the way they do in an inbox you've stopped checking.
    The rows are ink, so even the faintest stays above 4.5:1. */
@@ -28,25 +47,8 @@
 .list li:nth-child(3) { opacity: 0.68; }
 .list li:nth-child(5) { opacity: 1; }
 
-.title {
-    margin: 3.5rem 0 0;
-    font: var(--type-headline);
-    letter-spacing: var(--tracking-headline);
-}
-
-.body {
-    max-width: 34ch;
-    margin: 1.25rem auto 0;
-    color: hsl(var(--text-muted));
-    text-wrap: pretty;
-    font: var(--type-lead);
-}
-
-.body strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
-
 @media (max-width: 640px) {
-    .silence { padding: 1.5rem var(--marketing-gutter) 4rem; }
-    .list li { padding: 0.75rem 0.125rem; }
+    .list { margin-top: 2rem; }
+    .list li { padding: 0.75rem 0; }
     .list li > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .title { margin-top: 2.5rem; }
 }

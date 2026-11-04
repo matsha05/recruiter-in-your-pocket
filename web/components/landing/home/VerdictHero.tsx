@@ -6,9 +6,10 @@ import { NoteReveal } from "./NoteReveal";
 import styles from "./VerdictHero.module.css";
 
 /**
- * The opening: somebody got the call, and it wasn't you. Beside it, an ordinary
- * resume and the recruiter's screen: the decision, and a note nobody will ever send you.
- * The note clears as the visitor scrolls into the worked example that explains it.
+ * The opening: somebody got the call, and it wasn't you. Under it, the recruiter's screen at full
+ * width, flat and straight, the way a product is shown: the resume on the left, the review pane on
+ * the right with the stage they chose and a note nobody will ever send you. The note clears once the
+ * visitor scrolls into the worked example that explains it (docs/design/2026-11-homepage-visual-brief.md).
  */
 export function VerdictHero() {
     return (
@@ -33,8 +34,8 @@ export function VerdictHero() {
                     </div>
                 </div>
 
-                <div className={styles.stage} aria-hidden="true" data-testid="landing-verdict-art">
-                    {/* An ordinary resume, printed. Times belongs to the document, not to us. */}
+                <div className={styles.screen} aria-hidden="true" data-testid="landing-verdict-art">
+                    {/* The document, as submitted. Times belongs to the resume, not to us. */}
                     <div className={styles.page}>
                         <p className={styles.name}>Jordan A. Miller</p>
                         <p className={styles.contact}>Denver, CO · jmiller@example.com</p>
@@ -55,7 +56,7 @@ export function VerdictHero() {
                         <p><b>B.A., Communications</b>, State University</p>
                     </div>
                     {/* The other side of the screen: the decision, and the note only the hiring team can read. */}
-                    <NoteReveal className={styles.note} revealedClassName={styles.revealed}>
+                    <NoteReveal className={styles.review} revealedClassName={styles.revealed}>
                         <p className={styles.req}>Customer Success Manager · Req 4471</p>
                         <p className={styles.candidate}>Jordan A. Miller</p>
                         <p className={styles.applied}>Applied 9 days ago</p>

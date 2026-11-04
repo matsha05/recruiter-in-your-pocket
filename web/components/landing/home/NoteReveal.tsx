@@ -26,9 +26,10 @@ export function NoteReveal({ className, revealedClassName, children }: {
             if (inView && window.scrollY > SCROLL_START) setRevealed(true);
         };
         const observer = new IntersectionObserver(([entry]) => {
-            inView = entry.intersectionRatio >= 0.9;
+            // The pane is tall at content width, so "in view" means most of it, not all of it.
+            inView = entry.intersectionRatio >= 0.6;
             check();
-        }, { threshold: [0, 0.9, 1] });
+        }, { threshold: [0, 0.6, 1] });
         observer.observe(card);
         window.addEventListener("scroll", check, { passive: true });
         return () => {

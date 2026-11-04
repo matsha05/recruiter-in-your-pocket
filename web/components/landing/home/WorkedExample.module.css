@@ -1,140 +1,105 @@
+/* The worked example, set open: no sheet, no cells, no numbers. The highlighter marks the Critical
+   Miss and the pen writes the note and the questions (docs/design/2026-11-homepage-visual-brief.md). */
+
 .example {
     max-width: var(--marketing-content);
-    margin: 0 auto;
-    padding: 5rem var(--marketing-gutter) 6rem;
+    margin: var(--home-section) auto 0;
+    border-top: 1px solid hsl(var(--line));
+    padding: var(--home-section) var(--marketing-gutter) 0;
     scroll-margin-top: var(--marketing-header-height-desktop);
 }
 
-.inner { display: flex; flex-direction: column; }
-
 .title {
+    margin: 0;
     max-width: 18ch;
-    margin-top: 1.25rem;
     text-wrap: balance;
     font: var(--type-headline);
     letter-spacing: var(--tracking-headline);
 }
 
-/* The one-sentence read keeps its quote and the section's only highlighter. */
-.read { margin: 2.75rem 0 0; }
-.who { color: hsl(var(--muted-foreground)); font: var(--type-small); }
+.read { margin: 2.5rem 0 0; }
+
+.who {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
 
 .verdict {
-    max-width: 27ch;
-    margin: 1rem 0 0;
+    max-width: 30ch;
+    margin: 0.875rem 0 0;
     text-wrap: pretty;
     font: var(--weight-body) var(--type-headline-size) / var(--type-headline-serif-leading) var(--font-editorial);
     letter-spacing: -0.015em;
 }
 
 .mark {
-    background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) 0 88% / 100% 46% no-repeat;
+    background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) 0 88% / 100% 48% no-repeat;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
 }
 
-/* The marked-up line: the candidate's words on the left, the reviewer's note in the margin. */
-.sheet {
+/* The candidate's line on the left, the recruiter's note on the right, the questions under both. */
+.spread {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    margin-top: 2.75rem;
-    overflow: hidden;
-    border: 1px solid hsl(var(--line));
-    border-radius: 1.5rem;
-    background: hsl(var(--card));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 4rem;
+    margin-top: 3.5rem;
 }
 
-.step { position: relative; padding: 2rem 2.25rem 2.25rem; }
-.step:nth-child(2) { border-left: 1px solid hsl(var(--line)); }
-.wide { grid-column: 1 / -1; border-top: 1px solid hsl(var(--line)); }
+.part { min-width: 0; }
+.part:nth-child(3) { grid-column: 1 / -1; max-width: 40rem; }
 
-.stepLabel {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
+.label {
+    margin: 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+    font-weight: var(--weight-label);
 }
 
-.number {
-    display: inline-grid;
-    width: 1.5rem;
-    height: 1.5rem;
-    place-items: center;
-    border: 1px solid hsl(var(--line));
-    border-radius: 999px;
-    color: hsl(var(--text-strong));
-    font: var(--type-label);
-}
-
-.missLabel {
-    margin-top: 1.25rem;
-    color: hsl(var(--brass));
-    text-transform: uppercase;
-    font: var(--type-label);
-    letter-spacing: 0.1em;
-}
-
-/* Quoted from the candidate: blue-ink rule, the recruiter's serif. */
 .quote {
     margin: 0.75rem 0 0;
-    border-left: 3px solid hsl(var(--blue-ink));
-    padding-left: 1rem;
     font: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
 }
 
 .note {
-    margin-top: 1rem;
+    margin: 0.75rem 0 0;
     color: hsl(var(--pen));
     font: var(--type-note);
-    font-size: var(--type-lead-size);
-    line-height: var(--type-lead-leading);
+    font-size: var(--type-verdict-size);
+    line-height: var(--type-verdict-leading);
 }
 
-.asks {
-    max-width: 60ch;
-    margin: 0.75rem 0 0;
-    padding: 0;
-    list-style: none;
-}
+.asks { margin: 0.75rem 0 0; padding: 0; list-style: none; }
 
-/* The report's questions, in the recruiter's pen. Jordan is fictional, so nothing answers them. */
 .asks li {
     margin-top: 0.5rem;
     color: hsl(var(--pen));
     font: var(--type-note);
+    font-size: var(--type-verdict-size);
+    line-height: var(--type-verdict-leading);
 }
 
-.more { align-self: flex-end; margin-top: 1.25rem; font: var(--type-body); font-weight: var(--weight-control); }
+.more { grid-column: 1 / -1; margin: 0; font: var(--type-body); font-weight: var(--weight-control); }
 
 .turn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
     border-top: 1px solid hsl(var(--line));
-    padding-top: 2rem;
+    padding-top: 2.5rem;
 }
 
-.question { font: var(--type-title); letter-spacing: var(--tracking-title); }
+.question { margin: 0; font: var(--type-title); letter-spacing: var(--tracking-title); }
 
-/* Phones: one vertical rail of numbered steps (the Lifted Trace's narrow form). */
 @media (max-width: 760px) {
-    .example { padding: 4rem var(--marketing-gutter) 4.5rem; scroll-margin-top: var(--marketing-header-height-mobile); }
-    .sheet { grid-template-columns: minmax(0, 1fr); border-radius: 1rem; }
-    .step { padding: 1.5rem 1.25rem 1.5rem 3.25rem; }
-    .step:nth-child(2) { border-left: 0; border-top: 1px solid hsl(var(--line)); }
-    .stepLabel { margin-left: -2.125rem; }
-    .step:not(:last-child)::before {
-        content: "";
-        position: absolute;
-        top: 3.5rem;
-        bottom: 0;
-        left: 1.875rem;
-        width: 1px;
-        background: hsl(var(--line));
-    }
-    .more { align-self: flex-start; }
-    .turn { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 2.5rem; }
+    .example { scroll-margin-top: var(--marketing-header-height-mobile); }
+    .spread { grid-template-columns: minmax(0, 1fr); gap: 2rem; margin-top: 2.5rem; }
+    .turn { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 3rem; padding-top: 2rem; }
 }
