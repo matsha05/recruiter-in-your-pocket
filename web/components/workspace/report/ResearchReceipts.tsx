@@ -17,7 +17,6 @@ export function ResearchReceipts() {
     return (
         <aside className={styles.receipts} aria-labelledby="research-receipts-title" data-testid="research-receipts">
             <p id="research-receipts-title" className={styles.title}>Why we read it this way</p>
-            <p className={styles.intro}>The score weighs four things. Here&rsquo;s the research behind each one.</p>
             <ul className={styles.notes}>
                 {RECEIPTS.map((receipt) => (
                     <li key={receipt.href}>

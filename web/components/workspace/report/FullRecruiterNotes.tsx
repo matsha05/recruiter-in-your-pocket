@@ -123,16 +123,14 @@ export function FullRecruiterNotes({ report, hasJobDescription = false }: FullRe
       <summary className="flex min-h-24 cursor-pointer list-none items-center justify-between gap-6 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-4 focus-visible:ring-offset-paper [&::-webkit-details-marker]:hidden">
         <span className="min-w-0">
           <span role="heading" aria-level={2} className={`${styles.sectionTitle} block`}>Full recruiter notes</span>
-          <span className="mt-2 block text-base text-muted-foreground">Section-by-section notes, role details, and what to do next.</span>
         </span>
         <CaretDown className="size-5 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
       </summary>
 
       <div className="riyp-border-paper-line border-t pb-10 sm:pb-14">
         {detailedRead.length > 0 && (
-          <section className="py-8 sm:py-10" aria-labelledby="full-notes-read-title">
-            <h3 id="full-notes-read-title" className={styles.sectionTitle}>The rest of the notes.</h3>
-            <dl className="riyp-border-paper-line riyp-divide-paper-line mt-6 divide-y border-y">
+          <section className="py-8 sm:py-10" aria-label="The rest of the notes">
+            <dl className="riyp-border-paper-line riyp-divide-paper-line divide-y border-y">
               {detailedRead.map(({ label, text }) => (
                 <div key={label} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">
                   <dt className="text-sm font-semibold text-muted-foreground">{label}</dt>

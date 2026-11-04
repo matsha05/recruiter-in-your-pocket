@@ -31,7 +31,6 @@ export default function ResearchHub() {
         <div className={styles.page} data-visual-anchor="research-hub">
             <div className={styles.inner}>
                 <h1 className={styles.title}>The questions you&rsquo;re asking at 1&nbsp;a.m.</h1>
-                <p className={styles.deck}>Straight answers, and where each one comes from.</p>
 
                 <section className={styles.leads} aria-label="The questions people ask most">
                     {featuredArticles.map((article) => <ResearchAnswerRow key={article.id} article={article} size="lead" />)}

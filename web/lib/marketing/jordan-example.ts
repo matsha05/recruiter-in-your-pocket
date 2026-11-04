@@ -41,7 +41,7 @@ export const JORDAN_EXAMPLE = {
     line: "Introduced monthly renewal-risk reviews across the portfolio",
     note: "Solid book of business, but the renewal-risk reviews stop right before the good part. What did Jordan look for, and what changed?",
     asks: [
-        { question: "What factors did you review when identifying renewal risk across the portfolio?", placeholder: "Jordan\u2019s answer" },
-        { question: "What changed in your renewal workflow after you introduced the monthly risk reviews?", placeholder: "Jordan\u2019s answer" },
+        { question: "What factors did you review when identifying renewal risk across the portfolio?" },
+        { question: "What changed in your renewal workflow after you introduced the monthly risk reviews?" },
     ],
 } as const;

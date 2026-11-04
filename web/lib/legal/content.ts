@@ -57,7 +57,7 @@ export type LegalPageContent = {
   /** Omit when it would only repeat the title. */
   eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
   lastUpdated?: string;
   sections: LegalSection[];
 };
@@ -66,9 +66,7 @@ export type LegalPageKey = "privacy" | "terms" | "help";
 
 export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   privacy: {
-    eyebrow: "Privacy policy",
     title: "How we handle your data",
-    description: "What information we collect, why we need it, and how you can delete or export it.",
     lastUpdated: PRIVACY_LAST_UPDATED,
     sections: [
       {
@@ -171,9 +169,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
     ],
   },
   terms: {
-    eyebrow: "Terms of service",
     title: "Terms for using Recruiter in Your Pocket",
-    description: "Terms for product use, billing, and account behavior.",
     lastUpdated: TERMS_LAST_UPDATED,
     sections: [
       {
@@ -286,8 +282,6 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   },
   help: {
     title: "Help",
-    description: "Straight answers about the report, your data, and what you pay, and a person to write to when they don't cover it.",
-    lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
         type: "faq",
@@ -305,7 +299,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "Does a person read my resume?",
-                a: "No. A recruiter with 14 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
+                a: "No. A recruiter with 15 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
               },
               {
                 q: "What file formats are supported?",
@@ -359,7 +353,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
       },
       {
         type: "card",
-        title: "Still stuck? Write to a person",
+        title: "Contact support",
         paragraphs: [
           [
             { type: "text", value: "Email " },
@@ -368,15 +362,6 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           ],
           [
             { type: "text", value: "For sign-in, a purchase or a refund, include the email you used at checkout and the purchase date. We will never ask for your password or your full card number." },
-          ],
-          [
-            { type: "text", value: "Some things you can do without us: " },
-            { type: "link", label: "sign in", href: "/auth" },
-            { type: "text", value: ", " },
-            { type: "link", label: "restore a purchase", href: "/purchase/restore" },
-            { type: "text", value: ", or export or delete your data from " },
-            { type: "link", label: "account settings", href: "/settings/account" },
-            { type: "text", value: "." },
           ],
         ],
       },

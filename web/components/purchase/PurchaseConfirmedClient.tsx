@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  ArrowClockwise,
-  ArrowRight,
-  CheckCircle,
-  CircleNotch,
-  Warning,
-} from "@phosphor-icons/react";
+import { ArrowClockwise, ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { usePaymentConfirmation } from "@/hooks/usePaymentConfirmation";
 import { saveUnlockContext, scheduleCheckoutWorkspaceExpiry, type UnlockSection } from "@/lib/unlock/unlockContext";
@@ -32,23 +26,11 @@ export default function PurchaseConfirmedClient() {
   const workspaceHref = returnTo || "/workspace";
   const restoreHref = getCheckoutRestoreHref(returnTo);
 
-  const { state, attempt, sessionSuffix } = usePaymentConfirmation({
+  const { state, sessionSuffix } = usePaymentConfirmation({
     sessionId,
     tier,
     source,
   });
-
-  const unlockLabel = useMemo(() => {
-    const map: Record<UnlockSection, string> = {
-      evidence_ledger: "your report",
-      bullet_upgrades: "your report",
-      missing_wins: "your report",
-      job_alignment: "your report",
-      export_pdf: "your report",
-    };
-    if (!unlock) return null;
-    return map[unlock as UnlockSection] || null;
-  }, [unlock]);
 
   useEffect(() => {
     if (!unlock) return;
@@ -83,7 +65,6 @@ export default function PurchaseConfirmedClient() {
     });
   }, [authLoading, refreshUser, state.status, user]);
 
-  const isWaiting = state.status === "checking" || state.status === "pending";
   const isProblem = state.status === "error" || state.status === "missing";
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
   const paymentConfirmed = state.status === "unlocked";
@@ -91,24 +72,16 @@ export default function PurchaseConfirmedClient() {
     authLoading || entitlementRefreshing || Boolean(user && !accountCheckComplete)
   );
   const accountReady = paymentConfirmed && !checkingAccountAccess && hasPaidAccess;
-  const statusLabel = isWaiting ? "Confirming with Stripe"
-    : checkingAccountAccess ? "Checking account access"
-    : accountReady ? "Pass active"
-    : paymentConfirmed ? "Payment confirmed"
-    : "Needs attention";
-  const confirmationMessage = !paymentConfirmed ? state.message
-    : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
-    : accountReady ? "5 more reports, good for 90 days. Spend them on revisions, or on the jobs you actually want."
-    : user ? "Your payment is confirmed, but this account does not show the pass yet."
-    : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
-  const pageTitle = !paymentConfirmed || checkingAccountAccess ? state.title
+  // The title is the state; the line under it says what that means for this account.
+  const pageTitle = !paymentConfirmed ? state.title
+    : checkingAccountAccess ? "Checking your account"
     : accountReady ? "You’re in. Five more reads."
     : "Paid. One step left.";
-  const nextStepLabel = !paymentConfirmed ? "Next step"
-    : checkingAccountAccess ? "Checking your account"
-    : accountReady ? "Ready when you are"
-    : user ? "Verify account access"
-    : "Sign in to continue";
+  const confirmationMessage = !paymentConfirmed ? state.message
+    : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."
+    : accountReady ? "5 more reports, good for 90 days."
+    : user ? "Your payment is confirmed, but this account does not show the pass yet."
+    : "Your payment is confirmed. Sign in with your checkout email to use the pass.";
 
   return (
     <>
@@ -117,83 +90,55 @@ export default function PurchaseConfirmedClient() {
         className="bg-background px-4 pb-20 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:pt-36"
       >
         <section className="mx-auto max-w-form" aria-labelledby="purchase-confirmed-title">
-          <header className="grid gap-6 border-b border-border pb-8">
-            <div>
-              <div className="flex items-center gap-3 text-sm font-medium text-foreground" role="status" aria-live="polite">
-                {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
-                {isWaiting ? <CircleNotch className="size-5 animate-spin motion-reduce:animate-none text-brand" weight="bold" /> : null}
-                {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
-                <span>{statusLabel}</span>
-              </div>
-            </div>
-            <div>
-              <h1
-                id="purchase-confirmed-title"
-                className="max-w-xl text-balance font-sans text-title"
-              >
-                {pageTitle}
-              </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground">{confirmationMessage}</p>
-            </div>
+          <header className="border-b border-border pb-8" role="status" aria-live="polite">
+            <h1
+              id="purchase-confirmed-title"
+              className="max-w-xl text-balance font-sans text-title"
+            >
+              {pageTitle}
+            </h1>
+            <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground">{confirmationMessage}</p>
+            {isProblem && state.status !== "missing" && sessionSuffix ? (
+              <p className="mt-3 text-sm text-muted-foreground">Confirmation reference {sessionSuffix}. Include it if you write to us.</p>
+            ) : null}
           </header>
 
-          <div className="grid gap-5 py-8">
-            <div className="text-sm text-muted-foreground">
-              {unlockLabel && state.status !== "missing" ? (
-                <p>Your report is right where you left it.</p>
-              ) : null}
-              {isProblem && state.status !== "missing" && sessionSuffix ? (
-                <p className="mt-3 text-sm">Confirmation reference {sessionSuffix}. Include it if you write to us.</p>
-              ) : null}
-            </div>
+          <div className="flex flex-col gap-3 py-8 sm:flex-row sm:flex-wrap">
+            {checkingAccountAccess ? (
+              <Button type="button" variant="primary" disabled isLoading>
+                Refreshing access…
+              </Button>
+            ) : state.status === "unlocked" && hasPaidAccess ? (
+              <Button asChild variant="primary">
+                <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Back to my report"} <ArrowRight className="size-4" weight="bold" /></Link>
+              </Button>
+            ) : state.status === "unlocked" && user ? (
+              <Button asChild variant="primary">
+                <Link href={restoreHref}>Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
+              </Button>
+            ) : state.status === "unlocked" ? (
+              <Button asChild variant="primary">
+                <Link href={`/auth?next=${encodeURIComponent(workspaceHref)}&from=paywall`}>Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
+              </Button>
+            ) : (
+              <Button type="button" variant="primary" onClick={() => window.location.reload()}>
+                <ArrowClockwise className="size-4" weight="bold" /> Check again
+              </Button>
+            )}
 
-            <div className="min-w-0 rounded-2xl border border-border bg-card p-6 sm:rounded-3xl sm:p-8">
-              <p className="text-sm font-medium text-foreground">
-                {nextStepLabel}
-              </p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {checkingAccountAccess ? (
-                  <Button type="button" variant="primary" disabled isLoading>
-                    Refreshing access…
-                  </Button>
-                ) : state.status === "unlocked" && hasPaidAccess ? (
-                  <Button asChild variant="primary">
-                    <Link href={workspaceHref}>{returnTo ? "Compare my revision" : "Back to my report"} <ArrowRight className="size-4" weight="bold" /></Link>
-                  </Button>
-                ) : state.status === "unlocked" && user ? (
-                  <Button asChild variant="primary">
-                    <Link href={restoreHref}>Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
-                  </Button>
-                ) : state.status === "unlocked" ? (
-                  <Button asChild variant="primary">
-                    <Link href={`/auth?next=${encodeURIComponent(workspaceHref)}&from=paywall`}>Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
-                  </Button>
-                ) : (
-                  <Button type="button" variant="primary" onClick={() => window.location.reload()}>
-                    <ArrowClockwise className="size-4" weight="bold" /> Check again
-                  </Button>
-                )}
-
-                {accountReady ? null : (
-                  <Button asChild variant="secondary">
-                    <Link href={restoreHref}>Restore access</Link>
-                  </Button>
-                )}
-                <Button asChild variant="quiet">
-                  <Link href="/settings/billing">Billing settings</Link>
-                </Button>
-                {state.status === "error" ? (
-                  <Button asChild variant="quiet">
-                    <Link href={getCheckoutPricingHref(returnTo)}>Back to pricing</Link>
-                  </Button>
-                ) : null}
-              </div>
-              {paymentConfirmed && !checkingAccountAccess && user && !hasPaidAccess ? (
-                <p className="mt-5 rounded-xl border border-warning/30 bg-warning/5 px-4 py-4 text-sm text-muted-foreground">
-                  Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
-                </p>
-              ) : null}
-            </div>
+            {accountReady ? null : (
+              <Button asChild variant="secondary">
+                <Link href={restoreHref}>Restore access</Link>
+              </Button>
+            )}
+            <Button asChild variant="quiet">
+              <Link href="/settings/billing">Billing settings</Link>
+            </Button>
+            {state.status === "error" ? (
+              <Button asChild variant="quiet">
+                <Link href={getCheckoutPricingHref(returnTo)}>Back to pricing</Link>
+              </Button>
+            ) : null}
           </div>
 
           <p className="border-t border-line pt-6 text-sm text-muted-foreground">

@@ -164,9 +164,6 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           <div className="app-card max-w-md p-8 text-center">
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
             <h1 className="mt-3 font-display text-heading text-foreground">Report not found</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We couldn’t find this report. It may have been deleted, or it belongs to another account.
-            </p>
             <Button asChild size="sm" className="mt-5">
                 <Link
                   href="/workspace"
@@ -183,9 +180,6 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           <div className="app-card max-w-md p-8 text-center">
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
             <h1 className="mt-3 font-display text-heading text-foreground">Sign in to view this report</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Saved reports are private to the account that created them.
-            </p>
             <Button asChild size="sm" className="mt-5">
               <Link href={`/auth?from=reports&next=${encodeURIComponent(`/reports/${reportId}`)}`}>
                 Sign in
@@ -201,7 +195,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             <WarningCircle className="mx-auto size-6 text-muted-foreground" aria-hidden="true" />
             <h1 className="mt-3 font-display text-heading text-foreground">We couldn’t load this report.</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Your report is safe. This is on our end; try again in a moment.
+              Your report is safe.
             </p>
             <div className="mt-5 flex items-center justify-center gap-2">
               <Button type="button"

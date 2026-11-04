@@ -59,7 +59,7 @@ export default function SaveReportPrompt({
                         Save this report
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        Sign in and it&apos;ll be in My reports when you come back to revise.
+                        Sign in and it&apos;ll be in My reports.
                     </DialogDescription>
                 </DialogHeader>
 

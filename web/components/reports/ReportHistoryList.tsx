@@ -123,9 +123,6 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
           <EmptyReportIcon className="size-12" />
         </div>
         <h2 className="font-display text-heading text-foreground">Nothing here yet</h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-          Your first read is free. It&apos;ll wait here, Verdict and all, for whenever you revise.
-        </p>
         <Button asChild className="mt-6">
           <Link
             href="/workspace"
@@ -155,7 +152,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
               <div className="min-w-0">
                 <p className="text-xs text-muted-foreground [overflow-wrap:anywhere]">
                   {formatReportDate(report.createdAt)}
-                  {report.targetRole ? <> · Points toward {report.targetRole}</> : null}
+                  {report.targetRole ? <> · {report.targetRole}</> : null}
                 </p>
 
                 {isRenaming ? (
@@ -200,9 +197,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     <h2 className="break-words font-display text-xl font-bold text-foreground">{title}</h2>
                     {report.resumePreview ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm text-muted-foreground">{report.resumePreview}</p>
-                    ) : (
-                      <p className="mt-1 text-sm text-muted-foreground">Open the report to see the Verdict and fixes.</p>
-                    )}
+                    ) : null}
                   </Link>
                 )}
               </div>

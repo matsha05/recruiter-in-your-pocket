@@ -4,7 +4,6 @@ import styles from "./LiftedTrace.module.css";
 
 export interface LiftedTraceItem {
     label: string;
-    detail?: string;
 }
 
 interface LiftedTraceProps {
@@ -60,7 +59,6 @@ export function LiftedTrace({
                             <span className={styles.index} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                             <span className={styles.label}>{item.label}</span>
                         </div>
-                        {item.detail ? <p className={styles.detail}>{item.detail}</p> : null}
                     </li>
                 );
             })}

@@ -65,20 +65,8 @@
   font: var(--type-label);
 }
 
-.detail {
-  max-width: 28ch;
-  margin-top: 0.5rem;
-  color: currentColor;
-  font: var(--type-label);
-  font-weight: var(--weight-body);
-}
-
 .compact .item {
   padding: 0.925rem 0.9rem 0.875rem;
-}
-
-.compact .detail {
-  margin-top: 0.35rem;
 }
 
 @media (max-width: 639px) {

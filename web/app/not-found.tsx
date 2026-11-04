@@ -27,7 +27,7 @@ export default function NotFound() {
                                 We can’t find that page.
                             </h1>
                             <p className="mt-6 max-w-[38rem] text-lg text-muted-foreground">
-                                No reply from this one, either. The link may be old, or the address has a typo. Your free report and the research are both still here.
+                                The link may be old, or the address has a typo.
                             </p>
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Button asChild>

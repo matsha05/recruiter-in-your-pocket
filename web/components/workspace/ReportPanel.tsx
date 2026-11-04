@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { DownloadIcon } from "@/components/ui/download";
-import { EmptyReportIcon } from "@/components/icons";
 import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
@@ -21,7 +20,7 @@ import { ActionFeedback } from "@/components/ui/action-feedback";
 import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
-import { candidateNameOf, formatReadTime, readAsChip, targetRoleOf } from "@/lib/reports/report-opening";
+import { candidateNameOf, formatReadTime, targetRoleOf } from "@/lib/reports/report-opening";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -121,7 +120,6 @@ export default function ReportPanel({
         : undefined;
 
     // Derived states
-    const showEmptyState = !report && !isLoading;
     const showReport = !!report;
     const canExport = !isStreaming && Boolean(onExportPdf);
     // One name for keeping a report (copy-system §1): the ending says the same.
@@ -129,7 +127,6 @@ export default function ReportPanel({
     // The header row: the role the report reads toward, the level it reads at, and how long it took.
     const roleFit = displayReport?.job_alignment?.role_fit;
     const targetRole = targetRoleOf(roleFit);
-    const readAs = readAsChip(roleFit);
     const readTime = isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
 
     const handleExport = () => {
@@ -185,42 +182,7 @@ export default function ReportPanel({
                 />
             )}
 
-            {/* 2. Empty State - Premium, Anxiety-Reducing */}
-            {showEmptyState && (
-                <div className="flex h-full flex-col items-center justify-center gap-y-8 p-8 text-center">
-                    {/* Icon - Subtle, Calm */}
-                    <div className="flex size-14 items-center justify-center rounded-xl border border-line bg-card text-brand">
-                        <EmptyReportIcon className="size-8" />
-                    </div>
-
-                    {/* Copy - Question Headline */}
-                    <div className="gap-y-3 max-w-md">
-                        <h2 className="font-display text-heading text-foreground">
-                            Your report will show up here.
-                        </h2>
-                        <p className="text-muted-foreground">
-                            Add your resume to see what a recruiter sees first.
-                        </p>
-                    </div>
-
-                    {/* Trust Signal */}
-                    <p className="text-sm text-muted-foreground">
-                        Your first report is free.
-                    </p>
-
-                    {/* Divider + Example Link */}
-                    <div className="pt-4 border-t border-border/30 w-full max-w-xs">
-                        <button type="button"
-                            onClick={onNewReport}
-                            className="min-h-11 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                        >
-                            <span className="inline-flex items-center gap-1 text-brand hover:underline">Get your free report <ArrowRight className="size-4" weight="bold" aria-hidden="true" /></span>
-                        </button>
-                    </div>
-                </div>
-            )}
-
-            {/* 3. The working report */}
+            {/* The working report */}
             {showReport && !isLoading && displayReport && (
                 <ReportLayout
                     mobileReading
@@ -240,10 +202,7 @@ export default function ReportPanel({
                                 <Button data-testid="sample-start-report" type="button" variant="primary" size="sm" onClick={onNewReport} className="shrink-0">
                                     Get your free report <ArrowRight className="size-4" weight="bold" />
                                 </Button>
-                            ) : readAs ? (
-                                <p className="shrink-0 rounded-full bg-brand-tint px-3 py-1 text-label text-brand" data-testid="report-read-as">Read as: {readAs}</p>
                             ) : null}
-                            {shareEnabled && shareMode && <span className="text-label text-brand">Share view</span>}
                         </>
                     }
                     actions={!isSample && (
@@ -303,7 +262,7 @@ export default function ReportPanel({
                                     className="mb-4 flex items-start gap-3 rounded-xl border border-brand/20 bg-surface-sky px-4 py-3 text-sm text-muted-foreground"
                                 >
                                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand motion-safe:animate-pulse" aria-hidden="true" />
-                                    <p><span className="font-medium text-foreground">Still writing the rest.</span> Start reading. The other sections fill in as they finish.</p>
+                                    <p className="font-medium text-foreground">Still writing the rest.</p>
                                 </div>
                             )}
                             {shareEnabled && shareMode && (

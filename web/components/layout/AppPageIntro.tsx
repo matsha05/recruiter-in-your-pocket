@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type AppPageIntroProps = {
   eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
   meta?: React.ReactNode;
   actions?: React.ReactNode;
   anchor?: string;
@@ -39,9 +39,7 @@ export function AppPageIntro({
           <h1 className="app-page-title">
             {title}
           </h1>
-          <p className="app-page-description">
-            {description}
-          </p>
+          {description ? <p className="app-page-description">{description}</p> : null}
         </div>
         {meta ? <div className="flex flex-wrap items-center gap-2.5">{meta}</div> : null}
       </div>

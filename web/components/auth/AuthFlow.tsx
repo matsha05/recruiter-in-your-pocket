@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, EnvelopeSimple } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
@@ -243,21 +242,15 @@ export function AuthFlow({
   const stepTitle = useMemo(() => {
     if (step === "email") return copy.headline;
     if (step === "code") return "Check your inbox";
-    return "One last thing";
+    return "What should we call you?";
   }, [copy.headline, step]);
 
-  const stepSubtitle = useMemo(() => {
-    if (step === "email") return copy.subtext;
-    if (step === "code") {
-      return (
-        <span>
-          We sent an 8-digit code to{" "}
-          <span className="text-foreground font-medium">{email || "your email"}</span>
-        </span>
-      );
-    }
-    return "What should we call you?";
-  }, [copy.subtext, email, step]);
+  // Only the code step needs a line under the title: which inbox to check.
+  const stepSubtitle = step === "code" ? (
+    <p className="text-base text-muted-foreground">
+      We sent an 8-digit code to <span className="font-medium text-foreground">{email || "your email"}</span>
+    </p>
+  ) : null;
   const outerClass = variant === "page"
     ? "min-h-[80vh] bg-background px-4 pb-16 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:px-8 md:pb-24 md:pt-36"
     : "";
@@ -272,60 +265,15 @@ export function AuthFlow({
       data-visual-anchor={variant === "page" ? "auth-page" : undefined}
       className={outerClass}
     >
-      <div
-        className={cn(
-          "grid w-full gap-6",
-          variant === "page" && "mx-auto max-w-[1040px] gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-start lg:gap-16",
-          variant === "modal" && "max-w-none"
-        )}
-      >
-        {variant === "page" ? (
-          <div className="grid gap-8 pt-2 lg:pt-6">
-            <div className="grid gap-4">
-              <div className="text-xs font-semibold text-[hsl(var(--pen))]">Sign in</div>
-              <h1
-                className="max-w-[31rem] text-balance font-display text-title text-foreground"
-              >
-                {stepTitle}
-              </h1>
-              <div className="max-w-lg text-pretty text-base text-muted-foreground">
-                {stepSubtitle}
-              </div>
-            </div>
+      <div className={cn("grid w-full gap-6", variant === "page" && "mx-auto max-w-auth")}>
+        <div className="grid gap-3 text-left">
+          <h1 className={cn("text-balance text-title text-foreground", variant === "page" ? "font-display" : "font-sans")}>
+            {stepTitle}
+          </h1>
+          {stepSubtitle}
+        </div>
 
-            {step === "email" ? (
-              <div className="hidden max-w-xl gap-6 border-t border-border pt-6 sm:grid-cols-2 md:grid">
-                {[
-                  { label: "Your reports", value: "Every version stays in one place to compare." },
-                  { label: "Your choice", value: "Reports from before you signed in are saved only if you keep them." },
-                ].map((item) => (
-                  <div key={item.label} className="pt-2">
-                    <p className="text-sm font-medium text-foreground">{item.label}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-            ) : step === "code" ? (
-              <p className="hidden max-w-md border-t border-border pt-6 text-base text-muted-foreground md:block">
-                Not there? Check spam and Promotions. Recruiters lose good emails there too.
-              </p>
-            ) : null}
-          </div>
-        ) : (
-          <div className="grid gap-3 text-left">
-            <h1 className="font-sans text-title text-foreground">
-              {stepTitle}
-            </h1>
-            <p className="text-base text-muted-foreground">{stepSubtitle}</p>
-            {step === "email" ? (
-              <div className="rounded-xl bg-brand/5 px-4 py-3 text-sm text-muted-foreground">
-                Sign in to save reports. Anything you ran before signing in joins your account only if you choose to keep it.
-              </div>
-            ) : null}
-          </div>
-        )}
-
-        <div className={cn("grid min-w-0 gap-4", variant === "page" ? "w-full max-w-auth" : "max-w-none")}>
+        <div className="grid min-w-0 gap-4">
           <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
             <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="rounded-xl border border-destructive/35 bg-error px-4 py-3 text-left text-sm text-destructive outline-none">
@@ -351,7 +299,7 @@ export function AuthFlow({
                     inputMode="email"
                     placeholder="you@example.com"
                     value={email}
-                    aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
+                    aria-describedby={error ? "auth-error" : undefined}
                     error={emailFieldError}
                     onChange={(e) => setEmail(e.target.value)}
                     className={cn(
@@ -360,9 +308,6 @@ export function AuthFlow({
                     )}
                   />
                 </div>
-                <p id="auth-email-help" className="text-sm text-muted-foreground">
-                  We&apos;ll email a one-time code so you can sign in without a password.
-                </p>
               </div>
               <Button type="submit" variant="primary" isLoading={loading} loadingLabel="Sending sign-in code…" className="w-full whitespace-normal">
                 Send sign-in code
@@ -472,18 +417,6 @@ export function AuthFlow({
           )}
           </form>
 
-          <div className={cn("grid gap-2", variant === "page" ? "pt-1" : "text-center")}>
-            {variant === "modal" ? (
-              <div className="text-xs font-medium text-muted-foreground">
-                Secure sign-in. No password required.
-              </div>
-            ) : null}
-            {variant === "page" ? (
-              <p className="text-xs text-muted-foreground">
-                Questions about privacy or billing? <Link href="/privacy" className="riyp-link-quiet">Privacy</Link> · <Link href="/help" className="riyp-link-quiet">Help</Link>
-              </p>
-            ) : null}
-          </div>
         </div>
       </div>
     </div>

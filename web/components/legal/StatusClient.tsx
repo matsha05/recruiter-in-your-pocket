@@ -70,9 +70,8 @@ export default function StatusClient() {
   return (
     <LegalShell
       pageKey="status"
-      eyebrow="Status"
       title="Configuration checks"
-      description="These checks show whether the settings required to run Recruiter in Your Pocket are in place. They do not measure uptime or confirm that every feature is working right now."
+      description="Whether the settings required to run Recruiter in Your Pocket are in place. These checks do not measure uptime."
     >
       <section className="rounded-xl border border-border bg-muted p-5 md:p-6">
         <div className="flex items-start gap-3">
@@ -86,11 +85,9 @@ export default function StatusClient() {
             <p className="text-sm text-muted-foreground">
               {payload?.generatedAt && !unavailable
                 ? `Last checked ${new Date(payload.generatedAt).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}.`
-                : unavailable ? "The latest check is unavailable." : "This may take a moment."}
+                : unavailable ? "The latest check is unavailable." : null}
             </p>
-            <p className="text-base text-muted-foreground">
-              {summary?.message || "Checking report generation, sign-in, billing, and support settings."}
-            </p>
+            {summary?.message ? <p className="text-base text-muted-foreground">{summary.message}</p> : null}
           </div>
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -155,30 +152,10 @@ export default function StatusClient() {
               <p className="text-sm text-foreground/85">{incident}</p>
             </div>
           ))}
-          {incidents.length === 0 ? <p className="text-sm text-muted-foreground">{!payload ? "Waiting for the checks to finish." : unavailable ? "We cannot tell which settings need attention until the check succeeds." : payload.ok ? "The required configuration checks passed. If a feature is not working for you, please contact support." : "Some configuration checks need attention. See the feature checks above."}</p> : null}
+          {incidents.length === 0 ? <p className="text-sm text-muted-foreground">{!payload ? "Waiting for the checks to finish." : unavailable ? "We cannot tell which settings need attention until the check succeeds." : payload.ok ? "The required configuration checks passed." : null}</p> : null}
         </div>
       </section>
 
-      <section className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9">
-        <div className="mb-4 flex items-center gap-2">
-          <Pulse className="size-5 text-brand" weight="bold" />
-          <h2 className="font-display text-heading text-foreground">Support and trust</h2>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="border-t border-line pt-4">
-            <p className="text-sm font-medium text-foreground">Support</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Having trouble with a report, payment, or account? <Link href="/help" className="riyp-link-quiet">Contact support</Link> and tell us what happened.
-            </p>
-          </div>
-          <div className="border-t border-line pt-4">
-            <p className="text-sm font-medium text-foreground">Security and privacy</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              See <Link href="/privacy" className="riyp-link-quiet">what data we keep</Link>, how long we keep it, and how to delete it.
-            </p>
-          </div>
-        </div>
-      </section>
     </LegalShell>
   );
 }

@@ -37,26 +37,21 @@ interface PaywallModalProps {
 }
 
 const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB_SEARCH_PASS_DECISION.whenToBuy}`;
+// The price row under the list carries the term and the renewal fact.
 const PASS_BULLETS = [
     "5 more complete reports",
     "Re-check a revision and see whether your Critical Miss changed",
     "Read your resume against each job posting",
-    "Good for 90 days, one payment",
 ];
 
-const DEFAULT_UNLOCK_COPY = {
-    label: "Job Search Pass",
-    title: "Want another read?",
-    subtitle: COMPLETE_REPORT_SUBTITLE,
-    bullets: PASS_BULLETS,
-};
-
-const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
-    evidence_ledger: { ...DEFAULT_UNLOCK_COPY, label: "Your revision", title: "Check your revised resume" },
-    bullet_upgrades: { ...DEFAULT_UNLOCK_COPY, label: "Your edits", title: "See what your edits changed" },
-    missing_wins: { ...DEFAULT_UNLOCK_COPY, label: "Details to add", title: "Check the details you add" },
-    job_alignment: { ...DEFAULT_UNLOCK_COPY, label: "Role fit", title: "Read it against another role" },
-    export_pdf: { ...DEFAULT_UNLOCK_COPY, label: "PDF export", title: "PDFs come with a signed-in report" },
+// The title names what the visitor was doing when the pass came up; the list and price are the same every time.
+const DEFAULT_UNLOCK_TITLE = "Want another read?";
+const CONTEXT_UNLOCK_TITLE: Record<UnlockSection, string> = {
+    evidence_ledger: "Check your revised resume",
+    bullet_upgrades: "See what your edits changed",
+    missing_wins: "Check the details you add",
+    job_alignment: "Read it against another role",
+    export_pdf: "PDFs come with a signed-in report",
 };
 
 export default function PaywallModal({
@@ -87,13 +82,10 @@ export default function PaywallModal({
     };
 
     const freeSignInOffer = offerFreeSignIn ? (
-        <div className="mb-5 text-center" data-testid="paywall-free-sign-in">
+        <div className="mb-5" data-testid="paywall-free-sign-in">
             <Button className="w-full" onClick={handleFreeSignIn}>
                 Sign in for your free report
             </Button>
-            <p className="mt-2 text-sm text-muted-foreground">
-                We&apos;ll email you a code. No password, no card.
-            </p>
         </div>
     ) : null;
 
@@ -106,12 +98,10 @@ export default function PaywallModal({
         }
     }, [isOpen]);
 
-    const unlockCopy = useMemo(() => {
-        if (unlockContext?.section) {
-            return CONTEXT_UNLOCK_COPY[unlockContext.section] || DEFAULT_UNLOCK_COPY;
-        }
-        return DEFAULT_UNLOCK_COPY;
-    }, [unlockContext]);
+    const unlockTitle = useMemo(
+        () => (unlockContext?.section && CONTEXT_UNLOCK_TITLE[unlockContext.section]) || DEFAULT_UNLOCK_TITLE,
+        [unlockContext],
+    );
 
     const handleCheckout = async () => {
         setLoading(true);
@@ -174,6 +164,11 @@ export default function PaywallModal({
     };
 
     if (!billingEnabled) {
+        const description = offerFreeSignIn
+            ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours."
+            : hasCurrentReport
+                ? "Your existing report stays available."
+                : null;
         return (
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
@@ -181,13 +176,9 @@ export default function PaywallModal({
                         <DialogTitle className="font-display text-heading">
                             {offerFreeSignIn ? "Your free report needs an account" : "Passes are paused for now"}
                         </DialogTitle>
-                        <DialogDescription className="mx-auto max-w-sm text-sm">
-                            {offerFreeSignIn
-                                ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours. Passes are paused for now."
-                                : hasCurrentReport
-                                    ? "Your existing report stays available. You can return to it below."
-                                    : "You can't buy a pass right now. Your resume is still here when you're ready."}
-                        </DialogDescription>
+                        {description ? (
+                            <DialogDescription className="mx-auto max-w-sm text-sm">{description}</DialogDescription>
+                        ) : null}
                     </DialogHeader>
                     {offerFreeSignIn ? <div className="mt-5">{freeSignInOffer}</div> : null}
                     <Button className={offerFreeSignIn ? "w-full" : "mt-5 w-full"} variant={offerFreeSignIn ? "secondary" : "primary"} onClick={onClose}>
@@ -203,26 +194,19 @@ export default function PaywallModal({
             <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
                     <DialogTitle className="font-display text-xl font-bold">
-                        {offerFreeSignIn ? "Your free report needs an account" : unlockCopy.title}
+                        {offerFreeSignIn ? "Your free report needs an account" : unlockTitle}
                     </DialogTitle>
                     <DialogDescription className="text-sm">
                         {offerFreeSignIn
                             ? "The free report on this device or network has been used. Each account gets its own, so sign in to get yours."
-                            : hasCurrentReport ? unlockCopy.subtitle : JOB_SEARCH_PASS_DECISION.whenToBuy}
+                            : hasCurrentReport ? COMPLETE_REPORT_SUBTITLE : JOB_SEARCH_PASS_DECISION.whenToBuy}
                     </DialogDescription>
                 </DialogHeader>
 
                 {freeSignInOffer}
-                {offerFreeSignIn ? (
-                    <p className="mb-3 text-center text-sm font-semibold text-foreground">Or get more reports with a pass</p>
-                ) : null}
 
-                <div className="mb-5 gap-y-3 border-y border-line bg-surface-sky/45 px-4 py-4">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span className="font-semibold text-foreground">What you get</span>
-                        <span data-testid="paywall-context-label" className="text-foreground/80">{unlockCopy.label}</span>
-                    </div>
-                    <UnlockValueList items={unlockCopy.bullets} dense />
+                <div className="mb-5 border-y border-line bg-surface-sky/45 px-4 py-4">
+                    <UnlockValueList items={PASS_BULLETS} dense />
                 </div>
 
                 <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
@@ -296,7 +280,7 @@ export default function PaywallModal({
                     loadingLabel="Checking access…"
                 >
                     <ArrowClockwise className="mr-2 size-4" weight="bold" />
-                    Already paid? Restore access
+                    Restore access
                 </Button>
 
                 {error && (
@@ -306,7 +290,7 @@ export default function PaywallModal({
                 )}
 
                 <p id="checkout-terms" className="text-center text-xs text-muted-foreground">
-                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>. Questions? <Link href="/help" className="riyp-link-quiet">Ask us</Link>.
+                    Payment by Stripe. Unused passes are refundable within 14 days (see the <Link href="/terms" className="riyp-link-quiet">Terms</Link>). By continuing, you agree to the <Link href="/privacy" className="riyp-link-quiet">Privacy Policy</Link>.
                 </p>
             </DialogContent>
         </Dialog>

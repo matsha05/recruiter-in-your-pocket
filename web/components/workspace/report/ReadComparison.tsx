@@ -50,8 +50,8 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
     } else if (remaining.length === 0) {
         title = single ? "Your Critical Miss changed." : "Your Critical Misses changed.";
         intro = single
-            ? "The report now leads with a new Critical Miss. Check the old one against your revision, then take this one on."
-            : "The report now leads with new ones. Check the old ones against your revision, then take these on.";
+            ? "The report now leads with a new Critical Miss."
+            : "The report now leads with new ones.";
     } else {
         title = gone.length === 1 ? "One Critical Miss changed." : `${gone.length} Critical Misses changed.`;
         intro = `${remaining.length === 1 ? "One is" : `${remaining.length} are`} still there. Start with ${remaining.length === 1 ? "that one" : "those"} again.`;

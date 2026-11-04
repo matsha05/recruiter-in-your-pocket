@@ -8,9 +8,7 @@
 
 .content { width: 100%; max-width: 60rem; margin-inline: auto; }
 .intro { max-width: 42rem; }
-.eyebrow { color: hsl(var(--brand)); font: var(--type-label); }
 .title { margin-top: 0.875rem; font: var(--type-title); letter-spacing: var(--tracking-title); }
-.description { max-width: 40rem; margin-top: 1rem; color: hsl(var(--text-muted)); font: var(--type-body); }
 .sheet { margin-top: 1.75rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: 1.25rem; box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
 .jobContext { display: flex; align-items: start; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid hsl(var(--brand) / 0.2); border-radius: 0.75rem; background: hsl(var(--surface-sky)); }
 .pausedNotice { display: flex; align-items: start; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid hsl(var(--border)); border-radius: 0.75rem; background: hsl(var(--surface-proof)); }
@@ -51,7 +49,6 @@
 
 @media (max-width: 639px) {
     .root { padding-top: 1.5rem; }
-    .description { margin-top: 0.75rem; }
     .sheet { margin-top: 1.25rem; padding: 1rem; }
     .resumeField { min-height: 11rem; }
     .jobSection { margin-top: 1rem; }

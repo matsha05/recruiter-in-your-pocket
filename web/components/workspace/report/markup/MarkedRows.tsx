@@ -156,7 +156,6 @@ export function CriticalMissRow({
   return (
     <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={testId}>
       <div className={styles.lineCell}>
-        {sectionOf(fix) && <p className={styles.lineSection}>{sectionOf(fix)}</p>}
         {onPage
           ? <blockquote ref={first ? lineRef : undefined} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
           : <MissingLine fix={fix} critical />}
@@ -241,7 +240,6 @@ export function FixRow({
   return (
     <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="fix" data-testid="fix-row">
       <div className={styles.lineCell}>
-        {sectionOf(fix) && <p className={styles.lineSection}>{sectionOf(fix)}</p>}
         {onPage ? <blockquote className={styles.inkLine}>{quotedLine(fix)}</blockquote> : <MissingLine fix={fix} />}
       </div>
       <div className={styles.noteCell}>

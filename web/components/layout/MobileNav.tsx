@@ -49,12 +49,9 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                     </span>
                                 )}
                                 {(user.membership === "free" || !user.membership) && (
-                                    <span className="inline-flex items-center gap-1">
-                                        <span className="inline-flex items-center rounded-sm bg-muted px-1.5 py-0.5 text-xs font-bold text-muted-foreground">Free account</span>
-                                        {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                            <span className="text-xs font-medium text-success">• {user.freeUsesLeft === 1 ? 'Free report available' : `${user.freeUsesLeft} free reports available`}</span>
-                                        )}
-                                    </span>
+                                    user.freeUsesLeft !== undefined && user.freeUsesLeft > 0
+                                        ? <span className="text-xs font-medium text-success">{user.freeUsesLeft === 1 ? "Free report available" : `${user.freeUsesLeft} free reports available`}</span>
+                                        : <span className="text-xs font-medium text-muted-foreground">Free report used</span>
                                 )}
                             </p>
                         </div>
