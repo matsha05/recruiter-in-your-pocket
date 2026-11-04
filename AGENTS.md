@@ -16,6 +16,7 @@
 - For user-facing copy, read [docs/voice-and-tone.md](docs/voice-and-tone.md), then [docs/copy-system.md](docs/copy-system.md) for the relevant naming, state, or CTA. Write "resume" without accents. Use the warm, direct "sharp recruiter friend" voice and run the relevant banned-phrase and proofreading checks on changed copy.
 - Apply editorial quality across public pages, reports, research, figures, tools, account/payment flows, errors, emails, PDFs, and feedback instructions/fallbacks. Keep advice useful and factual; avoid arbitrary numbers or timeframes, unfinished templates presented as finished writing, and repeated observations.
 - For an optional Oracle consultation, read [.agent/workflows/oracle.md](.agent/workflows/oracle.md). Use it when an independent perspective can resolve a concrete uncertainty; ordinary work does not require it.
+- For a new surface or an open-ended product change, follow [.claude/commands/new-surface.md](.claude/commands/new-surface.md) (`/new-surface` in Claude Code): interview, low-effort sketches to react to, build, an outside critique, then high-effort verification.
 
 ## Completion
 
