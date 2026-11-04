@@ -19,8 +19,7 @@
 
 .about { max-width: 22rem; }
 .brand { display: inline-flex; min-height: 44px; color: hsl(var(--foreground)); }
-.description { margin-top: 14px; text-wrap: balance; font: var(--type-small); }
-.mail { margin-top: 6px; word-break: break-word; }
+.about .mail { display: flex; width: fit-content; margin-top: 14px; word-break: break-word; }
 
 .label { color: hsl(var(--muted-foreground)); font: var(--type-label); }
 .column ul { margin-top: 8px; }

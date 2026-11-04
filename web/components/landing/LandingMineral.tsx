@@ -10,7 +10,7 @@ import { WorkedExample } from "./home/WorkedExample";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
-/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, why it exists (anonymous by design), one last ask. */
+/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, who built it (anonymous by design), one last ask. */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
@@ -21,14 +21,10 @@ export function LandingMineral() {
             <ProgressBeat />
 
             <section id="about" className={styles.founder} aria-labelledby="founder-title">
-                <p className={styles.founderLabel}>Who built this</p>
                 <div className={styles.founderCopy}>
                     <h2 id="founder-title">After 14 years in recruiting, it&apos;s obvious to me why one resume gets the call and another doesn&apos;t. It almost never is to the person who wrote it.</h2>
-                    <p className={styles.introduction}>
-                        That gap is why this exists. It shows you what goes through a recruiter&apos;s head when they read yours, and what to fix first.
-                    </p>
                     <p className={styles.disclosure}>
-                        Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don&apos;t read each report myself.
+                        I wrote the review criteria, from hiring at some of the biggest names in tech. AI applies them; I don&apos;t read each report myself.
                     </p>
                     <div className={styles.founderLinks}>
                         <Link href="/methodology">How the report works <ArrowRight aria-hidden="true" /></Link>

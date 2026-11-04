@@ -92,7 +92,7 @@ test.describe("launch red-team journeys", () => {
 
     await page.goto("/status");
     await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Support and trust/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Get help", exact: true })).toBeVisible();
   });
 
   test("3. example report path feels complete and returns users to a fresh run", async ({ page }) => {
@@ -226,7 +226,7 @@ test.describe("launch red-team journeys", () => {
     const feedbackSent = page.waitForResponse((response) => response.url().endsWith("/api/report-feedback"));
     await feedback.getByRole("button", { name: "Yes", exact: true }).click();
     expect((await feedbackSent).status()).toBe(200);
-    await expect(miss.getByText("Thanks. This is how we find out when we picked the wrong thing.")).toBeVisible();
+    await expect(miss.getByText("Thanks.")).toBeVisible();
   });
 
   test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {

@@ -6,21 +6,11 @@
 }
 
 .founder {
-    display: grid;
     max-width: var(--marketing-content);
-    grid-template-columns: 17.5rem minmax(0, 1fr);
-    align-items: start;
-    gap: 4.5rem;
     margin: 0 auto;
     border-top: 1px solid hsl(var(--line));
     padding: 6rem var(--marketing-gutter);
     scroll-margin-top: 4.5rem;
-}
-
-.founderLabel {
-    padding-top: 0.375rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
 }
 
 .founderCopy h2 {
@@ -28,13 +18,6 @@
     font: var(--type-title);
     letter-spacing: var(--tracking-title);
     text-wrap: pretty;
-}
-
-.introduction {
-    max-width: 34rem;
-    margin-top: 1.5rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-prose);
 }
 
 .disclosure {
@@ -92,6 +75,6 @@
 .page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
 
 @media (max-width: 800px) {
-    .founder { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 4rem var(--marketing-gutter); }
+    .founder { padding: 4rem var(--marketing-gutter); }
     .close { padding: 4.5rem var(--marketing-gutter); }
 }

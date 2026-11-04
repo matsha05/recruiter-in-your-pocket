@@ -10,30 +10,15 @@ import { schemaValidReport } from "../helpers/report-fidelity-fixture";
 
 type UnlockExpectation = Readonly<{
   title: string;
-  label: string;
 }>;
 
+// The title is the only thing that changes with the section; the list and price are the same every time.
 const EXPECTED_UNLOCK_COPY = {
-  evidence_ledger: {
-    title: "Check your revised resume",
-    label: "Your revision",
-  },
-  bullet_upgrades: {
-    title: "See what your edits changed",
-    label: "Your edits",
-  },
-  missing_wins: {
-    title: "Check the details you add",
-    label: "Details to add",
-  },
-  job_alignment: {
-    title: "Read it against another role",
-    label: "Role fit",
-  },
-  export_pdf: {
-    title: "PDFs come with a signed-in report",
-    label: "PDF export",
-  },
+  evidence_ledger: { title: "Check your revised resume" },
+  bullet_upgrades: { title: "See what your edits changed" },
+  missing_wins: { title: "Check the details you add" },
+  job_alignment: { title: "Read it against another role" },
+  export_pdf: { title: "PDFs come with a signed-in report" },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
 
 const UNLOCK_SECTIONS = Object.keys(EXPECTED_UNLOCK_COPY) as UnlockSection[];
@@ -211,7 +196,6 @@ test.describe("paid decision boundary", () => {
 
   test("every retained unlock context renders its unique complete-report decision", async ({ page }) => {
     expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].title)).size).toBe(UNLOCK_SECTIONS.length);
-    expect(new Set(UNLOCK_SECTIONS.map((section) => EXPECTED_UNLOCK_COPY[section].label)).size).toBe(UNLOCK_SECTIONS.length);
 
     let reportCompleted = false;
     let streamRequests = 0;
@@ -312,7 +296,6 @@ test.describe("paid decision boundary", () => {
         const dialog = page.getByRole("dialog", { name: expected.title });
         await expect(dialog, `${viewport.label}/${section}: unique modal opens`).toBeVisible();
         await expect(dialog.getByRole("heading", { name: expected.title, exact: true })).toBeVisible();
-        await expect(dialog.getByTestId("paywall-context-label")).toHaveText(expected.label);
         await expect(dialog).toContainText("Everything in your free report is yours. Nothing is held back.");
         await expect(dialog).toContainText("The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.");
         await expect(dialog).toContainText("5 more complete reports");
@@ -334,7 +317,7 @@ test.describe("paid decision boundary", () => {
           });
           // The dialog may fit without scrolling; either way its last controls must be reachable.
           expect(scrollState.atBottom, `${section}: mobile dialog reaches legal controls (scrolls: ${scrollState.canScroll})`).toBe(true);
-          await expect(dialog.getByRole("button", { name: "Already paid? Restore access" })).toBeVisible();
+          await expect(dialog.getByRole("button", { name: "Restore access" })).toBeVisible();
           await expect(dialog.getByText(/Payment by Stripe/)).toBeVisible();
         }
 
@@ -516,7 +499,7 @@ test.describe("paid decision boundary", () => {
       await expect(page.getByRole("heading", { name: "You’re in. Five more reads." })).toBeVisible();
       await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
       await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
-      await expect(page.getByText("Pass active", { exact: true })).toBeVisible();
+      await expect(page.getByText("You’re in. Five more reads.", { exact: true })).toBeVisible();
       await expect.poll(() => page.evaluate(() => {
         const stored = localStorage.getItem("riyp_unlock_context");
         return stored ? JSON.parse(stored).section : null;

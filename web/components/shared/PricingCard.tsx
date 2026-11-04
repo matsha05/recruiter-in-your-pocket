@@ -51,11 +51,6 @@ export function PricingCard({
                     className
                 )}
             >
-                {data.badge && (
-                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-surface-sky px-2 py-1 text-xs font-medium text-brand">
-                        {data.badge}
-                    </span>
-                )}
                 <span className="mt-2 font-display text-title text-foreground">{data.price}</span>
                 <span className="mt-1 text-xs font-medium text-muted-foreground">{data.label}</span>
                 <span className="text-xs text-muted-foreground">{data.period}</span>
@@ -120,7 +115,6 @@ export function PricingCard({
                     </span>
                     {data.period ? <span className="pb-1 text-base text-muted-foreground">{data.period}</span> : null}
                 </div>
-                <p className="mt-4 text-lg text-muted-foreground">{data.description}</p>
             </div>
 
             <ul className="mb-7 flex-1 space-y-3">

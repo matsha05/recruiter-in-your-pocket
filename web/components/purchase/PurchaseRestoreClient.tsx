@@ -132,15 +132,14 @@ export default function PurchaseRestoreClient() {
       >
         <section className="mx-auto max-w-form" aria-labelledby="purchase-restore-title">
           <header className="border-b border-border pb-8">
-              <p className="text-xs font-semibold text-[hsl(var(--pen))]">Billing help</p>
               <h1
                 id="purchase-restore-title"
-                className="mt-3 max-w-xl text-balance font-display text-title"
+                className="max-w-xl text-balance font-display text-title"
               >
                 {header}
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground">
-                Use the email you paid with. We&apos;ll check with Stripe and bring back any pass that&apos;s missing. You can also open your receipts or Stripe&apos;s billing portal here.
+                Use the email you paid with.
               </p>
           </header>
 
@@ -154,19 +153,12 @@ export default function PurchaseRestoreClient() {
           ) : null}
 
           <div className="grid gap-5 py-8">
-            <div className="text-sm text-muted-foreground">
-              {authLoading ? (
-                <p role="status">Checking which account you’re signed in to.</p>
-              ) : signedIn ? (
-                <p>Signed in as <span className="break-all font-medium text-foreground">{user?.email}</span></p>
-              ) : (
-                <p>Sign in with your checkout email so we can find your purchase.</p>
-              )}
-            </div>
+            {signedIn ? (
+              <p className="text-sm text-muted-foreground">Signed in as <span className="break-all font-medium text-foreground">{user?.email}</span></p>
+            ) : null}
 
             <div className="min-w-0 rounded-2xl border border-border bg-card p-6 sm:rounded-3xl sm:p-8">
-              <p className="text-sm font-medium text-foreground">Choose what you need</p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {authLoading ? (
                   <Button type="button" variant="primary" disabled isLoading>
                     Checking account…
@@ -214,10 +206,7 @@ export default function PurchaseRestoreClient() {
           ) : receiptsState === "loaded" ? (
             <section className="border-t border-line pt-8" aria-labelledby="receipt-list-title">
               <div className="grid gap-6">
-                <div>
-                  <p className="text-sm font-medium text-foreground">Receipts</p>
-                  <h2 id="receipt-list-title" className="mt-3 font-sans text-heading">Your payment record</h2>
-                </div>
+                <h2 id="receipt-list-title" className="font-sans text-heading">Receipts</h2>
                 <div className="divide-y divide-line border-y border-line">
                   {receipts.length === 0 ? (
                     <p role="status" className="py-5 text-sm text-muted-foreground">{receiptsMessage}</p>

@@ -245,7 +245,7 @@ export function LineLift({
 
       <p className={styles.liftLead}>
         {asked.length > 1 ? "Answer and we'll add them to your line." : "Answer and we'll add it to your line."}
-        <span className={styles.liftLeadQuiet}>Only what&apos;s true. Skip anything you don&apos;t know.</span>
+        <span className={styles.liftLeadQuiet}>Only what&apos;s true.</span>
       </p>
 
       <ol className={styles.liftQuestions}>
@@ -283,6 +283,8 @@ export function LineLift({
       </ol>
 
       <div className={styles.revised} data-ready={copyableLine ? true : undefined}>
+        {/* The label waits for a line, or for the answer that there is none to write. */}
+        {(line || state === "not_mine" || state === "unknown") && (
         <div className={styles.revisedHead}>
           <p className={styles.revisedLabel}>{edited !== null ? "Your wording" : "Revised line"}</p>
           {line && (
@@ -303,15 +305,16 @@ export function LineLift({
             </div>
           )}
         </div>
+        )}
 
         {!line ? (
-          <p className={styles.revisedEmpty}>
-            {state === "not_mine"
-              ? "Then this one isn't yours to fix. Keep the line as it is."
-              : state === "unknown"
-                ? "Keep the line as it is for now. If you can find out, it's worth adding."
-                : "Your line shows up here as you answer."}
-          </p>
+          (state === "not_mine" || state === "unknown") && (
+            <p className={styles.revisedEmpty}>
+              {state === "not_mine"
+                ? "Then this one isn't yours to fix. Keep the line as it is."
+                : "Keep the line as it is for now. If you can find out, it's worth adding."}
+            </p>
+          )
         ) : editing ? (
           <textarea
             ref={editRef}
@@ -340,14 +343,14 @@ export function LineLift({
           <p className={styles.revisedNote} aria-live="polite">
             {copyableLine
               ? edited === null
-                ? showPolished ? "Every word is from your resume or your answers." : "Every word is from your resume or your answers. Reword it however you like."
-                : "Your wording. The facts all come from your line or your answers."
+                ? "Every word is from your resume or your answers."
+                : "The facts all come from your line or your answers."
               : guardNote}
           </p>
         )}
         {copyableLine && onPersist && kept !== "idle" && (
           <p className={styles.revisedNote} data-testid="line-kept" aria-live="polite">
-            {kept === "kept" ? "Kept with this report. It will be here when you come back, and in the PDF."
+            {kept === "kept" ? "Kept with this report."
               : kept === "saving" ? "Keeping this with your report…"
                 : "We couldn't keep this with your report just now. Copy the line to be safe."}
           </p>

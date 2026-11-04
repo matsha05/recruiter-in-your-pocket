@@ -14,40 +14,15 @@ import { launchFlags } from "@/lib/launch/flags";
 export interface NavItem {
     label: string;
     href: string;
-    description?: string;
 }
 
 const STUDIO_NAV_ITEMS: NavItem[] = [
-    {
-        label: "New report",
-        href: "/workspace",
-        description: "Review your resume",
-    },
-    {
-        label: "My reports",
-        href: "/reports",
-        description: "Saved reports and versions",
-    },
-    {
-        label: "Jobs",
-        href: "/jobs",
-        description: "Saved jobs and matching",
-    },
-    {
-        label: "Extension",
-        href: "/extension",
-        description: "Install and use the Chrome extension",
-    },
-    {
-        label: "Research",
-        href: "/research",
-        description: "Hiring research hub",
-    },
-    {
-        label: "After the offer",
-        href: "/resources",
-        description: "Negotiation guides & tools",
-    },
+    { label: "New report", href: "/workspace" },
+    { label: "My reports", href: "/reports" },
+    { label: "Jobs", href: "/jobs" },
+    { label: "Extension", href: "/extension" },
+    { label: "Research", href: "/research" },
+    { label: "After the offer", href: "/resources" },
     // Settings is now accessed via UserNav dropdown (premium pattern)
 ];
 

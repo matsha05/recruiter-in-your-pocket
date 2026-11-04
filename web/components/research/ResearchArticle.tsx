@@ -22,7 +22,8 @@ interface ResearchArticleProps {
     /** The page's own path. Its published and updated dates live in PUBLIC_PAGES. */
     path: string;
     header: {
-        tag: string;
+        /** Articles still name their topic; the page shows the title and date only. */
+        tag?: string;
         title: string;
         description: string;
         readTime?: string;
@@ -30,7 +31,7 @@ interface ResearchArticleProps {
     };
     keyFinding: {
         label?: string;
-        subtitle: string;
+        subtitle?: string;
         stat: string;
         statDescription: ReactNode;
         source: {
@@ -124,12 +125,7 @@ export function ResearchArticle({
 
                         <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(19rem,0.82fr)] lg:items-end lg:gap-20">
                             <div>
-                                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
-                                    <span className="riyp-evidence-label text-brand">{header.tag}</span>
-                                    {header.readTime ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.readTime}</span></> : null}
-                                    {sources?.length ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.sourceSummary ?? "Direct sources linked"}</span></> : null}
-                                </div>
-                                <h1 className="mt-5 max-w-[20ch] text-balance font-display text-headline text-foreground">
+                                <h1 className="max-w-[20ch] text-balance font-display text-headline text-foreground">
                                     {header.title}
                                 </h1>
                                 <p className="mt-6 max-w-reading text-prose text-muted-foreground">
@@ -236,10 +232,7 @@ export function ResearchArticle({
                                                     {relatedArticles.map((article, index) => (
                                                         <Link key={article.href ?? `related-${index}`} href={article.href} className="focus-ring riyp-surface-link -mx-3 grid min-h-14 gap-2 rounded-lg px-3 py-4 md:grid-cols-[1fr_auto] md:items-center">
                                                             <span className="text-sm font-medium">{article.title}</span>
-                                                            <span className="riyp-evidence-label flex items-center gap-3 text-muted-foreground">
-                                                                {article.tag || "Read next"}
-                                                                <ArrowRight data-affordance className="size-4" />
-                                                            </span>
+                                                            <ArrowRight data-affordance className="size-4 text-muted-foreground" aria-hidden="true" />
                                                         </Link>
                                                     ))}
                                                 </div>
@@ -255,8 +248,7 @@ export function ResearchArticle({
                 <section className="border-y border-line bg-card px-6 py-16 text-foreground md:px-8 md:py-20">
                     <div className="mx-auto flex max-w-[72rem] flex-col gap-8 md:flex-row md:items-end md:justify-between">
                         <div>
-                            <p className="riyp-evidence-label text-brand">Apply it to your resume</p>
-                            <h2 className="mt-4 max-w-[24ch] font-display text-headline text-foreground">{cta.title}</h2>
+                            <h2 className="max-w-[24ch] font-display text-headline text-foreground">{cta.title}</h2>
                         </div>
                         <Button asChild className="shrink-0">
                             <Link href={cta.href}>

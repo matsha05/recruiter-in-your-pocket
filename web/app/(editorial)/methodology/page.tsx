@@ -22,14 +22,11 @@ export default function MethodologyPage() {
         <ResearchArticle
             path={PATH}
             header={{
-                tag: "Methodology",
                 title: "How the report works",
                 description: "Every report applies a recruiter's criteria to your resume: a Verdict, a band that shows where your resume stands, and up to three Critical Misses, each a problem that could cost you the interview on its own, starting with the one to fix first. Here's how each part is made, and what it can't tell you.",
-                sourceSummary: "2 peer-reviewed studies",
             }}
             keyFinding={{
                 label: "Example band",
-                subtitle: "From the sample report",
                 stat: sampleBand.name,
                 statDescription: sampleBand.anchor,
                 source: { text: "Worked example. The band summarizes the written read; it doesn't predict interviews or offers." },
@@ -80,7 +77,6 @@ export default function MethodologyPage() {
             visualization={
                 <>
                     <h2 className="research-h2">The sample report, start to finish</h2>
-                    <p className="research-body mb-6">Everything in this figure comes from our sample report, written for a fictional candidate: the Verdict, the band, the Critical Miss, and the four things behind the band.</p>
                     <FirstReadModelDiagram />
                 </>
             }

@@ -237,17 +237,6 @@
 .rowTools { order: 6; }
 .feedbackCell { order: 7; }
 
-.lineSection {
-    margin-bottom: 0.375rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
-}
-
-/* The Critical Miss names its section in its own label ("Critical Miss 1 · Work experience"). */
-.row[data-kind="miss"] .lineSection {
-    display: none;
-}
-
 /*
  * The first Critical Miss sits on its miss sheet (W1, Nov 2, 2026): the quoted line, the pen note and
  * the first question on the one yellow surface, so it is the obvious thing in three seconds.

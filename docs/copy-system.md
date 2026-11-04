@@ -80,6 +80,8 @@ Budgets:
 
 These are layout guidelines, not a reason to force fragments or slogans. A natural sentence that explains the issue is better than a shorter sentence the reader has to decode.
 
+No taglines, helper text, or secondary labels (November 3, 2026). A screen is its heading, its controls, and the facts the reader needs right there: a price, a term, a limit, a consent line, an error. No eyebrow above a heading, no sentence under it that restates it, no hint under a button that the button already says, no label on a pill that the title carries. If a screen stops making sense without one of those, fix the layout or the heading instead of adding the line back. Report findings, the Critical Miss count line, the pass terms, privacy facts, and errors are content, not helper text.
+
 ## 4. Tone by State
 
 Marketing:

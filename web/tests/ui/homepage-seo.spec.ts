@@ -25,7 +25,8 @@ test.describe("homepage feedback and SEO contract", () => {
       "/sample-report",
     );
     const hero = homepage.locator("section[aria-labelledby='hero-title']");
-    await expect(hero.getByText("Your first report is free. No account or card.", { exact: true })).toBeVisible();
+    // The button already says the report is free; the hero carries no fine print under it.
+    await expect(hero).not.toContainText("No account or card");
     // Free-report limits live on pricing and in the FAQ, not on the homepage.
     await expect(homepage).not.toContainText("Free report limits");
     await expect(homepage).not.toContainText("per calendar month");
@@ -38,7 +39,9 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(example.locator("figure blockquote")).toContainText("Your account portfolio and review cadence are specific, but results remain unclear.");
     await expect(example).toContainText("What did Jordan look for, and what changed?");
     await expect(example).toContainText("What factors did you review when identifying renewal risk across the portfolio?");
-    await expect(example).toContainText("Blank on purpose. Jordan isn’t real, and we don’t make up answers for anyone.");
+    // The questions stand alone: no placeholder answers and no footnote explaining the blanks.
+    await expect(example).not.toContainText("Jordan’s answer");
+    await expect(example).not.toContainText("Blank on purpose");
     await expect(example.getByRole("link", { name: "See Jordan’s full report" })).toHaveAttribute("href", "/sample-report");
     await expect(example.getByRole("heading", { level: 2, name: "What would they think of yours?" })).toBeVisible();
     await expect(homepage.getByRole("heading", { level: 2, name: "Not even a reply." })).toBeVisible();
@@ -55,8 +58,8 @@ test.describe("homepage feedback and SEO contract", () => {
     // The founder section is anonymous by design: no name, photo, profile link, or employer names.
     const founder = homepage.locator("#about");
     await expect(founder.getByRole("heading", { level: 2 })).toHaveText("After 14 years in recruiting, it's obvious to me why one resume gets the call and another doesn't. It almost never is to the person who wrote it.");
-    await expect(founder).toContainText("That gap is why this exists. It shows you what goes through a recruiter's head when they read yours, and what to fix first.");
-    await expect(founder).toContainText("Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don't read each report myself.");
+    await expect(founder).toContainText("I wrote the review criteria, from hiring at some of the biggest names in tech. AI applies them; I don't read each report myself.");
+    await expect(founder).not.toContainText("Who built this");
     await expect(founder.getByRole("link", { name: "How the report works" })).toHaveAttribute("href", "/methodology");
     await expect(founder.locator("img")).toHaveCount(0);
     await expect(page.locator('a[href*="linkedin.com/in"]')).toHaveCount(0);

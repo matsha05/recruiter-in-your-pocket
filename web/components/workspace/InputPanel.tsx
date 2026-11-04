@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
-import { MIN_RESUME_CHARS, SHORT_RESUME_CHARS } from "@/lib/resume-input";
+import { MIN_RESUME_CHARS } from "@/lib/resume-input";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -111,21 +111,20 @@ export default function InputPanel({
         setShowPaste(true);
     };
 
+    // The line under the button says what the next report costs, only when the button can't.
     const getRunHint = () => {
         const membership = user?.membership;
-        if (membership === "monthly" || membership === "lifetime") return "Paid access active";
+        if (membership === "monthly" || membership === "lifetime" || freeUsesRemaining > 0) return null;
         if (membership === "credit") {
             const paid = Number(user?.paidUsesLeft || 0);
             return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
         }
-        if (freeUsesRemaining > 0) return "Your first report is free";
         if (!user) return "Sign in for your free report, or get a Job Search Pass";
         return "Another report needs a Job Search Pass";
     };
 
     const charCount = resumeText.trim().length;
     const isTooShort = charCount > 0 && charCount < MIN_RESUME_CHARS;
-    const isShortResume = charCount >= MIN_RESUME_CHARS && charCount < SHORT_RESUME_CHARS;
     const hasContent = Boolean(fileName || resumeText.length > 0);
     const wordCount = charCount > 0 ? resumeText.trim().split(/\s+/).length : 0;
     const showReadPreview = Boolean(fileName && !showPaste && charCount > 0);
@@ -137,15 +136,9 @@ export default function InputPanel({
         >
             <div className={styles.content}>
                 <header className={styles.intro}>
-                    <p className={styles.eyebrow}>{isRevision ? "Re-check" : "Your resume"}</p>
                     <h1 className={styles.title}>
                         {isRevision ? "Now let’s see what changed." : "Let’s see what they see."}
                     </h1>
-                    <p className={styles.description}>
-                        {isRevision
-                            ? "Add the new version. We’ll put it beside the last one and show you whether the Critical Miss changed."
-                            : "Add the resume you’re about to send. We’ll read the whole thing and show you what comes through, what slips past, and what to fix first."}
-                    </p>
                     {onOpenLastReport && (
                         <button type="button" data-testid="workspace-open-last-report" onClick={onOpenLastReport} className="riyp-link mt-3 min-h-11 text-sm font-semibold">
                             Open your last report
@@ -158,11 +151,8 @@ export default function InputPanel({
                         <Target className="mt-0.5 size-5 shrink-0 text-brand" weight="duotone" />
                         <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium text-foreground">{loadedJobContext.title}</p>
-                            <p className="truncate text-xs text-muted-foreground">{loadedJobContext.company} · job posting added</p>
+                            <p className="truncate text-xs text-muted-foreground">{loadedJobContext.company}</p>
                         </div>
-                        {loadedJobContext.score != null && loadedJobContext.score > 0 && (
-                            <span className="shrink-0 text-xs font-semibold text-brand">{loadedJobContext.score}% match</span>
-                        )}
                     </div>
                 )}
 
@@ -183,7 +173,6 @@ export default function InputPanel({
                     <div>
                         {!showPaste ? (
                             <ResumeDropzone
-                                variant="compact"
                                 onFileSelect={handleFileSelect}
                                 fileName={fileName}
                                 onRemoveFile={handleRemoveFile}
@@ -193,10 +182,7 @@ export default function InputPanel({
                         ) : (
                             <div className="ui-state-enter">
                                 <div className={styles.pasteHeader}>
-                                    <div>
-                                        <p className="text-base font-semibold text-foreground">Paste your resume</p>
-                                        <p className="mt-1 text-sm text-muted-foreground">Formatting can be rough. We only need the words.</p>
-                                    </div>
+                                    <p className="text-base font-semibold text-foreground">Paste your resume</p>
                                     <button
                                         type="button"
                                         data-testid="workspace-upload-mode"
@@ -213,7 +199,6 @@ export default function InputPanel({
                                     data-testid="workspace-resume-text"
                                     value={resumeText}
                                     onChange={(event) => onResumeTextChange(event.target.value)}
-                                    placeholder="Paste your resume here…"
                                     aria-describedby={isTooShort ? "workspace-resume-length" : undefined}
                                     aria-invalid={isTooShort || undefined}
                                     className={cn(styles.field, styles.resumeField)}
@@ -224,12 +209,6 @@ export default function InputPanel({
                                         <span>That&apos;s {charCount} characters. We need at least {MIN_RESUME_CHARS} to review it, so add the whole resume, including your experience.</span>
                                     </p>
                                 )}
-                                {isShortResume && (
-                                    <div className="mt-3 flex items-start gap-2 border-l-2 border-line px-3 py-1 text-xs text-muted-foreground">
-                                        <Info className="mt-0.5 size-4 shrink-0 text-muted-foreground" weight="bold" aria-hidden="true" />
-                                        This is a short resume ({charCount} characters), so the report may have less to work with.
-                                    </div>
-                                )}
                             </div>
                         )}
 
@@ -239,7 +218,7 @@ export default function InputPanel({
                                     <span className="min-w-0 flex-1">
                                         <span className="block text-sm font-semibold text-foreground">What we read</span>
                                         <span className="mt-0.5 block text-sm text-muted-foreground">
-                                            {wordCount} {wordCount === 1 ? "word" : "words"} from your file. Check that nothing is missing.
+                                            {wordCount} {wordCount === 1 ? "word" : "words"}
                                         </span>
                                     </span>
                                     <CaretDown data-affordance className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
@@ -282,7 +261,7 @@ export default function InputPanel({
                             <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="bold" aria-hidden="true" />
                             <span>
                                 {user
-                                    ? "OpenAI writes the report from your resume, and we don’t opt it into model training. Saved reports keep a short preview and the lines they quote."
+                                    ? "OpenAI writes the report from your resume, and we don’t opt it into model training."
                                     : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
                                 <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
                             </span>
@@ -300,7 +279,6 @@ export default function InputPanel({
                                 <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="bold" />
                                 <span className="min-w-0 flex-1">
                                     <span className="block text-base font-semibold text-foreground">Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></span>
-                                    <span className="mt-0.5 block text-sm text-muted-foreground">Add a posting to see how your experience fits.</span>
                                 </span>
                                 {jobDescription.length > 0 && <Check className="size-4 text-brand" weight="bold" />}
                                 <CaretDown className={cn("size-4 text-muted-foreground transition-transform", showJD && "rotate-180")} />
@@ -337,9 +315,11 @@ export default function InputPanel({
                             ) : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>
 
-                        <div className={styles.privacy}>
-                            <p className={styles.runHint}>{getRunHint()}</p>
-                        </div>
+                        {getRunHint() && (
+                            <div className={styles.privacy}>
+                                <p className={styles.runHint}>{getRunHint()}</p>
+                            </div>
+                        )}
                     </div>
                 </section>
 

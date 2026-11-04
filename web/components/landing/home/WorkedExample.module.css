@@ -15,18 +15,9 @@
     letter-spacing: var(--tracking-headline);
 }
 
-.deck {
-    max-width: 44ch;
-    margin-top: 1rem;
-    color: hsl(var(--muted-foreground));
-    text-wrap: pretty;
-    font: var(--type-lead);
-}
-
 /* The one-sentence read keeps its quote and the section's only highlighter. */
 .read { margin: 2.75rem 0 0; }
 .who { color: hsl(var(--muted-foreground)); font: var(--type-small); }
-.who b { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 .verdict {
     max-width: 27ch;
@@ -101,37 +92,17 @@
 }
 
 .asks {
-    margin-top: 1rem;
-    font: var(--type-body);
+    max-width: 60ch;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
 }
 
-.answers {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 1rem;
-}
-
-/* The report's questions, in the recruiter's pen, each over the blank only Jordan can fill. */
-.answer { display: flex; flex-direction: column; justify-content: space-between; }
-.answer dt { color: hsl(var(--pen)); font: var(--type-note); }
-
-.answer dd {
-    display: flex;
-    min-height: 2.75rem;
-    align-items: center;
-    margin-top: 0.375rem;
-    border: 1px dashed hsl(var(--control-line));
-    border-radius: 0.625rem;
-    padding: 0 0.75rem;
-    color: hsl(var(--blue-ink));
+/* The report's questions, in the recruiter's pen. Jordan is fictional, so nothing answers them. */
+.asks li {
+    margin-top: 0.5rem;
+    color: hsl(var(--pen));
     font: var(--type-note);
-}
-
-.aside {
-    margin-top: 0.875rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
 }
 
 .more { align-self: flex-end; margin-top: 1.25rem; font: var(--type-body); font-weight: var(--weight-control); }
@@ -164,7 +135,6 @@
         width: 1px;
         background: hsl(var(--line));
     }
-    .answers { grid-template-columns: minmax(0, 1fr); }
     .more { align-self: flex-start; }
     .turn { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 2.5rem; }
 }

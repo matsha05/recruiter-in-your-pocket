@@ -1,35 +1,19 @@
 export type AuthContext = "default" | "report" | "settings" | "paywall" | "history" | "extension" | "free_report";
 
-const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
-  default: {
-    headline: "Pick up where you left off",
-    subtext: "Sign in to open your saved reports and account settings."
-  },
-  report: {
-    headline: "Save this report",
-    subtext: "Sign in to keep this report with your account."
-  },
-  settings: {
-    headline: "Your account settings",
-    subtext: "Sign in to manage your profile, export your data, or delete your account."
-  },
-  paywall: {
-    headline: "Sign in to use your pass",
-    subtext: "Sign in to use your pass or save a new purchase to your account."
-  },
-  history: {
-    headline: "Your saved reports",
-    subtext: "Sign in to return to a report or compare your revisions."
-  },
-  extension: {
-    headline: "Sync saved jobs across devices",
-    subtext: "Sign in to access your saved jobs on other devices."
-  },
-  free_report: {
-    headline: "Get your free report",
-    subtext: "Each account gets one free report. Your resume stays right where you left it."
-  }
+export type AuthCopy = { headline: string };
+
+// One headline per reason to sign in. The form explains itself; nothing sits under the headline.
+const AUTH_COPY: Record<AuthContext, AuthCopy> = {
+  default: { headline: "Sign in" },
+  report: { headline: "Save this report" },
+  settings: { headline: "Your account settings" },
+  paywall: { headline: "Sign in to use your pass" },
+  history: { headline: "Your saved reports" },
+  extension: { headline: "Sync saved jobs across devices" },
+  free_report: { headline: "Get your free report" },
 };
+
+const SETTINGS_WITH_BILLING: AuthCopy = { headline: "Your account and billing" };
 
 export function getAuthCopy(
   context: AuthContext,
@@ -37,20 +21,9 @@ export function getAuthCopy(
     billingEnabled?: boolean;
     extensionEnabled?: boolean;
   } = {},
-) {
+): AuthCopy {
   if (context === "extension" && !extensionEnabled) return AUTH_COPY.default;
   if (context === "paywall" && !billingEnabled) return AUTH_COPY.default;
-  if (context === "settings" && billingEnabled) {
-    return {
-      headline: "Your account and billing",
-      subtext: "Sign in to find receipts, restore a purchase, or manage your account.",
-    };
-  }
-  if (context === "default" && extensionEnabled) {
-    return {
-      ...AUTH_COPY.default,
-      subtext: "Sign in to open your saved reports, jobs, and account settings.",
-    };
-  }
+  if (context === "settings" && billingEnabled) return SETTINGS_WITH_BILLING;
   return AUTH_COPY[context] || AUTH_COPY.default;
 }

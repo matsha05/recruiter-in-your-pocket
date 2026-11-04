@@ -17,7 +17,7 @@ const RESUME_TEXT = [
   "B.S. Business Administration, State University",
 ].join("\n");
 
-const STAGES = ["Sent", "Reading", "Writing the notes", "Checking every quote", "Anything else that costs an interview?"];
+const STAGES = ["Sent", "Reading", "Writing the notes", "Checking every quote", "Checking for more misses"];
 
 async function openWorkspaceAsGuest(page: Page) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -85,7 +85,7 @@ test("stopping a signed-out run points to the free report, not My reports", asyn
   await expect(toast).toHaveCount(1);
   await expect(toast).toContainText("your free report");
   await expect(toast).not.toContainText("My reports");
-  await expect(page.getByText("Your first report is free")).toBeVisible();
+  await expect(page.getByTestId("workspace-run-report")).toHaveText(/Get your free report/);
 });
 
 test("the five chips and the pen follow the stream's stages, never the clock", async ({ page }) => {

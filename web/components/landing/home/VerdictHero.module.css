@@ -33,8 +33,6 @@
 
 .actions { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.125rem; }
 
-.fine { margin: 1rem 0 0; color: hsl(var(--text-muted)); font: var(--type-small); }
-
 /* The resume and its note */
 
 .stage { position: relative; height: 37.5rem; }
@@ -143,7 +141,6 @@
     .inner { gap: 2rem; padding: calc(var(--marketing-header-height-mobile) + 2rem) var(--marketing-gutter) 2rem; }
     .deck { margin-top: 1.125rem; }
     .actions { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-top: 1.75rem; }
-    .fine { text-align: center; }
     .stage { height: 29rem; }
     /* On a phone the page runs on past the frame; fade it rather than cut a line in half. */
     .page { inset: 0 1.125rem 0 0; padding: 1.625rem 1.375rem; font-size: 0.8125rem; mask-image: linear-gradient(to bottom, black 78%, transparent); }

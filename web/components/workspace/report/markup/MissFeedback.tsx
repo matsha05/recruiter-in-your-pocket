@@ -36,7 +36,7 @@ export function MissFeedback({
       <div className={styles.feedback} role="status">
         <p className={styles.feedbackDone}>
           <Check className="size-4 shrink-0 text-brand" weight="bold" aria-hidden="true" />
-          Thanks. This is how we find out when we picked the wrong thing.
+          Thanks.
         </p>
       </div>
     );

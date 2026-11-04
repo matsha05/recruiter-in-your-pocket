@@ -7,9 +7,9 @@ import styles from "./WorkedExample.module.css";
 
 /**
  * Under the hero: the note the hero blurs, worked through on Jordan's fictional resume. The one-sentence
- * read, the line behind it, the reviewer's note, and the report's own questions with the answers only
- * Jordan can give. The revised line joins as a fourth step when the answer-to-line feature ships
- * (plan 2.2); until then nothing here promises a rewrite.
+ * read, the line behind it, the reviewer's note, and the report's own questions. Nothing here answers
+ * them: Jordan isn't real, and the report never invents a fact. The revised line joins as a fourth step
+ * when the answer-to-line feature ships (plan 2.2).
  */
 export function WorkedExample() {
     const { verdict, line, note, asks } = JORDAN_EXAMPLE;
@@ -18,10 +18,9 @@ export function WorkedExample() {
             <div className={styles.inner}>
                 <FictionalTag />
                 <h2 id="example-title" className={styles.title}>Here&rsquo;s the note Jordan never saw.</h2>
-                <p className={styles.deck}>It&rsquo;s about one line. The report finds it, then asks what only Jordan can answer.</p>
 
                 <figure className={styles.read}>
-                    <figcaption className={styles.who}>The read on <b>Jordan&rsquo;s</b> resume, in one sentence:</figcaption>
+                    <figcaption className={styles.who}>Jordan&rsquo;s report, in one sentence</figcaption>
                     <blockquote className={styles.verdict}>
                         &ldquo;{verdict.lead} <span className={styles.mark}>{verdict.miss}</span>&rdquo;
                     </blockquote>
@@ -38,17 +37,12 @@ export function WorkedExample() {
                         <p className={styles.note}>{note}</p>
                     </li>
                     <li className={`${styles.step} ${styles.wide}`}>
-                        <p className={styles.stepLabel}><span className={styles.number} aria-hidden="true">3</span>Jordan&rsquo;s answer</p>
-                        <p className={styles.asks}>The report asks:</p>
-                        <dl className={styles.answers}>
+                        <p className={styles.stepLabel}><span className={styles.number} aria-hidden="true">3</span>What the report asks</p>
+                        <ul className={styles.asks}>
                             {asks.map((ask) => (
-                                <div key={ask.question} className={styles.answer}>
-                                    <dt>{ask.question}</dt>
-                                    <dd>{ask.placeholder}</dd>
-                                </div>
+                                <li key={ask.question}>{ask.question}</li>
                             ))}
-                        </dl>
-                        <p className={styles.aside}>Blank on purpose. Jordan isn&rsquo;t real, and we don&rsquo;t make up answers for anyone.</p>
+                        </ul>
                     </li>
                 </ol>
 

@@ -31,7 +31,6 @@ export function VerdictHero() {
                             </Link>
                         </Button>
                     </div>
-                    <p className={styles.fine}>Your first report is free. No account or card.</p>
                 </div>
 
                 <div className={styles.stage} aria-hidden="true" data-testid="landing-verdict-art">

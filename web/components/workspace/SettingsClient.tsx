@@ -442,11 +442,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     : null
         : null;
     const showRestoreNudge = !loadingPasses && !passesError && passes.length === 0 && hasPaidMembership;
-    const tabDescriptions: Record<Tab, string> = {
-        account: "Update your name, download your account data, or delete your account.",
-        matching: "Choose the resume to compare with jobs you save through the extension.",
-        billing: "Check your remaining reports, restore a purchase, or find a receipt.",
-    };
 
     if (authLoading) {
         return (
@@ -455,7 +450,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     <AppPageIntro
                         anchor="settings-loading"
                         title="Opening your settings"
-                        description="Your account details will appear here shortly."
                     />
                     <div className="app-card mt-8 flex min-h-40 items-center justify-center gap-3 p-8 text-sm text-muted-foreground">
                         <Loader2 className="size-5 animate-spin motion-reduce:animate-none" aria-hidden="true" />
@@ -473,9 +467,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     <AppPageIntro
                         anchor="settings-page"
                         title="Settings"
-                        description={billingEnabled
-                            ? "Sign in to manage your account and billing."
-                            : "Sign in to manage your account."}
                     />
 
                     <section className="app-card p-6 text-left sm:p-8">
@@ -483,9 +474,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         <h2 className="mt-5 font-sans text-heading text-foreground">
                             Sign in to open settings
                         </h2>
-                        <p className="mt-3 max-w-lg text-base text-muted-foreground">
-                            Update your name, download your account data, or delete your account after signing in.
-                        </p>
                         <div className="mt-6 flex flex-wrap items-center gap-3">
                             <Button asChild>
                                 <Link href={`/auth?from=settings&next=${encodeURIComponent(pathname || `/settings/${activeTab}`)}`}>
@@ -512,17 +500,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <AppPageIntro
                     anchor="settings-page"
                     title="Settings"
-                    description={tabDescriptions[activeTab]}
                     meta={
                         <>
                             <span className="inline-flex items-center rounded-md bg-brand/5 px-3 py-1 text-sm font-medium text-brand">
                                 {accessLabel}
                             </span>
-                            {user?.email ? (
-                                <span className="inline-flex min-w-0 items-center break-all rounded-md bg-muted px-3 py-1 text-sm text-muted-foreground">
-                                    {user.email}
-                                </span>
-                            ) : null}
                         </>
                     }
                     actions={
@@ -590,7 +572,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 <input
                                                     id="settings-display-name"
                                                     type="text"
-                                                    placeholder="Your name"
                                                     {...profileForm.register("displayName")}
                                                     className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-card px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
                                                 />
@@ -620,7 +601,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
-                                        <p className="text-xs text-muted-foreground">Download a copy of your reports, jobs, profile, usage, and billing records.</p>
                                     </div>
                                     <Button type="button"
                                         onClick={handleExportData}
@@ -637,7 +617,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
                                     <div>
                                         <h3 className="mb-0.5 text-sm font-medium text-foreground">Delete account</h3>
-                                        <p className="text-xs text-muted-foreground">Permanently removes your account, saved reports, and usage data. This can&apos;t be undone.</p>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Button type="button"
@@ -656,15 +635,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                     {activeTab === "matching" && (
                         <div className="space-y-6 ui-state-enter">
-                            <div className="mb-2">
-                                <h2 className="text-lg font-medium text-foreground">Job matching</h2>
-                                <p className="text-sm text-muted-foreground mt-1">
-                                    Save a resume to compare with jobs in the Chrome extension.
-                                </p>
-                            </div>
-                            <div className="rounded-xl bg-brand/5 px-5 py-4 text-sm text-muted-foreground">
-                                The extension reads a supported job page when you choose to save the job. It compares the description with the resume you save here.
-                            </div>
+                            <h2 className="text-lg font-medium text-foreground">Job matching</h2>
                             <DefaultResumeSection />
                         </div>
                     )}
@@ -675,28 +646,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                     <div className="space-y-2">
                                         <h2 className="text-lg font-medium text-foreground">Your pass</h2>
-                                        <div className="flex items-center gap-3 flex-wrap">
-                                            <span className={cn(
-                                                "rounded-md border px-2.5 py-1 text-xs font-medium",
-                                                (hasPaidMembership || activePass) ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]" : "border-line bg-paper-muted text-muted-foreground"
-                                            )}>
-                                                {(hasPaidMembership || activePass) ? "Active" : "Free"}
-                                            </span>
-                                            <p className="text-lg font-medium text-foreground">{accessLabel}</p>
-                                        </div>
+                                        <p className="text-lg font-medium text-foreground">{accessLabel}</p>
                                         <div className="text-sm text-muted-foreground">
                                             Purchases are tied to <span className="block break-words font-medium text-foreground sm:inline">{user?.email}</span>
                                         </div>
-                                        {passTierLabel && (
-                                            <div className="text-xs text-muted-foreground space-y-1">
-                                                <div>
-                                                    <span className="text-foreground/70 font-medium">Pass:</span> {passTierLabel}
-                                                    {passUsesLabel && <span className="text-foreground/70"> · {passUsesLabel}</span>}
-                                                </div>
-                                                {passExpiryLabel && <div>{passExpiryLabel}</div>}
-                                                {passPurchasedDate && <div>Purchased on {passPurchasedDate}</div>}
-                                            </div>
-                                        )}
+                                        {passExpiryLabel && <p className="text-xs text-muted-foreground">{passExpiryLabel}</p>}
                                     </div>
 
                                     <div className="flex flex-wrap gap-2">
@@ -729,8 +683,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             </section>
 
                             {activePass || hasPaidMembership ? (
-                                <section className="flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
-                                    <p className="max-w-md text-sm text-muted-foreground">Need more than you have left? Another Job Search Pass adds five reports for 90 days.</p>
+                                <section className="flex flex-wrap items-center justify-end gap-4 border-y border-line py-5">
                                     <Button type="button"
                                         onClick={() => handleCheckout("30d")}
                                         disabled={isCheckoutLoading === "30d"}
@@ -742,22 +695,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </section>
                             ) : (
                                 <section>
-                                    <h2 className="text-lg font-medium text-foreground mb-1">Job Search Pass</h2>
-                                    <p className="text-sm text-muted-foreground mb-5">
-                                        Five more complete reports for 90 days. One payment, no automatic renewal.
-                                    </p>
+                                    <h2 className="mb-5 text-lg font-medium text-foreground">Job Search Pass</h2>
                                     <div className="grid gap-4">
                                         <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />
                                     </div>
                                 </section>
                             )}
-
-                            <section className="rounded-xl bg-muted p-5 text-sm text-muted-foreground">
-                                Need help with a payment or invoice? Email{" "}
-                                <Link href="mailto:support@recruiterinyourpocket.com" className="[overflow-wrap:anywhere] riyp-link-quiet">
-                                    support@recruiterinyourpocket.com
-                                </Link>
-                            </section>
 
                             <section>
                                 <h2 className="text-base font-medium text-foreground mb-3">Purchases</h2>
@@ -913,13 +856,6 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         </div>
                                     )}
                                 </div>
-                            </section>
-
-                            <section className="rounded-xl bg-muted p-5">
-                                <p className="text-xs text-muted-foreground flex items-start gap-2">
-                                    <ShieldAlert className="size-4 mt-0.5 shrink-0" />
-                                    Job Search Passes don&apos;t renew. Receipts stay available here. If you paid with a different email, sign in with that email and choose Restore access.
-                                </p>
                             </section>
                         </div>
                     )}

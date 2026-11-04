@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowsClockwise, ArrowUUpLeft, Info, LockKey, Receipt, ShieldCheck, Stack } from "@phosphor-icons/react";
+import { ArrowRight, ArrowsClockwise, ArrowUUpLeft, Info, LockKey, ShieldCheck, Stack } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
 import { PassExamples } from "@/components/marketing/PassExamples";
@@ -14,31 +14,27 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { FREE_REPORT_ENTITLEMENT, JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { getCheckoutRestoreHref, normalizeCheckoutReturnTo } from "@/lib/billing/checkoutReturn";
 
+// The terms a buyer needs before paying: who holds the card, when it ends, what stays after, and refunds.
 const billingPoints: { icon: typeof ShieldCheck; title: string; body: React.ReactNode }[] = [
     {
         icon: ShieldCheck,
         title: "Stripe checkout",
-        body: "Stripe handles your card details. We never see or store the card number.",
+        body: "Stripe handles your card. We never see or store the number.",
     },
     {
         icon: ArrowsClockwise,
         title: "No renewal",
-        body: "The Job Search Pass is one payment. It ends after 90 days and never auto-renews.",
-    },
-    {
-        icon: Receipt,
-        title: "Immediate access",
-        body: "Your pass starts after checkout. If you need to restore it, sign in with the email you used to pay.",
+        body: "One payment. The pass ends after 90 days and never auto-renews.",
     },
     {
         icon: Stack,
         title: "Used all five",
-        body: "Your saved reports stay open, and their PDFs still download: that comes with signing in, not with the pass. Another report needs a new pass.",
+        body: "Your saved reports and their PDFs stay open. Another report needs a new pass.",
     },
     {
         icon: ArrowUUpLeft,
         title: "Refunds",
-        body: <>Haven&rsquo;t used a paid report yet? You can get a full refund within 14 days. Write to support from your checkout email. <Link href="/terms" className="riyp-link">Terms</Link> has the details.</>,
+        body: <>Haven&rsquo;t used a paid report yet? Full refund within 14 days: write to support from your checkout email. <Link href="/terms" className="riyp-link">Terms</Link></>,
     },
 ];
 
@@ -122,26 +118,25 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
         }
     }
 
+    const heading = (
+        <h1 id="pricing-page-title" className="max-w-form text-balance font-display text-headline">
+            Your first report is free.<br className="sm:hidden" /> Five more are $29.
+        </h1>
+    );
+
     if (!billingEnabled) {
         return (
             <>
                 <div data-visual-anchor="pricing-page" className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                     <section className="px-6 pb-14 md:px-8">
                         <div className="mx-auto max-w-marketing">
-                            <div className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end lg:gap-14">
-                                <div>
-                                                                        <h1 className="max-w-form text-balance font-display text-headline">
-                                        Your first report is free.<br className="sm:hidden" /> Five more are $29.
-                                    </h1>
-                                    <PricingHeroActions
-                                        billingEnabled={false}
-                                        checkoutLoading={false}
-                                        onCheckout={handleCheckout}
-                                    />
-                                </div>
-                                <p className="max-w-lg text-pretty text-lg text-muted-foreground lg:mb-2">
-                                    Passes are paused for now. Your first report is still free.
-                                </p>
+                            <div className="border-b border-line pb-10">
+                                {heading}
+                                <PricingHeroActions
+                                    billingEnabled={false}
+                                    checkoutLoading={false}
+                                    onCheckout={handleCheckout}
+                                />
                             </div>
 
                             {returnTo ? (
@@ -152,10 +147,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 <div className="rounded-2xl border border-border bg-card p-6 md:rounded-3xl md:p-8">
                                     <p className="text-base font-semibold text-foreground">First report</p>
                                     <p className="mt-5 font-display text-headline">$0</p>
-                                    <p className="mt-2 text-base text-muted-foreground">One complete report</p>
-                                    <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-                                        Your Verdict, where your resume stands, and up to three Critical Misses, with the lines behind them and what to change first. {FREE_REPORT_ENTITLEMENT.promise}
-                                    </p>
+                                    <p className="mt-3 max-w-2xl text-lg text-muted-foreground">Your Verdict, where your resume stands, and up to three Critical Misses. {FREE_REPORT_ENTITLEMENT.promise}</p>
                                     <p className="mt-3 text-sm text-muted-foreground">{FREE_REPORT_ENTITLEMENT.boundary}</p>
                                     <Button asChild className="mt-10 w-full">
                                         <Link href="/workspace">
@@ -168,9 +160,6 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                     <p className="text-base font-semibold text-foreground">Job Search Pass</p>
                                     <p className="mt-5 font-display text-headline">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">5 more reports, good for 90 days</p>
-                                    <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-                                        Check each revision, or read your resume against each job you apply for.
-                                    </p>
                                     <p role="status" className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-border bg-muted/35 px-5 py-3 text-center text-sm font-medium text-muted-foreground">
                                         Passes are paused for now
                                     </p>
@@ -189,23 +178,13 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
             <div data-visual-anchor="pricing-page" className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                 <section className="px-6 pb-16 md:px-8 md:pb-24">
                     <div className="mx-auto max-w-marketing">
-                        <div className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end lg:gap-14">
-                            <div>
-                                                                <h1
-                                    id="pricing-page-title"
-                                    className="max-w-form text-balance font-display text-headline"
-                                >
-                                    Your first report is free.<br className="sm:hidden" /> Five more are $29.
-                                </h1>
-                                <PricingHeroActions
-                                    billingEnabled
-                                    checkoutLoading={loadingTier === "30d"}
-                                    onCheckout={handleCheckout}
-                                />
-                            </div>
-                            <p className="max-w-xl text-pretty text-prose text-muted-foreground">
-                                Use the pass to check a revision, or to read your resume against a job you actually want.
-                            </p>
+                        <div className="border-b border-line pb-10">
+                            {heading}
+                            <PricingHeroActions
+                                billingEnabled
+                                checkoutLoading={loadingTier === "30d"}
+                                onCheckout={handleCheckout}
+                            />
                         </div>
 
                         {paymentCancelled ? (
@@ -220,17 +199,13 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                                 <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
                                 <p>
                                     <span className="font-semibold">Your pass has {passReportsLeft} {passReportsLeft === 1 ? "report" : "reports"} left{passDaysLeft > 0 ? `, good for ${passDaysLeft} more ${passDaysLeft === 1 ? "day" : "days"}` : ""}.</span>{" "}
-                                    Another pass adds five more.{" "}
                                     <Link href="/workspace?new=1" className="font-semibold riyp-link">New report</Link>
                                 </p>
                             </div>
                         ) : null}
 
                         {returnTo ? (
-                            <p className="mt-6 text-sm text-muted-foreground">
-                                After checkout, you can return to your saved report and compare a revision.{" "}
-                                <Link href={returnTo} className="font-semibold riyp-link">Back to my comparison</Link>
-                            </p>
+                            <Link href={returnTo} className="mt-6 inline-flex text-sm font-semibold riyp-link">Back to my comparison</Link>
                         ) : null}
 
                         <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -261,14 +236,9 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
 
                 <section className="border-y border-line bg-muted/45 px-6 py-14 md:px-8 md:py-20">
                     <div className="mx-auto grid max-w-marketing gap-10 lg:grid-cols-[0.65fr_1.35fr]">
-                        <div>
-                                                        <h2 className="max-w-sm font-display text-headline">
-                                What happens after checkout.
-                            </h2>
-                            <p className="mt-4 max-w-sm text-lg text-muted-foreground">
-                                Your pass starts right away and lasts 90 days. We never charge your card again.
-                            </p>
-                        </div>
+                        <h2 className="max-w-sm font-display text-headline">
+                            What happens after checkout.
+                        </h2>
 
                         <div className="divide-y divide-line border-y border-line">
                             {billingPoints.map((item) => (
@@ -286,14 +256,9 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
 
                 <section className="px-6 py-12 md:px-8 md:py-16">
                     <div className="mx-auto flex max-w-marketing flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                            <h2 className="font-display text-heading">Already paid?</h2>
-                            <p className="mt-2 text-lg text-muted-foreground">Use the email from checkout to find your pass and receipts.</p>
-                        </div>
+                        <h2 className="font-display text-heading">Already paid?</h2>
                         <Button asChild variant="secondary" className="self-start">
-                            <Link
-                                href={getCheckoutRestoreHref(returnTo)}
-                            >
+                            <Link href={getCheckoutRestoreHref(returnTo)}>
                                 Restore access
                                 <ArrowRight className="size-4" weight="bold" />
                             </Link>
