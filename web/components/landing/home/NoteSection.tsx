@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { FictionalTag } from "@/components/marketing/FictionalTag";
+import { Clipping } from "@/components/materials/Clipping";
+import rhythm from "@/components/materials/Rhythm.module.css";
 import { JORDAN_EXAMPLE } from "@/lib/marketing/jordan-example";
-import { Clipping } from "./Clipping";
-import home from "./HomePage.module.css";
 import styles from "./NoteSection.module.css";
 
 /**
@@ -15,15 +15,15 @@ import styles from "./NoteSection.module.css";
 export function NoteSection() {
     const { line, note } = JORDAN_EXAMPLE;
     return (
-        <section id="how-it-works" className={home.section} aria-labelledby="example-title" data-testid="landing-worked-example">
-            <h2 id="example-title" className={home.title}>Here&rsquo;s the note Jordan never saw.</h2>
+        <section id="how-it-works" className={rhythm.section} aria-labelledby="example-title" data-testid="landing-worked-example">
+            <h2 id="example-title" className={rhythm.title}>Here&rsquo;s the note Jordan never saw.</h2>
             <Clipping
                 line={line}
                 note={note}
                 above="Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue"
                 below="Ran quarterly business reviews with customer leadership teams"
             />
-            <div className={home.link}>
+            <div className={rhythm.link}>
                 <Link href="/sample-report" className="riyp-link" data-analytics-cta="example_sample">See Jordan&rsquo;s full report <ArrowRight aria-hidden="true" /></Link>
                 <FictionalTag className={styles.tag} />
             </div>

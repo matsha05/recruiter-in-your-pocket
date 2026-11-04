@@ -3,36 +3,10 @@
 // The figure kit draws research figures in the product's own hand: paper sheets, a recruiter's green-pen
 // notes, and one yellow highlighter on the thing that matters. Data marks stay quiet; the note and the
 // highlight carry the point. See docs/design-system.md, "Figures".
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** True once the element has scrolled into view (always true when motion is reduced). */
-export function useSeen<T extends Element>(threshold = 0.35) {
-    const ref = useRef<T>(null);
-    const reduced = useReducedMotion();
-    const [seen, setSeen] = useState(false);
-    useEffect(() => {
-        if (reduced) {
-            setSeen(true);
-            return;
-        }
-        const node = ref.current;
-        if (!node || typeof IntersectionObserver === "undefined") {
-            setSeen(true);
-            return;
-        }
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setSeen(true);
-                observer.disconnect();
-            }
-        }, { threshold });
-        observer.observe(node);
-        return () => observer.disconnect();
-    }, [reduced, threshold]);
-    return { ref, seen };
-}
+export { useSeen } from "@/hooks/use-seen";
 
 /** The highlighter. Sweeps in once, the way the recruiter marks the Critical Miss. */
 export function Mark({ children, seen = true, className }: { children: ReactNode; seen?: boolean; className?: string }) {

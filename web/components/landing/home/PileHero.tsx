@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { Pile } from "@/components/materials/Pile";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import styles from "./PileHero.module.css";
 
 /**
@@ -15,7 +15,7 @@ import styles from "./PileHero.module.css";
  * whole number. The arithmetic and the sources are in docs/design/2026-11-homepage-research.md.
  */
 const PILE = 244;
-const REPLIED = new Set([3, 17, 29, 41, 58, 66, 83, 97, 104, 121, 139, 150, 168, 177, 193, 206, 222, 238]);
+const REPLIED = [3, 17, 29, 41, 58, 66, 83, 97, 104, 121, 139, 150, 168, 177, 193, 206, 222, 238];
 
 /* 244 as three flaps: each strip is the digits 0 to 9 repeated, and a flap ticks down `ticks` places. */
 const STRIP = "0123456789012345678901234".split("");
@@ -53,11 +53,15 @@ export function PileHero() {
                         </Button>
                     </div>
                 </div>
-                <div className={styles.field} role="img" aria-label="244 small sheets of paper, eighteen of them green" data-testid="landing-pile">
-                    {Array.from({ length: PILE }, (_, index) => (
-                        <span key={index} className={cn(styles.sheet, REPLIED.has(index) && styles.replied)} style={{ "--i": index } as React.CSSProperties} />
-                    ))}
-                </div>
+                <Pile
+                    count={PILE}
+                    marked={REPLIED}
+                    motion="arrive"
+                    replyAt="2.4s"
+                    label="244 small sheets of paper, eighteen of them green"
+                    testId="landing-pile"
+                    className={styles.field}
+                />
                 <p className={styles.source}>Greenhouse, The Hire Standard, March 2026: 244 applications per role in 2025, 7.6% past the first screen.</p>
             </div>
         </section>

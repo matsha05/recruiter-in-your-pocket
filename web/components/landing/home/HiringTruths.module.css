@@ -1,18 +1,7 @@
-/* What we look for: three open rows, the cliché crossed out in the recruiter's pen. */
+/* What we look for: three open rows, the cliché crossed out in the recruiter's pen. The section and its title
+   come from the site rhythm (components/materials/Rhythm.module.css). */
 
-.truths {
-    max-width: var(--marketing-content);
-    margin: var(--home-section) auto 0;
-    border-top: 1px solid hsl(var(--line));
-    padding: var(--home-section) var(--marketing-gutter) 0;
-    scroll-margin-top: 4.5rem;
-}
-
-.title {
-    margin: 0 0 2.5rem;
-    font: var(--type-headline);
-    letter-spacing: var(--tracking-headline);
-}
+.title { max-width: none; }
 
 .list { margin: 0; }
 

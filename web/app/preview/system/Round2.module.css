@@ -1,0 +1,54 @@
+/* Round 2 mocks: methodology, a research opening, help, sign-in. */
+
+/* Methodology */
+.verdict { max-width: 34rem; }
+.verdictLabel { display: block; margin-bottom: 0.75rem; color: hsl(var(--text-muted)); font: var(--type-label); letter-spacing: 0.1em; text-transform: uppercase; }
+.verdictText { margin: 0; font: var(--type-verdict-lead); text-wrap: pretty; }
+.band { max-width: 34rem; }
+.cant { margin: 0; padding: 0; list-style: none; max-width: 48ch; display: grid; gap: 0.5rem; font: var(--type-lead); }
+.cant li { padding-left: 1.5rem; text-indent: -1.5rem; }
+.cant li::before { content: "—"; display: inline-block; width: 1.5rem; text-indent: 0; color: hsl(var(--text-muted)); }
+.method { max-width: 52ch; margin: 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.sources { margin: 1.5rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-small); }
+.sources li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); }
+.tag { margin: 0; }
+
+/* Research opening */
+.question { max-width: 20ch; margin: 0; font: var(--type-headline); letter-spacing: var(--tracking-headline); text-wrap: balance; }
+.answerGrid { display: grid; grid-template-columns: minmax(0, 40rem) minmax(0, 17rem); gap: 4rem; align-items: start; margin-top: 2.5rem; border-top: 1px solid hsl(var(--text-strong)); padding-top: 1.75rem; }
+.answer { margin: 0; color: hsl(var(--pen)); font: var(--type-verdict); text-wrap: pretty; }
+.source { margin: 1.25rem 0 0; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-small); }
+.bridgeOld { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; max-width: 40rem; padding: 1.5rem; border: 1px solid hsl(var(--line)); border-radius: var(--radius-sheet); background: hsl(var(--card)); }
+.bridgeOld p { margin: 0; max-width: 44ch; font: var(--type-body); color: hsl(var(--text-muted)); }
+.bridgeOld strong { display: block; margin-bottom: 0.25rem; color: hsl(var(--text-strong)); font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.bridgeNew { display: grid; grid-template-columns: 2.5rem minmax(0, 36rem); gap: 0.75rem 1rem; align-items: start; }
+.bridgeNew p { margin: 0; }
+.bridgeNew a { grid-column: 2; font: var(--type-body); font-weight: var(--weight-control); }
+.prose { max-width: 52ch; margin: 0; font: var(--type-prose); color: hsl(var(--text-muted)); }
+
+/* Help */
+.group { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem 4rem; align-items: start; }
+.group h2 { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.qa { display: grid; gap: 2rem; }
+.qa h3 { margin: 0 0 0.5rem; font: var(--type-body); font-weight: var(--weight-control); }
+.qa p { margin: 0; max-width: 60ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.contact { max-width: 52ch; }
+.contact p { margin: 0.75rem 0 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.mail { font: var(--type-lead); font-weight: var(--weight-control); }
+
+/* Sign-in */
+.auth { max-width: 27.5rem; margin: 0 auto; display: grid; gap: 1.5rem; }
+.authTitle { margin: 0; font: var(--type-title); letter-spacing: var(--tracking-title); }
+.authLine { margin: -0.75rem 0 0; color: hsl(var(--text-muted)); font: var(--type-body); }
+.field { display: grid; gap: 0.75rem; }
+.input { height: 3rem; padding: 0 1rem; border: 1px solid hsl(var(--control-line)); border-radius: 10px; background: hsl(var(--card)); font: var(--type-body); color: hsl(var(--text-strong)); }
+.authQuiet { margin: 0; color: hsl(var(--text-muted)); font: var(--type-small); }
+.bare { padding: 6rem var(--marketing-gutter) 4rem; }
+.wordmark { height: 1.25rem; width: auto; margin-bottom: 2rem; color: hsl(var(--text-strong)); }
+
+@media (max-width: 800px) {
+    .answerGrid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .group { grid-template-columns: 1fr; gap: 1rem; }
+    .bridgeNew { grid-template-columns: 1fr; }
+    .bridgeNew a { grid-column: 1; }
+}

@@ -1,0 +1,78 @@
+/* The green pen: it underlines at reading pace, circles once, points with an arrow, and writes in the margin.
+   The marker lays two rough passes under a line. Every mark is one gesture (--duration-gesture), made once,
+   on scroll-in, and is simply there under reduced motion. */
+
+/* Underline: a 2px line drawn left to right at the pace of the sentence above it. */
+.underline { position: relative; display: block; height: 2px; margin: 1.75rem 0 0; background: hsl(var(--text-strong) / 0.07); overflow: hidden; }
+.underlineInk { position: absolute; inset: 0; background: hsl(var(--pen)); transform: scaleX(0); transform-origin: left center; }
+.drawn .underlineInk { animation: draw var(--pen-duration, 5s) linear var(--pen-delay) both; }
+@keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Circle: one loop, one pass, started at the left and closed just past its own start the way a quick hand does. */
+.circled { position: relative; display: inline-block; padding: 0.25rem 0.5rem; }
+.circle { position: absolute; inset: -0.6rem -1rem; width: calc(100% + 2rem); height: calc(100% + 1.2rem); overflow: visible; pointer-events: none; }
+.circle path {
+    fill: none;
+    stroke: hsl(var(--pen));
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+    transition: stroke-dashoffset var(--duration-gesture) var(--ease-pen) var(--pen-delay);
+}
+.reject .circle path { stroke: hsl(var(--reject-ink)); }
+.drawn .circle path { stroke-dashoffset: 0; }
+
+/* Arrow: from the margin note back to the line it is about. */
+.arrow { width: 2.5rem; height: 0.75rem; overflow: visible; }
+.arrow path {
+    fill: none;
+    stroke: hsl(var(--pen));
+    stroke-width: 1.35;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    transition: stroke-dashoffset var(--duration-slow) var(--ease) var(--pen-delay);
+}
+.drawn .arrow path, .drawn.arrow path { stroke-dashoffset: 0; }
+
+/* Margin note: the recruiter's hand, Literata italic in pen, never more than a sentence or two. */
+.note {
+    margin: 0;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+/* Marker: two rough passes laid under the ink of a line (the parent is positioned). */
+.marker {
+    position: absolute;
+    top: -0.2rem;
+    left: -0.45rem;
+    width: calc(100% + 0.9rem);
+    height: 1.9rem;
+    z-index: 0;
+    overflow: visible;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+.pass, .passTwo {
+    fill: none;
+    stroke: hsl(var(--marker));
+    stroke-linecap: butt;
+    stroke-dasharray: 430;
+    stroke-dashoffset: 430;
+    transition: stroke-dashoffset var(--duration-gesture) var(--ease-marker);
+}
+.pass { stroke-width: 16; opacity: 0.55; }
+.passTwo { stroke-width: 11; opacity: 0.45; transition-delay: 90ms; }
+.drawn .pass, .drawn .passTwo { stroke-dashoffset: 0; }
+.dim .pass, .dim .passTwo { opacity: 0.22; }
+
+@media (prefers-reduced-motion: reduce) {
+    .drawn .underlineInk { animation: none; transform: none; }
+    .circle path, .arrow path, .pass, .passTwo { transition: none; }
+}

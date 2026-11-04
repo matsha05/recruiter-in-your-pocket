@@ -43,7 +43,8 @@ Runtime sources:
 - evidence and diagram grammar: `web/components/shared/diagrams/`
 - living reference: `/internal/system-lab`
 - automated contract: `web/scripts/qa/design-system-guardrails.mjs`
-- homepage story: `web/components/landing/home/VerdictHero.tsx` (with `NoteReveal.tsx`), `WorkedExample.tsx` (the How it works target), `SilenceSection.tsx`, `HiringTruths.tsx`, and `ProgressBeat.tsx`
+- the materials and the rhythm (Nov 4, 2026): `web/components/materials/` (`Paper`, `Pile`, `Pen`, `Clipping`, `SignedNote`, `Rhythm.module.css`) and `web/hooks/use-seen.ts`; see §10, "The site system"
+- homepage story: `web/components/landing/home/` (`PileHero`, `ReadBeat`, `NoteSection`, `HiringTruths`, `RecheckSection`, `FounderNote`, `CloseField`), composed in `LandingMineral.tsx`
 
 Rules:
 
@@ -81,7 +82,7 @@ Every piece of text on the site uses one of twelve roles (eleven on Nov 1, 2026,
 
 | Role | Phone (<768px) | 768px and up | Weight and family | Use |
 | --- | --- | --- | --- | --- |
-| `display` | 44 / 44 | 64 / 64; 72 / 72 from 1280px | 800 Schibsted, -0.045em | marketing tier: the homepage headline only |
+| `display` | 36 / 38 | 60 / 62 | 600 Schibsted (`--weight-marketing`), -0.035em | marketing tier: the homepage's read, "By the time you finish reading this sentence…" (Nov 4, 2026). The pile's h1 is the `headline` size at the same 600 weight. The craft sites measured for the homepage set headlines at 500 to 600, never 800, so the marketing tier is the one place the weight drops |
 | `headline` | 36 / 40 | 48 / 52 | 800 Schibsted, -0.04em | content tier: page titles on research, guides, pricing, legal, errors; marketing section titles |
 | `title` | 28 / 34 | 32 / 38 | 800 Schibsted, -0.03em | app tier: workspace, report, account, and auth page titles; article h2; big numbers |
 | `heading` | 24 / 30 | 24 / 30 | 600 Schibsted, -0.02em | section and card headings, report section titles |
@@ -96,8 +97,8 @@ Every piece of text on the site uses one of twelve roles (eleven on Nov 1, 2026,
 
 Rules:
 
-- Three headline tiers, so hierarchy follows importance: marketing 72 (the homepage), content 48, app 32. Nothing outranks the homepage headline; the 404 and the research index use the content tier.
-- Three weights: 800 for display, headline, and title; 600 for headings, controls, labels, and bold text (`strong`, `b`, and `th` are 600, not the browser's 700); 400 for reading. Tailwind's `font-medium` and `font-semibold` both mean 600, and `font-bold` means 800.
+- Three headline tiers, so hierarchy follows importance: marketing 60 at 600 (the homepage), content 48 at 800, app 32 at 800. Nothing outranks the homepage's read; the 404 and the research index use the content tier.
+- Three weights: 800 for headline and title; 600 for display (the marketing tier), headings, controls, labels, and bold text (`strong`, `b`, and `th` are 600, not the browser's 700); 400 for reading. Tailwind's `font-medium` and `font-semibold` both mean 600, and `font-bold` means 800.
 - The one marketing quote (the homepage verdict in One Sentence) uses the `headline` size in Literata 400, with the leading opened to 44 / 58 (`--type-headline-serif-leading`) so the highlighter and Literata's ascenders don't collide.
 - Uppercase stays reserved for the Verdict and Critical Miss labels (`label` with 0.1em tracking).
 - Illustrations that draw a document, such as the hero resume, may use the document's own type; they are hidden from assistive technology. The stacked wordmark is exempt until the D6 logotype replaces it.
@@ -136,6 +137,10 @@ PDF, Open Graph, icons, and email carry the same brand roles within each rendere
 | Warning | ink on inset | `--warning` / `--warning-foreground` are the text ink and `--warning-surface` the inset (Nov 2, 2026): an operational notice (a slow run, a failed save, a purchase that needs a look) is ink on an inset sheet, never the Critical Miss yellow |
 | Divider | `#dfe0dc` | `--line`; nonessential grouping rules |
 | Control boundary | `#808983` | `--control-line` / `--input`; identifiable input boundaries |
+| Paper sheet | `#fefefc` | `--paper-sheet`; the material of a drawn document: a sheet in the pile, a strip, a clipping (Nov 4, 2026). Its edge is `--paper-edge` (ink at 20%, a 0.5px hairline) and its lift `--paper-shadow` |
+| Document ink | `#1b1b1b` / `#6f6f6c` | `--document-ink` / `--document-ghost`; text inside a drawn document, in the document's own face (`--font-document`, Georgia). The ghost is the passing grey of a clipping's neighbours; it reads at 4.5:1 and fades by mask, never by opacity |
+| Marker | `--highlight` | `--marker`; the same yellow, named for the hand that holds it on the materials |
+| Reject ink | `#c52a22` | `--reject-ink`; the one red mark on the site: the recruiter's decision, Reject circled on the homepage. Spent once; never used again |
 
 Store HSL components in tokens consumed by `hsl(var(...))`; never put a hex value inside those slots. Older names (`--brand`, `--surface-sky`, `--cyan-bright`, `--teal-bright`, `--accent-apricot`, `--assessment-*`, `--premium`, `--gold`, `--amber`) are aliases into this palette so existing utilities follow it. `--citron` / `--accent-butter` remain compatibility tokens only.
 
@@ -297,9 +302,31 @@ Don't restyle a Button through `className` (height, padding, size, weight, fill,
 
 ## 10. Surface contracts
 
+### The site system (November 4, 2026)
+
+The homepage's rules are the site's (Matt, Nov 4, 2026; promoted from the homepage the same day, with the research behind the reach of the materials in `docs/design/2026-11-homepage-research.md`). Every public page is made of the same three materials and one red mark, on the same rhythm, with the same one button name. The shared pieces live in `web/components/materials/`.
+
+**The materials.** Paper, the marker and the green pen, plus one red mark.
+
+- **Paper** (`Paper`): off-white (`--paper-sheet`), a 0.5px hairline edge (`--paper-edge`), a soft lift (`--paper-shadow`), square corners. Every sheet and strip declares one box-shadow, the edge plus the lift, as two custom properties. Inside a drawn document the document's own face is allowed (`--font-document`, `--document-ink`, `--document-ghost`); a strip is one line cut from a document, a page is a whole sheet. Paper is only ever a real document or a real line from one. It is never a card.
+- **The pile** (`Pile`): one sheet per thing counted, 8.5 by 11, in rows; the last row is short because the number is real. It arrives once as a hero (`motion="arrive"`, the marked sheets turning green after the pile is in), stands still elsewhere, goes pale at a distance, and can outline one sheet when seen. At `lg` and `xl` a sheet is lifted and shows the ghost of a document. The count is always a real, sourced number, and the label says it in words.
+- **The marker** (`MarkerStroke`): two rough passes under the one line a recruiter would miss. One per figure, never two.
+- **The pen** (`PenUnderline`, `PenCircle`, `PenArrow`, `PenNote`): the recruiter's hand. It underlines at reading pace, circles once, points from a margin note back to the line, and writes in Literata italic in `--pen`. The pen's words are the recruiter's actual words, never ours.
+- **The clipping** (`Clipping`): the three materials assembled into the product's output: one line on its strip, the neighbours fading off the cut edges by mask, the marker across the line, the note in the margin with the arrow. Every clipping is a real line from a real resume, or a labelled fictional one (`FictionalTag`).
+- **The signed note** (`SignedNote`): the recruiter in the first person, in the pen, signed with the wordmark rather than a name. It appears on the homepage beside the founder's drawing and once more on How the report works, where the disclosure lives. Nowhere else (Matt, Nov 4, 2026).
+- **The one red mark** (`--reject-ink`): the red pen circles Reject on the homepage. It is the recruiter's decision, not decoration. It is spent; no other surface uses red for anything but errors and destructive actions (§4).
+
+**Where the materials go** (Matt, Nov 4, 2026, on the recommendation "only where literally true"; the twelve craft sites measured that day carry a hero's device onto persuasion pages as a cheaper token of the same material and keep docs, help and sign-in plain). A sheet appears where there is a real document or report, a clipping where there is a real line, the pen where the recruiter speaks. So: the homepage and the report carry the composed objects; pricing shows reports as sheets (one free, five on the pass); How the report works shows the Verdict, the band and the Critical Miss as marks on Jordan's paper; research clips the line a study is about and keeps the pen for figures and margin notes; help and sign-in get the rhythm, the type and the button name, and no props.
+
+**The rhythm** (`Rhythm.module.css`): one column (`--marketing-content`, 68rem), one hairline and one beat (`--beat`, 7rem) between sections; pages compose `.page`, `.opening`, `.section`, `.title`, `.deck`, `.link` and `.close` from it. A section is a headline, at most one short paragraph, one object and one link, about 44 words (the restrained pages measured on Nov 4 run a median of 44 words a section); a quote never sits inside a feature section; no page captions its object. A page runs four to six sections; the report is an instrument, so there the density rule bends.
+
+**Motion.** Every mark is one gesture, made once, on scroll-in (`useSeen`, `web/hooks/use-seen.ts`), and reduced motion shows the finished state. A gesture is `--duration-gesture` (560ms) on `--ease-pen` or `--ease-marker`; what follows a mark waits `--delay-gesture` (700ms). Nothing loops; nothing moves on hover but the interaction grammar in §11. Reading, errors and recovering a report never depend on motion.
+
+**The button.** `Get your free report` (`copy-system.md` §1), the shared Button, two to four times a page (header, hero, close), never twice in one section; a section's other action is a text link.
+
 ### Homepage
 
-Rebuilt on November 4, 2026 from first principles (Matt; research, sources and the record of what was tried in `docs/design/2026-11-homepage-research.md`). No product is shown in the hero. The page is made of three materials, paper, the marker and the green pen, plus one red mark, and runs seven beats in one 68rem column with one hairline and one `--home-section` between them (`components/landing/home/HomePage.module.css`; sections compose `.section` and `.title` from it).
+Rebuilt on November 4, 2026 from first principles (Matt; research, sources and the record of what was tried in `docs/design/2026-11-homepage-research.md`). No product is shown in the hero. The page is made of the site's three materials, paper, the marker and the green pen, plus the one red mark, and runs seven beats on the site rhythm (`components/materials/Rhythm.module.css`; sections compose `.section` and `.title` from it).
 
 1. **The pile** (`PileHero`). The h1 “244 people applied for the job you wanted.”, then “Eighteen got called back. The other 226 have no idea why the recruiter passed.”, the one primary action (“Get your free report”, `copy-system.md` §1) and the quiet route (“See Jordan’s report”). Beside it, 244 sheets of paper (`#fefefc`, 8.5 by 11, a 0.5px hairline edge), eighteen of them green: the number arrives as three ticking digit flaps in step with the sheets, all on CSS from first paint. The source line cites Greenhouse, *The Hire Standard*, March 2026 (244 applications per role, 7.6% stage-one progression; 18 of 244 is the nearest whole number). On phones the pile comes first, then the headline and the button, all inside the first screen.
 2. **The read** (`ReadBeat`). “By the time you finish reading this sentence, a recruiter has finished reading your resume.” The green pen draws a line under the sentence for five seconds, the width of its widest line, starting when a third of the section is in view. Then the recruiter's two choices appear where the pen stopped, “Move forward” and “Reject”, and the pen circles Reject in red (`--reject-ink`, the one red mark on the site: the decision, nothing else; the other choice falls back to `--text-muted`, which still reads at 4.5:1). Then “Nobody tells you why. We do, before you apply for the next one.” and the button.
@@ -309,7 +336,7 @@ Rebuilt on November 4, 2026 from first principles (Matt; research, sources and t
 6. **The founder note** (`FounderNote`, `#about`). A pen drawing of the founder (`public/founder-portrait.webp`, green ink, no photograph) beside a note in the recruiter's hand, signed with the wordmark, then “How the report works”. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note.
 7. **The close** (`CloseField`). The pile returns, pale, and one sheet takes an ink outline when the section is in view: yours. “Before you apply for the next one.” and the button. No dark band.
 
-Rules the page sets: a section is a headline, at most one short paragraph, one object and one link (the restrained pages measured on Nov 4 run a median of 44 words a section); a quote never sits inside a feature section; every motion is one gesture, made once, on scroll-in, and reduced motion shows the finished state; paper has a hairline edge and a soft shadow; the primary button appears four times (header, pile, read, close) and never twice in one beat.
+The rules the page set are now the site's ("The site system", above). On this page the primary button appears four times (header, pile, read, close) and never twice in one beat.
 
 ### Workspace and report
 
@@ -334,6 +361,7 @@ Rules the page sets: a section is a headline, at most one short paragraph, one o
 
 ### Pricing, auth, trust, and legal
 
+- **Pricing** (Nov 4, 2026; `components/marketing/PricingPageClient.tsx`): the reports as sheets. One `Pile` of one lifted sheet, outlined, for the free report, and one of five for the Job Search Pass, each with its name, its price, one line from `lib/billing/pricing.ts`, and its one button (the free report filled, the pass outlined; "Passes are paused for now", disabled, while billing is closed). Then the terms a buyer needs before paying, one plain line each on a hairline: one payment and no renewal, Stripe holds the card, the 14-day refund, what stays open after the fifth report. One closing section carries the comparison link and "Restore access". Billing copy stays plain: no pen, no marker, no example demos. On phones the two offers sit side by side with smaller sheets and the buttons stack under both, so both actions stay in the first screen (`tests/ui/pricing-mobile.spec.ts`). Direction A of three mocked on Nov 4 (the sheets; a plain list with no props; today's cards as paper), chosen by Matt; the fifteen pricing pages measured that day put the billing cadence under the price and bury refunds, and this page puts every term beside the price.
 - Use the shortest, clearest version of the system.
 - Keep claims factual and traceable to real behavior.
 - Avoid invented urgency, inflated privacy language, and decorative brand performance.
@@ -346,8 +374,11 @@ Canonical tokens (CSS in `web/app/globals.css`, mirrored for Motion in `web/lib/
 | --- | --- | --- |
 | `--duration-fast` / `DURATION.fast` | 160ms | hover, press, link color, focus, dialog exit |
 | `--duration-normal` / `DURATION.normal` | 200ms | selection, toggles, dialog entry, disclosure |
-| `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift |
+| `--duration-slow` / `DURATION.slow` | 520ms | the signature move only: the highlighter sweep and the homepage stage shift; the fades that follow a gesture |
+| `--duration-gesture` | 560ms | one stroke of the pen or the marker (Nov 4, 2026): the circle, the marker's passes, the clipping's sweep on phones |
+| `--delay-gesture` | 700ms | the pause before what follows a mark: the margin note after the marker, the choices after the pen, the outline on the sheet that is yours. Longer waits are multiples of it (`calc(var(--delay-gesture) * 2)`) |
 | `--ease` / `EASE` | `cubic-bezier(0.22, 1, 0.36, 1)` | every transition; no `ease-out`, `ease-in-out`, or one-off curves |
+| `--ease-pen` / `--ease-marker` | `cubic-bezier(0.45, 0, 0.25, 1)` / `cubic-bezier(0.3, 0, 0.15, 1)` | the hand's two strokes only: a quick loop that slows into its close, and a flat marker pass |
 
 Use Tailwind `duration-fast`, `duration-normal`, `duration-slow`, and `ease-snap`, never numeric durations. Motion should clarify selection, real progress, or continuity. Animate `opacity`, `transform`, and color properties. Reading, errors, and essential content never depend on motion. The homepage note arriving on the resume is the one signature, once. The highlighter marks the miss in the one-sentence verdict. In the report, the highlighter sweeps the Critical Miss line once as it comes into view and the pen note fades in after it (`Mark` and `useSeen` from the figure kit); nothing else in the report moves, and report prose stays still. Reduced motion shows the same end state immediately.
 

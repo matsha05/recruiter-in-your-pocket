@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import { Wordmark } from "@/components/icons/Wordmark";
-import home from "./HomePage.module.css";
+import rhythm from "@/components/materials/Rhythm.module.css";
+import { SignedNote } from "@/components/materials/SignedNote";
 import styles from "./FounderNote.module.css";
 
 /**
@@ -16,7 +16,7 @@ export const FOUNDER_NOTE =
 
 export function FounderNote() {
     return (
-        <section id="about" className={`${home.section} ${styles.beat}`} aria-labelledby="founder-note">
+        <section id="about" className={`${rhythm.section} ${styles.beat}`} aria-labelledby="founder-note">
             <Image
                 className={styles.portrait}
                 src="/founder-portrait.webp"
@@ -25,12 +25,8 @@ export function FounderNote() {
                 sizes="(max-width: 720px) 8rem, 12rem"
                 alt="A pen drawing of the recruiter who wrote the review criteria, smiling."
             />
-            <p id="founder-note" className={styles.note}>{FOUNDER_NOTE}</p>
-            <p className={styles.signature} aria-label="Signed, Recruiter in Your Pocket">
-                <span className={styles.dash} aria-hidden="true" />
-                <Wordmark className={styles.mark} />
-            </p>
-            <div className={`${home.link} ${styles.link}`}>
+            <SignedNote id="founder-note" className={styles.note}>{FOUNDER_NOTE}</SignedNote>
+            <div className={`${rhythm.link} ${styles.link}`}>
                 <Link href="/methodology" className="riyp-link">How the report works <ArrowRight aria-hidden="true" /></Link>
             </div>
         </section>
