@@ -7,7 +7,7 @@ type LegalShellProps = {
     pageKey?: string;
     eyebrow?: string;
     title: string;
-    description: string;
+    description?: string;
     lastUpdated?: string;
     children: ReactNode;
     contentClassName?: string;
@@ -43,9 +43,9 @@ export function LegalShell({
                                 >
                                     {title}
                                 </h1>
-                                <p className="mt-5 max-w-reading text-pretty text-prose text-muted-foreground">
-                                    {description}
-                                </p>
+                                {description ? (
+                                    <p className="mt-5 max-w-reading text-pretty text-prose text-muted-foreground">{description}</p>
+                                ) : null}
                                 {lastUpdated && (
                                     <p className="mt-4 text-xs font-medium text-muted-foreground">
                                         Last updated {lastUpdated}

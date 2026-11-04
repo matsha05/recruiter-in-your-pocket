@@ -12,12 +12,6 @@
     font: var(--type-label);
 }
 
-.intro {
-    margin: 0.25rem 0 0;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
-}
-
 .notes {
     display: grid;
     gap: 0.75rem;

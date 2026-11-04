@@ -9,8 +9,8 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
     await page.evaluate(() => document.fonts.ready);
 
     // overflow-x:clip can hide an oversized child without increasing scrollWidth.
-    // Measure the actual copy and controls rather than the body alone. The tilted
-    // resume illustration is left out.
+    // Measure the actual copy and controls rather than the body alone. The pile of
+    // sheets is left out; its own width is checked in mobile-landing.spec.ts.
     const hero = page.locator("section[aria-labelledby='hero-title']");
     await expect(hero.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.locator("#how-it-works")).toBeVisible();
@@ -18,8 +18,9 @@ for (const width of [320, 390, 640, 768, 960, 1024, 1280, 1440]) {
     const clipped = await page.locator([
       ".site-header a:visible", ".site-header button:visible", ".site-header .site-wordmark:visible",
       "section[aria-labelledby='hero-title'] h1",
-      "section[aria-labelledby='hero-title'] :is(p, a):not([data-testid='landing-verdict-art'] *)",
-      "#how-it-works :is(h2, dt, dd, p, a):visible",
+      "section[aria-labelledby='hero-title'] :is(p, a):not([data-testid='landing-pile'] *)",
+      "[data-testid='landing-read'] :is(h2, p, a):visible",
+      "#how-it-works :is(h2, p, a):visible",
     ].join(", ")).evaluateAll((elements) => {
       const viewportWidth = document.documentElement.clientWidth;
       return elements.flatMap((element) => {

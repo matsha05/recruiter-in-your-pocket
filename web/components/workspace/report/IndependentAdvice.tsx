@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Check, CircleNotch, Copy, Question } from "@phosphor-icons/react";
+import { Check, CircleNotch, Copy } from "@phosphor-icons/react";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import {
@@ -137,11 +137,7 @@ export function IndependentAdvice({
     <section id="section-independent-advice" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
       {rewrites.length > 0 && (
         <div>
-          <p className="text-xs font-semibold text-brand">More from your resume</p>
-          <h2 className={`${styles.sectionTitle} mt-3`}>More lines worth a second look.</h2>
-          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">
-            Read each one beside your original before you use it.
-          </p>
+          <h2 className={styles.sectionTitle}>More lines worth a second look.</h2>
           <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
             {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
           </div>
@@ -150,12 +146,7 @@ export function IndependentAdvice({
 
       {questions.length > 0 && (
         <div className={rewrites.length > 0 ? "mt-12 border-t border-[hsl(var(--paper-line))] pt-10" : ""}>
-          <div className="flex items-center gap-2 text-brand">
-            <Question className="size-5" weight="duotone" />
-            <p className="text-xs font-semibold">Other experience to consider</p>
-          </div>
-          <h2 className={`${styles.sectionTitle} mt-3`}>Questions only you can answer.</h2>
-          <p className="mt-3 max-w-[42rem] text-base text-muted-foreground">They&apos;re here to jog your memory. Answer the ones you can.</p>
+          <h2 className={styles.sectionTitle}>Questions only you can answer.</h2>
           <ol className="mt-6 divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
             {questions.map(({ question, originalIndex }) => (
               <li key={`${originalIndex}-${question.question}`} className="grid gap-2 py-5 sm:grid-cols-[2.5rem_1fr]">

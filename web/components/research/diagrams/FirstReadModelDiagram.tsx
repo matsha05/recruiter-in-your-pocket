@@ -41,9 +41,9 @@ const weighs = [
 const NO_NOTE = "The sample report has no note here.";
 
 const reviewPath = [
-    { label: "Your lines", detail: "What the resume actually says" },
-    { label: "The read", detail: "What comes through and what slips past" },
-    { label: "Critical Miss", detail: "Up to three, starting with the one to fix first" },
+    { label: "Your lines" },
+    { label: "The read" },
+    { label: "Critical Miss" },
 ];
 
 export function FirstReadModelDiagram() {
@@ -71,7 +71,6 @@ export function FirstReadModelDiagram() {
                     <section className="p-6 lg:p-8" aria-label="What goes into the band">
                         <div className="border-b border-line pb-5">
                             <h3 className="font-display text-heading text-foreground">What goes into the band</h3>
-                            <p className="mt-2 max-w-[34rem] text-sm text-muted-foreground">Four parts of a recruiter&apos;s criteria. The report explains each one in words; there are no separate sub-scores.</p>
                         </div>
                         <ol className="divide-y divide-line">
                             {weighs.map((item) => (
@@ -97,7 +96,7 @@ export function FirstReadModelDiagram() {
                     />
                 </div>
             </div>
-            <DiagramCaption kicker="Fig. 1 / From the sample report" title="The band summarizes; the written read tells you what to change first." />
+            <DiagramCaption kicker="Fig. 1" title="The band summarizes; the written read tells you what to change first." />
         </DiagramFigure>
     );
 }

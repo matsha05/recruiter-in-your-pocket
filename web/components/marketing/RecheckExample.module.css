@@ -1,63 +1,58 @@
+/* The re-check, set open: last time beside now, the versions under them. No panels, no pills. */
+
 .root {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-    gap: 1rem;
+    gap: 4rem;
 }
 
-/* Inside a narrow card (pricing) the two panels stack. */
-.stacked { grid-template-columns: minmax(0, 1fr); }
+/* Inside a narrow card (pricing) the two halves stack. */
+.stacked { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
 
 .panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
-    border: 1px solid hsl(var(--line));
-    border-radius: 1.125rem;
-    background: hsl(var(--card));
-    padding: 1.25rem;
+    gap: 1.5rem;
+    min-width: 0;
 }
 
-.title { font: var(--type-body); font-weight: var(--weight-control); }
+.title { margin: 0; font: var(--type-body); font-weight: var(--weight-control); }
 
 .compare {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: stretch;
-    gap: 0.75rem;
+    align-items: start;
+    gap: 1.5rem;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border: 1px solid hsl(var(--line));
-    border-radius: 0.75rem;
-    padding: 0.875rem 1rem;
+    min-width: 0;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 0.75rem;
 }
 
-.current { border-color: hsl(var(--text-strong) / 0.25); }
+.current { border-top-color: hsl(var(--text-strong)); }
 
 .cardLabel {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
+    margin: 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+    font-weight: var(--weight-label);
 }
 
-.delta {
-    border-radius: 999px;
-    background: hsl(var(--pen-tint));
-    padding: 0.125rem 0.5rem;
-    color: hsl(var(--pen));
-    font: var(--type-label);
-}
+.delta { color: hsl(var(--pen)); font: var(--type-small); font-weight: var(--weight-label); }
 
 /* Quoted resume lines are set in the recruiter's serif, as on the report. */
-.miss { font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial); }
-.missPast { color: hsl(var(--muted-foreground)); }
+.miss { margin: 0; font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial); }
+.missPast { color: hsl(var(--text-muted)); }
 
 .mark {
     background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) no-repeat 0 88% / 100% 45%;
@@ -65,16 +60,16 @@
     -webkit-box-decoration-break: clone;
 }
 
-.arrow { align-self: center; width: 1rem; height: 1rem; color: hsl(var(--muted-foreground)); }
+.arrow { align-self: start; margin-top: 1rem; width: 1rem; height: 1rem; color: hsl(var(--text-muted)); }
 
-.journey { display: grid; gap: 0.5rem; }
+.journey { display: grid; gap: 0.625rem; margin: 0; padding: 0; }
 
 .step {
     display: grid;
     grid-template-columns: 6.5rem minmax(0, 1fr) 3rem;
     align-items: center;
     gap: 0.75rem;
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--text-muted));
     font: var(--type-small);
 }
 
@@ -83,7 +78,7 @@
 
 .track {
     display: block;
-    height: 0.5rem;
+    height: 0.375rem;
     overflow: hidden;
     border-radius: 999px;
     background: hsl(var(--secondary));
@@ -98,10 +93,10 @@
 }
 
 @media (max-width: 860px) {
-    .root { grid-template-columns: minmax(0, 1fr); }
+    .root { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
 }
 
 @media (max-width: 520px) {
-    .compare { grid-template-columns: minmax(0, 1fr); }
-    .arrow { justify-self: center; transform: rotate(90deg); }
+    .compare { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .arrow { display: none; }
 }

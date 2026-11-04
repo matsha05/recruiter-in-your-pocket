@@ -1,51 +1,30 @@
-import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
-import { Button } from "@/components/ui/button";
+import { CloseField } from "./home/CloseField";
+import { FounderNote } from "./home/FounderNote";
 import { HiringTruths } from "./home/HiringTruths";
-import { ProgressBeat } from "./home/ProgressBeat";
-import { SilenceSection } from "./home/SilenceSection";
-import { VerdictHero } from "./home/VerdictHero";
-import { WorkedExample } from "./home/WorkedExample";
+import { NoteSection } from "./home/NoteSection";
+import { PileHero } from "./home/PileHero";
+import { ReadBeat } from "./home/ReadBeat";
+import { RecheckSection } from "./home/RecheckSection";
 import { MobileReportCTA } from "./mineral/MobileReportCTA";
 import styles from "./home/HomePage.module.css";
 
-/** The verdict you never got, the note worked through, the silence, what we look for, the revision loop, why it exists (anonymous by design), one last ask. */
+/**
+ * The homepage (Matt, Nov 4, 2026). Seven beats, one column, one material system: the pile; the read; the
+ * note Jordan never saw as a clipping; what we look for; the re-check as two clippings; the founder's note
+ * beside his drawing; and the pile again at the close with one sheet outlined. The research, the sources and
+ * the record of what was tried are in docs/design/2026-11-homepage-research.md.
+ */
 export function LandingMineral() {
     return (
         <div className={styles.page} data-visual-anchor="landing-home">
-            <VerdictHero />
-            <WorkedExample />
-            <SilenceSection />
+            <PileHero />
+            <ReadBeat />
+            <NoteSection />
             <HiringTruths />
-            <ProgressBeat />
-
-            <section id="about" className={styles.founder} aria-labelledby="founder-title">
-                <p className={styles.founderLabel}>Who built this</p>
-                <div className={styles.founderCopy}>
-                    <h2 id="founder-title">After 14 years in recruiting, it&apos;s obvious to me why one resume gets the call and another doesn&apos;t. It almost never is to the person who wrote it.</h2>
-                    <p className={styles.introduction}>
-                        That gap is why this exists. It shows you what goes through a recruiter&apos;s head when they read yours, and what to fix first.
-                    </p>
-                    <p className={styles.disclosure}>
-                        Built by a recruiter with 14 years in hiring, including at some of the biggest names in tech. I wrote the review criteria; AI applies them, and I don&apos;t read each report myself.
-                    </p>
-                    <div className={styles.founderLinks}>
-                        <Link href="/methodology">How the report works <ArrowRight aria-hidden="true" /></Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* An ink band: the dark theme tokens invert the shared Button with it. */}
-            <section className={`${styles.close} dark`} aria-labelledby="close-title">
-                <h2 id="close-title">Good work deserves a good read.</h2>
-                <Button asChild size="lg">
-                    <Link href="/workspace" data-analytics-cta="closing_report">
-                        Get your free report <ArrowRight weight="bold" aria-hidden="true" />
-                    </Link>
-                </Button>
-            </section>
-
+            <RecheckSection />
+            <FounderNote />
+            <CloseField />
             <Footer />
             <MobileReportCTA />
         </div>

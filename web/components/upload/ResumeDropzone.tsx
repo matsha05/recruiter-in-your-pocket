@@ -12,19 +12,13 @@ interface ResumeDropzoneProps {
     onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
     isProcessing?: boolean;
     className?: string;
-    /** 
-     * Variant controls the visual style:
-     * - "hero": Compact landing-page upload prompt
-     * - "compact": Source-desk upload treatment for the workspace
-     */
-    variant?: "hero" | "compact";
-    /** For compact variant: show file name when uploaded */
+    /** Show file name when uploaded */
     fileName?: string | null;
-    /** For compact variant: callback to remove file */
+    /** Callback to remove file */
     onRemoveFile?: () => void;
     /** Reports whether the current file selection is invalid. */
     onValidationStateChange?: (hasError: boolean) => void;
-    /** For compact variant: replaces "Ready to review" when the file was read but can't be reviewed. */
+    /** Replaces "Ready to review" when the file was read but can't be reviewed. */
     readyLabel?: string;
 }
 
@@ -38,7 +32,6 @@ export function ResumeDropzone({
     onFileSelect,
     isProcessing = false,
     className,
-    variant = "hero",
     fileName,
     readyLabel = "Ready to review",
     onRemoveFile,
@@ -124,7 +117,7 @@ export function ResumeDropzone({
                     setError("We couldn’t read this file. Try another PDF or DOCX.");
                     onValidationStateChange?.(true);
                     shouldMoveFocusOnSuccessRef.current = false;
-                } else if (variant === "compact" && fileName === undefined) {
+                } else if (fileName === undefined) {
                     setLocalFileName(file.name);
                 }
             } catch {
@@ -140,7 +133,7 @@ export function ResumeDropzone({
                 }
             }
         }
-    }, [onFileSelect, variant, fileName, isProcessing, onValidationStateChange]);
+    }, [onFileSelect, fileName, isProcessing, onValidationStateChange]);
 
     const handleRemoveFile = (event: ReactMouseEvent<HTMLButtonElement>) => {
         shouldRestoreChooseFocusRef.current = event.detail === 0;
@@ -188,57 +181,6 @@ export function ResumeDropzone({
     const handleDropzonePointerDown = useCallback(() => {
         shouldMoveFocusOnSuccessRef.current = false;
     }, []);
-
-    if (variant === "hero") {
-        return (
-            <div className={cn("w-full max-w-xl mx-auto", className)}>
-                <input {...getInputProps()} data-testid="workspace-resume-file" onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
-                <div className="rounded border border-border/60 bg-card p-5 gap-y-4" aria-busy={isBusy}>
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                            <div className="text-xs text-muted-foreground">
-                                Upload resume
-                            </div>
-                            <div className="text-xs text-muted-foreground">PDF or DOCX</div>
-                        </div>
-                        <Button
-                            ref={chooseActionRef}
-                            variant="primary"
-                            size="sm"
-                            onClick={openFilePicker}
-                            disabled={isBusy}
-                       >
-                            Select file
-                        </Button>
-                    </div>
-
-                    <div
-                        {...getRootProps()}
-                        onPointerDown={handleDropzonePointerDown}
-                        className={cn(
-                            "rounded border border-dashed px-4 py-8 text-center transition-colors cursor-pointer hover:border-brand/40 hover:bg-brand/5",
-                            isDragActive ? "border-brand/60 bg-brand/5 text-foreground" : "border-border/40 text-muted-foreground",
-                            isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
-                        )}
-                    >
-                        <div className="text-sm font-medium">Drop your resume here</div>
-                        <div className="text-xs text-muted-foreground mt-1">No account needed</div>
-                    </div>
-
-                    <p role="status" aria-live="polite" className="min-h-5 text-xs text-muted-foreground">
-                        {isBusy ? "Reading your resume file…" : ""}
-                    </p>
-
-                    {error && (
-                        <div role="alert" className="flex items-center gap-2 border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
-                            <WarningCircle className="size-3" />
-                            {error}
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className={cn("w-full", className)}>

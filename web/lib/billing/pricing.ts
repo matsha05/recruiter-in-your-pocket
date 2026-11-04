@@ -7,9 +7,7 @@ export type PricingPlan = {
   label: string;
   price: string;
   period: string;
-  description: string;
   buttonText: string;
-  badge?: string;
   features: PricingFeature[];
 };
 
@@ -26,21 +24,20 @@ export const JOB_SEARCH_PASS_DECISION = {
   cta: "Get 5 more reports · $29",
 } as const;
 
+// The two plans, as the pricing page, the paywall and Settings > Billing show them.
+// Each card is a price, a period and a short list; nothing explains the list.
 export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
   free: {
     id: "free",
     label: "Free",
     price: "$0",
-    period: "1 report",
-    description: "The complete report on one resume. Nothing locked.",
+    period: "one report",
     buttonText: "Get your free report",
     features: [
       { text: "One complete resume report", bold: true },
       { text: "Your Verdict and where your resume stands" },
-      { text: "Critical Misses: what could cost you the interview, starting with the one to fix first" },
-      { text: "Each suggestion tied to a line on your resume" },
-      { text: "Questions that pull out the details you left off" },
-      { text: "We'll rewrite your line. Only from your facts." },
+      { text: "Up to three Critical Misses, with the lines behind them" },
+      { text: "A revised line, written only from your facts" },
       { text: "PDF export and saved reports when you sign in. No card needed." }
     ]
   },
@@ -49,9 +46,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Job Search Pass",
     price: "$29",
     period: "one-time · 90 days",
-    description: "For revising and applying: check each revision, and read your resume against each job you want.",
     buttonText: "Get 5 more reports · $29",
-    badge: "For an active search",
     features: [
       { text: "5 more complete reports", bold: true },
       { text: "Re-check a revision and see whether your Critical Miss changed" },

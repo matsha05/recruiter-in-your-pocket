@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ArrowClockwise, Check, CircleNotch, FileText, ShieldCheck, Target, Trash, UploadSimple } from "@phosphor-icons/react";
+import { ArrowClockwise, Check, CircleNotch, FileText, ShieldCheck, Trash, UploadSimple } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ActionFeedback } from "@/components/ui/action-feedback";
@@ -208,27 +208,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     </div>
 
                     <div className="flex-1 min-w-0">
-                        <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <h3 className="font-medium text-foreground">Default resume saved</h3>
-                            <span className="rounded-md bg-success/10 px-2.5 py-1 text-xs font-medium text-success">
-                                Active
-                            </span>
-                        </div>
-
-                        <p className="mb-4 text-base text-muted-foreground">
-                            Save a job through the extension to compare it with this resume.
-                        </p>
-
-                        {/* Stats */}
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3">
-                            <span className="flex items-center gap-1.5">
-                                <Target className="size-3.5 text-success" />
-                                <strong>{profile.skillsCount}</strong> skills identified
-                            </span>
-                            <span className="text-muted-foreground/70 text-xs">
-                                Updated {formatDate(profile.updatedAt || "")}
-                            </span>
-                        </div>
+                        <h3 className="font-medium text-foreground">Default resume saved</h3>
+                        <p className="mb-4 mt-1 text-xs text-muted-foreground">Updated {formatDate(profile.updatedAt || "")}</p>
 
                         {/* Change / remove controls */}
                         <div className="flex flex-wrap items-center gap-3">
@@ -277,10 +258,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     <FileText className="size-5 text-brand" />
                 </div>
                 <div>
-                    <h3 className="mb-2 text-lg font-medium text-foreground">Upload Your Resume</h3>
-                    <p className="text-base text-muted-foreground">
-                        Compare this resume with jobs you save through the extension. This does not use a report credit.
-                    </p>
+                    <h3 className="text-lg font-medium text-foreground">Default resume</h3>
                 </div>
             </div>
 

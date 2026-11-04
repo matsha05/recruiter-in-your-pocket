@@ -1,12 +1,15 @@
+/* What we look for: three open rows, the cliché crossed out in the recruiter's pen. */
+
 .truths {
     max-width: var(--marketing-content);
-    margin: 0 auto;
-    padding: 6.5rem var(--marketing-gutter) 6rem;
+    margin: var(--home-section) auto 0;
+    border-top: 1px solid hsl(var(--line));
+    padding: var(--home-section) var(--marketing-gutter) 0;
     scroll-margin-top: 4.5rem;
 }
 
 .title {
-    margin: 0 0 3rem;
+    margin: 0 0 2.5rem;
     font: var(--type-headline);
     letter-spacing: var(--tracking-headline);
 }
@@ -19,19 +22,21 @@
     gap: 4rem;
     align-items: start;
     border-top: 1px solid hsl(var(--line));
-    padding: 2.25rem 0;
+    padding: 2rem 0;
 }
+
+.row:last-child { border-bottom: 1px solid hsl(var(--line)); }
 
 .quote {
     margin: 0;
     text-wrap: pretty;
-    font: var(--type-verdict);
+    font: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
 }
 
-/* The cliche gets the red pen. */
+/* The cliché gets the pen. */
 .quote s {
     color: hsl(var(--text-muted));
-    text-decoration-color: hsl(var(--red-pen));
+    text-decoration-color: hsl(var(--pen));
     text-decoration-thickness: 2px;
 }
 
@@ -39,13 +44,12 @@
     margin: 0.25rem 0 0;
     color: hsl(var(--text-muted));
     text-wrap: pretty;
-    font: var(--type-prose);
+    font: var(--type-lead);
 }
 
 .answer strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 
 @media (max-width: 800px) {
-    .truths { padding: 4rem var(--marketing-gutter) 3.5rem; }
-    .title { margin-bottom: 1.75rem; }
-    .row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 1.75rem 0; }
+    .title { margin-bottom: 1.5rem; }
+    .row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 1.5rem 0; }
 }

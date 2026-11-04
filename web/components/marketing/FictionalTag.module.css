@@ -1,9 +1,6 @@
+/* A caption, not a pill: it sits beside the example it labels. */
 .tag {
-    align-self: flex-start;
-    width: fit-content;
-    border-radius: 999px;
-    background: hsl(var(--secondary));
-    padding: 0.25rem 0.625rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-label);
+    margin: 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
 }

@@ -72,7 +72,7 @@ for (const width of [320, 390]) {
       await page.getByLabel("Upload resume file (PDF or DOCX)", { exact: true }).setInputFiles({ name: "alex-morgan.pdf", mimeType: "application/pdf", buffer: Buffer.from("%PDF-1.4 mocked") });
       const preview = page.getByTestId("workspace-read-preview");
       await expect(preview).toContainText("What we read");
-      await expect(preview).toContainText(`${parsed.split(/\s+/).length} words from your file`);
+      await expect(preview).toContainText(`${parsed.split(/\s+/).length} words`);
       await preview.locator("summary").click();
       await expect(preview.getByLabel("Text we read from your file")).toContainText("Ran the weekly launch review");
       await expect(page.getByTestId("workspace-privacy-line")).toContainText("We don’t store the resume or opt it into model training.");

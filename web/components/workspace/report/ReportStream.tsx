@@ -321,7 +321,7 @@ export function ReportStream({
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className={styles.disclosureBody}>
-          <p>The band comes from a score that weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It is not a simple average. It doesn&apos;t predict interviews or offers, and when you re-check a revision you&apos;ll see the number move.</p>
+          <p>The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It doesn&apos;t predict interviews or offers.</p>
           {report.score_plain && <p>{report.score_plain}</p>}
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
         </div>
@@ -332,9 +332,7 @@ export function ReportStream({
       {isSample && onStartReport && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
           <h2 id="report-next-step" className={styles.sectionTitle}>What would they think of yours?</h2>
-          <p className={styles.endingCopy}>Upload it or paste it. You&apos;ll see what comes through, what slips past, and what to fix first.</p>
           <div><Button variant="primary" onClick={onStartReport}>Get your free report <ArrowRight className="size-4" weight="bold" /></Button></div>
-          <p className={styles.endingNote}>Your first report is free. No account or card.</p>
         </section>
       )}
 
@@ -343,7 +341,7 @@ export function ReportStream({
           <h2 id="report-next-step" className={styles.sectionTitle}>
             {allAddressed ? "Your line is ready. Save this version." : "Save this version."}
           </h2>
-          <p className={styles.endingCopy}>Your answers and the revised line stay with it, so you can come back for them from any device. Then edit your resume and check the new version against this one.</p>
+          <p className={styles.endingCopy}>Your answers and the revised line stay with it.</p>
           <div className={styles.endingActions}>
             <Button variant="primary" onClick={onSaveReport} disabled={isSavingReport} aria-busy={isSavingReport || undefined} data-testid="report-save-version-button">
               {isSavingReport ? "Saving…" : "Save this version"}
@@ -352,7 +350,7 @@ export function ReportStream({
               <Button variant="quiet" onClick={onStartRevision}>Compare my revision <ArrowRight className="size-4" weight="bold" /></Button>
             )}
           </div>
-          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.whenToBuy : "Saved reports keep your Verdict, your Critical Misses and your lines."}</p>
+          {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
         </section>
       )}
 
@@ -361,11 +359,9 @@ export function ReportStream({
           <h2 id="report-next-step" className={styles.sectionTitle}>
             {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : "Made your edits? See what changed."}
           </h2>
-          <p className={styles.endingCopy}>{isExhausted
-            ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
-            : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss changed, what got clearer, and what to do next.</>}</p>
+          {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
           <div><Button variant="primary" onClick={onStartRevision}>Compare my revision<ArrowRight className="size-4" weight="bold" /></Button></div>
-          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "This report is saved. The comparison will sit beside it."}</p>
+          {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.terms}</p>}
         </section>
       )}
 
@@ -374,9 +370,7 @@ export function ReportStream({
           <h2 id="report-next-step" className={styles.sectionTitle}>
             {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
           </h2>
-          <p className={styles.endingCopy}>{isExhausted
-            ? <>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</>
-            : <>Upload the new version and we&apos;ll compare the two: whether the Critical Miss changed, what got clearer, and what to do next.</>}</p>
+          {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
           <div>
             <Button variant="primary" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
               {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : "Compare my revision"}<ArrowRight className="size-4" weight="bold" />

@@ -5,21 +5,15 @@
 
 .inner { max-width: var(--page-max); margin: 0 auto; }
 
-.head {
-    display: grid;
-    grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-    align-items: end;
-    gap: 2.5rem;
-}
+.head { display: flex; flex-direction: column; }
 
 .title {
     max-width: 14ch;
+    margin-top: 1.25rem;
     text-wrap: balance;
     font: var(--type-headline);
     letter-spacing: var(--tracking-headline);
 }
-
-.deck { max-width: 44ch; color: hsl(var(--muted-foreground)); font: var(--type-lead); }
 
 .uses {
     display: grid;
@@ -38,16 +32,8 @@
 }
 
 .useTitle {
-    margin-top: 1rem;
     font: var(--type-heading);
     letter-spacing: var(--tracking-heading);
-}
-
-.useBody {
-    max-width: 46ch;
-    margin-top: 0.5rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-body);
 }
 
 .demo {
@@ -82,18 +68,11 @@
 .groupLabel { color: hsl(var(--muted-foreground)); font: var(--type-label); }
 .groupMissing { color: hsl(var(--red-pen)); }
 
-.footnote {
-    margin-top: 1rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
-}
-
 @media (min-width: 768px) {
     .section { padding-inline: 2rem; }
 }
 
 @media (max-width: 1024px) {
-    .head { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
     .uses { grid-template-columns: minmax(0, 1fr); }
 }
 

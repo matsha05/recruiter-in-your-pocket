@@ -61,11 +61,11 @@ test("ordinary mobile navigation moves focus into the destination page", async (
     expect(await page.evaluate(() => scrollY)).toBe(0);
 });
 
-test("a section reached before the hero's note arrives stays put", async ({ page }) => {
-    // The hero's note animates in; it must not push a section the visitor already jumped to.
+test("a section reached before the hero finishes arriving stays put", async ({ page }) => {
+    // The pile's sheets and the read's pen animate in; they must not push a section the visitor already jumped to.
     await page.setViewportSize({ width: 820, height: 844 });
     await page.goto("/");
-    await expect(page.getByTestId("landing-verdict-art")).toBeVisible();
+    await expect(page.getByTestId("landing-pile")).toBeVisible();
     await page.evaluate(() => document.getElementById("how-it-works")!.scrollIntoView({ block: "start" }));
     await page.waitForTimeout(1500);
     const y = (await page.locator("#how-it-works").boundingBox())!.y;

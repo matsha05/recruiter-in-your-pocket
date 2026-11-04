@@ -12,9 +12,6 @@ export default function Footer() {
                     <Link href="/" aria-label="Recruiter in Your Pocket home" className={`focus-ring ${styles.brand}`}>
                         <Wordmark />
                     </Link>
-                    <p className={styles.description}>
-                        See what a recruiter sees before you apply. Your first report is free.
-                    </p>
                     <a href="mailto:support@recruiterinyourpocket.com" className={`focus-ring ${styles.link} ${styles.mail}`}>support@recruiterinyourpocket.com</a>
                 </div>
                 {FOOTER_NAV.map((group) => (
@@ -31,7 +28,7 @@ export default function Footer() {
             </div>
             <div className={styles.legal}>
                 <p>© 2026 Recruiter in Your Pocket</p>
-                <Link href="/purchase/restore" className={`focus-ring ${styles.link}`}>Already paid? Restore access</Link>
+                <Link href="/purchase/restore" className={`focus-ring ${styles.link}`}>Restore a purchase</Link>
             </div>
         </footer>
     );

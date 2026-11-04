@@ -32,7 +32,7 @@ const WAIT_STEPS: WaitStep[] = [
     { id: "reading", label: "Reading", now: "Reading your resume", cursor: "reading", at: 0.15 },
     { id: "writing", label: "Writing the notes", now: "Writing the notes", cursor: "writing", at: 0.5 },
     { id: "checking", label: "Checking every quote", now: "Checking every quote against your resume", cursor: "checking", at: 0.82 },
-    { id: "severity", label: "Anything else that costs an interview?", now: "Looking for anything else that could cost an interview", cursor: "checking", at: 1 },
+    { id: "severity", label: "Checking for more misses", now: "Looking for anything else that could cost an interview", cursor: "checking", at: 1 },
 ];
 
 function stepIndexFor(stage: string): number {
@@ -227,7 +227,7 @@ export default function AnalysisScanning({
                 )}
 
                 <footer className={styles.foot}>
-                    <p className={styles.footNote}>Keep this tab open. Your report replaces this page when it&apos;s ready.</p>
+                    <p className={styles.footNote}>Keep this tab open.</p>
                     {!isSlow && onCancel ? <Button variant="quiet" size="sm" onClick={onCancel} className={styles.stop}>Stop</Button> : null}
                 </footer>
             </section>
