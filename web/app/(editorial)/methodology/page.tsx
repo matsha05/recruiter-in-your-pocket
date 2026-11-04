@@ -71,7 +71,7 @@ export default function MethodologyPage() {
                 },
                 {
                     question: "Does a person read my report?",
-                    answer: "No. A recruiter with 14 years in hiring wrote the review criteria; AI applies them to your resume.",
+                    answer: "No. A recruiter with 15 years in hiring wrote the review criteria; AI applies them to your resume.",
                 },
             ]}
             visualization={

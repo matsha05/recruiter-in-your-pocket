@@ -36,7 +36,8 @@ test.describe("launch smoke", () => {
 
     await expect(page.getByRole("heading", { name: "Configuration checks", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Checks by feature", exact: true })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /support and trust/i })).toBeVisible();
+    // The Nov 3 copy cut removed the status page's "Support and trust" block; support lives on /help.
+    await expect(page.getByRole("heading", { name: "What needs attention", exact: true })).toBeVisible();
   });
 
   test("critical launch routes render", async ({ page }) => {

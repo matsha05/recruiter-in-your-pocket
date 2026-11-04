@@ -126,7 +126,8 @@ test.describe("launch red-team journeys", () => {
     await expect(miss).toContainText(marginNoteFromFix(sampleMissFix.fix!));
     await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
-    await expect(page.getByTestId("score-basis")).toContainText("It is not a simple average.");
+    // The score note after the Nov 3 copy cut: what the score weighs, and that it predicts nothing.
+    await expect(page.getByTestId("score-basis")).toContainText("It doesn't predict interviews or offers.");
     await expect(page.getByRole("heading", { name: "Fix these three first.", exact: true })).toHaveCount(1);
 
     // The section tabs wait until the opening has scrolled away, then sit under the header.

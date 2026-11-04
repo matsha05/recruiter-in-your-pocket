@@ -195,3 +195,18 @@ Copy is not ready if any of this is true:
 5. the report voice sounds like a coach instead of a recruiter
 6. the words are individually familiar but the sentence is something no one would say aloud
 7. personality depends on an unexplained metaphor or an abstract phrase about “the read”
+
+## Homepage copy, November 4, 2026
+
+The homepage was rebuilt from first principles on November 4, 2026 (`docs/design/2026-11-homepage-research.md`). Its lines, in order, so that no surface drifts from them:
+
+| Beat | Copy |
+| --- | --- |
+| The pile (h1) | `244 people applied for the job you wanted.` then `Eighteen got called back. The other 226 have no idea why the recruiter passed.` Source line: `Greenhouse, The Hire Standard, March 2026: 244 applications per role in 2025, 7.6% past the first screen.` |
+| The read (h2) | `By the time you finish reading this sentence, a recruiter has finished reading your resume.` The choices `Move forward` and `Reject`. Then `Nobody tells you why.` / `We do, before you apply for the next one.` |
+| The note | `Here’s the note Jordan never saw.` then the clipping (the line and the note from the sample report) and `See Jordan’s full report`. The report's verdict sentence and its questions stay on the sample report. |
+| The re-check | `Fix it. Then check it again.` Captions `First report` and `Revision 1`; the note `Changed. Up 6.`; `Up 11 since the first report.` Changed, never fixed. |
+| The founder | `I’ve passed on more people than I can count. A few seconds a resume, fifteen years, at companies you’ve heard of and small ones around the world. The reasons were almost always the same, and nobody told you. I wrote them down.` Signed with the wordmark. The AI disclosure lives on How the report works and in the legal content, not here. |
+| The close | `Before you apply for the next one.` |
+
+Facts: fifteen years (Matt, November 4, 2026; the methodology FAQ and the legal content say 15 too). No company names, no name, no photograph. The button is `Get your free report` on every beat that has one (§1).

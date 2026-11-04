@@ -1,5 +1,6 @@
-/* The homepage's rhythm: one column, one hairline and one space between sections
-   (docs/design/2026-11-homepage-visual-brief.md). Sections read --home-section for both. */
+/* The homepage's rhythm (Nov 4, 2026): one column, one hairline and one space between sections, and one
+   material system from top to bottom: paper, a marker, the green pen, and one red mark. Sections compose
+   `.section` and `.title` from here so the rhythm has one definition. */
 
 .page {
     --home-section: 7rem;
@@ -9,76 +10,33 @@
     font-family: var(--font-body);
 }
 
-.founder {
+.section {
     max-width: var(--marketing-content);
     margin: var(--home-section) auto 0;
     border-top: 1px solid hsl(var(--line));
-    padding: var(--home-section) var(--marketing-gutter);
+    padding: var(--home-section) var(--marketing-gutter) 0;
     scroll-margin-top: 4.5rem;
 }
 
-.founderCopy h2 {
-    margin: 0;
-    max-width: 32ch;
-    font: var(--type-title);
-    letter-spacing: var(--tracking-title);
-    text-wrap: pretty;
+.title {
+    margin: 0 0 2.5rem;
+    max-width: 22ch;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+    text-wrap: balance;
 }
 
-.disclosure {
-    max-width: 40ch;
-    margin: 1.5rem 0 0;
-    color: hsl(var(--text-muted));
-    font: var(--type-lead);
-}
-
-.founderLinks {
+/* A section's one text link, after its object. */
+.link {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 2rem;
-    margin-top: 1rem;
-}
-
-.founderLinks a {
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: underline;
-    text-decoration-color: hsl(var(--link-line));
-    text-decoration-thickness: var(--link-thickness);
-    text-underline-offset: var(--link-offset);
-    transition: color var(--duration-fast) var(--ease), text-decoration-color var(--duration-fast) var(--ease);
+    align-items: baseline;
+    gap: 0.5rem 1.25rem;
+    margin: 2.5rem 0 0;
     font: var(--type-body);
     font-weight: var(--weight-control);
 }
-
-.founderLinks a:hover { color: hsl(var(--pen-strong)); text-decoration-color: currentColor; }
-.founderLinks svg { width: 1rem; height: 1rem; }
-
-/* The one dark moment: the closing ask. */
-.close {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.25rem;
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    padding: var(--home-section) var(--marketing-gutter);
-    text-align: center;
-}
-
-.close h2 {
-    margin: 0;
-    max-width: 16ch;
-    color: hsl(var(--foreground));
-    text-wrap: balance;
-    font: var(--type-headline);
-    letter-spacing: var(--tracking-headline);
-}
+.link a { display: inline-flex; align-items: center; gap: 0.4rem; }
+.link svg { width: 1rem; height: 1rem; }
 
 .page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
-
-@media (max-width: 760px) {
-    .page { --home-section: 4.5rem; }
-}

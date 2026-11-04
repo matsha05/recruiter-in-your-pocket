@@ -97,9 +97,13 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ### Homepage
 
-Since November 3, 2026 the homepage follows `docs/design/2026-11-homepage-visual-brief.md`: one 68rem column, one hairline and one space between sections, the recruiter's screen as the only framed element, the pen and the highlighter as the only colors that carry meaning.
+Since November 4, 2026 the homepage shows no product above the fold. It dramatizes the thing the product sells, the seven seconds you are never in the room for, in the page's own materials: paper (the 244 sheets of the pile, the clipping), the marker, and the green pen that underlines, circles and writes in the margin. The full contract is in `docs/design-system.md` §10; the research and the record of what was tried are in `docs/design/2026-11-homepage-research.md`.
 
-Curiosity first, then recognition, then proof. Beat one: “They called someone back. It wasn’t you.” then “See what a recruiter sees on your resume, and the one thing to fix first.”, one primary action (“Get your free report”), and a quiet route to Jordan's report; a fictional, ordinary resume carries a recruiter's note that is blurred until the visitor scrolls. Beat two works that note through on the same fictional resume (labeled “Fictional example”, with blanks instead of invented numbers) and turns it into the question about yours. Beat three names the silence in job seekers' own plain words (“Not even a reply.”) and is honest that silence is not always the resume. Later beats show what we look for and the re-check loop. Never claim a person reads each resume: the read applies a recruiter's criteria, and the founder section says so plainly. The illustration is decorative for assistive technology and never gates the report action.
+The arc: the pile (“244 people applied for the job you wanted.”), the read (the pen under the sentence, then Move forward or Reject, and Reject circled), the note Jordan never saw as a clipping, what we look for, the re-check, the founder's note beside his drawing, and the pile again at the close. One primary action per beat, four on the page. Every number on it is sourced; every motion is one gesture made once.
+
+**The one red mark.** The red pen circles “Reject” in the read, and nowhere else on the site. It is the recruiter's decision, not decoration, which is the difference between it and the red-pen cosplay the hard noes forbid. Do not spend red a second time.
+
+**The founder.** Since November 4 the founder is drawn, not photographed, in the green pen, and speaks in the recruiter's own hand, signed with the wordmark. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note.
 
 ### Workspace and reports
 

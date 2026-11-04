@@ -168,7 +168,8 @@ test("mobile CTA appears after the hero, yields to privacy choices, and opens th
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true");
   await expect(page.getByTestId("mobile-report-cta")).toHaveCount(0);
-  await page.evaluate(() => scrollTo(0, 1100));
+  // Scroll to a beat with no inline report action in view: the sticky action yields to the page's own buttons.
+  await page.evaluate(() => document.getElementById("what-we-look-for")!.scrollIntoView({ block: "start" }));
   await expect(page.getByTestId("mobile-report-cta")).toBeHidden();
   await page.getByRole("button", { name: "Decline analytics", exact: true }).click();
   await expect(page.getByTestId("mobile-report-cta")).toBeVisible();

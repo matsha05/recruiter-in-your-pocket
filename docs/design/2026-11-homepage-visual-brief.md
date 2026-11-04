@@ -86,3 +86,7 @@ Layout:
 ## Not changed by this brief
 
 The report, the workspace and the rest of the product keep the November 2 design; this brief is the homepage. If it holds, the same tokens apply to pricing and the sample report next.
+
+## Superseded, November 4, 2026
+
+The page this brief describes (the recruiter's screen as the hero, the worked example with labels, the silence list, the dark close) was replaced on November 4, 2026 by the first-principles rebuild recorded in `2026-11-homepage-research.md` and specified in `docs/design-system.md` §10. The rhythm rules here (one column, one hairline and one space between sections) carried over; the rest did not.
