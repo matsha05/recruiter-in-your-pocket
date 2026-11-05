@@ -3,9 +3,15 @@ import Link from "next/link";
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 import rhythm from "@/components/materials/Rhythm.module.css";
-import { legalContent, type LegalInline } from "@/lib/legal/content";
+import { ResearchLink } from "@/components/research/ResearchLink";
+import { legalContent, type LegalInline, type LegalResearchNote } from "@/lib/legal/content";
 import { cn } from "@/lib/utils";
 import styles from "./HelpPage.module.css";
+
+/** The answer as one plain string, for the FAQ structured data: the research sentence without its link. */
+function answerText(a: string, more?: LegalResearchNote) {
+    return more ? `${a} ${more.before}${more.claim}${more.after}` : a;
+}
 
 function renderInline(inline: LegalInline, index: number) {
     if (inline.type === "text") return <span key={`text-${index}`}>{inline.value}</span>;
@@ -31,7 +37,7 @@ export function HelpPage() {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: faq.categories.flatMap((category) =>
-                category.questions.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } }))
+                category.questions.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answerText(item.a, item.more) } }))
             ),
         }
         : null;
@@ -52,7 +58,10 @@ export function HelpPage() {
                             {category.questions.map((item) => (
                                 <div key={item.q}>
                                     <h3>{item.q}</h3>
-                                    <p>{item.a}</p>
+                                    <p>
+                                        {item.a}
+                                        {item.more ? <> {item.more.before}<ResearchLink to={item.more.research}>{item.more.claim}</ResearchLink>{item.more.after}</> : null}
+                                    </p>
                                 </div>
                             ))}
                         </div>

@@ -25,7 +25,7 @@ export type PublicPage = {
 export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/", updated: "2026-11-02" },
   { path: "/sample-report", updated: "2026-11-01" },
-  { path: "/pricing", updated: "2026-11-02" },
+  { path: "/pricing", updated: "2026-11-04" },
   { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 
   { path: "/research", updated: "2026-11-01" },
@@ -70,7 +70,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   // Folded into Privacy and Help on Nov 2, 2026 (Matt's M6). Engine adds the redirects in next.config.mjs;
   // until then the routes still render, out of the sitemap. Delete them with the routes.
   { path: "/terms", updated: "2026-11-02" },
-  { path: "/help", updated: "2026-11-03" },
+  { path: "/help", updated: "2026-11-04" },
 ];
 
 /** The site card (app/opengraph-image.tsx), for pages without an answer card. */
