@@ -3,7 +3,7 @@ import rhythm from "@/components/materials/Rhythm.module.css";
 import { Materials } from "./Materials";
 import fs from "node:fs";
 import path from "node:path";
-import { CompareMock, WaitMock } from "./Round4";
+import { CompareMock, CompareProposedMock, FirstScreenMock, SettingsMock, UploadMock, WaitMock } from "./Round4";
 import styles from "./Preview.module.css";
 
 /**
@@ -22,11 +22,23 @@ export default function SystemPreviewPage() {
             <Materials />
 
             <div className={styles.divider}><hr /></div>
+            <p className={styles.label}>Product · upload, proposed: the sheet is the input, one button under it</p>
+            <UploadMock />
+            <div className={styles.divider}><hr /></div>
             <p className={styles.label}>Product · the wait, as it stands (frozen at the writing stage)</p>
             <WaitMock resumeText={resumeText} />
             <div className={styles.divider}><hr /></div>
+            <p className={styles.label}>Product · the report&rsquo;s first screen, proposed: the Critical Miss as the clipping</p>
+            <FirstScreenMock />
+            <div className={styles.divider}><hr /></div>
             <p className={styles.label}>Product · the re-check comparison, as it stands</p>
             <CompareMock />
+            <div className={styles.divider}><hr /></div>
+            <p className={styles.label}>Product · the re-check comparison, proposed: the homepage&rsquo;s two clippings</p>
+            <CompareProposedMock />
+            <div className={styles.divider}><hr /></div>
+            <p className={styles.label}>Product · settings, proposed: rows on hairlines, delete last</p>
+            <SettingsMock />
             <div className={rhythm.close} />
         </main>
     );

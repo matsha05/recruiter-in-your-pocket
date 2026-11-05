@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: "Your first resume report is free. Five more are $29.",
     description: "Compare revisions or review your next applications with five additional reports over 90 days. One payment, no automatic renewal.",
     url: "https://www.recruiterinyourpocket.com/pricing",
-    images: ["/opengraph-image?v=20261101"],
+    images: ["/opengraph-image?v=20261104"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Your first resume report is free. Five more are $29.",
     description: "Five additional reports to compare revisions or review applications over 90 days. One payment, no automatic renewal.",
-    images: ["/opengraph-image?v=20261101"],
+    images: ["/opengraph-image?v=20261104"],
   },
 };
 

@@ -1,38 +1,36 @@
+/* The upload (Nov 4, 2026): the sheet is the input. A blank sheet of paper you drop a resume onto or click;
+   one line on it, one quiet line under that, and "Choose a file" as a quiet action. */
+
 .drop {
     display: flex;
-    min-height: 15rem;
+    min-height: 16rem;
     cursor: pointer;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px dashed hsl(var(--input));
-    border-radius: 0.75rem;
-    padding: 1.75rem 1rem;
-    background: hsl(var(--surface-proof) / 0.45);
+    gap: 1.25rem;
+    padding: 2.5rem 1.5rem;
     text-align: center;
-    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+    font-family: var(--font-body);
+    transition: transform var(--duration-fast) var(--ease);
 }
-.drop:hover, .dragActive { border-color: hsl(var(--brand)); background: hsl(var(--surface-sky)); }
-.dragRejected { border-color: hsl(var(--destructive)); background: hsl(var(--error-surface)); }
+.drop:hover, .dragActive { transform: translateY(-1px); }
+.dragActive { outline: 2px solid hsl(var(--pen)); outline-offset: -2px; }
+.dragRejected { outline: 2px solid hsl(var(--destructive)); outline-offset: -2px; }
 .processing { opacity: 0.5; cursor: not-allowed; }
-.uploadIcon { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border: 1px solid hsl(var(--line)); border-radius: 0.75rem; background: hsl(var(--surface-raised)); color: hsl(var(--text-strong)); }
-.title { color: hsl(var(--text-strong)); font: var(--type-lead); font-weight: var(--weight-title); }
-.details, .chooseButton { margin-top: 1.25rem; }
+.title { margin: 0; color: hsl(var(--document-ink)); font: var(--type-heading); letter-spacing: var(--tracking-heading); font-family: var(--font-display); }
+.quiet { margin: 0.5rem 0 0; color: hsl(var(--document-ghost)); font: var(--type-small); }
+.details { min-width: 0; }
 .mobileTitle { display: none; }
-.accepted { display: flex; min-height: 15rem; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid hsl(var(--brand) / 0.25); border-radius: 0.75rem; background: hsl(var(--surface-sky)); padding: 1.25rem; }
-.rejected { display: flex; min-height: 15rem; flex-direction: column; align-items: center; justify-content: center; border: 1px solid hsl(var(--destructive) / 0.55); border-radius: 0.75rem; background: hsl(var(--error-surface)); padding: 1.25rem; }
-.rejectedFile { display: flex; width: 100%; max-width: 30rem; align-items: center; justify-content: space-between; gap: 0.75rem; border: 1px solid hsl(var(--line)); border-radius: 0.625rem; background: hsl(var(--surface-raised)); padding: 1rem; }
+.accepted { display: flex; min-height: 10rem; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; }
+.rejected { display: flex; min-height: 10rem; flex-direction: column; align-items: center; justify-content: center; padding: 1.25rem 1.5rem; }
+.rejectedFile { display: flex; width: 100%; max-width: 30rem; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.5rem 0; }
+
 @media (max-width: 639px) {
-    .drop { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); min-height: 0; gap: 1rem 0.75rem; padding: 1rem; text-align: left; }
-    .uploadIcon { width: 2.5rem; height: 2.5rem; border-radius: 0.625rem; }
-    .uploadIcon svg { width: 1.375rem; height: 1.375rem; }
-    .details { min-width: 0; margin-top: 0; }
-    .title { font: var(--type-body); font-weight: var(--weight-control); }
-    .details > p + p { margin-top: 0.25rem; font: var(--type-label); font-weight: var(--weight-body); }
+    .drop { min-height: 11rem; padding: 1.75rem 1.25rem; gap: 0.75rem; }
+    .title { font: var(--type-lead); font-weight: var(--weight-control); font-family: var(--font-display); }
     .desktopTitle { display: none; }
     .mobileTitle { display: inline; }
-    .drop .chooseButton { grid-column: 1 / -1; width: 100%; margin-top: 0; }
-    .accepted { min-height: 9.75rem; padding: 1rem; }
-    .rejected { min-height: 0; padding: 1rem; }
+    .accepted, .rejected { min-height: 0; padding: 1rem; }
 }
-@media (prefers-reduced-motion: reduce) { .drop { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .drop { transition: none; } .drop:hover, .dragActive { transform: none; } }

@@ -145,11 +145,11 @@ test.describe("homepage feedback and SEO contract", () => {
       );
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261101/,
+        /opengraph-image\?v=20261104/,
       );
       await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
         "content",
-        /opengraph-image\?v=20261101/,
+        /opengraph-image\?v=20261104/,
       );
     }
   });

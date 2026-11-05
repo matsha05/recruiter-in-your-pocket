@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from "react";
 import { useDropzone, type DropEvent, type FileRejection } from "react-dropzone";
-import { CircleNotch, FilePdf, FileText, UploadSimple, WarningCircle, X } from "@phosphor-icons/react";
+import { CircleNotch, FilePdf, FileText, WarningCircle, X } from "@phosphor-icons/react";
+import { Paper } from "@/components/materials/Paper";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { ChangeEvent } from "react";
@@ -186,7 +187,7 @@ export function ResumeDropzone({
         <div className={cn("w-full", className)}>
             <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
             {readingFileName || (displayFileName && !error) ? (
-                <div className={cn(styles.accepted, "ui-state-enter")} aria-busy={isBusy}>
+                <Paper kind="plain" className={cn(styles.accepted, "ui-state-enter")} aria-busy={isBusy}>
                     <span
                         role="status"
                         aria-live="polite"
@@ -212,9 +213,9 @@ export function ResumeDropzone({
                    >
                         Remove
                     </Button>
-                </div>
+                </Paper>
             ) : rejectedFile && error ? (
-                <div className={styles.rejected}>
+                <Paper kind="plain" className={styles.rejected}>
                     <div className={styles.rejectedFile}>
                         <div className="flex min-w-0 items-center gap-4">
                             <span className="flex size-11 shrink-0 items-center justify-center text-destructive">
@@ -251,50 +252,41 @@ export function ResumeDropzone({
                    >
                         Choose another file
                     </Button>
-                </div>
+                </Paper>
             ) : (
-                <div>
-                    <div
-                        {...getRootProps()}
-                        onPointerDown={handleDropzonePointerDown}
-                        className={cn(
-                            styles.drop,
-                            isDragActive && styles.dragActive,
-                            isDragReject && styles.dragRejected,
-                            isBusy && styles.processing
-                        )}
-                    >
-
-                        <span className={styles.uploadIcon}>
-                            <UploadSimple className="size-7" weight="regular" />
-                        </span>
-
-                        <div className={styles.details}>
-                            <p className={styles.title}>
-                                <span className={styles.desktopTitle}>Drop your resume here</span>
-                                <span className={styles.mobileTitle}>Add your resume</span>
-                            </p>
-                            <p className="mt-2 text-sm text-muted-foreground">
-                                PDF or DOCX · 4 MB max
-                            </p>
-                        </div>
-
-                        <Button
-                            type="button"
-                            ref={chooseActionRef}
-                            variant="primary"
-                            onClick={(event) => {
-                                event.stopPropagation();
-                                openFilePicker(event);
-                            }}
-                            disabled={isBusy}
-                            className={styles.chooseButton}
-                        >
-                            Choose a file
-                        </Button>
-
+                <Paper
+                    kind="plain"
+                    {...getRootProps()}
+                    onPointerDown={handleDropzonePointerDown}
+                    className={cn(
+                        styles.drop,
+                        isDragActive && styles.dragActive,
+                        isDragReject && styles.dragRejected,
+                        isBusy && styles.processing
+                    )}
+                >
+                    <div className={styles.details}>
+                        <p className={styles.title}>
+                            <span className={styles.desktopTitle}>Drop your resume here.</span>
+                            <span className={styles.mobileTitle}>Add your resume.</span>
+                        </p>
+                        <p className={styles.quiet}>PDF or Word, up to 4 MB.</p>
                     </div>
-                </div>
+                    <Button
+                        type="button"
+                        ref={chooseActionRef}
+                        variant="quiet"
+                        size="sm"
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            openFilePicker(event);
+                        }}
+                        disabled={isBusy}
+                        className={styles.chooseButton}
+                    >
+                        Choose a file
+                    </Button>
+                </Paper>
             )}
         </div>
     );

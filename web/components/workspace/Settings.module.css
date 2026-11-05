@@ -1,0 +1,30 @@
+/* Settings (Nov 4, 2026): one column of rows on hairlines, the pass as five sheets, delete last. No cards. */
+
+.tabs { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin: 0 0 1rem; border-bottom: 1px solid hsl(var(--line)); }
+.tab { display: inline-flex; min-height: 2.75rem; align-items: center; margin-bottom: -1px; border-bottom: 2px solid transparent; color: hsl(var(--text-muted)); font: var(--type-small); font-weight: var(--weight-control); transition: color var(--duration-fast) var(--ease); }
+.tab:hover { color: hsl(var(--text-strong)); }
+.tabActive { color: hsl(var(--text-strong)); border-bottom-color: hsl(var(--text-strong)); }
+
+.rows { display: grid; }
+.row { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: 0.75rem 2rem; align-items: center; padding: 1.5rem 0; border-top: 1px solid hsl(var(--line)); }
+.rows > .row:last-child { border-bottom: 1px solid hsl(var(--line)); }
+.rowHead { margin: 0; font: var(--type-body); font-weight: var(--weight-control); color: hsl(var(--text-strong)); }
+.rowBody { min-width: 0; display: grid; gap: 0.5rem; color: hsl(var(--text-muted)); font: var(--type-body); overflow-wrap: anywhere; }
+.rowBody p { margin: 0; }
+.rowAction { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem; }
+.field { width: 100%; max-width: 22rem; min-height: 3rem; padding: 0 1rem; border: 1px solid hsl(var(--control-line)); border-radius: 10px; background: hsl(var(--card)); color: hsl(var(--text-strong)); font: var(--type-body); }
+.field:focus-visible { border-color: hsl(var(--pen)); outline: 2px solid hsl(var(--pen)); outline-offset: 2px; }
+.quiet { color: hsl(var(--text-muted)); font: var(--type-small); }
+.strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+/* Lists inside a row: purchases, receipts. */
+.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.75rem; }
+.item { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; }
+.status { color: hsl(var(--pen)); font: var(--type-small); font-weight: var(--weight-control); }
+.statusQuiet { color: hsl(var(--text-muted)); font: var(--type-small); }
+.statusBad { color: hsl(var(--destructive)); font: var(--type-small); font-weight: var(--weight-control); }
+
+@media (max-width: 800px) {
+    .row { grid-template-columns: 1fr; gap: 0.75rem; }
+    .rowAction { justify-content: flex-start; }
+}
