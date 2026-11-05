@@ -325,6 +325,16 @@ runCommand("web_security", "Security tests", {
   passMessage: "Security tests passed.",
 });
 
+runCommand("search_foundation", "Search foundation and compare-page prices", {
+  command: "npm",
+  args: ["run", "test:search-foundation"],
+  cwd: webDir,
+  // The sitemap registry, structured data, llms.txt, and the shelf life of the quoted
+  // prices on the compare pages (web/tests/compare-prices.test.ts): a release with a
+  // stale PRICES_CHECKED fails here until the pricing pages are reread.
+  passMessage: "Search foundation passed and the compare-page prices are current.",
+});
+
 runCommand("migration_manifest", "Database migration manifest", {
   command: "npm",
   args: ["run", "migrate:check"],

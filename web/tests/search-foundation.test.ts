@@ -223,7 +223,37 @@ try {
   }
   assert.equal(breadcrumbStructuredData([]).itemListElement[0].item, SITE_URL);
 
-  console.log(`search foundation: ${pages.length} public pages, ${seen.size} titles checked`);
+  // --- Hub lists and llms.txt ------------------------------------------------
+  const { itemListStructuredData } = require("../lib/seo/structured-data");
+  const { hubAnswers } = require("../components/research/ResearchHubData");
+  const list = roundTrip(itemListStructuredData("/research", "Questions", hubAnswers.map((article: { question: string; href: string }) => ({ name: article.question, path: article.href }))));
+  assert.equal(list["@type"], "ItemList");
+  assert.equal(list.numberOfItems, hubAnswers.length);
+  assert.deepEqual(list.itemListElement.map((item: { position: number }) => item.position), hubAnswers.map((_: unknown, index: number) => index + 1));
+  for (const item of list.itemListElement) {
+    assert.ok(paths.includes(item.url.replace(SITE_URL, "")), `the research ItemList names ${item.url}, which is not a public page`);
+  }
+  assert.throws(() => itemListStructuredData("/research", "Questions", [{ name: "Gone", path: "/research/not-a-page" }]), /not in PUBLIC_PAGES/);
+
+  const { llmsText } = require("../lib/seo/llms");
+  const compareStubs = pages.filter((page) => page.path.startsWith("/compare/")).map((page) => ({ title: page.path, path: page.path, summary: "What it sells." }));
+  const llms = llmsText({ comparisons: compareStubs, pricesRead: "November 4, 2026" }) as string;
+  assert.ok(llms.startsWith("# Recruiter in Your Pocket\n\n> "), "llms.txt opens with the site name and a one-line summary");
+  const linked = [...llms.matchAll(/\]\((https:\/\/www\.recruiterinyourpocket\.com[^)]*)\)/g)].map((match) => match[1].replace(SITE_URL, "") || "/");
+  for (const linkedPath of linked) {
+    assert.ok(paths.includes(linkedPath), `llms.txt links ${linkedPath}, which is not a public page`);
+  }
+  for (const page of pages.filter((candidate) => /^\/(research|resources|compare)\//.test(candidate.path) || candidate.path === "/methodology")) {
+    assert.ok(linked.includes(page.path), `llms.txt leaves out ${page.path}`);
+  }
+  assert.equal(new Set(linked).size, linked.length, "llms.txt lists a page twice");
+  for (const article of hubAnswers) {
+    assert.ok(llms.includes(`: ${article.answer} Updated `), `llms.txt should carry the hub answer for ${article.href}`);
+  }
+  assert.ok(!/résumé/i.test(llms), 'llms.txt: write "resume" without accents');
+  assert.ok(!llms.includes("/workspace") && !llms.includes("/auth"), "llms.txt points at no private route");
+
+  console.log(`search foundation: ${pages.length} public pages, ${seen.size} titles checked, llms.txt lists ${linked.length}`);
 } finally {
   runtimeModule._load = originalLoad;
 }

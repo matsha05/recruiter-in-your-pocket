@@ -61,6 +61,26 @@ export function articleStructuredData({ path, headline, description, trail, cita
   };
 }
 
+/**
+ * ItemList for a hub page: the pages it lists, in the order it shows them, so a
+ * crawler reads the hub's order the way a reader does. Every item is a public page.
+ */
+export function itemListStructuredData(path: string, name: string, items: Array<{ name: string; path: string }>) {
+  return {
+    "@type": "ItemList",
+    "@id": `${absoluteUrl(path)}#list`,
+    name,
+    numberOfItems: items.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(publicPage(item.path).path),
+    })),
+  };
+}
+
 /** "November 2026", the way the page shows an updated date. */
 export function formatMonth(date: string) {
   return new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric", timeZone: "UTC" }).format(

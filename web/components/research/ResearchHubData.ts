@@ -205,16 +205,17 @@ export function pillarForHref(href: string) {
     return categories.find((candidate) => candidate.articles.some((article) => article.href === href))?.navLabel ?? null;
 }
 
-const allAnswers = categories.flatMap((category) => category.articles);
+/** Every answer on the hub, in the order the hub shows them. */
+export const hubAnswers = categories.flatMap((category) => category.articles);
 
 /** A hub answer by its id. */
 export function hubEntry(id: string) {
-    return allAnswers.find((article) => article.id === id);
+    return hubAnswers.find((article) => article.id === id);
 }
 
 /** The hub answer for a page, by its path. */
 export function hubEntryForHref(href: string) {
-    return allAnswers.find((article) => article.href === href);
+    return hubAnswers.find((article) => article.href === href);
 }
 
 /** A link to a hub answer, titled the way its page is: a research article's question, or a guide's own title.
