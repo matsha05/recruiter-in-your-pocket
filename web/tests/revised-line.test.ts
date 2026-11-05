@@ -169,14 +169,14 @@ assert.equal(composeRevisedLine("- Did the thing.", [said("for 3 teams."), said(
 // ============================================
 
 // Four rungs (Matt, Nov 5, 2026: "Band only"). The three upper rungs match the validator's score_label; the
-// bottom one is the lowest band below 60, on the score alone.
-for (const score of [60, 69, 70, 84, 85, 92, 99]) {
+// bottom one is the lowest band at 60 and below, on the score alone.
+for (const score of [61, 69, 70, 84, 85, 92, 99]) {
   assert.equal(scoreBandFor(score).name, getScoreLabel(score), `band for ${score} matches the validator's score_label`);
 }
-for (const score of [0, 40, 55, 59]) {
+for (const score of [0, 40, 55, 59, 60]) {
   assert.equal(scoreBandFor(score).name, "Not ready yet", `a ${score} reads as not ready`);
 }
-assert.equal(scoreBandFor(60).name, "Needs more context", "the line is 60");
+assert.equal(scoreBandFor(61).name, "Needs more context", "the rung is 60 and below; 61 is above it");
 assert.equal(SCORE_BANDS.length, 4);
 assert.equal(new Set(SCORE_BANDS.map((band) => band.anchor)).size, SCORE_BANDS.length, "each band has its own anchor");
 // The tone: not ready on the bottom rung; ready on a clear page with a single miss; standard otherwise.

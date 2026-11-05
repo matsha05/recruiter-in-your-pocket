@@ -4,7 +4,7 @@
  *
  * Four rungs since November 5, 2026 (Matt: "a fourth rung, Not ready yet"). The three
  * upper rungs match `getScoreLabel`, which the validator writes into score_label. The
- * bottom rung is the lowest part of the validator's lowest band, on the score alone
+ * bottom rung is the lowest part of the validator's lowest band (60 and below), on the score alone
  * (Matt, Nov 5: "Band only"; the live run of November 5 put every weak page between 57
  * and 68, so the line sits inside that band, not under it). That rung is also the trigger
  * for the questions-first path (lib/reports/ask-first.ts).
@@ -25,7 +25,7 @@ export interface BandMisses {
   counted: boolean;
 }
 
-/** Below this, the validator's lowest band reads as not ready. */
+/** At or below this, the validator's lowest band reads as not ready (60 and below; the golden set's next page up sits at 61). */
 export const NOT_READY_SCORE = 60;
 
 export const SCORE_BANDS: readonly ScoreBand[] = [
@@ -41,7 +41,7 @@ const CLEAR = SCORE_BANDS.length - 1;
 
 /** Whether the validator's lowest band reads as not ready for this score. */
 export function readsNotReady(score: number) {
-  return getScoreLabel(score) === SCORE_BANDS[NEEDS_CONTEXT].name && score < NOT_READY_SCORE;
+  return getScoreLabel(score) === SCORE_BANDS[NEEDS_CONTEXT].name && score <= NOT_READY_SCORE;
 }
 
 export function scoreBandIndex(score: number) {
