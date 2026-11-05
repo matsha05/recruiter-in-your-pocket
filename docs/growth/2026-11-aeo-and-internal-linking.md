@@ -79,6 +79,8 @@ Not code. A fixed set of twelve prompts, run in ChatGPT, Claude, Perplexity and 
 
 Prompts 5 to 8 and 12 are the research articles' own headlines. If the engines cite the article, the answer-first format is working; if they cite a reprint of the 2012 eye-tracking report instead, the article needs the study named higher. Matt runs this, since it needs his accounts; about an hour the first time. Parse's free prompt pages cover prompt 1 without an account.
 
+**November 5 run:** [ai-answers/2026-11.md](ai-answers/2026-11.md). ChatGPT (Astra 6.1) ran the set from [a shared brief](https://docs.google.com/document/d/1bgeI0jjwulSXQBpvOvFdn3igzqCPxDguYHRsKSDeDwc/edit); eight answers failed to load in the interface, so the month records four readable answers (none naming RIYP) and is not yet a baseline. The four confirm the premise: every source for "Resume Worded alternative" was a vendor page or a vendor's roundup.
+
 ### 4. Third-party mentions, brand-led
 
 Runs alongside the channels plan, with the same anonymity rules. Three moves:
@@ -86,6 +88,8 @@ Runs alongside the channels plan, with the same anonymity rules. Three moves:
 - **Roundup inclusion.** The pages the engines cite for "best resume review tools" are vendor and affiliate roundups ([VisualCV](https://www.visualcv.com/blog/best-ai-resume-checker-tools/), [Blaze](https://blaze.today/blog/ai-resume-review/), [Fueler](https://www.fueler.io/blog/best-ai-resume-review-tools-for-job-seekers), [cvowl](https://cvowl.com/blog/best-ai-resume-review-tools-compared-2026)). One email each from the brand address with the sample report and the free report, asking to be considered. No founder name. Expect most to want a fee or an affiliate link; decline those and note which.
 - **Reddit answers as the brand**, already in first-100-users.md. The research articles are what to cite there, not the homepage: a link to "Will one typo cost me the interview?" in a thread about typos is useful; a link to the product is spam.
 - **YouTube** is the one cited source we cannot use without a face or a voice. Parked until Matt decides whether a voice-only walkthrough of the sample report is acceptable.
+
+**November 5 research:** [outreach-tracker.md](outreach-tracker.md). Twelve roundup pages with their commercial terms and contact routes (Zapier's suggestion form is the one verified unpaid editorial route; CV Owl's page is gone), the email draft, and ten Reddit threads with drafted answers. None of the ten can be posted as planned: every relevant subreddit bans brand links in its own rules, and two ban AI-written comments. The tracker lays out the three honest options; that decision is Matt's.
 
 ### 5. The small things, last
 
