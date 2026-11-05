@@ -1,0 +1,23 @@
+# Head-to-head capture index
+
+Captured **November 5, 2026**. All times below are **America/Denver (MST, UTC−07:00)**. This is an evidence packet, not a comparison or ranking. Start with each tool's `headline.md`; `recommendations.md`, `time.md`, and `errors.md` document the visible feedback, timing, and fidelity checks. Every tool folder contains the six requested files; supporting captures preserve intermediate states and variants.
+
+| Tool | Run times (MST) | Posting used | Capture status and limits |
+| --- | --- | --- | --- |
+| [Recruiter in Your Pocket](riyp/headline.md) | Signed-out upload 12:54:54; [signed-in supplemental upload](riyp/signed-in/headline.md) 13:23:29 | Yes, both attempts; no-posting report unavailable | Signed-out device/network free-report gate, then normal account sign-in showed its free report already used. Both attempts captured; no report obtained without payment. |
+| [Jobscan](jobscan/headline.md) | Onboarding upload 13:01:44; scan upload 13:02:45; no-posting attempt 13:08:48 | Yes; no-posting attempted | With-posting report captured. Scan was disabled with the posting empty. Paid skill rows and formatting findings remain recorded as locked. |
+| [Resume Worded](resume-worded/headline.md) | Initial upload 12:56:21; authenticated upload 13:12:10; targeted upload 13:29:36 | No, then yes | General resume report and Targeted Resume captured. Human-verification retries and user sign-in are included in the history. LinkedIn was not analyzed. Locked checks remain locked. |
+| [Teal](teal/headline.md) | Clean-account upload 13:21:26; verified posting saved 13:29:37 | No, then yes | Analyzer and keyword match captured on an automatically imported and augmented resume. All 16 Analyzer fixes were locked; five keyword entries were visible. Existing account history was preserved. |
+| [Rezi](rezi/headline.md) | Initial upload 12:56:38; continuation upload 13:14:02; posting submitted 13:22:23 | No, then yes | Scores and free suggestions captured on the automatically imported representation. Parsing/content changes and locked checks are documented. |
+| [Kickresume](kickresume/headline.md) | Upload 12:57:53; checker continuation 13:14–13:17 | No; no posting control found in checker | Original protocol classification: builder only. Supplemental imported-resume score and category verdict captured; detailed fixes and recruiter feedback required Premium. |
+
+## Inputs and execution notes
+
+- The exact [resume PDF](input/resume.pdf), its [extracted text](input/resume.txt), and the full [Anthropic Technical Recruiter posting](input/posting.txt) were prepared first. [Provenance](input/provenance.md) records source, redaction, current-posting verification, and PDF SHA-256. Every upload used the same PDF bytes; no tool output was adopted into it.
+- The original [protocol](../head-to-head-protocol.md) stops when a tool rebuilds the resume. After the user asked us not to curtail the process, we continued automatic imports to capture what those tools actually returned. **Teal, Rezi, and Kickresume results therefore depart from the original-layout rule** and are labeled accordingly. No manual parser correction, rewrite, tailoring, or AutoFix was accepted. The original builder/access gates remain as historical evidence.
+- The user supplied account addresses during execution, replacing the brand-address placeholder. Resume Worded used the user's alternate signed-in address; Teal used a clean free account at that alternate address to avoid merging the input with older resumes. No card, paid plan, or paid trial was used. Credentials and verification messages are excluded.
+- Timing is observed wall-clock elapsed time, including entry, account steps, human handoffs, and capture work. It is not model-processing latency. Unavailable recommendations are not assigned a zero-minute time. Individual `time.md` files distinguish scores, broad verdicts, and usable advice.
+- Screenshots use full-page capture at desktop width. Where an app scrolls inside panels, additional scrolled/detail captures supplement the initial frame. Loading frames are preserved instead of being replaced with later screens. Any account-email masking or omitted auxiliary screenshot is explicitly documented.
+- Only free, visibly accessible advice is transcribed. Locked items are labeled as such; any classification of a visible heading describes that heading alone, while unseen advice remains unclassified. Text companions omit hidden/paywalled content and normalize trailing whitespace without changing wording. Shared inputs are untouched. Contact-placeholder warnings are distinguished from genuine factual errors.
+
+No comparison article or product changes are included.

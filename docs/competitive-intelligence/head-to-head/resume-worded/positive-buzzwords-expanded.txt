@@ -1,0 +1,56 @@
+All checks
+✓ Passed · 1 of 6
+←
+→
+Buzzwords
+10/10
+
+Your wording stays specific. We checked for vague qualities and business clichés such as “team player” or “results-driven.”
+
+What we verified
+No overused vague qualities
+Your resume avoids generic, vague qualities and buzzwords, like “hard working” and “self starter”. These terms are considered clichés by employers because they are so overused, and resumes are usually better off without them entirely.
+No unnecessary business jargon
+Your resume avoids the common trap of using too many business clichés. Terms like “synergy” are often seen as business fluff and can undermine the valuable content in your resume. Their frequent appearance can cause hiring managers to gloss over them and miss your unique qualities and accomplishments.
+Common questions
+How do you remove buzzwords and clichés from your resume?
+
+In this section, we scanned your resume for common buzzwords and clichés that are considered to be overused, vague and ineffective. Examples of these words include 'results-driven', 'team player' or 'hardworking'.
+
+These words don't convey your impact or achievements, and just take up space on your resume. To recruiters and hiring managers, they are considered to be nothing more than marketing fluff.
+
+The problem with phrases like these is that they are usually pretty biased and aren't backed up, and thus aren't effective in conveying your strengths or impact. Recruiters aren't going to just believe you're a "hard worker" if you say you are — they are going to want to see evidence that you are one!
+
+Instead of these generic buzzwords, you need to clearly describe what you did and how you did it.
+
+For example, don't just say you are a 'team player'. Instead, give a specific example of of professional achievements you've made in a team. "Delivered XYZ project as project manager in a cross-functional team of 10 people..." gives me a much better indication of the size of teams you've worked in as well as the role you had.
+
+What does a fix look like?
+
+Let’s look at before and after examples of how to turn vague buzzwords into tangible accomplishments. The rewritten lines remove the underlined buzzwords and show evidence of specific accomplishments.
+
+Showing leadership and management experience
+Highly motivated individual with strong leadership and management skills, with extensive experience managing cross-functional teams
+Managed a 5-member cross-functional (product, engineering, sales, support) team and coordinated with six business partners toward the successful launch of an e-commerce platform.
+Removing buzzwords
+A problem solver at heart, I am a dynamic, results-oriented employee who hits the ground running and delivers huge process improvements.
+Overhauled the obsolete legacy source code of two production applications, resulting in increased usability and reduced load time by 50%
+Showing your ambition
+I am an ambitious, proactive seasoned professional who has been recognized by my employer and have been awarded an early promotion
+Promoted within 12 months due to strong performance and organizational impact, ahead of schedule by 12 months
+Showing your drive
+Customer driven thought leader with extensive experience organizing large social events and monetizing them
+Organized and monetized 12 social events of 200+ attendees each, generating $40K in ticket and sponsor revenue over two years
+Aren't these the keywords recruiters search for?
+
+Rarely. Screening software matches the hard skills, tools and job titles in the posting, and it gives no credit for adjectives. A recruiter searching a database types in a skill or a title, not “results-driven”. If a posting asks for a quality, show it with an example from your work rather than echoing the phrase. That is what gets read.
+
+My industry really uses these terms. Is that jargon?
+
+Technical terms are not jargon. The tools, methods and certifications your field uses belong on your resume, and your skills section is exactly the place for them. Jargon is the business fluff that sounds knowledgeable but means nothing specific: synergy, leverage, think outside the box. Hiring managers skim past it. If a phrase would mean the same thing on anyone's resume, replace it with what you actually did. And keep both kinds of buzzword out of your skills section, which is reserved for hard skills.
+
+6
+/10
+NEXT FIX
+Repetition
++3 pts

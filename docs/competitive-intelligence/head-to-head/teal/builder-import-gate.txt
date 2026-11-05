@@ -1,0 +1,10 @@
+Observed at: 2026-11-05T20:10:40.376Z
+Merge content to your existing resume by uploading a new resume or LinkedIn Profile.
+
+Merging will add the newly imported information to your current work history. We will do our best to cross-check for content that already exists, but this action may result in duplicates in the resume that need to be corrected.
+
+Overwriting your resumes will delete all current resumes and work experience, allowing you to start with a new import.
+
+Overwrite my Resumes
+Merge Content
+Close

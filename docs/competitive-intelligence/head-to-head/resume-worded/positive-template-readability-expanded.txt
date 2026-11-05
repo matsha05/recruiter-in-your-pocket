@@ -1,0 +1,24 @@
+All checks
+✓ Passed · 6 of 6
+←
+→
+Template readability
+10/10
+
+Your resume reads in the right order. We checked whether the PDF keeps its content in sequence when hiring software extracts it.
+
+What we verified
+Single-column reading order
+Your main content follows one continuous sequence, which is the most reliable layout for hiring software.
+Common questions
+Does this affect my overall resume score?
+No. This check is informational — it does not change your overall score. It exists because reading order is invisible in a normal PDF viewer, and we think you should see it.
+Is this exactly what every hiring system sees?
+No. Different systems read PDFs differently — some handle columns better than others. We simulate a standard PDF reader to show the kind of mixing your template allows. A single-column template reads the same everywhere, which is why it’s the safe choice.
+Will I lose anything in the new template?
+No. AutoFix moves your existing content into the new template — jobs, bullets, dates, education. You see the result before you use it, and your original file is never changed.
+6
+/10
+NEXT FIX
+Repetition
++3 pts
