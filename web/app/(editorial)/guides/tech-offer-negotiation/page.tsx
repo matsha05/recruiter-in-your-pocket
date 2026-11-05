@@ -114,7 +114,7 @@ export default function TechOfferNegotiationGuidePage() {
                     <div className="space-y-1">
                         <Disclosure title="The year-one gap" eyebrow="Sign-on, base, or vesting">
                             <Script>When I compare the offers year by year, this package is [X] lower in year one because [specific reason]. This role is my preference. Is there room to close that gap through [term]?</Script>
-                            <WhatItGives>The actual comparison and the term you want reviewed. Do not imply another offer exists unless it does.</WhatItGives>
+                            <WhatItGives>The actual comparison and the term you want reviewed. <Link href="/resources/tools/comp-calculator" className="riyp-link">Put salary, bonus, equity, and one-time pay on the same footing</Link> before you quote a gap. Do not imply another offer exists unless it does.</WhatItGives>
                         </Disclosure>
                         <Disclosure title="The equity grant is hard to value" eyebrow="Ask before you counter">
                             <Script>Before I compare the equity, could you share the grant type, vesting schedule, and the information the company provides candidates to understand strike price or current share value?</Script>

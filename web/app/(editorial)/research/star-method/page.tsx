@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 const PATH = "/research/star-method";
@@ -57,7 +58,7 @@ export default function StarMethodPage() {
         >
             <h2 className="research-h2">On the resume: the headline</h2>
             <p className="research-body mb-6">
-                Don&apos;t force four labeled parts into a bullet. A strong line names what you did, gives just enough context to follow it, and says what changed when you know. The role title usually covers the situation.
+                Don&apos;t force four labeled parts into a bullet. A strong line names what you did, gives just enough context to follow it, and <ResearchLink to="quantifying-impact">says what changed, and how you measured it, when you know</ResearchLink>. The role title usually covers the situation.
             </p>
             <p className="text-sm text-muted-foreground mb-4">
                 Fictional examples. Only use details like these if they&apos;re true for you.
@@ -73,7 +74,7 @@ export default function StarMethodPage() {
                 />
             </div>
             <p className="research-body mb-6">
-                The second line says what was yours and what it left behind. There&apos;s no invented number, and it doesn&apos;t need one. It&apos;s also the start of an interview answer.
+                The second line says what was yours and what it left behind. There&apos;s no invented number, and it doesn&apos;t need one. It&apos;s also the start of an interview answer. The wording is worth the care on its own: in one large experiment, <ResearchLink to="writing-quality-hire-probability">grammar fixes alone lifted hires by about 8%</ResearchLink>.
             </p>
 
             <h2 className="research-h2">In the interview: the story</h2>
@@ -81,7 +82,7 @@ export default function StarMethodPage() {
                 In a structured interview, the employer picks the skills that matter for the job and sets the questions and rating standards in advance. Every candidate gets the same test.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
-                {" "}Expect two kinds of questions.
+                {" "}Expect two kinds of questions. A recruiter screen often adds a third, what you make now, and <ResearchLink to="salary-history-bans">disclosing it brought higher offers and fewer callbacks in one field experiment</ResearchLink>.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
                 <ArticleInsight

@@ -45,6 +45,11 @@ export default function ResearchHub() {
                             <section key={category.id} className={styles.group} aria-labelledby={`research-${category.id}`}>
                                 <h3 id={`research-${category.id}`} className={styles.groupTitle}>{category.title}</h3>
                                 <div>{rest.map((article) => <ResearchAnswerRow key={article.id} article={article} size="list" />)}</div>
+                                {category.id === "negotiation" ? (
+                                    <p className="mt-5 text-sm text-muted-foreground">
+                                        The guides and the offer calculator live under <Link href="/resources" className="focus-ring riyp-link-quiet">After the offer</Link>.
+                                    </p>
+                                ) : null}
                             </section>
                         );
                     })}

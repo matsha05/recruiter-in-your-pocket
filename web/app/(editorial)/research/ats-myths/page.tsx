@@ -1,6 +1,9 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
+import Link from "next/link";
+import { comparison } from "@/components/compare/comparisons";
 import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 
 const PATH = "/research/ats-myths";
@@ -132,6 +135,7 @@ export default function ATSMythsPage() {
                 {" "}Both let employers reject or archive applicants automatically on an answer like &ldquo;Do you have a commercial driver&apos;s license?&rdquo; The parser itself is only the extraction step.
                 <Citation id="source-5">5</Citation>
                 <Citation id="source-6">6</Citation>
+                {" "}Where software does screen people out, it is mostly elsewhere: <ResearchLink to="automation-and-bias">which job ads you see, whether you&rsquo;re eligible, and how you reach a person</ResearchLink>. And once the file is in front of a person, the question is the reader, who isn&rsquo;t immune to software either: in one experiment, <ResearchLink to="human-vs-algorithm">an algorithm&rsquo;s recommendation swayed recruiters who said they trusted it less than a person</ResearchLink>.
                 {" "}EEOC guidance on employment tests and selection procedures, issued in 2007 and not specific to software, says a screen that disproportionately excludes people by race, sex, or another protected trait has to be job-related and consistent with business necessity.
                 <Citation id="source-3">3</Citation>
             </p>
@@ -142,7 +146,7 @@ export default function ATSMythsPage() {
                 <li>Write role titles and core skills in plain language, not internal jargon.</li>
                 <li>Avoid graphics or tables that disrupt parsing and readability.</li>
                 <li>A single column with clear headings, consistent dates, and standard section names is the safest baseline.</li>
-                <li>Use the role&apos;s language where it truthfully describes your experience. Don&apos;t stuff hidden or repeated keyword blocks into the file.</li>
+                <li>Use the role&apos;s language where it truthfully describes your experience. Don&apos;t stuff hidden or repeated keyword blocks into the file. A scanner&apos;s match rate is <Link href={comparison("jobscan").path} className="focus-ring riyp-link">the vendor&apos;s own model of an ATS, not the employer&apos;s</Link>.</li>
             </ul>
 
             <ArticleBridge question="What does a person see once they open it?">

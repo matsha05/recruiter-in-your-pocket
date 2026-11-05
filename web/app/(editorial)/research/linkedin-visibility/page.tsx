@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
@@ -149,6 +150,10 @@ export default function LinkedInVisibilityPage() {
                     <span className="text-muted-foreground/50">•</span>
                     A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview.
                 </li>
+                <li className="flex gap-2">
+                    <span className="text-muted-foreground/50">•</span>
+                    <span>What you post is read too. <ResearchLink to="social-screening">In one experiment, unappealing posts cut candidate ratings by almost two points, and having no profile at all cost more than posts suggesting mental-health problems</ResearchLink>.</span>
+                </li>
             </ul>
 
             <h2 className="research-h2">The practical rule</h2>
@@ -158,8 +163,8 @@ export default function LinkedInVisibilityPage() {
                 <Citation id="source-2">2</Citation>
             </p>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li><strong>Name the role plainly.</strong> Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it.</li>
-                <li><strong>Put skills in context.</strong> List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong.</li>
+                <li><strong>Name the role plainly.</strong> Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it. The same plain title helps on the resume, where <ResearchLink to="who-you-are">a recruiter is trying to say who you are in one line</ResearchLink>.</li>
+                <li><strong>Put skills in context.</strong> List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong. <ResearchLink to="skills-first-promise-reality">A listed skill is a claim; the project behind it is what lets a reader assess it</ResearchLink>.</li>
                 <li><strong>Explain where you used the skill.</strong> A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience.</li>
             </ul>
 

@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { StoryReadDiagram } from "@/components/research/diagrams/StoryReadDiagram";
 
 const PATH = "/research/who-you-are";
@@ -81,7 +82,7 @@ export default function WhoYouArePage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                That study was about interviews, not resumes. But the resume is usually the first read, and our experience is that it works the same way. Once a recruiter decides who you are, everything after that gets read through it.
+                That study was about interviews, not resumes. But the resume is usually the first read, and our experience is that it works the same way. The eye-tracking evidence points the same direction: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Once a recruiter decides who you are, everything after that gets read through it.
             </p>
 
             <h2 className="research-h2">A clear thread beats a scattered list</h2>
@@ -102,14 +103,14 @@ export default function WhoYouArePage() {
             <p className="research-body mb-6">
                 Employers also read meaning into what a resume doesn&apos;t show. In an audit study that sent roughly 12,000 fictitious resumes to job openings in 100 US cities, callbacks were about 45% lower for people out of work eight months than for those out one month, roughly 4% against 7%. The authors read this as employers treating the time out as a sign of something they couldn&apos;t see.
                 <Citation id="source-5">5</Citation>
-                {" "}That study changed how long people had been out of work, not how much their resumes explained. <strong>Our take:</strong> the same instinct applies whenever a resume leaves a question open. The reader fills it in, and rarely in your favor.
+                {" "}That study changed how long people had been out of work, not how much their resumes explained. In the largest test of fixes, <ResearchLink to="gaps-and-pivots">listing the years in each job instead of dates raised callbacks above even resumes with no gap</ResearchLink>. <strong>Our take:</strong> the same instinct applies whenever a resume leaves a question open. The reader fills it in, and rarely in your favor.
             </p>
 
             <h2 className="research-h2">Being relatable is part of the read</h2>
             <p className="research-body mb-6">
                 In 120 interviews with evaluators at elite banks, law firms, and consulting firms, more than half said &ldquo;fit&rdquo; was their most important criterion at the interview stage, ahead of analytical thinking and communication. One lawyer described usually opening with &ldquo;Tell me about yourself,&rdquo; and explained: &ldquo;I want to hear your life story.&rdquo;
                 <Citation id="source-4">4</Citation>
-                {" "}That can slide into bias toward people like the evaluator. The useful lesson is narrower: a reader who can see how you think and what you care about has something to connect with. A list of duties gives them nothing.
+                {" "}Evaluators look you up as well: <ResearchLink to="social-screening">in one experiment, posts changed candidate ratings, and having no profile at all cost more than an awkward one</ResearchLink>. That can slide into bias toward people like the evaluator. The useful lesson is narrower: a reader who can see how you think and what you care about has something to connect with. A list of duties gives them nothing.
             </p>
 
             <h2 className="research-h2">What makes a resume tell your story</h2>
@@ -127,7 +128,7 @@ export default function WhoYouArePage() {
                 />
                 <ArticleInsight
                     title="They can see the work"
-                    desc="Name the product, the team, the customer, the problem. Specifics let a stranger picture you doing it."
+                    desc={<>Name the product, the team, the customer, the problem. Specifics let a stranger picture you doing it, and <ResearchLink to="star-method">a line that names what was yours and what it left behind is the start of an interview answer</ResearchLink>.</>}
                 />
                 <ArticleInsight
                     title="It points at the next job"

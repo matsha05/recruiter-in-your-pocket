@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { AdviceList, AnswerArticle, ArticleBridge, EvidenceList } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { SectionFindingsFigure } from "@/components/research/diagrams/SectionFindingsFigure";
 
 const PATH = "/research/how-recruiters-read";
@@ -58,20 +59,20 @@ export default function HowRecruitersReadPage() {
                 items={[
                     {
                         lead: "Put your recent, relevant experience where it’s easy to find.",
-                        body: <>That&rsquo;s the section where longer looks went with moving a resume forward (<a href="#pina-2023" className="focus-ring riyp-link-quiet">Pina et al., 2023</a>).</>,
+                        body: <>That&rsquo;s the section where longer looks went with moving a resume forward (<a href="#pina-2023" className="focus-ring riyp-link-quiet">Pina et al., 2023</a>). It&rsquo;s also why <ResearchLink to="resume-length-myths">a second page isn&rsquo;t automatically a penalty</ResearchLink> when it carries relevant experience.</>,
                     },
                     {
                         lead: "Explain your part in the work.",
-                        body: "Give each role what a reader needs to judge it: the work, your part, the team and the scale, and the result when you can verify it.",
+                        body: <>Give each role what a reader needs to judge it: the work, your part, the team and the scale, and the result when you can verify it. <ResearchLink to="quantifying-impact">Say what changed, how you measured it, and what you did to get there</ResearchLink>.</>,
                     },
                     {
                         lead: "Use titles, headings, and dates a reader recognizes.",
-                        body: "Say what kind of work you do in plain role language, not an internal title or a broad slogan. Familiar headings, visible dates, and a predictable order let a reader find your roles without hunting for them.",
+                        body: <>Say what kind of work you do in plain role language, not an internal title or a broad slogan. Familiar headings, visible dates, and a predictable order let a reader find your roles without hunting for them. Once they&rsquo;re reading, <ResearchLink to="spelling-errors-impact">repeated spelling errors cost points even when the experience on the page is identical</ResearchLink>.</>,
                     },
                 ]}
                 notSupported={{
                     title: "What the studies don’t support",
-                    body: "Writing for one reading speed, one scan path, or one layout. They don’t show that every resume is read in an F-pattern, that one layout works best for every role, or that two columns always fail.",
+                    body: <>Writing for one reading speed, one scan path, or one layout. They don&rsquo;t show that every resume is read in an F-pattern, that one layout works best for every role, or that two columns always fail. Where layout does bite is the parser, not the reader: <ResearchLink to="ats-myths">Greenhouse lists columns, tables, headers, and text boxes among the layouts that can parse badly</ResearchLink>.</>,
                 }}
             />
 

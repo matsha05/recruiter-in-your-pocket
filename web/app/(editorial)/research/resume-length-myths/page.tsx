@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
 const PATH = "/research/resume-length-myths";
@@ -67,15 +68,15 @@ export default function ResumeLengthPage() {
 
             <h2 className="research-h2">A better editing rule</h2>
             <p className="research-body mb-6">
-                <strong>Our take:</strong> use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one. Use page two for additional work only when it adds useful scope, depth, or context.
+                <strong>Our take:</strong> use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one: in the strongest eye-tracking study, <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Use page two for additional work only when it adds useful scope, depth, or context.
             </p>
             <p className="research-body">
-                Every line should pass a simpler test: &quot;Does this help a reviewer understand my fit for this role?&quot;
+                Every line should pass a simpler test: &quot;Does this help a reviewer understand my fit for this role?&quot; A line earns its space when it <ResearchLink to="quantifying-impact">says what changed, how you measured it, and what you did to get there</ResearchLink>, not when it fills the page.
             </p>
 
             <h2 className="research-h2">Make the important details easy to find</h2>
             <p className="research-body mb-6">
-                If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it. Check that your recent responsibilities and strongest results remain easy to find.
+                If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it, but keep its dates: <ResearchLink to="gaps-and-pivots">listing the years spent in each job raised callbacks in the largest test of gap fixes</ResearchLink>. Check that your recent responsibilities and strongest results remain easy to find.
             </p>
 
             <ArticleBridge question="Which lines are earning their space?">
