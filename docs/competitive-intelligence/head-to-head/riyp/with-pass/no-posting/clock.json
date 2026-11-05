@@ -1,0 +1,44 @@
+{
+  "passBefore": 4,
+  "passBeforeAt": "2026-11-05T21:12:13.981Z",
+  "uploadAt": "2026-11-05T21:12:17.732Z",
+  "observations": [
+    {
+      "at": "2026-11-05T21:12:26.635Z",
+      "waiting": true,
+      "stage": "Sending your resume"
+    },
+    {
+      "at": "2026-11-05T21:12:40.640Z",
+      "waiting": true,
+      "stage": "Reading"
+    },
+    {
+      "at": "2026-11-05T21:12:41.209Z",
+      "waiting": true,
+      "stage": "Writing the notes"
+    },
+    {
+      "at": "2026-11-05T21:13:00.695Z",
+      "waiting": true,
+      "stage": "Checking for more misses"
+    },
+    {
+      "at": "2026-11-05T21:13:02.848Z",
+      "waiting": false,
+      "stage": "Finished"
+    }
+  ],
+  "firstScreenAt": "2026-11-05T21:12:17.795Z",
+  "postingVerifiedEmptyAt": "2026-11-05T21:12:26.596Z",
+  "submitAt": "2026-11-05T21:12:26.596Z",
+  "lastStage": "Finished",
+  "lastWaitCaptureAt": "2026-11-05T21:13:00.816Z",
+  "verdictAt": "2026-11-05T21:13:02.848Z",
+  "firstNonWaitAt": "2026-11-05T21:13:02.848Z",
+  "fullReportObservedAt": "2026-11-05T21:13:02.848Z",
+  "expandedNotesCapturedAt": "2026-11-05T21:13:10.322Z",
+  "passAfter": 3,
+  "passAfterAt": "2026-11-05T21:13:18.548Z",
+  "fullExpandedScreenshotAt": "2026-11-05T21:15:27.321Z"
+}

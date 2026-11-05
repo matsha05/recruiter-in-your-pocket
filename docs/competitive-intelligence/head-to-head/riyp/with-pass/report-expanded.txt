@@ -1,0 +1,224 @@
+Skip to content
+New report
+My reports
+Research
+After the offer
+M
+
+Your report is ready.
+
+Overview
+Fix these first
+Keep these
+Role fit
+Export PDF
+
+Matt Shaw
+
+Technical Recruiter · read in 1 min 24 s
+
+VERDICT
+
+Your current security recruiting work is directly relevant to the target role.
+
+The 200 offer accepts and 94% accept rate are worth keeping near the top, though the security specialties aren't named.
+
+Hiring results and team responsibilities are clear, but several claims need explanation.
+
+Needs more context
+Mostly clear
+Clear and specific
+
+Most lines show what you did. A few leave your part or the result unclear.
+
+One Critical Miss. Fix it first.
+
+It's the one most likely to cost you the interview.
+
+● Global hiring point-of-contact for Dane Stuckey, Chief Security Officer.
+
+● Hiring across all levels up to VP within the Security org, across the US, EMEA and APAC.
+
+X-Team, Chief People Officer
+
+CRITICAL MISS
+· Professional Experience
+
+Name the security functions or representative searches you personally supported.
+
+The job names several security specialties, and the current wording doesn't show which overlap with your work.
+
+Hide
+01
+Your line
+02
+What's missing
+03
+Your answers
+04
+Revised line
+
+Answer and we'll add it to your line.
+Only what's true.
+
+Which security functions or representative roles did you recruit for at OpenAI?
+I don't know
+I didn't do this
+Was this the right thing to fix first?
+Yes
+No
+
+Keep this one
+
+The Google referral drive names 112 Offer Accepts and nearly 5,000 referrals in two quarters, giving the program a concrete result.
+
+● Global hiring point-of-contact for Dane Stuckey, Chief Security Officer.
+
+Fix 2 of 2
+
+Describe a concrete search discussion with the security leader, such as how you calibrated requirements if applicable.
+
+The contact is named, but the resume doesn't show how you worked together on hiring needs.
+
+What to add
+
+What did you discuss with the chief security officer when aligning on a particular search?
+Work on this line
+Hide
+
+Why we read it this way
+
+How your experience fits together
+Why the first read of you sticks
+(opens in a new tab)
+The results you show
+Why we keep asking what changed
+(opens in a new tab)
+How clearly each line reads
+Where a recruiter’s attention goes
+(opens in a new tab)
+How easy the text is to follow
+How much a typo really costs
+(opens in a new tab)
+How the score is built
+(opens in a new tab)
+Questions only you can answer.
+01
+
+How was the X-Team time-to-hire change calculated, and what were the starting and ending figures?
+
+Checking the underlying figures would help correct the stated percentage.
+
+02
+
+Which ML hiring trends did you present to executive leadership, and what recommendations accompanied them?
+
+A concrete presentation example would explain your contribution without assuming you made the decisions.
+
+03
+
+What did you personally handle from intake through offer on a Google technical search?
+
+A search example could make your full-cycle responsibilities more specific.
+
+Keep these. They're working.
+
+At Meta, you managed 3 Recruiting Leads and 16 Sourcers, making your management responsibilities easy to understand.
+
+How your experience fits this role.
+
+Lead with the OpenAI security work and keep the offer accept figures visible. Add verified examples of search execution and technical hiring partnerships so the management history complements your current recruiting work.
+
+Roles to consider
+
+Technical Recruiter
+Member of Recruiting Staff
+Recruiting Manager (AI and ML SWE)
+
+Level suggested by the resume: Your recent titles span individual recruiting, recruiting management and chief people leadership. The target role is an individual recruiting position, so your current hands-on work is particularly relevant.
+
+How the score works
+
+The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It doesn't predict interviews or offers.
+
+A reviewer can see substantial recruiting work and several stated results. The resume leaves some questions about how you conduct technical searches.
+
+The recent security hiring entry and earlier recruiting programs include useful numbers and context. Some search methods are less visible, and the time-to-hire claim needs checking. Specific search examples and a corrected calculation would strengthen the resume.
+
+Full recruiter notes
+The whole resume
+Security hiring at OpenAI connects your current work to this technical recruiter opening. Earlier roles span direct recruiting and management, including a Meta program that onboarded 80 sourcers and resulted in an additional 107 hires. Your titles and responsibilities range from individual recruiting through people leadership. More detail about your current searches would help a reviewer assess the hands-on fit.
+Questions still open
+01
+
+The resume doesn't name the security functions or searches you handled, so a reviewer cannot compare them with the job's preferred disciplines.
+
+02
+
+No applicant tracking or sourcing tools are identified; Rippling is listed as an HRIS, not as a recruiting system.
+
+Section by section.
+Summary
+Still unclear
+No summary section present
+Fix
+Add this section if it helps explain why your experience fits the job.
+Work experience
+What works
+Recent entries include offer accepts, hiring geography, team sizes and recruiting program results.
+Fix
+Add search-specific detail at OpenAI and check the X-Team calculation.
+Skills
+Still unclear
+No skills section present
+Fix
+Add this section if it helps explain why your experience fits the job.
+Education
+What works
+The business administration degree, school and graduation date are stated.
+Still unclear
+The listed SHRM-CP expiration date has passed; a renewal isn't shown.
+Fix
+Update the certification status if it has changed.
+What to do next.
+01
+
+Revise the OpenAI entry with representative security searches and a specific example of hiring-leader collaboration.
+
+02
+
+Verify the X-Team time-to-hire calculation and check the Robert Half revenue-growth figure against its source.
+
+03
+
+Add recruiting systems and sourcing tools to the relevant experience entries if you have used them.
+
+How you match the job posting.
+
+Job match: 75/100
+
+Your security recruiting and AI/ML hiring background align with the role. The resume doesn't yet establish several requested details, including recruiting tools, hiring-bar calibration and security credential judgment.
+
+Relevant experience
+Current security hiring across levels and regions
+AI and ML software engineering recruiting at Meta
+Full-cycle recruiting across technical and other functions at Google
+Introduction of a structured interview process
+Recruiting leadership partnership, including the current security point-of-contact role
+Needs more detail
+Day-to-day collaboration with security hiring managers
+Specific security disciplines and representative searches
+Individual contributions to technical candidate assessment
+Recruiting process improvements applicable to interview architecture
+Not shown in the resume
+Named applicant tracking and sourcing tools
+Security credential assessment
+A stated connection to the role's safety mission
+Job terms not found
+Interview loop design
+Industry context
+Staffing
+Company stage
+Your current role describes hiring during hypergrowth, from 20 employees to 500+.
+Made your edits? See what changed.
+Compare my revision
