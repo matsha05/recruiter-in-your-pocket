@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Analytics, noteVisitEntry, watchAnalyticsConsent } from "@/lib/analytics";
 import { getAnalyticsConsent, subscribeAnalyticsConsent } from "@/lib/analyticsConsent";
-import { ctaClick, PAGE_SURFACES, researchArticleSlug } from "@/lib/analyticsSurfaces";
+import { comparisonSlug, ctaClick, PAGE_SURFACES, researchArticleSlug } from "@/lib/analyticsSurfaces";
 
 export function AnalyticsLifecycle() {
   const pathname = usePathname();
@@ -23,6 +23,8 @@ export function AnalyticsLifecycle() {
       if (pathname === "/sample-report") Analytics.sampleReportViewed();
       const slug = researchArticleSlug(pathname);
       if (slug) Analytics.researchArticleViewed(slug);
+      const comparison = comparisonSlug(pathname);
+      if (comparison) Analytics.comparisonViewed(comparison);
     };
     record();
     return subscribeAnalyticsConsent(record);

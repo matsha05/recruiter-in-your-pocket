@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
 import Module from "node:module";
-import { ctaClick, PAGE_SURFACES, researchArticleSlug } from "../lib/analyticsSurfaces";
+import { comparisonSlug, ctaClick, PAGE_SURFACES, researchArticleSlug } from "../lib/analyticsSurfaces";
 import { sanitizeAnalyticsEvent } from "../lib/analyticsPolicy";
 
-// Research pages: which article was read, and which report action was clicked. Both stay
-// inside the analytics policy and only reach the vendor after the visitor accepts analytics.
+// Research and compare pages: which article or comparison was read, and which report action was
+// clicked. Both stay inside the analytics policy and only reach the vendor after the visitor accepts
+// analytics.
 
 assert.equal(researchArticleSlug("/research/how-recruiters-read"), "how-recruiters-read");
 assert.equal(researchArticleSlug("/research/how-recruiters-read/"), "how-recruiters-read");
@@ -21,6 +22,23 @@ assert.deepEqual(ctaClick("/", "hero_report", "/workspace"), { cta: "hero_report
 assert.equal(ctaClick("/pricing", "header_report", "/workspace"), null, "other pages stay out until they're added on purpose");
 assert.equal(ctaClick("/research/ats-myths", "research_bridge", "/pricing"), null, "only report and sample destinations count");
 assert.equal(ctaClick("/research/ats-myths", undefined, "/workspace"), null);
+
+// Compare pages (the AEO bet): the hub and each comparison count their report clicks, and a
+// comparison's view carries the other tool's public name, never a URL.
+assert.equal(PAGE_SURFACES["/compare"], "compare");
+assert.equal(comparisonSlug("/compare/jobscan"), "jobscan");
+assert.equal(comparisonSlug("/compare/resume-worded/"), "resume-worded");
+assert.equal(comparisonSlug("/compare"), null, "the hub is a page_viewed surface, not a comparison");
+assert.equal(comparisonSlug("/compare/a/b"), null);
+assert.equal(comparisonSlug("/research/ats-myths"), null);
+assert.deepEqual(ctaClick("/compare", "compare_hub_close", "/workspace"), { cta: "compare_hub_close", destination: "/workspace" });
+assert.deepEqual(ctaClick("/compare/jobscan", "compare_bridge", "/workspace"), { cta: "compare_bridge", destination: "/workspace" });
+assert.deepEqual(ctaClick("/compare/kickresume", "compare_close", "/workspace"), { cta: "compare_close", destination: "/workspace" });
+assert.equal(ctaClick("/compare/jobscan", "compare_close", "/pricing"), null, "only report and sample destinations count from a comparison");
+assert.deepEqual(
+  sanitizeAnalyticsEvent("comparison_viewed", { slug: "jobscan", url: "https://www.recruiterinyourpocket.com/compare/jobscan" }),
+  { name: "comparison_viewed", properties: { slug: "jobscan" } },
+);
 
 // From a report to the research behind it. The report's own path (and any id in it) is never sent.
 assert.deepEqual(ctaClick("/workspace", "report_research_impact", "/research/quantifying-impact"), { cta: "report_research_impact", destination: "/research/quantifying-impact" });
@@ -78,16 +96,21 @@ async function consentGate() {
     Analytics.researchArticleViewed("how-recruiters-read");
     Analytics.track("landing_cta_clicked", ctaClick("/research/how-recruiters-read", "research_bridge", "/workspace") ?? {});
     Analytics.track("landing_cta_clicked", ctaClick("/workspace", "report_research_story", "/research/who-you-are") ?? {});
+    Analytics.comparisonViewed("jobscan");
+    Analytics.track("landing_cta_clicked", ctaClick("/compare/jobscan", "compare_close", "/workspace") ?? {});
     await settle();
     assert.deepEqual(tracked, [
       ["research_article_viewed", { slug: "how-recruiters-read" }],
       ["landing_cta_clicked", { cta: "research_bridge", destination: "/workspace" }],
       ["landing_cta_clicked", { cta: "report_research_story", destination: "/research/who-you-are" }],
+      ["comparison_viewed", { slug: "jobscan" }],
+      ["landing_cta_clicked", { cta: "compare_close", destination: "/workspace" }],
     ]);
     consent.setAnalyticsConsent("declined");
     Analytics.track("landing_cta_clicked", ctaClick("/workspace", "report_research_impact", "/research/quantifying-impact") ?? {});
+    Analytics.comparisonViewed("rezi");
     await settle();
-    assert.equal(tracked.length, 3, "report research clicks stop when the visitor declines");
+    assert.equal(tracked.length, 5, "report research and comparison events stop when the visitor declines");
   } finally {
     unsubscribe();
     loader._load = originalLoad;
@@ -95,5 +118,5 @@ async function consentGate() {
 }
 
 consentGate()
-  .then(() => console.log("PASS: research views, report clicks, and report-to-research clicks are allowlisted and wait for consent"))
+  .then(() => console.log("PASS: research and comparison views, report clicks, and report-to-research clicks are allowlisted and wait for consent"))
   .catch((error) => { console.error(error); process.exitCode = 1; });

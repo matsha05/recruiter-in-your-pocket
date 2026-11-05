@@ -20,6 +20,8 @@ export const ANALYTICS_EVENT_PROPERTIES = {
   auth_gate_viewed: ["reason"],
   sample_report_viewed: [],
   research_article_viewed: ["slug"],
+  // A comparison page by the other tool's public name (lib/analyticsSurfaces.ts), never a URL.
+  comparison_viewed: ["slug"],
   faq_viewed: [],
   pdf_exported: [],
   linkedin_review_started: ["source"],

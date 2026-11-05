@@ -235,7 +235,7 @@ Spell partner and directory names the same way every time; the scorecard groups 
 
 ### One-time setup in Mixpanel (Matt, 15 minutes)
 
-On the board the monitoring doc already describes, add a Funnels report: `page_viewed` or `research_article_viewed` → `report_started` → `report_completed` → `checkout_started` → `checkout_completed`, conversion window 14 days, broken down by `entry_medium`, then by `entry_source`. Save a second copy broken down by `entry_campaign` for posts and partners.
+On the board the monitoring doc already describes, add a Funnels report: `page_viewed`, `research_article_viewed` or `comparison_viewed` → `report_started` → `report_completed` → `checkout_started` → `checkout_completed`, conversion window 14 days, broken down by `entry_medium`, then by `entry_source`. Save a second copy broken down by `entry_campaign` for posts and partners.
 
 ### One more source worth adding (not in this branch)
 
