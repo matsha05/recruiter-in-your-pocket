@@ -4,6 +4,7 @@ import Footer from "@/components/landing/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
 import { comparisons, formatChecked } from "@/components/compare/comparisons";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import styles from "@/components/compare/ComparisonPage.module.css";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { publicPage } from "@/lib/seo/public-pages";
@@ -15,7 +16,7 @@ const PATH = "/compare";
 export const metadata = pageMetadata({
     path: PATH,
     title: "Resume review tools compared",
-    description: "TopResume, Jobscan, Resume Worded, and Teal beside Recruiter in Your Pocket: what each one sells, what it costs, and when it's the better choice.",
+    description: "Which resume tool should you use? Kickresume, Rezi, Enhancv, Teal, Jobscan, Resume Worded, and TopResume beside our report: what each sells and costs.",
 });
 
 const OUR_NAME = "Recruiter in Your Pocket";
@@ -27,6 +28,9 @@ const ourRow = {
 };
 
 const howToChoose = [
+    { lead: "You’re starting from a blank page and want it to look finished fast.", body: "Kickresume. Templates and an AI writer that drafts from your job title, free with four templates.", href: "/compare/kickresume" },
+    { lead: "You want a live score and keywords while you write.", body: "Rezi. An AI builder with its own score, free for one resume, then $29 a month or $149 once.", href: "/compare/rezi" },
+    { lead: "You want the page designed.", body: "Enhancv. The most designed templates here, free for seven days with branding, then by the month, quarter, or half year.", href: "/compare/enhancv" },
     { lead: "You want someone else to write it.", body: "TopResume. A writer produces the resume; the intake you give them decides how specific it is.", href: "/compare/topresume" },
     { lead: "You tailor keywords for many postings a week.", body: "Jobscan. Five free scans a month, then a subscription for unlimited matching.", href: "/compare/jobscan" },
     { lead: "You want a running score on your resume and LinkedIn.", body: "Resume Worded Pro. A checklist score on as many documents as you like, by the month, quarter, or year.", href: "/compare/resume-worded" },
@@ -51,7 +55,7 @@ export default function ComparePage() {
                         <h1 className={styles.title}>Resume review tools compared</h1>
                         <div className={styles.answerGrid}>
                             <p className={styles.answer}>
-                                Four tools people weigh against ours, what each one sells, and what it costs. We quote each tool’s own pricing page and say where it’s the better choice, because a writer, a keyword scanner, a builder, and a recruiter’s read are different purchases.
+                                Seven tools people weigh against ours, what each one sells, and what it costs. We quote each tool’s own pricing page and say where it’s the better choice, because a writer, a keyword scanner, a builder, and a recruiter’s read are different purchases.
                             </p>
                         </div>
                         <p className={styles.meta}>
@@ -91,6 +95,19 @@ export default function ComparePage() {
                                 ))}
                             </tbody>
                         </table>
+                    </section>
+
+                    <section id="which-tool" className={`${styles.section} ${styles.prose}`} aria-labelledby="which-tool-title">
+                        <h2 id="which-tool-title" className={styles.sectionTitle}>Which resume tool should I use?</h2>
+                        <p className={styles.proseBody}>
+                            It depends on what you’re missing. If you don’t have a resume, or you want the page designed for you, you need a builder: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest. If you have a resume and you’re tailoring it to many postings, you need a keyword scanner: Jobscan, or the matching inside Teal and Rezi. If you want it written for you, TopResume. If you have a resume and want to know what a recruiter would question before you send it, you need a recruiter’s read, and that is what the report is.
+                        </p>
+                        <p className={styles.proseBody}>
+                            The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. We haven’t run these tools and ours on the same resume, so these pages compare what each one sells, not the quality of what comes back. The research behind the read is linked where it applies: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields rather than rejecting it on a score</ResearchLink>.
+                        </p>
+                        <p className={styles.proseBody}>
+                            Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.
+                        </p>
                     </section>
 
                     <section className={styles.section} aria-labelledby="choose-title">
