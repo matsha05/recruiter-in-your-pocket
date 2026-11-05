@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import type { ResearchSource } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 
 // One entry per tool we compare ourselves with. Every price and feature in the "them" column
 // comes from that tool's own pricing page, read on `pricesChecked`; the source list links it.
@@ -120,7 +121,7 @@ export const comparisons: Comparison[] = [
                         If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it.
                     </>,
                     <>
-                        What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up in an interview.
+                        What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because <ResearchLink to="star-method">every line on a resume is a story you may be asked to tell</ResearchLink>.
                     </>,
                 ],
             },
@@ -234,7 +235,7 @@ export const comparisons: Comparison[] = [
                         If you send many applications and each posting uses its own vocabulary, a scanner that lists the terms you’re missing saves real time, and the free plan’s five scans a month may be all you need. The subscription is the price of doing that without a limit.
                     </>,
                     <>
-                        What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use describes parsing, not a universal rejection score. <Link href="/research/ats-myths" className="riyp-link">What applicant tracking systems do</Link> covers that.
+                        What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use says <ResearchLink to="ats-myths">the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score</ResearchLink>. Whether a recruiter believes a line is a different question, and <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.
                     </>,
                 ],
             },
@@ -348,7 +349,7 @@ export const comparisons: Comparison[] = [
                         If you want a score you can check on several documents over a few months, and a LinkedIn checkup in the same account, the annual plan at $229 is the cheapest way to get that from Resume Worded. The monthly plan at $49 makes sense only for a short, intense search.
                     </>,
                     <>
-                        The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own.
+                        The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own: <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>.
                     </>,
                 ],
             },
@@ -457,7 +458,7 @@ export const comparisons: Comparison[] = [
                         For volume, yes. If you’re tracking dozens of applications and building a version of your resume for each, the free plan already does most of it, and Teal+ removes the template and AI limits. The 30-day plan is $29; the weekly plan at $13 costs more than that once you keep it past two weeks, so pick the term before you start.
                     </>,
                     <>
-                        What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question.
+                        What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and a match score doesn’t read that section the way a person does.
                     </>,
                 ],
             },

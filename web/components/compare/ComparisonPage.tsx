@@ -83,7 +83,7 @@ export function ComparisonPage({ entry }: { entry: Comparison }) {
                                         <div>
                                             <p className={styles.bridgeTitle}>What would a recruiter question on yours?</p>
                                             <p className={styles.bridgeBody}>
-                                                The free report is the complete report: the Verdict, every Critical Miss, and the line behind each one. No card, no account, and nothing held back for the pass.
+                                                The free report is the complete report: the Verdict, every Critical Miss, and the line behind each one. No card, no account, and nothing held back for the pass. <Link href="/sample-report" className="focus-ring riyp-link">See a complete report on a fictional resume</Link> before you run yours.
                                             </p>
                                         </div>
                                         <Button asChild variant="secondary" className="w-full shrink-0 sm:w-auto">

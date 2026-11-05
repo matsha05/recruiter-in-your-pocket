@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormulaDiagram";
 import { ResumeQualityDiagram } from "@/components/research/diagrams/ResumeQualityDiagram";
 
@@ -97,14 +98,14 @@ export default function QuantifyingImpactPage() {
             </p>
             <ResumeQualityDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                <strong>Clearer writing led to more hires.</strong> In a randomized experiment on a freelance platform, spelling and grammar suggestions on new jobseekers&apos; profiles raised the hire rate from about 3.1% to 3.3%, roughly 8% more hires. Of the 480,948 people randomized, the analysis covers the 194,700 whose profiles were approved and not empty.
+                <strong>Clearer writing led to more hires.</strong> In a randomized experiment on a freelance platform, <ResearchLink to="writing-quality-hire-probability">spelling and grammar suggestions on new jobseekers&rsquo; profiles raised the hire rate from about 3.1% to 3.3%</ResearchLink>, roughly 8% more hires. Of the 480,948 people randomized, the analysis covers the 194,700 whose profiles were approved and not empty.
                 <Citation id="source-2">2</Citation>
                 {" "}It tested help with wording on short profiles, not adding results, but it shows that how clearly a profile reads can change outcomes.
             </p>
 
             <h2 className="research-h2">Why numbers work</h2>
             <p className="research-body mb-6">
-                A number shows scale and gives the reader something to compare, as long as it&apos;s accurate and means something. &quot;Improved customer satisfaction&quot; asks the reader to take your word for it. A before-and-after measure lets them check.
+                A number shows scale and gives the reader something to compare, as long as it&apos;s accurate and means something. It also gives the Experience section something to hold a reader: <ResearchLink to="how-recruiters-read">recruiters who spent longer there were more likely to move a resume forward</ResearchLink>. &quot;Improved customer satisfaction&quot; asks the reader to take your word for it. A before-and-after measure lets them check.
             </p>
             <p className="research-body mb-6">
                 Bock&apos;s point: say what changed, not what you were responsible for. The formula puts the outcome first and the activity second.
@@ -131,7 +132,7 @@ export default function QuantifyingImpactPage() {
                 />
                 <ArticleInsight
                     title="Scope without a metric"
-                    desc="No clean number? Name what you built and who relied on it. That's evidence too."
+                    desc={<>No clean number? Name what you built and who relied on it. That&rsquo;s evidence too: <ResearchLink to="skills-first-promise-reality">a listed skill is a claim, and the project behind it is what lets a reader assess it</ResearchLink>.</>}
                 />
             </div>
             <p className="research-body mb-6">
@@ -154,7 +155,7 @@ export default function QuantifyingImpactPage() {
 
             <h2 className="research-h2">Give the reader the context behind the result</h2>
             <p className="research-body mb-6">
-                A number without context can still mislead. &quot;Cut time by 40%&quot; leaves the reader asking: time spent on what, compared with when, and what did you change? Include those details when you can verify them.
+                A number without context can still mislead. &quot;Cut time by 40%&quot; leaves the reader asking: time spent on what, compared with when, and what did you change? Include those details when you can verify them. They&rsquo;re also <ResearchLink to="star-method">the headline of a story you can tell in the interview</ResearchLink>.
             </p>
 
             <ArticleBridge question="Which of your lines stop before the result?">

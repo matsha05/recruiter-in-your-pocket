@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { SignalClarityDiagram } from "@/components/research/diagrams/SignalClarityDiagram";
 
 const PATH = "/research/writing-quality-hire-probability";
@@ -64,7 +65,7 @@ export default function WritingQualityHireProbabilityPage() {
 
             <h2 className="research-h2">What the experiment found</h2>
             <p className="research-body mb-6">
-                In the control group, 3.1% of jobseekers were hired within their first 28 days. With the tool, 3.3% were. That&apos;s an 8% relative increase, with a 95% confidence interval of 3% to 13%. Treated jobseekers didn&apos;t send more applications, and the study found no evidence that employers were less satisfied with them, which argues against the idea that better writing merely disguised weaker candidates.
+                In the control group, 3.1% of jobseekers were hired within their first 28 days. With the tool, 3.3% were. That&apos;s an 8% relative increase, with a 95% confidence interval of 3% to 13%. Treated jobseekers didn&apos;t send more applications, and the study found no evidence that employers were less satisfied with them, which argues against the idea that better writing merely disguised weaker candidates. The direction matches a recruiter experiment that varied only the spelling: <ResearchLink to="spelling-errors-impact">five spelling errors cost 1.85 points on a 0&ndash;10 interview rating</ResearchLink>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
@@ -85,6 +86,7 @@ export default function WritingQualityHireProbabilityPage() {
                         <>
                             Better writing can help an employer recognize ability that the profile was obscuring.
                             <Citation id="source-1">1</Citation>
+                            {" "}On a full resume that ability lives in Experience, <ResearchLink to="how-recruiters-read">the section where longer looks went with moving a resume forward</ResearchLink>.
                         </>
                     }
                 />
@@ -94,7 +96,7 @@ export default function WritingQualityHireProbabilityPage() {
                 />
             </div>
             <p className="research-body mb-6">
-                <strong>Our advice:</strong> start with the most useful detail, what you did or what changed, and cut phrases that repeat the role title or leave your responsibility unclear.
+                <strong>Our advice:</strong> start with the most useful detail, <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, and cut phrases that repeat the role title or leave your responsibility unclear.
             </p>
 
             <ArticleBridge question="Which line buries what you did?">

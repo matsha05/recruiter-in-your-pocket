@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { MetaTimeline } from "@/components/research/diagrams/MetaTimeline";
 
 const PATH = "/research/hiring-discrimination-meta-analysis";
@@ -78,7 +79,7 @@ export default function DiscriminationMetaPage() {
                 Our report can identify details that are missing or hard to understand. It cannot explain a particular employer&apos;s decision or assign responsibility for a rejection to the candidate.
             </p>
             <p className="research-body mb-6">
-                The Upturn report describes additional risks when automated tools affect advertising, screening, and ranking. Those are risks employers and platform operators need to address; resume edits are not a remedy.
+                The Upturn report describes additional risks when <ResearchLink to="automation-and-bias">automated tools decide which job ads you see, whether you&rsquo;re eligible, and how you reach a person</ResearchLink>. Those are risks employers and platform operators need to address; resume edits are not a remedy.
                 <Citation id="source-2">2</Citation>
             </p>
 
@@ -94,7 +95,7 @@ export default function DiscriminationMetaPage() {
 
             <h2 className="research-h2">Focus on what you can change</h2>
             <p className="research-body mb-6">
-                You can improve how clearly your resume shows your experience: make it clear, consistent, specific, and easy to verify. You cannot remove bias from the hiring process. Good advice should help with the first without pretending it solves the second.
+                You can improve how clearly your resume shows your experience: make it clear, consistent, specific, and easy to verify. The classic audit study shows both the value and the limit of that: <ResearchLink to="quantifying-impact">a stronger resume raised callbacks from 8.5% to 10.8% for white-sounding names, and barely moved them for Black-sounding names</ResearchLink>. You cannot remove bias from the hiring process. Good advice should help with the first without pretending it solves the second. The route in is also yours to change: <ResearchLink to="referral-advantage">40% of referred applications reached an interview, against 3% of cold ones</ResearchLink>.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">

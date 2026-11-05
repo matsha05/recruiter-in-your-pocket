@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 
 const PATH = "/research/salary-history-bans";
@@ -70,7 +71,7 @@ export default function SalaryHistoryPage() {
 
             <h2 className="research-h2">Disclosure can help and hurt</h2>
             <p className="research-body mb-6">
-                A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose. For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone.
+                A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose, the way <ResearchLink to="who-you-are">a reader fills in whatever a resume leaves open, and rarely in your favor</ResearchLink>. For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone.
                 <Citation id="source-2">2</Citation>
             </p>
 
@@ -81,16 +82,16 @@ export default function SalaryHistoryPage() {
                 />
                 <ArticleInsight
                     title="If you name a target"
-                    desc="Tie it to the role: responsibilities, level, location, market data, and the full compensation mix."
+                    desc={<>Tie it to the role: responsibilities, level, location, market data, and the full compensation mix, with <ResearchLink to="tech-offer-negotiation">the cash, the bonus, and the equity separated</ResearchLink>.</>}
                 />
             </div>
 
             <h2 className="research-h2">What candidates can control</h2>
             <p className="research-body mb-6">
-                Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.
+                Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Prepare to ask, too: <ResearchLink to="offer-negotiation">most people don&rsquo;t, and in one large survey most who did came away with more</ResearchLink>. Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.
             </p>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li><strong>Bring your market evidence.</strong> Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is.</li>
+                <li><strong>Bring your market evidence.</strong> Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is. When offers arrive, <ResearchLink to="comp-calculator">put salary, bonus, equity, and one-time pay on the same footing</ResearchLink> before you compare them.</li>
                 <li><strong>No universal disclosure rule.</strong> The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share.</li>
             </ul>
 

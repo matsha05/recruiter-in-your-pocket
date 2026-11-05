@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { GapPivotDiagram } from "@/components/research/diagrams/GapPivotDiagram";
 
 const PATH = "/research/gaps-and-pivots";
@@ -111,6 +112,7 @@ export default function GapsAndPivotsPage() {
             <p className="research-body mb-6">
                 In a US experiment with 2,420 applications, men whose recent job was well below their skill level got callbacks 4.7% of the time, about the same as a year unemployed (4.2%), against 10.4% for full-time work at their level. Women took the same penalty for underemployment, though not for part-time work. Temp agency work wasn&apos;t significantly penalized for either.
                 <Citation id="source-5">5</Citation>
+                {" "}If the stopgap paid less, the next question is what to say when a recruiter asks what you make now, and <ResearchLink to="salary-history-bans">the studies found that disclosing can help and hurt</ResearchLink>.
             </p>
 
             <h2 className="research-h2">Frequent moves hurt in some fields, not others</h2>
@@ -125,7 +127,7 @@ export default function GapsAndPivotsPage() {
 
             <h2 className="research-h2">How to tell the story</h2>
             <p className="research-body mb-6">
-                <strong>Our take:</strong> every gap, pivot, or short stint raises a question. Answer it on the page before the reader answers it for you.
+                <strong>Our take:</strong> every gap, pivot, or short stint raises a question. Answer it on the page before the reader answers it for you. <ResearchLink to="who-you-are">Once a recruiter decides who you are, everything after that gets read through it</ResearchLink>.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
                 <ArticleInsight
@@ -142,12 +144,12 @@ export default function GapsAndPivotsPage() {
                 />
                 <ArticleInsight
                     title="Keep it current"
-                    desc="If you're out of work now, show what you've done recently: a project, a course you finished, contract work."
+                    desc={<>If you&rsquo;re out of work now, show what you&rsquo;ve done recently: a project, a course you finished, contract work. Keep the public profile current too: <ResearchLink to="social-screening">having no social profile at all cost candidates more than posts suggesting mental-health problems</ResearchLink>.</>}
                 />
             </div>
 
             <p className="research-body mb-6">
-                <strong>Our advice on dates:</strong> show the years in each role. That&apos;s honest, and it helped in the largest test. Hiding dates altogether tends to raise the question you&apos;re trying to answer, and applications and background checks will ask for them anyway. Be ready to explain the gap in a sentence when someone asks.
+                <strong>Our advice on dates:</strong> show the years in each role. That&apos;s honest, and it helped in the largest test. Hiding dates altogether tends to raise the question you&apos;re trying to answer, and applications and background checks will ask for them anyway. Be ready to <ResearchLink to="star-method">tell the story behind the gap in a sentence</ResearchLink> when someone asks.
             </p>
 
             <ArticleBridge question="What question does your resume leave open?">

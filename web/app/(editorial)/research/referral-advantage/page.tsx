@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { ReferralHiringShareDiagram } from "@/components/research/diagrams/ReferralHiringShareDiagram";
 import { ReferralOfferOddsDiagram } from "@/components/research/diagrams/ReferralOfferOddsDiagram";
 import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/ReferralQuantifiedDiagram";
@@ -83,7 +84,7 @@ export default function ReferralAdvantagePage() {
             </p>
             <ReferralOfferOddsDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                By our arithmetic from those rates, a referral&apos;s edge grew from about 17 times the cold rate to somewhere around 30 to 50 times. Ashby rounds the late cold rate to 0.2%, so the second figure can&apos;t be pinned down more closely. <strong>Our take:</strong> that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile.
+                By our arithmetic from those rates, a referral&apos;s edge grew from about 17 times the cold rate to somewhere around 30 to 50 times. Ashby rounds the late cold rate to 0.2%, so the second figure can&apos;t be pinned down more closely. <strong>Our take:</strong> that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile. The pile isn&rsquo;t read evenly, either: across US field experiments, <ResearchLink to="hiring-discrimination-meta-analysis">white applicants got 36% more callbacks than equally qualified Black applicants</ResearchLink>.
             </p>
             <p className="research-body mb-6">
                 The edge isn&apos;t only about referred people looking stronger on paper. Across nine large firms in call centers, trucking, and high tech, referred applicants were more likely to be hired and to accept offers, even though the two groups had similar skill characteristics.
@@ -109,7 +110,7 @@ export default function ReferralAdvantagePage() {
                 />
                 <ArticleInsight
                     title="The resume still decides"
-                    desc="Once it's open, it gets the same first read as everyone else's. A referral gets you a hearing. It doesn't pass the read for you."
+                    desc={<>Once it&rsquo;s open, it gets the same first read as everyone else&rsquo;s: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move it forward</ResearchLink>. A referral gets you a hearing. It doesn&rsquo;t pass the read for you.</>}
                 />
             </div>
 
@@ -130,7 +131,7 @@ export default function ReferralAdvantagePage() {
                 <strong>Ask people who&apos;ve seen your work.</strong> Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision.
             </p>
             <p className="research-body mb-6">
-                <strong>Be specific.</strong> &ldquo;I&apos;m looking for a senior PM role at a growth-stage fintech&rdquo; lets someone spot the opening for you. &ldquo;Let me know if you hear of anything&rdquo; doesn&apos;t.
+                <strong>Be specific.</strong> &ldquo;I&apos;m looking for a senior PM role at a growth-stage fintech&rdquo; lets someone spot the opening for you. &ldquo;Let me know if you hear of anything&rdquo; doesn&apos;t. Make your profile that plain too, since <ResearchLink to="linkedin-visibility">recruiters search the titles and skills in your headline, summary, and experience</ResearchLink>.
             </p>
             <p className="research-body mb-6">
                 <strong>Write the blurb for them.</strong> Send the job link, your resume, and a few sentences they can paste in, like: &ldquo;We worked on the finance-system migration together. She led the data cleanup that shortened our month-end close.&rdquo; Stick to things they saw firsthand, and make it easy for them to say no.
