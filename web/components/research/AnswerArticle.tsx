@@ -160,21 +160,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
 }
 
 /** The one turn to the report, placed where the article's advice is. Says which part of the report applies it. */
-export function ArticleBridge({ question, children }: { question: string; children: ReactNode }) {
-    return (
-        <aside className={`not-prose ${styles.bridge}`} aria-label="Apply this to your resume">
-            <div>
-                <p className={styles.bridgeTitle}>{question}</p>
-                <div className={styles.bridgeBody}>{children}</div>
-            </div>
-            <Button asChild variant="secondary" className="w-full shrink-0 sm:w-auto">
-                <Link href="/workspace" data-analytics-cta="research_bridge">
-                    Get your free report <ArrowRight weight="bold" aria-hidden="true" />
-                </Link>
-            </Button>
-        </aside>
-    );
-}
+export { ArticleBridge } from "./ArticleBridge";
 
 /** Numbered moves for the reader's resume, labeled as our advice. */
 export function AdviceList({ items, notSupported }: { items: Array<{ lead: string; body: ReactNode }>; notSupported?: { title: string; body: ReactNode } }) {

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import rhythm from "@/components/materials/Rhythm.module.css";
 import { Materials } from "./Materials";
-import { AuthMockA, AuthMockB, HelpMock, MethodologyMock, ResearchMock } from "./Round2";
+import { GuideOpeningMock, OffersMock } from "./Round3";
 import styles from "./Preview.module.css";
 
 /**
@@ -19,20 +19,11 @@ export default function SystemPreviewPage() {
             <Materials />
 
             <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>Methodology · cut to the density rule · seven sections and a signed note</p>
-            <MethodologyMock />
+            <p className={styles.label}>After the offer · rows on hairlines, no cards</p>
+            <OffersMock />
             <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>Research · an article&rsquo;s opening on the system, and the bridge two ways</p>
-            <ResearchMock />
-            <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>Help · plain questions, no accordion, a person at the end</p>
-            <HelpMock />
-            <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>Sign-in · A · under the site header, no card</p>
-            <AuthMockA />
-            <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>Sign-in · B · bare, wordmark only</p>
-            <AuthMockB />
+            <p className={styles.label}>A guide&rsquo;s opening · the quick start as rows, our take as the deck</p>
+            <GuideOpeningMock />
             <div className={rhythm.close} />
         </main>
     );
