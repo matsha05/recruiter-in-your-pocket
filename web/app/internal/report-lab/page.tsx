@@ -52,6 +52,44 @@ function loadFixtures(): LabFixture[] {
       },
     });
   }
+  // Kevin as the live product reads him (Nov 2 golden severity run): the dated gap and the daily-tasks line
+  // flagged after the first fix, which puts him on the bottom rung and gives the ask-first screen its
+  // "since" question. Flags and the two added fixes are set by hand from that run, not a read of this resume.
+  const kevin = fixtures.filter((item) => item.id.startsWith("synth_operations_manager_entry_weak_1")).sort((a, b) => (a.report.score ?? 0) - (b.report.score ?? 0))[0];
+  if (kevin) {
+    const first = kevin.report.top_fixes?.[0];
+    fixtures.push({
+      ...kevin,
+      id: "synth_operations_manager_entry_weak_1~live",
+      label: `${kevin.label} · as the live product reads it (gap flagged, layout only)`,
+      report: {
+        ...kevin.report,
+        top_fixes: [
+          { ...first, critical: true },
+          {
+            fix: "Add one dated line covering Jul 2023 to today.",
+            why: "Operations hiring managers usually look first at what you've done recently. A dated line such as \"Career break\" or \"Job search and coursework\" is enough; list recent operations work or study only if true.",
+            confidence: "high",
+            evidence: { excerpt: "Feb 2023 - Jul 2023", section: "Experience" },
+            impact_level: "high",
+            effort: "quick",
+            section_ref: "Experience",
+            critical: true,
+          },
+          {
+            fix: "In the Greenfield daily operational tasks bullet, add the number of transactions or orders you personally handled, if you can verify it.",
+            why: "The Greenfield role shows no size and no result anywhere in its main work.",
+            confidence: "high",
+            evidence: { excerpt: "- Was responsible for assisting with daily operational tasks.", section: "Experience" },
+            impact_level: "high",
+            effort: "moderate",
+            section_ref: "Experience",
+            critical: true,
+          },
+        ],
+      },
+    });
+  }
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
   return fixtures;

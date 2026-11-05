@@ -17,7 +17,7 @@ import {
   revisedLinePolicy,
   type LiftAnswer,
 } from "../lib/reports/revised-line";
-import { SCORE_BANDS, scoreBandFor } from "../lib/reports/score-band";
+import { SCORE_BANDS, reportTone, scoreBandFor } from "../lib/reports/score-band";
 
 // ============================================
 // Questions and margin notes are trimmed model text, never new prose
@@ -168,10 +168,30 @@ assert.equal(composeRevisedLine("- Did the thing.", [said("for 3 teams."), said(
 // Score bands (D5) and the critical fixes
 // ============================================
 
-for (const score of [0, 40, 59, 60, 69, 70, 84, 85, 92, 99]) {
+// Four rungs (Matt, Nov 5, 2026). The three upper rungs match the validator's score_label; the bottom one
+// splits its lowest band on the score alone below 60, or on a second flagged Critical Miss anywhere in it.
+for (const score of [60, 69, 70, 84, 85, 92, 99]) {
   assert.equal(scoreBandFor(score).name, getScoreLabel(score), `band for ${score} matches the validator's score_label`);
 }
+for (const score of [0, 40, 55, 59]) {
+  assert.equal(scoreBandFor(score).name, "Not ready yet", `a ${score} reads as not ready on the score alone`);
+}
+const twoFlagged = { count: 2, counted: true };
+assert.equal(scoreBandFor(60, twoFlagged).name, "Not ready yet", "a second flagged miss on the bottom band reads as not ready");
+assert.equal(scoreBandFor(68, twoFlagged).name, "Not ready yet");
+assert.equal(scoreBandFor(68, { count: 1, counted: true }).name, "Needs more context", "one miss, bottom band: needs more context");
+assert.equal(scoreBandFor(68, { count: 2, counted: false }).name, "Needs more context", "an uncounted report never reads as not ready above 60");
+assert.equal(scoreBandFor(70, twoFlagged).name, "Mostly clear", "the rung never reaches above the validator's lowest band");
+assert.equal(SCORE_BANDS.length, 4);
 assert.equal(new Set(SCORE_BANDS.map((band) => band.anchor)).size, SCORE_BANDS.length, "each band has its own anchor");
+// The tone: not ready on the bottom rung; ready on a clear page with a single miss; standard otherwise.
+assert.equal(reportTone(58, { count: 1, counted: true }), "not_ready");
+assert.equal(reportTone(66, twoFlagged), "not_ready");
+assert.equal(reportTone(66, { count: 1, counted: true }), "standard");
+assert.equal(reportTone(92, { count: 1, counted: true }), "ready");
+assert.equal(reportTone(92, { count: 1, counted: false }), "ready", "a clear page before the severity check is ready too");
+assert.equal(reportTone(92, twoFlagged), "standard", "two flagged misses on a clear page keep the count heading");
+assert.equal(reportTone(undefined, twoFlagged), "standard");
 // The production prompt always names one Critical Miss, even a low-impact one (Matt: "Always name a top fix"),
 // but without the severity check's flags the report can't say how many there are.
 const unflagged = readCriticalMisses({ top_fixes: [{ fix: "Optional.", impact_level: "low" }, { fix: "Next." }] });
@@ -205,6 +225,15 @@ assert.equal(criticalCountHeading({ count: 3, counted: true, more: true })?.titl
 assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 1, counted: true, more: false })), ["Critical Miss", "Fix 2", "Fix 3"]);
 assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false })), ["Critical Miss 1", "Critical Miss 2", "Fix 3"]);
 assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, unflagged)), ["Critical Miss", "Fix 2", "Fix 3"]);
+// A clear page with one miss (Matt, Nov 5, 2026): the question they'd ask, then what's worth tightening. Never "Critical Miss".
+const one = { count: 1, counted: true, more: false };
+assert.deepEqual(criticalCountHeading(one, "ready"), { title: "The question they'd ask.", lead: "Not a reason to pass on you. Worth a sentence before you send it." });
+assert.deepEqual(criticalCountHeading(unflagged, "ready"), { title: "The question they'd ask.", lead: "Not a reason to pass on you. Worth a sentence before you send it." }, "the question heading needs no count");
+assert.equal(criticalCountHeading({ count: 2, counted: true, more: false }, "ready")?.title, "Two Critical Misses. Start with this one.", "two flagged misses keep the count on any tone");
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, one, "ready", 3)), ["The question they'd ask", "Worth tightening · 1 of 2", "Worth tightening · 2 of 2"]);
+assert.deepEqual([0, 1].map((index) => fixLabel(index, one, "ready", 2)), ["The question they'd ask", "Worth tightening"]);
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false }, "ready", 3)), ["Critical Miss 1", "Critical Miss 2", "Fix 3"]);
+assert.equal(criticalCountHeading(one, "not_ready")?.title, "One Critical Miss. Fix it first.", "the bottom rung keeps the count heading");
 // A fix about something the resume doesn't have names it; there's no line to quote, mark or revise.
 assert.equal(missingFromResume("No summary section present"), "No summary section");
 assert.equal(missingFromResume("No LinkedIn profile provided."), "No LinkedIn profile");

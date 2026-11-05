@@ -99,7 +99,7 @@
 
 .bandScale {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.25rem;
     margin: 0;
     padding: 0;
@@ -140,9 +140,14 @@
     font: var(--type-small);
 }
 
-/* Phones show the band's name and bar on one row; its anchor sentence waits for wider screens. */
+/* Phones show the band's name and bar on one row; its anchor sentence waits for wider screens, except where
+   the band is the screen's whole point (the questions before the report say where the person stands). */
 .bandAnchor {
     display: none;
+}
+
+.band[data-anchor] .bandAnchor {
+    display: block;
 }
 
 /* ---------- The marked page ---------- */
@@ -201,6 +206,22 @@
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+/* On a clear page the rows after the question are tweaks, under their own heading (Nov 5, 2026). */
+.tighteningHead {
+    padding-top: 1.25rem;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.tighteningHead .sectionTitle {
+    font: var(--type-body);
+    font-weight: var(--weight-label);
+}
+
+.tighteningHead + .row {
+    border-top: 0;
+    padding-top: 0.75rem;
 }
 
 /* Phones: one column in reading order. The note's parts slot around the line and the questions. */
@@ -394,6 +415,11 @@
 .toAddLabel {
     color: hsl(var(--red-pen));
     font: var(--type-label);
+}
+
+/* On a clear page "What to add" is a tweak, not a problem: the pen, never the red pen (Nov 5, 2026). */
+.page[data-tone="ready"] .toAddLabel {
+    color: hsl(var(--pen));
 }
 
 .toAddList {

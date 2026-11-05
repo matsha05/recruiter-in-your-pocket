@@ -17,11 +17,16 @@ const ALLOWED_MODES: readonly Mode[] = ["resume"];
 
 export type Mode = (typeof ALL_MODES)[number];
 
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
+
+/** The first report a rebuild is written from: the signed-in person's saved report, or the anonymous recovery. */
+export type RebuildRequest = { reportId: string | null; recoveryId: string | null };
+
 export function validateResumeFeedbackRequest(body: any): {
   ok: boolean;
   message?: string;
   fieldErrors?: Record<string, string>;
-  value?: { text: string; mode: Mode; jobDescription: string | null };
+  value?: { text: string; mode: Mode; jobDescription: string | null; rebuild: RebuildRequest | null };
 } {
   const fieldErrors: Record<string, string> = {};
 
@@ -35,6 +40,15 @@ export function validateResumeFeedbackRequest(body: any): {
 
   const { text, mode } = body as { text?: unknown; mode?: unknown };
   const jobDescription = (body as any).jobDescription;
+  const rebuildInput = (body as any).rebuild;
+  // A second read written from the person's answers names the first report it rebuilds (ask-first).
+  let rebuild: RebuildRequest | null = null;
+  if (rebuildInput !== undefined && rebuildInput !== null) {
+    const reportId = typeof rebuildInput?.report_id === "string" && UUID_PATTERN.test(rebuildInput.report_id) ? rebuildInput.report_id.toLowerCase() : null;
+    const recoveryId = typeof rebuildInput?.recovery_id === "string" && UUID_PATTERN.test(rebuildInput.recovery_id) ? rebuildInput.recovery_id.toLowerCase() : null;
+    if (typeof rebuildInput !== "object" || (!reportId && !recoveryId)) fieldErrors.rebuild = "The rebuild must name the report it is written from.";
+    else rebuild = { reportId, recoveryId };
+  }
 
   const trimmedText = typeof text === "string" ? text.trim() : "";
   if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually look at it.";
@@ -69,7 +83,7 @@ export function validateResumeFeedbackRequest(body: any): {
 
   return {
     ok: true,
-    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob }
+    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob, rebuild }
   };
 }
 

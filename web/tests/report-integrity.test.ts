@@ -24,6 +24,8 @@ import {
 } from "../lib/reports/report-integrity";
 import { stemWord } from "../lib/reports/observation-tokens";
 import { liftQuestions, marginNoteFromFix } from "../lib/reports/revised-line";
+import { readCriticalMisses } from "../lib/reports/report-presentation";
+import { reportTone } from "../lib/reports/score-band";
 
 // Saved production-prompt outputs (resume prompt 83b2a2d1), validated by the current
 // production validator. No model calls are made by this test.
@@ -352,7 +354,14 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(pdf, strength), kept ? 1 : 0, `${label}: PDF Keep matches the web report`);
   }
   // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
-  assert.ok(missRow.includes("Critical Miss"), `${label}: the first marked line is the Critical Miss`);
+  // On a clear page with one miss the first row is the question they'd ask instead (Matt, Nov 5, 2026).
+  const ready = reportTone(report.score, readCriticalMisses(integrity.report)) === "ready";
+  assert.ok(missRow.includes(ready ? "The question they'd ask" : "Critical Miss"), `${label}: the first marked line is the ${ready ? "question they'd ask" : "Critical Miss"}`);
+  if (ready) {
+    assert.ok(!page.includes("Critical Miss"), `${label}: a clear page never says Critical Miss`);
+    assert.ok(!pdf.includes("Critical Miss") && pdf.includes("The question they'd ask"), `${label}: nor does its PDF`);
+    assert.ok(!web.includes("most likely to cost you the interview") && !pdf.includes("most likely to cost you the interview"), `${label}: no interview-cost claim on a clear page`);
+  }
   assert.ok(!opening.includes("Critical Miss"), `${label}: the opening read doesn't repeat the Critical Miss`);
   const missNote = marginNoteFromFix(integrity.report.top_fixes![0].fix!);
   assert.ok(missRow.includes(plain(missNote)), `${label}: the margin note gives the fix, without the locator`);

@@ -80,6 +80,8 @@ interface AnalysisScanningProps {
     onCancel?: () => void;
     onRetry?: () => void;
     className?: string;
+    /** The heading for a read written from the person's answers (ask-first), in place of "Reading your resume." */
+    title?: string;
 }
 
 /**
@@ -95,6 +97,7 @@ export default function AnalysisScanning({
     onCancel,
     onRetry,
     className,
+    title,
 }: AnalysisScanningProps) {
     const startRef = useRef<number>(0);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -166,7 +169,7 @@ export default function AnalysisScanning({
 
                 <header className={styles.intro}>
                     <h2 id="analysis-title" ref={titleRef} tabIndex={-1} className={styles.title}>
-                        Reading your {subject}.
+                        {title || `Reading your ${subject}.`}
                     </h2>
                     <p className={styles.elapsed} data-testid="analysis-elapsed">
                         <span className={styles.clock}>{formatElapsed(elapsedMs)}</span>
