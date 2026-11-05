@@ -99,6 +99,15 @@ test.describe("search and sharing foundation", () => {
         expect.soft(items[0].item, path).toBe(SITE);
         expect.soft(items.at(-1)?.item, path).toBe(read.canonical);
       }
+      // A hub's ItemList names only pages the hub links, in order.
+      for (const list of nodes.filter((node) => node["@type"] === "ItemList")) {
+        const items = list.itemListElement as Array<{ position: number; url: string; name: string }>;
+        expect.soft(items.map((item) => item.position), path).toEqual(items.map((_, index) => index + 1));
+        expect.soft(list.numberOfItems, path).toBe(items.length);
+        for (const item of items) {
+          await expect.soft(page.locator(`a[href="${localPath(item.url)}"]`).first(), `${path} lists ${item.url} but does not link it`).toBeAttached();
+        }
+      }
       // FAQPage only where the questions are on the page.
       for (const faq of nodes.filter((node) => node["@type"] === "FAQPage")) {
         for (const question of faq.mainEntity as Array<{ name: string }>) {
@@ -112,6 +121,37 @@ test.describe("search and sharing foundation", () => {
       expect.soft(card.status(), image).toBe(200);
       expect.soft(card.headers()["content-type"], image).toBe("image/png");
     }
+  });
+
+  test("the research and compare hubs carry their lists as ItemList", async ({ page }) => {
+    for (const [path, minimum] of [["/research", 20], ["/compare", 7]] as const) {
+      await page.goto(path, { waitUntil: "domcontentloaded" });
+      const nodes: JsonLdNode[] = (await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap((source) => {
+        const data = JSON.parse(source) as JsonLdNode & { "@graph"?: JsonLdNode[] };
+        return data["@graph"] ?? [data];
+      });
+      const list = nodes.find((node) => node["@type"] === "ItemList");
+      expect(list, `${path} has an ItemList`).toBeTruthy();
+      expect((list!.itemListElement as unknown[]).length, path).toBeGreaterThanOrEqual(minimum);
+      expect(nodes.filter((node) => node["@type"] === "BreadcrumbList"), `${path} has one breadcrumb trail`).toHaveLength(1);
+    }
+  });
+
+  test("llms.txt lists every research, guide, and compare page with its answer", async ({ request }) => {
+    const response = await request.get("/llms.txt");
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("text/plain");
+    const text = await response.text();
+    expect(text.startsWith("# Recruiter in Your Pocket\n\n> ")).toBe(true);
+    const xml = await (await request.get("/sitemap.xml")).text();
+    const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => localPath(match[1]));
+    for (const path of paths.filter((candidate) => /^\/(research|resources|compare)\//.test(candidate))) {
+      expect(text, `llms.txt lists ${path}`).toContain(`](${SITE}${path}): `);
+    }
+    for (const linked of [...text.matchAll(/\]\((https:\/\/www\.recruiterinyourpocket\.com[^)]*)\)/g)].map((match) => localPath(match[1]))) {
+      expect(paths, `llms.txt links ${linked}, which is not in the sitemap`).toContain(linked);
+    }
+    expect(text).toContain("prices quoted from the tool's own pricing page, read on");
   });
 
   test("research articles show the date their structured data and sitemap carry", async ({ page, request }) => {

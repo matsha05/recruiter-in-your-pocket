@@ -9,7 +9,7 @@ import styles from "@/components/compare/ComparisonPage.module.css";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { publicPage } from "@/lib/seo/public-pages";
 import { breadcrumbStructuredData, SECTION_NAMES } from "@/lib/seo/site";
-import { formatMonth } from "@/lib/seo/structured-data";
+import { formatMonth, itemListStructuredData } from "@/lib/seo/structured-data";
 
 const PATH = "/compare";
 
@@ -46,7 +46,11 @@ export default function ComparePage() {
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
-                    ...breadcrumbStructuredData([{ name: SECTION_NAMES[PATH], path: PATH }]),
+                    "@graph": [
+                        breadcrumbStructuredData([{ name: SECTION_NAMES[PATH], path: PATH }]),
+                        // The comparisons in the order the table lists them.
+                        itemListStructuredData(PATH, "Resume review tools compared", comparisons.map((entry) => ({ name: entry.title, path: entry.path }))),
+                    ],
                 }}
             />
             <div className={styles.page} data-visual-anchor="comparison-hub">

@@ -89,9 +89,11 @@ Runs alongside the channels plan, with the same anonymity rules. Three moves:
 
 ### 5. The small things, last
 
-- `llms.txt` listing the research, compare and methodology pages with their one-line answers. Twenty minutes, no expectation.
-- `ItemList` structured data on the research and compare hubs, so the hubs' order is machine-readable.
-- Reread the compare pages' prices on a schedule; `PRICES_CHECKED` is the date to bump.
+Shipped November 5, 2026:
+
+- `/llms.txt` (`web/app/llms.txt/route.ts`, built by `web/lib/seo/llms.ts`): the report pages, every research answer, the guides, and the compare pages, each as its hub answer or summary with the date its content last changed. Built from the same data the pages render, so it cannot drift from them or name a private route. No expectation, for the reasons above.
+- `ItemList` structured data on `/research` and `/compare` (`itemListStructuredData` in `web/lib/seo/structured-data.ts`), listing each hub's pages in the order the page shows them, beside the breadcrumb trail.
+- The price reread has a deadline: `web/tests/compare-prices.test.ts` fails when `PRICES_CHECKED` is more than 90 days old, or when a compare page's `updated` date is older than the reread. It runs with `test:search-foundation` and in the launch gate, so a release with stale prices stops there until the seven pricing pages are reread and the date moved.
 
 ## Measure
 
