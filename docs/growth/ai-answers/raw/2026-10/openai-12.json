@@ -1,0 +1,171 @@
+{
+  "id": "resp_0c966eaba160e130016aed0af4e3d887d18f4f736b712b3d85",
+  "object": "response",
+  "created_at": 1793919732,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919745,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0c966eaba160e130016aed0af6a5e087d19e024b56ced12962",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.indeed.com hire resume screening relevant experience qualifications recruiter"
+        ],
+        "query": "site.indeed.com hire resume screening relevant experience qualifications recruiter"
+      }
+    },
+    {
+      "id": "msg_0c966eaba160e130016aed0af9486487d19268acd968875801",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 319,
+              "start_index": 224,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 616,
+              "start_index": 496,
+              "title": "How to Use Screener Questions on Indeed",
+              "url": "https://www.indeed.com/hire/resources/howtohub/how-to-use-screener-questions-on-indeed?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 889,
+              "start_index": 794,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1098,
+              "start_index": 1003,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1358,
+              "start_index": 1234,
+              "title": "Resume Essentials Participant Guide 2026",
+              "url": "https://www.dol.gov/sites/dolgov/files/VETS/files/ResumeEssentials_PG_Interactive_Feb2026.pdf?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1584,
+              "start_index": 1489,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "Assuming you mean **the first pass through your résumé**, the main question is: **“Is there enough relevant evidence here to justify a conversation?”** It’s an initial fit check, not a complete assessment of your potential. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\nRecruiters typically look for:\n\n- **Must-have qualifications.** Required skills, experience, licenses or certifications—and practical requirements such as shift availability. ([indeed.com](https://www.indeed.com/hire/resources/howtohub/how-to-use-screener-questions-on-indeed?utm_source=openai))\n- **Relevant experience.** Have you done work similar to this role? Your job titles matter, but the responsibilities and skills underneath them help establish the actual match. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n- **Appropriate experience level.** Does your background align with the role’s expected level of responsibility? ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n- **Evidence of contribution.** Relevant accomplishments help show what you achieved, rather than merely what you were assigned to do. ([dol.gov](https://www.dol.gov/sites/dolgov/files/VETS/files/ResumeEssentials_PG_Interactive_Feb2026.pdf?utm_source=openai))\n- **An easy-to-understand work history.** Clear roles, dates, skills and qualifications make it easier to assess your background. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My practical advice:** Make the top third of your résumé answer three questions without requiring inference:\n1. What kind of work do you do?\n2. Which key requirements do you meet?\n3. What’s one concrete example of your impact?\n\nFor example, instead of “Results-oriented operations professional,” try something specific and truthful: “Operations analyst with four years in fulfillment; automated weekly reporting, saving six hours per week.”\n\nThink **“make the match obvious,” not “include everything I’ve ever done.”**"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8577,
+    "input_tokens_details": {
+      "cache_write_tokens": 15,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 419,
+    "output_tokens_details": {
+      "reasoning_tokens": 35
+    },
+    "total_tokens": 8996
+  },
+  "user": null,
+  "metadata": {}
+}

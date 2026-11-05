@@ -1,0 +1,140 @@
+{
+  "id": "resp_07f52a077c8ad32e016aed0ac3dc7487d1b7ad25c4febf628c",
+  "object": "response",
+  "created_at": 1793919683,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919688,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_07f52a077c8ad32e016aed0ac4aefc87d18ab6f303b88194aa",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7QrICCkg6LjjcEM2R3EFsFqmSyvebHympYNuhp1dIboBIEFkxH-8gJJUmyPZwfhKk3U18M5PL0_5BBf-pUy7JdFWrzrRdPXtM1z2j773kOC90pogOD9zU5aKz4kvlb_QDYiUdFaYVEk3IfRQZZl3F42Yc58TuXjJuO59Wan7TKsfBX-kQe9qqbC9NlsXBl_Kf3jJCH1d-75-9IW8qF5YWqBfNdpywq68EtOPoXxJon3GV-E86BY1hJB8P38WKuZ2M8ktpa3FqRHGs7Y0HTn4g2Gn5i58tVHVsFlYftALNVuL6wdqNWlTW_-QgyfcTW0WqPVOHnxi-LZPZhChV-jaMeDV_4QZTm9ISU5SQWYW-3vfa_Ms5U3QrT-smAt-pOM32HBh_Kzvcaqrkh-rvOpSE6LT4R8kDX7X7dhgE8o2Me9_c8o0KxKHHl6b1iNK2q4PQ61VMAIFI5cIjGFIo6VSw_TMoHQsi62N5d_CKsnGOOdUVfqNF7zC0CYN9thiCuarICbHvkY7QxvbdLbUAfWFFu2Tu1yY9u1G4DUAH1IavNe3wmU2taMhHNh8YXgsLIsaaFotYjwgtFVOK5OjRkW39KeQnsKceF5GLP7dKxjiJkreQNSEinLJ5zrBpAktPCfWW4GBUkOZuXgOait5BfPQfonMzUtzN1Q0wGLJy685X1BkjWmHd7zxvU4QKNPeccJLTEfyyphw9WoMHjr4uSuxX2cO0A55e5ckfC9m8QNrPiKDPHfAmIYIooRhdzkfK4Fs33xQdI_qzJSvvYXG-M79fDZj4ZG8tc4RNSemJeZ3OdYIvIJ_3yF-6-zhfouiabagsqssGocwZ9s_zOWJCKI-8Jk0JR-kcAfIVXMjQnU_1sHMa7aRISKvl8LM3cPjiDKRitTORaYUu9UQZK9qZFODVKOGMR2AQkTIAf1kSVbeSGptq8dVRTj2HXUSjuQj2gLkf7fZsicKlfqUCoU97UiVKIE0PBGbHJ-gdQQxviK1q_OS9pKOicyoMo74hOyWrDbFYprl_3-04K8vOWd-8z3XQNq11p6AMqoNiI68Am6eN6Ow5mlfOExGNwdMb_II5v9pUyg_1J3DC8DG8vS1YZ6qLqYjwhXhhC8KdAlhogHC2TzLWLQ9jaBrzwBssmkWliZFO3knk0dwnYYR8X4OELIntSIsjtpvSwebRewessP6XypHbJ5ojeYWXVYnA8WieSRmQxMXmmKi90PpM1DIXWJQOhzJTbcIt831aiFZbnRc_lkdlRzISpF-EuLuXsu5EIKIEcIaQFxZjQYruJwhejTS8vKWuFyTfVwfDupZhkIzrNo69uxyyk7ddAKlBY6f9vIA9jich8RsmgM1Ca2u_xNpMOYuo0K0SYgPni0XH0qKg8b7oFF75gaU-vIEk8-9_3REZ63kQwTmumInROOkrhoOYNGwEZyG8x6JOwDIFxOFos8rCRLAjs9czEWPR2n1AEl0h1vS8sL6-i6lemewhhHBrevTpjWW_9UZLkTl4CW6XVGoBeFTjtN0W1CKS4WSornjm7L29PfzWKEDSUIg96lJs_VRisksGVGhm0nU8COO9x_M0TKo6ZUJt8u7Ivykh6AubWJ-IsN4HFMGhOPaX4qShb5dG0__3yG5rI7bxSuHtpd7rLrerYF0nesTqx2G12N8IfXt34qHada3WpO4XgxseIZ9srhOZtrLhtO3QGUZLGtXlZnCcG5JIhcve2iKdK8tcpxLij4BHTzHYtHSiEV1Tujc8i9ketWPa0rjeFqswwNe7t7UYBDAoNkyfP1vFK9SVpB7-so2MffkHUVLz88A6vjKtrSsT5zwi-_EZ7gMsHD0it9NLFTOS8xf2sBSAbbpKYu3dgfe7vdY9NBQmD0W6LjTHvR1_250lYq_nhftIESul66JgjZtuFnSqLGDpUe_KT0DztHZMo012OYf5eLpLiCc-WftIzR0Jo9vKPtfaLpfYXzs5s5BaPbSKrqRIqRNBvpfJvTL2KpzknehnARiuUm47BEVR9xbQbbZSMa2U7FVArCirzXUIuOUGy_gO_33OabOY4S6h2c9Qx5uFTX4MR8BGClr21ZvSX24k4vsOXlNmceg1BNXXTzadDz392y-zOVC0s4twWgxMx9KIziJHmF3iALjDnXrrqoNcBV_hm6y4YHT7ERoJyDJHWsW88avlq9pctDyy5RSgfA54KO3WE-5DiOke_6c2LldNBkcsaVcUHlr0qIh7Tky_0kXW7CQ9ngpq6yZD5qeDm5eMKmQTklg-JIqcz0mw9hAf8pRZFP5LOkJOr7C535fU7VtQdJQxIb7RazigVrONnK6Qi5AZTeqibVpHa2oeiFxq8WS5iTYe419ZZ6yHXlFzblthv2U3DS9pqnn-RVcdaE7RYj5148joSMzzejfECsMSxGL1-g7KVd2upAt2ZuD-FtuU4nJagPFaOZiE7b-JB4iLrb3yXPQ7UIBGNGGeemOhQlSxaJzOBMgSD8f6TFSW_WHLcOwlvCqH-Rr74bQMREbVDJZ9-g1UOhWwZQ8B7OCEQbzjRkX8hOiRXSTWKiIo1Xku1WyZSNbSFTuphtmzqF1ezzjt0iFxGHZopdIx_ijMB6U8NZBx0RE2mw20DapznM0oqCrxM2vm_1CpbSchG627iq1kHVzY7F9jg8TIDVUM7dNeJ-7KCW0GI36K8bF6fRcY7ffrtOhO67MHTNdZrWpSnP6lQsrYHsveg3DX0ZgsO6ey9TU3E6OyD8arCXRXTysHkBwIOZHntRZhTu5fnvLxRCYqwKmTqMKybOqFn4sLbgI-TBB86eTGGh2RFxn8EvMI1mYMxUdFCCK7wt4iTddfWqpAdabenN8HLOTj0TUTdXaS_zbQSBvac0WDUrox53CopIpHm5ydg-1teBYOg1hupVrSSaCFDopfnNdt00wEOLyDI3YW6JWPYigdd9sX_E9LOwku8b-YTAjqw9zs3pT5G6ALfgZ7XivTCu87s7c1iLBrZtW5aU5L9i-7y3PFZRz1GYrm03yTF1MZ2ie8KoyLMShCcXsVGx-Z6vfEPBnkvup2J6SbV7BN19S5IJjAMQYJ14pj6c6NIrN_BfDRhjE7paH7isLIWcSZJqI-7eUPJELQrMN5bQmp8eC9mjWNkbYXIV7lOoj0y0QZ2agvh41cdZo4yNV43Nx-pwaXI2UBKSswgYvrYeKgzYs3kMeAUTTRoL8vJqFdSwipyDGxzSckZXj1Szh_xqhmpD8juLXmKN6MmiZ3xCXwbPtpOT5LTCdMNE7Q2A-_2ndk9loxPX-FhaL-WlvGcxRGUd25f6sKxCk3xnuUIJYyBnTeefyO81hX8EFi_McQH9uRC1NhHfHHqwEtTij43qcvrDewZzMqGI34EOVkeOky13rqjALM_-OyhKJmU5IJlSQDEsfUZ8VzZcRNnWclV7mv6jRrEch4-o3jkhI_vwrd39EzKO95ZR62ilYjKbo0HBLT_M6oQhGKo6R4kD192QCfBtTUg8TDMTw9FSHUMEtb7wZOJ_lwuJHG-muGNKF1icd2aT1xDs78fYrld90ZJlEoBFReaJdI08zbBsNQeOaPyIm-Fh8Ywu8iIFcpyb_znPcsNkVMm2uNoJgvs7LFPh054zV-M5oYc39Q_avXOejR9KITL6r_CyjmXnl5ydVUoLtefcP0ldo6Bkw3-6xdT_AipMAlhyPyTfHebVDxjSlp_PeOlYhBXUCAtAxJ-k_eowDvioui89AUWl-pqZT88BHeWF7uXRCtukFgpf4BSO_WO6ZbQ7RtjJ5HvN0yhi9Oyv9MOwdnvLCayE2KFoC4d7zRpL-BEoUukTRXoktF90-gf45GO26RwZbyTF-yGwA3Zja9dmouj8mUtgKGz4YmVcuEodeyKUHHf5MJbuFFKNPa1YV_QEJ70F7cUvV13tYPop5PuKI4-9hROBt5H31pk6Co-jyhqlWeGYFCmJywhbkjndR25ijDgiVwz0cFDkb7mY9yvEy6KHfY6lZthB4dY7O64oHKUuDIAlWVVBLE-yPlMtu4i_BmMwkUiamZ1u9uZkpliWYpxMcVFtp0M7fN9fAmC0yCZ0BwXDmidbRhssF__1uySys9CY-cr5eUA8bsPAOor-Te7wK71XeIObu_HWKHl0NxqpElhsJlSLj3AHj8aW9svYPek8Di2F6Iy6rmgewV_V_BNm9QhQzwIjVTgE6VcUhs37Vb68QYMl-ifXJq-bqg5pqh1y66MpoKvpqDhE6okkDjU0AhBPDjNSPsN47CiM2R8hlhHFbJ7s3G5wGwyDA7_0wT5-wUwuQapNfBMG6P-MBRff1eBxttjKZC1MsrWayhaSF0XeD5NZ7qbCycMxQPFgW032X9TbmY80OszqJxpALU_5IrMQM64o0Nv-LDV8vJNp7XsLyA7X77xeSfYx6L1_1q1BqoRd4xHbE3mHgcgDyb1irsglPLZktHVFNA3rSHaDt7J-qh_uST5sDTBQbiv8Bsozh7iOCdlSiy0LpRL0mNjmD3xMyX1bX2WTTJnew7kMIzs-J8ah9R9dPFpLftVToWCYYqF9XohSPz1K7ouQQuV1a5yAy_AfUhHEOSGC4ZXyMpchNHS2-p2MLP2y1HfZyYEH7LJAIPlMFBRYiNmeSo-4dtyomYQ6VFg==",
+      "summary": []
+    },
+    {
+      "id": "msg_07f52a077c8ad32e016aed0ac7ba7887d188fe02d5dd327eb3",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[],\"mainClaim\":\"A typo on a resume does not automatically lead to rejection; the appropriate response depends on the error, and the answer asks for clarification about the typo and role.\",\"evidenceQuote\":\"FAQ: What Can I Do When My Resume Has a Typo? (With Tips) | Indeed.com\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 654,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 332,
+    "output_tokens_details": {
+      "reasoning_tokens": 251
+    },
+    "total_tokens": 986
+  },
+  "user": null,
+  "metadata": {}
+}

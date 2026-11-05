@@ -1,0 +1,158 @@
+{
+  "id": "resp_0e435197ba191970016aed0aad3c6c87d1949578589567367b",
+  "object": "response",
+  "created_at": 1793919661,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919670,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0e435197ba191970016aed0aaf4af887d1bd6c08ba4c5937f8",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.careerservices.fas.harvard.edu resume one or two pages",
+          "site.careeronestop.org resume length one two pages"
+        ],
+        "query": "site.careerservices.fas.harvard.edu resume one or two pages"
+      }
+    },
+    {
+      "id": "msg_0e435197ba191970016aed0ab2a22c87d18b8a9f304fe1c6d1",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 260,
+              "start_index": 112,
+              "title": "Resume Format | Center for Career Success | Case Western Reserve University",
+              "url": "https://case.edu/studentlife/careercenter/career-development/career-resources/tips-job-seekers/resumes/resume-format?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 438,
+              "start_index": 326,
+              "title": "Résumé - Career Center - Boston College",
+              "url": "https://www.bc.edu/bc-web/offices/studentaffairs/sites/careers/prepare/resume.html?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 711,
+              "start_index": 575,
+              "title": "GSAS Master’s Resume & Cover Letter – Harvard FAS | Mignone Center for Career Success",
+              "url": "https://careerservices.fas.harvard.edu/resources/gsas-masters-resume-cover-letter/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1003,
+              "start_index": 852,
+              "title": "Resume overview | Veteran and Military Transition Center | CareerOneStop",
+              "url": "https://cloudfront.careeronestop.org/Veterans/JobSearch/ResumesAndApplications/resume-overview.aspx?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**One page is a good default—not a hard rule.** For most U.S. job applications, one or two pages is acceptable. ([case.edu](https://case.edu/studentlife/careercenter/career-development/career-resources/tips-job-seekers/resumes/resume-format?utm_source=openai))\n\n- **If you’re a student or recent graduate:** aim for one page. ([bc.edu](https://www.bc.edu/bc-web/offices/studentaffairs/sites/careers/prepare/resume.html?utm_source=openai))\n- **If you have substantial relevant experience:** two pages are fine; don’t cut strong accomplishments just to meet a one-page target. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/resources/gsas-masters-resume-cover-letter/?utm_source=openai))\n- **Keep it readable:** don’t squeeze everything into tiny text or eliminate white space. Prioritize relevant content and clean formatting. ([cloudfront.careeronestop.org](https://cloudfront.careeronestop.org/Veterans/JobSearch/ResumesAndApplications/resume-overview.aspx?utm_source=openai))\n\nMy practical test: **Does page two add compelling evidence that you’re qualified, or just more history?** If it’s mostly older, unrelated jobs or repetitive duties, I’d trim it.\n\nHow many years of experience do you have, and what kind of role are you applying for?"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8688,
+    "input_tokens_details": {
+      "cache_write_tokens": 11,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 284,
+    "output_tokens_details": {
+      "reasoning_tokens": 53
+    },
+    "total_tokens": 8972
+  },
+  "user": null,
+  "metadata": {}
+}

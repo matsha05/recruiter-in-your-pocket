@@ -1,0 +1,140 @@
+{
+  "id": "resp_041cea16056bd805016aed0a6bfe3087d1bb5115f95870086f",
+  "object": "response",
+  "created_at": 1793919596,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919600,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_041cea16056bd805016aed0a6cfacc87d1b2e7dec807999881",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7QpwJhxqHQ2BZpaftyeA4wTOfSU6oX8e4V7R21J3_zfDAF9qpJXIuLLfbKPfwneNFv3MJnytryTHCYXlOoiLAntu0O745iN-3jCCIwtz62U1Ry7X07B0-b6AbLK_zdyFMf4bRxfPG2XWM-38RRtgYRGcobt-pPYBCQQKtSv4kvvW-F0CrUn_Djo2BVqzIYAS0Xs6r-oj6KzrDtZ3rq2WCwG-cKUD74X0XzrW01ImUvUSMBBjOyDbhbRGnjYrvfFlWMkloBnQNTvUz4ekOzChXMI4S9NPxgMxptiWvUYI2wSWGbbGhlECSIYKILizBYCEHwoOqoBj3gtXYhqXIW-YBJfObcOW_5p7b-e_KNHrtQgxCe2GOLAScRyg5DGNFlp7Ba5BsMC_L5gDfqRPryb4W5FcohoxYjRXtQapWZntcvgyOmVlT9om5DVWTPIlckCK67n8xisaUuk0KR1km3ki9_t2kgCV_0aWKtKQppQ93McFhN2IUf9FX6DajmvZ_WTuN5CvTEgA3GqBW9HDvDK8U_iVVJ850kXAiY8MwYoMYFCqv7Jqr-dtHDO3OPQ5n9Z6bPXZ-8K7vXL0ZQ3fTsACZUu5mTISkMsYecVcxaT60MWj76vRwk0YT-ZLhwYb_cr1a0Q8j6vNxVEfSJYPvUy6FlNaJyAyimW0VzwI-C91XEz_M2XhVl_SEvnA2wSvvzf0Q1JQW-gr3nm0N81KBJNbUN_R_gRDBNmzN3lbZvnIADjBWOkx7j4lvUNY29mAypns9m0mvkkv2CSC9_GqsSqdbizy7ftNpvwUeq1lBBTkJ29Y0M7qJOHVQ8gfFr--yHSyvlm07wVzVs0e6mTfbEX0bwJZKuvDL7cCSkhco-w8SRg9hosOjRhOS5yw8mNem0p2ZwAT2iXhqc1GquH85S4f1eP0SR0bUwF_5vFIW0v4hd4WQ67bnmY10OpzCXF29DjohqwtmrwL19DHtSdiGWn3d2uxHjgyVV44_mhTzS2Cqg_eWzLaUOBiX6PdYf2USyHGSx8EqJn6eoVg22p_iujp2i198LmaoQIjVZBmuVUf0O1GacjqEt6kzwvseu6XZR8oxsQQNxHV3RlGF_xUtYCzxLJA1eQw_I7N0MtJD_sqChzsrEe_zbGTBxCYeYE81gKc04uQV0q9HUbpvSvlbtNl0YRjF7DJeLAU1eSSPqTf2gE1q4kpuXJVGgnPpixD6BfQfQpEcDZSCzILBHMftqIUZexGCd5G_PbcuP8eXGvRyOfu5OPZG_Xy_YSmb4D2GVg1fQ8P9oHjS66zma-CzpDr7bfnN5I-krQDieSsYmhvDWSFu62jx5mr6MuG4nHim04PlXrWJf-laWtdui5jGprpyZEcxnW2sdiKRnpDR3iHoECR9sNM67nRUstI9MDH4NcbE7xEwF2tf2-g_de2K358aojEmPt9ajfVCXq45HQZfQEaisZRMGK5Ko5nZ_TsaLkcaSJrOz3ClDo4keE8vr3DzGlKIz4vXCrRFgf1IJ7GP6W7JNMr0mLvfD3_vteA_zOUjasvrJ_-ZPtLCYyrSZUJEGRXLpGdB3N8nmoWpjhHqsrGRfkZSWMwLTYRcyM_GckqxEAKg2gVm5IsUDyJQA-9EjhGLvxEV4ctqlIltSk7SdqnvE9ieDGyCBn_oZdQb7wRXK30FWe7EXMBB0aaSBQz6AMFd3rVBXoW63Y0zUBlq3zDtnG2JPATzCQc5dh3OVzz1b2Of5qpJKsz4npEO4bTFDAQ2j6q6m_OXJTeGq8CUie75SEH_zR3q0TcG57Y81jOIY84Yvo5REks1QH73nZYZAQRhJHuNctI7KJRlJvXkH4j70I-jgwPxsxwCm1NhUylE-YEpdyLUNhlXdVHG053KkxrE4xWSWpNbDp2gOWh5AYDXND8zder0kR2BCVai9DBANhChp7TgVcgeqizVgULn5uDnl5HDn2jtpERm6I6H-pXM8h8045kBQ_2csYtaJbRqt6kBbFXm948_yqLw6u3dxf5a2PQ7PAVIZtL7VslFM3_rY8pYlDr9Z0TUzTiXG0mAqR3wGx0_YFWZaz_ZFgjpP0taxm2tiR4RrUTejyP3I7xaM6TI5KqxE77kjR7PP4g744e1rZkdv3ha3fiSWXvALFmH_dqAUT1PBxbgbCPcQDSQoLO0-tvw_T2MzwotVViHu7EwnzpFqaEiFirQmgylbR9gNZ7bp8grIvDoEEwuJl8DpQrxxxWxoh8m2Zqyg7prc95BhXKe9SgJkfw47GVbBLMJMuykyyvONosBiu6sO-71_jrr7obosMeGjejIg8wNQrbY2SwzRBJ2-pk0P2LarTr9oQksKZgljETOfFzfuyBEhGocJEBOvZ84wDRjbw5uyhWw_gvlCTyd6Xsf1o6MI0I_-75vR--m7jqHc6Hqs1nIzsqsyKnfXHT-Qhu4IG8hQs7Go9Xn8fb1ZSGonVxGZtmvaEB7unYdLq0mDlkYKgzgz8-yedj7zU6A7SGCIcWQiivhZvsDpFf3KlmLyadg-GlLeKlqlldBuecJwXDnwxM9CNlFVqdxD70p_UclBrMVaALemea2g0pkDTwiAqdAOEdqmEwczR9bDrqLZTe9YXdcBThqPKYfebahemyU7AYMjwhNL_5Ihf0EGOnog_tUYnEwUro6VQjHK7D6BQZm4GEWxrF9NLmYiJjCakZ8_XmyYp5megr02GphHHOmbm_We-nK7imMEs0O6Fe2haM4wwdxWSi7_yJomu8jwUWIeN46J_1-qeU0JinLlhtQHtdTGFe7m2p0uYSbdBDPacH_PL-l1NxgaX73fkyPlrhyubyH0y76dEfnW_FEuHKLl1rYIB66PkT_k6GSZq2het2s-4nFxbrEH1U6bHo0ae4OalJuwVOIGWlhcwoIXHtC2VMJSb19Svq8LEgj7SnVR7jDs86byL2KQzoVKr4Gjvpw6DP95k_PR_7GeClwOcc8IKc6iL_EuMVEpZB2McJhjjwVmW3kNsGlereeK0hhK0CUxhOEk3GqAeIn8-j6i-0qd6A3A1WfvERqLT-tWyzWpArW7mQnumN3j6U2NXb3CNVZrnkDj_WOLgB59EqMTaDr5Q9pV0QrAW0VcSVWZI_7CyZZ2__4-8uaiv9zmTyXoWRoZIF_p0fFgCSreliGv1KPE6UI2WYVdR3nHVAV-yyWarPcK2fo1WeZ7vci7RkvZd18w6pfrSPFzjzbzFuUzVepg4aSNFzxjZdcwfQPn-RTkCNHf1uJOfLHejoTiLmoVHhvA_QIn5PQd6dgaNF-JcV5n7C6iPEA38hWsITHgodCqeDl-YKFMSwFMZwKLyb1GdX0r6dmFQxfgW_74b_tGxVVaFp3LAZhDX0s5jmqmY7T0_yo-J5YNy9L29naD7QjzEpDXvfgOb0Ha35oa-5qa5tREsI7BCzh2kmDZqdOh-Y6Ybb5w4LuxDvKnNrVTbQBamsXmQRIXPrtPwz3njws8IwHZBksrCFr-7ADDkFavf-SKl5-etJ3gS9Xc46DhEHfZFOqy-K5LbJeYNQFiVaxveVYYCYpJXoFP0kRvLp7ohZsmsPb3J4CIwMGhckKutiZjcaqiBoK6uuJA6flYKzhOIAZmzxNlszCx6FIUJIxTDrS4LQRhbpfuhVcEVRRmNDAib3bzPLZ1Lco6WcrDhJS5PZe4IhytWxTc6cEA6CLmi3gb8TLZAm4wOicvsSL2Hzy3NSRJIgiGqcvfvjiHN8lMMRQqEzayZh1iew6OVKy-472liVAiQeaxE6zLlljga1sz0LGAs2u8cBzMZW_XtcaqGPm98HN7g0Flu0ommvFv5MVYomhpSPm-TsN-sYsZasdocFAbo711bjiBQ4gLR6Tpk4OxpHN6Mh-IP3g5RfV1rMc3GeIZmTtD-FwIy6XBC9_2F2_l4ntDAJnop-Bk9dkkFx0VeAcPRSVAK18sSandvJm96rJ84vstVtRqg3JXL8YR9uvo7-4KWcABe58vRZZnkYU7Z-JkHzb5pNF5OE2TNDJUyyxXKX9hg=",
+      "summary": []
+    },
+    {
+      "id": "msg_041cea16056bd805016aed0a6f89d487d1b5590f3d25ed5946",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[\"Teal\",\"Jobscan\",\"Teal+\"],\"mainClaim\":\"The answer recommends Teal for job-search management and Jobscan for résumé matching, and asks whether the user mainly needs ATS feedback, résumé writing, or application tracking.\",\"evidenceQuote\":\"Jobscan’s published comparison and Teal’s pricing\",\"evidenceIndices\":[1,0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 888,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 288,
+    "output_tokens_details": {
+      "reasoning_tokens": 206
+    },
+    "total_tokens": 1176
+  },
+  "user": null,
+  "metadata": {}
+}

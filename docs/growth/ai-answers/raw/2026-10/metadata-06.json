@@ -1,0 +1,140 @@
+{
+  "id": "resp_0f0f7eca58c461dc016aed0aa89be087d1a536fcf877b3bafa",
+  "object": "response",
+  "created_at": 1793919656,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919660,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_0f0f7eca58c461dc016aed0aa9949487d1a9b39f5536a2d56b",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7Qqsj0GlRmqKrX9bZ5tHBiB_AShzMrZL1OW_MAfg5up-AkgXLeqlEKwnKLldT9o_qKRGv8QN_pOh_F75021erMAUqGolxcZrqXL6D_PPK0rsJGjMyJb1khK3L_AoVyEDKQl0RN8KM41ZFvWGFJ4voXlaSPzwreaSLg-K-qC6UB99PrS17vVI6Edx1VNkoOffzXS_QuyIGtRQAOc3476_Oladryi7jHJVIRC3cZKvbiykkmZZrm5NLm6NKEhUCmaQ-6c0HAvNAmUJU8HTL_zqUpCrcr8ReUtP_RKjh_k4SEFHrE4WB4wdQ6z2mLYXyZbpnTlbSxOZg2x9H6LUrY3A0ZDF5rT2FTy6GUW6Zgcqw04kVY9H2wgBSI_KoY-Et9yHlqu_jKQExMruUWC1un4BlSPNZaIDJnQOddL3HtalzqpXfG8c8-9EXOAvWrOHBPtaeomoPp-p2riYXelobW3tM-9QkpnCnfDD6bCeaRtCUL6GXOfOkyo-4arpaQ7iGrdSLejmAhmg_ohlIqrGA1M9eK-cQbz3br6t1BHCOS6Wmrf0VvlxicD7eTjelkTufqRZRZGgtkVatPpl74LdUo1syg9aLHaiCv-BtgQCgI2WceOC9Jmj36La4JGUqSUUscRK7L_4wPk_bvZYBgJhcOgnHCpoPpNbDN0AWHx77Q9GYRsieBV3vFLn9vSiyUen_jnbscbEq_PZx3wJdnkJqP_qelswMlNuLZaP87f0VowuY5Xox-8MbGKoSCqwAfajZi3xMv8tux_iplWIJ5fMJ9YaC9Zf7-f1S5VqI3CQxH5WIa6jLAAPKDBwMZT9STneXtKUONrlwiBmEc5USeNuWt06SxI8NqA1vWlms5Thgt5NRihQdHS_Gf0x4uh0UFD8dOHZrhK2UdUzH6gSzuV3fSEetvuZr82dSwd05ihc0P5gwiVvQNhTKCdqvstzwfP9OtNVUqKmzphIEjiX3QLBOLvFLzZtoZsaDB1uDZwXgFx5RgpZ06faluYOFReo-oRDHdXyYJrTIXpUBcuINmM_4H2MmM7gjTFlRrheuTuUY2DetPCmlixrJ-d9bZ1SnSOkmo3aWXbk2TAG-QqbyYWkN_wbfsNNLhMf3z1KUPGhLWtsbu8IEzJIBBbVPZPYsRAik4k0YYvz9KWn6eaqdWDfy5By-P40MwQLCKC4YSMZz7JEHw4QFzC94Gyicmmfurnmg2s9801R1h2Sz6Axryy62y6hOBAVKplgQIOd66yTgT1Dc7D1RkknZXuqNVrc0Pi1kdiJ-4UMq4NTuCl183sw1fZEu3-1DZ6STyHVSvnok0v-jH6Egj85MdzcMs_iBBAGARGXxgMJxZH9y7Y-VA_smh-DjGYoozrbWAYOC0qROcg1lj_LMlrSYEAqVsgLul0esGekHRSgbEXX3mrSYw3sgraiM7SqQ2NLzJ0AAk0NlEVUPIYqMiQM8YoAKL-kmEJGMRhySpyMKg7tOcebZ65OvFDBUniq1eqYBSyvsUIjMz3Qs46N90w0-b3bKb-9_q6OK_tB4WVf-4jHNzvCcbmOBVNyhCp3LRtFwx2ZV-QOZr4PSGXr56BXZdZiNtq0EZC3msjvEcyQqIY5HPBi02Lvc2BGUnRRD6DQc7UAQDxa8ardW--oiZSw9UHRTMI0SCcbEeyGBck_kyBtCXazD6teddQy-N0xUc03u3dKbn6NWKKf8VkpUxOkRBfAiXeiPpuE9Nw-KP8RBwzSlCBdzbqaph6rZCdx_N4lIeC-wup6fg596M0Uo6bSUjjNuFuoBzINclqCuoOGZ4bfy64HO-xQBXWT-gbC7MqHUyza1sAI1HqtP0CgaaCxRb-p2kN-W0TRzd_svzu4fhQP_UryTZHRFk4goU1wEiQt0dXJRx_vFpsuyiL0FHh3sEfkIyUlixMpDopajOASazp04ftim1Ly4EbFzOHIhP2V788xT8oBTrNKxcPEJ7IuO6NNN0iX6ca8y85T2hq2MLhCyIkzW2PbHL0ID7M2jTeKmf14HMe62gm39PFECZIlHDi17LcamxWV5oULIQ3gjopYr6CGuWKiPJwaAD0vkDiFWJpVcPVSxfEiRmkKSu3dJ22uW8u3yqnZ27Ci_P5remv6DduiP7leL6X_3kpot0fFYbvTJ5GiQIPquruADMN9zf6eRW2IwPigF5V0ZqhULMPjophIXD6ompM6I_8GB3FAtE4oFdxb3sq9z4Fc5jyJdl49reJMjSw_eikYAi1L1HDbnnA-GE3bIBrL3cdsn1TgN87KsUATaPyBbaY00CkcieXwoeNc3FXLLv3Je5pLXiNsOq1RBR05WtJHlHcsmYoQQSHvRPQ0Qn9uu0plMqvqjh454ivUxGayo9IXPYNuRCNpQXAY0_co_BOyFVQgO_rPtenDd-OxwZT2GHzFB74l2XaEbF9mVO0xijlp4uTqTRGwPSIwNi5kUlaXiKxB0nOCUSNpXYfBSEEoUEOIgR3T6izqHWm71F8LCD-LBSj_yc5SKjgtoeVnBo64RXlwFunRk5Krpeg-hXiDSx3dH_fdxRvTs_3CwNMFOzCOjfP7LqvO3tq-NpeiXAj3l8t4jFIIxwgvFrGmff1brtosXvwM-NnS5I0FKXLKClHXL-lfHmspl8hA8piurqp-VgAPPh8xy6ebVQ8xu9fTXaSS1u0iIoDTvHWyY3kgxBCkldfn6rjOQ-XkQ1BRhnUI7gakl5tMyTc5Cocud-WWO7aXKVnYRyDG4o_MgCU_HzBv2Y2N8hg2hXYHpXCKQ9ZmIZ7h34dAYIILBQGUhZxa9jtLnb3-cTPBco2QYyJLs-KEbQEzFY6F8_Jg5gZpcB7uMdYVp-atdOARIolzqkmyRQ4hei8lCi3AQAW2mz00G8LUit8N0WYEUGSAiIJuePnXzEPmagw5AWP18Dz1y1qkYv54ibBFLCclqhT5-oaHZZ1xAFGRtPlh3vf06-Dpblxfmf8iudR9qwx89vczOY9rlqEayBQwOVp-RFCNFnBSRwWYeckTbE2fHLs-UE7N2hImHgLD8LZ-m-bWrKaPmX8eTfZw79rn4j2xKsLVnX1rV0KhBHsRQBs6xpevzXZQIL9Y8FF_oABOLMh7qnP50ymBmmNNALMIg3Xy7mCFxoCuY3eCzuBU3bMwBmRva6mJZwmYFERkomr45f5V9xvaU0bPq61YsFQYt2zeInWP3OJmGOMD9k_I_wk4iMT5pCFZvG37u6y6z2zDKE91pmoLMAxqlxS8PX0UmmqAUrQdo7hLH0C3SiKYhswUhwfjSpJfZOhULgIf5HC1XvDUd7wKbCHyv8jnODk4jZJ3HxP-Hc5_WInkiy8pbiAOfU2Mtfda3m869fbh78lx8usHgBJi0iCfCfDJYYXGueIgsrVjF-gyx6wLDRgaGbxUq6jwxXMT-rBYzkBkmzS0ExRV5KYgzIzgW-Ym5e9Tfx11Sw2F4FqxBAYiXwCtNGG_1WqNOWxkJInYr3t2IeqSQpCoJTL_Kqe1JImfLG_P7YH37-16jGVMI2bxMsz7I-a4PhpsUkdBWkkxwFRdkh52M650BBBv_-hiqYo_rpGpD0eYwiUcMkfPh5zXwqgGRM0D_YsWDqskDfBigZlabzNc3UtR7yW4lRzqANpgmIujZOMf_WPyTgNsKB1xHisFCU0Z2Xlbwh1-fsoxHlmXPzkkP8NL53M3n9KW1op_zi0=",
+      "summary": []
+    },
+    {
+      "id": "msg_0f0f7eca58c461dc016aed0aac38e487d1b92a970b30bed913",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[],\"mainClaim\":\"Recruiters may spend only a few seconds on an initial résumé skim, but six seconds is not a universal rule.\",\"evidenceQuote\":\"2012 study by the job site TheLadders\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 740,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 263,
+    "output_tokens_details": {
+      "reasoning_tokens": 201
+    },
+    "total_tokens": 1003
+  },
+  "user": null,
+  "metadata": {}
+}

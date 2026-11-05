@@ -1,0 +1,160 @@
+{
+  "id": "resp_04c7fb2d678d75d4016aed0ae3dcdc87d1ad89e9ffa1fbc49e",
+  "object": "response",
+  "created_at": 1793919715,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919726,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_04c7fb2d678d75d4016aed0ae5312487d1b7581bae8052d460",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.jobscan.co resume scanner free",
+          "site.tealhq.com resume checker free",
+          "site.rezi.ai resume checker",
+          "site.careerflow.ai linkedin optimization resume review"
+        ],
+        "query": "site.jobscan.co resume scanner free"
+      }
+    },
+    {
+      "id": "msg_04c7fb2d678d75d4016aed0ae9aa9487d1a0274618e693cf05",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 388,
+              "start_index": 326,
+              "title": "Tools - Jobscan",
+              "url": "https://www.jobscan.co/tools?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 667,
+              "start_index": 559,
+              "title": "Using the Resume Analyzer | Teal Knowledge Base",
+              "url": "https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 890,
+              "start_index": 824,
+              "title": "Frequently Asked Questions | Careerflow AI Career Tools",
+              "url": "https://www.careerflow.ai/faq?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1137,
+              "start_index": 1029,
+              "title": "Using the Resume Analyzer | Teal Knowledge Base",
+              "url": "https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "Here are three good **Resume Worded alternatives**, depending on what you need:\n\n| Alternative | Best for | Key distinction |\n|---|---|---|\n| **Jobscan** | Matching your resume to a specific job | Compares your resume with a job description and identifies missing keywords. My pick if job-specific tailoring is your priority. ([jobscan.co](https://www.jobscan.co/tools?utm_source=openai)) |\n| **Teal** | General resume feedback | Its Resume Analyzer flags issues to improve; the free plan shows basic issues, while more detailed analysis requires an upgrade. ([help.tealhq.com](https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai)) |\n| **Careerflow** | Resume **and LinkedIn** optimization | Offers both resume tools and LinkedIn optimization, with advanced features included in Premium. ([careerflow.ai](https://www.careerflow.ai/faq?utm_source=openai)) |\n\n**My suggestion:** Start with **Teal** for basic resume feedback, or **Jobscan** if you already have a job posting you want to target. ([help.tealhq.com](https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai))\n\nAre you looking for a **free alternative**, a **resume scorer**, or **LinkedIn feedback**?"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8685,
+    "input_tokens_details": {
+      "cache_write_tokens": 8,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 323,
+    "output_tokens_details": {
+      "reasoning_tokens": 62
+    },
+    "total_tokens": 9008
+  },
+  "user": null,
+  "metadata": {}
+}

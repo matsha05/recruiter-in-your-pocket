@@ -43,6 +43,8 @@ Status is one of: *on track* (at or above the success number's pace), *below*, *
 
 See [Search Console and Bing setup](search-console-setup.md) for verification, sitemap, and indexing-request records.
 
+**Monthly:** [Search and AI-answer measurement](monthly-measurement.md).
+
 **Our own runs to subtract:** *list any test reports or purchases by us.*
 
 **One decision:** *one line.*

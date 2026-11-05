@@ -1,0 +1,136 @@
+{
+  "id": "resp_0d708b2c081c2702016aed0ac8d94887d1860810528398d5b1",
+  "object": "response",
+  "created_at": 1793919688,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919696,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0d708b2c081c2702016aed0aca4ee887d1b06968a3add732fe",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "job applications not getting interviews career center resume"
+        ],
+        "query": "job applications not getting interviews career center resume"
+      }
+    },
+    {
+      "id": "msg_0d708b2c081c2702016aed0acd850887d1bc8c6f88b22e7cd8",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 519,
+              "start_index": 374,
+              "title": "“Why Am I Not Getting Interviews?” Here’s What Might Be Going Wrong – Career Development Yale School of Management",
+              "url": "https://cdo.som.yale.edu/blog/2025/03/21/why-am-i-not-getting-interviews-heres-what-might-be-going-wrong/?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "Do you mean **callbacks from job applications, after interviews or auditions, or something else?** I don’t want to guess and give you the wrong advice.\n\nIf you mean job applications, possible reasons include a résumé that doesn’t clearly show your fit, a mismatch with the roles’ requirements, or hiring circumstances outside your control—not necessarily a lack of ability. ([cdo.som.yale.edu](https://cdo.som.yale.edu/blog/2025/03/21/why-am-i-not-getting-interviews-heres-what-might-be-going-wrong/?utm_source=openai))\n\nTell me what you’re applying for, roughly how many applications you’ve sent and over what timeframe, and whether you’re getting any initial interviews. You can also paste your résumé and a typical job posting, with personal details removed, so we can look for specific issues."
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8697,
+    "input_tokens_details": {
+      "cache_write_tokens": 11,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 177,
+    "output_tokens_details": {
+      "reasoning_tokens": 31
+    },
+    "total_tokens": 8874
+  },
+  "user": null,
+  "metadata": {}
+}

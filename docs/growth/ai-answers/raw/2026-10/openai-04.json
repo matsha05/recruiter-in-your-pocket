@@ -1,0 +1,145 @@
+{
+  "id": "resp_04f245ff5caf62e4016aed0a70979887d185a002cd987127bf",
+  "object": "response",
+  "created_at": 1793919600,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919611,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_04f245ff5caf62e4016aed0a72447887d1a77e41e60a7ff894",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.jobscan.co free resume scan 5 scans free",
+          "site.resumeworded.com free resume review score",
+          "site.careeronestop.org American Job Centers resume help free"
+        ],
+        "query": "site.jobscan.co free resume scan 5 scans free"
+      }
+    },
+    {
+      "id": "msg_04f245ff5caf62e4016aed0a76c7c487d18514b966b064eb3c",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 417,
+              "start_index": 327,
+              "title": "Resume Review Service: Complete Review in 30 Seconds | Resume Worded",
+              "url": "https://www.resumeworded.com/resume-review-service?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 790,
+              "start_index": 647,
+              "title": "American Job Center Finder | CareerOneStop",
+              "url": "https://cloudfront.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**My pick: Resume Worded for a quick online review; an American Job Center for free human help.**\n\n- **Resume Worded — best starting point online.** Its free review provides a resume score and feedback on your writing. **The catch:** only part of the analysis and line-by-line feedback is free; fuller access requires payment. ([resumeworded.com](https://www.resumeworded.com/resume-review-service?utm_source=openai))\n- **American Job Centers — best for genuinely free human assistance in the U.S.** They offer free employment services, with staff typically available to help with resumes. Ask your local center about a resume-review appointment. ([cloudfront.careeronestop.org](https://cloudfront.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx?utm_source=openai))\n\n**You can also upload or paste your resume here**, ideally with a job posting. I can review clarity, bullet points, organization, and fit for that role, and suggest specific rewrites. Remove your name, phone number, address, and other identifying details first."
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8740,
+    "input_tokens_details": {
+      "cache_write_tokens": 8,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 275,
+    "output_tokens_details": {
+      "reasoning_tokens": 64
+    },
+    "total_tokens": 9015
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,3713 @@
+{
+  "recordedAt": "2026-11-05T23:02:59.565Z",
+  "source": "Live RIYP APIs, October search window; AI answers observed November 5, 2026. IDs retained; no request headers or credentials.",
+  "google": [
+    {
+      "rows": [
+        {
+          "clicks": 0,
+          "impressions": 33,
+          "ctr": 0,
+          "position": 14.393939393939394
+        }
+      ],
+      "responseAggregationType": "byProperty"
+    },
+    {
+      "rows": [
+        {
+          "keys": [
+            "pocket recruiter"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "keys": [
+            "riyp"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        }
+      ],
+      "responseAggregationType": "byProperty"
+    },
+    {
+      "rows": [
+        {
+          "keys": [
+            "https://www.recruiterinyourpocket.com/"
+          ],
+          "clicks": 0,
+          "impressions": 21,
+          "ctr": 0,
+          "position": 18.857142857142858
+        },
+        {
+          "keys": [
+            "https://www.recruiterinyourpocket.com/methodology"
+          ],
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 5.666666666666667
+        },
+        {
+          "keys": [
+            "https://www.recruiterinyourpocket.com/pricing"
+          ],
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 6.066666666666666
+        },
+        {
+          "keys": [
+            "https://www.recruiterinyourpocket.com/privacy"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 3.4
+        },
+        {
+          "keys": [
+            "https://www.recruiterinyourpocket.com/sample-report"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 5
+        }
+      ],
+      "responseAggregationType": "byPage"
+    },
+    {
+      "rows": [
+        {
+          "keys": [
+            "pocket recruiter",
+            "https://www.recruiterinyourpocket.com/"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "keys": [
+            "riyp",
+            "https://www.recruiterinyourpocket.com/privacy"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        }
+      ],
+      "responseAggregationType": "byPage"
+    }
+  ],
+  "sitemap": {
+    "path": "https://www.recruiterinyourpocket.com/sitemap.xml",
+    "lastDownloaded": "2026-11-05T22:15:32.839Z",
+    "lastSubmitted": "2026-11-05T22:15:31.026Z",
+    "isPending": false,
+    "errors": "0",
+    "warnings": "0",
+    "contents": [
+      {
+        "type": "web",
+        "submitted": "37"
+      }
+    ]
+  },
+  "bingQueries": {
+    "d": []
+  },
+  "bingPages": {
+    "d": []
+  },
+  "parseHtml": "Brands AI mentions</h2></div></div><div class=\"flex min-w-0 flex-col gap-4 lg:flex-row lg:items-start lg:gap-8\"><div class=\"min-w-0 lg:flex-1\"><div class=\"min-w-0\"><div class=\"heading-label flex items-center gap-3 border-b border-track pb-2\"><span class=\"w-7 shrink-0 text-right\">#</span><span class=\"min-w-0 flex-1\">Brand</span><span class=\"shrink-0 sm:w-56 text-right sm:text-left\">Mentioned in</span></div><div id=\"_R_q6qnpfiv6pfdrb_\" class=\"divide-y divide-track\"><div data-standing=\"true\" class=\"flex flex-col justify-center py-2 text-sm min-h-12\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->1</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/kickresume-com\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/c151a652-f6d3-4fde-b3c5-3cf395607d1a/logo/6fa7f708ff213900dee3191b7bd1a8ae7876ec83bed610bc9017d954d1bb0805.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Kickresume</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-settle\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.9204545454545454)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">92%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">creating polished first drafts from scratch with automated writing assistance</p></div><div data-standing=\"true\" class=\"flex flex-col justify-center py-2 text-sm min-h-12\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->2</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/rezi-ai\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/430e5bb3-c140-4855-8ac5-49ee00ab9093/logo/55517680543eb17c67659d4c8dd916b8e1e4c2c91285137adfb689c038b99f31.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Rezi</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-settle\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.7840909090909091)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">78%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">strict keyword optimization and navigating automated applicant tracking system filters</p></div><div data-standing=\"true\" class=\"flex flex-col justify-center py-2 text-sm min-h-12\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->3</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/tealhq-com\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/c5cffbf1-b482-4233-8d2b-d548b2d36dcc/logo/faba1c46ec1d796d9db4280421e363039c738d2876f164ecc348aec711a4e31a.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Teal<span class=\"font-normal text-muted-foreground-2\"> · tealhq.com</span></span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-settle\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.6477272727272727)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">65%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">managing job applications alongside targeted resume drafting</p></div><div data-standing=\"true\" class=\"flex flex-col justify-center py-2 text-sm min-h-12\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->4</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/resume-io\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/5aef1253-feb7-40b8-8c86-d3b2c7b1cff6/logo/582d475f6d0f338f444bada66b538eb54594b3d96bc656c0f5f8c45ca728e274.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Resume.io</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-settle\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.4318181818181818)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">43%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">quickly building clean, conventional resumes with a simple layout</p></div><div data-standing=\"true\" class=\"flex flex-col justify-center py-2 text-sm min-h-12\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->4</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/jobscan-co\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/39b26541-ac15-48e9-9952-18c454a002d3/logo/5bea92f8a8540f5e94f53974b1632def9d87f692f89eab09714183d5e80af8b3.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">JobScan</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-settle\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.3409090909090909)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">34%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">auditing an existing resume against specific target job descriptions</p></div><div data-standing=\"true\" class=\"flex-col justify-center py-2 text-sm min-h-12 hidden\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->6</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/goteal-co\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/74c26ce4-60d0-429b-949d-a471c81a6cd0/logo/09fac3673b292958ad0dd26dc5dfa5fafce100230fa933d5e7bd3940626938be.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Teal<span class=\"font-normal text-muted-foreground-2\"> · goteal.co</span></span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-fill\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.2840909090909091)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">28%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">managing job applications alongside targeted resume drafting</p></div><div data-standing=\"true\" class=\"flex-col justify-center py-2 text-sm min-h-12 hidden\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->6</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/flowcv-com\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/1d7490f3-b377-412f-abe3-f98661151e76/logo/480dab791fce68b0d6511c3afc16b3d4ebdd8a3aa2971ffbe4e77ca1ec137a3a.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">FlowCV</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-fill\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.2727272727272727)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">27%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">flexible design formatting and clear visual layouts</p></div><div data-standing=\"true\" class=\"flex-col justify-center py-2 text-sm min-h-12 hidden\"><div class=\"flex items-center gap-3\"><span class=\"flex w-7 shrink-0 justify-end text-right text-xs text-muted-foreground-2\"><span class=\"whitespace-nowrap leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight\">#<!-- -->6</span></span></span><a class=\"group flex items-center gap-2 transition-colors duration-150 ease-out min-w-0 flex-1\" href=\"/brands/canva-com\"><span aria-hidden=\"true\" class=\"size-5 inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[20%] ring-1 ring-border bg-card\"><img src=\"https://images.parse.gl/domain/6862bcf7-58b6-4ef2-8838-1b2f2fb2d440/logo/53a2580a2e221189539b4523c9d513b52f7c8415b9dcd65c818dc52b789edb1c.webp\" alt=\"\" width=\"20\" height=\"20\" loading=\"lazy\" decoding=\"async\" class=\"size-full object-contain\"/></span><span class=\"min-w-0 flex-1\"><span class=\"break-words line-clamp-2 text-sm font-medium text-foreground transition-colors duration-150 ease-out group-hover:text-foreground\">Canva</span></span></a><span class=\"shrink-0 sm:w-56 flex justify-end sm:justify-start\"><span class=\"relative flex min-w-0 items-center gap-2 sm:min-w-[calc(7.5rem+var(--value-reserve))] flex-1\" style=\"--value-reserve:3.5rem\"><span aria-hidden=\"true\" class=\"block shrink-0 rounded-r-sm h-2.5 bg-primary bar-fill\" style=\"--bar-fill:calc((100% - 3.5rem) * 0.25)\"></span><span class=\"flex shrink-0 flex-col leading-tight\"><span data-slot=\"metric-value\" class=\"font-mono tabular-nums tracking-tight text-foreground text-xs\">25%</span></span></span></span></div><p class=\"ml-10 mt-1 max-w-2xl break-words text-xs leading-relaxed text-muted-foreground-2\">visually creative layouts and custom graphic styling</p></div><p class=\"py-2 pl-10 text-xs leading-relaxed text-muted-foreground-2\" hidden=\"\"><span class=\"font-medium text-foreground\">Also mentioned rarely<!-- -->:</span> <span><a href=\"/brands/enhancv-com\" class=\"subtle-link\">Enhancv</a></span><span>, <a href=\"/brands/resumeworded-com\" class=\"subtle-link\">Resume Worded</a></span><span>, <a href=\"/brands/chatgpt-com-8\" class=\"subtle-link\">ChatGPT Work</a></span><span>, <a href=\"/brands/docs-google-com\" class=\"subtle-link\">Google Docs</a></span><span>, <a href=\"/brands/zety-com\" class=\"subtle-link\">Zety</a></span><span>, <a href=\"/brands/resume-com\" class=\"subtle-link\">Resume.com</a></span><span>, <a href=\"/brands/microsoft-com-12\" class=\"subtle-link\">Microsoft Word</a></span><span>, <a href=\"/brands/wobo-ai\" class=\"subtle-link\">Wobo</a></span><span>, <a href=\"/brands/novoresume-com\" class=\"subtle-link\">Novorésumé</a></span><span>, <a href=\"/brands/openai-com\" class=\"subtle-link\">OpenAI</a></span><span>, <a href=\"/brands/resumes-indeed-com\" class=\"subtle-link\">Indeed Resume</a></span><span>, <a href=\"/brands/chatgpt-com\" class=\"subtle-link\">ChatGPT</a></span><span>, <a href=\"/brands/indeed-com\" class=\"subtle-link\">Indeed</a></span><span>, <a href=\"/brands/microsoft-com\" class=\"subtle-link\">Microsoft</a></span><span>, <a href=\"/brands/standardresume-co\" class=\"subtle-link\">Standard Resume</a></span><span>, <a href=\"/brands/claude-ai\" class=\"subtle-link\">Claude</a></span><span>, <a href=\"/brands/code-claude-com\" class=\"subtle-link\">Claude Code Action</a></span><span>, <a href=\"/brands/gemini-google-com\" class=\"subtle-link\">Gemini</a></span><span>, <a href=\"/brands/individualsoftware-com\" class=\"subtle-link\">Individual Software</a></span><span>, <a href=\"/brands/resumonk-com\" class=\"subtle-link\">Resumonk</a></span><span>, <a href=\"/brands/greenhouse-com\" class=\"subtle-link\">Greenhouse</a></span><span>, <a href=\"/brands/jobright-ai\" class=\"subtle-link\">Jobright</a></span><span>, <a href=\"/brands/latex-project-org\" class=\"subtle-link\">LaTeX</a></span><span>, <a href=\"/brands/myperfectresume-com\" class=\"subtle-link\">My Perfect Resume</a></span><span>, <a href=\"/brands/overleaf-com\" class=\"subtle-link\">Overleaf</a></span><span>, <a href=\"/brands/resume-ai\" class=\"subtle-link\">Resume.ai</a></span><span>, <a href=\"/brands/resume-now-com\" class=\"subtle-link\">Resume Now</a></span><span>, <a href=\"/brands/resumegenius-com\" class=\"subtle-link\">Resume Genius</a></span><span>, <a href=\"/brands/retunerai-com\" class=\"subtle-link\">Retuner AI</a></span><span>, <a href=\"/brands/theartofresume-com\" class=\"subtle-link\">The Art of Resume</a></span><span>, <a href=\"/brands/workspace-google-com-4\" class=\"subtle-link\">Google Account</a></span><span>, <a href=\"/brands/wozber-com\" class=\"subtle-link\">Wozber</a></span></p></div><button type=\"button\" aria-expanded=\"false\" aria-controls=\"_R_q6qnpfiv6pfdrb_\" class=\"relative tap-target inline-flex h-8 items-center gap-1.5 self-start rounded-md px-3 text-caption text-muted-foreground transition-colors duration-fast hover:bg-hover active:bg-active hover:text-foreground focus-ring -ml-3\">Show all 40 brands<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" fill=\"currentColor\" viewBox=\"0 0 256 256\" aria-hidden=\"true\" class=\"icon-cap transition-transform duration-fast motion-reduce:transition-none\"><path d=\"M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z\"></path></svg></button></div></div><div class=\"min-w-0 empty:hidden lg:flex-1 lg:border-l lg:border-track lg:pl-8 lg:[&amp;&gt;[data-slot=disclosure]]:border-t-0 lg:[&amp;&gt;[data-slot=disclosure]]:pt-0\"><div data-slot=\"disclosure\" data-open=\"true\" class=\"border-t border-track pt-2\"><button type=\"button\" data-slot=\"disclosure-trigger\" aria-expanded=\"true\" aria-controls=\"_R_3a6qnpfiv6pfdrb_\" class=\"focus-ring flex min-h-11 w-full items-center justify-between gap-3 text-left text-xs text-muted-foreground\"><span class=\"heading-card\">By AI engine",
+  "answers": [
+    {
+      "id": "resp_0ed8e80615ff4cc8016aed0a36d87c87d1a9fe9a4b33da0a26",
+      "object": "response",
+      "created_at": 1793919542,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919555,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0ed8e80615ff4cc8016aed0a389ec087d1a1962123bd0aca5e",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.tealhq.com resume builder free premium pricing",
+              "site.jobscan.co pricing resume scanner",
+              "site.rezi.ai pricing resume builder"
+            ],
+            "query": "site.tealhq.com resume builder free premium pricing"
+          }
+        },
+        {
+          "id": "msg_0ed8e80615ff4cc8016aed0a3cbcbc87d1abaa3f0faa4c68d3",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 349,
+                  "start_index": 285,
+                  "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+                  "url": "https://www.tealhq.com/pricing?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 688,
+                  "start_index": 624,
+                  "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+                  "url": "https://www.tealhq.com/pricing?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 938,
+                  "start_index": 880,
+                  "title": "Rezi Pricing - All Plans Include A 30-Day Money Back Guarantee",
+                  "url": "https://www.rezi.ai/pricing?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**I’d start with Teal’s free plan** if you’re applying to multiple jobs. It combines a resume builder with application tracking and lets you create unlimited resume versions, though free AI writing is limited. That makes it my default pick without knowing your budget or career stage. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\nI’d narrow the choice to these:\n\n| Tool | When I’d choose it | Cost and main limitation |\n|---|---|---|\n| **Teal** | You want to tailor resumes **and organize your job search**. | Free tier; Teal+ is **$29 every 30 days**. Free AI credits and keyword matching are limited. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai)) |\n| **Rezi** | Your priority is **AI-assisted resume writing**, with keyword targeting and resume feedback. | Free tier includes **one resume and three PDF downloads**; Pro is **$29/month**. ([rezi.ai](https://www.rezi.ai/pricing?utm_source=openai)) |\n\n**My recommendation:** Try Teal free first. If you mainly need help drafting and rewriting bullet points rather than managing applications, try Rezi’s free tier instead. I wouldn’t buy a subscription until you’ve tested it with your actual resume and one target job.\n\nWhichever you choose, require the AI to preserve your facts—no invented skills, responsibilities, or performance numbers—and review every bullet before submitting.\n\n**What kind of job are you targeting, and do you already have a resume or need to build one from scratch?**"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 12748,
+        "input_tokens_details": {
+          "cache_write_tokens": 4321,
+          "cached_tokens": 0
+        },
+        "output_tokens": 385,
+        "output_tokens_details": {
+          "reasoning_tokens": 53
+        },
+        "total_tokens": 13133
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0da3c9048fef4713016aed0a47a7e087d1a178cc553103eaea",
+      "object": "response",
+      "created_at": 1793919559,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919575,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0da3c9048fef4713016aed0a49587487d18d07b7d004d381ed",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.jobscan.co pricing Jobscan premium free scans monthly quarterly",
+              "Jobscan worth it match score ATS limitations review"
+            ],
+            "query": "site.jobscan.co pricing Jobscan premium free scans monthly quarterly"
+          }
+        },
+        {
+          "id": "ws_0da3c9048fef4713016aed0a4c9efc87d184e267635b09fd85",
+          "type": "web_search_call",
+          "status": "searching",
+          "action": {
+            "type": "open_page",
+            "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+          }
+        },
+        {
+          "id": "msg_0da3c9048fef4713016aed0a4df83487d18255fd72d5408d23",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 523,
+                  "start_index": 450,
+                  "title": "Jobscan Tutorial | What Is Jobscan and How Do You Use It?",
+                  "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1134,
+                  "start_index": 1061,
+                  "title": "Jobscan Tutorial | What Is Jobscan and How Do You Use It?",
+                  "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1638,
+                  "start_index": 1551,
+                  "title": "Jobscan vs. Resume Worded: Which Gets You a Job Faster in 2026?",
+                  "url": "https://www.jobscan.co/blog/jobscan-vs-resume-worded/?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**Jobscan is worth trying for free; paying is worthwhile mainly if you’re tailoring lots of applications.** I’d treat it as a résumé-checking tool—not a way to guarantee interviews.\n\n### Where it helps\nJobscan compares your résumé with a specific job description and flags missing skills, keywords, and potential ATS issues. Its strongest use is catching relevant experience you already have but haven’t described clearly in the employer’s language. ([jobscan.co](https://www.jobscan.co/jobscan-tutorial?utm_source=openai))\n\nI’d consider paying if you:\n- Are actively applying to many similar roles.\n- Want a repeatable check before submitting each application.\n- Find that its free reports uncover useful omissions—not just wording changes.\n\n### Where I’d be skeptical\n**Its match score is not the employer’s hiring verdict.** It measures résumé-to-posting alignment; even Jobscan’s documentation says measurable results don’t factor into the match rate. So I wouldn’t sacrifice clear achievement bullets or add skills you don’t have just to raise the number. ([jobscan.co](https://www.jobscan.co/jobscan-tutorial?utm_source=openai))\n\nI’d skip paid access if you only need a couple of checks, already tailor effectively, or mainly need help explaining your achievements rather than identifying keywords.\n\n### Cost and subscription catch\nCurrent pricing is about **$49.95/month or $89.95 every three months**. The quarterly offer includes a seven-day trial. Subscriptions renew automatically, and cancellation does not automatically produce a refund. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-resume-worded/?utm_source=openai))\n\n**My recommendation:** Try the free version on two or three jobs you genuinely qualify for. Pay for a short period only if the feedback meaningfully improves your résumé or saves enough time. Don’t keep paying merely to chase a higher score.\n\nWhat kinds of roles are you applying for—and are you getting interviews already?"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 12966,
+        "input_tokens_details": {
+          "cache_write_tokens": 10,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 458,
+        "output_tokens_details": {
+          "reasoning_tokens": 47
+        },
+        "total_tokens": 13424
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0eb863839db2879a016aed0a5bf0b087d1bc007c5cd9c75475",
+      "object": "response",
+      "created_at": 1793919580,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919595,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0eb863839db2879a016aed0a5d79e487d186d09754d229446c",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.jobscan.co pricing premium resume scanner",
+              "site.tealhq.com pricing Teal+ resume job tracker"
+            ],
+            "query": "site.jobscan.co pricing premium resume scanner"
+          }
+        },
+        {
+          "id": "msg_0eb863839db2879a016aed0a616df487d1bb0c536fe59a7d04",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 346,
+                  "start_index": 282,
+                  "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+                  "url": "https://www.tealhq.com/pricing?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1269,
+                  "start_index": 1191,
+                  "title": "Jobscan vs. Teal: Which Tool is Right For You in 2026?",
+                  "url": "https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1516,
+                  "start_index": 1438,
+                  "title": "Jobscan vs. Teal: Which Tool is Right For You in 2026?",
+                  "url": "https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1726,
+                  "start_index": 1662,
+                  "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+                  "url": "https://www.tealhq.com/pricing?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1950,
+                  "start_index": 1886,
+                  "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+                  "url": "https://www.tealhq.com/pricing?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**My recommendation: start with Teal for managing your job search; choose Jobscan if your main need is checking an existing résumé against specific job descriptions.** That’s a fit-based recommendation from their published features—not a claim that either produces more interviews. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\n| | **Jobscan** | **Teal** |\n|---|---|---|\n| **Best fit** | Focused résumé matching and ATS-oriented feedback | Building tailored résumés and organizing applications |\n| **Résumé tailoring** | Upload your résumé and a job description for match insights; premium adds AI optimization | Build résumé versions with keyword matching, analysis, and AI writing |\n| **Application tracking** | Includes a job tracker | Unlimited free tracking, with saved jobs, notes, and application statuses |\n| **Free version** | Limited résumé scans and premium insights | Unlimited résumés and job tracking; limited keyword insights and AI credits |\n| **Paid pricing, USD** | $49.95/month or $89.95 every three months | $13 every seven days, $29 every 30 days, or $79 every 90 days |\n\nSources: Jobscan’s published comparison and Teal’s pricing and tracker pages. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai))\n\n### Which I’d choose\n\n- **Already have a résumé you like, but want targeted feedback? Jobscan.** Its upload-and-compare workflow is a good fit for that specific task. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai))\n- **Need to create several résumé versions and keep applications organized? Teal.** Its free plan already covers unlimited résumés and tracking. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n- **Want the lower-cost paid option? Teal+.** Its 30-day plan is substantially cheaper than Jobscan’s monthly plan; the quarterly price difference is smaller. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\n**My practical approach:** try Teal’s free plan and Jobscan’s limited free scans before subscribing. Pay only if the additional feedback or workflow saves you meaningful time. I wouldn’t pay for both initially.\n\nAre you mainly looking for **ATS feedback, résumé writing, or application tracking**?"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 12908,
+        "input_tokens_details": {
+          "cache_write_tokens": 9,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 565,
+        "output_tokens_details": {
+          "reasoning_tokens": 46
+        },
+        "total_tokens": 13473
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04f245ff5caf62e4016aed0a70979887d185a002cd987127bf",
+      "object": "response",
+      "created_at": 1793919600,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919611,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_04f245ff5caf62e4016aed0a72447887d1a77e41e60a7ff894",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.jobscan.co free resume scan 5 scans free",
+              "site.resumeworded.com free resume review score",
+              "site.careeronestop.org American Job Centers resume help free"
+            ],
+            "query": "site.jobscan.co free resume scan 5 scans free"
+          }
+        },
+        {
+          "id": "msg_04f245ff5caf62e4016aed0a76c7c487d18514b966b064eb3c",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 417,
+                  "start_index": 327,
+                  "title": "Resume Review Service: Complete Review in 30 Seconds | Resume Worded",
+                  "url": "https://www.resumeworded.com/resume-review-service?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 790,
+                  "start_index": 647,
+                  "title": "American Job Center Finder | CareerOneStop",
+                  "url": "https://cloudfront.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**My pick: Resume Worded for a quick online review; an American Job Center for free human help.**\n\n- **Resume Worded — best starting point online.** Its free review provides a resume score and feedback on your writing. **The catch:** only part of the analysis and line-by-line feedback is free; fuller access requires payment. ([resumeworded.com](https://www.resumeworded.com/resume-review-service?utm_source=openai))\n- **American Job Centers — best for genuinely free human assistance in the U.S.** They offer free employment services, with staff typically available to help with resumes. Ask your local center about a resume-review appointment. ([cloudfront.careeronestop.org](https://cloudfront.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx?utm_source=openai))\n\n**You can also upload or paste your resume here**, ideally with a job posting. I can review clarity, bullet points, organization, and fit for that role, and suggest specific rewrites. Remove your name, phone number, address, and other identifying details first."
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8740,
+        "input_tokens_details": {
+          "cache_write_tokens": 8,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 275,
+        "output_tokens_details": {
+          "reasoning_tokens": 64
+        },
+        "total_tokens": 9015
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_05f801cd4a6f9512016aed0a81fbbc87d1a6f81d5a4a09795b",
+      "object": "response",
+      "created_at": 1793919618,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919639,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_05f801cd4a6f9512016aed0a83bac087d1b363d86f6344fc2b",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.indeed.com hire how to review resumes screening",
+              "site.greenhouse.com resume recruiter review AI myths resumes"
+            ],
+            "query": "site.indeed.com hire how to review resumes screening"
+          }
+        },
+        {
+          "id": "rs_05f801cd4a6f9512016aed0a87a59887d1ac07feb4a451107a",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QqXJPzccGZYMPE_ZXVQ8yqli4uRXSJoVR6uE59CRahXZNIAoZfOvkuHYI-UHVDmVvRyUOmAMqUOm5aElH1Fizb0Mz0IXzBUmd76d8B8j-s4SVbqQC8gn7Aagjv4QdQII0WQPgzkMMmR1kZDleWwKwomkgWWWhSIkaP9JDP8zDnLHdrjc4A50-Si6_vSp-AdjyTgu9h3rGkKo0RNHJzUeSphiNucibxwyqPcOIqdNfow9Vw5j_6EX6Lj9283tVHwMf_77Jrv_712lsmF_MIYznu72wV65D1Q00Orc0F9iBX75iBX9lJBv6WUPka-vcJiBBcHiG4jEImfPWuqSZuN9uVN9x-o-jzVXEoHYW0tkUki81xIwIrepsM20BMnz_zHOYYONVC_r62IRiJsUUQ8ng2-DBNHXwxkcHtXiA-q1dm1FXNb51v-va2tYJBVsO1OICYbG9vgVRsl3brW3syCPxm8Z4yU2Xnnlg8zYl_xolbT0SHJ2AKRLF8PclHGQ3s_KqYJN6rbZJKiQ6Ev7_RuANJxgFRTln-Ct2GgLrvhk-9Q3WRkSn1-L6WUMdgyg9oKOKcooBIQ-iW5epfgH0p3pG8__hlg4Oi92HmJBUvdmwLnCpfq906EKSlKwyh6VXRB7rLTf2qd7WvxP8Xhdr4fevTpQ5a8T1Oz8f-oolrAkFRMe09Q1-fhUkPTrPLq-ktJfzvH1jL8HCREE8rtbWHyhgnmM9UDkabQyViZHChwsmyzynuc9WkpUbnudKDCtj-U6b7ik140oYMpg1yLuc8rxUfRdjVx0miR1FCqGSeKhLc_GwMlyH6xis3xrKmtfh3R7Elv-2lXQM5y_lsx0gE8dZZTdBHrT4sfhmDBCW8Nml1SiogQm1ILT-va9j6FCBkkESlZ2mwg8TEnu9SYuZxIpjA-qIaivZWmoHuSsSyu8KZqF30bDRYn8PYDyOuKEDLkPIUHz0nRfjqxCjKzunEybJs3fRseQ_zAlxg2tQnfb1xusfnhu8HXIbF5YTTr7oStqtOu-0d9D-5VVIkpkEsdFz0YCMHrnfWlKonNIKmllT88_LooYdXGGSCRUJvTN8tL5hW8M2vi-wM_7n6m-XC0XR1ZH63fhUYCTQYdI5lUIPbmdwgoZqi3MZON_luBiqzmdwJfa7FX8vNhHOwcr4nIyw-65MoVNOsXzjnsuKMdTgMdNp2oOKNwALtwmvaWvSyeJnlosXvTduRdplq2NThgNg6TfG_6Zp3IWjKQ1YJdX9FRfr-DecB_lWsrAfzrOx6CGOzyB-dnhdJRBoYUHPPogj4PuadC-HmzUPmuzzPh6eVSgS1dZgumejPTWyuoyj1Lv76g8-KmCuppWroPh_mjmn0T9N_Fcd1TzzX8ggmUkGa4g9jHrTT5Jc-IRdTtNhEKIebTMuwB01l09_6nh4KsLz7wzQ3xZ826_M9Nm_I_YRLDRacpmoSJ_j157Nc7XugWuqKXMTEy3gMJEgFQR5xQPlPz9XVOSwg-W-Sn2Ijx6shbHKMH-V4cTintQCVb_l9cWU6UgwyW0ckH_JoKEQoTlqZR9z9ckTHpbZaP8BHmjUWIjSUmsWfxDFXMmmxWOc8SmPpeJp0WQxUmQz4ikTEmMFbWjGpSkwbNph9UGrbQlYWHnsmMrnAnyfoLVsjRHg5C0peDWhK8fkzweviTHg5FVGpayg==",
+          "summary": []
+        },
+        {
+          "id": "ws_05f801cd4a6f9512016aed0a888ae887d182da8bf2b07bcd20",
+          "type": "web_search_call",
+          "status": "searching",
+          "action": {
+            "type": "open_page",
+            "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai"
+          }
+        },
+        {
+          "id": "msg_05f801cd4a6f9512016aed0a89a60087d19a1c722e0862a800",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 378,
+                  "start_index": 277,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 760,
+                  "start_index": 665,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1231,
+                  "start_index": 1136,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1921,
+                  "start_index": 1826,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 2509,
+                  "start_index": 2366,
+                  "title": "Talent Matching - Data Processing FAQ – Greenhouse Support",
+                  "url": "https://support.greenhouse.io/hc/en-us/articles/41131616864283-Talent-Matching-Data-Processing-FAQ?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**Recruiters generally scan for a match first, then read for evidence.** It’s less “Let me learn your whole story” and more “Does this person look relevant enough to interview?” The exact process varies, but initial scanning followed by closer evaluation is a common approach. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai))\n\n### 1. First pass: “Is this plausibly a fit?”\nThey look for basic alignment:\n- Relevant experience and skills.\n- Required qualifications.\n- Employment history that fits the role.\n\nAt this stage, the question is whether you meet the requirements—not whether every bullet is impressive. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Make your target role and strongest relevant experience easy to spot. Don’t make someone piece together your fit from scattered clues.\n\n### 2. Closer read: “What have they actually done?”\nIf the initial fit is there, they examine your experience, skills, and qualifications more carefully before deciding whether to move you to a screening call or interview. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Write bullets that give evidence rather than just name responsibilities. For example, a hypothetical rewrite:\n\n> **Vague:** “Responsible for customer onboarding.”  \n> **Specific:** “Redesigned onboarding for 40 enterprise accounts, reducing average setup time from 12 days to 8.”\n\nUse real numbers when available; otherwise describe scope, complexity, or a concrete outcome.\n\n### 3. Decision: “Is there enough here to justify a conversation?”\nResume review is a screening step, not the final hiring decision. The immediate outcome may simply be an invitation to a phone screen. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Optimize for a clear, credible case—not a complete autobiography. Put the most relevant evidence first, explain unfamiliar job titles, and cut material that doesn’t help establish fit.\n\n### What about the ATS?\nSoftware may come before or alongside human review. Some systems extract titles, skills, dates, and experience; some employers enable AI-assisted matching. There isn’t one universal screening process across employers. ([support.greenhouse.io](https://support.greenhouse.io/hc/en-us/articles/41131616864283-Talent-Matching-Data-Processing-FAQ?utm_source=openai))\n\n**A useful test:** Give someone your resume for a brief glance, then ask: “What role am I suited for, and what’s the strongest evidence?” If they can’t answer, make those two things more obvious."
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8769,
+        "input_tokens_details": {
+          "cache_write_tokens": 12,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 574,
+        "output_tokens_details": {
+          "reasoning_tokens": 70
+        },
+        "total_tokens": 9343
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_027d05de94025ecf016aed0a9c332c87d1a875b2cc21081b7c",
+      "object": "response",
+      "created_at": 1793919644,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919656,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_027d05de94025ecf016aed0a9dd4e887d195a62d24f224574b",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "Ladders 2012 eye tracking study 30 recruiters six seconds resume 2018 7.4 seconds"
+            ],
+            "query": "Ladders 2012 eye tracking study 30 recruiters six seconds resume 2018 7.4 seconds"
+          }
+        },
+        {
+          "id": "msg_027d05de94025ecf016aed0aa1746c87d1985cd8c84cdc8b4e",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 458,
+                  "start_index": 342,
+                  "title": "What Your Resume Is Up Against",
+                  "url": "https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 843,
+                  "start_index": 630,
+                  "title": "Ladders Updates Popular Recruiter Eye-Tracking Study With New Key Insights on How Job Seekers Can Improve Their Resumes",
+                  "url": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1194,
+                  "start_index": 1078,
+                  "title": "What Your Resume Is Up Against",
+                  "url": "https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**Sometimes for an initial skim—but “six seconds per résumé” isn’t a universal rule.**\n\nThe claim comes from a **2012 study by the job site TheLadders**, which tracked the eye movements of **30 recruiters**. It reported roughly six seconds to make an initial “fit/no fit” decision—not necessarily the total time spent evaluating a candidate. ([forbes.com](https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai))\n\nA **2018 update reported 7.4 seconds**, again specifically for the initial screening. That’s evidence of a quick first pass, not a deadline that every recruiter follows. ([prnewswire.com](https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html?utm_source=openai))\n\nThere are reasons to be cautious: the original sample was small, and the research came from a commercial career-services company. It doesn’t establish how every recruiter reviews every résumé across industries and hiring situations. ([forbes.com](https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai))\n\n**My practical takeaway: make your fit easy to spot, rather than trying to make your entire résumé readable in six seconds.** I’d prioritize:\n- Clear job titles, employers, and dates.\n- Relevant qualifications near the top.\n- Short accomplishment bullets rather than dense paragraphs.\n- Enough detail to reward a closer read.\n\nThink **“easy to skim, useful to read,”** not “six seconds or you’re out.”"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8697,
+        "input_tokens_details": {
+          "cache_write_tokens": 14,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 350,
+        "output_tokens_details": {
+          "reasoning_tokens": 46
+        },
+        "total_tokens": 9047
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0e435197ba191970016aed0aad3c6c87d1949578589567367b",
+      "object": "response",
+      "created_at": 1793919661,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919670,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0e435197ba191970016aed0aaf4af887d1bd6c08ba4c5937f8",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.careerservices.fas.harvard.edu resume one or two pages",
+              "site.careeronestop.org resume length one two pages"
+            ],
+            "query": "site.careerservices.fas.harvard.edu resume one or two pages"
+          }
+        },
+        {
+          "id": "msg_0e435197ba191970016aed0ab2a22c87d18b8a9f304fe1c6d1",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 260,
+                  "start_index": 112,
+                  "title": "Resume Format | Center for Career Success | Case Western Reserve University",
+                  "url": "https://case.edu/studentlife/careercenter/career-development/career-resources/tips-job-seekers/resumes/resume-format?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 438,
+                  "start_index": 326,
+                  "title": "Résumé - Career Center - Boston College",
+                  "url": "https://www.bc.edu/bc-web/offices/studentaffairs/sites/careers/prepare/resume.html?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 711,
+                  "start_index": 575,
+                  "title": "GSAS Master’s Resume & Cover Letter – Harvard FAS | Mignone Center for Career Success",
+                  "url": "https://careerservices.fas.harvard.edu/resources/gsas-masters-resume-cover-letter/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1003,
+                  "start_index": 852,
+                  "title": "Resume overview | Veteran and Military Transition Center | CareerOneStop",
+                  "url": "https://cloudfront.careeronestop.org/Veterans/JobSearch/ResumesAndApplications/resume-overview.aspx?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**One page is a good default—not a hard rule.** For most U.S. job applications, one or two pages is acceptable. ([case.edu](https://case.edu/studentlife/careercenter/career-development/career-resources/tips-job-seekers/resumes/resume-format?utm_source=openai))\n\n- **If you’re a student or recent graduate:** aim for one page. ([bc.edu](https://www.bc.edu/bc-web/offices/studentaffairs/sites/careers/prepare/resume.html?utm_source=openai))\n- **If you have substantial relevant experience:** two pages are fine; don’t cut strong accomplishments just to meet a one-page target. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/resources/gsas-masters-resume-cover-letter/?utm_source=openai))\n- **Keep it readable:** don’t squeeze everything into tiny text or eliminate white space. Prioritize relevant content and clean formatting. ([cloudfront.careeronestop.org](https://cloudfront.careeronestop.org/Veterans/JobSearch/ResumesAndApplications/resume-overview.aspx?utm_source=openai))\n\nMy practical test: **Does page two add compelling evidence that you’re qualified, or just more history?** If it’s mostly older, unrelated jobs or repetitive duties, I’d trim it.\n\nHow many years of experience do you have, and what kind of role are you applying for?"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8688,
+        "input_tokens_details": {
+          "cache_write_tokens": 11,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 284,
+        "output_tokens_details": {
+          "reasoning_tokens": 53
+        },
+        "total_tokens": 8972
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04cf281f2149ae0a016aed0ab976d887d1aac0ec7cc430caba",
+      "object": "response",
+      "created_at": 1793919673,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919683,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_04cf281f2149ae0a016aed0abb6aa087d18abccf8ec81eef54",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.themuse.com typo resume already submitted"
+            ],
+            "query": "site.themuse.com typo resume already submitted"
+          }
+        },
+        {
+          "id": "msg_04cf281f2149ae0a016aed0abee5ac87d19f2fe97eac09200c",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 290,
+                  "start_index": 183,
+                  "title": "FAQ: What Can I Do When My Resume Has a Typo? (With Tips) | Indeed.com",
+                  "url": "https://www.indeed.com/career-advice/resumes-cover-letters/typo-on-resume?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 560,
+                  "start_index": 485,
+                  "title": "Typo On Your Resume? Here's What to Do",
+                  "url": "https://enhancv.com/blog/typo-on-resume/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 828,
+                  "start_index": 715,
+                  "title": "I Submitted My Resume with a Mistake: What Do I Do? | ResumeSpice",
+                  "url": "https://resumespice.com/i-submitted-my-resume-with-a-mistake-what-do-i-do/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1008,
+                  "start_index": 906,
+                  "title": "How To Reapply for a Job After a Rejection (With Tips) | Indeed.com",
+                  "url": "https://www.indeed.com/career-advice/finding-a-job/reapply-for-a-job?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**Not necessarily—one typo isn’t an automatic rejection.** It depends on the mistake, the hiring manager, and the role; an editing job may put more weight on it than other positions. ([indeed.com](https://www.indeed.com/career-advice/resumes-cover-letters/typo-on-resume?utm_source=openai))\n\nIf you’ve already submitted it:\n- **Minor spelling or punctuation error:** I’d fix your master copy rather than send an apology just to flag it. Small errors don’t always warrant resubmitting. ([enhancv.com](https://enhancv.com/blog/typo-on-resume/?utm_source=openai))\n- **Wrong contact information or a typo that changes your qualifications:** Send a corrected version with a brief note so they have accurate information. ([resumespice.com](https://resumespice.com/i-submitted-my-resume-with-a-mistake-what-do-i-do/?utm_source=openai))\n- **Portal lets you replace the document:** Upload the corrected copy there. ([indeed.com](https://www.indeed.com/career-advice/finding-a-job/reapply-for-a-job?utm_source=openai))\n\nDon’t count yourself out over this. **What was the typo, and what role are you applying for?**"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8655,
+        "input_tokens_details": {
+          "cache_write_tokens": 15,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 261,
+        "output_tokens_details": {
+          "reasoning_tokens": 31
+        },
+        "total_tokens": 8916
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0d708b2c081c2702016aed0ac8d94887d1860810528398d5b1",
+      "object": "response",
+      "created_at": 1793919688,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919696,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0d708b2c081c2702016aed0aca4ee887d1b06968a3add732fe",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "job applications not getting interviews career center resume"
+            ],
+            "query": "job applications not getting interviews career center resume"
+          }
+        },
+        {
+          "id": "msg_0d708b2c081c2702016aed0acd850887d1bc8c6f88b22e7cd8",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 519,
+                  "start_index": 374,
+                  "title": "“Why Am I Not Getting Interviews?” Here’s What Might Be Going Wrong – Career Development Yale School of Management",
+                  "url": "https://cdo.som.yale.edu/blog/2025/03/21/why-am-i-not-getting-interviews-heres-what-might-be-going-wrong/?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "Do you mean **callbacks from job applications, after interviews or auditions, or something else?** I don’t want to guess and give you the wrong advice.\n\nIf you mean job applications, possible reasons include a résumé that doesn’t clearly show your fit, a mismatch with the roles’ requirements, or hiring circumstances outside your control—not necessarily a lack of ability. ([cdo.som.yale.edu](https://cdo.som.yale.edu/blog/2025/03/21/why-am-i-not-getting-interviews-heres-what-might-be-going-wrong/?utm_source=openai))\n\nTell me what you’re applying for, roughly how many applications you’ve sent and over what timeframe, and whether you’re getting any initial interviews. You can also paste your résumé and a typical job posting, with personal details removed, so we can look for specific issues."
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8697,
+        "input_tokens_details": {
+          "cache_write_tokens": 11,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 177,
+        "output_tokens_details": {
+          "reasoning_tokens": 31
+        },
+        "total_tokens": 8874
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0fecebe0a1397ea9016aed0ad40f3487d1bbf7b240f1d08334",
+      "object": "response",
+      "created_at": 1793919700,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919711,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0fecebe0a1397ea9016aed0ad5658887d194eb31c70bbddabe",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.careerservices.fas.harvard.edu AI resume review limitations",
+              "site.support.greenhouse.io resume parsing formatting"
+            ],
+            "query": "site.careerservices.fas.harvard.edu AI resume review limitations"
+          }
+        },
+        {
+          "id": "msg_0fecebe0a1397ea9016aed0ad8df1c87d1ba1fcb08ee5dcbee",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 335,
+                  "start_index": 213,
+                  "title": "AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success",
+                  "url": "https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 680,
+                  "start_index": 558,
+                  "title": "AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success",
+                  "url": "https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1150,
+                  "start_index": 1022,
+                  "title": "Unsuccessful resume parse – Greenhouse Support",
+                  "url": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1453,
+                  "start_index": 1367,
+                  "title": "Using AI In Your Job Search – Office of Career Strategy – Yale University",
+                  "url": "https://ocs.yale.edu/channels/using-ai-job-search/?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "**An AI resume checker can be useful, but treat it as an editing assistant—not a hiring verdict.** Career services at Harvard recommend using AI to improve application materials while also getting human feedback. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai))\n\nIts usefulness depends on what you’re checking:\n\n- **Writing and relevance:** It can help refine wording and identify skills from a job description that your resume should address—provided you actually have those skills. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai))\n- **Formatting:** Warnings about complex layouts can be legitimate. Greenhouse, an applicant tracking system (ATS), documents parsing problems with some formatting, including contact information placed in headers, footers, or text boxes. However, that doesn’t establish that any particular checker accurately simulates an employer’s system. ([support.greenhouse.io](https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse?utm_source=openai))\n- **Accuracy of your experience:** You still need to verify every suggestion and keep the resume faithful to your background. Yale recommends starting with your own work rather than relying on AI-generated material. ([ocs.yale.edu](https://ocs.yale.edu/channels/using-ai-job-search/?utm_source=openai))\n\n**My recommendation:** Use specific, actionable feedback, but don’t chase a score. Unless a checker provides credible validation, don’t interpret “85% ATS match” as an 85% chance of getting an interview.\n\nWhich checker are you using—and are you asking about its score or its suggested edits?"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8580,
+        "input_tokens_details": {
+          "cache_write_tokens": 11,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 364,
+        "output_tokens_details": {
+          "reasoning_tokens": 48
+        },
+        "total_tokens": 8944
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04c7fb2d678d75d4016aed0ae3dcdc87d1ad89e9ffa1fbc49e",
+      "object": "response",
+      "created_at": 1793919715,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919726,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_04c7fb2d678d75d4016aed0ae5312487d1b7581bae8052d460",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.jobscan.co resume scanner free",
+              "site.tealhq.com resume checker free",
+              "site.rezi.ai resume checker",
+              "site.careerflow.ai linkedin optimization resume review"
+            ],
+            "query": "site.jobscan.co resume scanner free"
+          }
+        },
+        {
+          "id": "msg_04c7fb2d678d75d4016aed0ae9aa9487d1a0274618e693cf05",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 388,
+                  "start_index": 326,
+                  "title": "Tools - Jobscan",
+                  "url": "https://www.jobscan.co/tools?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 667,
+                  "start_index": 559,
+                  "title": "Using the Resume Analyzer | Teal Knowledge Base",
+                  "url": "https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 890,
+                  "start_index": 824,
+                  "title": "Frequently Asked Questions | Careerflow AI Career Tools",
+                  "url": "https://www.careerflow.ai/faq?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1137,
+                  "start_index": 1029,
+                  "title": "Using the Resume Analyzer | Teal Knowledge Base",
+                  "url": "https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "Here are three good **Resume Worded alternatives**, depending on what you need:\n\n| Alternative | Best for | Key distinction |\n|---|---|---|\n| **Jobscan** | Matching your resume to a specific job | Compares your resume with a job description and identifies missing keywords. My pick if job-specific tailoring is your priority. ([jobscan.co](https://www.jobscan.co/tools?utm_source=openai)) |\n| **Teal** | General resume feedback | Its Resume Analyzer flags issues to improve; the free plan shows basic issues, while more detailed analysis requires an upgrade. ([help.tealhq.com](https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai)) |\n| **Careerflow** | Resume **and LinkedIn** optimization | Offers both resume tools and LinkedIn optimization, with advanced features included in Premium. ([careerflow.ai](https://www.careerflow.ai/faq?utm_source=openai)) |\n\n**My suggestion:** Start with **Teal** for basic resume feedback, or **Jobscan** if you already have a job posting you want to target. ([help.tealhq.com](https://help.tealhq.com/en/articles/9524748-using-the-resume-analyzer?utm_source=openai))\n\nAre you looking for a **free alternative**, a **resume scorer**, or **LinkedIn feedback**?"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8685,
+        "input_tokens_details": {
+          "cache_write_tokens": 8,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 323,
+        "output_tokens_details": {
+          "reasoning_tokens": 62
+        },
+        "total_tokens": 9008
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0c966eaba160e130016aed0af4e3d887d18f4f736b712b3d85",
+      "object": "response",
+      "created_at": 1793919732,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919745,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1536,
+      "max_tool_calls": 1,
+      "model": "gpt-6-astra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "ws_0c966eaba160e130016aed0af6a5e087d19e024b56ced12962",
+          "type": "web_search_call",
+          "status": "completed",
+          "action": {
+            "type": "search",
+            "queries": [
+              "site.indeed.com hire resume screening relevant experience qualifications recruiter"
+            ],
+            "query": "site.indeed.com hire resume screening relevant experience qualifications recruiter"
+          }
+        },
+        {
+          "id": "msg_0c966eaba160e130016aed0af9486487d19268acd968875801",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [
+                {
+                  "type": "url_citation",
+                  "end_index": 319,
+                  "start_index": 224,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 616,
+                  "start_index": 496,
+                  "title": "How to Use Screener Questions on Indeed",
+                  "url": "https://www.indeed.com/hire/resources/howtohub/how-to-use-screener-questions-on-indeed?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 889,
+                  "start_index": 794,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1098,
+                  "start_index": 1003,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1358,
+                  "start_index": 1234,
+                  "title": "Resume Essentials Participant Guide 2026",
+                  "url": "https://www.dol.gov/sites/dolgov/files/VETS/files/ResumeEssentials_PG_Interactive_Feb2026.pdf?utm_source=openai"
+                },
+                {
+                  "type": "url_citation",
+                  "end_index": 1584,
+                  "start_index": 1489,
+                  "title": "How to Read an Applicant Resume: Resume Review Tips",
+                  "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+                }
+              ],
+              "logprobs": [],
+              "text": "Assuming you mean **the first pass through your résumé**, the main question is: **“Is there enough relevant evidence here to justify a conversation?”** It’s an initial fit check, not a complete assessment of your potential. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\nRecruiters typically look for:\n\n- **Must-have qualifications.** Required skills, experience, licenses or certifications—and practical requirements such as shift availability. ([indeed.com](https://www.indeed.com/hire/resources/howtohub/how-to-use-screener-questions-on-indeed?utm_source=openai))\n- **Relevant experience.** Have you done work similar to this role? Your job titles matter, but the responsibilities and skills underneath them help establish the actual match. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n- **Appropriate experience level.** Does your background align with the role’s expected level of responsibility? ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n- **Evidence of contribution.** Relevant accomplishments help show what you achieved, rather than merely what you were assigned to do. ([dol.gov](https://www.dol.gov/sites/dolgov/files/VETS/files/ResumeEssentials_PG_Interactive_Feb2026.pdf?utm_source=openai))\n- **An easy-to-understand work history.** Clear roles, dates, skills and qualifications make it easier to assess your background. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My practical advice:** Make the top third of your résumé answer three questions without requiring inference:\n1. What kind of work do you do?\n2. Which key requirements do you meet?\n3. What’s one concrete example of your impact?\n\nFor example, instead of “Results-oriented operations professional,” try something specific and truthful: “Operations analyst with four years in fulfillment; automated weekly reporting, saving six hours per week.”\n\nThink **“make the match obvious,” not “include everything I’ve ever done.”**"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "low",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": {
+        "type": "web_search_preview"
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 1
+        }
+      },
+      "tools": [
+        {
+          "type": "web_search",
+          "return_token_budget": "default",
+          "search_content_types": [
+            "text"
+          ],
+          "search_context_size": "low",
+          "user_location": {
+            "type": "approximate",
+            "city": null,
+            "country": "US",
+            "region": null,
+            "timezone": null
+          }
+        }
+      ],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 8577,
+        "input_tokens_details": {
+          "cache_write_tokens": 15,
+          "cached_tokens": 4309
+        },
+        "output_tokens": 419,
+        "output_tokens_details": {
+          "reasoning_tokens": 35
+        },
+        "total_tokens": 8996
+      },
+      "user": null,
+      "metadata": {}
+    }
+  ],
+  "extractions": [
+    {
+      "id": "resp_0956fea14834e34f016aed0a441b2c87d1a4678ff72d5cd57b",
+      "object": "response",
+      "created_at": 1793919556,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "openai"
+      },
+      "completed_at": 1793919559,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_0956fea14834e34f016aed0a45331087d1bd8344f1e8a59294",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QpH2UJ6xThY5ZKBL0Y-eGRronologQySZNuhJqTI-iQtEzKQAoLPpqjcWjnnUTxHkIeZ_T-Npdw0lBrVLpPDPTl2aGTvQ7wYC9e3Tvw0rnujkIm5tQwHYYNkQUJ5jiP2R27HVO6X8hBf3GikmTExYiM3AOGL9HKKQdMO3L7622kObRv6K88SW8K6lTS0G9qev8UVzHfd-Lss2iBcxAtHUDjd6nmj8tg0FOh2u5TaudO-YKnvIWPytX6zNxePPmt-eD3VzjneAIWiqY9Wq9XB4CfMOaZRVT7Tg-kGvnbMKc2jRc74oKsnl6e1nfbxAMjEJvmXj184WzFwDShD_H2WyFjh0JqdVqg1mIxBU0NeVXZx2hX3swVR5c-v-bOz-DaVYPLUQzU1HmRpX5_UosA5kqIJOrcFkA5LnKT-w8jRMccAL54BDibWFg5572XV8HvSUVosoHnHjapZRHUcfOzsmGvGAW_6AgJ2oVtB_JPSPxrn5k1EUMkxgNSRSeF6rIhfcksxMrSpwIbdx-uwrqtAHQBz5_EKV4i8eJdwkZOXCpXqRQGDSUdYKV_RBpJHuAvfHhH8DB97mxEPjlRhHnXn-04aZevx3YCZLh6CY0eeHhGRJcGE_8slF0iOH30aMKgtFMFZiN5TEm7s47sxsV0ZQQzBvRIhOJTG3jZGxDeFJ0TopH9DUyzUqEPGPATclS-2m11zALWTc1dTHES8mODJHr2pTphHGUhDRmrDcbxaSlM0UnJDRtv6ZJBScEFdDIvQk0dzVKCrh5amcxjXvBXQ-e1khlFMrDlG0D5geV_kWqhEd__d720O5CtAX2sSJYeDFhfXaD2pQiauO9qaPhIBVyM7UUuOsEl8CbQhLGpVrnvuiQjcn8KVy5vLJnoulGV2Qf-a7vm6_tGOhh4YQPVC5lZ0b_AA6u23TxwsvGfh2fD-6gQar2Vk8PJ9aZmKwRMRiLozxssrl6oTRiamNGsS-IfQe0cZnpgyBZQ_UVUvBlwuUC9fddHOw2R7zNZa6pMh8UwDZdkESaFsEcWHkr025OMhzBuIxYtFhrA3CiB47T_kAdLCl7xWmlbCV9lHK0tVbR5TKbd2bvnm4kKKarT2oo7ZU6TNUIh6rOcJlDtREpwpyKw9RRmWPRHCpJZ02hvUZbGP4FJjGgzdJgUg1rDUWTm5jKsUsaCE94-wcWPSsAqQ2stqnrkNqZxxnhMdTLs3YTjthJxrwyd_0mnp4slOivyMZOHopBJqVUuO3jEI3v3JXJFS85wnDeYiLjIj_IeKMcdwv0vzghzr1lfx-1pCclN0psrVgXYBv8ZkA835H-LPcSJddObL0J7tcUIJXdXyMggVA5_qunW8SautebG8Gz5HbhFbojfvyzR-OZprjcyECAo8oWkpvzwoynhIbr9rbT1qzZhKLmxjdQyGC4Vix1YTnexrdVaj-g4PgLbcB6sfynXwSaBpC5gX0r07aRt8uLBp_w8quMdAHKxZZf54q837-cj4_8Z27wG2hrYiT7BkUS_ikDoH0sqVHNieqsI0zvAoxT2W-O5CtmArWLe2IH1-5GbKa0way-Sp74YHG1Me27nR824oKESVE_GSLrvXXvPC8uhCWpxQqzu6xCUO4dvxWiBWmKeUYEKWoghtbdYtKo08BxoPsnpgoVO__V_Vf4pTtnLMKCzl2C2aaBJcgNLAZY6vg5Diwp3XGAqJUwHr5m-pjUefl6h7rzn8_ruzvCLIByxQe9wZxEqoEPGAEZzKTB8peDAKm2WWHUN30f-AyCO9W794SOwAPm7S0WiGL4h1xdutfyZ78GPi93rQ7vlz0kbuPkQd_iMencUnNngPfrf7hMjLBM9-tmqE2enbqSej3eSJGE5NVw4s_SUagKhakI6ZHrQTbPE8i7xtS-cicUhMZInedpVYMxS6uSgIRPne75Oxf8PYeOM4RvDb0hK4ll8hBoaYsJiAWsj67CpvK2dfZBNobZRy4z5glDoKhCveT1dPGH-febfjX4C8dAfT_dTfz0goPp5s_SQlaNuayqT5dktHKdQGG_XpeH7d82fVrIx6F8PsLYxycdesVrZu4WijMkTNaeihnGkjJ0GJZI0B0PbMcIREr5vwzVOAcA6_8brYxeZoJPqVEAH_3TMOi0sf5q_losE1U1SGPJJVRkArlVMnK5T-22oBWH7mYJ9iq73i3JbuC7XNFRmxuEmZm3grcscSdYmNSluPt2DrLoTSFJdq97uApa_XplRKrieBEYZaU-sCiXb5vSL5-V1nmB9VrXO4SLkEpHAfU9596wPqpJ0ZxejD_OyzNmxh_uR3um8R-DgJqhpyg75_wn8_t4L8abstm8R3M5ohnNwstu6nflLGEE5tvgjwxWdwasEyotEWpmfUSG9-QFhtMggSvUfvDNEKkcGvF-zyz22mU8Uc_UkLU-yQhG0kcbCMWBQu28JwzbLKhKX8F3l3L1K8-JObS4cx_KwilobA6D1mspmEydv4romQKJ8enLChDV3UCumWKAkSv-Iq3l6HWVyGFvXHWXwWAvcAcvCdNehxm_bXuzNntj4EEdjQF4gLGBJdxWdwCZssNE6i2XfeBMHHV4Ju1GKPUqI3C-4wdYniJhkgGWzitZLh7b-tbKINg0GlDy-TxOJnIxP-WIjKnsvfQ==",
+          "summary": []
+        },
+        {
+          "id": "msg_0956fea14834e34f016aed0a468f1487d195b3a06c1d8292e4",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[\"Teal\",\"Rezi\"],\"mainClaim\":\"Start with Teal’s free plan for resume building and job tracking, or try Rezi’s free tier for AI-assisted writing; the answer asks about the target job and whether the user already has a resume.\",\"evidenceQuote\":\"Teal+ Pricing | Premium Features to Level Up Your Career\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 634,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 186,
+        "output_tokens_details": {
+          "reasoning_tokens": 98
+        },
+        "total_tokens": 820
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_07ced02f7ad20ff6016aed0a57d35087d18ac785441c125248",
+      "object": "response",
+      "created_at": 1793919575,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919579,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_07ced02f7ad20ff6016aed0a58db2c87d181bf7a7253825e5c",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QpbGAYaBZREYtZToHouoiMphijKZme5sUkoOy0fr4S7WoVK4unU1yVuvcwaFYNsj7naEyhxMwEpJuT5C2YblETbauRmHUszrNfjRqPLIZtZrE5pbNFZa1XD86s6HUozGsvPPtnaDaLva3cr7Qy6wVHfXIiRjkaJHLqevCvfl-aRV3CyV2sDCzBFexMS9QpTudQK2mJ-vy-PdI4TDidt2QOWZA1feJY9aFBU6A8sbHqgv9v0zCr_SSLfUESJH7Q1RAFARrwPYoRKKYkOUuSZjKAQzQCXs-tb-10lvaPBfOfMCAA6chNJwm1-dDoPlPC7C4y5Q4BotccGF9ihOyvYVpv-q5sqxPve62nwHSd7K3qryed2AZvzXdawTfyDGd1W-NPbwOaEFQpOl-FqPWpiTDmDwlqXyyH2iDAl4U5xhO1Je5cKc2g7gGbglAp3vMd434eoMTmAQvOafCDAvPfzaaKgobd54SGI5RVYhjzjnpvIzqAyqiOxUqI3Y6Zx-Wfwtn5_4k64kFhRTT-9G48bDGWjXF2Q4z0QvE5g49uqv_OoFswzbj-o6hRhHKMlUDQs6CGGYXE3gzXX-oPrjO9x_I_fbm2-_JtjflB_L3nsW9WdGW9LohoXRdGNhhxeBXesttnRobA1Kf-GE8cPHHoI6aI8529eXZNo8i2fHJEtGY3Z1tXuwCGA5HKbedyOXQgloKcJylUVamyY7IPmH9vnS2GVOqjgbj4a7YNSF8r3ZgFt-TNQy-wfsVKjoamuALiYsMyODabSnxtrEWlqwNDeuko9T2GWwLQe4c4nto1QlgBa9e7bwYLBB4JSHyMvKNmMpI1w8rShdLa0_tUNF-2KMbvr7IcamUFYcWxhqzu-Ou9HAp9JEV3Bs96mUttN1rCXYSDbSfr3_nPzrsVMCFlz7n3PoUmOUauomBJ1juRVePwUKlvHtu7hfXW8tgVCt1TSFCAye3zp-qWxShiShH7ORzLdpI9IKeZflzWdbU8neSUVuCzTMV9Ct3shYkBChiaKiSiEkHogzyOgVWeuWLU6d9MWOngeAfJ33Cq7VnaXyJfzyZWeaM7EtZ3B1uBwbWCk1W8kPghJEiaei6yiqvo4JlzP6SiUA5e_7xi3D7GLWF9bNXYe-4tL-JFCWcznNYak2VHESoCX0OHT9MgR3TDX1kkDyN37A6-RgmSoM_Kd9esKZmceeJ7B7baT1trdyN7ZGkE0oK-UuXGrtH98W4nHAThBRMW4iEuHpLse--2UHTNkGI1PmvAxvqHRN1AAHsLTjnyAX4F15k-JmrikoDHDB0fWnWZr9obFJ87qYL2i1wH5bUH_0xZwZi4vqj9QGtGAx2pEVvCJ-avJarm4WHFUO1MgK_XjDZYkCeqiVDqPkCSwX0ttBkmO0K5FRhsJqI1u2oKW8BCYBKXaB6r5f7ZroRCplivMWpazpALV6PbqMeEMj2GL0d2y02akjUMjpcOam-sG1YuLRWWspufTg6EOgpJZ8YH2pQEORnl09Mx3BYMAbd5IlbJ10fX8CBicwbFWYiugQBJKTr1cN8ccNF09MWzi2CtfkWD037TICJ2IJGe6GBkuq19Zd8FuI0Bn_so_M4v6jLLZbJMZKuog-EfBlEhf9G_U4p3pt8cwdbqCXFYKEmmMMPNfN8kv-ifgZBvyBO1QZXZIu220s2BMX4D3gBcuS3QEctMJKR5KxQa1lg_SWdSw6iuVuHzMCPDRchKrXDrJz9beJXLG1fqg3g2yd63xIqNt_WpPWzuwA82B8TiVFSTt83CsuNgm_pNii9VYTRDvfkupLSYfwnnwt187Qobn4MmXYNN6Nah8LjoQtz6-7aGqjCPhhfiwTci7Re2LG9b5QDF32dUDswnoTF5mUmZxOZY2JB8-kR4dbVKMJE65F17r1JEYyIlGqo3a0CQmPnRzHou4MXuwUYEp0jTaq5Wtf6Uh0JGL9Msa1YK981qOi99oenWpWY3eYPkveliDofkbfby9Y5pKsV5bRPyLFd31804_f5gQJaLe8Ai5tBpBliQtdXr4Mg3o_GJG4l_zCWSXBSigV7crLq2mXOwM3tHZUu087OjUrMt9rvdyN5lqpiciIKulmXpHVZl5OhY_VJt3flaxqzXZ4jVASK300nnXOF1MGpyn_FhGZG6WYqHNVxuHLlNXN8CgRe1pxcA2R08EKYR5vIaWvb_rPvLboo99mgzzNbpb-3ymSXM6dqL6yhr3zd5t6Qx7ZRplch40lqj1HlN0ZchjcSRCBWr7_hVUYlMEoEMSRCVWna23OUOV5v6TPY3RJ2kpwJpnGSL78m1c_-juJKtoLvAVmWuyaaO8iPM1PUoFZ_R8uEpvd_tZsdwx8hmtGDOptkD0CPnZzkrOo3E6eFex-lsQYsQjZ0qHRhsoW7Czqe6QIK-pM22MaW1zTMH_BwLdNykbCLU6id5z08UWOdFwXHIQjrF9sCNDQNKM2kBOnBYMLdDRah3auKirFkwv73ThV92CnLm2STZf9DJAHbjfDJIMbVHjdv7dJzVbdLmI-UqU42TpRCLLyAWC9-frVe8I6mywAtRLy00GxfiSF4GVFb29UViUXRHa4UuKPigduhi_w0lXroXRZLKzqVgugSR53ugxUlPXnaSBSnmiE2csJYR60e35tRisCvBPvrogdf-Q8XJqslnwZw0jSGb4vbwk33PBJzcqjUIf8F3FjHe9rurOW3W5BpRNfnh__X37m5hfJvOPilK5i7_OfiUK890Du7WGcFNDNdDBvG44VUIrgFaj_RPg-lz3aFdEPsymieUgLjL3RkHIYhL7AhDF90YvwMplEFdSh957pVcuJtSNsASgEp-YzMNo62Ro4KimrbndBHaU3bObCwQPqXlcmftBb3M7-VPVS66-aYaj3e0-pWwvofBwPbCphdnAV-QkDYTn4MfpNd7c8v5Vk_gLZvMAnilL-7U5PJjh8AUYBV7seFVBgSCcfUoFBh_6yAgybVeLCIvD862RHQ2kcEzckT3AHCXPPrUyAhgamV_XkNpN6PibiUJVVy8CJWREtZhVD_23wIFRfCFxXbk=",
+          "summary": []
+        },
+        {
+          "id": "msg_07ced02f7ad20ff6016aed0a5acf9c87d1b4366ce081c093a7",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[\"Jobscan\"],\"mainClaim\":\"Jobscan is worth trying for free, with paid access most useful for tailoring many applications; the answer also asks what roles the user is applying for and whether they are getting interviews.\",\"evidenceQuote\":\"Jobscan Tutorial | What Is Jobscan and How Do You Use It?\",\"evidenceIndices\":[0,1]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 713,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 211,
+        "output_tokens_details": {
+          "reasoning_tokens": 127
+        },
+        "total_tokens": 924
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_041cea16056bd805016aed0a6bfe3087d1bb5115f95870086f",
+      "object": "response",
+      "created_at": 1793919596,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919600,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_041cea16056bd805016aed0a6cfacc87d1b2e7dec807999881",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QpwJhxqHQ2BZpaftyeA4wTOfSU6oX8e4V7R21J3_zfDAF9qpJXIuLLfbKPfwneNFv3MJnytryTHCYXlOoiLAntu0O745iN-3jCCIwtz62U1Ry7X07B0-b6AbLK_zdyFMf4bRxfPG2XWM-38RRtgYRGcobt-pPYBCQQKtSv4kvvW-F0CrUn_Djo2BVqzIYAS0Xs6r-oj6KzrDtZ3rq2WCwG-cKUD74X0XzrW01ImUvUSMBBjOyDbhbRGnjYrvfFlWMkloBnQNTvUz4ekOzChXMI4S9NPxgMxptiWvUYI2wSWGbbGhlECSIYKILizBYCEHwoOqoBj3gtXYhqXIW-YBJfObcOW_5p7b-e_KNHrtQgxCe2GOLAScRyg5DGNFlp7Ba5BsMC_L5gDfqRPryb4W5FcohoxYjRXtQapWZntcvgyOmVlT9om5DVWTPIlckCK67n8xisaUuk0KR1km3ki9_t2kgCV_0aWKtKQppQ93McFhN2IUf9FX6DajmvZ_WTuN5CvTEgA3GqBW9HDvDK8U_iVVJ850kXAiY8MwYoMYFCqv7Jqr-dtHDO3OPQ5n9Z6bPXZ-8K7vXL0ZQ3fTsACZUu5mTISkMsYecVcxaT60MWj76vRwk0YT-ZLhwYb_cr1a0Q8j6vNxVEfSJYPvUy6FlNaJyAyimW0VzwI-C91XEz_M2XhVl_SEvnA2wSvvzf0Q1JQW-gr3nm0N81KBJNbUN_R_gRDBNmzN3lbZvnIADjBWOkx7j4lvUNY29mAypns9m0mvkkv2CSC9_GqsSqdbizy7ftNpvwUeq1lBBTkJ29Y0M7qJOHVQ8gfFr--yHSyvlm07wVzVs0e6mTfbEX0bwJZKuvDL7cCSkhco-w8SRg9hosOjRhOS5yw8mNem0p2ZwAT2iXhqc1GquH85S4f1eP0SR0bUwF_5vFIW0v4hd4WQ67bnmY10OpzCXF29DjohqwtmrwL19DHtSdiGWn3d2uxHjgyVV44_mhTzS2Cqg_eWzLaUOBiX6PdYf2USyHGSx8EqJn6eoVg22p_iujp2i198LmaoQIjVZBmuVUf0O1GacjqEt6kzwvseu6XZR8oxsQQNxHV3RlGF_xUtYCzxLJA1eQw_I7N0MtJD_sqChzsrEe_zbGTBxCYeYE81gKc04uQV0q9HUbpvSvlbtNl0YRjF7DJeLAU1eSSPqTf2gE1q4kpuXJVGgnPpixD6BfQfQpEcDZSCzILBHMftqIUZexGCd5G_PbcuP8eXGvRyOfu5OPZG_Xy_YSmb4D2GVg1fQ8P9oHjS66zma-CzpDr7bfnN5I-krQDieSsYmhvDWSFu62jx5mr6MuG4nHim04PlXrWJf-laWtdui5jGprpyZEcxnW2sdiKRnpDR3iHoECR9sNM67nRUstI9MDH4NcbE7xEwF2tf2-g_de2K358aojEmPt9ajfVCXq45HQZfQEaisZRMGK5Ko5nZ_TsaLkcaSJrOz3ClDo4keE8vr3DzGlKIz4vXCrRFgf1IJ7GP6W7JNMr0mLvfD3_vteA_zOUjasvrJ_-ZPtLCYyrSZUJEGRXLpGdB3N8nmoWpjhHqsrGRfkZSWMwLTYRcyM_GckqxEAKg2gVm5IsUDyJQA-9EjhGLvxEV4ctqlIltSk7SdqnvE9ieDGyCBn_oZdQb7wRXK30FWe7EXMBB0aaSBQz6AMFd3rVBXoW63Y0zUBlq3zDtnG2JPATzCQc5dh3OVzz1b2Of5qpJKsz4npEO4bTFDAQ2j6q6m_OXJTeGq8CUie75SEH_zR3q0TcG57Y81jOIY84Yvo5REks1QH73nZYZAQRhJHuNctI7KJRlJvXkH4j70I-jgwPxsxwCm1NhUylE-YEpdyLUNhlXdVHG053KkxrE4xWSWpNbDp2gOWh5AYDXND8zder0kR2BCVai9DBANhChp7TgVcgeqizVgULn5uDnl5HDn2jtpERm6I6H-pXM8h8045kBQ_2csYtaJbRqt6kBbFXm948_yqLw6u3dxf5a2PQ7PAVIZtL7VslFM3_rY8pYlDr9Z0TUzTiXG0mAqR3wGx0_YFWZaz_ZFgjpP0taxm2tiR4RrUTejyP3I7xaM6TI5KqxE77kjR7PP4g744e1rZkdv3ha3fiSWXvALFmH_dqAUT1PBxbgbCPcQDSQoLO0-tvw_T2MzwotVViHu7EwnzpFqaEiFirQmgylbR9gNZ7bp8grIvDoEEwuJl8DpQrxxxWxoh8m2Zqyg7prc95BhXKe9SgJkfw47GVbBLMJMuykyyvONosBiu6sO-71_jrr7obosMeGjejIg8wNQrbY2SwzRBJ2-pk0P2LarTr9oQksKZgljETOfFzfuyBEhGocJEBOvZ84wDRjbw5uyhWw_gvlCTyd6Xsf1o6MI0I_-75vR--m7jqHc6Hqs1nIzsqsyKnfXHT-Qhu4IG8hQs7Go9Xn8fb1ZSGonVxGZtmvaEB7unYdLq0mDlkYKgzgz8-yedj7zU6A7SGCIcWQiivhZvsDpFf3KlmLyadg-GlLeKlqlldBuecJwXDnwxM9CNlFVqdxD70p_UclBrMVaALemea2g0pkDTwiAqdAOEdqmEwczR9bDrqLZTe9YXdcBThqPKYfebahemyU7AYMjwhNL_5Ihf0EGOnog_tUYnEwUro6VQjHK7D6BQZm4GEWxrF9NLmYiJjCakZ8_XmyYp5megr02GphHHOmbm_We-nK7imMEs0O6Fe2haM4wwdxWSi7_yJomu8jwUWIeN46J_1-qeU0JinLlhtQHtdTGFe7m2p0uYSbdBDPacH_PL-l1NxgaX73fkyPlrhyubyH0y76dEfnW_FEuHKLl1rYIB66PkT_k6GSZq2het2s-4nFxbrEH1U6bHo0ae4OalJuwVOIGWlhcwoIXHtC2VMJSb19Svq8LEgj7SnVR7jDs86byL2KQzoVKr4Gjvpw6DP95k_PR_7GeClwOcc8IKc6iL_EuMVEpZB2McJhjjwVmW3kNsGlereeK0hhK0CUxhOEk3GqAeIn8-j6i-0qd6A3A1WfvERqLT-tWyzWpArW7mQnumN3j6U2NXb3CNVZrnkDj_WOLgB59EqMTaDr5Q9pV0QrAW0VcSVWZI_7CyZZ2__4-8uaiv9zmTyXoWRoZIF_p0fFgCSreliGv1KPE6UI2WYVdR3nHVAV-yyWarPcK2fo1WeZ7vci7RkvZd18w6pfrSPFzjzbzFuUzVepg4aSNFzxjZdcwfQPn-RTkCNHf1uJOfLHejoTiLmoVHhvA_QIn5PQd6dgaNF-JcV5n7C6iPEA38hWsITHgodCqeDl-YKFMSwFMZwKLyb1GdX0r6dmFQxfgW_74b_tGxVVaFp3LAZhDX0s5jmqmY7T0_yo-J5YNy9L29naD7QjzEpDXvfgOb0Ha35oa-5qa5tREsI7BCzh2kmDZqdOh-Y6Ybb5w4LuxDvKnNrVTbQBamsXmQRIXPrtPwz3njws8IwHZBksrCFr-7ADDkFavf-SKl5-etJ3gS9Xc46DhEHfZFOqy-K5LbJeYNQFiVaxveVYYCYpJXoFP0kRvLp7ohZsmsPb3J4CIwMGhckKutiZjcaqiBoK6uuJA6flYKzhOIAZmzxNlszCx6FIUJIxTDrS4LQRhbpfuhVcEVRRmNDAib3bzPLZ1Lco6WcrDhJS5PZe4IhytWxTc6cEA6CLmi3gb8TLZAm4wOicvsSL2Hzy3NSRJIgiGqcvfvjiHN8lMMRQqEzayZh1iew6OVKy-472liVAiQeaxE6zLlljga1sz0LGAs2u8cBzMZW_XtcaqGPm98HN7g0Flu0ommvFv5MVYomhpSPm-TsN-sYsZasdocFAbo711bjiBQ4gLR6Tpk4OxpHN6Mh-IP3g5RfV1rMc3GeIZmTtD-FwIy6XBC9_2F2_l4ntDAJnop-Bk9dkkFx0VeAcPRSVAK18sSandvJm96rJ84vstVtRqg3JXL8YR9uvo7-4KWcABe58vRZZnkYU7Z-JkHzb5pNF5OE2TNDJUyyxXKX9hg=",
+          "summary": []
+        },
+        {
+          "id": "msg_041cea16056bd805016aed0a6f89d487d1b5590f3d25ed5946",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[\"Teal\",\"Jobscan\",\"Teal+\"],\"mainClaim\":\"The answer recommends Teal for job-search management and Jobscan for résumé matching, and asks whether the user mainly needs ATS feedback, résumé writing, or application tracking.\",\"evidenceQuote\":\"Jobscan’s published comparison and Teal’s pricing\",\"evidenceIndices\":[1,0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 888,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 288,
+        "output_tokens_details": {
+          "reasoning_tokens": 206
+        },
+        "total_tokens": 1176
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04551cca90ae2a19016aed0a7ba80887d1b8c3b95688856be1",
+      "object": "response",
+      "created_at": 1793919611,
+      "completed_at": 1793919617,
+      "status": "completed",
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "frequency_penalty": 0,
+      "presence_penalty": 0,
+      "moderation": null,
+      "model": "gpt-6.1-terra",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "previous_response_id": null,
+      "instructions": null,
+      "output": [
+        {
+          "type": "reasoning",
+          "id": "rs_04551cca90ae2a19016aed0a80e70c87d1943fca9d2a14b577",
+          "summary": [],
+          "content": [],
+          "encrypted_content": "gAAAAABq7QqA7Oj_NApSI9gLBMySWhaNYYGahCYiPgvDGVXm1tQ3utVpLx-qBKAJC-7tHT-NzRYjFv1UjZzIvgjGbejYzHDOUuQSNXkbHL7ZuWR6xw6_ZHPOY39-NfhHzPSpaQaZaRWH90RtipkuIxqcRxUgdcZPm-iIEDQ9H0M847wFPO5IDtn6CAy6Q-ITrJo2VxhrOz9ONXgsSMgGOsTROkNEGnPGHsZIBDNLmQNBZo-GsMnfcr_oCfb-oBy9wjQsHhDySRH8c03pI2rW4sXQrM4jW2kjQCuDhy866vHD3P8HjHhXBGEtuR6wyJTg7-EvF8ZzNSxFyOyhGzEk--KVgb7VK2r0b7Mnwz6ns9G8eeMbnwW5fHs9888bcJ1_ZewMe37BvPyEH3SV96838TkUauYlsR6V3um4lGPGnQic446WEa6WgGyqc-UBdxU_vbgUhTVziGXwdoStB8BiEI3xTOUnGhwsYsYJPF1u3-9iohspRSaO5FQC2MzZVlNTlgQ6UkMEE5ZTIqOGdFxyDkW4ofTuh39GheR3nUapMcyLPZyism0yKca-1fr1_Ki_hRM8-0_flYzIZD_Rnb-trCUX2HbwI0NzyJuok7mm_dlWzlI7QEQdhh1u9HCGHkg1Xl1eTz0wCZhJny10RlVWBZx1nGOkiYniYXs_ix9qd-z_xbzrJrKSpehrev_F4uW8RzmELptjaOWQZZGsC1Gq6Mc4eqZpL7Hd0_LllRlk4QsQG0Hc752Ntz_5ZoTMDzfvJjlHjxpRoAaVHGDzDWZl_WanK8O2cJrRwkFiQbfUBpmrBbt4zETuwnPBAwD6SONAEZeMSRxWKlmuCaKZe79w6BFD0hSsTT8M71_469qbsMkCmoz1nGfO3AVcTNeep93yK0gGRnYhDWARbWWw2ZlD9j404eDplZI6Eg2WG-ExJUPYB96tTZhDDy6wCFSxmbzd2AYyUHwyo-D93qqKZAuNb3Pk6hpaLJWKnLwoXxU-wbQiOIx_qqTjmbaL7D7nCgFpqmHwb5nCYcC27KkfSQGzDpKLMjLYrLysycKdIYjns8tF6zZOOQ6WDsdhxYONdTZXRMcB8heQt2TDSySpWsqUpJHxMyDO5ca-ZpT9TGz0GF6Y3olhPH3zFWntUYJJBflomarqJ38s3Fu1wfjxm8O_uKLqXu9GNIg8XNI7EOQor24jxi9yhlSyhyqwkRyEbc8JrphD5jVWbMiuafsbIajo2F9abm2u3ULhTGbVWOUAvaT2EYBcspWFH7NoV3TjNveNoUCn5UvrNro33UWB5ifYyltSp5tjPylCvBtCqgIr6soSrPvO3o8Q3ROFgBwAXzD-avROXfNMgoSgw0Ti1_kFP7HwYOO679CUXCZAUxfYAgQWt468_bWj8tl0X021M0rlnTgRexq0lHOR3e34jwK9d_PDPbI56oHlX08lZGwpNeT0PrNcGwo20vEBKDf6cl7NwtgAZeU3drhax8qWKJJ6lw9ZC-SQXCjW4Q7y01gEvjvT7tSOgpfpoG7SSv0FAis8AfbC8pPnta9ugNvguK1MDjj4SggSwYpzVisXMoNbrtLfRBNK6J8-U59JsLcYc7zXZV19L333-36UcMjIvzmmSMjB-18tjcyd6Fq3PokdpmD7ceWImCbqvx7RQ-gAW7GPIMS61GOyKm5P_tbrlQYZ5VArtaeX4UZKnKzBmpQmp0EXS-OAQxQWtrFueFznr67bMECG5rynCCelJ4ioOVOVJCL9F5ZvX3RgzkKUgzAuE-0B3svj57olPWW4fg3Th--NPi0g5913MfVlv4Pf4bw4ZySEa5mWE3ajPPOOtVFZ8f3SJuu2pVr_wENIIzbssTVSrcpL-qlOryyfwJY5poO1GBjkGW3a1uI2WyhotXtFzlVQXy4HzF6n1syjZgxGNANc_KxdsWwYDqdd-HDgOrSfVntJiWpMHxyrvva1ec4InbYryqW0edUcxIHTmCH585BUINaZLa8AwkEkVQpEzQ6sDwHGWJEmJFL3xHSxaUhFXoxaP6cTPczEiKgmOTkKOmQT1P3ad6tR0Yu6C7_6MuRCQoC6IoatfDuU9XD9aOzKjbNm9QKPWydpYbhbRIpNy6ypOGRC9L6dhq9nzGgUEc3Py9EvjANQqR1ACi4LATni2pOULCL9hxqiyd_c76lD3u9NGW9a7zUR1led27CMv9p45VzfEvNOoePYCN4hwKrxlva9CzEjHIEQDInivzBjaChXSzvQw0U6oGNCSuO-Bw6JyoFrzjkVQT8gsP_JhftiZUs-edmlnsupnL5hMjUGtGY3WACWORbIIJfHjb33B00F-p-Sd4b8Uy-HM83iNu8NZMZp6UVq5AnJzAsYr2iXkKjk5uxe8hSsLH8edqHFOHc6tENtGwVF5zR-UzqEAWqYtuQ7Y39sUrTNXzLr78-oUcPNRwBmXf69CvvgymF_3p3ugaC1Ga0elhNXcivit5k2XBfYPAHUTiJjBdwsxBI6WEanX6IrC5XueF0t-aZBOuT_riOkpJbe9pj93jjE-JcUjzCgFDW3Yl-GVgvPS0OPfZBIgVZ_tiaW2MiLnbyBuUyDfw6HfUJNoBeBprS0eKTtfLc-JW9ws-a2VP39xqX4CnfOs1lGCvb_knmUokKzijBmMlkS9Bil_6PFLT6t2gLFuQtohixQ52eY4khorD29bmnuQd_-nDHaC6Vg8huFjRi2uadPkrz4jgryMT4-L92NeBKZCNtEalYWGMqaeNU4IjQ_bupkv3hYfSNHjmNyDzVFKPZ6wwRs80SplSMoRdk163JXpKq5y3V9_3GgRlXsGUNt_MIN3Xww6Y1Zvvl4uX_A2rz1JDsZLXd4KYxhLRujqbGk2zeVMF6gjiJ4wvRFNrU3kuHVAhz083QIAvgiGhvrq2eI-kpFvMZ3AsCcb9TvS5fqUv-U1hiqurhxiTEVoRJs-i7hNsokuIFkYvu4mlCPbmeaVjmM55c0eVhCpgkhbAiF6NIlitjeSfFpyjE-kF2_KFVSbWuW4jjhSnO5jxSjlKFe3XpPK1RJhJ4SFpF6elcWpG8KQujsEogwAvhJQXcIwWYY5e0kTAmSV_5ENRP53uzc_uJWH0jdl487O6lZ0DjygYBQYpO7x34PMRuUyZ3FuBqaBKiALz6NQ8HYXI6TO6bKxhDph2RzF8O4W-oFg5gGJuuSFj2JmOCsCZzb9AWlS-BlZiE0HFw6GcW0kck8RpcdWTWapoMJo09CpgU4pD0UGv0yrwpLigegTgqvAMalQrY6IvKQM7d62RREVwGM0vqQGa7lajvgAePKszwrtWQCNabuAA-lLV1VS3DKa7UEnb1vDgW4rNfjsmZKUfda_k2WCQOdoqnICToeIR3YoguQOxd7EOErMfbxHM4KcpOuNdEP64tO_CK2pTZR_pPq9U2inw45-TBmJPhVLNNX-CRqvSNiBVzcy4PPbfsPzkl157qQGlb7n95Vp3XR6Bz8O9nlBrWVThkFpx9mZI8pVVoiTa8I2gZt4M52sLtDPLHUJemXov2ThVtIFMrSx8Fs4_FG8-cXPWBcVQvzFfnQsSS6fyIwfD5I1EFdsjqkYXVwDuYzF5cA7JhR-k4tG0hxJco1Us_AwwItMhPXyAXxJ5_dH0iIMV77wlBsihVFzZH425PDI5U8VCRiKhCsRGr-txG8S8tq9vnCrnU8fTBXqKlW4JhahZski6J1uMNfRSZBzF0-unOOosjwgtqQgqkSn7cp201G98Z1W_m46-BmF6NGJSnnkI2Vsw2o8IZdkXKllZoDRR9fWIAalNxXAHZNi4XaaJSTH4gTGvV08BCw9-I6WSBlS5gmWlolTpSoRYL3Ygjz9uIS12qyhNC_UAopZYbrAqFiSq4gi6iRP7BeYOhsW0r517XhWiIF4-i5dcbmm-MmCRuIhEM4df8gE4W4cy87BopLLB-_Ho57xRkLu75j5yI_Iijb4_JexPD9klf38G74JKh_MWPVGaX9paEjgWDjnkwZ1SjGXXTxwFQ1bIfr1F2twppXIX2cWIxFKsNrobMmTyVMRTLmzHMqedyJlf9hAk6c-TkvFZxFfaQxteEjclD9eblEQH24fET453Zknu40owKIp7cFIxy8pS94Sw3C3d0PrfFcAOOQ57x_P2l1sJVRqcCSv3fjBemedjOeHFyNiR46Fa7XqUQhZSCgnywaDkrLol_wFXL1OKKghF3w8ermZeFu651zCxc0772nIHWoub9s7JPuJa4okQwm2XS28UOVdli5rntOCPbtrf1r-NtQoOXEnho4RSkRfpRuws9ofdCTkFZjx5E_38vn9Szh4WtDdZVLM9UexdkzMUqwGVFQxfrvFNWrwg0xXlr2t-DBF3bq_BBWILTyfoiGJOhE-P-dd33KaT-bwLmICZWhYFXA4VeS9ferkOXfmiPeLR8r9jNUTF5nP8lx8a2FeaEH0f7a3ATKRTC72H7eP_oCk_Q8oyevxADmXbGAIiLX_-SCbDHUCdmxwp6N_yjV6pnDY5bY4boMUXrJIWGD5svKCMQhMYc4uCaxQUL7qzxaT6sk3cn49PhfurnqzJ0eB-_bvYNkZnYKygToG9_EkE8H32VTMZDL8St2-7MAjZVKH3KX2anNaXULJqj0EfkWlnDaYdJvfEbezG0UVy4R-Stv2J6hTbEWhLh_o1531RIzbEA0xsl7t_vRLNG3bgCYucWG0canu3PcJpG9wVm9dnF7J3bB0jbvxI6duUhPcDoalFhZelkvxKHozEld7U_anZheAzGWIaSoxEHdHInrLw-KYvj_lrbAQ8_-C3axzOGhA-bLHwfXoyf-PViRW0sAIoHMwyCAtOsAKBvnXRHY6_GRl4frSCRYE3p17SJlRItrlarUTx5jXOvcDOGtYxpFtcAE7OSsu6z70YfiaFoFHUknQxL2pVCW7bbmCavz4V2V2ZYUXrXaq8_SHSwdZzRlqfgh2-sBovdmjNWn_m4OpV7Uu6tWR3v_fqEYWyTEspbvfbZ1OcAbqXjqC2KcnMLeTCVAKGfau_fyUA_AaMwBkz1cxBm-etQcOu16hEscdmvcel8ULuAJpGlY8n0Bs-5TiYxqyy9ivj5spTH0d_97B5FaQY2Oh9tIGEfFLIt5vFfs1S9xbwTqP0ncDCFcfaE7x9qZFNbimIxxTcCvHZzC17-mqT9jTaAjioX8z2CNVTDMtsIxdrklXEvFyTxf__lK1slks4ao2G9lXj95Sjn6EgnkqRbHuxp1kttoEgRUJ6jiUAkTaSl4XAiWfOqSzKb3hML5JkNc94pFVh3E-lCj14-ijQASKX0EkQGIVhXSqVi-UuMHy9i0yNG-D5mR0i0Lt9ZbT0AnYnvOjw=="
+        },
+        {
+          "type": "message",
+          "id": "msg_04551cca90ae2a19016aed0a810a9487d1bafe7d1343bd0770",
+          "role": "assistant",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "text": "{\"tools\":[\"Resume Worded\"],\"mainClaim\":\"Resume Worded is recommended for a quick online resume review, while American Job Centers are recommended for free human assistance.\",\"evidenceQuote\":\"Resume Review Service: Complete Review in 30 Seconds | Resume Worded\",\"evidenceIndices\":[0,1]}",
+              "annotations": [],
+              "logprobs": []
+            }
+          ],
+          "phase": "final_answer"
+        }
+      ],
+      "error": null,
+      "incomplete_details": null,
+      "tools": [],
+      "tool_choice": "auto",
+      "parallel_tool_calls": true,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "name": "answer_metadata",
+          "description": null,
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "top_p": 0.98,
+      "top_logprobs": 0,
+      "temperature": 1,
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "summary": null,
+        "mode": "standard"
+      },
+      "user": null,
+      "usage": {
+        "input_tokens": 509,
+        "input_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "output_tokens": 379,
+        "output_tokens_details": {
+          "reasoning_tokens": 308
+        },
+        "total_tokens": 888
+      },
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "input_tokens_details": {
+            "text_tokens": 0,
+            "image_tokens": 0
+          },
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          }
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "safety_identifier": null,
+      "store": false,
+      "metadata": {},
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "service_tier": "default",
+      "truncation": "disabled",
+      "image": {
+        "context_compression": "disabled"
+      }
+    },
+    {
+      "id": "resp_07eb56d146860b56016aed0a97778887d1bbfed6866d358337",
+      "object": "response",
+      "created_at": 1793919639,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919644,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_07eb56d146860b56016aed0a98a59c87d180ec2e43534ec5b1",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7Qqcr_EQlX5XNRouPdgleSOICiwDIGhaxG2OBk8eE4nrJ10ELTyvp6yBg-H2GlzlJkzMWM13ChKbCdWNCILNUWw9IFMpxgldyGKo9iRmBwrrEHVXoGDDVI0D4KfGV3eb4ugCSaZLYiwwq-zKk1QfpU4ApQL1UDFbMZbcAPUWaHo_gFYH6L3_H5iqOOBTlknT9F4gPZ62YNnkjPjp5yPVKYQimxiKeRlgK1QTkVzJoywKOjlLn8qqsiIeeQQDoefpu3pdZWdpCg-uNdQaNpVaaqNw1kYgLLFupTjro9xSw1wYYWLBU_11iHnL6qftm7bKwqlcHwH9sAes6C0EEb9VqdhQhKPyFS96HL3JFCxNNMKUT1J9xhugvUaXIA71Y4PEZ2miI64fnwMAgLJyvzDra2ftbUvxxIKrisJIoVz08SpMf6otq4AnBuXLIJgsw-kcGjFAskEX7R2gYlONSnDrOAbIatkEtjvATSxUNxejIgxPdJDVzKhi2IN7dn76ctgn3ZujFjucir2q8BcWJkOtP5Kdj8H15EwCzuFgB3Fes4DPwbKqw6SWmlHtmxPMkEmpDgIw3zENzOAi5GCvqwkX1vDCmmIwWcXrZkP9jzMiXNZ1E-V1kcA-QkOLL9zVQeaeV7s6dGoovJmZvgMBAzP1Lil8_F5F0Oq-Pvjh_WZFYLAHjNkJGvCbzWc7cNtxJ3yeoao_nQvNFylb-MMZI4shjlwudEjpMrdi0ZGIr7gPjENg4MEGa1nOiyTKnc5S93mn-Di1lbMdkFPz74F3QPWkPqfEzBZm1uZ0U6QzPvlvVOBQIWZ108M7jHtcGm500iKMdpEV10XJvTs68qiKc8HcH6Sr8g21JuFYJTvXjQKjyO0q5qUfsEYnto4_B2z61L5hdEAawIRYAV_T3d8rCcd4pzBD03FL67cJmqR2QqDbumbd4NUtq8pQZdawEwLIZe7R_r3jlNZ0KN-wGyVPz6QZqNb1VB7xMfC3rsdepDPCugUkaXey-6Z9rx4Ftqaha1X5TJhvy2_A1nejFi4WFbsELdQenfRncbJEP3kLybeEB2NiQYYvaL1eIS9G9Y-Pf15OHIdFrl_Wsm7Hm3osZLKMUFbKd7XeK6wRe8RPBKuUdVaL_lBo1Po2VIVAP2AgL4-XsIUcGGAC_fbIUdsV2c6lZrQPdBt0x6LdAN8VteFeI-46_KHv6mOHk8LcRTOUfOg-QjHGwoP_qJLcFdW9OD3OIogUt-Tc6YyT9I3MusOTGuTZfgP0bnffuUexImoTKqTU_YsQU3zJTvzXSV-NtEYyOi_eirjzQVKW48vH9nOdI8Tbqrr8n-AIwP3-BQP3Jt9cdY3KBWh7ykAJzMjuuZneSVF94zlBzXq3so-0p-8BYM3QUFeZZA5PztMG3QQZv1dJfvi7Q7cbQoakvWuOoL5RQqCeE2DOMkDIPaoRGmM3zfn-A5_VD1EKZXm6_YDnufUEbhqDOuV2lSFojyGxivLDvBBBtufmT7N8DOZib4dam5R1Z0nge0vo9qRKh6zKih6hmrVg78tR0Owuif1A8B5JDwm4FLGWWBdgk-vLosgcBcAD0xMPM3j1X1V82PVL5YiSa2ZM9JY1Y7mjK0_9rnVdoIoAV6w9H3AGFIrpVpO-sU9rMc2umZ9EByWQf-zvGCQOVj72lbfonIFe1HzupwGTneJbKjCmuX9-5AViXzyqXt1MIH7Ifpz64MMzZLdD8QtpIJGb85IW1azRp9x6QsEnTv2cGY573UIYnxjFh9PY0Zk8ZZjiBJZRvdrcfXuN0uVUO-I3XzgZn92CI3NihyKtVUJkPLWPFiSnT8eNbstz2secWN6qjxvbXY7GlRuolwlnR0ofaIZbFxFN_sRwlt7CWoOYEGiDY-dRpJbUcj3z6rZz5MUF2cOm7BX2DNtpyscL3PW-LyJuVFewZtyEvf75VkP9-r2AzXw7c2WU_lwLg2LWs1_xTEsbbHYDOC-cjZGKVhbuYyecPNURPEwN9J3W9G3jw91GMqj2xCiScL_iTUzmWnO-45UdoKXlr01qV7BnhCyb4cNmGJkWjQOb30X2D-e1kMryeyE_qgjngrBmDwJyo_DtQoRJBL2vg3jf0kg1vvvnlrvs_NJrLaQYAwoEpZj7DeJRXh7kx_exMTRKWa4rZnGWV7GJaqBSsS4V8q9FIPu-DvdOY4HFwOKjwmJe4gAzNFo9CmkbvIOKrx6UTv5fsdvvsPMJCVYS11MCinxI0xPTspV102uVCPAPjPyOLkG1jku_1ymFK7QmrqoYhZEeskZR306KAB_D7gAr8TK7Y4NO4QU2e06_08tpTOP0dwQd3wH1NU7bmTLE1Xt62iFjLwzoxTWvFY-CctX7BS10vlXcrFv9KvDjYxyMTn-Hf4lq4Oo1JSY1ggfqVaVCr7-bZ8SxpNR3aJ7zZLkBcs0HK21eo9_slYOaO5j8-hFUphcIUdKDREhbBRakVeLrphKHOU1BeZg1k0ebYk_-dR5l7H9UytmDIiY-eZHKI_hRHVkLyASXcJZW8hjt04Pc9h558fGSqgvdU6rXKtVG5RVi8UmLOYVgnDgJyNseaZNtpcSnvL5PanZpPWt2doTM5wCUDfF8UBEBMcRb2cYpEOZuxBUp8bhjbl8o0_Jbq4ehIiBXuyvSapBzVDalzGUXTV8Gv6MncWB4t9x3lTe9Lm0IiwHC0KtjORTsOqmrCyLNPYLdkI-3NjJSTEAg6OYstXMwWcHs8TDhj9KgVOHdL_UTxOGTzR3EFVm227CRwq6Rmec9ep7RTsm62TPFjhKeTWi2UvDghQ56SzW_rGVdMuLAmZsRffTQk8jNlGZPreOCqF0hgxTX8MM1QY_zOf3wPBjhnB5fuUtQWcRyZkZTGHKL85_4LTZZUY8eY7VGag7hecvDSqvHtVhLqX1OoUIrTIkB0m9COWuN4H5BRDwiJxsX076WO900gZTLOf5mwZU1KZWRRE9Ippc7Y9Q8rEBxefFj6v7DdMDC3-Clyz_RvyE7YCl0kdE3tDd9EGOnl7Em0EmjBbTaZSa26M7cnDrD22rnQBwprCHHP_2XH8XTNOPRTFHefZN99DNeKnXdMp6ASyaJzB58K--_czT2Bc3C9AkJTj_vIcfedUi5JWvECWomc-fa2Jy7vCfNXm1tBEQGMNrHyQhovMJUspj_npqyl_jvimCjhE4-COoap7cp5Rj5vwsztPqbbepaCFAIv3onjojsO4fbVPB_2ZAIbVFRsLSxl-kuubbsyOUqU1WfzKm7DqfaP6wWHEd4lmI22AVnGwzHhN0rgwNs2RJo6ihIJvC1si-xynaE3LO5hIg4VdJPJS0cVdQWQakSIwWudlIPynMQZSf8AEUO1tCkjtr7Pi0dLM1yd7PjO6hKFx2vazit9kWpomeHrn4fl5B5tUJ3NsCQL9iiiIyl_-wbsBtjHisQDZnFzkQwu8JEhcV82ZThbzXJadhfVjr6zFrajb-CPBXvjWWWnUZTSAozJSHHFINdV3AVH8YNp0jZFG4dpr0IGYS9zLOH-612FyArUjQh8z8zNKr6kCBQ9TiYYO4D56VCH7R1FLajpxacmWakKwgZDYiJmlY1lWeHBTN5ZFhbyOKuWg-7LB3piw1I1IN8jVqckB5I-pQX78wJM_gAb35dVAnt27MWyKTWtRdAyzm4ZRu-ffW_fOr9MTfbfaUF9FoQHIkVdrx9AW-IU7S0gvYBq2HYZSknvB1gbiKciWU6mYsvIUm_aHBQoQQ2lp6A9ieugxHs648iog6r9KuWgQPF22WQ",
+          "summary": []
+        },
+        {
+          "id": "msg_07eb56d146860b56016aed0a9b5c9087d1b7cb2285f5cbd36f",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"Recruiters generally scan resumes for relevant fit first, then read more closely for evidence before deciding whether to interview.\",\"evidenceQuote\":\"How to Read an Applicant Resume: Resume Review Tips\",\"evidenceIndices\":[0,1,2,3]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 1010,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 266,
+        "output_tokens_details": {
+          "reasoning_tokens": 200
+        },
+        "total_tokens": 1276
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0f0f7eca58c461dc016aed0aa89be087d1a536fcf877b3bafa",
+      "object": "response",
+      "created_at": 1793919656,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919660,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_0f0f7eca58c461dc016aed0aa9949487d1a9b39f5536a2d56b",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7Qqsj0GlRmqKrX9bZ5tHBiB_AShzMrZL1OW_MAfg5up-AkgXLeqlEKwnKLldT9o_qKRGv8QN_pOh_F75021erMAUqGolxcZrqXL6D_PPK0rsJGjMyJb1khK3L_AoVyEDKQl0RN8KM41ZFvWGFJ4voXlaSPzwreaSLg-K-qC6UB99PrS17vVI6Edx1VNkoOffzXS_QuyIGtRQAOc3476_Oladryi7jHJVIRC3cZKvbiykkmZZrm5NLm6NKEhUCmaQ-6c0HAvNAmUJU8HTL_zqUpCrcr8ReUtP_RKjh_k4SEFHrE4WB4wdQ6z2mLYXyZbpnTlbSxOZg2x9H6LUrY3A0ZDF5rT2FTy6GUW6Zgcqw04kVY9H2wgBSI_KoY-Et9yHlqu_jKQExMruUWC1un4BlSPNZaIDJnQOddL3HtalzqpXfG8c8-9EXOAvWrOHBPtaeomoPp-p2riYXelobW3tM-9QkpnCnfDD6bCeaRtCUL6GXOfOkyo-4arpaQ7iGrdSLejmAhmg_ohlIqrGA1M9eK-cQbz3br6t1BHCOS6Wmrf0VvlxicD7eTjelkTufqRZRZGgtkVatPpl74LdUo1syg9aLHaiCv-BtgQCgI2WceOC9Jmj36La4JGUqSUUscRK7L_4wPk_bvZYBgJhcOgnHCpoPpNbDN0AWHx77Q9GYRsieBV3vFLn9vSiyUen_jnbscbEq_PZx3wJdnkJqP_qelswMlNuLZaP87f0VowuY5Xox-8MbGKoSCqwAfajZi3xMv8tux_iplWIJ5fMJ9YaC9Zf7-f1S5VqI3CQxH5WIa6jLAAPKDBwMZT9STneXtKUONrlwiBmEc5USeNuWt06SxI8NqA1vWlms5Thgt5NRihQdHS_Gf0x4uh0UFD8dOHZrhK2UdUzH6gSzuV3fSEetvuZr82dSwd05ihc0P5gwiVvQNhTKCdqvstzwfP9OtNVUqKmzphIEjiX3QLBOLvFLzZtoZsaDB1uDZwXgFx5RgpZ06faluYOFReo-oRDHdXyYJrTIXpUBcuINmM_4H2MmM7gjTFlRrheuTuUY2DetPCmlixrJ-d9bZ1SnSOkmo3aWXbk2TAG-QqbyYWkN_wbfsNNLhMf3z1KUPGhLWtsbu8IEzJIBBbVPZPYsRAik4k0YYvz9KWn6eaqdWDfy5By-P40MwQLCKC4YSMZz7JEHw4QFzC94Gyicmmfurnmg2s9801R1h2Sz6Axryy62y6hOBAVKplgQIOd66yTgT1Dc7D1RkknZXuqNVrc0Pi1kdiJ-4UMq4NTuCl183sw1fZEu3-1DZ6STyHVSvnok0v-jH6Egj85MdzcMs_iBBAGARGXxgMJxZH9y7Y-VA_smh-DjGYoozrbWAYOC0qROcg1lj_LMlrSYEAqVsgLul0esGekHRSgbEXX3mrSYw3sgraiM7SqQ2NLzJ0AAk0NlEVUPIYqMiQM8YoAKL-kmEJGMRhySpyMKg7tOcebZ65OvFDBUniq1eqYBSyvsUIjMz3Qs46N90w0-b3bKb-9_q6OK_tB4WVf-4jHNzvCcbmOBVNyhCp3LRtFwx2ZV-QOZr4PSGXr56BXZdZiNtq0EZC3msjvEcyQqIY5HPBi02Lvc2BGUnRRD6DQc7UAQDxa8ardW--oiZSw9UHRTMI0SCcbEeyGBck_kyBtCXazD6teddQy-N0xUc03u3dKbn6NWKKf8VkpUxOkRBfAiXeiPpuE9Nw-KP8RBwzSlCBdzbqaph6rZCdx_N4lIeC-wup6fg596M0Uo6bSUjjNuFuoBzINclqCuoOGZ4bfy64HO-xQBXWT-gbC7MqHUyza1sAI1HqtP0CgaaCxRb-p2kN-W0TRzd_svzu4fhQP_UryTZHRFk4goU1wEiQt0dXJRx_vFpsuyiL0FHh3sEfkIyUlixMpDopajOASazp04ftim1Ly4EbFzOHIhP2V788xT8oBTrNKxcPEJ7IuO6NNN0iX6ca8y85T2hq2MLhCyIkzW2PbHL0ID7M2jTeKmf14HMe62gm39PFECZIlHDi17LcamxWV5oULIQ3gjopYr6CGuWKiPJwaAD0vkDiFWJpVcPVSxfEiRmkKSu3dJ22uW8u3yqnZ27Ci_P5remv6DduiP7leL6X_3kpot0fFYbvTJ5GiQIPquruADMN9zf6eRW2IwPigF5V0ZqhULMPjophIXD6ompM6I_8GB3FAtE4oFdxb3sq9z4Fc5jyJdl49reJMjSw_eikYAi1L1HDbnnA-GE3bIBrL3cdsn1TgN87KsUATaPyBbaY00CkcieXwoeNc3FXLLv3Je5pLXiNsOq1RBR05WtJHlHcsmYoQQSHvRPQ0Qn9uu0plMqvqjh454ivUxGayo9IXPYNuRCNpQXAY0_co_BOyFVQgO_rPtenDd-OxwZT2GHzFB74l2XaEbF9mVO0xijlp4uTqTRGwPSIwNi5kUlaXiKxB0nOCUSNpXYfBSEEoUEOIgR3T6izqHWm71F8LCD-LBSj_yc5SKjgtoeVnBo64RXlwFunRk5Krpeg-hXiDSx3dH_fdxRvTs_3CwNMFOzCOjfP7LqvO3tq-NpeiXAj3l8t4jFIIxwgvFrGmff1brtosXvwM-NnS5I0FKXLKClHXL-lfHmspl8hA8piurqp-VgAPPh8xy6ebVQ8xu9fTXaSS1u0iIoDTvHWyY3kgxBCkldfn6rjOQ-XkQ1BRhnUI7gakl5tMyTc5Cocud-WWO7aXKVnYRyDG4o_MgCU_HzBv2Y2N8hg2hXYHpXCKQ9ZmIZ7h34dAYIILBQGUhZxa9jtLnb3-cTPBco2QYyJLs-KEbQEzFY6F8_Jg5gZpcB7uMdYVp-atdOARIolzqkmyRQ4hei8lCi3AQAW2mz00G8LUit8N0WYEUGSAiIJuePnXzEPmagw5AWP18Dz1y1qkYv54ibBFLCclqhT5-oaHZZ1xAFGRtPlh3vf06-Dpblxfmf8iudR9qwx89vczOY9rlqEayBQwOVp-RFCNFnBSRwWYeckTbE2fHLs-UE7N2hImHgLD8LZ-m-bWrKaPmX8eTfZw79rn4j2xKsLVnX1rV0KhBHsRQBs6xpevzXZQIL9Y8FF_oABOLMh7qnP50ymBmmNNALMIg3Xy7mCFxoCuY3eCzuBU3bMwBmRva6mJZwmYFERkomr45f5V9xvaU0bPq61YsFQYt2zeInWP3OJmGOMD9k_I_wk4iMT5pCFZvG37u6y6z2zDKE91pmoLMAxqlxS8PX0UmmqAUrQdo7hLH0C3SiKYhswUhwfjSpJfZOhULgIf5HC1XvDUd7wKbCHyv8jnODk4jZJ3HxP-Hc5_WInkiy8pbiAOfU2Mtfda3m869fbh78lx8usHgBJi0iCfCfDJYYXGueIgsrVjF-gyx6wLDRgaGbxUq6jwxXMT-rBYzkBkmzS0ExRV5KYgzIzgW-Ym5e9Tfx11Sw2F4FqxBAYiXwCtNGG_1WqNOWxkJInYr3t2IeqSQpCoJTL_Kqe1JImfLG_P7YH37-16jGVMI2bxMsz7I-a4PhpsUkdBWkkxwFRdkh52M650BBBv_-hiqYo_rpGpD0eYwiUcMkfPh5zXwqgGRM0D_YsWDqskDfBigZlabzNc3UtR7yW4lRzqANpgmIujZOMf_WPyTgNsKB1xHisFCU0Z2Xlbwh1-fsoxHlmXPzkkP8NL53M3n9KW1op_zi0=",
+          "summary": []
+        },
+        {
+          "id": "msg_0f0f7eca58c461dc016aed0aac38e487d1b92a970b30bed913",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"Recruiters may spend only a few seconds on an initial résumé skim, but six seconds is not a universal rule.\",\"evidenceQuote\":\"2012 study by the job site TheLadders\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 740,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 263,
+        "output_tokens_details": {
+          "reasoning_tokens": 201
+        },
+        "total_tokens": 1003
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04a930df424e6178016aed0ab6b0d487d1aae6d519512723cb",
+      "object": "response",
+      "created_at": 1793919670,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919673,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_04a930df424e6178016aed0ab7941c87d192f299dce86c7012",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7Qq5SaqEbQZNEh3HsLwiZp196fSMcxi-YMBiELnIDy3S5Z8x2s0_MTgNBxJ1U86AHTJaUZAZ3yWjgGt1_JI6AFcoYXgILFHWAvrhGeAAjvkoGQOuHrgeV8srIj71xgRzsw62nx6QaiK16JeVJCv5V3XbQs0lIsfL5eu_kg7NnMguMk8B5po8fAuwqkDCY9bfoWupAkF-q_sxQe4RmdNMmaUEC5mmZMwf74Cb1bV_2-1hS5x9sRPjA5d17NcMZhAIysDe-c9qX4K_dHhJoy2f_p8CICs1DKt8CyF4I1bwIJ15_rKCBXc_3db2uL9xAgNoiOup5ykuJ6RgAuHHQryN1gR_7D21yVu0OKr1E4yjr2BGmwE1Pimwcy7F65UUFab4UFdULf4NXRbU9VdSU8p_zaB9DT_EQzV2Zcu_G4sjeeRrMrov-re6PVxpOp2PATAz3Elk92WXBUyW3XB8ljg7SBCrLd4UnNW-EH7EScBydZArwE1jtLDCULdFFbT5BlQCTlA_tpAlDku2aVyp0-tSSndpRN3AzT33gRyBXhLrfiHkdWJvXSCh8ScDbY8pO5i7G8iObxaS1E-GLT8yht2oouK4bu49nFEnBKnh5deZmA2cFWpHZMQtaIwn04LykfsWUbQgzZNUZ5URAGrU6Cn0owRoT6TU8CnGhaNrhFUzwr0wZ3Q7T99DjSVbyqZtAcTkQxaam8fD7V2l_Xs-yqZ3XIliTiVrv95lUDLw5mLpy6lsLt-y7r4287RYpylMLeH9sYWGpdLMLzalSiV1DYOY7wGubAt0ibljOAP1c-aaQsU63I0MP5zmut_z6TEQ15HaGTYH7A9sZXzGnnavS9FmIxZyaINwGvCsJjbpwRbvbN8YHYR0clEvpfSkxHj-OJBxsrmf8Vw7uh1Gnnd6SxHzQtcChrvzg53T25YtFRGM7ql_MuGiA3JWHM_qZR8AakiY-x1vFwBrwSwwnwwRL_yHkRgvsaiWtGdGRmz37aI-pNiciIXhVl0D4hPjt6fjfr9BwEW6QXQihV69lfWHGNZkOUBIXvJ-KGCzTUHmC0zH6oNpM1lEr8hIj7x1vGHwLNi3aYdfcgQjYv5_dqHufQq3XRzYIUsCHrlKNz52wpiJ5NWU0eQbZrBeIlFv4jnpIiqeTjCdzszMlUWYJMMZ32S9FSeVLEwoxQKU6Jtybfpi5ULU67uWRkXiiVb_VuWgYRQeamDly61sRn6EeuqY-o-CNToAEbv4R7Au613SexGNR_KOhslOkBCVJpns8kx6toKMjEFC9DlBz3_nTMUwraASFfazkn4pjV25GBXBB__islX6GvJHiSM9pM6Ubmwa8YEZFPtCgKzgtj_QDdIWTW8SwgEXOQNRf3uMqJ3FdHkEYRA4zw6UoH2s2dKxr6IorkQvVOmErq1367JI5P7GPGHe_K12VO1KnFvNoF1FUE4B_yBGosTxaTOBQbN1TEVedakYPDj8W3ABOKErZtplUjpP7cLNU4iNl_YJRDYIgaD57NJECugPTOUymG1mLWS0dTV-R4JuCUXYytkz0NDWzgYzcjzl_40rnpMi3JUy2HUYwFqwfxSO3cvAtgF3QH4QQX0UJP-UiUpIwW-bvWdpNolACaOKqurjz_0C4jgDPOK7iagkuneoWS3IkaV7dZbLlAM94ApIbQPWO7eY-PjXUsKzUy-zwSyVV_dwo1exgugb0Yl-G7iwZ-Q4nYV4I5upDdbdh4oJd8r9ZEJFacPy6r9v9e1ttTyAJLg1SECVw3dhmB3eu8QDwXa6W5fBzzKmFTbEmKH2vaKi26dnYA1qeBHgAiTW7OpFtNP7VF27fYNeQW8pE1WprRwiMUg_osce2qwZbyjH9xCbZDxEBhIAKAUwslqDdppaMdBZ4r7zhfOCFWa_y4IHx_Zszvli001FBKYsTGeHpoqieUUiyu9Flg520KP9uKV32j7w9fRcaZg5n3o3azBI2dAoIKIWJBqoqHu6HL9cmBUl0ICPzTG72zBImffvqowLEjVMuF94YNe2DVRVHN4eqK6XgKpSFMpL6P2iR1ov5AWRuvq77myfY7ZSDdnusuiXAHXeL_SYx846VkHoe2-68MPTvFnxIfoNx0XEvJ7m98e3nJon_SVXtPnpAE1Cksp55v596tYcMjVBEMKjfdpIKomTa4yb9SKFou0TftSG1ryFf5aGWvxI01UZenRS0mumeekg2OioIaWVoUr6k-2WgnFXxgFpGQ9I3wsbhxOa",
+          "summary": []
+        },
+        {
+          "id": "msg_04a930df424e6178016aed0ab8662887d19db814b4a13ddb73",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"One page is a good default for a resume, but two pages can be appropriate for substantial relevant experience; the answer asks for the applicant’s years of experience and target role.\",\"evidenceQuote\":\"Resume Format | Center for Career Success | Case Western Reserve University\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 686,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 134,
+        "output_tokens_details": {
+          "reasoning_tokens": 59
+        },
+        "total_tokens": 820
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_07f52a077c8ad32e016aed0ac3dc7487d1b7ad25c4febf628c",
+      "object": "response",
+      "created_at": 1793919683,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919688,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_07f52a077c8ad32e016aed0ac4aefc87d18ab6f303b88194aa",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QrICCkg6LjjcEM2R3EFsFqmSyvebHympYNuhp1dIboBIEFkxH-8gJJUmyPZwfhKk3U18M5PL0_5BBf-pUy7JdFWrzrRdPXtM1z2j773kOC90pogOD9zU5aKz4kvlb_QDYiUdFaYVEk3IfRQZZl3F42Yc58TuXjJuO59Wan7TKsfBX-kQe9qqbC9NlsXBl_Kf3jJCH1d-75-9IW8qF5YWqBfNdpywq68EtOPoXxJon3GV-E86BY1hJB8P38WKuZ2M8ktpa3FqRHGs7Y0HTn4g2Gn5i58tVHVsFlYftALNVuL6wdqNWlTW_-QgyfcTW0WqPVOHnxi-LZPZhChV-jaMeDV_4QZTm9ISU5SQWYW-3vfa_Ms5U3QrT-smAt-pOM32HBh_Kzvcaqrkh-rvOpSE6LT4R8kDX7X7dhgE8o2Me9_c8o0KxKHHl6b1iNK2q4PQ61VMAIFI5cIjGFIo6VSw_TMoHQsi62N5d_CKsnGOOdUVfqNF7zC0CYN9thiCuarICbHvkY7QxvbdLbUAfWFFu2Tu1yY9u1G4DUAH1IavNe3wmU2taMhHNh8YXgsLIsaaFotYjwgtFVOK5OjRkW39KeQnsKceF5GLP7dKxjiJkreQNSEinLJ5zrBpAktPCfWW4GBUkOZuXgOait5BfPQfonMzUtzN1Q0wGLJy685X1BkjWmHd7zxvU4QKNPeccJLTEfyyphw9WoMHjr4uSuxX2cO0A55e5ckfC9m8QNrPiKDPHfAmIYIooRhdzkfK4Fs33xQdI_qzJSvvYXG-M79fDZj4ZG8tc4RNSemJeZ3OdYIvIJ_3yF-6-zhfouiabagsqssGocwZ9s_zOWJCKI-8Jk0JR-kcAfIVXMjQnU_1sHMa7aRISKvl8LM3cPjiDKRitTORaYUu9UQZK9qZFODVKOGMR2AQkTIAf1kSVbeSGptq8dVRTj2HXUSjuQj2gLkf7fZsicKlfqUCoU97UiVKIE0PBGbHJ-gdQQxviK1q_OS9pKOicyoMo74hOyWrDbFYprl_3-04K8vOWd-8z3XQNq11p6AMqoNiI68Am6eN6Ow5mlfOExGNwdMb_II5v9pUyg_1J3DC8DG8vS1YZ6qLqYjwhXhhC8KdAlhogHC2TzLWLQ9jaBrzwBssmkWliZFO3knk0dwnYYR8X4OELIntSIsjtpvSwebRewessP6XypHbJ5ojeYWXVYnA8WieSRmQxMXmmKi90PpM1DIXWJQOhzJTbcIt831aiFZbnRc_lkdlRzISpF-EuLuXsu5EIKIEcIaQFxZjQYruJwhejTS8vKWuFyTfVwfDupZhkIzrNo69uxyyk7ddAKlBY6f9vIA9jich8RsmgM1Ca2u_xNpMOYuo0K0SYgPni0XH0qKg8b7oFF75gaU-vIEk8-9_3REZ63kQwTmumInROOkrhoOYNGwEZyG8x6JOwDIFxOFos8rCRLAjs9czEWPR2n1AEl0h1vS8sL6-i6lemewhhHBrevTpjWW_9UZLkTl4CW6XVGoBeFTjtN0W1CKS4WSornjm7L29PfzWKEDSUIg96lJs_VRisksGVGhm0nU8COO9x_M0TKo6ZUJt8u7Ivykh6AubWJ-IsN4HFMGhOPaX4qShb5dG0__3yG5rI7bxSuHtpd7rLrerYF0nesTqx2G12N8IfXt34qHada3WpO4XgxseIZ9srhOZtrLhtO3QGUZLGtXlZnCcG5JIhcve2iKdK8tcpxLij4BHTzHYtHSiEV1Tujc8i9ketWPa0rjeFqswwNe7t7UYBDAoNkyfP1vFK9SVpB7-so2MffkHUVLz88A6vjKtrSsT5zwi-_EZ7gMsHD0it9NLFTOS8xf2sBSAbbpKYu3dgfe7vdY9NBQmD0W6LjTHvR1_250lYq_nhftIESul66JgjZtuFnSqLGDpUe_KT0DztHZMo012OYf5eLpLiCc-WftIzR0Jo9vKPtfaLpfYXzs5s5BaPbSKrqRIqRNBvpfJvTL2KpzknehnARiuUm47BEVR9xbQbbZSMa2U7FVArCirzXUIuOUGy_gO_33OabOY4S6h2c9Qx5uFTX4MR8BGClr21ZvSX24k4vsOXlNmceg1BNXXTzadDz392y-zOVC0s4twWgxMx9KIziJHmF3iALjDnXrrqoNcBV_hm6y4YHT7ERoJyDJHWsW88avlq9pctDyy5RSgfA54KO3WE-5DiOke_6c2LldNBkcsaVcUHlr0qIh7Tky_0kXW7CQ9ngpq6yZD5qeDm5eMKmQTklg-JIqcz0mw9hAf8pRZFP5LOkJOr7C535fU7VtQdJQxIb7RazigVrONnK6Qi5AZTeqibVpHa2oeiFxq8WS5iTYe419ZZ6yHXlFzblthv2U3DS9pqnn-RVcdaE7RYj5148joSMzzejfECsMSxGL1-g7KVd2upAt2ZuD-FtuU4nJagPFaOZiE7b-JB4iLrb3yXPQ7UIBGNGGeemOhQlSxaJzOBMgSD8f6TFSW_WHLcOwlvCqH-Rr74bQMREbVDJZ9-g1UOhWwZQ8B7OCEQbzjRkX8hOiRXSTWKiIo1Xku1WyZSNbSFTuphtmzqF1ezzjt0iFxGHZopdIx_ijMB6U8NZBx0RE2mw20DapznM0oqCrxM2vm_1CpbSchG627iq1kHVzY7F9jg8TIDVUM7dNeJ-7KCW0GI36K8bF6fRcY7ffrtOhO67MHTNdZrWpSnP6lQsrYHsveg3DX0ZgsO6ey9TU3E6OyD8arCXRXTysHkBwIOZHntRZhTu5fnvLxRCYqwKmTqMKybOqFn4sLbgI-TBB86eTGGh2RFxn8EvMI1mYMxUdFCCK7wt4iTddfWqpAdabenN8HLOTj0TUTdXaS_zbQSBvac0WDUrox53CopIpHm5ydg-1teBYOg1hupVrSSaCFDopfnNdt00wEOLyDI3YW6JWPYigdd9sX_E9LOwku8b-YTAjqw9zs3pT5G6ALfgZ7XivTCu87s7c1iLBrZtW5aU5L9i-7y3PFZRz1GYrm03yTF1MZ2ie8KoyLMShCcXsVGx-Z6vfEPBnkvup2J6SbV7BN19S5IJjAMQYJ14pj6c6NIrN_BfDRhjE7paH7isLIWcSZJqI-7eUPJELQrMN5bQmp8eC9mjWNkbYXIV7lOoj0y0QZ2agvh41cdZo4yNV43Nx-pwaXI2UBKSswgYvrYeKgzYs3kMeAUTTRoL8vJqFdSwipyDGxzSckZXj1Szh_xqhmpD8juLXmKN6MmiZ3xCXwbPtpOT5LTCdMNE7Q2A-_2ndk9loxPX-FhaL-WlvGcxRGUd25f6sKxCk3xnuUIJYyBnTeefyO81hX8EFi_McQH9uRC1NhHfHHqwEtTij43qcvrDewZzMqGI34EOVkeOky13rqjALM_-OyhKJmU5IJlSQDEsfUZ8VzZcRNnWclV7mv6jRrEch4-o3jkhI_vwrd39EzKO95ZR62ilYjKbo0HBLT_M6oQhGKo6R4kD192QCfBtTUg8TDMTw9FSHUMEtb7wZOJ_lwuJHG-muGNKF1icd2aT1xDs78fYrld90ZJlEoBFReaJdI08zbBsNQeOaPyIm-Fh8Ywu8iIFcpyb_znPcsNkVMm2uNoJgvs7LFPh054zV-M5oYc39Q_avXOejR9KITL6r_CyjmXnl5ydVUoLtefcP0ldo6Bkw3-6xdT_AipMAlhyPyTfHebVDxjSlp_PeOlYhBXUCAtAxJ-k_eowDvioui89AUWl-pqZT88BHeWF7uXRCtukFgpf4BSO_WO6ZbQ7RtjJ5HvN0yhi9Oyv9MOwdnvLCayE2KFoC4d7zRpL-BEoUukTRXoktF90-gf45GO26RwZbyTF-yGwA3Zja9dmouj8mUtgKGz4YmVcuEodeyKUHHf5MJbuFFKNPa1YV_QEJ70F7cUvV13tYPop5PuKI4-9hROBt5H31pk6Co-jyhqlWeGYFCmJywhbkjndR25ijDgiVwz0cFDkb7mY9yvEy6KHfY6lZthB4dY7O64oHKUuDIAlWVVBLE-yPlMtu4i_BmMwkUiamZ1u9uZkpliWYpxMcVFtp0M7fN9fAmC0yCZ0BwXDmidbRhssF__1uySys9CY-cr5eUA8bsPAOor-Te7wK71XeIObu_HWKHl0NxqpElhsJlSLj3AHj8aW9svYPek8Di2F6Iy6rmgewV_V_BNm9QhQzwIjVTgE6VcUhs37Vb68QYMl-ifXJq-bqg5pqh1y66MpoKvpqDhE6okkDjU0AhBPDjNSPsN47CiM2R8hlhHFbJ7s3G5wGwyDA7_0wT5-wUwuQapNfBMG6P-MBRff1eBxttjKZC1MsrWayhaSF0XeD5NZ7qbCycMxQPFgW032X9TbmY80OszqJxpALU_5IrMQM64o0Nv-LDV8vJNp7XsLyA7X77xeSfYx6L1_1q1BqoRd4xHbE3mHgcgDyb1irsglPLZktHVFNA3rSHaDt7J-qh_uST5sDTBQbiv8Bsozh7iOCdlSiy0LpRL0mNjmD3xMyX1bX2WTTJnew7kMIzs-J8ah9R9dPFpLftVToWCYYqF9XohSPz1K7ouQQuV1a5yAy_AfUhHEOSGC4ZXyMpchNHS2-p2MLP2y1HfZyYEH7LJAIPlMFBRYiNmeSo-4dtyomYQ6VFg==",
+          "summary": []
+        },
+        {
+          "id": "msg_07f52a077c8ad32e016aed0ac7ba7887d188fe02d5dd327eb3",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"A typo on a resume does not automatically lead to rejection; the appropriate response depends on the error, and the answer asks for clarification about the typo and role.\",\"evidenceQuote\":\"FAQ: What Can I Do When My Resume Has a Typo? (With Tips) | Indeed.com\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 654,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 332,
+        "output_tokens_details": {
+          "reasoning_tokens": 251
+        },
+        "total_tokens": 986
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0e684187873d8443016aed0ad0ba3087d18f2e5067829fb39f",
+      "object": "response",
+      "created_at": 1793919696,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919699,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_0e684187873d8443016aed0ad1828487d1a82ba5bb808e9c4b",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QrTmZr171mbVniQ4rvCIIedgmy0wq4pMR7Dt_86G9t026ZPIbVgwB74zb1s1JNEnjZRaypHBamgd7m_oE1Fcrhy16JbvWjudbyOQuJKqt2N-1r-2SiR-AarJ5Kjh0RSEolo26dZI4pfuNdgDakF-osemx3oFxUfh3Sb3zNAbKawYvUazyWwkd8M4rY_eF5K43P9vzwYUqawVLvVQUlMgk7PIUlOuZy9zDzi1hV45kQjymGN6bhpanTu1dp06l0pZgBb4wMLBsgg2YljKBe_YNyIGPoXBsscP5pX0zitLrReCg6SjcMubYYOWsmOnkzfIz5F356XFrmE5TlljU5DFshFJkBblv51mKGLATdkHsjsbOp8g_1Ord8AMPmkOLbDfckjK-zuLe_-l_Zu_pc_Rp8WGcfOXBGMGezXkntTyNXlJp7rCN_m_GNaoWpBK5Hl3CeMeWOoGMa-rV-284TwWWexHIVNVXv9heFcM-sIpa0pD8P3MmfDar8FZgLfdTjyPDLQzDfUUIWZSVXIL3CGJWx1LRzGb5VuQap6etCEY5XSmQrXU_5mU9rV8w6vM22GfxZwCbL7j_q9ZEr_vfEpLqKE9wvHqK1Yy3anqTrYlgE3SCzvTpHlPhjVuwSGn9DObHokwtfujP5sMMEpczZ8NaqV2jAaSjhMnthsoXrBlv-3xUoZwS_RLOTh916YFtR91_5ylddiQTGJEdtrn6vePiXJ9j_EA8bAxfpEUmSfW0jdeoBHKV_2zeWdI9s3WpoRZ77BEgWH77OFtTsUfYZC7r2aGIo_c7zfzxlNOKfkhl_tzKLvxaWs-Hp0cD6Zk5LJXQ24iEoty2GXnRbrTQ4mkoGn-VpPFhjXShcr232rZ1Nqwog-g0QqORPm0p2KDuUZn3AcXyrU23xL9mkemTNQLAuaDKp9FKtDON3S42MbKUppX7qsEKt7J07VqTbE_bvVp1boOeTT6mxSil0qB3Zl_u02UHc98b8tZP1tEtnyAWgXA1uOhtMwZmq2Y0xrcc3KY_i5DgfD_zRXX8_np_z9_rCcGFiTB83iEs3rcINgmWiYnY-C9jVvIbgIIxfsHY33t8PTpPb873w4uGM30u4Rsf0QltGqLFIj1j0Rx5fVpYjV3rEhNnB4YpHCeXHdu3ocENcLnu8JmvAeoIeQ_F7LUmHZ8cshZdSsm9z2_MYqC83ojyFkb6BdRmdaMjFnEr4wMNV0hO_RcOP2Jz7CkALZZ8p2NTyjbbuHJ38ukGiOZk3zBIc0xREDkv4N1bUKUkOzeJFO5TyFBMzOeqwl9dgkCgbZ0Eb64cQsieojrcM3CL2kRPjpX1rwQCdlssxXfYz0cQ3yjr2ZkyOREUreaq5VTGcVRHVnuHrUcDnhFrH77o1gz3hq33biI72LTV3JbsklfRz-Kc70T7QweXyXHUZeJfKPCAeK90mcT5aSwOPXZYcXZUNiZp6b3nLYjkI96gNSsBGOyQF2j9CUQKE2c1CkodFz4Y_EiTU7DsM_WSIFAztMbVhEtQhp3pz0yP0ksHx_5pYQAqsHYNx8NsgHmRrmRbXiM9O708QxgATYJ7Mze-nBe5PEwmWPlTKDJx2JsygVVhc6R5fGBrFoDoJqpnwxkS_dNa0Z1v5bo5y0mgCjWTLm1_TwpTt1JIGADjsygmVOBOtPGem6nZhlhi-Dv-8Q3KcY6cg24iK2rGV1QcDAE_dU5lyHoZrM1Xvo_IYXcfzabdqR-vezN1io8-tPd2-XmO1ITPpA8VDToph_Jd-3sZvCcSC3-OekLG8npjczNRNwvNYVyTipyo2ShXFxdGLvn8A_M4r5xZH8r1-dountKW0VA_e0jkZUsQkcHcpWRcd_cBbFhNWfaRsXdRXiQnn9hs0NPye4giZ6AESvBtDB6ECTblfPhsf0mKa4yoArTRg2mmevJzXZIL13KVkH4KEXwh19znWp__PncQaJKYXC2GlwNhP7R2FFAXI2RCuQRk8guSZCu1xtPJb46RxTqDLrq-si9FYNH0xjBQCJ6j_AXxYL6IiSFoaOvoU138U6dkdRJJm5I3G7R31VqsDEzFzgUBiiUzvrtkIlxPxYNc0szfQ_LdjWOmNmaiV4zjK9a8PVct0tGtmuyqQLDGSU04GES1RkT0LwD8saar1Bha8zM4ps5uLyz1sF6K0TrpKPjEyfF_CyMDvfgu7_v_ToLKDasr5Gy0eR8kPT2JZ15JUNA2_Ck8N33rGiEnJ8haPCoc04t_pUbZIid3w44aDIub7iq1r8oWnvabhLfwq593tMO3pD6VxpXtMIm-UJUhQQeXOYrweHJG4lX37hKflKk_UmWMlSuoi0jseXvBHJQ8eKvorhcSv4-eUHq83xCgCa-5NjkFEgmRR9HXWNGcmKaBNvdDBtSzksQ6W9MV-QOw8_C2vnkr-zXd0nRy0LNc4y0M-nSRwGzY12wREnw2q7cYwUH9pp6VD3-4tfKlccf5cZ8naKEGuXTH3VFAsD9cCVRp62ziKkYPIYztnCVCLqmdDdj9s1AlHS2yJ5SJkqVywvokHcuJjcAU7dlbh-GOvv1fwIijf2skjXVJZo69voG5LwCkWGEFoz4FObWxdQ2lqtL9Ub3StzedI9DDnRJZXxYL1NnQ6RP3kyfTEdrZPLPLBT6ZkcbrOIaDogZ4M07o4uKw0hZgxP35VHuKu0yd5wiuD0xLhBvnnE549Rpd74E6VQMUZQpP3wcHonNNDJ9_wabokLB8QQJWU-CzgPcQMoXld9EakktYT8O6b3h8BoP6McyJEsFfmajfqAnJOP4lq1tg15qPOOb85fUqklYmj83IxOGcRsTjOwTzX6m2AOyOUd_4TKgJJUu7k_w2vPQZCogDqt_Akvk6dMOEOOnGy0VsV71HmsanklkUIg_GNFQa442nVxZTaXrvCxy8n9_XmPLNO8O2LSUhOaAoVc9EnyvREuUqDhNLSbsSxZBlUSjmZPdxaBS_Zaz374l6lpapBeSt42EGti8nhbDfPwfhJh8kchhIEIN5Zlz8lOtCfBb7LPcLy72dhV1F_rPNIV0BjVbz0EL0VfIfE3ld-qjTQ8LK-4-uLE3zAE1LuyVLj0Xc1YNSWvc_vEbdo0xlJtV6sJvIVc18hHREOXsjo_P7mgLy7bp2WQRYNYt6igoBZbMr4GXXJW-J-1s4NXNYhkA-ajnQ6dkX8kegkBM1auLjMqjYqzCa-_MwThinaMbKtfulzk5IRgeQ==",
+          "summary": []
+        },
+        {
+          "id": "msg_0e684187873d8443016aed0ad2fb2c87d19ee2d4bf5e95d240",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"The answer asks what kind of callbacks the user means and suggests possible reasons for a lack of job-application callbacks.\",\"evidenceQuote\":\"“Why Am I Not Getting Interviews?” Here’s What Might Be Going Wrong\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 440,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 194,
+        "output_tokens_details": {
+          "reasoning_tokens": 128
+        },
+        "total_tokens": 634
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_0802cf54f14e7e44016aed0adfaef487d186301e9ad7da21ad",
+      "object": "response",
+      "created_at": 1793919711,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919715,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_0802cf54f14e7e44016aed0ae06bb087d1944323d3377f2fe7",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7Qrj3Vf5IUFwmj4XKA5muC2tAuEcvdPHAEYFuWNQXGn_PiKVSPuOjenIwpUUjk-kDUpD737xpvwPp8cn72m_qN8rnHAAEDsfxdbPmaeuZMToRKVTISs9emoHKmRxdYAqdH83EBoz94Q17Q3_VYueeGJGe1913rpQ1pJ0HezMKGrkllWOeXdgDe6lMwyGciQcWoX9tfMfkHLWhMkg3uTPWsB_08F9wLJnjUi6Eh1zmeYmtmnbLDniW5naoq0-7PqJIYDrtWOniHt9cx8lTgAQ7nDHebXOiaHz3nMwQzyBg9Mj3P4vgsXhwECmm8R8RFJdIUyhbZPdKtyV3B1ioukmV5sasXedou01qKE4pnHb5p0OcIuZtLKPPREjnwKQX7cWL3fz61yBSiBKDeQ-s1cdwypUbeAdnFU7IxRQw927KoH906sxXvANA8ij6X95B3ByOjqrHqgY2Ai8YCGS3dAquY7meqEcZ8oO-ZrkWIrEzJsgW4uM-iVDMEBoaw8VQFXP2PKnXVkvK1NE2lvyDDJ0dHRPqGJn0ApU5g6rjQ1AQXR-5SlMwYxFI4TwGnqimiVNRxZJd4B1CzTAAkYutSSk0Jmxs1FaI5AFkyFsCnGy9xVm2NQOYJ2lMYmqfC5ttexSEGjPeKhRXs--22LqjDC0GlAtiKTB-KX3xTweRs8YJeHQEFPjk4EsmfnWuGb2npe0BOY72AVcTJYEsLsbm5fWwfLG2I4svLEuHcv7dT-hFLb3pgsBuve3WKtEoGqt9WHhTjvpv8t2RJ3zKumNsWDRMkHqGxn4z7Ix4eX5Ch11DbF-g7ta3OHqNij2k5Uqb4LmScz8jDH-b1ZMOn59L5T26Sp6cGdhX4sgRen4x8jL5HeLl7NHf-2u-EuCjK9fnN0_fe16GfufHnXMCGWoU_kNtpHIYDg0zcTwmFSKJ1V6sIqrN4ttjrUAsDnhar307pyfdI8hCh9t_rq0hDwtkDEi43iOeHyPGOv-Fbgr5F9t6-7kE533_XiiSWxKplWShWyIxG6SZ0keB4F0V8g_VOKAvKHaB5GxQj9QIil76eaGjaVLClfph_QwIjjFXs8cAFvLL6Xh-5NhcZjG8J0Pf5JMffloAgyu7KylQM8ks_HPXjL0KdUdHQyKdgF1LtU40PArbgLuuPl-mhtrc90R4HUXaOPwY1JtshM5zMaG6fOlFxIXLfqLOSepLUJsXpHQwYNK7hWOxIXs8Asw08lJrKGX-kMc4JwzL39FhNqpQ0PVS59IBD_a3hyDN7RjnN-uARtv9OzKknUE7UwglPDn5xDmUnRIV7ogAdlIV22tnwIQIcL9w6H4vDxZLh1m4YFoDeG5sKao7atJF5YuG92-AgsxG388rnP8ogM21Y4kSJtCEny7O7y12QIpDHzHkzygpdFAY_eU0BoA4xuZIjQKin5YOGpUtKEHqxYbHccaIbsSB5UBFaf1fC0xzO2NBD9r0cg2nGzRqGGp_JTOANzvIuBK1TUcqRJd8qNdbtzfJQ1-w7je8Maz7uAsUWf1kcZl7haYh74g9_ReN_c1S2BFEkzrmzCKe6P8M5jxShZ80K3UgI-eU6MXQTgUf0nAuRCFGTNbQUTpL8rg9vgBQyymBvy9J8ms7iGOi2vuWlNan67hRvIqqD47Xnv53FdkBiwbuKgRxpRqdekJ1qh-rcovPZStLpbtgli9Pzc18GaCcGKOYxGqtQ3ZhHpX_P0ebTdIM49DRvCahDsb5C94_K5msaI1UykMm0lzFcYLCwyvRAfxKr6G0elBj_bdMlGr_tLFhRAVvFGt4cvR2UDiB_Tn79qDtOnGMdQzd4Q5uqgg3CpER2Fx-himgGd2CfTkm8lH_QPVsIfrAnt6tp-GxMoJqGBVlvhNnR2X3SLb8VS1ZA3RStwCzesrr2diuos_nQ_ftGTF2A6pwbWFYuH6oEsPhzdloJXZp8sC5t2CM3n862ytwb6smvh5B14oCRJqb0ileZxLyb4Zx_tHS6cZtFOBFAaGZ3iuqJgTnqNC5sO9H1M0Tp4-axVDBKmmci81duFIWz7H8hO4DfyeAgfMlYkOONzTA8Xg99DAvjL66hZ2SCx4diXoEjgGC_DO1AQE8IWbuSCdB_nvP44bWsT5QRj5VaoJKolY8jptILUuvFHKEJL3Lm6BYAcvAIAfzbvMnJgzcFSaz4aYIqbLqpFuxzmVTCXIhTLtoqlpmYDKpLwPH2p6C6seRDcgcnbsbppdql8GyMt8NXfQkN0zbAOv6Xg9Czi07wTv3lXoTVv_5lducqaYZgECyKxMymGzG-rDtJqD_9nWc8bhqH4uSghD2WYBvt_ITCc9Wp2ug1MnpTY2ykE3JIL2VLVQ-uuddwKw0gmGjTLEgMWSiE5qrRthIB7qNPv9pGOSpV9YXvpWZ__1-iHEs6DGRyoQUMRnZMuLolhxY1p4aBOxdhXdJ3QNOYKCcQS2va1Bv0ggcceZygcM_fKzHNXPTsBeiKy8zUm4dfrvmunGrG8mMDB_1zVtvxH4iINXZdX8BIYPf9iSGDxSZXbknfpanS7ZRTqTkH4laYI-Nwxbd1luuTj23W5kYW7SjK6HwdLDj88f4WZHP6hwYhYsx1gA7ltek0Oy-OF05K3liA8Wh_5gZqtBSvC4UzlK-xCy_QRzs5RKJIlJ84h2XxxsXGHhrDB9VuyUhnGuQv2hkl8nOM42Kx2SQFfccW0vM0S9ho8zeF3OAmq_w9EjHS2U4wmQAhz7Q7gkyPyrrEQoe0iN-MzYFVxQOlKGYx6VBCiQ1sz2o8u-MZKoYAbxfdfXEmTNKqaoHTx85u3UmLigLDyWHXMeQNWgAGoe99rxillrxFpzmvSzj5BzIFSgYtQGxt0gFTio6oU1VLkVeMBs-g2jEDeIwOOxii0mN1oP9ELlwp9xDXFQegrKRh9X2QOdlnsHEakMORNKRNMjdloP5MnNwRxtgPlgmSQSpSgXzrPJGaQ15kK39XNnCoCSbgdjCFXQ9-3LE33qI9VsznJ32hJismKiMoR9AgVGt5ysPsqAyr1E-9WcwT36M7-pVdpQbnme8-pia-zFUzEIuGez-k5bfmzH5P4NpAhaAzg6--6Bbe44aYv-gWIAAvOZ_utCknadBFSVh0BjvcUcWfRDGSpvm-bArJtg-7Y4_IK_EyB-jglmEN4mMG0wo94tooypYBfbUeVHEM4hNsCuqz-tOM_vB9t513eSmYs5N7kiS3AAqhIhq2ynlG4Tho7d7Rq6tESJF98AhcBsTvp2yLUYa5opsMOVzKfpeHWCaU7N_XoCBYWfhtZe2jizhfbTDhwRWvhCotKJCfWpRQj7-TstcO4cJGs_6r2bDgQDPYGG5OMwJNv77ahk7pi6bSRFz7_FMTwV19gIqYYBglypswKpVd6rw31qtg85InErRw826-jKDvM5t0REJ22IUfdBmb4uA-EM2V_GHaluiBH8cD4tJ7kQcrSrcLTiBXZHKA1Nzs_Bv-m-e3IDhoiP8nPwRSlQC877QZVhJBhdCgTGYBMxcua0mo0npm0sPbl3OpBSUqCQz5qB5iVYYwMJDnytcMf2GWW9x7k-nrZQ76ncxT70KZdrr_ml3KSJHmxv6UywgK2uXdkai8X0UmmpU98iwsXhyn9EGz64hj6agzWvV5QYOdVDhKCqymGP_7witrNAEgwBYAcr_brHdTxwi3xFtv_9mjRqQzgRh_U1SyZhQf9LxyLwaVkHobUD8JRM5OFH_cf5rvfsWg==",
+          "summary": []
+        },
+        {
+          "id": "msg_0802cf54f14e7e44016aed0ae2c03c87d184f5ebd6b4e64c71",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[\"Greenhouse\"],\"mainClaim\":\"AI resume checkers can help with editing, but their suggestions should be verified and their scores should not be treated as hiring verdicts; the answer asks which checker the user means and whether they are asking about its score or suggested edits.\",\"evidenceQuote\":\"AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success\",\"evidenceIndices\":[0]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 734,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 264,
+        "output_tokens_details": {
+          "reasoning_tokens": 167
+        },
+        "total_tokens": 998
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_04a36335266d374f016aed0aee6b3487d1a298d9d56fa2ab48",
+      "object": "response",
+      "created_at": 1793919726,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919732,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_04a36335266d374f016aed0aef4d8087d1a525ed831784fdb0",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7Qr0rJQDMnMoM2XtHytXeb33P-nse4gaOApklzctKeMhJ3mB5Lve32s95aW6T6ypyeEasv6cKZfUWnqSSc6HxoHoC37bjhiiG2E9iIggA8TPJsA0cCGdblC1_3F33f21nYD3NFc0YGZ5ywrVfTd8H4ZBJwtEAWo_bOwCNTSZ4xeh85vXIWYgcjVhbG0yMBnUAxGyOaNuPn6N0cwwK0SgoccP-hzmvPRkpR7RubOCggtqV0vhfLRUxRxU0e3vkO7EUra9JPpxR0sBq8O-NsCPS07cnqwiQywSMyQ6vpCR5Pjar1qIK6puI5sM974Pz0j24xM8sxIAvB-F3Ajrw4NVye3Dc70kNh-x4yNDEqxf9pG_C7-8Kz8FmAt6wf7YDiuPZ_tkgOj1DSBNSaM-DW8Il0Ikhb1wOBs7fg7wWTcvomd-yXoZzLpO5Qe7Pt4xaPS88aUHHsiqJuuYGZWg3y2z8S-3F290d2kVjobrlrGBxcmkDgEntvvmc5dp6BxOx2F8ah8w9GPZ7Hxk-Ppcw3LM_TDO6vNC3mjCXXpRwFPbcbMt0Zd5QUDJBypzBPxlUkdu22oJDKd1DTsNMLDoFwPDdJrqVY1rUkxTzzZITcfrOZA9umTVrNOMXTLmBIWDp8W2W-NCVwr-3TUC7raeLLNZx8ADF7AcCUh1ZXukVKc8068WERFmiMXzQ76fWybgcLkLfiyMUE2Ze5TexVXAZkgw0C7rxo3oMDcb0RQ1BuKnQNK7u2LNbO37egzHOn495qvZ93gp7B2CENVOTyQAPKsmK_7hWxuQv21Ruwm-qQ_4b3t7AskedkQiIVZUIVkpJfGFbci9r9NmEZXDm36m-HzjMw6dF0VgSY5jWuUAkgs3wMh_nHRODWTsDzqFb6yd3-IBsHFRvaQPqoX8lZHLrjPPI_4IaZEGSfhv0zbZP_5oH90n9WWyHR8nbaExXA3tNBQwGWNew0g03DsEU0PgIFUgvYGtTr5DHbMM-IhDWigPxj7pb8rmXtCJx6SkIxMGqFZUhxgbDCEJDnjTUKODq5Esym4iNCrrC5iVxZbxnmNvV9MBykZwdC0oBDJdpZo9Ca8_JOZU5NGNCY0jDrJO0txHXBkB-7Gjca498uPFoCkH4zf8UC2ku7xOkyspdjO__1IqL_9eJcZwiD80rp8WSv7-UCs1IFW1CqZ1WfGRfLa7NII9yL-mclTcBL1TV2p9qUsPMIADTyk4abZwxwjcSTcDXLAOUNFc7ANPHq_37XvDEqweawbRZVYZpKR2pRdMymYo2yVualovW9yt1BylslFb01Avfd8xzmXsFPKGzgFXwas0Cffz2QKVxlmOIZEIfRBdzApZMJfSv-SA0pEz-oANqlllJByeFG0WYB3ZykGq_9O0EH_D7eBhrRXFjSJSsX-u5JnSohcbGvv1r3ePXIt4tBdGkwWjA2JhcgcDpQYbxcq7u0XWJ3KWzmBD0OMYyT6W0_B2Dk5G6tyLJdw3npi72c1ValOAQn5ta-pw_nWrrxzQlT9JdkX5ecv4gGaH6jfMh6FoJ_9mbes0iCdiA-vrx2WgBiJ1tc2keRJwTYy717WgvjlKhDQzzxVdBPBxSlb8Hk2SKr16wsb0G1BWNdjwxIWWlBaLZ_dYaF4jVTZTQ6Je6P2FRuZ8JA8VoC3SbLZWb4wB2aEWxo4Zvhog8B8KTn7QkJ5Z0yryhgqXMgMz6DFdIahigU0KhPvR8glv7DAuL-_FZM19WAyAz5xAreu7CqQ2j1EM-S1jjP9wkRiLIRJAYpLbw9hvjbJNaaQLEHK6TMDv2jNBWM32GNo2jCUZrRrWFRNjtquwIDkAR322D9AmVbKwi2qDYMth0IDXif-vMHjveGy6fNGjvvSRYXsbOHJ6G7xEqo5O0MvgwkWZwRFz-mfBvkWWM7G5RSn1MuJ2MhO9aMurFxX8saqUNDgFmcB0vwLVOmsEyk154-Xp1jGnPm2aGCn33Ki9zRUjpRcemFeJT_U1YGEIu_66k200PlCjmS2W-z-ILMh87hH5EEo_9aGzksRT-6kS-u6p4x1qHA2vRC15f2DQHCt1hCWWgOtwdhLicgEj-7SbDuscKf45YyutVrS9YfSdlA9kPHhfaHqOJuwED_xYqgNqGNLRpB1g9t2ceQwCV3AEdPRaKcU0ijx3C3rUfVPwLcTYk28AP24rO_6j4LLgVFa0jJuNm7jNNpXdTbgBQtDt-SqTNLfnifHjVm6RHWPkvPJKDnKBzZL83AX8TvUYF8DKdSA7SwUo2QGvNOplvlNEBxZThLg1128-U5lYm_y3ubm8icE83oiL5E90Bn11xrWdLZi6JQYPssyJiSWBmX7ee8RCIYZw9hrF4VSvJe3-G_XpZsvb1bygTjjK50dCczcK8EtHLr6wygDugUvvNrgLQzs9td5eHHO057XUDBX_iLhHDJMmE6c4-3jlHMC06mGGBpK6hwI36SJEZjIZdB0FDzkqyF0nfS1-qoV3XR1t6wn8imnY3srlf88hGfDWhhEhl9pOD5rXTLoP9MXSFiyB9ab7s6HGW0_8CeBcbk6_icGh29YVX8uowXMHvKGytNoMvMO6eN7_7xUWgUFbnyq9H1GIfHKb4i2-jUf8F0JDxmOqsUWN6Lo66QNfWZ3HkYNqzwDWMrngsdsLGlRqX4QkBRGQAEUeaZgeZ5CVwmNvxE0wRL32Xx8kj9ciy9kAgTNYUrPIkYkX91eknXDvOLhCB5rEiI96Q6wjSu_On1dOQFNv8JT8QyYx4aUyGuR3iBdCIafPpaLijiRmBZ5n_uB0x7-gP41BIk7-TXjJjoFSB27U5rG5o1wS1ZGxZoPs3mOZOvrln_zFL9L3TaH8ZhXKAbHPAFCTbW3G_cm_mO9JRVJ18sdfPulHbpd0sGtgDOherIk4v3P4ULKpF5PaiG_S2OTo7uLqM43cksuUITHZD9zn5eFBH4VPzWTdlviGcoKVnzVco80K39KxAnMF5zzfSWmDRGuSQz0K7G_I7SQLPKWNorZPDc_2Z5YO4NoVNH48Wdeb9S-6gmSKcYD6Xrg86s_XCcTyR0VJWpqJ8QDK0IM9XW-W9GQwUWVk7x1srHZL_X-TsHjqr3u9oVIRdUn0xWvtBt5Xmat5du4rUgigRVpSUlLElFzxARYkMS_cghWauz1Gkyx5XVGYjzIh8bFjyyCiJ1-wdm_moFSzb2-V3YG3X8Aq3Q4Sj-eOauzitGPjFGjdeIiw3flsosnq9Fe49Cgeywm3583Vk9qBzSpVZs3CbphyIY3HxSTQq-bp9gToPP5M9T-W8oTkSq9pcDjqNNhF1iL3QF0QTwHkfOS-Vt30DEfzXMCKAUZyWRj4Xnqn2LoReG23O0AWeIrrOIgzJsv6Egu6AGFHH9jQREfR88xL225d7lRT8FG0Xj8gJwPCVAtlstsC63BEDJwPdEA2CcAf7Hk4Vgm5Jrg0lMzXMxxqn91qRi048UeDhod5o03vgET3DfTwgq--WqzxiB6uyuUNLuYXDFrcAnpIrSZhq8L2PaxSvyoi5LqPYiUsFv2BZxeAZQuGWLSY84NjernE1EJ3A2k98CEURdnh6Gaj7S_TemMxGC6L3P2EGakcO9b9WSLZ0w4JhyNkZv9fwYiKgqivTTNDWejg9rWXDcxZD1xtxd0Rl_B0ucg0yXsRkNbB5903hTfIqzBB3HIXi9CASJfPCSmOdOR97c6UJjhxPKTgixy_BEoE8mvlVz1W_349J8sL_3eSaj_7-hg9PCK1lytobnY9G5KyS0BdgSHd9BvwSPnFDxV7DMr8kNlht3e8NdQt9Wj2tCwW82a0hCK7iDw56RSldVG4ZbSzs0jCkdTIMQAB0R9nLc3KBKkYAWY9D3l1FeIdK6N05RfTLVPLFwTrH00Ki1iyMr7oSpZqs_xRDCijwOOzrXrQjtV6vhLo9vjhfLqn6CN3AhRfN3Vw_c1alcbTqCCaDXA8_nhCsriBHXSASQpgLzObdsRjyJ2r8g6tco4vbfbBSvqrASwHlvjx-95ozQOvtxmubf5R10kvjo1J6wUWOnTmfJrdc19oAJ3Ym5K4rTtLBDYAzyK1pkxEOnmyUY_Rd7OpFXR9e_E3lI9KVnMG-_mKNJnQU_JjdakAfCg4odA7ktBPHIHAYmORRWA8Uec3ZChGZldeIAGDj4b8ThfrNuqIVJP2J1uFsc1B7kyY-xNfC59oaijGmQdxGEgNK0yEOrM_JuTsNojEKEmyQdmEtkzuVw27OgSNja22kFLv9sHEl_APY3K0C-9e76a-zXJVk6j6a8E1KIGSc9v_OJjbgnBxe_3UkJwjWgKaN7CmHjMAS9RQ-yzIRZaC_YNoZkccsKnR2kmeBP1jAiowPFiKzzlqVNH3bsoyV9mEXPdlgE3RUPtDuT_xfaeVV_dcVqGSyQosdqzi24BcNw6Rkg8jlFmOvtnFvxRs732Md9-pS7QOWnZZLo_yJaYe6C41bSuhOjxqSDGLYeNNAHf7Gfb0v0-Y3BqriOzHDs5f0RMfIxnJMt1rrJrpMjG4a-vRPSTPkz0FD7SNL4MEHrZNykxn6Fp54MM6-41RyrMGewsUILQCdKZ1jPSOud-GenuMJAE_b20E6GM__ZB5vufuqHuUuFMJdqve20uxSr2PKXAY16h-SoqjYkwxlhbCP4bNS2hOt8ntmOLKuwjc5AAUn3lBD9g8V-6wd22GvBuHxjVzQ2RYp3TXJ8FbRExlfmUyQO9XNRUbTBoG8pa1LQ6KbyUK8TC5U9TwwBoJ2xSC65skSudf2da6nanEYHGRCmEqho1JatYMk6XQWK6ABD6Ts6RKbMalYkFuioeQ5la4Tr0agSALexyJUQPne8sKu5yRbqk2OQVkzmJSslvg7sk29QtJ9yMyHEd-E3Nv9yTXvHogQK3ENQzw1ETjUz_Jfh6a2YDX4WO6kN4nXYERxd-LDItyxd3FHHd_nDhJfxIR9xyF3Gt7075VyRw16Dqmgcn-h6m3fDW3GZK940hpKnoScIj05GFTsCGyTu5Bi_4AOJemsBfjnsfJO8ijU69PRjVQ_WJbbiWLsHyVXqCdJKzpHFW-gyAdaWHe54x1N1Y5zvzHSUXl2ACCZlpGZMzd1mwD-AChkbIFCc1uXKq363iKIV3piIybaVs0hlKcicIl_vXOFl-n1wWoSuh1veb16xTTNCeuy3EH7woPIsf_en59oAQc5mAqtzw9Wh9Vhx8H9gDHHlh2bdlmXDY2zEv92OStzvOWeVE8oWrjFFiGPbjR5VenqAip9yRrXArH4kH2F3sl0qr0KRAHKZ_yQfZ32n3ddhAH7mczS1IBsIoJm_1SplU1cfT2fvcw1g00lY4F3V5_Gc1CmXoxWAxd5NcS76Pan-K5SXO9kPudFL3_yNouqjZSMtLQ21BULTqCONVuPz7kuSg8gJbLpT9kWDi2NVKxy8joUa2MbwcWM34hs2_hntwnKcBJ_sEp7edpxP6wjyeVOK9hRBxThYtGYHLo7nNdHRIzXcZvDtkcjZfaRdohNuERoVkwPHgCE9yxgqM5TLjzQTUxrVFscCzTa_IiBdnqD9-_uKAegt3391IaOqtmQchcV7me4mzwbHVQzLkUSRqCOJCvAwWXaNA4CBy6-RP6bs7hT5Au_n1qOqAVP9hHnV_Rd2HkwCC0847MFleYTh3XW_HCXsWTxyTARlHD9oGrpJzd4UmCBOlrUtuK022_B2Eod7qUGGfB7iyX6l-Smt47j33r7qLACfyukqh5rjRb1Mc=",
+          "summary": []
+        },
+        {
+          "id": "msg_04a36335266d374f016aed0af3f46887d18c5da0bde8eae679",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[\"Resume Worded\",\"Jobscan\",\"Teal\",\"Careerflow\",\"LinkedIn\"],\"mainClaim\":\"Teal is recommended for basic resume feedback and Jobscan for tailoring a resume to a job posting; the answer also asks which type of alternative the user wants.\",\"evidenceQuote\":\"Using the Resume Analyzer | Teal Knowledge Base\",\"evidenceIndices\":[1,3]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 617,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 421,
+        "output_tokens_details": {
+          "reasoning_tokens": 334
+        },
+        "total_tokens": 1038
+      },
+      "user": null,
+      "metadata": {}
+    },
+    {
+      "id": "resp_03b76d97880fe0cd016aed0b0218cc87d1b25297374f749674",
+      "object": "response",
+      "created_at": 1793919746,
+      "status": "completed",
+      "access_programs": {
+        "cyber": "standard"
+      },
+      "background": false,
+      "billing": {
+        "payer": "developer"
+      },
+      "completed_at": 1793919749,
+      "error": null,
+      "frequency_penalty": 0,
+      "image": {
+        "context_compression": "disabled"
+      },
+      "incomplete_details": null,
+      "instructions": null,
+      "max_output_tokens": 1200,
+      "max_tool_calls": null,
+      "model": "gpt-6.1-terra",
+      "moderation": null,
+      "output": [
+        {
+          "id": "rs_03b76d97880fe0cd016aed0b02e13087d1b1168486eed2c3ed",
+          "type": "reasoning",
+          "content": [],
+          "encrypted_content": "gAAAAABq7QsG_tNXBQnT8MLC1xI1z3JcaRUoBPmIRiEM2dZ5UadWO7ubmjtEIeCVOfBVqaIk_gD0qrUTJd5ascr0P9s_hhevED7c2ZxpHo0tO0I1ctW6CqqZHtD1r7T2A55TQn3mbEhzWBkiP_bDon6weVucNLc7kxt2xf0o9x-aW9LuB8YIP_wq_rrrjxZPNBvAmk1Xo56FSS9kzFoBpiUMgsCtyaWJRVFdGQ-ATHf8uqG4PjplrqBrZCNu7PWQE0XtNmwmsUicWYzM1XoEe0uCoutxg1aVBGQ7FYD3c6ft-jVwqIICZgBoXan2y0gKdOvIZzKuNdCPi83g-ibYS8kfgXQEdzAJxUDIkNEJF2uA77_Tq2co9Oaqf1-wXLGH4aLN8G9CPuv6RPJrM03wRnyRzsMg15aDIu71MCWnpZg6rNdBuFu5r36WGEgeT-VtEziLcRLHQ0vpusoO-alwpOQQjpbXmSf7-BGWP-Cu3hDp7B0FxxdGCRC-lMKxF1KDOxxqz1D76_bvRaxFiJTV4HiFjldHOj2IAewHjVySKl3vCqCmBcWlLxxa4daDsBv-_w5z9cEjF7E6PmJNluLYUdbwAHTb-fr9l8D1KPpi4G-9kHGZQ4aKowTScbPrGLHGVRpPAQVbV80uXj42jOhYuag9HohYeaktNzxthmrMu8Zj0HtqAmgGuCSw4fRvsb4a0vEFz6zKV67P4BFatUR5Ch0LVVkp9uWSScJxiOIbNJ0wfwSRI9Tf6zzuZc7iwYMIvlMm_bSPn96HlCVcnORyV-jz9BUps6INeNDFtzqD3CpOYRib6nylXsNZvLrDeF1tNVTEwK2zQvr7IPh6bAfQxtLlEVstyO-NtuGPPrN91kQqP-Mc3hg8SCGPJgyvrWy_IvUqw5I2C43LqwDf0WKd1QSCqc_lEdfttumGTfv-XozLT4fd0Daweq1-fSkhORXrApVY6REOEVPLJp34_nr5Bnh5gTlGjMGFKjQ0BaR1to5EVA-OtkWA0QVRnRVE2yMdOO1aHEeuDSg8-R4iDZQTcSsm5dUGhJIXS4P4e0SWHjJlpSwB6G8iGMbE9U4WTm-sPoWzqPIRIXSFA2iBFVAfIZ2SnazQBBTidbK2z5Le7oZL2Q-QUCb7bEWwbpep1uWOz_hgXV19ODj0Hlw-7oW7aV0CgtfZN1qciVpQlhf98wYeKpdU7SqnIB7veN-JbxcPfMwPAXrL6SkFiPbk0ygCQk38uduLB7JcgeKBbqJjBobTf0FX-mEnSNptYC2M3vKhW-r5Vw_Upc1llZDVMW-4S7hQ9moHKoWQ7_75q7U1uhdzfiYgKYcrgw8doTwepVa26Um-C3SLLcnIjgAIwQ2kb6lgo6johCgszkoZ_RhHgDESurynbLIz-zj87R3cT0lwZ-LnNqZXOR3kgckF8hgnk9DYZuT-qteFefspm3do_XIBCII6MO8ylOTsuWtW28_xb92lAvwuYHjsNOvlvBD2UiiWWo4mxZoGSYCMoHFdszJ02fe6fL5amsNYur-rx-4NbE4VggAhyGGdkmmEw5ooLBkqIgOybOAOW_YAcEpmpNplctv0NWOweS4CURHoPVWrAA4IpNJ4gg4Es-N80rNXxontUFVR7TtPvd8YKOsRaGQn-6qPaXqu83-ZZvkLbDJWs98aNSroDuQ82aM1HUzJRpugvrXHYHzl6iBupfrBXqzg17n4Lt4tGnur01fnXRrnENgpJ1H-oSfCTzTuU033iKUDLenKM_ZIA0rraim_Pl41WN7Ea7f6RCSn1iwDHabI7_uS-ChBhlkgkYgJtgf3yScHKONbssyu2R4easpgyCkEWsa4sThezX6vu-YBkG0mvnPeZW7K6pAoeD3RDOCn7ITWh_9pxs1FGMj4NJ0C79DR_M5vG7R06bdTmBKv0H0zc4UiCfGVx7EL90IjUKeYDIXp3dR41isDa44xXOvbI0CBUDAq7BkTbU_gM30gzmFz-A2EuMsMtO4XRL3MHYY9bfNANgYiicPKi9SRT4NDHxvfcoiPzt5sjeEJHw9RlHjVaXMChCsPsyIDUEcaiQSajkuxxcS_mtzwYk0NFX6i3qziV-50CfXx6RobcwGYZx4Ps9xXcCPYF0jFLccUzWLbC6IzEiCPaBwtVVxPPwBdJ4lvV1EX7vRWXko5fZDl-ybDesX7iSA2QzoibIsx-mhzzS5zC4K-Y79vICaCla6q1TpAg3e01JXuxubet8wZShyhP1YpoHE4IMVllxnvb989dS_4XfJrauVbVCPDF6nMvo1k6IyWTXSJmE-KbARVIhb5tT4If6XA2lgKFkf-UzN_9sxxhlNH4SvOI1VjrqaWXtClKn5FFkQ8gRGHzCG6s4Piau6LgM12UVpQ_86Cnm4HNCVbb1SoHGzyNUc425u3E7YLBTfhDtGAIDeMeunuCmFShTbo_iGBaTF9TKw9WLhCMivyTaQJOktpX-TX_PyOVXESdUfO1-v220kVxCyhDJydnZFOso-4L8QzDd0F5ehOf_C4a7p-Kd8fP0_PAeCHYmnetQQDqNocWpYRuwaREdDfs-_2wrmZ6R7zwKGRWb3tmuIgaxQvy9mdCqWnbNuMsuRCE_rNTWjw4B1seK2pqqWVKtDxFGv2534VpOnjSwkx1RZU0Qv1OZ97SyZ0brsFU_SfVB5lC75_1B6J9NB0SPtX7HwGzQ_vYJoHSrSJoRuYP9QMQCEGvrrLq5umvy7rZIgFXp9ztw4_dxcVO9YvJHJC1rRlh1Sr196bkQu8K4jXYyluRnHRMW0WzII_4hkjZCmdV_Hprv2G-IZ2rV5k8526FFr9g-a2vI2YT-xJU38iwJGwNQ8ONJAXwCQhLj1O061JfX5M2s2vjcg1e5sRVsw_qN97kQaPAC1-ikLQdUUmbArspyHOunn2vtLJvAKl1AxBPftfoom0rjateTf89IRpSVWWh9wD7mHyZ3ZbTvwnbNX-URWbvCOXB4yNyA-qvUqOS7xa1hs7P66Qy7z4W1acqX5I6as9Ly-ds5LoadOs1_KhvY4fTJ-wvjFgOe-GGuLztmQLuGd1UzLPebp23_7aPltr5y4q_jByatjB2MKZ_0iRWtY7Xxc1WX4YxY8uTvDe3Ez1S_-VDxxxDhD_K-_ewaCdmZy9GWancBcW36YMq6Yc3IgAIrm5E0kdwOFyWWvQPxh0nJscrKU_yEbcIKENNIj-32lOFr_THAXfIFZARsbBTCgY-cjzEBDct1QdvqC4cIReqeWCKQ3eG9uh4dGIr07TZyjb8Ok4ejssx9xuIjCMXNcTrcfOwrNkHg8XiaYpqWnfsOyerdAdS7DB_0-UtmPqY0LpOGKM6c0ixNhxdNTk6-0C3EONrQ==",
+          "summary": []
+        },
+        {
+          "id": "msg_03b76d97880fe0cd016aed0b05115c87d1ac1634c851513b03",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "{\"tools\":[],\"mainClaim\":\"An initial résumé review checks for evidence of role fit, so relevant qualifications, experience, and impact should be easy to identify.\",\"evidenceQuote\":\"How to Read an Applicant Resume: Resume Review Tips\",\"evidenceIndices\":[0,2,3,5]}"
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "all_turns",
+        "effort": "medium",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1,
+      "text": {
+        "format": {
+          "type": "json_schema",
+          "description": null,
+          "name": "answer_metadata",
+          "schema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mainClaim": {
+                "type": "string"
+              },
+              "evidenceQuote": {
+                "type": "string"
+              },
+              "evidenceIndices": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": [
+              "tools",
+              "mainClaim",
+              "evidenceQuote",
+              "evidenceIndices"
+            ]
+          },
+          "strict": true
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 928,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 227,
+        "output_tokens_details": {
+          "reasoning_tokens": 158
+        },
+        "total_tokens": 1155
+      },
+      "user": null,
+      "metadata": {}
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "id": "resp_0e684187873d8443016aed0ad0ba3087d18f2e5067829fb39f",
+  "object": "response",
+  "created_at": 1793919696,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919699,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_0e684187873d8443016aed0ad1828487d1a82ba5bb808e9c4b",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7QrTmZr171mbVniQ4rvCIIedgmy0wq4pMR7Dt_86G9t026ZPIbVgwB74zb1s1JNEnjZRaypHBamgd7m_oE1Fcrhy16JbvWjudbyOQuJKqt2N-1r-2SiR-AarJ5Kjh0RSEolo26dZI4pfuNdgDakF-osemx3oFxUfh3Sb3zNAbKawYvUazyWwkd8M4rY_eF5K43P9vzwYUqawVLvVQUlMgk7PIUlOuZy9zDzi1hV45kQjymGN6bhpanTu1dp06l0pZgBb4wMLBsgg2YljKBe_YNyIGPoXBsscP5pX0zitLrReCg6SjcMubYYOWsmOnkzfIz5F356XFrmE5TlljU5DFshFJkBblv51mKGLATdkHsjsbOp8g_1Ord8AMPmkOLbDfckjK-zuLe_-l_Zu_pc_Rp8WGcfOXBGMGezXkntTyNXlJp7rCN_m_GNaoWpBK5Hl3CeMeWOoGMa-rV-284TwWWexHIVNVXv9heFcM-sIpa0pD8P3MmfDar8FZgLfdTjyPDLQzDfUUIWZSVXIL3CGJWx1LRzGb5VuQap6etCEY5XSmQrXU_5mU9rV8w6vM22GfxZwCbL7j_q9ZEr_vfEpLqKE9wvHqK1Yy3anqTrYlgE3SCzvTpHlPhjVuwSGn9DObHokwtfujP5sMMEpczZ8NaqV2jAaSjhMnthsoXrBlv-3xUoZwS_RLOTh916YFtR91_5ylddiQTGJEdtrn6vePiXJ9j_EA8bAxfpEUmSfW0jdeoBHKV_2zeWdI9s3WpoRZ77BEgWH77OFtTsUfYZC7r2aGIo_c7zfzxlNOKfkhl_tzKLvxaWs-Hp0cD6Zk5LJXQ24iEoty2GXnRbrTQ4mkoGn-VpPFhjXShcr232rZ1Nqwog-g0QqORPm0p2KDuUZn3AcXyrU23xL9mkemTNQLAuaDKp9FKtDON3S42MbKUppX7qsEKt7J07VqTbE_bvVp1boOeTT6mxSil0qB3Zl_u02UHc98b8tZP1tEtnyAWgXA1uOhtMwZmq2Y0xrcc3KY_i5DgfD_zRXX8_np_z9_rCcGFiTB83iEs3rcINgmWiYnY-C9jVvIbgIIxfsHY33t8PTpPb873w4uGM30u4Rsf0QltGqLFIj1j0Rx5fVpYjV3rEhNnB4YpHCeXHdu3ocENcLnu8JmvAeoIeQ_F7LUmHZ8cshZdSsm9z2_MYqC83ojyFkb6BdRmdaMjFnEr4wMNV0hO_RcOP2Jz7CkALZZ8p2NTyjbbuHJ38ukGiOZk3zBIc0xREDkv4N1bUKUkOzeJFO5TyFBMzOeqwl9dgkCgbZ0Eb64cQsieojrcM3CL2kRPjpX1rwQCdlssxXfYz0cQ3yjr2ZkyOREUreaq5VTGcVRHVnuHrUcDnhFrH77o1gz3hq33biI72LTV3JbsklfRz-Kc70T7QweXyXHUZeJfKPCAeK90mcT5aSwOPXZYcXZUNiZp6b3nLYjkI96gNSsBGOyQF2j9CUQKE2c1CkodFz4Y_EiTU7DsM_WSIFAztMbVhEtQhp3pz0yP0ksHx_5pYQAqsHYNx8NsgHmRrmRbXiM9O708QxgATYJ7Mze-nBe5PEwmWPlTKDJx2JsygVVhc6R5fGBrFoDoJqpnwxkS_dNa0Z1v5bo5y0mgCjWTLm1_TwpTt1JIGADjsygmVOBOtPGem6nZhlhi-Dv-8Q3KcY6cg24iK2rGV1QcDAE_dU5lyHoZrM1Xvo_IYXcfzabdqR-vezN1io8-tPd2-XmO1ITPpA8VDToph_Jd-3sZvCcSC3-OekLG8npjczNRNwvNYVyTipyo2ShXFxdGLvn8A_M4r5xZH8r1-dountKW0VA_e0jkZUsQkcHcpWRcd_cBbFhNWfaRsXdRXiQnn9hs0NPye4giZ6AESvBtDB6ECTblfPhsf0mKa4yoArTRg2mmevJzXZIL13KVkH4KEXwh19znWp__PncQaJKYXC2GlwNhP7R2FFAXI2RCuQRk8guSZCu1xtPJb46RxTqDLrq-si9FYNH0xjBQCJ6j_AXxYL6IiSFoaOvoU138U6dkdRJJm5I3G7R31VqsDEzFzgUBiiUzvrtkIlxPxYNc0szfQ_LdjWOmNmaiV4zjK9a8PVct0tGtmuyqQLDGSU04GES1RkT0LwD8saar1Bha8zM4ps5uLyz1sF6K0TrpKPjEyfF_CyMDvfgu7_v_ToLKDasr5Gy0eR8kPT2JZ15JUNA2_Ck8N33rGiEnJ8haPCoc04t_pUbZIid3w44aDIub7iq1r8oWnvabhLfwq593tMO3pD6VxpXtMIm-UJUhQQeXOYrweHJG4lX37hKflKk_UmWMlSuoi0jseXvBHJQ8eKvorhcSv4-eUHq83xCgCa-5NjkFEgmRR9HXWNGcmKaBNvdDBtSzksQ6W9MV-QOw8_C2vnkr-zXd0nRy0LNc4y0M-nSRwGzY12wREnw2q7cYwUH9pp6VD3-4tfKlccf5cZ8naKEGuXTH3VFAsD9cCVRp62ziKkYPIYztnCVCLqmdDdj9s1AlHS2yJ5SJkqVywvokHcuJjcAU7dlbh-GOvv1fwIijf2skjXVJZo69voG5LwCkWGEFoz4FObWxdQ2lqtL9Ub3StzedI9DDnRJZXxYL1NnQ6RP3kyfTEdrZPLPLBT6ZkcbrOIaDogZ4M07o4uKw0hZgxP35VHuKu0yd5wiuD0xLhBvnnE549Rpd74E6VQMUZQpP3wcHonNNDJ9_wabokLB8QQJWU-CzgPcQMoXld9EakktYT8O6b3h8BoP6McyJEsFfmajfqAnJOP4lq1tg15qPOOb85fUqklYmj83IxOGcRsTjOwTzX6m2AOyOUd_4TKgJJUu7k_w2vPQZCogDqt_Akvk6dMOEOOnGy0VsV71HmsanklkUIg_GNFQa442nVxZTaXrvCxy8n9_XmPLNO8O2LSUhOaAoVc9EnyvREuUqDhNLSbsSxZBlUSjmZPdxaBS_Zaz374l6lpapBeSt42EGti8nhbDfPwfhJh8kchhIEIN5Zlz8lOtCfBb7LPcLy72dhV1F_rPNIV0BjVbz0EL0VfIfE3ld-qjTQ8LK-4-uLE3zAE1LuyVLj0Xc1YNSWvc_vEbdo0xlJtV6sJvIVc18hHREOXsjo_P7mgLy7bp2WQRYNYt6igoBZbMr4GXXJW-J-1s4NXNYhkA-ajnQ6dkX8kegkBM1auLjMqjYqzCa-_MwThinaMbKtfulzk5IRgeQ==",
+      "summary": []
+    },
+    {
+      "id": "msg_0e684187873d8443016aed0ad2fb2c87d19ee2d4bf5e95d240",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[],\"mainClaim\":\"The answer asks what kind of callbacks the user means and suggests possible reasons for a lack of job-application callbacks.\",\"evidenceQuote\":\"“Why Am I Not Getting Interviews?” Here’s What Might Be Going Wrong\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 440,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 194,
+    "output_tokens_details": {
+      "reasoning_tokens": 128
+    },
+    "total_tokens": 634
+  },
+  "user": null,
+  "metadata": {}
+}

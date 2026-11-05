@@ -1,0 +1,140 @@
+{
+  "id": "resp_0956fea14834e34f016aed0a441b2c87d1a4678ff72d5cd57b",
+  "object": "response",
+  "created_at": 1793919556,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1793919559,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_0956fea14834e34f016aed0a45331087d1bd8344f1e8a59294",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7QpH2UJ6xThY5ZKBL0Y-eGRronologQySZNuhJqTI-iQtEzKQAoLPpqjcWjnnUTxHkIeZ_T-Npdw0lBrVLpPDPTl2aGTvQ7wYC9e3Tvw0rnujkIm5tQwHYYNkQUJ5jiP2R27HVO6X8hBf3GikmTExYiM3AOGL9HKKQdMO3L7622kObRv6K88SW8K6lTS0G9qev8UVzHfd-Lss2iBcxAtHUDjd6nmj8tg0FOh2u5TaudO-YKnvIWPytX6zNxePPmt-eD3VzjneAIWiqY9Wq9XB4CfMOaZRVT7Tg-kGvnbMKc2jRc74oKsnl6e1nfbxAMjEJvmXj184WzFwDShD_H2WyFjh0JqdVqg1mIxBU0NeVXZx2hX3swVR5c-v-bOz-DaVYPLUQzU1HmRpX5_UosA5kqIJOrcFkA5LnKT-w8jRMccAL54BDibWFg5572XV8HvSUVosoHnHjapZRHUcfOzsmGvGAW_6AgJ2oVtB_JPSPxrn5k1EUMkxgNSRSeF6rIhfcksxMrSpwIbdx-uwrqtAHQBz5_EKV4i8eJdwkZOXCpXqRQGDSUdYKV_RBpJHuAvfHhH8DB97mxEPjlRhHnXn-04aZevx3YCZLh6CY0eeHhGRJcGE_8slF0iOH30aMKgtFMFZiN5TEm7s47sxsV0ZQQzBvRIhOJTG3jZGxDeFJ0TopH9DUyzUqEPGPATclS-2m11zALWTc1dTHES8mODJHr2pTphHGUhDRmrDcbxaSlM0UnJDRtv6ZJBScEFdDIvQk0dzVKCrh5amcxjXvBXQ-e1khlFMrDlG0D5geV_kWqhEd__d720O5CtAX2sSJYeDFhfXaD2pQiauO9qaPhIBVyM7UUuOsEl8CbQhLGpVrnvuiQjcn8KVy5vLJnoulGV2Qf-a7vm6_tGOhh4YQPVC5lZ0b_AA6u23TxwsvGfh2fD-6gQar2Vk8PJ9aZmKwRMRiLozxssrl6oTRiamNGsS-IfQe0cZnpgyBZQ_UVUvBlwuUC9fddHOw2R7zNZa6pMh8UwDZdkESaFsEcWHkr025OMhzBuIxYtFhrA3CiB47T_kAdLCl7xWmlbCV9lHK0tVbR5TKbd2bvnm4kKKarT2oo7ZU6TNUIh6rOcJlDtREpwpyKw9RRmWPRHCpJZ02hvUZbGP4FJjGgzdJgUg1rDUWTm5jKsUsaCE94-wcWPSsAqQ2stqnrkNqZxxnhMdTLs3YTjthJxrwyd_0mnp4slOivyMZOHopBJqVUuO3jEI3v3JXJFS85wnDeYiLjIj_IeKMcdwv0vzghzr1lfx-1pCclN0psrVgXYBv8ZkA835H-LPcSJddObL0J7tcUIJXdXyMggVA5_qunW8SautebG8Gz5HbhFbojfvyzR-OZprjcyECAo8oWkpvzwoynhIbr9rbT1qzZhKLmxjdQyGC4Vix1YTnexrdVaj-g4PgLbcB6sfynXwSaBpC5gX0r07aRt8uLBp_w8quMdAHKxZZf54q837-cj4_8Z27wG2hrYiT7BkUS_ikDoH0sqVHNieqsI0zvAoxT2W-O5CtmArWLe2IH1-5GbKa0way-Sp74YHG1Me27nR824oKESVE_GSLrvXXvPC8uhCWpxQqzu6xCUO4dvxWiBWmKeUYEKWoghtbdYtKo08BxoPsnpgoVO__V_Vf4pTtnLMKCzl2C2aaBJcgNLAZY6vg5Diwp3XGAqJUwHr5m-pjUefl6h7rzn8_ruzvCLIByxQe9wZxEqoEPGAEZzKTB8peDAKm2WWHUN30f-AyCO9W794SOwAPm7S0WiGL4h1xdutfyZ78GPi93rQ7vlz0kbuPkQd_iMencUnNngPfrf7hMjLBM9-tmqE2enbqSej3eSJGE5NVw4s_SUagKhakI6ZHrQTbPE8i7xtS-cicUhMZInedpVYMxS6uSgIRPne75Oxf8PYeOM4RvDb0hK4ll8hBoaYsJiAWsj67CpvK2dfZBNobZRy4z5glDoKhCveT1dPGH-febfjX4C8dAfT_dTfz0goPp5s_SQlaNuayqT5dktHKdQGG_XpeH7d82fVrIx6F8PsLYxycdesVrZu4WijMkTNaeihnGkjJ0GJZI0B0PbMcIREr5vwzVOAcA6_8brYxeZoJPqVEAH_3TMOi0sf5q_losE1U1SGPJJVRkArlVMnK5T-22oBWH7mYJ9iq73i3JbuC7XNFRmxuEmZm3grcscSdYmNSluPt2DrLoTSFJdq97uApa_XplRKrieBEYZaU-sCiXb5vSL5-V1nmB9VrXO4SLkEpHAfU9596wPqpJ0ZxejD_OyzNmxh_uR3um8R-DgJqhpyg75_wn8_t4L8abstm8R3M5ohnNwstu6nflLGEE5tvgjwxWdwasEyotEWpmfUSG9-QFhtMggSvUfvDNEKkcGvF-zyz22mU8Uc_UkLU-yQhG0kcbCMWBQu28JwzbLKhKX8F3l3L1K8-JObS4cx_KwilobA6D1mspmEydv4romQKJ8enLChDV3UCumWKAkSv-Iq3l6HWVyGFvXHWXwWAvcAcvCdNehxm_bXuzNntj4EEdjQF4gLGBJdxWdwCZssNE6i2XfeBMHHV4Ju1GKPUqI3C-4wdYniJhkgGWzitZLh7b-tbKINg0GlDy-TxOJnIxP-WIjKnsvfQ==",
+      "summary": []
+    },
+    {
+      "id": "msg_0956fea14834e34f016aed0a468f1487d195b3a06c1d8292e4",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[\"Teal\",\"Rezi\"],\"mainClaim\":\"Start with Teal’s free plan for resume building and job tracking, or try Rezi’s free tier for AI-assisted writing; the answer asks about the target job and whether the user already has a resume.\",\"evidenceQuote\":\"Teal+ Pricing | Premium Features to Level Up Your Career\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 634,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 186,
+    "output_tokens_details": {
+      "reasoning_tokens": 98
+    },
+    "total_tokens": 820
+  },
+  "user": null,
+  "metadata": {}
+}
