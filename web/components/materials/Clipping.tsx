@@ -34,7 +34,7 @@ export function Clipping({
     const filterId = `marker-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
     return (
-        <figure ref={ref} className={cn(styles.figure, seen && styles.marked, dim && styles.dim, className)} data-marked={seen || undefined}>
+        <figure ref={ref} className={cn(styles.figure, seen && styles.marked, dim && styles.dim, className)} aria-label={caption ? undefined : `A line from the resume: ${line}`} data-marked={seen || undefined}>
             {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
             <Paper kind="strip" className={styles.strip} aria-hidden="true">
                 {above && <p className={cn(styles.ghost, styles.ghostTop)}>{above}</p>}

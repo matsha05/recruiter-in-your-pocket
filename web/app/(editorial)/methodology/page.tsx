@@ -54,7 +54,7 @@ const SOURCES = [
  */
 export default function MethodologyPage() {
     return (
-        <div className={rhythm.page} data-visual-anchor="methodology-page">
+        <div className={rhythm.page} data-visual-anchor="research-article">
             <section className={rhythm.opening} aria-labelledby="methodology-title">
                 <h1 id="methodology-title" className={rhythm.title}>How the report works.</h1>
                 <p className={rhythm.deck}>A recruiter wrote the criteria. AI applies them to your resume, line by line, and quotes the line behind every note.</p>
@@ -86,6 +86,7 @@ export default function MethodologyPage() {
                 <h2 id="miss-title" className={rhythm.title}>The Critical Miss.</h2>
                 <p className={rhythm.deck}>A problem that could cost you the interview on its own. The report quotes the line, says what&rsquo;s missing, and asks for it instead of guessing. Up to three, the first to fix first.</p>
                 <Clipping
+                    caption="A line from Jordan’s resume, and the report’s question"
                     line={JORDAN_EXAMPLE.line}
                     note={JORDAN_EXAMPLE.asks[0].question}
                     above="Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue"
