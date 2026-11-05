@@ -2,6 +2,8 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
+import Link from "next/link";
+import { comparison } from "@/components/compare/comparisons";
 
 const PATH = "/research/human-vs-algorithm";
 
@@ -62,7 +64,7 @@ export default function HumanVsAlgorithmPage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision.
+                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision, and that includes <Link href={comparison("rezi").path} className="focus-ring riyp-link">a builder&rsquo;s live score that rates your resume as you type</Link>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">

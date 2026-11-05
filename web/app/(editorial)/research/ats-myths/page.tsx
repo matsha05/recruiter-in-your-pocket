@@ -118,7 +118,7 @@ export default function ATSMythsPage() {
 
             <h2 className="research-h2">What can actually break</h2>
             <p className="research-body">
-                Greenhouse lists image-based resumes, graphics, word art, complex tables, headers, footers, text boxes, and columned layouts among formatting patterns that can produce unsuccessful or partial parsing. Lever notes that image files are not parseable and recommends checking whether the document text can be highlighted.
+                Greenhouse lists image-based resumes, graphics, word art, complex tables, headers, footers, text boxes, and columned layouts among formatting patterns that can produce unsuccessful or partial parsing. Lever notes that image files are not parseable and recommends checking whether the document text can be highlighted. Those layouts are what <Link href={comparison("enhancv").path} className="focus-ring riyp-link">a design-first builder</Link> sells, so export the PDF and check that its text can be selected.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
                 {" "}A failed parse doesn&apos;t make the resume disappear. Greenhouse attaches the file to the candidate and asks the recruiter to enter the details by hand, and Lever describes the same fix.

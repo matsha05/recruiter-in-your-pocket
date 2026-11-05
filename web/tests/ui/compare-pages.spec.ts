@@ -10,6 +10,9 @@ const comparePages = [
   "/compare/jobscan",
   "/compare/resume-worded",
   "/compare/teal",
+  "/compare/kickresume",
+  "/compare/rezi",
+  "/compare/enhancv",
 ] as const;
 
 async function expectNoSeriousAxeViolations(page: import("@playwright/test").Page, route: string) {
@@ -27,6 +30,13 @@ test.describe("comparison pages", () => {
     for (const route of comparePages) {
       await expect(table.locator(`a[href="${route}"]`)).toHaveCount(1);
     }
+    // The question people ask the engines, answered honestly: builder, scanner, or a recruiter's read, with the report's limits.
+    const whichTool = page.locator("#which-tool");
+    await expect(whichTool.getByRole("heading", { level: 2 })).toHaveText("Which resume tool should I use?");
+    for (const phrase of ["you need a builder", "you need a keyword scanner", "you need a recruiter’s read", "The report’s limits", "no keyword score and no interview odds", "haven’t run these tools and ours on the same resume"]) {
+      await expect(whichTool).toContainText(phrase);
+    }
+    await expect(whichTool.locator('a[href^="/research/"]')).toHaveCount(2);
     await expect(page.locator("#how-we-compare")).toContainText("We haven’t run the other tools and ours on the same resume");
     await expectNoSeriousAxeViolations(page, "/compare");
   });
