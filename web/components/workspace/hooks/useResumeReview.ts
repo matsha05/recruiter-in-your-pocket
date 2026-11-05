@@ -35,6 +35,8 @@ export function useResumeReview(input: {
   setIsAuthOpen: Setter<boolean>;
   setAuthContext: Setter<any>;
   onReportReady?: () => void;
+  /** The report arrived: whether the server offers the questions first, and whether this was a rebuild. */
+  onReportComplete?: (report: any, meta: { askFirst: boolean; rebuilt: boolean }) => void;
   canRun?: boolean;
   captureUploadOwner?: () => unknown;
   isUploadOwnerCurrent?: (owner: unknown) => boolean;
@@ -111,16 +113,23 @@ export function useResumeReview(input: {
     input.setIsAuthOpen(true);
   }, [input]);
 
-  const handleRun = useCallback(async () => {
+  /**
+   * Runs the report. With `rebuild`, writes it again from `text` (the resume with the person's answers
+   * in it) bound to the first report: free, so the gate and the counter are left alone, and the first
+   * report stays on screen until the second arrives (ask-first).
+   */
+  const handleRun = useCallback(async (run?: { rebuild: { reportId?: string | null; recoveryId?: string | null }; text: string }) => {
     if (input.canRun === false) return;
-    if (!input.resumeText.trim()) {
+    const rebuild = run?.rebuild ?? null;
+    const resumeText = run?.text ?? input.resumeText;
+    if (!resumeText.trim()) {
       toast.error("Add your resume first", {
         description: "Upload a file or paste the resume text before creating the report.",
       });
       return;
     }
     const hasPaidAccess = Boolean(input.user?.membership && input.user.membership !== "free");
-    if (input.freeUsesRemaining <= 0 && !hasPaidAccess) {
+    if (!rebuild && input.freeUsesRemaining <= 0 && !hasPaidAccess) {
       input.setIsPaywallOpen(true);
       Analytics.paywallViewed("free_uses_exhausted");
       return;
@@ -129,21 +138,22 @@ export function useResumeReview(input: {
     const signedIn = Boolean(input.user);
     input.setIsLoading(true);
     input.setIsStreaming(true);
-    input.setReport(null);
+    if (!rebuild) input.setReport(null);
     const controller = input.beginAnalysis("resume");
     const hasJobDescription = hasEffectiveJobDescriptionValue(input.jobDescription);
-    Analytics.reportStarted(hasJobDescription);
-    Analytics.track("report_stream_started", { has_jd: hasJobDescription, mode: "resume" });
+    if (!rebuild) Analytics.reportStarted(hasJobDescription);
+    Analytics.track("report_stream_started", { has_jd: hasJobDescription, mode: "resume", rebuild: Boolean(rebuild) });
 
     try {
       const result = await streamResumeFeedback(
-        input.resumeText,
+        resumeText,
         input.jobDescription || undefined,
         () => undefined,
         "resume",
         {
           signal: controller.signal,
           savedJobId: input.persistedSavedJobId,
+          rebuild,
           onStage: (stage) => {
             if (input.isAnalysisCurrent(controller)) input.setAnalysisStage?.(stage);
           },
@@ -178,6 +188,7 @@ export function useResumeReview(input: {
           showReport: () => {
             input.onReportReady?.();
             input.setReport(result.report);
+            input.onReportComplete?.(result.report, { askFirst: result.askFirst === true, rebuilt: Boolean(rebuild) });
             Analytics.reportCompleted(result.report?.score || 0);
           },
           finishOwner: () => input.endAnalysis(controller),
@@ -185,8 +196,9 @@ export function useResumeReview(input: {
             input.setIsLoading(false);
             input.setIsStreaming(false);
           },
+          // A rebuild spent nothing: the counter is refreshed, never decremented on its account.
           refresh: () => input.refreshFreeStatus({
-            fallbackDecrement: true,
+            fallbackDecrement: !rebuild,
             includeUserRefresh: true,
             requireOk: true,
             shouldApply: () => input.isAnalysisCurrent(controller),

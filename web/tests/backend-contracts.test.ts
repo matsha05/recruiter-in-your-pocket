@@ -324,7 +324,8 @@ for (const [name, source] of [
   const signedInBranch = source.slice(signedInAt, signedInElseAt);
   assert.ok(signedInAt >= 0 && atomicFinalizeAt > signedInAt && signedInElseAt > atomicFinalizeAt,
     `${name} must atomically finalize a signed-in report`);
-  assert.match(signedInBranch, /entitlementKind !== "bypass"/);
+  // A bypass, and on the stream route an ask-first rebuild, is persisted without a reservation to finalize.
+  assert.match(signedInBranch, /entitlementKind !== "bypass"|&& !unreserved/);
   assert.match(signedInBranch, /reportId = finalized\.reportId;[\s\S]+reservationCommitted = true/);
   assert.doesNotMatch(signedInBranch, /persistGeneratedReport|commitGenerationAccess|finalizeGenerationCompletion|rollback|compensat/i,
     `${name} signed-in finalization must not split insert, commit, or compensation`);

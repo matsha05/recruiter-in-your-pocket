@@ -232,6 +232,7 @@ export function FixRow({
   fix,
   index,
   total,
+  label: labelOverride,
   why,
   whatToAdd,
   hidden,
@@ -245,6 +246,8 @@ export function FixRow({
   index: number;
   /** How many fixes the report shows, so the label reads "Fix 2 of 3" where the heading is out of view. */
   total: number;
+  /** A label other than the position: "Worth tightening" on a clear page. */
+  label?: string;
   why?: string;
   whatToAdd: string[];
   hidden: boolean;
@@ -256,7 +259,7 @@ export function FixRow({
   const [openLift, setOpenLift] = useState(false);
   const onPage = marksLine(fix);
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
-  const label = fixPositionLabel(index, total);
+  const label = labelOverride || fixPositionLabel(index, total);
   const id = `section-fix-${index + 1}`;
 
   if (locked) {

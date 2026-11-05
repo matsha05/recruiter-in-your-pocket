@@ -57,6 +57,8 @@ import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-gen
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
 import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
+import { askFirstOffered, isAskFirstEnabled } from "@/lib/reports/ask-first";
+import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Worst case: main call 90 s, one incomplete retry, a repair call, the severity check and persistence.
@@ -138,8 +140,16 @@ export async function POST(request: Request) {
             access_consumed: false,
         }));
     }
-    const { text, mode, jobDescription } = validation.value;
+    const { text, mode, jobDescription, rebuild } = validation.value;
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
+    if (rebuild && mode !== "resume") {
+        return respond(singleGenerationStreamEvent(request_id, {
+            type: "error",
+            errorCode: "VALIDATION_ERROR",
+            message: withGenerationAccessOutcome("A report can only be written from answers in resume mode.", false),
+            access_consumed: false,
+        }));
+    }
     const reportSignal = (viewerSignedIn: boolean) => ({
         mode,
         viewer: viewerSignedIn ? "signed_in" as const : "anonymous" as const,
@@ -188,8 +198,9 @@ export async function POST(request: Request) {
 
         bypass = isDevelopmentPaywallBypassEnabled();
         if (!user) firstAttempt = freeMeta.used === 0 ? "yes" : "no";
+        // A rebuild (ask-first) is bound to the first report instead of a recovery or operation of its own.
         requestedRecoveryId = requireAnonymousReportRecoveryId({
-            mode, userId: user?.id || null, bypass, recoveryId: body?.recovery_id,
+            mode, userId: user?.id || null, bypass: bypass || Boolean(rebuild), recoveryId: body?.recovery_id,
         });
         if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
             recordLaunchSignal("riyp.free_gate.check", {
@@ -205,9 +216,15 @@ export async function POST(request: Request) {
             }, 409));
         }
         authenticatedOperationId = requireAuthenticatedGenerationOperationId({
-            mode, userId: user?.id, bypass, operationId: requestedOperationId,
+            mode, userId: user?.id, bypass: bypass || Boolean(rebuild), operationId: requestedOperationId,
         });
-        accessReservation = await reserveGenerationAccess({
+        accessReservation = rebuild ? await reserveRebuild({
+            rebuild,
+            text,
+            userId: user?.id || null,
+            admin,
+            anonymousIdentityHash: user ? null : hashAnonymousIdentity(anonymousIdentity.identity),
+        }) : await reserveGenerationAccess({
             userId: user?.id || null,
             admin,
             reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
@@ -299,7 +316,7 @@ export async function POST(request: Request) {
     }
 
     const grantedReservation = accessReservation;
-    if (!bypass) {
+    if (!bypass && !rebuild) {
         recordLaunchSignal("riyp.free_gate.check", {
             result: "allowed", reason: "none", first_attempt: firstAttempt, viewer: user ? "signed_in" : "anonymous",
         });
@@ -489,7 +506,8 @@ export async function POST(request: Request) {
                 }
                 stages.skip();
                 throwIfClientDisconnected();
-                if (user && mode === "resume" && grantedReservation.entitlementKind !== "bypass") {
+                const unreserved = grantedReservation.entitlementKind === "bypass" || grantedReservation.entitlementKind === "rebuild";
+                if (user && mode === "resume" && !unreserved) {
                     if (!reservationAdmin) throw new Error("Report finalization is unavailable.");
                     const finalized = await finalizeAuthenticatedGeneratedReport({
                         admin: reservationAdmin,
@@ -511,7 +529,8 @@ export async function POST(request: Request) {
                     });
                     reservationCommitted = true;
                 } else {
-                    if (user && mode === "resume" && grantedReservation.entitlementKind === "bypass") {
+                    // A rebuild is kept as a report of its own; the first report stays as it was.
+                    if (user && mode === "resume" && unreserved) {
                         reportId = await persistGeneratedReport({
                             supabase: reservationAdmin,
                             userId: user.id,
@@ -530,6 +549,9 @@ export async function POST(request: Request) {
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
                 const newFreeRemaining = freeUsesRemaining;
 
+                // The page isn't ready: the client shows the questions a recruiter would ask before this
+                // report, and may write it again from the answers (ask-first, Nov 5, 2026). Never on a rebuild.
+                const askFirst = mode === "resume" && !rebuild && isAskFirstEnabled() && askFirstOffered(payload as Parameters<typeof askFirstOffered>[0]);
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "complete",
                     ok: true,
@@ -540,8 +562,13 @@ export async function POST(request: Request) {
                         : (reportId ? null : makeValidatedReportReceipt(payload)),
                     recovery_id: anonymousRecovery?.recovery_id ?? null,
                     operation_id: authenticatedOperationId,
-                    free_run_index: newFreeUsed,
-                    free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
+                    ask_first: askFirst,
+                    rebuilt: Boolean(rebuild),
+                    // A rebuild spends nothing, so it says nothing about what's left.
+                    ...(rebuild ? {} : {
+                        free_run_index: newFreeUsed,
+                        free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
+                    }),
                 }) + "\n"));
 
                 // Recorded before close so the flush is scheduled while the request is still open.

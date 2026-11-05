@@ -12,7 +12,6 @@ import { liftAnswersFromStored, sendLineAnswers, storedAnswersFromLift, type Sto
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
-  buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
   criticalCountHeading,
   fixLabel,
@@ -20,14 +19,15 @@ import {
   questionForPlaceholder,
   readCriticalMisses,
   reportHasJobDescription,
+  TIGHTENING_HEADING,
   withCriticalFirst,
 } from "@/lib/reports/report-presentation";
+import { reportTone } from "@/lib/reports/score-band";
 import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 import { splitVerdict } from "@/lib/reports/report-opening";
 import { liftQuestions } from "@/lib/reports/revised-line";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
-import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
 import { ResearchReceipts } from "./ResearchReceipts";
@@ -97,10 +97,6 @@ export function ReportStream({
     () => buildReportRewritePresentation(fixes, reconciled.rewrites || []),
     [fixes, reconciled.rewrites],
   );
-  const questions = useMemo(
-    () => buildIndependentQuestionPresentation(reconciled.ideas?.questions || []),
-    [reconciled.ideas?.questions],
-  );
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
   const verdict = report.first_impression || report.first_impression_takeaway || report.summary || "Here's where to start.";
@@ -109,8 +105,12 @@ export function ReportStream({
   const [restOpen, setRestOpen] = useState(false);
   const readLine = report.score_comment_short && report.score_comment_short !== verdict && report.score_comment_short !== opening.lead ? report.score_comment_short : null;
   const misses = readCriticalMisses(reconciled);
-  const countHeading = criticalCountHeading(misses);
+  // How the report speaks to this page: a clear page with one miss gets the question a recruiter would
+  // ask, never a Critical Miss; the bottom rung is where the questions come first (Matt, Nov 5, 2026).
+  const tone = reportTone(report.score, misses);
+  const countHeading = criticalCountHeading(misses, tone);
   const criticals = fixes.slice(0, misses.count);
+  const ready = tone === "ready" && misses.count === 1;
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
   // A recovered report has lost the posting's text but not the fact that it was read against one.
   const hasJobDescription = hasJobDescriptionText || reportHasJobDescription(report);
@@ -135,6 +135,9 @@ export function ReportStream({
   // A Critical Miss about something the resume doesn't have has no line to revise.
   const revisable = criticals.flatMap((fix, index) => (marksLine(fix) ? [index] : []));
   const allAddressed = revisable.length > 0 && revisable.every((index) => lifts[index]?.state === "addressed");
+  // A clear page ends on sending it, then the posting: the pass's job for this person (Matt, Nov 5, 2026).
+  const readyEnding = ready ? "Send it. Then read it against the posting you're going for." : null;
+  const revisionLabel = ready ? "Read it against a posting" : "Compare my revision";
 
   const questionsFor = useCallback((index: number) => {
     const asked = liftQuestions(integrity.fixQuestions[index] || []);
@@ -208,7 +211,7 @@ export function ReportStream({
         )}
       </section>
 
-      <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title">
+      <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title" data-tone={tone}>
         {countHeading ? (
           <div className={styles.countHead}>
             <h2 id="fixes-title" className={styles.sectionTitle}>{countHeading.title}</h2>
@@ -223,7 +226,7 @@ export function ReportStream({
               key={`${fix.fix || fix.text}-${index}`}
               fix={fix}
               index={index}
-              label={fixLabel(index, misses)}
+              label={fixLabel(index, misses, tone, fixes.length)}
               definition={index === 0 && !countHeading ? "The one thing to fix first" : undefined}
               why={index === 0 ? criticalMissReason(integrity) : fixCardSlots(integrity, index).why}
               hidden={hiddenFixes.isHidden(index)}
@@ -257,6 +260,10 @@ export function ReportStream({
             </PageNote>
           )}
 
+          {/* On a clear page the rest are tweaks, under their own heading, not fixes. */}
+          {ready && fixes.length > 1 && (
+            <li className={styles.tighteningHead} aria-hidden="true"><p className={styles.sectionTitle}>{TIGHTENING_HEADING}</p></li>
+          )}
           {fixes.slice(criticals.length).map((fix, offset) => {
             const index = offset + criticals.length;
             const slots = fixCardSlots(integrity, index);
@@ -266,6 +273,7 @@ export function ReportStream({
                 fix={fix}
                 index={index}
                 total={fixes.length}
+                label={ready ? fixLabel(index, misses, tone, fixes.length) : undefined}
                 why={slots.why}
                 whatToAdd={slots.whatToAdd}
                 hidden={hiddenFixes.isHidden(index)}
@@ -285,7 +293,7 @@ export function ReportStream({
 
       <ResearchReceipts />
 
-      <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={sourceText} isReadOnly={isSample} />
+      <IndependentAdvice rewrites={presentation.independentRewrites} resumeText={sourceText} isReadOnly={isSample} />
 
       {strengths.length > 1 && (
         <section id="section-keep" className={cn(styles.keep, "scroll-mt-36")} aria-labelledby="keep-title">
@@ -327,8 +335,6 @@ export function ReportStream({
         </div>
       </details>
 
-      <FullRecruiterNotes report={reconciled} hasJobDescription={hasJobDescription} />
-
       {isSample && onStartReport && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
           <h2 id="report-next-step" className={styles.sectionTitle}>What would they think of yours?</h2>
@@ -357,10 +363,10 @@ export function ReportStream({
       {!isSample && isSignedIn && !onSaveReport && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-next-step">
           <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : "Made your edits? See what changed."}
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : readyEnding || "Made your edits? See what changed."}
           </h2>
           {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
-          <div><Button variant="primary" onClick={onStartRevision}>Compare my revision<ArrowRight className="size-4" weight="bold" /></Button></div>
+          <div><Button variant="primary" onClick={onStartRevision}>{revisionLabel}<ArrowRight className="size-4" weight="bold" /></Button></div>
           {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.terms}</p>}
         </section>
       )}
@@ -368,12 +374,12 @@ export function ReportStream({
       {!isSample && !isSignedIn && onStartRevision && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
           <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed."}
+            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : readyEnding || (isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed.")}
           </h2>
           {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
           <div>
             <Button variant="primary" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
-              {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : "Compare my revision"}<ArrowRight className="size-4" weight="bold" />
+              {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : revisionLabel}<ArrowRight className="size-4" weight="bold" />
             </Button>
           </div>
           <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison lasts for this visit. Save the report to keep it."}</p>

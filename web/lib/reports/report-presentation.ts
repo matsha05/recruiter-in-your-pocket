@@ -8,6 +8,7 @@ import {
   type VerifiedFact,
 } from "../llm/source-fidelity";
 import { hasBracketPlaceholders } from "../llm/report-placeholder-policy";
+import type { ReportTone } from "./score-band";
 
 type ReportFix = NonNullable<ReportData["top_fixes"]>[number];
 type ReportRewrite = NonNullable<ReportData["rewrites"]>[number];
@@ -88,12 +89,25 @@ export function readCriticalMisses(report: SeverityFlags): CriticalMisses {
   return { count, counted: true, more: count === 3 && report.more_critical === true };
 }
 
+/** The heading on a clear page with one miss: the question they'd ask, never a Critical Miss (Matt, Nov 5, 2026). */
+export const READY_HEADING = {
+  title: "The question they'd ask.",
+  lead: "Not a reason to pass on you. Worth a sentence before you send it.",
+} as const;
+
+/** The heading over what's left on a clear page: tweaks, not fixes. */
+export const TIGHTENING_HEADING = "Worth tightening." as const;
+
 /**
  * The count leads the fix section once the report knows it. Without it, the fix headings above stay.
- * Copy: docs/copy-system.md §1.
+ * On a clear page with one miss (`tone` "ready") the heading is the question instead, counted or not,
+ * because the count claim ("most likely to cost you the interview") is wrong there.
+ * Copy: docs/copy-system.md §1 and §2.
  */
-export function criticalCountHeading(misses: CriticalMisses): { title: string; lead: string } | null {
-  if (!misses.counted || misses.count === 0) return null;
+export function criticalCountHeading(misses: CriticalMisses, tone: ReportTone = "standard"): { title: string; lead: string } | null {
+  if (misses.count === 0) return null;
+  if (tone === "ready" && misses.count === 1) return { ...READY_HEADING };
+  if (!misses.counted) return null;
   if (misses.more) {
     return {
       title: "More than three Critical Misses. Here are the three that matter most.",
@@ -115,8 +129,16 @@ export function missingFromResume(excerpt: string) {
   return isExactAbsenceSentinel(value) ? value.replace(/ (?:present|provided)$/u, "") : null;
 }
 
-/** A fix's card label: `Critical Miss` (numbered when there are several), then `Fix 2`, `Fix 3` by position. */
-export function fixLabel(index: number, misses: CriticalMisses) {
+/**
+ * A fix's card label: `Critical Miss` (numbered when there are several), then `Fix 2`, `Fix 3` by
+ * position. On a clear page with one miss the first row is `The question they'd ask` and the rest
+ * `Worth tightening` (numbered when there are two).
+ */
+export function fixLabel(index: number, misses: CriticalMisses, tone: ReportTone = "standard", total = 3) {
+  if (tone === "ready" && misses.count === 1) {
+    if (index === 0) return "The question they'd ask";
+    return total > 2 ? `Worth tightening · ${index} of ${total - 1}` : "Worth tightening";
+  }
   if (index >= misses.count) return `Fix ${index + 1}`;
   return misses.count > 1 ? `Critical Miss ${index + 1}` : "Critical Miss";
 }

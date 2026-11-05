@@ -33,7 +33,7 @@ export const ANALYTICS_EVENT_PROPERTIES = {
   report_detail_opened: [],
   workspace_upload_started: ["source", "file_type", "file_size_bytes"],
   workspace_upload_succeeded: ["source", "file_type", "file_size_bytes", "extracted_chars"],
-  report_stream_started: ["has_jd", "mode"],
+  report_stream_started: ["has_jd", "mode", "rebuild"],
   report_first_meaningful_chunk_rendered: ["mode", "latency_ms", "has_score"],
   save_prompt_viewed: ["score"],
   save_prompt_dismissed: ["score"],
@@ -49,6 +49,9 @@ export const ANALYTICS_EVENT_PROPERTIES = {
   sm1_fix_copied: [],
   // The Critical Miss's revised line now carries the fact it asked for (plan item 2.3).
   critical_miss_addressed: ["sample"],
+  // Ask-first (Nov 5, 2026): the not-ready page's questions were answered and the report written again, or skipped.
+  ask_first_written: ["answers", "questions"],
+  ask_first_skipped: ["questions"],
 } as const satisfies Record<string, readonly string[]>;
 
 export type ApprovedAnalyticsEvent = keyof typeof ANALYTICS_EVENT_PROPERTIES;

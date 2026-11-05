@@ -102,20 +102,17 @@ export async function streamResumeFeedback(
   jobDescription: string | undefined,
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
-  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void }
+  // `rebuild` (ask-first): write the report again from the resume with the person's answers in it, bound to the first report; free, no recovery marker of its own.
+  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null }
 ): Promise<{
-  ok: boolean;
-  report?: any;
-  message?: string;
-  errorCode?: string;
-  aborted?: boolean;
-  reportId?: string | null;
-  accessConsumed?: boolean;
-  attemptConsumed?: boolean;
+  ok: boolean; report?: any; message?: string; errorCode?: string; aborted?: boolean; reportId?: string | null;
+  accessConsumed?: boolean; attemptConsumed?: boolean; creditRestored?: boolean;
   attemptDisposition?: "consumed" | "restored" | "unknown" | "not_started";
-  creditRestored?: boolean;
+  /** The server read the page as not ready: show the questions before the report (ask-first). */
+  askFirst?: boolean;
 }> {
-  const attached = mode === "resume"
+  const rebuild = options?.rebuild ? { report_id: options.rebuild.reportId || undefined, recovery_id: options.rebuild.recoveryId || undefined } : undefined;
+  const attached = mode === "resume" && !rebuild
     ? attachAnonymousReportRecoveryMarker({
       text: resumeText,
       jobDescription,
@@ -130,6 +127,7 @@ export async function streamResumeFeedback(
         jobDescription,
         savedJobId: options?.savedJobId || undefined,
         mode,
+        ...(rebuild ? { rebuild } : {}),
       },
     };
   const recoveryMarker = attached.marker;
@@ -274,9 +272,10 @@ export async function streamResumeFeedback(
             ok: true,
             report: completeReport,
             reportId: event.report_id || null,
-            accessConsumed: true,
-            attemptConsumed: true,
+            accessConsumed: !rebuild,
+            attemptConsumed: !rebuild,
             attemptDisposition: "consumed",
+            askFirst: event.ask_first === true,
           };
         } else if (event.type === "error") {
           errorMessage = event.message;

@@ -5,7 +5,9 @@ export type GenerationEntitlementKind =
   | "pass_credit"
   | "pass_unlimited"
   | "anonymous_free"
-  | "bypass";
+  | "bypass"
+  /** A second read of a not-ready page written from the person's answers (ask-first): no reservation, nothing spent. */
+  | "rebuild";
 
 export type GenerationPassSnapshot = {
   id: string;

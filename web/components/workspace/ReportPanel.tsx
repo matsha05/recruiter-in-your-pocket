@@ -55,6 +55,8 @@ interface ReportPanelProps {
     readDurationMs?: number | null;
     /** The reader has an account: the ending leads with saving this version (W3). */
     isSignedIn?: boolean;
+    /** How many of the person's answers this report was written from (ask-first); 0 for a first read. */
+    rebuiltAnswers?: number;
 }
 
 export default function ReportPanel({
@@ -85,6 +87,7 @@ export default function ReportPanel({
     storedLineAnswers = null,
     readDurationMs = null,
     isSignedIn = false,
+    rebuiltAnswers = 0,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
@@ -127,7 +130,10 @@ export default function ReportPanel({
     // The header row: the role the report reads toward, the level it reads at, and how long it took.
     const roleFit = displayReport?.job_alignment?.role_fit;
     const targetRole = targetRoleOf(roleFit);
-    const readTime = isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
+    // A report written from the person's answers says so where the read time would go.
+    const readTime = rebuiltAnswers > 0
+        ? `written from ${rebuiltAnswers === 1 ? "your answer" : `${rebuiltAnswers} answers`}`
+        : isSample || isSavedReport ? null : formatReadTime(readDurationMs ?? Number.NaN);
 
     const handleExport = () => {
         if (!onExportPdf) return;

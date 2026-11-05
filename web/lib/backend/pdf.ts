@@ -4,9 +4,9 @@ import puppeteerCore from "puppeteer-core";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { ReportForPdf } from "../reports/pdf-export";
-import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses } from "../reports/report-presentation";
+import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
-import { SCORE_BANDS, scoreBandIndex } from "../reports/score-band";
+import { SCORE_BANDS, reportTone, scoreBandIndex } from "../reports/score-band";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -50,7 +50,10 @@ export function renderReportHtml(report: ReportForPdf) {
   const verdictReason = report.score_comment_short && report.score_comment_short !== verdict ? report.score_comment_short : "";
   const fixes = (report.top_fixes || []).filter((fix) => fix?.fix).slice(0, 3);
   const misses = readCriticalMisses({ top_fixes: fixes, more_critical: report.more_critical });
-  const countHeading = criticalCountHeading(misses);
+  // The same tone rule as the web report: a clear page with one miss gets the question, not a count.
+  const tone = reportTone(report.score, misses);
+  const countHeading = criticalCountHeading(misses, tone);
+  const ready = tone === "ready" && misses.count === 1;
   const bandIndex = Math.max(0, scoreBandIndex(report.score));
   const band = SCORE_BANDS[bandIndex];
   const [keepFirst, ...keepRest] = report.strengths || [];
@@ -65,7 +68,7 @@ export function renderReportHtml(report: ReportForPdf) {
   // Each marked line: the candidate's words on the left, the recruiter's note in the margin, as on the web.
   const markedRowHtml = (fix: NonNullable<ReportForPdf["top_fixes"]>[number], index: number) => {
     const miss = index < misses.count;
-    const label = fixLabel(index, misses);
+    const label = fixLabel(index, misses, tone, fixes.length);
     const questions = fix.questions || [];
     const line = escapeHtml(fix.line || "");
     // An absence ("No summary section present") is shown as what's missing; nothing is quoted or marked.
@@ -188,13 +191,14 @@ export function renderReportHtml(report: ReportForPdf) {
 
   ${fixes.length ? `
     <section class="section priority-section">
-      <div class="section-kicker">Fix these first</div>
+      <div class="section-kicker">${ready ? "Before you send it" : "Fix these first"}</div>
       ${countHeading
         ? `<div class="section-header count-head"><h2>${escapeHtml(countHeading.title)}</h2><p class="count-lead">${escapeHtml(countHeading.lead)}</p></div>`
         : `<div class="section-header"><h2>${escapeHtml(fixPlanHeadingForCount(fixes.length))}</h2></div>`}
       ${fixes.slice(0, misses.count).map((fix, index) => markedRowHtml(fix, index)).join("")}
       ${report.structural_gaps?.length ? `<div class="page-note gap"><div class="page-note-label">Before the bullets</div>${report.structural_gaps.map((gap) => `<p>${escapeHtml(gap)}</p>`).join("")}</div>` : ""}
       ${keepFirst ? `<div class="page-note"><div class="page-note-label">Keep this one</div><p>${escapeHtml(keepFirst)}</p></div>` : ""}
+      ${ready && fixes.length > 1 ? `<div class="section-header"><h2>${escapeHtml(TIGHTENING_HEADING)}</h2></div>` : ""}
       ${fixes.slice(misses.count).map((fix, offset) => markedRowHtml(fix, offset + misses.count)).join("")}
     </section>
   ` : ""}

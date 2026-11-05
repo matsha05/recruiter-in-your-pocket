@@ -1,0 +1,146 @@
+/* Questions first (Nov 5, 2026): the not-ready page's questions, each on the line it is about, before the
+   report. Type is the shared roles; colors are the Highlighter tokens; the strip is the site's paper. */
+
+.root {
+    padding: 1.25rem 1.25rem 4rem;
+}
+
+.head {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+}
+
+.title {
+    max-width: 30ch;
+    margin-top: 1rem;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+    scroll-margin-top: 6rem;
+}
+
+/* The heading takes focus on arrival for assistive technology only; no ring on a heading nobody tabbed to. */
+.title:focus {
+    outline: none;
+}
+
+.page {
+    margin-top: 1.25rem;
+}
+
+.list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.row {
+    display: grid;
+    gap: 0.625rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.row:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
+}
+
+.rowLabel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.125rem 0.5rem;
+    font: var(--type-label);
+}
+
+.position {
+    color: hsl(var(--muted-foreground));
+}
+
+.section {
+    color: hsl(var(--brass));
+    font-weight: var(--weight-body);
+}
+
+.strip {
+    max-width: 40rem;
+    margin: 0.25rem 0;
+}
+
+.line {
+    margin: 0;
+    font: inherit;
+    text-wrap: pretty;
+}
+
+/* The recruiter's note on the line, in the model's words: Literata italic in pen. */
+.note {
+    max-width: 52ch;
+    margin: 0;
+    border-left: 1px solid hsl(var(--pen));
+    padding-left: 0.75rem;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+.field {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 52ch;
+}
+
+.ask {
+    display: block;
+}
+
+.row[data-relation="none"] .ask {
+    color: hsl(var(--muted-foreground));
+}
+
+/* The three honest states: quiet buttons, the chosen one in ink with its underline, the rest muted. */
+.states {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    margin-left: -0.5rem;
+}
+
+.state {
+    color: hsl(var(--muted-foreground));
+    text-decoration-color: transparent;
+}
+
+.stateOn {
+    color: hsl(var(--text-strong));
+    text-decoration-color: hsl(var(--text-strong));
+}
+
+.related {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid hsl(var(--line));
+}
+
+/* The quiet skip sits on the column edge the button shares. */
+.skip {
+    margin-left: -0.5rem;
+}
+
+@media (min-width: 768px) {
+    .root {
+        padding: 2rem 2rem 6rem;
+    }
+}

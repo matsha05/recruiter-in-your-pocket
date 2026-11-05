@@ -93,7 +93,7 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     /* The marked page, as on the web: the candidate's line on the left, the recruiter's note in the margin. */
     .band { margin-top: 16px; max-width: 360px; }
     .band-name { font-weight: 600; }
-    .band-scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 6px; }
+    .band-scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 6px; }
     .band-bar { height: 4px; border-radius: 2px; background: var(--line); }
     .band-bar.current { background: var(--ink); }
     .band-anchor { margin-top: 6px; color: var(--muted); font-size: 10pt; line-height: 15pt; }

@@ -35,6 +35,7 @@ import { fetchSampleReport } from "@/lib/reports/sample-report";
 import type { GenerationStage } from "@/lib/generation-stage";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { scrollToReportSection } from "@/components/workspace/report/useReportNavigation";
+import { buildAskFirstQuestions, composeAskFirstResume, type AskFirstAnswers, type AskFirstQuestion } from "@/lib/reports/ask-first";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -77,6 +78,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const resumePickerRef = useRef<WorkspaceResumePickerHandle>(null);
     const [commandUploadName, setCommandUploadName] = useState<string | null>(null);
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
+    // Ask-first (Nov 5, 2026): a page the server read as not ready shows its questions before the report;
+    // the report is then written again from the resume with the answers in it, and the first stays put
+    // until the second arrives. `rebuiltAnswers` is how many answers the shown report was written from.
+    const [askFirst, setAskFirst] = useState<{ report: ReportData; questions: AskFirstQuestion[] } | null>(null);
+    const [rebuilding, setRebuilding] = useState(false);
+    const [rebuiltAnswers, setRebuiltAnswers] = useState(0);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
     const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
@@ -237,6 +244,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setReport(null);
         setJustUnlocked(false);
         setComparisonBaseline(null);
+        setAskFirst(null);
+        setRebuilding(false);
+        setRebuiltAnswers(0);
         setCommandUploadName(null);
         setLinkedInReport(null);
         setLinkedInProfileName('');
@@ -273,9 +283,47 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setIsStreaming, setAnalysisStage, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,
         onReportReady: prepareReportCompletion, canRun: !revisionBlocked,
+        onReportComplete: (completed, meta) => {
+            setRebuilding(false);
+            if (meta.rebuilt) {
+                setAskFirst(null);
+                return;
+            }
+            setRebuiltAnswers(0);
+            // A re-check compares reads; it never asks first.
+            if (!meta.askFirst || comparisonBaseline || savedRevision.active) {
+                setAskFirst(null);
+                return;
+            }
+            const questions = buildAskFirstQuestions(completed);
+            setAskFirst(questions.length > 0 ? { report: completed, questions } : null);
+        },
         captureUploadOwner: captureRecoveryOwner,
         isUploadOwnerCurrent: (owner) => latestAnalysisControllerRef.current === owner,
     });
+
+    // The person answered: the resume gets their answers, word for word, and the report is written again.
+    const handleAskFirstWrite = useCallback((answers: AskFirstAnswers) => {
+        if (!askFirst) return;
+        const composed = composeAskFirstResume(resumeText, askFirst.questions, answers);
+        // Nothing answered is the same as skipping: the first read as it is.
+        if (composed.answered === 0) {
+            Analytics.track("ask_first_skipped", { questions: askFirst.questions.length });
+            setAskFirst(null);
+            return;
+        }
+        const source = askFirst.report as ReportData & { report_id?: string; recovery_id?: string };
+        Analytics.track("ask_first_written", { answers: composed.answered, questions: askFirst.questions.length });
+        setRebuiltAnswers(composed.answered);
+        setRebuilding(true);
+        setResumeText(composed.text);
+        void handleRun({ rebuild: { reportId: source.report_id || null, recoveryId: source.recovery_id || null }, text: composed.text });
+    }, [askFirst, handleRun, resumeText]);
+
+    const handleAskFirstSkip = useCallback(() => {
+        if (askFirst) Analytics.track("ask_first_skipped", { questions: askFirst.questions.length });
+        setAskFirst(null);
+    }, [askFirst]);
 
     // Update before auto-run effects and callbacks observe the committed render.
     useLayoutEffect(() => {
@@ -536,6 +584,11 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             comparisonBaseline={savedRevision.active ? savedRevision.baseline : comparisonBaseline}
                             onStartRevision={handleStartRevision}
                             readDurationMs={readDurationMs}
+                            askFirst={askFirst}
+                            onAskFirstWrite={handleAskFirstWrite}
+                            onAskFirstSkip={handleAskFirstSkip}
+                            rebuilding={rebuilding}
+                            rebuiltAnswers={rebuiltAnswers}
                         />
                     ) : (
                         <LinkedInModeSection

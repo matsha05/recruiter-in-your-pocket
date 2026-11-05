@@ -24,6 +24,8 @@ import {
 } from "../lib/reports/report-integrity";
 import { stemWord } from "../lib/reports/observation-tokens";
 import { liftQuestions, marginNoteFromFix } from "../lib/reports/revised-line";
+import { readCriticalMisses } from "../lib/reports/report-presentation";
+import { reportTone } from "../lib/reports/score-band";
 
 // Saved production-prompt outputs (resume prompt 83b2a2d1), validated by the current
 // production validator. No model calls are made by this test.
@@ -340,8 +342,7 @@ for (const [label, report] of outputs) {
   const web = decode(webHtml);
   const opening = decode(webHtml.slice(webHtml.indexOf('id="section-first-impression"'), webHtml.indexOf('id="section-fixes"')));
   const missRow = decode(rowOf(webHtml, 'id="section-fix-1"'));
-  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-full-notes"')));
-  const fullNotes = decode(webHtml.slice(webHtml.indexOf('id="section-full-notes"')));
+  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-score"')));
   const pdfReport = normalizeReportForPdf(report);
   assert.ok(pdfReport, `${label}: PDF normalizes`);
   const pdf = decode(renderReportHtml(pdfReport));
@@ -352,7 +353,14 @@ for (const [label, report] of outputs) {
     assert.equal(occurrences(pdf, strength), kept ? 1 : 0, `${label}: PDF Keep matches the web report`);
   }
   // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
-  assert.ok(missRow.includes("Critical Miss"), `${label}: the first marked line is the Critical Miss`);
+  // On a clear page with one miss the first row is the question they'd ask instead (Matt, Nov 5, 2026).
+  const ready = reportTone(report.score, readCriticalMisses(integrity.report)) === "ready";
+  assert.ok(missRow.includes(ready ? "The question they'd ask" : "Critical Miss"), `${label}: the first marked line is the ${ready ? "question they'd ask" : "Critical Miss"}`);
+  if (ready) {
+    assert.ok(!page.includes("Critical Miss"), `${label}: a clear page never says Critical Miss`);
+    assert.ok(!pdf.includes("Critical Miss") && pdf.includes("The question they'd ask"), `${label}: nor does its PDF`);
+    assert.ok(!web.includes("most likely to cost you the interview") && !pdf.includes("most likely to cost you the interview"), `${label}: no interview-cost claim on a clear page`);
+  }
   assert.ok(!opening.includes("Critical Miss"), `${label}: the opening read doesn't repeat the Critical Miss`);
   const missNote = marginNoteFromFix(integrity.report.top_fixes![0].fix!);
   assert.ok(missRow.includes(plain(missNote)), `${label}: the margin note gives the fix, without the locator`);
@@ -380,11 +388,14 @@ for (const [label, report] of outputs) {
   }
   for (const { text } of integrity.structuralGaps) {
     assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read, without expanding anything`);
-    assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);
+    assert.equal(occurrences(web, text), 1, `${label}: and nowhere else on the web`);
     assert.equal(occurrences(pdf, text), 1, `${label}: the PDF shows it once`);
   }
+  // The five interview questions and the full notes are cut (Matt, Nov 5, 2026).
+  assert.ok(!web.includes("Questions only you can answer") && !web.includes("Full recruiter notes"), `${label}: no interview questions, no full notes`);
+  // What used to live in them (the remaining gaps, the open questions) renders nowhere on the web now; the PDF never printed them.
   for (const note of [...(integrity.report.gaps || []), ...(integrity.report.ideas?.questions || []).map(({ question }) => question)]) {
-    assert.equal(occurrences(web, note), 1, `${label}: "${note.slice(0, 40)}" renders once`);
+    assert.equal(occurrences(web, note), 0, `${label}: "${note.slice(0, 40)}" is cut`);
   }
 }
 
