@@ -208,6 +208,9 @@ export const Analytics = {
   researchArticleViewed: (slug: string) =>
     trackEvent("research_article_viewed", { slug }),
 
+  comparisonViewed: (slug: string) =>
+    trackEvent("comparison_viewed", { slug }),
+
   faqViewed: () =>
     trackEvent("faq_viewed"),
 

@@ -52,7 +52,7 @@ The rest follow the same rule. The link text is the claim ("recruiters spend lon
 
 Product and trust pages link the article that backs their claim: `/sample-report` and `/pricing` where they describe the first read, the Help page's answers about scoring and ATS, and each compare page's "Is X worth it" section to ats-myths or human-vs-algorithm. The homepage keeps its one link per section and is not touched.
 
-Done when: every research article has at least 4 inbound links from pages other than the hub and the footer, no article's body has more than four links, and the crawl script passes as a test.
+Done when: every research article has at least 4 inbound links from outside the site's header, footer and menus (the gate counts the hub's cards and "Next questions" rows as body links, so this is a project convention, not a ranking threshold), no article's body has more than four links, and the crawl script passes as a test.
 
 ### 2. Comparison pages for the tools the engines name
 
@@ -103,9 +103,10 @@ Shipped November 5, 2026:
 
 - **Internal links.** The crawl script (fetch `/sitemap.xml`, follow every internal `href` on each page, count inbound per page, list orphans and the pages linked from everywhere) becomes `scripts/internal-links.mjs` and a test that fails when a public page has fewer than 4 inbound links outside the nav and footer.
 - **Search.** Search Console, which only Matt can open: impressions and clicks for the research questions and the compare pages, read monthly with the weekly scorecard.
-- **AI answers.** The monthly prompt set above. The number that matters is how many of the twelve answers name RIYP or cite a RIYP page. Today it is zero.
+- **AI answers.** The monthly prompt set above. The number that matters is how many of the twelve answers name RIYP or cite a RIYP page. On November 4 the Parse tracker showed zero for prompt 1; the November 5 run read four of twelve ChatGPT answers, none naming RIYP, with the other eight still unknown ([ai-answers/2026-11.md](ai-answers/2026-11.md)).
+- **Reports from a comparison.** Each compare page records `comparison_viewed` with the other tool's name, and its report buttons count as `landing_cta_clicked` (`web/lib/analyticsSurfaces.ts`, fixed November 5 after an audit found the compare clicks were dropped). That is how a report started from a comparison is tied back to it, for consenting visitors only.
 - **Reports.** Finished free reports with a research or compare referrer, from the consented analytics (first-100-users.md explains the coverage adjustment).
 
 ## What this does not promise
 
-No traffic, ranking or signup numbers are predicted here. The Juicebox post's figures (4,500 signups, +336% from ChatGPT) have no source outside the post, and the distribb video shows link counts, not outcomes. The plan is built so that in one month we have our own numbers instead.
+No traffic, ranking or signup numbers are predicted here. The Juicebox post's figures (4,500 signups, +336% from ChatGPT) come from [the vendor's own case study](https://tryxlr8.ai/case-studies/how-juicebox-gained-4500-sign-ups-from-ai-search-with-xlr8-ai) (XLR8 AI, which jam's follow-up post credits), with no independent analytics or controlled comparison behind them, and the distribb video shows link counts, not outcomes. The plan is built so that in one month we have our own numbers instead.
