@@ -25,4 +25,6 @@ Captured **November 5, 2026**. All times below are **America/Denver (MST, UTC−
 
 ## Requested revamp handoff
 
+[Updated revamp takeaways after the completed RIYP reports](revamp-takeaways-after-riyp.md) is the current Claude handoff, dated November 5, 2026. It incorporates both paid-pass reports, prioritizes changes, gives acceptance criteria, and distinguishes observed behavior from untested rewrite and re-check flows.
+
 [Revamp takeaways — full answer, verbatim](revamp-takeaways-verbatim.md) preserves the exact assistant answer requested for sharing with Claude, including its original Markdown and links. That answer predates the Job Search Pass runs; it has not been rewritten to incorporate them. This separately requested product-advice memo is distinct from the raw captures. No comparison article or product changes are included.
